@@ -31,11 +31,17 @@ import org.openide.windows.TopComponent;
  *
  * @author ali1
  */
-public class RoomEditorTopComponent  extends TopComponent implements ActionListener, ChangeListener {
+public class RoomEditorTopComponent  extends TopComponent implements ActionListener {
     
     
+    /**
+     * Roomname is the name of the room
+     */
     public String Roomname;
    
+    /**
+     * canvas is the area which will be shown in the game
+     */
     public RoomPanel canvas = new RoomPanel();
     JEditorPane beanCode = new JEditorPane();
    
@@ -55,20 +61,14 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
      	super( new AbstractLookup( content ) );
         content.add( initializePalette() );
         initComponents();
-        
     }
     
     public void actionPerformed(ActionEvent e) {
-    }
-    
-    public void stateChanged(ChangeEvent e) {
-       /* JSlider js = (JSlider) e.getSource();
-        canvas.setDiam(js.getValue());
-        preview.paintImmediately(0, 0, preview.getWidth(), preview.getHeight());*/
+        //not needed yet
     }
     
     /**
-     * 
+     * This will return the instance of RoomEditorTopComponent that will be shown when a room is clicked
      * @param name  the name of the Room you want to open
      * @return the RoomEditorTopComponent to be used
      */
@@ -85,20 +85,14 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
                 }
             }
         }
-        
         // none found, make a new one
         return new RoomEditorTopComponent();
     }
     
     private void initComponents() {
-        
-       // initializePalette();
         setLayout(new BorderLayout());
         JToolBar bar = new JToolBar();
-        
-        //ColorChooser fg = new ColorChooser();
-        // preview = canvas.createBrushSizeView();
-        
+                
         //Now build our toolbar:
         JButton clear = new JButton("clear!");
         JLabel snapX = new JLabel(" Snap X:");
@@ -172,7 +166,7 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
                     return new Action[0];
                 }
                 public Action getPreferredAction(Lookup lookup) {
-                    return null; //TODO
+                    return null; 
                 }
             });
         } catch (IOException ex) {
