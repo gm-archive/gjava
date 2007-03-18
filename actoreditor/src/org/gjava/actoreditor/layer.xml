@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+    <folder name="Build"/>
+        
+        <folder name="Edit">
+            <file name="org-gjava-actoreditor-ActorOpen.instance"/>
+        </folder>
+        <folder name="Window">
+            <file name="org-gjava-actoreditor-ActorEditorAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="x-action">
+                <folder name="Actions">
+                    <file name="org-openide-actions-OpenAction.instance"/>
+                    <attr name="org-openide-actions-OpenAction.instance/org-openide-actions-FileSystemAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-FileSystemAction.instance"/>
+                    <attr name="org-openide-actions-FileSystemAction.instance/sep-1.instance" boolvalue="true"/>
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-1.instance/org-openide-actions-CutAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CutAction.instance"/>
+                    <attr name="org-openide-actions-CutAction.instance/org-openide-actions-CopyAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CopyAction.instance"/>
+                    <attr name="org-openide-actions-CopyAction.instance/sep-2.instance" boolvalue="true"/>
+                    <file name="sep-2.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-2.instance/org-openide-actions-DeleteAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-DeleteAction.instance"/>
+                    <attr name="org-openide-actions-DeleteAction.instance/org-openide-actions-RenameAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-RenameAction.instance"/>
+                    <attr name="org-openide-actions-RenameAction.instance/sep-3.instance" boolvalue="true"/>
+                    <file name="sep-3.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-3.instance/org-openide-actions-SaveAsTemplateAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-SaveAsTemplateAction.instance"/>
+                    <attr name="org-openide-actions-SaveAsTemplateAction.instance/sep-4.instance" boolvalue="true"/>
+                    <file name="sep-4.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-4.instance/org-openide-actions-ToolsAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-ToolsAction.instance"/>
+                    <attr name="org-openide-actions-ToolsAction.instance/org-openide-actions-PropertiesAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-PropertiesAction.instance"/>
+                </folder>
+            </folder>
+            <folder name="x-actor">
+                <folder name="Actions">
+                    <file name="org-gjava-actoreditor-OpenActor.instance"/>
+                    <file name="org-gjava-actoreditor-ActorOpen.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-gjava-actoreditor-ActorOpen.instance"/>
+                    </file>
+                    <file name="org-openide-actions-FileSystemAction.instance"/>
+
+                    <attr name="org-openide-actions-FileSystemAction.instance/sep-1.instance" boolvalue="true"/>
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-1.instance/org-openide-actions-CutAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CutAction.instance"/>
+                    <attr name="org-openide-actions-CutAction.instance/org-openide-actions-CopyAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CopyAction.instance"/>
+                    <attr name="org-openide-actions-CopyAction.instance/sep-2.instance" boolvalue="true"/>
+                    <file name="sep-2.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-2.instance/org-openide-actions-DeleteAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-DeleteAction.instance"/>
+                    <attr name="org-openide-actions-DeleteAction.instance/org-openide-actions-RenameAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-RenameAction.instance"/>
+                    <attr name="org-openide-actions-RenameAction.instance/sep-3.instance" boolvalue="true"/>
+                    <file name="sep-3.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-3.instance/org-openide-actions-SaveAsTemplateAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-SaveAsTemplateAction.instance"/>
+                    <attr name="org-openide-actions-SaveAsTemplateAction.instance/sep-4.instance" boolvalue="true"/>
+                    <file name="sep-4.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-4.instance/org-openide-actions-ToolsAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-ToolsAction.instance"/>
+                    <attr name="org-openide-actions-ToolsAction.instance/org-openide-actions-PropertiesAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-PropertiesAction.instance"/>
+                    <attr name="org-gjava-actoreditor-ActorOpen.shadow/org-gjava-actoreditor-OpenActor.instance" boolvalue="true"/>
+                    <file name="org-gjava-actoreditor-OpenActor.instance"/>
+                </folder>
+            </folder>
+            <folder name="x-event">
+                <folder name="Actions">
+                    <file name="org-openide-actions-OpenAction.instance"/>
+                    
+                    <attr name="org-openide-actions-OpenAction.instance/org-openide-actions-FileSystemAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-FileSystemAction.instance"/>
+                    <attr name="org-openide-actions-FileSystemAction.instance/sep-1.instance" boolvalue="true"/>
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-1.instance/org-openide-actions-CutAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CutAction.instance"/>
+                    <attr name="org-openide-actions-CutAction.instance/org-openide-actions-CopyAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CopyAction.instance"/>
+                    <attr name="org-openide-actions-CopyAction.instance/sep-2.instance" boolvalue="true"/>
+                    <file name="sep-2.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-2.instance/org-openide-actions-DeleteAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-DeleteAction.instance"/>
+                    <attr name="org-openide-actions-DeleteAction.instance/org-openide-actions-RenameAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-RenameAction.instance"/>
+                    <attr name="org-openide-actions-RenameAction.instance/sep-3.instance" boolvalue="true"/>
+                    <file name="sep-3.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-3.instance/org-openide-actions-SaveAsTemplateAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-SaveAsTemplateAction.instance"/>
+                    <attr name="org-openide-actions-SaveAsTemplateAction.instance/sep-4.instance" boolvalue="true"/>
+                    <file name="sep-4.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-4.instance/org-openide-actions-ToolsAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-ToolsAction.instance"/>
+                    <attr name="org-openide-actions-ToolsAction.instance/org-openide-actions-PropertiesAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-PropertiesAction.instance"/>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="File">
+            <file name="org-gjava-actoreditor-ActorOpen.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/org-gjava-actoreditor-ActorOpen.instance"/>
+            </file>
+            <attr name="org-gjava-actoreditor-ActorOpen.shadow/org-netbeans-modules-project-ui-NewProject.shadow" boolvalue="true"/>
+        </folder>
+        <folder name="Window">
+            <file name="ActorEditorAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-gjava-actoreditor-ActorEditorAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Services">
+        <folder name="MIMEResolver">
+            <file name="ActionResolver.xml" url="ActionResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+            </file>
+            <file name="actorResolver.xml" url="actorResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+            </file>
+            <file name="eventResolver.xml" url="eventResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <folder name="Other">
+            <file name="ActionTemplate.action" url="ActionTemplate.action">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+            <file name="actorTemplate.actor" url="actorTemplate.actor">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+            <file name="eventTemplate.event" url="eventTemplate.event">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="ActorEditorTopComponent.settings" url="ActorEditorTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="ActorEditorTopComponent.wstcref" url="ActorEditorTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    
+    <folder name="ActorEditorPalette">
+        <folder name="Events">
+            <folder name="Score">
+                
+            <file name="image.png" url="roompalette.xml"/>
+            </folder>
+            <file name="create.event" url="events/create.event"/>
+        </folder>
+        <folder name="Move">
+            <file name="Move.action" url="actions/Move.action"/>
+            <file name="SetHorSpeed.action" url="actions/SetHorSpeed.action"/>
+        </folder>
+        <folder name="Main1">
+            
+        </folder>
+        <folder name="Main2">
+        </folder>
+        <folder name="Control">
+        </folder>
+        <folder name="Score">
+        </folder>
+        <folder name="Draw">
+        </folder>
+        
+    </folder>
+</filesystem>

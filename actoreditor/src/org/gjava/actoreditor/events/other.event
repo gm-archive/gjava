@@ -1,0 +1,8 @@
+id=event_other
+displayName=Other Event
+icon16=org/gjava/actoreditor/events/event_other.gif
+icon32=org/gjava/actoreditor/events/event_other.gif
+comment=Other events
+code={ \
+me=2; \
+}

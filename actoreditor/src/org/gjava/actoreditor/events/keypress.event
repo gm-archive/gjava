@@ -1,0 +1,8 @@
+id=event_keypress
+displayName=Keypress Event
+icon16=org/gjava/actoreditor/events/event_keypress.gif
+icon32=org/gjava/actoreditor/events/event_keypress.gif
+comment=Called when the user presses a key
+code={ \
+me=2; \
+}

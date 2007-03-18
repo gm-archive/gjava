@@ -1,0 +1,12 @@
+id=id1
+displayName=Start Moving in a direction
+icon16=org/gjava/actoreditor/actions/GM_Move.gif
+icon32=org/gjava/actoreditor/actions/GM_Move.gif
+comment=Start Moving
+code={ \
+me=2; \
+}
+arg1=
+arg2=
+arg3=
+arg4=

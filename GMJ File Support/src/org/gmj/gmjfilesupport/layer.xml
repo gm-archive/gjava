@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+    <folder name="Build"/>
+        <folder name="Edit">
+            <file name="org-JGM-roomeditor-action-OpenRoomEditor.instance_hidden"/>
+            <file name="org-JGM-roomeditor-openroom-OpenRoom.instance_hidden"/>
+        </folder>
+    </folder>
+    <folder name="Loaders">
+        <folder name="text">
+            
+            <folder name="x-gmjroom">
+                <folder name="Actions">
+                    <attr name="org-gmj-gmjfilesupport-SomeAction.shadow/org-openide-actions-OpenAction.instance" boolvalue="true"/>
+                    <attr name="org-gmj-gmjfilesupport-openroomaction-OpenroomAction.shadow/org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance" boolvalue="true"/>
+                    <attr name="org-gmj-gmjfilesupport-openroomaction-OpenroomAction.shadow/org-openide-actions-OpenAction.instance" boolvalue="true"/>
+                    <file name="Open.shadow_hidden"/>
+                    <file name="org-gmj-gmjfilesupport-openroomaction-RoomopenAction.shadow">
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-gmj-gmjfilesupport-openroomaction-RoomopenAction.instance"/>
+                    </file>
+                    <attr name="org-openide-actions-OpenAction.instance/org-openide-actions-FileSystemAction.instance" boolvalue="true"/>
+                    <attr name="org-openide-actions-OpenAction.instance/org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance" boolvalue="true"/>
+                    <attr name="Open.shadow/org-openide-actions-FileSystemAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-FileSystemAction.instance"/>
+                    <attr name="org-openide-actions-FileSystemAction.instance/sep-1.instance" boolvalue="true"/>
+                    <file name="sep-1.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-1.instance/org-openide-actions-CutAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CutAction.instance"/>
+                    <attr name="org-openide-actions-CutAction.instance/org-openide-actions-CopyAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-CopyAction.instance"/>
+                    <attr name="org-openide-actions-CopyAction.instance/sep-2.instance" boolvalue="true"/>
+                    <file name="sep-2.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-2.instance/org-openide-actions-DeleteAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-DeleteAction.instance"/>
+                    <attr name="org-openide-actions-DeleteAction.instance/org-openide-actions-RenameAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-RenameAction.instance"/>
+                    <attr name="org-openide-actions-RenameAction.instance/sep-3.instance" boolvalue="true"/>
+                    <file name="sep-3.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-3.instance/org-openide-actions-SaveAsTemplateAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-SaveAsTemplateAction.instance"/>
+                    <attr name="org-openide-actions-SaveAsTemplateAction.instance/sep-4.instance" boolvalue="true"/>
+                    <file name="sep-4.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="sep-4.instance/org-openide-actions-ToolsAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-ToolsAction.instance"/>
+                    <attr name="org-openide-actions-ToolsAction.instance/org-openide-actions-PropertiesAction.instance" boolvalue="true"/>
+                    <file name="org-openide-actions-PropertiesAction.instance"/>
+                    <attr name="org-gmj-gmjfilesupport-openroomaction-RoomopenAction.shadow/org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance" boolvalue="true"/>
+                    <file name="org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance">
+                        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                    </file>
+                    <attr name="org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance/Open.shadow" boolvalue="true"/>
+                    <attr name="org-gmj-gmjfilesupport-openroomaction-separatorAfter.instance/org-openide-actions-OpenAction.instance" boolvalue="true"/>
+                </folder>
+            </folder>
+            
+        </folder>
+    </folder>
+    
+    <folder name="Services">
+        <folder name="JavaHelp">
+            <file name="gmjfilesupport-helpset.xml" url="gmjfilesupport-helpset.xml"/>
+            <attr name="gmjfilesupport-helpset.xml/org-netbeans-modules-usersguide-helpset.xml" boolvalue="true"/>
+        </folder>
+        <folder name="MIMEResolver">
+            <file name="ActorResolver.xml" url="ActorResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            </file>
+            <file name="GMJRoomResolver.xml" url="GMJRoomResolver.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+    <folder name="G-Java Files">
+        <file name="Actor.actor" url="ActorTemplate.actor">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            <attr name="template" boolvalue="true"/>
+        </file>
+        <file name="GMJRoom.room" url="GMJRoomTemplate.room">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            <attr name="template" boolvalue="true"/>
+        </file>
+    </folder>
+     
+   
+    <attr name="Privileged/Project" boolvalue="true"/>
+    
+    
+    <folder name="Project">
+        <attr name="Import/Standard" boolvalue="true"/>
+        <folder name="Standard">
+            <file name="EmptyJGMProjectProject.zip" url="EmptyJGMProjectProject.zip">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.emptytemplate.EmptyJGMProjectWizardIterator.createIterator"/>
+                <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/emptytemplate/EmptyJGMProjectDescription.html"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+            <file name="JGMSampleProjectProject.zip" url="JGMSampleProjectProject.zip">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.sampletemplate.JGMSampleProjectWizardIterator.createIterator"/>
+                <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/sampletemplate/JGMSampleProjectDescription.html"/>
+                <attr name="template" boolvalue="true"/>
+            </file>
+        </folder>
+        <attr name="Standard/Engines" boolvalue="true"/>
+        <folder name="Engines"/>
+            <attr name="Engines/APISupport" boolvalue="true"/>
+            <file name="JGM Modules_hidden"/>
+            <file name="Non JGM Projects_hidden"/>
+            <file name="Samples_hidden"/>
+        </folder>
+        <attr name="Project/Recent" boolvalue="true"/>
+        <attr name="Classes/GUIForms" boolvalue="false"/>
+        <attr name="Classes/JUnit" boolvalue="false"/>
+        <attr name="JUnit/XML" boolvalue="false"/>
+        <attr name="Classes/Other" boolvalue="false"/>
+        <attr name="GUIForms/Other" boolvalue="false"/>
+        <attr name="GUIForms/XML" boolvalue="false"/>
+        <attr name="Classes/XML" boolvalue="false"/>
+        <attr name="Classes/Ant" boolvalue="false"/>
+        <attr name="JUnit/Other" boolvalue="false"/>
+        <attr name="JUnit/NetBeansModuleDevelopment" boolvalue="false"/>
+        <attr name="XML/Ant" boolvalue="false"/>
+        <attr name="JUnit/Ant" boolvalue="false"/>
+        <attr name="XML/Other" boolvalue="false"/>
+        <attr name="G-Java Files/Ant" boolvalue="true"/>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <folder name="explorer">
+                <file name="runtime.wstcref" url="runtimeWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="org-netbeans-api-project-libraries">
+        <folder name="Libraries">
+            <file name="EmptyJGMProject.xml" url="EmptyJGMProject.xml"/>
+        </folder>
+    </folder>
+</filesystem>

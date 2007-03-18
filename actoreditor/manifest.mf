@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gjava.actoreditor
+OpenIDE-Module-Layer: org/gjava/actoreditor/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/gjava/actoreditor/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
+Name: org/gjava/actoreditor/ActionDataLoader.class
+OpenIDE-Module-Class: Loader
+
+Name: org/gjava/actoreditor/actorDataLoader.class
+OpenIDE-Module-Class: Loader
+
+Name: org/gjava/actoreditor/events/eventDataLoader.class
+OpenIDE-Module-Class: Loader
+

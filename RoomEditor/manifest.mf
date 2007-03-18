@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.JGM.roomeditor
+OpenIDE-Module-Layer: org/JGM/roomeditor/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/JGM/roomeditor/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

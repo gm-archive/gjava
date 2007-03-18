@@ -1,0 +1,5 @@
+id=id1
+displayName=Item 1
+icon16=org/netbeans/dndsample/palette/items/bean.gif
+icon32=org/netbeans/dndsample/palette/items/bean32.gif
+comment=This is item 1
