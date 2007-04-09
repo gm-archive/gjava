@@ -187,11 +187,18 @@
     
     <folder name="ActorEditorPalette">
         <folder name="Events">
-            <folder name="Score">
-                
-            <file name="image.png" url="roompalette.xml"/>
-            </folder>
+            
             <file name="create.event" url="events/create.event"/>
+            <file name="keyboard.event" url="events/keyboard.event"/>
+            <file name="mouse.event" url="events/mouse.event"/>
+            <file name="step.event" url="events/step.event"/>
+            <file name="other.event" url="events/other.event"/>
+            <file name="keyrelease.event" url="events/keyrelease.event"/>
+            <file name="keypress.event" url="events/keypress.event"/>
+            <file name="draw.event" url="events/draw.event"/>
+            <file name="destroy.event" url="events/destroy.event"/>
+            <file name="collision.event" url="events/collision.event"/>
+            <file name="alarm.event" url="events/alarm.event"/>
         </folder>
         <folder name="Move">
             <file name="Move.action" url="actions/Move.action"/>
