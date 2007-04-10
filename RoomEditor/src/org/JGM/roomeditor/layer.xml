@@ -8,6 +8,12 @@
                     <file name="org-JGM-roomeditor-RoomOpen.instance"/>
                 </folder>
             </folder>
+            <folder name="x-actor">
+                <folder name="Actions">
+                    <file name="org-gjava-actoreditor-ActorOpen.instance"/>
+                </folder>
+            </folder>
+            
         </folder>
     </folder>
     
