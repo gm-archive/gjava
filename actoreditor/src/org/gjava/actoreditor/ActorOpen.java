@@ -12,7 +12,8 @@ public final class ActorOpen extends CookieAction
     protected void performAction(Node[] activatedNodes)
     {
         actorDataObject c = (actorDataObject) activatedNodes[0].getLookup().lookup(actorDataObject.class);
-         ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName());
+         ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getPrimaryFile().getPath());
+         re.path = c.getPrimaryFile().getPath();
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));

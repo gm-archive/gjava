@@ -25,7 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
-import org.gjava.actoreditor.ActionData;
+import org.gjava.actoreditor.Action.ActionData;
 import org.gjava.actoreditor.Utilz;
 import org.openide.util.Utilities;
 

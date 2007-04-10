@@ -1,15 +1,26 @@
 package org.gjava.actoreditor;
 
 
+import org.openide.cookies.CloseCookie;
+import org.openide.cookies.OpenCookie;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.util.actions.CookieAction;
 
-public class OpenActor extends CookieAction {
+public class OpenActor extends CookieAction implements OpenCookie, CloseCookie {
     
-   public static Node[] node = new Node[1];
+   public static Node node;
+   
+   OpenActor(Node node)
+   {
+       this.node = node;
+   }
+   
+   OpenActor()
+   {
+   }
     
     protected void performAction(Node[] activatedNodes) {
        
@@ -54,7 +65,20 @@ public class OpenActor extends CookieAction {
     }
     
     public void open() {
-        performAction(node);
+        
+        System.out.println("hey,hey,hey,hey");
+         actorDataObject c = (actorDataObject) node.getCookie(actorDataObject.class);
+      
+        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName());
+       // re.setName(c.getName());
+       // re.setHtmlDisplayName(c.getName());
+       // re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));
+        //re.open();
+       // re.requestActive();
+    }
+
+    public boolean close() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
 }

@@ -9,6 +9,7 @@
 
 package org.gjava.actoreditor;
 
+import org.gjava.actoreditor.Action.ActionData;
 import java.awt.datatransfer.DataFlavor;
 import org.gjava.actoreditor.events.eventData;
 

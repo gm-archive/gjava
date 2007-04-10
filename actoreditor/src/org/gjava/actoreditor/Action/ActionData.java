@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.gjava.actoreditor;
+package org.gjava.actoreditor.Action;
 
 import java.awt.Image;
 import java.util.Properties;

@@ -1,5 +1,6 @@
-package org.gjava.actoreditor;
+package org.gjava.actoreditor.Action;
 
+import org.gjava.actoreditor.*;
 import java.awt.Image;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;

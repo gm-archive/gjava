@@ -1,4 +1,4 @@
-package org.gjava.actoreditor;
+package org.gjava.actoreditor.Action;
 
 import java.io.IOException;
 import org.openide.filesystems.FileObject;

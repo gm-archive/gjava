@@ -32,6 +32,8 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
     
     private static final String PREFERRED_ID = "ActorEditorTopComponent";
     
+    public String path = "";
+    
     private ExplorerManager explorerManager;
     
     private int draggingIndex = -1;
@@ -285,7 +287,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
     {
         if (instance == null)
         {
-            instance = new ActorEditorTopComponent(null);
+            instance = new ActorEditorTopComponent(new InstanceContent());
         }
         return instance;
     }
@@ -386,7 +388,8 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
             if (tc instanceof ActorEditorTopComponent)
             {
                 ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
-                if (name.equals(elc.getName()))
+                System.out.println(name+" "+elc.path);
+                if (name.equals(elc.path))
                 {
                     //elc.requestActive();
                     return elc;

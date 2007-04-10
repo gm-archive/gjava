@@ -21,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
-import org.gjava.actoreditor.ActionData;
 import org.gjava.actoreditor.Utilz;
 import org.gjava.actoreditor.Value;
 import org.gjava.actoreditor.events.eventData;

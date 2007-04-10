@@ -1,4 +1,4 @@
-package org.gjava.actoreditor;
+package org.gjava.actoreditor.Action;
 
 import java.awt.Image;
 import java.beans.BeanInfo;
