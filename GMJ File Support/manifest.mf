@@ -8,9 +8,3 @@ OpenIDE-Module-Specification-Version: 1.0
 Name: org/gmj/gmjfilesupport/JGMRoomDataLoader.class
 OpenIDE-Module-Class: Loader
 
-Name: org/gmj/gmjfilesupport/actor/ActorDataLoader.class
-OpenIDE-Module-Class: Loader
-
-Name: org/gmj/gmjfilesupport/actor/GMJActorDataLoader.class
-OpenIDE-Module-Class: Loader
-
