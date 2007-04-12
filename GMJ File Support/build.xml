@@ -8,12 +8,12 @@
     <target name="netbeans" depends="package-samples,projectized-common.netbeans"/>
 
     <target name="package-samples">
-        <delete file="${basedir}/src/gmj/gmjfilesupport/EmptyPovrayProjectProject.zip"/>
-        <delete file="${basedir}/src/gmj/gmjfilesupport/SamplePovrayProjectProject.zip"/>
+        <delete file="${basedir}/src/gmj/gmjfilesupport/EmptyJGMProject.zip"/>
+        <delete file="${basedir}/src/gmj/gmjfilesupport/SampleJGMProject.zip"/>
         <zip compress="9" basedir="${basedir}\src\org\gmj\templates\EmptyJGMProject\"
-            zipfile="${basedir}/src/org/gmj/gmjfilesupport/EmptyPovrayProjectProject.zip"/>
+            zipfile="${basedir}/src/org/gmj/gmjfilesupport/EmptyJGMProject.zip"/>
         <zip compress="9" basedir="${basedir}\src\org\gmj\templates\SampleJGMProject\"
-            zipfile="${basedir}/src/org/gmj/gmjfilesupport/SamplePovrayProjectProject.zip"/>
+            zipfile="${basedir}/src/org/gmj/gmjfilesupport/SampleJGMProject.zip"/>
     </target>
 </project>
 

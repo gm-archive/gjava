@@ -99,13 +99,13 @@
     <folder name="Project">
         <attr name="Import/Standard" boolvalue="true"/>
         <folder name="Standard">
-            <file name="EmptyJGMProjectProject.zip" url="EmptyJGMProjectProject.zip">
+            <file name="EmptyJGMProject.zip" url="EmptyJGMProject.zip">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
                 <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.emptytemplate.EmptyJGMProjectWizardIterator.createIterator"/>
                 <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/emptytemplate/EmptyJGMProjectDescription.html"/>
                 <attr name="template" boolvalue="true"/>
             </file>
-            <file name="JGMSampleProjectProject.zip" url="JGMSampleProjectProject.zip">
+            <file name="JGMSampleProject.zip" url="JGMSampleProject.zip">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
                 <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.sampletemplate.JGMSampleProjectWizardIterator.createIterator"/>
                 <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/sampletemplate/JGMSampleProjectDescription.html"/>
