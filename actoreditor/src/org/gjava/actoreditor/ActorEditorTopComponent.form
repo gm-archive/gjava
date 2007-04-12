@@ -37,7 +37,8 @@
                   <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSplitPane1" min="-2" pref="458" max="-2" attributes="0"/>
+              <Component id="jSplitPane1" min="-2" pref="495" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,7 +75,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="425" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="462" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -103,6 +104,10 @@
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="MousePressed"/>
                     <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="actionList1MouseReleased"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new org.gjava.actoreditor.beans.ActionList(this)"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -132,7 +137,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="425" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="462" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -165,6 +170,10 @@
                   <Events>
                     <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="eventListValueChanged"/>
                   </Events>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new org.gjava.actoreditor.beans.EventList(this)"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
               </SubComponents>
             </Container>
@@ -176,6 +185,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton1MouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JCheckBox" name="jCheckBox1">
       <Properties>

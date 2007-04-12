@@ -7,8 +7,9 @@
 package org.gjava.actoreditor.beans;
 
 import java.awt.Color;
+import org.gjava.actoreditor.ActionValue;
 import java.awt.Component;
-import java.awt.Point;
+import org.gjava.actoreditor.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -18,16 +19,13 @@ import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import org.gjava.actoreditor.Action.ActionData;
 import org.gjava.actoreditor.Utilz;
-import org.openide.util.Utilities;
 
 
 /**
@@ -37,13 +35,13 @@ import org.openide.util.Utilities;
 public class ActionList extends javax.swing.JList
 {
     public static DefaultListModel model = new DefaultListModel();
-    
+    public final ActorEditorTopComponent aa;
     
     
     /** Creates new form ActionList */
-    public ActionList()
+    public ActionList(ActorEditorTopComponent a)
     {
-        
+        this.aa = a;
         
         setDropTarget(new DropTarget(this,new DropTargetListener()
         {
@@ -100,14 +98,20 @@ public class ActionList extends javax.swing.JList
                 {
                     int idx = locationToIndex(dtde.getLocation());
                     
-                    //model.setSize(model.getSize()+10);
+                   
+                    //check for event
+                   if (aa.eventList.getSelectedValue() == null)
+                   {
+                       JOptionPane.showMessageDialog(null,"No event selected");
+                       System.out.println("No event selected");
+                   } else {
                     
-                    //model.addElement(new Value("Move Action", new ImageIcon(Utilities.loadImage("org/gjava/actoreditor/actions/GM_Move.gif")) ));
-                    
+                    //add to actions
                     DefaultListModel mod = (DefaultListModel) getModel();
-                            mod.addElement(new Value(data.getDisplayName(),new ImageIcon(data.getBigImage()) )) ;
+                            mod.addElement(new ActionValue(data.getDisplayName(),data.img,data.code )) ;
                     
                     System.out.println(""+idx);
+                   }
                     //dropTargetDropEvent.getSource().
                 }
             }
@@ -140,7 +144,7 @@ public class ActionList extends javax.swing.JList
         
         public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
         {
-            Value val = (Value)value;
+            ActionValue val = (ActionValue)value;
             setText(val.value);
             setIcon(val.image);
             
@@ -153,17 +157,7 @@ public class ActionList extends javax.swing.JList
     }
     
     
-    private class Value
-    {
-        public String value;
-        public ImageIcon image;
-        Value(String value, ImageIcon image)
-        {
-            this.value = value;
-            this.image = image;
-        }
-        
-    }
+
     
     
     /** This method is called from within the constructor to

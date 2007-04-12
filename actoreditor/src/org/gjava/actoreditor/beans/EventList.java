@@ -8,6 +8,7 @@ package org.gjava.actoreditor.beans;
 
 import java.awt.Color;
 import java.awt.Component;
+import org.gjava.actoreditor.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
@@ -16,10 +17,11 @@ import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import org.gjava.actoreditor.Utilz;
 import org.gjava.actoreditor.Value;
@@ -32,11 +34,25 @@ import org.gjava.actoreditor.events.eventData;
 public class EventList extends javax.swing.JList
 {
     
-    public static DefaultListModel events = new DefaultListModel();
+    public DefaultListModel events = new DefaultListModel();
+    static private final String REAL_NUMBER = "^[-+]?\\d+(\\.\\d+)?$";
+    
+    //----------------------------------------------------------------------------------------------
+/**
+ * Determines if a string contains only digits, decimal points & hyphens.
+ * @param string The string to check.
+ * @return <code>True</code> if it has only digits, else <code>false</code>.
+ * @since J2SE 1.4
+ */
+static public boolean isNumeric(String string)
+{
+   return string.matches(REAL_NUMBER);
+}
     
     /** Creates new form EventList */
-    public EventList()
+    public EventList(ActorEditorTopComponent a)
     {
+             
         setDropTarget(new DropTarget(this,new DropTargetListener()
         {
             public void dragEnter(DropTargetDragEvent dropTargetDragEvent)
@@ -89,7 +105,27 @@ public class EventList extends javax.swing.JList
                 if( null != data )
                 {
                     int idx = locationToIndex(dtde.getLocation());
-                    events.addElement(new Value(data.getDisplayName(),new ImageIcon(data.getBigImage()), new DefaultListModel() )) ;
+                    String tempname=data.getDisplayName();
+                    if (data.getDisplayName().equals("Alarm Event"))
+                    {
+                     String alarm = "";
+                        do {
+                  alarm = JOptionPane.showInputDialog("Which alarm event? (Number only)", "0");
+                        } while(isNumeric(alarm) == false);
+                     tempname = "Alarm"+alarm+" Event";
+                    }
+                    boolean dup = false;
+                    //check if duplicate
+                    for (Enumeration e = events.elements(); e.hasMoreElements() ;)
+                    {
+                      Value v = (Value)e.nextElement();
+                     if(v.value.equals(tempname))
+                     {
+                         dup = true;
+                     }
+                    }
+                    if (dup == false)
+                    events.addElement(new Value(tempname,data.img, new DefaultListModel() )) ;
                     
                     System.out.println(""+idx);
                     //dropTargetDropEvent.getSource().
@@ -103,6 +139,8 @@ public class EventList extends javax.swing.JList
         initComponents();
         setModel(events);
     }
+    
+
     
     class SimpleCellRenderer extends JLabel implements ListCellRenderer
     {

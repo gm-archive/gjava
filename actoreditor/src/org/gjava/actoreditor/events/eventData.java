@@ -18,11 +18,16 @@ public class eventData {
     public final String PROP_ICON16 = "icon16";
     public final String PROP_ICON32 = "icon32";
     public DefaultListModel actions = new DefaultListModel();
+     public  String code = "";
+    public  String img = "";
+    public String name = "";
     
     /** Creates a new instance of MyItemData */
     eventData( Properties props ) {
         this.props = props;
         loadIcons();
+        this.img =  props.getProperty( PROP_ICON32 );
+        this.name = props.getProperty( PROP_NAME );
     }
     
     public String getId() {
@@ -30,7 +35,7 @@ public class eventData {
     }
     
     public String getDisplayName() {
-        return props.getProperty( PROP_NAME );
+        return name;
     }
     
     public String getComment() {

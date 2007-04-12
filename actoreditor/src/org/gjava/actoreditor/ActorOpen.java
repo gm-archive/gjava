@@ -1,6 +1,7 @@
 package org.gjava.actoreditor;
 
 import org.openide.nodes.Node;
+import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
@@ -14,6 +15,13 @@ public final class ActorOpen extends CookieAction
         actorDataObject c = (actorDataObject) activatedNodes[0].getLookup().lookup(actorDataObject.class);
          ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getPrimaryFile().getPath());
          re.path = c.getPrimaryFile().getPath();
+         re.ado = c;
+          try     {
+            re.openfile();
+            }
+           catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));

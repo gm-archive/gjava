@@ -1,34 +1,41 @@
 package org.gjava.actoreditor;
 
 
+import java.awt.Graphics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.BufferedReader;
+import org.gjava.actoreditor.Value;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.util.Enumeration;
 import java.util.Iterator;
 import javax.swing.Action;
+import javax.swing.DefaultListModel;
 import org.netbeans.spi.palette.PaletteActions;
 import org.netbeans.spi.palette.PaletteController;
 import org.netbeans.spi.palette.PaletteFactory;
 import org.openide.ErrorManager;
 import org.openide.explorer.ExplorerManager;
+import org.openide.filesystems.FileLock;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
-import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-import org.openide.util.Utilities;
-import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.InstanceContent;
 
 /**
  * Top component which displays something.
  */
-final class ActorEditorTopComponent extends TopComponent implements PropertyChangeListener
+public class ActorEditorTopComponent extends TopComponent implements PropertyChangeListener
 {
     
     private static ActorEditorTopComponent instance;
     /** path to the icon used by the component and its open action */
     static final String ICON_PATH = "org/gjava/actoreditor/object.png";
+    
+    public actorDataObject ado;
     
     private static final String PREFERRED_ID = "ActorEditorTopComponent";
     
@@ -44,43 +51,36 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
     }
     
     
-    
+        
     public ActorEditorTopComponent(InstanceContent content)
     {
-        super( new AbstractLookup( content ) );
+        
+        super(new org.openide.util.lookup.AbstractLookup(content));
         
         
-        //setup properties
-        explorerManager = new ExplorerManager();
+        
+        
+        explorerManager = new org.openide.explorer.ExplorerManager();
         explorerManager.addPropertyChangeListener(this);
-        content.add( explorerManager);
+        content.add(explorerManager);
+        final org.netbeans.spi.palette.PaletteController controller = initializePalette();
         
-        //setup palette
-        final PaletteController controller= initializePalette();
-        content.add( controller );
-        
-        
-        
-        controller.addPropertyChangeListener( new PropertyChangeListener()
+        content.add(controller);
+        controller.addPropertyChangeListener(new java.beans.PropertyChangeListener()
         {
-            public void propertyChange(PropertyChangeEvent arg0)
+            
+            public void propertyChange(java.beans.PropertyChangeEvent arg0)
             {
-                // throw new UnsupportedOperationException("Not supported yet.");
             }
-        }); // removed to save space
-       
+        });
         initComponents();
-       // this.setActivatedNodes(node);
-        
-        // setDragEnabled relates to inter-component drag&drop
         actionList1.setDragEnabled(true);
+        setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.ActorEditorTopComponent.class,
+                "CTL_ActorEditorTopComponent"));
+        setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.ActorEditorTopComponent.class,
+                "HINT_ActorEditorTopComponent"));
+        setIcon(org.openide.util.Utilities.loadImage(ICON_PATH, true));
         
-        
-        
-        
-        setName(NbBundle.getMessage(ActorEditorTopComponent.class, "CTL_ActorEditorTopComponent"));
-        setToolTipText(NbBundle.getMessage(ActorEditorTopComponent.class, "HINT_ActorEditorTopComponent"));
-        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
     
     /** This method is called from within the constructor to
@@ -96,11 +96,11 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        actionList1 = new org.gjava.actoreditor.beans.ActionList();
+        actionList1 = new org.gjava.actoreditor.beans.ActionList(this);
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventList = new org.gjava.actoreditor.beans.EventList();
+        eventList = new org.gjava.actoreditor.beans.EventList(this);
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
@@ -148,7 +148,7 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
                 .addContainerGap()
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -183,12 +183,19 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
                 .addContainerGap()
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
 
         jButton1.setText("Save");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jCheckBox1.setText("Solid");
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -225,16 +232,177 @@ final class ActorEditorTopComponent extends TopComponent implements PropertyChan
                     .add(jCheckBox2)
                     .add(jCheckBox1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 458, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 495, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+    
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    //save the actor to xml file
+    save();
+}//GEN-LAST:event_jButton1MouseClicked
+
+private void save()
+{
+    FileLock lock;
+    try
+    {
+        lock= ado.getPrimaryFile().lock();
+    }
+    catch (Exception e)
+    {
+        return;
+    }
+    {
+        java.io.PrintWriter to = null;
+        
+        try
+        {
+            to = new java.io.PrintWriter(ado.getPrimaryFile().getOutputStream(lock));
+            try
+            {
+                to.println("<?xml version=\"1.0\"?>");
+                if (jCheckBox1.isSelected() == true)
+                    to.println("<Solid>True</Solid>");
+                else
+                    to.println("<Solid>False</Solid>");
+                if (jCheckBox2.isSelected() == true)
+                    to.println("<Visible>True</Visible>");
+                else
+                    to.println("<Visible>False</Visible>");
+                
+                //save events/actions
+                for (Enumeration e = eventList.events.elements() ; e.hasMoreElements() ;)
+                {
+                    Value v = (Value)e.nextElement();
+                    to.println("<Event>");
+                    to.println("<Name>"+v.value+"</Name>");
+                    to.println("<Image>"+v.img+"</Image>");
+                    
+                    for (Enumeration ee = v.actions.elements() ; ee.hasMoreElements() ;)
+                    {
+                        ActionValue vv = (ActionValue)ee.nextElement();
+                        to.println("<Action>");
+                        to.println("<Name>"+vv.value+"</Name>");
+                        to.println("<Image>"+vv.img+"</Image>");
+                        to.println("<Code>"+vv.code+"</Code>");
+                        to.println("</Action>");
+                    }
+                    to.println("</Event>");
+                }
+            }
+            finally
+            {
+                to.close();
+            }
+        }
+        catch (IOException ex)
+        {
+            Exceptions.printStackTrace(ex);
+        }
+        finally
+        {
+            lock.releaseLock();
+            to.close();
+        }
+    }
+    
+}
+
+public void openfile() throws Exception
+{
+    eventList.events.clear();
+    BufferedReader from=new BufferedReader(new InputStreamReader(ado.getPrimaryFile().getInputStream()));
+    try
+    {
+        String line;
+        while ((line=from.readLine()) != null)
+        {
+            if (line.contains("<Solid>") && line.contains("</Solid>"))
+            {
+                if (line.contains("True") )
+                    
+                    jCheckBox1.setSelected(true);
+                
+                else
+                    jCheckBox1.setSelected(false);
+            }
+            if (line.contains("<Visible>") && line.contains("</Visible>"))
+            {
+                if (line.contains("True") )
+                    
+                    jCheckBox2.setSelected(true);
+                
+                else
+                    jCheckBox2.setSelected(false);
+            }
+            
+            if (line.equals("<Event>"))
+            {
+                line=from.readLine();
+                String name="",img="",code="";
+                if (line.contains("<Name>") && line.contains("</Name>"))
+                {
+                    name = line.replaceAll("<Name>", "").replaceAll("</Name>", "");
+                }
+                line=from.readLine();
+                if (line.contains("<Image>") && line.contains("</Image>"))
+                {
+                    img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
+                    
+                }
+                eventList.events.addElement(new Value(name,img, new DefaultListModel() )) ;
+               
+                line=from.readLine();
+                while (!line.equals("</Event>"))
+                {
+                    //get actions
+                    if (line.equals("<Action>"))
+                    {
+                        line=from.readLine();
+                        if (line.contains("<Name>") && line.contains("</Name>"))
+                        {
+                            name = line.replaceAll("<Name>", "").replaceAll("</Name>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Image>") && line.contains("</Image>"))
+                        {
+                            img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
+                            System.out.println(img);
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Code>") && line.contains("</Code>"))
+                        {
+                            code = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
+                            System.out.println(img);
+                        }
+                        line=from.readLine();//</Action>
+                        // add the action
+                        Value v = (Value)eventList.events.lastElement();
+                        v.actions.addElement(new ActionValue(name,img,code ));
+                    }
+                    line=from.readLine();
+                }
+                   
+            }
+           
+        }
+    }
+    finally
+    {
+        from.close();
+    }
+}
 
 private void eventListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_eventListValueChanged
-    
+    if (eventList.getSelectedValue() == null)
+    {
+       return; 
+    }
     actionList1.setModel(((Value) eventList.getSelectedValue()).actions);
     
 }//GEN-LAST:event_eventListValueChanged
-    
+
 
 private void actionList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MouseDragged
     
@@ -263,8 +431,8 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.gjava.actoreditor.beans.ActionList actionList1;
-    private org.gjava.actoreditor.beans.EventList eventList;
+    public org.gjava.actoreditor.beans.ActionList actionList1;
+    public org.gjava.actoreditor.beans.EventList eventList;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;

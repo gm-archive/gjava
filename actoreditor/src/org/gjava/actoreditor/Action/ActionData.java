@@ -24,12 +24,16 @@ public class ActionData {
     public static final String PROP_COMMENT = "comment";
     public static final String PROP_ICON16 = "icon16";
     public static final String PROP_ICON32 = "icon32";
+    public  String code = "";
+    public  String img = "";
     
     /** Creates a new instance of MyItemData */
     ActionData( Properties props ) {
         this.props = props;
-       // loadIcons();
-        System.out.println(props.getProperty( "code" ));
+        this.img =  props.getProperty( PROP_ICON32 );
+        loadIcons();
+        //System.out.println(props.getProperty( "code" ));
+        this.code = props.getProperty( "code" );
     }
     
     public String getId() {
