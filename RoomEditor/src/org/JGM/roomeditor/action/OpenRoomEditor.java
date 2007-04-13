@@ -1,6 +1,6 @@
 package org.JGM.roomeditor.action;
 
-import org.JGM.roomeditor.RoomEditorTopComponent;
+import org.JGM.roomeditor.RoomEditorTopComponent2;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -8,7 +8,7 @@ import org.openide.util.actions.CallableSystemAction;
 public final class OpenRoomEditor extends CallableSystemAction {
     
     public void performAction() {
-        RoomEditorTopComponent re = new RoomEditorTopComponent();
+        RoomEditorTopComponent2 re = new RoomEditorTopComponent2();
         re.open();
         re.requestActive();
     }

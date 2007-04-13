@@ -11,7 +11,7 @@ public final class RoomOpen extends CookieAction {
     
     protected void performAction(Node[] activatedNodes) {
           GMJRoomDataObject c = (GMJRoomDataObject) activatedNodes[0].getCookie(GMJRoomDataObject.class);
-        RoomEditorTopComponent re = RoomEditorTopComponent.getInstance(c.getName());
+        RoomEditorTopComponent2 re = RoomEditorTopComponent2.getInstance(c.getName());
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gmj/gmjfilesupport/room.png"));

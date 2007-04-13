@@ -31,7 +31,7 @@ import org.openide.windows.TopComponent;
  *
  * @author ali1
  */
-public class RoomEditorTopComponent  extends TopComponent implements ActionListener {
+public class RoomEditorTopComponent2  extends TopComponent implements ActionListener {
     
     
     /**
@@ -50,16 +50,16 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
     /**
      * Creates the RoomEditorTopComponent
      */
-    public RoomEditorTopComponent() {
+    public RoomEditorTopComponent2() {
         this(new InstanceContent());
     }
         
     /** Creates a new instance of RoomEditorTopComponent 
      * @param content 
      */
-    public RoomEditorTopComponent(InstanceContent content) {
+    public RoomEditorTopComponent2(InstanceContent content) {
      	super( new AbstractLookup( content ) );
-        content.add( initializePalette() );
+       // content.add( initializePalette() );
         initComponents();
     }
     
@@ -72,13 +72,13 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
      * @param name  the name of the Room you want to open
      * @return the RoomEditorTopComponent to be used
      */
-    public static RoomEditorTopComponent getInstance(String name) {
+    public static RoomEditorTopComponent2 getInstance(String name) {
         // look for an open instance containing this feed
         Iterator opened = TopComponent.getRegistry().getOpened().iterator();
         while (opened.hasNext()) {
             Object tc = opened.next();
-            if (tc instanceof RoomEditorTopComponent) {
-                RoomEditorTopComponent elc = (RoomEditorTopComponent)tc;
+            if (tc instanceof RoomEditorTopComponent2) {
+                RoomEditorTopComponent2 elc = (RoomEditorTopComponent2)tc;
                 if (name.equals(elc.getName())) {
                     //elc.requestActive();
                     return elc;
@@ -86,7 +86,7 @@ public class RoomEditorTopComponent  extends TopComponent implements ActionListe
             }
         }
         // none found, make a new one
-        return new RoomEditorTopComponent();
+        return new RoomEditorTopComponent2();
     }
     
     private void initComponents() {
