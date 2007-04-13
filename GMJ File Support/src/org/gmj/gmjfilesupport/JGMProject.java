@@ -11,7 +11,10 @@ package org.gmj.gmjfilesupport;
 
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.Properties;
+import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import org.netbeans.api.project.Project;
@@ -20,8 +23,13 @@ import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.ErrorManager;
+import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
+import org.openide.loaders.DataFolder;
+import org.openide.loaders.DataObject;
+import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.util.Lookup;
+import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 
@@ -41,6 +49,7 @@ public final class JGMProject implements Project {
     public JGMProject(FileObject projectDir, ProjectState state) {
         this.projectDir = projectDir;
         this.state = state;
+        
     }
     
     public FileObject getProjectDirectory() {
@@ -124,15 +133,87 @@ public final class JGMProject implements Project {
     
     private final class ActionProviderImpl implements ActionProvider {
         public String[] getSupportedActions() {
-            return new String[0];
+            return new String[] { ActionProvider.COMMAND_BUILD,
+                ActionProvider.COMMAND_CLEAN, ActionProvider.COMMAND_RUN_SINGLE,ActionProvider.COMMAND_RUN };
         }
         
+         
+
         public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
-            //do nothing
+            int idx = Arrays.asList (getSupportedActions()).indexOf (string);
+            switch (idx) {
+                case 0 : //build
+                   // final RendererService ren = (RendererService) getLookup().lookup(RendererService.class);
+                    RequestProcessor.getDefault().post (new Runnable() {
+                        public void run() {
+                            //FileObject image = ren.render();
+
+                            //If we succeeded, try to open the image
+                           
+                        }
+                    });
+                    break;
+                case 1 : //clean
+                    FileObject fob = getImagesFolder(false);
+                    if (fob != null) {
+                        DataFolder fld = DataFolder.findFolder(fob);
+                        for (Enumeration en=fld.children(); en.hasMoreElements();) {
+                            DataObject ob = (DataObject) en.nextElement();
+                            try {
+                                ob.delete();
+                            } catch (IOException ioe) {
+                                ErrorManager.getDefault().notify(ioe);
+                            }
+                        }
+                    }
+                    break;
+                case 2 : //compile-single
+                    final DataObject ob = (DataObject) lookup.lookup (DataObject.class);
+                    if (ob != null) {
+                       // final RendererService ren1 = (RendererService) getLookup().lookup(RendererService.class);
+                        RequestProcessor.getDefault().post (new Runnable() {
+                            public void run() {
+                                if (ob.isValid()) { //Could theoretically change before we run
+                                   // ren1.render(ob.getPrimaryFile());
+                                }
+                            }
+                        });
+                    }
+                    break;
+            case 3: System.out.println("Run!");
+                    break;
+            
+                default :
+                    throw new IllegalArgumentException (string);
+            }
         }
-        
+
         public boolean isActionEnabled(String string, Lookup lookup) throws IllegalArgumentException {
-            return false;
+            int idx = Arrays.asList (getSupportedActions()).indexOf (string);
+            boolean result;
+            switch (idx) {
+                case 0 : //build
+                    result = true;
+                    break;
+                case 1 : //clean
+                    result = getImagesFolder(false) != null &&
+                            getImagesFolder(false).getChildren().length > 0;
+                    break;
+                case 2 : //compile-single
+                    DataObject ob = (DataObject) lookup.lookup (DataObject.class);
+                    if (ob != null) {
+                        FileObject file = ob.getPrimaryFile();
+                        result = "text/x-povray".equals(file.getMIMEType());
+                    } else {
+                        result = false;
+                    }
+                    break;
+            case 3: result = true;
+            break;
+                default :
+                    result = false;
+            }
+            return result;
         }
     }
     
