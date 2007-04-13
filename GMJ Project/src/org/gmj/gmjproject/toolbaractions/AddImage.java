@@ -44,7 +44,7 @@ public final class AddImage extends CallableSystemAction
             
                     
                     
-                    copyFile(f, new java.io.File(pro.getProjectDirectory().getPath()+"/sounds/"+f.getName()));
+                    copyFile(f, new java.io.File(pro.getProjectDirectory().getPath()+"/images/"+f.getName()));
                 }
                 catch (Exception ex)
                 {
