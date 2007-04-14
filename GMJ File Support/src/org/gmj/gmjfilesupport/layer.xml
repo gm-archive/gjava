@@ -105,12 +105,6 @@
                 <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/emptytemplate/EmptyJGMProjectDescription.html"/>
                 <attr name="template" boolvalue="true"/>
             </file>
-            <file name="JGMSampleProject.zip" url="JGMSampleProject.zip">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
-                <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.sampletemplate.JGMSampleProjectWizardIterator.createIterator"/>
-                <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/sampletemplate/JGMSampleProjectDescription.html"/>
-                <attr name="template" boolvalue="true"/>
-            </file>
         </folder>
         <attr name="Standard/Engines" boolvalue="true"/>
         <folder name="Engines"/>
