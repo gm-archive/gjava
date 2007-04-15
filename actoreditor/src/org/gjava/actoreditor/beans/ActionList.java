@@ -110,7 +110,7 @@ public class ActionList extends javax.swing.JList
                     DefaultListModel mod = (DefaultListModel) getModel();
                             mod.addElement(new ActionValue(data.getDisplayName(),data.img,data.code )) ;
                     
-                    System.out.println(""+idx);
+                    aa.a.setModified(true);
                    }
                     //dropTargetDropEvent.getSource().
                 }

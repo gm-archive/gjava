@@ -28,8 +28,10 @@ import org.netbeans.spi.palette.PaletteActions;
 import org.netbeans.spi.palette.PaletteController;
 import org.netbeans.spi.palette.PaletteFactory;
 import org.openide.ErrorManager;
+import org.openide.cookies.SaveCookie;
 import org.openide.explorer.ExplorerManager;
 import org.openide.filesystems.FileLock;
+import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.windows.TopComponent;
@@ -48,19 +50,26 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     
     public actorDataObject ado;
     
+    public String oldDisplayName;
+    
     private static final String PREFERRED_ID = "ActorEditorTopComponent";
     
+       
     public String path = "", image="";
     
     private ExplorerManager explorerManager;
     
     private int draggingIndex = -1;
+    public actorDataObject a;
     
-    private ActorEditorTopComponent(actorDataObject a)
+    ActorEditorTopComponent(actorDataObject a)
     {
        this(new InstanceContent());
         this.a = a;
-        
+       this.oldDisplayName = this.getHtmlDisplayName();
+        this.a.ae = this;
+        path = a.getPrimaryFile().getPath();
+        this.ado = a;
     }
     
     
@@ -308,7 +317,9 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     
 private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     //save the actor to xml file
-    save();
+    savefile();
+    a.setModified(false);
+    
 }//GEN-LAST:event_jButton1MouseClicked
 
 
@@ -317,7 +328,7 @@ public final void setimage(String image)
     this.image = image;
 }
 
-private void save()
+private void savefile()
 {
     FileLock lock;
     try
@@ -579,7 +590,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
     
     public void componentOpened()
     {
-        // TODO add custom code on component opening
+        this.setActivatedNodes(new Node[] {a.getNodeDelegate()});
     }
     
     public void componentClosed()
@@ -677,7 +688,12 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
             setActivatedNodes(explorerManager.getSelectedNodes());
         }
     }
-    private actorDataObject a;
+    
+
+    public void save() throws IOException {
+        savefile();
+       // a.setModified(false);
+    }
     
     
 }

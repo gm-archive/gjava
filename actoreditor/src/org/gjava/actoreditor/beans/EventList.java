@@ -48,10 +48,13 @@ static public boolean isNumeric(String string)
 {
    return string.matches(REAL_NUMBER);
 }
+
+public ActorEditorTopComponent a;
     
     /** Creates new form EventList */
-    public EventList(ActorEditorTopComponent a)
+    public EventList(ActorEditorTopComponent aa)
     {
+        this.a = aa;
              
         setDropTarget(new DropTarget(this,new DropTargetListener()
         {
@@ -125,8 +128,10 @@ static public boolean isNumeric(String string)
                      }
                     }
                     if (dup == false)
+                    {
                     events.addElement(new Value(tempname,data.img, new DefaultListModel() )) ;
-                    
+                    a.a.setModified(true);
+                    }
                     System.out.println(""+idx);
                     //dropTargetDropEvent.getSource().
                 }

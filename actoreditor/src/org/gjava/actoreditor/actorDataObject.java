@@ -5,6 +5,7 @@ import org.gjava.actoreditor.Action.ActionData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.Properties;
 import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
@@ -15,11 +16,13 @@ import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
 import org.openide.util.Utilities;
+import org.openide.windows.TopComponent;
 
 public class actorDataObject extends MultiDataObject 
 implements Lookup.Provider {
     
    public  actorData data = new actorData();
+   public ActorEditorTopComponent ae;// = new ActorEditorTopComponent(this);
     
     public final FileObject pf2;
 
@@ -30,6 +33,8 @@ implements Lookup.Provider {
         InputStream input = pf.getInputStream();
         data.name = pf.getName();
         System.out.println(pf.getPath());
+        
+        
     BufferedReader from=new BufferedReader(new InputStreamReader(input));
    
         String line;
@@ -60,7 +65,55 @@ implements Lookup.Provider {
     }
             
         });
-        */cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
+        */
+    cookies.add(new Save(this));
+    cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
+        
+    }
+
+    public void setModified(boolean arg0) {
+        super.setModified(arg0);
+        if (arg0 == true)
+        {
+//            Iterator opened = TopComponent.getRegistry().getOpened().iterator();
+//        while (opened.hasNext())
+//        {
+//            Object tc = opened.next();
+//            if (tc instanceof ActorEditorTopComponent)
+//            {
+//                ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
+//                
+//                if (this.getPrimaryFile().getPath().equals(elc.path))
+//                {
+//                    //elc.requestActive();
+//                    elc.setHtmlDisplayName(elc.getHtmlDisplayName()+"*");
+//                    
+//                }
+//            }
+//        }
+        }
+        
+        else if (arg0 == false)
+        {
+//            Iterator opened = TopComponent.getRegistry().getOpened().iterator();
+//        while (opened.hasNext())
+//        {
+//            Object tc = opened.next();
+//            if (tc instanceof ActorEditorTopComponent)
+//            {
+//                ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
+//                
+//                if (this.getPrimaryFile().getPath().equals(elc.path))
+//                {
+//                    //elc.requestActive();
+//                    try {
+//                    elc.setHtmlDisplayName(elc.oldDisplayName);
+//                    } catch(Exception e) {}
+//                    
+//                }
+//            }
+//        }
+        }
     }
     
     protected Node createNodeDelegate() {
