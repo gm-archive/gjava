@@ -26,7 +26,7 @@ public class OpenActor extends CookieAction implements OpenCookie, CloseCookie {
        
        actorDataObject c = (actorDataObject) activatedNodes[0].getCookie(actorDataObject.class);
       
-        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName());
+        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName(),c);
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));
@@ -66,10 +66,10 @@ public class OpenActor extends CookieAction implements OpenCookie, CloseCookie {
     
     public void open() {
         
-        System.out.println("hey,hey,hey,hey");
-         actorDataObject c = (actorDataObject) node.getCookie(actorDataObject.class);
+      //  System.out.println("hey,hey,hey,hey");
+       //  actorDataObject c = (actorDataObject) node.getCookie(actorDataObject.class);
       
-        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName());
+       // ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName());
        // re.setName(c.getName());
        // re.setHtmlDisplayName(c.getName());
        // re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));

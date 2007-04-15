@@ -1,7 +1,11 @@
 package org.gjava.actoreditor;
 
+import java.io.BufferedReader;
 import org.gjava.actoreditor.Action.ActionData;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Properties;
 import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
@@ -15,7 +19,7 @@ import org.openide.util.Utilities;
 public class actorDataObject extends MultiDataObject 
 implements Lookup.Provider {
     
-    private ActionData data;
+   public  actorData data = new actorData();
     
     public final FileObject pf2;
 
@@ -23,6 +27,22 @@ implements Lookup.Provider {
         super(pf, loader);
         CookieSet cookies = getCookieSet();
         pf2 = pf;
+        InputStream input = pf.getInputStream();
+        data.name = pf.getName();
+        System.out.println(pf.getPath());
+    BufferedReader from=new BufferedReader(new InputStreamReader(input));
+   
+        String line;
+        while ((line=from.readLine()) != null)
+        {
+            if (line.contains("<Image>") && line.contains("</Image>"))
+            {
+              data.img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
+               System.out.println(data.img);
+            }
+        }
+    input.close();
+       // data = new actorData();
        /* cookies.add(new OpenCookie() {
         
           public void open() {
@@ -44,7 +64,7 @@ implements Lookup.Provider {
     }
     
     protected Node createNodeDelegate() {
-        return new actorDataNode(this, getLookup());
+        return new actorDataNode(this, data);
     }
 
     public Lookup getLookup() {

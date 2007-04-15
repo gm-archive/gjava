@@ -21,6 +21,9 @@ public class Utilz
 {
     public static final DataFlavor ACTION_DATA_FLAVOR = new DataFlavor( ActionData.class, "Action Data" );
     public static final DataFlavor EVENT_DATA_FLAVOR = new DataFlavor( eventData.class, "Event Data" );
+     public static final DataFlavor ACTOR_DATA_FLAVOR = new DataFlavor( actorData.class, "Actor Data" );
+public static final DataFlavor IMAGE_DATA_FLAVOR = new DataFlavor( ImageData.class, "Image Data" );
+
 
     /** Creates a new instance of Utils */
     public Utilz()
