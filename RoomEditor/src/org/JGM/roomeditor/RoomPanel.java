@@ -14,6 +14,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Line2D;
 import javax.swing.JPanel;
 
@@ -21,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author ali1
  */
-public class RoomPanel extends JPanel {
+public class RoomPanel extends JPanel implements MouseListener {
     
     /** Creates a new instance of RoomPanel */
     public RoomPanel() {
@@ -29,7 +31,13 @@ public class RoomPanel extends JPanel {
         
     }
     
-    double xInc, yInc;
+    int xInc=16, yInc=16;
+    
+    public void setGrid(int x, int y)
+    {
+        this.xInc = x;
+        this.yInc = y;
+    }
     
     
     public void paint(Graphics g) {
@@ -45,15 +53,35 @@ public class RoomPanel extends JPanel {
         //Draw the Grid
         g.setColor(Color.black);
         // row lines
-        for(int j = 0; j <= getHeight(); j=j+32) {
+        for(int j = 0; j <= getHeight(); j=j+yInc) {
             g2.draw(new Line2D.Double(0, j, getWidth(), j));
             
         }
         // col lines
         
-        for(int j = 0; j <=  getWidth(); j=j+32) {
+        for(int j = 0; j <=  getWidth(); j=j+xInc) {
             g2.draw(new Line2D.Double(j, 0, j, getHeight()));
         }
+    }
+
+    public void mouseClicked(MouseEvent arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mousePressed(MouseEvent arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseReleased(MouseEvent arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseEntered(MouseEvent arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseExited(MouseEvent arg0) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
     
