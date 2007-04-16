@@ -132,7 +132,10 @@
     <folder name="Windows2">
         <folder name="Modes">
             <folder name="explorer">
-                <file name="runtime.wstcref" url="runtimeWstcref.xml"/>
+                <file name="runtime.wstcref_hidden"/>
+            </folder>
+            <folder name="navigator">
+                <file name="navigatorTC.wstcref" url="navigatorTCWstcref.xml"/>
             </folder>
         </folder>
     </folder>
