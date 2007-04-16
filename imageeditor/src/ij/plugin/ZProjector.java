@@ -566,7 +566,7 @@ public class ZProjector implements PlugIn {
 			double v;
 		    for(int i=0; i<len; i++) {
 		    	v = pixels[i]&0xffff;
-				su[i] += v;
+				sum[i] += v;
 				sum2[i] += v*v;
 			} 
 		}
