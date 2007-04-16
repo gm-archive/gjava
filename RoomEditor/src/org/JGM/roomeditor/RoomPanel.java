@@ -65,23 +65,8 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     }
     
     public void paint(Graphics g) {
-        //set size
-        if (isNumeric(rm.jTextField2.getText())) {
-            this.setSize(Integer.parseInt(rm.jTextField2.getText()),this.getHeight());
-            rm.jTextField2.setBackground(Color.white);
-            rm.jScrollPane3.repaint();
-        } else {
-            rm.jTextField2.setBackground(Color.red);
-            rm.data.setModified(true);
-        }
-        if (isNumeric(rm.jTextField3.getText())) {
-            this.setSize(this.getWidth(),Integer.parseInt(rm.jTextField3.getText()));
-            rm.jTextField3.setBackground(Color.white);
-            rm.jScrollPane3.repaint();
-        } else {
-            rm.jTextField3.setBackground(Color.red);
-            rm.data.setModified(true);
-        }
+        
+        
         
         //grid
         if (isNumeric(rm.jTextField5.getText())) {
@@ -140,6 +125,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
                 g2.draw(new Line2D.Double(j, 0, j, getHeight()));
             }
         }
+        
     }
     
     public void mouseClicked(MouseEvent arg0) {
@@ -156,6 +142,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
                 }
                 ii++;
             }
+        repaint();
     }
     
     public void mousePressed(MouseEvent arg0) {

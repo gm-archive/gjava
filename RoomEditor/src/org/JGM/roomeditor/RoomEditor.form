@@ -273,6 +273,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTextField2FocusGained"/>
+                        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jTextField2InputMethodTextChanged"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -284,6 +285,10 @@
                           <ResourceString bundle="org/JGM/roomeditor/Bundle.properties" key="RoomEditor.jTextField3.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="inputMethodTextChanged" listener="java.awt.event.InputMethodListener" parameters="java.awt.event.InputMethodEvent" handler="jTextField3InputMethodTextChanged"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField3MouseClicked"/>
+                      </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
                       </AuxValues>

@@ -447,8 +447,27 @@ public static GMJRoomDataObject data;
                 jTextField2FocusGained(evt);
             }
         });
+        jTextField2.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTextField2InputMethodTextChanged(evt);
+            }
+        });
 
         jTextField3.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField3.text")); // NOI18N
+        jTextField3.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTextField3InputMethodTextChanged(evt);
+            }
+        });
+        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField3MouseClicked(evt);
+            }
+        });
 
         jLabel6.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel6.text")); // NOI18N
 
@@ -642,6 +661,41 @@ public static GMJRoomDataObject data;
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
+    if (RoomPanel.isNumeric(jTextField3.getText())) {
+            this.setSize(this.getWidth(),Integer.parseInt(jTextField3.getText()));
+            jTextField3.setBackground(Color.white);
+            jScrollPane3.repaint();
+        } else {
+            jTextField3.setBackground(Color.red);
+            data.setModified(true);
+        }
+}//GEN-LAST:event_jTextField3MouseClicked
+
+private void jTextField2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField2InputMethodTextChanged
+     //set size
+        if (RoomPanel.isNumeric(jTextField2.getText())) {
+            canvas.setSize(Integer.parseInt(jTextField2.getText()),this.getHeight());
+            jTextField2.setBackground(Color.white);
+            jScrollPane3.repaint();
+        } else {
+            jTextField2.setBackground(Color.red);
+            data.setModified(true);
+        }
+}//GEN-LAST:event_jTextField2InputMethodTextChanged
+
+private void jTextField3InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField3InputMethodTextChanged
+      if (RoomPanel.isNumeric(jTextField3.getText())) {
+            this.setSize(this.getWidth(),Integer.parseInt(jTextField3.getText()));
+            jTextField3.setBackground(Color.white);
+            jScrollPane3.repaint();
+        } else {
+            jTextField3.setBackground(Color.red);
+            data.setModified(true);
+        }
+      System.out.println("heyhey");
+}//GEN-LAST:event_jTextField3InputMethodTextChanged
 
 private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
     // Show color chooser
