@@ -1,25 +1,27 @@
-# ImageJ 1.37v Preferences
-# Sat Apr 14 12:25:02 BST 2007
+# ImageJ 1.38o Preferences
+# Mon Apr 16 19:20:42 BST 2007
 
+menu.size=14
 fps=7.0
 new.type=0
 dir.image=C:\\Documents and Settings\\ali1\\GJava\\
 new.width=400
 fcolor=#000000
-gel.options=2
+gel.options=10
 div-by-zero=Infinity
 pp.options=1
 raw.type=0
-ij.y=32
+ij.y=0
 roicolor=#FFFF00
-ij.x=510
+ij.x=612
 noise.sd=25.0
-prefs.options=0
+prefs.options=32768
 new.slices=1
 raw.width=512
 new.height=400
 new.fill=0
 bcolor=#FFFFFF
+recent00=/C:/Documents and Settings/ali1/My Documents/NetBeansProjects/try2/images/Mario.gif
 ap.options=64
 measurements=19
 precision=3
