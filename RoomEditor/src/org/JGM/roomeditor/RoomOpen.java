@@ -1,17 +1,18 @@
 package org.JGM.roomeditor;
 
+import org.JGM.roomeditor.GMJRoomDataObject;
 import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 import org.openide.util.actions.CookieAction;
-import org.gmj.gmjfilesupport.GMJRoomDataObject;
+import org.JGM.roomeditor.GMJRoomDataObject;
 
 public final class RoomOpen extends CookieAction {
     
     protected void performAction(Node[] activatedNodes) {
           GMJRoomDataObject c = (GMJRoomDataObject) activatedNodes[0].getCookie(GMJRoomDataObject.class);
-        Room re = Room.getInstance(c.getName());
+        RoomEditor re = RoomEditor.getInstance(c.getPrimaryFile().getPath(),c);
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gmj/gmjfilesupport/room.png"));

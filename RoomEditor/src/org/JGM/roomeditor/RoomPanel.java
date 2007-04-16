@@ -13,76 +13,179 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Line2D;
+import java.util.Enumeration;
+import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
  *
  * @author ali1
  */
-public class RoomPanel extends JPanel implements MouseListener {
+public class RoomPanel extends JPanel implements MouseListener,Runnable {
+    
+    public Vector instances = new Vector();
+    public RoomEditor rm;
+    boolean running = true;
     
     /** Creates a new instance of RoomPanel */
-    public RoomPanel() {
+    public RoomPanel(RoomEditor rm) {
+        this.rm = rm;
         this.setPreferredSize(new Dimension(1640,4180));
-        
+        this.addMouseListener(this);
+       // Thread t = new Thread(this);
+        //t.start();
     }
+    
     
     int xInc=16, yInc=16;
     
-    public void setGrid(int x, int y)
-    {
+    public void setGrid(int x, int y) {
         this.xInc = x;
         this.yInc = y;
     }
     
     
+    static private final String REAL_NUMBER = "^[-+]?\\d+(\\.\\d+)?$";
+    
+    //----------------------------------------------------------------------------------------------
+    /**
+     * Determines if a string contains only digits, decimal points & hyphens.
+     * @param string The string to check.
+     * @return <code>True</code> if it has only digits, else <code>false</code>.
+     * @since J2SE 1.4
+     */
+    static public boolean isNumeric(String string) {
+        return string.matches(REAL_NUMBER);
+    }
+    
     public void paint(Graphics g) {
+        //set size
+        if (isNumeric(rm.jTextField2.getText())) {
+            this.setSize(Integer.parseInt(rm.jTextField2.getText()),this.getHeight());
+            rm.jTextField2.setBackground(Color.white);
+            rm.jScrollPane3.repaint();
+        } else {
+            rm.jTextField2.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        if (isNumeric(rm.jTextField3.getText())) {
+            this.setSize(this.getWidth(),Integer.parseInt(rm.jTextField3.getText()));
+            rm.jTextField3.setBackground(Color.white);
+            rm.jScrollPane3.repaint();
+        } else {
+            rm.jTextField3.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        
+        //grid
+        if (isNumeric(rm.jTextField5.getText())) {
+            this.xInc= Integer.parseInt(rm.jTextField5.getText());
+            rm.jTextField5.setBackground(Color.white);
+        } else{
+            
+            
+            rm.jTextField5.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        
+        if (isNumeric(rm.jTextField6.getText())) {
+            this.yInc= Integer.parseInt(rm.jTextField6.getText());
+            rm.jTextField6.setBackground(Color.white);
+        } else {
+            rm.jTextField6.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        
+        //fill with backcolor
+        g.setColor(rm.jTextField7.getBackground());
+        g.fillRect( 0, 0,  getWidth(), getHeight() );
+        
+        // draw instances
+        instances.elements();
+        for (Enumeration e = instances.elements() ; e.hasMoreElements() ;) {
+            instance i = (instance)e.nextElement();
+            //if (i ==null)
+            //g.drawImage(i.getimg().getImage(), i.x, i.y,null);
+            //System.out.println(""+i.x);
+            g.setColor(Color.BLUE);
+            //g.drawString(i.actor, i.x, i.y);
+            g.drawImage(i.img.getImage(), i.x, i.y, null);
+        }
+        
+        
         Graphics2D g2 = (Graphics2D)g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         
-        //fill with backcolor
-        g.setColor(Color.LIGHT_GRAY);
-        g.fillRect( 0, 0,  getWidth(), getHeight() );
+        
         
         
         //Draw the Grid
-        g.setColor(Color.black);
-        // row lines
-        for(int j = 0; j <= getHeight(); j=j+yInc) {
-            g2.draw(new Line2D.Double(0, j, getWidth(), j));
+        if (rm.jCheckBox2.isSelected()) {
+            g.setColor(Color.black);
+            // row lines
+            for(int j = 0; j <= getHeight(); j=j+yInc) {
+                g2.draw(new Line2D.Double(0, j, getWidth(), j));
+                
+            }
+            // col lines
             
+            for(int j = 0; j <=  getWidth(); j=j+xInc) {
+                g2.draw(new Line2D.Double(j, 0, j, getHeight()));
+            }
         }
-        // col lines
-        
-        for(int j = 0; j <=  getWidth(); j=j+xInc) {
-            g2.draw(new Line2D.Double(j, 0, j, getHeight()));
-        }
-    }
-
-    public void mouseClicked(MouseEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mousePressed(MouseEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseReleased(MouseEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseEntered(MouseEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public void mouseExited(MouseEvent arg0) {
-        throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    public void mouseClicked(MouseEvent arg0) {
+        int ii = 0;
+        if(arg0.getButton()==arg0.BUTTON3)
+            for (Enumeration e = instances.elements() ; e.hasMoreElements() ;) {
+                instance i = (instance)e.nextElement();
+                if (i.r.contains(arg0.getX(),arg0.getY())) {
+                    if(arg0.getButton()==arg0.BUTTON3) {
+                        System.out.println("delete");
+                        instances.remove(ii) ;
+                        rm.data.setModified(true);
+                    }
+                }
+                ii++;
+            }
+    }
+    
+    public void mousePressed(MouseEvent arg0) {
+        // throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void mouseReleased(MouseEvent arg0) {
+        
+        if(arg0.getButton()==arg0.BUTTON1){
+            instances.add(new instance(arg0.getX(),arg0.getY(),rm.actor,rm.actorimg));
+            rm.data.setModified(true);
+        }
+    }
+    
+    public void mouseEntered(MouseEvent arg0) {
+        // throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void mouseExited(MouseEvent arg0) {
+        //  throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    
+    
+    public void run() {
+        while(running) {
+            repaint();
+            rm.repaint();
+            rm.jScrollPane3.repaint();
+        }
+    }
     
 }

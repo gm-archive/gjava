@@ -42,7 +42,7 @@ public class RoomEditorTopComponent2  extends TopComponent implements ActionList
     /**
      * canvas is the area which will be shown in the game
      */
-    public RoomPanel canvas = new RoomPanel();
+   // public RoomPanel canvas = new RoomPanel();
     JEditorPane beanCode = new JEditorPane();
    
     
@@ -145,8 +145,8 @@ public class RoomEditorTopComponent2  extends TopComponent implements ActionList
         
         //And install the toolbar and the painting component:
         add(bar, BorderLayout.NORTH);
-         JScrollPane sp = new JScrollPane(canvas);
-        add(sp, BorderLayout.CENTER);
+        // JScrollPane sp = new JScrollPane(canvas);
+       // add(sp, BorderLayout.CENTER);
         
     }
     

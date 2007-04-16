@@ -27,7 +27,7 @@ import org.openide.windows.TopComponent;
  */
 public class Room extends TopComponent {
 
-     public RoomPanel canvas = new RoomPanel();
+    // public RoomPanel canvas = new RoomPanel(this);
 
     protected void componentClosed() {
         
@@ -48,7 +48,7 @@ public class Room extends TopComponent {
     public Room() {
         
         initComponents();
-         jScrollPane3.setViewportView(canvas);
+//         jScrollPane3.setViewportView(canvas);
         setDropTarget(new DropTarget(this,new DropTargetListener()
         {
             public void dragEnter(DropTargetDragEvent dropTargetDragEvent)
@@ -151,6 +151,7 @@ public class Room extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -169,6 +170,8 @@ public class Room extends TopComponent {
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
+
+        jButton2.setText("jButton2");
 
         setLayout(new java.awt.BorderLayout());
 
@@ -285,7 +288,7 @@ public class Room extends TopComponent {
         jSplitPane1.setLeftComponent(jTabbedPane2);
         jSplitPane1.setRightComponent(jScrollPane3);
 
-        add(jSplitPane1, java.awt.BorderLayout.CENTER);
+        add(jSplitPane1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
@@ -295,6 +298,7 @@ private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
