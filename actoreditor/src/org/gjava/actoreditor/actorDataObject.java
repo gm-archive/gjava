@@ -32,18 +32,20 @@ implements Lookup.Provider {
         pf2 = pf;
         InputStream input = pf.getInputStream();
         data.name = pf.getName();
-        System.out.println(pf.getPath());
+        data.path = pf.getPath();
         
         
     BufferedReader from=new BufferedReader(new InputStreamReader(input));
    
         String line;
+        boolean found = false;
         while ((line=from.readLine()) != null)
         {
-            if (line.contains("<Image>") && line.contains("</Image>"))
+            if (line.contains("<Image>") && line.contains("</Image>") && (found == false))
             {
               data.img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
                System.out.println(data.img);
+               found = true;
             }
         }
     input.close();

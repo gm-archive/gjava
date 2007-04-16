@@ -17,6 +17,7 @@ public class actorDataNode extends DataNode {
     public actorDataNode(actorDataObject obj,actorData data) {
         super(obj, Children.LEAF);
         this.data = data;
+        
         //if (data.img == null)
             setIconBaseWithExtension(IMAGE_ICON_BASE);
         //else

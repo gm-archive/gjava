@@ -32,7 +32,7 @@ private Properties props;
     public static final String PROP_ICON16 = "icon16";
     public static final String PROP_ICON32 = "icon32";
     public  String code = "";
-    public  String img = "",name="";
+    public  String img = "",name="",path="";
     
     /** Creates a new instance of MyItemData */
     actorData() {
