@@ -41,15 +41,16 @@ public class OpenImage {
       //  ImageDataObject cc = ((ImageDataObject) activatedNodes[0].getLookup().lookup(ImageDataObject.class));
        
        // JOptionPane.showMessageDialog(null,filename);
-        String s = this.getClass().getResource("ImageJ.class").getFile().replaceAll("ImageJ.class", "");
-        File f = new File(s);
+        String s = this.getClass().getResource("ImageJ.class").getFile().replaceAll("ImageJ.class", "").replaceAll("file:/","").replaceAll("%20"," ").replaceAll("!/ij/","");
+        
        try{ 
-           System.out.println(this.getClass().getResource("ImageJ.class").getFile().replaceAll("ImageJ.class", ""));
+           System.out.println(s);
            
           // java.net.URLClassLoader ucl = new java.net.URLClassLoader(new URL[] {f.toURL()});
            // java.lang.Class clazz = ucl.loadClass("ImageJ.Class");
-            
-            JarClassLoader jarLoader = new JarClassLoader ("C:/Documents and Settings/ali1/GJava/build/cluster/modules/ij.jar");
+            JarClassLoader jarLoader = new JarClassLoader (s);
+ 
+           // JarClassLoader jarLoader = new JarClassLoader ("C:/Documents and Settings/ali1/GJava/build/cluster/modules/ij.jar");
         /* Load the class from the jar file and resolve it. */
         Class c = jarLoader.loadClass ("ij.ImageJ", true);
 
