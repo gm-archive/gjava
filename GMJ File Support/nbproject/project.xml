@@ -7,6 +7,14 @@
             <suite-component/>
             <module-dependencies>
                 <dependency>
+                    <code-name-base>org.gjava.javac</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <implementation-version/>
+                    </run-dependency>
+                </dependency>
+                <dependency>
                     <code-name-base>org.jdesktop.layout</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -115,7 +123,12 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.gjava.runner</package>
+                <package>org.gmj.gmjfilesupport</package>
+                <package>org.gmj.gmjfilesupport.emptytemplate</package>
+                <package>org.gmj.gmjfilesupport.sampletemplate</package>
+            </public-packages>
         </data>
     </configuration>
 </project>

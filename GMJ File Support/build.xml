@@ -5,7 +5,7 @@
 <project name="org.gmj.gmjfilesupport" default="netbeans" basedir=".">
     <description>Builds, tests, and runs the project org.gmj.gmjfilesupport.</description>
     <import file="nbproject/build-impl.xml"/>
-    <target name="netbeans" depends="package-samples,runner,projectized-common.netbeans"/>
+    <target name="netbeans" depends="package-samples,projectized-common.netbeans"/>
 
     <target name="package-samples">
         <delete file="${basedir}/src/org/gmj/gmjfilesupport/EmptyJGMProject.zip"/>
@@ -16,14 +16,14 @@
             zipfile="${basedir}/src/org/gmj/gmjfilesupport/SampleJGMProject.zip"/>
     </target>
 
-<target name="runner">
+<!-- <target name="runner">
 <copy todir="${basedir}\src\org\gmj\templates\EmptyJGMProject\org\gjava\runner\">
       <fileset dir="${basedir}/src/org/gjava/runner/">
         <include name="**"/>
-<exclude name="*.java"/>
+ <exclude name="*.java"/>
       </fileset>
   </copy>
-</target>
+</target>-->
 </project>
 
 
