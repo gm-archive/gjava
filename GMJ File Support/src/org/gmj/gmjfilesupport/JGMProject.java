@@ -9,14 +9,17 @@
 
 package org.gmj.gmjfilesupport;
 
+
 import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -24,6 +27,10 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import com.sun.tools.javac.Javac;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
@@ -35,6 +42,7 @@ import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
@@ -145,7 +153,21 @@ public final class JGMProject implements Project {
     private final class ActionProviderImpl implements ActionProvider {
         
         
-        public  BufferedWriter Gamesettings, Basicgame, Global_java, Filename_java;
+              
+        
+        public  BufferedWriter Gamesettings;        
+        
+              
+        
+        public  BufferedWriter Basicgame;    
+        
+              
+        
+        public  BufferedWriter Global_java;        
+        
+              
+        
+        public  BufferedWriter Filename_java;
         
         
         public String[] getSupportedActions() {
@@ -156,6 +178,8 @@ public final class JGMProject implements Project {
         
         
         public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
+           org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+            
             int idx = Arrays.asList(getSupportedActions()).indexOf(string);
             switch (idx) {
             case 0 : //build
@@ -185,22 +209,102 @@ public final class JGMProject implements Project {
                     });
                 }
                 break;
-            case 3: {
-                InputOutput io = IOProvider.getDefault().getIO("Run", true);
-                io.getOut().println("Building and runnning project...");
-                io.getOut().println("Generating java files...");
-                //io.getErr().println ("Hello from standard err");  //this text should appear in red
-                openfiles();
-                closeJava();
-                io.getOut().println("Finished generating java files.");
-                io.getOut().close();
-                io.getErr().close();
-                
-            }
-            break;
+            case 3:{
+    java.io.PrintStream printStream = null;
+
+    try {
+        org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",
+                                                                                               true);
+
+        io.getOut().println("Building and runnning project...");
+        io.getOut().println("Generating java files...");
+        copyFiles();
+        openfiles();
+        closeJava();
+        printStream = new java.io.PrintStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
+        java.lang.System.setErr(printStream);
+        com.sun.tools.javac.Javac j = new com.sun.tools.javac.Javac();
+
+        //j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() +
+        //                               "/org/gjava/runner/GameSettings.java"});
+        //
+        //j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath()+"/org/gjava/runner/basicgame.java"});
+        j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() + "/" +
+                                       pro.getProjectDirectory().getName() +
+                                       ".java"});
+        //Actors
+        /*while(pro.getProjectDirectory().getFileObject("actors").getChildren(true).hasMoreElements())
+        {
+            FileObject i = (FileObject)pro.getProjectDirectory().getFileObject("actors").getChildren(true).nextElement();
             
+        }*/
+        
+        
+        FileInputStream fstream = new FileInputStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
+
+
+				// Convert our input stream to a
+				// DataInputStream
+				BufferedReader in = new BufferedReader(new InputStreamReader(fstream));
+
+				// Continue to read lines while
+				// there are still some left to read
+				String thisline;
+				while ((thisline = in.readLine()) != null)
+					{
+					io.getErr().println(thisline);
+					}
+                                io.getOut().println("Finished compiling");
+                                
+                          FileWriter      manifestFW = new FileWriter(pro.getProjectDirectory().getPath() + "/manifest.txt");
+			BufferedWriter manifest = new BufferedWriter(manifestFW);
+			print(manifest,"Manifest-Version: 1.0");
+			print(manifest,"Main-Class: " + pro.getProjectDirectory().getName());
+			print(manifest,"Created-By: 1.2 (Sun Microsystems Inc.)");
+			manifest.close();
+			FileWriter htmlFW = new FileWriter(pro.getProjectDirectory().getPath() + File.separator + pro.getProjectDirectory().getName() + ".html");
+			BufferedWriter html = new BufferedWriter(htmlFW);
+			
+			print(html,"<html>");
+			print(html,"<body>");
+			print(html,"Please wait while the game loads below...");
+			print(html,"<applet code=" + pro.getProjectDirectory().getName() + ".class ");
+			print(html,"  Archive = \"" + pro.getProjectDirectory().getName() + ".jar\"");
+			print(html,"        width=640 height=640>");
+			print(html,"</applet>");
+			print(html,"<br>Made with <b>G-java (www.g-java.com)</b>");
+			print(html,"</body>");
+			print(html,"</html>");
+			html.close();
+                                // create a jar
+				String[] args = new String[] { "cfm",pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar",
+						pro.getProjectDirectory().getPath() + File.separator +"manifest.txt","-C",pro.getProjectDirectory().getPath(),
+						pro.getProjectDirectory().getName() + ".class","-C",pro.getProjectDirectory().getPath(),"org" };
+
+                                sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + pro.getProjectDirectory().getName()
+						+ ".jar manifest.txt *.class org");
+				jar.run(args);
+        io.getOut().close();
+        
+        io.getErr().close();
+    }
+    catch (IOException ex) {
+    Exceptions.printStackTrace(ex);
+}
+
+
+    
+    finally {
+        try {
+            printStream.close();
+        }
+        catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }
+}
             default :
-                throw new IllegalArgumentException(string);
+                //throw new IllegalArgumentException(string);
             }
         }
         
@@ -212,13 +316,19 @@ public final class JGMProject implements Project {
         }
         
         
-        FileWriter GamesettingsFW = null, BasicgameFW = null, Global_javaFW = null, Filename_javaFW;
+       // FileWriter GamesettingsFW = null;        
+        
+        FileWriter BasicgameFW = null;        
+        
+        FileWriter Global_javaFW = null;        
+        
+        FileWriter Filename_javaFW;
         
         public void openfiles(){
             org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
             try {
-                GamesettingsFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/GameSettings.java");
+                //GamesettingsFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/GameSettings.java");
                 BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/basicgame.java");
                 Global_javaFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/Global.java");
                 Filename_javaFW = new FileWriter(pro.getProjectDirectory().getPath()+"/"+pro.getProjectDirectory().getName()+".java");
@@ -228,18 +338,18 @@ public final class JGMProject implements Project {
                 //close();
                 //return false;
             }
-            Gamesettings = new BufferedWriter(GamesettingsFW);
+           // Gamesettings = new BufferedWriter(GamesettingsFW);
             Basicgame = new BufferedWriter(BasicgameFW);
             Global_java = new BufferedWriter(Global_javaFW);
             Filename_java = new BufferedWriter(Filename_javaFW);
             try {
                 // Write Gamesettings header
-                print(Gamesettings,"/*");
+             /*  print(Gamesettings,"/*");
                 print(Gamesettings," *  GameSettings.java");
                 print(Gamesettings," *  Written by GM_guru (http://www.gm-school.com)");
                 print(Gamesettings," *  Created using G-java (http://www.g-java.com)");
-                print(Gamesettings," */");
-                print(Gamesettings,"package org.gjava.runner;");
+              *///  print(Gamesettings," */");
+               /* print(Gamesettings,"package org.gjava.runner;");
                 print(Gamesettings,"import java.awt.*;");
                 print(Gamesettings,"import javax.swing.*;");
                 print(Gamesettings,"");
@@ -252,11 +362,11 @@ public final class JGMProject implements Project {
                 print(Gamesettings,"     public static String score_caption = \"score:\","
                         + "lives_caption = \"lives:\", health_caption = \"health:\";");
                 print(Gamesettings,"");
-                
+                */
                 // Write Basicgame header
                 print(Basicgame,"");
                 print(Basicgame,"// basicgame.java");
-                print(Basicgame,"// by GM_guru");
+                print(Basicgame,"// by TGMG");
                 print(Basicgame,"");
                 print(Basicgame,"// import the required classes");
                 print(Basicgame,"package org.gjava.runner;");
@@ -321,7 +431,7 @@ public final class JGMProject implements Project {
                 print(Basicgame,"     // load Functions");
                 print(Basicgame,"     Functions func = new Functions();");
                 print(Basicgame,"     // create a new frame that will be the game window");
-                print(Basicgame,"new load_Rooms(load_Rooms.firstroom);");
+                print(Basicgame,"new load_Rooms(0);");
                 print(Basicgame," }");
                 
                 print(Basicgame,"");
@@ -334,7 +444,7 @@ public final class JGMProject implements Project {
                 print(Basicgame,"     // load Functions");
                 print(Basicgame,"     Functions func = new Functions();");
                 print(Basicgame,"");
-                print(Basicgame,"new load_Rooms(load_Rooms.firstroom,embed);");
+                print(Basicgame,"new load_Rooms(0,embed);");
                 print(Basicgame,"   ");
                 print(Basicgame," }");
                 
@@ -368,6 +478,70 @@ public final class JGMProject implements Project {
         public void msgbox(String message,int icon) {
             JOptionPane.showMessageDialog(null,message,"G-java",icon);
         }
+        
+        private void copy(String from,String to,boolean relativepath) throws Exception
+		{
+            //System.out.println(this.getClass().getResource("JGMProject.class").getPath().replaceAll("/org/gmj/gmjfilesupport/JGMProject.class", from));
+	//from = this.getClass().getResource("JGMProject.class").getPath().replaceAll("/org/gmj/gmjfilesupport/JGMProject.class", from).replaceAll("%20", "");
+	
+            InputStream in;
+		if (relativepath == true)
+                { org.gjava.runner.GameSettings gs = new org.gjava.runner.GameSettings();
+			in = gs.getClass().getResourceAsStream(from);
+                }
+		else
+			in = new FileInputStream(new File(from));
+		OutputStream out = new FileOutputStream(new File(to));
+
+		byte[] b = new byte[1024];
+		int len;
+		while ((len = in.read(b)) > 0)
+			{
+			out.write(b,0,len);
+			}
+		in.close();
+		out.close();
+
+		}
+        
+        	private void copyFiles()
+		{
+
+		// move the files one by one
+		try
+			{
+                    org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+            
+			String path = pro.getProjectDirectory().getPath()+"/org/gjava/runner/";
+			copy("dialog.png",path + "dialog.png",true);
+			copy("sprite.class",path + "sprite.class",true);
+			copy("Path.class",path + "Path.class",true);
+			copy("loading.png",path + "loading.png",true);
+			copy("StartPanel.class",path + "StartPanel.class",true);
+			copy("font.class",path + "font.class",true);
+			copy("Background.class",path + "Background.class",true);
+			copy("Functions.class",path + "Functions.class",true);
+			copy("Actor.class",path + "Actor.class",true);
+			copy("Runner.class",path + "Runner.class",true);
+			copy("sound.class",path + "sound.class",true);
+			copy("Room.class",path + "Room.class",true);
+			copy("MessageBox.class",path + "MessageBox.class",true);
+			copy("RoomPanel.class",path + "RoomPanel.class",true);
+			copy("tile.class",path + "tile.class",true);
+			copy("ImageCanvas.class",path + "ImageCanvas.class",true);
+			copy("basicgame.class",path + "basicgame.class",true);
+			copy("Game_Information.class",path + "Game_Information.class",true);
+			copy("TimedAudioClip.class",path + "TimedAudioClip.class",true);
+			copy("Timeline.class",path + "Timeline.class",true);
+			copy("Variable.class",path + "Variable.class",true);
+                        copy("GameSettings.class",path + "GameSettings.class",true);
+			}
+		catch (Exception e)
+			{
+			e.printStackTrace();
+			}
+
+		}
         
         
         public void writeloadrooms()
@@ -412,14 +586,14 @@ public final class JGMProject implements Project {
             // write load_rooms
             print(Basicgame,"");
             print(Basicgame,"class load_Rooms {");
-            print(Basicgame,"public static JFrame Room;");
-            print(Basicgame,"public static int firstroom = " + firstroom + "; ");
-            print(Basicgame,"public static int lastroom = " + lastroom + "; ");
-            print(Basicgame,"public static JApplet maingamep;");
-            print(Basicgame,"public static RoomPanel[] rooms = new RoomPanel[" + subi+1 + "];");
-            print(Basicgame,"public static int roomid;");
-            print(Basicgame,"public static Image GIcon;");
-            print(Basicgame,"public static int getroom[]= {" + "};");
+            print(Basicgame,"public JFrame Room;");
+            print(Basicgame,"public int firstroom = 0; ");
+            print(Basicgame,"public int lastroom = " + lastroom + "; ");
+            print(Basicgame,"public JApplet maingamep;");
+            print(Basicgame,"public RoomPanel[] rooms = new RoomPanel[" + subi+1 + "];");
+            print(Basicgame,"public int roomid;");
+            print(Basicgame,"public Image GIcon;");
+            print(Basicgame,"public int getroom[]= {" + "};");
             print(Basicgame,"");
             print(Basicgame,"load_Rooms(int roomid) {");
             print(Basicgame,"    JFrame room = new Room(332,92,true, Color.black);");
@@ -442,15 +616,15 @@ public final class JGMProject implements Project {
             print(Basicgame,"change_room(roomid,maingamep);");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static boolean if_prev_room(int roomid) {");
+            print(Basicgame,"public  boolean if_prev_room(int roomid) {");
             print(Basicgame,"if (roomid == firstroom) { return false; } else { return true; }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static boolean if_next_room(int roomid) {");
+            print(Basicgame,"public boolean if_next_room(int roomid) {");
             print(Basicgame,"if (roomid == lastroom) { return false; } else { return true; }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void prev_room(int roomid,JApplet maingamep) {");
+            print(Basicgame,"public void prev_room(int roomid,JApplet maingamep) {");
             print(Basicgame,"        int gjavai = 0;");
             print(Basicgame,"        while (gjavai < getroom.length) {");
             print(Basicgame,
@@ -458,26 +632,26 @@ public final class JGMProject implements Project {
             print(Basicgame,"    }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void prev_room(int roomid) {");
+            print(Basicgame,"public void prev_room(int roomid) {");
             print(Basicgame,"        int gjavai = 0;");
             print(Basicgame,"        while (gjavai < getroom.length) {");
             print(Basicgame,"        if (getroom[gjavai] == roomid) { change_room(getroom[gjavai-1]); } gjavai++;");
             print(Basicgame,"    }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void restart_room(int roomid,JApplet maingamep) {");
+            print(Basicgame,"public void restart_room(int roomid,JApplet maingamep) {");
             print(Basicgame,"int locali = basicgame.Current_room.roomid;");
             print(Basicgame,"        remove_room(basicgame.Current_room.id);");
             print(Basicgame,"        change_room(locali,maingamep);");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void restart_room(int roomid) {");
+            print(Basicgame,"public void restart_room(int roomid) {");
             print(Basicgame,"int locali = basicgame.Current_room.roomid;");
             print(Basicgame,"        remove_room(basicgame.Current_room.id);");
             print(Basicgame,"        change_room(locali);");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void next_room(int roomid,JApplet maingamep) {");
+            print(Basicgame,"public void next_room(int roomid,JApplet maingamep) {");
             print(Basicgame,"        int gjavai = 0;");
             print(Basicgame,"        while (gjavai < getroom.length) {");
             print(Basicgame,
@@ -485,21 +659,21 @@ public final class JGMProject implements Project {
             print(Basicgame,"    }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void next_room(int roomid) {");
+            print(Basicgame,"public void next_room(int roomid) {");
             print(Basicgame,"        int gjavai = 0;");
             print(Basicgame,"        while (gjavai < getroom.length) {");
             print(Basicgame,"        if (getroom[gjavai] == roomid) { change_room(getroom[gjavai+1]); } gjavai++;");
             print(Basicgame,"    }");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void change_room(int roomid,JApplet maingamep) {");
+            print(Basicgame,"public void change_room(int roomid,JApplet maingamep) {");
             print(Basicgame,eroomstr);
             print(Basicgame,"}");
             print(Basicgame,"");
             print(Basicgame,"");
             print(Basicgame,"");
-            print(Basicgame,"public static void remove_room(int roomid) {");
-            print(Basicgame,"basicgame.close_sounds();");
+            print(Basicgame,"public void remove_room(int roomid) {");
+            print(Basicgame,"//basicgame.close_sounds();");
             print(Basicgame,"if (basicgame.Runningas != \"EApplet\") {");
             print(Basicgame,"Room.removeKeyListener((KeyListener)rooms[roomid]);");
             print(Basicgame,"Room.removeMouseListener((MouseListener)rooms[roomid]);");
@@ -512,7 +686,7 @@ public final class JGMProject implements Project {
             print(Basicgame,"}");
             print(Basicgame,"}");
             print(Basicgame,"");
-            print(Basicgame,"public static void change_room(int roomid) {");
+            print(Basicgame,"public void change_room(int roomid) {");
             print(Basicgame,roomstr);
             print(Basicgame,"");
             print(Basicgame,"");
@@ -526,12 +700,13 @@ public final class JGMProject implements Project {
         private boolean closeJava() {
             try {
                 // Close Game Settings
-                print(Gamesettings,"}");
-                Gamesettings.close();
+               /* print(Gamesettings,"}");
+                Gamesettings.close();*/
                 
                 // close filename
                 Filename_java.close();
                 
+                print(Basicgame,"}");
                 // Close Basicgame
                 Basicgame.close();
                 // Now replace stuff
@@ -571,7 +746,7 @@ public final class JGMProject implements Project {
             
             if (gametype == "Popup") {
                 print(Filename_java,"    public void stop() {");
-                print(Filename_java,"      basicgame.close_sounds();");
+                print(Filename_java,"     // basicgame.close_sounds();");
                 print(Filename_java,"    }");
                 print(Filename_java,"    public void init() {");
                 print(Filename_java,"    showStatus( \"Made in G-java - www.g-java.com\");");
@@ -614,7 +789,7 @@ public final class JGMProject implements Project {
                 print(Filename_java,"    }");
                 print(Filename_java," public void paint( Graphics g ) {");
                 print(Filename_java,
-                        "  loadingImage  = new ImageIcon(getClass().getResource(\"gjava / runner / loading.png\")).getImage();");
+                        "  loadingImage  = new ImageIcon(getClass().getResource(\"org/gjava/runner/loading.png\")).getImage();");
                 print(Filename_java,"  //if the game is loading");
                 print(Filename_java,"       g.drawImage(loadingImage,0,0, null);");
                 print(Filename_java,"     if (loading) {");
@@ -665,17 +840,17 @@ public final class JGMProject implements Project {
                 print(Filename_java," //if the game is loading");
                 print(Filename_java,"    if (loading) {");
                 print(Filename_java,"         //load the sprites");
-                print(Filename_java,"         basicgame.load_Sprites();");
+                print(Filename_java,"        // basicgame.load_Sprites();");
                 print(Filename_java,"         //load the sounds");
-                print(Filename_java,"         basicgame.load_Sounds();");
+                print(Filename_java,"        // basicgame.load_Sounds();");
                 print(Filename_java,"         // load all backgrounds here");
-                print(Filename_java,"         basicgame.load_Backgrounds();");
+                print(Filename_java,"        // basicgame.load_Backgrounds();");
                 print(Filename_java,"         // load all paths here");
-                print(Filename_java,"         basicgame.load_Paths();");
+                print(Filename_java,"        // basicgame.load_Paths();");
                 print(Filename_java,"         // load all fonts here");
-                print(Filename_java,"         basicgame.load_Fonts();");
+                print(Filename_java,"        // basicgame.load_Fonts();");
                 print(Filename_java,"         // load all timelines here");
-                print(Filename_java,"         basicgame.load_Timelines();");
+                print(Filename_java,"        // basicgame.load_Timelines();");
                 print(Filename_java,"         loading = false;");
                 print(Filename_java,"         URL u = getDocumentBase();");
                 print(Filename_java,"                ");
