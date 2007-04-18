@@ -221,4 +221,11 @@
             <attr name="org-gmj-gmjproject-toolbaractions-AddScript.shadow/org-gmj-gmjproject-toolbaractions-AddActor.shadow" boolvalue="true"/>
         </folder>
     </folder>
+    <folder name="Windows2">
+        <folder name="Modes">
+            <folder name="output">
+                <file name="output.wstcref" url="outputWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
 </filesystem>
