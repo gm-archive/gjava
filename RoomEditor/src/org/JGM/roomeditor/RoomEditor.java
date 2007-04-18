@@ -9,13 +9,6 @@ package org.JGM.roomeditor;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Graphics;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDragEvent;
-import java.awt.dnd.DropTargetDropEvent;
-import java.awt.dnd.DropTargetEvent;
-import java.awt.dnd.DropTargetListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,10 +17,12 @@ import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.gjava.actoreditor.Utilz;
-import org.gjava.actoreditor.actorData;
+import javax.swing.text.EditorKit;
 import org.openide.filesystems.FileLock;
+import org.openide.text.CloneableEditorSupport;
 import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 
@@ -38,9 +33,11 @@ import org.openide.windows.TopComponent;
 public class RoomEditor extends TopComponent {
     
     
-public RoomPanel canvas = new RoomPanel(this);
+public static RoomPanel canvas;
 
 public String actor = "room";
+
+public String creation_code="";
 
 public String x;
 
@@ -63,7 +60,9 @@ public static GMJRoomDataObject data;
     
     /** Creates new form RoomEditor */
     public RoomEditor(GMJRoomDataObject data) { {
+        
        try         {
+           canvas =  new RoomPanel(this);
            this.path = data.getPrimaryFile().getPath();
                 this.data = data;
                 initComponents();
@@ -115,7 +114,7 @@ public static GMJRoomDataObject data;
                                                                   } else {
                                                                       jLabel2.setIcon(new javax.swing.ImageIcon(data.img));
                                                                       jLabel2.setText(data.name);
-                                                                      actor = data.path;
+                                                                      actor = data.name;
                                                                       actorimg = new javax.swing.ImageIcon(data.img);
                                                                       java.lang.System.out.println(data.img);
                                                                   }
@@ -143,6 +142,21 @@ public static GMJRoomDataObject data;
             if (line.contains("<Caption>") && line.contains("</Caption>"))
                 {
                    this.jTextField1.setText(line.replaceAll("<Caption>", "").replaceAll("</Caption>", ""));
+                }
+            
+            if (line.contains("<Width>") && line.contains("</Width>"))
+                {
+                  jTextField2.setText(line.replaceAll("<Width>", "").replaceAll("</Width>", ""));
+                }
+            
+            if (line.contains("<Height>") && line.contains("</Height>"))
+                {
+                  jTextField3.setText(line.replaceAll("<Height>", "").replaceAll("</Height>", ""));
+                }
+            
+            if (line.contains("<Speed>") && line.contains("</Speed>"))
+                {
+                  jTextField4.setText(line.replaceAll("<Speed>", "").replaceAll("</Speed>", ""));
                 }
             
             if (line.contains("<BcolorR>") && line.contains("</BcolorR>"))
@@ -259,6 +273,14 @@ public static GMJRoomDataObject data;
                 to.println("<?xml version=\"1.0\"?>");
                 
                 to.println("<Caption>"+this.jTextField1.getText()+"</Caption>");
+                to.println("<Width>"+this.jTextField2.getText()+"</Width>");
+                to.println("<Height>"+this.jTextField3.getText()+"</Height>");
+                if (RoomPanel.isNumeric(this.jTextField4.getText()))
+                to.println("<Speed>"+this.jTextField4.getText()+"</Speed>");
+                else {
+                    to.println("<Speed>30</Speed>");
+                    JOptionPane.showMessageDialog(null, "Speed is not a number!");
+                }
                 to.println("<BcolorR>"+this.jTextField7.getBackground().getRed()+"</BcolorR>");
                 to.println("<BcolorG>"+this.jTextField7.getBackground().getGreen()+"</BcolorG>");
                 to.println("<BcolorB>"+this.jTextField7.getBackground().getBlue()+"</BcolorB>");
@@ -387,6 +409,12 @@ public static GMJRoomDataObject data;
         jButton2 = new javax.swing.JButton();
         jCheckBox2 = new javax.swing.JCheckBox();
 
+        jSplitPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
+            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
+                jSplitPane1MouseWheelMoved(evt);
+            }
+        });
+
         jLabel2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel2.text")); // NOI18N
         jScrollPane2.setViewportView(jLabel2);
 
@@ -426,7 +454,7 @@ public static GMJRoomDataObject data;
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel9)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 236, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 435, Short.MAX_VALUE)
                 .add(jCheckBox1)
                 .addContainerGap())
         );
@@ -442,38 +470,19 @@ public static GMJRoomDataObject data;
         jLabel5.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel5.text")); // NOI18N
 
         jTextField2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField2.text")); // NOI18N
-        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField2FocusGained(evt);
-            }
-        });
-        jTextField2.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField2InputMethodTextChanged(evt);
-            }
-        });
 
         jTextField3.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField3.text")); // NOI18N
-        jTextField3.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                jTextField3InputMethodTextChanged(evt);
-            }
-        });
-        jTextField3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField3MouseClicked(evt);
-            }
-        });
 
         jLabel6.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel6.text")); // NOI18N
 
         jTextField4.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField4.text")); // NOI18N
 
         jButton1.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jButton1.text")); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -518,11 +527,12 @@ public static GMJRoomDataObject data;
                     .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(36, 36, 36)
                 .add(jButton1)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addContainerGap(486, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
 
+        jCheckBox3.setSelected(true);
         jCheckBox3.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox3.text")); // NOI18N
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -561,7 +571,7 @@ public static GMJRoomDataObject data;
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
                     .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(460, Short.MAX_VALUE))
+                .addContainerGap(659, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
@@ -634,68 +644,45 @@ public static GMJRoomDataObject data;
             topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(topComponent1Layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 712, Short.MAX_VALUE)
+                .addContainerGap(829, Short.MAX_VALUE))
+            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1517, Short.MAX_VALUE)
         );
         topComponent1Layout.setVerticalGroup(
             topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(topComponent1Layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 541, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(298, Short.MAX_VALUE))
+                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 740, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(topComponent1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(876, Short.MAX_VALUE))
+            .add(topComponent1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(topComponent1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(topComponent1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jTextField3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField3MouseClicked
-    if (RoomPanel.isNumeric(jTextField3.getText())) {
-            this.setSize(this.getWidth(),Integer.parseInt(jTextField3.getText()));
-            jTextField3.setBackground(Color.white);
-            jScrollPane3.repaint();
-        } else {
-            jTextField3.setBackground(Color.red);
-            data.setModified(true);
-        }
-}//GEN-LAST:event_jTextField3MouseClicked
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
 
-private void jTextField2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField2InputMethodTextChanged
-     //set size
-        if (RoomPanel.isNumeric(jTextField2.getText())) {
-            canvas.setSize(Integer.parseInt(jTextField2.getText()),this.getHeight());
-            jTextField2.setBackground(Color.white);
-            jScrollPane3.repaint();
-        } else {
-            jTextField2.setBackground(Color.red);
-            data.setModified(true);
-        }
-}//GEN-LAST:event_jTextField2InputMethodTextChanged
+JEditorPane jep = new JEditorPane();
+jep.setEditorKit(kit);
+JFrame frame = new JFrame("Creation Code");
+frame.add(jep);
+frame.setSize(640, 480);
+frame.setVisible(true);
+creation_code = jep.getText();
 
-private void jTextField3InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField3InputMethodTextChanged
-      if (RoomPanel.isNumeric(jTextField3.getText())) {
-            this.setSize(this.getWidth(),Integer.parseInt(jTextField3.getText()));
-            jTextField3.setBackground(Color.white);
-            jScrollPane3.repaint();
-        } else {
-            jTextField3.setBackground(Color.red);
-            data.setModified(true);
-        }
-      System.out.println("heyhey");
-}//GEN-LAST:event_jTextField3InputMethodTextChanged
+}//GEN-LAST:event_jButton1MouseClicked
+
+private void jSplitPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jSplitPane1MouseWheelMoved
+    // TODO add your handling code here:
+}//GEN-LAST:event_jSplitPane1MouseWheelMoved
 
 private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
     // Show color chooser
@@ -713,7 +700,14 @@ private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 }//GEN-LAST:event_jButton3MouseClicked
 
 private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-    savefile();
+    try     {
+            savefile();
+            data.setModified(false);
+            data.writejava();
+        }
+        catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
 }//GEN-LAST:event_jButton2MouseClicked
 
 
@@ -732,11 +726,7 @@ public void pack()
     private void setDefaultCloseOperation(int i)
     {
         
-    }
-private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
-    // System.out.println("Focus gained");
-}//GEN-LAST:event_jTextField2FocusGained
-    
+    }    
     /**
      * @param args the command line arguments
      */

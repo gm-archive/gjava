@@ -36,7 +36,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     /** Creates a new instance of RoomPanel */
     public RoomPanel(RoomEditor rm) {
         this.rm = rm;
-        this.setPreferredSize(new Dimension(1640,4180));
+        this.setPreferredSize(new Dimension(640,480));
         this.addMouseListener(this);
        // Thread t = new Thread(this);
         //t.start();
@@ -51,7 +51,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     }
     
     
-    static private final String REAL_NUMBER = "^[-+]?\\d+(\\.\\d+)?$";
+    public static final String REAL_NUMBER = "^[-+]?\\d+(\\.\\d+)?$";
     
     //----------------------------------------------------------------------------------------------
     /**
@@ -60,13 +60,46 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
      * @return <code>True</code> if it has only digits, else <code>false</code>.
      * @since J2SE 1.4
      */
-    static public boolean isNumeric(String string) {
+    public static boolean isNumeric(String string) {
         return string.matches(REAL_NUMBER);
+    }
+    
+    public void setrmsize(int w, int h)
+    {
+        this.setPreferredSize(new Dimension(w,h));
     }
     
     public void paint(Graphics g) {
         
-        
+        //set size height
+       if (Integer.parseInt(rm.jTextField3.getText()) != this.getHeight() ) {
+             if (isNumeric(rm.jTextField3.getText()))
+        {
+            setSize(getWidth(),Integer.parseInt(rm.jTextField3.getText()));
+            setPreferredSize(new Dimension(getWidth(),Integer.parseInt(rm.jTextField3.getText())));
+
+            rm.jTextField3.setBackground(Color.white);
+            rm.jScrollPane3.repaint();
+        } else {
+            rm.jTextField3.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        }
+        //width
+       
+        if (Integer.parseInt(rm.jTextField2.getText()) != this.getWidth() ) {
+             if (isNumeric(rm.jTextField2.getText()))
+        {
+            setSize(Integer.parseInt(rm.jTextField2.getText()),getHeight());
+            setPreferredSize(new Dimension(Integer.parseInt(rm.jTextField2.getText()),getHeight()));
+
+            rm.jTextField2.setBackground(Color.white);
+            rm.jScrollPane3.repaint();
+        } else {
+            rm.jTextField2.setBackground(Color.red);
+            rm.data.setModified(true);
+        }
+        }
         
         //grid
         if (isNumeric(rm.jTextField5.getText())) {
@@ -135,13 +168,14 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
                 instance i = (instance)e.nextElement();
                 if (i.r.contains(arg0.getX(),arg0.getY())) {
                     if(arg0.getButton()==arg0.BUTTON3) {
-                        System.out.println("delete");
+                        
                         instances.remove(ii) ;
                         rm.data.setModified(true);
                     }
                 }
                 ii++;
             }
+        
         repaint();
     }
     
