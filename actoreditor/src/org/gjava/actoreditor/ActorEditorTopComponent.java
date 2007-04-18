@@ -55,7 +55,9 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     private static final String PREFERRED_ID = "ActorEditorTopComponent";
     
        
-    public String path = "", image="";
+    public String path = "";    
+       
+    public String image="";
     
     private ExplorerManager explorerManager;
     
@@ -316,10 +318,14 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     }
     
 private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    //save the actor to xml file
-    savefile();
-    a.setModified(false);
-    
+    try     {
+            savefile();
+            a.setModified(false);
+            a.writejava();
+        }
+        catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
 }//GEN-LAST:event_jButton1MouseClicked
 
 

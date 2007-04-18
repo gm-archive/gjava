@@ -2,7 +2,11 @@ package org.gjava.actoreditor;
 
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import org.openide.loaders.DataNode;
 import org.openide.nodes.Children;
 import org.openide.util.Lookup;
@@ -18,17 +22,22 @@ public class actorDataNode extends DataNode {
         super(obj, Children.LEAF);
         this.data = data;
         
-        //if (data.img == null)
+      // if (data.img == null)
+        
             setIconBaseWithExtension(IMAGE_ICON_BASE);
         //else
         //setIconBaseWithExtension(data.img);
         
+        
     }
+    
+    
     actorDataNode(actorDataObject obj, Lookup lookup) {
         super(obj, Children.LEAF, lookup);
         setIconBaseWithExtension(IMAGE_ICON_BASE);
     }
     
+     
     // DND start Adds drag and drop support
     public Transferable drag() throws IOException {
         ExTransferable retValue = ExTransferable.create( super.drag() );

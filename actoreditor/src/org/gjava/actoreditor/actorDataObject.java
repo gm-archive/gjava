@@ -1,6 +1,8 @@
 package org.gjava.actoreditor;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import org.gjava.actoreditor.Action.ActionData;
 import java.io.IOException;
 import java.io.InputStream;
@@ -70,9 +72,78 @@ implements Lookup.Provider {
         */
     cookies.add(new Save(this));
     cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
-        
+       writejava(); 
     }
 
+    public void writejava()
+     throws IOException {
+        System.out.println("Write java");
+        org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+            
+   FileWriter BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/"+this.getName()+".java");
+BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
+    BufferedReader from=new BufferedReader(new InputStreamReader(this.getPrimaryFile().getInputStream()));
+    String line="",solid="",visible="";
+    try
+    {
+       while ((line=from.readLine()) != null)
+        {
+            
+             if (line.contains("<Solid>") && line.contains("</Solid>"))
+            {
+                if (line.contains("True") )
+                    
+                    solid = "1";
+                
+                else
+                   solid = "0";
+            }
+              if (line.contains("<Visible>") && line.contains("</Visible>"))
+            {
+                if (line.contains("True") )
+                    
+                    visible = "1";
+                
+                else
+                   visible = "0";
+            }
+       }
+    }finally
+    {
+        print(Basicgame,"package org.gjava.runner;");
+			print(Basicgame,"import java.awt.*;");
+			print(Basicgame,"import java.awt.event.*;");
+			print(Basicgame,"import javax.swing.*;");
+			print(Basicgame,"import java.io.*;");
+			print(Basicgame,"import java.util.*;");
+			print(Basicgame,"import java.net.*;");
+			print(Basicgame,"import java.applet.*;");
+         print(Basicgame,"class " + this.getName() + " extends Actor {");
+				print(Basicgame,"      " +  this.getName() + "(int X, int Y) {");
+				print(Basicgame,"      super(\"" +  this.getName() + "\",0," + solid + "," + visible
+						+ ",0,0,0,0);");
+				print(Basicgame,"      this.X = X;");
+				print(Basicgame,"      this.Y = Y;");
+				print(Basicgame,"      this.xstart = X;");
+				print(Basicgame,"      this.ystart = Y;");
+				print(Basicgame,"      }");
+                                //write create event
+                                print(Basicgame,"    public void Create_event() {");
+                                print(Basicgame,"    }");
+
+                                //finish class
+                                print(Basicgame,"}");
+                                
+        from.close();
+        Basicgame.close();
+    }}
+    
+     public void print(BufferedWriter file,String printString) throws IOException {
+            // printString.replaceAll("\n",""+(char)10);
+            file.write(printString);
+            file.newLine();
+        }
+    
     public void setModified(boolean arg0) {
         super.setModified(arg0);
         if (arg0 == true)
