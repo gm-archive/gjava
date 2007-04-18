@@ -65,7 +65,7 @@ public class RoomPanel extends JPanel implements Runnable
 
 	int j = 0;
 
-	public Objects object;
+	public Actor object;
 
 	// public ListIterator iter;
 	public String Caption;
@@ -237,9 +237,9 @@ public class RoomPanel extends JPanel implements Runnable
 		depth.trimToSize();
 		}
 
-	public Objects get_instance(int ii)
+	public Actor get_instance(int ii)
 		{
-		Objects t = (Objects) instances.get(ii);
+		Actor t = (Actor) instances.get(ii);
 		return t;
 		}
 
@@ -274,7 +274,7 @@ public class RoomPanel extends JPanel implements Runnable
 		ii = 0;
 		while (ii < instances.size())
 			{
-			Objects o = (Objects) instances.get(ii);
+			Actor o = (Actor) instances.get(ii);
 			if (o.solid == 1)
 				{
 
@@ -348,7 +348,7 @@ public class RoomPanel extends JPanel implements Runnable
 		while (dd < instances.size())
 			{
 			this.instance_id = dd;
-			Objects o = (Objects) instances.get(dd);
+			Actor o = (Actor) instances.get(dd);
 			o.Begin_Step_event();
 			if ((o.X <= -1) || (o.X >= basicgame.Current_room.Width + 1) || (o.Y <= -1)
 					|| (o.Y >= basicgame.Current_room.Height + 1))

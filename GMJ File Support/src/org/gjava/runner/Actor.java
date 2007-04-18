@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Objects extends tile
+public class Actor extends tile
 	{
 	public String G_JAVA_Object_name, G_JAVA_value;
 	
@@ -17,20 +17,26 @@ public class Objects extends tile
 	// local vars:
 	public int[] G_JAVA_alarm;
 
-	public int G_JAVA_jii, G_JAVA_xx, G_JAVA_yy;
+	public int G_JAVA_jii;
+	public int G_JAVA_xx;
+	public int G_JAVA_yy;
 
-	public sprite G_JAVA_Object_sprite, G_JAVA_Object_mask;
+	public sprite G_JAVA_Object_sprite;
+	public sprite G_JAVA_Object_mask;
 
-	public double xstart=0, ystart=0,depth = 0, direction = 0, hspeed = 0, vspeed = 0, gravity = 0, gravdir = 0, gravityh = 0, gravityv = 0,
+		public double xstart=0, ystart=0,depth = 0, direction = 0, hspeed = 0, vspeed = 0, gravity = 0, gravdir = 0, gravityh = 0, gravityv = 0,
 			friction = 0, point_speed = 0, point_x = 0, point_y = 0,instance_id,x=0,y=0,xprevious=0,yprevious=0;
 
+	
 	public int id, G_JAVA_ii, action_x, action_y,  speed;
 
-	public int solid, G_JAVA_Object_visible, G_JAVA_Object_persistent;
+	public int solid;
+	public int G_JAVA_Object_visible;
+	public int G_JAVA_Object_persistent;
 
 	int G_JAVA_applies_ii = 0;
 
-	public Objects G_JAVA_dt;
+	public Actor G_JAVA_dt;
 
 	//public static Vector variable_n = new Vector();
 
@@ -46,16 +52,17 @@ public class Objects extends tile
 
 	public Global global = new Global();
 
-	public boolean G_JAVA_move_towards_point = false, G_JAVA_folow_path = false;
+	public boolean G_JAVA_move_towards_point = false;
+	public boolean G_JAVA_folow_path = false;
 
-	Objects(int X,int Y,int objid,double instance_id)
+	Actor(int X,int Y,int objid,double instance_id)
 		{
 		xstart = X;
 		ystart = Y;
 		this.instance_id = instance_id;
 		}
 
-	Objects(int id,String Object_name,int Object_sprite,int Solid,int Visible,int Depth,int Persistent,
+	Actor(int id,String Object_name,int Object_sprite,int Solid,int Visible,int Depth,int Persistent,
 			int Parent,int Mask)
 		{
 		/*
@@ -180,7 +187,7 @@ public class Objects extends tile
 		G_JAVA_ii = 0;
 		while (G_JAVA_ii < basicgame.Current_room.instances.size())
 			{
-			Objects o = (Objects) basicgame.Current_room.instances.get(G_JAVA_ii);
+			Actor o = (Actor) basicgame.Current_room.instances.get(G_JAVA_ii);
 			G_JAVA_r1 = o.getBounds((int)(o.x),(int)(o.y));
 			if (G_JAVA_r1.intersects(thisBounds))
 				{

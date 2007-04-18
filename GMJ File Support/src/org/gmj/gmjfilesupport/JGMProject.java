@@ -211,13 +211,14 @@ public final class JGMProject implements Project {
                 break;
             case 3:{
     java.io.PrintStream printStream = null;
-
-    try {
-        org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",
+org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",
                                                                                                true);
 
         io.getOut().println("Building and runnning project...");
         io.getOut().println("Generating java files...");
+        io.select();
+    try {
+        
         copyFiles();
         openfiles();
         closeJava();
@@ -284,9 +285,7 @@ public final class JGMProject implements Project {
                                 sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + pro.getProjectDirectory().getName()
 						+ ".jar manifest.txt *.class org");
 				jar.run(args);
-        io.getOut().close();
         
-        io.getErr().close();
     }
     catch (IOException ex) {
     Exceptions.printStackTrace(ex);
@@ -302,6 +301,9 @@ public final class JGMProject implements Project {
             Exceptions.printStackTrace(ex);
         }
     }
+    io.getOut().close();
+        
+        io.getErr().close();
 }
             default :
                 //throw new IllegalArgumentException(string);

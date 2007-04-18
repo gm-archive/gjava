@@ -12,6 +12,9 @@ net.*;
 
 
 // the main class
+
+
+// the main class
 public class basicgame {
 
 //The Game Settings
@@ -27,7 +30,7 @@ public static JApplet Eapplet;
 public static sprite[] sprite = new sprite[5];
 public static Background[] background = new Background[4];
 public static font[] font = new font[2];
-public static Objects[] obj = new Objects[7];
+public static Actor[] obj = new Actor[7];
 public basicgame(URL u) {
 
  }
@@ -40,7 +43,7 @@ public static void load_Sprites() {}
 public static void load_Sounds() {}
 public static void load_Backgrounds() {}
 public static void load_Fonts() {}
-public static Objects load_Objects(int objectid, int X, int Y, double id) {return null;}
+public static Actor load_Objects(int objectid, int X, int Y, double id) {return null;}
 
 public static void load_Timelines()
 	{

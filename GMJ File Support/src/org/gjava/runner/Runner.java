@@ -99,14 +99,14 @@ class StartPanel extends JPanel
 		this.loading_image = loading_image;
 
 		// set the game icon
-		if (GameSettings.injar == false)
+		/*if (GameSettings.injar == false)
 			{
 			GIcon = new ImageIcon("icon.png").getImage();
 			}
 		else
 			{
 			GIcon = new ImageIcon(getClass().getResource("loading.png")).getImage();
-			}
+			}*/
 
 		// room.setIconImage(GIcon);
 		// Filled = new ImageIcon("Filled.png").getImage();
@@ -159,14 +159,14 @@ class StartPanel extends JPanel
 				 */
 				// now draw the staus bar
 				// load the sprites
-				basicgame.load_Sprites();
-				basicgame.load_Sounds();
+				//basicgame.load_Sprites();
+				//basicgame.load_Sounds();
 
 				// load all backgrounds here
-				basicgame.load_Backgrounds();
-				basicgame.load_Paths();
-				basicgame.load_Fonts();
-				basicgame.load_Timelines();
+				//basicgame.load_Backgrounds();
+				//basicgame.load_Paths();
+				//basicgame.load_Fonts();
+				//basicgame.load_Timelines();
 				play_game();
 				}
 			else
@@ -185,28 +185,28 @@ class StartPanel extends JPanel
 				g.drawImage(Nonfilled,276,62,null);
 
 				// load the sprites
-				basicgame.load_Sprites();
+				//basicgame.load_Sprites();
 
 				// g.drawImage(basicgame.pics,275,50, null);
 				g.drawImage(Filled,20,62,null);
-				basicgame.load_Sounds();
+				//basicgame.load_Sounds();
 
 				// load all sounds here
 				g.drawImage(Filled,52,62,null);
 
 				// load all backgrounds here
-				basicgame.load_Backgrounds();
+				//basicgame.load_Backgrounds();
 				g.drawImage(Filled,84,62,null);
 				
 				//load paths
-				basicgame.load_Paths();
+				//basicgame.load_Paths();
 
 				// load all Fonts here
-				basicgame.load_Fonts();
+				//basicgame.load_Fonts();
 				g.drawImage(Filled,116,62,null);
 				
 				//load timelines
-				basicgame.load_Timelines();
+				//basicgame.load_Timelines();
 				
 				// load all Objects here
 				// basicgame.load_Objects();
@@ -240,7 +240,7 @@ class StartPanel extends JPanel
 		//
 		// room.getContentPane().add("Center",new load_Rooms(0));
 		// z.init();
-		new load_Rooms(load_Rooms.firstroom);
+		new load_Rooms(0);
 
 		// f.validate();
 

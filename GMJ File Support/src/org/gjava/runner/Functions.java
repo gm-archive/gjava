@@ -18,6 +18,8 @@ import java.util.*;
 
 //import java.util.Calendar.*;
 
+//import java.util.Calendar.*;
+
 public class Functions
 	{
 
@@ -35,7 +37,7 @@ public class Functions
 
 	public static int health = 100;
 
-	public static Objects dt;
+	public static Actor dt;
 
 	public static JFrame messagebox = new Room(320,140,false,Color.black);
 
@@ -84,7 +86,7 @@ public class Functions
 		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			dt = (Objects) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			if (dt.id == action_object)
 				{
 				// add onto the number of instances
@@ -191,7 +193,7 @@ public class Functions
 		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			dt = (Objects) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			Rectangle thisBounds = dt.getBounds((int) dt.X,(int) dt.Y);
 
 			if (thisBounds.contains(x,y))
@@ -211,7 +213,7 @@ public class Functions
 		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			dt = (Objects) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			Rectangle thisBounds = dt.getBounds((int) dt.x,(int) dt.y);
 
 			if ((thisBounds.contains(x,y)) && (dt.solid == 1))
