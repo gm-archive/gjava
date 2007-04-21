@@ -3,6 +3,7 @@ package org.gjava.runner;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 public class Actor extends tile
 	{
@@ -49,7 +50,9 @@ public class Actor extends tile
 	public int G_JAVA_locali,dir = 0, subimage = 0, csubimage = 0, G_JAVA_i = 0, bbwidth = 10, bbheight = 10, parent;
 
 	public Rectangle G_JAVA_r1;
-
+        
+        public static ImageIcon image; 
+        
 	public Global global = new Global();
 
 	public boolean G_JAVA_move_towards_point = false;
@@ -62,7 +65,7 @@ public class Actor extends tile
 		this.instance_id = instance_id;
 		}
 
-	Actor(int id,String Object_name,int Object_sprite,int Solid,int Visible,int Depth,int Persistent,
+	Actor(String Object_name,String img,int Solid,int Visible,int Depth,int Persistent,
 			int Parent,int Mask)
 		{
 		/*
@@ -71,10 +74,11 @@ public class Actor extends tile
 		 */
 		this.G_JAVA_alarm = new int[12];
 		this.G_JAVA_Object_name = Object_name;
-		if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
-		this.G_JAVA_Object_visible = Visible;
+		//if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
+		this.image = new ImageIcon(img);
+                this.G_JAVA_Object_visible = Visible;
 		this.depth = Depth;
-		this.id = id;
+		
 		this.solid = Solid;
 		this.G_JAVA_move_towards_point = false;
 		this.G_JAVA_folow_path = false;
@@ -316,13 +320,15 @@ public class Actor extends tile
 		if (G_JAVA_Object_visible == 1)
 			{
 
-			if (G_JAVA_Object_sprite == null)
+			if (image == null)
 				{
 				// don't draw sprite
+                            System.out.println("don't draw sprite");
 				}
 			else
 				{
-				if (subimage == 0)
+                            System.out.println("Draw Sprite");
+				/*if (subimage == 0)
 					{
 
 					if (csubimage > G_JAVA_Object_sprite.subimages - 1)
@@ -341,7 +347,8 @@ public class Actor extends tile
 					g.drawImage(G_JAVA_Object_sprite.imshow(subimage),(int) X - G_JAVA_Object_sprite.sprite_xoffset,(int) Y
 							- G_JAVA_Object_sprite.sprite_yoffset,null);
 
-					}
+					}*/
+                                        g.drawImage(image.getImage(), (int)X,(int) Y, null);
 
 				}
 			// draw bb

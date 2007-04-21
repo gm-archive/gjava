@@ -181,7 +181,8 @@ public final class JGMProject implements Project {
            org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
             int idx = Arrays.asList(getSupportedActions()).indexOf(string);
-            switch (idx) {
+                        Process p = null;
+switch (idx) {
             case 0 : //build
                 // final RendererService ren = (RendererService) getLookup().lookup(RendererService.class);
                 RequestProcessor.getDefault().post(new Runnable() {
@@ -211,12 +212,17 @@ public final class JGMProject implements Project {
                 break;
             case 3:{
     java.io.PrintStream printStream = null;
-org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",
-                                                                                               true);
-
+final org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",true);
+if (p!=null)
+p.destroy();  
+RequestProcessor.getDefault().post(new Runnable() {
+                        public void run() {
         io.getOut().println("Building and runnning project...");
         io.getOut().println("Generating java files...");
         io.select();
+        io.getOut().close();
+        }});
+        
     try {
         
         copyFiles();
@@ -229,7 +235,7 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
         //j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() +
         //                               "/org/gjava/runner/GameSettings.java"});
         //
-        //j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath()+"/org/gjava/runner/basicgame.java"});
+        j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath()+"/org/gjava/runner"});
         j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() + "/" +
                                        pro.getProjectDirectory().getName() +
                                        ".java"});
@@ -278,6 +284,12 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
 			print(html,"</html>");
 			html.close();
                                 // create a jar
+                        File ff = new File(pro.getProjectDirectory().getPath()  + pro.getProjectDirectory().getName() + ".jar");
+                       if (ff.exists())
+                           System.out.println("exists");
+                        if(ff.delete())
+                           System.out.println("deleted");
+                       
 				String[] args = new String[] { "cfm",pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar",
 						pro.getProjectDirectory().getPath() + File.separator +"manifest.txt","-C",pro.getProjectDirectory().getPath(),
 						pro.getProjectDirectory().getName() + ".class","-C",pro.getProjectDirectory().getPath(),"org" };
@@ -304,10 +316,19 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
     io.getOut().close();
         
         io.getErr().close();
-}
+        io.getOut().println("Running jar as application...");
+        //io.getErr().
+        try{
+            p = Runtime.getRuntime().exec(
+						"Java -jar " + "\"" + pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar\"");
+        
+        } catch(Exception e){}
+        
+            }
             default :
                 //throw new IllegalArgumentException(string);
             }
+            
         }
         
         // Print a line to the bufferedwriter
@@ -537,6 +558,7 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
 			copy("Timeline.class",path + "Timeline.class",true);
 			copy("Variable.class",path + "Variable.class",true);
                         copy("GameSettings.class",path + "GameSettings.class",true);
+                        copy("Global.class",path + "Global.class",true);
 			}
 		catch (Exception e)
 			{
@@ -549,9 +571,12 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
         public void writeloadrooms()
                 throws IOException {
             String roomstr = "", eroomstr = "", firstroom = "", lastroom = "", currentroom, roomarray = "public static int getroom[]= {";
-            
-            //get list of rooms
             org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+            print(Basicgame,"}");
+            Basicgame.close();
+            BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/load_Rooms.java");
+            Basicgame = new BufferedWriter(BasicgameFW);
+            //get list of rooms
             int subi=0;
             for (Enumeration e = pro.getProjectDirectory().getFileObject("rooms").getChildren(true); e.hasMoreElements() ;) {
                 FileObject f = (FileObject)e.nextElement();
@@ -586,8 +611,15 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
             lastroom = ""+subi;
             
             // write load_rooms
-            print(Basicgame,"");
-            print(Basicgame,"class load_Rooms {");
+            print(Basicgame,"package org.gjava.runner;");
+            print(Basicgame,"import java.awt.*;");
+                print(Basicgame,"import java.awt.event.*;");
+                print(Basicgame,"import javax.swing.*;");
+                print(Basicgame,"import java.io.*;");
+                print(Basicgame,"import java.util.*;");
+                print(Basicgame,"import java.net.*;");
+                print(Basicgame,"import java.applet.*;");
+            print(Basicgame,"public class load_Rooms {");
             print(Basicgame,"public JFrame Room;");
             print(Basicgame,"public int firstroom = 0; ");
             print(Basicgame,"public int lastroom = " + lastroom + "; ");
@@ -595,7 +627,7 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
             print(Basicgame,"public RoomPanel[] rooms = new RoomPanel[" + subi+1 + "];");
             print(Basicgame,"public int roomid;");
             print(Basicgame,"public Image GIcon;");
-            print(Basicgame,"public int getroom[]= {" + "};");
+            print(Basicgame,roomarray+ "};");
             print(Basicgame,"");
             print(Basicgame,"load_Rooms(int roomid) {");
             print(Basicgame,"    JFrame room = new Room(332,92,true, Color.black);");
@@ -708,7 +740,7 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
                 // close filename
                 Filename_java.close();
                 
-                print(Basicgame,"}");
+                //print(Basicgame,"}");
                 // Close Basicgame
                 Basicgame.close();
                 // Now replace stuff
@@ -899,10 +931,10 @@ org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault()
             case 0 : //build
                 if (org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject()==null) {
                     result = false;
-                } else {result = true;}
+                } else {result = false;}
                 break;
             case 1 : //clean
-                result = true;
+                result = false;
                 break;
             case 2 : //compile-single
                 DataObject ob = (DataObject) lookup.lookup(DataObject.class);

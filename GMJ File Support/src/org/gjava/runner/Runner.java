@@ -225,8 +225,8 @@ class StartPanel extends JPanel
 
 	void play_game()
 		{
-
-		JFrame room = new Room(332,92,true,Color.black);
+//System.out.println("Play game");
+		//JFrame room = new Room(332,92,true,Color.black);
 		// f.addMouseListener(new room0(f));
 		// Room.center(this.room);
 		// f.show(true);
@@ -236,7 +236,7 @@ class StartPanel extends JPanel
 
 		// f.setSize(512+f.insets().left+f.insets().right,
 		// 482+f.insets().top+f.insets().bottom);
-		room.remove(this);
+		//room.remove(this);
 		//
 		// room.getContentPane().add("Center",new load_Rooms(0));
 		// z.init();
