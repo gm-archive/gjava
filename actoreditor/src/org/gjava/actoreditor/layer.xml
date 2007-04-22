@@ -6,6 +6,7 @@
         <folder name="text">
             <folder name="x-action">
                 <folder name="Actions">
+                    <file name="org-gjava-actoreditor-Action-OpenAction.instance"/>
                     <file name="org-openide-actions-OpenAction.instance"/>
                     <attr name="org-openide-actions-OpenAction.instance/org-openide-actions-FileSystemAction.instance" boolvalue="true"/>
                     <file name="org-openide-actions-FileSystemAction.instance"/>

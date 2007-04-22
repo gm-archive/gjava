@@ -58,10 +58,10 @@ public class eventData {
     }
     
     private void loadIcons() {
-        String iconId = props.getProperty( PROP_ICON16 );
+       /* String iconId = props.getProperty( PROP_ICON16 );
         icon16 = Utilities.loadImage( iconId );
         iconId = props.getProperty( PROP_ICON32 );
-        icon32 = Utilities.loadImage( iconId );
+        icon32 = Utilities.loadImage( iconId );*/
     }
 }
 

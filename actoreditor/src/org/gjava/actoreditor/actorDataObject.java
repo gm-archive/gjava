@@ -120,7 +120,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 			print(Basicgame,"import java.applet.*;");
          print(Basicgame,"class " + this.getName() + " extends Actor {");
 				print(Basicgame,"      " +  this.getName() + "(int X, int Y) {");
-				print(Basicgame,"      super(\"" +  this.getName() + "\",0," + solid + "," + visible
+				print(Basicgame,"      super(\"" +  this.getName() + "\",\""+data.img+"\"," + solid + "," + visible
 						+ ",0,0,0,0);");
 				print(Basicgame,"      this.X = X;");
 				print(Basicgame,"      this.Y = Y;");
