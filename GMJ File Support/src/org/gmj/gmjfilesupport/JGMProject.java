@@ -544,6 +544,7 @@ RequestProcessor.getDefault().post(new Runnable() {
 			copy("font.class",path + "font.class",true);
 			copy("Background.class",path + "Background.class",true);
 			copy("Functions.class",path + "Functions.class",true);
+                        copy("Functions.java",path + "Functions.java",true);
 			copy("Actor.class",path + "Actor.class",true);
 			copy("Runner.class",path + "Runner.class",true);
 			copy("sound.class",path + "sound.class",true);
