@@ -45,7 +45,11 @@ public final class AddScript extends CallableSystemAction
             PrintWriter to = new PrintWriter(pro.getProjectDirectory().getFileObject("scripts").getFileObject("NewScript" +
                                                                          scripts +
                                                                          ".java").getOutputStream());
+            to.println("package Scripts;" );
+            to.println("import org.gjava.runner;" );
             to.println("class "+"NewScript" + scripts +" {" );
+            to.println(" // To use gml use gml.<functionname>" );
+            to.println(" Functions gml = new Functions();" );
             to.println("    public static void performScript() {");
             to.println("       //TODO add script code here");
             to.println("    }");
