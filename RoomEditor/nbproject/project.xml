@@ -11,6 +11,7 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
+                        <release-version>1</release-version>
                         <implementation-version/>
                     </run-dependency>
                 </dependency>
@@ -19,6 +20,7 @@
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
+                        <release-version>1</release-version>
                         <implementation-version/>
                     </run-dependency>
                 </dependency>
@@ -116,7 +118,11 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.JGM.roomeditor</package>
+                <package>org.JGM.roomeditor.action</package>
+                <package>org.JGM.roomeditor.someaction</package>
+            </public-packages>
         </data>
     </configuration>
 </project>
