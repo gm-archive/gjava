@@ -1,3 +1,7 @@
+// Copyright (C) 2006, 2007 tgmg <tgmg@g-java.com>  
+//  This file is part of G-Java.  
+//  G-Java is free software and comes with ABSOLUTELY NO WARRANTY.  
+//  See LICENSE for details.
 /*
  * RoomEditor.java
  *
@@ -409,12 +413,6 @@ public static GMJRoomDataObject data;
         jButton2 = new javax.swing.JButton();
         jCheckBox2 = new javax.swing.JCheckBox();
 
-        jSplitPane1.addMouseWheelListener(new java.awt.event.MouseWheelListener() {
-            public void mouseWheelMoved(java.awt.event.MouseWheelEvent evt) {
-                jSplitPane1MouseWheelMoved(evt);
-            }
-        });
-
         jLabel2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel2.text")); // NOI18N
         jScrollPane2.setViewportView(jLabel2);
 
@@ -679,10 +677,6 @@ frame.setVisible(true);
 creation_code = jep.getText();
 
 }//GEN-LAST:event_jButton1MouseClicked
-
-private void jSplitPane1MouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_jSplitPane1MouseWheelMoved
-    // TODO add your handling code here:
-}//GEN-LAST:event_jSplitPane1MouseWheelMoved
 
 private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField7MouseClicked
     // Show color chooser

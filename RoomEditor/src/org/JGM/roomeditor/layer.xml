@@ -37,12 +37,5 @@
     </folder>
     
     
-    <folder name="Services">
-        <folder name="AutoupdateType">
-            <file name="my_au_type.settings" url="my_au_type.settings">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.JGM.roomeditor.Bundle"/>
-                <attr name="url" urlvalue="http://autoupdate.netbeans.org/nbm/dev_1.6_.xml"/>
-            </file>
-        </folder>
-    </folder>
+   
 </filesystem>
