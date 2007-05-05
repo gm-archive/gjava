@@ -1,13 +1,13 @@
 /*
- * Save.java
+ * ActionSave.java
  *
- * Created on 15 April 2007, 14:38
+ * Created on 04 May 2007, 21:00
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
  */
 
-package org.gjava.actoreditor;
+package org.gjava.actoreditor.Action;
 
 import java.io.IOException;
 import java.util.Iterator;
@@ -18,16 +18,16 @@ import org.openide.windows.TopComponent;
  *
  * @author ali1
  */
-public class Save implements SaveCookie {
+public class ActionSave implements SaveCookie {
     /**
      * 
      */
-    public actorDataObject a;
+    public ActionDataObject a;
     
     /** Creates a new instance of Save 
      * @param a 
      */
-    public Save(actorDataObject a) {
+    public ActionSave(ActionDataObject a) {
         this.a = a;
     }
 
@@ -41,14 +41,14 @@ public class Save implements SaveCookie {
         while (opened.hasNext())
         {
             Object tc = opened.next();
-            if (tc instanceof ActorEditorTopComponent)
+            if (tc instanceof Actioneditor)
             {
-                ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
+                Actioneditor elc = (Actioneditor)tc;
                 
-                if (a.pf2.getPath().equals(elc.path))
+                if (a.getPrimaryFile().getPath().equals(elc.path))
                 {
                     //elc.requestActive();
-                    elc.save();
+                    elc.savefile();
                     
                 }
             }
@@ -57,3 +57,4 @@ public class Save implements SaveCookie {
     }
     
 }
+

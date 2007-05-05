@@ -20,6 +20,8 @@ public class ActionDataObject extends MultiDataObject
     public ActionDataObject(FileObject pf, ActionDataLoader loader) throws DataObjectExistsException, IOException
     {
         super(pf, loader);
+        CookieSet cookies = getCookieSet();
+        cookies.add(new ActionSave(this));
     //DND start 
     //create the 'data' from properties file:
     InputStream input = pf.getInputStream();

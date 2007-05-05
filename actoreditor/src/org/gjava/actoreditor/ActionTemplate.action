@@ -1,5 +1,5 @@
 id=id1
-displayName=Item 1
-icon16=org/netbeans/dndsample/palette/items/bean.gif
-icon32=org/netbeans/dndsample/palette/items/bean32.gif
-comment=This is item 1
+displayName=ActionTemplate
+icon16=org/gjava/actoreditor/actions/GM_Move.gif
+icon32=org/gjava/actoreditor/actions/GM_Move.gif
+comment=This is an Action

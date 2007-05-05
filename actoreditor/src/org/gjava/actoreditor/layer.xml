@@ -212,24 +212,8 @@
         </folder>
     </folder>
     <folder name="Templates">
-        <folder name="Other">
+        <folder name="G-Java Files">
             <file name="ActionTemplate.action" url="ActionTemplate.action">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
-                <attr name="template" boolvalue="true"/>
-            </file>
-            <file name="ImageTemplate.gif" url="ImageTemplate.gif">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
-                <attr name="template" boolvalue="true"/>
-            </file>
-            <file name="TestTemplate.test" url="TestTemplate.test">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
-                <attr name="template" boolvalue="true"/>
-            </file>
-            <file name="actorTemplate.actor" url="actorTemplate.actor">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
-                <attr name="template" boolvalue="true"/>
-            </file>
-            <file name="eventTemplate.event" url="eventTemplate.event">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gjava.actoreditor.Bundle"/>
                 <attr name="template" boolvalue="true"/>
             </file>

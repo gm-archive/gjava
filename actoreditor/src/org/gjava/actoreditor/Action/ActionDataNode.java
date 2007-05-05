@@ -29,6 +29,7 @@ public class ActionDataNode extends DataNode
     {
         super(obj, Children.LEAF, lookup);
         setIconBaseWithExtension(IMAGE_ICON_BASE);
+        
     }
     
     public Image getIcon(int i) {

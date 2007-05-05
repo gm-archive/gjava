@@ -30,6 +30,7 @@ public class OpenAction extends CookieAction
         Actioneditor re = Actioneditor.getInstance(c.getPrimaryFile().getPath(),c);
          re.path = c.getPrimaryFile().getPath();
         re.setName(c.getName());
+        
         re.setHtmlDisplayName(c.getName());
         //re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));
         re.open();

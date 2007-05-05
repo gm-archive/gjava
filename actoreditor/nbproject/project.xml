@@ -123,7 +123,13 @@
                     </run-dependency>
                 </dependency>
             </module-dependencies>
-            <public-packages/>
+            <public-packages>
+                <package>org.gjava.actoreditor</package>
+                <package>org.gjava.actoreditor.Action</package>
+                <package>org.gjava.actoreditor.beans</package>
+                <package>org.gjava.actoreditor.events</package>
+                <package>org.gjava.actoreditor.imageformat</package>
+            </public-packages>
         </data>
     </configuration>
 </project>

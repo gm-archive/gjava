@@ -1,3 +1,7 @@
+// Copyright (C) 2006, 2007 tgmg <tgmg@g-java.com>  
+//  This file is part of G-Java.  
+//  G-Java is free software and comes with ABSOLUTELY NO WARRANTY.  
+//  See LICENSE for details.
 /*
  * Actioneditor.java
  *
@@ -7,7 +11,14 @@
 package org.gjava.actoreditor.Action;
 
 import java.awt.Container;
+import java.io.InputStream;
 import java.util.Iterator;
+import java.util.Properties;
+import javax.swing.text.EditorKit;
+import org.openide.filesystems.FileAlreadyLockedException;
+import org.openide.filesystems.FileLock;
+import org.openide.text.CloneableEditorSupport;
+import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 
 /**
@@ -16,11 +27,71 @@ import org.openide.windows.TopComponent;
  */
 public class Actioneditor extends TopComponent {
     
-    public String path;
+    /**
+     * props is the Properties file of the action
+     */
+    public Properties props;
     
-    /** Creates new form Actioneditor */
-    public Actioneditor() {
-        initComponents();
+    /**
+     *
+     */
+    public String path;
+    ActionDataObject a;
+    
+    /** Creates new form Actioneditor
+     * @param a
+     */
+    public Actioneditor(ActionDataObject a) {
+        this.a = a;
+        this.path = a.getPrimaryFile().getPath();
+        try     {
+            initComponents();
+            openfile();
+            EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
+            jEditorPane1.setEditorKit(kit);
+            jEditorPane2.setEditorKit(kit);
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
+    }
+    
+    /**
+     * Loads the action file.
+     * @throws java.lang.Exception
+     */
+    public void openfile()
+            throws Exception {
+        InputStream input = a.getPrimaryFile().getInputStream();
+        props = new Properties();
+        props.load( input );
+        input.close();
+        this.jTextField1.setText(props.getProperty( "displayName" ));
+        this.jTextField2.setText(props.getProperty( "comment" ));
+        this.jTextField3.setText(props.getProperty( "icon16" ));
+        this.jTextField4.setText(props.getProperty( "icon32" ));
+        this.jEditorPane1.setText(props.getProperty( "args" ));
+        this.jEditorPane2.setText(props.getProperty( "code" ));
+       // a.setModified(true);
+    }
+    
+    /**
+     * Saves the action file.
+     */
+    public void savefile() {
+        try {
+            props.setProperty("displayName", jTextField1.getText());
+            props.setProperty("comment", jTextField2.getText());
+            props.setProperty("icon16", jTextField3.getText());
+            props.setProperty("icon32", jTextField4.getText());
+            props.setProperty("args", jEditorPane1.getText());
+            props.setProperty("code", jEditorPane2.getText());
+            a.setModified(false);
+            
+            props.store(a.getPrimaryFile().getOutputStream(a.getPrimaryFile().lock()), "");
+        }
+ catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        }
     }
     
     /** This method is called from within the constructor to
@@ -45,8 +116,8 @@ public class Actioneditor extends TopComponent {
         jLabel6 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel1.text")); // NOI18N
 
@@ -62,6 +133,11 @@ public class Actioneditor extends TopComponent {
 
         jLabel4.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel4.text")); // NOI18N
 
+        jEditorPane2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jEditorPane2KeyPressed(evt);
+            }
+        });
         jScrollPane2.setViewportView(jEditorPane2);
 
         jLabel5.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel5.text")); // NOI18N
@@ -72,24 +148,40 @@ public class Actioneditor extends TopComponent {
 
         jTextField4.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jTextField4.text")); // NOI18N
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        jButton1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jButton1.text")); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        jButton2.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jButton2.text")); // NOI18N
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(jTextField2)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
-                        .add(16, 16, 16)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane2)
+                    .add(jScrollPane1)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .add(jLabel2))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
+                            .add(layout.createSequentialGroup()
+                                .add(jButton1)
+                                .add(14, 14, 14)))
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jButton2)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                                .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)))
+                        .add(4, 4, 4)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel6)
@@ -99,8 +191,8 @@ public class Actioneditor extends TopComponent {
                                 .add(jLabel5)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel3)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel4))
+                    .add(jLabel3)
+                    .add(jLabel4))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -108,78 +200,96 @@ public class Actioneditor extends TopComponent {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton1)
+                    .add(jButton2))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel5)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(14, 14, 14)
+                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel6)
                     .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(17, 17, 17)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 85, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jLabel4)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void pack()
-    {     
-    }
+
+private void jEditorPane2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane2KeyPressed
+   a.setModified(true);
+}//GEN-LAST:event_jEditorPane2KeyPressed
     
-    public Container getContentPane()
-    {
-        return this;
-    }
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    savefile();
+}//GEN-LAST:event_jButton1MouseClicked
+/**
+ *
+ */
+public void pack() {
+}
+
+/**
+ *
+ * @return
+ */
+public Container getContentPane() {
+    return this;
+}
+
+private void setDefaultCloseOperation(int i) {
     
-    private void setDefaultCloseOperation(int i)
-    {
-        
-    }    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Actioneditor().setVisible(true);
-            }
-        });
-    }
-    
-        public static Actioneditor getInstance(String name,ActionDataObject a)
-    {
-        //this.a = a;
-        // look for an open instance containing this feed
-        Iterator opened = TopComponent.getRegistry().getOpened().iterator();
-        while (opened.hasNext())
-        {
-            Object tc = opened.next();
-            if (tc instanceof Actioneditor)
-            {
-                Actioneditor elc = (Actioneditor)tc;
-                
-                if (name.equals(elc.path))
-                {
-                    //elc.requestActive();
-                    return elc;
-                }
+}
+/**
+ * @param args the command line arguments
+ */
+public static void main(String args[]) {
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            // new Actioneditor().setVisible(true);
+        }
+    });
+}
+
+/**
+ *
+ * @param name
+ * @param a
+ * @return
+ */
+public static Actioneditor getInstance(String name,ActionDataObject a) {
+    //this.a = a;
+    // look for an open instance containing this feed
+    Iterator opened = TopComponent.getRegistry().getOpened().iterator();
+    while (opened.hasNext()) {
+        Object tc = opened.next();
+        if (tc instanceof Actioneditor) {
+            Actioneditor elc = (Actioneditor)tc;
+            
+            if (name.equals(elc.path)) {
+                //elc.requestActive();
+                return elc;
             }
         }
-        
-        // none found, make a new one
-        return new Actioneditor();
     }
     
+    // none found, make a new one
+    return new Actioneditor(a);
+}
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JLabel jLabel1;
