@@ -67,13 +67,7 @@
     </folder>
     
     <folder name="Services">
-        <folder name="AutoupdateType">
-            <file name="org_gmj_gmjfilesupport_update_center.settings" url="org_gmj_gmjfilesupport_update_centerSettings.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
-                <attr name="enabled" boolvalue="true"/>
-                <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center"/>
-            </file>
-        </folder>
+        
         <folder name="JavaHelp">
             <file name="gmjfilesupport-helpset.xml" url="gmjfilesupport-helpset.xml"/>
             <attr name="gmjfilesupport-helpset.xml/org-netbeans-modules-usersguide-helpset.xml" boolvalue="true"/>
@@ -84,6 +78,13 @@
             </file>
             <file name="GMJRoomResolver.xml" url="GMJRoomResolver.xml">
                 <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            </file>
+        </folder>
+        <folder name="AutoupdateType">
+            <file name="org_gmj_gmjfilesupport_update_center.settings" url="org_gmj_gmjfilesupport_update_centerSettings.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="enabled" boolvalue="true"/>
+                <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center"/>
             </file>
         </folder>
     </folder>

@@ -15,40 +15,33 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Properties;
-import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import com.sun.tools.javac.Javac;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.openide.ErrorManager;
-import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
-import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
-import org.openide.loaders.DataObjectNotFoundException;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
-import org.openide.windows.IOProvider;
-import org.openide.windows.InputOutput;
 
 /**
  *
@@ -178,10 +171,10 @@ public final class JGMProject implements Project {
         
         
         public void invokeAction(String string, Lookup lookup) throws IllegalArgumentException {
-           org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+           final org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
             int idx = Arrays.asList(getSupportedActions()).indexOf(string);
-                        Process p = null;
+                       
 switch (idx) {
             case 0 : //build
                 // final RendererService ren = (RendererService) getLookup().lookup(RendererService.class);
@@ -211,41 +204,31 @@ switch (idx) {
                 }
                 break;
             case 3:{
-    java.io.PrintStream printStream = null;
-final org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",true);
-if (p!=null)
-p.destroy();  
-RequestProcessor.getDefault().post(new Runnable() {
-                        public void run() {
-        io.getOut().println("Building and runnning project...");
+                final ProgressHandle handle = ProgressHandleFactory.createHandle("Compiling...");
+                handle.start();
+                
+                final org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",true);
+
+               Runnable runner = new Runnable () { 
+        public void run () { 
+          io.getOut().println("Building and runnning project...");
         io.getOut().println("Generating java files...");
         io.select();
         io.getOut().close();
-        }});
-        
-    try {
+        try 
+    {
         
         copyFiles();
         openfiles();
         closeJava();
-        printStream = new java.io.PrintStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
+        java.io.PrintStream printStream = new java.io.PrintStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
         java.lang.System.setErr(printStream);
         com.sun.tools.javac.Javac j = new com.sun.tools.javac.Javac();
 
-        //j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() +
-        //                               "/org/gjava/runner/GameSettings.java"});
-        //
-        j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath()+"/org/gjava/runner"});
-        j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() + "/" +
+        
+          j.javac(new java.lang.String[]{"-classpath",pro.getProjectDirectory().getPath(),pro.getProjectDirectory().getPath() + "/" +
                                        pro.getProjectDirectory().getName() +
                                        ".java"});
-        //Actors
-        /*while(pro.getProjectDirectory().getFileObject("actors").getChildren(true).hasMoreElements())
-        {
-            FileObject i = (FileObject)pro.getProjectDirectory().getFileObject("actors").getChildren(true).nextElement();
-            
-        }*/
-        
         
         FileInputStream fstream = new FileInputStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
 
@@ -297,32 +280,36 @@ RequestProcessor.getDefault().post(new Runnable() {
                                 sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + pro.getProjectDirectory().getName()
 						+ ".jar manifest.txt *.class org");
 				jar.run(args);
+                                printStream.close();
+                                io.getOut().close();
+        
+        io.getErr().close();
+        
+        
+        
+       handle.setDisplayName("Running jar as application...");
+        io.getOut().println("Running jar as application...");
+        //io.getErr().
+        try{
+          Process  p = Runtime.getRuntime().exec(
+						"Java -jar " + "\"" + pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar\"");
+        
+        p.wait();
+        handle.finish();
+        } catch(Exception e){}
+                                
         
     }
     catch (IOException ex) {
     Exceptions.printStackTrace(ex);
 }
+        }};
+   new Thread (runner).start (); 
 
-
+/*RequestProcessor.getDefault().post(new Runnable() {
+                        public void run() {        
+        }});*/
     
-    finally {
-        try {
-            printStream.close();
-        }
-        catch (Exception ex) {
-            Exceptions.printStackTrace(ex);
-        }
-    }
-    io.getOut().close();
-        
-        io.getErr().close();
-        io.getOut().println("Running jar as application...");
-        //io.getErr().
-        try{
-            p = Runtime.getRuntime().exec(
-						"Java -jar " + "\"" + pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar\"");
-        
-        } catch(Exception e){}
         
             }
             default :
@@ -502,6 +489,23 @@ RequestProcessor.getDefault().post(new Runnable() {
             JOptionPane.showMessageDialog(null,message,"G-java",icon);
         }
         
+        private void copyjava(String from,String to) throws Exception
+		{
+            from = this.getClass().getResource("JGMProject.class").getPath().replaceAll("/org/gmj/gmjfilesupport/JGMProject.class", from).replaceAll("%20", " ");
+	InputStream in;
+        in = new FileInputStream(new File(from));
+            OutputStream out = new FileOutputStream(new File(to));
+
+		byte[] b = new byte[1024];
+		int len;
+		while ((len = in.read(b)) > 0)
+			{
+			out.write(b,0,len);
+			}
+		in.close();
+		out.close();
+        }
+        
         private void copy(String from,String to,boolean relativepath) throws Exception
 		{
             //System.out.println(this.getClass().getResource("JGMProject.class").getPath().replaceAll("/org/gmj/gmjfilesupport/JGMProject.class", from));
@@ -511,10 +515,14 @@ RequestProcessor.getDefault().post(new Runnable() {
 		if (relativepath == true)
                 { org.gjava.runner.GameSettings gs = new org.gjava.runner.GameSettings();
 			in = gs.getClass().getResourceAsStream(from);
+                        
                 }
 		else
 			in = new FileInputStream(new File(from));
-		OutputStream out = new FileOutputStream(new File(to));
+            File f = new File(to);
+            if (!f.exists())
+                f.createNewFile();
+		OutputStream out = new FileOutputStream(f);
 
 		byte[] b = new byte[1024];
 		int len;
@@ -544,7 +552,7 @@ RequestProcessor.getDefault().post(new Runnable() {
 			copy("font.class",path + "font.class",true);
 			copy("Background.class",path + "Background.class",true);
 			copy("Functions.class",path + "Functions.class",true);
-                        copy("Functions.java",path + "Functions.java",true);
+                        copyjava("/src/org/gjava/runner/Functions.java",path + "Functions.java");
 			copy("Actor.class",path + "Actor.class",true);
 			copy("Runner.class",path + "Runner.class",true);
 			copy("sound.class",path + "sound.class",true);
