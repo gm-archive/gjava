@@ -13,7 +13,7 @@ public final class ActorOpen extends CookieAction
     protected void performAction(Node[] activatedNodes)
     {
         actorDataObject c = (actorDataObject) activatedNodes[0].getLookup().lookup(actorDataObject.class);
-        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getPrimaryFile().getPath(),c);
+        Actoreditor re = Actoreditor.getInstance(c.getPrimaryFile().getPath(),c);
          re.path = c.getPrimaryFile().getPath();
          re.ado = c;
           try     {

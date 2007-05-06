@@ -35,11 +35,11 @@ import org.gjava.actoreditor.Utilz;
 public class ActionList extends javax.swing.JList
 {
     public static DefaultListModel model = new DefaultListModel();
-    public final ActorEditorTopComponent aa;
+    public final Actoreditor aa;
     
     
     /** Creates new form ActionList */
-    public ActionList(ActorEditorTopComponent a)
+    public ActionList(Actoreditor a)
     {
         this.aa = a;
         

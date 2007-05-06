@@ -69,7 +69,7 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
        this(new InstanceContent());
         this.a = a;
        this.oldDisplayName = this.getHtmlDisplayName();
-        this.a.ae = this;
+       // this.a.ae = this;
         path = a.getPrimaryFile().getPath();
         this.ado = a;
     }
@@ -114,11 +114,11 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        actionList1 = new ActionList(this);
+       // actionList1 = new ActionList(this);
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        eventList = new EventList(this);
+       // eventList = new EventList(this);
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();

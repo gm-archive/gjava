@@ -12,6 +12,7 @@ package org.gjava.actoreditor.Action;
 
 import java.awt.Container;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Properties;
 import javax.swing.text.EditorKit;
@@ -79,6 +80,8 @@ public class Actioneditor extends TopComponent {
      */
     public void savefile() {
         try {
+            FileLock lock = a.getPrimaryFile().lock();
+            
             props.setProperty("displayName", jTextField1.getText());
             props.setProperty("comment", jTextField2.getText());
             props.setProperty("icon16", jTextField3.getText());
@@ -86,8 +89,10 @@ public class Actioneditor extends TopComponent {
             props.setProperty("args", jEditorPane1.getText());
             props.setProperty("code", jEditorPane2.getText());
             a.setModified(false);
-            
-            props.store(a.getPrimaryFile().getOutputStream(a.getPrimaryFile().lock()), "");
+            OutputStream out = a.getPrimaryFile().getOutputStream(lock);
+            props.store(out, "");
+            lock.releaseLock();
+            out.close();
         }
  catch (Exception ex) {
             Exceptions.printStackTrace(ex);

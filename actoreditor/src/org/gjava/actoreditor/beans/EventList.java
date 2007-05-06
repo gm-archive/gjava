@@ -29,7 +29,7 @@ import org.gjava.actoreditor.events.eventData;
 
 /**
  *
- * @author  Porfirio
+ * @author  Porfirio and TGMG
  */
 public class EventList extends javax.swing.JList
 {
@@ -49,10 +49,10 @@ static public boolean isNumeric(String string)
    return string.matches(REAL_NUMBER);
 }
 
-public ActorEditorTopComponent a;
+public Actoreditor a;
     
     /** Creates new form EventList */
-    public EventList(ActorEditorTopComponent aa)
+    public EventList(Actoreditor aa)
     {
         this.a = aa;
              

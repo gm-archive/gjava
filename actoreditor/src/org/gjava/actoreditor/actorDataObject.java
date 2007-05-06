@@ -24,7 +24,7 @@ public class actorDataObject extends MultiDataObject
 implements Lookup.Provider {
     
    public  actorData data = new actorData();
-   public ActorEditorTopComponent ae;// = new ActorEditorTopComponent(this);
+   public Actoreditor ae;// = new ActorEditorTopComponent(this);
     
     public final FileObject pf2;
 
