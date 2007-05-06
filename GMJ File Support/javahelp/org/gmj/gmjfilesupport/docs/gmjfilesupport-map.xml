@@ -3,4 +3,28 @@
 <map version="2.0">
     <mapID target="org.gmj.gmjfilesupport.welcome" url="gmjfilesupport-welcome.html"/>
     <mapID target="org.gmj.gmjfilesupport.about" url="gmjfilesupport-about.html"/>
+<mapID target="org.gmj.gmjfilesupport.whatsnew" url="whatsnew.html"/>
+<mapID target="org.gmj.gmjfilesupport.mainidea" url="Using G-java/mainidea.html"/>
+<mapID target="org.gmj.gmjfilesupport.gjavaGUI" url="Using G-java/gjavaGUI.html"/>
+<mapID target="org.gmj.gmjfilesupport.AddingResources" url="Using G-java/AddingResources.html"/>
+<mapID target="org.gmj.gmjfilesupport.Actors" url="Using G-java/Actors.html"/>
+<mapID target="org.gmj.gmjfilesupport.UsingActions" url="Using G-java/UsingActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.MoveActions" url="Using G-java/MoveActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.MainActions" url="Using G-java/MainActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.ControlActions" url="Using G-java/ControlActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.ScoreActions" url="Using G-java/ScoreActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.DrawingActions" url="Using G-java/DrawingActions.html"/>
+<mapID target="org.gmj.gmjfilesupport.Scripts" url="Using G-java/Scripts.html"/>
+<mapID target="org.gmj.gmjfilesupport.Rooms" url="Using G-java/Rooms.html"/>
+
+
+
+
+
+
+
+
+
+
+
 </map>

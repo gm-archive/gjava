@@ -21,39 +21,58 @@ public class Functions
 
 	private Clipboard systemClipboard;
 
-
 	/**
-	 *  The game score, Starts at 0
+	 * 
 	 */
-	public static int score = 0;
+	public static Vector variable_n = new Vector();
 
 	/**
-	 * The Game lives, default 5
+	 * 
+	 */
+	public static Vector variable_v = new Vector();
+
+	/**
+	 * 
+	 */
+	public static int jii;
+
+	/**
+	 * 
+	 */
+	public static String score = "0";
+
+	/**
+	 * 
 	 */
 	public static int lives = 5;
 
 	/**
-	 * The game health, starts at 100
+	 * 
 	 */
 	public static int health = 100;
 
-	
+	/**
+	 * 
+	 */
+	public static Actor dt;
 
 	/**
 	 * 
 	 */
-	//public static JFrame messagebox = new Room(320,140,false,Color.black);
+	public static JFrame messagebox = new Room(320,140,false,Color.black);
 
 	/**
 	 * 
 	 */
-	//public static JLabel text;
-
-	
-	private static Image backImage;
+	public static JLabel text;
 
 	/**
-	 * The mathematical constant PI to 17 decimal places
+	 * 
+	 */
+	public static Image backImage;
+
+	/**
+	 * 
 	 */
 	public static double PI = 3.14159265516355584;
 
@@ -111,10 +130,10 @@ public class Functions
 		{
 		// get the number of instances as a value
 		int no_of_instances = 0;
-		int jii = 0;
+		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			if (dt.id == action_object)
 				{
 				// add onto the number of instances
@@ -248,10 +267,10 @@ public class Functions
 	 */
 	public static boolean place_empty(double x,double y)
 		{
-		int jii = 0;
+		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			Rectangle thisBounds = dt.getBounds( dt.X, dt.Y);
 
 			if (thisBounds.contains(x,y))
@@ -274,10 +293,10 @@ public class Functions
 	 */
 	public static boolean place_free(double x,double y)
 		{
-		int jii = 0;
+		jii = 0;
 		while (jii < basicgame.Current_room.instances.size())
 			{
-			Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
+			dt = (Actor) basicgame.Current_room.instances.get(jii);
 			Rectangle thisBounds = dt.getBounds((int) dt.x,(int) dt.y);
 
 			if ((thisBounds.contains(x,y)) && (dt.solid == 1))
@@ -292,9 +311,38 @@ public class Functions
 		return true;
 		}
 
-	
+	/**
+	 * 
+	 * @param variablename 
+	 * @param value 
+	 */
+	public static void set_global_variable(String variablename,String value)
+		{
+		// global variables for the game
+		variable_n.add(0,variablename);
+		variable_v.add(0,value);
+		}
 
-	
+	/**
+	 * 
+	 * @param variablename 
+	 * @return 
+	 */
+	public static String get_global_variable(String variablename)
+		{
+		String value = "0";
+		int ii = 0;
+		while (ii <= (variable_n.size()))
+			{
+			String o = (String) variable_n.get(ii);
+			if (o == variablename)
+				{
+				value = (String) variable_v.get(ii);
+				}
+			}
+
+		return value;
+		}
 
 	/**
 	 * 
@@ -2304,11 +2352,7 @@ public class Functions
 				s.replaceFirst(s.charAt(i) + "","");
 				i--;
 				}
-                Functions i = new Functions();
-               
 		return s;
 		}
 
 	}
-
-

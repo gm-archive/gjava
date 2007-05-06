@@ -552,7 +552,7 @@ switch (idx) {
 			copy("font.class",path + "font.class",true);
 			copy("Background.class",path + "Background.class",true);
 			copy("Functions.class",path + "Functions.class",true);
-                        copyjava("/src/org/gjava/runner/Functions.java",path + "Functions.java");
+                        copy("Functions.java2",path + "Functions.java",true);
 			copy("Actor.class",path + "Actor.class",true);
 			copy("Runner.class",path + "Runner.class",true);
 			copy("sound.class",path + "sound.class",true);
