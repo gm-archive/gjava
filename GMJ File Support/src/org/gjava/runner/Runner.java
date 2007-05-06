@@ -11,7 +11,7 @@ public class Runner extends Panel
 
 	// boolean loading;
 
-	public Runner()
+	Runner()
 		{
 		// this.loading = loading;
 		}

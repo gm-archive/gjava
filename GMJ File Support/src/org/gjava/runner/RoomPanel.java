@@ -268,20 +268,20 @@ public class RoomPanel extends JPanel implements Runnable
 			}
 		}
 
-	public int collsion_at_position(int x,int y,boolean solid)
-		{
-		// this returns 1 if there is a collsion at a position
-		ii = 0;
-		while (ii < instances.size())
-			{
-			Actor o = (Actor) instances.get(ii);
-			if (o.solid == 1)
-				{
-
-				}
-			}
-		return 0;
-		}
+//	public int collsion_at_position(int x,int y,boolean solid)
+//		{
+//		// this returns 1 if there is a collsion at a position
+//		ii = 0;
+//		while (ii < instances.size())
+//			{
+//			Actor o = (Actor) instances.get(ii);
+//			if (o.solid == 1)
+//				{
+//
+//				}
+//			}
+//		return 0;
+//		}
 
 	/** Update - Method, implements double buffering */
 	public void paint(Graphics g)

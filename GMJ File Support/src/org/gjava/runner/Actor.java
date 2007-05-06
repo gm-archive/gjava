@@ -57,13 +57,18 @@ public class Actor extends tile
 
 	public boolean G_JAVA_move_towards_point = false;
 	public boolean G_JAVA_folow_path = false;
+        
+        Actor()
+        {
+            
+        }
 
 	Actor(int X,int Y,int objid,double instance_id)
-		{
+	{
 		xstart = X;
 		ystart = Y;
 		this.instance_id = instance_id;
-		}
+	}
 
 	Actor(String Object_name,String img,int Solid,int Visible,int Depth,int Persistent,
 			int Parent,int Mask)
