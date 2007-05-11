@@ -10,10 +10,9 @@ public class tile implements Comparable {
 	public  Image tileimage;
 	public double instance_id = 0;
 	
-	tile()
-        {
+	tile(){
         }
-	
+        
 	tile(double x,double y, double tileX, double tileY, double tileW, double tileH, double depth, double id, int background) {
 		this.X = x;
 		this.Y = y;

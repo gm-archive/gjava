@@ -2,36 +2,59 @@ package org.gjava.runner;
 import java.awt.*;
 import java.io.*;
 
+/**
+ * Add a new font with this object
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class font {
-	public String name, fontname;
+	/**
+	 * The filename of the font
+	 */
+	public String fname;
+        /**
+         * The name of the font
+         */
+        public String  fontname;
+	/**
+	 * The size of the font
+	 */
 	public int size;
 	//private FileInputStream fi;
 	private InputStream fi;
-	public Font nf;
+	
+	private Font nf;
+	/**
+	 * The {@link Font} object of this font
+	 */
 	public Font font;
 	
 	font(String name, String fontname, int size) {
 		// name is the name of the font in gm
 		//fontname is the actual name of the font
 		//size is the size of the font
-		this.name = name;
-		this.fontname = fontname;
+		this.fname = fontname;
+		this.fontname = name;
 		this.size = size + 4;
 		// load the font
 		this.font = load();
 	}
 	
+	/**
+	 * Get the {@link Font} object of this font
+	 * @return {@link Font} object of this font
+	 */
 	public Font get() {
 		return font;
 	}
 	
+	/**
+	 * This will load the font, called when a new font object is created
+	 * @return Font object for this font
+	 */
 	public Font load () {
-		// this will get the font from the file
-		//java.io.File file = new java.io.File(getClass().getResourceAsStream(name+".TTF")); 
-		//try {
-			//fi = new java.io.FileInputStream();
-			//fi = this.getClass().getResourceAsStream("/"+name+".gjf");
-			fi = this.getClass().getResourceAsStream(""+name+".gjf");
+		
+			fi = this.getClass().getResourceAsStream(""+fname+".gjf");
 			
 		//} catch(FileNotFoundException ex) { }
 		
@@ -39,6 +62,7 @@ public class font {
       	
         try {
         	try {
+                    
         	nf = Font.createFont(Font.TRUETYPE_FONT, fb); 
         	fi.close();
         	fb.close();

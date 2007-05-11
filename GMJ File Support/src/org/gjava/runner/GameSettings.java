@@ -6,6 +6,11 @@
 package org.gjava.runner;
 import java.awt.*;
 
+/**
+ * GameSettings used to set settings for your game/software, may be replaced by functions
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class GameSettings {
 //caption settings
 public static boolean show_score = true, show_lives = false, show_health = false;
@@ -14,7 +19,7 @@ public static String score_caption = "score:",lives_caption = "lives:", health_c
 
 public static int GameId = 288673;
 public static int FullScreenMode = 0;
-public static int InterpolateColorsBetweenPixels = 0;
+//public static int InterpolateColorsBetweenPixels = 0;
 public static int NoBorderWindowMode = 0;
 public static int DisplayCursor = 1;
 public static int FixedScalePercent = 100;
@@ -32,8 +37,8 @@ public static int LetF4SwitchBetweenGameModes = 1;
 public static int LetF1ShowGameInformation = 1;
 public static int LetEscapeEndGame = 1;
 public static int LetF5F6SaveLoadGame = 1;
-public static int ProcessPriority = 0;
-public static int FreezeGame = 0;
+//public static int ProcessPriority = 0;
+//public static int FreezeGame = 0;
 boolean loading_image = true;
 //public static int MakeTransAlphaValue = 255;
 //public static int ScaleProgressBarImage = 1;
@@ -44,11 +49,11 @@ boolean loading_image = true;
 public static String Author = "TGMG";
 public static String Version = "600";
 public static double DateTime = 38930.956167349534;
-public static String Information = "Part of the standard distribution of Game Maker.";
-public static int NumberOfConstants = 0;
-public static int  TemporaryFolder = 0;
-public static int  OverWriteExistingFiles = 0;
-public static int  RemoveAtGameEnd = 0;
+public static String Information = "Part of the standard distribution of G-Java.";
+//public static int NumberOfConstants = 0;
+//public static int  TemporaryFolder = 0;
+//public static int  OverWriteExistingFiles = 0;
+//public static int  RemoveAtGameEnd = 0;
 public static boolean injar = true;
-public static Color Gameinfoback = new Color(24 ,0 ,0);
+//public static Color Gameinfoback = new Color(24 ,0 ,0);
               }

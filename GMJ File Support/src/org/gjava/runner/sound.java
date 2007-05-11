@@ -1,5 +1,10 @@
 package org.gjava.runner;
 
+/**
+ * Sound object to play a sound, not used in g-java 2.0 yet
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class sound extends Thread
 	{
 
@@ -13,7 +18,15 @@ public class sound extends Thread
 
 	boolean looping;
 
-	sound(String sound_name,int Effects,double Volume,double Panning,int preload)
+	/**
+	 * Create a sound object
+	 * @param sound_name 
+	 * @param Effects 
+	 * @param Volume 
+	 * @param Panning 
+	 * @param preload 
+	 */
+	public sound(String sound_name,int Effects,double Volume,double Panning,int preload)
 		{
 		this.sound_name = sound_name;
 		this.Volume = Volume;

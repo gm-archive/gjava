@@ -5,6 +5,11 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 
+/**
+ * Creates a new Room that can be added to a JFrame
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class RoomPanel extends JPanel implements Runnable
 	{
 	// the start time
@@ -26,9 +31,7 @@ public class RoomPanel extends JPanel implements Runnable
 	// booleans
 	public boolean Paused = false, show_score = true, show_lives = false, show_health = false;
 
-	// room captions
-	public static String score_caption = "score:", lives_caption = "lives:", health_caption = "health:";
-
+	
 	// the current vector id
 	public int instance_id;
 
@@ -55,19 +58,31 @@ public class RoomPanel extends JPanel implements Runnable
 
 	public int Yc[] = new int[8];// 0 = 0, Yc1 = 0, Yc2 = 0, Yc3 = 0, Yc4 = 0, Yc5 = 0, Yc6 = 0, Yc7 = 0;
 
-	// the instances vector
+	
+	/**
+	 * All the instances in this room as a {@link Vector} object
+	 */
 	public Vector instances = new Vector();
 
+	/**
+	 * All the instances and tiles in this room as a {@link Vector} object sorted by depth
+	 */
 	public Vector depth = new Vector();
 
-	// Vector of tiles;
+	
+	/**
+	 * All the tiles in this room as a {@link Vector} object
+	 */
 	public static Vector tiles = new Vector();
 
-	int j = 0;
+	//int j = 0;
 
-	public Actor object;
+	//public Actor object;
 
 	// public ListIterator iter;
+	/**
+	 * The caption of this room
+	 */
 	public String Caption;
 
 	public int id = 0, roomid = 0;
@@ -159,11 +174,16 @@ public class RoomPanel extends JPanel implements Runnable
 
 	// end of declaring variables
 
-	public RoomPanel()
-		{
-
-		}
-
+	
+	/**
+	 * Creates a new RoomPanel object
+	 * @param R Jframe to add to
+	 * @param Caption The caption of the room
+	 * @param fps The speed of room
+	 * @param RoomW The room width
+	 * @param RoomH The room height
+	 * @param backcolor The room backgound color
+	 */
 	public RoomPanel(JFrame R,String Caption,long fps,int RoomW,int RoomH,Color backcolor)
 		{
 		// basicgame.Current_room = this;
@@ -349,12 +369,12 @@ public class RoomPanel extends JPanel implements Runnable
 			{
 			this.instance_id = dd;
 			Actor o = (Actor) instances.get(dd);
-			o.Begin_Step_event();
-			if ((o.X <= -1) || (o.X >= basicgame.Current_room.Width + 1) || (o.Y <= -1)
-					|| (o.Y >= basicgame.Current_room.Height + 1))
-				{
-				o.Outside();
-				}
+			//o.Begin_Step_event();
+//			if ((o.x <= -1) || (o.x >= basicgame.Current_room.Width + 1) || (o.y <= -1)
+//					|| (o.y >= basicgame.Current_room.Height + 1))
+//				{
+//				o.Outside();
+//				}
 			o.Keyboard_event();
 			o.Move();
 			o.Collision_event();

@@ -4,6 +4,11 @@ import java.awt.*;
 import java.net.*;
 import javax.swing.*;
 
+/**
+ * Sprite object, may be replaced with another object in G-java 2.0
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class sprite
 	{
 
@@ -14,12 +19,30 @@ public class sprite
 	int Transparent;
 
 	public int  sprite_width, sprite_height, sprite_xoffset, sprite_yoffset, image_number,
-			image_index, image_speed, depth, subimages, image_count;
+			image_index, image_speed, subimages, image_count;
 
-	public double currenti;
+	public int currentimage;
 	
 	public int BBLeft, BBRight, BBTop, BBBottom;
 
+	/**
+	 * Create a new sprite object
+	 * @param sprite_name 
+	 * @param Height 
+	 * @param Width 
+	 * @param BBLeft 
+	 * @param BBRight 
+	 * @param BBBottom 
+	 * @param BBTop 
+	 * @param Transparent 
+	 * @param SmoothEdges 
+	 * @param PreLoadTexture 
+	 * @param BoundingBox 
+	 * @param PreciseCollisionDetection 
+	 * @param OriginX 
+	 * @param OriginY 
+	 * @param subimages 
+	 */
 	public sprite(String sprite_name,int Height,int Width,int BBLeft,int BBRight,int BBBottom,int BBTop,
 			int Transparent,int SmoothEdges,int PreLoadTexture,int BoundingBox,int PreciseCollisionDetection,
 			int OriginX,int OriginY,int subimages)
@@ -40,26 +63,31 @@ public class sprite
 		loadImage();
 		}
 
-	public Image imshow(double i)
+	/**
+	 * Get a subimage from this sprite as an Image object
+	 * @param subimage The sub image number
+	 * @return the Image object of the sprite
+	 */
+	public Image imshow(int subimage)
 		{
 		
-		while (i>=this.subimages)
+		while (subimage>=this.subimages)
 			{
-			i=i-subimages;
+			subimage=subimage-subimages;
 			}
 		
-		if (((int)i) == -1)
+		if ((subimage) == -1)
 			{
-			i = currenti;
+			subimage = currentimage;
 			}
 		else
 			{
-			currenti = i;
+			currentimage = subimage;
 			}
 		
 		
 		
-		return spritename[(int)i];
+		return spritename[subimage];
 
 		}
 

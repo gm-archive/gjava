@@ -42,8 +42,9 @@
     <tocitem text="General Functions/Variables">
     </tocitem>
     <tocitem text="Computing functions">
-    <tocitem text="Math functions" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Math functions" url="G-Java Language API/Computing functions/MathFunctions.html"/>
     <tocitem text="String handling functions" target="org.gmj.gmjfilesupport.about"/>
+     <tocitem text="Clipboard functions" target="org.gmj.gmjfilesupport.about"/>
     <tocitem text="Date and time functions" target="org.gmj.gmjfilesupport.about"/>
     </tocitem>
     <tocitem text="GUI functions">

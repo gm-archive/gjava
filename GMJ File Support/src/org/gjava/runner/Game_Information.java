@@ -28,7 +28,7 @@ GameSettings gs = new GameSettings();
 		editor = new JEditorPane();
 		editor.setEditable(false);
 		editor.setEditorKit( rtf );
-		editor.setBackground(gs.Gameinfoback);
+		//editor.setBackground(gs.Gameinfoback);
 
 		// This text could be big so add a scroll pane
 		JScrollPane scroller = new JScrollPane();

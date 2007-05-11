@@ -6,20 +6,28 @@ import javax.swing.
 *;
 
 // the main runner class file
+/**
+ * Runner Object
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class Runner extends Panel
 	{
 
 	// boolean loading;
 
-	Runner()
+	/**
+	 * Create a new Runner object
+	 */
+	public Runner()
 		{
-		// this.loading = loading;
+		
 		}
 
-	public void loadgame()
-		{
-		// repaint();
-		}
+//	public void loadgame()
+//		{
+//		
+//		}
 
 	private static DisplayMode[] PreferredModes = new DisplayMode[] { new DisplayMode(800,600,32,0),
 			new DisplayMode(800,600,16,0),new DisplayMode(800,600,8,0) };
@@ -78,13 +86,13 @@ public class Runner extends Panel
 class StartPanel extends JPanel
 	{
 	// public static sprite[] sprite = new sprite[9];
-	public static Frame loadingframe;
+	//public static Frame loadingframe;
 
-	public static JFrame room;// = new Room(332,92,true, Color.black);
+	//public static JFrame room;// = new Room(332,92,true, Color.black);
 
-	public JFrame f;
+	//public JFrame f;
 
-	Image img;
+	//Image img;
 
 	boolean loading = false, loading_image = false;
 
@@ -94,9 +102,10 @@ class StartPanel extends JPanel
 
 	StartPanel(Frame loadingframe,boolean loading_image)
 		{
-
-		this.loadingframe = loadingframe;
-		this.loading_image = loading_image;
+loading = false;
+		play_game();
+		//this.loadingframe = loadingframe;
+		//this.loading_image = loading_image;
 
 		// set the game icon
 		/*if (GameSettings.injar == false)
@@ -110,9 +119,9 @@ class StartPanel extends JPanel
 
 		// room.setIconImage(GIcon);
 		// Filled = new ImageIcon("Filled.png").getImage();
-		loadingImage = new ImageIcon(getClass().getResource("loading.png")).getImage();
+		//loadingImage = new ImageIcon(getClass().getResource("loading.png")).getImage();
 		// Nonfilled = new ImageIcon("Nonfilled.png").getImage();
-		loading = true;
+		//loading = true;
 
 		}
 
@@ -138,7 +147,8 @@ class StartPanel extends JPanel
 
 	public void paint(Graphics g)
 		{
-
+                loading = false;
+		play_game();
 		// if the game is loading
 		if (loading)
 			{

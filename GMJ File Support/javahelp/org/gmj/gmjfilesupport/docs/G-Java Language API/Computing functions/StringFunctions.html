@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h2>String Functions</h2>
+<p>The following functions deal with characters and string. </p>
+<p>To use:<br />
+Functions.string.&lt;functionname&gt;(args);</p>
+<p>The code completion in the java editor will bring up a list of functions as soon as you type the &quot;.&quot; after string, if not you can manually call code completion using Ctrl+Space.</p>
+<p>Example:<br />
+  String ascivalue = Functions.string.chr(40);</p>
+<p>chr(val) Returns a string containing the character with asci code val.<br />
+  ord(str) Returns the asci code of the first character in str.<br />
+  real(str) Turns str into a real number. str can contain a minus sign, a decimal dot and even an exponential part.<br />
+  string(val) Turns the real value into a string using a standard format (no decimal places when it is an integer, and two decimal places otherwise).<br />
+  string_format(val,tot,dec) Turns val into a string using your own format: tot indicates the total number of places and dec indicated the number of decimal places.<br />
+  string_length(str) Returns the number of characters in the string.<br />
+  string_pos(substr,str) Returns the position of substr in str (0=no occurrence).<br />
+  string_copy(str,index,count) Returns a substring of str, starting at position index, and of length count.<br />
+  string_char_at(str,index) Returns the character in str at position index.<br />
+  string_delete(str,index,count) Returns a copy of str with the part removed that starts at position index and has length count.<br />
+  string_insert(substr,str,index) Returns a copy of str with substr added at position index.<br />
+  string_replace(str,substr,newstr) Returns a copy of str with the first occurrence of substr replaced by newstr.<br />
+  string_replace_all(str,substr,newstr) Returns a copy of str with all occurrences of substr replaced by newstr.<br />
+  string_count(substr,str) Returns the number of occurrences of substr in str.<br />
+  string_lower(str) Returns a lowercase copy of str.<br />
+  string_upper(str) Returns an uppercase copy of str.<br />
+  string_repeat(str,count) Returns a string consisting of count copies of str.<br />
+  string_letters(str) Returns a string that only contains the letters in str.<br />
+  string_digits(str) Returns a string that only contains the digits in str.<br />
+  string_lettersdigits(str) Returns a string that contains the letters and digits in str.</p>
+<p></p>
+</body>
+</html>

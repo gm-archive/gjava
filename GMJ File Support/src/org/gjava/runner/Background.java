@@ -10,6 +10,11 @@ import java.awt.*;
 //import javax.swing.*;
 import javax.swing.ImageIcon;
 
+/**
+ * The Background object, not used in G-java 2.0 yet
+ * @author G-Java development team
+ * @version 1.0
+ */
 public class Background
 	{
 

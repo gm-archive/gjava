@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<h2>Math Functions</h2>
+<p>The following functions exist that deal with real numbers. All of these functions require the G-Java api functions. These functions mainly deal with doubles, for more math functions for other data types such as float look into java.lang.Math. Although the G-java API provides more functions for math than java.lang.Math!</p>
+<p>To use:<br />
+Functions.math.&lt;functionname&gt;(args);</p>
+<p>The code completion in the java editor will bring up a list of functions as soon as you type the &quot;.&quot; in math, if not you can manually call code completion using Ctrl+Space.</p>
+<p>Example:<br />
+ int randomnumber = Functions.math.random(10); //Random number between 0 and 10</p>
+<h3>Functions: </h3>
+<p>random(x) Returns a random real number between 0 and x. The number is always smaller than x.<br />
+  abs(x) Returns the absolute value of x.<br />
+  sign(x) Returns the sign of x (-1, 0 or 1).<br />
+  round(x) Returns x rounded to the nearest integer.<br />
+  floor(x) Returns the floor of x, that is, x rounded down to an integer.<br />
+  ceil(x) Returns the ceiling of x, that is, x rounded up to an integer.<br />
+  frac(x) Returns the fractional part of x, that is, the part behind the decimal dot.<br />
+  sqrt(x) Returns the square root of x. x must be non-negative.<br />
+  sqr(x) Returns x*x.<br />
+  power(x,n) Returns x to the power n.<br />
+  exp(x) Returns e to the power x.<br />
+  ln(x) Returns the natural logarithm of x.<br />
+  log2(x) Returns the log base 2 of x.<br />
+  log10(x) Returns the log base 10 of x.<br />
+  logn(n,x) Returns the log base n of x.<br />
+  sin(x) Returns the sine of x (x in radians).<br />
+  cos(x) Returns the cosine of x (x in radians).<br />
+  tan(x) Returns the tangent of x (x in radians).<br />
+  arcsin(x) Returns the inverse sine of x.<br />
+  arccos(x) Returns the inverse cosine of x.<br />
+  arctan(x) Returns the inverse tangent of x.<br />
+  arctan2(y,x) Calculates arctan(Y/X), and returns an angle in the correct quadrant.<br />
+  degtorad(x) Converts degrees to radians.<br />
+radtodeg(x) Converts radians to degrees.<br />
+min(val1,val2,val3,...) Returns the minimum of the values. The function can have up to 16 arguments. They must either be all real or all strings.<br />
+  max(val1,val2,val3,...) Returns the maximum of the values. The function can have up to 16 arguments. They must either be all real or all strings.<br />
+  mean(val1,val2,val3,...) Returns the average of the values. The function can have up to 16 arguments. They must all be real values.<br />
+  median(val1,val2,val3,...) Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.<br />
+  point_distance(x1,y1,x2,y2) Returns the distance between point (x1,y1) and point (x2,y2).<br />
+  point_direction(x1,y1,x2,y2) Returns the direction from point (x1,y1) toward point (x2,y2) in degrees.<br />
+  <br />
+</p>
+</body>
+</html>
