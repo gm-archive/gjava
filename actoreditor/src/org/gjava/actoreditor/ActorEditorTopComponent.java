@@ -484,7 +484,7 @@ public void openfile() throws Exception
                         line=from.readLine();//</Action>
                         // add the action
                         Value v = (Value)eventList.events.lastElement();
-                        v.actions.addElement(new ActionValue(name,img,code ));
+                        //v.actions.addElement(new ActionValue(name,img,code ));
                     }
                     line=from.readLine();
                 }

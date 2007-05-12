@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:33:42 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.013.gif
+displayName=Jump to a random position
+args={//Start Parenthesis required\nint snaphor \= 0;\nint snapver \= 0;\nActor applies \= this;
+icon16=org/gjava/actoreditor/actions/images/GM.013.gif
+code=int xx \= Functions.random(basicgame.Current_room.Width);\r\n\t\t\tint yy \= Functions.random(basicgame.Current_room.Height);\r\n\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\txx \= (int)(xx/snaphor * Functions.round(snaphor,0));\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\tyy \= (int)(yy/snaphor * Functions.round(snapver,0));\r\n\t\t\twhile (\!Functions.place_free(xx,yy)) {\r\n\t\t\t\t\txx \= Functions.random(basicgame.Current_room.Width);\r\n\t\t\t\t\tyy \= Functions.random(basicgame.Current_room.Height);\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\txx \= (int)(xx/snaphor * Functions.round(snaphor,0));\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\tyy \= (int)(yy/snaphor * Functions.round(snapver,0));\r\n\t\t\t}\r\n\t\t\tthis.x \= xx;\r\n\t\t\tthis.y \= yy;\r\n                        }
+comment=Jump to a random position
+id=id1

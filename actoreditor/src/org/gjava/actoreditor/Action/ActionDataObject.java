@@ -28,7 +28,7 @@ public class ActionDataObject extends MultiDataObject
     Properties props = new Properties();
     props.load( input );
     input.close();
-    data = new ActionData( props );
+    data = new ActionData( props,pf );
     //DND end
     }
     

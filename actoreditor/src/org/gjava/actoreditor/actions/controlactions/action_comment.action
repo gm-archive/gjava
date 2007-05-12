@@ -1,0 +1,9 @@
+#
+#Wed May 09 18:38:34 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.071.gif
+displayName=Put some comment
+args=// Comment goes here
+icon16=org/gjava/actoreditor/actions/images/GM.071.gif
+code=
+comment=Put some comment
+id=id1

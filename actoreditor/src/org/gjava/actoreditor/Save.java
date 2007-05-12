@@ -41,9 +41,9 @@ public class Save implements SaveCookie {
         while (opened.hasNext())
         {
             Object tc = opened.next();
-            if (tc instanceof ActorEditorTopComponent)
+            if (tc instanceof Actoreditor)
             {
-                ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
+                Actoreditor elc = (Actoreditor)tc;
                 
                 if (a.pf2.getPath().equals(elc.path))
                 {

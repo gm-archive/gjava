@@ -1,0 +1,9 @@
+#
+#Wed May 09 18:24:27 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.069.gif
+displayName=Execute a piece of code
+icon16=org/gjava/actoreditor/actions/images/GM.069.gif
+args={//Start Parenthesis required, don't remove unless you know what you are doing\n// Put code here\n}//End Parenthesis required, don't remove unless you know what you are doing
+code=
+id=id1
+comment=Execute a piece of code

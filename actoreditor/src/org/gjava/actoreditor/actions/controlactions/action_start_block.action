@@ -1,0 +1,9 @@
+#
+#Wed May 09 18:27:59 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.063.gif
+displayName=Start of a block
+args=//Start a code block, don't add anything here otherwise it won't work\!
+icon16=org/gjava/actoreditor/actions/images/GM.063.gif
+code={
+comment=Start of a block
+id=id1

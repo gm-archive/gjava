@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:32:43 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.006.gif
+displayName=Set the vertical speed
+args={//Start Parenthesis required\r\nint verspeed \= 0;\r\nboolean relative \= false;\r\nActor applies \= this;
+icon16=org/gjava/actoreditor/actions/images/GM.006.gif
+code=if (relative)\r\n    applies.vspeed \= applies.vspeed + verspeed;\r\nelse\r\n    applies.vspeed \= verspeed;\r\n}
+comment=Set the vertical speed
+id=id1

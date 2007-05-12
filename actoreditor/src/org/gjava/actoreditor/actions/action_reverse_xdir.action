@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:31:37 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.008.gif
+displayName=Reverse the horizontal direction
+icon16=org/gjava/actoreditor/actions/images/GM.008.gif
+args={//Start Parenthesis required\nActor applies \= this;
+code=applies.hspeed \= -applies.hspeed;\n}
+id=id1
+comment=Reverse the horizontal direction

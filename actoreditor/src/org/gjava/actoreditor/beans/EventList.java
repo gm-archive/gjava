@@ -109,14 +109,53 @@ public Actoreditor a;
                 {
                     int idx = locationToIndex(dtde.getLocation());
                     String tempname=data.getDisplayName();
+                    
+                    
                     if (data.getDisplayName().equals("Alarm Event"))
                     {
                      String alarm = "";
                         do {
-                  alarm = JOptionPane.showInputDialog("Which alarm event? (Number only)", "0");
-                        } while(isNumeric(alarm) == false);
+                  alarm = JOptionPane.showInputDialog("Which alarm event? (Number only <20)", "0");
+                        } while((isNumeric(alarm) == false) || (Integer.parseInt(alarm) > 20));
                      tempname = "Alarm"+alarm+" Event";
                     }
+                    
+                    if (data.getDisplayName().equals("Keyboard Event"))
+                    {
+                     String key = "";
+                        do {
+                  key = JOptionPane.showInputDialog("Which keyboard event? (Keyboard character code only (See docs for keyboard char codes))", "0");
+                        } while(isNumeric(key) == false);
+                     tempname = "Keyboard: "+key+" Event";
+                    }
+                    
+                    if (data.getDisplayName().equals("Keypress Event"))
+                    {
+                     String key = "";
+                        do {
+                  key = JOptionPane.showInputDialog("Which keyboard press event? (Keyboard character code only (See docs for keyboard char codes))", "0");
+                        } while(isNumeric(key) == false);
+                     tempname = "KeyPress: "+key+" Event";
+                    }
+                    
+                    if (data.getDisplayName().equals("Keyrelease Event"))
+                    {
+                     String key = "";
+                        do {
+                  key = JOptionPane.showInputDialog("Which keyboard release event? (Keyboard character code only (See docs for keyboard char codes))", "0");
+                        } while(isNumeric(key) == false);
+                     tempname = "KeyRelease: "+key+" Event";
+                    }
+                    
+                    if (data.getDisplayName().equals("Mouse Event"))
+                    {
+                     String key = "";
+                        do {
+                  key = JOptionPane.showInputDialog("Which mouse event? (mouse character code only (See docs for mouse char codes))", "0");
+                        } while(isNumeric(key) == false);
+                     tempname = "Mouse: "+key+" Event";
+                    }
+                    
                     boolean dup = false;
                     //check if duplicate
                     for (Enumeration e = events.elements(); e.hasMoreElements() ;)

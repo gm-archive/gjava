@@ -1,0 +1,9 @@
+#
+#Wed May 09 19:07:17 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.073.gif
+displayName=If a variable has a value
+args=//There are two different ways of using this action, one for basic types such as int (numbers) and another for objects, see the help file for details on this action\r\n\r\n//if (1 \=\= 1) //replace 1 with value/variable (for basic types only)\r\n//if (variable.equals(value)) // replace variable with an Object such as a string and replace value with another object\r\n\r\n//Examples\r\n// For strings use\:\r\n// if ("hi".equals("hi"))
+icon16=org/gjava/actoreditor/actions/images/GM.073.gif
+code=
+comment=If a variable has a value
+id=id1

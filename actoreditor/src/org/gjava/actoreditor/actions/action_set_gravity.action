@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:32:09 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.007.gif
+displayName=Set the gravity
+icon16=org/gjava/actoreditor/actions/images/GM.007.gif
+args={//Start Parenthesis required\r\n//NOTE\: This  action is still in beta\r\nint arg_direction \= 0;\r\nint arg_gravity \= 0;\r\nboolean relative \= false;\r\nActor applies \= this;
+code=applies.gravdir \= arg_direction;\r\nif (relative)\r\n    applies.gravity \= applies.gravity + arg_gravity;\r\nelse\r\n    applies.gravity \= arg_gravity;\r\n}
+id=id1
+comment=Set the gravity

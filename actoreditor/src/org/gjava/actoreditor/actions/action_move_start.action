@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:31:20 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.012.gif
+displayName=Jump to the start position
+icon16=org/gjava/actoreditor/actions/images/GM.012.gif
+args={//Start Parenthesis required\nActor applies \= this;
+code=applies.x \= applies.xstart;\r\napplies.y \= applies.ystart;\r\n} //Parenthesis required
+id=id1
+comment=Jump to the start position

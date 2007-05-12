@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:32:19 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.005.gif
+displayName=Set the horizontal speed
+icon16=org/gjava/actoreditor/actions/images/GM.005.gif
+args={//Start Parenthesis required\r\nint horspeed \= 0;\r\nboolean relative \= false;\r\nActor applies \= this;
+code=if (relative)\r\n    applies.hspeed \= applies.hspeed + horspeed;\r\nelse\r\n    applies.hspeed \= horspeed;\r\n}
+id=id1
+comment=Set the horizontal speed

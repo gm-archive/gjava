@@ -2,6 +2,11 @@
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
    
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="org-gjava-actoreditor-SpriteeditorAction.instance"/>
+        </folder>
+    </folder>
     <folder name="Loaders">
         <folder name="text">
             <folder name="x-action">
@@ -193,6 +198,9 @@
             <file name="ActorEditorAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/org-gjava-actoreditor-ActorEditorAction.instance"/>
             </file>
+            <file name="SpriteeditorAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/org-gjava-actoreditor-SpriteeditorAction.instance"/>
+            </file>
         </folder>
     </folder>
     <folder name="Services">
@@ -222,10 +230,14 @@
     <folder name="Windows2">
         <folder name="Components">
             <file name="ActorEditorTopComponent.settings" url="ActorEditorTopComponentSettings.xml"/>
+            <file name="SpriteeditorTopComponent.settings" url="SpriteeditorTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
             <folder name="editor">
                 <file name="ActorEditorTopComponent.wstcref" url="ActorEditorTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="navigator">
+                <file name="SpriteeditorTopComponent.wstcref" url="SpriteeditorTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>
@@ -237,7 +249,7 @@
             <file name="keyboard.event" url="events/keyboard.event"/>
             <file name="mouse.event" url="events/mouse.event"/>
             <file name="step.event" url="events/step.event"/>
-            <file name="other.event" url="events/other.event"/>
+            <!--<file name="other.event" url="events/other.event"/>-->
             <file name="keyrelease.event" url="events/keyrelease.event"/>
             <file name="keypress.event" url="events/keypress.event"/>
             <file name="draw.event" url="events/draw.event"/>
@@ -246,8 +258,18 @@
             <file name="alarm.event" url="events/alarm.event"/>
         </folder>
         <folder name="Move">
-            <file name="Move.action" url="actions/Move.action"/>
-            <file name="SetHorSpeed.action" url="actions/SetHorSpeed.action"/>
+            <!--<file name="Move.action" url="actions/Move.action"/>-->
+            <file name="action_set_motion.action" url="actions/action_set_motion.action"/>
+            <file name="action_set_hspeed.action" url="actions/action_set_hspeed.action"/>
+            <file name="action_set_vspeed.action" url="actions/action_set_vspeed.action"/>
+            <file name="action_set_gravity.action" url="actions/action_set_gravity.action"/>
+            <file name="action_set_friction.action" url="actions/action_set_friction.action"/>
+            <file name="action_reverse_xdir.action" url="actions/action_reverse_xdir.action"/>
+            <file name="action_reverse_ydir.action" url="actions/action_reverse_ydir.action"/>
+            <file name="action_move_to.action" url="actions/action_move_to.action"/>
+            <file name="action_move_start.action" url="actions/action_move_start.action"/>
+             <file name="action_move_random.action" url="actions/action_move_random.action"/>
+             <file name="action_snap.action" url="actions/action_snap.action"/>
         </folder>
         <folder name="Main1">
             
@@ -255,6 +277,21 @@
         <folder name="Main2">
         </folder>
         <folder name="Control">
+<file name="action_code.action" url="actions/controlactions/action_code.action"/>
+<file name="action_comment.action" url="actions/controlactions/action_comment.action"/>
+<file name="action_draw_variable.action" url="actions/controlactions/action_draw_variable.action"/>
+<file name="action_else.action" url="actions/controlactions/action_else.action"/>
+<file name="action_end_block.action" url="actions/controlactions/action_end_block.action"/>
+<file name="action_execute_script.action" url="actions/controlactions/action_execute_script.action"/>
+<file name="action_exit.action" url="actions/controlactions/action_exit.action"/>
+<file name="action_if.action" url="actions/controlactions/action_if.action"/>
+<file name="action_if_aligned.action" url="actions/controlactions/action_if_aligned.action"/>
+<file name="action_if_dice.action" url="actions/controlactions/action_if_dice.action"/>
+<file name="action_if_number.action" url="actions/controlactions/action_if_number.action"/>
+<file name="action_if_variable.action" url="actions/controlactions/action_if_variable.action"/>
+<file name="action_repeat.action" url="actions/controlactions/action_repeat.action"/>
+<file name="action_set_variable.action" url="actions/controlactions/action_set_variable.action"/>
+<file name="action_start_block.action" url="actions/controlactions/action_start_block.action"/>
         </folder>
         <folder name="Score">
         </folder>

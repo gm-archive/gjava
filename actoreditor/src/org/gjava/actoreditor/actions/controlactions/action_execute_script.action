@@ -1,0 +1,9 @@
+#
+#Tue May 08 17:22:45 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.070.gif
+displayName=Execute a script
+args=// how to use\:\r\n// replace scriptname with the name of the script and add any arguments\r\n//org.gjava.runner.scripts.scriptname.performScript();
+icon16=org/gjava/actoreditor/actions/images/GM.070.gif
+code=
+comment=Execute a script
+id=id1

@@ -7,11 +7,19 @@
 package org.gjava.actoreditor.beans;
 
 import java.awt.Color;
+import java.awt.dnd.DragGestureEvent;
+import java.awt.dnd.DragSourceDragEvent;
+import java.awt.dnd.DragSourceDropEvent;
+import java.awt.dnd.DragSourceEvent;
 import org.gjava.actoreditor.ActionValue;
 import java.awt.Component;
+import java.awt.datatransfer.StringSelection;
 import org.gjava.actoreditor.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DragGestureListener;
+import java.awt.dnd.DragSource;
+import java.awt.dnd.DragSourceListener;
 import java.awt.dnd.DropTarget;
 import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
@@ -32,11 +40,47 @@ import org.gjava.actoreditor.Utilz;
  *
  * @author  Porfirio
  */
-public class ActionList extends javax.swing.JList
+public class ActionList extends javax.swing.JList implements DragSourceListener,
+    DragGestureListener
 {
     public static DefaultListModel model = new DefaultListModel();
     public final Actoreditor aa;
     
+    DragSource ds;
+
+
+  StringSelection transferable;
+    
+    public void dragGestureRecognized(DragGestureEvent dge) {
+    System.out.println("Drag Gesture Recognized!");
+    transferable = new StringSelection(this.getSelectedValue().toString());
+    ds.startDrag(dge, DragSource.DefaultCopyDrop, transferable, this);
+  }
+
+  public void dragEnter(DragSourceDragEvent dsde) {
+    System.out.println("Drag Enter");
+  }
+
+  public void dragExit(DragSourceEvent dse) {
+    System.out.println("Drag Exit");
+  }
+
+  public void dragOver(DragSourceDragEvent dsde) {
+    System.out.println("Drag Over");
+  }
+
+  public void dragDropEnd(DragSourceDropEvent dsde) {
+    System.out.print("Drag Drop End: ");
+    if (dsde.getDropSuccess()) {
+      System.out.println("Succeeded");
+    } else {
+      System.out.println("Failed");
+    }
+  }
+
+  public void dropActionChanged(DragSourceDragEvent dsde) {
+    System.out.println("Drop Action Changed");
+  }
     
     /** Creates new form ActionList */
     public ActionList(Actoreditor a)
@@ -106,9 +150,10 @@ public class ActionList extends javax.swing.JList
                        System.out.println("No event selected");
                    } else {
                     
+                        data.refresh();
                     //add to actions
                     DefaultListModel mod = (DefaultListModel) getModel();
-                            mod.addElement(new ActionValue(data.getDisplayName(),data.img,data.code )) ;
+                            mod.addElement(new ActionValue(data.getDisplayName(),data.img,data.code,data.args )) ;
                     
                     aa.a.setModified(true);
                    }

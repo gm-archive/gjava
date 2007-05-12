@@ -45,6 +45,7 @@ public class ActionDataNode extends DataNode
 
     // DND start
     public Transferable drag() throws IOException {
+        //data.refresh();
         ExTransferable retValue = ExTransferable.create( super.drag() );
         //add the 'data' into the Transferable
         retValue.put( new ExTransferable.Single( Utilz.ACTION_DATA_FLAVOR ) {

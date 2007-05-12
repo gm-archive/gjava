@@ -1,0 +1,9 @@
+#
+#Wed May 09 18:31:32 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.065.gif
+displayName=Exit this event
+args=//exit event, change to add return value if needed\r\nreturn;
+icon16=org/gjava/actoreditor/actions/images/GM.065.gif
+code=
+comment=Exit this event
+id=id1

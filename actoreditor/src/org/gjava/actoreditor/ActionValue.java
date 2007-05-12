@@ -19,14 +19,15 @@ import org.openide.util.Utilities;
 public class ActionValue
 {
     
-     public String value,img,code;
+     public String value,img,code,args;
         public ImageIcon image;
-      public  ActionValue(String value, String img, String code)
+      public  ActionValue(String value, String img, String code,String args)
         {
           this.image = new ImageIcon(Utilities.loadImage(img)); 
           this.value = value;
             this.img = img;
             this.code = code;
+            this.args = args;
         }
    
     

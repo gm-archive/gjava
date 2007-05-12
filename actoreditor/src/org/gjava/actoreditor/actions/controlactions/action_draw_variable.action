@@ -1,0 +1,9 @@
+#
+#Wed May 09 18:58:50 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.074.gif
+displayName=Draw the value of a variable
+args=// To use replace arg_string \= ""; with arg_string \= ""+variable; where variable is a number, string or other Object\r\n{\r\nint arg_x \= 0;\r\nint arg_y \= 0;\r\nString arg_string \= ""; //Add variables to end of this line\r\n
+icon16=org/gjava/actoreditor/actions/images/GM.074.gif
+code=if (g \!\= null)\r\ng.drawString(arg_string, arg_x, arg_y);\r\n}
+comment=Draw the value of a variable
+id=id1

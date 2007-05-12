@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:31:54 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.010.gif
+displayName=Set the friction
+icon16=org/gjava/actoreditor/actions/images/GM.010.gif
+args={//Start Parenthesis required\nint arg_friction \= 0;\nActor applies \= this;
+code=if (relative)\n    applies.friction \= applies.friction + arg_friction;\nelse\n    applies.friction \= arg_friction;\n}
+id=id1
+comment=Set the friction

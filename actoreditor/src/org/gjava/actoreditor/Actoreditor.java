@@ -2,12 +2,29 @@
  * Actoreditor.java
  *
  * Created on 06 May 2007, 01:05
+ * 
+ * If you edit this file via form editor then you will have to make a few changes
+ * in another unguarded editor:
+ * put:
+ * public ActionList actionList1;
+    public EventList eventList;
+ * instead of JLists
  */
 
 package org.gjava.actoreditor;
 
 
 import java.awt.Container;
+import java.awt.Point;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDragEvent;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.dnd.DropTargetEvent;
+import java.awt.dnd.DropTargetListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Action;
 import org.gjava.actoreditor.beans.EventList;
 import java.beans.PropertyChangeEvent;
@@ -19,12 +36,19 @@ import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Iterator;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.text.EditorKit;
+import org.gjava.actoreditor.beans.ActionList;
 import org.netbeans.spi.palette.PaletteActions;
 import org.netbeans.spi.palette.PaletteController;
 import org.netbeans.spi.palette.PaletteFactory;
 import org.openide.explorer.ExplorerManager;
 import org.openide.filesystems.FileLock;
+import org.openide.nodes.Node;
+import org.openide.text.CloneableEditorSupport;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.lookup.InstanceContent;
@@ -39,8 +63,11 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
     public actorDataObject ado;
     public String path = "";
     public String image="";
+    public ActionValue oldav;
+    private int draggingIndex = -1;
     static final String ICON_PATH = "org/gjava/actoreditor/object.png";
-    public EventList eventList;
+   // public EventList eventList;
+   //  public ActionList actionList1;
     
     public String oldDisplayName;
     private ExplorerManager explorerManager;
@@ -52,7 +79,76 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         this.a.ae = this;
         path = a.getPrimaryFile().getPath();
         this.ado = a;
+        setDropTarget(new DropTarget(this,new DropTargetListener()
+        {
+            public void dragEnter(DropTargetDragEvent dropTargetDragEvent)
+            {
+                //not needed
+            }
+            public void dragExit(DropTargetEvent dropTargetEvent)
+            {
+                //not needed
+            }
+            public void dragOver(DropTargetDragEvent dtde)
+            {
+                if( dtde.isDataFlavorSupported(Utilz.IMAGE_DATA_FLAVOR ) )
+                {
+                    //only accept object of our type
+                    dtde.acceptDrag( DnDConstants.ACTION_COPY_OR_MOVE );
+                }
+                else
+                {
+                    //reject everything else
+                    dtde.rejectDrag();
+                }
+            }
+            public void drop(DropTargetDropEvent dtde)
+            {
+                //first check if we support this type of data
+                if( !dtde.isDataFlavorSupported( Utilz.IMAGE_DATA_FLAVOR ) )
+                {
+                    dtde.rejectDrop();
+                }
+                //accept the drop so that we can access the Transferable
+                dtde.acceptDrop( DnDConstants.ACTION_COPY_OR_MOVE );
+                ImageData data = null;
+                try
+                {
+                    //get the dragged data from the transferable
+                    //get the dragged data from the transferable
+                    //get the dragged data from the transferable
+                    //get the dragged data from the transferable
+                    data = (ImageData) dtde.getTransferable().getTransferData(Utilz.IMAGE_DATA_FLAVOR);
+                }
+                catch (IOException ex)
+                {
+                    ex.printStackTrace();
+                }
+                catch (UnsupportedFlavorException ex)
+                {
+                    ex.printStackTrace();
+                }
+                
+                dtde.dropComplete( null != data );
+                if( null != data )
+                {
+                  
+                }
+                ado.data.img = data.path;
+                Icon image = new ImageIcon( data.path );
+                setimage(data.path);
+                jLabel4.setIcon(image);
+            }
+            
+            
+            
+            public void dropActionChanged(DropTargetDragEvent dropTargetDragEvent)
+            {
+            }
+        }));
     }
+    
+    
     
     public Actoreditor(InstanceContent content) {
         
@@ -64,12 +160,18 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         final org.netbeans.spi.palette.PaletteController controller = initializePalette();
         
         content.add(controller);
+        content.add(new SpriteeditorTopComponent());
         controller.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             
             public void propertyChange(java.beans.PropertyChangeEvent arg0) {
             }
         });
         initComponents();
+        EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
+        
+                
+            jEditorPane1.setEditorKit(kit);
+            
         actionList1.setDragEnabled(true);
         setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.ActorEditorTopComponent.class,
                 "CTL_ActorEditorTopComponent"));
@@ -87,7 +189,6 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        topComponent1 = new org.openide.windows.TopComponent();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -96,30 +197,42 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        javax.swing.JList eventList = new org.gjava.actoreditor.beans.EventList(this);
+        eventList = new EventList(this);
         jButton1 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel5 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         jSplitPane1.setDividerSize(8);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel3.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jLabel3.text")); // NOI18N
+        jLabel3.setText("Actions: ");
 
-        actionList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        
+        actionList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                actionList1MouseDragged(evt);
+            }
+        });
+        actionList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                actionList1ValueChanged(evt);
+            }
+        });
+        actionList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                actionList1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                actionList1MouseReleased(evt);
+            }
         });
         jScrollPane2.setViewportView(actionList1);
 
@@ -130,8 +243,8 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel3)
-                .addContainerGap(670, Short.MAX_VALUE))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                .addContainerGap(640, Short.MAX_VALUE))
+            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 698, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -139,24 +252,24 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                 .addContainerGap()
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel2.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jLabel2.text")); // NOI18N
+        jLabel2.setText("Events: ");
 
-        this.eventList = (EventList)eventList;
-        eventList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        
         eventList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 eventListValueChanged(evt);
+            }
+        });
+        eventList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                eventListMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(eventList);
@@ -168,10 +281,8 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel2)
-                .add(113, 113, 113))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 167, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(153, 153, 153))
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -179,65 +290,69 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                 .addContainerGap()
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jButton1.text")); // NOI18N
+        jButton1.setText("Save");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
 
-        jCheckBox1.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jCheckBox1.text")); // NOI18N
+        jCheckBox1.setText("Solid");
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jCheckBox2.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jCheckBox2.text")); // NOI18N
+        jCheckBox2.setText("Visible");
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jLabel4.text")); // NOI18N
+        jLabel4.setText("Drop Image here");
         jScrollPane3.setViewportView(jLabel4);
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jLabel1.text")); // NOI18N
-
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jTextField1.text")); // NOI18N
-
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(Actoreditor.class, "jLabel5.text")); // NOI18N
+        jLabel1.setText("<html>To Add image drag and drop image file here.</html>");
 
         jScrollPane4.setViewportView(jEditorPane1);
 
-        org.jdesktop.layout.GroupLayout topComponent1Layout = new org.jdesktop.layout.GroupLayout(topComponent1);
-        topComponent1.setLayout(topComponent1Layout);
-        topComponent1Layout.setHorizontalGroup(
-            topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, topComponent1Layout.createSequentialGroup()
-                .add(topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(topComponent1Layout.createSequentialGroup()
-                        .add(2, 2, 2)
+        jLabel5.setText("Depth:");
+
+        jTextField1.setText("0");
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel6.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel6.setText("Arguments:");
+
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(4, 4, 4)
                         .add(jLabel5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 127, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
-                    .add(topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                        .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                        .add(jCheckBox1)
-                        .add(jCheckBox2)
-                        .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
+                    .add(jCheckBox2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane4, 0, 0, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 915, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+                    .add(jLabel6))
+                .addContainerGap())
         );
-        topComponent1Layout.setVerticalGroup(
-            topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(topComponent1Layout.createSequentialGroup()
-                .add(topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(topComponent1Layout.createSequentialGroup()
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(layout.createSequentialGroup()
                         .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -245,40 +360,123 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                         .add(jCheckBox1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jCheckBox2)
-                        .add(18, 18, 18)
-                        .add(topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                        .add(11, 11, 11)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel5)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jButton1))
-                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 350, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 287, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(jLabel6)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jButton1))
+                .addContainerGap())
         );
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 1088, Short.MAX_VALUE)
-            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(layout.createSequentialGroup()
-                    .add(0, 0, Short.MAX_VALUE)
-                    .add(topComponent1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(0, 0, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 509, Short.MAX_VALUE)
-            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                .add(layout.createSequentialGroup()
-                    .add(0, 0, Short.MAX_VALUE)
-                    .add(topComponent1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(0, 0, Short.MAX_VALUE)))
-        );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void eventListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventListMousePressed
+     if (evt.getButton() == evt.BUTTON3)
+   {
+      eventList.setSelectedIndex(eventList.locationToIndex(evt.getPoint()));
+       final Point p = evt.getPoint();
+      JPopupMenu popup = new JPopupMenu();
+    JMenuItem menuItem = new JMenuItem("Delete");
+    menuItem.addActionListener(new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getActionCommand().equals("Delete"))
+                       eventList.events.remove(eventList.locationToIndex(p));
+                }
+});
+    popup.add(menuItem);
+    popup.setVisible(true);
+    popup.show(eventList, evt.getX(), evt.getY());
+    //popup.setLocation(evt.getPoint());
+   }
+}//GEN-LAST:event_eventListMousePressed
+
+private void actionList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_actionList1ValueChanged
+    if (actionList1.getSelectedValue() == null) {
+        return;
+    }
+    if (oldav !=null)
+        oldav.args = jEditorPane1.getText();
+    oldav = (ActionValue)actionList1.getSelectedValue();
+    this.jEditorPane1.setText(((ActionValue)actionList1.getSelectedValue()).args);
+}//GEN-LAST:event_actionList1ValueChanged
+
+private void actionList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MousePressed
+   draggingIndex = actionList1.locationToIndex(evt.getPoint());
+   if (evt.getButton() == evt.BUTTON3)
+   {
+       actionList1.setSelectedIndex(actionList1.locationToIndex(evt.getPoint()));
+       final Point p = evt.getPoint();
+      JPopupMenu popup = new JPopupMenu();
+    JMenuItem menuItem = new JMenuItem("Delete");
+    menuItem.addActionListener(new ActionListener(){
+
+                public void actionPerformed(ActionEvent e) {
+                    if (e.getActionCommand().equals("Delete"))
+                       actionList1.model.remove(actionList1.locationToIndex(p));
+                }
+});
+    popup.add(menuItem);
+    popup.setVisible(true);
+    popup.show(actionList1, evt.getX(), evt.getY());
+    //popup.setLocation(evt.getPoint());
+   }
+}//GEN-LAST:event_actionList1MousePressed
+
+private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MouseReleased
+    //draggingIndex = -1;
+}//GEN-LAST:event_actionList1MouseReleased
+
+private void actionList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MouseDragged
+    final int newIndex = actionList1.locationToIndex(evt.getPoint());
+    
+    if (newIndex != draggingIndex)
+    {
+        Object temp = actionList1.model.get(draggingIndex);
+        
+        actionList1.model.set(draggingIndex, actionList1.model.get(newIndex));
+        actionList1.model.set(newIndex, temp);
+        
+        draggingIndex = newIndex;
+    }
+}//GEN-LAST:event_actionList1MouseDragged
+
+    public final void setimage(String image)
+{
+    this.image = image;
+}
+
+    public void save() throws IOException {
+        savefile();
+       // a.setModified(false);
+    }
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    try     {
+        savefile();
+        a.setModified(false);
+        a.writejava();
+    } catch (IOException ex) {
+        Exceptions.printStackTrace(ex);
+    }
+}//GEN-LAST:event_jButton1MouseClicked
+
+private void eventListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_eventListValueChanged
+    if (eventList.getSelectedValue() == null) {
+        return;
+    }
+    actionList1.setModel(((Value) eventList.getSelectedValue()).actions);
+    actionList1.model = ((Value) eventList.getSelectedValue()).actions;
+    if (oldav !=null)
+        oldav.args = jEditorPane1.getText();
+    oldav = null;
+    this.jEditorPane1.setText("// "+((Value)eventList.getSelectedValue()).value+", Click an action to edit the arguments here!");
+}//GEN-LAST:event_eventListValueChanged
     
     /**
  * Used to stop errors occuring from generated code, Don't use!
@@ -297,17 +495,10 @@ public void pack()
         
     }    
     
-private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    try     {
-        savefile();
-        a.setModified(false);
-        a.writejava();
-    } catch (IOException ex) {
-        Exceptions.printStackTrace(ex);
-    }
-}//GEN-LAST:event_jButton1MouseClicked
-
 private void savefile() {
+    if (oldav !=null)
+        oldav.args = jEditorPane1.getText();
+    oldav = null;
     FileLock lock;
     try {
         lock= ado.getPrimaryFile().lock();
@@ -349,6 +540,7 @@ private void savefile() {
                         to.println("<Name>"+vv.value+"</Name>");
                         to.println("<Image>"+vv.img+"</Image>");
                         to.println("<Code>"+vv.code+"</Code>");
+                        to.println("<Args>"+vv.args+"</Args>");
                         to.println("</Action>");
                     }
                     to.println("</Event>");
@@ -397,7 +589,7 @@ public void openfile() throws Exception {
             
             if (line.equals("<Event>")) {
                 line=from.readLine();
-                String name="",img="",code="";
+                String name="",img="",code="",args="";
                 if (line.contains("<Name>") && line.contains("</Name>")) {
                     name = line.replaceAll("<Name>", "").replaceAll("</Name>", "");
                 }
@@ -410,6 +602,8 @@ public void openfile() throws Exception {
                 
                 line=from.readLine();
                 while (!line.equals("</Event>")) {
+                    code="";
+                    args="";
                     //get actions
                     if (line.equals("<Action>")) {
                         line=from.readLine();
@@ -422,14 +616,34 @@ public void openfile() throws Exception {
                             System.out.println(img);
                         }
                         line=from.readLine();
-                        if (line.contains("<Code>") && line.contains("</Code>")) {
-                            code = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
-                            System.out.println(img);
+                        if (line.contains("<Code>")) {
+                            if (line.contains("</Code>"))
+                                code = code+ line.replaceAll("<Code>", "").replaceAll("</Code>", "")+"\n";
+                            else
+                            while (!line.contains("</Code>")) {
+                            code = code+ line.replaceAll("<Code>", "").replaceAll("</Code>", "")+"\n";
+                             line=from.readLine();
+                            }
+                             code = code+ line.replaceAll("<Code>", "").replaceAll("</Code>", "")+"\n";
+
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Args>")) {
+                            if (line.contains("</Args>"))
+                                args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+                            else
+                            while (!line.contains("</Args>")) {
+                            args = args+line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+                            System.out.println(args);
+                            line=from.readLine();
+                            }
+                            args = args+line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+
                         }
                         line=from.readLine();//</Action>
                         // add the action
                         Value v = (Value)eventList.events.lastElement();
-                        v.actions.addElement(new ActionValue(name,img,code ));
+                        v.actions.addElement(new ActionValue(name,img,code,args ));
                     }
                     line=from.readLine();
                 }
@@ -443,12 +657,24 @@ public void openfile() throws Exception {
 }
 
 
-private void eventListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_eventListValueChanged
-    if (eventList.getSelectedValue() == null) {
-        return;
+                                       
+
+                                    
+
+    private void MousePressed(java.awt.event.MouseEvent evt)                              
+    {                                  
+        draggingIndex = actionList1.locationToIndex(evt.getPoint());
+}  
+
+    public void componentOpened()
+    {
+        this.setActivatedNodes(new Node[] {a.getNodeDelegate()});
     }
-    actionList1.setModel(((Value) eventList.getSelectedValue()).actions);
-}//GEN-LAST:event_eventListValueChanged
+    
+    public void componentClosed()
+    {
+        // TODO add custom code on component closing
+    }
 
 /**
  * @param args the command line arguments
@@ -527,7 +753,8 @@ public void propertyChange(PropertyChangeEvent evt) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList actionList1;
+    public ActionList actionList1;
+    public EventList eventList;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
@@ -535,8 +762,9 @@ public void propertyChange(PropertyChangeEvent evt) {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    public final javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -545,7 +773,6 @@ public void propertyChange(PropertyChangeEvent evt) {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
-    private org.openide.windows.TopComponent topComponent1;
     // End of variables declaration//GEN-END:variables
     
 }

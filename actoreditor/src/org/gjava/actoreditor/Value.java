@@ -15,6 +15,7 @@ import org.openide.util.Utilities;
 
 public class Value
     {
+    //value is the event name
         public String value,img;
         public ImageIcon image;
         public DefaultListModel actions = new DefaultListModel();

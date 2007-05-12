@@ -47,10 +47,11 @@ public class Actioneditor extends TopComponent {
         this.path = a.getPrimaryFile().getPath();
         try     {
             initComponents();
-            openfile();
             EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
             jEditorPane1.setEditorKit(kit);
             jEditorPane2.setEditorKit(kit);
+            openfile();
+            
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
@@ -72,6 +73,7 @@ public class Actioneditor extends TopComponent {
         this.jTextField4.setText(props.getProperty( "icon32" ));
         this.jEditorPane1.setText(props.getProperty( "args" ));
         this.jEditorPane2.setText(props.getProperty( "code" ));
+        
        // a.setModified(true);
     }
     

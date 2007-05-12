@@ -1,0 +1,9 @@
+#
+#Wed May 09 20:31:54 BST 2007
+icon32=org/gjava/actoreditor/actions/images/GM.009.gif
+displayName=Reverse the vertical direction
+icon16=org/gjava/actoreditor/actions/images/GM.009.gif
+args={//Start Parenthesis required\nActor applies \= this;
+code=applies.vspeed \= -applies.vspeed;\n}
+id=id1
+comment=Reverse the vertical direction
