@@ -23,6 +23,7 @@ import org.openide.windows.TopComponent;
 public class actorDataObject extends MultiDataObject 
 implements Lookup.Provider {
     
+       
    public  actorData data = new actorData();
    public Actoreditor ae;// = new ActorEditorTopComponent(this);
     
