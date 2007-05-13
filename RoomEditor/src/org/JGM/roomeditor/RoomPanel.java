@@ -184,7 +184,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     }
     
     public void mouseReleased(MouseEvent arg0) {
-        
+        if (!rm.actor.equals(""))
         if(arg0.getButton()==arg0.BUTTON1){
             instances.add(new instance(arg0.getX(),arg0.getY(),rm.actor,rm.actorimg));
             rm.data.setModified(true);

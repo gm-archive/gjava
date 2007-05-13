@@ -21,10 +21,12 @@ import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.text.EditorKit;
+import org.netbeans.editor.ext.ExtUtilities;
 import org.openide.filesystems.FileLock;
 import org.openide.text.CloneableEditorSupport;
 import org.openide.util.Exceptions;
@@ -39,7 +41,7 @@ public class RoomEditor extends TopComponent {
     
 public static RoomPanel canvas;
 
-public String actor = "room";
+public String actor = "";
 
 public String creation_code="";
 
@@ -670,8 +672,11 @@ private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 
 JEditorPane jep = new JEditorPane();
 jep.setEditorKit(kit);
+JComponent myEditorComponent = 
+  ExtUtilities.getExtEditorUI( jep ).getExtComponent();
+ 
 JFrame frame = new JFrame("Creation Code");
-frame.add(jep);
+frame.add(myEditorComponent);
 frame.setSize(640, 480);
 frame.setVisible(true);
 creation_code = jep.getText();

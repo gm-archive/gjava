@@ -57,6 +57,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 				print(Basicgame," public Actor o;");
 				print(Basicgame,"public int roomsetup=0;");
 				print(Basicgame," private int ii, dd;");
+                                print(Basicgame,"public static int room_id = 0;");
 				print(Basicgame," JFrame R;");
 				print(Basicgame,"public static   Vector backgrounds = new Vector();");
 
@@ -116,6 +117,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 print(Basicgame,"this.R = R;");
 				print(Basicgame,"this.id = id;");
 				print(Basicgame,"this.roomid = roomid;");
+                                print(Basicgame,"this.room_id = roomid;");
 				print(Basicgame,"if (basicgame.Runningas != \"EApplet\") {");
 				print(Basicgame,"R.addKeyListener(this);");
 				print(Basicgame,"R.addMouseListener(this);");
@@ -262,11 +264,11 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 				print(Basicgame,"public  void paint(Graphics g) {");
 				print(Basicgame,"// The main game loop    ");
 				print(Basicgame,"");
-				print(Basicgame,"Font f = new Font(\"Arial Narrow\",Font.PLAIN,16);");
-				print(Basicgame,"g.setFont(f);");
+//				print(Basicgame,"Font f = new Font(\"Arial Narrow\",Font.PLAIN,16);");
+//				print(Basicgame,"g.setFont(f);");
 				print(Basicgame,"// Clear the drawing buffer to the background color");
 				print(Basicgame,"g.setColor( backcolor );");
-				print(Basicgame,"g.fillRect( 0, 0, ScreenWidth, ScreenHeight );");
+				print(Basicgame,"g.fillRect( 0, 0, width, height);");
 				print(Basicgame,"");
 				print(Basicgame,"// draw backgrounds");
 /*
@@ -348,17 +350,15 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 				print(Basicgame,"while (dd < instances.size()) {");
 				print(Basicgame,"this.instance_id = dd;");
 				print(Basicgame,"Actor o = (Actor)instances.get(dd);");
-				print(Basicgame,"o.Begin_Step_event();");
+				//print(Basicgame,"o.Begin_Step_event();");
 				print(Basicgame,"//if (o.timeline != null)");
 				print(Basicgame,"//o.timeline.runTimeline();");
 				print(Basicgame,"o.Alarm();");
 				print(Basicgame,"o.Keyboard_event();");
 				print(Basicgame,"o.Step();");
-				print(
-						Basicgame,
-						"if((o.X <= -1) || (o.X >= basicgame.Current_room.Width+1) || (o.Y <= -1) || (o.Y >= basicgame.Current_room.Height+1)) {");
-				print(Basicgame,"    o.Outside();");
-				print(Basicgame,"}");
+				//print(Basicgame,"if((o.X <= -1) || (o.X >= basicgame.Current_room.Width+1) || (o.Y <= -1) || (o.Y >= basicgame.Current_room.Height+1))");
+				//print(Basicgame,"    o.Outside();");
+				
 				/*if (end_animation_event == true)
 					{
 					print(Basicgame,"if (o.Object_sprite != null) {");
@@ -368,7 +368,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 					}*/
 				print(Basicgame,"o.Move();");
 				print(Basicgame,"o.Collision_event();");
-				print(Basicgame,"o.End_Step_event();");
+				//print(Basicgame,"o.End_Step_event();");
 				print(Basicgame,"// decrease the alarms");
 				print(Basicgame,"o.decrease_alarms();");
 				print(Basicgame," dd = this.instance_id;");
