@@ -389,99 +389,71 @@ public final class JGMProject implements Project  {
         FileWriter Filename_javaFW;
         
         public void openfiles(){
-            org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
+            org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             try {
-                //GamesettingsFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/GameSettings.java");
-                BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/basicgame.java");
-                Global_javaFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/Global.java");
-                Filename_javaFW = new FileWriter(pro.getProjectDirectory().getPath()+"/"+pro.getProjectDirectory().getName()+".java");
-                
-            } catch (Exception e) {
-                msgbox("Error opening output file. " + e.getMessage(),0);
-                //close();
-                //return false;
+                BasicgameFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/org/gjava/runner/basicgame.java");
+                Global_javaFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/org/gjava/runner/Global.java");
+                Filename_javaFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/" + pro.getProjectDirectory().getName() + ".java");
+            } catch (java.lang.Exception e) {
+                msgbox("Error opening FileWriter output file. " + e.getStackTrace(), 0);
+                e.printStackTrace();
             }
-            // Gamesettings = new BufferedWriter(GamesettingsFW);
-            Basicgame = new BufferedWriter(BasicgameFW);
-            Global_java = new BufferedWriter(Global_javaFW);
-            Filename_java = new BufferedWriter(Filename_javaFW);
+            Basicgame = new java.io.BufferedWriter(BasicgameFW);
+            Global_java = new java.io.BufferedWriter(Global_javaFW);
+            Filename_java = new java.io.BufferedWriter(Filename_javaFW);
             try {
-                // Write Gamesettings header
-             /*  print(Gamesettings,"/*");
-                print(Gamesettings," *  GameSettings.java");
-                print(Gamesettings," *  Written by GM_guru (http://www.gm-school.com)");
-                print(Gamesettings," *  Created using G-java (http://www.g-java.com)");
-              *///  print(Gamesettings," */");
-               /* print(Gamesettings,"package org.gjava.runner;");
-                print(Gamesettings,"import java.awt.*;");
-                print(Gamesettings,"import javax.swing.*;");
-                print(Gamesettings,"");
-                print(Gamesettings,"public class GameSettings {");
-                print(Gamesettings,"");
-                print(Gamesettings,"     //caption settings");
-                print(Gamesettings,
-                        "     public static boolean show_score = true, show_lives = false, show_health = false;");
-                print(Gamesettings,"     //room captions");
-                print(Gamesettings,"     public static String score_caption = \"score:\","
-                        + "lives_caption = \"lives:\", health_caption = \"health:\";");
-                print(Gamesettings,"");
-                */
-                // Write Basicgame header
-                print(Basicgame,"");
-                print(Basicgame,"// basicgame.java");
-                print(Basicgame,"// by TGMG");
-                print(Basicgame,"");
-                print(Basicgame,"// import the required classes");
-                print(Basicgame,"package org.gjava.runner;");
-                print(Basicgame,"import java.awt.*;");
-                print(Basicgame,"import java.awt.event.*;");
-                print(Basicgame,"import javax.swing.*;");
-                print(Basicgame,"import java.io.*;");
-                print(Basicgame,"import java.util.*;");
-                print(Basicgame,"import java.net.*;");
-                print(Basicgame,"import java.applet.*;");
-                print(Basicgame,"import java.lang.reflect.InvocationTargetException;");
-                print(Basicgame,"");
-                print(Basicgame,"");
-                print(Basicgame,"");
-                print(Basicgame,"// the main class");
-                print(Basicgame,"public class basicgame {");
-                print(Basicgame,"");
-                print(Basicgame,"//The Game Settings");
-                print(Basicgame,"GameSettings gs = new GameSettings();");
-                print(Basicgame,"");
-                print(Basicgame,"public static JFrame f;");
-                print(Basicgame,"public static URL u;");
-                print(Basicgame,"public static String Runningas;");
-                print(Basicgame,"public static RoomPanel Current_room;");
-                print(Basicgame,"public static JApplet Eapplet;");
-                print(Basicgame,"public static int mouse;");
-                print(Basicgame,"");
-                print(Basicgame,"// Declare the reasources");
-                print(Basicgame,"//  G-java replace with res **101**");
+                print(Basicgame, "");
+                print(Basicgame, "// basicgame.java");
+                print(Basicgame, "// by TGMG");
+                print(Basicgame, "");
+                print(Basicgame, "// import the required classes");
+                print(Basicgame, "package org.gjava.runner;");
+                print(Basicgame, "import java.awt.*;");
+                print(Basicgame, "import java.awt.event.*;");
+                print(Basicgame, "import javax.swing.*;");
+                print(Basicgame, "import java.io.*;");
+                print(Basicgame, "import java.util.*;");
+                print(Basicgame, "import java.net.*;");
+                print(Basicgame, "import java.applet.*;");
+                print(Basicgame, "import java.lang.reflect.InvocationTargetException;");
+                print(Basicgame, "");
+                print(Basicgame, "");
+                print(Basicgame, "");
+                print(Basicgame, "// the main class");
+                print(Basicgame, "public class basicgame {");
+                print(Basicgame, "");
+                print(Basicgame, "//The Game Settings");
+                print(Basicgame, "GameSettings gs = new GameSettings();");
+                print(Basicgame, "");
+                print(Basicgame, "public static JFrame f;");
+                print(Basicgame, "public static URL u;");
+                print(Basicgame, "public static String Runningas;");
+                print(Basicgame, "public static RoomPanel Current_room;");
+                print(Basicgame, "public static JApplet Eapplet;");
+                print(Basicgame, "public static int mouse;");
+                print(Basicgame, "");
+                print(Basicgame, "// Declare the reasources");
+                print(Basicgame, "//  G-java replace with res **101**");
                 writeBasicgame();
-                
-                // Write Global Header
-                print(Global_java,"/////////////////////////////////");
-                print(Global_java,"// Global.java by Gm_guru");
-                print(Global_java,"// written for g-java 1.08+");
-                print(Global_java,"/////////////////////////////////");
-                print(Global_java,"package org.gjava.runner;");
-                print(Global_java,"public class Global {");
-                print(Global_java,"    // all global variables here");
-                
-                //Create filename.java
+                print(Global_java, "/////////////////////////////////");
+                print(Global_java, "// Global.java by Gm_guru");
+                print(Global_java, "// written for g-java 1.08+");
+                print(Global_java, "/////////////////////////////////");
+                print(Global_java, "package org.gjava.runner;");
+                print(Global_java, "public class Global {");
+                print(Global_java, "    // all global variables here");
                 createFilenameJava();
-                
-                //write load rooms
-                writeloadrooms();
-                
-            } catch (Exception e) {
-                msgbox("Error writing to output file. " + e.getMessage(),0);
-                System.out.println(""+e.getStackTrace());
+            } catch (java.lang.Exception e) {
+                msgbox("Error writing to output files. " + e.getStackTrace(), 0);
+                java.lang.System.out.println("" + e.getStackTrace());
                 closeJava();
-                //return false;
+            }
+            try {
+                writeloadrooms();
+            } catch (IOException ex) {
+                msgbox("Error writing to load rooms. " , 0);
+                Exceptions.printStackTrace(ex);
             }
         }
         
@@ -634,7 +606,6 @@ public final class JGMProject implements Project  {
                 copy("Game_Information.class",path + "Game_Information.class",true);
                 copy("TimedAudioClip.class",path + "TimedAudioClip.class",true);
                 copy("Timeline.class",path + "Timeline.class",true);
-                copy("Variable.class",path + "Variable.class",true);
                 copy("GameSettings.class",path + "GameSettings.class",true);
                 copy("Global.class",path + "Global.class",true);
             } catch (Exception e) {
@@ -665,12 +636,16 @@ public final class JGMProject implements Project  {
             //Get the DataObject that represents it
             DataFolder theDataObject =
                     DataFolder.findFolder(dir);
-            Index i = (Index)theDataObject.getNodeDelegate().getLookup().lookup(Index.class);
-            Node[] n = i.getNodes();
-            for (int ii = 0; ii < n.length; ii++) {
+            //Index i = (Index)theDataObject.getNodeDelegate().getLookup().lookup(Index.class);
+            Node[] n = theDataObject.getNodeDelegate().getChildren().getNodes(true);
+           int ii = 0;
+           System.out.println(""+n.length);
+            while (ii < n.length) {
+                System.out.println(""+ii);
                 //for (Enumeration e = dir.getData(false); e.hasMoreElements() ;) {
                 //FileObject f = (FileObject)e.nextElement();
                 Node f = n[ii];
+                subi =  ii;//i.indexOf(f);
                 roomstr = roomstr + "    if (roomid ==  " + subi + ") {\n\n";
                 eroomstr = eroomstr + "    if (roomid ==  " + subi + ") {\n\n";
                 
@@ -688,15 +663,13 @@ public final class JGMProject implements Project  {
                     lastroom = "" + 0;
                     
                     roomarray = roomarray + lastroom;
-                    
                 }
                 
                 else {
                     roomarray = roomarray + "," + subi;
-                    
                 }
-                subi++;
-                
+                //subi++;
+                ii++;
             }
             firstroom = ""+subi;
             

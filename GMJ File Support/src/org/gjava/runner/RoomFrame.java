@@ -7,11 +7,11 @@ import java.awt.event.
 
 
 /**
- * An extended JFrame, will be deprecated soon
+ * An extended JFrame used for adding rooms
  * @author G-Java development team
  * @version 1.0
  */
-public class Room extends JFrame implements WindowListener {
+public class RoomFrame extends JFrame implements WindowListener {
     String next_room, caption;
     boolean persistent;
     /**
@@ -32,12 +32,9 @@ public class Room extends JFrame implements WindowListener {
      * @param decorated
      * @param backcolor
      */
-    public Room(int width, int height, boolean decorated, Color backcolor) {
-        
-        // the variables are only for when creating the loading
-        //backcolor is the color outside the room region
-        Room.width = width;
-        Room.height = height;
+    public RoomFrame(int width, int height, boolean decorated, Color backcolor) {
+        RoomFrame.width = width;
+        RoomFrame.height = height;
         this.backcolor = backcolor;
         setBackground(backcolor);
         //GameSettings gs = new GameSettings();

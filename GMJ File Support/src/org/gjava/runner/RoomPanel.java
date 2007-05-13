@@ -19,8 +19,13 @@ public class RoomPanel extends JPanel implements Runnable
 	int createno = 1; // the number of created tiles and objects
 
 	// room variables
-	public static int Width, Height, backvspeed, backhspeed;
-
+	private static int Width, Height;
+        
+        /**
+         * graphics Object used to draw to the screen
+         */
+        public static Graphics graphics;
+        
 	int i = 1, NumberX, NumberY;
 
 	static int ii = 0;
@@ -85,10 +90,26 @@ public class RoomPanel extends JPanel implements Runnable
 	 */
 	public String Caption;
 
-	public int id = 0, roomid = 0;
+	
 
-	// the fps
-	public static long past_time, next_second, room_speed = 1;
+	/**
+	 * The room id
+	 */
+	public int id = 0;
+
+	/**
+	 * The room id
+	 */
+	public int roomid = 0;
+
+	
+	private static long past_time;
+
+	private static long next_second;
+        /**
+         * The speed of the room
+         */
+        public long speed = 1;
 
 	// used for double buffering
 	private Image dbImage;
@@ -97,11 +118,10 @@ public class RoomPanel extends JPanel implements Runnable
 
 	int k = 1;
 
-	int ScreenWidth;
-
-	int ScreenHeight;
-
-	// if the game is running
+	
+	/**
+	 * Check if the game is running
+	 */
 	public static boolean Running = true;
 
 	// //////////////////////////////////////////////////////////////////////
@@ -128,9 +148,15 @@ public class RoomPanel extends JPanel implements Runnable
 
 	// ^^number of FPS values stored to get an average
 
-	// the fps/ups variables
+	
+	/**
+	 * The average updates per second
+	 */
 	public double averageUPS = 0.0;
 
+	/**
+	 * The average frames per second
+	 */
 	public double averageFPS = 0.0;
 
 	// used for gathering statistics
@@ -150,10 +176,16 @@ public class RoomPanel extends JPanel implements Runnable
 	// end of FPS code
 	// /////////////////////////////////////////////////////////////////////
 
-	// room variables
-	public int room_height;
+	
+	/**
+	 * The height of the room
+	 */
+	public int height;
 
-	public int room_width;
+	/**
+	 * The width of the room
+	 */
+	public int width;
 
 	// use runner class
 	Runner runr = new Runner();
@@ -170,6 +202,9 @@ public class RoomPanel extends JPanel implements Runnable
 
 	DisplayMode dm = runr.bestmode(gd);
 
+	/**
+	 * The background color for this room
+	 */
 	public Color backcolor = Color.green;
 
 	// end of declaring variables
@@ -190,17 +225,17 @@ public class RoomPanel extends JPanel implements Runnable
 		// the constructor method
 		// setBounds(R.x/2,R.y/2);
 		basicgame.Current_room = this;
-		this.room_speed = fps;
+		this.speed = fps;
 		this.Room = R;
-		this.ScreenWidth = RoomW;
-		this.ScreenHeight = RoomH;
-		this.room_height = RoomH;
-		this.room_width = RoomW;
+		//this.ScreenWidth = RoomW;
+		//this.ScreenHeight = RoomH;
+		this.height = RoomH;
+		this.width = RoomW;
 		this.Width = RoomW + 7;
 		this.Height = RoomH + 25;
 		this.backcolor = backcolor;
 		this.Caption = Caption;
-		this.period = (int) (1000.0 / room_speed);
+		this.period = (int) (1000.0 / speed);
 		if (basicgame.Runningas != "EApplet")
 			{
 			totalElapsedTime = System.currentTimeMillis();
@@ -233,7 +268,7 @@ public class RoomPanel extends JPanel implements Runnable
 
 		if ((gs.FullScreenMode == 1) && (basicgame.Runningas != "EApplet"))
 			{
-			// Room.setUndecorated( true ); // No window decorations
+			Room.setUndecorated( true ); // No window decorations
 			gd.setFullScreenWindow(Room); // Create a full screen window
 			gd.setDisplayMode(dm); // Change to our preferred mode
 
@@ -246,10 +281,19 @@ public class RoomPanel extends JPanel implements Runnable
 
 		}
 
+	/**
+	 * Calls all the actor events everytime a frame is drawn<b>
+         * Don't call this method
+	 * @param g 
+	 */
 	public void Draw(Graphics g)
 		{
+            this.graphics = g;
 		}
 
+	/**
+	 * This will sort the depth vector by depth
+	 */
 	public void SortDepth()
 		{
 		depth.addAll(instances);
@@ -257,12 +301,20 @@ public class RoomPanel extends JPanel implements Runnable
 		depth.trimToSize();
 		}
 
+	/**
+	 * Get an instance from the room
+	 * @param ii the actor id
+	 * @return 
+	 */
 	public Actor get_instance(int ii)
 		{
 		Actor t = (Actor) instances.get(ii);
 		return t;
 		}
 
+	/**
+	 * Updates the caption/stausbar with score info such as the current score, health or lives
+	 */
 	public void Update_caption()
 		{
 		// update the jframe caption
@@ -306,26 +358,18 @@ public class RoomPanel extends JPanel implements Runnable
 	/** Update - Method, implements double buffering */
 	public void paint(Graphics g)
 		{
+            this.graphics = g;
 		// this.setBounds(Room.getWidth()/2- this.getWidth()/2,Room.getHeight()/2-this.getHeight()/2, 700, 600);
 
 		// setPreferredSize (ScreenWidth,ScreenHeight);
 		// initialize buffer
 		if (dbImage == null)
 			{
-
-			dbImage = createImage(ScreenWidth,ScreenHeight);
+			dbImage = createImage(width,height);
 			dbg = dbImage.getGraphics();
 			// dbg = bufferStrategy.getDrawGraphics();
 			}
 
-		// clear screen in background
-		// dbg.setColor (getBackground ());
-		// dbg.setColor (Color.red);
-		// dbg.fillRect (0, 0, this.getSize().width, this.getSize().height);
-		// dbg.fillRect (0, 0, ScreenWidth, ScreenHeight);
-
-		// draw elements in background
-		// dbg.setColor (getForeground());
 		Draw(dbg);
 
 		// draw image on the screen
@@ -335,11 +379,10 @@ public class RoomPanel extends JPanel implements Runnable
 
 		}
 
-	public void Creation_code()
-		{
-		// JOptionPane.showMessageDialog(null,"creation code");
-
-		}
+	/**
+	 * Override with creation code
+	 */
+	public void Creation_code(){}
 
 	public void Setup_Backgrounds()
 		{
@@ -361,6 +404,9 @@ public class RoomPanel extends JPanel implements Runnable
 			}
 		}
 
+	/**
+	 * This will be called if it is skipping a frame, to update the room by calling all events
+	 */
 	public void update_room()
 		{
 		// this will be called if it is skipping a frame
@@ -385,11 +431,11 @@ public class RoomPanel extends JPanel implements Runnable
 		dd = 0;
 		}
 
+	/**
+	 * Create all the objects backgrounds tiles etc
+	 */
 	public void setup_Room()
 		{
-		// create all the objects backgrounds tiles etc
-		// Vector v = new Vector(30);
-
 		}
 
 	private void storeStats()

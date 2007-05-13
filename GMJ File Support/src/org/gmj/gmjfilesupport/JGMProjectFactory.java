@@ -18,6 +18,7 @@ import org.netbeans.spi.project.ProjectFactory;
 import org.netbeans.spi.project.ProjectState;
 import org.openide.filesystems.FileObject;
 import org.openide.filesystems.FileUtil;
+import org.openide.loaders.DataFolder;
 
 
 /**
@@ -53,7 +54,7 @@ public class JGMProjectFactory implements ProjectFactory {
 
     //Find the properties file pvproject/project.properties,
     //creating it if necessary
-    String propsPath = PROJECT_DIR + "/" + PROJECT_PROPFILE;
+    String propsPath = PROJECT_PROPFILE;
     FileObject propertiesFile = projectRoot.getFileObject(propsPath);
     if (propertiesFile == null) {
         //Recreate the properties file if needed
@@ -61,7 +62,9 @@ public class JGMProjectFactory implements ProjectFactory {
     }
 
     Properties properties = (Properties) project.getLookup().lookup (Properties.class);
-
+    DataFolder theDataObject =
+                    DataFolder.findFolder(projectRoot.getFileObject("rooms"));
+    properties.setProperty("roomslist", theDataObject.getNodeDelegate().getChildren().getNodes(true).toString());
     File f = FileUtil.toFile(propertiesFile);
     properties.store(new FileOutputStream(f), "NetBeans JGM Project Properties");
 }

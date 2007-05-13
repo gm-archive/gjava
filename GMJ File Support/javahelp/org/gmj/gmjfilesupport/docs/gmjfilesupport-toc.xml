@@ -40,6 +40,7 @@
     <tocitem text="Functions" target="org.gmj.gmjfilesupport.about"/>
     </tocitem>
     <tocitem text="General Functions/Variables">
+        <tocitem text="Moving Functions" target="org.gmj.gmjfilesupport.about"/>
     </tocitem>
     <tocitem text="Computing functions">
     <tocitem text="Math functions" url="G-Java Language API/Computing functions/MathFunctions.html"/>
@@ -51,6 +52,7 @@
         <tocitem text="Window functions" target="org.gmj.gmjfilesupport.about"/>
     </tocitem>
     <tocitem text="Graphics">
+        <tocitem text="The Display" target="org.gmj.gmjfilesupport.about"/>
         <tocitem text="Drawing shapes" target="org.gmj.gmjfilesupport.about"/>
         <tocitem text="Fonts and Text" target="org.gmj.gmjfilesupport.about"/>
         <tocitem text="Drawing images" target="org.gmj.gmjfilesupport.about"/>
