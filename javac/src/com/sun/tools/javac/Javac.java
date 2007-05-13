@@ -38,7 +38,7 @@ public class Javac {
        String s = this.getClass().getResource("Main.class").getFile().replaceAll("Main.class", "").replaceAll("file:/","").replaceAll("%20"," ").replaceAll("!/com/sun/tools/javac/","");
         
        try{ 
-           System.out.println(s);
+           //System.out.println(s);
            
           // java.net.URLClassLoader ucl = new java.net.URLClassLoader(new URL[] {f.toURL()});
            // java.lang.Class clazz = ucl.loadClass("ImageJ.Class");
