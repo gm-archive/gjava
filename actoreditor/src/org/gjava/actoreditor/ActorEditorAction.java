@@ -14,11 +14,11 @@ public class ActorEditorAction extends AbstractAction {
     
     public ActorEditorAction() {
         super(NbBundle.getMessage(ActorEditorAction.class, "CTL_ActorEditorAction"));
-        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(ActorEditorTopComponent.ICON_PATH, true)));
+        putValue(SMALL_ICON,new ImageIcon(Utilities.loadImage(OLD_ActorEditorTopComponent.ICON_PATH, true)));
     }
     
     public void actionPerformed(ActionEvent evt) {
-        TopComponent win = ActorEditorTopComponent.findInstance();
+        TopComponent win = OLD_ActorEditorTopComponent.findInstance();
         win.open();
         win.requestActive();
     }

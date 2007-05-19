@@ -153,7 +153,7 @@ public class ActionList extends javax.swing.JList implements DragSourceListener,
                         data.refresh();
                     //add to actions
                     DefaultListModel mod = (DefaultListModel) getModel();
-                            mod.addElement(new ActionValue(data.getDisplayName(),data.img,data.code,data.args )) ;
+                            mod.addElement(new ActionValue(data)) ;
                     
                     aa.a.setModified(true);
                    }

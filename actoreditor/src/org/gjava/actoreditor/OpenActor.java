@@ -26,7 +26,7 @@ public class OpenActor extends CookieAction implements OpenCookie, CloseCookie {
        
        actorDataObject c = (actorDataObject) activatedNodes[0].getCookie(actorDataObject.class);
       
-        ActorEditorTopComponent re = ActorEditorTopComponent.getInstance(c.getName(),c);
+        OLD_ActorEditorTopComponent re = OLD_ActorEditorTopComponent.getInstance(c.getName(),c);
         re.setName(c.getName());
         re.setHtmlDisplayName(c.getName());
         re.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));

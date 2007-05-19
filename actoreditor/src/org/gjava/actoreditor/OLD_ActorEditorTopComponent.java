@@ -41,10 +41,10 @@ import org.openide.util.lookup.InstanceContent;
 /**
  * Top component which displays something.
  */
-public class ActorEditorTopComponent extends TopComponent implements PropertyChangeListener
+public class OLD_ActorEditorTopComponent extends TopComponent implements PropertyChangeListener
 {
     
-    private static ActorEditorTopComponent instance;
+    private static OLD_ActorEditorTopComponent instance;
     /** path to the icon used by the component and its open action */
     static final String ICON_PATH = "org/gjava/actoreditor/object.png";
     
@@ -64,7 +64,7 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     private int draggingIndex = -1;
     public actorDataObject a;
     
-    ActorEditorTopComponent(actorDataObject a)
+    OLD_ActorEditorTopComponent(actorDataObject a)
     {
        this(new InstanceContent());
         this.a = a;
@@ -76,7 +76,7 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
     
     
         
-    public ActorEditorTopComponent(InstanceContent content)
+    public OLD_ActorEditorTopComponent(InstanceContent content)
     {
        
             super(new org.openide.util.lookup.AbstractLookup(content));
@@ -94,9 +94,9 @@ public class ActorEditorTopComponent extends TopComponent implements PropertyCha
                                                  });
             initComponents();
             actionList1.setDragEnabled(true);
-            setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.ActorEditorTopComponent.class,
+            setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
                                                          "CTL_ActorEditorTopComponent"));
-            setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.ActorEditorTopComponent.class,
+            setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
                                                                 "HINT_ActorEditorTopComponent"));
             setIcon(org.openide.util.Utilities.loadImage(ICON_PATH, true));
            
@@ -557,7 +557,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
      * To obtain the singleton instance, use {@link findInstance}.
      */
-    public static synchronized ActorEditorTopComponent getDefault()
+    public static synchronized OLD_ActorEditorTopComponent getDefault()
     {
         if (instance == null)
         {
@@ -569,7 +569,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
     /**
      * Obtain the ActorEditorTopComponent instance. Never call {@link #getDefault} directly!
      */
-    public static synchronized ActorEditorTopComponent findInstance()
+    public static synchronized OLD_ActorEditorTopComponent findInstance()
     {
         TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
         if (win == null)
@@ -578,9 +578,9 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
                     "Cannot find MyWindow component. It will not be located properly in the window system.");
             return getDefault();
         }
-        if (win instanceof ActorEditorTopComponent)
+        if (win instanceof OLD_ActorEditorTopComponent)
         {
-            return (ActorEditorTopComponent)win;
+            return (OLD_ActorEditorTopComponent)win;
         }
         ErrorManager.getDefault().log(ErrorManager.WARNING,
                 "There seem to be multiple components with the '" + PREFERRED_ID +
@@ -652,7 +652,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
     }
     
     
-    public static ActorEditorTopComponent getInstance(String name,actorDataObject a)
+    public static OLD_ActorEditorTopComponent getInstance(String name,actorDataObject a)
     {
         //this.a = a;
         // look for an open instance containing this feed
@@ -660,9 +660,9 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
         while (opened.hasNext())
         {
             Object tc = opened.next();
-            if (tc instanceof ActorEditorTopComponent)
+            if (tc instanceof OLD_ActorEditorTopComponent)
             {
-                ActorEditorTopComponent elc = (ActorEditorTopComponent)tc;
+                OLD_ActorEditorTopComponent elc = (OLD_ActorEditorTopComponent)tc;
                 System.out.println(name+" "+elc.path);
                 if (name.equals(elc.path))
                 {
@@ -673,7 +673,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
         }
         
         // none found, make a new one
-        return new ActorEditorTopComponent(a);
+        return new OLD_ActorEditorTopComponent(a);
     }
     
     
@@ -682,7 +682,7 @@ private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRS
         private static final long serialVersionUID = 1L;
         public Object readResolve()
         {
-            return ActorEditorTopComponent.getDefault();
+            return OLD_ActorEditorTopComponent.getDefault();
         }
     }
     
