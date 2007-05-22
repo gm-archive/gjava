@@ -74,11 +74,11 @@ public class Functions {
     private static final int dateConvert = 86400000;
     
     /**
-     * Creates a new Functions object
+     * This is run at the start of the game.
      */
-    public Functions() {
+    static {
         Setup_Functions();
-        load_image();
+        // load_image();
     }
     
     /**
@@ -502,6 +502,426 @@ public class Functions {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd+ve+vf)/15;}
         public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg) {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd+ve+vf+vg)/16;}
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a){
+            return a;
+        }
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b){
+            if(a<b){
+                return a;
+            } else{
+                return b;
+            }
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c){
+            double[] x = new double[] {a, b, c};
+            Arrays.sort(x);
+            return x[1];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d){
+            double[] x = new double[] {a, b, c, d};
+            Arrays.sort(x);
+            return x[1];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e){
+            double[] x = new double[] {a, b, c, d, e};
+            Arrays.sort(x);
+            return x[2];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f){
+            double[] x = new double[] {a, b, c, d, e, f};
+            Arrays.sort(x);
+            return x[2];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g){
+            double[] x = new double[] {a, b, c, d, e, f, g};
+            Arrays.sort(x);
+            return x[3];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h){
+            double[] x = new double[] {a, b, c, d, e, f, g , h};
+            Arrays.sort(x);
+            return x[3];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i};
+            Arrays.sort(x);
+            return x[4];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j};
+            Arrays.sort(x);
+            return x[4];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k};
+            Arrays.sort(x);
+            return x[5];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l};
+            Arrays.sort(x);
+            return x[5];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m};
+            Arrays.sort(x);
+            return x[6];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n};
+            Arrays.sort(x);
+            return x[6];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
+            Arrays.sort(x);
+            return x[7];
+        }
+        
+        /**
+         * Returns the median of the values, that is, the middle value. (When the number of arguments is even, the smaller of the two middle values is returned.) The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
+            Arrays.sort(x);
+            return x[7];
+        }
+        
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a){
+            return a;
+        }
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b){
+            return (a+b)/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c){
+            double[] x = new double[] {a, b, c};
+            Arrays.sort(x);
+            return x[1];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d){
+            double[] x = new double[] {a, b, c, d};
+            Arrays.sort(x);
+            return (x[1]+x[2])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e){
+            double[] x = new double[] {a, b, c, d, e};
+            Arrays.sort(x);
+            return x[2];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f){
+            double[] x = new double[] {a, b, c, d, e, f};
+            Arrays.sort(x);
+            return (x[2]+x[3])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g){
+            double[] x = new double[] {a, b, c, d, e, f, g};
+            Arrays.sort(x);
+            return x[3];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h){
+            double[] x = new double[] {a, b, c, d, e, f, g , h};
+            Arrays.sort(x);
+            return (x[3]+x[4])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i};
+            Arrays.sort(x);
+            return x[4];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j};
+            Arrays.sort(x);
+            return (x[4]+x[5])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k};
+            Arrays.sort(x);
+            return x[5];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l};
+            Arrays.sort(x);
+            return (x[5]+x[6])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m};
+            Arrays.sort(x);
+            return x[6];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n};
+            Arrays.sort(x);
+            return (x[6]+x[7])/2;
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @param b
+         * @param c
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
+            Arrays.sort(x);
+            return x[7];
+        }
+        
+        /**
+         * Returns the true median of the values (based on mean rather than min), that is, the middle value. The function can have up to 16 arguments. They must all be real values.
+         * @param a
+         * @param b
+         * @param c
+         * @param d
+         * @param e
+         * @param f
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p){
+            double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
+            Arrays.sort(x);
+            return (x[7]+x[8])/2;
+        }
+        
+        
         /**
          * Returns the distance between point (x1,y1) and point (x2,y2).
          * @param x1
@@ -533,6 +953,79 @@ public class Functions {
                 return basic-180;
             else
                 return 360+basic;
+        }
+        
+        /**
+         * Always returns true, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_string(String a){ return true; }
+        
+        /**
+         * Always returns false, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_string(double a){ return false; }
+        /**
+         * Always returns false, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_string(boolean a){ return false; }
+        
+        /**
+         * Always returns false, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_real(String a){ return false; }
+        /**
+         * Always returns true, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_real(double a){ return true; }
+        /**
+         * Always returns true, used for compatibility with GM.
+         * @param a
+         * @return
+         * @since 2.0
+         * @author luiscubal
+         */
+        public static boolean is_real(boolean a){ return false; }
+        
+        
+        /**
+         * Returns the horizontal x-component of the vector determined by the indicated length and direction.
+         * @param len 
+         * @param dir 
+         * @return length
+         * @author ChIkEn AtE mY dOnUtS
+         */
+        public static double lengthdir_x(double len, double dir){
+            return len * cos(dir);
+        }
+        /**
+         * Returns the vertical y-component of the vector determined by the indicated length and direction.
+         * @param len 
+         * @param dir 
+         * @return 
+         * @author ChIkEn AtE mY dOnUtS
+         */
+        public static double lengthdir_y(double len,double dir){
+            return len * sin(dir);
         }
     }
     
@@ -1662,25 +2155,23 @@ public class Functions {
         
         /**
          * Wraps the instance when it has left the room to the other side. hor indicates whether to wrap horizontaly and vert indicates whether to wrap vertically. margin indicates how far the origin of the instance must be outside the room before the wrap happens. So it is a margin around the room. You typically use this function in the Outside event.
-         * @param instance 
-         * @param hor 
-         * @param vert 
-         * @param margin 
+         * @param instance
+         * @param hor
+         * @param vert
+         * @param margin
          */
-        public static void move_wrap(Actor instance, boolean hor, boolean vert, double margin)
-        {
+        public static void move_wrap(Actor instance, boolean hor, boolean vert, double margin) {
             //TODO move_wrap
         }
         
         /**
          * Moves the instances with speed sp toward position (x,y).
-         * @param instance 
-         * @param x 
-         * @param y 
-         * @param speed 
+         * @param instance
+         * @param x
+         * @param y
+         * @param speed
          */
-        public static void move_towards_point(Actor instance, double x, double y, double speed)
-        {
+        public static void move_towards_point(Actor instance, double x, double y, double speed) {
             //TODO move_towards_point
         }
         
@@ -1946,7 +2437,44 @@ public class Functions {
      * @deprecated No need to use these functions unless you are used to gm4!
      */
     public static class GM4 {
+        /**
+         * Only here to to ensure compatibility with GM4
+         * @deprecated use Functions.math.min instead
+         * @param a
+         * @param b
+         * @param c
+         * @return the minimum of the 3 values
+         * @author luiscubal
+         */
+        public static double min3(double a, double b, double c){
+            return Functions.math.min(a,b,c);
+        }
         
+        /**
+         * Only here to to ensure compatibility with GM4
+         * @deprecated use Functions.math.max instead
+         * @param a
+         * @param b
+         * @param c
+         * @return the max of the 3 values
+         * @author luiscubal
+         */
+        public static double max3(double a, double b, double c){
+            return Functions.math.max(a,b,c);
+        }
+        
+        /**
+         * Only here to to ensure compatibility with GM4
+         * @deprecated use Functions.math.mean instead
+         * @param a
+         * @param b
+         * @param c
+         * @return the mean of the 3 values
+         * @author luiscubal
+         */
+        public static double mean3(double a, double b, double c){
+            return Functions.math.mean(a,b,c);
+        }
     }
     
     /**
@@ -2021,10 +2549,10 @@ public class Functions {
     /**
      *
      */
-    public void load_image() {
-        backImage = new ImageIcon(getClass().getResource("dialog.png")).getImage();
-        
-    }
+    //    public void load_image() {
+    //        backImage = new ImageIcon(getClass().getResource("dialog.png")).getImage();
+    //
+    //    }
     
     /**
      * Tell the UIManager to use the platform look and feel
@@ -2077,12 +2605,6 @@ public class Functions {
         basicgame.Current_room.Paused = false;
     }
     
-    
-    
-    
-    
-    
-    
     /**
      *
      * @param url
@@ -2113,9 +2635,7 @@ public class Functions {
         }
     }
     
-    // global java variables
-    
-    private void Setup_Functions() {
+    private static void Setup_Functions() {
         // in some initializing method or constructor
         then = Calendar.getInstance();
         // Time used by GM to base the datetime off of
@@ -2124,11 +2644,5 @@ public class Functions {
         // setup clipboard
         if (basicgame.Runningas != "EApplet") systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         
-    }
-    
-    
-    
-    
+    }   
 }
-
-
