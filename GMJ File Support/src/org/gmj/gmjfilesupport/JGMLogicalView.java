@@ -13,27 +13,20 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
-import javax.swing.event.ChangeListener;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ui.OpenProjects;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
-import org.openide.ErrorManager;
 import org.openide.actions.FileSystemAction;
 import org.openide.actions.NewTemplateAction;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
 import org.openide.loaders.DataObjectNotFoundException;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.nodes.FilterNode;
 import org.openide.nodes.Index;
-import org.openide.nodes.Index.ArrayChildren;
-import org.openide.nodes.IndexedNode;
 import org.openide.nodes.Node;
-import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
@@ -76,10 +69,10 @@ public class JGMLogicalView implements LogicalViewProvider {
             //This FilterNode will be our project node
             return new RoomsNode(realRoomsFolderNode, project);
         } catch (DataObjectNotFoundException donfe) {
-            ErrorManager.getDefault().notify(donfe);
+            //ErrorManager.getDefault().notify(donfe);
             //Fallback - the directory couldn't be created -
             //read-only filesystem or something evil happened
-            return new AbstractNode(Children.LEAF);
+            return null;
         }
     }
     

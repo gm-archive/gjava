@@ -311,6 +311,24 @@ public class RoomPanel extends JPanel implements Runnable
 		Actor t = (Actor) instances.get(ii);
 		return t;
 		}
+        
+        /**
+         * Returns the width of the room 
+         * @return width
+         */
+        public static int get_width()
+        {
+            return width;
+        }
+        
+        /**
+         * Returns the height of the room
+         * @return height
+         */
+        public static int get_height()
+        {
+            return height;
+        }
 
 	/**
 	 * Updates the caption/stausbar with score info such as the current score, health or lives

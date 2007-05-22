@@ -62,15 +62,7 @@ public class Functions {
     public static String health_caption = "health:";
     
     
-    /**
-     *
-     */
-    //public static JFrame messagebox = new Room(320,140,false,Color.black);
     
-    /**
-     *
-     */
-    //public static JLabel text;
     
     
     private static Image backImage;
@@ -1525,6 +1517,32 @@ public class Functions {
     public static class move{
         
         /**
+         * Sets the motion with the given speed in direction dir.
+         * @param applies The actor to use
+         * @param dir The direction
+         * @param speed The speed
+         * @author TGMG
+         * @since 2.0
+         */
+        public static void motion_set(Actor applies, double dir, double speed) {
+            applies.hspeed = -speed;
+            applies.vspeed = speed * Math.sin(dir * (Math.PI/180));
+        }
+        
+        /**
+         * Adds the motion to the current motion (as a vector addition).
+         * @param applies The actor to use
+         * @param dir The direction
+         * @param speed The speed
+         * @author TGMG
+         * @since 2.0
+         */
+        public static void motion_add(Actor applies, double dir, double speed) {
+            applies.hspeed =  applies.hspeed-speed;
+            applies.vspeed =  applies.vspeed + speed * Math.sin(dir * (Math.PI/180));
+        }
+        
+        /**
          * Returns whether the instance placed at position (x,y) meets nobody. So this function takes also non-solid instances into account.
          * @param x
          * @param y
@@ -1567,6 +1585,30 @@ public class Functions {
         }
         
         /**
+         * Returns whether the instance placed at position (x,y) meets the other actor.
+         * @param x
+         * @param y
+         * @param other
+         * @return
+         */
+        public static boolean place_meeting(double x, double y, Actor other) {
+            int jii = 0;
+            while (jii < basicgame.Current_room.instances.size()) {
+                Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
+                if (dt.equals(other)){
+                    Rectangle thisBounds = dt.getBounds((int) dt.x,(int) dt.y);
+                    
+                    if ((thisBounds.contains(x,y))) {
+                        return true;
+                    } else {
+                        jii++;
+                    }
+                }
+            }
+            return false;
+        }
+        
+        /**
          * Returns whether the instance is aligned with the snapping values.
          * @param instance
          * @param hsnap
@@ -1583,12 +1625,29 @@ public class Functions {
         /**
          * Moves the instance to a free random, snapped position, like the corresponding action.
          * @param instance
-         * @param hsnap
-         * @param vsnap
+         * @param snaphor
+         * @param snapver
          */
-        public static void move_random(Actor instance, double hsnap,double vsnap) {
-            //TODO this action
+        public static void move_random(Actor instance, double snaphor,double snapver) {
+            int xx = (int) Functions.math.random(basicgame.Current_room.get_width());
+            int yy = (int)Functions.math.random(basicgame.Current_room.get_height());
+            
+            if (!(snaphor == 0))
+                xx = (int)(xx/snaphor * Functions.math.round(snaphor));
+            if (!(snaphor == 0))
+                yy = (int)(yy/snaphor * Functions.math.round(snapver));
+            while (!Functions.move.place_free(xx,yy)) {
+                xx = (int)Functions.math.random(basicgame.Current_room.get_width());
+                yy = (int)Functions.math.random(basicgame.Current_room.get_height());
+                if (!(snaphor == 0))
+                    xx = (int)(xx/snaphor * Functions.math.round(snaphor));
+                if (!(snaphor == 0))
+                    yy = (int)(yy/snaphor * Functions.math.round(snapver));
+            }
+            instance.x = xx;
+            instance.y = yy;
         }
+        
         
         /**
          * Snaps the instance, like the corresponding action.
@@ -1596,8 +1655,33 @@ public class Functions {
          * @param hsnap
          * @param vsnap
          */
-        public static void move_snap(Actor instance, double hsnap,double vsnap) {
-            // TODO this function
+        public static void move_snap(Actor instance, double snaphor,double snapver) {
+            instance.x = instance.x/snaphor * Functions.math.round(snaphor);
+            instance.y = instance.y/snapver * Functions.math.round(snapver);
+        }
+        
+        /**
+         * Wraps the instance when it has left the room to the other side. hor indicates whether to wrap horizontaly and vert indicates whether to wrap vertically. margin indicates how far the origin of the instance must be outside the room before the wrap happens. So it is a margin around the room. You typically use this function in the Outside event.
+         * @param instance 
+         * @param hor 
+         * @param vert 
+         * @param margin 
+         */
+        public static void move_wrap(Actor instance, boolean hor, boolean vert, double margin)
+        {
+            //TODO move_wrap
+        }
+        
+        /**
+         * Moves the instances with speed sp toward position (x,y).
+         * @param instance 
+         * @param x 
+         * @param y 
+         * @param speed 
+         */
+        public static void move_towards_point(Actor instance, double x, double y, double speed)
+        {
+            //TODO move_towards_point
         }
         
     }
@@ -1838,23 +1922,31 @@ public class Functions {
     }
     
     /**
-     * 
+     *
      */
     public static class draw_shapes{
-
-       /**
-        * Clears the entire room in the given color (no alpha blending).
-        * @param col Color to clear the room to
-        */
-       public static void draw_clear(Color col){
-            if (basicgame.Current_room.graphics != null)
-            {
+        
+        /**
+         * Clears the entire room in the given color (no alpha blending).
+         * @param col Color to clear the room to
+         */
+        public static void draw_clear(Color col){
+            if (basicgame.Current_room.graphics != null) {
                 basicgame.Current_room.graphics.setColor( col );
-				basicgame.Current_room.graphics.fillRect( 0, 0, basicgame.Current_room.width, basicgame.Current_room.height );
+                basicgame.Current_room.graphics.fillRect( 0, 0, basicgame.Current_room.width, basicgame.Current_room.height );
             }
             
             
         }
+    }
+    
+    
+    /**
+     * These are functions to ensure compatibility with GM4.
+     * @deprecated No need to use these functions unless you are used to gm4!
+     */
+    public static class GM4 {
+        
     }
     
     /**
