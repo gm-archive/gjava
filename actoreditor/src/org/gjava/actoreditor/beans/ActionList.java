@@ -43,7 +43,7 @@ import org.gjava.actoreditor.Utilz;
 public class ActionList extends javax.swing.JList implements DragSourceListener,
     DragGestureListener
 {
-    public static DefaultListModel model = new DefaultListModel();
+    public DefaultListModel model = new DefaultListModel();
     public final Actoreditor aa;
     
     DragSource ds;

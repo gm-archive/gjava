@@ -29,6 +29,14 @@ public class ActionValue {
     public String arg5 = "";
     public String arg6 = "";
     public String arg7 = "";
+    public String caption0 = "";
+    public String caption1 = "";
+    public String caption2 = "";
+    public String caption3 = "";
+    public String caption4 = "";
+    public String caption5 = "";
+    public String caption6 = "";
+    public String caption7 = "";
     
     public  ActionValue(ActionData ad) {
         this.image = new ImageIcon(Utilities.loadImage(ad.img));
@@ -43,6 +51,14 @@ public class ActionValue {
         this.arg5 = ad.arg5;
         this.arg6 = ad.arg6;
         this.arg7 = ad.arg7;
+        this.caption0 = ad.caption0;
+        this.caption1 = ad.caption1;
+        this.caption2 = ad.caption2;
+        this.caption3 = ad.caption3;
+        this.caption4 = ad.caption4;
+        this.caption5 = ad.caption5;
+        this.caption6 = ad.caption6;
+        this.caption7 = ad.caption7;
     }
     
     
