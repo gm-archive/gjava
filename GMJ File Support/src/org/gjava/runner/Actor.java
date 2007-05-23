@@ -57,20 +57,68 @@ public abstract class Actor extends tile {
     /**
      * The actor direction, default 0
      */
-    public double direction = 0;
+    private double direction = 0;
+     /**
+     * Get the actor direction
+     * @return 
+     */
+    public double get_direction(){return direction;}
+    /**
+     * Set the actor direction
+     * @param direction 
+     */
+    public void set_direction(double direction){this.direction = direction;}
+    
+    
+    
     /**
      * The actor horizontal speed
      */
     public double hspeed = 0;
     /**
+     * Get the actor hspeed
+     * @return 
+     */
+    public double get_hspeed(){return hspeed;}
+    /**
+     * Set the actor hspeed
+     * @param hspeed 
+     */
+    public void set_hspeed(double hspeed){this.hspeed = hspeed;}
+    
+    
+    /**
      * The actor vertical speed
      */
     public double vspeed = 0;
+     /**
+     * Get the actor vspeed
+     * @return 
+     */
+    public double get_vspeed(){return vspeed;}
+    /**
+     * Set the actor vspeed
+     * @param vspeed 
+     */
+    public void set_vspeed(double vspeed){this.vspeed = vspeed;}
+    
+    
     /**
      * The actor friction
      */
-    public double friction = 0;
-    //public double gravity = 0, gravdir = 0, gravityh = 0, gravityv = 0, point_speed = 0, point_x = 0, point_y = 0,instance_id,
+    private double friction = 0;
+    /**
+     * Get the actor friction
+     * @return 
+     */
+    public double get_friction(){return friction;}
+    /**
+     * Set the actor friction
+     * @param friction 
+     */
+    public void set_friction(double friction){this.friction = friction;}
+    
+    
     /**
      * The actor x coordinate
      */
@@ -88,6 +136,29 @@ public abstract class Actor extends tile {
      */
     public double yprevious=0;
     
+    private double gravity_direction=0;
+    /**
+     * Get the actor gravity_direction
+     * @return 
+     */
+    public double get_gravity_direction(){return gravity_direction;}
+    /**
+     * Set the actor gravity_direction
+     * @param gravity_direction 
+     */
+    public void set_gravity_direction(double gravity_direction){this.gravity_direction = gravity_direction;}
+    
+    private double gravity=0;
+    /**
+     * Get the actor gravity
+     * @return 
+     */
+    public double get_gravity(){return gravity;}
+    /**
+     * Set the actor gravity
+     * @param gravity 
+     */
+    public void set_gravity(double gravity){this.gravity = gravity;}
     
     /**
      * The id of the object
@@ -155,6 +226,8 @@ public abstract class Actor extends tile {
         //this.parent = Parent;
         Create_event();
     }
+    
+    
     
     /**
      * Override with actor create event

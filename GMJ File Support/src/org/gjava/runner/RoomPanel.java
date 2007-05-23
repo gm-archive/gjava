@@ -34,8 +34,8 @@ public class RoomPanel extends JPanel implements Runnable
 	JFrame Room;
 
 	// booleans
-	public boolean Paused = false, show_score = true, show_lives = false, show_health = false;
-
+	public boolean Paused = false;
+        
 	
 	// the current vector id
 	public int instance_id;
@@ -103,9 +103,9 @@ public class RoomPanel extends JPanel implements Runnable
 	public int roomid = 0;
 
 	
-	private static long past_time;
+	//private static long past_time;
 
-	private static long next_second;
+	//private static long next_second;
         /**
          * The speed of the room
          */
@@ -316,7 +316,7 @@ public class RoomPanel extends JPanel implements Runnable
          * Returns the width of the room 
          * @return width
          */
-        public static int get_width()
+        public int get_width()
         {
             return width;
         }
@@ -325,7 +325,7 @@ public class RoomPanel extends JPanel implements Runnable
          * Returns the height of the room
          * @return height
          */
-        public static int get_height()
+        public int get_height()
         {
             return height;
         }
@@ -338,13 +338,13 @@ public class RoomPanel extends JPanel implements Runnable
 		// update the jframe caption
 		String local_caption = Caption;
 		if (GameSettings.show_score)
-			local_caption = local_caption + " " + GameSettings.score_caption + Functions.score;
+			local_caption = local_caption + " " + Functions.score.score_caption + Functions.score.score;
 
 		if (GameSettings.show_lives)
-			local_caption = local_caption + " " + GameSettings.lives_caption + Functions.lives;
+			local_caption = local_caption + " " + Functions.score.lives_caption + Functions.score.lives;
 
 		if (GameSettings.show_health)
-			local_caption = local_caption + " " + GameSettings.health_caption + Functions.health;
+			local_caption = local_caption + " " + Functions.score.health_caption + Functions.score.health;
 
 		if (basicgame.Runningas == "EApplet")
 			{

@@ -27,43 +27,6 @@ public class Functions {
     private static Clipboard systemClipboard;
     
     
-    /**
-     *  The game score, Starts at 0
-     * @since 2.0
-     */
-    public static int score = 0;
-    
-    /**
-     * The Game lives, default 5
-     *  @since 2.0
-     */
-    public static int lives = 5;
-    
-    /**
-     * The game health, starts at 100
-     *  @since 2.0
-     */
-    public static int health = 100;
-    
-    
-    
-    /**
-     * The score caption
-     */
-    public static String score_caption = "score:";
-    /**
-     * The lives caption
-     */
-    public static String lives_caption = "lives:";
-    
-    /**
-     * The health caption
-     */
-    public static String health_caption = "health:";
-    
-    
-    
-    
     
     private static Image backImage;
     
@@ -1009,8 +972,8 @@ public class Functions {
         
         /**
          * Returns the horizontal x-component of the vector determined by the indicated length and direction.
-         * @param len 
-         * @param dir 
+         * @param len
+         * @param dir
          * @return length
          * @author ChIkEn AtE mY dOnUtS
          */
@@ -1019,9 +982,9 @@ public class Functions {
         }
         /**
          * Returns the vertical y-component of the vector determined by the indicated length and direction.
-         * @param len 
-         * @param dir 
-         * @return 
+         * @param len
+         * @param dir
+         * @return
          * @author ChIkEn AtE mY dOnUtS
          */
         public static double lengthdir_y(double len,double dir){
@@ -2431,6 +2394,332 @@ public class Functions {
         }
     }
     
+    /**
+     * Other important aspects of many games are the score, the health, and the number of lives. G-java keeps track of the score in a global variable score and the number of lives in a global variable lives. You can change the score by simply changing the value of this variable. The same applies to health and lives. If lives is larger than 0 and becomes smaller than or equal to 0 the no-more-lives event is performed for all instances. If you don't want to show the score and lives in the caption, set the variable show_score, etc., to false. Also you can change the caption. For more complicated games best display the score yourself.
+     * @since 2.0
+     * @author TGMG
+     */
+    public static class score{
+        /**
+         *  The game score, Starts at 0
+         * @since 2.0
+         */
+        public static int score = 0;
+        
+        /**
+         * Whether to show the score in the window caption.
+         * @since 2.0
+         */
+        public static boolean show_score = true;
+        /**
+         * Whether to show the number of lives in the window caption.
+         * @since 2.0
+         */
+        public static boolean show_lives = false;
+        /**
+         * Whether to show the health in the window caption.
+         * @since 2.0
+         */
+        public static boolean show_health = false;
+        
+        /**
+         * The Game lives, default 5
+         *  @since 2.0
+         */
+        public static int lives = 5;
+        
+        /**
+         * The game health, starts at 100
+         *  @since 2.0
+         */
+        public static int health = 100;
+        
+        /**
+         * The score caption
+         * @since 2.0
+         */
+        public static String score_caption = "score:";
+        /**
+         * The lives caption
+         * @since 2.0
+         */
+        public static String lives_caption = "lives:";
+        
+        /**
+         * The health caption
+         * @since 2.0
+         */
+        public static String health_caption = "health:";
+    }
+    
+    /**
+     * Here are some variables and functions that deal with errors.
+     */
+    public static class debug{
+        /**
+         * Indicates whether an error has occurred, either true or false
+         */
+        public static boolean   error_occurred;
+        /**
+         * String indicating the last error message
+         */
+        public static String error_last="";
+        
+        /**
+         * Just for compatibility with gm! Don't use!
+         * @deprecated Just for compatibility with gm
+         * @param str
+         */
+        public static void show_debug_message(String str) {
+            System.out.println(str);
+        }
+    }
+    
+    /**
+     * These functions will give you information about a sprite
+     */
+    public static class resources_sprite{
+        /**
+         * Just for compatibility with gm! Don't use!
+         * @deprecated Just for compatibility with gm
+         * @param ind
+         * @return
+         */
+        public static boolean sprite_exists(sprite ind) {
+            return true;
+        }
+        
+        
+        /**
+         * Returns the name of the sprite.
+         * @param ind
+         * @return
+         */
+        public static String sprite_get_name(sprite ind) {
+            return "";
+        }
+        /**
+         * Returns the number of subimages of the sprite.
+         * @param ind
+         * @return
+         */
+        public static int sprite_get_number(sprite ind){
+            return ind.subimages;
+        }
+        /**
+         * Returns the width of the sprite.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_width(sprite ind){
+            return ind.sprite_width;
+        }
+        /**
+         * Returns the height of the sprite with the given index.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_height(sprite ind){
+            return ind.sprite_height;
+        }
+        
+        /**
+         * Returns whether the sprite with the given index is transparent.
+         * @param ind
+         * @return
+         */
+        public static boolean sprite_get_transparent(sprite ind){
+            return (ind.Transparent == 1);
+        }
+        /**
+         * Not used for G-Java!
+         * @deprecated does nothing, used for GM compatibility
+         * @param ind
+         * @return false
+         */
+        public static boolean sprite_get_smooth(sprite ind){
+            return false;
+        }
+        /**
+         * Returns the x-offset of the sprite with the given index.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_xoffset(sprite ind){
+            return ind.sprite_xoffset;
+        }
+        /**
+         * Returns the y-offset of the sprite with the given index.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_yoffset(sprite ind){
+            return ind.sprite_yoffset;
+        }
+        /**
+         * Returns the left side of the bounding box of the sprite with the given index.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_bbox_left(sprite ind){
+            return ind.BBLeft;
+        }
+        /**
+         * Returns the right side of the bounding box of the sprite.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_bbox_right(sprite ind){
+            return ind.BBRight;
+        }
+        
+        /**
+         * Returns the top side of the bounding box of the sprite.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_bbox_top(sprite ind){
+            return ind.BBTop;
+        }
+        /**
+         * Returns the bottom side of the bounding box of the sprite.
+         * @param ind
+         * @return
+         */
+        public static double sprite_get_bbox_bottom(sprite ind){
+            return ind.BBBottom;
+        }
+        /**
+         * Not used in G-Java.
+         * @deprecated Only used for GM compatibility
+         * @param ind
+         * @return 2
+         */
+        public static int sprite_get_bbox_mode(sprite ind){
+            return 2;
+        }
+        /**
+         * @deprecated Not used in G-java, for compatibility with GM
+         * @param ind
+         * @return false
+         */
+        public static boolean sprite_get_precise(sprite ind) {
+            return false;
+        }
+        
+        /**
+         * @deprecated Not used in G-java, for compatibility with GM
+         * @param ind
+         * @return false
+         */
+        public static boolean sprite_get_preload(sprite ind) {
+            return false;
+        }
+        
+        
+    }
+    
+    /**
+     * These functions will give you information about a sound
+     */
+    public static class resources_sound{
+        /**
+         * Returns whether a sound exists.
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return true
+         */
+        public static boolean  sound_exists(sound ind) {
+            return true;
+        }
+        /**
+         * Returns the name of the sound.
+         * @param ind
+         * @return
+         */
+        public static String sound_get_name(sound ind) {
+            return ind.sound_name;
+        }
+        /**
+         * Not used for G-java!
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return 0
+         */
+        public static int sound_get_kind(sound ind) {
+            return 0;
+        }
+        /**
+         * Not used for G-Java!
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return false
+         */
+        public static boolean sound_get_preload(sound ind) {
+            return false;
+        }
+        
+        /**
+         * Not needed for G-java, Does nothing
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         */
+        public static void sound_discard(sound ind) {
+        }
+        
+        /**
+         * Not needed for G-java, Does nothing
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         */
+        public static void sound_restore(sound ind) {
+        }
+    }
+    
+    
+    public static class resources_font{
+        /**
+         *
+         * @param ind
+         * @return
+         */
+        public static boolean font_exists(font ind) {
+            return true;
+        }
+        /**
+         * Returns the name of the font.
+         * @param ind
+         * @return
+         */
+        public static String font_get_name(font ind) {
+            return ind.fontname;
+        }
+        /**
+         * Returns the fontname of the font.
+         * @param ind
+         * @return
+         */
+      public static String  font_get_fontname(font ind) {
+            return ind.fname;
+        }
+        /**
+         * Returns whether the font is bold.
+         * @param ind
+         * @return
+         */
+       public static boolean font_get_bold(font ind) {
+            return ind.font.isBold();
+        }
+        /**
+         * Returns whether the font is italic.
+         * @param ind
+         * @return
+         */
+     public static boolean font_get_italic(font ind) {
+            return ind.font.isItalic();
+        }
+        
+    }
     
     /**
      * These are functions to ensure compatibility with GM4.
@@ -2644,5 +2933,5 @@ public class Functions {
         // setup clipboard
         if (basicgame.Runningas != "EApplet") systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         
-    }   
+    }
 }
