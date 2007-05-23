@@ -15,6 +15,10 @@ net.*;
 
 
 // the main class
+/**
+ * The basics for a game, rewritten in G-Java for your game.
+ * @author G-java
+ */
 public class basicgame {
 
 //The Game Settings

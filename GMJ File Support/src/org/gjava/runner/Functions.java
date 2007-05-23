@@ -2677,9 +2677,13 @@ public class Functions {
     }
     
     
+    /**
+     * These functions will give you information about a font
+     */
     public static class resources_font{
         /**
-         *
+         * Returns whether a font exists.
+         * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return
          */
@@ -2699,7 +2703,7 @@ public class Functions {
          * @param ind
          * @return
          */
-      public static String  font_get_fontname(font ind) {
+        public static String  font_get_fontname(font ind) {
             return ind.fname;
         }
         /**
@@ -2707,7 +2711,7 @@ public class Functions {
          * @param ind
          * @return
          */
-       public static boolean font_get_bold(font ind) {
+        public static boolean font_get_bold(font ind) {
             return ind.font.isBold();
         }
         /**
@@ -2715,11 +2719,136 @@ public class Functions {
          * @param ind
          * @return
          */
-     public static boolean font_get_italic(font ind) {
+        public static boolean font_get_italic(font ind) {
             return ind.font.isItalic();
         }
         
     }
+    
+    /**
+     * These functions will give you information about a timeline
+     */
+    public static class resources_timeline{
+        /**
+         * Returns whether a timeline exists.
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return
+         */
+        public static boolean timeline_exists(Timeline ind) {
+            return true;
+        }
+        /**
+         * Returns the name of the time line.
+         * @param ind
+         * @return
+         */
+        public static String timeline_get_name(Timeline ind) {
+            return ind.name;
+        }
+        
+    }
+    
+    /**
+     * These functions will give you information about a actor
+     */
+    public static class resources_actor{
+        /**
+         * Returns whether a actor exists.
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return
+         */
+        public static boolean actor_exists(Actor ind) {
+            return true;
+        }
+        /**
+         * Returns the name of the actor.
+         * @param ind
+         * @return
+         */
+        public static String actor_get_name(Actor ind) {
+            return ind.name;
+        }
+        
+        /**
+         * Returns the sprite of the actor.
+         * 
+         * @param ind
+         * @return
+         */
+        public static sprite actor_get_sprite(Actor ind) {
+            return ind.sprite;
+        }
+        /**
+         * Returns whether the actor is solid.
+         * @param ind
+         * @return
+         */
+     public static boolean object_get_solid(Actor ind) {
+         return ind.solid;
+        }
+        /**
+         * Returns whether the actor is visible.
+         * @param ind
+         * @return
+         */
+      public static boolean object_get_visible(Actor ind) {
+          return ind.visible;
+        }
+        /**
+         * Returns the depth of the actor.
+         * @param ind
+         * @return
+         */
+       public static double object_get_depth(Actor ind) {
+           return ind.depth;
+        }
+        /**
+         * Returns whether the actor is persistent.
+         * @param ind
+         * @return
+         */
+      public static boolean object_get_persistent(Actor ind) {
+          return ind.persistent;
+        }
+        
+    }
+    
+    
+    
+    /**
+     * These functions will give you information about a timeline
+     */
+    public static class resources_room{
+        /**
+         * Returns whether a room exists.
+         * @deprecated Used for compatibility with GM Only!
+         * @param ind
+         * @return
+         */
+        public static boolean room_exists(RoomPanel ind) {
+            return true;
+        }
+        /**
+         * Returns the name of the room.
+         * @param ind
+         * @return
+         */
+        public static String room_get_name(RoomPanel ind) {
+            return ind.name;
+        }
+        
+    }
+    
+    
+    /**
+     * It is useful to use external files in games. For example, you could make a file that describes at what moments certain things should happen. Also you probably want to save information for the next time the game is run (for example, the current room).
+     */
+    public static class files{
+        
+    }
+    
     
     /**
      * These are functions to ensure compatibility with GM4.

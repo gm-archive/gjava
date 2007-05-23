@@ -17,6 +17,11 @@ public abstract class Actor extends tile {
     public String name;
     
     /**
+     * Persistant actor?
+     */
+    public boolean persistent;
+    
+    /**
      * The {@link Timeline} of the actor
      */
     public Timeline timeline;
@@ -209,6 +214,7 @@ public abstract class Actor extends tile {
                  * Objects(int id,String Object_name,sprite Object_sprite,sprite Object_mask,double Object_depth, int
                  * Object_solid,int Object_visible,int parent,boolean Object_persistent)
                  */
+        this.persistent = (Persistent == 1);
         this.alarms = new int[20];
         this.name = Object_name;
         //if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
