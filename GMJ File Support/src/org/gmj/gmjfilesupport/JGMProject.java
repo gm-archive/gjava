@@ -827,8 +827,7 @@ public final class JGMProject implements Project  {
             print(Filename_java,"// by G-java");
             print(Filename_java,"");
             print(Filename_java,"/*");
-            print(Filename_java,"/ Made in Game Maker 6.0 www.gamemaker.nl");
-            print(Filename_java,"/ Converted using G-java 1.08+ www.g-java.com");
+            print(Filename_java,"/ Made in G-Java 2.0 www.g-java.com");
             print(Filename_java,"/ This program can be run as an applet or an application!");
             print(Filename_java,"*/");
             print(Filename_java,"");
@@ -874,12 +873,12 @@ public final class JGMProject implements Project  {
                 print(Filename_java,"     }");
                 print(Filename_java,"");
                 print(Filename_java,"    public static void main(String args[]) {");
-                print(Filename_java,"    ");
+                print(Filename_java,"       Functions.parameters = args; Functions.parameter_count = args.length;");
                 print(Filename_java,"        // check if the user is using 1.4 or higher");
                 print(Filename_java,"        if(!isGreaterThanJDK14())");
                 print(Filename_java,"        {");
                 print(Filename_java,
-                        "        JOptionPane.showMessageDialog(null,\"Please download the latest version of java.\");");
+                        "        JOptionPane.showMessageDialog(null,\"Please download the latest version of java.\",1);");
                 print(Filename_java,"");
                 print(Filename_java,"        }");
                 print(Filename_java,"        ");
