@@ -13,6 +13,7 @@ package org.gjava.actoreditor.Action;
 import java.awt.Container;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Properties;
 import javax.swing.text.EditorKit;
@@ -27,6 +28,7 @@ import org.openide.windows.TopComponent;
  * @author  ali1
  */
 public class Actioneditor extends TopComponent {
+    private static Actioneditor instance;
     
     /**
      * props is the Properties file of the action
@@ -39,10 +41,16 @@ public class Actioneditor extends TopComponent {
     public String path;
     ActionDataObject a;
     
+    Actioneditor()
+    {
+        
+    }
+    
     /** Creates new form Actioneditor
      * @param a
      */
     public Actioneditor(ActionDataObject a) {
+        instance = this;
         this.a = a;
         this.path = a.getPrimaryFile().getPath();
         try     {
@@ -87,7 +95,11 @@ public class Actioneditor extends TopComponent {
          this.jTextField18.setText(props.getProperty( "arg5" ));
          this.jTextField19.setText(props.getProperty( "arg6" ));
          this.jTextField20.setText(props.getProperty( "arg7" ));
-        this.jEditorPane2.setText(props.getProperty( "args" )+"\n"+props.getProperty( "code" ));
+        this.jEditorPane2.setText(props.getProperty( "code" ));
+        this.jTextArea1.setText(props.getProperty("description"));
+            
+            jCheckBox4.setSelected(Boolean.parseBoolean(props.getProperty("relative")));
+            
         
        // a.setModified(true);
     }
@@ -120,6 +132,9 @@ public class Actioneditor extends TopComponent {
             props.setProperty("arg6", this.jTextField19.getText());
             props.setProperty("arg7", this.jTextField20.getText());
             props.setProperty("code", jEditorPane2.getText());
+            props.setProperty("description", jTextArea1.getText());
+            props.setProperty("relative",""+jCheckBox4.isSelected());
+            
             a.setModified(false);
             OutputStream out = a.getPrimaryFile().getOutputStream(lock);
             props.store(out, "");
@@ -129,6 +144,18 @@ public class Actioneditor extends TopComponent {
  catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
+    }
+    
+    /**
+     * Gets default instance. Do not use directly: reserved for *.settings files only,
+     * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
+     * To obtain the singleton instance, use {@link findInstance}.
+     */
+    public static synchronized Actioneditor getDefault() {
+        if (instance == null) {
+            instance = new Actioneditor();
+        }
+        return instance;
     }
     
     /** This method is called from within the constructor to
@@ -644,4 +671,17 @@ public static Actioneditor getInstance(String name,ActionDataObject a) {
     private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
     
+    /** replaces this in object stream */
+    public Object writeReplace() {
+        return new ResolvableHelper();
+    }
+    
+   
+    
+    final static class ResolvableHelper implements Serializable {
+        private static final long serialVersionUID = 1L;
+        public Object readResolve() {
+            return Actioneditor.getDefault();
+        }
+    }
 }

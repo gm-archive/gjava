@@ -20,6 +20,8 @@ import org.openide.util.Utilities;
 public class ActionValue {
     
     public String value,img,code,args;
+    public  String description = "";
+    public  boolean relative=true;
     public ImageIcon image;
     public String arg0 = "";
     public String arg1 = "";
@@ -59,6 +61,8 @@ public class ActionValue {
         this.caption5 = ad.caption5;
         this.caption6 = ad.caption6;
         this.caption7 = ad.caption7;
+        this.description = ad.description;
+        this.relative = ad.relative;
     }
     
     

@@ -29,6 +29,8 @@ public class ActionData {
     public static final String PROP_ICON32 = "icon32";
      public  String name = "";
     public  String code = "";
+    public  String description = "";
+    public  boolean relative=true;
     public  String img = "";
     public String arg0 = "";
     public String arg1 = "";
@@ -84,6 +86,8 @@ public class ActionData {
         this.caption5 = props.getProperty( "caption5" );
         this.caption6 = props.getProperty( "caption6" );
         this.caption7 = props.getProperty( "caption7" );
+        this.description = props.getProperty("description");
+        this.relative = Boolean.parseBoolean(props.getProperty("relative"));
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
