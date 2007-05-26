@@ -78,6 +78,8 @@ public class RoomPanel extends JPanel implements Runnable {
      */
     public Vector depth = new Vector();
     
+    public Vector deactivated = new Vector();
+    
     
     /**
      * All the tiles in this room as a {@link Vector} object
@@ -138,7 +140,7 @@ public class RoomPanel extends JPanel implements Runnable {
     private static long MAX_STATS_INTERVAL = 1000L;
     
     // ^^record stats every 1 second (roughly)
-    private static int MAX_FRAME_SKIPS = 5; // was 2;
+    private static int MAX_FRAME_SKIPS = 2; // was 2;
     
     // ^^no. of frames that can be skipped in any one animation loop
     // i.e the games state is updated but not rendered

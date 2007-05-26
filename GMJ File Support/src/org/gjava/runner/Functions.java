@@ -10,6 +10,7 @@ import java.awt.datatransfer.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -35,7 +36,8 @@ import org.openide.util.Exceptions;
  * @author G-Java development team
  * @version 1.0
  */
-public class Functions {
+public class Functions
+{
     
     private static Clipboard systemClipboard;
     
@@ -43,7 +45,7 @@ public class Functions {
     
     private static Image backImage;
     
-    
+    private static Highscore highscore = new Highscore();
     
     private static Calendar then;
     
@@ -52,7 +54,8 @@ public class Functions {
     /**
      * This is run at the start of the game.
      */
-    static {
+    static
+    {
         Setup_Functions();
         // load_image();
     }
@@ -69,7 +72,8 @@ public class Functions {
      * Example:<br>
      * <code>int randomnumber = Functions.math.random(10); //Random number between 0 and 10</code>
      */
-    public static class math{
+    public static class math
+    {
         
         /**
          * The mathematical constant PI to 17 decimal places
@@ -88,7 +92,8 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double cbrt(double x){
+        public static double cbrt(double x)
+        {
             return Math.cbrt(x);
         }
         
@@ -97,56 +102,65 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double random(double x){return Math.random()*x;}
+        public static double random(double x)
+        {return Math.random()*x;}
         /**
          * Returns the absolute value of x.
          * @param x
          * @return
          */
-        public static double abs(double x){return Math.abs(x);}
+        public static double abs(double x)
+        {return Math.abs(x);}
         /**
          * Returns the sign of x (-1, 0 or 1).
          * @param x
          * @return
          */
-        public static double sign(double x){return (x<0?-1:(x>0?1:0));}
+        public static double sign(double x)
+        {return (x<0?-1:(x>0?1:0));}
         /**
          * Returns x rounded to the nearest integer.
          * @param x
          * @return
          */
-        public static double round(double x){return Math.round(x);}
+        public static double round(double x)
+        {return Math.round(x);}
         
         /**
          * Returns the floor of x, that is, x rounded down to an integer.
          * @param x
          * @return
          */
-        public static double floor(double x){return Math.floor(x);}
+        public static double floor(double x)
+        {return Math.floor(x);}
         /**
          * Returns the ceiling of x, that is, x rounded up to an integer.
          * @param x
          * @return
          */
-        public static double ceil(double x){return Math.ceil(x);}
+        public static double ceil(double x)
+        {return Math.ceil(x);}
         /**
          * Returns the fractional part of x, that is, the part behind the decimal dot.
          * @param x
          * @return the fractional part of x, that is, the part behind the decimal dot.
          */
-        public static double frac(double x){return x-Math.floor(x);}
+        public static double frac(double x)
+        {return x-Math.floor(x);}
         /**
          * Returns the square root of x. x must be non-negative.
          * @param x
          * @return the square root of x. x must be non-negative.
          */
-        public static double sqrt(double x){return Math.sqrt(x);}
+        public static double sqrt(double x)
+        {return Math.sqrt(x);}
         /**
          * Returns x*x.
          * @param x
          * @return x*x.
          */
-        public static double sqr(double x){return x*x;}
+        public static double sqr(double x)
+        {return x*x;}
         
         /**
          * Returns x to the power n.
@@ -154,51 +168,59 @@ public class Functions {
          * @param n
          * @return
          */
-        public static double power(double x,double n){return Math.pow(x,n);}
+        public static double power(double x,double n)
+        {return Math.pow(x,n);}
         /**
          * Returns e to the power x.
          * @param x
          * @return
          */
-        public static double exp(double x){return Math.log(x)/Math.log(Math.E);}
+        public static double exp(double x)
+        {return Math.log(x)/Math.log(Math.E);}
         /**
          * Returns the natural logarithm of x.
          * @param x
          * @return
          */
-        public static double ln(double x){return 0;}
+        public static double ln(double x)
+        {return 0;}
         /**
          * Returns the log base 2 of x.
          * @param x
          * @return
          */
-        public static double log2(double x){return Math.log(x)/Math.log(2);}
+        public static double log2(double x)
+        {return Math.log(x)/Math.log(2);}
         /**
          * Returns the log base 10 of x.
          * @param x
          * @return
          */
-        public static double log10(double x){return Math.log(x);}
+        public static double log10(double x)
+        {return Math.log(x);}
         /**
          * Returns the log base n of x.
          * @param n
          * @param x
          * @return
          */
-        public static double logn(double n,double x){return Math.log(x)/Math.log(n);}
+        public static double logn(double n,double x)
+        {return Math.log(x)/Math.log(n);}
         /**
          * Returns the sine of x (x in radians).
          * @param x
          * @return
          */
-        public static double sin(double x){return Math.sin(x);}
+        public static double sin(double x)
+        {return Math.sin(x);}
         
         /**
          * Returns the signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero, -1.0 if the argument is less than zero.
          * @param x
          * @return
          */
-        public static double signum(double x) {
+        public static double signum(double x)
+        {
             return Math.signum(x);
         }
         /**
@@ -206,7 +228,8 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double sinh(double x) {
+        public static double sinh(double x)
+        {
             return Math.sinh(x);
         }
         /**
@@ -214,13 +237,15 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double cos(double x){return Math.cos(x);}
+        public static double cos(double x)
+        {return Math.cos(x);}
         /**
          * Returns the hyperbolic cosine of x.
          * @param x
          * @return
          */
-        public static double cosh(double x) {
+        public static double cosh(double x)
+        {
             return Math.cosh(x);
         }
         
@@ -229,7 +254,8 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double expm1(double x) {
+        public static double expm1(double x)
+        {
             return Math.expm1(x);
         }
         
@@ -239,7 +265,8 @@ public class Functions {
          * @param y
          * @return
          */
-        public static double hypot(double x,double y) {
+        public static double hypot(double x,double y)
+        {
             return Math.hypot(x, x);
         }
         /**
@@ -247,7 +274,8 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double ulp(double x) {
+        public static double ulp(double x)
+        {
             return Math.ulp(x);
         }
         
@@ -256,7 +284,8 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double tanh(double x) {
+        public static double tanh(double x)
+        {
             return Math.tanh(x);
         }
         
@@ -265,51 +294,59 @@ public class Functions {
          * @param x
          * @return
          */
-        public static double tan(double x){return Math.tan(x);}
+        public static double tan(double x)
+        {return Math.tan(x);}
         /**
          * Returns the inverse sine of x.
          * @param x
          * @return
          */
-        public static double arcsin(double x){return Math.asin(x);}
+        public static double arcsin(double x)
+        {return Math.asin(x);}
         /**
          * Returns the inverse cosine of x.
          * @param x
          * @return
          */
-        public static double arccos(double x){return Math.acos(x);}
+        public static double arccos(double x)
+        {return Math.acos(x);}
         /**
          * Returns the inverse tangent of x.
          * @param x
          * @return
          */
-        public static double arctan(double x){return Math.atan(x);}
+        public static double arctan(double x)
+        {return Math.atan(x);}
         /**
          * Calculates arctan(Y/X), and returns an angle in the correct quadrant.
          * @param y
          * @param x
          * @return
          */
-        public static double arctan2(double y,double x){return Math.atan2(y,x);}
+        public static double arctan2(double y,double x)
+        {return Math.atan2(y,x);}
         /**
          * Converts degrees to radians.
          * @param x degrees to convert
          * @return radians double value
          */
-        public static double degtorad(double x){return Math.toRadians(x);}
+        public static double degtorad(double x)
+        {return Math.toRadians(x);}
         /**
          * Converts radians to degrees.
          * @param x radians to convert
          * @return degrees double value
          */
-        public static double radtodeg(double x){return Math.toDegrees(x);}
+        public static double radtodeg(double x)
+        {return Math.toDegrees(x);}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
          * @param v1
          * @param v2
          * @return
          */
-        public static double min(double v1,double v2){return Math.min(v1,v2);}
+        public static double min(double v1,double v2)
+        {return Math.min(v1,v2);}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
          * @param v1
@@ -317,7 +354,8 @@ public class Functions {
          * @param v3
          * @return
          */
-        public static double min(double v1,double v2,double v3) {
+        public static double min(double v1,double v2,double v3)
+        {
             return min(v3,min(v1,v2));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -327,7 +365,8 @@ public class Functions {
          * @param v4
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4) {
+        public static double min(double v1,double v2,double v3,double v4)
+        {
             return min(v4,min(v3,min(v1,v2)));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -338,7 +377,8 @@ public class Functions {
          * @param v5
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4,double v5) {
+        public static double min(double v1,double v2,double v3,double v4,double v5)
+        {
             return min(v5,min(v4,min(v3,min(v1,v2))));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -350,7 +390,8 @@ public class Functions {
          * @param v6
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6)
+        {
             return min(v6,min(v5,min(v4,min(v3,min(v1,v2)))));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -363,7 +404,8 @@ public class Functions {
          * @param v7
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7)
+        {
             return min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2))))));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -377,7 +419,8 @@ public class Functions {
          * @param v8
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8)
+        {
             return min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2)))))));}
         /**
          * Returns the minimum of the values. The function can have up to 16 arguments.
@@ -392,21 +435,29 @@ public class Functions {
          * @param v9
          * @return
          */
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9)
+        {
             return min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va)
+        {
             return min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2)))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb)
+        {
             return min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2))))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc)
+        {
             return min(vc,min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2)))))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd)
+        {
             return min(vd,min(vc,min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2))))))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve)
+        {
             return min(ve,min(vd,min(vc,min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2)))))))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf)
+        {
             return min(vf,min(ve,min(vd,min(vc,min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2))))))))))))));}
-        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg) {
+        public static double min(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg)
+        {
             return min(vg,min(vf,min(ve,min(vd,min(vc,min(vb,min(va,min(v9,min(v8,min(v7,min(v6,min(v5,min(v4,min(v3,min(v1,v2)))))))))))))));}
         /**
          * Returns the maximum of the values. The function can have up to 16 arguments.
@@ -414,34 +465,49 @@ public class Functions {
          * @param v2
          * @return
          */
-        public static double max(double v1,double v2){return Math.max(v1,v2);}
-        public static double max(double v1,double v2,double v3) {
+        public static double max(double v1,double v2)
+        {return Math.max(v1,v2);}
+        public static double max(double v1,double v2,double v3)
+        {
             return max(v3,max(v1,v2));}
-        public static double max(double v1,double v2,double v3,double v4) {
+        public static double max(double v1,double v2,double v3,double v4)
+        {
             return max(v4,max(v3,max(v1,v2)));}
-        public static double max(double v1,double v2,double v3,double v4,double v5) {
+        public static double max(double v1,double v2,double v3,double v4,double v5)
+        {
             return max(v5,max(v4,max(v3,max(v1,v2))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6)
+        {
             return max(v6,max(v5,max(v4,max(v3,max(v1,v2)))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7)
+        {
             return max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8)
+        {
             return max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2)))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9)
+        {
             return max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va)
+        {
             return max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2)))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb)
+        {
             return max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2))))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc)
+        {
             return max(vc,max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2)))))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd)
+        {
             return max(vd,max(vc,max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2))))))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve)
+        {
             return max(ve,max(vd,max(vc,max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2)))))))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf)
+        {
             return max(vf,max(ve,max(vd,max(vc,max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2))))))))))))));}
-        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg) {
+        public static double max(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg)
+        {
             return max(vg,max(vf,max(ve,max(vd,max(vc,max(vb,max(va,max(v9,max(v8,max(v7,max(v6,max(v5,max(v4,max(v3,max(v1,v2)))))))))))))));}
         /**
          * Returns the average of the values. The function can have up to 16 arguments.
@@ -449,34 +515,49 @@ public class Functions {
          * @param v2
          * @return
          */
-        public static double mean(double v1,double v2){return (v1+v2)/2;}
-        public static double mean(double v1,double v2,double v3) {
+        public static double mean(double v1,double v2)
+        {return (v1+v2)/2;}
+        public static double mean(double v1,double v2,double v3)
+        {
             return (v1+v2+v3)/3;}
-        public static double mean(double v1,double v2,double v3,double v4) {
+        public static double mean(double v1,double v2,double v3,double v4)
+        {
             return (v1+v2+v3+v4)/4;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5)
+        {
             return (v1+v2+v3+v4+v5)/5;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6)
+        {
             return (v1+v2+v3+v4+v5+v6)/6;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7)
+        {
             return (v1+v2+v3+v4+v5+v6+v7)/7;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8)/8;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9)/9;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va)/10;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb)/11;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc)/12;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd)/13;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd+ve)/14;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd+ve+vf)/15;}
-        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg) {
+        public static double mean(double v1,double v2,double v3,double v4,double v5,double v6,double v7,double v8,double v9,double va,double vb,double vc,double vd,double ve,double vf,double vg)
+        {
             return (v1+v2+v3+v4+v5+v6+v7+v8+v9+va+vb+vc+vd+ve+vf+vg)/16;}
         
         /**
@@ -486,7 +567,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a){
+        public double median(double a)
+        {
             return a;
         }
         /**
@@ -496,10 +578,14 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b){
-            if(a<b){
+        public double median(double a, double b)
+        {
+            if(a<b)
+            {
                 return a;
-            } else{
+            }
+            else
+            {
                 return b;
             }
         }
@@ -511,7 +597,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c){
+        public double median(double a, double b, double c)
+        {
             double[] x = new double[] {a, b, c};
             Arrays.sort(x);
             return x[1];
@@ -524,7 +611,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d){
+        public double median(double a, double b, double c, double d)
+        {
             double[] x = new double[] {a, b, c, d};
             Arrays.sort(x);
             return x[1];
@@ -537,7 +625,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e){
+        public double median(double a, double b, double c, double d, double e)
+        {
             double[] x = new double[] {a, b, c, d, e};
             Arrays.sort(x);
             return x[2];
@@ -550,7 +639,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f){
+        public double median(double a, double b, double c, double d, double e, double f)
+        {
             double[] x = new double[] {a, b, c, d, e, f};
             Arrays.sort(x);
             return x[2];
@@ -563,7 +653,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g){
+        public double median(double a, double b, double c, double d, double e, double f, double g)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g};
             Arrays.sort(x);
             return x[3];
@@ -576,7 +667,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g , h};
             Arrays.sort(x);
             return x[3];
@@ -589,7 +681,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i};
             Arrays.sort(x);
             return x[4];
@@ -602,7 +695,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j};
             Arrays.sort(x);
             return x[4];
@@ -615,7 +709,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k};
             Arrays.sort(x);
             return x[5];
@@ -628,7 +723,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l};
             Arrays.sort(x);
             return x[5];
@@ -641,7 +737,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m};
             Arrays.sort(x);
             return x[6];
@@ -654,7 +751,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n};
             Arrays.sort(x);
             return x[6];
@@ -667,7 +765,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
             Arrays.sort(x);
             return x[7];
@@ -680,7 +779,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p){
+        public double median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
             Arrays.sort(x);
             return x[7];
@@ -694,7 +794,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a){
+        public double EGML_true_median(double a)
+        {
             return a;
         }
         /**
@@ -704,7 +805,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b){
+        public double EGML_true_median(double a, double b)
+        {
             return (a+b)/2;
         }
         
@@ -715,7 +817,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c){
+        public double EGML_true_median(double a, double b, double c)
+        {
             double[] x = new double[] {a, b, c};
             Arrays.sort(x);
             return x[1];
@@ -728,7 +831,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d){
+        public double EGML_true_median(double a, double b, double c, double d)
+        {
             double[] x = new double[] {a, b, c, d};
             Arrays.sort(x);
             return (x[1]+x[2])/2;
@@ -741,7 +845,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e){
+        public double EGML_true_median(double a, double b, double c, double d, double e)
+        {
             double[] x = new double[] {a, b, c, d, e};
             Arrays.sort(x);
             return x[2];
@@ -754,7 +859,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f)
+        {
             double[] x = new double[] {a, b, c, d, e, f};
             Arrays.sort(x);
             return (x[2]+x[3])/2;
@@ -767,7 +873,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g};
             Arrays.sort(x);
             return x[3];
@@ -780,7 +887,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g , h};
             Arrays.sort(x);
             return (x[3]+x[4])/2;
@@ -793,7 +901,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i};
             Arrays.sort(x);
             return x[4];
@@ -806,7 +915,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j};
             Arrays.sort(x);
             return (x[4]+x[5])/2;
@@ -819,7 +929,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k};
             Arrays.sort(x);
             return x[5];
@@ -832,7 +943,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l};
             Arrays.sort(x);
             return (x[5]+x[6])/2;
@@ -845,7 +957,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m};
             Arrays.sort(x);
             return x[6];
@@ -858,7 +971,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n};
             Arrays.sort(x);
             return (x[6]+x[7])/2;
@@ -873,7 +987,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
             Arrays.sort(x);
             return x[7];
@@ -891,7 +1006,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p){
+        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p)
+        {
             double[] x = new double[] {a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
             Arrays.sort(x);
             return (x[7]+x[8])/2;
@@ -906,7 +1022,8 @@ public class Functions {
          * @param y2
          * @return
          */
-        public static double point_distance(double x1,double y1,double x2,double y2){return Math.sqrt(sqr(x2-x1)+sqr(y2-y1));}
+        public static double point_distance(double x1,double y1,double x2,double y2)
+        {return Math.sqrt(sqr(x2-x1)+sqr(y2-y1));}
         /**
          * Returns the direction from point (x1,y1) toward point (x2,y2) in degrees.
          * @param x1
@@ -915,7 +1032,8 @@ public class Functions {
          * @param y2
          * @return
          */
-        public static double point_direction(double x1,double y1,double x2,double y2) {
+        public static double point_direction(double x1,double y1,double x2,double y2)
+        {
             if (y1<y2&&x1==x2)
                 return 90;
             else if (y1>y2&&x1==x2)
@@ -938,7 +1056,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_string(String a){ return true; }
+        public static boolean is_string(String a)
+        { return true; }
         
         /**
          * Always returns false, used for compatibility with GM.
@@ -947,7 +1066,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_string(double a){ return false; }
+        public static boolean is_string(double a)
+        { return false; }
         /**
          * Always returns false, used for compatibility with GM.
          * @param a
@@ -955,7 +1075,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_string(boolean a){ return false; }
+        public static boolean is_string(boolean a)
+        { return false; }
         
         /**
          * Always returns false, used for compatibility with GM.
@@ -964,7 +1085,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_real(String a){ return false; }
+        public static boolean is_real(String a)
+        { return false; }
         /**
          * Always returns true, used for compatibility with GM.
          * @param a
@@ -972,7 +1094,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_real(double a){ return true; }
+        public static boolean is_real(double a)
+        { return true; }
         /**
          * Always returns true, used for compatibility with GM.
          * @param a
@@ -980,7 +1103,8 @@ public class Functions {
          * @since 2.0
          * @author luiscubal
          */
-        public static boolean is_real(boolean a){ return false; }
+        public static boolean is_real(boolean a)
+        { return false; }
         
         
         /**
@@ -990,7 +1114,8 @@ public class Functions {
          * @return length
          * @author ChIkEn AtE mY dOnUtS
          */
-        public static double lengthdir_x(double len, double dir){
+        public static double lengthdir_x(double len, double dir)
+        {
             return len * cos(dir);
         }
         /**
@@ -1000,7 +1125,8 @@ public class Functions {
          * @return
          * @author ChIkEn AtE mY dOnUtS
          */
-        public static double lengthdir_y(double len,double dir){
+        public static double lengthdir_y(double len,double dir)
+        {
             return len * sin(dir);
         }
     }
@@ -1014,14 +1140,16 @@ public class Functions {
      * <p>Example:<br>
      * String ascivalue = Functions.string.chr(40);</p>
      */
-    public static class string{
+    public static class string
+    {
         // String functions
         /**
          * Returns a string containing the character with asci code val.
          * @param v
          * @return
          */
-        public static String chr(double v) {
+        public static String chr(double v)
+        {
             return "" + (char) (int) v;
         }
         
@@ -1030,7 +1158,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double ord(String s) {
+        public static double ord(String s)
+        {
             return (int) s.charAt(0);
         }
         
@@ -1039,7 +1168,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double real(String s) {
+        public static double real(String s)
+        {
             return Double.parseDouble(s);
         }
         
@@ -1048,7 +1178,8 @@ public class Functions {
          * @param v
          * @return
          */
-        public static String string(double v) {
+        public static String string(double v)
+        {
             return "" + v;
         }
         
@@ -1059,11 +1190,13 @@ public class Functions {
          * @param d
          * @return
          */
-        public static String string_format(double v,double t,double d) {
+        public static String string_format(double v,double t,double d)
+        {
             String form = "";
             for (int i = 0; i < (int) t; i++)
                 form += "0";
-            if (d > 0) {
+            if (d > 0)
+            {
                 form += ".";
                 for (int i = 0; i < (int) d; i++)
                     form += "0";
@@ -1077,7 +1210,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double string_length(String s) {
+        public static double string_length(String s)
+        {
             return s.length();
         }
         
@@ -1087,7 +1221,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double string_pos(String sub,String s) {
+        public static double string_pos(String sub,String s)
+        {
             return (s.indexOf(sub) != -1 ? s.indexOf(sub) : 0);
         }
         
@@ -1098,7 +1233,8 @@ public class Functions {
          * @param c
          * @return
          */
-        public static String string_copy(String s,double i,double c) {
+        public static String string_copy(String s,double i,double c)
+        {
             return s.substring((int) i,(int) (i + c));
         }
         
@@ -1108,7 +1244,8 @@ public class Functions {
          * @param i
          * @return
          */
-        public static String string_char_at(String s,double i) {
+        public static String string_char_at(String s,double i)
+        {
             return "" + s.charAt((int) i);
         }
         
@@ -1119,7 +1256,8 @@ public class Functions {
          * @param c
          * @return
          */
-        public static String string_delete(String s,double i,double c) {
+        public static String string_delete(String s,double i,double c)
+        {
             return s.substring(0,(int) i) + s.substring((int) (i + c));
         }
         
@@ -1130,7 +1268,8 @@ public class Functions {
          * @param i
          * @return
          */
-        public static String string_insert(String sub,String s,double i) {
+        public static String string_insert(String sub,String s,double i)
+        {
             return s.substring(0,(int) i) + sub + s.substring((int) i + 1);
         }
         
@@ -1141,7 +1280,8 @@ public class Functions {
          * @param n
          * @return
          */
-        public static String string_replace(String s,String sub,String n) {
+        public static String string_replace(String s,String sub,String n)
+        {
             return s.replaceFirst(sub,n);
         }
         
@@ -1152,7 +1292,8 @@ public class Functions {
          * @param n
          * @return
          */
-        public static String string_replace_all(String s,String sub,String n) {
+        public static String string_replace_all(String s,String sub,String n)
+        {
             return s.replaceAll(sub,n);
         }
         
@@ -1162,7 +1303,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double string_count(String sub,String s) {
+        public static double string_count(String sub,String s)
+        {
             int c = 0;
             for (c = 0; s.indexOf(sub) != -1; c++)
                 s.replaceFirst(sub,"");
@@ -1174,7 +1316,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static String string_lower(String s) {
+        public static String string_lower(String s)
+        {
             return s.toLowerCase();
         }
         
@@ -1183,7 +1326,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static String string_upper(String s) {
+        public static String string_upper(String s)
+        {
             return s.toUpperCase();
         }
         
@@ -1193,7 +1337,8 @@ public class Functions {
          * @param c
          * @return
          */
-        public static String string_repeat(String s,double c) {
+        public static String string_repeat(String s,double c)
+        {
             for (int i = 0; i < c - 1; i++)
                 s += s;
             return s;
@@ -1204,11 +1349,15 @@ public class Functions {
          * @param s
          * @return
          */
-        public static String string_letters(String s) {
+        public static String string_letters(String s)
+        {
             for (int i = 0; i < s.length(); i++)
                 if (((int) s.charAt(i) >= 65 && (int) s.charAt(i) <= 90)
-                || ((int) s.charAt(i) >= 97 && (int) s.charAt(i) <= 122)) {
-                } else {
+                || ((int) s.charAt(i) >= 97 && (int) s.charAt(i) <= 122))
+                {
+                }
+                else
+                {
                 s.replaceFirst(s.charAt(i) + "","");
                 i--;
                 }
@@ -1220,10 +1369,14 @@ public class Functions {
          * @param s
          * @return
          */
-        public static String string_digits(String s) {
+        public static String string_digits(String s)
+        {
             for (int i = 0; i < s.length(); i++)
-                if ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57) {
-                } else {
+                if ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57)
+                {
+                }
+                else
+                {
                 s.replaceFirst(s.charAt(i) + "","");
                 i--;
                 }
@@ -1235,12 +1388,16 @@ public class Functions {
          * @param s
          * @return
          */
-        public static String string_lettersdigits(String s) {
+        public static String string_lettersdigits(String s)
+        {
             for (int i = 0; i < s.length(); i++)
                 if (((int) s.charAt(i) >= 65 && (int) s.charAt(i) <= 90)
                 || ((int) s.charAt(i) >= 97 && (int) s.charAt(i) <= 122)
-                || ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57)) {
-                } else {
+                || ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57))
+                {
+                }
+                else
+                {
                 s.replaceFirst(s.charAt(i) + "","");
                 i--;
                 }
@@ -1260,13 +1417,15 @@ public class Functions {
      * <p>Example:
      * double datetime = Functions.date.date_current_datetime();</p>
      */
-    public static class date{
+    public static class date
+    {
         // the date functions/methods
         /**
          * Returns the date-time value that corresponds to the current moment.
          * @return
          */
-        public static double date_current_datetime() {
+        public static double date_current_datetime()
+        {
             Calendar now = Calendar.getInstance();
             long milis = now.getTime().getTime() - then.getTime().getTime();
             // convert milis to days
@@ -1277,7 +1436,8 @@ public class Functions {
          * Returns the date-time value that corresponds to the current date only (ignoring the time).
          * @return
          */
-        public static double date_current_date() {
+        public static double date_current_date()
+        {
             Calendar now = Calendar.getInstance();
             now.set(Calendar.HOUR_OF_DAY,0);
             now.set(Calendar.MINUTE,0);
@@ -1291,7 +1451,8 @@ public class Functions {
          * Returns the date-time value that corresponds to the current time only (ignoring the date).
          * @return
          */
-        public static double date_current_time() {
+        public static double date_current_time()
+        {
             Calendar now = Calendar.getInstance();
             now.set(Calendar.YEAR,then.get(Calendar.YEAR));
             now.set(Calendar.MONTH,then.get(Calendar.MONTH));
@@ -1311,7 +1472,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double date_create_datetime(double y,double m,double d,double h,double min,double s) {
+        public static double date_create_datetime(double y,double m,double d,double h,double min,double s)
+        {
             Calendar nDate = Calendar.getInstance();
             nDate.set((int) y,(int) m - 1,(int) d,(int) h,(int) min,(int) s);
             long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -1325,7 +1487,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_create_date(double y,double m,double d) {
+        public static double date_create_date(double y,double m,double d)
+        {
             Calendar nDate = Calendar.getInstance();
             nDate.set((int) y,(int) m,(int) d,0,0,0);
             long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -1340,7 +1503,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double date_create_time(double h,double m,double s) {
+        public static double date_create_time(double h,double m,double s)
+        {
             Calendar nDate = Calendar.getInstance();
             nDate.set(then.get(Calendar.YEAR),then.get(Calendar.MONTH),then.get(Calendar.DATE),(int) h,(int) m,
                     (int) s);
@@ -1359,7 +1523,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double date_valid_datetime(double y,double m,double d,double h,double min,double s) {
+        public static double date_valid_datetime(double y,double m,double d,double h,double min,double s)
+        {
             if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) return 0;
             if (m <= 0 || m >= 13 || m - Math.floor(m) != 0) return 0;
             if (d - Math.floor(d) != 0) return 0;
@@ -1381,7 +1546,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_valid_date(double y,double m,double d) {
+        public static double date_valid_date(double y,double m,double d)
+        {
             if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) return 0;
             if (m <= 0 || m >= 13 || m - Math.floor(m) != 0) return 0;
             if (d - Math.floor(d) != 0) return 0;
@@ -1400,7 +1566,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double date_valid_time(double h,double m,double s) {
+        public static double date_valid_time(double h,double m,double s)
+        {
             if (h < 0 || h >= 24 || h - Math.floor(h) != 0) return 0;
             if (m < 0 || m >= 60 || m - Math.floor(m) != 0) return 0;
             if (s < 0 || s >= 60 || s - Math.floor(s) != 0) return 0;
@@ -1413,7 +1580,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_year(double d,double a) {
+        public static double date_inc_year(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1430,7 +1598,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_month(double d,double a) {
+        public static double date_inc_month(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1447,7 +1616,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_week(double d,double a) {
+        public static double date_inc_week(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1464,7 +1634,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_day(double d,double a) {
+        public static double date_inc_day(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1481,7 +1652,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_hour(double d,double a) {
+        public static double date_inc_hour(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1498,7 +1670,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_minute(double d,double a) {
+        public static double date_inc_minute(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1515,7 +1688,8 @@ public class Functions {
          * @param a
          * @return
          */
-        public static double date_inc_second(double d,double a) {
+        public static double date_inc_second(double d,double a)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1531,7 +1705,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_year(double d) {
+        public static double date_get_year(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1544,7 +1719,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_month(double d) {
+        public static double date_get_month(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1571,7 +1747,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_day(double d) {
+        public static double date_get_day(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1584,7 +1761,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_hour(double d) {
+        public static double date_get_hour(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1597,7 +1775,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_minute(double d) {
+        public static double date_get_minute(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1610,7 +1789,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_second(double d) {
+        public static double date_get_second(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1623,7 +1803,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_weekday(double d) {
+        public static double date_get_weekday(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1636,7 +1817,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_day_of_year(double d) {
+        public static double date_get_day_of_year(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             int fin = 0;
@@ -1650,7 +1832,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_hour_of_year(double d) {
+        public static double date_get_hour_of_year(double d)
+        {
             int[] days = { 31,28,31,30,31,30,31,31,30,31,30,31 };
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -1669,7 +1852,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_minute_of_year(double d) {
+        public static double date_get_minute_of_year(double d)
+        {
             int[] days = { 31,28,31,30,31,30,31,31,30,31,30,31 };
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -1689,7 +1873,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_get_second_of_year(double d) {
+        public static double date_get_second_of_year(double d)
+        {
             int[] days = { 31,28,31,30,31,30,31,31,30,31,30,31 };
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -1711,7 +1896,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_year_span(double d1,double d2) {
+        public static double date_year_span(double d1,double d2)
+        {
             return d1 * 365.25 - d2 * 365.25;
         }
         
@@ -1721,7 +1907,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_month_span(double d1,double d2) {
+        public static double date_month_span(double d1,double d2)
+        {
             return date_get_month(d1) - date_get_month(d2);
         }
         
@@ -1731,7 +1918,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_week_span(double d1,double d2) {
+        public static double date_week_span(double d1,double d2)
+        {
             return date_get_week(d1) - date_get_week(d2);
         }
         
@@ -1741,7 +1929,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_day_span(double d1,double d2) {
+        public static double date_day_span(double d1,double d2)
+        {
             return date_get_day(d1) - date_get_day(d2);
         }
         
@@ -1751,7 +1940,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_hour_span(double d1,double d2) {
+        public static double date_hour_span(double d1,double d2)
+        {
             return date_get_hour(d1) - date_get_hour(d2);
         }
         
@@ -1761,7 +1951,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_minute_span(double d1,double d2) {
+        public static double date_minute_span(double d1,double d2)
+        {
             return date_get_minute(d1) - date_get_minute(d2);
         }
         
@@ -1771,7 +1962,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_second_span(double d1,double d2) {
+        public static double date_second_span(double d1,double d2)
+        {
             return date_get_second(d1) - date_get_second(d2);
         }
         
@@ -1781,7 +1973,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_compare_datetime(double d1,double d2) {
+        public static double date_compare_datetime(double d1,double d2)
+        {
             return (d1 > d2 ? 1 : (d1 < d2 ? -1 : 0));
         }
         
@@ -1791,7 +1984,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_compare_date(double d1,double d2) {
+        public static double date_compare_date(double d1,double d2)
+        {
             return (Math.floor(d1) > Math.floor(d2) ? 1 : (Math.floor(d1) < Math.floor(d2) ? -1 : 0));
         }
         
@@ -1801,7 +1995,8 @@ public class Functions {
          * @param d2
          * @return
          */
-        public static double date_compare_time(double d1,double d2) {
+        public static double date_compare_time(double d1,double d2)
+        {
             return (Functions.math.frac(d1) > Functions.math.frac(d2) ? 1 : (Functions.math.frac(d1) < Functions.math.frac(d2) ? -1 : 0));
         }
         
@@ -1810,7 +2005,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_date_of(double d) {
+        public static double date_date_of(double d)
+        {
             return Math.floor(d);
         }
         
@@ -1819,7 +2015,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_time_of(double d) {
+        public static double date_time_of(double d)
+        {
             return Functions.math.frac(d);
         }
         
@@ -1828,7 +2025,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static String date_datetime_string(double d) {
+        public static String date_datetime_string(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1841,7 +2039,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static String date_date_string(double d) {
+        public static String date_date_string(double d)
+        {
             long milis = (int) (Math.floor(d) * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1854,7 +2053,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static String date_time_string(double d) {
+        public static String date_time_string(double d)
+        {
             long milis = (int) (Functions.math.frac(d) * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1867,7 +2067,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_days_in_month(double d) {
+        public static double date_days_in_month(double d)
+        {
             int[] days = { 31,28,31,30,31,30,31,31,30,31,30,31 };
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -1882,7 +2083,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_days_in_year(double d) {
+        public static double date_days_in_year(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1898,7 +2100,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_leap_year(double d) {
+        public static double date_leap_year(double d)
+        {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1911,7 +2114,8 @@ public class Functions {
          * @param d
          * @return
          */
-        public static double date_is_today(double d) {
+        public static double date_is_today(double d)
+        {
             return (date_current_date() == date_date_of(d) ? 1 : 0);
         }
         
@@ -1926,13 +2130,15 @@ public class Functions {
      * <p>Example:<br>
      * String ctext = Functions.clipboard.clipboard_get_text();</p>
      */
-    public static class clipboard{
+    public static class clipboard
+    {
         
         /**
          * Returns whether there is any text on the clipboard.
          * @return
          */
-        public static double clipboard_has_text() {
+        public static double clipboard_has_text()
+        {
             Transferable clipboardContents = systemClipboard.getContents(null);
             return (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor) ? 1 : 0);
         }
@@ -1941,19 +2147,28 @@ public class Functions {
          * Returns the current text on the clipboard.
          * @return
          */
-        public static String clipboard_get_text() {
+        public static String clipboard_get_text()
+        {
             Transferable clipboardContents = systemClipboard.getContents(null);
-            if (clipboardContents == null) {
+            if (clipboardContents == null)
+            {
                 return "";
-            } else
-                try {
-                    if (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
+            }
+            else
+                try
+                {
+                    if (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor))
+                    {
                         String returnText = (String) clipboardContents.getTransferData(DataFlavor.stringFlavor);
                         return returnText;
                     }
-                } catch (UnsupportedFlavorException ufe) {
-                } catch (IOException ioe) {
                 }
+                catch (UnsupportedFlavorException ufe)
+                {
+                }
+            catch (IOException ioe)
+            {
+            }
             return "";
         }
         
@@ -1962,7 +2177,8 @@ public class Functions {
          * @param s
          * @return
          */
-        public static double clipboard_set_text(String s) {
+        public static double clipboard_set_text(String s)
+        {
             Transferable transferableText = new StringSelection(s);
             systemClipboard.setContents(transferableText,null);
             return 0;
@@ -1983,7 +2199,8 @@ public class Functions {
      * //do some code<br>
      * } </p>
      */
-    public static class move{
+    public static class move
+    {
         
         /**
          * Sets the motion with the given speed in direction dir.
@@ -1993,7 +2210,8 @@ public class Functions {
          * @author TGMG
          * @since 2.0
          */
-        public static void motion_set(Actor applies, double dir, double speed) {
+        public static void motion_set(Actor applies, double dir, double speed)
+        {
             applies.hspeed = -speed;
             applies.vspeed = speed * Math.sin(dir * (Math.PI/180));
         }
@@ -2006,7 +2224,8 @@ public class Functions {
          * @author TGMG
          * @since 2.0
          */
-        public static void motion_add(Actor applies, double dir, double speed) {
+        public static void motion_add(Actor applies, double dir, double speed)
+        {
             applies.hspeed =  applies.hspeed-speed;
             applies.vspeed =  applies.vspeed + speed * Math.sin(dir * (Math.PI/180));
         }
@@ -2017,15 +2236,20 @@ public class Functions {
          * @param y
          * @return true if place is empty, false otherwise
          */
-        public static boolean place_empty(double x,double y) {
+        public static boolean place_empty(double x,double y)
+        {
             int jii = 0;
-            while (jii < basicgame.Current_room.instances.size()) {
+            while (jii < basicgame.Current_room.instances.size())
+            {
                 Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
                 Rectangle thisBounds = dt.getBounds( dt.x, dt.y);
                 
-                if (thisBounds.contains(x,y)) {
+                if (thisBounds.contains(x,y))
+                {
                     return false;
-                } else {
+                }
+                else
+                {
                     jii++;
                 }
             }
@@ -2038,15 +2262,20 @@ public class Functions {
          * @param y
          * @return true if place is collision-free, false otherwise
          */
-        public static boolean place_free(double x,double y) {
+        public static boolean place_free(double x,double y)
+        {
             int jii = 0;
-            while (jii < basicgame.Current_room.instances.size()) {
+            while (jii < basicgame.Current_room.instances.size())
+            {
                 Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
                 Rectangle thisBounds = dt.getBounds((int) dt.x,(int) dt.y);
                 
-                if ((thisBounds.contains(x,y)) && (dt.solid)) {
+                if ((thisBounds.contains(x,y)) && (dt.solid))
+                {
                     return false;
-                } else {
+                }
+                else
+                {
                     jii++;
                 }
             }
@@ -2060,16 +2289,22 @@ public class Functions {
          * @param other
          * @return
          */
-        public static boolean place_meeting(double x, double y, Actor other) {
+        public static boolean place_meeting(double x, double y, Actor other)
+        {
             int jii = 0;
-            while (jii < basicgame.Current_room.instances.size()) {
+            while (jii < basicgame.Current_room.instances.size())
+            {
                 Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
-                if (dt.equals(other)){
+                if (dt.equals(other))
+                {
                     Rectangle thisBounds = dt.getBounds((int) dt.x,(int) dt.y);
                     
-                    if ((thisBounds.contains(x,y))) {
+                    if ((thisBounds.contains(x,y)))
+                    {
                         return true;
-                    } else {
+                    }
+                    else
+                    {
                         jii++;
                     }
                 }
@@ -2084,7 +2319,8 @@ public class Functions {
          * @param vsnap
          * @return
          */
-        public static boolean place_snapped(Actor instance, double hsnap,double vsnap) {
+        public static boolean place_snapped(Actor instance, double hsnap,double vsnap)
+        {
             if ((instance.x % hsnap ==0) && (instance.y % vsnap==0))
                 return true;
             else
@@ -2097,7 +2333,8 @@ public class Functions {
          * @param snaphor
          * @param snapver
          */
-        public static void move_random(Actor instance, double snaphor,double snapver) {
+        public static void move_random(Actor instance, double snaphor,double snapver)
+        {
             int xx = (int) Functions.math.random(basicgame.Current_room.get_width());
             int yy = (int)Functions.math.random(basicgame.Current_room.get_height());
             
@@ -2105,7 +2342,8 @@ public class Functions {
                 xx = (int)(xx/snaphor * Functions.math.round(snaphor));
             if (!(snaphor == 0))
                 yy = (int)(yy/snaphor * Functions.math.round(snapver));
-            while (!Functions.move.place_free(xx,yy)) {
+            while (!Functions.move.place_free(xx,yy))
+            {
                 xx = (int)Functions.math.random(basicgame.Current_room.get_width());
                 yy = (int)Functions.math.random(basicgame.Current_room.get_height());
                 if (!(snaphor == 0))
@@ -2121,10 +2359,11 @@ public class Functions {
         /**
          * Snaps the instance, like the corresponding action.
          * @param instance
-         * @param hsnap
+         * @param snaphor
          * @param vsnap
          */
-        public static void move_snap(Actor instance, double snaphor,double snapver) {
+        public static void move_snap(Actor instance, double snaphor,double snapver)
+        {
             instance.x = instance.x/snaphor * Functions.math.round(snaphor);
             instance.y = instance.y/snapver * Functions.math.round(snapver);
         }
@@ -2136,7 +2375,8 @@ public class Functions {
          * @param vert
          * @param margin
          */
-        public static void move_wrap(Actor instance, boolean hor, boolean vert, double margin) {
+        public static void move_wrap(Actor instance, boolean hor, boolean vert, double margin)
+        {
             //TODO move_wrap
         }
         
@@ -2147,7 +2387,8 @@ public class Functions {
          * @param y
          * @param speed
          */
-        public static void move_towards_point(Actor instance, double x, double y, double speed) {
+        public static void move_towards_point(Actor instance, double x, double y, double speed)
+        {
             //TODO move_towards_point
         }
         
@@ -2162,12 +2403,14 @@ public class Functions {
      * <p>Example:<br>
      *
      */
-    public static class instance{
+    public static class instance
+    {
         /**
          * Number of instances that currently exist in the room.
          * @return
          */
-        public static int instance_count() {
+        public static int instance_count()
+        {
             return basicgame.Current_room.instances.size();
         }
         
@@ -2176,7 +2419,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static Actor instance_actor(int id) {
+        public static Actor instance_actor(int id)
+        {
             return (Actor)basicgame.Current_room.instances.get(id);
         }
         
@@ -2193,7 +2437,8 @@ public class Functions {
      * <p>Example:<br>
      * double w = Functions.display.<strong>display_get_width()</strong>;</p>
      */
-    public static class display{
+    public static class display
+    {
         static GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         static GraphicsDevice gs = ge.getDefaultScreenDevice();
         static DisplayMode dm = gs.getDisplayMode();
@@ -2204,7 +2449,8 @@ public class Functions {
          * @return width of the display in pixels.
          * @since 2.0
          */
-        public static double display_get_width() {
+        public static double display_get_width()
+        {
             return Toolkit.getDefaultToolkit().getScreenSize().getWidth();
         }
         /**
@@ -2212,7 +2458,8 @@ public class Functions {
          * @return
          * @since 2.0
          */
-        public static double display_get_height() {
+        public static double display_get_height()
+        {
             return Toolkit.getDefaultToolkit().getScreenSize().getHeight();
         }
         
@@ -2221,13 +2468,17 @@ public class Functions {
          * @return the color depth in bits.
          * @since 2.0
          */
-        public static int display_get_colordepth() {
+        public static int display_get_colordepth()
+        {
             // Get number of colors
             int bitDepth = dm.getBitDepth();
-            if (bitDepth == DisplayMode.BIT_DEPTH_MULTI) {
+            if (bitDepth == DisplayMode.BIT_DEPTH_MULTI)
+            {
                 // Multiple bit depths are supported in this display mode
                 return 0;
-            } else {
+            }
+            else
+            {
                 return (int)Math.pow(2, bitDepth);
             }
         }
@@ -2237,7 +2488,8 @@ public class Functions {
          * @return
          * @since 2.0
          */
-        public static int display_get_frequency() {
+        public static int display_get_frequency()
+        {
             // Get refresh rate in Hz
             return dm.getRefreshRate();
         }
@@ -2249,13 +2501,17 @@ public class Functions {
          * @return whether this was successful
          * @since 2.0
          */
-        public static boolean display_set_size(int w,int h) {
+        public static boolean display_set_size(int w,int h)
+        {
             DisplayMode displayMode = new DisplayMode(
                     w, h, display_get_colordepth(), display_get_frequency());
-            try {
+            try
+            {
                 gs.setDisplayMode(displayMode);
                 return true;
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 // Desired display mode is not supported; leave full-screen mode
                 return false;
             }
@@ -2267,13 +2523,17 @@ public class Functions {
          * @return whether this was successful
          * @since 2.0
          */
-        public static boolean display_set_colordepth(int coldepth) {
+        public static boolean display_set_colordepth(int coldepth)
+        {
             DisplayMode displayMode = new DisplayMode(
                     (int)display_get_width(), (int)display_get_height(), coldepth, display_get_frequency());
-            try {
+            try
+            {
                 gs.setDisplayMode(displayMode);
                 return true;
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 // Desired display mode is not supported; leave full-screen mode
                 return false;
             }
@@ -2285,13 +2545,17 @@ public class Functions {
          * @return whether this was successful
          * @since 2.0
          */
-        public static boolean display_set_frequency(double frequency) {
+        public static boolean display_set_frequency(double frequency)
+        {
             DisplayMode displayMode = new DisplayMode(
                     (int)display_get_width(), (int)display_get_height(), display_get_colordepth(), (int)frequency);
-            try {
+            try
+            {
                 gs.setDisplayMode(displayMode);
                 return true;
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 // Desired display mode is not supported; leave full-screen mode
                 return false;
             }
@@ -2306,13 +2570,17 @@ public class Functions {
          * @return whether successful.
          * @since 2.0
          */
-        public static boolean display_set_all(double w,double h,double frequency,double coldepth) {
+        public static boolean display_set_all(double w,double h,double frequency,double coldepth)
+        {
             DisplayMode displayMode = new DisplayMode(
                     (int)w, (int)h, (int)coldepth, (int)frequency);
-            try {
+            try
+            {
                 gs.setDisplayMode(displayMode);
                 return true;
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 // Desired display mode is not supported
                 return false;
             }
@@ -2327,15 +2595,19 @@ public class Functions {
          * @return whether the settings are allowed.
          * @since 2.0
          */
-        public static boolean display_test_all(double w,double h,double frequency,double coldepth) {
+        public static boolean display_test_all(double w,double h,double frequency,double coldepth)
+        {
             DisplayMode displayMode = new DisplayMode(
                     (int)w, (int)h, (int)coldepth, (int)frequency);
-            try {
+            try
+            {
                 DisplayMode backup = gs.getDisplayMode();
                 gs.setDisplayMode(displayMode);
                 gs.setDisplayMode(backup);
                 return true;
-            } catch (Throwable e) {
+            }
+            catch (Throwable e)
+            {
                 // Desired display mode is not supported
                 
                 return false;
@@ -2346,7 +2618,8 @@ public class Functions {
          * Resets the display settings to the ones when the program was started.
          * @since 2.0
          */
-        public static void display_reset() {
+        public static void display_reset()
+        {
             gs.setDisplayMode(original);
             
         }
@@ -2357,7 +2630,8 @@ public class Functions {
          * @return the x-coordinate of the mouse on the display.
          * @since 2.0
          */
-        public static double display_mouse_get_x() {
+        public static double display_mouse_get_x()
+        {
             return MouseInfo.getPointerInfo().getLocation().getX();
         }
         
@@ -2367,7 +2641,8 @@ public class Functions {
          * @return
          * @since 2.0
          */
-        public static double display_mouse_get_y() {
+        public static double display_mouse_get_y()
+        {
             return MouseInfo.getPointerInfo().getLocation().getY();
         }
         
@@ -2377,11 +2652,15 @@ public class Functions {
          * @param y
          * @since 2.0
          */
-        public static void display_mouse_set(double x,double y) {
-            try {
+        public static void display_mouse_set(double x,double y)
+        {
+            try
+            {
                 java.awt.Robot robot = new java.awt.Robot();
                 robot.mouseMove((int) x, (int) y);
-            } catch (AWTException ex) {
+            }
+            catch (AWTException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -2391,14 +2670,17 @@ public class Functions {
     /**
      *
      */
-    public static class draw_shapes{
+    public static class draw_shapes
+    {
         
         /**
          * Clears the entire room in the given color (no alpha blending).
          * @param col Color to clear the room to
          */
-        public static void draw_clear(Color col){
-            if (basicgame.Current_room.graphics != null) {
+        public static void draw_clear(Color col)
+        {
+            if (basicgame.Current_room.graphics != null)
+            {
                 basicgame.Current_room.graphics.setColor( col );
                 basicgame.Current_room.graphics.fillRect( 0, 0, basicgame.Current_room.width, basicgame.Current_room.height );
             }
@@ -2408,11 +2690,341 @@ public class Functions {
     }
     
     /**
+     * In the game, the basic units are the instances of the different objects. During game play you can change a number of aspects of these instances. Also you can create new instances and destroy instances.
+     */
+    public static class instances
+    {
+        /**
+         * Creates an instance of act at position (x,y). The function returns the Actor object of the new instance.
+         * @param x
+         * @param y
+         * @param act
+         */
+        public static void instance_create(double x,double y,Actor act)
+        {
+            // (act.getClass()) instance = new act.getClass()(x,y,basicgame.Current_room.instance_id);
+            basicgame.Current_room.instance_id += 1;
+            basicgame.Current_room.SortDepth();
+            // basicgame.Current_room.instances.add(0, instance);
+        }
+        
+        /**
+         * Destroys the current instance.
+         * @param instance
+         */
+        public static void instance_destroy(Actor instance)
+        {
+            // run the destory event
+            instance.Destroy_event();
+            basicgame.Current_room.instances.remove(instance.id);
+        }
+        
+        
+    }
+    
+    /**
+     * When you create large room, for example in platform games, with a small view, many instances lie outside the view. Such instances though are still active and will execute their events. Also when performing collision checks these instances are taken into account. This can cost a lot of time, which is often not necessary. (For example, often it is not important whether instances outside the view move.) To solve this problem G-Java contains some functions to deactivate and activate instances. Before using them you must though clearly understand how they work.
+     * When you deactivate instances they are in some sense removed from the game. They are not visible anymore nor are any events executed for them. So for all actions and functions they don't exist anymore. This saves a lot of time but you have to be careful. For example, when you delete all instances of a particular type, deactivated instances are not deleted (because they don't exist). So don't think that a key a player picks up can unlock a deactivated door.
+     *
+     * The most crucial mistake you can make is to deactivate the instance that is responsible for the activation.
+     *
+     */
+    public static class deactivating_instances
+    {
+        
+        /**
+         * Deactivates all instances in the room. If notme is true the calling instance is not deactivated (which is normally what you want).
+         * @param act
+         * @param notme
+         */
+        public static void instance_deactivate_all(Actor act, boolean notme)
+        {
+            basicgame.Current_room.deactivated = basicgame.Current_room.instances;
+            basicgame.Current_room.instances = new Vector();
+        }
+        
+        /**
+         * Activates all instances in the room.
+         */
+        public static void instance_activate_all()
+        {
+            basicgame.Current_room.instances.addAll(basicgame.Current_room.deactivated);
+        }
+        
+        
+    }
+    
+    /**
+     * Good games require careful timing of things happening. Fortunately G-Java does most of the timing for you.
+     */
+    public static class timing
+    {
+        /**
+         * Speed of the game in the current room (in steps per second).
+         */
+        public static double room_speed;
+        /**
+         * Number of frames that are actually drawn per second.
+         */
+        public static double fps = basicgame.Current_room.averageFPS;
+        /**
+         * Number of milliseconds that have passed since the system was started.
+         */
+        public static double current_time = Functions.date.date_current_time();
+        /**
+         *  The current year.
+         */
+        public static double current_year = Functions.date.date_get_year(Functions.date.date_current_date());
+        
+        /**
+         *  The current month.
+         */
+        public static double current_month = Functions.date.date_get_month(Functions.date.date_current_date());
+        /**
+         * The current day.
+         */
+        public static double current_day = Functions.date.date_get_day(Functions.date.date_current_date());
+        /**
+         * The current day of the week (1=sunday, ..., 7=saturday).
+         */
+        public static double current_weekday = Functions.date.date_get_weekday(Functions.date.date_current_date());
+        /**
+         * The current hour.
+         */
+        public static double current_hour = Functions.date.date_get_hour(Functions.date.date_current_time());
+        /**
+         * The current minute.
+         */
+        public static double current_minute = Functions.date.date_get_minute(Functions.date.date_current_time());
+        /**
+         * The current second.
+         */
+        public static double current_second = Functions.date.date_get_second(Functions.date.date_current_time());
+        
+        /**
+         * Sleeps numb milliseconds.
+         * @param numb
+         */
+        public static void sleep(long numb)
+        {
+            try
+            {
+                java.lang.Thread.sleep(numb);
+            }
+            catch (InterruptedException ex)
+            {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+        
+    }
+    
+    
+    
+    /**
+     * Games work in rooms. Each room has an index that is indicated by the name of the room. The current room is stored in variable room. You cannot assume that rooms are numbered in a consecutive order. So never add or subtract a number from the room variable. Instead use these functions
+     */
+    public static class rooms
+    {
+        
+        /**
+         * Index of the current room;
+         */
+        public static int room = basicgame.Current_room.roomid;
+        
+        /**
+         * Index of the first room in the game.
+         */
+        public static int room_first = load_Rooms.firstroom;
+        
+        /**
+         * Index of the last room in the game.
+         */
+        public static int room_last = load_Rooms.lastroom;
+        
+        /**
+         * The width of the current room
+         */
+        public static int room_width = basicgame.Current_room.width;
+        
+        /**
+         * The height of the current room
+         */
+        public static int room_height = basicgame.Current_room.height;
+        
+        /**
+         * The caption of the current room
+         */
+        public static String room_caption = basicgame.Current_room.Caption;
+        
+        /**
+         * @deprecated Used for compatibility with gm
+         */
+        public static boolean room_persistent = false;
+        
+        /**
+         * Goto the room with index roomid.
+         * @param roomid
+         */
+        public static void room_goto(int roomid)
+        {
+            int GJavalocalroomid = basicgame.Current_room.id;
+            if (basicgame.Runningas != "EApplet")
+            {
+                load_Rooms.change_room(roomid);
+            }
+            else
+            {
+                load_Rooms.change_room(roomid,basicgame.Eapplet);
+            }
+            load_Rooms.remove_room(GJavalocalroomid);
+        }
+        
+        /**
+         * Go to the previous room.
+         */
+        public static void room_goto_previous()
+        {
+            int GJavalocalroomid = basicgame.Current_room.id;
+            if (basicgame.Runningas != "EApplet")
+            {
+                load_Rooms.prev_room(basicgame.Current_room.roomid);
+            }
+            else
+            {
+                load_Rooms.prev_room(basicgame.Current_room.roomid,basicgame.Eapplet);
+            }
+            load_Rooms.remove_room(GJavalocalroomid);
+        }
+        /**
+         * Go to the next room.
+         */
+        public static void room_goto_next()
+        {
+            int GJavalocalroomid = basicgame.Current_room.id;
+            if (basicgame.Runningas != "EApplet")
+            {
+                load_Rooms.next_room(basicgame.Current_room.roomid);
+            }
+            else
+            {
+                load_Rooms.next_room(basicgame.Current_room.roomid,basicgame.Eapplet);
+            }
+            load_Rooms.remove_room(GJavalocalroomid);
+        }
+        /**
+         * Restart the current room.
+         */
+        public static void room_restart()
+        {
+            
+            if (basicgame.Runningas != "EApplet")
+            {
+                load_Rooms.restart_room(basicgame.Current_room.roomid);
+            }
+            else
+            {
+                load_Rooms.restart_room(basicgame.Current_room.roomid,basicgame.Eapplet);
+            }
+        }
+        /**
+         * Return the index of the room before numb(-1 = none) but don't go there.
+         * @param numb
+         * @return
+         */
+        public static int room_previous(int numb)
+        {
+            return basicgame.Current_room.roomid-1;
+        }
+        
+        /**
+         * Return the index of the room after numb(-1 = none).
+         * @param numb
+         * @return
+         */
+        public static int room_next(int numb)
+        {
+            return basicgame.Current_room.roomid-1;
+        }
+        
+        /**
+         *  End the game.
+         */
+        public static void end_game()
+        {
+            // end the game
+            if (basicgame.Runningas == "Application")
+            {
+                // close the application
+                System.exit(0);
+            }
+            else
+            {
+                // close the applet
+                if (basicgame.Runningas == "EApplet")
+                {
+                    basicgame.Eapplet.stop();
+                }
+                else
+                {
+                    load_Rooms.remove_room(basicgame.Current_room.id);
+                }
+            }
+            
+        }
+        
+        /**
+         * Restart the game.
+         */
+        public static void game_restart()
+        {
+            int GJavalocalroomid = basicgame.Current_room.id;
+            if (!basicgame.Runningas.equals("EApplet"))
+            {
+                load_Rooms.change_room(load_Rooms.firstroom);
+            }
+            else
+            {
+                load_Rooms.change_room(load_Rooms.firstroom,basicgame.Eapplet);
+            }
+            load_Rooms.remove_room(GJavalocalroomid);
+            
+        }
+        
+        /**
+         * save game to file, only applications or signed applets
+         * @param savFilename The filename of the save file to save to
+         * @deprecated Not added yet! Does nothing
+         */
+        public static void game_save(String savFilename)
+        {
+            
+            // File savefile = (File)getClass().getResourceAsStream(savFilename);
+            // File savefile = new File((String)(getClass().getResource(savFilename)));
+            // OutputStream os = new OutputStream();
+            // RandomAccessFile((File)savefile,)
+        }
+        
+        /**
+         * Load game from file, only applications or signed applets
+         * @deprecated Not added yet! Does nothing
+         * @param savFilename The filename of the save file to load from
+         */
+        public static void game_load(String savFilename)
+        {
+            
+        }
+        
+        
+    }
+    
+    /**
      * Other important aspects of many games are the score, the health, and the number of lives. G-java keeps track of the score in a global variable score and the number of lives in a global variable lives. You can change the score by simply changing the value of this variable. The same applies to health and lives. If lives is larger than 0 and becomes smaller than or equal to 0 the no-more-lives event is performed for all instances. If you don't want to show the score and lives in the caption, set the variable show_score, etc., to false. Also you can change the caption. For more complicated games best display the score yourself.
      * @since 2.0
      * @author TGMG
      */
-    public static class score{
+    public static class score
+    {
         /**
          *  The game score, Starts at 0
          * @since 2.0
@@ -2468,7 +3080,8 @@ public class Functions {
     /**
      * Here are some variables and functions that deal with errors.
      */
-    public static class debug{
+    public static class debug
+    {
         /**
          * Indicates whether an error has occurred, either true or false
          */
@@ -2483,7 +3096,8 @@ public class Functions {
          * @deprecated Just for compatibility with gm
          * @param str
          */
-        public static void show_debug_message(String str) {
+        public static void show_debug_message(String str)
+        {
             System.out.println(str);
         }
     }
@@ -2491,14 +3105,16 @@ public class Functions {
     /**
      * These functions will give you information about a sprite
      */
-    public static class resources_sprite{
+    public static class resources_sprite
+    {
         /**
          * Just for compatibility with gm! Don't use!
          * @deprecated Just for compatibility with gm
          * @param ind
          * @return
          */
-        public static boolean sprite_exists(sprite ind) {
+        public static boolean sprite_exists(sprite ind)
+        {
             return true;
         }
         
@@ -2508,7 +3124,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String sprite_get_name(sprite ind) {
+        public static String sprite_get_name(sprite ind)
+        {
             return "";
         }
         /**
@@ -2516,7 +3133,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static int sprite_get_number(sprite ind){
+        public static int sprite_get_number(sprite ind)
+        {
             return ind.subimages;
         }
         /**
@@ -2524,7 +3142,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_width(sprite ind){
+        public static double sprite_get_width(sprite ind)
+        {
             return ind.sprite_width;
         }
         /**
@@ -2532,7 +3151,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_height(sprite ind){
+        public static double sprite_get_height(sprite ind)
+        {
             return ind.sprite_height;
         }
         
@@ -2541,7 +3161,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean sprite_get_transparent(sprite ind){
+        public static boolean sprite_get_transparent(sprite ind)
+        {
             return (ind.Transparent == 1);
         }
         /**
@@ -2550,7 +3171,8 @@ public class Functions {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_smooth(sprite ind){
+        public static boolean sprite_get_smooth(sprite ind)
+        {
             return false;
         }
         /**
@@ -2558,7 +3180,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_xoffset(sprite ind){
+        public static double sprite_get_xoffset(sprite ind)
+        {
             return ind.sprite_xoffset;
         }
         /**
@@ -2566,7 +3189,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_yoffset(sprite ind){
+        public static double sprite_get_yoffset(sprite ind)
+        {
             return ind.sprite_yoffset;
         }
         /**
@@ -2574,7 +3198,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_left(sprite ind){
+        public static double sprite_get_bbox_left(sprite ind)
+        {
             return ind.BBLeft;
         }
         /**
@@ -2582,7 +3207,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_right(sprite ind){
+        public static double sprite_get_bbox_right(sprite ind)
+        {
             return ind.BBRight;
         }
         
@@ -2591,7 +3217,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_top(sprite ind){
+        public static double sprite_get_bbox_top(sprite ind)
+        {
             return ind.BBTop;
         }
         /**
@@ -2599,7 +3226,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_bottom(sprite ind){
+        public static double sprite_get_bbox_bottom(sprite ind)
+        {
             return ind.BBBottom;
         }
         /**
@@ -2608,7 +3236,8 @@ public class Functions {
          * @param ind
          * @return 2
          */
-        public static int sprite_get_bbox_mode(sprite ind){
+        public static int sprite_get_bbox_mode(sprite ind)
+        {
             return 2;
         }
         /**
@@ -2616,7 +3245,8 @@ public class Functions {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_precise(sprite ind) {
+        public static boolean sprite_get_precise(sprite ind)
+        {
             return false;
         }
         
@@ -2625,7 +3255,8 @@ public class Functions {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_preload(sprite ind) {
+        public static boolean sprite_get_preload(sprite ind)
+        {
             return false;
         }
         
@@ -2635,14 +3266,16 @@ public class Functions {
     /**
      * These functions will give you information about a sound
      */
-    public static class resources_sound{
+    public static class resources_sound
+    {
         /**
          * Returns whether a sound exists.
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return true
          */
-        public static boolean  sound_exists(sound ind) {
+        public static boolean  sound_exists(sound ind)
+        {
             return true;
         }
         /**
@@ -2650,7 +3283,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String sound_get_name(sound ind) {
+        public static String sound_get_name(sound ind)
+        {
             return ind.sound_name;
         }
         /**
@@ -2659,7 +3293,8 @@ public class Functions {
          * @param ind
          * @return 0
          */
-        public static int sound_get_kind(sound ind) {
+        public static int sound_get_kind(sound ind)
+        {
             return 0;
         }
         /**
@@ -2668,7 +3303,8 @@ public class Functions {
          * @param ind
          * @return false
          */
-        public static boolean sound_get_preload(sound ind) {
+        public static boolean sound_get_preload(sound ind)
+        {
             return false;
         }
         
@@ -2677,7 +3313,8 @@ public class Functions {
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          */
-        public static void sound_discard(sound ind) {
+        public static void sound_discard(sound ind)
+        {
         }
         
         /**
@@ -2685,7 +3322,8 @@ public class Functions {
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          */
-        public static void sound_restore(sound ind) {
+        public static void sound_restore(sound ind)
+        {
         }
     }
     
@@ -2693,14 +3331,16 @@ public class Functions {
     /**
      * These functions will give you information about a font
      */
-    public static class resources_font{
+    public static class resources_font
+    {
         /**
          * Returns whether a font exists.
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return
          */
-        public static boolean font_exists(font ind) {
+        public static boolean font_exists(font ind)
+        {
             return true;
         }
         /**
@@ -2708,7 +3348,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String font_get_name(font ind) {
+        public static String font_get_name(font ind)
+        {
             return ind.fontname;
         }
         /**
@@ -2716,7 +3357,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String  font_get_fontname(font ind) {
+        public static String  font_get_fontname(font ind)
+        {
             return ind.fname;
         }
         /**
@@ -2724,7 +3366,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean font_get_bold(font ind) {
+        public static boolean font_get_bold(font ind)
+        {
             return ind.font.isBold();
         }
         /**
@@ -2732,7 +3375,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean font_get_italic(font ind) {
+        public static boolean font_get_italic(font ind)
+        {
             return ind.font.isItalic();
         }
         
@@ -2741,14 +3385,16 @@ public class Functions {
     /**
      * These functions will give you information about a timeline
      */
-    public static class resources_timeline{
+    public static class resources_timeline
+    {
         /**
          * Returns whether a timeline exists.
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return
          */
-        public static boolean timeline_exists(Timeline ind) {
+        public static boolean timeline_exists(Timeline ind)
+        {
             return true;
         }
         /**
@@ -2756,7 +3402,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String timeline_get_name(Timeline ind) {
+        public static String timeline_get_name(Timeline ind)
+        {
             return ind.name;
         }
         
@@ -2765,14 +3412,16 @@ public class Functions {
     /**
      * These functions will give you information about a actor
      */
-    public static class resources_actor{
+    public static class resources_actor
+    {
         /**
          * Returns whether a actor exists.
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return
          */
-        public static boolean actor_exists(Actor ind) {
+        public static boolean actor_exists(Actor ind)
+        {
             return true;
         }
         /**
@@ -2780,7 +3429,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String actor_get_name(Actor ind) {
+        public static String actor_get_name(Actor ind)
+        {
             return ind.name;
         }
         
@@ -2790,7 +3440,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static sprite actor_get_sprite(Actor ind) {
+        public static sprite actor_get_sprite(Actor ind)
+        {
             return ind.sprite;
         }
         /**
@@ -2798,7 +3449,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean object_get_solid(Actor ind) {
+        public static boolean object_get_solid(Actor ind)
+        {
             return ind.solid;
         }
         /**
@@ -2806,7 +3458,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean object_get_visible(Actor ind) {
+        public static boolean object_get_visible(Actor ind)
+        {
             return ind.visible;
         }
         /**
@@ -2814,7 +3467,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static double object_get_depth(Actor ind) {
+        public static double object_get_depth(Actor ind)
+        {
             return ind.depth;
         }
         /**
@@ -2822,7 +3476,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static boolean object_get_persistent(Actor ind) {
+        public static boolean object_get_persistent(Actor ind)
+        {
             return ind.persistent;
         }
         
@@ -2831,16 +3486,18 @@ public class Functions {
     
     
     /**
-     * These functions will give you information about a timeline
+     * These functions will give you information about a room
      */
-    public static class resources_room{
+    public static class resources_room
+    {
         /**
          * Returns whether a room exists.
          * @deprecated Used for compatibility with GM Only!
          * @param ind
          * @return
          */
-        public static boolean room_exists(RoomPanel ind) {
+        public static boolean room_exists(RoomPanel ind)
+        {
             return true;
         }
         /**
@@ -2848,7 +3505,8 @@ public class Functions {
          * @param ind
          * @return
          */
-        public static String room_get_name(RoomPanel ind) {
+        public static String room_get_name(RoomPanel ind)
+        {
             return ind.name;
         }
         
@@ -2858,7 +3516,8 @@ public class Functions {
     /**
      * It is useful to use external files in games. For example, you could make a file that describes at what moments certain things should happen. Also you probably want to save information for the next time the game is run (for example, the current room).
      */
-    public static class files{
+    public static class files
+    {
         
         /**
          * read-only files
@@ -2916,10 +3575,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static BufferedReader file_text_open_read(String fname) {
-            try {
+        public static BufferedReader file_text_open_read(String fname)
+        {
+            try
+            {
                 return new BufferedReader(new java.io.FileReader(fname));
-            } catch (FileNotFoundException ex) {
+            }
+            catch (FileNotFoundException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return null;
             }
@@ -2930,10 +3593,14 @@ public class Functions {
          * @param fname
          * @return The FileWriter object of the file that must be used in the other functions
          */
-        public static BufferedWriter file_text_open_write(String fname) {
-            try {
+        public static BufferedWriter file_text_open_write(String fname)
+        {
+            try
+            {
                 return new BufferedWriter(new java.io.FileWriter(fname));
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return null;
             }
@@ -2943,10 +3610,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static BufferedWriter file_text_open_append(String fname) {
-            try {
+        public static BufferedWriter file_text_open_append(String fname)
+        {
+            try
+            {
                 return new BufferedWriter(new java.io.FileWriter(fname,true));
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return null;
             }
@@ -2956,10 +3627,14 @@ public class Functions {
          * @param fname The FileWriter object to close
          * @return
          */
-        public static void file_text_close(BufferedWriter fileid) {
-            try {
+        public static void file_text_close(BufferedWriter fileid)
+        {
+            try
+            {
                 fileid.close();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 //unable to close
             }
@@ -2970,10 +3645,14 @@ public class Functions {
          * @param fname The FileWriter object to close
          * @return
          */
-        public static void file_text_close(BufferedReader fileid) {
-            try {
+        public static void file_text_close(BufferedReader fileid)
+        {
+            try
+            {
                 fileid.close();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 //unable to close
             }
@@ -2985,10 +3664,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static void file_text_write_string(BufferedWriter fileid,String str) {
-            try {
+        public static void file_text_write_string(BufferedWriter fileid,String str)
+        {
+            try
+            {
                 fileid.write(str);
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -2997,10 +3680,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static void file_text_write_real(FileWriter fileid,double x) {
-            try {
+        public static void file_text_write_real(FileWriter fileid,double x)
+        {
+            try
+            {
                 fileid.write(" " + x);
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3009,10 +3696,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static void file_text_writeln(BufferedWriter fileid) {
-            try {
+        public static void file_text_writeln(BufferedWriter fileid)
+        {
+            try
+            {
                 fileid.newLine();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3021,10 +3712,14 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String file_text_read_string(BufferedReader fileid) {
-            try {
+        public static String file_text_read_string(BufferedReader fileid)
+        {
+            try
+            {
                 return fileid.readLine();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return "";
             }
@@ -3034,20 +3729,26 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static double file_text_read_real(FileReader fileid) {
-            try {
+        public static double file_text_read_real(FileReader fileid)
+        {
+            try
+            {
                 int i = fileid.read();
                 //get rid of spaces
-                while (((""+i).equals(" ")) && (i != -1)) {
+                while (((""+i).equals(" ")) && (i != -1))
+                {
                     i = fileid.read();
                 }
                 String thenumber = ""+i;
-                while ((!(""+i).equals(" ")) && (i != -1)) {
+                while ((!(""+i).equals(" ")) && (i != -1))
+                {
                     thenumber += ""+fileid.read();
                 }
                 
                 return Functions.string.real(thenumber);
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Exceptions.printStackTrace(ex);
                 Functions.msgbox("Error reading real!", 1);
                 return 0;
@@ -3057,10 +3758,14 @@ public class Functions {
          * Skips the rest of the line in the file and starts at the start of the next line.
          *
          */
-        public static void file_text_readln(BufferedReader fileid) {
-            try {
+        public static void file_text_readln(BufferedReader fileid)
+        {
+            try
+            {
                 fileid.readLine();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3069,7 +3774,8 @@ public class Functions {
          * @param fileid
          * @return
          */
-        public static boolean file_text_eof(BufferedWriter fileid) {
+        public static boolean file_text_eof(BufferedWriter fileid)
+        {
             return true;
         }
         /**
@@ -3077,15 +3783,19 @@ public class Functions {
          * @param fileid
          * @return
          */
-        public static boolean file_text_eof(BufferedReader fileid) {
-            try {
+        public static boolean file_text_eof(BufferedReader fileid)
+        {
+            try
+            {
                 fileid.mark(4);
                 if(fileid.read()==-1)
                     
                     return true;
                 else
                     return false;
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return true;
             }
@@ -3096,14 +3806,16 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static boolean file_exists(String fname) {
+        public static boolean file_exists(String fname)
+        {
             return new File(fname).exists();
         }
         /**
          *  Deletes the file with the given name.
          * @param fname
          */
-        public static void file_delete(String fname) {
+        public static void file_delete(String fname)
+        {
             new File(fname).delete();
         }
         /**
@@ -3111,7 +3823,8 @@ public class Functions {
          * @param oldname
          * @param newname
          */
-        public static void file_rename(String oldname, String newname) {
+        public static void file_rename(String oldname, String newname)
+        {
             new File(oldname).renameTo(new File(newname));
         }
         /**
@@ -3119,26 +3832,33 @@ public class Functions {
          * @param fname
          * @param newname
          */
-        public static void file_copy(String fname, String newname)  {
-            try {
+        public static void file_copy(String fname, String newname)
+        {
+            try
+            {
                 java.io.InputStream in;
                 in = new java.io.FileInputStream(new java.io.File(fname));
                 java.io.File f = new java.io.File(newname);
-                if (new java.io.File(fname).isDirectory()) {
+                if (new java.io.File(fname).isDirectory())
+                {
                     f.mkdirs();
                 }
-                if (!f.exists()) {
+                if (!f.exists())
+                {
                     f.createNewFile();
                 }
                 java.io.OutputStream out = new java.io.FileOutputStream(f);
                 byte[] b = new byte[1024];
                 int len;
-                while ((len = in.read(b)) > 0) {
+                while ((len = in.read(b)) > 0)
+                {
                     out.write(b, 0, len);
                 }
                 in.close();
                 out.close();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
             
@@ -3149,14 +3869,16 @@ public class Functions {
          * @param dname
          * @return
          */
-        public static boolean directory_exists(String dname) {
+        public static boolean directory_exists(String dname)
+        {
             return new File(dname).exists();
         }
         /**
          * Creates a directory with the given name(including the path towards it) if it does not exist.
          * @param dname
          */
-        public static void directory_create(String dname) {
+        public static void directory_create(String dname)
+        {
             new File(dname).mkdir();
         }
         
@@ -3166,7 +3888,8 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String filename_name(String fname) {
+        public static String filename_name(String fname)
+        {
             return Functions.string.string_replace(fname, filename_path(fname), "");
         }
         /**
@@ -3174,11 +3897,15 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String filename_path(String fname) {
-            try {
+        public static String filename_path(String fname)
+        {
+            try
+            {
                 java.net.URL u = new java.net.URL(fname);
                 return u.getPath();
-            } catch (MalformedURLException ex) {
+            }
+            catch (MalformedURLException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return "";
             }
@@ -3189,7 +3916,8 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String filename_dir(String fname) {
+        public static String filename_dir(String fname)
+        {
             return filename_path(fname).substring(0,filename_path(fname).length()-1 );
         }
         
@@ -3198,7 +3926,8 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String filename_drive(String fname) {
+        public static String filename_drive(String fname)
+        {
             
             return filename_path(fname).substring(0,1);
         }
@@ -3207,7 +3936,8 @@ public class Functions {
          * @param fname
          * @return
          */
-        public static String filename_ext(String fname) {
+        public static String filename_ext(String fname)
+        {
             return filename_name(fname).substring(filename_name(fname).length()-4, filename_name(fname).length());
         }
         /**
@@ -3216,7 +3946,8 @@ public class Functions {
          * @param newext
          *
          */
-        public static void filename_change_ext(String fname,String newext) {
+        public static void filename_change_ext(String fname,String newext)
+        {
             File f = new File(fname);
             f.renameTo(new File(filename_path(fname).replaceAll(filename_ext(fname), newext)));
         }
@@ -3229,16 +3960,23 @@ public class Functions {
          * @param mode
          * @return
          */
-        public static FileStream file_bin_open(String fname, int mode) {
-            try {
+        public static FileStream file_bin_open(String fname, int mode)
+        {
+            try
+            {
                 org.gjava.runner.FileStream f = new org.gjava.runner.FileStream();
-                if (mode == 0) {
+                if (mode == 0)
+                {
                     f.open(fname, false);
-                } else {
+                }
+                else
+                {
                     f.open(fname, true);
                 }
                 return f;
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return null;
             }
@@ -3247,10 +3985,14 @@ public class Functions {
          * Rewrites the file with the given file id, that is, clears it and starts writing at the start.
          * @param fileid
          */
-        public static void file_bin_rewrite(FileStream fileid) {
-            try {
+        public static void file_bin_rewrite(FileStream fileid)
+        {
+            try
+            {
                 fileid.open(fileid.fname, true);
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3258,10 +4000,14 @@ public class Functions {
          *
          * @param fileid
          */
-        public static void file_bin_close(FileStream fileid) {
-            try {
+        public static void file_bin_close(FileStream fileid)
+        {
+            try
+            {
                 fileid.close();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3270,10 +4016,14 @@ public class Functions {
          * @param fileid
          * @return
          */
-        public static double file_bin_size(FileStream fileid) {
-            try {
+        public static double file_bin_size(FileStream fileid)
+        {
+            try
+            {
                 return fileid.size();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return 0;
             }
@@ -3282,10 +4032,14 @@ public class Functions {
          * Returns the current position(in bytes; 0 is the first position) of the file with the given file id.
          * @return
          */
-        public static double file_bin_position(FileStream fileid) {
-            try {
+        public static double file_bin_position(FileStream fileid)
+        {
+            try
+            {
                 return fileid.pos();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return 0;
             }
@@ -3295,10 +4049,14 @@ public class Functions {
          * @param fileid
          * @param pos
          */
-        public static void file_bin_seek(FileStream fileid,int pos) {
-            try {
+        public static void file_bin_seek(FileStream fileid,int pos)
+        {
+            try
+            {
                 fileid.seek(pos);
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3307,10 +4065,14 @@ public class Functions {
          * @param fileid
          * @param b
          */
-        public static void file_bin_write_byte(FileStream fileid,byte b) {
-            try {
+        public static void file_bin_write_byte(FileStream fileid,byte b)
+        {
+            try
+            {
                 fileid.writeByte(b);
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
         }
@@ -3319,10 +4081,14 @@ public class Functions {
          * @param fileid
          * @return
          */
-        public static byte file_bin_read_byte(FileStream fileid) {
-            try {
+        public static byte file_bin_read_byte(FileStream fileid)
+        {
+            try
+            {
                 return fileid.readByte();
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return 0;
             }
@@ -3332,7 +4098,8 @@ public class Functions {
          * Returns the number of command-line parameters (note that the name of the program itself is one of them.
          * @return
          */
-        public static int parameter_count() {
+        public static int parameter_count()
+        {
             return parameter_count;
         }
         
@@ -3341,7 +4108,8 @@ public class Functions {
          * @param n
          * @return
          */
-        public static String parameter_string(int n) {
+        public static String parameter_string(int n)
+        {
             return parameters[n];
         }
         
@@ -3350,8 +4118,10 @@ public class Functions {
          * @param name
          * @return
          */
-        public static String environment_get_variable(String name) {
-            try {
+        public static String environment_get_variable(String name)
+        {
+            try
+            {
                 java.util.Properties envProps = new java.util.Properties();
                 java.lang.Runtime r = java.lang.Runtime.getRuntime();
                 java.lang.Process p = r.exec("cmd /c set>temp.env");
@@ -3359,13 +4129,17 @@ public class Functions {
                 java.io.FileInputStream in = new java.io.FileInputStream("temp.env");
                 java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(in));
                 java.lang.String line = null;
-                while ((line = br.readLine()) != null) {
+                while ((line = br.readLine()) != null)
+                {
                     int index = -1;
-                    if ((index = line.indexOf("=")) > -1) {
+                    if ((index = line.indexOf("=")) > -1)
+                    {
                         java.lang.String key = line.substring(0, index).trim();
                         java.lang.String value = line.substring(index + 1).trim();
                         envProps.setProperty(key, value);
-                    } else {
+                    }
+                    else
+                    {
                         envProps.setProperty(line, "");
                     }
                 }
@@ -3373,16 +4147,21 @@ public class Functions {
                 new java.io.File("temp.env").delete();
                 
                 Enumeration names = envProps.propertyNames();
-                for (Enumeration e = names ; e.hasMoreElements() ;) {
+                for (Enumeration e = names ; e.hasMoreElements() ;)
+                {
                     String name2 = (String)e.nextElement();
                     if (name2.equals(name))
                         return envProps.getProperty(name);
                 }
                 return "";
-            } catch (InterruptedException ex) {
+            }
+            catch (InterruptedException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return "";
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
                 return "";
             }
@@ -3401,81 +4180,90 @@ public class Functions {
      * MaxScore=12324<br>
      * <br>
      * This file contains two sections, one call Form and the other called Game. The first section contains three pairs. The first two have a real value while the third has a string value. Such INI files are easy to create and change.
-     * 
+     *
      */
-    public static class ini {
+    public static class ini
+    {
         /**
          * Opens the INI file with the given name.
          * @param name
          */
-        public static void ini_open(String name) {
+        public static void ini_open(String name)
+        {
             ini = new INIFile(name);
         }
         /**
          * Closes the currently open INI file.
          */
-        public static void ini_close() {
+        public static void ini_close()
+        {
             ini.save();
         }
         /**
          * Reads the string value of the indicated key in the indicated section. When the key or section does not exist the default value is returned.
-         * @param section 
-         * @param key 
-         * @param def 
-         * @return 
+         * @param section
+         * @param key
+         * @param def
+         * @return
          */
-        public static String ini_read_string(String section,String key,String def) {
+        public static String ini_read_string(String section,String key,String def)
+        {
             return ini.getStringProperty(section, key);
         }
         
         /**
          * Reads the real value of the indicated key in the indicated section. When the key or section does not exist the default value is returned.
-         * @param section 
-         * @param key 
-         * @param def 
-         * @return 
+         * @param section
+         * @param key
+         * @param def
+         * @return
          */
-        public static double ini_read_real(String section,String key,double def) {
-        return ini.getDoubleProperty(section, key).doubleValue();    
+        public static double ini_read_real(String section,String key,double def)
+        {
+            return ini.getDoubleProperty(section, key).doubleValue();
         }
         
         /**
          * Writes the string value for the indicated key in the indicated section.
-         * @param section 
-         * @param key 
-         * @param value 
+         * @param section
+         * @param key
+         * @param value
          */
-        public static void ini_write_string(String section,String key,String value) {
+        public static void ini_write_string(String section,String key,String value)
+        {
             ini.setStringProperty(section, key, value, "");
         }
         /**
          * Writes the real value for the indicated key in the indicated section.
-         * @param section 
-         * @param key 
-         * @param value 
+         * @param section
+         * @param key
+         * @param value
          */
-        public static void ini_write_real(String section,String key,double value) {
+        public static void ini_write_real(String section,String key,double value)
+        {
             ini.setDoubleProperty(section, key, value, "");
         }
         /**
          * Returns whether the indicated key exists in the indicated section.
-         * @param section 
-         * @param key 
-         * @return 
+         * @param section
+         * @param key
+         * @return
          */
-        public static boolean ini_key_exists(String section,String key) {
-           String[] keys = ini.getPropertyNames(section);
-           for (int i=0;i<=keys.length;i++)
+        public static boolean ini_key_exists(String section,String key)
+        {
+            String[] keys = ini.getPropertyNames(section);
+            for (int i=0;i<=keys.length;i++)
                 if (keys[i].equals(key))
                     return true;
             return false;
         }
         /**
          * Returns whether the indicated section exists.
-         * @param section 
-         * @return 
+         * @param section
+         * @return
          */
-        public static boolean ini_section_exists(String section) {
+        public static boolean ini_section_exists(String section)
+        {
             String[] sections = ini.getAllSectionNames();
             for (int i=0;i<=ini.getTotalSections();i++)
                 if (sections[i].equals(section))
@@ -3484,17 +4272,19 @@ public class Functions {
         }
         /**
          * Deletes the indicated key from the indicated section.
-         * @param section 
-         * @param key 
+         * @param section
+         * @param key
          */
-        public static void ini_key_delete(String section,String key) {
+        public static void ini_key_delete(String section,String key)
+        {
             ini.removeProperty(section, key);
         }
         /**
          * Deletes the indicated section.
-         * @param section 
+         * @param section
          */
-        public static void ini_section_delete(String section) {
+        public static void ini_section_delete(String section)
+        {
             ini.removeSection(section);
         }
         
@@ -3504,7 +4294,8 @@ public class Functions {
      * G-Java also has the possibility to start external programs.
      * @since 2.0
      */
-    public static class executing_programs {
+    public static class executing_programs
+    {
         
         /**
          * Whether the game is running in secure mode.
@@ -3521,16 +4312,23 @@ public class Functions {
          * @since 2.0
          * @author TGMG
          */
-        public static void execute_program(String prog,String arg, boolean wait){
-            try {
+        public static void execute_program(String prog,String arg, boolean wait)
+        {
+            try
+            {
                 java.lang.Process proc = java.lang.Runtime.getRuntime().exec(prog + arg);
                 if (wait)
-                    try {
+                    try
+                    {
                         proc.waitFor();
-                    } catch (InterruptedException e) {
+                    }
+                    catch (InterruptedException e)
+                    {
                         System.out.println("InterruptedException raised: "+e.getMessage());
                     }
-            } catch (IOException ex) {
+            }
+            catch (IOException ex)
+            {
                 Exceptions.printStackTrace(ex);
             }
             
@@ -3543,7 +4341,8 @@ public class Functions {
          * @since 2.0
          * @author TGMG
          */
-        public static void execute_shell(String prog,String arg) {
+        public static void execute_shell(String prog,String arg)
+        {
             execute_program("bash -i "+prog,arg,false);
         }
     }
@@ -3551,12 +4350,14 @@ public class Functions {
     /**
      * A stack data structure is a so called LIFO (Last-In First-Out) structures. You can push values on a stack and the remove them again by popping them from the stack. The value that was pushed on the stack most recently is the first to be popped from it again. Stacks are often used when there are interrupts to handle, or when having recursive functions.
      */
-    public static class ds_stacks {
+    public static class ds_stacks
+    {
         /**
          * Creates a new stack. The function returns a Stack object that must be used in all other functions to access the particular stack. You can create multiple stacks.
          * @return a new Stack object
          */
-        public static Stack ds_stack_create() {
+        public static Stack ds_stack_create()
+        {
             return new Stack();
         }
         
@@ -3564,7 +4365,8 @@ public class Functions {
          * Destroys the stack with the given id, freeing the memory used. Don't forget to call this function when you are ready with the structure.
          * @param id
          */
-        public static void ds_stack_destroy(Stack id) {
+        public static void ds_stack_destroy(Stack id)
+        {
             id = null;
         }
         
@@ -3572,7 +4374,8 @@ public class Functions {
          * Clears the stack with the given id, removing all data from it but not destroying it.
          * @param id
          */
-        public static void ds_stack_clear(Stack id) {
+        public static void ds_stack_clear(Stack id)
+        {
             id = new Stack();
         }
         /**
@@ -3580,14 +4383,16 @@ public class Functions {
          * @param id
          * @return
          */
-        public static int ds_stack_size(Stack id){
+        public static int ds_stack_size(Stack id)
+        {
             return id.size();
         }
         /**
          * Returns whether the stack is empty. This is the same as testing whether the size is 0.
          * @param id
          */
-        public static boolean ds_stack_empty(Stack id) {
+        public static boolean ds_stack_empty(Stack id)
+        {
             return id.empty();
         }
         /**
@@ -3595,21 +4400,24 @@ public class Functions {
          * @param id
          * @param val
          */
-        public static void ds_stack_push(Stack id,String val) {
+        public static void ds_stack_push(Stack id,String val)
+        {
             id.push(val);
         }
         /**
          * Returns the value on the top of the stack and removes it from the stack.
          * @param id
          */
-        public static String ds_stack_pop(Stack id) {
+        public static String ds_stack_pop(Stack id)
+        {
             return (String) id.pop();
         }
         /**
          * Returns the value on the top of the stack but does not remove it from the stack.
          * @param id
          */
-        public static String ds_stack_top(Stack id) {
+        public static String ds_stack_top(Stack id)
+        {
             String str = ds_stack_pop(id);
             ds_stack_push(id,str);
             return str;
@@ -3620,12 +4428,14 @@ public class Functions {
     /**
      * A queue is somewhat similar to a stack but it works on a FIFO (First-In First-Out) basis. The value that is put in the queue first is also the first to be removed from it. It works like a queue in a shop. The person who is first in a queue is served first. Queues are typically used to store things that still need to be done but there are many other uses.
      */
-    public static class ds_queue {
+    public static class ds_queue
+    {
         /**
          * Creates a new queue. The function returns an integer as an id that must be used in all other functions to access the particular queue. You can create multiple queues.
          * @return
          */
-        public static LinkedList ds_queue_create() {
+        public static LinkedList ds_queue_create()
+        {
             return new LinkedList();
         }
         
@@ -3634,7 +4444,8 @@ public class Functions {
          * Destroys the queue with the given id, freeing the memory used. Don't forget to call this function when you are ready with the structure.
          * @param id
          */
-        public static void ds_queue_destroy(LinkedList id) {
+        public static void ds_queue_destroy(LinkedList id)
+        {
             id = null;
         }
         /**
@@ -3642,7 +4453,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static void ds_queue_clear(LinkedList id) {
+        public static void ds_queue_clear(LinkedList id)
+        {
             id = new LinkedList();
         }
         /**
@@ -3650,7 +4462,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static int ds_queue_size(LinkedList id) {
+        public static int ds_queue_size(LinkedList id)
+        {
             return id.size();
         }
         /**
@@ -3658,7 +4471,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static boolean ds_queue_empty(LinkedList id) {
+        public static boolean ds_queue_empty(LinkedList id)
+        {
             return id.isEmpty();
         }
         /**
@@ -3666,7 +4480,8 @@ public class Functions {
          * @param id
          * @param val
          */
-        public static void ds_queue_enqueue(LinkedList id,String val) {
+        public static void ds_queue_enqueue(LinkedList id,String val)
+        {
             id.add(val);
         }
         /**
@@ -3674,7 +4489,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static String ds_queue_dequeue(LinkedList id) {
+        public static String ds_queue_dequeue(LinkedList id)
+        {
             return (String)id.poll();
         }
         /**
@@ -3682,7 +4498,8 @@ public class Functions {
          * @param id
          * @return
          */
-        public static String ds_queue_head(LinkedList id) {
+        public static String ds_queue_head(LinkedList id)
+        {
             return (String)id.getLast();
         }
         /**
@@ -3690,17 +4507,229 @@ public class Functions {
          * @param id
          * @return
          */
-        public static String ds_queue_tail(LinkedList id) {
+        public static String ds_queue_tail(LinkedList id)
+        {
             return (String)id.getFirst();
         }
         
     }
     
     /**
+     *
+     */
+    public static class popups
+    {
+        
+        /**
+         * Displays a dialog box with the string as a message.
+         * @param str
+         */
+        public static void show_message(String str)
+        {
+            Functions.msgbox(str, 0);
+        }
+        
+        /**
+         * Displays a question; returns true when the user selects yes and false otherwise.
+         * @param str
+         * @return
+         */
+        public static boolean show_question(String str)
+        {
+            return (JOptionPane.showConfirmDialog(null, str, "Question:", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION);
+        }
+        
+        /**
+         * Asks the player in a dialog box for a string. str is the message. def is the default value shown.
+         * @param str
+         * @param def
+         * @return
+         */
+        public static String get_string(String str,String def)
+        {
+            return JOptionPane.showInputDialog(null, str, def);
+        }
+        
+        /**
+         * Asks the player in a dialog box for a number. str is the message. def is the default number shown.
+         * @param str
+         * @param def
+         * @return
+         */
+        public static double get_integer(String str,double def)
+        {
+            return Double.parseDouble(JOptionPane.showInputDialog(null, str, ""+def));
+        }
+        
+        /**
+         * Asks the player for a color. defcol is the default color. If the user presses Cancel the value -1 is returned.
+         * @param defcol
+         * @return
+         */
+        public static Color get_color(Color defcol)
+        {
+            return new JColorChooser(defcol).showDialog(null, "Choose color", defcol);
+        }
+        
+        
+        /**
+         * Asks the player for a filename to open with the given filter.
+         * @param filter You need to create a new FileFilter class
+         * @param fname
+         * @return
+         */
+        public static String get_open_filename(javax.swing.filechooser.FileFilter filter,String fname)
+        {
+            JFileChooser jfc = new JFileChooser();
+            jfc.setSelectedFile(new File(fname));
+            jfc.setFileFilter(filter);
+            if(jfc.showOpenDialog(basicgame.Current_room.Room)==(JFileChooser.APPROVE_OPTION))
+                return jfc.getName();
+            else
+                return "";
+            
+        }
+        
+        /**
+         * Asks for a filename to save with the given filter. If the user presses Cancel an empy string is returned.
+         * @param filter
+         * @param fname
+         * @return
+         */
+        public static String get_save_filename(javax.swing.filechooser.FileFilter filter,String fname)
+        {
+            JFileChooser jfc = new JFileChooser();
+            jfc.setSelectedFile(new File(fname));
+            jfc.setFileFilter(filter);
+            if(jfc.showSaveDialog(basicgame.Current_room.Room)==(JFileChooser.APPROVE_OPTION))
+                return jfc.getName();
+            else
+                return "";
+            
+        }
+        
+        /**
+         * Asks for a directory. dname is the default name. If the user presses Cancel an empy string is returned.
+         * @param dname
+         * @return
+         */
+        public static String get_directory(String dname)
+        {
+            JFileChooser jfc = new JFileChooser();
+            jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            jfc.setSelectedFile(new File(dname));
+            if(jfc.showOpenDialog(basicgame.Current_room.Room)==(JFileChooser.APPROVE_OPTION))
+                return jfc.getName();
+            else
+                return "";
+        }
+        
+        /**
+         * Displays a standard error message (and/or writes it to the log file). abort indicates whether the game should abort.
+         * @param str
+         * @param abort
+         */
+        public static void show_error(String str,boolean abort)
+        {
+            Functions.msgbox(str, 1);
+            if (abort)
+                Functions.rooms.end_game();
+        }
+    }
+    
+    /**
+     * One special pop-up is the highscore list that is maintained for each game.
+     */
+    public static class highscore
+    {
+        /**
+         * Shows the highscore table. numb is the new score. If this score is good enough to be added to the list, the player can input a name. Use -1 to simple display the current list.
+         * @param numb
+         */
+        public static void highscore_show(double numb)
+        {
+            highscore.setVisible(true);
+            String str = Functions.popups.get_string("Player name?", "<nobody>");
+            highscore.add_score(str, numb);
+        }
+        
+        /**
+         * Sets whether the highscore form must have a border or not.
+         * @param show
+         */
+        public static void highscore_set_border(boolean show)
+        {
+            highscore.setUndecorated(show);
+        }
+        
+        
+        /**
+         * Changes the different default strings used when showing the highscore table. caption is the caption of the form. nobody is the string used when there is nobody at the particular rank. escape is the string at the bottom indicating to press the escape key. You can in particular use this when your game should use a different language.
+         * @param caption
+         * @param nobody
+         * @param escape
+         */
+        public static void highscore_set_strings(String caption,String nobody,String escape)
+        {
+            //TODO highscore_set_strings (nobody)
+            highscore.setTitle(caption);
+            highscore.jLabel11.setText(escape);
+            
+        }
+        
+        /**
+         * Clears the highscore list.
+         */
+        public static void highscore_clear()
+        {
+            //TODO highscore_clear
+            highscore.s = new Highscore.Score[10];
+        }
+        /**
+         * Adds a player with name str and score numb to the list.
+         * @param str
+         * @param numb
+         */
+        public static void highscore_add(String str,double numb)
+        {
+            highscore.add_score(str, numb);
+        }
+        /**
+         * Adds the current score to the highscore list. The player is asked to provide a name.
+         */
+        public static void highscore_add_current()
+        {
+            String str = Functions.popups.get_string("Player name?", "<nobody>");
+            highscore.add_score(str,Functions.score.score);
+        }
+        /**
+         * Returns the score of the person on the given place (1-10). This can be used to draw your own highscore list.
+         * @param place
+         * @return
+         */
+        public static double highscore_value(int place)
+        {
+            return highscore.s[place].score;
+        }
+        /**
+         * Returns the name of the person on the given place (1-10).
+         * @param place
+         * @return
+         */
+        public static String highscore_name(int place)
+        {
+            return highscore.s[place].name;
+        }
+        
+    }
+    
+    
+    /**
      * These are functions to ensure compatibility with GM4.
      * @deprecated No need to use these functions unless you are used to gm4!
      */
-    public static class GM4 {
+    public static class GM4
+    {
         /**
          * Only here to to ensure compatibility with GM4
          * @deprecated use Functions.math.min instead
@@ -3710,7 +4739,8 @@ public class Functions {
          * @return the minimum of the 3 values
          * @author luiscubal
          */
-        public static double min3(double a, double b, double c){
+        public static double min3(double a, double b, double c)
+        {
             return Functions.math.min(a,b,c);
         }
         
@@ -3723,7 +4753,8 @@ public class Functions {
          * @return the max of the 3 values
          * @author luiscubal
          */
-        public static double max3(double a, double b, double c){
+        public static double max3(double a, double b, double c)
+        {
             return Functions.math.max(a,b,c);
         }
         
@@ -3736,43 +4767,28 @@ public class Functions {
          * @return the mean of the 3 values
          * @author luiscubal
          */
-        public static double mean3(double a, double b, double c){
+        public static double mean3(double a, double b, double c)
+        {
             return Functions.math.mean(a,b,c);
         }
     }
     
-    /**
-     *
-     * @param savFilename The filename of the save file to save to
-     */
-    public static void game_save(String savFilename) {
-        
-        // File savefile = (File)getClass().getResourceAsStream(savFilename);
-        // File savefile = new File((String)(getClass().getResource(savFilename)));
-        // OutputStream os = new OutputStream();
-        // RandomAccessFile((File)savefile,)
-    }
-    
-    /**
-     * Load game from file
-     * @param savFilename The filename of the save file to load from
-     */
-    public static void game_load(String savFilename) {
-        
-    }
     
     /**
      *
      * @param actor
      * @return number of a certain actor as int
      */
-    public static int action_get_number(Actor actor) {
+    public static int action_get_number(Actor actor)
+    {
         // get the number of instances as a value
         int no_of_instances = 0;
         int jii = 0;
-        while (jii < basicgame.Current_room.instances.size()) {
+        while (jii < basicgame.Current_room.instances.size())
+        {
             Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
-            if (dt.equals(actor)) {
+            if (dt.equals(actor))
+            {
                 // add onto the number of instances
                 no_of_instances = no_of_instances + 1;
                 
@@ -3791,24 +4807,7 @@ public class Functions {
          * maxi = Math.max(maxi,args[i]); } return maxi; }
          */
     
-    /**
-     *
-     */
-    public static void end_game() {
-        // end the game
-        if (basicgame.Runningas == "Application") {
-            // close the application
-            System.exit(0);
-        } else {
-            // close the applet
-            if (basicgame.Runningas == "EApplet") {
-                basicgame.Eapplet.stop();
-            } else {
-                load_Rooms.remove_room(basicgame.Current_room.id);
-            }
-        }
-        
-    }
+    
     
     /**
      *
@@ -3821,11 +4820,15 @@ public class Functions {
     /**
      * Tell the UIManager to use the platform look and feel
      */
-    public void set_native() {
-        try {
+    public void set_native()
+    {
+        try
+        {
             // Tell the UIManager to use the platform look and feel
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // Do nothing
         }
     }
@@ -3835,7 +4838,8 @@ public class Functions {
      * @param message
      * @return
      */
-    public static boolean action_if_question(String message) {
+    public static boolean action_if_question(String message)
+    {
         // return true if the answer is yes
         //MessageBox box = new MessageBox();
         /* boolean iii = *///box.action_if_question(message);
@@ -3844,11 +4848,9 @@ public class Functions {
         
     }
     
-    /**
-     *
-     * @param str
-     */
-    public static void show_message(String str) {
+    
+    private static void show_message(String str)
+    {
         // show a message
         
         // pause the room
@@ -3873,16 +4875,21 @@ public class Functions {
      *
      * @param url
      */
-    public static void openURL(String url) {
+    public static void openURL(String url)
+    {
         String osName = System.getProperty("os.name");
-        try {
-            if (osName.startsWith("Mac OS")) {
+        try
+        {
+            if (osName.startsWith("Mac OS"))
+            {
                 Class fileMgr = Class.forName("com.apple.eio.FileManager");
                 Method openURL = fileMgr.getDeclaredMethod("openURL",new Class[] { String.class });
                 openURL.invoke(null,new Object[] { url });
-            } else if (osName.startsWith("Windows"))
+            }
+            else if (osName.startsWith("Windows"))
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
-            else { // assume Unix or Linux
+            else
+            { // assume Unix or Linux
                 String[] browsers = { "firefox","opera","konqueror","epiphany","mozilla","netscape" };
                 String browser = null;
                 for (int count = 0; count < browsers.length && browser == null; count++)
@@ -3893,13 +4900,16 @@ public class Functions {
                 else
                     Runtime.getRuntime().exec(new String[] { browser,url });
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             JOptionPane.showMessageDialog(null,"Error attempting to launch web browser:\n"
                     + e.getLocalizedMessage());
         }
     }
     
-    private static void Setup_Functions() {
+    private static void Setup_Functions()
+    {
         // in some initializing method or constructor
         then = Calendar.getInstance();
         // Time used by GM to base the datetime off of
@@ -3910,7 +4920,13 @@ public class Functions {
         
     }
     
-    public static void msgbox(String message,int icon) {
+    /**
+     * Show a message
+     * @param message
+     * @param icon the image icon
+     */
+    public static void msgbox(String message,int icon)
+    {
         JOptionPane.showMessageDialog(null,message,"G-java",icon);
     }
 }

@@ -1,5 +1,5 @@
 // basicgame.java
-// by GM_guru
+// by TGMG
 
 // import the required classes
 package org.gjava.runner;
@@ -84,6 +84,12 @@ public static boolean if_next_room(int roomid) {return false;}
 public static void prev_room(int roomid,JApplet maingamep) {}
 
 public static void prev_room(int roomid) {}
+
+public static void next_room(int roomid,JApplet maingamep) {}
+
+public static void next_room(int roomid) {}
+
+public static void change_room(int roomid){}
 
 public static void change_room(int roomid,JApplet maingamep) {}
 

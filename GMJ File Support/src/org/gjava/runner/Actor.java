@@ -31,6 +31,7 @@ public abstract class Actor extends tile {
     
     //public double path_position;
     
+        
     //Graphics g used to stop drawing in non draw event errors
     private Graphics g;
     
