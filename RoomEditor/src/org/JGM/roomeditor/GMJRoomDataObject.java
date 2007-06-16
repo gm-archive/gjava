@@ -8,22 +8,22 @@ import org.JGM.roomeditor.SaveRoom;
 import org.gmj.gmjfilesupport.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import javax.swing.ImageIcon;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
 import org.openide.nodes.CookieSet;
 import org.openide.nodes.Node;
-import org.openide.text.DataEditorSupport;
-import org.openide.util.actions.SystemAction;
 
 public class GMJRoomDataObject extends MultiDataObject {
+    
+    GMJRoomData data = new GMJRoomData();
     
     public GMJRoomDataObject(FileObject pf, JGMRoomDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
         CookieSet cookies = getCookieSet();
         cookies.add(new SaveRoom(this));
         writejava();
+        data.path = this.getName();
     }
     
      public void print(BufferedWriter file,String printString) throws IOException {
@@ -398,7 +398,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
         return new GMJRoomDataNode(this);
     }*/
     protected Node createNodeDelegate () {
-        GMJRoomDataNode me = new GMJRoomDataNode(this);
+        GMJRoomDataNode me = new GMJRoomDataNode(this,data);
         //me.setDefaultAction (SystemAction.get (OpenRoom.class));
         return me;
     }
