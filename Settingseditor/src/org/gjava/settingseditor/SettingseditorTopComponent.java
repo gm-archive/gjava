@@ -2,6 +2,7 @@ package org.gjava.settingseditor;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.io.FileNotFoundException;
 import org.JGM.roomeditor.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
@@ -10,7 +11,9 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Iterator;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
@@ -18,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 import org.openide.filesystems.FileLock;
+import org.openide.util.Exceptions;
 
 import org.openide.windows.TopComponent;
 
@@ -25,8 +29,8 @@ import org.openide.windows.TopComponent;
  * Top component which displays something.
  */
 final class SettingseditorTopComponent extends TopComponent {
-
-
+    
+    static int from;
     public static SettingsDataObject a;
     private static SettingseditorTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -42,14 +46,14 @@ final class SettingseditorTopComponent extends TopComponent {
         final SettingsDataObject aa = a;
         initComponents();
         //this.setHtmlDisplayName("Settings");
-                
-              //NbBundle.getMessage(SettingseditorTopComponent.class, "CTL_SettingseditorTopComponent"));
+        
+        //NbBundle.getMessage(SettingseditorTopComponent.class, "CTL_SettingseditorTopComponent"));
         //setToolTipText(NbBundle.getMessage(SettingseditorTopComponent.class, "HINT_SettingseditorTopComponent"));
         path = a.getPrimaryFile().getPath();
         
         //        setIcon(Utilities.loadImage(ICON_PATH, true));
         
-jList1.setDropTarget(new DropTarget(this,new DropTargetListener() {
+        jList1.setDropTarget(new DropTarget(this,new DropTargetListener() {
             public void dragEnter(DropTargetDragEvent dropTargetDragEvent) {
                 //not needed
             }
@@ -66,6 +70,9 @@ jList1.setDropTarget(new DropTarget(this,new DropTargetListener() {
                 }
             }
             public void drop(DropTargetDropEvent dtde) {
+                
+                System.out.println("Drop called!");
+                
                 //first check if we support this type of data
                 if( !dtde.isDataFlavorSupported( GMJRoomDataNode.Room_DATA_FLAVOR ) ) {
                     dtde.rejectDrop();
@@ -89,7 +96,7 @@ jList1.setDropTarget(new DropTarget(this,new DropTargetListener() {
                 }
                 //add to list
                 
-                roomz.addElement(data.path);
+                roomz.addElement(data);
                 aa.setModified(true);
                 //jList1.getModel().addElement(data.path);
                 System.out.println("add room to list "+jList1.getModel().getSize());
@@ -102,26 +109,28 @@ jList1.setDropTarget(new DropTarget(this,new DropTargetListener() {
             public void dropActionChanged(DropTargetDragEvent dropTargetDragEvent) {
             }
         }));
-jList1.setModel(roomz);
-jList1.setCellRenderer(new SimpleCellRenderer());
-//jList1.setDragEnabled(true);
+        jList1.setModel(roomz);
+        jList1.setCellRenderer(new SimpleCellRenderer());
+        //jList1.setDragEnabled(true);
+        
+        
+        openfile();
     }
     
     //save the settings file
-    public void savefile()
-    {
+    public void savefile() {
         FileLock lock;
-    try {
-        lock= a.getPrimaryFile().lock();
-    } catch (Exception e) {
-        return;
-    }
-    {
-        java.io.PrintWriter to = null;
-        
         try {
-            to = new java.io.PrintWriter(a.getPrimaryFile().getOutputStream(lock));
+            lock= a.getPrimaryFile().lock();
+        } catch (Exception e) {
+            return;
+        }
+        {
+            java.io.PrintWriter to = null;
             
+            try {
+                to = new java.io.PrintWriter(a.getPrimaryFile().getOutputStream(lock));
+                
                 to.println("<?xml version=\"1.0\"?>");
                 
                 if (jCheckBox3.isSelected() == true)
@@ -187,15 +196,82 @@ jList1.setCellRenderer(new SimpleCellRenderer());
                 to.println("<Icon>"+jTextField1.getText()+"</Icon>");
                 
                 to.println("<RoomOrder>");
-                jList1.getModel().getSize();
+                
+                for(int i = 0; i < jList1.getModel().getSize(); i++)
+                    to.println("<Room>"+jList1.getModel().getElementAt(i)+"</Room>");
+                
+                
                 to.println("</RoomOrder>");
                 
-        } catch (Exception e){}
-        
+            } catch (Exception e){}
+            
             lock.releaseLock();
             to.close();
-        
+            
+        }
     }
+    
+    public void openfile() {
+        BufferedReader from=null;
+        try {
+            from = new java.io.BufferedReader(new java.io.InputStreamReader(a.getPrimaryFile().getInputStream()));
+            String line;
+            while ((line=from.readLine()) != null) {
+                
+                if (line.contains("<FullScreen>") && line.contains("</FullScreen>")) {
+                    if (line.contains("True") )
+                        jCheckBox3.setSelected(true);
+                    else
+                        jCheckBox3.setSelected(false);
+                }
+                
+                if (line.contains("<Resize>") && line.contains("</Resize>")) {
+                    if (line.contains("True") )
+                        jCheckBox4.setSelected(true);
+                    else
+                        jCheckBox4.setSelected(false);
+                }
+                
+                if (line.contains("<Border>") && line.contains("</Border>")) {
+                    if (line.contains("True") )
+                        jCheckBox5.setSelected(true);
+                    else
+                        jCheckBox5.setSelected(false);
+                }
+                
+                if (line.contains("<Buttons>") && line.contains("</Buttons>")) {
+                    if (line.contains("True") )
+                        jCheckBox6.setSelected(true);
+                    else
+                        jCheckBox6.setSelected(false);
+                }
+                
+                if (line.contains("<Mouse>") && line.contains("</Mouse>")) {
+                    if (line.contains("True") )
+                        jCheckBox1.setSelected(true);
+                    else
+                        jCheckBox1.setSelected(false);
+                }
+                
+                if (line.contains("<FPS>") && line.contains("</FPS>")) {
+                    if (line.contains("True") )
+                        jCheckBox2.setSelected(true);
+                    else
+                        jCheckBox2.setSelected(false);
+                }
+            }
+            
+            
+            
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        } finally {
+            try {
+                from.close();
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
     }
     
     /** This method is called from within the constructor to
@@ -649,6 +725,16 @@ jList1.setCellRenderer(new SimpleCellRenderer());
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList1MousePressed(evt);
+            }
+        });
+        jList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jList1MouseDragged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
@@ -700,6 +786,19 @@ jList1.setCellRenderer(new SimpleCellRenderer());
         );
     }// </editor-fold>//GEN-END:initComponents
 
+private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
+    
+			int to  = jList1.locationToIndex(evt.getPoint());
+			if (to == from) return;
+			GMJRoomData s = (GMJRoomData)roomz.remove(from);
+			roomz.add(to,s);
+			from = to;
+}//GEN-LAST:event_jList1MouseDragged
+
+private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
+    from = jList1.locationToIndex(evt.getPoint());
+}//GEN-LAST:event_jList1MousePressed
+    
 private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     savefile();
 }//GEN-LAST:event_jButton1MouseClicked
@@ -707,8 +806,8 @@ private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
 private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
     a.setModified(true);
 }//GEN-LAST:event_jTabbedPane1MouseClicked
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup cdepth;
     private javax.swing.ButtonGroup frequency;
@@ -762,25 +861,25 @@ private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
     
     
     public static SettingseditorTopComponent getInstance(String name,SettingsDataObject a) {
-    //this.a = a;
-    // look for an open instance containing this feed
-    Iterator opened = TopComponent.getRegistry().getOpened().iterator();
-    while (opened.hasNext()) {
-        Object tc = opened.next();
-        if (tc instanceof SettingseditorTopComponent) {
-            SettingseditorTopComponent elc = (SettingseditorTopComponent)tc;
-            System.out.println(name+" "+elc.path);
-            if (name.equals(elc.path)) {
-                //elc.requestActive();
-                return elc;
+        //this.a = a;
+        // look for an open instance containing this feed
+        Iterator opened = TopComponent.getRegistry().getOpened().iterator();
+        while (opened.hasNext()) {
+            Object tc = opened.next();
+            if (tc instanceof SettingseditorTopComponent) {
+                SettingseditorTopComponent elc = (SettingseditorTopComponent)tc;
+                System.out.println(name+" "+elc.path);
+                if (name.equals(elc.path)) {
+                    //elc.requestActive();
+                    return elc;
+                }
             }
         }
+        
+        // none found, make a new one
+        return new SettingseditorTopComponent(a);
     }
     
-    // none found, make a new one
-    return new SettingseditorTopComponent(a);
-}
-
     
     public int getPersistenceType() {
         return TopComponent.PERSISTENCE_ALWAYS;
@@ -794,41 +893,38 @@ private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
         // TODO add custom code on component closing
     }
     
-//    /** replaces this in object stream */
-//    public Object writeReplace() {
-//        return new ResolvableHelper();
-//    }
+    //    /** replaces this in object stream */
+    //    public Object writeReplace() {
+    //        return new ResolvableHelper();
+    //    }
     
     protected String preferredID() {
         return PREFERRED_ID;
     }
     
-//    final static class ResolvableHelper implements Serializable {
-//        private static final long serialVersionUID = 1L;
-//        public Object readResolve() {
-//            return SettingseditorTopComponent.getInstance(, a);
-//        }
-//    }
+    //    final static class ResolvableHelper implements Serializable {
+    //        private static final long serialVersionUID = 1L;
+    //        public Object readResolve() {
+    //            return SettingseditorTopComponent.getInstance(, a);
+    //        }
+    //    }
     
 }
 
-class SimpleCellRenderer extends JLabel implements ListCellRenderer
-    {
-        public SimpleCellRenderer()
-        {
-            setOpaque(true);
-        }
-        
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
-        {
-            String val = (String)value;
-            setText(val);
-            //setIcon(val.image);
-            
-            setBackground(isSelected ? Color.black : (index & 1) == 0 ? Color.white : Color.LIGHT_GRAY);
-            setForeground(isSelected ? Color.white : Color.black);
-            return this;
-        }
-        
-        
+class SimpleCellRenderer extends JLabel implements ListCellRenderer {
+    public SimpleCellRenderer() {
+        setOpaque(true);
     }
+    
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        GMJRoomData val = (GMJRoomData)value;
+        setText(val.path);
+        //setIcon(val.image);
+        
+        setBackground(isSelected ? Color.black : (index & 1) == 0 ? Color.white : Color.LIGHT_GRAY);
+        setForeground(isSelected ? Color.white : Color.black);
+        return this;
+    }
+    
+    
+}
