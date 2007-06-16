@@ -9,6 +9,7 @@
 
 package org.JGM.roomeditor;
 
+
 /**
  *
  * @author Administrator
@@ -18,4 +19,6 @@ public String path = "";
     public GMJRoomData() {
     }
 
+    
+    
 }
