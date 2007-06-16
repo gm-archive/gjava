@@ -2,9 +2,7 @@ package org.gjava.actoreditor.events;
 
 import java.awt.Image;
 import java.util.Properties;
-import java.util.Vector;
 import javax.swing.DefaultListModel;
-import org.openide.util.Utilities;
 
 public class eventData {
     private Properties props;

@@ -1,9 +1,7 @@
 package org.gjava.actoreditor.imageformat;
 
 import org.gjava.actoreditor.imageformat.ImageDataObject;
-import org.openide.filesystems.FileStateInvalidException;
 import org.openide.nodes.Node;
-import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CookieAction;
@@ -11,15 +9,15 @@ import org.openide.util.actions.CookieAction;
 public final class OpenImage extends CookieAction {
     
     protected void performAction(Node[] activatedNodes) {
-        try     {
+       // try     {
             org.gjava.actoreditor.imageformat.ImageDataObject imageDataObject = (org.gjava.actoreditor.imageformat.ImageDataObject) activatedNodes[0].getLookup().lookup(org.gjava.actoreditor.imageformat.ImageDataObject.class);
-            ij.OpenImage i = new ij.OpenImage();
+            //ij.OpenImage i = new ij.OpenImage();
 
-            i.openij(imageDataObject.getPrimaryFile().getURL().getFile().replaceAll("%20", " "));
-        }
-        catch (FileStateInvalidException ex) {
-            Exceptions.printStackTrace(ex);
-        }
+            //i.openij(imageDataObject.getPrimaryFile().getURL().getFile().replaceAll("%20", " "));
+       // }
+        //catch (FileStateInvalidException ex) {
+          //  Exceptions.printStackTrace(ex);
+       // }
 }
     
     protected int mode() {

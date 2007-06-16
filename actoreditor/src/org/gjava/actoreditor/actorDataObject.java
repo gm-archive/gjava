@@ -3,13 +3,9 @@ package org.gjava.actoreditor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import org.gjava.actoreditor.Action.ActionData;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Iterator;
-import java.util.Properties;
-import org.openide.cookies.OpenCookie;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataObjectExistsException;
 import org.openide.loaders.MultiDataObject;
@@ -17,8 +13,6 @@ import org.openide.nodes.CookieSet;
 import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.text.DataEditorSupport;
-import org.openide.util.Utilities;
-import org.openide.windows.TopComponent;
 
 public class actorDataObject extends MultiDataObject 
 implements Lookup.Provider {
