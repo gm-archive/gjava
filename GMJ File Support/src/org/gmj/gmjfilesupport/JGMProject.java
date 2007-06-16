@@ -43,7 +43,6 @@ import org.openide.ErrorManager;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
-import org.openide.nodes.Index;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
@@ -123,9 +122,9 @@ public final class JGMProject implements Project  {
                     
                     protected void projectOpened() {
                         ClassPath[] cp = new ClassPath[]{ClassPathSupport.createClassPath(new FileObject[]{projectDir})};
-                        //GlobalPathRegistry.getDefault().register(ClassPath.SOURCE,cp);
+                  
                         GlobalPathRegistry.getDefault().register(ClassPath.COMPILE,cp);
-                        //GlobalPathRegistry.getDefault().register(ClassPath.BOOT,cp);
+                        
                         
                     }
                     
@@ -153,7 +152,7 @@ public final class JGMProject implements Project  {
             try {
                 properties.load(fob.getInputStream());
             } catch (Exception e) {
-                ErrorManager.getDefault().notify(e);
+               // ErrorManager.getDefault().notify(e);
             }
         }
         return properties;

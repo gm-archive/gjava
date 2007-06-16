@@ -180,13 +180,11 @@ public class JGMLogicalView implements LogicalViewProvider {
                     NbBundle.getMessage(JGMLogicalView.class, "LBL_Clean"),
                     project),*/
                     new OtherProjectAction(project, false),
-                    SystemAction.get(NewTemplateAction.class),
+                    //SystemAction.get(NewTemplateAction.class),
                     SystemAction.get(FileSystemAction.class),
                     new OtherProjectAction(project, true),
                     a,
-                    CommonProjectActions.moveProjectAction(),
-                    CommonProjectActions.copyProjectAction(),
-                    CommonProjectActions.newFileAction()
+                    
         };
         return result;
     }
