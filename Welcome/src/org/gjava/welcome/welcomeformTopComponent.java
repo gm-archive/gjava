@@ -30,7 +30,7 @@ final class welcomeformTopComponent extends TopComponent {
         MainTextArea.setEditorKit(new HTMLEditorKit());
     try {
        // String s = NbBundle.getMessage(welcomeformTopComponent.class, "WelcomeDocument");
-        URL demoDetailsURL = new URL("http://www.g-java.com/home.php");
+        URL demoDetailsURL = new URL("http://www.g-java.com/");
         
         MainTextArea.setPage(demoDetailsURL);
     } catch (IOException ex) {
