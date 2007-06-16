@@ -1,26 +1,50 @@
 package org.gjava.settingseditor;
 
-import java.awt.event.ActionEvent;
-import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import org.openide.util.NbBundle;
-import org.openide.util.Utilities;
-import org.openide.windows.TopComponent;
+import org.openide.nodes.Node;
+import org.openide.util.HelpCtx;
+import org.openide.util.actions.CookieAction;
 
 /**
  * Action which shows Settingseditor component.
  */
-public class SettingseditorAction extends AbstractAction {
+public class SettingseditorAction extends CookieAction {
     
-    public SettingseditorAction() {
-        super(NbBundle.getMessage(SettingseditorAction.class, "CTL_SettingseditorAction"));
-        //        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage(SettingseditorTopComponent.ICON_PATH, true)));
-    }
-    
-    public void actionPerformed(ActionEvent evt) {
-        TopComponent win = SettingseditorTopComponent.findInstance();
+        
+    protected void performAction(Node[] activatedNodes)
+    {
+       SettingsDataObject c = (SettingsDataObject) activatedNodes[0].getLookup().lookup(SettingsDataObject.class);
+
+       
+        SettingseditorTopComponent win = SettingseditorTopComponent.getInstance(c.getName(), c);
+        
+        win.setName("Settings");
+        win.setHtmlDisplayName("Settings");
+        //win.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));
         win.open();
         win.requestActive();
+    }
+
+    protected int mode() {
+         return CookieAction.MODE_EXACTLY_ONE;
+    }
+
+    protected Class[] cookieClasses() {
+        return new Class[] {
+            SettingsDataObject.class
+        };
+    }
+
+    public String getName() {
+        return "Open";
+    }
+
+    public HelpCtx getHelpCtx() {
+      return HelpCtx.DEFAULT_HELP;
+    }
+    
+    protected boolean asynchronous()
+    {
+        return false;
     }
     
 }

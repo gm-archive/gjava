@@ -5,7 +5,6 @@ import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 
 public class SettingsDataNode extends DataNode {
-    
     private static final String IMAGE_ICON_BASE = "org/gjava/settingseditor/settings.png";
     
     public SettingsDataNode(SettingsDataObject obj) {
@@ -16,6 +15,8 @@ public class SettingsDataNode extends DataNode {
         super(obj, Children.LEAF, lookup);
                setIconBaseWithExtension(IMAGE_ICON_BASE);
     }
+
+
     
     //    /** Creates a property sheet. */
     //    protected Sheet createSheet() {

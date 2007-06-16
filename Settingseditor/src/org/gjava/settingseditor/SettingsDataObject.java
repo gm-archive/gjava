@@ -12,9 +12,13 @@ import org.openide.text.DataEditorSupport;
 public class SettingsDataObject extends MultiDataObject
         implements Lookup.Provider {
     
+    public final FileObject pf2;
+    
     public SettingsDataObject(FileObject pf, SettingsDataLoader loader) throws DataObjectExistsException, IOException {
         super(pf, loader);
+        pf2 = pf;
         CookieSet cookies = getCookieSet();
+        cookies.add(new SaveSettings(this));
         cookies.add((Node.Cookie) DataEditorSupport.create(this, getPrimaryEntry(), cookies));
     }
     
