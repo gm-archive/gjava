@@ -21,7 +21,9 @@ public class ActionValue {
     
     public String value,img,code,args;
     public  String description = "";
-    public  boolean relative=true;
+    public  boolean showrelative=false;
+    public  boolean relative=false;
+    public  boolean applies=false;
     public ImageIcon image;
     public String arg0 = "";
     public String arg1 = "";
@@ -39,6 +41,10 @@ public class ActionValue {
     public String caption5 = "";
     public String caption6 = "";
     public String caption7 = "";
+    
+    public  ActionValue(){
+    
+    }
     
     public  ActionValue(ActionData ad) {
         this.image = new ImageIcon(Utilities.loadImage(ad.img));
@@ -62,7 +68,9 @@ public class ActionValue {
         this.caption6 = ad.caption6;
         this.caption7 = ad.caption7;
         this.description = ad.description;
+        this.showrelative = ad.showrelative;
         this.relative = ad.relative;
+        this.applies = ad.applies;
     }
     
     

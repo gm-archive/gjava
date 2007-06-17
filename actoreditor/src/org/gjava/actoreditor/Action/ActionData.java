@@ -10,7 +10,6 @@
 package org.gjava.actoreditor.Action;
 
 import java.awt.Image;
-import java.io.FileNotFoundException;
 import java.util.Properties;
 import org.openide.filesystems.FileObject;
 import org.openide.util.Exceptions;
@@ -31,6 +30,8 @@ public class ActionData {
     public  String code = "";
     public  String description = "";
     public  boolean relative=true;
+    public  boolean showrelative=true;
+    public  boolean applies=true;
     public  String img = "";
     public String arg0 = "";
     public String arg1 = "";
@@ -79,6 +80,7 @@ public class ActionData {
         this.arg6 = props.getProperty( "arg6" );
         this.arg7 = props.getProperty( "arg7" );
         this.caption0 = props.getProperty( "caption0" );
+        System.out.println("caption0:"+caption0);
         this.caption1 = props.getProperty( "caption1" );
         this.caption2 = props.getProperty( "caption2" );
         this.caption3 = props.getProperty( "caption3" );
@@ -88,6 +90,7 @@ public class ActionData {
         this.caption7 = props.getProperty( "caption7" );
         this.description = props.getProperty("description");
         this.relative = Boolean.parseBoolean(props.getProperty("relative"));
+        this.applies = Boolean.parseBoolean(props.getProperty("applies"));
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }

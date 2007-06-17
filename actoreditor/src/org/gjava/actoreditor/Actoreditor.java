@@ -40,8 +40,8 @@ import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import javax.swing.text.EditorKit;
 import org.gjava.actoreditor.Action.ActionData;
 import org.gjava.actoreditor.beans.ActionList;
 import org.netbeans.spi.palette.PaletteActions;
@@ -50,9 +50,9 @@ import org.netbeans.spi.palette.PaletteFactory;
 import org.openide.explorer.ExplorerManager;
 import org.openide.filesystems.FileLock;
 import org.openide.nodes.Node;
-import org.openide.text.CloneableEditorSupport;
 import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
+import org.openide.util.Utilities;
 import org.openide.util.lookup.InstanceContent;
 import org.openide.windows.TopComponent;
 
@@ -152,10 +152,13 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             }
         });
         initComponents();
-        EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
+        eventList.setDragEnabled(true);
+        this.jPanel3.setVisible(false);
+        this.jButton2.setVisible(false);
+        //EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
         
         
-        // jEditorPane1.setEditorKit(kit);
+        
         
         actionList1.setDragEnabled(true);
         setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
@@ -174,6 +177,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        applies = new javax.swing.ButtonGroup();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -212,7 +216,25 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         jLabel11 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jLabel16 = new javax.swing.JLabel();
+        jRadioButton2 = new javax.swing.JRadioButton();
+        jRadioButton3 = new javax.swing.JRadioButton();
+        jTextField10 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        CreateButton = new javax.swing.JButton();
+        DestroyButton = new javax.swing.JButton();
+        AlarmButton = new javax.swing.JButton();
+        StepButton = new javax.swing.JButton();
+        CollisionButton = new javax.swing.JButton();
+        KeyboardButton = new javax.swing.JButton();
+        MouseButton = new javax.swing.JButton();
+        OtherButton = new javax.swing.JButton();
+        DrawButton = new javax.swing.JButton();
+        KPButton = new javax.swing.JButton();
+        KRButton = new javax.swing.JButton();
 
         jSplitPane1.setDividerLocation(90);
         jSplitPane1.setDividerSize(8);
@@ -250,8 +272,8 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel3)
-                .addContainerGap(490, Short.MAX_VALUE))
-            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+                .addContainerGap(353, Short.MAX_VALUE))
+            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -259,7 +281,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                 .addContainerGap()
                 .add(jLabel3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel1);
@@ -269,14 +291,19 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         jLabel2.setText("Events: ");
 
         //eventList.setModel(null);
+        eventList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                eventListMousePressed(evt);
+            }
+        });
         eventList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 eventListValueChanged(evt);
             }
         });
-        eventList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                eventListMousePressed(evt);
+        eventList.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                eventListMouseDragged(evt);
             }
         });
         jScrollPane1.setViewportView(eventList);
@@ -297,7 +324,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                 .addContainerGap()
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -350,21 +377,19 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jLabel9)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                        .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jLabel10)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                        .add(jTextField5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
                     .add(jPanel4Layout.createSequentialGroup()
-                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                        .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jLabel8)
-                            .add(jPanel4Layout.createSequentialGroup()
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel7)))
+                            .add(jLabel7))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                            .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))))
+                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                            .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -372,20 +397,21 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel7)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel7))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel8)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel8))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel9)
                     .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel10)
-                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jLabel14.setText("argument7:");
@@ -401,18 +427,24 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jLabel12)
-                    .add(jLabel11)
-                    .add(jLabel13)
-                    .add(jLabel14))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jTextField9)
-                    .add(jTextField8)
-                    .add(jTextField7)
-                    .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel11)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel12)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel13)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
+                    .add(jPanel5Layout.createSequentialGroup()
+                        .add(jLabel14)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -420,45 +452,74 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel11)
+                    .add(jLabel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel12))
+                    .add(jLabel12)
+                    .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel13))
+                    .add(jLabel13)
+                    .add(jTextField8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel14))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jLabel14)
+                    .add(jTextField9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11));
         jLabel6.setForeground(new java.awt.Color(0, 51, 255));
         jLabel6.setText("Arguments:");
 
+        applies.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
+        jRadioButton1.setText("This");
+        jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
+        jLabel16.setText("Applies to:");
+
+        applies.add(jRadioButton2);
+        jRadioButton2.setText("Other(Collision)");
+        jRadioButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jRadioButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
+        applies.add(jRadioButton3);
+        jRadioButton3.setText("Actor:");
+        jRadioButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jRadioButton3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
+        jTextField10.setText("<Actorname>");
+        jTextField10.setEnabled(false);
+
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel3Layout.createSequentialGroup()
-                        .add(10, 10, 10)
-                        .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE)
-                            .add(jLabel6)))
-                    .add(jPanel3Layout.createSequentialGroup()
-                        .add(jCheckBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(2, 2, 2)
                         .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                        .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jLabel6)
+                    .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                    .add(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jCheckBox3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jLabel16, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jRadioButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jRadioButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jRadioButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                        .add(77, 77, 77)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -466,49 +527,185 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel3Layout.createSequentialGroup()
                 .add(jLabel6)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 50, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jRadioButton1)
+                    .add(jLabel16)
+                    .add(jRadioButton2)
+                    .add(jCheckBox3)
+                    .add(jRadioButton3)
+                    .add(jTextField10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jCheckBox3)
-                    .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                    .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         jButton2.setText("Add event");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jLabel17.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel17.setText("Event Selector:");
+
+        CreateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_create.gif"))); // NOI18N
+        CreateButton.setText("Create");
+        CreateButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                CreateButtonMouseClicked(evt);
+            }
+        });
+
+        DestroyButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_destroy.gif"))); // NOI18N
+        DestroyButton.setText("Destroy");
+        DestroyButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DestroyButtonMouseClicked(evt);
+            }
+        });
+
+        AlarmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_alarm.gif"))); // NOI18N
+        AlarmButton.setText("Alarm");
+        AlarmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AlarmButtonMouseClicked(evt);
+            }
+        });
+
+        StepButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_step.gif"))); // NOI18N
+        StepButton.setText("Step");
+        StepButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                StepButtonMouseClicked(evt);
+            }
+        });
+
+        CollisionButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_collision.gif"))); // NOI18N
+        CollisionButton.setText("Collision");
+        CollisionButton.setEnabled(false);
+
+        KeyboardButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_keyboard.gif"))); // NOI18N
+        KeyboardButton.setText("Keyboard");
+        KeyboardButton.setEnabled(false);
+
+        MouseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_mouse.gif"))); // NOI18N
+        MouseButton.setText("Mouse");
+        MouseButton.setEnabled(false);
+
+        OtherButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_other.gif"))); // NOI18N
+        OtherButton.setText("Other");
+        OtherButton.setEnabled(false);
+
+        DrawButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_draw.gif"))); // NOI18N
+        DrawButton.setText("Draw");
+        DrawButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DrawButtonMouseClicked(evt);
+            }
+        });
+
+        KPButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_keypress.gif"))); // NOI18N
+        KPButton.setText("Key Pressed");
+        KPButton.setEnabled(false);
+
+        KRButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gjava/actoreditor/events/event_keyrelease.gif"))); // NOI18N
+        KRButton.setText("Key Released");
+        KRButton.setEnabled(false);
+
+        org.jdesktop.layout.GroupLayout jPanel6Layout = new org.jdesktop.layout.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel6Layout.createSequentialGroup()
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel17)
+                    .add(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                            .add(MouseButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .add(CreateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, OtherButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(org.jdesktop.layout.GroupLayout.TRAILING, DestroyButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                            .add(DrawButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .add(AlarmButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jPanel6Layout.createSequentialGroup()
+                                .add(StepButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(CollisionButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(KeyboardButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(jPanel6Layout.createSequentialGroup()
+                                .add(KPButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(KRButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel6Layout.createSequentialGroup()
+                .add(jLabel17)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(CreateButton)
+                    .add(DestroyButton)
+                    .add(AlarmButton)
+                    .add(StepButton)
+                    .add(CollisionButton)
+                    .add(KeyboardButton))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(MouseButton)
+                    .add(OtherButton)
+                    .add(DrawButton)
+                    .add(KPButton)
+                    .add(KRButton))
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .add(layout.createSequentialGroup()
-                        .add(4, 4, 4)
-                        .add(jLabel5)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE)
-                    .add(jCheckBox2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 156, Short.MAX_VALUE))
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(jCheckBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jCheckBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(layout.createSequentialGroup()
+                            .add(4, 4, 4)
+                            .add(jLabel5)
+                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                            .add(jTextField1))
+                        .add(jLabel1, 0, 0, Short.MAX_VALUE)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 115, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 647, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .add(151, 151, 151)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(21, 21, 21))
+            .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
+                .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(layout.createSequentialGroup()
-                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 158, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jScrollPane3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 168, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 45, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -519,17 +716,125 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel5)
                             .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 287, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(jButton2))
-                .add(8, 8, 8)
-                .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jButton2)
+                    .add(jButton1))
+                .add(7, 7, 7)
+                .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    //show event selector
+    this.jPanel6.setVisible(true);
+    this.jButton2.setVisible(false);
+}//GEN-LAST:event_jButton2MouseClicked
+
+private void StepButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_StepButtonMouseClicked
+   
+        
+        final Point p = evt.getPoint();
+        JPopupMenu popup = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem("Step");
+        JMenuItem menuItem2 = new JMenuItem("Begin Step");
+        JMenuItem menuItem3 = new JMenuItem("End Step");
+        ActionListener al = new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Step"))
+                    add_event("Step","org/gjava/actoreditor/events/event_step.gif");
+                else if (e.getActionCommand().equals("Begin Step"))
+                    add_event("Begin Step","org/gjava/actoreditor/events/event_step.gif");
+                else if (e.getActionCommand().equals("End Step"))
+                    add_event("End Step","org/gjava/actoreditor/events/event_step.gif");
+            }
+
+                
+        };
+         menuItem.addActionListener(al);
+         menuItem2.addActionListener(al);
+         menuItem3.addActionListener(al);
+        popup.add(menuItem);
+        popup.add(menuItem2);
+        popup.add(menuItem3);
+        popup.setVisible(true);
+        popup.show(StepButton, evt.getX(), evt.getY());
+        //popup.setLocation(evt.getPoint());
     
+}//GEN-LAST:event_StepButtonMouseClicked
+
+private void eventListMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventListMouseDragged
+    int to  = eventList.locationToIndex(evt.getPoint());
+			if (to == from) return;
+			Value s = (Value)eventList.events.remove(from);
+			eventList.events.add(to,s);
+			from = to;
+}//GEN-LAST:event_eventListMouseDragged
+
+    static private final String REAL_NUMBER = "^[-+]?\\d+(\\.\\d+)?$";
+    
+    //----------------------------------------------------------------------------------------------
+/**
+ * Determines if a string contains only digits, decimal points & hyphens.
+ * @param string The string to check.
+ * @return <code>True</code> if it has only digits, else <code>false</code>.
+ * @since J2SE 1.4
+ */
+static public boolean isNumeric(String string)
+{
+   return string.matches(REAL_NUMBER);
+}
+
+private void add_event(String tempname,String image)
+{
+    boolean dup = false;
+                    //check if duplicate
+                    for (Enumeration e = eventList.events.elements(); e.hasMoreElements() ;)
+                    {
+                      Value v = (Value)e.nextElement();
+                     if(v.value.equals(tempname))
+                     {
+                         dup = true;
+                     }
+                    }
+                    if (dup == false)
+                    {
+                    eventList.events.addElement(new Value(tempname,image, new DefaultListModel() )) ;
+                    a.setModified(true);
+                    } 
+}
+    
+private void AlarmButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AlarmButtonMouseClicked
+    String alarm = "";
+                        do {
+                  alarm = JOptionPane.showInputDialog("Which alarm event? (Number only <20)", "0");
+                        } while((isNumeric(alarm) == false) || (Integer.parseInt(alarm) > 20));
+                 String    tempname = "Alarm"+alarm+" Event";
+                 
+                 add_event(tempname,"org/gjava/actoreditor/events/event_alarm.gif");
+}//GEN-LAST:event_AlarmButtonMouseClicked
+
+private void DrawButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DrawButtonMouseClicked
+    add_event("Draw","org/gjava/actoreditor/events/event_draw.gif");
+    
+}//GEN-LAST:event_DrawButtonMouseClicked
+
+private void DestroyButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DestroyButtonMouseClicked
+    add_event("Destroy","org/gjava/actoreditor/events/event_destroy.gif");
+   
+}//GEN-LAST:event_DestroyButtonMouseClicked
+
+private void CreateButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CreateButtonMouseClicked
+   add_event("Create","org/gjava/actoreditor/events/event_create.gif");
+    
+}//GEN-LAST:event_CreateButtonMouseClicked
+  int from;  
 private void eventListMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventListMousePressed
+    from = eventList.locationToIndex(evt.getPoint());
     if (evt.getButton() == evt.BUTTON3) {
         eventList.setSelectedIndex(eventList.locationToIndex(evt.getPoint()));
         final Point p = evt.getPoint();
@@ -553,6 +858,11 @@ private void actionList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
     if (actionList1.getSelectedValue() == null) {
         return;
     }
+    
+    //hide event selector
+    this.jPanel6.setVisible(false);
+    this.jButton2.setVisible(true);
+    
     if (oldav !=null) {
         oldav.arg0 = this.jTextField2.getText();
         oldav.arg1 = this.jTextField3.getText();
@@ -573,7 +883,17 @@ private void actionList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
     this.jTextField7.setText(((ActionValue)actionList1.getSelectedValue()).arg5);
     this.jTextField8.setText(((ActionValue)actionList1.getSelectedValue()).arg6);
     this.jTextField9.setText(((ActionValue)actionList1.getSelectedValue()).arg7);
-    if (((ActionValue)actionList1.getSelectedValue()).caption0.equals(" ")) {
+    
+    //Set description
+    this.jLabel15.setText(((ActionValue)actionList1.getSelectedValue()).description);
+    
+    //relative
+    if (((ActionValue)actionList1.getSelectedValue()).showrelative)
+    this.jCheckBox3.setVisible(true);
+    else
+        this.jCheckBox3.setVisible(false);
+    
+    if (((ActionValue)actionList1.getSelectedValue()).caption0.equals("")) {
         jLabel7.setVisible(false);
         jTextField2.setVisible(false);
     } else
@@ -670,7 +990,7 @@ private void actionList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST
 }//GEN-LAST:event_actionList1MousePressed
 
 private void actionList1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MouseReleased
-    //draggingIndex = -1;
+    draggingIndex = -1;
 }//GEN-LAST:event_actionList1MouseReleased
 
 private void actionList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actionList1MouseDragged
@@ -789,6 +1109,14 @@ private void savefile() {
                 else
                     to.println("<Visible>False</Visible>");
                 
+                // Applies
+                if (jRadioButton1.isSelected() == true)
+                    to.println("<Applies>This</Applies>");
+                else if(jRadioButton2.isSelected() == true)
+                    to.println("<Applies>Other</Applies>");
+                else
+                    to.println("<Applies>"+jTextField10.getText()+"</Applies>");
+                
                 //save events/actions
                 for (Enumeration e = eventList.events.elements() ; e.hasMoreElements() ;) {
                     Value v = (Value)e.nextElement();
@@ -802,6 +1130,8 @@ private void savefile() {
                         to.println("<Name>"+vv.value+"</Name>");
                         to.println("<Image>"+vv.img+"</Image>");
                         to.println("<Code>"+vv.code+"</Code>");
+                        to.println("<Relative>"+vv.relative+"</Relative>");
+                        to.println("<ShowRelative>"+vv.showrelative+"</ShowRelative>");
                         to.println("<Arg0>"+vv.arg0+"</Arg0>");
                         to.println("<Arg1>"+vv.arg1+"</Arg1>");
                         to.println("<Arg2>"+vv.arg2+"</Arg2>");
@@ -851,6 +1181,7 @@ public void openfile() throws Exception {
         String caption1 = "";
         String caption2 = "";
         String caption3 = "";
+        boolean relative=false,showrelative=false;
     try {
         String line;
         String arg0 = "";
@@ -860,7 +1191,8 @@ public void openfile() throws Exception {
         String arg4 = "";
         String arg5 = "";
         String arg6 = "";
-        String arg7 = "";;
+        String arg7 = "";
+        
         while ((line=from.readLine()) != null) {
             if (line.contains("<Image>") && line.contains("</Image>")) {
                 this.image = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
@@ -910,8 +1242,21 @@ public void openfile() throws Exception {
                         line=from.readLine();
                         if (line.contains("<Image>") && line.contains("</Image>")) {
                             img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
-                            System.out.println(img);
+                            //System.out.println(img);
                         }
+                        
+                        
+                        line=from.readLine();
+                        if (line.contains("<Relative>") && line.contains("</Relative>")) {
+                            line = line.replaceAll("<Relative>", "").replaceAll("</Relative>", "");
+                            relative = Boolean.parseBoolean(line);
+                        }
+                        line=from.readLine();
+                        if (line.contains("<ShowRelative>") && line.contains("</ShowRelative>")) {
+                            line = line.replaceAll("<ShowRelative>", "").replaceAll("</ShowRelative>", "");
+                            showrelative = Boolean.parseBoolean(line);
+                        }
+                        
                         line=from.readLine();
                         if (line.contains("<Code>")) {
                             if (line.contains("</Code>"))
@@ -996,6 +1341,10 @@ public void openfile() throws Exception {
                         ActionData ad = new ActionData();
                         ad.name = name;
                         ad.img = img;
+                        //ad.image = new ImageIcon(Utilities.loadImage(ad.img));
+                        ad.relative = relative;
+                        ad.showrelative = showrelative;
+                        
                         ad.code = code;
                         ad.arg0 = arg0;
                         ad.arg1 = arg1;
@@ -1122,8 +1471,21 @@ public void propertyChange(PropertyChangeEvent evt) {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AlarmButton;
+    private javax.swing.JButton CollisionButton;
+    private javax.swing.JButton CreateButton;
+    private javax.swing.JButton DestroyButton;
+    private javax.swing.JButton DrawButton;
+    private javax.swing.JButton KPButton;
+    private javax.swing.JButton KRButton;
+    private javax.swing.JButton KeyboardButton;
+    private javax.swing.JButton MouseButton;
+    private javax.swing.JButton OtherButton;
+    private javax.swing.JButton StepButton;
     public ActionList actionList1;
     public EventList eventList;
+    private javax.swing.ButtonGroup applies;
+    
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1136,6 +1498,8 @@ public void propertyChange(PropertyChangeEvent evt) {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public final javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
@@ -1149,11 +1513,16 @@ public void propertyChange(PropertyChangeEvent evt) {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

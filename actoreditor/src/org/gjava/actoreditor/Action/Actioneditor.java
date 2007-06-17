@@ -1,6 +1,6 @@
-// Copyright (C) 2006, 2007 tgmg <tgmg@g-java.com>  
-//  This file is part of G-Java.  
-//  G-Java is free software and comes with ABSOLUTELY NO WARRANTY.  
+// Copyright (C) 2006, 2007 tgmg <tgmg@g-java.com>
+//  This file is part of G-Java.
+//  G-Java is free software and comes with ABSOLUTELY NO WARRANTY.
 //  See LICENSE for details.
 /*
  * Actioneditor.java
@@ -41,8 +41,7 @@ public class Actioneditor extends TopComponent {
     public String path;
     ActionDataObject a;
     
-    Actioneditor()
-    {
+    Actioneditor() {
         
     }
     
@@ -87,21 +86,21 @@ public class Actioneditor extends TopComponent {
         this.jTextField10.setText(props.getProperty( "caption5" ));
         this.jTextField11.setText(props.getProperty( "caption6" ));
         this.jTextField12.setText(props.getProperty( "caption7" ));
-         this.jTextField13.setText(props.getProperty( "arg0" ));
-         this.jTextField14.setText(props.getProperty( "arg1" ));
-         this.jTextField15.setText(props.getProperty( "arg2" ));
-         this.jTextField16.setText(props.getProperty( "arg3" ));
-         this.jTextField17.setText(props.getProperty( "arg4" ));
-         this.jTextField18.setText(props.getProperty( "arg5" ));
-         this.jTextField19.setText(props.getProperty( "arg6" ));
-         this.jTextField20.setText(props.getProperty( "arg7" ));
+        this.jTextField13.setText(props.getProperty( "arg0" ));
+        this.jTextField14.setText(props.getProperty( "arg1" ));
+        this.jTextField15.setText(props.getProperty( "arg2" ));
+        this.jTextField16.setText(props.getProperty( "arg3" ));
+        this.jTextField17.setText(props.getProperty( "arg4" ));
+        this.jTextField18.setText(props.getProperty( "arg5" ));
+        this.jTextField19.setText(props.getProperty( "arg6" ));
+        this.jTextField20.setText(props.getProperty( "arg7" ));
         this.jEditorPane2.setText(props.getProperty( "code" ));
         this.jTextArea1.setText(props.getProperty("description"));
-            
-            jCheckBox4.setSelected(Boolean.parseBoolean(props.getProperty("relative")));
-            
+        jCheckBox1.setSelected(Boolean.parseBoolean(props.getProperty("applies")));
+        jCheckBox4.setSelected(Boolean.parseBoolean(props.getProperty("relative")));
         
-       // a.setModified(true);
+        
+        // a.setModified(true);
     }
     
     /**
@@ -134,14 +133,14 @@ public class Actioneditor extends TopComponent {
             props.setProperty("code", jEditorPane2.getText());
             props.setProperty("description", jTextArea1.getText());
             props.setProperty("relative",""+jCheckBox4.isSelected());
+            props.setProperty("applies",""+jCheckBox1.isSelected());
             
             a.setModified(false);
             OutputStream out = a.getPrimaryFile().getOutputStream(lock);
             props.store(out, "");
             lock.releaseLock();
             out.close();
-        }
- catch (Exception ex) {
+        } catch (Exception ex) {
             Exceptions.printStackTrace(ex);
         }
     }
@@ -216,6 +215,7 @@ public class Actioneditor extends TopComponent {
         jTextField6 = new javax.swing.JTextField();
         jLabel31 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel1.text")); // NOI18N
 
@@ -326,6 +326,10 @@ public class Actioneditor extends TopComponent {
 
         jTextField5.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "jTextField28.text")); // NOI18N
 
+        jCheckBox1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "jCheckBox1.text")); // NOI18N
+        jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+
         org.jdesktop.layout.GroupLayout jPanel4Layout = new org.jdesktop.layout.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -404,7 +408,10 @@ public class Actioneditor extends TopComponent {
                         .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 147, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .add(18, 18, 18)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jCheckBox4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jPanel4Layout.createSequentialGroup()
+                        .add(jCheckBox4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 121, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jCheckBox1))
                     .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -415,7 +422,9 @@ public class Actioneditor extends TopComponent {
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(jCheckBox4)
+                            .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                                .add(jCheckBox4)
+                                .add(jCheckBox1))
                             .add(jPanel4Layout.createSequentialGroup()
                                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jLabel24)
@@ -556,11 +565,11 @@ public class Actioneditor extends TopComponent {
                 .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-private void jEditorPane2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane2KeyPressed
-   a.setModified(true);
-}//GEN-LAST:event_jEditorPane2KeyPressed
     
+private void jEditorPane2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane2KeyPressed
+    a.setModified(true);
+}//GEN-LAST:event_jEditorPane2KeyPressed
+
 private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
     savefile();
 }//GEN-LAST:event_jButton1MouseClicked
@@ -621,6 +630,7 @@ public static Actioneditor getInstance(String name,ActionDataObject a) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JLabel jLabel1;
@@ -676,7 +686,7 @@ public static Actioneditor getInstance(String name,ActionDataObject a) {
         return new ResolvableHelper();
     }
     
-   
+    
     
     final static class ResolvableHelper implements Serializable {
         private static final long serialVersionUID = 1L;

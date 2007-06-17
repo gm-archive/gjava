@@ -15,7 +15,7 @@ public class ActionDataObject extends MultiDataObject
         implements Lookup.Provider
 {
     
-    private ActionData data;
+    private ActionData data = new ActionData();
     
     public ActionDataObject(FileObject pf, ActionDataLoader loader) throws DataObjectExistsException, IOException
     {
