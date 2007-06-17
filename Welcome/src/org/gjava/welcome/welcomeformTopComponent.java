@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.net.URL;
 import java.util.logging.Logger;
 import javax.swing.text.html.HTMLEditorKit;
+import org.openide.awt.HtmlBrowser;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -26,16 +27,23 @@ final class welcomeformTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(welcomeformTopComponent.class, "CTL_welcomeformTopComponent"));
         setToolTipText(NbBundle.getMessage(welcomeformTopComponent.class, "HINT_welcomeformTopComponent"));
-        //        setIcon(Utilities.loadImage(ICON_PATH, true
-        MainTextArea.setEditorKit(new HTMLEditorKit());
-    try {
-       // String s = NbBundle.getMessage(welcomeformTopComponent.class, "WelcomeDocument");
-        URL demoDetailsURL = new URL("http://www.g-java.com/");
+    
         
-        MainTextArea.setPage(demoDetailsURL);
-    } catch (IOException ex) {
-        ex.printStackTrace();
-    }
+        HtmlBrowser h = new HtmlBrowser();
+        h.setHomePage("http://forums.g-java.com") ;
+               // this.add(h);
+                h.setVisible(true);
+                
+                org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+        );
     }
     
     /** This method is called from within the constructor to
@@ -46,35 +54,29 @@ final class welcomeformTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        MainTextArea = new javax.swing.JEditorPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "<html>Welcome to G-Java! Module still in development</b> For now just goto <a href=\"http://www.g-java.com\">G-Java.com</a></html");
-
-        jScrollPane1.setViewportView(MainTextArea);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
             .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane MainTextArea;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
     
     /**
