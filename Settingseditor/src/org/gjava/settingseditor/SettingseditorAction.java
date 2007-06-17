@@ -21,6 +21,7 @@ public class SettingseditorAction extends CookieAction {
         win.setHtmlDisplayName("Settings");
         //win.setIcon(Utilities.loadImage("org/gjava/actoreditor/object.png"));
         win.open();
+        win.path = c.getName();
         win.requestActive();
     }
 

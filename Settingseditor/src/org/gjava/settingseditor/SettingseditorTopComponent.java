@@ -2,6 +2,8 @@ package org.gjava.settingseditor;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import org.JGM.roomeditor.*;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -11,6 +13,7 @@ import java.awt.dnd.DropTargetDragEvent;
 import java.awt.dnd.DropTargetDropEvent;
 import java.awt.dnd.DropTargetEvent;
 import java.awt.dnd.DropTargetListener;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +22,8 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
 import javax.swing.ListCellRenderer;
 import org.openide.filesystems.FileLock;
 import org.openide.util.Exceptions;
@@ -37,7 +42,7 @@ final class SettingseditorTopComponent extends TopComponent {
     //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     
     private static final String PREFERRED_ID = "SettingseditorTopComponent";
-    public static final DefaultListModel roomz = new DefaultListModel();
+    public final DefaultListModel roomz = new DefaultListModel();
     public String path = "";
     
     
@@ -168,9 +173,9 @@ final class SettingseditorTopComponent extends TopComponent {
                 else
                     to.println("<SetResolution>False</SetResolution>");
                 
-                to.println("<Cdepth>"+cdepth.getSelection()+"</Cdepth>");
-                to.println("<Resolution>"+resolution.getSelection()+"</Resolution>");
-                to.println("<Frequency>"+frequency.getSelection()+"</Frequency>");
+                to.println("<Cdepth>"+cdepth.getSelection().getActionCommand()+"</Cdepth>");
+                to.println("<Resolution>"+resolution.getSelection().getActionCommand()+"</Resolution>");
+                to.println("<Frequency>"+frequency.getSelection().getActionCommand()+"</Frequency>");
                 
                 if (jCheckBox8.isSelected() == true)
                     to.println("<ESC>True</ESC>");
@@ -198,7 +203,7 @@ final class SettingseditorTopComponent extends TopComponent {
                 to.println("<RoomOrder>");
                 
                 for(int i = 0; i < jList1.getModel().getSize(); i++)
-                    to.println("<Room>"+jList1.getModel().getElementAt(i)+"</Room>");
+                    to.println("<Room>"+((GMJRoomData)jList1.getModel().getElementAt(i)).path+"</Room>");
                 
                 
                 to.println("</RoomOrder>");
@@ -212,6 +217,7 @@ final class SettingseditorTopComponent extends TopComponent {
     }
     
     public void openfile() {
+        roomz.clear();
         BufferedReader from=null;
         try {
             from = new java.io.BufferedReader(new java.io.InputStreamReader(a.getPrimaryFile().getInputStream()));
@@ -258,6 +264,62 @@ final class SettingseditorTopComponent extends TopComponent {
                         jCheckBox2.setSelected(true);
                     else
                         jCheckBox2.setSelected(false);
+                }
+                
+                if (line.contains("<SetResolution>") && line.contains("</SetResolution>")) {
+                    if (line.contains("True") )
+                        jCheckBox7.setSelected(true);
+                    else
+                        jCheckBox7.setSelected(false);
+                }
+                
+                if (line.contains("<Cdepth>") && line.contains("</Cdepth>")) {
+                    line.replaceAll("<Cdepth>", "");
+                    line.replaceAll("</Cdepth>", "");
+                    System.out.println("button:"+line);
+                    //cdepth.setSelected(m, true);
+                }
+                
+                if (line.contains("<ESC>") && line.contains("</ESC>")) {
+                    if (line.contains("True") )
+                        jCheckBox8.setSelected(true);
+                    else
+                        jCheckBox8.setSelected(false);
+                }
+                
+                if (line.contains("<F4>") && line.contains("</F4>")) {
+                    if (line.contains("True") )
+                        jCheckBox9.setSelected(true);
+                    else
+                        jCheckBox9.setSelected(false);
+                }
+                
+                if (line.contains("<F5F6>") && line.contains("</F5F6>")) {
+                    if (line.contains("True") )
+                        jCheckBox10.setSelected(true);
+                    else
+                        jCheckBox10.setSelected(false);
+                }
+                
+                if (line.contains("<ShowImage>") && line.contains("</ShowImage>")) {
+                    if (line.contains("True") )
+                        jCheckBox11.setSelected(true);
+                    else
+                        jCheckBox11.setSelected(false);
+                }
+                
+                if (line.contains("<RoomOrder>")) {
+                    line=from.readLine();
+                    while (!line.equals("</RoomOrder>")) {
+                    GMJRoomData gr = new GMJRoomData();
+                    if (line.contains("<Room>") && line.contains("</Room>")) {
+                    gr.path = line.replaceAll("<Room>", "").replaceAll("</Room>", "");
+                    roomz.addElement(gr);
+                    }
+                    line=from.readLine();
+                    }
+                    
+                    
                 }
             }
             
@@ -410,6 +472,7 @@ final class SettingseditorTopComponent extends TopComponent {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Colour Depth"));
 
         cdepth.add(jRadioButton1);
+        jRadioButton1.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jRadioButton1, "No Change");
         jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -448,6 +511,7 @@ final class SettingseditorTopComponent extends TopComponent {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Resolution"));
 
         resolution.add(jRadioButton4);
+        jRadioButton4.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jRadioButton4, "No Change");
         jRadioButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -518,6 +582,7 @@ final class SettingseditorTopComponent extends TopComponent {
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Frequency"));
 
         frequency.add(jRadioButton11);
+        jRadioButton11.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jRadioButton11, "No Change");
         jRadioButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton11.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -797,6 +862,26 @@ private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
 
 private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
     from = jList1.locationToIndex(evt.getPoint());
+    
+    if (evt.getButton() == evt.BUTTON3) {
+        jList1.setSelectedIndex(jList1.locationToIndex(evt.getPoint()));
+        final Point p = evt.getPoint();
+        JPopupMenu popup = new JPopupMenu();
+        JMenuItem menuItem = new JMenuItem("Delete");
+        menuItem.addActionListener(new ActionListener(){
+            
+            public void actionPerformed(ActionEvent e) {
+                if (e.getActionCommand().equals("Delete"))
+                    roomz.remove(jList1.locationToIndex(p));
+            }
+
+                
+        });
+        popup.add(menuItem);
+        popup.setVisible(true);
+        popup.show(jList1, evt.getX(), evt.getY());
+        //popup.setLocation(evt.getPoint());
+    }
 }//GEN-LAST:event_jList1MousePressed
     
 private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -826,7 +911,7 @@ private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    public static javax.swing.JList jList1;
+    public javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
