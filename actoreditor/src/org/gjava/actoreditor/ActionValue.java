@@ -22,6 +22,7 @@ public class ActionValue {
     public String value,img,code,args;
     public  String description = "";
     public  boolean showrelative=false;
+     public  boolean showapplies=false;
     public  boolean relative=false;
     public  boolean applies=false;
     public ImageIcon image;
@@ -33,7 +34,7 @@ public class ActionValue {
     public String arg5 = "";
     public String arg6 = "";
     public String arg7 = "";
-    public String caption0 = "";
+    public String caption0 = "0";
     public String caption1 = "";
     public String caption2 = "";
     public String caption3 = "";
@@ -42,9 +43,7 @@ public class ActionValue {
     public String caption6 = "";
     public String caption7 = "";
     
-    public  ActionValue(){
-    
-    }
+    public  ActionValue(){}
     
     public  ActionValue(ActionData ad) {
         this.image = new ImageIcon(Utilities.loadImage(ad.img));
@@ -71,6 +70,7 @@ public class ActionValue {
         this.showrelative = ad.showrelative;
         this.relative = ad.relative;
         this.applies = ad.applies;
+        this.showapplies = ad.showapplies;
     }
     
     
