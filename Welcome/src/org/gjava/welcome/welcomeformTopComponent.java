@@ -1,12 +1,12 @@
 package org.gjava.welcome;
 
-import java.awt.Color;
-import java.io.IOException;
 import java.io.Serializable;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Logger;
-import javax.swing.text.html.HTMLEditorKit;
 import org.openide.awt.HtmlBrowser;
+import org.openide.awt.HtmlBrowser.URLDisplayer;
+import org.openide.util.Exceptions;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -28,22 +28,22 @@ final class welcomeformTopComponent extends TopComponent {
         setName(NbBundle.getMessage(welcomeformTopComponent.class, "CTL_welcomeformTopComponent"));
         setToolTipText(NbBundle.getMessage(welcomeformTopComponent.class, "HINT_welcomeformTopComponent"));
     
-        
-        HtmlBrowser h = new HtmlBrowser();
-        h.setHomePage("http://forums.g-java.com") ;
-               // this.add(h);
-                h.setVisible(true);
-                
-                org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-        );
+//        
+//        HtmlBrowser h = new HtmlBrowser();
+//        h.setHomePage("http://forums.g-java.com") ;
+//               // this.add(h);
+//                h.setVisible(true);
+//                
+//                org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
+//        this.setLayout(layout);
+//        layout.setHorizontalGroup(
+//            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+//            .add(h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+//        );
+//        layout.setVerticalGroup(
+//            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+//            .add(org.jdesktop.layout.GroupLayout.TRAILING, h, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+//        );
     }
     
     /** This method is called from within the constructor to
@@ -54,29 +54,210 @@ final class welcomeformTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc=" Generated Code ">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        org.openide.awt.Mnemonics.setLocalizedText(jButton6, "jButton6");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, "Welcome to G-java!");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, "General:");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "Free G-Java blog");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton2, "G-Java creations");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton3, "File Uploader");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, "Get help:");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton4, "Forums");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton5, "Tutorials");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, "Extend G-Java:");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton7, "Scripts");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton8, "Modules");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton9, "Extensions");
+
+        org.openide.awt.Mnemonics.setLocalizedText(jButton10, "API Reference");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton10MouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1)
+                    .add(jLabel2)
+                    .add(layout.createSequentialGroup()
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton3))
+                    .add(jLabel3)
+                    .add(layout.createSequentialGroup()
+                        .add(jButton4)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton5)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton10))
+                    .add(jLabel4)
+                    .add(layout.createSequentialGroup()
+                        .add(jButton7)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton8)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton9)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel2)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton1)
+                    .add(jButton2)
+                    .add(jButton3))
+                .add(29, 29, 29)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton4)
+                    .add(jButton5)
+                    .add(jButton10))
+                .add(26, 26, 26)
+                .add(jLabel4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton7)
+                    .add(jButton8)
+                    .add(jButton9))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jButton10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseClicked
+     try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://www.g-java.com/javadoc/"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton10MouseClicked
+
+private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://forums.g-java.com/index.php?showforum=38"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton5MouseClicked
+
+private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://forums.g-java.com/index.php?act=idx"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton4MouseClicked
+
+private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://forums.g-java.com/index.php?showforum=15"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton3MouseClicked
+
+private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://upload.g-java.com/"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton2MouseClicked
+
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        try {
+            
+            org.openide.awt.HtmlBrowser.URLDisplayer.getDefault().showURL(new java.net.URL("http://forums.g-java.com/"));
+        } catch (MalformedURLException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+}//GEN-LAST:event_jButton1MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
     
     /**
