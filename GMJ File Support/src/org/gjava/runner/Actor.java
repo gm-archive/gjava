@@ -81,6 +81,7 @@ public abstract class Actor extends tile {
      * The actor horizontal speed
      */
     public double hspeed = 0;
+    
     /**
      * Get the actor hspeed
      * @return 

@@ -26,7 +26,7 @@ import org.openide.loaders.DataFolder;
  * @author ali1
  */
 public class JGMProjectFactory implements ProjectFactory {
-    public static final String PROJECT_DIR = "JGMproject";
+    public static final String PROJECT_DIR = "GJavaProject";
     public static final String PROJECT_PROPFILE = "project.settings";
 
     
@@ -35,6 +35,7 @@ public class JGMProjectFactory implements ProjectFactory {
     public JGMProjectFactory() {
     }
 
+    //check if it is a project
     public boolean isProject(FileObject projectDirectory) {
         return projectDirectory.getFileObject(PROJECT_DIR) != null;
     }
@@ -46,8 +47,8 @@ public class JGMProjectFactory implements ProjectFactory {
    public void saveProject(final Project project) throws IOException, ClassCastException {
     FileObject projectRoot = project.getProjectDirectory();
     if (projectRoot.getFileObject(PROJECT_DIR) == null) {
-        throw new IOException ("Project dir " + projectRoot.getPath() + " deleted," +
-                " cannot save project");
+        throw new IOException ("Project dir (GJavaProject folder) " + projectRoot.getPath() + " deleted," +
+                " cannot save project, recreate this folder!");
     }
     //Force creation of the rooms/ dir if it was deleted
     ((JGMProject) project).getRoomsFolder(true);
@@ -64,7 +65,7 @@ public class JGMProjectFactory implements ProjectFactory {
     Properties properties = (Properties) project.getLookup().lookup (Properties.class);
     DataFolder theDataObject =
                     DataFolder.findFolder(projectRoot.getFileObject("rooms"));
-    properties.setProperty("roomslist", theDataObject.getNodeDelegate().getChildren().getNodes(true).toString());
+    //properties.setProperty("roomslist", theDataObject.getNodeDelegate().getChildren().getNodes(true).toString());
     File f = FileUtil.toFile(propertiesFile);
     properties.store(new FileOutputStream(f), "NetBeans JGM Project Properties");
 }

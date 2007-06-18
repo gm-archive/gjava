@@ -122,9 +122,7 @@ public final class JGMProject implements Project  {
                     
                     protected void projectOpened() {
                         ClassPath[] cp = new ClassPath[]{ClassPathSupport.createClassPath(new FileObject[]{projectDir})};
-                  
                         GlobalPathRegistry.getDefault().register(ClassPath.COMPILE,cp);
-                        
                         
                     }
                     
@@ -607,6 +605,7 @@ public final class JGMProject implements Project  {
                 copy("Timeline.class",path + "Timeline.class",true);
                 copy("GameSettings.class",path + "GameSettings.class",true);
                 copy("Global.class",path + "Global.class",true);
+                copy("INIFile.class",path + "INIFile.class",true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
