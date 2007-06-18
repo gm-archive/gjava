@@ -12,7 +12,14 @@
     </folder>
     
     <folder name="OptionsDialog">
+        <attr name="PreviewExamples/org-gmj-gmjproject-GmjprojectOptionsCategory.instance" boolvalue="true"/>
+        <attr name="Editor.instance/FontsAndColors.instance" boolvalue="false"/>
+        <attr name="General.instance/Advanced.instance" boolvalue="false"/>
+        <attr name="FontsAndColors.instance/Advanced.instance" boolvalue="false"/>
+        <attr name="General.instance/org-gmj-gmjproject-GmjprojectOptionsCategory.instance" boolvalue="true"/>
         <file name="org-gmj-gmjproject-GmjprojectOptionsCategory.instance"/>
+        <attr name="org-gmj-gmjproject-GmjprojectOptionsCategory.instance/General.instance" boolvalue="false"/>
+        <attr name="org-gmj-gmjproject-GmjprojectOptionsCategory.instance/Keymaps.instance" boolvalue="true"/>
     </folder>
     <folder name="Services">
         <folder name="AutoupdateType">
@@ -24,8 +31,10 @@
         </folder>
     </folder>
     
-   <folder name="Toolbars">
+   
+    <folder name="Toolbars">
         <attr name="File/Add" boolvalue="true"/>
+        <attr name="Edit/Add" boolvalue="false"/>
         <folder name="Add">
             <file name="org-gmj-gmjproject-toolbaractions-AddActor.shadow">
                 <attr name="originalFile" stringvalue="Actions/Edit/org-gmj-gmjproject-toolbaractions-AddActor.instance"/>
@@ -60,7 +69,11 @@
             <attr name="org-gmj-gmjproject-toolbaractions-AddScript.shadow/org-gmj-gmjproject-toolbaractions-AddRoom.shadow" boolvalue="true"/>
             <attr name="org-gmj-gmjproject-toolbaractions-AddScript.shadow/org-gmj-gmjproject-toolbaractions-AddActor.shadow" boolvalue="true"/>
         </folder>
-        <attr name="Add/Memory" boolvalue="true"/>
+        <attr name="Add/Memory" boolvalue="false"/>
+        <attr name="Add/File" boolvalue="false"/>
+        <attr name="Standard.xml/Debugging.xml" boolvalue="false"/>
+        <attr name="Add/Build" boolvalue="false"/>
+        <attr name="Add/Standard.xml" boolvalue="true"/>
     </folder>
     <folder name="Windows2">
         <folder name="Modes">
