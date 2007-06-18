@@ -1,9 +1,28 @@
 #
-#Wed May 09 20:31:54 BST 2007
-icon32=org/gjava/actoreditor/actions/images/GM.010.gif
-displayName=Set the friction
-icon16=org/gjava/actoreditor/actions/images/GM.010.gif
-args={//Start Parenthesis required\nint arg_friction \= 0;\nActor applies \= this;
-code=if (relative)\n    applies.friction \= applies.friction + arg_friction;\nelse\n    applies.friction \= arg_friction;\n}
-id=id1
+#Sun Jun 17 14:36:00 BST 2007
+code=if (@relative)\n    @applies.friction \= applies.friction + @arg0;\nelse\n    @applies.friction \= @arg0;\n}
 comment=Set the friction
+args={//Start Parenthesis required\nint arg_friction \= 0;\nActor applies \= this;
+displayName=Set the friction
+caption7=
+caption6=
+caption5=
+arg7=
+caption4=
+arg6=
+caption3=
+arg5=
+caption2=
+arg4=
+caption1=
+arg3=
+caption0=Friction\:
+arg2=
+arg1=
+arg0=0
+icon32=org/gjava/actoreditor/actions/images/GM.010.gif
+id=id1
+applies=true
+description=<html>Friction slows down the instances when they move. You specify the amount of friction. In each step this amount is subtracted from the speed until the speed becomes 0. Normally you want a very small number here (like 0.01). </html>
+icon16=org/gjava/actoreditor/actions/images/GM.010.gif
+relative=true

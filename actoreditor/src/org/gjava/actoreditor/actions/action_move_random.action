@@ -1,9 +1,28 @@
 #
-#Wed May 09 20:33:42 BST 2007
-icon32=org/gjava/actoreditor/actions/images/GM.013.gif
-displayName=Jump to a random position
-args={//Start Parenthesis required\nint snaphor \= 0;\nint snapver \= 0;\nActor applies \= this;
-icon16=org/gjava/actoreditor/actions/images/GM.013.gif
-code=int xx \= Functions.random(basicgame.Current_room.Width);\r\n\t\t\tint yy \= Functions.random(basicgame.Current_room.Height);\r\n\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\txx \= (int)(xx/snaphor * Functions.round(snaphor,0));\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\tyy \= (int)(yy/snaphor * Functions.round(snapver,0));\r\n\t\t\twhile (\!Functions.place_free(xx,yy)) {\r\n\t\t\t\t\txx \= Functions.random(basicgame.Current_room.Width);\r\n\t\t\t\t\tyy \= Functions.random(basicgame.Current_room.Height);\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\txx \= (int)(xx/snaphor * Functions.round(snaphor,0));\r\n\t\t\tif (\!(snaphor \=\= 0))\r\n\t\t\t\tyy \= (int)(yy/snaphor * Functions.round(snapver,0));\r\n\t\t\t}\r\n\t\t\tthis.x \= xx;\r\n\t\t\tthis.y \= yy;\r\n                        }
+#Sun Jun 17 15:44:51 BST 2007
+code={\r\nFunctions.move.move_random(@applies, @arg0,@arg1);\r\n}
 comment=Jump to a random position
+args={//Start Parenthesis required\nint snaphor \= 0;\nint snapver \= 0;\nActor applies \= this;
+displayName=Jump to a random position
+caption7=
+caption6=
+caption5=
+arg7=
+caption4=
+arg6=
+caption3=
+arg5=
+caption2=
+arg4=
+caption1=Snap Ver.
+arg3=
+caption0=Snap hor.
+arg2=
+arg1=0
+arg0=0
+icon32=org/gjava/actoreditor/actions/images/GM.013.gif
 id=id1
+applies=true
+description=<html>This action moves the instance to a random position in the room. Only positions are chosen where the instance does not intersect any solid instance. You can specify the snapping used. If you specify positive values, the coordinates chosen with be integer multiples of the indicated values. This could for example be used to keep the instance aligned with the cells in your game (if any). You can specify a separate horizontal snapping and vertical snapping. </html>
+icon16=org/gjava/actoreditor/actions/images/GM.013.gif
+relative=false
