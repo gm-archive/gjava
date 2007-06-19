@@ -413,7 +413,6 @@ final class SettingseditorTopComponent extends TopComponent {
 
         org.openide.awt.Mnemonics.setLocalizedText(jCheckBox4, "Allow the player to resize the room window");
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jCheckBox4.setEnabled(false);
         jCheckBox4.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         org.openide.awt.Mnemonics.setLocalizedText(jCheckBox5, "Don't draw a border in windowed mode");
