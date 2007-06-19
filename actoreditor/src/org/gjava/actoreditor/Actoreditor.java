@@ -42,7 +42,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
-import org.gjava.actoreditor.Action.ActionData;
 import org.gjava.actoreditor.beans.ActionList;
 import org.netbeans.spi.palette.PaletteActions;
 import org.netbeans.spi.palette.PaletteController;

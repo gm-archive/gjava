@@ -72,13 +72,13 @@ implements Lookup.Provider {
 
     public void writejava()
      throws IOException {
-        System.out.println("Write java");
+        //System.out.println("Write java");
         org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
    FileWriter BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/"+this.getName()+".java");
 BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
     BufferedReader from=new BufferedReader(new InputStreamReader(this.getPrimaryFile().getInputStream()));
-    String line="",solid="",visible="",eventcode="";
+    String line="",solid="solid",visible="v",eventcode="";
    
     
     //start java code
@@ -106,6 +106,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 else
                    solid = "false";
             }
+             line=from.readLine();
               if (line.contains("<Visible>") && line.contains("</Visible>"))
             {
                 if (line.contains("True") )
@@ -115,6 +116,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 else
                    visible = "false";
             }
+             line=from.readLine();
              String name="",img="",code="",args="";
              if (line.equals("<Event>")) {
                 line=from.readLine();
@@ -128,16 +130,16 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 }
                 
                 //write create event
-                if (name.equals("Create Event"))
+                if (name.equals("Create"))
                 print(Basicgame,"    public void Create_event() {");
                 //write destroy event
-                if (name.equals("Destory Event"))
+                if (name.equals("Destory"))
                 print(Basicgame,"    public void Destroy_event() {");
                 //write step event
-                if (name.equals("Step Event"))
+                if (name.equals("Step"))
                 print(Basicgame,"    public void Step() {");
                 //write draw event
-                if (name.equals("Draw Event"))
+                if (name.equals("Draw"))
                 {
                     print(Basicgame,"    public void Draw_event(Graphics g) {");
 					print(Basicgame,"			if (visible) {");
@@ -175,6 +177,14 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                             img = line.replaceAll("<Image>", "").replaceAll("</Image>", "");
                             System.out.println(img);
                         }
+                        
+                        //Relative
+                        line=from.readLine();
+                        //showRelative
+                        line=from.readLine();
+                        //description
+                        line=from.readLine();
+                        
                         line=from.readLine();
                         if (line.contains("<Code>")) {
                             if (line.contains("</Code>"))
@@ -224,8 +234,8 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
        }
          
     
-    {
-        
+    
+        System.out.println("Write super actor!!");
 				print(Basicgame,"      " +  this.getName() + "(int X, int Y) {");
 				print(Basicgame,"      super(\"" +  this.getName() + "\",\""+data.img.replaceAll(pro.getProjectDirectory().getPath(), "")+"\"," + solid + "," + visible
 						+ ",0,0);");
@@ -251,7 +261,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                                     });
         printStream.close();*/
         
-    }}
+    }
     
      public void print(BufferedWriter file,String printString) throws IOException {
             // printString.replaceAll("\n",""+(char)10);
