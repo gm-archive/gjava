@@ -107,12 +107,12 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
             {
                 if (line.contains("True") )
                     
-                    print(Basicgame,"super(R, \"" + caption + "\", " + speed + ", " + width + ", " + height
+                    print(Basicgame,"super(R,\""+ this.getName() +"\", \"" + caption + "\", " + speed + ", " + width + ", " + height
 							+ ", new Color(" + red + "," + green + "," + blue + "));");
 
                 
                 else
-                    print(Basicgame,"super(R, \"" + caption + "\", " + speed + ", " + width + ", " + height
+                    print(Basicgame,"super(R,\""+ this.getName() +"\",\"" + caption + "\", " + speed + ", " + width + ", " + height
 							+ ", Color.black);");
                 print(Basicgame,"this.R = R;");
 				print(Basicgame,"this.id = id;");

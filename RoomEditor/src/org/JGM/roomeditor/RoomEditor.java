@@ -415,7 +415,10 @@ public static GMJRoomDataObject data;
         jButton2 = new javax.swing.JButton();
         jCheckBox2 = new javax.swing.JCheckBox();
 
+        jPanel3.setFocusable(false);
+
         jLabel2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel2.text")); // NOI18N
+        jLabel2.setFocusable(false);
         jScrollPane2.setViewportView(jLabel2);
 
         jCheckBox1.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox1.text")); // NOI18N
@@ -527,10 +530,12 @@ public static GMJRoomDataObject data;
                     .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(36, 36, 36)
                 .add(jButton1)
-                .addContainerGap(486, Short.MAX_VALUE))
+                .addContainerGap(482, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jPanel4.TabConstraints.tabTitle"), jPanel4); // NOI18N
+
+        jPanel2.setFocusable(false);
 
         jCheckBox3.setSelected(true);
         jCheckBox3.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox3.text")); // NOI18N
@@ -542,6 +547,7 @@ public static GMJRoomDataObject data;
         jTextField7.setBackground(java.awt.Color.lightGray);
         jTextField7.setEditable(false);
         jTextField7.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField7.text")); // NOI18N
+        jTextField7.setFocusable(false);
         jTextField7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField7MouseClicked(evt);
@@ -571,13 +577,17 @@ public static GMJRoomDataObject data;
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
                     .add(jTextField7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(659, Short.MAX_VALUE))
+                .addContainerGap(658, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
         jSplitPane1.setLeftComponent(jTabbedPane2);
+
+        jScrollPane3.setFocusCycleRoot(true);
         jSplitPane1.setRightComponent(jScrollPane3);
+
+        jPanel1.setFocusable(false);
 
         jTextField6.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField6.text")); // NOI18N
 
