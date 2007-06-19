@@ -764,9 +764,9 @@ Gamesettings.write("public class GameSettings {");
                         + "];\n maingamep.getContentPane().add( rooms[" + currentroom + "]);\n }";
                 
                 if (subi == 0) {
-                    lastroom = "" + 0;
+                    firstroom = "" + 0;
                     
-                    roomarray = roomarray + lastroom;
+                    roomarray = roomarray + firstroom;
                 }
                 
                 else {
@@ -778,7 +778,10 @@ Gamesettings.write("public class GameSettings {");
                     line=from.readLine();
                     }
                     
-                    firstroom = ""+subi;
+                    lastroom = ""+subi;
+                    if (subi == 0) {
+                    JOptionPane.showMessageDialog(null, "You haven't selected the room order! You can do this in the Settings.gjavasettings file");
+                    }
                     writeloadrooms(roomstr,eroomstr,lastroom,firstroom,subi,roomarray);
                 }
             }
