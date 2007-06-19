@@ -30,7 +30,7 @@ public class ActionData {
     public  String code = "";
     public  String description = "";
     public  boolean relative=true;
-    public  boolean showrelative=true;
+    public  boolean showrelative=false;
     public  boolean showapplies=false;
     public  boolean applies=true;
     public  String img = "";
@@ -91,6 +91,7 @@ public class ActionData {
         this.caption7 = props.getProperty( "caption7" );
         this.description = props.getProperty("description");
         this.relative = Boolean.parseBoolean(props.getProperty("relative"));
+        this.showrelative = Boolean.parseBoolean(props.getProperty("showrelative"));
         this.showapplies = Boolean.parseBoolean(props.getProperty("applies"));
         } catch (Exception ex) {
             Exceptions.printStackTrace(ex);

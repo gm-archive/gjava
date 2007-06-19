@@ -97,7 +97,7 @@ public class Actioneditor extends TopComponent {
         this.jEditorPane2.setText(props.getProperty( "code" ));
         this.jTextArea1.setText(props.getProperty("description"));
         jCheckBox1.setSelected(Boolean.parseBoolean(props.getProperty("applies")));
-        jCheckBox4.setSelected(Boolean.parseBoolean(props.getProperty("relative")));
+        jCheckBox4.setSelected(Boolean.parseBoolean(props.getProperty("showrelative")));
         
         
         // a.setModified(true);
@@ -132,7 +132,8 @@ public class Actioneditor extends TopComponent {
             props.setProperty("arg7", this.jTextField20.getText());
             props.setProperty("code", jEditorPane2.getText());
             props.setProperty("description", jTextArea1.getText());
-            props.setProperty("relative",""+jCheckBox4.isSelected());
+            props.setProperty("showrelative",""+jCheckBox4.isSelected());
+            props.setProperty("relative","false");
             props.setProperty("applies",""+jCheckBox1.isSelected());
             
             a.setModified(false);

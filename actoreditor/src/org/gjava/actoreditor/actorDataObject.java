@@ -78,8 +78,15 @@ implements Lookup.Provider {
    FileWriter BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/"+this.getName()+".java");
 BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
     BufferedReader from=new BufferedReader(new InputStreamReader(this.getPrimaryFile().getInputStream()));
-    String line="",solid="solid",visible="v",eventcode="";
-   
+    String line="",solid="solid",visible="v",eventcode="",relative="",applies="";
+   String arg0 = "";
+        String arg1 = "";
+        String arg2 = "";
+        String arg3 = "";
+        String arg4 = "";
+        String arg5 = "";
+        String arg6 = "";
+        String arg7 = "";
     
     //start java code
     print(Basicgame,"package org.gjava.runner;");
@@ -96,9 +103,10 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
          boolean alarm=false,collision=false,keyboard=false,keypress=false,keyrelease=false,mouse=false;
        while ((line=from.readLine()) != null)
         {
-            
+            System.out.println("read line");
              if (line.contains("<Solid>") && line.contains("</Solid>"))
             {
+                 System.out.println("Solid");
                 if (line.contains("True") )
                     
                     solid = "true";
@@ -106,7 +114,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 else
                    solid = "false";
             }
-             line=from.readLine();
+             
               if (line.contains("<Visible>") && line.contains("</Visible>"))
             {
                 if (line.contains("True") )
@@ -116,7 +124,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 else
                    visible = "false";
             }
-             line=from.readLine();
+             
              String name="",img="",code="",args="";
              if (line.equals("<Event>")) {
                 line=from.readLine();
@@ -180,6 +188,10 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                         
                         //Relative
                         line=from.readLine();
+                        if (line.contains("<Relative>") && line.contains("</Relative>")) {
+                            relative = line.replaceAll("<Relative>", "").replaceAll("</Relative>", "");
+                            
+                        }
                         //showRelative
                         line=from.readLine();
                         //description
@@ -198,23 +210,75 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                             code = code+ line.replaceAll("<Code>", "").replaceAll("</Code>", "")+"\n";
 
                         }
+//                        line=from.readLine();
+//                        if (line.contains("<Args>")) {
+//                            if (line.contains("</Args>"))
+//                                args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+//                            else
+//                            while (!line.contains("</Args>")) {
+//                            args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+//                            //System.out.println(args);
+//                            line=from.readLine();
+//                            }
+//                            args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
+//
+//                        }
+                        
                         line=from.readLine();
-                        if (line.contains("<Args>")) {
-                            if (line.contains("</Args>"))
-                                args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
-                            else
-                            while (!line.contains("</Args>")) {
-                            args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
-                            //System.out.println(args);
-                            line=from.readLine();
-                            }
-                            args = args+ line.replaceAll("<Args>", "").replaceAll("</Args>", "")+"\n";
-
+                        if (line.contains("<Arg0>") && line.contains("</Arg0>")) {
+                            arg0 = line.replaceAll("<Arg0>", "").replaceAll("</Arg0>", "");
                         }
                         
+                                line=from.readLine();
+                        if (line.contains("<Arg1>") && line.contains("</Arg1>")) {
+                            arg1 = line.replaceAll("<Arg1>", "").replaceAll("</Arg1>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg2>") && line.contains("</Arg2>")) {
+                            arg2 = line.replaceAll("<Arg2>", "").replaceAll("</Arg2>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg3>") && line.contains("</Arg3>")) {
+                            arg3 = line.replaceAll("<Arg3>", "").replaceAll("</Arg3>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg4>") && line.contains("</Arg4>")) {
+                            arg4 = line.replaceAll("<Arg4>", "").replaceAll("</Arg4>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg5>") && line.contains("</Arg5>")) {
+                            arg5 = line.replaceAll("<Arg5>", "").replaceAll("</Arg5>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg6>") && line.contains("</Arg6>")) {
+                            arg6 = line.replaceAll("<Arg6>", "").replaceAll("</Arg6>", "");
+                        }
+                        line=from.readLine();
+                        if (line.contains("<Arg7>") && line.contains("</Arg7>")) {
+                            arg7 = line.replaceAll("<Arg7>", "").replaceAll("</Arg7>", "");
+                        }
+                        
+                        //caption 0
+                        line=from.readLine();
+                        
+                        
+                                line=from.readLine();
+                       
+                        line=from.readLine();
+                       
+                        line=from.readLine();
+                       
+                        line=from.readLine();
+                        
+                        line=from.readLine();
+                        
+                        line=from.readLine();
+                       
+                        line=from.readLine();
+                       
                         //print(Basicgame,"{");
-                         print(Basicgame,args);
-                          print(Basicgame,code);
+                         //print(Basicgame,args);
+                          print(Basicgame,code.replaceAll("@arg0", arg0).replaceAll("@arg1", arg1).replaceAll("@arg2", arg2).replaceAll("@arg3", arg3).replaceAll("@arg4", arg4).replaceAll("@arg5", arg5).replaceAll("@arg6", arg6).replaceAll("@arg7", arg7).replaceAll("@applies", "this").replaceAll("@relative", relative));
                        //  print(Basicgame,"}");
                         
                         line=from.readLine();//</Action>
