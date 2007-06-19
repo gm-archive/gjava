@@ -1,7 +1,6 @@
 /*
  *  GameSettings.java
- *  Written by GM_guru (http://www.gm-school.com)
- *  Created using G-java (http://www.g-java.info)
+ *  Created using G-java (http://www.g-java.com)
  */
 package org.gjava.runner;
 import java.awt.*;
@@ -18,7 +17,7 @@ public static boolean show_score = true, show_lives = false, show_health = false
 public static String score_caption = "score:",lives_caption = "lives:", health_caption = "health:";
 
 public static int GameId = 288673;
-public static int FullScreenMode = 0;
+public static boolean FullScreenMode = false;
 //public static int InterpolateColorsBetweenPixels = 0;
 public static int NoBorderWindowMode = 0;
 public static int DisplayCursor = 1;

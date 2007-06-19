@@ -262,7 +262,7 @@ public abstract class Actor extends tile {
      */
     public abstract void Step();
     
-    private void decrease_alarms() {
+   public void decrease_alarms() {
         int dd = 0;
         while (dd < 12) {
             if (alarms[dd] > 0) {
@@ -324,7 +324,7 @@ public abstract class Actor extends tile {
      */
     public abstract void Mouse_event();
     
-    private void mouse_Pressed(int keycode,int xx,int yy) {
+    public void mouse_Pressed(int keycode,int xx,int yy) {
         
     }
     

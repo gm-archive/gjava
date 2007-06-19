@@ -25,6 +25,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
@@ -128,6 +129,7 @@ public final class JGMProject implements Project  {
                     
                     protected void projectClosed() {
                         try {
+                            //ProjectManager.getDefault().saveProject(NbModuleProject.this);
                             org.netbeans.api.project.ProjectManager.getDefault().saveAllProjects();
                         } catch (IOException ex) {
                             Exceptions.printStackTrace(ex);
@@ -190,6 +192,7 @@ public final class JGMProject implements Project  {
         
         
         public  BufferedWriter Filename_java;
+        
         
         
         public String[] getSupportedActions() {
@@ -385,12 +388,15 @@ public final class JGMProject implements Project  {
         
         FileWriter Filename_javaFW;
         
+        FileWriter GameSettingsFW;
+        
         public void openfiles(){
             
             org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             try {
                 BasicgameFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/org/gjava/runner/basicgame.java");
                 Global_javaFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/org/gjava/runner/Global.java");
+                GameSettingsFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/org/gjava/runner/GameSettings.java");
                 Filename_javaFW = new java.io.FileWriter(pro.getProjectDirectory().getPath() + "/" + pro.getProjectDirectory().getName() + ".java");
             } catch (java.lang.Exception e) {
                 msgbox("Error opening FileWriter output file. " + e.getStackTrace(), 0);
@@ -398,6 +404,7 @@ public final class JGMProject implements Project  {
             }
             Basicgame = new java.io.BufferedWriter(BasicgameFW);
             Global_java = new java.io.BufferedWriter(Global_javaFW);
+            Gamesettings = new java.io.BufferedWriter(GameSettingsFW);
             Filename_java = new java.io.BufferedWriter(Filename_javaFW);
             try {
                 print(Basicgame, "");
@@ -446,12 +453,10 @@ public final class JGMProject implements Project  {
                 java.lang.System.out.println("" + e.getStackTrace());
                 closeJava();
             }
-            try {
-                writeloadrooms();
-            } catch (IOException ex) {
-                msgbox("Error writing to load rooms. " , 0);
-                Exceptions.printStackTrace(ex);
-            }
+            
+                writeGamesettings();
+            
+               
         }
         
         private void writeBasicgame() {
@@ -594,7 +599,7 @@ public final class JGMProject implements Project  {
                 copy("Actor.class",path + "Actor.class",true);
                 copy("Runner.class",path + "Runner.class",true);
                 copy("sound.class",path + "sound.class",true);
-                copy("Room.class",path + "Room.class",true);
+                copy("RoomFrame.class",path + "RoomFrame.class",true);
                 copy("MessageBox.class",path + "MessageBox.class",true);
                 copy("RoomPanel.class",path + "RoomPanel.class",true);
                 copy("tile.class",path + "tile.class",true);
@@ -606,54 +611,155 @@ public final class JGMProject implements Project  {
                 copy("GameSettings.class",path + "GameSettings.class",true);
                 copy("Global.class",path + "Global.class",true);
                 copy("INIFile.class",path + "INIFile.class",true);
+                copy("Highscore.class",path + "Highscore.class",true);
+                copy("FileStream.class",path + "FileStream.class",true);
+                copy("Highscore$Score.class",path + "Highscore$Score.class",true);
+                //
+                
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
             
         }
         
-        
-        public void writeloadrooms()
-                throws IOException {
+        public void writeGamesettings()
+        {
             String roomstr = "";
             String eroomstr = "";
             String firstroom = "";
             String lastroom = "";
             String currentroom;
-            String roomarray = "public static int getroom[]= {";
+            BufferedReader from=null;
+        try {
             org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
-            print(Basicgame,"}");
-            Basicgame.close();
-            BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/load_Rooms.java");
-            Basicgame = new BufferedWriter(BasicgameFW);
-            //get list of rooms
-            int subi=0;
+                
+                String path = pro.getProjectDirectory().getPath();
+            from = new java.io.BufferedReader(new FileReader(path+File.separator+"Settings.gjavasettings"));
             
-            FileObject dir = pro.getProjectDirectory().getFileObject("rooms");
+            //write header
+            Gamesettings.write("/*");
+ Gamesettings.write(" *  GameSettings.java");
+Gamesettings.write(" *  Created using G-java (http://www.g-java.com)");
+Gamesettings.write(" */");
+Gamesettings.write("package org.gjava.runner;");
+Gamesettings.write("import java.awt.*;");
+Gamesettings.write("");
+Gamesettings.write("/**");
+Gamesettings.write(" * GameSettings used to set settings for your game/software, may be replaced by functions");
+Gamesettings.write(" * @author G-Java development team");
+Gamesettings.write(" * @version 1.0");
+Gamesettings.write(" */");
+Gamesettings.write("public class GameSettings {");
             
-            //Get the DataObject that represents it
-            DataFolder theDataObject =
-                    DataFolder.findFolder(dir);
-            //Index i = (Index)theDataObject.getNodeDelegate().getLookup().lookup(Index.class);
-            Node[] n = theDataObject.getNodeDelegate().getChildren().getNodes(true);
-           int ii = 0;
-           System.out.println(""+n.length);
-            while (ii < n.length) {
-                System.out.println(""+ii);
-                //for (Enumeration e = dir.getData(false); e.hasMoreElements() ;) {
-                //FileObject f = (FileObject)e.nextElement();
-                Node f = n[ii];
-                subi =  ii;//i.indexOf(f);
+            String line;
+            while ((line=from.readLine()) != null) {
+                
+                if (line.contains("<FullScreen>") && line.contains("</FullScreen>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean FullScreen = true;");
+                    else;
+                        Gamesettings.write("public static boolean FullScreen = false;");
+                }
+                
+                if (line.contains("<Resize>") && line.contains("</Resize>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean Resize = true;");
+                    else
+                        Gamesettings.write("public static boolean Resize = false;");
+                }
+                
+                if (line.contains("<Border>") && line.contains("</Border>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean Border = true;");
+                    else
+                        Gamesettings.write("public static boolean Border = false;");
+                }
+                
+                if (line.contains("<Buttons>") && line.contains("</Buttons>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean Buttons = true;");
+                    else
+                        Gamesettings.write("public static boolean Buttons = false;");
+                }
+                
+                if (line.contains("<Mouse>") && line.contains("</Mouse>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean Mouse = true;");
+                    else
+                        Gamesettings.write("public static boolean Mouse = false;");
+                }
+                
+                if (line.contains("<FPS>") && line.contains("</FPS>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean FPS = true;");
+                    else
+                        Gamesettings.write("public static boolean FPS = false;");
+                }
+                
+                if (line.contains("<SetResolution>") && line.contains("</SetResolution>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean SetResolution = true;");
+                    else
+                        Gamesettings.write("public static boolean SetResolution = false;");
+                }
+                
+                if (line.contains("<Cdepth>") && line.contains("</Cdepth>")) {
+                    line = line.replaceAll("<Cdepth>", "");
+                    line = line.replaceAll("</Cdepth>", "");
+                    System.out.println("button:"+line);
+                    //cdepth.setSelected(m, true);
+                }
+                
+                if (line.contains("<ESC>") && line.contains("</ESC>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean ESC = true;");
+                    else
+                        Gamesettings.write("public static boolean ESC = false;");
+                }
+                
+                if (line.contains("<F4>") && line.contains("</F4>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean F4 = true;");
+                    else
+                        Gamesettings.write("public static boolean F4 = false;");
+                }
+                
+                if (line.contains("<F5F6>") && line.contains("</F5F6>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean F5F6 = true;");
+                    else
+                        Gamesettings.write("public static boolean F5F6 = false;");
+                }
+                
+                if (line.contains("<ShowImage>") && line.contains("</ShowImage>")) {
+                    if (line.contains("True") )
+                        Gamesettings.write("public static boolean ShowImage = true;");
+                    else
+                        Gamesettings.write("public static boolean ShowImage = false;");
+                }
+                
+                if (line.contains("<RoomOrder>")) {
+                    
+                    line=from.readLine();
+                   int ii=0,subi=0;
+                   String roomarray = "public static int getroom[]= {";
+                    while (!line.equals("</RoomOrder>")) {
+                    //GMJRoomData gr = new GMJRoomData();
+                    if (line.contains("<Room>") && line.contains("</Room>")) {
+                    String roomname = line.replaceAll("<Room>", "").replaceAll("</Room>", "");
+                    
+                         subi =  ii;
                 roomstr = roomstr + "    if (roomid ==  " + subi + ") {\n\n";
                 eroomstr = eroomstr + "    if (roomid ==  " + subi + ") {\n\n";
                 
                 currentroom = "" + subi;
                 
-                roomstr = roomstr + "rooms[" + currentroom + "] = new " + f.getName() + "(Room,"
+                roomstr = roomstr + "rooms[" + currentroom + "] = new " + roomname + "(Room,"
                         + currentroom + ",roomid);\n basicgame.Current_room = rooms[" + currentroom
                         + "];\n Room.setSize(rooms[" + currentroom + "].Width,rooms[" + currentroom
                         + "].Height);\n Room.getContentPane().add( rooms[" + currentroom + "]);\n Room.validate();\n }";
-                eroomstr = eroomstr + "rooms[" + currentroom + "] = new " + f.getName() + "(Room,"
+                eroomstr = eroomstr + "rooms[" + currentroom + "] = new " + roomname + "(Room,"
                         + currentroom + ",roomid);\n basicgame.Current_room = rooms[" + currentroom
                         + "];\n maingamep.getContentPane().add( rooms[" + currentroom + "]);\n }";
                 
@@ -665,11 +771,64 @@ public final class JGMProject implements Project  {
                 
                 else {
                     roomarray = roomarray + "," + subi;
+                }   
+                            
+                    }
+                    ii++;
+                    line=from.readLine();
+                    }
+                    
+                    firstroom = ""+subi;
+                    writeloadrooms(roomstr,eroomstr,lastroom,firstroom,subi,roomarray);
                 }
-                //subi++;
-                ii++;
             }
-            firstroom = ""+subi;
+            
+            
+            
+        } catch (Exception ex) {
+            Exceptions.printStackTrace(ex);
+        } finally {
+            try {
+                Gamesettings.write("}");
+                Gamesettings.close();
+                from.close();
+            } catch (IOException ex) {
+                Exceptions.printStackTrace(ex);
+            }
+        }
+        }
+        
+        public void writeloadrooms(String roomstr,String eroomstr,String lastroom,String firstroom,int subi,String roomarray)
+                throws IOException {
+            
+            
+            org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
+            print(Basicgame,"}");
+            Basicgame.close();
+            BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/load_Rooms.java");
+            Basicgame = new BufferedWriter(BasicgameFW);
+            //get list of rooms
+           // int subi=0;
+            
+            //FileObject dir = pro.getProjectDirectory().getFileObject("rooms");
+            
+            //Get the DataObject that represents it
+//            DataFolder theDataObject =
+//                    DataFolder.findFolder(dir);
+            //Index i = (Index)theDataObject.getNodeDelegate().getLookup().lookup(Index.class);
+//            Node[] n = theDataObject.getNodeDelegate().getChildren().getNodes(true);
+         //  int ii = 0;
+//           System.out.println(""+n.length);
+//            while (ii < n.length) {
+//                System.out.println(""+ii);
+                //for (Enumeration e = dir.getData(false); e.hasMoreElements() ;) {
+                //FileObject f = (FileObject)e.nextElement();
+              //  Node f = n[ii];
+                
+                //subi++;
+             //   ii++;
+           // }
+            
             
             // write load_rooms
             print(Basicgame,"package org.gjava.runner;");
@@ -691,7 +850,7 @@ public final class JGMProject implements Project  {
             print(Basicgame,roomarray+ "};");
             print(Basicgame,"");
             print(Basicgame,"load_Rooms(int roomid) {");
-            print(Basicgame,"    JFrame room = new Room(332,92,true, Color.black);");
+            print(Basicgame,"    JFrame room = new RoomFrame(332,92,true, Color.black);");
             
             print(Basicgame,"room.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);");
             //            print(Basicgame,"if (basicgame.Runningas == \"Application\") {");

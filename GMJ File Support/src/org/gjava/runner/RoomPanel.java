@@ -18,7 +18,7 @@ public class RoomPanel extends JPanel implements Runnable {
     int createno = 1; // the number of created tiles and objects
     
     // room variables
-    private static int Width, Height;
+    public static int Width, Height;
     
     /**
      * The room name
@@ -215,6 +215,7 @@ public class RoomPanel extends JPanel implements Runnable {
     
     // end of declaring variables
     
+    public RoomPanel(){}
     
     /**
      * Creates a new RoomPanel object
@@ -259,10 +260,10 @@ public class RoomPanel extends JPanel implements Runnable {
         }
         
         if (dm == null || gd.isFullScreenSupported() == false) {
-            gs.FullScreenMode = 0;
+            gs.FullScreenMode = false;
         }
         
-        if ((gs.FullScreenMode == 1) && (basicgame.Runningas != "EApplet")) {
+        if ((gs.FullScreenMode) && (basicgame.Runningas != "EApplet")) {
             Room.setUndecorated( true ); // No window decorations
             gd.setFullScreenWindow(Room); // Create a full screen window
             gd.setDisplayMode(dm); // Change to our preferred mode
@@ -309,7 +310,7 @@ public class RoomPanel extends JPanel implements Runnable {
      * @return width
      */
     public int get_width() {
-        return width;
+        return Width;
     }
     
     /**
@@ -317,7 +318,7 @@ public class RoomPanel extends JPanel implements Runnable {
      * @return height
      */
     public int get_height() {
-        return height;
+        return Height;
     }
     
     /**
