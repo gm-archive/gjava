@@ -1,5 +1,6 @@
 package org.gjava.welcome;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -25,9 +26,8 @@ final class welcomeformTopComponent extends TopComponent {
     
     private welcomeformTopComponent() {
         initComponents();
-        setName(NbBundle.getMessage(welcomeformTopComponent.class, "CTL_welcomeformTopComponent"));
-        setToolTipText(NbBundle.getMessage(welcomeformTopComponent.class, "HINT_welcomeformTopComponent"));
-    
+        setName(org.openide.util.NbBundle.getMessage(org.gjava.welcome.welcomeformTopComponent.class, "CTL_welcomeformTopComponent"));
+        setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.welcome.welcomeformTopComponent.class, "HINT_welcomeformTopComponent"));        
 //        
 //        HtmlBrowser h = new HtmlBrowser();
 //        h.setHomePage("http://forums.g-java.com") ;
@@ -68,6 +68,8 @@ final class welcomeformTopComponent extends TopComponent {
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        welcomePanel1 = new org.gjava.welcome.html.WelcomePanel();
 
         org.openide.awt.Mnemonics.setLocalizedText(jButton6, "jButton6");
 
@@ -127,6 +129,8 @@ final class welcomeformTopComponent extends TopComponent {
             }
         });
 
+        jScrollPane1.setViewportView(welcomePanel1);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -134,6 +138,7 @@ final class welcomeformTopComponent extends TopComponent {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .add(jLabel1)
                     .add(jLabel2)
                     .add(layout.createSequentialGroup()
@@ -156,7 +161,7 @@ final class welcomeformTopComponent extends TopComponent {
                         .add(jButton8)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton9)))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -184,7 +189,9 @@ final class welcomeformTopComponent extends TopComponent {
                     .add(jButton7)
                     .add(jButton8)
                     .add(jButton9))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -258,6 +265,8 @@ private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:ev
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private org.gjava.welcome.html.WelcomePanel welcomePanel1;
     // End of variables declaration//GEN-END:variables
     
     /**
