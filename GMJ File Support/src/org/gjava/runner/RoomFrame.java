@@ -37,12 +37,10 @@ public class RoomFrame extends JFrame implements WindowListener {
         RoomFrame.height = height;
         this.backcolor = backcolor;
         setBackground(backcolor);
-        //GameSettings gs = new GameSettings();
-        if (GameSettings.AllowResizeGameWindow == 1) {
-            setResizable(true);
-        } else {
-            setResizable(false);
-        }
+        
+        
+            setResizable(GameSettings.Resize);
+        
         
         
         if (decorated == false) {

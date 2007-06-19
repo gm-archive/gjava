@@ -211,7 +211,7 @@ public abstract class Actor extends tile {
     /**
      * Creates a new actor, don't call this, call other constructor
      */
-    Actor(String Object_name,String img,boolean Solid,int Visible,int Depth,int Persistent) {
+    Actor(String Object_name,String img,boolean Solid,boolean Visible,int Depth,int Persistent) {
                 /*
                  * Objects(int id,String Object_name,sprite Object_sprite,sprite Object_mask,double Object_depth, int
                  * Object_solid,int Object_visible,int parent,boolean Object_persistent)
@@ -222,10 +222,8 @@ public abstract class Actor extends tile {
         //if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
         this.image = new ImageIcon(this.getClass().getResource(img.replaceAll("/images", "images")));
         
-        if (Visible==1)
-            this.visible = true;
-        else
-            this.visible = false;
+        
+            this.visible = Visible;
         this.depth = Depth;
         
         this.solid = Solid;
@@ -240,27 +238,27 @@ public abstract class Actor extends tile {
     /**
      * Override with actor create event
      */
-    public abstract void Create_event();
+    public void Create_event(){}
     
     /**
      * Override with actor create event
      */
-    public abstract void Destroy_event();
+    public void Destroy_event(){}
     
     /**
      * Override with actor Begin Step event
      */
-    public abstract void Begin_Step_event();
+    public void Begin_Step_event(){}
     
     /**
      * Override with Alarm event code
      */
-    public abstract void Alarm();
+    public void Alarm(){}
     
     /**
      * Override with actor Step event
      */
-    public abstract void Step();
+    public void Step(){}
     
    public void decrease_alarms() {
         int dd = 0;
@@ -275,7 +273,7 @@ public abstract class Actor extends tile {
     /**
      * Override with actor End Step event
      */
-    public abstract  void End_Step_event();
+    public void End_Step_event(){}
     
     /**
      * Override with actor Key Pressed event
@@ -317,12 +315,12 @@ public abstract class Actor extends tile {
     /**
      * Override with actor Keyboard event
      */
-    public abstract void Keyboard_event();
+    public void Keyboard_event(){}
     
     /**
      * Override with actor mouse event
      */
-    public abstract void Mouse_event();
+    public void Mouse_event(){}
     
     public void mouse_Pressed(int keycode,int xx,int yy) {
         
