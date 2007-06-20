@@ -15,6 +15,7 @@
 package org.gjava.actoreditor;
 
 
+//import org.gjava.spriteeditor.SpriteeditorTopComponent;
 import java.awt.Container;
 import java.awt.Point;
 import java.awt.datatransfer.UnsupportedFlavorException;
@@ -144,7 +145,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         final org.netbeans.spi.palette.PaletteController controller = initializePalette();
         
         content.add(controller);
-        content.add(new SpriteeditorTopComponent());
+        //content.add(new SpriteeditorTopComponent());
         controller.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             
             public void propertyChange(java.beans.PropertyChangeEvent arg0) {
