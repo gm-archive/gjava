@@ -86,6 +86,11 @@
                 <attr name="enabled" boolvalue="true"/>
                 <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center"/>
             </file>
+            <file name="org_gmj_gmjfilesupport_update_center_1.settings" url="org_gmj_gmjfilesupport_update_center_1Settings.xml">
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="enabled" boolvalue="true"/>
+                <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center_1"/>
+            </file>
         </folder>
     </folder>
     <folder name="Templates">

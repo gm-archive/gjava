@@ -502,4 +502,5 @@ public abstract class Actor extends tile {
         // g.drawRect(X+Object_sprite.BBLeft-Object_sprite.sprite_xoffset ,Y +
         // Object_sprite.BBTop-Object_sprite.sprite_yoffset, bbwidth ,bbheight);
     }
+    
 }
