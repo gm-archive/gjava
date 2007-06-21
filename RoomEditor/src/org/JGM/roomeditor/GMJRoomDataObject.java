@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import org.JGM.roomeditor.JGMRoomDataLoader;
 import org.JGM.roomeditor.SaveRoom;
-import org.gmj.gmjfilesupport.*;
+//import org.gmj.gmjfilesupport.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import org.openide.filesystems.FileObject;
