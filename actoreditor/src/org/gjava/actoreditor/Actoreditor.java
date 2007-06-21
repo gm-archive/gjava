@@ -47,7 +47,7 @@ import org.gjava.actoreditor.beans.ActionList;
 import org.netbeans.spi.palette.PaletteActions;
 import org.netbeans.spi.palette.PaletteController;
 import org.netbeans.spi.palette.PaletteFactory;
-import org.openide.explorer.ExplorerManager;
+//import org.openide.explorer.ExplorerManager;
 import org.openide.filesystems.FileLock;
 import org.openide.nodes.Node;
 import org.openide.util.Exceptions;
@@ -71,7 +71,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
    
     
     public String oldDisplayName;
-    private ExplorerManager explorerManager;
+//    private ExplorerManager explorerManager;
     /** Creates new form Actoreditor */
     public Actoreditor(actorDataObject a) {
         this(new InstanceContent());
@@ -139,9 +139,9 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         
         super(new org.openide.util.lookup.AbstractLookup(content));
         
-        explorerManager = new org.openide.explorer.ExplorerManager();
-        explorerManager.addPropertyChangeListener(this);
-        content.add(explorerManager);
+//        explorerManager = new org.openide.explorer.ExplorerManager();
+     //   explorerManager.addPropertyChangeListener(this);
+      //  content.add(explorerManager);
         final org.netbeans.spi.palette.PaletteController controller = initializePalette();
         
         content.add(controller);
@@ -161,10 +161,10 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         
         
         actionList1.setDragEnabled(true);
-        setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
-                "CTL_ActorEditorTopComponent"));
-        setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
-                "HINT_ActorEditorTopComponent"));
+       // setName(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
+              //  "CTL_ActorEditorTopComponent"));
+       // setToolTipText(org.openide.util.NbBundle.getMessage(org.gjava.actoreditor.OLD_ActorEditorTopComponent.class,
+            //    "HINT_ActorEditorTopComponent"));
         setIcon(org.openide.util.Utilities.loadImage(ICON_PATH, true));
         
     }
@@ -1489,18 +1489,18 @@ public static Actoreditor getInstance(String name,actorDataObject a) {
 }
 
 
-final static class ResolvableHelper implements Serializable {
-    private static final long serialVersionUID = 1L;
-    public Object readResolve() {
-        return OLD_ActorEditorTopComponent.getDefault();
-    }
-}
+//final static class ResolvableHelper implements Serializable {
+//    private static final long serialVersionUID = 1L;
+//    public Object readResolve() {
+//        return OLD_ActorEditorTopComponent.getDefault();
+//    }
+//}
 
 public void propertyChange(PropertyChangeEvent evt) {
-    if (evt.getSource() == explorerManager &&
+/*    if (evt.getSource() == explorerManager &&
             ExplorerManager.PROP_SELECTED_NODES.equals(evt.getPropertyName())) {
         setActivatedNodes(explorerManager.getSelectedNodes());
-    }
+    }*/
 }
 
 
