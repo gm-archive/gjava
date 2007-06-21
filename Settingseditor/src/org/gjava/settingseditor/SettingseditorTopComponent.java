@@ -390,6 +390,7 @@ final class SettingseditorTopComponent extends TopComponent {
         jList1 = new javax.swing.JList();
         jButton1 = new javax.swing.JButton();
 
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane1MouseClicked(evt);
@@ -438,7 +439,7 @@ final class SettingseditorTopComponent extends TopComponent {
                     .add(jCheckBox6)
                     .add(jCheckBox1)
                     .add(jCheckBox2))
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -455,15 +456,20 @@ final class SettingseditorTopComponent extends TopComponent {
                 .add(jCheckBox1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox2)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Graphics", jPanel1);
 
+        jCheckBox7.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jCheckBox7, "Set the resolution of the screen");
         jCheckBox7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jCheckBox7.setEnabled(false);
         jCheckBox7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox7MouseClicked(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Colour Depth"));
 
@@ -652,7 +658,7 @@ final class SettingseditorTopComponent extends TopComponent {
                         .add(10, 10, 10)
                         .add(jPanel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jCheckBox7))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -664,7 +670,7 @@ final class SettingseditorTopComponent extends TopComponent {
                     .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(57, 57, 57))
+                .add(111, 111, 111))
         );
 
         jTabbedPane1.addTab("Resolution", jPanel2);
@@ -695,7 +701,7 @@ final class SettingseditorTopComponent extends TopComponent {
                     .add(jCheckBox8)
                     .add(jCheckBox9)
                     .add(jCheckBox10))
-                .addContainerGap(153, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -730,7 +736,7 @@ final class SettingseditorTopComponent extends TopComponent {
                     .add(jPanel9Layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)))
+                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
@@ -760,7 +766,7 @@ final class SettingseditorTopComponent extends TopComponent {
                     .add(jPanel7Layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -774,7 +780,7 @@ final class SettingseditorTopComponent extends TopComponent {
                 .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Other", jPanel7);
@@ -805,8 +811,8 @@ final class SettingseditorTopComponent extends TopComponent {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -815,13 +821,13 @@ final class SettingseditorTopComponent extends TopComponent {
                 .addContainerGap()
                 .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Game  Order", jPanel3);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "save");
+        org.openide.awt.Mnemonics.setLocalizedText(jButton1, "Save");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -832,29 +838,61 @@ final class SettingseditorTopComponent extends TopComponent {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jButton1)
-                .addContainerGap(362, Short.MAX_VALUE))
-            .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(443, Short.MAX_VALUE)
+                .add(jButton1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 293, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-    
-			int to  = jList1.locationToIndex(evt.getPoint());
-			if (to == from) return;
-			GMJRoomData s = (GMJRoomData)roomz.remove(from);
-			roomz.add(to,s);
-			from = to;
-}//GEN-LAST:event_jList1MouseDragged
+private void jCheckBox7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox7MouseClicked
+    // TODO add your handling code here:
+    if(jCheckBox7.isSelected()){
+        jRadioButton1.setEnabled(true);
+        jRadioButton2.setEnabled(true);
+        jRadioButton3.setEnabled(true);
+        jRadioButton4.setEnabled(true);
+        jRadioButton5.setEnabled(true);
+        jRadioButton6.setEnabled(true);
+        jRadioButton7.setEnabled(true);
+        jRadioButton8.setEnabled(true);
+        jRadioButton9.setEnabled(true);
+        jRadioButton10.setEnabled(true);
+        jRadioButton11.setEnabled(true);
+        jRadioButton12.setEnabled(true);
+        jRadioButton13.setEnabled(true);
+        jRadioButton14.setEnabled(true);
+        jRadioButton15.setEnabled(true);
+        jRadioButton16.setEnabled(true);
+    } else{
+        jRadioButton1.setEnabled(false);
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setEnabled(false);
+        jRadioButton3.setEnabled(false);
+        jRadioButton4.setEnabled(false);
+        jRadioButton4.setSelected(true);
+        jRadioButton5.setEnabled(false);
+        jRadioButton6.setEnabled(false);
+        jRadioButton7.setEnabled(false);
+        jRadioButton8.setEnabled(false);
+        jRadioButton9.setEnabled(false);
+        jRadioButton10.setEnabled(false);
+        jRadioButton11.setEnabled(false);
+        jRadioButton11.setSelected(true);
+        jRadioButton12.setEnabled(false);
+        jRadioButton13.setEnabled(false);
+        jRadioButton14.setEnabled(false);
+        jRadioButton15.setEnabled(false);
+        jRadioButton16.setEnabled(false);
+    }
+}//GEN-LAST:event_jCheckBox7MouseClicked
 
 private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
     from = jList1.locationToIndex(evt.getPoint());
@@ -870,8 +908,8 @@ private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
                 if (e.getActionCommand().equals("Delete"))
                     roomz.remove(jList1.locationToIndex(p));
             }
-
-                
+            
+            
         });
         popup.add(menuItem);
         popup.setVisible(true);
@@ -879,14 +917,22 @@ private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:even
         //popup.setLocation(evt.getPoint());
     }
 }//GEN-LAST:event_jList1MousePressed
-    
-private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    savefile();
-}//GEN-LAST:event_jButton1MouseClicked
+
+private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
+    int to  = jList1.locationToIndex(evt.getPoint());
+    if (to == from) return;
+    GMJRoomData s = (GMJRoomData)roomz.remove(from);
+    roomz.add(to,s);
+    from = to;
+}//GEN-LAST:event_jList1MouseDragged
 
 private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
     a.setModified(true);
 }//GEN-LAST:event_jTabbedPane1MouseClicked
+    
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    savefile();
+}//GEN-LAST:event_jButton1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
