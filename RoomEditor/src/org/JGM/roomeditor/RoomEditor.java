@@ -415,6 +415,18 @@ public static GMJRoomDataObject data;
         jButton2 = new javax.swing.JButton();
         jCheckBox2 = new javax.swing.JCheckBox();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
+        topComponent1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                topComponent1MousePressed(evt);
+            }
+        });
+
         jPanel3.setFocusable(false);
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel2.text")); // NOI18N
@@ -423,6 +435,7 @@ public static GMJRoomDataObject data;
 
         jCheckBox1.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox1.text")); // NOI18N
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jCheckBox1.setEnabled(false);
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel1.text")); // NOI18N
@@ -481,6 +494,7 @@ public static GMJRoomDataObject data;
         jTextField4.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jTextField4.text")); // NOI18N
 
         jButton1.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jButton1.text")); // NOI18N
+        jButton1.setEnabled(false);
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
@@ -613,6 +627,7 @@ public static GMJRoomDataObject data;
 
         jCheckBox2.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox2.text")); // NOI18N
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jCheckBox2.setFocusable(false);
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
@@ -677,11 +692,22 @@ public static GMJRoomDataObject data;
         );
     }// </editor-fold>//GEN-END:initComponents
 
-private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-    EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
+private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+    //Update the roompanel
+    canvas.repaint();
+}//GEN-LAST:event_formMouseClicked
 
-JEditorPane jep = new JEditorPane();
-jep.setEditorKit(kit);
+private void topComponent1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_topComponent1MousePressed
+    //Update the roompanel
+    canvas.repaint();
+}//GEN-LAST:event_topComponent1MousePressed
+
+private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+ //show creation code (removed from lite version)
+    //EditorKit kit = CloneableEditorSupport.getEditorKit("text/x-java");
+
+//JEditorPane jep = new JEditorPane();
+//jep.setEditorKit(kit);
 //JComponent myEditorComponent = 
   //ExtUtilities.getExtEditorUI( jep ).getExtComponent();
  

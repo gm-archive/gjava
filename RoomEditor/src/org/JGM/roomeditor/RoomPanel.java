@@ -1,10 +1,8 @@
 /*
  * RoomPanel.java
  *
- * Created on 27 February 2007, 23:23
  *
- * To change this template, choose Tools | Template Manager
- * and open the template in the editor.
+ * This the is panel in the romm editor that displays the actual room!
  */
 
 package org.JGM.roomeditor;
