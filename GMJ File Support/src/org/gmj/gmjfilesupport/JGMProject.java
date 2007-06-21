@@ -29,13 +29,13 @@ import java.io.FileReader;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import org.netbeans.api.java.classpath.ClassPath;
-import org.netbeans.api.java.classpath.GlobalPathRegistry;
+//import org.netbeans.api.java.classpath.ClassPath;
+//import org.netbeans.api.java.classpath.GlobalPathRegistry;
 import org.netbeans.api.progress.ProgressHandle;
 import org.netbeans.api.progress.ProgressHandleFactory;
 import org.netbeans.api.project.Project;
 import org.netbeans.api.project.ProjectInformation;
-import org.netbeans.spi.java.classpath.support.ClassPathSupport;
+//import org.netbeans.spi.java.classpath.support.ClassPathSupport;
 import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
@@ -122,8 +122,9 @@ public final class JGMProject implements Project  {
                 logicalView,new ProjectOpenedHook(){
                     
                     protected void projectOpened() {
-                        ClassPath[] cp = new ClassPath[]{ClassPathSupport.createClassPath(new FileObject[]{projectDir})};
-                        GlobalPathRegistry.getDefault().register(ClassPath.COMPILE,cp);
+                        //TODO add into full version
+                        //ClassPath[] cp = new ClassPath[]{ClassPathSupport.createClassPath(new FileObject[]{projectDir})};
+                        //GlobalPathRegistry.getDefault().register(ClassPath.COMPILE,cp);
                         
                     }
                     
