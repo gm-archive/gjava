@@ -21,11 +21,13 @@ public class instance {
         public String actor = "Actor";
         public ImageIcon img;
         public Rectangle r;
-        instance(int x,int y,String actor,ImageIcon img) {
+        public boolean locked = false;
+        instance(int x,int y,String actor,ImageIcon img,boolean locked) {
             this.x =x;
             this.y = y;
             this.actor=actor;
             this.img =img;
+            this.locked = locked;
             this.r = new Rectangle(x,y,img.getImage().getWidth(null),img.getImage().getHeight(null));
             System.out.println(""+img.getImage().getWidth(null));
         }

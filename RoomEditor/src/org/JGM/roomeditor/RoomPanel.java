@@ -11,14 +11,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Line2D;
 import java.util.Enumeration;
 import java.util.Vector;
-import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -165,8 +164,8 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
             for (Enumeration e = instances.elements() ; e.hasMoreElements() ;) {
                 instance i = (instance)e.nextElement();
                 if (i.r.contains(arg0.getX(),arg0.getY())) {
-                    if(arg0.getButton()==arg0.BUTTON3) {
-                        
+                    if(!i.locked) {
+                        JOptionPane.showMessageDialog(rm, "delete!");
                         instances.remove(ii) ;
                         rm.data.setModified(true);
                     }
@@ -184,7 +183,10 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     public void mouseReleased(MouseEvent arg0) {
         if (!rm.actor.equals(""))
         if(arg0.getButton()==arg0.BUTTON1){
-            instances.add(new instance(arg0.getX(),arg0.getY(),rm.actor,rm.actorimg));
+            double tempx = arg0.getX()/Double.parseDouble(rm.jTextField5.getText()) * Math.round(Double.parseDouble(rm.jTextField5.getText()));
+            double tempy = arg0.getY()/Double.parseDouble(rm.jTextField6.getText()) * Math.round(Double.parseDouble(rm.jTextField6.getText()));
+
+            instances.add(new instance((int)tempx,(int)tempy,rm.actor,rm.actorimg,false));
             rm.data.setModified(true);
         }
     }

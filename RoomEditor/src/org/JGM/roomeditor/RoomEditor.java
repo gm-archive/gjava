@@ -216,7 +216,9 @@ public static GMJRoomDataObject data;
             if (line.equals("<Instance>"))
             {
                 line=from.readLine();
-                String name="",img="",code="";
+                String name="";
+                String img="";
+                String code="";
                 if (line.contains("<Name>") && line.contains("</Name>"))
                 {
                     name = line.replaceAll("<Name>", "").replaceAll("</Name>", "");
@@ -242,8 +244,16 @@ public static GMJRoomDataObject data;
                     
                 }
                 
+                boolean locked=false;
                 line=from.readLine();
-                canvas.instances.add(new instance(Integer.parseInt(x),Integer.parseInt(y),name,new ImageIcon(img)));
+                if (line.contains("<Locked>") && line.contains("</Locked>"))
+                {
+                   locked = Boolean.parseBoolean(line.replaceAll("<Locked>", "").replaceAll("</Locked>", ""));
+                    
+                }
+                
+                line=from.readLine();
+                canvas.instances.add(new instance(Integer.parseInt(x),Integer.parseInt(y),name,new ImageIcon(img),locked));
    
                    
             }
@@ -329,6 +339,7 @@ public static GMJRoomDataObject data;
                     to.println("<Image>"+v.img+"</Image>");
                     to.println("<X>"+v.x+"</X>");
                     to.println("<Y>"+v.y+"</Y>");
+                    to.println("<Locked>"+v.locked+"</Locked>");
                     to.println("</Instance>");
                 }
             }
@@ -341,6 +352,8 @@ public static GMJRoomDataObject data;
         {
             Exceptions.printStackTrace(ex);
         }
+
+
         finally
         {
             lock.releaseLock();
@@ -414,10 +427,18 @@ public static GMJRoomDataObject data;
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jCheckBox2 = new javax.swing.JCheckBox();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
+        setDoubleBuffered(true);
+        setFocusCycleRoot(true);
+        setFocusable(true);
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                formMousePressed(evt);
             }
         });
 
@@ -598,6 +619,7 @@ public static GMJRoomDataObject data;
 
         jSplitPane1.setLeftComponent(jTabbedPane2);
 
+        jScrollPane3.setDoubleBuffered(true);
         jScrollPane3.setFocusCycleRoot(true);
         jSplitPane1.setRightComponent(jScrollPane3);
 
@@ -629,6 +651,25 @@ public static GMJRoomDataObject data;
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setFocusable(false);
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox2MouseClicked(evt);
+            }
+        });
+
+        jButton4.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jButton4.text")); // NOI18N
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
+
+        jButton5.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jButton5.text")); // NOI18N
+        jButton5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton5KeyPressed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -649,7 +690,11 @@ public static GMJRoomDataObject data;
                 .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 37, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(17, 17, 17)
                 .add(jCheckBox2)
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton5)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -660,7 +705,9 @@ public static GMJRoomDataObject data;
                 .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(jLabel8)
                 .add(jTextField6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(jCheckBox2))
+                .add(jCheckBox2)
+                .add(jButton4)
+                .add(jButton5))
         );
 
         org.jdesktop.layout.GroupLayout topComponent1Layout = new org.jdesktop.layout.GroupLayout(topComponent1);
@@ -669,7 +716,7 @@ public static GMJRoomDataObject data;
             topComponent1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(topComponent1Layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(829, Short.MAX_VALUE))
+                .addContainerGap(859, Short.MAX_VALUE))
             .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 1517, Short.MAX_VALUE)
         );
         topComponent1Layout.setVerticalGroup(
@@ -691,6 +738,33 @@ public static GMJRoomDataObject data;
             .add(topComponent1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
+    canvas.repaint();
+}//GEN-LAST:event_jCheckBox2MouseClicked
+
+private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
+    canvas.repaint();
+}//GEN-LAST:event_formMousePressed
+
+private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+    Enumeration n = canvas.instances.elements();
+    while(n.hasMoreElements())
+   {
+       instance i = (instance)n.nextElement();
+       i.locked = true;
+   }
+}//GEN-LAST:event_jButton4MouseClicked
+
+private void jButton5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton5KeyPressed
+    
+    Enumeration n = canvas.instances.elements();
+    while(n.hasMoreElements())
+   {
+       instance i = (instance)n.nextElement();
+       i.locked = false;
+   }
+}//GEN-LAST:event_jButton5KeyPressed
 
 private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
     //Update the roompanel
@@ -728,10 +802,12 @@ private void jTextField7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST
     
     if (newColor != null)
         jTextField7.setBackground(newColor);
+    canvas.repaint();
 }//GEN-LAST:event_jTextField7MouseClicked
 
 private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
     canvas.instances = new Vector();
+    canvas.repaint();
 }//GEN-LAST:event_jButton3MouseClicked
 
 private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -777,6 +853,8 @@ public void pack()
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBox jCheckBox1;
     public javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
