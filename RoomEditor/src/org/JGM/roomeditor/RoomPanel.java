@@ -165,7 +165,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
                 instance i = (instance)e.nextElement();
                 if (i.r.contains(arg0.getX(),arg0.getY())) {
                     if(!i.locked) {
-                        JOptionPane.showMessageDialog(rm, "delete!");
+                        
                         instances.remove(ii) ;
                         rm.data.setModified(true);
                     }
@@ -183,12 +183,14 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
     public void mouseReleased(MouseEvent arg0) {
         if (!rm.actor.equals(""))
         if(arg0.getButton()==arg0.BUTTON1){
-            double tempx = arg0.getX()/Double.parseDouble(rm.jTextField5.getText()) * Math.round(Double.parseDouble(rm.jTextField5.getText()));
-            double tempy = arg0.getY()/Double.parseDouble(rm.jTextField6.getText()) * Math.round(Double.parseDouble(rm.jTextField6.getText()));
+            //JOptionPane.showMessageDialog(rm, "snap!");
+            double tempx = Math.floor(arg0.getX()/Double.parseDouble(rm.jTextField5.getText())) * Math.round(Double.parseDouble(rm.jTextField5.getText()));
+            double tempy = Math.floor(arg0.getY()/Double.parseDouble(rm.jTextField6.getText())) * Math.round(Double.parseDouble(rm.jTextField6.getText()));
 
             instances.add(new instance((int)tempx,(int)tempy,rm.actor,rm.actorimg,false));
             rm.data.setModified(true);
         }
+        repaint();
     }
     
     public void mouseEntered(MouseEvent arg0) {
