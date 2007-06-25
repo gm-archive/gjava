@@ -164,7 +164,7 @@ public class RoomPanel extends JPanel implements MouseListener,Runnable {
             for (Enumeration e = instances.elements() ; e.hasMoreElements() ;) {
                 instance i = (instance)e.nextElement();
                 if (i.r.contains(arg0.getX(),arg0.getY())) {
-                    if(!i.locked) {
+                    if(i.locked == false) {
                         
                         instances.remove(ii) ;
                         rm.data.setModified(true);
