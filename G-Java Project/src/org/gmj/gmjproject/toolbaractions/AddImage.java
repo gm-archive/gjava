@@ -77,7 +77,7 @@ public final class AddImage extends CallableSystemAction
     
     protected String iconResource()
     {
-        return "org/gmj/gmjproject/toolbaractions/background.png";
+        return "org/gmj/gmjproject/toolbaractions/Add_Background_1.png";
     }
     
     public HelpCtx getHelpCtx()

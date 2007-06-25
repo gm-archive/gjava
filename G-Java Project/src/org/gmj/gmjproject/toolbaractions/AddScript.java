@@ -174,7 +174,7 @@ public final class AddScript extends CallableSystemAction {
     }
     
     protected String iconResource() {
-        return "org/gmj/gmjproject/toolbaractions/script.png";
+        return "org/gmj/gmjproject/toolbaractions/Add_Script_1.png";
     }
     
     public HelpCtx getHelpCtx() {

@@ -42,7 +42,7 @@ public final class AddActor extends CallableSystemAction
     
     protected String iconResource()
     {
-        return "org/gmj/gmjproject/toolbaractions/object.png";
+        return "org/gmj/gmjproject/toolbaractions/Add_Actor_1.png";
     }
     
     public HelpCtx getHelpCtx()

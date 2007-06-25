@@ -47,7 +47,7 @@ public final class AddRoom extends CallableSystemAction
     
     protected String iconResource()
     {
-        return "org/gmj/gmjproject/toolbaractions/room.png";
+        return "org/gmj/gmjproject/toolbaractions/Add_Room_1.png";
     }
     
     public HelpCtx getHelpCtx()

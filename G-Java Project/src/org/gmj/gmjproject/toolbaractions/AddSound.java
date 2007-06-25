@@ -79,7 +79,7 @@ public final class AddSound extends CallableSystemAction
     
     protected String iconResource()
     {
-        return "org/gmj/gmjproject/toolbaractions/sound.png";
+        return "org/gmj/gmjproject/toolbaractions/Add_Sound_1.png";
     }
     
     public HelpCtx getHelpCtx()
