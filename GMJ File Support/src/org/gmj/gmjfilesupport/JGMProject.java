@@ -41,6 +41,7 @@ import org.netbeans.spi.project.ProjectState;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.netbeans.spi.project.ui.ProjectOpenedHook;
 import org.openide.ErrorManager;
+import org.openide.actions.SaveAllAction;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
@@ -49,6 +50,9 @@ import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.RequestProcessor;
 import org.openide.util.Utilities;
+import org.openide.util.actions.CallableSystemAction;
+import org.openide.util.actions.CookieAction;
+import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -209,7 +213,7 @@ public final class JGMProject implements Project  {
             int idx = Arrays.asList(getSupportedActions()).indexOf(string);
             
             switch (idx) {
-            case 0 : //build
+                        case 0 : //build
                 // final RendererService ren = (RendererService) getLookup().lookup(RendererService.class);
                 RequestProcessor.getDefault().post(new Runnable() {
                     public void run() {
@@ -239,7 +243,9 @@ public final class JGMProject implements Project  {
             case 3:{
                 final ProgressHandle handle = ProgressHandleFactory.createHandle("Compiling...");
                 handle.start();
-                
+                //Save all
+                CallableSystemAction c = (CallableSystemAction)org.openide.util.actions.SystemAction.get(org.openide.actions.SaveAllAction.class);
+                c.performAction();
                 final org.openide.windows.InputOutput io = org.openide.windows.IOProvider.getDefault().getIO("Run",true);
                 
                 Runnable runner = new Runnable() {
@@ -367,8 +373,6 @@ public final class JGMProject implements Project  {
                     
                     
             }
-            default :
-                //throw new IllegalArgumentException(string);
             }
             
         }
@@ -658,9 +662,9 @@ Gamesettings.write("public class GameSettings {");
                 
                 if (line.contains("<FullScreen>") && line.contains("</FullScreen>")) {
                     if (line.contains("True") )
-                        Gamesettings.write("public static boolean FullScreen = true;");
+                        Gamesettings.write("public static boolean FullScreenMode = true;");
                     else;
-                        Gamesettings.write("public static boolean FullScreen = false;");
+                        Gamesettings.write("public static boolean FullScreenMode = false;");
                 }
                 
                 if (line.contains("<Resize>") && line.contains("</Resize>")) {
@@ -686,9 +690,9 @@ Gamesettings.write("public class GameSettings {");
                 
                 if (line.contains("<Mouse>") && line.contains("</Mouse>")) {
                     if (line.contains("True") )
-                        Gamesettings.write("public static boolean Mouse = true;");
+                        Gamesettings.write("public static boolean DisplayCursor = true;");
                     else
-                        Gamesettings.write("public static boolean Mouse = false;");
+                        Gamesettings.write("public static boolean DisplayCursor = false;");
                 }
                 
                 if (line.contains("<FPS>") && line.contains("</FPS>")) {
@@ -776,12 +780,14 @@ Gamesettings.write("public class GameSettings {");
                             
                     }
                     ii++;
+                    subi = ii;
                     line=from.readLine();
                     }
                     
                     lastroom = ""+subi;
                     if (subi == 0) {
                     JOptionPane.showMessageDialog(null, "You haven't selected the room order! You can do this in the Settings.gjavasettings file");
+                    return;
                     }
                     writeloadrooms(roomstr,eroomstr,lastroom,firstroom,subi,roomarray);
                 }

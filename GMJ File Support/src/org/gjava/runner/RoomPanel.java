@@ -247,7 +247,7 @@ public class RoomPanel extends JPanel implements Runnable {
         // room creation code
         Creation_code();
         
-        if (gs.DisplayCursor == 0) {
+        if (!gs.DisplayCursor) {
             
             // hide the cursor
             runr.hidecursor(Room);
