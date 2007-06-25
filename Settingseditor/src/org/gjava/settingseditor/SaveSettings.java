@@ -44,12 +44,12 @@ public class SaveSettings implements SaveCookie {
             {
                 SettingseditorTopComponent elc = (SettingseditorTopComponent)tc;
                 
-                if (a.pf2.getPath().equals(elc.path))
-                {
+                //if (a.pf2.getPath().equals(elc.path))
+               // {
                     //elc.requestActive();
                     elc.savefile();
                     
-                }
+               // }
             }
         }
       a.setModified(false);
