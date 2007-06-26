@@ -3,6 +3,7 @@ package org.gmj.gmjproject.toolbaractions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
