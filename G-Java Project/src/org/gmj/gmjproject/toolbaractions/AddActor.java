@@ -2,6 +2,7 @@ package org.gmj.gmjproject.toolbaractions;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 import org.openide.util.Exceptions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
@@ -19,6 +20,7 @@ public final class AddActor extends CallableSystemAction
             //check if a project is open
             if (pro == null)
            {
+                JOptionPane.showMessageDialog(null, "No project open!");
             return;   
            }
             

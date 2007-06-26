@@ -18,6 +18,7 @@ public final class AddRoom extends CallableSystemAction
              //check if a project is open
             if (pro == null)
            {
+                JOptionPane.showMessageDialog(null, "No project open!");
             return;   
            }
             

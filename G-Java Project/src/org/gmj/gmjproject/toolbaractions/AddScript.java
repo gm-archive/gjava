@@ -25,6 +25,7 @@ public final class AddScript extends CallableSystemAction {
             org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             //check if a project is open
             if (pro == null) {
+                JOptionPane.showMessageDialog(null, "No project open!");
                 return;
             }
             java.io.File f = new java.io.File(pro.getProjectDirectory().getPath() +

@@ -20,6 +20,7 @@ public final class AddImage extends CallableSystemAction
                      //check if a project is open
             if (pro == null)
            {
+                JOptionPane.showMessageDialog(null, "No project open!");
             return;   
            }
         JFileChooser fc = new JFileChooser();
