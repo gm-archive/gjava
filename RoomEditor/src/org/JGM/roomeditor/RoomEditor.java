@@ -575,6 +575,7 @@ public static GMJRoomDataObject data;
         jCheckBox3.setSelected(true);
         jCheckBox3.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jCheckBox3.text")); // NOI18N
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        jCheckBox3.setEnabled(false);
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jLabel10.setText(org.openide.util.NbBundle.getMessage(RoomEditor.class, "RoomEditor.jLabel10.text")); // NOI18N
