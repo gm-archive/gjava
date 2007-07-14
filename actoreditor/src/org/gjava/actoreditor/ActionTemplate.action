@@ -1,5 +1,5 @@
 id=id1
 displayName=ActionTemplate
-icon16=org/gjava/actoreditor/actions/GM_Move.gif
-icon32=org/gjava/actoreditor/actions/GM_Move.gif
+icon16=org/gjava/actoreditor/actions/images/actionback.png
+icon32=org/gjava/actoreditor/actions/images/actionback.png
 comment=This is an Action

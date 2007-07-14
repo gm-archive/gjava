@@ -72,13 +72,16 @@ implements Lookup.Provider {
 
     public void writejava()
      throws IOException {
+        
+        if (this.getName().equals("Actor"))
+            return;
         //System.out.println("Write java");
         org.netbeans.api.project.Project pro = org.netbeans.api.project.ui.OpenProjects.getDefault().getMainProject();
             
    FileWriter BasicgameFW = new FileWriter(pro.getProjectDirectory().getPath()+"/org/gjava/runner/"+this.getName()+".java");
 BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
     BufferedReader from=new BufferedReader(new InputStreamReader(this.getPrimaryFile().getInputStream()));
-    String line="",solid="solid",visible="v",eventcode="",relative="",applies="";
+    String line="",solid="false",visible="false",eventcode="",relative="",applies="";
    String arg0 = "";
         String arg1 = "";
         String arg2 = "";
@@ -290,7 +293,10 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 }
                 print(Basicgame,"    }");
        if (name.equals("Draw Event"))
+       {
            print(Basicgame,"    }");
+           print(Basicgame,"    }");
+       }
        if (name.contains("Alarm"))
              print(Basicgame,"    }");
             }

@@ -8,6 +8,7 @@
     <target name="netbeans" depends="package-samples,projectized-common.netbeans"/>
 
     <target name="package-samples">
+        <copy file="${basedir}/src/org/gjava/runner/EGML.java" tofile="${basedir}/src/org/gjava/runner/EGML.java2"/>
         <delete file="${basedir}/src/org/gmj/gmjfilesupport/EmptyJGMProject.zip"/>
         <delete file="${basedir}/src/org/gmj/gmjfilesupport/SampleJGMProject.zip"/>
         <zip compress="9" basedir="${basedir}\src\org\gmj\templates\EmptyJGMProject\"
@@ -16,6 +17,8 @@
             zipfile="${basedir}/src/org/gmj/gmjfilesupport/SampleJGMProject.zip"/>
     </target>
 
+    
+    
 <!-- <target name="runner">
 <copy todir="${basedir}\src\org\gmj\templates\EmptyJGMProject\org\gjava\runner\">
       <fileset dir="${basedir}/src/org/gjava/runner/">

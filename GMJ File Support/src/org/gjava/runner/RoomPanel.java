@@ -18,7 +18,8 @@ public class RoomPanel extends JPanel implements Runnable {
     int createno = 1; // the number of created tiles and objects
     
     // room variables
-    public static int Width, Height;
+    public int Width;
+    public int Height;
     
     /**
      * The room name
@@ -239,6 +240,7 @@ public class RoomPanel extends JPanel implements Runnable {
         this.backcolor = backcolor;
         this.Caption = Caption;
         this.period = (int) (1000.0 / speed);
+        this.graphics = this.getGraphics();
         if (basicgame.Runningas != "EApplet") {
             totalElapsedTime = System.currentTimeMillis();
             R.setSize(640,620);
@@ -328,15 +330,15 @@ public class RoomPanel extends JPanel implements Runnable {
         // update the jframe caption
         String local_caption = Caption;
         if (GameSettings.show_score)
-            local_caption = local_caption + " " + Functions.score.score_caption + Functions.score.score;
+            local_caption = local_caption + " " + EGML.score.score_caption + EGML.score.score;
         
         if (GameSettings.show_lives)
-            local_caption = local_caption + " " + Functions.score.lives_caption + Functions.score.lives;
+            local_caption = local_caption + " " + EGML.score.lives_caption + EGML.score.lives;
         
         if (GameSettings.show_health)
-            local_caption = local_caption + " " + Functions.score.health_caption + Functions.score.health;
+            local_caption = local_caption + " " + EGML.score.health_caption + EGML.score.health;
         
-        if (basicgame.Runningas == "EApplet") {
+        if (basicgame.Runningas.equals("EApplet")) {
             // use the statusbar as caption
             basicgame.Eapplet.showStatus("" + local_caption);
         } else {

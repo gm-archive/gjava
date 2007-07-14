@@ -218,9 +218,20 @@ public class Actioneditor extends TopComponent {
         jTextField5 = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
 
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+
         jLabel1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel1.text")); // NOI18N
 
         jTextField1.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jTextField1.text")); // NOI18N
+        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(Actioneditor.class, "Actioneditor.jLabel2.text")); // NOI18N
 
@@ -566,6 +577,14 @@ public class Actioneditor extends TopComponent {
                 .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    a.setModified(true);
+}//GEN-LAST:event_jTextField1MouseClicked
+
+private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+    a.setModified(true);
+}//GEN-LAST:event_formMouseClicked
     
 private void jEditorPane2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane2KeyPressed
     a.setModified(true);

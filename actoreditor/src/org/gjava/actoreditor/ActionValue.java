@@ -42,6 +42,11 @@ public class ActionValue {
     public String caption5 = "";
     public String caption6 = "";
     public String caption7 = "";
+    public static final int APPLY_TO_THIS = 0;
+    public static final int APPLY_TO_OTHER = 1;
+    public static final int APPLY_TO_ACTOR = 2;
+    public int applyto = APPLY_TO_THIS;
+    public String applyactor = "";
     
     public  ActionValue(){}
     

@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
  * @author G-Java development team
  * @version 1.0
  */
-public abstract class Actor extends tile {
+public class Actor extends tile {
     /**
      * The Actor name
      */
@@ -220,6 +220,7 @@ public abstract class Actor extends tile {
         this.alarms = new int[20];
         this.name = Object_name;
         //if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
+        if (!img.equals("null"))
         this.image = new ImageIcon(this.getClass().getResource(img.replaceAll("/images", "images")));
         
         

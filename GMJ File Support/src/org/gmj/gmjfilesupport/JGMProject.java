@@ -337,6 +337,8 @@ public final class JGMProject implements Project  {
                             sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + pro.getProjectDirectory().getName()
                                     + ".jar manifest.txt *.class org");
                             jar.run(args);
+                            //jar.wait();
+                            jar = null;
                             printStream.close();
                             io.getOut().close();
                             
@@ -348,11 +350,43 @@ public final class JGMProject implements Project  {
                             io.getOut().println("Running jar as application...");
                             //io.getErr().
                             try {
+                                if (System.getProperty("os.name").contains("Windows") )
+                                {
+                                    //run .bat file
+                                    FileWriter      batFW = new FileWriter(pro.getProjectDirectory().getPath() + "/runapp.bat");
+                            BufferedWriter bat = new BufferedWriter(batFW);
+                            print(bat,"java -jar \""+ pro.getProjectDirectory().getPath()  + File.separator+pro.getProjectDirectory().getName()+".jar\" 2> \"" + pro.getProjectDirectory().getPath() + "/errors.log\"");
+                            print(bat,"pause");
+                            bat.close();
+                            printStream = new java.io.PrintStream(new java.io.File(pro.getProjectDirectory().getPath() +"gjavalog"));
+                            java.lang.System.setErr(printStream);
+                            Process  p = Runtime.getRuntime().exec(
+                                        "cmd /C \"" + pro.getProjectDirectory().getPath() + "/runapp.bat\" ");
+                            PrintStream pp = new PrintStream(p.getOutputStream());
+                            io.getErr().println("CHECK ERRORS.LOG FOR ANY RUNTIME ERRORS!!!!!!!");
+                            Thread.sleep(3500);
+                            fstream = new FileInputStream(new java.io.File(pro.getProjectDirectory().getPath() +"/errors.log"));
+                            
+                            
+                            // Convert our input stream to a
+                            // DataInputStream
+                            in = new BufferedReader(new InputStreamReader(fstream));
+                            
+                            // Continue to read lines while
+                            // there are still some left to read
+                            
+                            while ((thisline = in.readLine()) != null) {
+                                io.getErr().println(thisline);
+                            }
+                    
+        //p.waitFor();
+                                } else {
                                 Process  p = Runtime.getRuntime().exec(
                                         "Java -jar " + "\"" + pro.getProjectDirectory().getPath()  + File.separator + pro.getProjectDirectory().getName() + ".jar\"");
                                 java.lang.System.setOut(new PrintStream(p.getOutputStream()));
                                 
-                                //p.wait();
+                                p.waitFor();
+                                }
                                 
                                 
                                 
@@ -599,8 +633,8 @@ public final class JGMProject implements Project  {
                 copy("StartPanel.class",path + "StartPanel.class",true);
                 copy("font.class",path + "font.class",true);
                 copy("Background.class",path + "Background.class",true);
-                copy("Functions.class",path + "Functions.class",true);
-                copy("Functions.java2",path + "Functions.java",true);
+                copy("EGML.class",path + "EGML.class",true);
+                copy("EGML.java2",path + "EGML.java",true);
                 copy("Actor.class",path + "Actor.class",true);
                 copy("Runner.class",path + "Runner.class",true);
                 copy("sound.class",path + "sound.class",true);

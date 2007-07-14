@@ -272,8 +272,8 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel3)
-                .addContainerGap(253, Short.MAX_VALUE))
-            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                .addContainerGap(266, Short.MAX_VALUE))
+            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -336,10 +336,12 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             }
         });
 
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Solid");
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
+        jCheckBox2.setSelected(true);
         jCheckBox2.setText("Visible");
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -352,6 +354,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
         jLabel5.setText("Depth:");
 
         jTextField1.setText("0");
+        jTextField1.setEnabled(false);
 
         jCheckBox3.setText("Relative");
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -432,19 +435,19 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(jLabel11)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                        .add(jTextField6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(jLabel12)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                        .add(jTextField7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(jLabel13)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE))
+                        .add(jTextField8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                     .add(jPanel5Layout.createSequentialGroup()
                         .add(jLabel14)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                        .add(jTextField9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -500,7 +503,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
             .add(jPanel3Layout.createSequentialGroup()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel6)
-                    .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                    .add(jLabel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
                     .add(jPanel3Layout.createSequentialGroup()
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel3Layout.createSequentialGroup()
@@ -512,16 +515,16 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(jLabel16, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jRadioButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                                .add(jRadioButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jRadioButton2)
                                 .add(9, 9, 9)))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jRadioButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                        .add(jRadioButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jPanel5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .add(jTextField10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))))
+                            .add(jTextField10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -630,8 +633,8 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                     .add(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(MouseButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                            .add(CreateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(MouseButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                            .add(CreateButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, OtherButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -643,16 +646,16 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel6Layout.createSequentialGroup()
-                                .add(StepButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(StepButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(CollisionButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(KeyboardButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .add(jPanel6Layout.createSequentialGroup()
-                                .add(KPButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .add(KPButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(KRButton, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -696,7 +699,7 @@ public class Actoreditor extends TopComponent implements PropertyChangeListener 
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE))
+                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
                 .addContainerGap())
             .add(jPanel3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -878,6 +881,14 @@ private void actionList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
         oldav.arg6 = this.jTextField8.getText();
         oldav.arg7 = this.jTextField9.getText();
         oldav.relative = this.jCheckBox3.isSelected();
+        if(this.jRadioButton1.isSelected())
+            oldav.applyto = ActionValue.APPLY_TO_THIS;
+        else if(this.jRadioButton2.isSelected())
+            oldav.applyto = ActionValue.APPLY_TO_OTHER;
+        else{
+            oldav.applyto = ActionValue.APPLY_TO_ACTOR;
+        }
+        oldav.applyactor = this.jTextField10.getText();
     }
     oldav = (ActionValue)actionList1.getSelectedValue();
     this.jTextField2.setText(((ActionValue)actionList1.getSelectedValue()).arg0);
@@ -898,6 +909,25 @@ private void actionList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {
     else
         this.jCheckBox3.setVisible(false);
     
+    //set applies
+    int _applyto = ((ActionValue)actionList1.getSelectedValue()).applyto;
+    if(_applyto==ActionValue.APPLY_TO_THIS){
+        this.jRadioButton1.setSelected(true);
+        this.jRadioButton2.setSelected(false);
+        this.jRadioButton3.setSelected(false);
+    }
+    else if(_applyto==ActionValue.APPLY_TO_OTHER){
+        this.jRadioButton1.setSelected(false);
+        this.jRadioButton2.setSelected(true);
+        this.jRadioButton3.setSelected(false);
+    }
+    else{
+        this.jRadioButton1.setSelected(false);
+        this.jRadioButton2.setSelected(false);
+        this.jRadioButton3.setSelected(true);
+    }
+    this.jTextField10.setText(((ActionValue)actionList1.getSelectedValue()).applyactor);
+            
     //show applies
     if (((ActionValue)actionList1.getSelectedValue()).showapplies)
     {
@@ -1175,6 +1205,8 @@ private void savefile() {
                         to.println("<Caption5>"+vv.caption5+"</Caption5>");
                         to.println("<Caption6>"+vv.caption6+"</Caption6>");
                         to.println("<Caption7>"+vv.caption7+"</Caption7>");
+                        to.println("<ApplyTo>"+vv.applyto+"</ApplyTo>");
+                        to.println("<ApplyActor>"+vv.applyactor.replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">", "&gt;")+"</ApplyActor>");
                         to.println("</Action>");
                     }
                     to.println("</Event>");
@@ -1219,6 +1251,8 @@ public void openfile() throws Exception {
         String arg5 = "";
         String arg6 = "";
         String arg7 = "";
+        int applyto = 0;
+        String applyActor = "";
         
         while ((line=from.readLine()) != null) {
             if (line.contains("<Image>") && line.contains("</Image>")) {
@@ -1366,6 +1400,21 @@ public void openfile() throws Exception {
                         if (line.contains("<Caption7>") && line.contains("</Caption7>")) {
                             caption7 = line.replaceAll("<Caption7>", "").replaceAll("</Caption7>", "");
                         }
+                        line=from.readLine();
+                        if (line.contains("<ApplyTo>") && line.contains("</ApplyTo>")) {
+                            String x = line.replaceAll("<ApplyTo>", "").replaceAll("</ApplyTo>", "");
+                            if(x.equals("0"))
+                                applyto = ActionValue.APPLY_TO_THIS;
+                            else if(x.equals("1"))
+                                applyto = ActionValue.APPLY_TO_OTHER;
+                            else
+                                applyto = ActionValue.APPLY_TO_ACTOR;
+                        }
+                        line=from.readLine();
+                        if (line.contains("<ApplyActor>") && line.contains("</ApplyActor>")) {
+                            String x = line.replaceAll("<ApplyActor>", "").replaceAll("</ApplyActor>", "");
+                            applyActor = x.replaceAll("&gt;",">").replaceAll("&lt;","<").replaceAll("&amp;","&");
+                        }
                         
                         line=from.readLine();//</Action>
                         // add the action
@@ -1397,6 +1446,9 @@ public void openfile() throws Exception {
                         ad.caption5 = caption5;
                         ad.caption6 = caption6;
                         ad.caption7 = caption7;
+                        
+                        ad.applyto = applyto;
+                        ad.applyactor = applyActor;
                         
                         v.actions.addElement(ad);
                     }
@@ -1519,7 +1571,6 @@ public void propertyChange(PropertyChangeEvent evt) {
     public ActionList actionList1;
     public EventList eventList;
     private javax.swing.ButtonGroup applies;
-    
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JCheckBox jCheckBox1;
