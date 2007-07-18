@@ -90,6 +90,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
         String arg5 = "";
         String arg6 = "";
         String arg7 = "";
+        String runevents = "public void Run_events() {\n";
     
     //start java code
     print(Basicgame,"package org.gjava.runner;");
@@ -146,9 +147,25 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                 //write destroy event
                 if (name.equals("Destory"))
                 print(Basicgame,"    public void Destroy_event() {");
+                
+                //begin step goes here
+                if (name.equals("Begin Step")) {
+                print(Basicgame,"    public void Begin_Step_event() {");
+                runevents +="Begin_Step_event();\n";
+                }
+                
                 //write step event
-                if (name.equals("Step"))
-                print(Basicgame,"    public void Step() {");
+                if (name.equals("Step")){
+                print(Basicgame,"    public void Step_event() {");
+                runevents +="Step_event();\n";
+                }
+                
+                //end step
+                if (name.equals("End Step")){
+                print(Basicgame,"    public void End_Step_event() {");
+                runevents +="End_Step_event();\n";
+                }
+                
                 //write draw event
                 if (name.equals("Draw"))
                 {
@@ -168,6 +185,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
                     int event = -1;
                     print(Basicgame,"    	if (G_JAVA_alarm[" + name.replaceAll("Alarm", "").replaceAll(" Event", "") + "] == 0) {");
 					
+                runevents +="Alarm();\n";
                 }
                 
                                 // 
@@ -305,7 +323,7 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
          
     
     
-        System.out.println("Write super actor!!");
+        
 				print(Basicgame,"      " +  this.getName() + "(int X, int Y) {");
 				print(Basicgame,"      super(\"" +  this.getName() + "\",\""+data.img.replaceAll(pro.getProjectDirectory().getPath(), "")+"\"," + solid + "," + visible
 						+ ",0,0);");
@@ -316,8 +334,9 @@ BufferedWriter Basicgame = new BufferedWriter(BasicgameFW);
 				print(Basicgame,"      }");
                                 
                                 
-                                
-                                
+                                //write run events 
+                                print(Basicgame,runevents);
+                                print(Basicgame,"      }");
 
                                 //finish class
                                 print(Basicgame,"}");
