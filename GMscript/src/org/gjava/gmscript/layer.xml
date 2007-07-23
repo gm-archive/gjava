@@ -1,0 +1,18 @@
+<filesystem>
+    <folder name="Services">
+        <folder name="MIMEResolver">
+            <file name="gms.xml" url="gms.xml"/>
+        </folder>
+    </folder>
+<folder name="Editors">
+	<folder name="text">
+	<folder name="x-ggms">
+	<file name="language.nbs" url="gmscript.nbs"/>
+<folder name="CompletionProviders">
+                    <file name="org-gjava-gmscript-manifest-ManifestCompletionProvider.instance"/>
+               </folder>
+                
+    </folder>
+    </folder>
+    </folder>
+</filesystem>
