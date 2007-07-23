@@ -23,6 +23,7 @@ public final class AddActor extends CallableSystemAction
                 JOptionPane.showMessageDialog(null, "No project open!");
             return;   
            }
+
             
             File f =  new File(pro.getProjectDirectory().getPath()+"\\actors\\NewActor"+actors+".actor");
              while (f.exists()) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
+    <attr name="Windows2\Modes\explorer\favorites.wstcref\position" intvalue="400"/>
     <folder name="Actions">
         <folder name="Edit">
             <file name="org-gmj-gmjproject-toolbaractions-AddActor.instance"/>
@@ -79,9 +80,28 @@
         <attr name="Standard.xml/Debugging.xml" boolvalue="false"/>
         <attr name="Add/Build" boolvalue="false"/>
         <attr name="Add/Standard.xml" boolvalue="true"/>
+        <folder name="Build">
+            <file name="org-netbeans-modules-project-ui-BuildMainProject.shadow_hidden"/>
+            <file name="org-netbeans-modules-project-ui-RebuildMainProject.shadow_hidden"/>
+        </folder>
     </folder>
     <folder name="Windows2">
         <folder name="Modes">
+            <folder name="explorer">
+                <file name="navigatorTC.wstcref" url="navigatorTCWstcref_1.xml">
+                    <attr name="position" intvalue="300"/>
+                </file>
+                <file name="projectTabLogical_tc.wstcref" url="projectTabLogical_tcWstcref.xml">
+                    <attr name="position" intvalue="100"/>
+                </file>
+                <file name="projectTab_tc.wstcref" url="projectTab_tcWstcref.xml">
+                    <attr name="position" intvalue="200"/>
+                </file>
+            </folder>
+            <folder name="navigator">
+                <file name="navigatorTC.wstcref" url="navigatorTCWstcref.xml"/>
+                <file name="navigatorTC.wstcref_hidden"/>
+            </folder>
             <folder name="output">
                 <file name="output.wstcref" url="outputWstcref.xml"/>
             </folder>
