@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gmaker.gjava
+OpenIDE-Module-Layer: org/gmaker/gjava/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/gmaker/gjava/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
