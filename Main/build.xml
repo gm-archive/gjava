@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See harness/README in the NetBeans platform -->
+<!-- for some information on what you could do (e.g. targets to override). -->
+<!-- If you delete this file and reopen the project it will be recreated. -->
+<project name="org.gcreator.main" default="netbeans" basedir=".">
+    <description>Builds, tests, and runs the project org.gcreator.main.</description>
+    <import file="nbproject/build-impl.xml"/>
+    <target name="netbeans" depends="package-samples,projectized-common.netbeans"/>
+
+    <target name="package-samples">
+        <copy file="${basedir}/src/org/gjava/runner/GScript.java" tofile="${basedir}/src/org/gjava/runner/GScript.java2"/>
+        <delete file="${basedir}/src/org/gcreator/main/EmptyJGMProject.zip"/>
+        <delete file="${basedir}/src/org/gcreator/main/SampleJGMProject.zip"/>
+        <zip compress="9" basedir="${basedir}\src\org\gmj\templates\EmptyJGMProject\"
+            zipfile="${basedir}/src/org/gcreator/main/EmptyJGMProject.zip"/>
+        <zip compress="9" basedir="${basedir}\src\org\gmj\templates\SampleJGMProject\"
+            zipfile="${basedir}/src/org/gcreator/main/SampleJGMProject.zip"/>
+    </target>
+
+    
+    
+<!-- <target name="runner">
+<copy todir="${basedir}\src\org\gmj\templates\EmptyJGMProject\org\gjava\runner\">
+      <fileset dir="${basedir}/src/org/gjava/runner/">
+        <include name="**"/>
+ <exclude name="*.java"/>
+      </fileset>
+  </copy>
+</target>-->
+</project>
+
+

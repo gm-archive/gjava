@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN" "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+<toc version="2.0">
+    <tocitem text="G-Java Help">
+    <tocitem text="Welcome to G-java!" target="org.gmj.gmjfilesupport.welcome"/>
+    <tocitem text="What is New" target="org.gmj.gmjfilesupport.whatsnew"/>
+    <tocitem text="Using G-java">
+    <tocitem text="Main idea" target="org.gmj.gmjfilesupport.mainidea"/>
+    <tocitem text="The G-java GUI" target="org.gmj.gmjfilesupport.gjavaGUI"/>
+    <tocitem text="Adding resources" target="org.gmj.gmjfilesupport.AddingResources"/>
+    <tocitem text="Actors" target="org.gmj.gmjfilesupport.Actors"/>
+    <tocitem text="Actions">
+    <tocitem text="Using actions" target="org.gmj.gmjfilesupport.UsingActions"/>
+    <tocitem text="Move actions" target="org.gmj.gmjfilesupport.MoveActions"/>
+    <tocitem text="Main actions" target="org.gmj.gmjfilesupport.MainActions"/>
+    <tocitem text="Control actions" target="org.gmj.gmjfilesupport.ControlActions"/>
+    <tocitem text="Score actions" target="org.gmj.gmjfilesupport.ScoreActions"/>
+    <tocitem text="Drawing actions" target="org.gmj.gmjfilesupport.DrawingActions"/>
+    </tocitem>
+    <tocitem text="Scripts" target="org.gmj.gmjfilesupport.Scripts"/>
+    <tocitem text="Rooms" target="org.gmj.gmjfilesupport.Rooms"/>
+    </tocitem>
+    <tocitem text="G-Java Language API">
+    <tocitem text="About the G-java API" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Overview">
+    <tocitem text="Statements" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Variables" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Assignments" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Expressions" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Objects and Instances" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Arrays" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="If statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="While statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Do statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="For statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Switch statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Break statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Continue statement" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Comments" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Functions" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="General Functions/Variables">
+        <tocitem text="Moving Functions" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="Computing functions">
+    <tocitem text="Math functions" url="G-Java Language API/Computing functions/MathFunctions.html"/>
+    <tocitem text="String handling functions" target="org.gmj.gmjfilesupport.about"/>
+     <tocitem text="Clipboard functions" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Date and time functions" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="GUI functions">
+        <tocitem text="Window functions" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="Graphics">
+        <tocitem text="The Display" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Drawing shapes" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Fonts and Text" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Drawing images" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Drawing surfaces" target="org.gmj.gmjfilesupport.about"/>
+        </tocitem>
+    <tocitem text="Resources">
+        <tocitem text="Actors" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Rooms" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Images" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Sounds" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Fonts" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="File handling functions">
+        <tocitem text="Text Files" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Binary Files" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="INI(Properties) files" target="org.gmj.gmjfilesupport.about"/>
+    </tocitem>
+    <tocitem text="Data Structures">
+    <tocitem text="Stacks" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Queues" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Lists" target="org.gmj.gmjfilesupport.about"/>
+    <tocitem text="Maps" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Priority queues" target="org.gmj.gmjfilesupport.about"/>
+        <tocitem text="Vectors" target="org.gmj.gmjfilesupport.about"/>
+        </tocitem>
+     <tocitem text="Multiplayer Games">
+         
+        </tocitem>
+        <tocitem text="Native functions">
+            <tocitem text="Using Dll's in windows" target="org.gmj.gmjfilesupport.about"/>
+            <tocitem text="Executing programs in windows" target="org.gmj.gmjfilesupport.about"/>
+            <tocitem text="Registry in windows" target="org.gmj.gmjfilesupport.about"/>
+            </tocitem>
+        </tocitem>
+        <tocitem text="Distributing Software">
+        </tocitem>
+    </tocitem>
+</toc>
