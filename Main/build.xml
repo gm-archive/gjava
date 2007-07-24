@@ -13,8 +13,7 @@
         <delete file="${basedir}/src/org/gcreator/main/SampleJGMProject.zip"/>
         <zip compress="9" basedir="${basedir}\src\org\gmj\templates\EmptyJGMProject\"
             zipfile="${basedir}/src/org/gcreator/main/EmptyJGMProject.zip"/>
-        <zip compress="9" basedir="${basedir}\src\org\gmj\templates\SampleJGMProject\"
-            zipfile="${basedir}/src/org/gcreator/main/SampleJGMProject.zip"/>
+        
     </target>
 
     

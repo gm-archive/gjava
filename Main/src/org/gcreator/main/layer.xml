@@ -74,20 +74,20 @@
         </folder>
         <folder name="MIMEResolver">
             <file name="ActorResolver.xml" url="ActorResolver.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
             </file>
             <file name="GMJRoomResolver.xml" url="GMJRoomResolver.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
             </file>
         </folder>
         <folder name="AutoupdateType">
             <file name="org_gmj_gmjfilesupport_update_center.settings" url="org_gmj_gmjfilesupport_update_centerSettings.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
                 <attr name="enabled" boolvalue="true"/>
                 <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center"/>
             </file>
             <file name="org_gmj_gmjfilesupport_update_center_1.settings" url="org_gmj_gmjfilesupport_update_center_1Settings.xml">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
                 <attr name="enabled" boolvalue="true"/>
                 <attr name="url_key" stringvalue="org_gmj_gmjfilesupport_update_center_1"/>
             </file>
@@ -96,15 +96,15 @@
     <folder name="Templates">
     <folder name="G-Creator Files">
         <file name="Actor.actor" url="ActorTemplate.actor">
-            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
             <attr name="template" boolvalue="true"/>
         </file>
         <file name="Room.room" url="GMJRoomTemplate.room">
-            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
             <attr name="template" boolvalue="true"/>
         </file>
         <file name="Script.gs" url="ScriptTemplate.gs">
-            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
             <attr name="template" boolvalue="true"/>
         </file>
     </folder>
@@ -114,9 +114,9 @@
         <attr name="Import/Standard" boolvalue="true"/>
         <folder name="Standard">
             <file name="EmptyJGMProject.zip" url="EmptyJGMProject.zip">
-                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gmj.gmjfilesupport.Bundle"/>
-                <attr name="instantiatingIterator" methodvalue="org.gmj.gmjfilesupport.emptytemplate.EmptyJGMProjectWizardIterator.createIterator"/>
-                <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gmj/gmjfilesupport/emptytemplate/EmptyJGMProjectDescription.html"/>
+                <attr name="SystemFileSystem.localizingBundle" stringvalue="org.gcreator.main.Bundle"/>
+                <attr name="instantiatingIterator" methodvalue="org.gcreator.main.emptytemplate.EmptyJGMProjectWizardIterator.createIterator"/>
+                <attr name="instantiatingWizardURL" urlvalue="nbresloc:/org/gcreator/main/emptytemplate/EmptyJGMProjectDescription.html"/>
                 <attr name="template" boolvalue="true"/>
             </file>
         </folder>

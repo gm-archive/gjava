@@ -1223,7 +1223,7 @@ Gamesettings.write("public class GameSettings {");
     private final class Info implements ProjectInformation {
         public Icon getIcon() {
             return new ImageIcon(Utilities.loadImage(
-                    "org/gmj/gmjfilesupport/room.png"));
+                    "org/gcreator/main/room.png"));
         }
         
         public String getName() {

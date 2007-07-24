@@ -3,10 +3,10 @@
 <library version="1.0">
     <name>EmptyJGMProject</name>
     <type>j2se</type>
-    <localizing-bundle>org.gmj.gmjfilesupport.Bundle</localizing-bundle>
+    <localizing-bundle>org.gcreator.main.Bundle</localizing-bundle>
     <volume>
         <type>classpath</type>
-        <resource>jar:nbinst://org.gmj.gmjfilesupport/libs/EmptyJGMProject.zip!/</resource>
+        <resource>jar:nbinst://org.gcreator.main/libs/EmptyJGMProject.zip!/</resource>
     </volume>
     <volume>
         <type>src</type>

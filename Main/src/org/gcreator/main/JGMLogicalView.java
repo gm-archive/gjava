@@ -19,7 +19,6 @@ import org.netbeans.spi.project.ActionProvider;
 import org.netbeans.spi.project.ui.LogicalViewProvider;
 import org.netbeans.spi.project.ui.support.CommonProjectActions;
 import org.openide.actions.FileSystemAction;
-import org.openide.actions.NewTemplateAction;
 import org.openide.filesystems.FileObject;
 import org.openide.loaders.DataFolder;
 import org.openide.loaders.DataObject;
@@ -156,7 +155,7 @@ public class JGMLogicalView implements LogicalViewProvider {
         
         public Image getIcon(int type) {
             return Utilities.loadImage(
-                    "org/gmj/gmjfilesupport/room.png");
+                    "org/gcreator/main/room.png");
         }
         
         public Image getOpenedIcon(int type) {
