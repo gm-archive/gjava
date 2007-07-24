@@ -21,14 +21,8 @@ import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
-import javax.swing.JComponent;
-import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.text.EditorKit;
-//import org.netbeans.editor.ext.ExtUtilities;
 import org.openide.filesystems.FileLock;
-import org.openide.text.CloneableEditorSupport;
 import org.openide.util.Exceptions;
 import org.openide.windows.TopComponent;
 
