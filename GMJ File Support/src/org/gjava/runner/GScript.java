@@ -28,7 +28,7 @@ import java.util.*;
  * @author G-Java development team
  * @version 1.0
  */
-public class EGML {
+public class GScript {
 
     private static Clipboard systemClipboard;
 
@@ -293,7 +293,7 @@ public class EGML {
                     i--;
                 }
             }
-            EGML i = new EGML();
+            GScript i = new GScript();
 
             return s;
         }
@@ -890,7 +890,7 @@ public class EGML {
          * @return
          */
         public static double compare_time(double d1, double d2) {
-            return EGML.math.frac(d1) > EGML.math.frac(d2) ? 1 : (EGML.math.frac(d1) < EGML.math.frac(d2) ? -1 : 0);
+            return GScript.math.frac(d1) > GScript.math.frac(d2) ? 1 : (GScript.math.frac(d1) < GScript.math.frac(d2) ? -1 : 0);
         }
 
         /**
@@ -908,7 +908,7 @@ public class EGML {
          * @return
          */
         public static double time_of(double d) {
-            return EGML.math.frac(d);
+            return GScript.math.frac(d);
         }
 
         /**
@@ -943,7 +943,7 @@ public class EGML {
          * @return
          */
         public static String time_string(double d) {
-            long milis = (int) (EGML.math.frac(d) * dateConvert);
+            long milis = (int) (GScript.math.frac(d) * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
             nDate.setTimeInMillis(milis);
@@ -2606,36 +2606,36 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
         /**
          * Number of milliseconds that have passed since the system was started.
          */
-        public static double current_time = EGML.date.current_time();
+        public static double current_time = GScript.date.current_time();
         /**
          *  The current year.
          */
-        public static double current_year = EGML.date.get_year(EGML.date.current_date());
+        public static double current_year = GScript.date.get_year(GScript.date.current_date());
 
         /**
          *  The current month.
          */
-        public static double current_month = EGML.date.get_month(EGML.date.current_date());
+        public static double current_month = GScript.date.get_month(GScript.date.current_date());
         /**
          * The current day.
          */
-        public static double current_day = EGML.date.get_day(EGML.date.current_date());
+        public static double current_day = GScript.date.get_day(GScript.date.current_date());
         /**
          * The current day of the week (1=sunday, ..., 7=saturday).
          */
-        public static double current_weekday = EGML.date.get_weekday(EGML.date.current_date());
+        public static double current_weekday = GScript.date.get_weekday(GScript.date.current_date());
         /**
          * The current hour.
          */
-        public static double current_hour = EGML.date.get_hour(EGML.date.current_time());
+        public static double current_hour = GScript.date.get_hour(GScript.date.current_time());
         /**
          * The current minute.
          */
-        public static double current_minute = EGML.date.get_minute(EGML.date.current_time());
+        public static double current_minute = GScript.date.get_minute(GScript.date.current_time());
         /**
          * The current second.
          */
-        public static double current_second = EGML.date.get_second(EGML.date.current_time());
+        public static double current_second = GScript.date.get_second(GScript.date.current_time());
 
         /**
          * Sleeps numb milliseconds.
@@ -3487,10 +3487,10 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
                     thenumber += "" + fileid.read();
                 }
 
-                return EGML.string.real(thenumber);
+                return GScript.string.real(thenumber);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                EGML.msgbox("Error reading real!", 1);
+                GScript.msgbox("Error reading real!", 1);
                 return 0;
             }
         }
@@ -3615,7 +3615,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @return
          */
         public static String filename_name(String fname) {
-            return EGML.string.string_replace(fname, filename_path(fname), "");
+            return GScript.string.string_replace(fname, filename_path(fname), "");
         }
 
         /**
@@ -4187,7 +4187,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @param str
          */
         public static void show_message(String str) {
-            EGML.msgbox(str, 0);
+            GScript.msgbox(str, 0);
         }
 
         /**
@@ -4285,9 +4285,9 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @param abort
          */
         public static void show_error(String str, boolean abort) {
-            EGML.msgbox(str, 1);
+            GScript.msgbox(str, 1);
             if (abort) {
-                EGML.rooms.end_game();
+                GScript.rooms.end_game();
             }
         }
     }
@@ -4303,7 +4303,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          */
         public static void highscore_show(double numb) {
             highscore.setVisible(true);
-            String str = EGML.popups.get_string("Player name?", "<nobody>");
+            String str = GScript.popups.get_string("Player name?", "<nobody>");
             highscore.add_score(str, numb);
         }
 
@@ -4349,8 +4349,8 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * Adds the current score to the highscore list. The player is asked to provide a name.
          */
         public static void highscore_add_current() {
-            String str = EGML.popups.get_string("Player name?", "<nobody>");
-            highscore.add_score(str, EGML.score.score);
+            String str = GScript.popups.get_string("Player name?", "<nobody>");
+            highscore.add_score(str, GScript.score.score);
         }
 
         /**
@@ -4396,7 +4396,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @author luiscubal
          */
         public static double min3(double a, double b, double c) {
-            return EGML.math.min(a, b, c);
+            return GScript.math.min(a, b, c);
         }
 
         /**
@@ -4409,7 +4409,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @author luiscubal
          */
         public static double max3(double a, double b, double c) {
-            return EGML.math.max(a, b, c);
+            return GScript.math.max(a, b, c);
         }
 
         /**
@@ -4422,7 +4422,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
          * @author luiscubal
          */
         public static double mean3(double a, double b, double c) {
-            return EGML.math.mean(a, b, c);
+            return GScript.math.mean(a, b, c);
         }
     }
 
