@@ -4,3 +4,6 @@ OpenIDE-Module-Layer: org/gjava/spriteeditor/layer.xml
 OpenIDE-Module-Localizing-Bundle: org/gjava/spriteeditor/Bundle.properties
 OpenIDE-Module-Specification-Version: 1.0
 
+Name: org/gjava/spriteeditor/file/SpriteDataLoader.class
+OpenIDE-Module-Class: Loader
+
