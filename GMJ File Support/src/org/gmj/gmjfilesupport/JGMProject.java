@@ -1245,6 +1245,8 @@ Gamesettings.write("public class GameSettings {");
         public Project getProject() {
             return JGMProject.this;
         }
+
+   
     }
     
     

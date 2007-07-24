@@ -306,7 +306,7 @@ public class EGML {
      * Functions.date.&lt;functionname&gt;(args);</p>
      * <p>The code completion in the java editor will bring up a list of functions as soon as you type the &quot;.&quot; in date, if not you can manually call code completion using Ctrl+Space.</p>
      * <p>Example:
-     * double datetime = Functions.date.date_current_datetime();</p>
+     * double datetime = Functions.date.current_datetime();</p>
      */
     public static class date {
 
@@ -315,7 +315,7 @@ public class EGML {
          * Returns the date-time value that corresponds to the current moment.
          * @return
          */
-        public static double date_current_datetime() {
+        public static double current_datetime() {
             Calendar now = Calendar.getInstance();
             long milis = now.getTime().getTime() - then.getTime().getTime();
             // convert milis to days
@@ -326,7 +326,7 @@ public class EGML {
          * Returns the date-time value that corresponds to the current date only (ignoring the time).
          * @return
          */
-        public static double date_current_date() {
+        public static double current_date() {
             Calendar now = Calendar.getInstance();
             now.set(Calendar.HOUR_OF_DAY, 0);
             now.set(Calendar.MINUTE, 0);
@@ -340,7 +340,7 @@ public class EGML {
          * Returns the date-time value that corresponds to the current time only (ignoring the date).
          * @return
          */
-        public static double date_current_time() {
+        public static double current_time() {
             Calendar now = Calendar.getInstance();
             now.set(Calendar.YEAR, then.get(Calendar.YEAR));
             now.set(Calendar.MONTH, then.get(Calendar.MONTH));
@@ -360,7 +360,7 @@ public class EGML {
          * @param s
          * @return
          */
-        public static double date_create_datetime(double y, double m, double d, double h, double min, double s) {
+        public static double create_datetime(double y, double m, double d, double h, double min, double s) {
             Calendar nDate = Calendar.getInstance();
             nDate.set((int) y, (int) m - 1, (int) d, (int) h, (int) min, (int) s);
             long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -374,7 +374,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_create_date(double y, double m, double d) {
+        public static double create_date(double y, double m, double d) {
             Calendar nDate = Calendar.getInstance();
             nDate.set((int) y, (int) m, (int) d, 0, 0, 0);
             long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -389,7 +389,7 @@ public class EGML {
          * @param s
          * @return
          */
-        public static double date_create_time(double h, double m, double s) {
+        public static double create_time(double h, double m, double s) {
             Calendar nDate = Calendar.getInstance();
             nDate.set(then.get(Calendar.YEAR), then.get(Calendar.MONTH), then.get(Calendar.DATE), (int) h, (int) m, (int) s);
             long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -407,7 +407,7 @@ public class EGML {
          * @param s
          * @return
          */
-        public static double date_valid_datetime(double y, double m, double d, double h, double min, double s) {
+        public static double valid_datetime(double y, double m, double d, double h, double min, double s) {
             if (y <= 0 || y >= 10000 || y - math.floor(y) != 0) {
                 return 0;
             }
@@ -445,7 +445,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_valid_date(double y, double m, double d) {
+        public static double valid_date(double y, double m, double d) {
             if (y <= 0 || y >= 10000 || y - math.floor(y) != 0) {
                 return 0;
             }
@@ -474,7 +474,7 @@ public class EGML {
          * @param s
          * @return
          */
-        public static double date_valid_time(double h, double m, double s) {
+        public static double valid_time(double h, double m, double s) {
             if (h < 0 || h >= 24 || h - math.floor(h) != 0) {
                 return 0;
             }
@@ -493,7 +493,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_year(double d, double a) {
+        public static double inc_year(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -510,7 +510,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_month(double d, double a) {
+        public static double inc_month(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -527,7 +527,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_week(double d, double a) {
+        public static double inc_week(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -544,7 +544,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_day(double d, double a) {
+        public static double inc_day(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -561,7 +561,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_hour(double d, double a) {
+        public static double inc_hour(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -578,7 +578,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_minute(double d, double a) {
+        public static double inc_minute(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -595,7 +595,7 @@ public class EGML {
          * @param a
          * @return
          */
-        public static double date_inc_second(double d, double a) {
+        public static double inc_second(double d, double a) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -611,7 +611,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_year(double d) {
+        public static double get_year(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -624,7 +624,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_month(double d) {
+        public static double get_month(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -637,7 +637,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_week(double d) {
+        public static double get_week(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -650,7 +650,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_day(double d) {
+        public static double get_day(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -663,7 +663,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_hour(double d) {
+        public static double get_hour(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -676,7 +676,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_minute(double d) {
+        public static double get_minute(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -689,7 +689,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_second(double d) {
+        public static double get_second(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -702,7 +702,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_weekday(double d) {
+        public static double get_weekday(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -715,7 +715,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_day_of_year(double d) {
+        public static double get_day_of_year(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             int fin = 0;
@@ -729,7 +729,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_hour_of_year(double d) {
+        public static double get_hour_of_year(double d) {
             int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -751,7 +751,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_minute_of_year(double d) {
+        public static double get_minute_of_year(double d) {
             int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -774,7 +774,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_get_second_of_year(double d) {
+        public static double get_second_of_year(double d) {
             int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -799,7 +799,7 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_year_span(double d1, double d2) {
+        public static double year_span(double d1, double d2) {
             return d1 * 365.25 - d2 * 365.25;
         }
 
@@ -809,8 +809,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_month_span(double d1, double d2) {
-            return date_get_month(d1) - date_get_month(d2);
+        public static double month_span(double d1, double d2) {
+            return get_month(d1) - get_month(d2);
         }
 
         /**
@@ -819,8 +819,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_week_span(double d1, double d2) {
-            return date_get_week(d1) - date_get_week(d2);
+        public static double week_span(double d1, double d2) {
+            return get_week(d1) - get_week(d2);
         }
 
         /**
@@ -829,8 +829,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_day_span(double d1, double d2) {
-            return date_get_day(d1) - date_get_day(d2);
+        public static double day_span(double d1, double d2) {
+            return get_day(d1) - get_day(d2);
         }
 
         /**
@@ -839,8 +839,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_hour_span(double d1, double d2) {
-            return date_get_hour(d1) - date_get_hour(d2);
+        public static double hour_span(double d1, double d2) {
+            return get_hour(d1) - get_hour(d2);
         }
 
         /**
@@ -849,8 +849,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_minute_span(double d1, double d2) {
-            return date_get_minute(d1) - date_get_minute(d2);
+        public static double minute_span(double d1, double d2) {
+            return get_minute(d1) - get_minute(d2);
         }
 
         /**
@@ -859,8 +859,8 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_second_span(double d1, double d2) {
-            return date_get_second(d1) - date_get_second(d2);
+        public static double second_span(double d1, double d2) {
+            return get_second(d1) - get_second(d2);
         }
 
         /**
@@ -869,7 +869,7 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_compare_datetime(double d1, double d2) {
+        public static double compare_datetime(double d1, double d2) {
             return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
         }
 
@@ -879,7 +879,7 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_compare_date(double d1, double d2) {
+        public static double compare_date(double d1, double d2) {
             return math.floor(d1) > math.floor(d2) ? 1 : (math.floor(d1) < math.floor(d2) ? -1 : 0);
         }
 
@@ -889,7 +889,7 @@ public class EGML {
          * @param d2
          * @return
          */
-        public static double date_compare_time(double d1, double d2) {
+        public static double compare_time(double d1, double d2) {
             return EGML.math.frac(d1) > EGML.math.frac(d2) ? 1 : (EGML.math.frac(d1) < EGML.math.frac(d2) ? -1 : 0);
         }
 
@@ -898,7 +898,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_date_of(double d) {
+        public static double of(double d) {
             return math.floor(d);
         }
 
@@ -907,7 +907,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_time_of(double d) {
+        public static double time_of(double d) {
             return EGML.math.frac(d);
         }
 
@@ -916,7 +916,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static String date_datetime_string(double d) {
+        public static String datetime_string(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -929,7 +929,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static String date_date_string(double d) {
+        public static String string(double d) {
             long milis = (int) (math.floor(d) * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -942,7 +942,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static String date_time_string(double d) {
+        public static String time_string(double d) {
             long milis = (int) (EGML.math.frac(d) * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -955,7 +955,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_days_in_month(double d) {
+        public static double days_in_month(double d) {
             int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
@@ -972,7 +972,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_days_in_year(double d) {
+        public static double days_in_year(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -989,7 +989,7 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_leap_year(double d) {
+        public static double leap_year(double d) {
             long milis = (int) (d * dateConvert);
             long time = then.getTime().getTime();
             Calendar nDate = Calendar.getInstance();
@@ -1002,8 +1002,8 @@ public class EGML {
          * @param d
          * @return
          */
-        public static double date_is_today(double d) {
-            return date_current_date() == date_date_of(d) ? 1 : 0;
+        public static double is_today(double d) {
+            return current_date() == of(d) ? 1 : 0;
         }
     }
 
@@ -1811,7 +1811,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a) {
+        public static double true_median(double a) {
             return a;
         }
 
@@ -1822,7 +1822,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b) {
+        public double true_median(double a, double b) {
             return (a + b) / 2;
         }
 
@@ -1833,7 +1833,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c) {
+        public double true_median(double a, double b, double c) {
             double[] x = new double[]{a, b, c};
             Arrays.sort(x);
             return x[1];
@@ -1846,7 +1846,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d) {
+        public double true_median(double a, double b, double c, double d) {
             double[] x = new double[]{a, b, c, d};
             Arrays.sort(x);
             return (x[1] + x[2]) / 2;
@@ -1859,7 +1859,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e) {
+        public double true_median(double a, double b, double c, double d, double e) {
             double[] x = new double[]{a, b, c, d, e};
             Arrays.sort(x);
             return x[2];
@@ -1872,7 +1872,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f) {
+        public double true_median(double a, double b, double c, double d, double e, double f) {
             double[] x = new double[]{a, b, c, d, e, f};
             Arrays.sort(x);
             return (x[2] + x[3]) / 2;
@@ -1885,7 +1885,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g) {
             double[] x = new double[]{a, b, c, d, e, f, g};
             Arrays.sort(x);
             return x[3];
@@ -1898,7 +1898,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h) {
             double[] x = new double[]{a, b, c, d, e, f, g, h};
             Arrays.sort(x);
             return (x[3] + x[4]) / 2;
@@ -1911,7 +1911,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i};
             Arrays.sort(x);
             return x[4];
@@ -1924,7 +1924,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j};
             Arrays.sort(x);
             return (x[4] + x[5]) / 2;
@@ -1937,7 +1937,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k};
             Arrays.sort(x);
             return x[5];
@@ -1950,7 +1950,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l};
             Arrays.sort(x);
             return (x[5] + x[6]) / 2;
@@ -1963,7 +1963,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m};
             Arrays.sort(x);
             return x[6];
@@ -1976,7 +1976,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
+        public double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n};
             Arrays.sort(x);
             return (x[6] + x[7]) / 2;
@@ -1991,7 +1991,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
+        public static double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
             Arrays.sort(x);
             return x[7];
@@ -2009,7 +2009,7 @@ public class EGML {
          * @since 2.0
          * @author luiscubal
          */
-        public double EGML_true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
+        public static double true_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
             double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
             Arrays.sort(x);
             return (x[7] + x[8]) / 2;
@@ -2429,9 +2429,11 @@ public class EGML {
         }
     }
 
-/**
-     *
-     */
+
+
+public static class VK_events {
+
+}
     public static class draw {
 
         /**
@@ -2516,7 +2518,7 @@ g.draw3DRect((int)x,(int)y,(int)width,(int)height, raised);
 
 }
 
-private void drawCircle(Graphics g, int x, int y, int radius, boolean outline){
+private void draw_Circle(Graphics g, int x, int y, int radius, boolean outline){
     if (g != null)
         if (outline)
 	g.drawOval(x - radius, y - radius, radius*2, radius*2);
@@ -2557,7 +2559,7 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
         public static void instance_destroy(Actor instance) {
             // run the destory event
             instance.Destroy_event();
-            basicgame.Current_room.instances.remove(instance.id);
+           // basicgame.Current_room.instances.remove(instance.id);
         }
     }
 
@@ -2604,36 +2606,36 @@ g.drawRoundRect((int)x, (int)y, (int)width, (int)height, (int)arcwidth, (int)arc
         /**
          * Number of milliseconds that have passed since the system was started.
          */
-        public static double current_time = EGML.date.date_current_time();
+        public static double current_time = EGML.date.current_time();
         /**
          *  The current year.
          */
-        public static double current_year = EGML.date.date_get_year(EGML.date.date_current_date());
+        public static double current_year = EGML.date.get_year(EGML.date.current_date());
 
         /**
          *  The current month.
          */
-        public static double current_month = EGML.date.date_get_month(EGML.date.date_current_date());
+        public static double current_month = EGML.date.get_month(EGML.date.current_date());
         /**
          * The current day.
          */
-        public static double current_day = EGML.date.date_get_day(EGML.date.date_current_date());
+        public static double current_day = EGML.date.get_day(EGML.date.current_date());
         /**
          * The current day of the week (1=sunday, ..., 7=saturday).
          */
-        public static double current_weekday = EGML.date.date_get_weekday(EGML.date.date_current_date());
+        public static double current_weekday = EGML.date.get_weekday(EGML.date.current_date());
         /**
          * The current hour.
          */
-        public static double current_hour = EGML.date.date_get_hour(EGML.date.date_current_time());
+        public static double current_hour = EGML.date.get_hour(EGML.date.current_time());
         /**
          * The current minute.
          */
-        public static double current_minute = EGML.date.date_get_minute(EGML.date.date_current_time());
+        public static double current_minute = EGML.date.get_minute(EGML.date.current_time());
         /**
          * The current second.
          */
-        public static double current_second = EGML.date.date_get_second(EGML.date.date_current_time());
+        public static double current_second = EGML.date.get_second(EGML.date.current_time());
 
         /**
          * Sleeps numb milliseconds.
@@ -4493,11 +4495,11 @@ return true;
      *@return EGML version
      */
 
-    public double EGML_version() {
+    public double version() {
         return 0.33;
     }
 
-    public String EGML_location() {
+    public String location() {
         return ""; //parameters[0];
     }
 
@@ -4508,7 +4510,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a) {
+    public double reversed_median(double a) {
         return a;
     }
 
@@ -4520,7 +4522,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b) {
+    public double reversed_median(double a, double b) {
         if (a > b) {
             return a;
         } else {
@@ -4537,7 +4539,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c) {
+    public double reversed_median(double a, double b, double c) {
         double[] x = new double[]{a, b, c};
         Arrays.sort(x);
         return x[1];
@@ -4551,7 +4553,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d) {
+    public double reversed_median(double a, double b, double c, double d) {
         double[] x = new double[]{a, b, c, d};
         Arrays.sort(x);
         return x[2];
@@ -4567,7 +4569,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e) {
+    public double reversed_median(double a, double b, double c, double d, double e) {
         double[] x = new double[]{a, b, c, d, e};
         Arrays.sort(x);
         return x[2];
@@ -4584,7 +4586,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f) {
         double[] x = new double[]{a, b, c, d, e, f};
         Arrays.sort(x);
         return x[3];
@@ -4602,7 +4604,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g) {
         double[] x = new double[]{a, b, c, d, e, f, g};
         Arrays.sort(x);
         return x[3];
@@ -4621,7 +4623,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h) {
         double[] x = new double[]{a, b, c, d, e, f, g, h};
         Arrays.sort(x);
         return x[4];
@@ -4640,7 +4642,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i};
         Arrays.sort(x);
         return x[4];
@@ -4659,7 +4661,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j};
         Arrays.sort(x);
         return x[5];
@@ -4678,7 +4680,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k};
         Arrays.sort(x);
         return x[5];
@@ -4702,7 +4704,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l};
         Arrays.sort(x);
         return x[6];
@@ -4727,7 +4729,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m};
         Arrays.sort(x);
         return x[6];
@@ -4753,7 +4755,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n};
         Arrays.sort(x);
         return x[7];
@@ -4780,7 +4782,7 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n, o};
         Arrays.sort(x);
         return x[7];
@@ -4808,137 +4810,137 @@ return true;
      * @since 2.0
      * @author luiscubal
      */
-    public double EGML_reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
+    public double reversed_median(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
         double[] x = new double[]{a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p};
         Arrays.sort(x);
         return x[8];
     }
 
-    public double EGML_sum(double a) {
+    public double sum(double a) {
         return a;
     }
 
-    public double EGML_sum(double a, double b) {
+    public double sum(double a, double b) {
         return a + b;
     }
 
-    public double EGML_sum(double a, double b, double c) {
+    public double sum(double a, double b, double c) {
         return a + b + c;
     }
 
-    public double EGML_sum(double a, double b, double c, double d) {
+    public double sum(double a, double b, double c, double d) {
         return a + b + c + d;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e) {
+    public double sum(double a, double b, double c, double d, double e) {
         return a + b + c + d + e;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f) {
+    public double sum(double a, double b, double c, double d, double e, double f) {
         return a + b + c + d + e + f;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g) {
         return a + b + c + d + e + f + g;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h) {
         return a + b + c + d + e + f + g + h;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
         return a + b + c + d + e + f + g + h + i;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
         return a + b + c + d + e + f + g + h + i + j;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
         return a + b + c + d + e + f + g + h + i + j + k;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
         return a + b + c + d + e + f + g + h + i + j + k + l;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
         return a + b + c + d + e + f + g + h + i + j + k + l + m;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
         return a + b + c + d + e + f + g + h + i + j + k + l + m + n;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
         return a + b + c + d + e + f + g + h + i + j + k + l + m + n + o;
     }
 
-    public double EGML_sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
+    public double sum(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
         return a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p;
     }
 
-    public double EGML_mult(double a) {
+    public double mult(double a) {
         return a;
     }
 
-    public double EGML_mult(double a, double b) {
+    public double mult(double a, double b) {
         return a * b;
     }
 
-    public double EGML_mult(double a, double b, double c) {
+    public double mult(double a, double b, double c) {
         return a * b * c;
     }
 
-    public double EGML_mult(double a, double b, double c, double d) {
+    public double mult(double a, double b, double c, double d) {
         return a * b * c * d;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e) {
+    public double mult(double a, double b, double c, double d, double e) {
         return a * b * c * d * e;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f) {
+    public double mult(double a, double b, double c, double d, double e, double f) {
         return a * b * c * d * e * f;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g) {
         return a * b * c * d * e * f * g;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h) {
         return a * b * c * d * e * f * g * h;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i) {
         return a * b * c * d * e * f * g * h * i;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j) {
         return a * b * c * d * e * f * g * h * i * j;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k) {
         return a * b * c * d * e * f * g * h * i * j * k;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l) {
         return a * b * c * d * e * f * g * h * i * j * k * l;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m) {
         return a * b * c * d * e * f * g * h * i * j * k * l * m;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n) {
         return a * b * c * d * e * f * g * h * i * j * k * l * m * n;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o) {
         return a * b * c * d * e * f * g * h * i * j * k * l * m * n * o;
     }
 
-    public double EGML_mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
+    public double mult(double a, double b, double c, double d, double e, double f, double g, double h, double i, double j, double k, double l, double m, double n, double o, double p) {
         return a * b * c * d * e * f * g * h * i * j * k * l * m * n * o * p;
     }
 
