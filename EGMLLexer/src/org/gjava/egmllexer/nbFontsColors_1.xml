@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+The contents of this file are subject to the terms of the Common Development
+and Distribution License (the License). You may not use this file except in
+compliance with the License.
+
+You can obtain a copy of the License at http://www.netbeans.org/cddl.html
+or http://www.netbeans.org/cddl.txt.
+
+When distributing Covered Code, include this CDDL Header Notice in each file
+and include the License file at http://www.netbeans.org/cddl.txt.
+If applicable, add the following below the CDDL Header, with the fields
+enclosed by brackets [] replaced by your own identifying information:
+"Portions Copyrighted [year] [name of copyright owner]"
+
+The Original Software is NetBeans. The Initial Developer of the Original
+Software is Sun Microsystems, Inc. Portions Copyright 1997-2007 Sun
+Microsystems, Inc. All Rights Reserved.
+-->
+<!DOCTYPE fontscolors PUBLIC "-//NetBeans//DTD Editor Fonts and Colors settings 1.1//EN" "http://www.netbeans.org/dtds/EditorFontsColors-1_1.dtd">
+
+<fontscolors>
+    <!-- JavaTokenId categories -->
+    <fontcolor name="character" default="char"/>
+    <fontcolor name="errors" default="error"/>
+    <fontcolor name="identifier" default="identifier"/>
+    <fontcolor name="keyword" default="keyword"/>
+    <fontcolor name="literal" default="keyword" />
+    <fontcolor name="comment" default="comment"/>
+    <fontcolor name="number" default="number"/>
+    <fontcolor name="operator" default="operator"/>
+    <fontcolor name="string" default="string"/>
+    <fontcolor name="separator" default="separator"/>
+    <fontcolor name="whitespace" default="whitespace"/>
+    
+    <fontcolor name="keyword-directive" default="keyword"/>
+    
+    <!--"semantic" highlighting:-->
+    <fontcolor name="mod-unused" waveUnderlined="999999"/>
+    <fontcolor name="mod-abstract" />
+    
+    <fontcolor name="mod-field-declaration" default="field"/>    
+    <fontcolor name="mod-local-variable-declaration" default="identifier"/>    
+    <fontcolor name="mod-parameter-declaration" default="identifier"/>
+    
+    <fontcolor name="mod-method-declaration" default="identifier">
+        <font style="bold" />
+    </fontcolor>
+    <fontcolor name="mod-constructor-declaration" default="identifier">
+        <font style="bold" />
+    </fontcolor>
+    <fontcolor name="mod-class-declaration" default="identifier">
+            <font style="bold" />
+    </fontcolor>
+    <fontcolor name="mod-interface-declaration" default="identifier">
+            <font style="bold" />
+    </fontcolor>
+    <fontcolor name="mod-annotation-type-declaration" default="identifier">
+                <font style="bold" />
+    </fontcolor>
+    <fontcolor name="mod-enum-declaration" default="identifier">
+        <font style="bold" />
+    </fontcolor>
+    
+    <fontcolor name="mod-field" default="field"/>        
+    <fontcolor name="mod-local-variable" default="identifier"/>
+    <fontcolor name="mod-parameter" default="identifier"/>
+    <fontcolor name="mod-method" default="identifier"/>
+    <fontcolor name="mod-constructor" default="identifier"/>
+    <fontcolor name="mod-class" default="identifier"/>
+    <fontcolor name="mod-interface" default="identifier"/>
+    <fontcolor name="mod-annotation-type" default="identifier"/>
+    <fontcolor name="mod-enum" default="identifier"/>
+    
+    
+    <fontcolor name="mod-deprecated" strikeThrough="black"/>    
+    <fontcolor name="mod-static" >
+        <font style="italic" />
+    </fontcolor>    
+    <fontcolor name="mod-private" />
+    <fontcolor name="mod-package-private" />
+    <fontcolor name="mod-protected" />
+    <fontcolor name="mod-public" />
+    
+    <!--currently not used:-->
+<!--    <fontcolor name="mod-type-parameter-declaration" bgColor="lightGray"/>
+    <fontcolor name="mod-type-parameter-use" bgColor="green"/>
+    <fontcolor name="mod-undefined" foreColor="red"/>-->
+    
+    <!--mark occurrences:-->
+    <fontcolor name="mark-occurrences" bgColor="ECEBA3"/>
+
+    <!-- JavaStringTokenId categories -->
+    <fontcolor name="string-escape" default="string">
+        <font style="bold" />
+    </fontcolor>
+    <fontcolor name="string-escape-invalid" waveUnderlined="CE7B00" default="string">
+        <font style="bold" />
+    </fontcolor>
+   
+   
+
+<!-- XXX: should java module really define these colorings ??
+
+    <fontcolor name="html-argument" foreColor="ff007c00" default="identifier"/>
+    <fontcolor name="html-block-comment" foreColor="gray" default="comment"/>
+    <fontcolor name="html-character" foreColor="ffb20000" default="char"/>
+    <fontcolor name="html-error" foreColor="black" bgColor="pink" default="error"/>
+    <fontcolor name="html-operator" foreColor="ff007c00" default="operator"/>
+    <fontcolor name="html-sgml-comment" foreColor="gray" default="comment"/>
+    <fontcolor name="html-sgml-declaration" foreColor="ffbf9221" default="default"/>
+    <fontcolor name="html-text" default="default"/>
+    <fontcolor name="html-value" foreColor="ff99006b" default="default"/>
+    <fontcolor name="html-ws" default="whitespace"/>
+-->
+</fontscolors>
+

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+OpenIDE-Module: org.gjava.egmllexer
+OpenIDE-Module-Layer: org/gjava/egmllexer/layer.xml
+OpenIDE-Module-Localizing-Bundle: org/gjava/egmllexer/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
+Name: org/gjava/egmllexer/EGMLDataLoader.class
+OpenIDE-Module-Class: Loader
+
