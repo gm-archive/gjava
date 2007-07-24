@@ -5,6 +5,7 @@
     <folder name="Actions">
         <folder name="Edit">
             <file name="org-gmj-gmjproject-toolbaractions-AddActor.instance"/>
+            <file name="org-gmj-gmjproject-toolbaractions-AddSprite.instance"/>
             <file name="org-gmj-gmjproject-toolbaractions-AddImage.instance"/>
             <file name="org-gmj-gmjproject-toolbaractions-AddRoom.instance"/>
             <file name="org-gmj-gmjproject-toolbaractions-AddScript.instance"/>
@@ -42,6 +43,8 @@
         <attr name="File/Add" boolvalue="true"/>
         <attr name="Edit/Add" boolvalue="false"/>
         <folder name="Add">
+               <file name="org-gmj-gmjproject-toolbaractions-AddSprite.instance"/>
+             
             <file name="org-gmj-gmjproject-toolbaractions-AddActor.shadow">
                 <attr name="originalFile" stringvalue="Actions/Edit/org-gmj-gmjproject-toolbaractions-AddActor.instance"/>
             </file>
