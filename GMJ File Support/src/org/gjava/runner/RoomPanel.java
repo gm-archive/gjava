@@ -330,13 +330,13 @@ public class RoomPanel extends JPanel implements Runnable {
         // update the jframe caption
         String local_caption = Caption;
         if (GameSettings.show_score)
-            local_caption = local_caption + " " + EGML.score.score_caption + EGML.score.score;
+            local_caption = local_caption + " " + GScript.score.score_caption + GScript.score.score;
         
         if (GameSettings.show_lives)
-            local_caption = local_caption + " " + EGML.score.lives_caption + EGML.score.lives;
+            local_caption = local_caption + " " + GScript.score.lives_caption + GScript.score.lives;
         
         if (GameSettings.show_health)
-            local_caption = local_caption + " " + EGML.score.health_caption + EGML.score.health;
+            local_caption = local_caption + " " + GScript.score.health_caption + GScript.score.health;
         
         if (basicgame.Runningas.equals("EApplet")) {
             // use the statusbar as caption
