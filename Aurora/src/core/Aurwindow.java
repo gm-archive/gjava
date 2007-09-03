@@ -113,8 +113,12 @@ public class Aurwindow extends JFrame {
         
         //<editor-fold defaultstate="expanded" desc="Menu Manager">
         menus[0] = MenuSupporter.MakeMenu(menubar, "File", "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
-        items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "Exit", "Closes the application");
-        items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
+                items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "New", "Create a new project");
+                       items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], "Open...", "Open a project");
+                                       items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], "Save", "Save project");
+                                                       items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "Save As...", "Save project as...");
+                items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], "Exit", "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
