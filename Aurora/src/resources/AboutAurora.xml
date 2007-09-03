@@ -1,0 +1,21 @@
+<?xml
+    version="1.0"
+    encoding="UTF-8"
+?>
+
+<helpfile>
+    <head>
+        <title>About Aurora</title>
+        <versiontype>Daily Build</versiontype>
+        <version>24/8/2007</version>
+        <author>Luís Reis</author>
+        <dificulty>1</dificulty>
+    </head>
+    <body bgcolor="white">
+        Made by:<br/>
+        <enum>Luís Reis</enum>
+    </body>
+    <foot>
+        <seealso section="0" part="1">What's Aurora</seealso>
+    </foot>
+</helpfile>
