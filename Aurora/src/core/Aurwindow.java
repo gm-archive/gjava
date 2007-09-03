@@ -31,6 +31,8 @@ public class Aurwindow extends JFrame {
     public boolean istabs; //True - tabs; False - MDI
     public JDesktopPane mdi;
     public JTextPane console;
+    public JScrollPane scroller;
+    public String output;
 
     //</editor-fold>
     public void addWindow(TabPanel panel, String title) {
@@ -65,31 +67,31 @@ public class Aurwindow extends JFrame {
         }
         frame.setBounds(0, 0, 300, 300);
         mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        
-        addMessage("Finished loading");
     }
 
     public void addMessage(String message){
-        addMessage(message, "", false);
+        addFormatedMessage(message, null, false);
     }
     
-    public void addMessage(String message, String color, boolean bold){
+    public void addFormatedMessage(String message, String color, boolean bold){
         String out = "";
-        if(!color.equals(""))
+        if(color!=null)
             out += "<font color='" + color + "'>";
         if(bold)
             out += "<b>";
         out += message;
         if(bold)
             out += "</b>";
-        if(!color.equals(""))
+        if(color!=null)
             out += "</font>";
         out += "<br/>";
+        output += out;
+        console.setText(output);
     }
     
     public Aurwindow(String[] args) {
         super("Aurora");
-
+        output = "";
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setVisible(true);
@@ -107,26 +109,39 @@ public class Aurwindow extends JFrame {
         mdi = new JDesktopPane();
         istabs = true;
         console = new JTextPane();
+        scroller = new JScrollPane();
         
         console.setEditable(false);
         console.setContentType("text/html");
+        scroller.setViewportView(console);
         
         //<editor-fold defaultstate="expanded" desc="Menu Manager">
         menus[0] = MenuSupporter.MakeMenu(menubar, "File", "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
-                items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "New", "Create a new project");
-                       items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], "Open...", "Open a project");
-                                       items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], "Save", "Save project");
-                                                       items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "Save As...", "Save project as...");
-                items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], "Exit", "Closes the application");
-        items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
+        items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "New Project", "Create a new project");
+        items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], "New File", "Create a new file");
+        items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], "Open Project", "Open a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], "Save", "Save project");
+        items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], "Save As...", "Save project as...");
+        items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], "Import file", "Import a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], "Export file", "Export a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], "Exit", "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 7)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 0, evt);
+                onItemActionPerformed(0, 7, evt);
             }
         });
 
         menus[1] = MenuSupporter.MakeMenu(menubar, "Edit", "Undo/Redo and clipboard functions can be found here.");
+        items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeCheckMenuItem(menus[1], "Clear console", "Clear console");
+        items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(1, 0, evt);
+            }
+        });
         menus[2] = MenuSupporter.MakeMenu(menubar, "View", "Layout and design options are defined here.");
         menus[5] = MenuSupporter.MakeSubMenu(menus[2], "Look&Feel", "Layout and design options are defined here.");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], "Display mode", "Display mode");
@@ -210,8 +225,8 @@ public class Aurwindow extends JFrame {
         //<editor-fold defaultstate="expanded" desc="Splitter Manager">
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
-        splitter1.setTopComponent(splitter2);
-        splitter1.setBottomComponent(console);
+        splitter1.setLeftComponent(splitter2);
+        splitter1.setRightComponent(scroller);
         splitter2.setRightComponent(tabs);
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, "Welcome!");
@@ -221,12 +236,13 @@ public class Aurwindow extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(splitter1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE));
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(splitter1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE));
-
-        splitter1.getBottomComponent().setVisible(false);
-        console.setVisible(false);
+        
         pack();
         setSize(500, 500);
 
+        addMessage("Finished loading application.");
+        
+        onItemActionPerformed(2,0,null);
         //</editor-fold>
     }
 
@@ -235,14 +251,17 @@ public class Aurwindow extends JFrame {
     }
 
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
-        if (menu == 0 && item == 0) {
+        if (menu == 0 && item == 7) {
             dispose();
         }
+        if (menu == 1 && item == 0) {
+            output = "";
+            console.setText("");
+        }
         if (menu == 2 && item == 0) {
-            console.setVisible(!console.isVisible());
-            if (console.isVisible()) {
-                splitter1.setDividerLocation((splitter1.getDividerLocation() * 2) / 3);
-            }
+            scroller.setVisible(!scroller.isVisible());
+            pack();
+            splitter1.setDividerLocation(0.66);
         }
         if (menu == 4 && item == 0) {
             HelpTab help = new HelpTab(0, 0);

@@ -22,35 +22,9 @@ Contributions:
 
 Please forgive me if I retrieved some source code from your site and forgot to place it here.
 
-Components
-    ButtonTabComponent
-        From http://webdia.cem.itesm.mx:8005/web/java/tutorial/uiswing/components/tabbedpane.html
-        Modified by Luís Reis
-    ExtendedFrame
-        By Luís Reis
-    HelpPanel
-        By Luís Reis
-    HelpTab
-        By Luís Reis
-    MenuSupporter
-        By Luís Reis
-    TabPanel
-        By Luís Reis
-    WelcomeTab
-        By Luís Reis
-Core
-    Aurwindow
-        By Luís Reis
-    aurora
-        By Luís Reis
-Resources
-    icon.png
-        By Luís Reis
-    AboutAurora.xml
-        By Luís Reis
-
-
-
+Contributions:
+    Most features: Luís Reis
+    ButtonTabComponent: http://webdia.cem.itesm.mx:8005/web/java/tutorial/uiswing/components/tabbedpane.html
 
 
 GNU GENERAL PUBLIC LICENSE
