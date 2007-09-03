@@ -14,7 +14,16 @@ package core;
  * @author Luís
  */
 public class aurora {
+    public static String[] arguments;
+    public static String[] getargs(){
+        return arguments;
+    }
     public static void main(String[] args){
-        new Aurwindow(args);
+        arguments = args;
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Aurwindow(getargs());
+            }
+        });
     }
 }

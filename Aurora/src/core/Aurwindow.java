@@ -30,6 +30,7 @@ public class Aurwindow extends JFrame {
     public boolean look;
     public boolean istabs; //True - tabs; False - MDI
     public JDesktopPane mdi;
+    public JTextPane console;
 
     //</editor-fold>
     public void addWindow(TabPanel panel, String title) {
@@ -64,8 +65,28 @@ public class Aurwindow extends JFrame {
         }
         frame.setBounds(0, 0, 300, 300);
         mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        
+        addMessage("Finished loading");
     }
 
+    public void addMessage(String message){
+        addMessage(message, "", false);
+    }
+    
+    public void addMessage(String message, String color, boolean bold){
+        String out = "";
+        if(!color.equals(""))
+            out += "<font color='" + color + "'>";
+        if(bold)
+            out += "<b>";
+        out += message;
+        if(bold)
+            out += "</b>";
+        if(!color.equals(""))
+            out += "</font>";
+        out += "<br/>";
+    }
+    
     public Aurwindow(String[] args) {
         super("Aurora");
 
@@ -85,7 +106,11 @@ public class Aurwindow extends JFrame {
         tabs = new JTabbedPane();
         mdi = new JDesktopPane();
         istabs = true;
-
+        console = new JTextPane();
+        
+        console.setEditable(false);
+        console.setContentType("text/html");
+        
         //<editor-fold defaultstate="expanded" desc="Menu Manager">
         menus[0] = MenuSupporter.MakeMenu(menubar, "File", "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], "Exit", "Closes the application");
@@ -182,6 +207,7 @@ public class Aurwindow extends JFrame {
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setTopComponent(splitter2);
+        splitter1.setBottomComponent(console);
         splitter2.setRightComponent(tabs);
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, "Welcome!");
@@ -193,7 +219,7 @@ public class Aurwindow extends JFrame {
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(splitter1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE));
 
         splitter1.getBottomComponent().setVisible(false);
-
+        console.setVisible(false);
         pack();
         setSize(500, 500);
 
@@ -209,8 +235,8 @@ public class Aurwindow extends JFrame {
             dispose();
         }
         if (menu == 2 && item == 0) {
-            splitter1.getBottomComponent().setVisible(!splitter1.getBottomComponent().isVisible());
-            if (splitter1.getBottomComponent().isVisible()) {
+            console.setVisible(!console.isVisible());
+            if (console.isVisible()) {
                 splitter1.setDividerLocation((splitter1.getDividerLocation() * 2) / 3);
             }
         }
