@@ -8,6 +8,7 @@ package components;
 
 import javax.swing.*;
 import java.awt.*;
+import managers.*;
 
 /**
  *
@@ -18,6 +19,8 @@ public class WelcomeTab extends TabPanel{
     /** Creates new form WelcomeTab */
     public WelcomeTab() {
         initComponents();
+        jLabel1.setText(LangSupporter.activeLang.getEntry(37));
+        jLabel5.setText(LangSupporter.activeLang.getEntry(38));
     }
     
     /** This method is called from within the constructor to
@@ -32,8 +35,9 @@ public class WelcomeTab extends TabPanel{
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
-        jLabel1.setText("Welcome to Aurora.");
+        jLabel1.setText("Welcome to Aurora,");
 
         jLabel2.setForeground(new java.awt.Color(0, 51, 255));
         jLabel2.setText("<HTML><u>What is Aurora?");
@@ -68,6 +72,8 @@ public class WelcomeTab extends TabPanel{
             }
         });
 
+        jLabel5.setText("the next generation of G-Creator");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,7 +85,10 @@ public class WelcomeTab extends TabPanel{
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -91,10 +100,12 @@ public class WelcomeTab extends TabPanel{
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addGap(235, 235, 235))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -114,6 +125,7 @@ public class WelcomeTab extends TabPanel{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -23,8 +23,11 @@ Contributions:
 Please forgive me if I retrieved some source code from your site and forgot to place it here.
 
 Contributions:
-    Most features: Luís Reis
-    ButtonTabComponent: http://webdia.cem.itesm.mx:8005/web/java/tutorial/uiswing/components/tabbedpane.html
+    Luís Reis
+        Most features
+    TGMG
+        Some menu items
+        Made the SVN work.
 
 
 GNU GENERAL PUBLIC LICENSE

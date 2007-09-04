@@ -37,7 +37,9 @@ public class Dictionary {
         return entry[num];
     }
     
-    public String getLanguage(){
+    public String getLanguage() throws NoLanguageNameException{
+        if(language==null)
+            throw new NoLanguageNameException();
         return language;
     }
     

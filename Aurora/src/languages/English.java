@@ -51,6 +51,25 @@ public class English extends Dictionary{
         entry[27] = "Help!"; //Tab name
         entry[28] = "Select language"; //Tab name
         entry[29] = "Finished loading application.";
+        entry[30] = "Error creating settings file";
+        entry[31] = "Error writing settings file";
+        entry[32] = "Error reading settings file";
+        entry[33] = "Bad settings file structure";
+        entry[34] = "Doubled setting node";
+        entry[35] = "Missing setting property";
+        entry[36] = "Language unavailable";
+        entry[37] = "Welcome to Aurora,";
+        entry[38] = "the next generation of G-Creator.";
+        //Toolbar
+	entry[39] = "New"; 
+	entry[40] = "Open"; 
+	entry[41] = "Save"; 
+	entry[42] = "Save As"; 
+	entry[43] = "Add Sprite";
+	entry[44] = "Add Sound"; 
+	entry[45] = "Add Actor";
+	entry[46] = "Add Scene";   
+        
         try{
             init();
         }
