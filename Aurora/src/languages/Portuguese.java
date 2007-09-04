@@ -20,6 +20,9 @@ public class Portuguese extends Dictionary{
     public Portuguese(){
         status = "In Development";
         language = "Portuguese";
+        authors = new String[10];
+        authors[0] = "Luís Reis";
+        //If you changed this language, add your name here.
         entry = new String[100];
         entry[0] = "Ficheiro";
         entry[1] = "Editar";

@@ -17,6 +17,7 @@ import exceptions.*;
  */
 public class Dictionary {
     protected String[] entry = null;
+    protected String[] authors = null;
     protected String status = null;
     protected String language = null;
     
@@ -41,6 +42,10 @@ public class Dictionary {
         if(language==null)
             throw new NoLanguageNameException();
         return language;
+    }
+    
+    public String[] getAuthors(){
+        return authors;
     }
     
     public String getStatus(){
