@@ -64,6 +64,7 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
 
+
     //</editor-fold>
     public void addWindow(TabPanel panel, int title) {
         panel.parent = this;
@@ -150,7 +151,7 @@ public class Aurwindow extends JFrame {
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
-        
+
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
@@ -170,11 +171,9 @@ public class Aurwindow extends JFrame {
         if (!settings[3].equals("English")) {
             if (settings[3].equals("Portuguese")) {
                 LangSupporter.activeLang = new Portuguese();
-            }
-            else if(settings[3].equals("German")){
+            } else if (settings[3].equals("German")) {
                 LangSupporter.activeLang = new German();
-            }
-            else {
+            } else {
                 addError(36);
             }
         }
@@ -183,14 +182,13 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
         }
         createToolBar();
-        
-        DefaultMutableTreeNode top =
-            new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
+
+        DefaultMutableTreeNode top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
         top.setAllowsChildren(true);
         workspace = new JTree(top);
         workspace.setVisible(true);
         treescroll = new JScrollPane(workspace);
-        
+
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
@@ -202,9 +200,30 @@ public class Aurwindow extends JFrame {
         });
         items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
+        items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(0, 1, evt);
+            }
+        });
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
         items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(0, 2, evt);
+            }
+        });
         items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], 8, "Save project");
+        items[MenuSupporter.GenerateMenuItemId(0, 3)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(0, 3, evt);
+            }
+        });
         items[MenuSupporter.GenerateMenuItemId(0, 3)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 4)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
@@ -319,7 +338,6 @@ public class Aurwindow extends JFrame {
             }
         });
         //</editor-fold>
-
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
@@ -391,7 +409,7 @@ public class Aurwindow extends JFrame {
             onItemActionPerformed(6, 1, null);
         }
         splitter2.setDividerLocation(0.33);
-        
+
         pack();
         //setSize(550, 550);
         addMessage(29);
@@ -403,6 +421,16 @@ public class Aurwindow extends JFrame {
     }
 
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
+        if (menu == 0 && item == 2) {
+            //open project
+            JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(new CustomFileFilter(".GCP","G-Creator Project File"));
+            fc.showOpenDialog(this);
+            
+        }
+        if (menu == 0 && item == 3) {
+            //save project
+        }
         if (menu == 0 && item == 9) {
             dispose();
         }
@@ -518,7 +546,7 @@ public class Aurwindow extends JFrame {
         tool = new JToolBar();
         tool.setFloatable(false);
 
-        
+
         JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
         JButton saveas = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 42);
