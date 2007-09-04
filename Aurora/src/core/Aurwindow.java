@@ -175,7 +175,7 @@ public class Aurwindow extends JFrame {
         }
         createToolBar();
 
-        //<editor-fold defaultstate="expanded" desc="Menu Manager">
+        
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
@@ -495,8 +495,11 @@ public class Aurwindow extends JFrame {
         tool = new JToolBar();
         tool.setFloatable(false);
 
-        tool.add(new JButton("New"));
-        JButton opn = new JButton("Open");
+        
+        JButton opn = new JButton();
+JButton save = new JButton();
+JButton saveas = new JButton();
+JButton newp = new JButton();
         JButton sprite = new JButton();
         JButton sound = new JButton();
         JButton cl = new JButton();
@@ -508,11 +511,16 @@ public class Aurwindow extends JFrame {
         cl.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")));
         actor.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")));
         scene.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")));
+opn.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
+newp.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")));
+save.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
+saveas.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
 
 
+tool.add(newp);
         tool.add(opn);
-        tool.add(new JButton("Save"));
-        tool.add(new JButton("Save As"));
+        tool.add(save);
+        tool.add(saveas);
         tool.add(sprite);
         tool.add(sound);
         tool.add(cl);
