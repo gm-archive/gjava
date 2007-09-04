@@ -170,7 +170,11 @@ public class Aurwindow extends JFrame {
         if (!settings[3].equals("English")) {
             if (settings[3].equals("Portuguese")) {
                 LangSupporter.activeLang = new Portuguese();
-            } else {
+            }
+            else if(settings[3].equals("German")){
+                LangSupporter.activeLang = new German();
+            }
+            else {
                 addError(36);
             }
         }
