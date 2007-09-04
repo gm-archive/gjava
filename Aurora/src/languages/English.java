@@ -83,6 +83,16 @@ public class English extends Dictionary{
         entry[52] = "Add Script";
         //Menu
         entry[53] = "Save All Projects";
+        //New Project Wizard
+        entry[54] = "Choose the type of your project";
+        entry[55] = "New Project";
+        //Project types
+        entry[56] = "Games";
+        entry[57] = "Packages";
+        entry[58] = "Empty Game";
+        entry[59] = "Empty Package";
+        //Other settings
+        entry[60] = "Project name";
         
         try{
             init();
