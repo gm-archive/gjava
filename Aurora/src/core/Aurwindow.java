@@ -10,6 +10,9 @@
 package core;
 
 //import javax.swing.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.zip.ZipException;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -39,6 +42,7 @@ import javax.swing.*;
 import languages.*;
 import java.io.*;
 import exceptions.*;
+import java.util.zip.ZipFile;
 
 /**
  *
@@ -422,11 +426,23 @@ public class Aurwindow extends JFrame {
 
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 2) {
-            //open project
-            JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(new CustomFileFilter(".GCP","G-Creator Project File"));
-            fc.showOpenDialog(this);
-            
+            try {
+                //open project
+                JFileChooser fc = new JFileChooser();
+                fc.setFileFilter(new CustomFileFilter(".GCP", "G-Creator Project File"));
+                fc.showOpenDialog(this);
+                File file = fc.getSelectedFile();
+                if (file == null) {
+                    return;
+                }
+                ZipFile z = new ZipFile(file);
+                z.entries();
+                z.close();
+            } catch (ZipException ex) {
+                Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (menu == 0 && item == 3) {
             //save project
