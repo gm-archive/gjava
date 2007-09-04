@@ -283,7 +283,7 @@ createToolBar();
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
                // .addContainerGap(45, Short.MAX_VALUE)
@@ -306,13 +306,27 @@ public void createToolBar()
 		tool.setFloatable(false);
 		
 		tool.add(new JButton("New")); 
-tool.add(new JButton("Open")); 
+JButton opn = new JButton("Open");
+JButton sprite = new JButton();
+JButton sound = new JButton();
+JButton cl = new JButton();
+JButton actor = new JButton();
+JButton scene = new JButton();
+
+sound.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addsound.png")));
+sprite.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor02.png")));
+cl.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")));
+actor.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")));
+scene.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")));
+
+tool.add(opn); 
 tool.add(new JButton("Save")); 
 tool.add(new JButton("Save As")); 
-tool.add(new JButton("Add Sprite"));
-tool.add(new JButton("Add Sound")); 
-tool.add(new JButton("Add Actor"));
-tool.add(new JButton("Add Scene"));   
+tool.add(sprite);
+tool.add(sound); 
+tool.add(cl);  
+tool.add(actor);
+tool.add(scene);   
 		}
 
     private void tabsClicked(MouseEvent evt) {
