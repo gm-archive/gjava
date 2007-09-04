@@ -1,0 +1,18 @@
+/*
+ * Group.java
+ * 
+ * Created on 4/Set/2007, 20:14:26
+ * 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package fileclass;
+
+/**
+ *
+ * @author Luís
+ */
+public class Group extends Folder{
+    public Folder root;
+}

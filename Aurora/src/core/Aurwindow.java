@@ -27,6 +27,9 @@ import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeSelectionModel;
 import managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
@@ -58,6 +61,7 @@ public class Aurwindow extends JFrame {
     public JScrollPane scroller;
     public JToolBar tool;
     public static String lang;
+    public static JTree workspace;
 
     //</editor-fold>
     public void addWindow(TabPanel panel, int title) {
@@ -145,6 +149,10 @@ public class Aurwindow extends JFrame {
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
+        DefaultMutableTreeNode top =
+            new DefaultMutableTreeNode("Workspace");
+        workspace = new JTree(top);
+        workspace.setVisible(true);
 
         console.setEditable(false);
         console.setContentType("text/html");
@@ -303,6 +311,7 @@ public class Aurwindow extends JFrame {
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
+        splitter2.setLeftComponent(workspace);
         splitter2.setRightComponent(tabs);
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
