@@ -427,6 +427,10 @@ public class Aurwindow extends JFrame {
     }
 
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
+        if(menu == 0 && item == 0){
+            NewProject win = new NewProject();
+            addWindow(win, 55);
+        }
         if (menu == 0 && item == 2) {
             try {
                 //open project
