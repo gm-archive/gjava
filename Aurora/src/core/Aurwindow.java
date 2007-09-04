@@ -9,12 +9,30 @@
 
 package core;
 
-import javax.swing.*;
+//import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import components.*;
-import managers.*;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JDesktopPane;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
+import javax.swing.JToolBar;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import managers.MenuSupporter;
 import languages.*;
+import managers.LangSupporter;
 
 /**
  *
@@ -101,7 +119,9 @@ public class Aurwindow extends JFrame {
     
     public Aurwindow(String[] args) {
         super("Aurora");
+
         LangSupporter.activeLang = new English();
+createToolBar();
         output = "";
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -241,8 +261,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(6, 1, evt);
             }
         });
-        //</editor-fold>
-        //<editor-fold defaultstate="expanded" desc="Splitter Manager">
+        
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
@@ -250,13 +269,28 @@ public class Aurwindow extends JFrame {
         splitter2.setRightComponent(tabs);
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
-        //</editor-fold>
-        //<editor-fold defaultstate="expanded" desc="Layout Manager">
+        
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(splitter1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(splitter1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE));
-        
+ layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tool, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                    .addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500,Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)
+               // .addContainerGap(45, Short.MAX_VALUE)
+)
+        );
+
+              
         pack();
         setSize(500, 500);
 
@@ -265,6 +299,14 @@ public class Aurwindow extends JFrame {
         onItemActionPerformed(2,0,null);
         //</editor-fold>
     }
+
+public void createToolBar()
+		{
+		tool = new JToolBar();
+		tool.setFloatable(false);
+		//add("North",tool); //$NON-NLS-1$
+		tool.add(new JButton("New")); 
+		}
 
     private void tabsClicked(MouseEvent evt) {
         //Leave in blank... for now...
@@ -375,4 +417,5 @@ public class Aurwindow extends JFrame {
         tabs.remove(panel);
         mdi.remove(frame);
     }
+    private JToolBar tool;
 }
