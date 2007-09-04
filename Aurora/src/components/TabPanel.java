@@ -24,4 +24,16 @@ public class TabPanel extends JPanel{
     public void dispose(){
         parent.remove(this, frame);
     }
+    
+    public boolean canSave(){
+        return false;
+    }
+    
+    public boolean Save(String file){
+        return true; //Sucessfully saved
+    }
+    
+    public boolean wasModified(){
+        return false; //Allows the application to exit without prompting the user
+    }
 }

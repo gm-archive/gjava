@@ -18,7 +18,7 @@ import exceptions.*;
  */
 public class Portuguese extends Dictionary{
     public Portuguese(){
-        status = "In Development";
+        status = "Completed";
         language = "Portuguese";
         authors = new String[10];
         authors[0] = "Luís Reis";
@@ -72,6 +72,11 @@ public class Portuguese extends Dictionary{
 	entry[44] = "Adicionar Som"; 
 	entry[45] = "Adicionar Actor";
 	entry[46] = "Adicionar Cena";   
+        //Language menu
+        entry[47] = "Idioma";
+        entry[48] = "Estado";
+        entry[49] = "Aplicar Idioma";
+        entry[50] = "Reinie a aplicação para aplicar as mudanças.";
         
         try{
             init();
