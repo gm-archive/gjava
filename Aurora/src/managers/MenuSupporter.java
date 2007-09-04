@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package components;
+package managers;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,37 +19,37 @@ import java.awt.*;
 public class MenuSupporter {
     public static final int MENULIMIT = 30;
     public static final int ITEMLIMIT = 30;
-    public static JMenu MakeMenu(JMenuBar menubar, String label, String description){
-        JMenu menu = new JMenu(label);
+    public static JMenu MakeMenu(JMenuBar menubar, int label, String description){
+        JMenu menu = new JMenu(LangSupporter.activeLang.getEntry(label));
         menu.getAccessibleContext().setAccessibleDescription(description);
         menubar.add(menu);
         return menu;
     }
     
-    public static JMenu MakeSubMenu(JMenu menu, String label, String description){
-        JMenu amenu = new JMenu(label);
+    public static JMenu MakeSubMenu(JMenu menu, int label, String description){
+        JMenu amenu = new JMenu(LangSupporter.activeLang.getEntry(label));
         menu.getAccessibleContext().setAccessibleDescription(description);
         menu.add(amenu);
         return amenu;
     }
     
-    public static JMenuItem MakeMenuItem(JMenu menu, String label, String description){
-        JMenuItem item = new JMenuItem(label);
+    public static JMenuItem MakeMenuItem(JMenu menu, int label, String description){
+        JMenuItem item = new JMenuItem(LangSupporter.activeLang.getEntry(label));
         item.getAccessibleContext().setAccessibleDescription(description);
         menu.add(item);
         return item;
     }
     
-    public static JRadioButtonMenuItem MakeRadioMenuItem(ButtonGroup group, JMenu menu, String label, String description){
-        JRadioButtonMenuItem item = new JRadioButtonMenuItem(label);
+    public static JRadioButtonMenuItem MakeRadioMenuItem(ButtonGroup group, JMenu menu, int label, String description){
+        JRadioButtonMenuItem item = new JRadioButtonMenuItem(LangSupporter.activeLang.getEntry(label));
         item.getAccessibleContext().setAccessibleDescription(description);
         group.add(item);
         menu.add(item);
         return item;
     }
     
-    public static JCheckBoxMenuItem MakeCheckMenuItem(JMenu menu, String label, String description){
-        JCheckBoxMenuItem item = new JCheckBoxMenuItem(label);
+    public static JCheckBoxMenuItem MakeCheckMenuItem(JMenu menu, int label, String description){
+        JCheckBoxMenuItem item = new JCheckBoxMenuItem(LangSupporter.activeLang.getEntry(label));
         item.getAccessibleContext().setAccessibleDescription(description);
         menu.add(item);
         return item;
