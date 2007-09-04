@@ -304,8 +304,15 @@ public void createToolBar()
 		{
 		tool = new JToolBar();
 		tool.setFloatable(false);
-		//add("North",tool); //$NON-NLS-1$
+		
 		tool.add(new JButton("New")); 
+tool.add(new JButton("Open")); 
+tool.add(new JButton("Save")); 
+tool.add(new JButton("Save As")); 
+tool.add(new JButton("Add Sprite"));
+tool.add(new JButton("Add Sound")); 
+tool.add(new JButton("Add Actor"));
+tool.add(new JButton("Add Scene"));   
 		}
 
     private void tabsClicked(MouseEvent evt) {
