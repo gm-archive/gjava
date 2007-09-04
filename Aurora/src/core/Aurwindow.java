@@ -62,6 +62,7 @@ public class Aurwindow extends JFrame {
     public JToolBar tool;
     public static String lang;
     public static JTree workspace;
+    public static JScrollPane treescroll;
 
     //</editor-fold>
     public void addWindow(TabPanel panel, int title) {
@@ -149,11 +150,7 @@ public class Aurwindow extends JFrame {
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
-        DefaultMutableTreeNode top =
-            new DefaultMutableTreeNode("Workspace");
-        workspace = new JTree(top);
-        workspace.setVisible(true);
-
+        
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
@@ -182,7 +179,13 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
         }
         createToolBar();
-
+        
+        DefaultMutableTreeNode top =
+            new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
+        top.setAllowsChildren(true);
+        workspace = new JTree(top);
+        workspace.setVisible(true);
+        treescroll = new JScrollPane(workspace);
         
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
@@ -193,19 +196,25 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 0, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], 8, "Save project");
+        items[MenuSupporter.GenerateMenuItemId(0, 3)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
-        items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import a file");
-        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export a file");
-        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
-        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
-        items[MenuSupporter.GenerateMenuItemId(0, 8)].addActionListener(new ActionListener() {
+        items[MenuSupporter.GenerateMenuItemId(0, 4)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
+        items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 9)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 8, evt);
+                onItemActionPerformed(0, 9, evt);
             }
         });
 
@@ -377,7 +386,8 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
             onItemActionPerformed(6, 1, null);
         }
-
+        splitter2.setDividerLocation(0.33);
+        
         pack();
         //setSize(550, 550);
         addMessage(29);
@@ -389,7 +399,7 @@ public class Aurwindow extends JFrame {
     }
 
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
-        if (menu == 0 && item == 8) {
+        if (menu == 0 && item == 9) {
             dispose();
         }
         if (menu == 1 && item == 0) {
@@ -505,28 +515,18 @@ public class Aurwindow extends JFrame {
         tool.setFloatable(false);
 
         
-        JButton opn = new JButton();
-JButton save = new JButton();
-JButton saveas = new JButton();
-JButton newp = new JButton();
-        JButton sprite = new JButton();
-        JButton sound = new JButton();
-        JButton cl = new JButton();
-        JButton actor = new JButton();
-        JButton scene = new JButton();
-
-        sound.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addsound.png")));
-        sprite.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor02.png")));
-        cl.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")));
-        actor.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")));
-        scene.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")));
-opn.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
-newp.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")));
-save.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
-saveas.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
+        JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
+        JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
+        JButton saveas = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 42);
+        JButton newp = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")), 39);
+        JButton sprite = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor02.png")), 43);
+        JButton sound = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addsound.png")), 44);
+        JButton cl = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")), 52);
+        JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")), 45);
+        JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
 
 
-tool.add(newp);
+        tool.add(newp);
         tool.add(opn);
         tool.add(save);
         tool.add(saveas);

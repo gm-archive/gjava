@@ -32,8 +32,8 @@ public class Portuguese extends Dictionary{
         entry[5] = "Novo Projecto";
         entry[6] = "Novo Ficheiro";
         entry[7] = "Abrir Projecto";
-        entry[8] = "Guardar";
-        entry[9] = "Guardar como";
+        entry[8] = "Guardar Projecto";
+        entry[9] = "Guardar Projecto como";
         entry[10] = "Importar ficheiro";
         entry[11] = "Exportar ficheiro";
         entry[12] = "Fechar projecto";
@@ -64,7 +64,7 @@ public class Portuguese extends Dictionary{
         entry[37] = "Bem-vindo ao Aurora,";
         entry[38] = "a próxima geração do G-Creator.";
         //Toolbar
-	entry[39] = "Novo"; 
+	entry[39] = "Novo Projecto"; 
 	entry[40] = "Abrir"; 
 	entry[41] = "Guardar"; 
 	entry[42] = "Guardar como"; 
@@ -77,6 +77,12 @@ public class Portuguese extends Dictionary{
         entry[48] = "Estado";
         entry[49] = "Aplicar Idioma";
         entry[50] = "Reinie a aplicação para aplicar as mudanças.";
+        //Tree
+        entry[51] = "Área de trabalho";
+        //Toolbar
+        entry[52] = "Adicionar Código";
+        //Menu
+        entry[53] = "Guardar todos os projectos";
         
         try{
             init();

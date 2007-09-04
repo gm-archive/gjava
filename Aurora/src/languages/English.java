@@ -32,8 +32,8 @@ public class English extends Dictionary{
         entry[5] = "New Project";
         entry[6] = "New File";
         entry[7] = "Open Project";
-        entry[8] = "Save";
-        entry[9] = "Save As";
+        entry[8] = "Save Project";
+        entry[9] = "Save Project As";
         entry[10] = "Import File";
         entry[11] = "Export File";
         entry[12] = "Close Project";
@@ -64,7 +64,7 @@ public class English extends Dictionary{
         entry[37] = "Welcome to Aurora,";
         entry[38] = "the next generation of G-Creator.";
         //Toolbar
-	entry[39] = "New"; 
+	entry[39] = "New Project"; 
 	entry[40] = "Open"; 
 	entry[41] = "Save"; 
 	entry[42] = "Save As"; 
@@ -77,6 +77,12 @@ public class English extends Dictionary{
         entry[48] = "Status";
         entry[49] = "Apply Language";
         entry[50] = "Restart the application to apply the changes";
+        //Tree
+        entry[51] = "Workspace";
+        //Toolbar
+        entry[52] = "Add Script";
+        //Menu
+        entry[53] = "Save All Projects";
         
         try{
             init();
