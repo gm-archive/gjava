@@ -312,7 +312,7 @@ public class Aurwindow extends JFrame {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(tool, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)).addContainerGap()));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
 
@@ -508,6 +508,7 @@ public class Aurwindow extends JFrame {
         cl.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")));
         actor.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")));
         scene.setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")));
+
 
         tool.add(opn);
         tool.add(new JButton("Save"));
