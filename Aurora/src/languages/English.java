@@ -92,6 +92,8 @@ public class English extends Dictionary{
         entry[59] = "Empty Package";
         entry[60] = "Project name";
         entry[61] = "Organized Package";
+        entry[62] = "Extensions";
+        entry[63] = "Empty Extension";
         
         try{
             init();

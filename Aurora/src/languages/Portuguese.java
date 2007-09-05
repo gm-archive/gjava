@@ -92,6 +92,8 @@ public class Portuguese extends Dictionary{
         entry[59] = "Caixa Vazia";
         entry[60] = "Nome do Projecto";
         entry[61] = "Caixa Organizada";
+        entry[62] = "Extensões";
+        entry[63] = "Extensão Vazia";
         
         try{
             init();

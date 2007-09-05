@@ -27,6 +27,7 @@ import java.util.zip.ZipFile;
  */
 public class ProjectExporter {
     public static boolean export(Project project, String filename){
+        System.out.println(getConfigFile(project));
         return false; //Failed to export
     }
     public static String getConfigFile(Project project){
@@ -34,9 +35,26 @@ public class ProjectExporter {
         config += "<project>";
         config += "<type>" + project.getType() + "</type>";
         config += "<content>";
-        //TODO: Content
+        config += getContent("", project);
         config += "</content>";
         config += "</project>";
         return config;
+    }
+    
+    public static String getContent(String prefix, Folder folder){
+        String content = "<file>" + prefix + "/</file>";  //To make sure no empty folder is deleted.
+        fileclass.Object childNode;
+        for(int i = 0; i < folder.getChildArrayNum(); i++){
+            if((childNode = folder.childAt(i))!=null){
+                content += "<file>" + prefix + "/" + childNode.name;
+                if(childNode instanceof fileclass.File){
+                    content += "." + ((fileclass.File) childNode).type;
+                }
+                content += "</file>";
+                if(childNode instanceof Folder)
+                    content += getContent(prefix + "/" + childNode.name, (Folder) childNode);
+            }
+        }
+        return content;
     }
 }

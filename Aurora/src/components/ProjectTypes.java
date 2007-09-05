@@ -19,6 +19,7 @@ public class ProjectTypes extends JPanel {
     
     public GameProjects gmpro;
     public PackageProjects pkgpro;
+    public ExtensionProjects extpro;
     public NewProject npro;
     
     public ProjectTypes(NewProject npro) {
@@ -28,8 +29,11 @@ public class ProjectTypes extends JPanel {
         gmpro.tnum = 1;
         pkgpro = new PackageProjects(this);
         pkgpro.tnum = 2;
+        extpro = new ExtensionProjects(this);
+        extpro.tnum = 3;
         jScrollPane1.setViewportView(gmpro);
         jScrollPane2.setViewportView(pkgpro);
+        jScrollPane3.setViewportView(extpro);
     }
     
     public JTabbedPane getTabbedPane(){
@@ -41,6 +45,8 @@ public class ProjectTypes extends JPanel {
             gmpro.turnOff();
         if(num!=pkgpro.tnum)
             pkgpro.turnOff();
+        if(num!=extpro.tnum)
+            extpro.turnOff();
     }
     
     /** This method is called from within the constructor to
@@ -54,15 +60,18 @@ public class ProjectTypes extends JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
 
+        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(56), jScrollPane1);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(57), jScrollPane2);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(62), jScrollPane3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,6 +83,7 @@ public class ProjectTypes extends JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
     

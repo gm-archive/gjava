@@ -43,4 +43,16 @@ public class Folder extends Object{
     public Object childAt(int pos){
         return childNodes[pos];
     }
+    
+    public int getChildNum(){
+        int num = 0;
+        for(int i = 0; i < childNodes.length; i++)
+            if(childNodes[i]!=null)
+                num++;
+        return num;
+    }
+    
+    public int getChildArrayNum(){
+        return childNodes.length;
+    }
 }

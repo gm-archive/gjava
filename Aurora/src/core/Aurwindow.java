@@ -39,6 +39,7 @@ import languages.*;
 import java.io.*;
 import exceptions.*;
 import externproject.*;
+import fileclass.*;
 
 /**
  *
@@ -554,7 +555,16 @@ public class Aurwindow extends JFrame {
             case 2:
                 ProjectImporter.OpenProject(this);
                 break;
+            case 3:
+                Save();
+                break;
         }
+    }
+    
+    public void Save(){
+        GameProject test = new GameProject("My class", "C:/Documents and Settings");
+        test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
+        ProjectExporter.export(test, lang);
     }
     
     public void createToolBar() {
@@ -583,6 +593,13 @@ public class Aurwindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(2, evt);
+            }
+        });
+        
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(3, evt);
             }
         });
 
