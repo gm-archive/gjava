@@ -48,7 +48,8 @@ import fileclass.*;
  */
 public class Aurwindow extends JFrame {
 
-    //<editor-fold defaultstate="expanded" desc="Variables">
+    //<editor-fold defaultstate="collapsed" desc="Variables">
+    public DefaultMutableTreeNode top;
     public static String output = "";
     public JMenuBar menubar = new JMenuBar();
     public JMenu[] menus = new JMenu[MenuSupporter.MENULIMIT];
@@ -65,8 +66,12 @@ public class Aurwindow extends JFrame {
     public static String lang;
     public static JTree workspace;
     public static JScrollPane treescroll;
-
     //</editor-fold>
+    
+    
+    
+    
+    
     public void addWindow(TabPanel panel, int title) {
             panel.parent = this;
             panel.title = LangSupporter.activeLang.getEntry(title);
@@ -286,7 +291,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(2, 0, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(2, 1)] = MenuSupporter.MakeMenuItem(menus[2], 23, "Select the language");
+        items[MenuSupporter.GenerateMenuItemId(2, 1)] = MenuSupporter.MakeCheckMenuItem(menus[2], 75, "Display the toolbar");
         items[MenuSupporter.GenerateMenuItemId(2, 1)].addActionListener(new ActionListener() {
 
             @Override
@@ -294,15 +299,17 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(2, 1, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(2, 2)] = MenuSupporter.MakeCheckMenuItem(menus[2], 75, "Display the toolbar");
-        items[MenuSupporter.GenerateMenuItemId(2, 2)].addActionListener(new ActionListener() {
+        menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
+        menus[7] = MenuSupporter.MakeMenu(menubar, 92, "Tools");
+        items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
+        items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(2, 2, evt);
+                onItemActionPerformed(7, 0, evt);
             }
         });
-        menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
+        items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Select the language");
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
@@ -493,11 +500,11 @@ public class Aurwindow extends JFrame {
         
         if(settings[4].equals("Visible")){
             tool.setVisible(true);
-            items[MenuSupporter.GenerateMenuItemId(2, 2)].setSelected(true);
+            items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(true);
         }
         else{
             tool.setVisible(false);
-            items[MenuSupporter.GenerateMenuItemId(2, 2)].setSelected(false);
+            items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
         
         pack();
@@ -505,15 +512,21 @@ public class Aurwindow extends JFrame {
         addMessage(29);
         //</editor-fold>
         
-        //aurora.splash.dispose();
+        GameProject test = new GameProject("Game_Project1", "C:/Documents and Settings");
+        test.add(new Group(test, "Sprites"));
+        test.add(new Group(test, "Actors"));
+        ((Folder) test.childAt(0)).add(new fileclass.File(test, "MySprite", "sprite", ""));
+        test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
+        ProjectTree.importFolderToTree(test, top);
+        
+        workspace.expandRow(0);
     }
-
+    
     private void tabsClicked(MouseEvent evt) {
         //Leave in blank... for now...
     }
-
-
     
+    //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if(menu == 0 && item == 0){
             NewProject win = new NewProject(this);
@@ -538,10 +551,6 @@ public class Aurwindow extends JFrame {
             splitter1.setDividerLocation(0.66);
         }
         if (menu == 2 && item == 1) {
-            LanguageTab lang = new LanguageTab();
-            addWindow(lang, 28);
-        }
-        if (menu == 2 && item == 2) {
             tool.setVisible(!tool.isVisible());
         }
         if (menu == 4 && item == 0) {
@@ -648,10 +657,14 @@ public class Aurwindow extends JFrame {
                 }
             }
         }
-        
-       
+        if (menu == 7 && item == 0) {
+            LanguageTab lang = new LanguageTab();
+            addWindow(lang, 28);
+        }
     }
-
+//</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
     public void onToolbarActionPerformed(int item, ActionEvent evt){
         switch(item){
             case 1:
@@ -684,13 +697,17 @@ public class Aurwindow extends JFrame {
                 break;
         }
     }
+    //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject(){
         GameProject test = new GameProject("My class", "C:/Documents and Settings");
         test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
         ProjectExporter.export(test, lang);
     }
+    //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         tool = new JToolBar();
         tool.setFloatable(false);
@@ -772,21 +789,28 @@ public class Aurwindow extends JFrame {
         tool.add(actor);
         tool.add(scene);
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
     public void dispose() {
         saveSettings();
         super.dispose();
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         SettingsIO.saveSettings(look, istabs, scroller.isVisible());
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
         mdi.remove(frame);
     }
-    public DefaultMutableTreeNode top;
+    //</editor-fold>
 }
+
 

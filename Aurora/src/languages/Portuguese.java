@@ -23,7 +23,7 @@ public class Portuguese extends Dictionary{
         authors = new String[10];
         authors[0] = "Luís Reis";
         //If you changed this language, add your name here.
-        entry = new String[100];
+        entry = new String[200];
         entry[0] = "Ficheiro";
         entry[1] = "Editar";
         entry[2] = "Ver";
@@ -127,6 +127,9 @@ public class Portuguese extends Dictionary{
         entry[90] = "Separadores (Esquerda)";
         entry[91] = "Separadores (Baixo)";
         entry[92] = "Separadores (Direita)";
+        entry[92] = "Ferramentas";
+        entry[93] = "Actualizar";
+        entry[94] = "Criar";
         
         try{
             init();

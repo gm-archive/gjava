@@ -28,9 +28,12 @@ Contributions:
     TGMG
         Some menu items
         Made the SVN work.
-    
+        Imported the graphics to Aurora
+        Imported German dictionary to Aurora
     Jiiprah
         Most graphics
+
+For more detailed information about the languages check the language itself.
 
 
 GNU GENERAL PUBLIC LICENSE

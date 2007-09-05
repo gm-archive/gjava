@@ -14,6 +14,7 @@ import java.awt.event.ActionListener;
 import managers.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
+import fileclass.*;
 
 /**
  *
@@ -46,21 +47,22 @@ public class NewProject extends TabPanel {
 
         jLabel3.setVisible(false);
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(90));
+        jButton1.setText(LangSupporter.activeLang.getEntry(94));
         jButton1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println("create new project");
-                DefaultMutableTreeNode project = new DefaultMutableTreeNode(jTextField1.getText());
+                Project project = new Project(jTextField1.getText(), "");
 
-                wind.top.add(project);
-
-                project.add(new DefaultMutableTreeNode("Sprites"));
-                project.add(new DefaultMutableTreeNode("Sounds"));
-                project.add(new DefaultMutableTreeNode("Actors"));
-                project.add(new DefaultMutableTreeNode("Scenes"));
-                project.add(new DefaultMutableTreeNode("Extensions"));
-                project.add(new DefaultMutableTreeNode("Settings"));
+                project.add(new Group(project, "Sprites"));
+                project.add(new Group(project, "Sounds"));
+                project.add(new Group(project, "Actors"));
+                project.add(new Group(project, "Scenes"));
+                project.add(new Group(project, "Extensions"));
+                project.add(new fileclass.File(project, "Settings", "settings", ""));
+                
+                ProjectTree.importFolderToTree(project, wind.top);
+                
                 wind.workspace.updateUI();
             }
         });
