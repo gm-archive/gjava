@@ -18,7 +18,7 @@ import fileclass.*;
  * @author Luís
  */
 public class ObjectNode extends DefaultMutableTreeNode{
-    fileclass.Object object;
+    public fileclass.Object object;
     public ObjectNode(fileclass.Object object){
         super(object.name);
         this.object = object;

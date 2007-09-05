@@ -31,6 +31,7 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
+import javax.swing.tree.TreePath;
 import managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
@@ -663,6 +664,38 @@ public class Aurwindow extends JFrame {
         }
     }
 //</editor-fold>
+    
+    //Tree accessing functions
+    public Project getCurrentProject(){
+        Folder curfol = getCurrentFolder();
+        if(curfol==null)
+            return null; //null for none
+        while(curfol instanceof Group)
+            curfol = ((Group) curfol).root;
+        if(curfol instanceof Project)
+            return (Project) curfol;
+        return null;
+    }
+    
+    public Folder getCurrentFolder(){
+        if(getCurrentObject()==null)
+            return null; //null for none
+        if(getCurrentObject() instanceof Folder)
+            return ((Folder) getCurrentObject());
+        if(getCurrentObject() instanceof fileclass.File)
+            return ((fileclass.File) getCurrentObject()).root;
+        return null;
+    }
+    
+    public fileclass.Object getCurrentObject(){ //Currently selected object
+        if(workspace.getSelectionCount()!=1)
+            return null;
+        TreePath selection = workspace.getSelectionPath();
+        if(!(selection.getLastPathComponent() instanceof ObjectNode))
+            return null;
+        ObjectNode node = (ObjectNode) selection.getLastPathComponent();
+        return node.object;
+    }
     
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
     public void onToolbarActionPerformed(int item, ActionEvent evt){
