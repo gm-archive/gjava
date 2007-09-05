@@ -6,7 +6,6 @@
 
 
 //I had to made this a normal class because NetBeans designer didn't allow me to do what I wanted to.
-
 package components;
 
 import core.Aurwindow;
@@ -21,17 +20,17 @@ import javax.swing.tree.DefaultMutableTreeNode;
  * @author  Luís
  */
 public class NewProject extends TabPanel {
-    
+
     /** Creates new form NewProject */
-    
-    
+
+
     public NewProject(Aurwindow wind) {
         initComponents(wind);
         //jLabel1.setText(LangSupporter.activeLang.getEntry(54));
         //jLabel2.setText(LangSupporter.activeLang.getEntry(60));
         //jLabel3.setVisible(false);
     }
-    
+
     private void initComponents(final Aurwindow wind) {
 
         jLabel1 = new JLabel();
@@ -44,62 +43,36 @@ public class NewProject extends TabPanel {
         jLabel1.setText(LangSupporter.activeLang.getEntry(54));
 
         jLabel2.setText(LangSupporter.activeLang.getEntry(60));
-        
+
         jLabel3.setVisible(false);
 
         jButton1.setText(LangSupporter.activeLang.getEntry(90));
-jButton1.addActionListener(new ActionListener() {
+        jButton1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println("create new project");
-                //DefaultMutableTreeNode project = ;
-                
-                wind.top.add(new DefaultMutableTreeNode(jTextField1.getText()));
+                DefaultMutableTreeNode project = new DefaultMutableTreeNode(jTextField1.getText());
+
+                wind.top.add(project);
+
+                project.add(new DefaultMutableTreeNode("Sprites"));
+                project.add(new DefaultMutableTreeNode("Sounds"));
+                project.add(new DefaultMutableTreeNode("Actors"));
+                project.add(new DefaultMutableTreeNode("Scenes"));
+                project.add(new DefaultMutableTreeNode("Extensions"));
                 wind.workspace.updateUI();
-                
             }
-        }  );
-                jTextField1.setText("");
+        });
+        jTextField1.setText("");
 
         jLabel3.setText("jLabel3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ptypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
-                    .addComponent(jLabel3))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ptypes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-    }// </editor-fold>
-    
-    
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(ptypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup().addComponent(jLabel2).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jButton1)).addComponent(jLabel3)).addContainerGap()));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(ptypes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel3).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jLabel2).addComponent(jButton1).addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap()));
+    } // </editor-fold>
+
     // Variables declaration
     private JButton jButton1;
     private JLabel jLabel1;
@@ -108,5 +81,4 @@ jButton1.addActionListener(new ActionListener() {
     private ProjectTypes ptypes;
     public JTextField jTextField1;
     // End of variables declaration
-    
 }
