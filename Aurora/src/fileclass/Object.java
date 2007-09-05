@@ -9,14 +9,21 @@
 
 package fileclass;
 
+import components.*;
+
 /**
  *
  * @author Luís
  */
 public class Object {
     public String name;
+    public ObjectNode node;
     
     public Object(String name){
         this.name = name;
+    }
+    
+    public void setObjectNode(ObjectNode node){
+        this.node = node;
     }
 }

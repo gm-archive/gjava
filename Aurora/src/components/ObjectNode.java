@@ -22,5 +22,6 @@ public class ObjectNode extends DefaultMutableTreeNode{
     public ObjectNode(fileclass.Object object){
         super(object.name);
         this.object = object;
+        object.setObjectNode(this);
     }
 }

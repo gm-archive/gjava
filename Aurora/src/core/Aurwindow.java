@@ -513,13 +513,6 @@ public class Aurwindow extends JFrame {
         addMessage(29);
         //</editor-fold>
         
-        GameProject test = new GameProject("Game_Project1", "C:/Documents and Settings");
-        test.add(new Group(test, "Sprites"));
-        test.add(new Group(test, "Actors"));
-        ((Folder) test.childAt(0)).add(new fileclass.File(test, "MySprite", "sprite", ""));
-        test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
-        ProjectTree.importFolderToTree(test, top);
-        
         workspace.expandRow(0);
     }
     
@@ -723,14 +716,24 @@ public class Aurwindow extends JFrame {
                 //add class
                 break;
                 case 8:
-                //addactor
+                addFile(getCurrentFolder(), "newActor1", "actor");
                 break;
                 case 9:
-               //add scene
+                addFile(getCurrentFolder(), "newScene1", "scene");
                 break;
         }
     }
     //</editor-fold>
+    
+    public fileclass.File addFile(Folder folder, String name, String type){
+        if(!folder.allowsFileType(type))
+            return null;
+        fileclass.File file = new fileclass.File(folder, name, type, "");
+        ObjectNode node = new ObjectNode(file);
+        folder.node.add(node);
+        workspace.updateUI();
+        return file;
+    }
     
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject(){

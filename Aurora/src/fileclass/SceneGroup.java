@@ -1,7 +1,7 @@
 /*
- * GameProjectr.java
+ * ActorGroup.java
  * 
- * Created on 5/Set/2007, 14:52:05
+ * Created on 5/Set/2007, 23:24:50
  * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -13,22 +13,26 @@ package fileclass;
  *
  * @author Luís
  */
-public class GameProject extends Project {
-    public GameProject(String name, String location){
-        super(name, location);
+public class SceneGroup extends Group{
+    public SceneGroup(){
+        super();
     }
     
-    @Override
-    public String getType(){
-        return "Game";
+    public SceneGroup(Folder root, String name){
+        super(root, name);
     }
     
     @Override
     public boolean allowsFileType(String format){
+        if(format.equals("scene"))
+            return true;
         return false;
     }
     
+    @Override
     public boolean allowsGroup(Group group){
+        if(group instanceof SceneGroup)
+            return true;
         return false;
     }
 }

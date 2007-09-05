@@ -23,5 +23,6 @@ public class File extends Object{
         this.root = root;
         this.type = type;
         this.value = value;
+        root.add(this);
     }
 }

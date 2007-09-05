@@ -57,4 +57,12 @@ public class Folder extends Object{
     public int getChildArrayNum(){
         return childNodes.length;
     }
+    
+    public boolean allowsFileType(String format){
+        return true;
+    }
+    
+    public boolean allowsGroup(Group group){
+        return true;
+    }
 }

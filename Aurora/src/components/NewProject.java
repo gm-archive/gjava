@@ -52,12 +52,12 @@ public class NewProject extends TabPanel {
 
             public void actionPerformed(ActionEvent e) {
                 System.out.println("create new project");
-                Project project = new Project(jTextField1.getText(), "");
+                Project project = new GameProject(jTextField1.getText(), "");
 
                 project.add(new Group(project, "Sprites"));
                 project.add(new Group(project, "Sounds"));
-                project.add(new Group(project, "Actors"));
-                project.add(new Group(project, "Scenes"));
+                project.add(new ActorGroup(project, "Actors"));
+                project.add(new SceneGroup(project, "Scenes"));
                 project.add(new Group(project, "Extensions"));
                 project.add(new fileclass.File(project, "Settings", "settings", ""));
                 
