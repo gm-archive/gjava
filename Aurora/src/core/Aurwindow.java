@@ -60,7 +60,7 @@ public class Aurwindow extends JFrame {
     public JDesktopPane mdi;
     public JTextPane console;
     public JScrollPane scroller;
-    public JToolBar tool;
+    public static JToolBar tool;
     public static String lang;
     public static JTree workspace;
     public static JScrollPane treescroll;
@@ -87,8 +87,8 @@ public class Aurwindow extends JFrame {
         frame.setIconifiable(true);
         frame.setMaximizable(true);
         frame.setResizable(true);
-        frame.setTitle(LangSupporter.activeLang.getEntry(title));
         frame.setVisible(true);
+        frame.setTitle(LangSupporter.activeLang.getEntry(title));
         frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(jInternalFrame1Layout);
@@ -136,9 +136,9 @@ public class Aurwindow extends JFrame {
         console.setText(output);
     }
 
-    public Aurwindow(String[] args) {
+    public Aurwindow() {
         super("Aurora");
-
+        
         output = "";
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -161,11 +161,12 @@ public class Aurwindow extends JFrame {
         SettingsIO.console = console;
         String[] settings = SettingsIO.loadSettings();
         if (settings == null) {
-            settings = new String[4];
+            settings = new String[5];
             settings[0] = "Native";
             settings[1] = "Tabs";
             settings[2] = "Visible";
             settings[3] = "English";
+            settings[4] = "Visible";
         }
 
         if (!settings[3].equals("English")) {
@@ -271,6 +272,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(2, 1, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(2, 2)] = MenuSupporter.MakeCheckMenuItem(menus[2], 75, "Display the toolbar");
+        items[MenuSupporter.GenerateMenuItemId(2, 2)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(2, 2, evt);
+            }
+        });
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
@@ -354,8 +363,18 @@ public class Aurwindow extends JFrame {
         //<editor-fold defaultstate="expanded" desc="Layout Manager">
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(tool, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)).addContainerGap()));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                    .addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
+        layout.setVerticalGroup(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
 
@@ -413,10 +432,21 @@ public class Aurwindow extends JFrame {
         }
         splitter2.setDividerLocation(0.33);
         
+        if(settings[4].equals("Visible")){
+            tool.setVisible(true);
+            items[MenuSupporter.GenerateMenuItemId(2, 2)].setSelected(true);
+        }
+        else{
+            tool.setVisible(false);
+            items[MenuSupporter.GenerateMenuItemId(2, 2)].setSelected(false);
+        }
+        
         pack();
         //setSize(550, 550);
         addMessage(29);
         //</editor-fold>
+        
+        //aurora.splash.dispose();
     }
 
     private void tabsClicked(MouseEvent evt) {
@@ -451,6 +481,9 @@ public class Aurwindow extends JFrame {
         if (menu == 2 && item == 1) {
             LanguageTab lang = new LanguageTab();
             addWindow(lang, 28);
+        }
+        if (menu == 2 && item == 2) {
+            tool.setVisible(!tool.isVisible());
         }
         if (menu == 4 && item == 0) {
             HelpTab help = new HelpTab(0, 0);

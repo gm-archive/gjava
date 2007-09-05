@@ -14,16 +14,15 @@ package core;
  * @author Luís
  */
 public class aurora {
-    public static String[] arguments;
+    private static String[] arguments;
+    public static Aurwindow window;
+    
     public static String[] getargs(){
         return arguments;
     }
+    
     public static void main(String[] args){
         arguments = args;
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Aurwindow(getargs());
-            }
-        });
+        new SplashScreen();
     }
 }

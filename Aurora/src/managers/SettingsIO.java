@@ -94,6 +94,9 @@ public class SettingsIO {
             out.write("<language>");
             out.write(Aurwindow.lang);
             out.write("</language>");
+            out.write("<toolbar>");
+            out.write(Aurwindow.tool.isVisible() ? "Visible" : "Hidden");
+            out.write("</toolbar>");
             out.write("</settings>");
             out.close();
         } catch (IOException e) {
@@ -108,11 +111,12 @@ public class SettingsIO {
             addStringFormatedMessage(target.getAbsolutePath() + " does not exist", null, false);
             return null;
         }
-        String[] a = new String[4];
+        String[] a = new String[5];
         a[0] = null;
         a[1] = null;
         a[2] = null;
         a[3] = null;
+        a[4] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         Document doc;
@@ -139,6 +143,8 @@ public class SettingsIO {
                     id = 2;
                 else if(name.equals("language"))
                     id = 3;
+                else if(name.equals("toolbar"))
+                    id = 4;
                 if(id==-1){
                     addError(33);
                     addStringFormatedMessage(name, null, true);
@@ -148,7 +154,7 @@ public class SettingsIO {
                     addError(34);
                 a[id] = child.getTextContent();
             }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null){
+            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null){
                 addError(35);
             }
             return a;

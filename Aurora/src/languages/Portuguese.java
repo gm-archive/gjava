@@ -105,6 +105,8 @@ public class Portuguese extends Dictionary{
         entry[72] = "Definir a resolução do ecrã";
         entry[73] = "Qualidade de cor";
         entry[74] = "Não mudar";
+        //View
+        entry[75] = "Ver barra de ferramentas";
         
         try{
             init();
