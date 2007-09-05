@@ -228,29 +228,47 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 3, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(0, 3)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
-        items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
-        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import a file");
-        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export a file");
-        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
-        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
-        items[MenuSupporter.GenerateMenuItemId(0, 9)].addActionListener(new ActionListener() {
+        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
+        items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
+        items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 11)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 11)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 9, evt);
+                onItemActionPerformed(0, 11, evt);
             }
         });
 
         menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
-        items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeCheckMenuItem(menus[1], 14, "Clear console");
+        items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onItemActionPerformed(1, 0, evt);
+            }
+        });
+        items[MenuSupporter.GenerateMenuItemId(1, 1)] = MenuSupporter.MakeMenuItem(menus[1], 83, "Find&Replace");
+        items[MenuSupporter.GenerateMenuItemId(1, 1)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(1, 1, evt);
+            }
+        });
+        items[MenuSupporter.GenerateMenuItemId(1, 2)] = MenuSupporter.MakeMenuItem(menus[1], 14, "Clear console");
+        items[MenuSupporter.GenerateMenuItemId(1, 2)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(1, 2, evt);
             }
         });
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
@@ -464,12 +482,12 @@ public class Aurwindow extends JFrame {
             ProjectImporter.OpenProject(this);
         }
         if (menu == 0 && item == 3) {
-            //save project
+            SaveProject();
         }
-        if (menu == 0 && item == 9) {
+        if (menu == 0 && item == 11) {
             dispose();
         }
-        if (menu == 1 && item == 0) {
+        if (menu == 1 && item == 2) {
             output = "";
             console.setText("");
         }
@@ -588,13 +606,10 @@ public class Aurwindow extends JFrame {
             case 2:
                 ProjectImporter.OpenProject(this);
                 break;
-            case 3:
-                Save();
-                break;
         }
     }
     
-    public void Save(){
+    public void SaveProject(){
         GameProject test = new GameProject("My class", "C:/Documents and Settings");
         test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
         ProjectExporter.export(test, lang);

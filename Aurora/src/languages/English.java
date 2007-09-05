@@ -107,6 +107,23 @@ public class English extends Dictionary{
         entry[74] = "No change";
         //View
         entry[75] = "View toolbar";
+        //Find
+        entry[76] = "Find"; //Title
+        entry[77] = "Find"; //Label
+        entry[78] = "Text to find";
+        entry[79] = "Find"; //Button
+        entry[80] = "Case-Sensitive"; 
+        entry[81] = "Use Regular expressions";
+        entry[82] = "Treat \\n as line break";
+        //Find&Replace
+        entry[83] = "Find&Replace"; //Title
+        entry[84] = "Replace"; //Label
+        entry[85] = "by";
+        entry[86] = "Replace"; //Button
+        entry[87] = "Replace All";
+        //More menu items
+        entry[88] = "Save file";
+        entry[89] = "Save all files";
         
         try{
             init();

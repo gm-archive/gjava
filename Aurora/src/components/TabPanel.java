@@ -36,4 +36,24 @@ public class TabPanel extends JPanel{
     public boolean wasModified(){
         return false; //Allows the application to exit without prompting the user
     }
+    
+    public boolean canFind(){
+        return false;
+    }
+    
+    public boolean canReplace(){
+        return false;
+    }
+    
+    public boolean Find(String str){
+        return false; //Could not find string
+    }
+    
+    public boolean Replace(String match, String replace){
+        return false; //Could not replace
+    }
+    
+    public boolean ReplaceAll(String match, String replace){
+        return false; //Could not replace
+    }
 }

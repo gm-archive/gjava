@@ -107,6 +107,23 @@ public class Portuguese extends Dictionary{
         entry[74] = "Não mudar";
         //View
         entry[75] = "Ver barra de ferramentas";
+        //Find
+        entry[76] = "Procurar"; //Title
+        entry[77] = "Procurar"; //Label
+        entry[78] = "Texto a encontrar";
+        entry[79] = "Procurar"; //Button
+        entry[80] = "Sensível a maiúsculas/minúsculas";
+        entry[81] = "Usar expressões regulares";
+        entry[82] = "Tratar \\n como mudança de linha";
+        //Find&Replace
+        entry[83] = "Procurar e Substituir"; //Title
+        entry[84] = "Substituir"; //Label
+        entry[85] = "por";
+        entry[86] = "Substituir"; //Button
+        entry[87] = "Substituir todos";
+        //More menu items
+        entry[88] = "Guardar ficheiro";
+        entry[89] = "Guardar todos os ficheiros";
         
         try{
             init();
