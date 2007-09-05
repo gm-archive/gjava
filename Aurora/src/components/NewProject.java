@@ -60,6 +60,7 @@ public class NewProject extends TabPanel {
                 project.add(new DefaultMutableTreeNode("Actors"));
                 project.add(new DefaultMutableTreeNode("Scenes"));
                 project.add(new DefaultMutableTreeNode("Extensions"));
+                project.add(new DefaultMutableTreeNode("Settings"));
                 wind.workspace.updateUI();
             }
         });
