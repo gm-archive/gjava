@@ -649,22 +649,7 @@ public class Aurwindow extends JFrame {
             }
         }
         
-        // Add resources (toolbar, possibly a future menu)
-        if (menu == 10 && item == 0) {
-            // add sprite
-        }
-        if (menu == 10 && item == 1) {
-            // add sound
-        }
-        if (menu == 10 && item == 2) {
-            // add class
-        }
-        if (menu == 10 && item == 3) {
-            // add actor
-        }
-        if (menu == 10 && item == 4) {
-            // add scene
-        }
+       
     }
 
     public void onToolbarActionPerformed(int item, ActionEvent evt){
@@ -675,6 +660,27 @@ public class Aurwindow extends JFrame {
                 break;
             case 2:
                 ProjectImporter.OpenProject(this);
+                break;
+                case 3:
+                //save
+                break;
+                case 4:
+                //save all
+                break;
+                case 5:
+                //add sprite
+                break;
+                case 6:
+                //add sound
+                break;
+                case 7:
+                //add class
+                break;
+                case 8:
+                //addactor
+                break;
+                case 9:
+               //add scene
                 break;
         }
     }
@@ -700,6 +706,13 @@ public class Aurwindow extends JFrame {
         JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")), 45);
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
 
+        sprite.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(4, evt);
+            }
+        });
+        
         newp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
