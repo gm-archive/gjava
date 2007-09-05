@@ -55,7 +55,7 @@ public class Aurwindow extends JFrame {
     public JMenuItem[] items = new JMenuItem[MenuSupporter.MENULIMIT * MenuSupporter.ITEMLIMIT];
     public JSplitPane splitter1;
     public JSplitPane splitter2;
-    public JTabbedPane tabs;
+    public static JTabbedPane tabs;
     public int look;
     public boolean istabs; //True - tabs; False - MDI
     public JDesktopPane mdi;
@@ -68,7 +68,6 @@ public class Aurwindow extends JFrame {
 
     //</editor-fold>
     public void addWindow(TabPanel panel, int title) {
-        try {
             panel.parent = this;
             panel.title = LangSupporter.activeLang.getEntry(title);
             if (istabs) {
@@ -82,31 +81,6 @@ public class Aurwindow extends JFrame {
                     }
                 });
             }
-            ExtendedFrame frame = new ExtendedFrame();
-            panel.frame = frame;
-            frame.setPanel(panel);
-            frame.setClosable(true);
-            frame.setIconifiable(true);
-            frame.setMaximizable(true);
-            frame.setResizable(true);
-            frame.setTitle(LangSupporter.activeLang.getEntry(title));
-            frame.setVisible(true);
-            
-            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
-            frame.getContentPane().setLayout(jInternalFrame1Layout);
-            if (!istabs) {
-                jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-            }
-            frame.setBounds(0, 0, 300, 300);
-            mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
-            //frame.setRequestFocusEnabled(false);
-            mdi.setSelectedFrame(frame);
-            mdi.selectFrame(true);
-        } catch (Exception ex) {
-           // Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
-        }
         ExtendedFrame frame = new ExtendedFrame();
         panel.frame = frame;
         frame.setPanel(panel);
@@ -376,7 +350,7 @@ public class Aurwindow extends JFrame {
             }
         });
         ButtonGroup agroup = new ButtonGroup();
-        items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs");
+        items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
 
             @Override
@@ -385,12 +359,37 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(6, 0)].setSelected(true);
-        items[MenuSupporter.GenerateMenuItemId(6, 1)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 21, "MDI");
+        items[MenuSupporter.GenerateMenuItemId(6, 1)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 90, "Tabs Left");
         items[MenuSupporter.GenerateMenuItemId(6, 1)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onItemActionPerformed(6, 1, evt);
+            }
+        });
+        items[MenuSupporter.GenerateMenuItemId(6, 2)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 91, "Tabs Bottom");
+        items[MenuSupporter.GenerateMenuItemId(6, 2)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(6, 2, evt);
+            }
+        });
+        items[MenuSupporter.GenerateMenuItemId(6, 3)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 92, "Tabs Right");
+        items[MenuSupporter.GenerateMenuItemId(6, 3)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(6, 3, evt);
+            }
+        });
+        MenuSupporter.MakeSeparator(menus[6]);
+        items[MenuSupporter.GenerateMenuItemId(6, 4)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 21, "MDI");
+        items[MenuSupporter.GenerateMenuItemId(6, 4)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(6, 4, evt);
             }
         });
         //</editor-fold>
@@ -472,8 +471,20 @@ public class Aurwindow extends JFrame {
         }
 
         if (settings[1].equals("MDI")) {
+            items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
+            onItemActionPerformed(6, 4, null);
+        }
+        if (settings[1].equals("Tabs (Left)")) {
             items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
             onItemActionPerformed(6, 1, null);
+        }
+        if (settings[1].equals("Tabs (Bottom)")) {
+            items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
+            onItemActionPerformed(6, 2, null);
+        }
+        if (settings[1].equals("Tabs (Right)")) {
+            items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
+            onItemActionPerformed(6, 3, null);
         }
         splitter2.setDividerLocation(0.33);
         
@@ -577,7 +588,7 @@ public class Aurwindow extends JFrame {
             } catch (Exception e) {
             }
         }
-        if (menu == 6 && item == 0) {
+        if (menu == 6 && (item == 0 || item == 1)) {
             if (!istabs) {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(true);
@@ -601,7 +612,19 @@ public class Aurwindow extends JFrame {
                 }
             }
         }
+        if (menu == 6 && item == 0) {
+            tabs.setTabPlacement(JTabbedPane.TOP);
+        }
         if (menu == 6 && item == 1) {
+            tabs.setTabPlacement(JTabbedPane.LEFT);
+        }
+        if (menu == 6 && item == 2) {
+            tabs.setTabPlacement(JTabbedPane.BOTTOM);
+        }
+        if (menu == 6 && item == 3) {
+            tabs.setTabPlacement(JTabbedPane.RIGHT);
+        }
+        if (menu == 6 && item == 4) {
             if (istabs) {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(false);
@@ -703,5 +726,5 @@ public class Aurwindow extends JFrame {
         tabs.remove(panel);
         mdi.remove(frame);
     }
-    private DefaultMutableTreeNode top;
 }
+

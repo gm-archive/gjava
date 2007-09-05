@@ -83,7 +83,15 @@ public class SettingsIO {
             out.write("</style>");
             out.write("<desktop>");
             if (istabs) {
-                out.write("Tabs");
+                out.write("Tabs ");
+                if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.TOP)
+                    out.write("(Top)");
+                else if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.LEFT)
+                    out.write("(Left)");
+                else if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.BOTTOM)
+                    out.write("(Bottom)");
+                else
+                    out.write("(Right)");
             } else {
                 out.write("MDI");
             }

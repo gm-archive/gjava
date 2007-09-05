@@ -66,7 +66,7 @@ public class LanguageTab extends TabPanel {
 
         jLabel1.setText("Language");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Portuguese", "German" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "Portuguese (European)", "German" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

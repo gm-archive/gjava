@@ -44,7 +44,7 @@ public class English extends Dictionary{
         entry[17] = "Native look";
         entry[18] = "Cross-platform look";
         entry[19] = "Motif look";
-        entry[20] = "Tabs";
+        entry[20] = "Tabs (Top)";
         entry[21] = "MDI";
         entry[22] = "Display output box";
         entry[23] = "Select language";
@@ -124,6 +124,9 @@ public class English extends Dictionary{
         //More menu items
         entry[88] = "Save file";
         entry[89] = "Save all files";
+        entry[90] = "Tabs (Left)";
+        entry[91] = "Tabs (Bottom)";
+        entry[92] = "Tabs (Right)";
         
         try{
             init();

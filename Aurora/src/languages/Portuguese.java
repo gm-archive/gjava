@@ -19,7 +19,7 @@ import exceptions.*;
 public class Portuguese extends Dictionary{
     public Portuguese(){
         status = "Finished";
-        language = "Portuguese";
+        language = "Portuguese (European)";
         authors = new String[10];
         authors[0] = "Luís Reis";
         //If you changed this language, add your name here.
@@ -44,7 +44,7 @@ public class Portuguese extends Dictionary{
         entry[17] = "Aspecto nativo";
         entry[18] = "Aspecto Java";
         entry[19] = "Aspecto Motif";
-        entry[20] = "Separadores";
+        entry[20] = "Separadores (Cima)";
         entry[21] = "MDI";
         entry[22] = "Mostrar consola";
         entry[23] = "Seleccionar idioma";
@@ -124,6 +124,9 @@ public class Portuguese extends Dictionary{
         //More menu items
         entry[88] = "Guardar ficheiro";
         entry[89] = "Guardar todos os ficheiros";
+        entry[90] = "Separadores (Esquerda)";
+        entry[91] = "Separadores (Baixo)";
+        entry[92] = "Separadores (Direita)";
         
         try{
             init();
