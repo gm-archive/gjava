@@ -25,4 +25,8 @@ public class aurora {
         arguments = args;
         new SplashScreen();
     }
+    
+    public static void start(){
+        window = new Aurwindow();
+    }
 }

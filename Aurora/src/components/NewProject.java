@@ -25,8 +25,8 @@ public class NewProject extends TabPanel {
     /** Creates new form NewProject */
 
 
-    public NewProject(Aurwindow wind) {
-        initComponents(wind);
+    public NewProject() {
+        initComponents(core.aurora.window);
         //jLabel1.setText(LangSupporter.activeLang.getEntry(54));
         //jLabel2.setText(LangSupporter.activeLang.getEntry(60));
         //jLabel3.setVisible(false);

@@ -23,7 +23,7 @@ public class SplashScreen extends JFrame {
                 (m.width - this.getWidth()) / 2,
                 (m.height - this.getHeight()) / 2);
         setVisible(true);
-        aurora.window = new Aurwindow();
+        aurora.start();
         dispose();
     }
     

@@ -529,7 +529,7 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if(menu == 0 && item == 0){
-            NewProject win = new NewProject(this);
+            NewProject win = new NewProject();
             addWindow(win, 55);
         }
         if (menu == 0 && item == 2) {
@@ -668,7 +668,7 @@ public class Aurwindow extends JFrame {
     public void onToolbarActionPerformed(int item, ActionEvent evt){
         switch(item){
             case 1:
-                NewProject win = new NewProject(this);
+                NewProject win = new NewProject();
                 addWindow(win, 55);
                 break;
             case 2:
