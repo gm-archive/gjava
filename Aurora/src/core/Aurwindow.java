@@ -709,7 +709,35 @@ public class Aurwindow extends JFrame {
         sprite.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(4, evt);
+                onToolbarActionPerformed(5, evt);
+            }
+        });
+        
+        sound.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(6, evt);
+            }
+        });
+        
+        cl.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(7, evt);
+            }
+        });
+        
+        actor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(8, evt);
+            }
+        });
+        
+        scene.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(9, evt);
             }
         });
         
