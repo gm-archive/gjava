@@ -19,17 +19,28 @@ public class ProjectTypes extends JPanel {
     
     public GameProjects gmpro;
     public PackageProjects pkgpro;
+    public NewProject npro;
     
-    public ProjectTypes() {
+    public ProjectTypes(NewProject npro) {
         initComponents();
-        gmpro = new GameProjects();
-        pkgpro = new PackageProjects();
+        this.npro = npro;
+        gmpro = new GameProjects(this);
+        gmpro.tnum = 1;
+        pkgpro = new PackageProjects(this);
+        pkgpro.tnum = 2;
         jScrollPane1.setViewportView(gmpro);
         jScrollPane2.setViewportView(pkgpro);
     }
     
     public JTabbedPane getTabbedPane(){
         return jTabbedPane1;
+    }
+    
+    public void selTab(int num){
+        if(num!=gmpro.tnum)
+            gmpro.turnOff();
+        if(num!=pkgpro.tnum)
+            pkgpro.turnOff();
     }
     
     /** This method is called from within the constructor to

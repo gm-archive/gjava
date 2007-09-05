@@ -34,7 +34,7 @@ public class NewProject extends TabPanel {
         jLabel2 = new JLabel();
         jButton1 = new JButton();
         jTextField1 = new JTextField();
-        ptypes = new ProjectTypes();
+        ptypes = new ProjectTypes(this);
         jLabel3 = new JLabel();
 
         jLabel1.setText(LangSupporter.activeLang.getEntry(54));
@@ -45,7 +45,7 @@ public class NewProject extends TabPanel {
 
         jButton1.setText("jButton1");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("");
 
         jLabel3.setText("jLabel3");
 
@@ -92,7 +92,7 @@ public class NewProject extends TabPanel {
     private JLabel jLabel2;
     private JLabel jLabel3;
     private ProjectTypes ptypes;
-    private JTextField jTextField1;
+    public JTextField jTextField1;
     // End of variables declaration
     
 }

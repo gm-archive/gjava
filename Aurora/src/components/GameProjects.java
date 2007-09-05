@@ -15,7 +15,12 @@ import managers.*;
 public class GameProjects extends javax.swing.JPanel {
     
     /** Creates new form GameProjects */
-    public GameProjects() {
+    
+    private ProjectTypes ptypes;
+    public int tnum;
+    
+    public GameProjects(ProjectTypes ptypes) {
+        this.ptypes = ptypes;
         initComponents();
         jButton1.setText(LangSupporter.activeLang.getEntry(58));
     }
@@ -57,8 +62,21 @@ public class GameProjects extends javax.swing.JPanel {
             jButton1.setSelected(false);
     }
     
+    public void turnOff(){
+        setButton(0);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setButton(1);
+        ptypes.selTab(tnum);
+        String str = jButton1.getText()
+                .replaceAll("\\s", "_")
+                .replaceAll("[\\.:?^(){}]","")
+                .replaceAll("(\\[|\\])", "")
+                + "1";
+        if(str.charAt(0)=='1')
+            str = "p1";
+        ptypes.npro.jTextField1.setText(str);
     }//GEN-LAST:event_jButton1ActionPerformed
     
     

@@ -15,7 +15,12 @@ import managers.*;
 public class PackageProjects extends javax.swing.JPanel {
     
     /** Creates new form GameProjects */
-    public PackageProjects() {
+    
+    private ProjectTypes ptypes;
+    public int tnum;
+    
+    public PackageProjects(ProjectTypes ptypes) {
+        this.ptypes = ptypes;
         initComponents();
         jButton1.setText(LangSupporter.activeLang.getEntry(59));
         jButton2.setText(LangSupporter.activeLang.getEntry(61));
@@ -66,10 +71,28 @@ public class PackageProjects extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setButton(1);
+        ptypes.selTab(tnum);
+        String str = jButton1.getText()
+                .replaceAll("\\s", "_")
+                .replaceAll("[\\.:?^(){}]","")
+                .replaceAll("(\\[|\\])", "")
+                + "1";
+        if(str.charAt(0)=='1')
+            str = "p1";
+        ptypes.npro.jTextField1.setText(str);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setButton(2);
+        ptypes.selTab(tnum);
+        String str = jButton2.getText()
+                .replaceAll("\\s", "_")
+                .replaceAll("[\\.:?^(){}]","")
+                .replaceAll("(\\[|\\])", "")
+                + "1";
+        if(str.charAt(0)=='1')
+            str = "p1";
+        ptypes.npro.jTextField1.setText(str);
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void setButton(int sel){
@@ -81,6 +104,10 @@ public class PackageProjects extends javax.swing.JPanel {
             jButton2.setSelected(true);
         else
             jButton2.setSelected(false);
+    }
+    
+    public void turnOff(){
+        setButton(0);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
