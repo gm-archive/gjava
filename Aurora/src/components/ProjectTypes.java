@@ -7,21 +7,29 @@
 package components;
 
 import managers.*;
+import javax.swing.*;
 
 /**
  *
  * @author  Luís
  */
-public class ProjectTypes extends javax.swing.JPanel {
+public class ProjectTypes extends JPanel {
     
     /** Creates new form ProjectTypes */
     
+    public GameProjects gmpro;
     public PackageProjects pkgpro;
     
     public ProjectTypes() {
         initComponents();
+        gmpro = new GameProjects();
         pkgpro = new PackageProjects();
-        jScrollPane1.setViewportView(pkgpro);
+        jScrollPane1.setViewportView(gmpro);
+        jScrollPane2.setViewportView(pkgpro);
+    }
+    
+    public JTabbedPane getTabbedPane(){
+        return jTabbedPane1;
     }
     
     /** This method is called from within the constructor to

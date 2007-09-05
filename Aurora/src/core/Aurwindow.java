@@ -10,9 +10,6 @@
 package core;
 
 //import javax.swing.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.ZipException;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -38,11 +35,10 @@ import java.awt.*;
 import java.awt.event.*;
 import components.*;
 import managers.*;
-import javax.swing.*;
 import languages.*;
 import java.io.*;
 import exceptions.*;
-import java.util.zip.ZipFile;
+import externproject.*;
 
 /**
  *
@@ -426,29 +422,15 @@ public class Aurwindow extends JFrame {
         //Leave in blank... for now...
     }
 
+
+    
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if(menu == 0 && item == 0){
             NewProject win = new NewProject();
             addWindow(win, 55);
         }
         if (menu == 0 && item == 2) {
-            try {
-                //open project
-                JFileChooser fc = new JFileChooser();
-                fc.setFileFilter(new CustomFileFilter(".GCP", "G-Creator Project File"));
-                fc.showOpenDialog(this);
-                File file = fc.getSelectedFile();
-                if (file == null) {
-                    return;
-                }
-                ZipFile z = new ZipFile(file);
-                z.entries();
-                z.close();
-            } catch (ZipException ex) {
-                Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            ProjectImporter.OpenProject(this);
         }
         if (menu == 0 && item == 3) {
             //save project
@@ -565,9 +547,12 @@ public class Aurwindow extends JFrame {
 
     public void onToolbarActionPerformed(int item, ActionEvent evt){
         switch(item){
-            case 4:
+            case 1:
                 NewProject win = new NewProject();
                 addWindow(win, 55);
+                break;
+            case 2:
+                ProjectImporter.OpenProject(this);
                 break;
         }
     }
@@ -590,7 +575,14 @@ public class Aurwindow extends JFrame {
         newp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(4, evt);
+                onToolbarActionPerformed(1, evt);
+            }
+        });
+        
+        opn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(2, evt);
             }
         });
 

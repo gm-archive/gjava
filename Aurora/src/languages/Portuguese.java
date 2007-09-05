@@ -86,13 +86,12 @@ public class Portuguese extends Dictionary{
         //New Project Wizard
         entry[54] = "Escolha o tipo do seu projecto";
         entry[55] = "Novo Projecto";
-        //Project types
         entry[56] = "Jogos";
         entry[57] = "Caixas";
         entry[58] = "Jogo Vazio";
         entry[59] = "Caixa Vazia";
-        //Other settings
         entry[60] = "Nome do Projecto";
+        entry[61] = "Caixa Organizada";
         
         try{
             init();
