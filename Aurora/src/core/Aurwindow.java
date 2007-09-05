@@ -648,6 +648,23 @@ public class Aurwindow extends JFrame {
                 }
             }
         }
+        
+        // Add resources (toolbar, possibly a future menu)
+        if (menu == 10 && item == 0) {
+            // add sprite
+        }
+        if (menu == 10 && item == 1) {
+            // add sound
+        }
+        if (menu == 10 && item == 2) {
+            // add class
+        }
+        if (menu == 10 && item == 3) {
+            // add actor
+        }
+        if (menu == 10 && item == 4) {
+            // add scene
+        }
     }
 
     public void onToolbarActionPerformed(int item, ActionEvent evt){
