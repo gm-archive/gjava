@@ -29,6 +29,8 @@ Contributions:
         Some menu items
         Made the SVN work.
     
+    Jiiprah
+        Most graphics
 
 
 GNU GENERAL PUBLIC LICENSE

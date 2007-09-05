@@ -16,6 +16,8 @@ package fileclass;
 public class Folder extends Object{
     private Object[] childNodes;
     
+    
+    
     public Folder(String name){
         super(name);
         childNodes = new Object[100]; //Up to 100 childNodes

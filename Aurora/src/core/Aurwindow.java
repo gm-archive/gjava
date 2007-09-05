@@ -29,6 +29,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import managers.MenuSupporter;
 import java.awt.*;
@@ -67,18 +68,44 @@ public class Aurwindow extends JFrame {
 
     //</editor-fold>
     public void addWindow(TabPanel panel, int title) {
-        panel.parent = this;
-        panel.title = LangSupporter.activeLang.getEntry(title);
-        if (istabs) {
-            tabs.addTab(panel.title, panel);
-            tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
-            tabs.addMouseListener(new MouseAdapter() {
+        try {
+            panel.parent = this;
+            panel.title = LangSupporter.activeLang.getEntry(title);
+            if (istabs) {
+                tabs.addTab(panel.title, panel);
+                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+                tabs.addMouseListener(new MouseAdapter() {
 
-                @Override
-                public void mouseClicked(MouseEvent evt) {
-                    tabsClicked(evt);
-                }
-            });
+                    @Override
+                    public void mouseClicked(MouseEvent evt) {
+                        tabsClicked(evt);
+                    }
+                });
+            }
+            ExtendedFrame frame = new ExtendedFrame();
+            panel.frame = frame;
+            frame.setPanel(panel);
+            frame.setClosable(true);
+            frame.setIconifiable(true);
+            frame.setMaximizable(true);
+            frame.setResizable(true);
+            frame.setTitle(LangSupporter.activeLang.getEntry(title));
+            frame.setVisible(true);
+            
+            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
+            frame.getContentPane().setLayout(jInternalFrame1Layout);
+            if (!istabs) {
+                jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            }
+            frame.setBounds(0, 0, 300, 300);
+            mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            //frame.setRequestFocusEnabled(false);
+            mdi.setSelectedFrame(frame);
+            mdi.selectFrame(true);
+        } catch (Exception ex) {
+           // Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         ExtendedFrame frame = new ExtendedFrame();
         panel.frame = frame;
@@ -676,4 +703,5 @@ public class Aurwindow extends JFrame {
         tabs.remove(panel);
         mdi.remove(frame);
     }
+    private DefaultMutableTreeNode top;
 }

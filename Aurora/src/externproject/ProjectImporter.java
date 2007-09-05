@@ -15,6 +15,7 @@ import javax.swing.*;
 import components.*;
 import java.awt.*;
 import java.io.*;
+import java.util.Enumeration;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipException;
@@ -29,14 +30,18 @@ public class ProjectImporter {
         try {
             //open project
             JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(new CustomFileFilter(".GCP", "G-Creator Project File"));
+            fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             fc.showOpenDialog(caller);
             File file = fc.getSelectedFile();
             if (file == null) {
                 return;
             }
             ZipFile z = new ZipFile(file);
-            z.entries();
+            ;
+            for (Enumeration e = z.entries() ; e.hasMoreElements() ;) {
+         System.out.println(e.nextElement());
+
+     }
             z.close();
         } catch (ZipException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);

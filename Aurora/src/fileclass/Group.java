@@ -15,9 +15,13 @@ package fileclass;
  */
 public class Group extends Folder{
     public Folder root;
+
+    public Group(){super("");}
+
     
     public Group(Folder root, String name){
         super(name);
         this.root = root;
     }
+
 }
