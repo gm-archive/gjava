@@ -9,8 +9,12 @@
 
 package components;
 
+import core.Aurwindow;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import managers.*;
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
  *
@@ -21,14 +25,14 @@ public class NewProject extends TabPanel {
     /** Creates new form NewProject */
     
     
-    public NewProject() {
-        initComponents();
+    public NewProject(Aurwindow wind) {
+        initComponents(wind);
         //jLabel1.setText(LangSupporter.activeLang.getEntry(54));
         //jLabel2.setText(LangSupporter.activeLang.getEntry(60));
         //jLabel3.setVisible(false);
     }
     
-    private void initComponents() {
+    private void initComponents(final Aurwindow wind) {
 
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
@@ -43,9 +47,19 @@ public class NewProject extends TabPanel {
         
         jLabel3.setVisible(false);
 
-        jButton1.setText("jButton1");
+        jButton1.setText(LangSupporter.activeLang.getEntry(90));
+jButton1.addActionListener(new ActionListener() {
 
-        jTextField1.setText("");
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("create new project");
+                //DefaultMutableTreeNode project = ;
+                
+                wind.top.add(new DefaultMutableTreeNode(jTextField1.getText()));
+                wind.workspace.updateUI();
+                
+            }
+        }  );
+                jTextField1.setText("");
 
         jLabel3.setText("jLabel3");
 

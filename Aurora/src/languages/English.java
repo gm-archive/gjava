@@ -23,7 +23,7 @@ public class English extends Dictionary{
         authors = new String[10];
         authors[0] = "Luís Reis";
         //If you changed this language, add your name here.
-        entry = new String[100];
+        entry = new String[150];
         entry[0] = "File";
         entry[1] = "Edit";
         entry[2] = "View";
@@ -128,6 +128,10 @@ public class English extends Dictionary{
         entry[91] = "Tabs (Bottom)";
         entry[92] = "Tabs (Right)";
         
+        //General
+         entry[90] = "Create";
+        
+         
         try{
             init();
         }

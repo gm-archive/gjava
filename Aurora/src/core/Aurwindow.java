@@ -187,11 +187,14 @@ public class Aurwindow extends JFrame {
         }
         createToolBar();
         
-        DefaultMutableTreeNode top =
+        top =
             new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
         top.setAllowsChildren(true);
         workspace = new JTree(top);
         workspace.setVisible(true);
+        workspace.setScrollsOnExpand(true);
+                
+                
         treescroll = new JScrollPane(workspace);
         
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
@@ -513,7 +516,7 @@ public class Aurwindow extends JFrame {
     
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if(menu == 0 && item == 0){
-            NewProject win = new NewProject();
+            NewProject win = new NewProject(this);
             addWindow(win, 55);
         }
         if (menu == 0 && item == 2) {
@@ -650,7 +653,7 @@ public class Aurwindow extends JFrame {
     public void onToolbarActionPerformed(int item, ActionEvent evt){
         switch(item){
             case 1:
-                NewProject win = new NewProject();
+                NewProject win = new NewProject(this);
                 addWindow(win, 55);
                 break;
             case 2:
@@ -726,5 +729,6 @@ public class Aurwindow extends JFrame {
         tabs.remove(panel);
         mdi.remove(frame);
     }
+    public DefaultMutableTreeNode top;
 }
 
