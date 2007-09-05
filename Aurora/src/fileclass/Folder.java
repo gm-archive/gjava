@@ -13,8 +13,23 @@ package fileclass;
  *
  * @author Luís
  */
-public abstract class Folder extends Object{
-    public Object[] childNodes;
+public class Folder extends Object{
+    private Object[] childNodes;
+    
+    public Folder(String name){
+        super(name);
+        childNodes = new Object[100]; //Up to 100 childNodes
+    }
+    
+    public boolean add(Object node){
+        int i = 0;
+        while(i < 100 && childNodes[i]!=null)
+            i++;
+        if(i==100)
+            return false;
+        childNodes[i] = node;
+        return true;
+    }
     
     public int find(Object search){
         if(childNodes==null)
@@ -23,5 +38,9 @@ public abstract class Folder extends Object{
             if(childNodes[i]==search)
                 return i;
         return -1;
+    }
+    
+    public Object childAt(int pos){
+        return childNodes[pos];
     }
 }

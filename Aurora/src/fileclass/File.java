@@ -17,4 +17,11 @@ public class File extends Object{
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
     public String value;
+    
+    public File(Folder root, String name, String type, String value){
+        super(name);
+        this.root = root;
+        this.type = type;
+        this.value = value;
+    }
 }

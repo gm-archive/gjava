@@ -15,4 +15,13 @@ package fileclass;
  */
 public class Project extends Folder{
     public String location; //If project "Alfa" is in "C:/Program Files/Alfa", leave only "C:/Program Files/";
+    
+    public Project(String name, String location){
+        super(name);
+        this.location = location;
+    }
+    
+    public String getType(){
+        return null;
+    }
 }

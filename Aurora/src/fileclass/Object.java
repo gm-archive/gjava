@@ -13,6 +13,10 @@ package fileclass;
  *
  * @author Luís
  */
-public abstract class Object {
+public class Object {
     public String name;
+    
+    public Object(String name){
+        this.name = name;
+    }
 }
