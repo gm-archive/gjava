@@ -94,6 +94,17 @@ public class Portuguese extends Dictionary{
         entry[61] = "Caixa Organizada";
         entry[62] = "Extensões";
         entry[63] = "Extensão Vazia";
+        entry[64] = "Gráficos";
+        entry[65] = "Começar em modo de tela cheia";
+        entry[66] = "Permitir ao jogador redimensionar a janela";
+        entry[67] = "Não desenhar os limites da janela em modo de janela";
+        entry[68] = "Não mostrar os botões no topo da janela";
+        entry[69] = "Mostrar o rato";
+        entry[70] = "Mostrar as Frames por segundo no titulo da janela";
+        entry[71] = "Resolução";
+        entry[72] = "Definir a resolução do ecrã";
+        entry[73] = "Qualidade de cor";
+        entry[74] = "Não mudar";
         
         try{
             init();

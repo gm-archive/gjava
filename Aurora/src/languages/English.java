@@ -94,6 +94,17 @@ public class English extends Dictionary{
         entry[61] = "Organized Package";
         entry[62] = "Extensions";
         entry[63] = "Empty Extension";
+        entry[64] = "Graphics";
+        entry[65] = "Start in full-screen mode";
+        entry[66] = "Allow the player to resize the room window";
+        entry[67] = "Don't draw a border in windowed mode";
+        entry[68] = "Don't show the buttons in the window caption";
+        entry[69] = "Display mouse";
+        entry[70] = "Display FPS in window caption";
+        entry[71] = "Resolution";
+        entry[72] = "Set the resolution of the screen";
+        entry[73] = "Colour Depth";
+        entry[74] = "No change";
         
         try{
             init();
