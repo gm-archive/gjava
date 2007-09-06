@@ -80,7 +80,7 @@ public class English extends Dictionary{
         //Tree
         entry[51] = "Workspace";
         //Toolbar
-        entry[52] = "Add Script";
+        entry[52] = "Add Class";
         //Menu
         entry[53] = "Save All Projects";
         //New Project Wizard
