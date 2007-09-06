@@ -133,6 +133,7 @@ public class Portuguese extends Dictionary{
         //And the new File/Group
         entry[95] = "Novo...";
         entry[96] = "Novo ficheiro ou grupo";
+        entry[97] = "Items comuns";
         
         try{
             init();

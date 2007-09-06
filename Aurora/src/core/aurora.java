@@ -29,5 +29,6 @@ public class aurora {
     
     public static void start(){
         window = new Aurwindow();
+        window.console.setText(output);
     }
 }

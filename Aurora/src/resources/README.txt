@@ -25,6 +25,7 @@ Please forgive me if I retrieved some source code from your site and forgot to p
 Contributions:
     Luís Reis
         Most features
+        Non-native tree icons
     TGMG
         Some menu items
         Made the SVN work.

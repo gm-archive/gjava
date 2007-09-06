@@ -133,6 +133,7 @@ public class English extends Dictionary{
         //And the new File/Group
         entry[95] = "New...";
         entry[96] = "New File or Group";
+        entry[97] = "Standard items";
         
         try{
             init();

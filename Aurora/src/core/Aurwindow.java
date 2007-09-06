@@ -756,6 +756,17 @@ public class Aurwindow extends JFrame {
         return file;
     }
     
+    public boolean addGroup(Folder folder, Group group){
+        if(folder==null)
+            return false;
+        if(!folder.allowsGroup(group))
+            return false;
+        ObjectNode node = new ObjectNode(group);
+        folder.node.add(node);
+        workspace.updateUI();
+        return true;
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject() {
         GameProject test = new GameProject("My class", "C:/Documents and Settings");

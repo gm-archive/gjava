@@ -22,9 +22,11 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     private boolean bSelected;
     boolean logfileDeleted;
     public ImageIcon workspace;
+    public ImageIcon text;
 
     public TreeImageManager() {
         workspace = new ImageIcon(getClass().getResource("/resources/workspace.png"));
+        text = new ImageIcon(getClass().getResource("/resources/txt.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {
@@ -43,10 +45,13 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         else{
             ObjectNode noder = (ObjectNode) node;
             if(noder.object instanceof fileclass.File)
-                if(UIManager.get("Tree.leafIcon")!=null)
-                    setIcon((Icon) UIManager.get("Tree.leafIcon"));
+                if(((fileclass.File) noder.object).type.equals("txt"))
+                    setIcon(text);
                 else
-                    setIcon(null);
+                    if(UIManager.get("Tree.leafIcon")!=null)
+                        setIcon((Icon) UIManager.get("Tree.leafIcon"));
+                    else
+                        setIcon(null);
             else{
                 if(bExpanded)
                     if(UIManager.get("Tree.openIcon")!=null)
