@@ -9,6 +9,8 @@
 
 package core;
 
+import plugins.*;
+
 /**
  *
  * @author Luís
@@ -27,6 +29,9 @@ public class aurora {
         arguments = args;
         splash = new SplashScreen();
         start();
+        String[] plugins = new String[5];
+        plugins[0] = "MyExtension";
+        (new PluginLoader()).load(plugins);
     }
     
     public static void start(){
