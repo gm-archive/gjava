@@ -134,6 +134,17 @@ public class Portuguese extends Dictionary{
         entry[95] = "Novo...";
         entry[96] = "Novo ficheiro ou grupo";
         entry[97] = "Items comuns";
+        entry[98] = "Definir como projecto principal";
+        entry[99] = "Limpar projecto actual";
+        entry[100] = "Limpar projecto principal";
+        entry[101] = "Compilar projecto actual";
+        entry[102] = "Testar projecto actual";
+        entry[103] = "Compilar e testar projecto actual";
+        entry[104] = "Compilação final com o projecto actual";
+        entry[105] = "Compilar projecto principal";
+        entry[106] = "Testar projecto principal";
+        entry[107] = "Compilar e testar projecto principal";
+        entry[108] = "Compilação final com o projecto principal";
         
         try{
             init();

@@ -74,7 +74,7 @@ public class NewProject extends TabPanel {
             int type = getProjectType();
             if (type == 0){
                 project = new GameProject(jTextField1.getText(), "");
-                Aurwindow.mainProject = project;
+                Aurwindow.setMainProject(project);
                 project.add(new Group(project, "Images"));
                 project.add(new SpriteGroup(project, "Sprites"));
                 project.add(new SoundGroup(project, "Sounds"));
@@ -85,15 +85,15 @@ public class NewProject extends TabPanel {
             }
             else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
-                Aurwindow.mainProject = project;
+                Aurwindow.setMainProject(project);
             }
             else if(type == 2){
                 project = new PackageProject(jTextField1.getText(), "");
-                Aurwindow.mainProject = project;
+                Aurwindow.setMainProject(project);
             }
             else if(type == 3){
                 project = new ExtensionProject(jTextField1.getText(), "");
-                Aurwindow.mainProject = project;
+                Aurwindow.setMainProject(project);
             }
             if(type!=-1){
                 if(project!=null)

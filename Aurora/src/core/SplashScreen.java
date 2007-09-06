@@ -23,8 +23,6 @@ public class SplashScreen extends JFrame {
                 (m.width - this.getWidth()) / 2,
                 (m.height - this.getHeight()) / 2);
         setVisible(true);
-        aurora.start();
-        dispose();
     }
     
     /** This method is called from within the constructor to

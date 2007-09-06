@@ -70,7 +70,7 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
 
-    public static Project mainProject;
+    private static Project mainProject;
     public static Vector actors = new Vector(1); //Not needed
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
@@ -80,7 +80,14 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
 
 
-
+    public static Project getMainProject(){
+        return mainProject;
+    }
+    
+    public static void setMainProject(Project newmain){
+        mainProject = newmain;
+        workspace.updateUI();
+    }
 
     public void addWindow(TabPanel panel, int title) {
         panel.parent = this;
@@ -272,6 +279,30 @@ public class Aurwindow extends JFrame {
             }
         });
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
+        items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
+        items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(3, 0, evt);
+            }
+        });
+        MenuSupporter.MakeSeparator(menus[3]);
+        items[MenuSupporter.GenerateMenuItemId(3, 1)] = MenuSupporter.MakeMenuItem(menus[3], 99, "Clean current project");
+        items[MenuSupporter.GenerateMenuItemId(3, 2)] = MenuSupporter.MakeMenuItem(menus[3], 100, "Clean main project");
+        MenuSupporter.MakeSeparator(menus[3]);
+        //Settings can be found at the tools menu
+        //Main project
+        items[MenuSupporter.GenerateMenuItemId(3, 3)] = MenuSupporter.MakeMenuItem(menus[3], 101, "Build");
+        items[MenuSupporter.GenerateMenuItemId(3, 4)] = MenuSupporter.MakeMenuItem(menus[3], 102, "Test");
+        items[MenuSupporter.GenerateMenuItemId(3, 5)] = MenuSupporter.MakeMenuItem(menus[3], 103, "Build&Test");
+        items[MenuSupporter.GenerateMenuItemId(3, 6)] = MenuSupporter.MakeMenuItem(menus[3], 104, "Final Build");
+        MenuSupporter.MakeSeparator(menus[3]);
+         //Main project
+        items[MenuSupporter.GenerateMenuItemId(3, 7)] = MenuSupporter.MakeMenuItem(menus[3], 105, "Build");
+        items[MenuSupporter.GenerateMenuItemId(3, 8)] = MenuSupporter.MakeMenuItem(menus[3], 106, "Test");
+        items[MenuSupporter.GenerateMenuItemId(3, 9)] = MenuSupporter.MakeMenuItem(menus[3], 107, "Build&Test");
+        items[MenuSupporter.GenerateMenuItemId(3, 10)] = MenuSupporter.MakeMenuItem(menus[3], 108, "Final Build");
+        
         menus[7] = MenuSupporter.MakeMenu(menubar, 92, "Tools");
         items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
@@ -509,6 +540,9 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 2 && item == 1) {
             tool.setVisible(!tool.isVisible());
+        }
+        if(menu == 3 && item == 0){
+            setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
             HelpTab help = new HelpTab(0, 0);

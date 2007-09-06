@@ -134,6 +134,17 @@ public class English extends Dictionary{
         entry[95] = "New...";
         entry[96] = "New File or Group";
         entry[97] = "Standard items";
+        entry[98] = "Set as main project";
+        entry[99] = "Clean current project";
+        entry[100] = "Clean main project";
+        entry[101] = "Build current project";
+        entry[102] = "Test current project";
+        entry[103] = "Build&Test current project";
+        entry[104] = "Final Build current project";
+        entry[105] = "Build main project";
+        entry[106] = "Test main project";
+        entry[107] = "Build&Test main project";
+        entry[108] = "Final Build main project";
         
         try{
             init();

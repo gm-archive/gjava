@@ -17,6 +17,7 @@ public class aurora {
     private static String[] arguments;
     public static Aurwindow window;
     public static String output = "";
+    private static SplashScreen splash;
     
     public static String[] getargs(){
         return arguments;
@@ -24,11 +25,14 @@ public class aurora {
     
     public static void main(String[] args){
         arguments = args;
-        new SplashScreen();
+        splash = new SplashScreen();
+        start();
     }
     
     public static void start(){
         window = new Aurwindow();
         window.console.setText(output);
+        if(splash!=null)
+            splash.dispose();
     }
 }

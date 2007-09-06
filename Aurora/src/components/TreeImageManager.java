@@ -66,7 +66,10 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
             }
         }
 // Add the text to the cell
-        setText(labelText);
+        if(core.Aurwindow.getMainProject()!=null&&node==core.Aurwindow.getMainProject().node)
+            setText("<HTML><B>" + labelText);
+        else
+            setText(labelText);
 
         return this;
     }
