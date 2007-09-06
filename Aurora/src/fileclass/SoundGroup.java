@@ -35,4 +35,11 @@ public class SoundGroup extends Group{
             return true;
         return false;
     }
+    
+    @Override
+    public Group newGroup(String name){
+        Group group = new SoundGroup(this, name);
+        add(group);
+        return group;
+    }
 }

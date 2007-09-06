@@ -28,7 +28,13 @@ public class GameProject extends Project {
         return false;
     }
     
+    @Override
     public boolean allowsGroup(Group group){
         return false;
+    }
+    
+    @Override
+    public Group newGroup(String name){
+        return null;
     }
 }

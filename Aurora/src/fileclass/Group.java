@@ -23,5 +23,10 @@ public class Group extends Folder{
         super(name);
         this.root = root;
     }
-
+    
+    public Group newGroup(String name){
+        Group group = new Group(this, name);
+        add(group);
+        return group;
+    }
 }

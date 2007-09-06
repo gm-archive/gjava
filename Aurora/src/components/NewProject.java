@@ -26,13 +26,13 @@ public class NewProject extends TabPanel {
 
 
     public NewProject() {
-        initComponents(core.aurora.window);
+        initComponents();
         //jLabel1.setText(LangSupporter.activeLang.getEntry(54));
         //jLabel2.setText(LangSupporter.activeLang.getEntry(60));
         //jLabel3.setVisible(false);
     }
 
-    private void initComponents(final Aurwindow wind) {
+    private void initComponents() {
 
         jLabel1 = new JLabel();
         jLabel2 = new JLabel();
@@ -51,20 +51,7 @@ public class NewProject extends TabPanel {
         jButton1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                System.out.println("create new project");
-                Project project = new GameProject(jTextField1.getText(), "");
-                Aurwindow.mainProject = project;
-                project.add(new Group(project, "Images"));
-                project.add(new SpriteGroup(project, "Sprites"));
-                project.add(new SoundGroup(project, "Sounds"));
-                project.add(new ActorGroup(project, "Actors"));
-                project.add(new SceneGroup(project, "Scenes"));
-                project.add(new Group(project, "Extensions"));
-                new fileclass.File(project, "Settings", "settings", "");
-                
-                ProjectTree.importFolderToTree(project, wind.top);
-                
-                wind.workspace.updateUI();
+                createProject();
             }
         });
         jTextField1.setText("");
@@ -76,6 +63,46 @@ public class NewProject extends TabPanel {
         layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addContainerGap().addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(ptypes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup().addComponent(jLabel2).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jButton1)).addComponent(jLabel3)).addContainerGap()));
         layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(jLabel1).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(ptypes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel3).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(jLabel2).addComponent(jButton1).addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)).addContainerGap()));
     } // </editor-fold>
+    
+    public int getProjectType(){
+        return ptypes.getProjectType();
+    }
+    
+    public void createProject(){
+            core.utilities.addStringMessage("create new project");
+            Project project = null;
+            int type = getProjectType();
+            if (type == 0){
+                project = new GameProject(jTextField1.getText(), "");
+                Aurwindow.mainProject = project;
+                project.add(new Group(project, "Images"));
+                project.add(new SpriteGroup(project, "Sprites"));
+                project.add(new SoundGroup(project, "Sounds"));
+                project.add(new ActorGroup(project, "Actors"));
+                project.add(new SceneGroup(project, "Scenes"));
+                project.add(new Group(project, "Extensions"));
+                new fileclass.File(project, "Settings", "settings", "");
+            }
+            else if(type == 1){
+                project = new PackageProject(jTextField1.getText(), "");
+                Aurwindow.mainProject = project;
+            }
+            else if(type == 2){
+                project = new PackageProject(jTextField1.getText(), "");
+                Aurwindow.mainProject = project;
+            }
+            else if(type == 3){
+                project = new ExtensionProject(jTextField1.getText(), "");
+                Aurwindow.mainProject = project;
+            }
+            if(type!=-1){
+                if(project!=null)
+                    ProjectTree.importFolderToTree(project, core.aurora.window.top);
+                
+                Aurwindow.workspace.updateUI();
+            }
+    }
+    
     // Variables declaration
     private JButton jButton1;
     private JLabel jLabel1;

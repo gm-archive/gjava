@@ -52,8 +52,8 @@ public class SettingsIO {
             out += "</font>";
         }
         out += "<br/>";
-        Aurwindow.output += out;
-        console.setText(Aurwindow.output);
+        aurora.output += out;
+        console.setText(aurora.output);
     }
 
     public static void saveSettings(int look, boolean istabs, boolean scrollvisible) {

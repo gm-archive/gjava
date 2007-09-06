@@ -74,4 +74,10 @@ public class Folder extends Object{
     public boolean allowsGroup(Group group){
         return true;
     }
+    
+    public Group newGroup(String name){
+        Group group = new Group(this, name);
+        add(group);
+        return group;
+    }
 }

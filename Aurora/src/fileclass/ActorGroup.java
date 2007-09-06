@@ -35,4 +35,11 @@ public class ActorGroup extends Group{
             return true;
         return false;
     }
+    
+    @Override
+    public Group newGroup(String name){
+        Group group = new ActorGroup(this, name);
+        add(group);
+        return group;
+    }
 }

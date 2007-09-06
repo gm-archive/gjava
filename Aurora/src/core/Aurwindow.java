@@ -32,6 +32,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeCellRenderer;
 import managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
@@ -53,7 +54,6 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Variables">
     public DefaultMutableTreeNode top;
-    public static String output = "";
     public JMenuBar menubar = new JMenuBar();
     public JMenu[] menus = new JMenu[MenuSupporter.MENULIMIT];
     public JMenuItem[] items = new JMenuItem[MenuSupporter.MENULIMIT * MenuSupporter.ITEMLIMIT];
@@ -75,6 +75,8 @@ public class Aurwindow extends JFrame {
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
 
+    public TreeCellRenderer renderer;
+    
     //</editor-fold>
 
 
@@ -114,46 +116,9 @@ public class Aurwindow extends JFrame {
         mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
     }
 
-    public void addMessage(int message) {
-        addFormatedMessage(message, null, false);
-    }
-
-    public void addStringMessage(String message) {
-        addStringFormatedMessage(message, null, false);
-    }
-
-    public void addError(int message) {
-        addFormatedMessage(message, "red", true);
-    }
-
-    public void addFormatedMessage(int message, String color, boolean bold) {
-        addStringFormatedMessage(LangSupporter.activeLang.getEntry(message), color, bold);
-    }
-
-    public void addStringFormatedMessage(String message, String color, boolean bold) {
-        String out = "";
-        if (color != null) {
-            out += "<font color='" + color + "'>";
-        }
-        if (bold) {
-            out += "<b>";
-        }
-        out += message;
-        if (bold) {
-            out += "</b>";
-        }
-        if (color != null) {
-            out += "</font>";
-        }
-        out += "<br/>";
-        output += out;
-        console.setText(output);
-    }
-
     public Aurwindow() {
         super("Aurora");
-
-        output = "";
+        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setVisible(true);
@@ -189,7 +154,7 @@ public class Aurwindow extends JFrame {
             } else if (settings[3].equals("German")) {
                 LangSupporter.activeLang = new German();
             } else {
-                addError(36);
+                utilities.addError(36);
             }
         }
         try {
@@ -203,7 +168,9 @@ public class Aurwindow extends JFrame {
         workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
-
+        renderer = new TreeImageManager();
+        workspace.setCellRenderer(renderer);
+        
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
 
@@ -499,10 +466,11 @@ public class Aurwindow extends JFrame {
             tool.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-
+        
+        
         pack();
         //setSize(550, 550);
-        addMessage(29);
+        utilities.addMessage(29);
         //</editor-fold>
         workspace.expandRow(0);
     }
@@ -517,6 +485,10 @@ public class Aurwindow extends JFrame {
             NewProject win = new NewProject();
             addWindow(win, 55);
         }
+        if (menu == 0 && item == 1) {
+            NewFileGroup win = new NewFileGroup();
+            addWindow(win, 96);
+        }
         if (menu == 0 && item == 2) {
             ProjectImporter.OpenProject(this);
         }
@@ -527,7 +499,7 @@ public class Aurwindow extends JFrame {
             dispose();
         }
         if (menu == 1 && item == 2) {
-            output = "";
+            aurora.output = "";
             console.setText("");
         }
         if (menu == 2 && item == 0) {

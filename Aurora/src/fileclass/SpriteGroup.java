@@ -35,4 +35,11 @@ public class SpriteGroup extends Group{
             return true;
         return false;
     }
+    
+    @Override
+    public Group newGroup(String name){
+        Group group = new SpriteGroup(this, name);
+        add(group);
+        return group;
+    }
 }

@@ -25,6 +25,12 @@ public class ExtensionProjects extends javax.swing.JPanel {
         jButton1.setText(LangSupporter.activeLang.getEntry(63));
     }
     
+    public int getSelectedProject(){
+        if(jButton1.isSelected())
+            return 3;
+        return -1;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

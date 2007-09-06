@@ -36,6 +36,16 @@ public class ProjectTypes extends JPanel {
         jScrollPane3.setViewportView(extpro);
     }
     
+    public int getProjectType(){
+        if(gmpro.getSelectedProject()!=-1)
+            return gmpro.getSelectedProject();
+        if(pkgpro.getSelectedProject()!=-1)
+            return pkgpro.getSelectedProject();
+        if(extpro.getSelectedProject()!=-1)
+            return extpro.getSelectedProject();
+        return -1;
+    }
+    
     public JTabbedPane getTabbedPane(){
         return jTabbedPane1;
     }

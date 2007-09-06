@@ -19,6 +19,12 @@ public class GameProjects extends javax.swing.JPanel {
     private ProjectTypes ptypes;
     public int tnum;
     
+    public int getSelectedProject(){
+        if(jButton1.isSelected())
+            return 0;
+        return -1;
+    }
+    
     public GameProjects(ProjectTypes ptypes) {
         this.ptypes = ptypes;
         initComponents();

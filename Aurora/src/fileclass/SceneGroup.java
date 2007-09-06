@@ -35,4 +35,11 @@ public class SceneGroup extends Group{
             return true;
         return false;
     }
+    
+    @Override
+    public Group newGroup(String name){
+        Group group = new SceneGroup(this, name);
+        add(group);
+        return group;
+    }
 }

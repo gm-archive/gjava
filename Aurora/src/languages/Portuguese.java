@@ -30,7 +30,7 @@ public class Portuguese extends Dictionary{
         entry[3] = "Compilar&Executar";
         entry[4] = "Ajuda";
         entry[5] = "Novo Projecto";
-        entry[6] = "Novo Ficheiro";
+        entry[6] = "Novo Ficheiro/Grupo";
         entry[7] = "Abrir Projecto";
         entry[8] = "Guardar Projecto";
         entry[9] = "Guardar Projecto como";
@@ -130,6 +130,9 @@ public class Portuguese extends Dictionary{
         entry[92] = "Ferramentas";
         entry[93] = "Actualizar";
         entry[94] = "Criar";
+        //And the new File/Group
+        entry[95] = "Novo...";
+        entry[96] = "Novo ficheiro ou grupo";
         
         try{
             init();

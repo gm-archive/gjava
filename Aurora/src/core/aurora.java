@@ -16,6 +16,7 @@ package core;
 public class aurora {
     private static String[] arguments;
     public static Aurwindow window;
+    public static String output = "";
     
     public static String[] getargs(){
         return arguments;

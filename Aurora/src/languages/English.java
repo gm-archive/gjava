@@ -30,7 +30,7 @@ public class English extends Dictionary{
         entry[3] = "Build&Run";
         entry[4] = "Help";
         entry[5] = "New Project";
-        entry[6] = "New File";
+        entry[6] = "New File/Group";
         entry[7] = "Open Project";
         entry[8] = "Save Project";
         entry[9] = "Save Project As";
@@ -130,6 +130,9 @@ public class English extends Dictionary{
         entry[92] = "Tools";
         entry[93] = "Update";
         entry[94] = "Create";
+        //And the new File/Group
+        entry[95] = "New...";
+        entry[96] = "New File or Group";
         
         try{
             init();
