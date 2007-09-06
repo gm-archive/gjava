@@ -90,8 +90,7 @@ public class Aurwindow extends JFrame {
     }
     
     public void Open(fileclass.File file){
-        if(file.type.equals("txt"))
-            addWindow(new PlainTextEditor(file), file.name);
+        addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
     }
 
     public static Project getMainProject(){
@@ -143,7 +142,6 @@ public class Aurwindow extends JFrame {
 
     public Aurwindow() {
         super("Aurora");
-        
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setVisible(true);

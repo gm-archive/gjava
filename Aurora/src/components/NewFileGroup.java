@@ -27,6 +27,11 @@ public class NewFileGroup extends TabPanel {
     public JTree tree;
     
     /** Creates new form NewFileGroup */
+    
+    public Model a1;
+    public Model a2;
+    public Model a3;
+    
     public NewFileGroup() {
         initComponents();
         tree = new JTree(aurora.window.top);
@@ -35,14 +40,29 @@ public class NewFileGroup extends TabPanel {
         model.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setSelectionModel(model);
         tree.setCellRenderer(aurora.window.renderer);
-        Model a1 = new Model() {
+        a1 = new Model() {
             String[] strings = {"Group", "Text file"};
-            String[] truenames = {"Group", "Text file"};
+            String[] truenames = {"Group", "Text"};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+            public String getTrueName(int i){ return truenames[i]; }
+        };
+        a2 = new Model() {
+            String[] strings = {"Sprite", "Actor", "Scene", "EGML Script"};
+            String[] truenames = {"Sprite", "Actor", "Scene", "EGML"};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+            public String getTrueName(int i){ return truenames[i]; }
+        };
+        a3 = new Model() {
+            String[] strings = {"Java file", "C++ file", "C++ header file", "XML file"};
+            String[] truenames = {"Java", "C++", "C++ header", "XML"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
             public String getTrueName(int i){ return truenames[i]; }
         };
         jList2.setModel(a1);
+        jList1.setSelectedIndex(0);
         //tree.addMouse
     }
     
@@ -71,6 +91,11 @@ public class NewFileGroup extends TabPanel {
             public Object getElementAt(int i) { return strings[i]; }
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList1);
 
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -132,6 +157,15 @@ public class NewFileGroup extends TabPanel {
         if(getCurrentObject() instanceof fileclass.Folder)
             add(val);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        if(jList1.getSelectedIndex()==0)
+            jList2.setModel(a1);
+        else if(jList1.getSelectedIndex()==1)
+            jList2.setModel(a2);
+        else if(jList1.getSelectedIndex()==2)
+            jList2.setModel(a3);
+    }//GEN-LAST:event_jList1ValueChanged
     
     public fileclass.Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
@@ -165,8 +199,25 @@ public class NewFileGroup extends TabPanel {
             name = "newGroup";
         if(val.equals("Group"))
             aurora.window.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
-        if(val.equals("Text file"))
+        if(val.equals("Text"))
             aurora.window.addFile(getCurrentFolder(), name, "txt");
+        if(val.equals("Sprite"))
+            aurora.window.addFile(getCurrentFolder(), name, "sprite");
+        if(val.equals("Actor"))
+            aurora.window.addFile(getCurrentFolder(), name, "actor");
+        if(val.equals("Scene"))
+            aurora.window.addFile(getCurrentFolder(), name, "scene");
+        if(val.equals("EGML"))
+            aurora.window.addFile(getCurrentFolder(), name, "egml");
+        if(val.equals("Java"))
+            aurora.window.addFile(getCurrentFolder(), name, "java");
+        if(val.equals("C++"))
+            aurora.window.addFile(getCurrentFolder(), name, "cpp");
+        if(val.equals("C++ header"))
+            aurora.window.addFile(getCurrentFolder(), name, "h");
+        if(val.equals("XML"))
+            aurora.window.addFile(getCurrentFolder(), name, "xml");
+        
         aurora.window.addWindow(new NewFileGroup(), 96);
         this.dispose();
     }

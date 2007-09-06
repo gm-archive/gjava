@@ -45,15 +45,16 @@ public class TabPanel extends JPanel{
         return false;
     }
     
-    public boolean Find(String str){
+    public boolean Find(String str, boolean useRegex){
+        //Case insensitive should be generated previously
         return false; //Could not find string
     }
     
-    public boolean Replace(String match, String replace){
+    public boolean Replace(String match, String replace, boolean useRegex){
         return false; //Could not replace
     }
     
-    public boolean ReplaceAll(String match, String replace){
+    public boolean ReplaceAll(String match, String replace, boolean useRegex){
         return false; //Could not replace
     }
 }

@@ -20,6 +20,7 @@ import javax.swing.tree.*;
 public class TreeImageManager extends JLabel implements TreeCellRenderer {
 
     private boolean bSelected;
+    private boolean isCurProject;
     boolean logfileDeleted;
     public ImageIcon workspace;
     public ImageIcon text;
@@ -39,6 +40,13 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         String labelText = (String) node.getUserObject();
 
         this.bSelected = bSelected;
+        try{
+            this.isCurProject = 
+                    (node == core.aurora.window.getCurrentProject().node);
+        }
+        catch(NullPointerException e){
+            this.isCurProject = false;
+        }
 
         if (!(node instanceof ObjectNode))
             setIcon(workspace);
@@ -83,7 +91,12 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         Icon currentI = getIcon();
 
 // Set the correct background color
-        bColor = bSelected ? Color.yellow : Color.white;
+        if(bSelected)
+            bColor = Color.yellow;
+        else if(isCurProject)
+            bColor = Color.orange;
+        else
+            bColor = Color.white;
         g.setColor(bColor);
 
 // Draw a rectangle in the background of the cell
