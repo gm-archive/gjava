@@ -29,7 +29,7 @@ public class TabPanel extends JPanel{
         return false;
     }
     
-    public boolean Save(String file){
+    public boolean Save(){
         return true; //Sucessfully saved
     }
     

@@ -9,8 +9,8 @@
 
 package core;
 
-//import javax.swing.*;
-import javax.swing.ButtonGroup;
+import javax.swing.*;
+/*import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,12 +27,14 @@ import javax.swing.JTextPane;
 import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.JTree;*/
+import javax.swing.tree.*;
+/*import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreeSelectionModel;
 import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeCellRenderer;
+import javax.swing.tree.TreeCellRenderer;*/
+import javax.swing.event.*;
 import managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
@@ -45,6 +47,7 @@ import externproject.*;
 import fileclass.*;
 import java.util.Enumeration;
 import java.util.Vector;
+import editors.*;
 
 /**
  *
@@ -79,6 +82,17 @@ public class Aurwindow extends JFrame {
     
     //</editor-fold>
 
+    
+    public void treeDoubleClicked(MouseEvent e){
+        fileclass.Object obj = getCurrentObject();
+        if(obj instanceof fileclass.File)
+            Open((fileclass.File) obj);
+    }
+    
+    public void Open(fileclass.File file){
+        if(file.type.equals("txt"))
+            addWindow(new PlainTextEditor(file), file.name);
+    }
 
     public static Project getMainProject(){
         return mainProject;
@@ -90,8 +104,12 @@ public class Aurwindow extends JFrame {
     }
 
     public void addWindow(TabPanel panel, int title) {
+        addWindow(panel, LangSupporter.activeLang.getEntry(title));
+    }
+    
+    public void addWindow(TabPanel panel, String title) {
         panel.parent = this;
-        panel.title = LangSupporter.activeLang.getEntry(title);
+        panel.title = title;
         if (istabs) {
             tabs.addTab(panel.title, panel);
             tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
@@ -111,7 +129,7 @@ public class Aurwindow extends JFrame {
         frame.setMaximizable(true);
         frame.setResizable(true);
         frame.setVisible(true);
-        frame.setTitle(LangSupporter.activeLang.getEntry(title));
+        frame.setTitle(title);
         frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
         frame.getContentPane().setLayout(jInternalFrame1Layout);
@@ -177,6 +195,26 @@ public class Aurwindow extends JFrame {
         workspace.setScrollsOnExpand(true);
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
+        workspace.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if(e.getClickCount()==2){
+                    treeDoubleClicked(e);
+                }
+            }
+            public void mousePressed(MouseEvent e){
+                
+            }
+            public void mouseReleased(MouseEvent e){
+                
+            }
+            public void mouseEntered(MouseEvent e){
+                
+            }
+            public void mouseExited(MouseEvent e){
+                
+            }
+        });
         
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
@@ -800,7 +838,7 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
         return true;
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject() {
         GameProject test = new GameProject("My class", "C:/Documents and Settings");
