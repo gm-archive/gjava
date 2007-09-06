@@ -42,6 +42,8 @@ import java.io.*;
 import exceptions.*;
 import externproject.*;
 import fileclass.*;
+import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  *
@@ -67,26 +69,31 @@ public class Aurwindow extends JFrame {
     public static String lang;
     public static JTree workspace;
     public static JScrollPane treescroll;
-    //</editor-fold>
-    
-    
-    
-    
-    
-    public void addWindow(TabPanel panel, int title) {
-            panel.parent = this;
-            panel.title = LangSupporter.activeLang.getEntry(title);
-            if (istabs) {
-                tabs.addTab(panel.title, panel);
-                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
-                tabs.addMouseListener(new MouseAdapter() {
 
-                    @Override
-                    public void mouseClicked(MouseEvent evt) {
-                        tabsClicked(evt);
-                    }
-                });
-            }
+    public static Project mainProject;
+    public static Vector actors = new Vector(1);
+    public static Vector sprites = new Vector(1);
+    public static Vector scenes = new Vector(1);
+
+    //</editor-fold>
+
+
+
+
+    public void addWindow(TabPanel panel, int title) {
+        panel.parent = this;
+        panel.title = LangSupporter.activeLang.getEntry(title);
+        if (istabs) {
+            tabs.addTab(panel.title, panel);
+            tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+            tabs.addMouseListener(new MouseAdapter() {
+
+                @Override
+                public void mouseClicked(MouseEvent evt) {
+                    tabsClicked(evt);
+                }
+            });
+        }
         ExtendedFrame frame = new ExtendedFrame();
         panel.frame = frame;
         frame.setPanel(panel);
@@ -145,7 +152,7 @@ public class Aurwindow extends JFrame {
 
     public Aurwindow() {
         super("Aurora");
-        
+
         output = "";
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -158,7 +165,7 @@ public class Aurwindow extends JFrame {
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
-        
+
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
@@ -179,11 +186,9 @@ public class Aurwindow extends JFrame {
         if (!settings[3].equals("English")) {
             if (settings[3].equals("Portuguese")) {
                 LangSupporter.activeLang = new Portuguese();
-            }
-            else if(settings[3].equals("German")){
+            } else if (settings[3].equals("German")) {
                 LangSupporter.activeLang = new German();
-            }
-            else {
+            } else {
                 addError(36);
             }
         }
@@ -192,17 +197,16 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
         }
         createToolBar();
-        
-        top =
-            new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
+
+        top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
         top.setAllowsChildren(true);
         workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
-                
-                
+
+
         treescroll = new JScrollPane(workspace);
-        
+
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
@@ -404,7 +408,6 @@ public class Aurwindow extends JFrame {
             }
         });
         //</editor-fold>
-
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
@@ -418,18 +421,8 @@ public class Aurwindow extends JFrame {
         //<editor-fold defaultstate="expanded" desc="Layout Manager">
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-                    .addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                    .addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
 
@@ -498,31 +491,29 @@ public class Aurwindow extends JFrame {
             onItemActionPerformed(6, 3, null);
         }
         splitter2.setDividerLocation(0.33);
-        
-        if(settings[4].equals("Visible")){
+
+        if (settings[4].equals("Visible")) {
             tool.setVisible(true);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(true);
-        }
-        else{
+        } else {
             tool.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-        
+
         pack();
         //setSize(550, 550);
         addMessage(29);
         //</editor-fold>
-        
         workspace.expandRow(0);
     }
-    
+
     private void tabsClicked(MouseEvent evt) {
         //Leave in blank... for now...
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
-        if(menu == 0 && item == 0){
+        if (menu == 0 && item == 0) {
             NewProject win = new NewProject();
             addWindow(win, 55);
         }
@@ -656,43 +647,53 @@ public class Aurwindow extends JFrame {
             addWindow(lang, 28);
         }
     }
+
 //</editor-fold>
-    
     //Tree accessing functions
-    public Project getCurrentProject(){
+    public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
-        if(curfol==null)
+        if (curfol == null) {
             return null; //null for none
-        while(curfol instanceof Group)
+        }
+        while (curfol instanceof Group) {
             curfol = ((Group) curfol).root;
-        if(curfol instanceof Project)
+        }
+        if (curfol instanceof Project) {
             return (Project) curfol;
+        }
         return null;
     }
-    
-    public Folder getCurrentFolder(){
-        if(getCurrentObject()==null)
+
+    public Folder getCurrentFolder() {
+        if (getCurrentObject() == null) {
             return null; //null for none
-        if(getCurrentObject() instanceof Folder)
-            return ((Folder) getCurrentObject());
-        if(getCurrentObject() instanceof fileclass.File)
+        }
+        if (getCurrentObject() instanceof Folder) {
+            return (Folder) getCurrentObject();
+        }
+        if (getCurrentObject() instanceof fileclass.File) {
             return ((fileclass.File) getCurrentObject()).root;
+        }
         return null;
     }
-    
-    public fileclass.Object getCurrentObject(){ //Currently selected object
-        if(workspace.getSelectionCount()!=1)
+
+    public fileclass.Object getCurrentObject() {
+        //Currently selected object
+        if (workspace.getSelectionCount() != 1) {
             return null;
+        }
         TreePath selection = workspace.getSelectionPath();
-        if(!(selection.getLastPathComponent() instanceof ObjectNode))
+        if (!(selection.getLastPathComponent() instanceof ObjectNode)) {
             return null;
+        }
         ObjectNode node = (ObjectNode) selection.getLastPathComponent();
         return node.object;
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
-    public void onToolbarActionPerformed(int item, ActionEvent evt){
-        switch(item){
+    public void onToolbarActionPerformed(int item, ActionEvent evt) {
+
+        switch (item) {
             case 1:
                 NewProject win = new NewProject();
                 addWindow(win, 55);
@@ -700,31 +701,60 @@ public class Aurwindow extends JFrame {
             case 2:
                 ProjectImporter.OpenProject(this);
                 break;
-                case 3:
+            case 3:
                 //save
                 break;
-                case 4:
+            case 4:
                 //save all
                 break;
-                case 5:
+            case 5:
+
                 //add sprite
+                int i = 0;
+                int pos = 0;
+                System.out.println("" + actors.size());
+                if (actors.size() == 0) {
+                    pos = 0;
+                } else {
+                    for (Enumeration e = actors.elements(); e.hasMoreElements();) {
+                        if (((Actor) e.nextElement()).equals(null)) {
+                            //if one of the old resources were deleted
+                        } else if (i == actors.size() - 1) {
+                            pos = i;
+                        }
+                        i++;
+                    }
+                }
+                if (pos == 1) {
+                    //  ((DefaultMutableTreeNode)mainProject.getChildAt(0)).add(new DefaultMutableTreeNode("Spr_"+i));
+                    ((Folder) mainProject.childAt(1)).add(new fileclass.File(mainProject, "Spr_" + i, "sprite", ""));
+                    actors.add(new Actor());
+                } else {
+                    ((Folder) mainProject.childAt(1)).add(new fileclass.File(mainProject, "Spr_" + i, "sprite", ""));
+                    actors.add(pos, new Actor());
+                    System.out.println("test");
+                }
+
+
                 break;
-                case 6:
+            case 6:
                 //add sound
                 break;
-                case 7:
+            case 7:
                 //add class
                 break;
-                case 8:
+            case 8:
                 addFile(getCurrentFolder(), "newActor1", "actor");
                 break;
                 case 9:
                 addFile(getCurrentFolder(), "newScene1", "scene");
                 break;
         }
+        ProjectTree.importFolderToTree(mainProject, top);
+        workspace.updateUI();
     }
+
     //</editor-fold>
-    
     public fileclass.File addFile(Folder folder, String name, String type){
         if(!folder.allowsFileType(type))
             return null;
@@ -736,19 +766,19 @@ public class Aurwindow extends JFrame {
     }
     
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
-    public void SaveProject(){
+    public void SaveProject() {
         GameProject test = new GameProject("My class", "C:/Documents and Settings");
         test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
         ProjectExporter.export(test, lang);
     }
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         tool = new JToolBar();
         tool.setFloatable(false);
 
-        
+
         JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
         JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")), 53);
@@ -760,55 +790,63 @@ public class Aurwindow extends JFrame {
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
 
         sprite.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(5, evt);
             }
         });
-        
+
         sound.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(6, evt);
             }
         });
-        
+
         cl.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(7, evt);
             }
         });
-        
+
         actor.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(8, evt);
             }
         });
-        
+
         scene.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(9, evt);
             }
         });
-        
+
         newp.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(1, evt);
             }
         });
-        
+
         opn.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(2, evt);
             }
         });
-        
+
         save.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(3, evt);
@@ -825,22 +863,22 @@ public class Aurwindow extends JFrame {
         tool.add(actor);
         tool.add(scene);
     }
-    //</editor-fold>
 
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
     public void dispose() {
         saveSettings();
         super.dispose();
     }
-    //</editor-fold>
 
+    //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         SettingsIO.saveSettings(look, istabs, scroller.isVisible());
     }
+
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
@@ -848,5 +886,3 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 }
-
-
