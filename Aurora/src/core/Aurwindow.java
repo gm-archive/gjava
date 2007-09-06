@@ -71,9 +71,9 @@ public class Aurwindow extends JFrame {
     public static JScrollPane treescroll;
 
     public static Project mainProject;
-    public static Vector actors = new Vector(1);
-    public static Vector sprites = new Vector(1);
-    public static Vector scenes = new Vector(1);
+    public static Vector actors = new Vector(1); //Not needed
+    public static Vector sprites = new Vector(1); //Not needed
+    public static Vector scenes = new Vector(1); //Not needed
 
     //</editor-fold>
 
@@ -204,8 +204,8 @@ public class Aurwindow extends JFrame {
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
 
-
-        treescroll = new JScrollPane(workspace);
+        treescroll = new JScrollPane();
+        treescroll.setViewportView(workspace);
 
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
@@ -412,7 +412,7 @@ public class Aurwindow extends JFrame {
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
-        splitter2.setLeftComponent(workspace);
+        splitter2.setLeftComponent(treescroll);
         splitter2.setRightComponent(tabs);
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
@@ -692,7 +692,8 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
     public void onToolbarActionPerformed(int item, ActionEvent evt) {
-
+        int i;
+        Folder a;
         switch (item) {
             case 1:
                 NewProject win = new NewProject();
@@ -710,9 +711,15 @@ public class Aurwindow extends JFrame {
             case 5:
 
                 //add sprite
-                int i = 0;
-                int pos = 0;
-                System.out.println("" + actors.size());
+                i = 1;
+                a = getCurrentFolder();
+                if(a==null)
+                    return;
+                while(a.findFromName("newSprite" + i)!=-1)
+                    i++;
+                addFile(getCurrentFolder(), "newSprite" + i, "sprite");
+                
+                /*System.out.println("" + actors.size());
                 if (actors.size() == 0) {
                     pos = 0;
                 } else {
@@ -733,7 +740,7 @@ public class Aurwindow extends JFrame {
                     ((Folder) mainProject.childAt(1)).add(new fileclass.File(mainProject, "Spr_" + i, "sprite", ""));
                     actors.add(pos, new Actor());
                     System.out.println("test");
-                }
+                }*/
 
 
                 break;
@@ -744,18 +751,30 @@ public class Aurwindow extends JFrame {
                 //add class
                 break;
             case 8:
-                addFile(getCurrentFolder(), "newActor1", "actor");
+                i = 1;
+                a = getCurrentFolder();
+                if(a==null)
+                    return;
+                while(a.findFromName("newActor" + i)!=-1)
+                    i++;
+                addFile(getCurrentFolder(), "newActor" + i, "actor");
                 break;
                 case 9:
-                addFile(getCurrentFolder(), "newScene1", "scene");
+                i = 1;
+                a = getCurrentFolder();
+                if(a==null)
+                    return;
+                while(a.findFromName("newScene" + i)!=-1)
+                    i++;
+                addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
         }
-        ProjectTree.importFolderToTree(mainProject, top);
-        workspace.updateUI();
     }
 
     //</editor-fold>
     public fileclass.File addFile(Folder folder, String name, String type){
+        if(folder==null)
+            return null;
         if(!folder.allowsFileType(type))
             return null;
         fileclass.File file = new fileclass.File(folder, name, type, "");

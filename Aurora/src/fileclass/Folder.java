@@ -42,6 +42,15 @@ public class Folder extends Object{
         return -1;
     }
     
+    public int findFromName(String search){
+        if(childNodes==null)
+            return -1;
+        for(int i = 0; i < childNodes.length; i++)
+            if(childNodes[i]!=null&&childNodes[i].name.equals(search))
+                return i;
+        return -1;
+    }
+    
     public Object childAt(int pos){
         return childNodes[pos];
     }

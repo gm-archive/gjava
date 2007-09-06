@@ -54,12 +54,13 @@ public class NewProject extends TabPanel {
                 System.out.println("create new project");
                 Project project = new GameProject(jTextField1.getText(), "");
                 Aurwindow.mainProject = project;
-                project.add(new Group(project, "Sprites"));
-                project.add(new Group(project, "Sounds"));
+                project.add(new Group(project, "Images"));
+                project.add(new SpriteGroup(project, "Sprites"));
+                project.add(new SoundGroup(project, "Sounds"));
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new Group(project, "Extensions"));
-                project.add(new fileclass.File(project, "Settings", "settings", ""));
+                new fileclass.File(project, "Settings", "settings", "");
                 
                 ProjectTree.importFolderToTree(project, wind.top);
                 
