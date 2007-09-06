@@ -25,13 +25,14 @@ public class ActionTemplate extends JPanel {
         frame = new JFrame(title);
         frame.add(this);
         initComponents();
-        show();
+        setVisible(true);
     }
     
     //show action window to edit it
-    public void show()
+    @Override
+    public void setVisible(boolean visible)
     {
-        frame.setVisible(true);
+        frame.setVisible(visible);
     }
     
    private void initComponents()
@@ -39,6 +40,7 @@ public class ActionTemplate extends JPanel {
         
     }
     
+    @Override
     public String getName()
     {
         return "";
