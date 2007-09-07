@@ -9,12 +9,14 @@
 
 package components;
 
+import core.aurora;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,7 +42,15 @@ public static void update(){
         while (true){
             nextLine =buff.readLine();  
             if (nextLine !=null){
-                System.out.println(nextLine); 
+                String version="";
+                if (nextLine.contains("<version>"))
+                {
+                    version = nextLine.replaceAll("<version>", "").replaceAll("</version>", "");
+                if (!version.equals(aurora.version))
+                JOptionPane.showMessageDialog(aurora.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
+                }
+                core.utilities.addStringMessage(nextLine);
+               // System.out.println(nextLine); 
             }
             else{
                break;
