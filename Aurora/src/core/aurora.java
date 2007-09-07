@@ -30,8 +30,10 @@ public class aurora {
         arguments = args;
         splash = new SplashScreen();
         start();
-       // String[] plugins = PluginsList.loadPluglist();
-      //  (new PluginLoader()).load(plugins);
+        
+        //Edit the plugin list at pluglist.xml (same directory as settings.xml)
+        String[] plugins = PluginsList.loadPluglist();
+        (new PluginLoader()).load(plugins);
     }
     
     public static void start(){
