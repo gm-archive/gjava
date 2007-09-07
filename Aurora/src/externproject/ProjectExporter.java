@@ -20,6 +20,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
+import java.util.zip.ZipOutputStream;
+import java.util.zip.Deflater;
+import java.util.zip.ZipEntry;
 
 /**
  *
@@ -27,11 +30,24 @@ import java.util.zip.ZipFile;
  */
 public class ProjectExporter {
     public static boolean export(Project project, String filename){
-        System.out.println(getConfigFile(project));
+        String config = getConfigFile(project);
+        byte[] buffer = new byte[18024];
+        try{
+            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
+            out.setLevel(Deflater.BEST_SPEED);
+            out.putNextEntry(new ZipEntry("config"));
+            for(int i = 0; i < config.length(); i++)
+                out.write(config.charAt(i));
+            out.closeEntry();
+            out.close();
+        }
+        catch(Exception e){
+            return false;
+        }
         return false; //Failed to export
     }
     public static String getConfigFile(Project project){
-        String config = "<?xml version=\"1.0\"?>";
+        String config = "<?xml version=\"1.0\"?>\n";
         config += "<project>";
         config += "<type>" + project.getType() + "</type>";
         config += "<content>";
@@ -42,17 +58,17 @@ public class ProjectExporter {
     }
     
     public static String getContent(String prefix, Folder folder){
-        String content = "<file>" + prefix + "/</file>";  //To make sure no empty folder is deleted.
+        String content = "";
         fileclass.Object childNode;
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){
-                content += "<file>" + prefix + "/" + childNode.name;
+                content += "<file>" + prefix + childNode.name;
                 if(childNode instanceof fileclass.File){
                     content += "." + ((fileclass.File) childNode).type;
                 }
                 content += "</file>";
                 if(childNode instanceof Folder)
-                    content += getContent(prefix + "/" + childNode.name, (Folder) childNode);
+                    content += getContent(prefix + childNode.name + "/", (Folder) childNode);
             }
         }
         return content;

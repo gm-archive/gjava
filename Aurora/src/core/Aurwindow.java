@@ -848,7 +848,7 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
         return file;
     }
-    
+   
     public boolean addGroup(Folder folder, Group group){
         if(folder==null)
             return false;
@@ -862,9 +862,8 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject() {
-        GameProject test = new GameProject("My class", "C:/Documents and Settings");
-        test.add(new fileclass.File(test, "Settings", "settings", "Xyz"));
-        ProjectExporter.export(test, lang);
+        if(getCurrentProject()!=null)
+            ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
     }
 
     //</editor-fold>
