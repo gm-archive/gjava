@@ -348,7 +348,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(7, 0, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Select the language");
+        items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
+        items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(7, 1, evt);
+            }
+        });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
@@ -687,6 +694,10 @@ public class Aurwindow extends JFrame {
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
             addWindow(lang, 28);
+        }
+        if (menu == 7 && item == 1) {
+            System.out.println("Update");
+           Updater.update();
         }
     }
 

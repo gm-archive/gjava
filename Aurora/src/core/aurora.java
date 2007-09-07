@@ -30,8 +30,8 @@ public class aurora {
         arguments = args;
         splash = new SplashScreen();
         start();
-        String[] plugins = PluginsList.loadPluglist();
-        (new PluginLoader()).load(plugins);
+       // String[] plugins = PluginsList.loadPluglist();
+      //  (new PluginLoader()).load(plugins);
     }
     
     public static void start(){
