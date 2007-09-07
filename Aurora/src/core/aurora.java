@@ -10,6 +10,7 @@
 package core;
 
 import plugins.*;
+import managers.*;
 
 /**
  *
@@ -29,8 +30,7 @@ public class aurora {
         arguments = args;
         splash = new SplashScreen();
         start();
-        String[] plugins = new String[5];
-        plugins[0] = "MyExtension";
+        String[] plugins = PluginsList.loadPluglist();
         (new PluginLoader()).load(plugins);
     }
     
