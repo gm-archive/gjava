@@ -9,6 +9,9 @@
 
 package plugins;
 
+import java.io.*;
+import java.net.*;
+
 /**
  *
  * @author Luís
@@ -29,7 +32,11 @@ public class PluginLoader{
     }
     
     public void loadClass(String classFile) throws Exception{
-        ClassLoader loader = getClass().getClassLoader();
+        File x = new File("plugins/");
+        URL url = x.toURI().toURL();
+        URL[] urls = new URL[1];
+        urls[0] = url;
+        ClassLoader loader = new URLClassLoader(urls);
         Class plugin = loader.loadClass(classFile);
         installClass(plugin);
     }
