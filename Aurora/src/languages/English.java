@@ -145,6 +145,12 @@ public class English extends Dictionary{
         entry[106] = "Test main project";
         entry[107] = "Build&Test main project";
         entry[108] = "Final Build main project";
+        //Extensions manager
+        entry[109] = "Extensions manager";
+        entry[110] = "Extensions manager"; //Title
+        entry[111] = "Add";
+        entry[112] = "Remove";
+        entry[113] = "Revert changes";
         
         try{
             init();

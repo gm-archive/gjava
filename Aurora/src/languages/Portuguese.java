@@ -145,6 +145,12 @@ public class Portuguese extends Dictionary{
         entry[106] = "Testar projecto principal";
         entry[107] = "Compilar e testar projecto principal";
         entry[108] = "Compilação final com o projecto principal";
+        //Extensions manager
+        entry[109] = "Gerente de extensões";
+        entry[110] = "Gerente de extensões"; //Title
+        entry[111] = "Adicionar";
+        entry[112] = "Remover";
+        entry[113] = "Reverter alterações";
         
         try{
             init();

@@ -356,6 +356,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(7, 1, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(7, 2)] = MenuSupporter.MakeMenuItem(menus[7], 109, "Extensions Manager");
+        items[MenuSupporter.GenerateMenuItemId(7, 2)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(7, 2, evt);
+            }
+        });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
@@ -696,8 +704,12 @@ public class Aurwindow extends JFrame {
             addWindow(lang, 28);
         }
         if (menu == 7 && item == 1) {
-            System.out.println("Update");
-           Updater.update();
+            utilities.addStringMessage("Update");
+            Updater.update();
+        }
+        if (menu == 7 && item == 2) {
+            PluginsManager manager = new PluginsManager(this, true);
+            manager.setVisible(true);
         }
     }
 
