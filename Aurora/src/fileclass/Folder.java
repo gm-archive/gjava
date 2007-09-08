@@ -80,4 +80,8 @@ public class Folder extends Object{
         add(group);
         return group;
     }
+    
+    public String getObjectType(){
+        return "Folder";
+    }
 }

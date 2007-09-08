@@ -24,4 +24,8 @@ public class Project extends Folder{
     public String getType(){
         return null;
     }
+    
+    public String getObjectType(){
+        return "Project";
+    }
 }

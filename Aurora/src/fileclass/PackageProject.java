@@ -22,4 +22,8 @@ public class PackageProject extends Project {
     public String getType(){
         return "Package";
     }
+    
+    public String getObjectType(){
+        return "PackageProject";
+    }
 }

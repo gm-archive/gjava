@@ -42,4 +42,8 @@ public class ActorGroup extends Group{
         add(group);
         return group;
     }
+    
+    public String getObjectType(){
+        return "ActorGroup";
+    }
 }

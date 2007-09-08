@@ -135,7 +135,7 @@ public class PluginsManager extends javax.swing.JDialog {
                 for(int j = 0; j < vlen; j++)
                     if(values[j]!=null){
                         contents[i] = null;
-                        values[i] = null;
+                        values[j] = null;
                     }
         Object[] newarray = new String[clen-vlen];
         int i = 0;

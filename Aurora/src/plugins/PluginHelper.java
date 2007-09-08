@@ -40,4 +40,8 @@ public class PluginHelper {
     public static Folder getCurrentFolder(){ //Can be project
         return aurora.window.getCurrentFolder();
     }
+    
+    public static void addMenu(JMenu menu){
+        aurora.window.menubar.add(menu);
+    }
 }

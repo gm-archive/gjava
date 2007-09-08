@@ -25,4 +25,8 @@ public class File extends Object{
         this.value = value;
         root.add(this);
     }
+    
+    public String getObjectType(){
+        return "File";
+    }
 }

@@ -22,4 +22,8 @@ public class ExtensionProject extends Project {
     public String getType(){
         return "Extension";
     }
+    
+    public String getObjectType(){
+        return "ExtensionProject";
+    }
 }

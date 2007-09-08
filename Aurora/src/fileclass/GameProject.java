@@ -37,4 +37,8 @@ public class GameProject extends Project {
     public Group newGroup(String name){
         return null;
     }
+    
+    public String getObjectType(){
+        return "GameProject";
+    }
 }

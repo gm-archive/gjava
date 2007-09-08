@@ -42,4 +42,8 @@ public class SoundGroup extends Group{
         add(group);
         return group;
     }
+    
+    public String getObjectType(){
+        return "SoundGroup";
+    }
 }

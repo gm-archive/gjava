@@ -26,4 +26,8 @@ public class Object {
     public void setObjectNode(ObjectNode node){
         this.node = node;
     }
+    
+    public String getObjectType(){
+        return "Object";
+    }
 }

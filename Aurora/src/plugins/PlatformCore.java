@@ -13,7 +13,7 @@ package plugins;
  *
  * @author Ali1
  */
-public class PlatformCore extends PluginCore {
+public abstract class PlatformCore extends PluginCore {
     
     public static void parseSprites()
     {

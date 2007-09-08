@@ -29,4 +29,8 @@ public class Group extends Folder{
         add(group);
         return group;
     }
+    
+    public String getObjectType(){
+        return "Group";
+    }
 }
