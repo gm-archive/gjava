@@ -146,7 +146,7 @@ public class PluginsManager extends javax.swing.JDialog {
             }
             i++;
         }
-        model.setObjects((Object[]) newarray);
+        model.setObjects(newarray);
         //jList1.setModel(model);
         jList1.updateUI();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -160,12 +160,22 @@ public class PluginsManager extends javax.swing.JDialog {
         String res = JOptionPane.showInputDialog(this, "Insert extension name:\n(Remember that it must be in the 'plugins' directory.");
         AcessibleModel model = (AcessibleModel) jList1.getModel();
         Object[] contents = model.getObjects();
-        int clen = contents.length;
+        int clen;
+        if(contents!=null)
+            clen = contents.length;
+        else
+            clen = 0;
         Object[] newarray = new String[clen+1];
         int i = 0;
-        while(i < clen)
-            newarray[i] = contents[i++];
-        newarray[i] = res;
+        int j = 0;
+        while(i < clen){
+            if(contents[i]!=null){
+                newarray[j] = contents[i];
+                j++;
+            }
+            i++;
+        }
+        newarray[j] = res;
         model.setObjects(newarray);
         jList1.updateUI();
     }//GEN-LAST:event_jButton1ActionPerformed
