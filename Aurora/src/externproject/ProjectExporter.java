@@ -35,17 +35,40 @@ public class ProjectExporter {
         try{
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
             out.setLevel(Deflater.BEST_SPEED);
+            out.putNextEntry(new ZipEntry("src/"));
+            out.closeEntry();
             out.putNextEntry(new ZipEntry("config"));
             for(int i = 0; i < config.length(); i++)
                 out.write(config.charAt(i));
             out.closeEntry();
+            putFolder(project, "", out, 1);
             out.close();
+            utilities.addStringMessage("Saved");
         }
         catch(Exception e){
             return false;
         }
         return false; //Failed to export
     }
+    public static void putFolder(Folder folder, String prefix, ZipOutputStream out, int b) throws java.io.IOException{
+        int a = b;
+        fileclass.Object childNode;
+        for(int i = 0; i < folder.getChildArrayNum(); i++){
+            if((childNode = folder.childAt(i))!=null){
+                if(childNode instanceof fileclass.File){
+                    out.putNextEntry(new ZipEntry("_" + a));
+                    for(int j = 0; j < ((fileclass.File) childNode).value.length() ; j++)
+                        out.write(((fileclass.File) childNode).value.charAt(j));
+                    out.closeEntry();
+                    a++;
+                }
+                else if(childNode instanceof fileclass.Folder){
+                    putFolder((Folder) childNode, prefix + childNode.name + "/", out, a);
+                }
+            }
+        }
+    }
+    
     public static String getConfigFile(Project project){
         String config = "<?xml version=\"1.0\"?>\n";
         config += "<project>";
