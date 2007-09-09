@@ -48,6 +48,7 @@ import fileclass.*;
 import java.util.Enumeration;
 import java.util.Vector;
 import editors.*;
+import fileclass.res.Actor;
 
 /**
  *
@@ -84,6 +85,7 @@ public class Aurwindow extends JFrame {
 
     
     public void treeDoubleClicked(MouseEvent e){
+        
         fileclass.Object obj = getCurrentObject();
         if(obj instanceof fileclass.File)
             Open((fileclass.File) obj);
@@ -110,8 +112,15 @@ public class Aurwindow extends JFrame {
         panel.parent = this;
         panel.title = title;
         if (istabs) {
+            for (int i=0; i<tabs.getTabCount();i++)
+            if (tabs.getTitleAt(i).equals(title))
+            {
+                tabs.setSelectedComponent(tabs.getComponentAt(i));
+                return;
+            }
             tabs.addTab(panel.title, panel);
             tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+            tabs.setSelectedComponent(panel);
             tabs.addMouseListener(new MouseAdapter() {
 
                 @Override
@@ -822,7 +831,9 @@ public class Aurwindow extends JFrame {
                     return;
                 while(a.findFromName("newActor" + i)!=-1)
                     i++;
+                //TODO put in actor folder only
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
+                Aurwindow.actors.add(new Actor());
                 break;
                 case 9:
                 i = 1;
