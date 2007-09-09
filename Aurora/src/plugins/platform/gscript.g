@@ -39,7 +39,7 @@ program
 ;
 
 statement
-: (innerclass|field|method|bstatement|varstatement|returnstatement|exitstatement|ifstatement|repeatstatement|dostatement|whilestatement|continuestatement|breakstatement|forstatement|switchstatement|withstatement|function2|assignment|function) (';'{System.out.println(";");})*
+: (bstatement|varstatement|returnstatement|exitstatement|ifstatement|repeatstatement|dostatement|whilestatement|continuestatement|breakstatement|forstatement|switchstatement|withstatement|function2|assignment|function) (';'{System.out.println(";");})*
 ;
 
 field 
