@@ -6,11 +6,13 @@
 
 package editors;
 
+import components.TabPanel;
+
 /**
  *
  * @author  Ali1
  */
-public class ActorEditor extends javax.swing.JPanel {
+public class ActorEditor extends TabPanel {
     
     /** Creates new form ActorEditor */
     public ActorEditor() {

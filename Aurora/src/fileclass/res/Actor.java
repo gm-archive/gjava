@@ -15,4 +15,8 @@ package fileclass.res;
  */
 public class Actor {
 
+  public  Actor(String name)
+    {
+        
+    }
 }

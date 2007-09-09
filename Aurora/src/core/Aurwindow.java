@@ -48,7 +48,6 @@ import java.io.*;
 import exceptions.*;
 import externproject.*;
 import fileclass.*;
-import java.util.Enumeration;
 import java.util.Vector;
 import editors.*;
 import fileclass.res.Actor;
@@ -80,7 +79,7 @@ public class Aurwindow extends JFrame {
     public static JScrollPane treescroll;
 
     private static Project mainProject;
-    public static Vector actors = new Vector(1); //Not needed
+    public static Vector<Actor> actors = new Vector<Actor>(1);
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
 
@@ -97,6 +96,15 @@ public class Aurwindow extends JFrame {
     }
     
     public void Open(fileclass.File file){
+        if (file.type.equals("actor"))
+        {
+        addWindow(new ActorEditor(), file.name); //All unmanaged file formats
+        }
+        else if (file.type.equals("scene"))
+        {
+        addWindow(new SceneEditor(), file.name); //All unmanaged file formats
+        }
+        else
         addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
     }
 
@@ -816,31 +824,7 @@ public class Aurwindow extends JFrame {
                     i++;
                 addFile(getCurrentFolder(), "newSprite" + i, "sprite");
                 
-                /*System.out.println("" + actors.size());
-                if (actors.size() == 0) {
-                    pos = 0;
-                } else {
-                    for (Enumeration e = actors.elements(); e.hasMoreElements();) {
-                        if (((Actor) e.nextElement()).equals(null)) {
-                            //if one of the old resources were deleted
-                        } else if (i == actors.size() - 1) {
-                            pos = i;
-                        }
-                        i++;
-                    }
-                }
-                if (pos == 1) {
-                    //  ((DefaultMutableTreeNode)mainProject.getChildAt(0)).add(new DefaultMutableTreeNode("Spr_"+i));
-                    ((Folder) mainProject.childAt(1)).add(new fileclass.File(mainProject, "Spr_" + i, "sprite", ""));
-                    actors.add(new Actor());
-                } else {
-                    ((Folder) mainProject.childAt(1)).add(new fileclass.File(mainProject, "Spr_" + i, "sprite", ""));
-                    actors.add(pos, new Actor());
-                    System.out.println("test");
-                }*/
-
-
-                break;
+               break;
             case 6:
                 //add sound
                 break;
@@ -856,7 +840,7 @@ public class Aurwindow extends JFrame {
                     i++;
                 //TODO put in actor folder only
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
-                Aurwindow.actors.add(new Actor());
+                Aurwindow.actors.add(new Actor("newActor" + i));
                 break;
                 case 9:
                 i = 1;
