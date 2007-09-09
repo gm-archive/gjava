@@ -9,6 +9,9 @@
 
 package core;
 
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 /*import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -109,44 +112,62 @@ public class Aurwindow extends JFrame {
     }
     
     public void addWindow(TabPanel panel, String title) {
-        panel.parent = this;
-        panel.title = title;
-        if (istabs) {
-            for (int i=0; i<tabs.getTabCount();i++)
-            if (tabs.getTitleAt(i).equals(title))
-            {
-                tabs.setSelectedComponent(tabs.getComponentAt(i));
-                return;
-            }
-            tabs.addTab(panel.title, panel);
-            tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
-            tabs.setSelectedComponent(panel);
-            tabs.addMouseListener(new MouseAdapter() {
-
-                @Override
-                public void mouseClicked(MouseEvent evt) {
-                    tabsClicked(evt);
+        try {
+            panel.parent = this;
+            panel.title = title;
+            if (istabs) {
+                for (int i = 0; i < tabs.getTabCount(); i++) {
+                    if (tabs.getTitleAt(i).equals(title)) {
+                        tabs.setSelectedComponent(tabs.getComponentAt(i));
+                        return;
+                    }
                 }
-            });
+                tabs.addTab(panel.title, panel);
+                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+                tabs.setSelectedComponent(panel);
+                tabs.addMouseListener(new MouseAdapter() {
+
+                    @Override
+                    public void mouseClicked(MouseEvent evt) {
+                        tabsClicked(evt);
+                    }
+                });
+            }
+            for (int i = 0; i < mdi.getComponentCount(); i++) {
+                if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title)) {
+                    try {
+
+                        ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
+
+                        return;
+                    } catch (PropertyVetoException ex) {
+                        Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+            ExtendedFrame frame = new ExtendedFrame();
+            panel.frame = frame;
+            frame.setPanel(panel);
+            frame.setClosable(true);
+            frame.setIconifiable(true);
+            frame.setMaximizable(true);
+            frame.setResizable(true);
+            frame.setVisible(true);
+            frame.setTitle(title);
+            frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
+            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
+            frame.getContentPane().setLayout(jInternalFrame1Layout);
+            if (!istabs) {
+                jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            }
+            frame.setBounds(0, 0, 300, 300);
+
+            mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
+            frame.setSelected(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        ExtendedFrame frame = new ExtendedFrame();
-        panel.frame = frame;
-        frame.setPanel(panel);
-        frame.setClosable(true);
-        frame.setIconifiable(true);
-        frame.setMaximizable(true);
-        frame.setResizable(true);
-        frame.setVisible(true);
-        frame.setTitle(title);
-        frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
-        frame.getContentPane().setLayout(jInternalFrame1Layout);
-        if (!istabs) {
-            jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-            jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-        }
-        frame.setBounds(0, 0, 300, 300);
-        mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
     }
 
     public Aurwindow() {
