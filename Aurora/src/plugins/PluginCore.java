@@ -16,5 +16,9 @@ import javax.swing.*;
  * @author Luís
  */
 public abstract class PluginCore {
-    public void start(){}
+    public void onLoad(){}
+    public void onSplashStart(){}
+    public void onMainWindowStart(){}
+    public void onSplashDispose(){}
+    public void onMainWindowDispose(){}
 }

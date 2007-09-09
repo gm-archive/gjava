@@ -53,6 +53,8 @@ import java.util.Vector;
 import editors.*;
 import fileclass.res.Actor;
 
+import plugins.*;
+
 /**
  *
  * @author Luís
@@ -994,6 +996,7 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
     public void dispose() {
+        Plugger.onSplashDispose(aurora.plugins);
         saveSettings();
         super.dispose();
     }
