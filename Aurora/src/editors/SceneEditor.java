@@ -27,12 +27,16 @@ import javax.swing.plaf.ButtonUI;
 public class SceneEditor extends TabPanel {
     
     /** Creates new form RoomEditor */
-    public SceneEditor() {
+    public fileclass.File file;
+    public boolean changed = false;
+    
+    public SceneEditor(fileclass.File file) {
         initComponents();
        // jPanel1.add(makeOutlookPanel(SwingConstants.CENTER));
         this.updateUI();
         jPanel1.setVisible(true);
         jPanel1.updateUI();
+        this.file = file;
     }
     
     JPanel makeOutlookPanel(int alignment) {

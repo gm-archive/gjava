@@ -14,9 +14,12 @@ import components.TabPanel;
  */
 public class ActorEditor extends TabPanel {
     
-    /** Creates new form ActorEditor */
-    public ActorEditor() {
+    public fileclass.File file;
+    public boolean changed = false;
+    
+    public ActorEditor(fileclass.File file) {
         initComponents();
+        this.file = file;
     }
     
     /** This method is called from within the constructor to

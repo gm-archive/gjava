@@ -98,11 +98,11 @@ public class Aurwindow extends JFrame {
     public void Open(fileclass.File file){
         if (file.type.equals("actor"))
         {
-        addWindow(new ActorEditor(), file.name); //All unmanaged file formats
+        addWindow(new ActorEditor(file), file.name);
         }
         else if (file.type.equals("scene"))
         {
-        addWindow(new SceneEditor(), file.name); //All unmanaged file formats
+        addWindow(new SceneEditor(file), file.name);
         }
         else
         addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
