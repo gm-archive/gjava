@@ -6,6 +6,7 @@
 
 package components;
 
+import units.ObjectNode;
 import javax.swing.*;
 import javax.swing.tree.*;
 

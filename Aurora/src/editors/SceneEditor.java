@@ -7,6 +7,7 @@
 package editors;
 
 import components.TabPanel;
+import components.ScenePanel;
 
 import java.awt.*;
 
@@ -17,8 +18,44 @@ import java.awt.*;
 public class SceneEditor extends TabPanel {
     
     /** Creates new form SceneEditor */
+    public ScenePanel scene;
+    
     public SceneEditor() {
         initComponents();
+        scene = new ScenePanel(this);
+        scene.setSize(500,500);
+    }
+    
+    public boolean isGridVisible(){
+        return jToggleButton1.isSelected();
+    }
+    
+    public boolean isIsometric(){
+        return jToggleButton2.isSelected();
+    }
+    
+    public int getSnapX(){
+        return 20;
+    }
+    
+    public int getSnapY(){
+        return 20;
+    }
+    
+    public int getMapWidth(){
+        return 500;
+    }
+    
+    public int getMapHeight(){
+        return 500;
+    }
+    
+    public Color getBackgroundColor(){
+        return Color.LIGHT_GRAY;
+    }
+    
+    public int getZoom(){
+        return ((Integer) jSpinner1.getValue()).intValue();
     }
     
     /** This method is called from within the constructor to
@@ -46,7 +83,9 @@ public class SceneEditor extends TabPanel {
         jPanel4 = new javax.swing.JPanel();
         BottomLeft = new javax.swing.JLabel();
         BottomRight = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        jPanel5 = new ScenePanel(this);
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollBar2 = new javax.swing.JScrollBar();
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -82,13 +121,18 @@ public class SceneEditor extends TabPanel {
         jToggleButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jToggleButton2);
 
-        jLabel1.setText("Zoom");
+        jLabel1.setText("Zoom Out");
         jToolBar1.add(jLabel1);
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
         jToolBar1.add(jSpinner1);
 
         jSplitPane1.setDividerLocation(130);
+        jSplitPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                jSplitPane1ComponentResized(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -98,7 +142,7 @@ public class SceneEditor extends TabPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Settings", jPanel1);
@@ -111,7 +155,7 @@ public class SceneEditor extends TabPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Actors", jPanel2);
@@ -124,7 +168,7 @@ public class SceneEditor extends TabPanel {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 308, Short.MAX_VALUE)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Tiles", jPanel6);
@@ -143,7 +187,7 @@ public class SceneEditor extends TabPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(BottomLeft)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(BottomRight))
         );
         jPanel4Layout.setVerticalGroup(
@@ -157,24 +201,41 @@ public class SceneEditor extends TabPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 326, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 312, Short.MAX_VALUE)
+            .addGap(0, 179, Short.MAX_VALUE)
         );
+
+        jScrollBar1.setBlockIncrement(20);
+        jScrollBar1.setMaximum(30);
+
+        jScrollBar2.setBlockIncrement(20);
+        jScrollBar2.setMaximum(300);
+        jScrollBar2.setOrientation(javax.swing.JScrollBar.HORIZONTAL);
+        jScrollBar2.setVisibleAmount(20);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollBar2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -185,18 +246,40 @@ public class SceneEditor extends TabPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jSplitPane1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jSplitPane1ComponentResized
+        updateScroll();
+    }//GEN-LAST:event_jSplitPane1ComponentResized
     
+    public int getScrollX(){
+        return jScrollBar2.getValue();
+    }
+    
+    public int getScrollY(){
+        return jScrollBar1.getValue();
+    }
+    
+    public void updateScroll(){
+        if(jPanel5.getWidth() - ((ScenePanel) jPanel5).getVisibleWidth()>0){
+            jScrollBar2.setMaximum(jPanel5.getWidth() - ((ScenePanel) jPanel5).getVisibleWidth());
+            jScrollBar2.setVisibleAmount(((ScenePanel) jPanel5).getVisibleWidth());
+        }
+        if(jPanel5.getHeight() - ((ScenePanel) jPanel5).getVisibleHeight()>0){
+            jScrollBar1.setMaximum(jPanel5.getWidth() - ((ScenePanel) jPanel5).getVisibleHeight());
+            jScrollBar1.setVisibleAmount(((ScenePanel) jPanel5).getVisibleHeight());
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BottomLeft;
@@ -211,6 +294,8 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollBar jScrollBar1;
+    private javax.swing.JScrollBar jScrollBar2;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;

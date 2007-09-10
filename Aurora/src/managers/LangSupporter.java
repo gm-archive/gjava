@@ -9,6 +9,7 @@
 
 package managers;
 
+import units.Dictionary;
 import components.*;
 
 /**

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package components;
+package units;
 
 import javax.swing.tree.*;
 

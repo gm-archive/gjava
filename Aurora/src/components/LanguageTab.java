@@ -6,6 +6,7 @@
 
 package components;
 
+import units.Dictionary;
 import managers.*;
 import core.*;
 import languages.*;

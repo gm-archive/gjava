@@ -9,6 +9,7 @@
 
 package languages;
 
+import units.Dictionary;
 import components.*;
 import exceptions.*;
 
