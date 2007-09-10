@@ -19,7 +19,7 @@ import javax.swing.*;
 public class TabPanel extends JPanel{
     public Aurwindow parent;
     public ExtendedFrame frame;
-    public String title;
+    public String title = "<none>";
     
     public void dispose(){
         parent.remove(this, frame);
@@ -56,5 +56,9 @@ public class TabPanel extends JPanel{
     
     public boolean ReplaceAll(String match, String replace, boolean useRegex){
         return false; //Could not replace
+    }
+    
+    public String toString(){
+        return title;
     }
 }

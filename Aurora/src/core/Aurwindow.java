@@ -77,16 +77,38 @@ public class Aurwindow extends JFrame {
     public static String lang;
     public static JTree workspace;
     public static JScrollPane treescroll;
-
     private static Project mainProject;
-    public static Vector<Actor> actors = new Vector<Actor>(1);
+    public static Vector<Actor> actors = new Vector<Actor>(1); //not needed
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
-
+    public JComboBox winlist; //This will be the windows list
     public TreeCellRenderer renderer;
     
     //</editor-fold>
 
+    public java.lang.Object getWindowListElementAt(int pos){
+        if(istabs){
+            Component[] panels = tabs.getComponents();
+            if(tabs==null)
+                return null;
+            if(panels[pos] instanceof TabPanel)
+                return panels[pos];
+            return null;
+        }
+        else{
+            return null;
+        }
+    }
+    
+    public int getWindowListSize(){
+        if(istabs){
+            return tabs.getComponents().length - 1;
+        }
+        else{
+            return 0;
+        }
+    }
+    
     
     public void treeDoubleClicked(MouseEvent e){
         
@@ -194,6 +216,8 @@ public class Aurwindow extends JFrame {
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
+        winlist = new JComboBox();
+        winlist.setModel(new MyModel());
 
         console.setEditable(false);
         console.setContentType("text/html");
@@ -380,7 +404,7 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(3, 9)] = MenuSupporter.MakeMenuItem(menus[3], 107, "Build&Test");
         items[MenuSupporter.GenerateMenuItemId(3, 10)] = MenuSupporter.MakeMenuItem(menus[3], 108, "Final Build");
         
-        menus[7] = MenuSupporter.MakeMenu(menubar, 92, "Tools");
+        menus[7] = MenuSupporter.MakeMenu(menubar, 114, "Tools");
         items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
 
@@ -514,8 +538,6 @@ public class Aurwindow extends JFrame {
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
-
-
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
         } else {
@@ -589,7 +611,6 @@ public class Aurwindow extends JFrame {
             tool.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-        
         
         pack();
         //setSize(550, 550);
@@ -683,7 +704,7 @@ public class Aurwindow extends JFrame {
             } catch (Exception e) {
             }
         }
-        if (menu == 6 && (item == 0 || item == 1)) {
+        if (menu == 6 && (item < 4)) {
             if (!istabs) {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(true);
@@ -843,7 +864,7 @@ public class Aurwindow extends JFrame {
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
                 Aurwindow.actors.add(new Actor("newActor" + i));
                 break;
-                case 9:
+            case 9:
                 i = 1;
                 a = getCurrentFolder();
                 if(a==null)
@@ -888,10 +909,9 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
-        tool = new JToolBar();
+        tool = new JToolBar("Toolbar");
         tool.setFloatable(false);
-
-
+        
         JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
         JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")), 53);
@@ -966,6 +986,8 @@ public class Aurwindow extends JFrame {
             }
         });
 
+        tool.setPreferredSize(new Dimension(450, 50));
+        tool.setRollover(true);
         tool.add(newp);
         tool.add(opn);
         tool.add(save);
@@ -975,6 +997,8 @@ public class Aurwindow extends JFrame {
         tool.add(cl);
         tool.add(actor);
         tool.add(scene);
+        tool.addSeparator();
+        tool.add(winlist);
     }
 
     //</editor-fold>

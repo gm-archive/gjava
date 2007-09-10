@@ -127,7 +127,7 @@ public class English extends Dictionary{
         entry[90] = "Tabs (Left)";
         entry[91] = "Tabs (Bottom)";
         entry[92] = "Tabs (Right)";
-        entry[92] = "Tools";
+        entry[114] = "Tools";
         entry[93] = "Update";
         entry[94] = "Create";
         //And the new File/Group

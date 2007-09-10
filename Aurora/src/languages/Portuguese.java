@@ -127,7 +127,7 @@ public class Portuguese extends Dictionary{
         entry[90] = "Separadores (Esquerda)";
         entry[91] = "Separadores (Baixo)";
         entry[92] = "Separadores (Direita)";
-        entry[92] = "Ferramentas";
+        entry[114] = "Ferramentas";
         entry[93] = "Actualizar";
         entry[94] = "Criar";
         //And the new File/Group
