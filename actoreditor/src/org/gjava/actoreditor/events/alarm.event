@@ -1,8 +1,0 @@
-id=event_alarm
-displayName=Alarm Event
-icon16=org/gjava/actoreditor/events/event_alarm.gif
-icon32=org/gjava/actoreditor/events/event_alarm.gif
-comment=Alarm
-code={ \
-me=2; \
-}

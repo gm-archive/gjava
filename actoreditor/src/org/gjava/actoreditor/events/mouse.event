@@ -1,8 +1,0 @@
-id=event_mouse
-displayName=Mouse Event
-icon16=org/gjava/actoreditor/events/event_mouse.gif
-icon32=org/gjava/actoreditor/events/event_mouse.gif
-comment=Called for mouse input
-code={ \
-me=2; \
-}

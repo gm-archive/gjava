@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.gmj.gmjfilesupport/1
-OpenIDE-Module-Implementation-Version: 1
-OpenIDE-Module-Layer: org/gmj/gmjfilesupport/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/gmj/gmjfilesupport/Bundle.properties
-OpenIDE-Module-Requires: org.netbeans.api.javahelp.Help
-
-
-

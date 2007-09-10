@@ -1,8 +1,0 @@
-id=event_create
-displayName=Create Event
-icon16=org/gjava/actoreditor/events/event_create.gif
-icon32=org/gjava/actoreditor/events/event_create.gif
-comment=Called when the actor is created
-code={ \
-me=2; \
-}

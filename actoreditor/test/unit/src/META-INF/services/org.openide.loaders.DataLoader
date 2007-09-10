@@ -1,6 +1,0 @@
-org.gjava.actoreditor.actorDataLoader
-org.gjava.actoreditor.ActionDataLoader
-org.gjava.actoreditor.events.eventDataLoader
-org.gjava.actoreditor.ActDataLoader
-org.gjava.actoreditor.testfile.TestDataLoader
-org.gjava.actoreditor.imageformat.ImageDataLoader

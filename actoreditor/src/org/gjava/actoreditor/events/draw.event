@@ -1,8 +1,0 @@
-id=event_draw
-displayName=Draw Event
-icon16=org/gjava/actoreditor/events/event_draw.gif
-icon32=org/gjava/actoreditor/events/event_draw.gif
-comment=All drawing action go here!
-code={ \
-me=2; \
-}

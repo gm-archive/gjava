@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.gjava.settingseditor
-OpenIDE-Module-Layer: org/gjava/settingseditor/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/gjava/settingseditor/Bundle.properties
-OpenIDE-Module-Specification-Version: 1.0
-
-Name: org/gjava/settingseditor/SettingsDataLoader.class
-OpenIDE-Module-Class: Loader
-

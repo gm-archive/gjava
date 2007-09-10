@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.gjava.javac/1
-OpenIDE-Module-Implementation-Version: 1
-OpenIDE-Module-Layer: org/gjava/javac/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/gjava/javac/Bundle.properties
-

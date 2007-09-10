@@ -1,9 +1,0 @@
-#
-#Wed May 09 19:37:59 BST 2007
-icon32=org/gjava/actoreditor/actions/images/GM.058.gif
-displayName=With a chance perform next action
-args=//replace sides with the number of sides on the dice\r\nif ( (Math.random()*sides) <1)\r\n
-icon16=org/gjava/actoreditor/actions/images/GM.058.gif
-code=
-comment=With a chance perform next action
-id=id1

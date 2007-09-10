@@ -1,8 +1,0 @@
-id=event_keyboard
-displayName=Keyboard Event
-icon16=org/gjava/actoreditor/events/event_keyboard.gif
-icon32=org/gjava/actoreditor/events/event_keyboard.gif
-comment=Called every step when a key is down
-code={ \
-me=2; \
-}

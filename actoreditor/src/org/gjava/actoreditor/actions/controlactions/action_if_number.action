@@ -1,9 +1,0 @@
-#
-#Tue May 08 17:07:07 BST 2007
-icon32=org/gjava/actoreditor/actions/images/GM.057.gif
-displayName=If the number of instances is a value
-args=// replace Actor with the actor name and 0 with the number value\r\nif (Functions.action_get_number(Actor) \=\= 0)\r\n\t
-icon16=org/gjava/actoreditor/actions/images/GM.057.gif
-code=
-comment=If the number of instances is a value
-id=id1

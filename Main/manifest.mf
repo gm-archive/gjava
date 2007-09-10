@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-OpenIDE-Module: org.gcreator.main/1
-OpenIDE-Module-Implementation-Version: 1
-OpenIDE-Module-Layer: org/gcreator/main/layer.xml
-OpenIDE-Module-Localizing-Bundle: org/gcreator/main/Bundle.properties
-OpenIDE-Module-Requires: org.netbeans.api.javahelp.Help
-
-
-
