@@ -13,6 +13,7 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.JFileChooser;
 /*import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
@@ -124,7 +125,7 @@ public class Aurwindow extends JFrame {
         }
         else if (file.type.equals("scene"))
         {
-        addWindow(new SceneEditor(file), file.name);
+        addWindow(new SceneEditor(), file.name);
         }
         else
         addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
@@ -873,6 +874,23 @@ public class Aurwindow extends JFrame {
                     i++;
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
+        case 10:
+            JFileChooser fc = new JFileChooser();
+        
+        fc.setAcceptAllFileFilterUsed(false);
+        JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.png|.*\\.jpg|.*\\.jpeg","Image Files  (*.gif *.png  *.jpg)");
+                
+        fc.addChoosableFileFilter(filter);
+        fc.setFileFilter(filter);
+        if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+        {
+            java.io.File f = fc.getSelectedFile();
+            if (!f.exists())
+            {
+                JOptionPane.showMessageDialog(null,"File not found","G-Java",0);
+                return;
+            }
+        }
         }
     }
 
@@ -916,12 +934,21 @@ public class Aurwindow extends JFrame {
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
         JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")), 53);
         JButton newp = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")), 39);
+        JButton image = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addimage.png")), 42);
         JButton sprite = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor02.png")), 43);
         JButton sound = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addsound.png")), 44);
         JButton cl = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")), 52);
         JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")), 45);
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
 
+        image.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(10, evt);
+            }
+        });
+        
         sprite.addActionListener(new ActionListener() {
 
             @Override
@@ -992,6 +1019,7 @@ public class Aurwindow extends JFrame {
         tool.add(opn);
         tool.add(save);
         tool.add(saveall);
+        tool.add(image);
         tool.add(sprite);
         tool.add(sound);
         tool.add(cl);
