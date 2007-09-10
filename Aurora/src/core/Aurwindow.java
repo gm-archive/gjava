@@ -127,7 +127,8 @@ public class Aurwindow extends JFrame {
             panel.title = title;
             if (istabs) {
                 for (int i = 0; i < tabs.getTabCount(); i++) {
-                    if (tabs.getTitleAt(i).equals(title)) {
+                    if (tabs.getTitleAt(i).equals(title)&&
+                        tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
                         tabs.setSelectedComponent(tabs.getComponentAt(i));
                         return;
                     }
