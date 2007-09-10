@@ -648,12 +648,18 @@ public class Aurwindow extends JFrame {
             console.setText("");
         }
         if (menu == 2 && item == 0) {
+            Dimension a = this.getSize();
+            int b = this.getExtendedState();
             scroller.setVisible(!scroller.isVisible());
             pack();
-            splitter1.setDividerLocation(0.66);
+            this.setSize(a);
+            this.setExtendedState(b);
+            splitter1.setDividerLocation(0.80);
         }
         if (menu == 2 && item == 1) {
+            Dimension a = this.getSize();
             tool.setVisible(!tool.isVisible());
+            this.setSize(a);
         }
         if(menu == 3 && item == 0){
             setMainProject(getCurrentProject());
