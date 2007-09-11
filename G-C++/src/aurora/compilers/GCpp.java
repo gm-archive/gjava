@@ -20,9 +20,13 @@ public class GCpp extends PluginCore{
     //Since onMainWindowStart is called before
     //the constructor, we need something after
     //it.
+    
+    @Override
     public void onSplashDispose(){
         init();
     }
     
-    public void init(){}
+    public void init(){
+        
+    }
 }
