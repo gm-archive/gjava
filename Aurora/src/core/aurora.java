@@ -49,7 +49,8 @@ public class aurora {
             Plugger.onSplashDispose(aurora.plugins);
             splash.dispose();
         }
-        if(window!=null)
-            SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
+        if(window!=null){
+            //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
+        }
     }
 }

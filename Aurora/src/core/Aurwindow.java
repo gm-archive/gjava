@@ -126,7 +126,7 @@ public class Aurwindow extends JFrame {
         }
         else if (file.type.equals("scene"))
         {
-        addWindow(new SceneEditor(), file.name);
+        addWindow(new SceneEditor(file), file.name);
         }
         else
         addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
@@ -212,10 +212,6 @@ public class Aurwindow extends JFrame {
         setJMenuBar(menubar);
         setVisible(true);
         setIconImage(new ImageIcon(getClass().getResource("/resources/icon.png")).getImage());
-        splitter1 = new JSplitPane();
-        splitter2 = new JSplitPane();
-        tabs = new JTabbedPane();
-        mdi = new JDesktopPane();
         istabs = true;
         console = new JTextPane();
         scroller = new JScrollPane();
@@ -250,6 +246,28 @@ public class Aurwindow extends JFrame {
                 utilities.addError(36);
             }
         }
+        
+       try {
+            if (settings!=null&&settings[0]!=null&&settings[0].equals("Native")) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                look = 0;
+            } else if (settings==null||settings[0]==null||settings[0].equals("Cross-platform")) {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                look = 1;
+            } else if (settings[0].equals("Motif")) {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+                look = 2;
+            } else {
+                look = 1;
+            }
+        } catch (Exception e) {
+            look = 1;
+        }
+        
+        tabs = new JTabbedPane();
+        mdi = new JDesktopPane();
+        splitter1 = new JSplitPane();
+        splitter2 = new JSplitPane();
         
         try{
             if(LangSupporter.activeLang!=null)
@@ -558,31 +576,11 @@ public class Aurwindow extends JFrame {
         }
         
         try {
-            if (settings!=null&&settings[0]!=null&&settings[0].equals("Native")) {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
-                look = 0;
+            if (settings[0].equals("Native")) {
             } else if (settings==null||settings[0]==null||settings[0].equals("Cross-platform")) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
                 look = 1;
             } else if (settings[0].equals("Motif")) {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
                 items[MenuSupporter.GenerateMenuItemId(5, 2)].setSelected(true);
                 look = 2;
             } else {
@@ -593,6 +591,7 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
             look = 1;
         }
+        
         if (settings[1].equals("MDI")) {
             items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
             onItemActionPerformed(6, 4, null);

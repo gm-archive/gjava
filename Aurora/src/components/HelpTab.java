@@ -42,12 +42,12 @@ public class HelpTab extends TabPanel {
             public Object getElementAt(int i) { return strings[i]; }
         }); break;
         case 2: jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Getting started with EGML" , "EGML for GML programmers", "The scripts", "The actions"};
+            String[] strings = { "Getting started with EGML" , "EGML for GML programmers", "The scripts", "The actions", "EGML tutorial", "EGML API"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         }); break;
         case 3: jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Getting started with AES" , "Template Modification Scripts (TMS)", "Menu Extensions (ME)"};
+            String[] strings = { "Getting started with AES", "Using the PluginHelper", "Using the VarsRegistry"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         }); break;
