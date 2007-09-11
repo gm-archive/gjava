@@ -26,6 +26,7 @@ Contributions:
     Luís Reis
         Most features
         Non-native tree icons
+        A few icons
     TGMG
         Some menu items
         Made the SVN work.

@@ -1,7 +1,7 @@
 /*
  * ScenePanel.java
  * 
- * Created on 10/Set/2007, 21:44:22
+ * Created on 11/Set/2007, 15:12:20
  * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -12,74 +12,85 @@ package components;
 import javax.swing.*;
 import java.awt.*;
 
-import editors.SceneEditor;
+import editors.*;
+import core.*;
 
 /**
  *
  * @author Luís
  */
-public class ScenePanel extends JPanel{
-    private SceneEditor root;
+public class ScenePanel extends JComponent{
+    SceneEditor root;
     public ScenePanel(SceneEditor root){
         this.root = root;
     }
     
     @Override
-    public Dimension getSize(){
-        return new Dimension(root.getMapWidth(), root.getMapHeight());
-    }
-    
-    @Override
     public int getWidth(){
-        return root.getMapWidth();
+        return root.getMapWidth() / root.getZoom() + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0);
     }
     
     @Override
     public int getHeight(){
-        return root.getMapHeight();
+        return root.getMapHeight() / root.getZoom() + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0);
     }
     
-    public int getVisibleWidth(){
-        return getWidth() < super.getWidth() ? getWidth() : super.getWidth();
+    @Override
+    public Dimension getSize(){
+        return new Dimension(getWidth(), getHeight());
     }
     
-    public int getVisibleHeight(){
-        return getHeight() < super.getHeight() ? getHeight() : super.getHeight();
+    @Override
+    public Dimension getPreferredSize(){
+        return getSize();
+    }
+    
+    @Override
+    public Dimension getMinimumSize(){
+        return getSize();
+    }
+    
+    @Override
+    public Dimension getMaximumSize(){
+        return getSize();
+    }
+    
+    @Override
+    public void update(Graphics g){
+        super.update(g);
+        super.setSize(getWidth(), getHeight());
     }
     
     @Override
     public void paintComponent(Graphics g){
-        //Size should be placed as setSize
-        
-        g.setColor(root.getBackgroundColor());
-        g.fillRect(0, 0, getVisibleWidth() / root.getZoom(), getVisibleHeight() / root.getZoom());
-        
+        super.paintComponent(g);
+        drawField(g);
         if(root.isGridVisible())
-            drawGrid(g, root.isIsometric());
+            drawGrid(g);
     }
     
-    public void drawGrid(Graphics g, boolean isometric){
-        int wsize = getWidth();
-        int hsize = getHeight();
-        int vwsize = getVisibleWidth();
-        int vhsize = getVisibleHeight();
+    public void drawField(Graphics g){
+        g.setColor(Colorfeel.FieldBGColor);
+        g.fillRect(0, 0, getWidth(), getHeight());
+    }
+    
+    public void drawGrid(Graphics g){
+        g.setColor(Colorfeel.GridColor);
+        int truew = root.getMapWidth();
+        int trueh = root.getMapHeight();
         int snapx = root.getSnapX();
         int snapy = root.getSnapY();
         int zoom = root.getZoom();
-        int scrollx = root.getScrollX();
-        int scrolly = root.getScrollY();
-        g.setColor(Color.BLACK);
-        if(!isometric){
-            for(int i = 0; i <= vhsize / snapx;i++)
-                g.drawLine(0
-                        , i * snapx / zoom
-                        , vwsize / zoom + scrollx
-                        , i * snapx / zoom);
-            for(int i = 0; i <= vwsize / snapy; i++)
-                g.drawLine(i * snapy / zoom 
-                        , 0
-                        , i * snapy / zoom
-                        , vhsize / zoom);
+        if(!root.isIsometric()){
+            for(int i = 0; i <= truew / snapx ; i++){
+                g.drawLine(i * snapx / zoom, 0, i * snapx / zoom, getHeight());
+            }
+            for(int i = 0; i <= trueh / snapy ; i++){
+                g.drawLine(0, i * snapy / zoom, getWidth(), i * snapy / zoom);
+            }
+        }
+        else{
+            
         }
     }
 }
