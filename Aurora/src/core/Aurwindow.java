@@ -228,7 +228,9 @@ public class Aurwindow extends JFrame {
         LangSupporter.activeLang = new English();
 
         SettingsIO.console = console;
+        
         String[] settings = SettingsIO.loadSettings();
+        
         if (settings == null) {
             settings = new String[5];
             settings[0] = "Native";
@@ -247,10 +249,15 @@ public class Aurwindow extends JFrame {
                 utilities.addError(36);
             }
         }
-        try {
-            lang = LangSupporter.activeLang.getLanguage();
-        } catch (Exception e) {
+        
+        try{
+            if(LangSupporter.activeLang!=null)
+                lang = LangSupporter.activeLang.getLanguage();
+            else
+                lang = "";
         }
+        catch (Exception e){}
+        
         createToolBar();
 
         top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
@@ -280,10 +287,9 @@ public class Aurwindow extends JFrame {
                 
             }
         });
-        
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
-
+        
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
@@ -336,7 +342,6 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 11, evt);
             }
         });
-
         menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
         items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
@@ -381,6 +386,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(2, 1, evt);
             }
         });
+
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
         items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
         items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
@@ -460,6 +466,7 @@ public class Aurwindow extends JFrame {
         if (look == 0) {
             items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
         }
+
         items[MenuSupporter.GenerateMenuItemId(5, 1)] = MenuSupporter.MakeRadioMenuItem(group, menus[5], 18, "Cross-platform look");
         items[MenuSupporter.GenerateMenuItemId(5, 1)].addActionListener(new ActionListener() {
 
@@ -523,6 +530,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(6, 4, evt);
             }
         });
+
         //</editor-fold>
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -533,13 +541,13 @@ public class Aurwindow extends JFrame {
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
 
-
         //<editor-fold defaultstate="expanded" desc="Layout Manager">
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
+        
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
         } else {
@@ -547,11 +555,10 @@ public class Aurwindow extends JFrame {
             pack();
             splitter1.setDividerLocation(0.66);
         }
-
+        
         try {
-            if (settings[0].equals("Native")) {
+            if (settings!=null&&settings[0]!=null&&settings[0].equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
                     SwingUtilities.updateComponentTreeUI(mdi);
                 } else {
@@ -559,9 +566,8 @@ public class Aurwindow extends JFrame {
                 }
                 items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
                 look = 0;
-            } else if (settings[0].equals("Cross-platform")) {
+            } else if (settings==null||settings[0]==null||settings[0].equals("Cross-platform")) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
                     SwingUtilities.updateComponentTreeUI(mdi);
                 } else {
@@ -571,7 +577,6 @@ public class Aurwindow extends JFrame {
                 look = 1;
             } else if (settings[0].equals("Motif")) {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-                SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
                     SwingUtilities.updateComponentTreeUI(mdi);
                 } else {
@@ -587,7 +592,6 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
             look = 1;
         }
-
         if (settings[1].equals("MDI")) {
             items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
             onItemActionPerformed(6, 4, null);

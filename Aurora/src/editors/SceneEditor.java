@@ -125,6 +125,16 @@ public class SceneEditor extends TabPanel {
         jToolBar1.add(jLabel1);
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 10, 1));
+        jSpinner1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSpinner1MouseClicked(evt);
+            }
+        });
+        jSpinner1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSpinner1KeyTyped(evt);
+            }
+        });
         jToolBar1.add(jSpinner1);
 
         jSplitPane1.setDividerLocation(130);
@@ -261,6 +271,14 @@ public class SceneEditor extends TabPanel {
     private void jSplitPane1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jSplitPane1ComponentResized
         updateScroll();
     }//GEN-LAST:event_jSplitPane1ComponentResized
+
+    private void jSpinner1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner1KeyTyped
+        updateScroll();
+    }//GEN-LAST:event_jSpinner1KeyTyped
+
+    private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
+        updateScroll();
+    }//GEN-LAST:event_jSpinner1MouseClicked
     
     public int getScrollX(){
         return jScrollBar2.getValue();

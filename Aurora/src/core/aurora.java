@@ -12,6 +12,8 @@ package core;
 import plugins.*;
 import managers.*;
 
+import javax.swing.*;
+
 /**
  *
  * @author Luís
@@ -32,7 +34,6 @@ public class aurora {
         plugins = Plugger.getPlugList(PluginsList.loadPluglist());
         arguments = args;
         Plugger.loadPlugins(plugins);
-        
         Plugger.onSplashStart(plugins);
         splash = new SplashScreen();
         start();
@@ -43,6 +44,8 @@ public class aurora {
     public static void start(){
         Plugger.onMainWindowStart(plugins);
         window = new Aurwindow();
+        if(window!=null)
+            SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
         window.console.setText(output);
         if(splash!=null){
             Plugger.onSplashDispose(aurora.plugins);
