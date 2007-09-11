@@ -203,6 +203,7 @@ public class Aurwindow extends JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        winlist.updateUI();
     }
 
     public Aurwindow() {

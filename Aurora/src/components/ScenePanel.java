@@ -70,12 +70,18 @@ public class ScenePanel extends JComponent{
     }
     
     public void drawField(Graphics g){
-        g.setColor(Colorfeel.FieldBGColor);
+        g.setColor(root.getMapBGColor());
         g.fillRect(0, 0, getWidth(), getHeight());
     }
     
     public void drawGrid(Graphics g){
-        g.setColor(Colorfeel.GridColor);
+        Color c = root.getMapBGColor();
+        int k = c.getRed() + c.getBlue() + c.getGreen();
+        k /= 3;
+        if(k > 150)
+            g.setColor(Colorfeel.GridDarkColor);
+        else
+            g.setColor(Colorfeel.GridLightColor);
         int truew = root.getMapWidth();
         int trueh = root.getMapHeight();
         int snapx = root.getSnapX();
@@ -90,12 +96,12 @@ public class ScenePanel extends JComponent{
             }
         }
         else{
-            if(truew>trueh){
+            if(truew/snapx>trueh/snapy){
             for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
                 g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
             }
             for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
-                g.drawLine(getWidth(), i * snapy / zoom,0 , (i * snapy) / zoom + getWidth());
+                g.drawLine(getWidth(), i * snapy / zoom, 0, (i * snapy) / zoom + getWidth());
             }
             }
             else{

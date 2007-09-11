@@ -44,12 +44,12 @@ public class aurora {
     public static void start(){
         Plugger.onMainWindowStart(plugins);
         window = new Aurwindow();
-        if(window!=null)
-            SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
         window.console.setText(output);
         if(splash!=null){
             Plugger.onSplashDispose(aurora.plugins);
             splash.dispose();
         }
+        if(window!=null)
+            SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
     }
 }

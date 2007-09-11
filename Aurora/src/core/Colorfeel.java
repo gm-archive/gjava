@@ -16,6 +16,6 @@ import java.awt.*;
  * @author Luís
  */
 public class Colorfeel {
-    public static Color FieldBGColor = Color.LIGHT_GRAY;
-    public static Color GridColor = Color.BLACK;
+    public static Color GridDarkColor = Color.BLACK;
+    public static Color GridLightColor = Color.WHITE;
 }
