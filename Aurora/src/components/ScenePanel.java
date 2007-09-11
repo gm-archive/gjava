@@ -90,7 +90,22 @@ public class ScenePanel extends JComponent{
             }
         }
         else{
-            
+            if(truew>trueh){
+            for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
+                g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
+            }
+            for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
+                g.drawLine(getWidth(), i * snapy / zoom,0 , (i * snapy) / zoom + getWidth());
+            }
+            }
+            else{
+            for(int i = (0 - trueh / snapy); i <= trueh / snapy ; i++){
+                g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
+            }
+            for(int i = (0 - trueh / snapy); i <= trueh / snapy ; i++){
+                g.drawLine(getWidth(), i * snapy / zoom,0 , (i * snapy) / zoom + getWidth());
+            }
+            }
         }
     }
 }
