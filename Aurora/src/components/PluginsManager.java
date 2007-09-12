@@ -32,11 +32,11 @@ public class PluginsManager extends javax.swing.JDialog {
         jList1.setModel(new AcessibleModel(){
             String[] strings = PluginsList.loadPluglist();
             public int getSize() {
-                int i = 0;
+                int i = 1;
                 if(strings==null)
                     return 0;
-                for(i = 0; i < strings.length; i++)
-                    if(strings[i]==null)
+                for(String x : strings)
+                    if(x==null)
                         return i;
                 return i;
             }
@@ -188,19 +188,25 @@ public class PluginsManager extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     
+    @Override
     public void dispose(){
         //Saving
+        String writter = "";
+        String[] x = (String[]) ((AcessibleModel) jList1.getModel()).getObjects();
+        for(String alfa : x){
+            if(alfa!=null){
+                writter += "<plugin>";
+                writter += alfa;
+                writter += "</plugin>";
+            }
+        }
+        
         try{
             FileWriter b = new FileWriter("pluglist.xml");
             BufferedWriter out = new BufferedWriter(b);
             out.write("<?xml version = \"1.0\"?>\n");
             out.write("<pluglist>");
-            String[] x = (String[]) ((AcessibleModel) jList1.getModel()).getObjects();
-            for(int i = 0; i < x.length; i++){
-                out.write("<plugin>");
-                out.write(x[i]);
-                out.write("</plugin>");
-            }
+            out.write(writter);
             out.write("</pluglist>");
             out.close();
         }
