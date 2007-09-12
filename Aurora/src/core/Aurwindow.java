@@ -55,6 +55,7 @@ import editors.*;
 import fileclass.res.Actor;
 
 import plugins.*;
+import components.popupmenus.*;
 
 /**
  *
@@ -218,6 +219,8 @@ public class Aurwindow extends JFrame {
         winlist.updateUI();
     }
 
+    ConsolePopupMenu consolepopup = new ConsolePopupMenu();
+    
     protected Aurwindow() {
         super("Aurora");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -226,6 +229,9 @@ public class Aurwindow extends JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/resources/icon.png")).getImage());
         istabs = true;
         console = new JTextPane();
+        console.setEditable(false);
+        console.setBackground(Colorfeel.ConsoleBGColor);
+        console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
         scroller = new JScrollPane();
         winlist = new JComboBox();
         winlist.setModel(new MyModel());
@@ -276,6 +282,8 @@ public class Aurwindow extends JFrame {
             look = 1;
         }
         
+        
+        console.addMouseListener(new PopupListener(consolepopup));
         tabs = new JTabbedPane();
         mdi = new JDesktopPane();
         splitter1 = new JSplitPane();
@@ -698,6 +706,7 @@ public class Aurwindow extends JFrame {
                 } else {
                     SwingUtilities.updateComponentTreeUI(tabs);
                 }
+                SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 0;
             } catch (Exception e) {
             }
@@ -711,6 +720,7 @@ public class Aurwindow extends JFrame {
                 } else {
                     SwingUtilities.updateComponentTreeUI(tabs);
                 }
+                SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 1;
             } catch (Exception e) {
             }
@@ -724,6 +734,7 @@ public class Aurwindow extends JFrame {
                 } else {
                     SwingUtilities.updateComponentTreeUI(tabs);
                 }
+                SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 2;
             } catch (Exception e) {
             }

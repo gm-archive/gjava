@@ -12,6 +12,7 @@ package core;
 import editors.ActorEditor;
 import plugins.*;
 import managers.*;
+import clipboard.*;
 
 import javax.swing.*;
 
@@ -26,6 +27,7 @@ public class aurora {
     public static String output = "";
     private static SplashScreen splash;
     public static PluginCore[] plugins;
+    public static ClipboardManager clipboard = new ClipboardManager();
     
     public static String[] getargs(){
         return arguments;
@@ -51,6 +53,7 @@ public class aurora {
             splash.dispose();
         }
         if(window!=null){
+            SwingUtilities.updateComponentTreeUI(window.consolepopup);
             //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
         }
     }
