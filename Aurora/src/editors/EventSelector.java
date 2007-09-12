@@ -6,14 +6,18 @@
 
 package editors;
 
+import java.awt.Frame;
+import javax.swing.JDialog;
+
 /**
  *
  * @author  Ali1
  */
-public class EventSelector extends javax.swing.JPanel {
+public class EventSelector extends JDialog {
     
     /** Creates new form EventSelector */
-    public EventSelector() {
+    public EventSelector(Frame f) {
+        super(f);
         initComponents();
     }
     
