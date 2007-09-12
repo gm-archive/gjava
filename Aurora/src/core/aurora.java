@@ -9,6 +9,7 @@
 
 package core;
 
+import editors.ActorEditor;
 import plugins.*;
 import managers.*;
 
@@ -43,6 +44,7 @@ public class aurora {
     
     public static void start(){
         Plugger.onMainWindowStart(plugins);
+        ActorEditor.setupActions();
         window = new Aurwindow();
         window.console.setText(output);
         if(splash!=null){
