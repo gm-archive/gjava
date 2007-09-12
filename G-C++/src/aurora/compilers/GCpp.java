@@ -10,6 +10,9 @@
 package aurora.compilers;
 
 import plugins.*;
+import exceptions.*;
+import core.*;
+
 /**
  *
  * @author Luís
@@ -27,6 +30,12 @@ public class GCpp extends PluginCore{
     }
     
     public void init(){
-        
+        VarsRegistry.setVariable("gcpp.version", "draft");
+        utilities.addStringMessage("Installed G-C++");
+    }
+    
+    @Override
+    protected Object onSignalReceived(PluginCore caller, Object signal) throws InvalidSignalException{
+        return null;
     }
 }
