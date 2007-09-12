@@ -38,7 +38,6 @@ public class aurora {
         Plugger.onSplashStart(plugins);
         splash = new SplashScreen();
         start();
-        
         //Edit the plugin list at pluglist.xml (same directory as settings.xml)
     }
     

@@ -218,7 +218,7 @@ public class Aurwindow extends JFrame {
         winlist.updateUI();
     }
 
-    public Aurwindow() {
+    protected Aurwindow() {
         super("Aurora");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
