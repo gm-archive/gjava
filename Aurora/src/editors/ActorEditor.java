@@ -9,6 +9,7 @@ package editors;
 import components.TabPanel;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -63,9 +64,10 @@ public class ActorEditor extends TabPanel {
         String name = (String)cb.getSelectedItem();
                 
         for (Enumeration en = actionCats.elements(); en.hasMoreElements() ;) {
-         if (((actionCat)en.nextElement()).name.equals(name))
+            actionCat a = ((actionCat)en.nextElement());
+         if (a.name.equals(name))
          {
-            jScrollPane4.setViewportView(((actionCat)en.nextElement()).j); 
+            jScrollPane4.setViewportView(a.j); 
          }
 
      }
@@ -77,7 +79,12 @@ public class ActorEditor extends TabPanel {
     
     public static void addAction(JPanel p, String name)
     {
-        p.add(new JLabel(name));
+        JLabel b = new JLabel(name);
+        
+        b.setHorizontalAlignment(JLabel.LEFT);
+				b.setVerticalAlignment(JLabel.TOP);
+				b.setPreferredSize(new Dimension(32,32));
+                                p.add(b);
     }
     
     public static void addActionCat(JPanel p, String name)
@@ -221,18 +228,18 @@ public class ActorEditor extends TabPanel {
 
         jSplitPane1.setLeftComponent(jTabbedPane1);
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+//        jList1.setModel(new javax.swing.AbstractListModel() {
+//           // String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+//            public int getSize() { return strings.length; }
+//            public Object getElementAt(int i) { return strings[i]; }
+//        });
         jScrollPane1.setViewportView(jList1);
 
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+//        jList2.setModel(new javax.swing.AbstractListModel() {
+//            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+//            public int getSize() { return strings.length; }
+//            public Object getElementAt(int i) { return strings[i]; }
+//        });
         jScrollPane2.setViewportView(jList2);
 
         jButton1.setText("Add event");
