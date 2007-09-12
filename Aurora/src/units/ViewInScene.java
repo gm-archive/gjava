@@ -28,13 +28,14 @@ public class ViewInScene {
     public int vbor = 32;
     public int hsp = -1;
     public int vsp = -1;
-    public int num;
+    public String name;
     
-    public ViewInScene(int num){
-        this.num = num;
+    public ViewInScene(String name){
+        this.name = name;
     }
     
+    @Override
     public String toString(){
-        return (visibleonstart ? "<HTML><b>View " : "View ") + num;
+        return (visibleonstart ? "<HTML><b>" : "") + name;
     }
 }

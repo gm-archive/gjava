@@ -20,14 +20,14 @@ public class ViewsModel extends AbstractListModel{
     
     public ViewsModel(){
         view = new ViewInScene[8];
-        view[0] = new ViewInScene(0);
-        view[1] = new ViewInScene(1);
-        view[2] = new ViewInScene(2);
-        view[3] = new ViewInScene(3);
-        view[4] = new ViewInScene(4);
-        view[5] = new ViewInScene(5);
-        view[6] = new ViewInScene(6);
-        view[7] = new ViewInScene(7);
+        view[0] = new ViewInScene("View 0");
+        view[1] = new ViewInScene("View 1");
+        view[2] = new ViewInScene("View 2");
+        view[3] = new ViewInScene("View 3");
+        view[4] = new ViewInScene("View 4");
+        view[5] = new ViewInScene("View 5");
+        view[6] = new ViewInScene("View 6");
+        view[7] = new ViewInScene("View 7");
     }
     
     public Object getElementAt(int pos){

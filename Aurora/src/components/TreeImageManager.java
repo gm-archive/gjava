@@ -39,6 +39,11 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
 // Find out which node we are rendering and get its text
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         String labelText = (String) node.getUserObject();
+        
+        if(node instanceof ObjectNode){
+            ObjectNode noder = (ObjectNode) node;
+            labelText = noder.object.name;
+        }
 
         this.bSelected = bSelected;
         try{

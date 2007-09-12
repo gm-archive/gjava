@@ -96,8 +96,8 @@ public class ScenePanel extends JComponent{
             }
         }
         else{
-            if(truew/snapx>trueh/snapy){
-            for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
+            if(truew/snapx>=trueh/snapy){
+            for(int i = (0 - truew / snapx); i <= truew / snapx; i++){
                 g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
             }
             for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
@@ -105,10 +105,10 @@ public class ScenePanel extends JComponent{
             }
             }
             else{
-            for(int i = (0 - trueh / snapy); i <= trueh / snapy ; i++){
+            for(int i = (0 - trueh / snapy) - snapy / 2; i <= trueh / snapy + snapy / 2; i++){
                 g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
             }
-            for(int i = (0 - trueh / snapy); i <= trueh / snapy ; i++){
+            for(int i = (0 - trueh / snapy) - snapy / 2; i <= trueh / snapy + snapy / 2 ; i++){
                 g.drawLine(getWidth(), i * snapy / zoom,0 , (i * snapy) / zoom + getWidth());
             }
             }
