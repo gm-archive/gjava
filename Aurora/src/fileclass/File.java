@@ -9,6 +9,8 @@
 
 package fileclass;
 
+import java.util.zip.*;
+
 /**
  *
  * @author Luís
@@ -16,9 +18,9 @@ package fileclass;
 public class File extends Object{
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
-    public String value;
+    public java.lang.Object value;
     
-    public File(Folder root, String name, String type, String value){
+    public File(Folder root, String name, String type, Object value){
         super(name);
         this.root = root;
         this.type = type;
@@ -26,7 +28,12 @@ public class File extends Object{
         root.add(this);
     }
     
+    @Override
     public String getObjectType(){
         return "File";
+    }
+    
+    public void writeToBuffer(ZipOutputStream out){
+        
     }
 }

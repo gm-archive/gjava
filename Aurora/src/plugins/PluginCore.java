@@ -11,6 +11,8 @@ package plugins;
 
 import javax.swing.*;
 
+import exceptions.*;
+
 /**
  *
  * @author Luís
@@ -21,4 +23,10 @@ public abstract class PluginCore {
     public void onMainWindowStart(){}
     public void onSplashDispose(){}
     public void onMainWindowDispose(){}
+    public Object sendSignal(PluginCore caller, Object signal) throws InvalidSignalException{
+        return onSignalReceived(caller, signal);
+    }
+    protected Object onSignalReceived(PluginCore caller, Object signal) throws InvalidSignalException{
+        return null;
+    }
 }

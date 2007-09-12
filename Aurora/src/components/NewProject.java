@@ -75,13 +75,13 @@ public class NewProject extends TabPanel {
             if (type == 0){
                 project = new GameProject(jTextField1.getText(), "");
                 Aurwindow.setMainProject(project);
-                project.add(new Group(project, "Images"));
+                project.add(new ImageGroup(project, "Images"));
                 project.add(new SpriteGroup(project, "Sprites"));
                 project.add(new SoundGroup(project, "Sounds"));
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new Group(project, "Extensions"));
-                new fileclass.File(project, "Settings", "settings", "");
+                new fileclass.File(project, "Settings", "settings", null);
             }
             else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");

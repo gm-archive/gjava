@@ -23,20 +23,23 @@ public class PlainTextEditor extends TabPanel {
     
     public PlainTextEditor(fileclass.File file) {
         initComponents();
-        jTextPane1.setText(file.value);
+        jTextPane1.setText((String) file.value);
         this.file = file;
     }
     
+    @Override
     public boolean canSave(){
         return true;
     }
     
+    @Override
     public boolean Save(){
         file.value = jTextPane1.getText();
         changed = false;
         return true;
     }
     
+    @Override
     public void dispose(){
         if(!wasModified())
             super.dispose();
@@ -63,6 +66,7 @@ public class PlainTextEditor extends TabPanel {
         }
     }
     
+    @Override
     public boolean wasModified(){
         return changed;
     }

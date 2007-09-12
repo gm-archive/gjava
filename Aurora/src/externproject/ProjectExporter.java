@@ -57,8 +57,7 @@ public class ProjectExporter {
             if((childNode = folder.childAt(i))!=null){
                 if(childNode instanceof fileclass.File){
                     out.putNextEntry(new ZipEntry("_" + a));
-                    for(int j = 0; j < ((fileclass.File) childNode).value.length() ; j++)
-                        out.write(((fileclass.File) childNode).value.charAt(j));
+                    ((fileclass.File) childNode).writeToBuffer(out);
                     out.closeEntry();
                     a++;
                 }

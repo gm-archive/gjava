@@ -128,6 +128,18 @@ public class Aurwindow extends JFrame {
         {
         addWindow(new SceneEditor(file), file.name);
         }
+        else if (file.type.equals("jpg"))
+        {
+        addWindow(new ImageEditor(file), file.name);
+        }
+        else if (file.type.equals("gif"))
+        {
+        addWindow(new ImageEditor(file), file.name);
+        }
+        else if (file.type.equals("png"))
+        {
+        addWindow(new ImageEditor(file), file.name);
+        }
         else
         addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
     }
@@ -886,7 +898,7 @@ public class Aurwindow extends JFrame {
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
         case 10:
-            JFileChooser fc = new JFileChooser();
+         /*   JFileChooser fc = new JFileChooser();
         
         fc.setAcceptAllFileFilterUsed(false);
         JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.png|.*\\.jpg|.*\\.jpeg","Image Files  (*.gif *.png  *.jpg)");
@@ -901,7 +913,12 @@ public class Aurwindow extends JFrame {
                 JOptionPane.showMessageDialog(null,"File not found","G-Java",0);
                 return;
             }
-        }
+            else{
+                int lastindexof = f.getName().lastIndexOf('.');*/
+                fileclass.File file = addFile(getCurrentFolder(), "newImage0", "png");
+                /*file.value 
+            }
+        }*/
         }
     }
 
@@ -911,7 +928,7 @@ public class Aurwindow extends JFrame {
             return null;
         if(!folder.allowsFileType(type))
             return null;
-        fileclass.File file = new fileclass.File(folder, name, type, "");
+        fileclass.File file = new fileclass.File(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         workspace.updateUI();
