@@ -44,4 +44,12 @@ public class PluginHelper {
     public static void addMenu(JMenu menu){
         aurora.window.menubar.add(menu);
     }
+    
+    public static String getClipboardContent(){
+        return aurora.clipboard.getClipboardContents();
+    }
+    
+    public static void setClipboardContent(String content){
+        aurora.clipboard.setClipboardContents(content);
+    }
 }

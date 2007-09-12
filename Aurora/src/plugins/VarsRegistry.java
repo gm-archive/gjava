@@ -21,6 +21,21 @@ public class VarsRegistry {
     private static String[] names = new String[200];
     private static Object[] vars = new String[200];
     
+    public static String[] getKeys(){
+        int a = 0;
+        for(String name : names)
+            if(name!=null)
+                a++;
+        if(a==0)
+            return null;
+        String[] x = new String[a];
+        a = 0;
+        for(String name : names)
+            if(name!=null)
+                x[a++] = name;
+        return x;
+    }
+    
     public static boolean setVariable(String name, Object var){
         if(name==null)
             return false;
