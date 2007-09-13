@@ -125,7 +125,7 @@ public class Aurwindow extends JFrame {
         } else if (file.type.equals("scene")) {
             addWindow(new SceneEditor(file), file.name);
         } else if (file.type.equals("class")) {
-            addWindow(new CodeEditor2(file), file.name);
+            addWindow(new CodeEditor(file), file.name);
         } else if (file.type.equals("bmp")
                 ||file.type.equals("gif")
                 ||file.type.equals("jpg")
