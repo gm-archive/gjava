@@ -881,8 +881,8 @@ public class Aurwindow extends JFrame {
                     }
                 } else {
                     for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
-                        if (((TabPanel) mdi.getComponent(ii)).wasModified()) {
-                            ((TabPanel) mdi.getComponent(ii)).Save();
+                        if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                            ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
                         }
                     }
                 }
@@ -978,8 +978,11 @@ public class Aurwindow extends JFrame {
         }
     }
 
+   
+    
     //</editor-fold>
     public fileclass.File addFile(Folder folder, String name, String type) {
+        
         if (folder == null) {
             return null;
         }
@@ -989,6 +992,9 @@ public class Aurwindow extends JFrame {
         fileclass.File file = new fileclass.File(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
+        TreePath tp=new TreePath(node.getPath());
+        workspace.setSelectionPath(tp);
+        Open(file);
         workspace.updateUI();
         return file;
     }

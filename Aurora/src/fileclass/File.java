@@ -9,6 +9,7 @@
 
 package fileclass;
 
+import fileclass.res.Sprite;
 import java.util.zip.*;
 
 /**
@@ -19,6 +20,7 @@ public class File extends Object{
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
     public java.lang.Object value;
+    public Sprite sp;
     
     public File(Folder root, String name, String type, Object value){
         super(name);

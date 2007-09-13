@@ -8,6 +8,7 @@ package editors;
 
 import components.SubimagePreview;
 import components.TabPanel;
+import fileclass.res.Sprite;
 import java.awt.image.BufferedImage;
 
 /**
@@ -18,16 +19,59 @@ public class SpriteEditor extends TabPanel {
     
     public fileclass.File file = null;
     public BufferedImage subimage;
+    Sprite sprite;
+    boolean changed;
     
     /** Creates new form SpriteEditor */
     public SpriteEditor(fileclass.File file) {
         this.file = file;
+        //if (file.value instanceof Sprite)
+        //{
+        this.sprite = file.sp;
+        load();
+        System.out.println("Load");
+       // }
+//        else
+//        {
+//            this.sprite = new Sprite(file.name);
+//        }
         initComponents();
         try{
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
         jScrollPane1.setViewportView(new SubimagePreview(this));
+        
+    }
+
+    @Override
+    public boolean Save() {
+        sprite.BBBottom=(Integer)jSpinner6.getValue();
+        sprite.BBRight=(Integer)jSpinner5.getValue();
+        sprite.BBTop=(Integer)jSpinner4.getValue();
+        sprite.BBleft=(Integer)jSpinner3.getValue();
+        
+        sprite.originX=(Integer)jSpinner1.getValue();
+        sprite.originY=(Integer)jSpinner2.getValue();
+        file.sp = sprite;
+        return true;
+    }
+
+    @Override
+    public boolean wasModified() {
+        return changed;
+    }
+    
+    public void load()
+    {
+        if (sprite==null)
+        {
+            this.sprite = new Sprite(file.name);
+            return;
+        }
+        System.out.println("Loaing");
+        jSpinner1.setValue(sprite.originX);
+        jSpinner2.setValue(sprite.originY);
     }
     
     /** This method is called from within the constructor to
@@ -60,9 +104,6 @@ public class SpriteEditor extends TabPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -71,6 +112,8 @@ public class SpriteEditor extends TabPanel {
         jSpinner4 = new javax.swing.JSpinner();
         jSpinner5 = new javax.swing.JSpinner();
         jSpinner6 = new javax.swing.JSpinner();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         jLabel1.setText("Name:");
 
@@ -93,6 +136,23 @@ public class SpriteEditor extends TabPanel {
 
         jButton6.setText("Centre");
 
+        jSpinner1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSpinner1MouseClicked(evt);
+            }
+        });
+        jSpinner1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jSpinner1KeyTyped(evt);
+            }
+        });
+
+        jSpinner2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSpinner2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,7 +166,7 @@ public class SpriteEditor extends TabPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner2, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                        .addComponent(jSpinner2, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jButton6)))
@@ -202,18 +262,6 @@ public class SpriteEditor extends TabPanel {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Bounding Box"));
 
-        jRadioButton1.setText("Automatic");
-        jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
-        jRadioButton2.setText("Full image");
-        jRadioButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
-        jRadioButton3.setText("Manual");
-        jRadioButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton3.setMargin(new java.awt.Insets(0, 0, 0, 0));
-
         jLabel8.setText("Left:");
 
         jLabel9.setText("Right:");
@@ -222,46 +270,49 @@ public class SpriteEditor extends TabPanel {
 
         jLabel11.setText("Bottom:");
 
+        jButton8.setText("Automatic");
+
+        jButton9.setText("Full Image");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButton3)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner4, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE))
+                                .addComponent(jSpinner4, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE))
-                            .addComponent(jRadioButton1, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jSpinner3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
+                                .addComponent(jSpinner5, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinner6, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)))))
+                                .addComponent(jSpinner6, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButton8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton9)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jButton8)
+                    .addComponent(jButton9))
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9)
@@ -291,10 +342,10 @@ public class SpriteEditor extends TabPanel {
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, 0, 182, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +379,18 @@ public class SpriteEditor extends TabPanel {
         file.name = jTextField1.getText();
         core.Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
+      changed=true;
+    }//GEN-LAST:event_jSpinner1MouseClicked
+
+    private void jSpinner1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner1KeyTyped
+        changed=true;
+    }//GEN-LAST:event_jSpinner1KeyTyped
+
+    private void jSpinner2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner2MouseClicked
+        changed=true;
+    }//GEN-LAST:event_jSpinner2MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -338,6 +401,8 @@ public class SpriteEditor extends TabPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -351,9 +416,6 @@ public class SpriteEditor extends TabPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JSpinner jSpinner1;
     public javax.swing.JSpinner jSpinner2;

@@ -80,7 +80,7 @@ public class NewProject extends TabPanel {
                 project.add(new SoundGroup(project, "Sounds"));
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
-                project.add(new EGMLGroup(project, "Scripts"));
+                project.add(new EGMLGroup(project, "Classes"));
                 project.add(new Group(project, "Extensions"));
                 new fileclass.File(project, "Settings", "settings", null);
             }

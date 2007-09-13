@@ -14,5 +14,11 @@ package fileclass.res;
  * @author Ali1
  */
 public class Sprite {
-
+public String images[];
+public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
+public String name;
+public Sprite(String name)
+{
+    this.name =name;
+}
 }
