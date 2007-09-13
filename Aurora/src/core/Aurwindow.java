@@ -121,7 +121,11 @@ public class Aurwindow extends JFrame {
     }
     
     public void Open(fileclass.File file){
-        if (file.type.equals("actor"))
+        if (file.type.equals("sprite"))
+        {
+        addWindow(new SpriteEditor(file), file.name);
+        }
+        else if (file.type.equals("actor"))
         {
         addWindow(new ActorEditor(file), file.name);
         }
