@@ -1119,8 +1119,16 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
     public void dispose() {
-        Plugger.onSplashDispose(aurora.plugins);
+        Plugger.onMainWindowDispose(aurora.plugins);
         saveSettings();
+        if(istabs)
+            for(Component a : tabs.getComponents())
+                if(a instanceof TabPanel)
+                    ((TabPanel) a).dispose();
+        else
+            for(Component x : mdi.getComponents())
+                if(x instanceof ExtendedFrame)
+                    ((ExtendedFrame) x).dispose();
         super.dispose();
     }
 
