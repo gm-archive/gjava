@@ -14,25 +14,6 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import javax.swing.JFileChooser;
-/*import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDesktopPane;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextPane;
-import javax.swing.JToolBar;
-import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
-import javax.swing.JTree;*/
 import javax.swing.tree.*;
 /*import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
@@ -144,7 +125,7 @@ public class Aurwindow extends JFrame {
         } else if (file.type.equals("scene")) {
             addWindow(new SceneEditor(file), file.name);
         } else if (file.type.equals("class")) {
-            addWindow(new CodeEditor(file), file.name);
+            addWindow(new CodeEditor2(file), file.name);
         } else if (file.type.equals("bmp")
                 ||file.type.equals("gif")
                 ||file.type.equals("jpg")
@@ -252,7 +233,8 @@ public class Aurwindow extends JFrame {
         scroller.setViewportView(console);
 
         LangSupporter.activeLang = new English();
-
+        
+        
         SettingsIO.console = console;
 
         String[] settings = SettingsIO.loadSettings();
@@ -316,6 +298,8 @@ public class Aurwindow extends JFrame {
         workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
+        workspace.setDragEnabled(true);
+        
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
         workspace.addMouseListener(new MouseListener() {
@@ -903,13 +887,12 @@ public class Aurwindow extends JFrame {
                 //save all
                 break;
             case 5:
-
                 //add sprite
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
                     return;
-                }
+                } 
                 while (a.findFromName("newSprite" + i) != -1) {
                     i++;
                 }
@@ -922,7 +905,7 @@ public class Aurwindow extends JFrame {
                 a = getCurrentFolder();
                 if (a == null) {
                     return;
-                }
+                } 
                 while (a.findFromName("newSound" + i) != -1) {
                     i++;
                 }
