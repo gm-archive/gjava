@@ -25,9 +25,9 @@ public class ConsolePopupMenu extends JPopupMenu{
     JMenuItem clear;
     JMenuItem hide;
     public ConsolePopupMenu(){
-        copymessage = new JMenuItem("Copy message");
-        clear = new JMenuItem("Clear console");
-        hide = new JMenuItem("Hide console");
+        copymessage = new JMenuItem(LangSupporter.activeLang.getEntry(114));
+        clear = new JMenuItem(LangSupporter.activeLang.getEntry(14));
+        hide = new JMenuItem(LangSupporter.activeLang.getEntry(115));
         add(copymessage);
         copymessage.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){

@@ -152,6 +152,12 @@ public class Portuguese extends Dictionary{
         entry[111] = "Adicionar";
         entry[112] = "Remover";
         entry[113] = "Reverter alterações";
+        //Popup
+        entry[114] = "Copiar mensagem";
+        entry[115] = "Ocultar mensagem";
+        entry[116] = "Ocultar barra de ferramentas";
+        entry[117] = "Importar imagem";
+        entry[118] = "Aproximar";
         
         try{
             init();

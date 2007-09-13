@@ -230,7 +230,7 @@ public class Aurwindow extends JFrame {
         winlist.updateUI();
     }
 
-    ConsolePopupMenu consolepopup = new ConsolePopupMenu();
+    ConsolePopupMenu consolepopup;
 
     protected Aurwindow() {
         super("Aurora");
@@ -267,7 +267,7 @@ public class Aurwindow extends JFrame {
         }
 
         if (!settings[3].equals("English")) {
-            if (settings[3].equals("Portuguese")) {
+            if (settings[3].equals("Portuguese (European)")) {
                 LangSupporter.activeLang = new Portuguese();
             } else if (settings[3].equals("German")) {
                 LangSupporter.activeLang = new German();
@@ -293,7 +293,7 @@ public class Aurwindow extends JFrame {
             look = 1;
         }
 
-
+        consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(consolepopup));
         tabs = new JTabbedPane();
         mdi = new JDesktopPane();

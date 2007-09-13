@@ -27,12 +27,14 @@ public class ScenePanel extends JComponent{
     
     @Override
     public int getWidth(){
-        return root.getMapWidth() / root.getZoom() + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0);
+        double zoom = root.getZoom();
+        return (int) (root.getMapWidth() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
     @Override
     public int getHeight(){
-        return root.getMapHeight() / root.getZoom() + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0);
+        double zoom = root.getZoom();
+        return (int) (root.getMapHeight() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
     @Override
@@ -86,30 +88,32 @@ public class ScenePanel extends JComponent{
         int trueh = root.getMapHeight();
         int snapx = root.getSnapX();
         int snapy = root.getSnapY();
-        int zoom = root.getZoom();
+        double zoom = root.getZoom();
+        if(zoom==0)
+            zoom = 0.5;
         if(!root.isIsometric()){
             for(int i = 0; i <= truew / snapx ; i++){
-                g.drawLine(i * snapx / zoom, 0, i * snapx / zoom, getHeight());
+                g.drawLine((int) (i * snapx / zoom), 0,(int) ( i * snapx / zoom), getHeight());
             }
             for(int i = 0; i <= trueh / snapy ; i++){
-                g.drawLine(0, i * snapy / zoom, getWidth(), i * snapy / zoom);
+                g.drawLine(0, (int) (i * snapy / zoom), getWidth(), (int) (i * snapy / zoom));
             }
         }
         else{
             if(truew/snapx>=trueh/snapy){
             for(int i = (0 - truew / snapx); i <= truew / snapx; i++){
-                g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
+                g.drawLine((int) (i * snapx / zoom), 0, (int) ((i * snapx) / zoom) + getHeight(), getHeight());
             }
             for(int i = (0 - truew / snapx); i <= truew / snapx ; i++){
-                g.drawLine(getWidth(), i * snapy / zoom, 0, (i * snapy) / zoom + getWidth());
+                g.drawLine(getWidth(), (int) (i * snapy / zoom), 0, (int) ((i * snapy) / zoom) + getWidth());
             }
             }
             else{
             for(int i = (0 - trueh / snapy) - snapy / 2; i <= trueh / snapy + snapy / 2; i++){
-                g.drawLine(i * snapx / zoom, 0, (i * snapx) / zoom + getHeight(), getHeight());
+                g.drawLine((int) (i * snapx / zoom), 0, (int) ((i * snapx) / zoom) + getHeight(), getHeight());
             }
             for(int i = (0 - trueh / snapy) - snapy / 2; i <= trueh / snapy + snapy / 2 ; i++){
-                g.drawLine(getWidth(), i * snapy / zoom,0 , (i * snapy) / zoom + getWidth());
+                g.drawLine(getWidth(), (int) (i * snapy / zoom), 0 , (int) ((i * snapy) / zoom) + getWidth());
             }
             }
         }

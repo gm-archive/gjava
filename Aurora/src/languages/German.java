@@ -25,7 +25,7 @@ public class German extends Dictionary{
         authors = new String[10];
         authors[0] = "B Biglari";
         //If you changed this language, add your name here.
-        entry = new String[100];
+        entry = new String[200];
         entry[0] = "Datei";
         entry[1] = "Bearbeiten";
         entry[2] = "Ansicht";

@@ -35,6 +35,10 @@ public class Dictionary {
     public String getEntry(int num){
         if(num==-1)
             return "";
+        if(num>=entry.length)
+            return "";
+        if(entry[num]==null)
+            return "";
         return entry[num];
     }
     

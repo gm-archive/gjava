@@ -152,6 +152,12 @@ public class English extends Dictionary{
         entry[111] = "Add";
         entry[112] = "Remove";
         entry[113] = "Revert changes";
+        //Popup
+        entry[114] = "Copy message";
+        entry[115] = "Hide console";
+        entry[116] = "Hide toolbar";
+        entry[117] = "Import image";
+        entry[118] = "Zoom";
         
         try{
             init();
