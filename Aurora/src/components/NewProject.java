@@ -80,6 +80,7 @@ public class NewProject extends TabPanel {
                 project.add(new SoundGroup(project, "Sounds"));
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
+                project.add(new EGMLGroup(project, "Scripts"));
                 project.add(new Group(project, "Extensions"));
                 new fileclass.File(project, "Settings", "settings", null);
             }
@@ -93,6 +94,9 @@ public class NewProject extends TabPanel {
             }
             else if(type == 3){
                 project = new ExtensionProject(jTextField1.getText(), "");
+                project.add(new JavaGroup(project, "Java"));
+                project.add(new CppGroup(project, "C++"));
+                project.add(new EGMLGroup(project, "EGML"));
                 Aurwindow.setMainProject(project);
             }
             if(type!=-1){

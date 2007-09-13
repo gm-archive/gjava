@@ -19,6 +19,16 @@ public class ExtensionProject extends Project {
     }
     
     @Override
+    public boolean allowsFileType(String format){
+        return false;
+    }
+    
+    @Override
+    public boolean allowsGroup(Group group){
+        return false;
+    }
+    
+    @Override
     public String getType(){
         return "Extension";
     }

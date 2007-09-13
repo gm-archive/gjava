@@ -28,7 +28,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.PlainDocument;
 
 //import org.lateralgm.components.impl.DocumentUndoManager;
-import jedit.EGMLTokenMarker;
+import jedit.JavaTokenMarker;
 import jedit.JEditTextArea;
 //import org.lateralgm.file.ResourceList;
 import jedit.KeywordMap;
@@ -47,22 +47,22 @@ import jedit.Token;
 //import org.lateralgm.messages.Messages;
 //import org.lateralgm.resources.Resource;
 
-public class GMLTextArea extends JEditTextArea
+public class JavaTextArea extends JEditTextArea
 	{
 	private static final long serialVersionUID = 1L;
-	private final EGMLTokenMarker gmlTokenMarker = new EGMLTokenMarker();
+	private final JavaTokenMarker jTokenMarker = new JavaTokenMarker();
 	public final ResourceChangeListener rcl = new ResourceChangeListener();
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
 	private Integer lastUpdateTaskID = 0;
 
-	public GMLTextArea(String text)
+	public JavaTextArea(String text)
 		{
 		super();
 		setDocument(new SyntaxDocument());
 		//getDocument().getDocumentProperties().put(PlainDocument.tabSizeAttribute,Prefs.tabSize);
 		updateTokenMarker();
-		setTokenMarker(gmlTokenMarker);
+		setTokenMarker(jTokenMarker);
 		//painter.setFont(Prefs.codeFont);
 		//painter.setStyles(PrefsStore.getSyntaxStyles());
 		painter.setBracketHighlightColor(Color.gray);
@@ -90,7 +90,7 @@ public class GMLTextArea extends JEditTextArea
 
 	private JButton makeInputHandlerToolbarButton(final ActionListener l, String key)
 		{
-		final GMLTextArea source = this;
+		final JavaTextArea source = this;
 		Action a = new AbstractAction(""+key)
 			{
 				private static final long serialVersionUID = 1L;
@@ -135,7 +135,7 @@ public class GMLTextArea extends JEditTextArea
 
 	public void updateTokenMarker()
 		{
-		KeywordMap km = new KeywordMap(false);
+		//KeywordMap km = new KeywordMap(false);
 //		int[] kmResources = { Resource.BACKGROUND,Resource.FONT,Resource.GMOBJECT,Resource.PATH,
 //				Resource.ROOM,Resource.SCRIPT,Resource.SOUND,Resource.SPRITE,Resource.TIMELINE };
 //		for (int j : kmResources)
@@ -147,7 +147,7 @@ public class GMLTextArea extends JEditTextArea
 //				if (n.length() > 0) km.add(n,Token.KEYWORD3);
 //				}
 //			}
-		gmlTokenMarker.setCustomKeywords(km);
+		//gmlTokenMarker.setCustomKeywords(km);
 		}
 
 	private class ResourceChangeListener implements ChangeListener
