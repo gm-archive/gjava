@@ -142,6 +142,8 @@ public class Aurwindow extends JFrame {
             addWindow(new ActorEditor(file, actors.get(foundloc)), file.name);
         } else if (file.type.equals("scene")) {
             addWindow(new SceneEditor(file), file.name);
+        } else if (file.type.equals("class")) {
+            addWindow(new CodeEditor(file), file.name);
         } else if (file.type.equals("jpg")) {
             addWindow(new ImageEditor(file), file.name);
         } else if (file.type.equals("gif")) {
@@ -911,9 +913,30 @@ public class Aurwindow extends JFrame {
                 break;
             case 6:
                 //add sound
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    return;
+                }
+                while (a.findFromName("newSound" + i) != -1) {
+                    i++;
+                }
+                addFile(getCurrentFolder(), "newSound" + i, "sound");
+
                 break;
             case 7:
                 //add class
+                //add sound
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    return;
+                }
+                while (a.findFromName("newClass" + i) != -1) {
+                    i++;
+                }
+                addFile(getCurrentFolder(), "newClass" + i, "class");
+
                 break;
             case 8:
                 i = 1;
