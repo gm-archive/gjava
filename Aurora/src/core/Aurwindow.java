@@ -128,6 +128,9 @@ public class Aurwindow extends JFrame {
             addWindow(new EGMLEditor(file), file.name);
         } else if (file.type.equals("java")) {
             addWindow(new JavaEditor(file), file.name);
+            } else if (file.type.equals("cpp")
+            ||file.type.equals("h")) {
+            addWindow(new CppEditor(file), file.name);
         } else if (file.type.equals("bmp")
                 ||file.type.equals("gif")
                 ||file.type.equals("jpg")
