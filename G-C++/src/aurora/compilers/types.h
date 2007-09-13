@@ -7,5 +7,6 @@
 
 typedef bool boolean;
 typedef std::string String;
+typedef char byte;
 
 #endif

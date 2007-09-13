@@ -8,7 +8,7 @@ class GApi::Interaction::Mouse
 		static int getY();
 };
 
-class GApi::Interaction::KeyBoard
+class GApi::Interaction::Keyboard
 {
 	public:
 		static String* getPressedKeys();

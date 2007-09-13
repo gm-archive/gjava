@@ -129,6 +129,8 @@ class GApi::Components::Scene
 		int* warray;
 		int* harray;
 		int* deptharray;
+                String name;
+                String caption;
 	public:
 		Scene();
 		Scene(GApi::Components::View**, GApi::Components::Actor**);

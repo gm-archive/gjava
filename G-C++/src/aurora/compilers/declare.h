@@ -51,7 +51,7 @@ namespace GApi
 	namespace Interaction
 	{
 		class Mouse;
-		class KeyBoard;
+		class Keyboard;
 	}
 }
 
