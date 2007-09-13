@@ -121,33 +121,25 @@ public class Aurwindow extends JFrame {
     }
 
     public void Open(fileclass.File file) {
+        boolean found = false;
+        int iii = 0;
+        int foundloc = 0;
         if (file.type.equals("sprite")) {
             addWindow(new SpriteEditor(file), file.name);
         } else if (file.type.equals("actor")) {
-            Actor temp = new Actor("",0);
-           
-            boolean found=false;
-            int iii=0,foundloc=0;
             for (Enumeration e = actors.elements(); e.hasMoreElements();) {
-                Actor act = (Actor)e.nextElement();
-                if(act.name.equals(file.name))
-                {
+                Actor act = (Actor) e.nextElement();
+                if (act.name.equals(file.name)) {
                     found = true;
-                    System.out.println("Found");
-                    temp = act;
-                    foundloc=iii;
+                    foundloc = iii;
                 }
                 iii++;
             }
-            
-            
-            if(!found)
-            {
-                temp = new Actor("",actors.size()+1);
-            actors.add(actors.size()+1,temp);
-           foundloc = actors.size()+1;
+            if (!found) {
+                actors.add(actors.size() + 1, new Actor("", actors.size() + 1));
+                foundloc = actors.size() + 1;
             }
-               addWindow(new ActorEditor(file, actors.get(foundloc)), file.name); 
+            addWindow(new ActorEditor(file, actors.get(foundloc)), file.name);
         } else if (file.type.equals("scene")) {
             addWindow(new SceneEditor(file), file.name);
         } else if (file.type.equals("jpg")) {
@@ -884,6 +876,7 @@ public class Aurwindow extends JFrame {
                 break;
             case 3:
                 //save
+                System.out.println("Saving...");
                 if (istabs) {
                     for (int ii = 0; ii < tabs.getTabCount(); ii++) {
                         if (((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
@@ -933,7 +926,7 @@ public class Aurwindow extends JFrame {
                 }
                 //TODO put in actor folder only
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
-                Aurwindow.actors.add(new Actor("newActor" + i,actors.size()));
+                Aurwindow.actors.add(new Actor("newActor" + i, actors.size()));
                 break;
             case 9:
                 i = 1;

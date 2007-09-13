@@ -64,11 +64,11 @@ public class ActorEditor extends TabPanel {
 
     @Override
     public boolean Save() {
+        System.out.println("Saved");
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
-        aurora.window.actors.remove(actor.index);
-        aurora.window.actors.add(actor);
+        
         return true;
     }
     
@@ -301,6 +301,16 @@ public class ActorEditor extends TabPanel {
         jCheckBox1.setText("Visible");
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox1MouseClicked(evt);
+            }
+        });
+        jCheckBox1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jCheckBox1StateChanged(evt);
+            }
+        });
 
         jCheckBox2.setText("Solid");
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -422,6 +432,14 @@ public class ActorEditor extends TabPanel {
         file.name = jTextField1.getText();
         core.Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1StateChanged
+
+    private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
+        changed = true;
+    }//GEN-LAST:event_jCheckBox1MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
