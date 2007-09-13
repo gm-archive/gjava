@@ -203,7 +203,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(118));
+        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(119));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {

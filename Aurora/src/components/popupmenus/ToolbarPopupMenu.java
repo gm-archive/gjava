@@ -22,7 +22,7 @@ import managers.*;
 public class ToolbarPopupMenu extends JPopupMenu{
     JMenuItem hide;
     public ToolbarPopupMenu(){
-        hide = new JMenuItem(LangSupporter.activeLang.getEntry(116));
+        hide = new JMenuItem(LangSupporter.activeLang.getEntry(117));
         add(hide);
         hide.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){

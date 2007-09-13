@@ -26,7 +26,7 @@ Contributions:
     Luís Reis
         Most features
         Non-native tree icons
-        A few icons
+        A few icons (including the official application icon)
     TGMG
         Some menu items
         Made the SVN work.

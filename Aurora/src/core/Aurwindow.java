@@ -237,7 +237,7 @@ public class Aurwindow extends JFrame {
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setVisible(true);
-        setIconImage(new ImageIcon(getClass().getResource("/resources/icon.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/resources/GCreator.png")).getImage());
         istabs = true;
         console = new JTextPane();
         console.setEditable(false);
@@ -360,6 +360,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 1, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/resources/general/newfile.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
         items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
@@ -396,6 +397,7 @@ public class Aurwindow extends JFrame {
         });
         menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
         items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
+        items[MenuSupporter.GenerateMenuItemId(1, 0)].setIcon(new ImageIcon(getClass().getResource("/resources/general/find.png")));
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
 
             @Override
@@ -475,6 +477,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
+        items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/resources/GCreator.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
 
             @Override

@@ -91,7 +91,7 @@ public class ImageEditor extends TabPanel {
         jFileChooser1.setDialogTitle("Select a file");
         jFileChooser1.setDragEnabled(true);
 
-        jButton1.setText(managers.LangSupporter.activeLang.getEntry(117));
+        jButton1.setText(managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
