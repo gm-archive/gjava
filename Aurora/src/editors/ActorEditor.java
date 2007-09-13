@@ -53,8 +53,9 @@ public class ActorEditor extends TabPanel {
         
         //load variables
         jCheckBox1.setSelected(actor.visible);
-       // actor.solid = jCheckBox2.isSelected();
-       // actor.persistant = jCheckBox3.isSelected();
+        jCheckBox2.setSelected(actor.solid);
+        jCheckBox3.setSelected(actor.persistant);
+      
     }
 
     @Override
@@ -64,11 +65,11 @@ public class ActorEditor extends TabPanel {
 
     @Override
     public boolean Save() {
-        System.out.println("Saved");
+       
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
-        
+         //System.out.println("Saved");
         return true;
     }
     
