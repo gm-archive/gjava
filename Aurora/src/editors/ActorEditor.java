@@ -272,6 +272,7 @@ public class ActorEditor extends TabPanel {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Sprite"));
 
+        jTextField2.setEditable(false);
         jTextField2.setText("<nosprite>");
 
         jButton1.setText("...");
@@ -316,17 +317,33 @@ public class ActorEditor extends TabPanel {
         jCheckBox2.setText("Solid");
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox2MouseClicked(evt);
+            }
+        });
 
         jCheckBox3.setText("Persistant");
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCheckBox3MouseClicked(evt);
+            }
+        });
 
         jLabel2.setText("Depth:");
 
         jTextField3.setText("0");
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jLabel3.setText("Extends:");
 
+        jTextField4.setEditable(false);
         jTextField4.setText("<none>");
 
         jButton3.setText("...");
@@ -335,6 +352,7 @@ public class ActorEditor extends TabPanel {
 
         jButton4.setText("...");
 
+        jTextField5.setEditable(false);
         jTextField5.setText("<none>");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -422,6 +440,7 @@ public class ActorEditor extends TabPanel {
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
        new EventSelect(aurora.window,true);
+       changed = true;
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
@@ -441,6 +460,18 @@ public class ActorEditor extends TabPanel {
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
         changed = true;
     }//GEN-LAST:event_jCheckBox1MouseClicked
+
+    private void jCheckBox2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox2MouseClicked
+        changed = true;
+    }//GEN-LAST:event_jCheckBox2MouseClicked
+
+    private void jCheckBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox3MouseClicked
+       changed = true;
+    }//GEN-LAST:event_jCheckBox3MouseClicked
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        changed = true;
+    }//GEN-LAST:event_jTextField3KeyTyped
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

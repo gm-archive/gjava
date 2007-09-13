@@ -9,14 +9,17 @@
 
 package fileclass.res;
 
+import java.util.Vector;
+
 /**
  *
  * @author Ali1
  */
 public class Actor {
 public boolean visible, solid, persistant;
-public String name;
-public int index;
+public String name,sprite,extend,mask;
+public int index,depth;
+public Vector events;
   public  Actor(String name, int index)
     {
         this.name = name;

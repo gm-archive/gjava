@@ -3,6 +3,7 @@
 <Form version="1.3" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,35 +28,34 @@
                   <Component id="jButton9" alignment="0" max="32767" attributes="1"/>
                   <Component id="jButton4" alignment="0" max="32767" attributes="1"/>
                   <Component id="jButton3" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jButton2" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jButton1" alignment="0" pref="100" max="32767" attributes="1"/>
+                  <Component id="jButton1" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jButton6" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jButton8" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jButton7" alignment="0" pref="127" max="32767" attributes="1"/>
+                  <Component id="jButton12" max="32767" attributes="1"/>
                   <Component id="jButton5" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jButton6" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jButton7" alignment="0" max="32767" attributes="1"/>
+                  <Component id="jButton8" alignment="0" max="32767" attributes="1"/>
                   <Component id="jButton10" alignment="0" max="32767" attributes="1"/>
-                  <Component id="jButton12" alignment="0" max="32767" attributes="1"/>
               </Group>
-              <EmptySpace pref="10" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="190" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jButton5" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                  <Component id="jButton6" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -75,7 +75,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton12" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton12" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -85,56 +85,89 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jButton11">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/other.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Other"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/colision.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Collision"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/draw.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Draw"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/step.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Step"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/destroy.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Destroy"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/create.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/mouse.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Mouse"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/keyboard.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Keyboard"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Keyboard press"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/key_press.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Key press"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Keyboard release"/>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/key_release.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Key release"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton10">
       <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/resources/events/alarm.png"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Alarm"/>
       </Properties>
     </Component>
