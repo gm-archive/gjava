@@ -50,6 +50,11 @@ public class ActorEditor extends TabPanel {
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
+        
+        //load variables
+        jCheckBox1.setSelected(actor.visible);
+       // actor.solid = jCheckBox2.isSelected();
+       // actor.persistant = jCheckBox3.isSelected();
     }
 
     @Override
@@ -62,6 +67,8 @@ public class ActorEditor extends TabPanel {
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
+        aurora.window.actors.remove(actor.index);
+        aurora.window.actors.add(actor);
         return true;
     }
     

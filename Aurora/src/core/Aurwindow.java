@@ -53,9 +53,9 @@ import fileclass.*;
 import java.util.Vector;
 import editors.*;
 import fileclass.res.Actor;
-
 import plugins.*;
 import components.popupmenus.*;
+import java.util.Enumeration;
 
 /**
  *
@@ -81,81 +81,91 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
-    public static Vector<Actor> actors = new Vector<Actor>(1); 
+    public static Vector<Actor> actors = new Vector<Actor>(1);
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
     public JComboBox winlist; //This will be the windows list
     public TreeCellRenderer renderer;
-    
-    //</editor-fold>
 
-    public java.lang.Object getWindowListElementAt(int pos){
-        if(istabs){
+    //</editor-fold>
+    public java.lang.Object getWindowListElementAt(int pos) {
+        if (istabs) {
             Component[] panels = tabs.getComponents();
-            if(tabs==null)
+            if (tabs == null) {
                 return null;
-            if(panels[pos] instanceof TabPanel)
+            }
+            if (panels[pos] instanceof TabPanel) {
                 return panels[pos];
+            }
             return null;
-        }
-        else{
+        } else {
             return null;
         }
     }
-    
-    public int getWindowListSize(){
-        if(istabs){
+
+    public int getWindowListSize() {
+        if (istabs) {
             return tabs.getComponents().length - 1;
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    
-    
-    public void treeDoubleClicked(MouseEvent e){
-        
+
+
+    public void treeDoubleClicked(MouseEvent e) {
+
         fileclass.Object obj = getCurrentObject();
-        if(obj instanceof fileclass.File)
+        if (obj instanceof fileclass.File) {
             Open((fileclass.File) obj);
-    }
-    
-    public void Open(fileclass.File file){
-        if (file.type.equals("sprite"))
-        {
-        addWindow(new SpriteEditor(file), file.name);
         }
-        else if (file.type.equals("actor"))
-        {
-            Actor temp = new Actor(file.name);
-        addWindow(new ActorEditor(file,temp), file.name);
-        actors.add(temp);
-        }
-        else if (file.type.equals("scene"))
-        {
-        addWindow(new SceneEditor(file), file.name);
-        }
-        else if (file.type.equals("jpg"))
-        {
-        addWindow(new ImageEditor(file), file.name);
-        }
-        else if (file.type.equals("gif"))
-        {
-        addWindow(new ImageEditor(file), file.name);
-        }
-        else if (file.type.equals("png"))
-        {
-        addWindow(new ImageEditor(file), file.name);
-        }
-        else
-        addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
     }
 
-    public static Project getMainProject(){
+    public void Open(fileclass.File file) {
+        if (file.type.equals("sprite")) {
+            addWindow(new SpriteEditor(file), file.name);
+        } else if (file.type.equals("actor")) {
+            Actor temp = new Actor("",0);
+           
+            boolean found=false;
+            int iii=0,foundloc=0;
+            for (Enumeration e = actors.elements(); e.hasMoreElements();) {
+                Actor act = (Actor)e.nextElement();
+                if(act.name.equals(file.name))
+                {
+                    found = true;
+                    System.out.println("Found");
+                    temp = act;
+                    foundloc=iii;
+                }
+                iii++;
+            }
+            
+            
+            if(!found)
+            {
+                temp = new Actor("",actors.size()+1);
+            actors.add(actors.size()+1,temp);
+           foundloc = actors.size()+1;
+            }
+               addWindow(new ActorEditor(file, actors.get(foundloc)), file.name); 
+        } else if (file.type.equals("scene")) {
+            addWindow(new SceneEditor(file), file.name);
+        } else if (file.type.equals("jpg")) {
+            addWindow(new ImageEditor(file), file.name);
+        } else if (file.type.equals("gif")) {
+            addWindow(new ImageEditor(file), file.name);
+        } else if (file.type.equals("png")) {
+            addWindow(new ImageEditor(file), file.name);
+        } else {
+            addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
+        }
+    }
+
+    public static Project getMainProject() {
         return mainProject;
     }
-    
-    public static void setMainProject(Project newmain){
+
+    public static void setMainProject(Project newmain) {
         mainProject = newmain;
         workspace.updateUI();
     }
@@ -163,15 +173,14 @@ public class Aurwindow extends JFrame {
     public void addWindow(TabPanel panel, int title) {
         addWindow(panel, LangSupporter.activeLang.getEntry(title));
     }
-    
+
     public void addWindow(TabPanel panel, String title) {
         try {
             panel.parent = this;
             panel.title = title;
             if (istabs) {
                 for (int i = 0; i < tabs.getTabCount(); i++) {
-                    if (tabs.getTitleAt(i).equals(title)&&
-                        tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
+                    if (tabs.getTitleAt(i).equals(title) && tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
                         tabs.setSelectedComponent(tabs.getComponentAt(i));
                         return;
                     }
@@ -226,7 +235,7 @@ public class Aurwindow extends JFrame {
     }
 
     ConsolePopupMenu consolepopup = new ConsolePopupMenu();
-    
+
     protected Aurwindow() {
         super("Aurora");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -249,9 +258,9 @@ public class Aurwindow extends JFrame {
         LangSupporter.activeLang = new English();
 
         SettingsIO.console = console;
-        
+
         String[] settings = SettingsIO.loadSettings();
-        
+
         if (settings == null) {
             settings = new String[5];
             settings[0] = "Native";
@@ -270,12 +279,12 @@ public class Aurwindow extends JFrame {
                 utilities.addError(36);
             }
         }
-        
-       try {
-            if (settings!=null&&settings[0]!=null&&settings[0].equals("Native")) {
+
+        try {
+            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 look = 0;
-            } else if (settings==null||settings[0]==null||settings[0].equals("Cross-platform")) {
+            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 look = 1;
             } else if (settings[0].equals("Motif")) {
@@ -287,22 +296,23 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
             look = 1;
         }
-        
-        
+
+
         console.addMouseListener(new PopupListener(consolepopup));
         tabs = new JTabbedPane();
         mdi = new JDesktopPane();
         splitter1 = new JSplitPane();
         splitter2 = new JSplitPane();
-        
-        try{
-            if(LangSupporter.activeLang!=null)
+
+        try {
+            if (LangSupporter.activeLang != null) {
                 lang = LangSupporter.activeLang.getLanguage();
-            else
+            } else {
                 lang = "";
+            }
+        } catch (Exception e) {
         }
-        catch (Exception e){}
-        
+
         createToolBar();
 
         top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
@@ -312,29 +322,30 @@ public class Aurwindow extends JFrame {
         workspace.setScrollsOnExpand(true);
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
-        workspace.addMouseListener(new MouseListener(){
+        workspace.addMouseListener(new MouseListener() {
+
             @Override
-            public void mouseClicked(MouseEvent e){
-                if(e.getClickCount()==2){
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
                     treeDoubleClicked(e);
                 }
             }
-            public void mousePressed(MouseEvent e){
-                
+
+            public void mousePressed(MouseEvent e) {
             }
-            public void mouseReleased(MouseEvent e){
-                
+
+            public void mouseReleased(MouseEvent e) {
             }
-            public void mouseEntered(MouseEvent e){
-                
+
+            public void mouseEntered(MouseEvent e) {
             }
-            public void mouseExited(MouseEvent e){
-                
+
+            public void mouseExited(MouseEvent e) {
             }
         });
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
-        
+
         menus[0] = MenuSupporter.MakeMenu(menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
@@ -435,6 +446,7 @@ public class Aurwindow extends JFrame {
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
         items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
         items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onItemActionPerformed(3, 0, evt);
@@ -451,12 +463,12 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(3, 5)] = MenuSupporter.MakeMenuItem(menus[3], 103, "Build&Test");
         items[MenuSupporter.GenerateMenuItemId(3, 6)] = MenuSupporter.MakeMenuItem(menus[3], 104, "Final Build");
         MenuSupporter.MakeSeparator(menus[3]);
-         //Main project
+        //Main project
         items[MenuSupporter.GenerateMenuItemId(3, 7)] = MenuSupporter.MakeMenuItem(menus[3], 105, "Build");
         items[MenuSupporter.GenerateMenuItemId(3, 8)] = MenuSupporter.MakeMenuItem(menus[3], 106, "Test");
         items[MenuSupporter.GenerateMenuItemId(3, 9)] = MenuSupporter.MakeMenuItem(menus[3], 107, "Build&Test");
         items[MenuSupporter.GenerateMenuItemId(3, 10)] = MenuSupporter.MakeMenuItem(menus[3], 108, "Final Build");*/
-        
+
         menus[7] = MenuSupporter.MakeMenu(menubar, 114, "Tools");
         items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
@@ -592,7 +604,7 @@ public class Aurwindow extends JFrame {
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
-        
+
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
         } else {
@@ -600,10 +612,10 @@ public class Aurwindow extends JFrame {
             pack();
             splitter1.setDividerLocation(0.66);
         }
-        
+
         try {
             if (settings[0].equals("Native")) {
-            } else if (settings==null||settings[0]==null||settings[0].equals("Cross-platform")) {
+            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 look = 1;
             } else if (settings[0].equals("Motif")) {
@@ -617,7 +629,7 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
             look = 1;
         }
-        
+
         if (settings[1].equals("MDI")) {
             items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
             onItemActionPerformed(6, 4, null);
@@ -643,7 +655,7 @@ public class Aurwindow extends JFrame {
             tool.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-        
+
         pack();
         //setSize(550, 550);
         utilities.addMessage(29);
@@ -692,7 +704,7 @@ public class Aurwindow extends JFrame {
             tool.setVisible(!tool.isVisible());
             this.setSize(a);
         }
-        if(menu == 3 && item == 0){
+        if (menu == 3 && item == 0) {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
@@ -873,17 +885,19 @@ public class Aurwindow extends JFrame {
             case 3:
                 //save
                 if (istabs) {
-                for (int ii = 0; ii < tabs.getTabCount(); ii++) {
-                    if (((TabPanel)tabs.getComponentAt(ii)).wasModified())
-                        ((TabPanel)tabs.getComponentAt(ii)).Save();
+                    for (int ii = 0; ii < tabs.getTabCount(); ii++) {
+                        if (((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
+                            ((TabPanel) tabs.getComponentAt(ii)).Save();
+                        }
+                    }
+                } else {
+                    for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                        if (((TabPanel) mdi.getComponent(ii)).wasModified()) {
+                            ((TabPanel) mdi.getComponent(ii)).Save();
+                        }
+                    }
                 }
-                } else{
-                   for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
-                       if (((TabPanel)mdi.getComponent(ii)).wasModified())
-                         ((TabPanel)mdi.getComponent(ii)).Save();  
-                   } 
-                }
-                
+
                 break;
             case 4:
                 //save all
@@ -893,13 +907,15 @@ public class Aurwindow extends JFrame {
                 //add sprite
                 i = 1;
                 a = getCurrentFolder();
-                if(a==null)
+                if (a == null) {
                     return;
-                while(a.findFromName("newSprite" + i)!=-1)
+                }
+                while (a.findFromName("newSprite" + i) != -1) {
                     i++;
+                }
                 addFile(getCurrentFolder(), "newSprite" + i, "sprite");
-                
-               break;
+
+                break;
             case 6:
                 //add sound
                 break;
@@ -909,66 +925,72 @@ public class Aurwindow extends JFrame {
             case 8:
                 i = 1;
                 a = getCurrentFolder();
-                if(a==null)
+                if (a == null) {
                     return;
-                while(a.findFromName("newActor" + i)!=-1)
+                }
+                while (a.findFromName("newActor" + i) != -1) {
                     i++;
+                }
                 //TODO put in actor folder only
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
-                Aurwindow.actors.add(new Actor("newActor" + i));
+                Aurwindow.actors.add(new Actor("newActor" + i,actors.size()));
                 break;
             case 9:
                 i = 1;
                 a = getCurrentFolder();
-                if(a==null)
+                if (a == null) {
                     return;
-                while(a.findFromName("newScene" + i)!=-1)
+                }
+                while (a.findFromName("newScene" + i) != -1) {
                     i++;
+                }
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
-        case 10:
-         /*   JFileChooser fc = new JFileChooser();
-        
-        fc.setAcceptAllFileFilterUsed(false);
-        JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.png|.*\\.jpg|.*\\.jpeg","Image Files  (*.gif *.png  *.jpg)");
-                
-        fc.addChoosableFileFilter(filter);
-        fc.setFileFilter(filter);
-        if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-        {
-            java.io.File f = fc.getSelectedFile();
-            if (!f.exists())
-            {
+            case 10:
+                /*   JFileChooser fc = new JFileChooser();
+                fc.setAcceptAllFileFilterUsed(false);
+                JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.png|.*\\.jpg|.*\\.jpeg","Image Files  (*.gif *.png  *.jpg)");
+                fc.addChoosableFileFilter(filter);
+                fc.setFileFilter(filter);
+                if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
+                {
+                java.io.File f = fc.getSelectedFile();
+                if (!f.exists())
+                {
                 JOptionPane.showMessageDialog(null,"File not found","G-Java",0);
                 return;
-            }
-            else{
+                }
+                else{
                 int lastindexof = f.getName().lastIndexOf('.');*/
                 fileclass.File file = addFile(getCurrentFolder(), "newImage0", "png");
-                /*file.value 
-            }
-        }*/
+                /*file.value
+                }
+                }*/
         }
     }
 
     //</editor-fold>
-    public fileclass.File addFile(Folder folder, String name, String type){
-        if(folder==null)
+    public fileclass.File addFile(Folder folder, String name, String type) {
+        if (folder == null) {
             return null;
-        if(!folder.allowsFileType(type))
+        }
+        if (!folder.allowsFileType(type)) {
             return null;
+        }
         fileclass.File file = new fileclass.File(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         workspace.updateUI();
         return file;
     }
-   
-    public boolean addGroup(Folder folder, Group group){
-        if(folder==null)
+
+    public boolean addGroup(Folder folder, Group group) {
+        if (folder == null) {
             return false;
-        if(!folder.allowsGroup(group))
+        }
+        if (!folder.allowsGroup(group)) {
             return false;
+        }
         ObjectNode node = new ObjectNode(group);
         folder.node.add(node);
         workspace.updateUI();
@@ -977,8 +999,9 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
     public void SaveProject() {
-        if(getCurrentProject()!=null)
+        if (getCurrentProject() != null) {
             ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
+        }
     }
 
     //</editor-fold>
@@ -986,7 +1009,7 @@ public class Aurwindow extends JFrame {
     public void createToolBar() {
         tool = new JToolBar("Toolbar");
         tool.setFloatable(false);
-        
+
         JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
         JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")), 53);
@@ -1005,7 +1028,7 @@ public class Aurwindow extends JFrame {
                 onToolbarActionPerformed(10, evt);
             }
         });
-        
+
         sprite.addActionListener(new ActionListener() {
 
             @Override

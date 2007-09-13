@@ -15,8 +15,10 @@ package fileclass.res;
  */
 public class Actor {
 public boolean visible, solid, persistant;
-  public  Actor(String name)
+public String name;
+public int index;
+  public  Actor(String name, int index)
     {
-        
+        this.name = name;
     }
 }
