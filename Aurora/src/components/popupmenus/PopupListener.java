@@ -34,8 +34,13 @@ public class PopupListener extends MouseAdapter{
     }
 
     private void maybeShowPopup(MouseEvent e) {
-      if (e.isPopupTrigger())
-        listened.show(aurora.window.console, e
-            .getX(), e.getY());
+        if(listened instanceof ConsolePopupMenu)
+            if (e.isPopupTrigger())
+                listened.show(aurora.window.console, e
+                .getX(), e.getY());
+        if(listened instanceof ToolbarPopupMenu)
+            if (e.isPopupTrigger())
+                listened.show(Aurwindow.tool, e
+                .getX(), e.getY());
     }
 }

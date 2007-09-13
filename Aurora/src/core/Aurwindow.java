@@ -81,11 +81,12 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
-    public static Vector<Actor> actors = new Vector<Actor>(1);
+    public static Vector<Actor> actors = new Vector<Actor>(5);
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
     public JComboBox winlist; //This will be the windows list
     public TreeCellRenderer renderer;
+    public ToolbarPopupMenu toolpopup;
 
     //</editor-fold>
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -144,13 +145,14 @@ public class Aurwindow extends JFrame {
             addWindow(new SceneEditor(file), file.name);
         } else if (file.type.equals("class")) {
             addWindow(new CodeEditor(file), file.name);
-        } else if (file.type.equals("jpg")) {
-            addWindow(new ImageEditor(file), file.name);
-        } else if (file.type.equals("gif")) {
-            addWindow(new ImageEditor(file), file.name);
-        } else if (file.type.equals("png")) {
+        } else if (file.type.equals("bmp")
+                ||file.type.equals("gif")
+                ||file.type.equals("jpg")
+                ||file.type.equals("jpeg")
+                ||file.type.equals("png")) {
             addWindow(new ImageEditor(file), file.name);
         } else {
+            System.out.println(file.type);
             addWindow(new PlainTextEditor(file), file.name); //All unmanaged file formats
         }
     }
@@ -1123,6 +1125,8 @@ public class Aurwindow extends JFrame {
         tool.add(scene);
         tool.addSeparator();
         tool.add(winlist);
+        toolpopup = new ToolbarPopupMenu();
+        tool.addMouseListener(new PopupListener(toolpopup));
     }
 
     //</editor-fold>

@@ -14,20 +14,20 @@ import java.util.Properties;
 
 import javax.swing.text.Segment;
 
-public class GMLTokenMarker extends TokenMarker
+public class EGMLTokenMarker extends TokenMarker
 	{
 	private static KeywordMap gmlKeywords;
 
 	private KeywordMap stdKeywords, customKeywords;
 	private int lastOffset;
 	private int lastKeyword;
-	private static final String GML_VARIABLES, GML_CONSTANTS, GML_FUNCTIONS;
+	private static final String GML_TYPEDEFINERS, GML_KNOWNCLASSES, GML_STATEMENTS;
 	private static final byte DQSTRING = Token.INTERNAL_FIRST;
 	private static final byte SQSTRING = Token.INTERNAL_FIRST + 1;
 
 	static
 		{
-		InputStream is = GMLTokenMarker.class.getResourceAsStream("gmlkeywords.properties");
+		InputStream is = EGMLTokenMarker.class.getResourceAsStream("egmlkeywords.properties");
 		Properties p = new Properties();
 		try
 			{
@@ -37,19 +37,20 @@ public class GMLTokenMarker extends TokenMarker
 			{
 			e.printStackTrace();
 			}
-		GML_VARIABLES = p.getProperty("VARIABLES");
-		GML_CONSTANTS = p.getProperty("CONSTANTS");
-		GML_FUNCTIONS = p.getProperty("FUNCTIONS");
+		GML_TYPEDEFINERS = p.getProperty("TYPEDEFINERS");
+		GML_KNOWNCLASSES = p.getProperty("KNOWNCLASSES");
+		GML_STATEMENTS = p.getProperty("STATEMENTS");
 		p.clear();
 		}
 
-	public GMLTokenMarker()
+	public EGMLTokenMarker()
 		{
 		stdKeywords = getKeywords();
 		customKeywords = null;
 		}
 
 	@Override
+    @SuppressWarnings("fallthrough")
 	protected byte markTokensImpl(byte token, Segment line, int lineIndex)
 		{
 		char[] array = line.array;
@@ -170,45 +171,26 @@ public class GMLTokenMarker extends TokenMarker
 		if (gmlKeywords == null)
 			{
 			gmlKeywords = new KeywordMap(false);
-			// General language constructs
-			gmlKeywords.add("if",Token.KEYWORD1);
-			gmlKeywords.add("repeat",Token.KEYWORD1);
-			gmlKeywords.add("while",Token.KEYWORD1);
-			gmlKeywords.add("do",Token.KEYWORD1);
-			gmlKeywords.add("for",Token.KEYWORD1);
-			gmlKeywords.add("switch",Token.KEYWORD1);
-			gmlKeywords.add("break",Token.KEYWORD1);
-			gmlKeywords.add("continue",Token.KEYWORD1);
-			gmlKeywords.add("exit",Token.KEYWORD1);
-			gmlKeywords.add("var",Token.KEYWORD1);
-			gmlKeywords.add("else",Token.KEYWORD1);
-			gmlKeywords.add("until",Token.KEYWORD1);
-			gmlKeywords.add("case",Token.KEYWORD1);
-			gmlKeywords.add("default",Token.KEYWORD1);
-			gmlKeywords.add("return",Token.KEYWORD1);
-			gmlKeywords.add("with",Token.KEYWORD1);
-			gmlKeywords.add("then",Token.KEYWORD1);
-			gmlKeywords.add("begin",Token.KEYWORD1);
-			gmlKeywords.add("end",Token.KEYWORD1);
 			// Operators
 			gmlKeywords.add("and",Token.OPERATOR);
 			gmlKeywords.add("or",Token.OPERATOR);
+                        gmlKeywords.add("xor",Token.OPERATOR);
 			gmlKeywords.add("div",Token.OPERATOR);
 			gmlKeywords.add("mod",Token.OPERATOR);
 			// Constants
-			for (String keyword : GML_CONSTANTS.split(" "))
+			for (String keyword : GML_TYPEDEFINERS.split(" "))
 				{
-				gmlKeywords.add(keyword,Token.LITERAL2);
+				gmlKeywords.add(keyword,Token.KEYWORD1);
 				}
 			// Variables
-			for (String keyword : GML_VARIABLES.split(" "))
+			for (String keyword : GML_KNOWNCLASSES.split(" "))
 				{
-				gmlKeywords.add(keyword,Token.KEYWORD2);
+				gmlKeywords.add(keyword,Token.LITERAL1);
 				}
 			// Functions
-			for (String keyword : GML_FUNCTIONS.split(" "))
+			for (String keyword : GML_STATEMENTS.split(" "))
 				{
-				gmlKeywords.add(keyword,Token.LABEL);
+				gmlKeywords.add(keyword,Token.KEYWORD3);
 				}
 			}
 		return gmlKeywords;

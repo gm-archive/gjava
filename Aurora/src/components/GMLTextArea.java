@@ -28,7 +28,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.text.PlainDocument;
 
 //import org.lateralgm.components.impl.DocumentUndoManager;
-import jedit.GMLTokenMarker;
+import jedit.EGMLTokenMarker;
 import jedit.JEditTextArea;
 //import org.lateralgm.file.ResourceList;
 import jedit.KeywordMap;
@@ -50,7 +50,7 @@ import jedit.Token;
 public class GMLTextArea extends JEditTextArea
 	{
 	private static final long serialVersionUID = 1L;
-	private final GMLTokenMarker gmlTokenMarker = new GMLTokenMarker();
+	private final EGMLTokenMarker gmlTokenMarker = new EGMLTokenMarker();
 	public final ResourceChangeListener rcl = new ResourceChangeListener();
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
