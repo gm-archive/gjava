@@ -22,6 +22,7 @@ public class ImageEditor extends TabPanel {
     
     public ImageEditor(fileclass.File file) {
         this.file = file;
+        
         initComponents();
         if(file.value instanceof Icon){
             jLabel1.setIcon((ImageIcon) file.value);

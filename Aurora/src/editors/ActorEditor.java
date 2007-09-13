@@ -8,6 +8,7 @@ package editors;
 
 import components.TabPanel;
 import core.aurora;
+import fileclass.res.Actor;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -33,6 +34,7 @@ public class ActorEditor extends TabPanel {
     public fileclass.File file = null;
     public boolean changed = false;
     static Vector<actionCat> actionCats;
+    Actor actor;
     
     static {
         jComboBox1 = new javax.swing.JComboBox();
@@ -40,13 +42,27 @@ public class ActorEditor extends TabPanel {
     }
     
     /** Creates new form ActorEditor2 */
-    public ActorEditor(fileclass.File file) {
+    public ActorEditor(fileclass.File file, Actor actor) {
+        this.actor = actor;
         this.file = file;
         initComponents();
         try{
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
+    }
+
+    @Override
+    public boolean wasModified() {
+        return changed;
+    }
+
+    @Override
+    public boolean Save() {
+        actor.visible = jCheckBox1.isSelected();
+        actor.solid = jCheckBox2.isSelected();
+        actor.persistant = jCheckBox3.isSelected();
+        return true;
     }
     
       public static void setupActions()

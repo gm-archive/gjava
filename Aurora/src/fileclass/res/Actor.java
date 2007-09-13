@@ -14,7 +14,7 @@ package fileclass.res;
  * @author Ali1
  */
 public class Actor {
-
+public boolean visible, solid, persistant;
   public  Actor(String name)
     {
         

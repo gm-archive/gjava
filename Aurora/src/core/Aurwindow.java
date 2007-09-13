@@ -81,7 +81,7 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
-    public static Vector<Actor> actors = new Vector<Actor>(1); //not needed
+    public static Vector<Actor> actors = new Vector<Actor>(1); 
     public static Vector sprites = new Vector(1); //Not needed
     public static Vector scenes = new Vector(1); //Not needed
     public JComboBox winlist; //This will be the windows list
@@ -127,7 +127,9 @@ public class Aurwindow extends JFrame {
         }
         else if (file.type.equals("actor"))
         {
-        addWindow(new ActorEditor(file), file.name);
+            Actor temp = new Actor(file.name);
+        addWindow(new ActorEditor(file,temp), file.name);
+        actors.add(temp);
         }
         else if (file.type.equals("scene"))
         {
@@ -870,6 +872,18 @@ public class Aurwindow extends JFrame {
                 break;
             case 3:
                 //save
+                if (istabs) {
+                for (int ii = 0; ii < tabs.getTabCount(); ii++) {
+                    if (((TabPanel)tabs.getComponentAt(ii)).wasModified())
+                        ((TabPanel)tabs.getComponentAt(ii)).Save();
+                }
+                } else{
+                   for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                       if (((TabPanel)mdi.getComponent(ii)).wasModified())
+                         ((TabPanel)mdi.getComponent(ii)).Save();  
+                   } 
+                }
+                
                 break;
             case 4:
                 //save all
