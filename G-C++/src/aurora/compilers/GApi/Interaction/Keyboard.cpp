@@ -137,4 +137,23 @@ String* GApi::Interaction::Keyboard::getPressedKeys(){
         a[b++] = "Up";
 }
 
+boolean GApi::Interaction::Keyboard::isKeyPressed(String key){
+    //First, let's do a fast checking
+    if(key.equals("Up"))
+        return (key[KEY_UP]!=0);
+    if(key.equals("Down"))
+        return (key[KEY_DOWN]!=0);
+    if(key.equals("Left"))
+        return (key[KEY_LEFT]!=0);
+    if(key.equals("Right"))
+        return (key[KEY_RIGHT]!=0);
+    //This fast checking should be increased
+    String* a = getPressedKeys();
+    for(int i = 0; i < sizeof(a)/sizeof(a[0]); i++){
+        if(key==a)
+            return true;
+    }
+    return false;
+}
+
 #endif

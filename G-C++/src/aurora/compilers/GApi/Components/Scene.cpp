@@ -19,4 +19,12 @@ void GApi::Components::Scene::setViewArray(GApi::Components::View** views){
     viewArray = views;
 }
 
+GApi::Components::View* GApi::Components::Scene::getView(int pos){
+    return viewArray[pos];
+}
+
+void GApi::Components::Scene::setView(int pos, GApi::Components::View* view){
+    viewArray[pos] = view;
+}
+
 #endif

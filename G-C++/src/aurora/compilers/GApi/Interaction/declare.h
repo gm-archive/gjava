@@ -12,6 +12,7 @@ class GApi::Interaction::Keyboard
 {
 	public:
 		static String* getPressedKeys();
+                static boolean isKeyPressed(String);
 };
 
 #endif
