@@ -94,9 +94,15 @@ public class NewProject extends TabPanel {
             }
             else if(type == 3){
                 project = new ExtensionProject(jTextField1.getText(), "");
-                project.add(new JavaGroup(project, "Java"));
-                project.add(new CppGroup(project, "C++"));
-                project.add(new EGMLGroup(project, "EGML"));
+                StaticGroup src;
+                project.add(src = new StaticGroup(project, "Source"));
+                src.add(new JavaGroup(project, "Java"));
+                src.add(new CppGroup(project, "C++"));
+                src.add(new EGMLGroup(project, "EGML"));
+                StaticGroup ref;
+                project.add(ref = new StaticGroup(project, "References"));
+                ref.add(new JavaRefGroup(project, "Java"));
+                ref.add(new CppRefGroup(project, "C++"));
                 Aurwindow.setMainProject(project);
             }
             if(type!=-1){

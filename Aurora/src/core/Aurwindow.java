@@ -59,10 +59,12 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
+    public ButtonGroup stylegroup;
     
     public JComboBox winlist; //This will be the windows list
     public TreeCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
+    public ConsolePopupMenu consolepopup;
 
     //</editor-fold>
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -223,8 +225,6 @@ public class Aurwindow extends JFrame {
         }
         winlist.updateUI();
     }
-
-    ConsolePopupMenu consolepopup;
 
     protected Aurwindow() {
         super("Aurora");
@@ -507,8 +507,8 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(4, 1, evt);
             }
         });
-        ButtonGroup group = new ButtonGroup();
-        items[MenuSupporter.GenerateMenuItemId(5, 0)] = MenuSupporter.MakeRadioMenuItem(group, menus[5], 17, "Native look");
+        stylegroup = new ButtonGroup();
+        items[MenuSupporter.GenerateMenuItemId(5, 0)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 17, "Native look");
         items[MenuSupporter.GenerateMenuItemId(5, 0)].addActionListener(new ActionListener() {
 
             @Override
@@ -520,7 +520,7 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
         }
 
-        items[MenuSupporter.GenerateMenuItemId(5, 1)] = MenuSupporter.MakeRadioMenuItem(group, menus[5], 18, "Cross-platform look");
+        items[MenuSupporter.GenerateMenuItemId(5, 1)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 18, "Cross-platform look");
         items[MenuSupporter.GenerateMenuItemId(5, 1)].addActionListener(new ActionListener() {
 
             @Override
@@ -532,7 +532,7 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
         }
         MenuSupporter.MakeSeparator(menus[5]);
-        items[MenuSupporter.GenerateMenuItemId(5, 2)] = MenuSupporter.MakeRadioMenuItem(group, menus[5], 19, "Linux look");
+        items[MenuSupporter.GenerateMenuItemId(5, 2)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 19, "Linux look");
         items[MenuSupporter.GenerateMenuItemId(5, 2)].addActionListener(new ActionListener() {
 
             @Override

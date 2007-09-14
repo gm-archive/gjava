@@ -52,4 +52,14 @@ public class PluginHelper {
     public static void setClipboardContent(String content){
         aurora.clipboard.setClipboardContents(content);
     }
+    
+    public static void updateStyle(){
+        SwingUtilities.updateComponentTreeUI(aurora.window);
+        if (aurora.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(aurora.window.mdi);
+        } else {
+            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+        }
+        SwingUtilities.updateComponentTreeUI(aurora.window.consolepopup);
+    }
 }
