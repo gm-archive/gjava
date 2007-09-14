@@ -38,12 +38,7 @@ public class File extends Object{
         return "File";
     }
     
-    public void writeToBuffer(ZipOutputStream out){
-        try {
-            out.write((value+"").getBytes());
-            System.out.println(""+value);
-        } catch (IOException ex) {
-            Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public String writeToBuffer(){
+        return ""+value;
     }
 }
