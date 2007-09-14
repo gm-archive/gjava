@@ -28,10 +28,10 @@ public Vector events;
   public String writeXml()
   {
       String xml = "";
-      xml += "<?xml version=\"1.0\"?>"; //changes for new version of actor
-      xml+= "<Solid>"+solid+"</Solid>";
-      xml+= "<Visible>"+visible+"</Visible>";
-      xml+= "<Persistant>"+solid+"</Persistant>";
+      xml += "<?xml version=\"1.0\"?>\n"; //changes for new version of actor
+      xml += "<Solid>"+solid+"</Solid>\n";
+      xml += "<Visible>"+visible+"</Visible>\n";
+      xml += "<Persistant>"+solid+"</Persistant>\n";
       return xml;
   }
 }

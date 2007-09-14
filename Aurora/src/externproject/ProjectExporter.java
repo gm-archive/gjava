@@ -37,7 +37,7 @@ public class ProjectExporter {
         try{
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
             out.setLevel(Deflater.BEST_SPEED);
-            out.putNextEntry(new ZipEntry("src/"));
+            out.putNextEntry(new ZipEntry(""));
             out.closeEntry();
             
             //write actors
@@ -53,7 +53,7 @@ out.putNextEntry(new ZipEntry("config"));
             for(int i = 0; i < config.length(); i++)
                 out.write(config.charAt(i));
             out.closeEntry();
-            putFolder(project, "", out, 1);
+            putFolder(project, "src/", out, 1);
             out.close();
             utilities.addStringMessage("Saved");
         }
@@ -69,7 +69,7 @@ out.putNextEntry(new ZipEntry("config"));
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){
                 if(childNode instanceof fileclass.File){
-                    out.putNextEntry(new ZipEntry("_" + a));
+                    out.putNextEntry(new ZipEntry("src/_" + a));
                     ((fileclass.File) childNode).writeToBuffer(out);
                     out.closeEntry();
                     a++;
