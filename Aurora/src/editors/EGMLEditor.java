@@ -8,6 +8,7 @@ package editors;
 
 import components.EGMLTextArea;
 import components.TabPanel;
+import fileclass.Project;
 
 /**
  *
@@ -16,7 +17,8 @@ import components.TabPanel;
 public class EGMLEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public EGMLEditor(fileclass.File file) {
+    public EGMLEditor(fileclass.File file,Project project) {
+        this.project = project;
         initComponents();
         EGMLTextArea g = new EGMLTextArea("//new class");
         

@@ -9,6 +9,7 @@ package editors;
 import components.*;
 import units.*;
 import core.*;
+import fileclass.Project;
 
 import java.awt.*;
 
@@ -24,7 +25,8 @@ public class SceneEditor extends TabPanel {
     public fileclass.File file;
     public ViewsModel model;
     
-    public SceneEditor(fileclass.File file) {
+    public SceneEditor(fileclass.File file,Project project) {
+        this.project = project;
         model = new ViewsModel();
         initComponents();
         scene = new ScenePanel(this);

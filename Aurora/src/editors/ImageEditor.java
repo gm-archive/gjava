@@ -9,6 +9,7 @@ package editors;
 import javax.swing.*;
 
 import components.*;
+import fileclass.Project;
 
 /**
  *
@@ -20,7 +21,8 @@ public class ImageEditor extends TabPanel {
     private fileclass.File file;
     private boolean changed = false;
     
-    public ImageEditor(fileclass.File file) {
+    public ImageEditor(fileclass.File file,Project project) {
+        this.project = project;
         this.file = file;
         
         initComponents();

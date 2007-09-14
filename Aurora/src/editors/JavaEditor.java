@@ -8,6 +8,7 @@ package editors;
 
 import components.JavaTextArea;
 import components.TabPanel;
+import fileclass.Project;
 
 /**
  *
@@ -16,7 +17,8 @@ import components.TabPanel;
 public class JavaEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public JavaEditor(fileclass.File file) {
+    public JavaEditor(fileclass.File file,Project project) {
+        this.project = project;
         initComponents();
         JavaTextArea g = new JavaTextArea("//Java");
         

@@ -8,6 +8,7 @@ package editors;
 
 import components.SubimagePreview;
 import components.TabPanel;
+import fileclass.Project;
 import fileclass.res.Sprite;
 import java.awt.image.BufferedImage;
 
@@ -23,8 +24,10 @@ public class SpriteEditor extends TabPanel {
     boolean changed;
     
     /** Creates new form SpriteEditor */
-    public SpriteEditor(fileclass.File file) {
+    public SpriteEditor(fileclass.File file,Project project) {
+        this.project = project;
         this.file = file;
+        //title = file.name + "(" + project.name+")";
         //if (file.value instanceof Sprite)
         //{
         this.sprite = file.sp;

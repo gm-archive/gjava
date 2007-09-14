@@ -8,6 +8,7 @@ package editors;
 
 import components.TabPanel;
 import core.aurora;
+import fileclass.Project;
 import fileclass.res.Actor;
 import java.awt.Color;
 import java.awt.Component;
@@ -42,7 +43,8 @@ public class ActorEditor extends TabPanel {
     }
     
     /** Creates new form ActorEditor2 */
-    public ActorEditor(fileclass.File file, Actor actor) {
+    public ActorEditor(fileclass.File file, Actor actor,Project project) {
+        this.project = project;
         this.actor = actor;
         this.file = file;
         initComponents();

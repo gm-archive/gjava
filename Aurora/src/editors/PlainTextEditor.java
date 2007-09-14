@@ -21,7 +21,8 @@ public class PlainTextEditor extends TabPanel {
     public fileclass.File file;
     public boolean changed = false;
     
-    public PlainTextEditor(fileclass.File file) {
+    public PlainTextEditor(fileclass.File file,Project project) {
+        this.project = project;
         initComponents();
         jTextPane1.setText((String) file.value);
         this.file = file;

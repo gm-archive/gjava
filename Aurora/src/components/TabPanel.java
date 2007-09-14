@@ -10,6 +10,7 @@
 package components;
 
 import core.Aurwindow;
+import fileclass.Project;
 import javax.swing.*;
 
 /**
@@ -20,6 +21,7 @@ public class TabPanel extends JPanel{
     public Aurwindow parent;
     public ExtendedFrame frame;
     public String title = "<none>";
+    public Project project;
     
     public void dispose(){
         parent.remove(this, frame);

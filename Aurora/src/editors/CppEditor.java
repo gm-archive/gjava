@@ -8,6 +8,7 @@ package editors;
 
 import components.CppTextArea;
 import components.TabPanel;
+import fileclass.Project;
 
 /**
  *
@@ -16,7 +17,8 @@ import components.TabPanel;
 public class CppEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public CppEditor(fileclass.File file) {
+    public CppEditor(fileclass.File file,Project project) {
+        this.project = project;
         initComponents();
         CppTextArea g = new CppTextArea("//Cpp");
         
