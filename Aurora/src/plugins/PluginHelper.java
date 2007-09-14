@@ -33,6 +33,10 @@ public class PluginHelper {
         return LangSupporter.activeLang.getEntry(num);
     }
     
+    public static String getLanguageSpecialMessage(String value){
+        return LangSupporter.activeLang.getSpecialEntry(value);
+    }
+    
     public static Project getCurrentProject(){
         return aurora.window.getCurrentProject();
     }

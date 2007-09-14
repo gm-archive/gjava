@@ -100,15 +100,6 @@ public class CppTokenMarker extends TokenMarker
 									}
 								}
 							break;
-                                                case '#':
-                                                        doKeyword(line,i,c);
-                                                        if (length - i <= 1 || array[i-1] == '\n'){
-                                                            addToken(i - lastOffset,token);
-							    addToken(length - i,Token.COMMENT1);
-						            lastOffset = lastKeyword = length;
-						            break loop;
-                                                        }
-                                                        break;
 						case '{':
 						case '}':
 							addToken(i - lastOffset,token);

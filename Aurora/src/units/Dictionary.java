@@ -55,4 +55,8 @@ public class Dictionary {
     public String getStatus(){
         return status;
     }
+    
+    public String getSpecialEntry(String value){
+        return "";
+    }
 }
