@@ -24,4 +24,9 @@ public Vector events;
     {
         this.name = name;
     }
+  
+  public  static void writeXml()
+  {
+      
+  }
 }

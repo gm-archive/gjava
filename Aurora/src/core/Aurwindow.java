@@ -879,8 +879,40 @@ public class Aurwindow extends JFrame {
                 ProjectImporter.OpenProject(this);
                 break;
             case 3:
-                //save
+                //only save for main project
                 System.out.println("Saving...");
+                if (istabs) {
+                    for (int ii = 0; ii < tabs.getTabCount(); ii++) {
+                        if (((TabPanel) tabs.getComponentAt(ii)).project==null) {}
+                        else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
+                            ((TabPanel) tabs.getComponentAt(ii)).Save();
+                        }
+                    }
+                } else {
+                    for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                        if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project==null) {}
+                        else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                            ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
+                        }
+                    }
+                }
+                //save to gcp file
+                 if (mainProject.location.equals(""))
+       {
+           JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
+            fc.showSaveDialog(aurora.window);
+            java.io.File file = fc.getSelectedFile();
+            mainProject.location = file.getPath();
+            if (file == null) {
+                return;
+            }
+       }
+                ProjectExporter.export(mainProject,mainProject.location);
+                break;
+            case 4:
+                //save all projects
+                System.out.println("Saving all...");
                 if (istabs) {
                     for (int ii = 0; ii < tabs.getTabCount(); ii++) {
                         if (((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
@@ -894,10 +926,6 @@ public class Aurwindow extends JFrame {
                         }
                     }
                 }
-
-                break;
-            case 4:
-                //save all
                 break;
             case 5:
                 //add sprite
@@ -1110,6 +1138,14 @@ public class Aurwindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onToolbarActionPerformed(3, evt);
+            }
+        });
+        
+        saveall.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onToolbarActionPerformed(4, evt);
             }
         });
 
