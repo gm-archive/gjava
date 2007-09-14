@@ -903,7 +903,7 @@ public class Aurwindow extends JFrame {
             fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             fc.showSaveDialog(aurora.window);
             java.io.File file = fc.getSelectedFile();
-            mainProject.location = file.getPath();
+            mainProject.location = file.getPath().replaceAll(".gcp", "")+".gcp";
             if (file == null) {
                 return;
             }

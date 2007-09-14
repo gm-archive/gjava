@@ -14,6 +14,7 @@ import fileclass.*;
 
 import javax.swing.*;
 import components.*;
+import fileclass.res.Actor;
 import java.awt.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -38,7 +39,17 @@ public class ProjectExporter {
             out.setLevel(Deflater.BEST_SPEED);
             out.putNextEntry(new ZipEntry("src/"));
             out.closeEntry();
-            out.putNextEntry(new ZipEntry("config"));
+            
+            //write actors
+            ;
+            
+//            while(project.actors.elements().hasMoreElements()) {
+//                Actor object =  project.actors.elements().nextElement();
+//                out.putNextEntry(new ZipEntry("src/"));
+//            out.closeEntry();
+//                
+//            }
+out.putNextEntry(new ZipEntry("config"));
             for(int i = 0; i < config.length(); i++)
                 out.write(config.charAt(i));
             out.closeEntry();
@@ -54,6 +65,7 @@ public class ProjectExporter {
     public static void putFolder(Folder folder, String prefix, ZipOutputStream out, int b) throws java.io.IOException{
         int a = b;
         fileclass.Object childNode;
+        System.out.println(""+folder.getChildArrayNum());
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){
                 if(childNode instanceof fileclass.File){

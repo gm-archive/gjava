@@ -47,6 +47,7 @@ public class ActorEditor extends TabPanel {
         this.project = project;
         this.actor = actor;
         this.file = file;
+       
         initComponents();
         try{
             jTextField1.setText(file.name);
@@ -71,7 +72,7 @@ public class ActorEditor extends TabPanel {
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
-         //System.out.println("Saved");
+          file.value = actor.writeXml();
         return true;
     }
     

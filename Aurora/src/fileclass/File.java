@@ -10,6 +10,9 @@
 package fileclass;
 
 import fileclass.res.Sprite;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.*;
 
 /**
@@ -36,6 +39,11 @@ public class File extends Object{
     }
     
     public void writeToBuffer(ZipOutputStream out){
-        
+        try {
+            out.write((value+"").getBytes());
+            System.out.println(""+value);
+        } catch (IOException ex) {
+            Logger.getLogger(File.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
