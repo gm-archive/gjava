@@ -42,6 +42,6 @@ public class JavaRefGroup extends Group{
     }
     
     public String getObjectType(){
-        return "JavaGroup";
+        return "JavaRefGroup";
     }
 }

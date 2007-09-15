@@ -42,6 +42,6 @@ public class CppRefGroup extends Group{
     }
     
     public String getObjectType(){
-        return "JavaGroup";
+        return "CppRefGroup";
     }
 }

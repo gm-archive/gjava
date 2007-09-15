@@ -13,9 +13,7 @@ import core.*;
 
 import javax.swing.*;
 import components.*;
-import fileclass.GameProject;
-import fileclass.Project;
-import fileclass.SpriteGroup;
+import fileclass.*;
 import java.awt.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -39,9 +37,17 @@ public class ProjectImporter {
         
         System.out.println(s);
         
-        if (s.split(">")[3].equals("Game")) type=0;
+        if (s.split(">")[3].equals("Game")) type = 0;
+        if (s.split(">")[3].equals("Package")) type = 1;
+        if (s.split(">")[3].equals("Extension")) type = 2;
         if (type == 0){
                 project = new GameProject(name, "");
+        }
+        if (type == 1){
+                project = new PackageProject(name, "");
+        }
+        if (type == 2){
+                project = new ExtensionProject(name, "");
         }
         Aurwindow.setMainProject(project);
         String[] ss = s.split("<file type=\"");
@@ -49,8 +55,31 @@ public class ProjectImporter {
         while(ii < ss.length){
          String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
          if(sss[0].equals("SpriteGroup"))
-             project.add(new SpriteGroup(project, "Sprites"));
-         
+             project.add(new SpriteGroup(project, sss[1]));
+         if(sss[0].equals("ActorGroup"))
+             project.add(new ActorGroup(project, sss[1]));
+         if(sss[0].equals("CppGroup"))
+             project.add(new CppGroup(project, sss[1]));
+         if(sss[0].equals("CppRefGroup"))
+             project.add(new CppRefGroup(project, sss[1]));
+         if(sss[0].equals("EGMLGroup"))
+             project.add(new EGMLGroup(project, sss[1]));
+         if(sss[0].equals("ImageGroup"))
+             project.add(new ImageGroup(project, sss[1]));
+         if(sss[0].equals("JavaGroup"))
+             project.add(new JavaGroup(project, sss[1]));
+         if(sss[0].equals("JavaRefGroup"))
+             project.add(new JavaRefGroup(project, sss[1]));
+         if(sss[0].equals("SceneGroup"))
+             project.add(new SceneGroup(project, sss[1]));
+         if(sss[0].equals("SoundGroup"))
+             project.add(new SoundGroup(project, sss[1]));
+         if(sss[0].equals("SpriteGroup"))
+             project.add(new SpriteGroup(project, sss[1]));
+         if(sss[0].equals("StaticGroup"))
+             project.add(new StaticGroup(project, sss[1]));
+         if(sss[0].equals("Group"))
+             project.add(new Group(project, sss[1]));
         ii++;
         }
         if(project!=null)
@@ -64,7 +93,7 @@ public class ProjectImporter {
             JFileChooser fc = new JFileChooser();
             fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             fc.showOpenDialog(caller);
-            File file = fc.getSelectedFile();
+            java.io.File file = fc.getSelectedFile();
             if (file == null) {
                 return;
             }
