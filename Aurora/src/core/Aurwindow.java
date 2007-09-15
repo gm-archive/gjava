@@ -235,7 +235,7 @@ public class Aurwindow extends JFrame {
         winlist.updateUI();
     }
 
-    protected Aurwindow() {
+    protected Aurwindow(String[] settings) {
         super("Aurora");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -258,44 +258,6 @@ public class Aurwindow extends JFrame {
 
 
         SettingsIO.console = console;
-
-        String[] settings = SettingsIO.loadSettings();
-
-        if (settings == null) {
-            settings = new String[5];
-            settings[0] = "Native";
-            settings[1] = "Tabs";
-            settings[2] = "Visible";
-            settings[3] = "English";
-            settings[4] = "Visible";
-        }
-
-        if (!settings[3].equals("English")) {
-            if (settings[3].equals("Portuguese (European)")) {
-                LangSupporter.activeLang = new Portuguese();
-            } else if (settings[3].equals("German")) {
-                LangSupporter.activeLang = new German();
-            } else {
-                utilities.addError(36);
-            }
-        }
-
-        try {
-            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                look = 0;
-            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                look = 1;
-            } else if (settings[0].equals("Motif")) {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-                look = 2;
-            } else {
-                look = 1;
-            }
-        } catch (Exception e) {
-            look = 1;
-        }
 
         consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(consolepopup));
@@ -620,6 +582,7 @@ public class Aurwindow extends JFrame {
 
         try {
             if (settings[0].equals("Native")) {
+                look = 0;
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 look = 1;

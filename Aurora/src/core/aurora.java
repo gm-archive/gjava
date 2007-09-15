@@ -13,6 +13,7 @@ import editors.ActorEditor;
 import plugins.*;
 import managers.*;
 import clipboard.*;
+import languages.*;
 
 import javax.swing.*;
 
@@ -46,7 +47,38 @@ public class aurora {
     public static void start(){
         Plugger.onMainWindowStart(plugins);
         ActorEditor.setupActions();
-        window = new Aurwindow();
+        String[] settings = SettingsIO.loadSettings();
+
+        if (settings == null) {
+            settings = new String[5];
+            settings[0] = "Native";
+            settings[1] = "Tabs";
+            settings[2] = "Visible";
+            settings[3] = "English";
+            settings[4] = "Visible";
+        }
+
+        if (!settings[3].equals("English")) {
+            if (settings[3].equals("Portuguese (European)")) {
+                LangSupporter.activeLang = new Portuguese();
+            } else if (settings[3].equals("German")) {
+                LangSupporter.activeLang = new German();
+            } else {
+                utilities.addError(36);
+            }
+        }
+
+        try {
+            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            } else if (settings[0].equals("Motif")) {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            }
+        } catch (Exception e) {}
+        
+        window = new Aurwindow(settings);
         window.console.setText(output);
         if(splash!=null){
             Plugger.onSplashDispose(aurora.plugins);
