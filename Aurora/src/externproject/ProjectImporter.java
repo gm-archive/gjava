@@ -13,14 +13,8 @@ import core.*;
 
 import javax.swing.*;
 import components.*;
-import fileclass.ActorGroup;
-import fileclass.EGMLGroup;
 import fileclass.GameProject;
-import fileclass.Group;
-import fileclass.ImageGroup;
 import fileclass.Project;
-import fileclass.SceneGroup;
-import fileclass.SoundGroup;
 import fileclass.SpriteGroup;
 import java.awt.*;
 import java.io.*;
@@ -29,6 +23,7 @@ import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipInputStream;
+import managers.ProjectTree;
 
 /**
  *
@@ -37,19 +32,30 @@ import java.util.zip.ZipInputStream;
 public class ProjectImporter {
    static String name;
    static int type;
+   static Project project;
     public static void readConfig(String s)
     {
         System.out.println("reading config file...");
         
         System.out.println(s);
-        String[] ss = s.split(">");
-        if (ss[3].equals("Game")) type=0;
-//        int ii=0;
-//        while(ii < ss.length){
-//        ii++;
-//        }
-        type=0;
-        name="";
+        
+        if (s.split(">")[3].equals("Game")) type=0;
+        if (type == 0){
+                project = new GameProject(name, "");
+        }
+        Aurwindow.setMainProject(project);
+        String[] ss = s.split("<file type=\"");
+        int ii=1;
+        while(ii < ss.length){
+         String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
+         if(sss[0].equals("SpriteGroup"))
+             project.add(new SpriteGroup(project, "Sprites"));
+         
+        ii++;
+        }
+        if(project!=null)
+                    ProjectTree.importFolderToTree(project, core.aurora.window.top);
+        Aurwindow.workspace.updateUI();
     }
     
     public static void OpenProject(Component caller) {
@@ -65,7 +71,7 @@ public class ProjectImporter {
             
             ZipInputStream in = new ZipInputStream(new FileInputStream(file));
             ZipEntry zipe;
-            byte[] b = new byte[1024];;
+            byte[] b = new byte[1024];
             while( (zipe = in.getNextEntry()) != null ){
                 System.out.println(""+zipe.getName());
                 if(!zipe.isDirectory())
@@ -81,23 +87,7 @@ public class ProjectImporter {
                 }
 
             }
-            
-            //create project
-            Project project = null;
-            
-            if (type == 0){
-                project = new GameProject(name, "");
-                Aurwindow.setMainProject(project);
-                project.add(new ImageGroup(project, "Images"));
-                project.add(new SpriteGroup(project, "Sprites"));
-                project.add(new SoundGroup(project, "Sounds"));
-                project.add(new ActorGroup(project, "Actors"));
-                project.add(new SceneGroup(project, "Scenes"));
-                project.add(new EGMLGroup(project, "Classes"));
-                project.add(new Group(project, "Extensions"));
-                new fileclass.File(project, "Settings", "settings", null);
-            }
-        
+       
         } catch (ZipException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
