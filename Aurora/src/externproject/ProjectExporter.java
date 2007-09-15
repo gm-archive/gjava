@@ -1,8 +1,8 @@
 /*
  * ProjectImporter.java
- * 
+ *
  * Created on 5/Set/2007, 13:24:52
- * 
+ *
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -11,16 +11,10 @@ package externproject;
 
 import core.*;
 import fileclass.*;
-
 import javax.swing.*;
 import components.*;
-import fileclass.res.Actor;
 import java.awt.*;
 import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.ZipException;
-import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
@@ -30,61 +24,52 @@ import java.util.zip.ZipEntry;
  * @author Luís
  */
 public class ProjectExporter {
-    public static boolean export(Project project, String filename){
-      
+
+    public static boolean export(Project project, String filename) {
+
         String config = getConfigFile(project);
-        byte[] buffer = new byte[18024];
-        try{
+        //byte[] buffer = new byte[18024];
+        try {
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
             out.setLevel(Deflater.BEST_SPEED);
-            out.putNextEntry(new ZipEntry(""));
-            out.closeEntry();
-            
-            //write actors
-            ;
-            
-//            while(project.actors.elements().hasMoreElements()) {
-//                Actor object =  project.actors.elements().nextElement();
-//                out.putNextEntry(new ZipEntry("src/"));
-//            out.closeEntry();
-//                
-//            }
-out.putNextEntry(new ZipEntry("config"));
-            for(int i = 0; i < config.length(); i++)
+            //out.putNextEntry(new ZipEntry(""));
+            //out.closeEntry();
+
+            out.putNextEntry(new ZipEntry("config"));
+            for (int i = 0; i < config.length(); i++) {
                 out.write(config.charAt(i));
+            }
             out.closeEntry();
             putFolder(project, "src/", out, 1);
             out.close();
             utilities.addStringMessage("Saved");
-        }
-        catch(Exception e){
-            System.out.println(""+e.getLocalizedMessage());
+        } catch (Exception e) {
+            System.out.println("" + e.getLocalizedMessage());
             return false;
         }
         return false; //Failed to export
     }
-    public static void putFolder(Folder folder, String prefix, ZipOutputStream out, int b) throws java.io.IOException{
+
+    public static void putFolder(Folder folder, String prefix, ZipOutputStream out, int b) throws java.io.IOException {
         int a = b;
         fileclass.Object childNode;
-        
-       
-        for(int i = 0; i < folder.getChildArrayNum(); i++){
-            if((childNode = folder.childAt(i))!=null){
-                if(childNode instanceof fileclass.File){
-                    out.putNextEntry(new ZipEntry("src/_" + a));
+
+
+        for (int i = 0; i < folder.getChildArrayNum(); i++) {
+            if ((childNode = folder.childAt(i)) != null) {
+                if (childNode instanceof fileclass.File) {
+                    out.putNextEntry(new ZipEntry("src/_" + a + "."+((fileclass.File)childNode).type));
                     out.write(((fileclass.File) childNode).writeToBuffer().getBytes());
                     out.closeEntry();
-                   
-                }
-                else if(childNode instanceof fileclass.Folder){
+                } else if (childNode instanceof fileclass.Folder) {
                     putFolder((Folder) childNode, prefix + childNode.name + "/", out, a);
                 }
-                  a++;
+                a++;
             }
         }
     }
-    
-    public static String getConfigFile(Project project){
+
+    public static String getConfigFile(Project project) {
         String config = "<?xml version=\"1.0\"?>\n";
         config += "<project>";
         config += "<type>" + project.getType() + "</type>";
@@ -94,19 +79,20 @@ out.putNextEntry(new ZipEntry("config"));
         config += "</project>";
         return config;
     }
-    
-    public static String getContent(String prefix, Folder folder){
+
+    public static String getContent(String prefix, Folder folder) {
         String content = "";
         fileclass.Object childNode;
-        for(int i = 0; i < folder.getChildArrayNum(); i++){
-            if((childNode = folder.childAt(i))!=null){
+        for (int i = 0; i < folder.getChildArrayNum(); i++) {
+            if ((childNode = folder.childAt(i)) != null) {
                 content += "<file type=\"" + childNode.getObjectType() + "\">" + prefix + childNode.name;
-                if(childNode instanceof fileclass.File){
+                if (childNode instanceof fileclass.File) {
                     content += "." + ((fileclass.File) childNode).type;
                 }
                 content += "</file>";
-                if(childNode instanceof Folder)
+                if (childNode instanceof Folder) {
                     content += getContent(prefix + childNode.name + "/", (Folder) childNode);
+                }
             }
         }
         return content;

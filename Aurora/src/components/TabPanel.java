@@ -35,6 +35,11 @@ public class TabPanel extends JPanel{
         return true; //Sucessfully saved
     }
     
+    public boolean Load()
+    {
+        return true;
+    }
+    
     public boolean wasModified(){
         return false; //Allows the application to exit without prompting the user
     }

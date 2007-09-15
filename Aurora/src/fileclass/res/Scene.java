@@ -9,10 +9,26 @@
 
 package fileclass.res;
 
+import units.ViewsModel;
+
 /**
  *
  * @author Ali1
  */
 public class Scene {
+public String caption,code,name;
+public int width,height,speed,snapX,snapY;
+public boolean persistant,grid,isometric;
+public ViewsModel views;
 
+public Scene(String name)
+{
+    this.name = name;
+}
+
+public String writeXml()
+  {
+      String xml = "";
+      return xml;
+}
 }

@@ -13,7 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import managers.*;
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
 import fileclass.*;
 
 /**

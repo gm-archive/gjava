@@ -60,7 +60,6 @@ public class Aurwindow extends JFrame {
     public static JScrollPane treescroll;
     private static Project mainProject;
     public ButtonGroup stylegroup;
-    
     public JComboBox winlist; //This will be the windows list
     public TreeCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
@@ -90,7 +89,6 @@ public class Aurwindow extends JFrame {
         }
     }
 
-
     public void treeDoubleClicked(MouseEvent e) {
 
         fileclass.Object obj = getCurrentObject();
@@ -104,40 +102,55 @@ public class Aurwindow extends JFrame {
         int iii = 0;
         int foundloc = 0;
         if (file.type.equals("sprite")) {
-            addWindow(new SpriteEditor(file,this.getCurrentProject()), file.name);
-        } else if (file.type.equals("actor")) {
             for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
-                Actor act = (Actor) e.nextElement();
-                if (act.name.equals(file.name)) {
+                if (((Actor) e.nextElement()).name.equals(file.name)) {
                     found = true;
                     foundloc = iii;
                 }
                 iii++;
             }
             if (!found) {
-                
-                getCurrentProject().actors.add(getCurrentProject().actors.size()+1, new Actor("", getCurrentProject().actors.size() + 1));
-                foundloc = getCurrentProject().actors.size()+1;
+                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor("", getCurrentProject().actors.size() + 1));
+                foundloc = getCurrentProject().actors.size() + 1;
             }
-            addWindow(new ActorEditor(file, getCurrentProject().actors.get(foundloc),this.getCurrentProject()), file.name);
+            addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
+        } else if (file.type.equals("actor")) {
+            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
+                if (((Actor) e.nextElement()).name.equals(file.name)) {
+                    found = true;
+                    foundloc = iii;
+                }
+                iii++;
+            }
+            if (!found) {
+                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor("", getCurrentProject().actors.size() + 1));
+                foundloc = getCurrentProject().actors.size() + 1;
+            }
+            addWindow(new ActorEditor(file, getCurrentProject().actors.get(foundloc), this.getCurrentProject()), file.name);
         } else if (file.type.equals("scene")) {
-            addWindow(new SceneEditor(file,this.getCurrentProject()), file.name);
+            for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
+                if (((Scene) e.nextElement()).name.equals(file.name)) {
+                    found = true;
+                    foundloc = iii;
+                }
+                iii++;
+            }
+            if (!found) {
+                getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
+                foundloc = getCurrentProject().scenes.size() + 1;
+            }
+            addWindow(new SceneEditor(file, this.getCurrentProject(),getCurrentProject().scenes.get(foundloc)), file.name);
         } else if (file.type.equals("egml")) {
-            addWindow(new EGMLEditor(file,this.getCurrentProject()), file.name);
+            addWindow(new EGMLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("java")) {
-            addWindow(new JavaEditor(file,this.getCurrentProject()), file.name);
-            } else if (file.type.equals("cpp")
-            ||file.type.equals("h")) {
-            addWindow(new CppEditor(file,this.getCurrentProject()), file.name);
-        } else if (file.type.equals("bmp")
-                ||file.type.equals("gif")
-                ||file.type.equals("jpg")
-                ||file.type.equals("jpeg")
-                ||file.type.equals("png")) {
-            addWindow(new ImageEditor(file,this.getCurrentProject()), file.name);
+            addWindow(new JavaEditor(file, this.getCurrentProject()), file.name);
+        } else if (file.type.equals("cpp") || file.type.equals("h")) {
+            addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
+        } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
+            addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
         } else {
             System.out.println(file.type);
-            addWindow(new PlainTextEditor(file,this.getCurrentProject()), file.name); //All unmanaged file formats
+            addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
     }
 
@@ -160,13 +173,11 @@ public class Aurwindow extends JFrame {
             panel.title = title;
             if (istabs) {
                 for (int i = 0; i < tabs.getTabCount(); i++) {
-                    if (tabs.getTitleAt(i).equals(title) && ((TabPanel)tabs.getComponentAt(i)).project == null)
-                {
-                    tabs.setSelectedComponent(tabs.getComponentAt(i));
+                    if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project == null) {
+                        tabs.setSelectedComponent(tabs.getComponentAt(i));
 
                         return;
-                } else
-                    if (tabs.getTitleAt(i).equals(title) && ((TabPanel)tabs.getComponentAt(i)).project.equals(this.getCurrentProject()) && tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
+                    } else if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project.equals(this.getCurrentProject()) && tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
                         tabs.setSelectedComponent(tabs.getComponentAt(i));
                         return;
                     }
@@ -183,13 +194,11 @@ public class Aurwindow extends JFrame {
                 });
             }
             for (int i = 0; i < mdi.getComponentCount(); i++) {
-                if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null)
-                {
+                if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
                     ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
 
-                        return;
-                } else
-                if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && (((ExtendedFrame) mdi.getComponent(i)).getPanel().project.equals(this.getCurrentProject()))) {
+                    return;
+                } else if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && (((ExtendedFrame) mdi.getComponent(i)).getPanel().project.equals(this.getCurrentProject()))) {
                     try {
 
                         ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
@@ -246,8 +255,8 @@ public class Aurwindow extends JFrame {
         scroller.setViewportView(console);
 
         LangSupporter.activeLang = new English();
-        
-        
+
+
         SettingsIO.console = console;
 
         String[] settings = SettingsIO.loadSettings();
@@ -312,7 +321,7 @@ public class Aurwindow extends JFrame {
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         workspace.setDragEnabled(true);
-        
+
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
         workspace.addMouseListener(new MouseListener() {
@@ -826,7 +835,7 @@ public class Aurwindow extends JFrame {
 
 //</editor-fold>
     //Tree accessing functions
-    public  Project getCurrentProject() {
+    public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
         if (curfol == null) {
             return null; //null for none
@@ -883,32 +892,31 @@ public class Aurwindow extends JFrame {
                 System.out.println("Saving...");
                 if (istabs) {
                     for (int ii = 0; ii < tabs.getTabCount(); ii++) {
-                        if (((TabPanel) tabs.getComponentAt(ii)).project==null) {}
-                        else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
+                        if (((TabPanel) tabs.getComponentAt(ii)).project == null) {
+                        } else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
                             ((TabPanel) tabs.getComponentAt(ii)).Save();
                         }
                     }
                 } else {
                     for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
-                        if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project==null) {}
-                        else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                        if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
+                        } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
                             ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
                         }
                     }
                 }
                 //save to gcp file
-                 if (mainProject.location.equals(""))
-       {
-           JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
-            fc.showSaveDialog(aurora.window);
-            java.io.File file = fc.getSelectedFile();
-            mainProject.location = file.getPath().replaceAll(".gcp", "")+".gcp";
-            if (file == null) {
-                return;
-            }
-       }
-                ProjectExporter.export(mainProject,mainProject.location);
+                if (mainProject.location.equals("")) {
+                    JFileChooser fc = new JFileChooser();
+                    fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
+                    fc.showSaveDialog(aurora.window);
+                    java.io.File file = fc.getSelectedFile();
+                    mainProject.location = file.getPath().replaceAll(".gcp", "") + ".gcp";
+                    if (file == null) {
+                        return;
+                    }
+                }
+                ProjectExporter.export(mainProject, mainProject.location);
                 break;
             case 4:
                 //save all projects
@@ -933,7 +941,7 @@ public class Aurwindow extends JFrame {
                 a = getCurrentFolder();
                 if (a == null) {
                     return;
-                } 
+                }
                 while (a.findFromName("newSprite" + i) != -1) {
                     i++;
                 }
@@ -946,7 +954,7 @@ public class Aurwindow extends JFrame {
                 a = getCurrentFolder();
                 if (a == null) {
                     return;
-                } 
+                }
                 while (a.findFromName("newSound" + i) != -1) {
                     i++;
                 }
@@ -970,10 +978,12 @@ public class Aurwindow extends JFrame {
             case 8:
                 i = 1;
                 a = getCurrentFolder();
-                if (a == null) 
+                if (a == null) {
                     return;
-                while (a.findFromName("newActor" + i) != -1) 
+                }
+                while (a.findFromName("newActor" + i) != -1) {
                     i++;
+                }
                 getCurrentProject().actors.add(new Actor("newActor" + i, getCurrentProject().actors.size()));
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
                 break;
@@ -986,6 +996,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newScene" + i) != -1) {
                     i++;
                 }
+                getCurrentProject().scenes.add(new Scene("newScene" + i));
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
             case 10:
@@ -1011,11 +1022,9 @@ public class Aurwindow extends JFrame {
         }
     }
 
-   
-    
     //</editor-fold>
     public fileclass.File addFile(Folder folder, String name, String type) {
-        
+
         if (folder == null) {
             return null;
         }
@@ -1025,7 +1034,7 @@ public class Aurwindow extends JFrame {
         fileclass.File file = new fileclass.File(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
-        TreePath tp=new TreePath(node.getPath());
+        TreePath tp = new TreePath(node.getPath());
         workspace.setSelectionPath(tp);
         Open(file);
         workspace.updateUI();
@@ -1140,7 +1149,7 @@ public class Aurwindow extends JFrame {
                 onToolbarActionPerformed(3, evt);
             }
         });
-        
+
         saveall.addActionListener(new ActionListener() {
 
             @Override
@@ -1173,14 +1182,19 @@ public class Aurwindow extends JFrame {
     public void dispose() {
         Plugger.onMainWindowDispose(aurora.plugins);
         saveSettings();
-        if(istabs)
-            for(Component a : tabs.getComponents())
-                if(a instanceof TabPanel)
+        if (istabs) {
+            for (Component a : tabs.getComponents()) {
+                if (a instanceof TabPanel) {
                     ((TabPanel) a).dispose();
-        else
-            for(Component x : mdi.getComponents())
-                if(x instanceof ExtendedFrame)
-                    ((ExtendedFrame) x).dispose();
+                } else {
+                    for (Component x : mdi.getComponents()) {
+                        if (x instanceof ExtendedFrame) {
+                            ((ExtendedFrame) x).dispose();
+                        }
+                    }
+                }
+            }
+        }
         super.dispose();
     }
 

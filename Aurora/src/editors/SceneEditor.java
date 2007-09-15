@@ -10,6 +10,7 @@ import components.*;
 import units.*;
 import core.*;
 import fileclass.Project;
+import fileclass.res.Scene;
 
 import java.awt.*;
 
@@ -24,8 +25,11 @@ public class SceneEditor extends TabPanel {
     public ScenePanel scene;
     public fileclass.File file;
     public ViewsModel model;
+    public Scene sceneObject;
+    public boolean changed = false;
     
-    public SceneEditor(fileclass.File file,Project project) {
+    public SceneEditor(fileclass.File file,Project project, Scene s) {
+        this.sceneObject = s;
         this.project = project;
         model = new ViewsModel();
         initComponents();
@@ -36,6 +40,33 @@ public class SceneEditor extends TabPanel {
         jList1.setSelectedIndex(0);
         setup();
         jTextField1.setText(file.name);
+        Load();
+    }
+
+    @Override
+    public boolean Load() {
+        jEditorPane1.setText(sceneObject.caption);
+        jTextField2.setText(""+sceneObject.width);
+        jTextField3.setText(""+sceneObject.height);
+        return true;
+    }
+
+    @Override
+    public boolean Save() {
+        sceneObject.caption = this.jEditorPane1.getText();
+        sceneObject.width = Integer.parseInt(jTextField2.getText());
+        sceneObject.height = Integer.parseInt(jTextField3.getText());
+        sceneObject.speed = Integer.parseInt(jTextField4.getText());
+        sceneObject.persistant = this.jCheckBox3.isSelected();
+        sceneObject.snapX = (Integer)this.jSpinner2.getValue();
+        sceneObject.snapY = (Integer)this.jSpinner3.getValue();
+        file.value = sceneObject.writeXml();
+        return true;
+    }
+
+    @Override
+    public boolean wasModified() {
+        return changed;
     }
     
     public void setup(){
@@ -319,19 +350,34 @@ public class SceneEditor extends TabPanel {
 
         jLabel6.setText("Caption for the room:");
 
+        jEditorPane1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jEditorPane1KeyTyped(evt);
+            }
+        });
         jScrollPane2.setViewportView(jEditorPane1);
 
         jLabel7.setText("Width");
 
-        jTextField2.setText("jTextField2");
+        jTextField2.setText("640");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jLabel8.setText("Height");
 
-        jTextField3.setText("jTextField3");
+        jTextField3.setText("480");
 
         jLabel9.setText("Speed");
 
-        jTextField4.setText("jTextField4");
+        jTextField4.setText("60");
 
         jCheckBox3.setText("Persistent");
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -854,6 +900,18 @@ public class SceneEditor extends TabPanel {
         Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jEditorPane1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyTyped
+        changed = true;
+    }//GEN-LAST:event_jEditorPane1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        changed = true;
+    }//GEN-LAST:event_jTextField2KeyTyped
+
     public Color getMapBGColor(){
         if(jCheckBox1.isSelected())
             return colorSelection1.getBackground();
@@ -879,9 +937,9 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
+    public javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
-    private javax.swing.JEditorPane jEditorPane1;
+    public javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -899,7 +957,7 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList jList1;
+    public javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
@@ -927,9 +985,9 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    public javax.swing.JTextField jTextField2;
+    public javax.swing.JTextField jTextField3;
+    public javax.swing.JTextField jTextField4;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     // End of variables declaration//GEN-END:variables
