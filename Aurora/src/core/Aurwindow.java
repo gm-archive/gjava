@@ -26,13 +26,11 @@ import java.io.*;
 import exceptions.*;
 import externproject.*;
 import fileclass.*;
-import java.util.Vector;
 import editors.*;
 import fileclass.res.Actor;
 import plugins.*;
 import components.popupmenus.*;
 import fileclass.res.Scene;
-import fileclass.res.Sprite;
 import java.util.Enumeration;
 
 /**
@@ -64,6 +62,7 @@ public class Aurwindow extends JFrame {
     public TreeCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
+    public JButton run; //G-java will make this visible
 
     //</editor-fold>
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -1041,6 +1040,16 @@ public class Aurwindow extends JFrame {
         JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")), 45);
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
 
+        run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/run.png")), 50);
+        
+        run.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                core.utilities.addStringMessage("G-Java is missing!");
+            }
+        });
+        
         image.addActionListener(new ActionListener() {
 
             @Override
@@ -1133,6 +1142,8 @@ public class Aurwindow extends JFrame {
         tool.add(cl);
         tool.add(actor);
         tool.add(scene);
+        tool.addSeparator();
+        tool.add(run);
         tool.addSeparator();
         tool.add(winlist);
         toolpopup = new ToolbarPopupMenu();
