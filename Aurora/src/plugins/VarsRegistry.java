@@ -19,7 +19,7 @@ package plugins;
 public class VarsRegistry {
     
     private static String[] names = new String[200];
-    private static Class[] vars = new Class[200];
+    private static Object[] vars = new Object[200];
     
     public static String[] getKeys(){
         int a = 0;
@@ -52,7 +52,7 @@ public class VarsRegistry {
             if(i==vars.length-1)
                 return false;
         names[i] = name;
-        vars[i] = var.getClass();
+        vars[i] = var;
         return true;
     }
     
