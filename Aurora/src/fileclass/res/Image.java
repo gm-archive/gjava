@@ -13,6 +13,16 @@ package fileclass.res;
  *
  * @author Ali1
  */
-public class Image {
+public class Image extends Resource {
+
+    @Override
+    public String writeXml() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void readXml() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 
 }

@@ -14,6 +14,7 @@ import core.*;
 import javax.swing.*;
 import components.*;
 import fileclass.*;
+
 import java.awt.*;
 import java.io.*;
 import java.util.logging.Level;
@@ -31,8 +32,15 @@ public class ProjectImporter {
    static String name;
    static int type;
    static Project project;
+   
+   public static void readFile(String s,String name)
+   {
+       
+   }
+   
     public static void readConfig(String s)
     {
+        fileclass.Folder f = new fileclass.Folder("");
         System.out.println("reading config file...");
         
         System.out.println(s);
@@ -55,6 +63,48 @@ public class ProjectImporter {
         while(ii < ss.length){
          String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
          if(sss[0].equals("SpriteGroup"))
+
+         {
+             f = new SpriteGroup(project, "Sprites");
+             project.add(f);
+         }
+         else if(sss[0].equals("SoundGroup"))
+         {
+             f = new SpriteGroup(project, "Sounds");
+             project.add(f);
+         }
+         else if(sss[0].equals("ActorGroup"))
+         {
+             f = new SpriteGroup(project, "Actors");
+             project.add(f);
+         }
+         else  if(sss[0].equals("SceneGroup"))
+         {
+             f = new SpriteGroup(project, "Scenes");
+             project.add(f);
+         }
+         else if(sss[0].equals("EGMLGroup"))
+         {
+             f = new SpriteGroup(project, "Classes");
+             project.add(f);
+         }
+         else if(sss[0].equals("Group"))
+         {
+             Folder ff = new Group(project, "Group");
+             f.add(ff);
+         }
+         else if(sss[0].equals("File"))
+         {
+             String ssss[] = sss[1].split("\\.");
+             System.out.println(""+ssss.length);
+             if(ssss.length >0){
+             fileclass.File file = new fileclass.File(f, ssss[0], ssss[1], null);
+             
+           // f.add(file);
+             }
+         }
+         
+
              project.add(new SpriteGroup(project, sss[1]));
          if(sss[0].equals("ActorGroup"))
              project.add(new ActorGroup(project, sss[1]));
@@ -80,6 +130,7 @@ public class ProjectImporter {
              project.add(new StaticGroup(project, sss[1]));
          if(sss[0].equals("Group"))
              project.add(new Group(project, sss[1]));
+
         ii++;
         }
         if(project!=null)
@@ -113,7 +164,11 @@ public class ProjectImporter {
                                 
                 if (zipe.getName().equals("config"))
                     readConfig(stream+"");
+                 else
+                    readFile(stream+"",zipe.getName());
                 }
+                
+                
 
             }
        

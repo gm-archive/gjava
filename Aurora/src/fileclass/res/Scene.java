@@ -15,7 +15,7 @@ import units.ViewsModel;
  *
  * @author Ali1
  */
-public class Scene {
+public class Scene extends Resource {
 public String caption,code,name;
 public int width,height,speed,snapX,snapY;
 public boolean persistant,grid,isometric;
@@ -31,4 +31,9 @@ public String writeXml()
       String xml = "";
       return xml;
 }
+
+    @Override
+    public void readXml() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

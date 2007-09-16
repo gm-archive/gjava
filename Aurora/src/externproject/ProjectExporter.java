@@ -85,7 +85,7 @@ public class ProjectExporter {
         fileclass.Object childNode;
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
-                content += "<file type=\"" + childNode.getObjectType() + "\">" + prefix + childNode.name;
+                content += "<file type=\"" + childNode.getObjectType() + "\">" + childNode.name;
                 if (childNode instanceof fileclass.File) {
                     content += "." + ((fileclass.File) childNode).type;
                 }

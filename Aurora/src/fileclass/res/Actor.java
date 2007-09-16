@@ -15,7 +15,7 @@ import java.util.Vector;
  *
  * @author Ali1
  */
-public class Actor {
+public class Actor extends Resource {
 public boolean visible, solid, persistant;
 public String name,sprite,extend,mask;
 public int index,depth;
@@ -34,4 +34,9 @@ public Vector events;
       xml += "<Persistant>"+solid+"</Persistant>\n";
       return xml;
   }
+    
+    @Override
+    public void readXml() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }

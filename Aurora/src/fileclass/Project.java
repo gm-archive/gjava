@@ -10,8 +10,10 @@
 package fileclass;
 
 import fileclass.res.Actor;
+import fileclass.res.Classes;
 import fileclass.res.Image;
 import fileclass.res.Scene;
+import fileclass.res.Sound;
 import fileclass.res.Sprite;
 import java.util.Vector;
 
@@ -26,7 +28,9 @@ public class Project extends Folder{
     public Vector<Image> images = new Vector<Image>();
     public Vector<Actor> actors = new Vector<Actor>();
     public Vector<Sprite> sprites = new Vector<Sprite>(); 
+    public Vector<Sound> sounds = new Vector<Sound>();
     public Vector<Scene> scenes = new Vector<Scene>(); 
+    public Vector<Classes> classes = new Vector<Classes>(); 
     
     public Project(String name, String location){
         super(name);
