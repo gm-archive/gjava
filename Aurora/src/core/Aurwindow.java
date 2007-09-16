@@ -568,7 +568,7 @@ public class Aurwindow extends JFrame {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 40,GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
         if (settings[2].equals("Hidden")) {
@@ -580,10 +580,10 @@ public class Aurwindow extends JFrame {
         }
 
         try {
-            if (settings[0].equals("Native")) {
+            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 look = 0;
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
                 look = 1;
             } else if (settings[0].equals("Motif")) {
                 items[MenuSupporter.GenerateMenuItemId(5, 2)].setSelected(true);
@@ -1134,8 +1134,10 @@ public class Aurwindow extends JFrame {
         tool.setRollover(true);
         tool.add(newp);
         tool.add(opn);
+        tool.addSeparator();
         tool.add(save);
         tool.add(saveall);
+        tool.addSeparator();
         tool.add(image);
         tool.add(sprite);
         tool.add(sound);
