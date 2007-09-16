@@ -62,74 +62,38 @@ public class ProjectImporter {
         int ii=1;
         while(ii < ss.length){
          String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
-         if(sss[0].equals("SpriteGroup"))
-
-         {
-             f = new SpriteGroup(project, "Sprites");
-             project.add(f);
-         }
-         else if(sss[0].equals("SoundGroup"))
-         {
-             f = new SpriteGroup(project, "Sounds");
-             project.add(f);
-         }
-         else if(sss[0].equals("ActorGroup"))
-         {
-             f = new SpriteGroup(project, "Actors");
-             project.add(f);
-         }
-         else  if(sss[0].equals("SceneGroup"))
-         {
-             f = new SpriteGroup(project, "Scenes");
-             project.add(f);
-         }
-         else if(sss[0].equals("EGMLGroup"))
-         {
-             f = new SpriteGroup(project, "Classes");
-             project.add(f);
-         }
-         else if(sss[0].equals("Group"))
-         {
-             Folder ff = new Group(project, "Group");
-             f.add(ff);
-         }
-         else if(sss[0].equals("File"))
-         {
+         if(sss[0].equals("File")){
              String ssss[] = sss[1].split("\\.");
              System.out.println(""+ssss.length);
              if(ssss.length >0){
              fileclass.File file = new fileclass.File(f, ssss[0], ssss[1], null);
-             
            // f.add(file);
              }
          }
-         
-
-             project.add(new SpriteGroup(project, sss[1]));
-         if(sss[0].equals("ActorGroup"))
-             project.add(new ActorGroup(project, sss[1]));
-         if(sss[0].equals("CppGroup"))
-             project.add(new CppGroup(project, sss[1]));
-         if(sss[0].equals("CppRefGroup"))
-             project.add(new CppRefGroup(project, sss[1]));
-         if(sss[0].equals("EGMLGroup"))
-             project.add(new EGMLGroup(project, sss[1]));
-         if(sss[0].equals("ImageGroup"))
-             project.add(new ImageGroup(project, sss[1]));
-         if(sss[0].equals("JavaGroup"))
-             project.add(new JavaGroup(project, sss[1]));
-         if(sss[0].equals("JavaRefGroup"))
-             project.add(new JavaRefGroup(project, sss[1]));
-         if(sss[0].equals("SceneGroup"))
-             project.add(new SceneGroup(project, sss[1]));
-         if(sss[0].equals("SoundGroup"))
-             project.add(new SoundGroup(project, sss[1]));
-         if(sss[0].equals("SpriteGroup"))
-             project.add(new SpriteGroup(project, sss[1]));
-         if(sss[0].equals("StaticGroup"))
-             project.add(new StaticGroup(project, sss[1]));
-         if(sss[0].equals("Group"))
-             project.add(new Group(project, sss[1]));
+         else if(sss[0].equals("ActorGroup"))
+             project.add(f = new ActorGroup(project, sss[1]));
+         else if(sss[0].equals("CppGroup"))
+             project.add(f = new CppGroup(project, sss[1]));
+         else if(sss[0].equals("CppRefGroup"))
+             project.add(f = new CppRefGroup(project, sss[1]));
+         else if(sss[0].equals("EGMLGroup"))
+             project.add(f = new EGMLGroup(project, sss[1]));
+         else if(sss[0].equals("ImageGroup"))
+             project.add(f = new ImageGroup(project, sss[1]));
+         else if(sss[0].equals("JavaGroup"))
+             project.add(f = new JavaGroup(project, sss[1]));
+         else if(sss[0].equals("JavaRefGroup"))
+             project.add(f = new JavaRefGroup(project, sss[1]));
+         else if(sss[0].equals("SceneGroup"))
+             project.add(f = new SceneGroup(project, sss[1]));
+         else if(sss[0].equals("SoundGroup"))
+             project.add(f = new SoundGroup(project, sss[1]));
+         else if(sss[0].equals("SpriteGroup"))
+             project.add(f = new SpriteGroup(project, sss[1]));
+         else if(sss[0].equals("StaticGroup"))
+             project.add(f = new StaticGroup(project, sss[1]));
+         else if(sss[0].equals("Group"))
+             project.add(f = new Group(project, sss[1]));
 
         ii++;
         }

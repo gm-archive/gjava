@@ -31,7 +31,7 @@ public class ProjectExporter {
         //byte[] buffer = new byte[18024];
         try {
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
-            out.setLevel(Deflater.BEST_SPEED);
+            out.setLevel(Deflater.BEST_COMPRESSION);
             //out.putNextEntry(new ZipEntry(""));
             //out.closeEntry();
 
@@ -40,7 +40,7 @@ public class ProjectExporter {
                 out.write(config.charAt(i));
             }
             out.closeEntry();
-            putFolder(project, "src/", out, 1);
+            putFolder(project, "", out, 1);
             out.close();
             utilities.addStringMessage("Saved");
         } catch (Exception e) {
