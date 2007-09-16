@@ -124,13 +124,16 @@ class GApi::Components::Scene
 		GApi::Components::View** viewArray;
 		GApi::Components::Actor** actorArray;
 		GApi::Components::Tileset** tilesetArray;
-		int* xarray;
-		int* yarray;
+		int* xresarray;
+		int* yresarray;
+                int* xoutarray;
+                int* youtarray;
 		int* warray;
 		int* harray;
 		int* deptharray;
                 String name;
                 String caption;
+                int getTileArrayLength();
 	public:
 		Scene();
 		Scene(GApi::Components::View**, GApi::Components::Actor**);
