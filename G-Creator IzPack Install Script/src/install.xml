@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : install.xml.xml
+    Created on : 16 de Setembro de 2007, 13:08
+    Author     : Luís
+    Description:
+        Purpose of the document follows.
+-->
+
+<installation version="1.0">
+    <info>
+        <appname>G-Creator</appname>
+        <appversion>1.0 alpha 1</appversion>
+        <authors>
+            <!--TODO -->
+        </authors>
+        <url>http://www.g-creator.org</url>
+    </info>
+    
+    <guiprefs width="640" height="480" resizable="no"/>
+    
+    <locale>
+        <langpack iso3="English" />
+    </locale>
+    
+    <resources>
+        <res id="InfoPanel.info" src="README.txt"/>
+        <res id="LicencePanel.licence" src="GPLv3.txt"/>
+    </resources>
+    
+    <panels>
+        <panel classname="HelloPanel"/>
+        <panel classname="AboutPanel"/>
+        <panel classname="LicencePanel"/>
+        <panel classname="TargetPanel"/> 
+        <panel classname="PacksPanel"/>
+        <panel classname="InstallPanel"/>
+        <panel classname="FinishPanel"/>
+    </panels>
+    
+    <packs>
+        <pack name="G-Creator" required="yes">
+            <description>G-Creator core files</description>
+            <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
+            <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
+            <!----><file src="G-Creator.jar" targetdir="$INSTALL_PATH"/>
+        </pack>
+        <pack name="G-Java" required="no">
+            <description>Generates Java applications and applets</description>
+            <!--G-Java files: $INSTALL_PATH/plugins/...-->
+        </pack>
+        <pack name="G-C++" required="no">
+            <description>Generates Allegro C++ code, which can be compiled into Windows and Linux applications</description>
+            <!--G-C++ files: $INSTALL_PATH/plugins/...-->
+        </pack>
+        <pack name="G-Plus" required="no">
+            <description>Allows the user to compile G-Creator extensions</description>
+            <!--G-Plus files: $INSTALL_PATH/plugins/...-->
+        </pack>
+    </packs>
+    
+</installation>
