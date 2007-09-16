@@ -231,7 +231,7 @@ public class Aurwindow extends JFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        winlist.updateUI();
+        //winlist.updateUI();
     }
 
     protected Aurwindow(String[] settings) {
@@ -246,8 +246,8 @@ public class Aurwindow extends JFrame {
         console.setBackground(Colorfeel.ConsoleBGColor);
         console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
         scroller = new JScrollPane();
-        winlist = new JComboBox();
-        winlist.setModel(new MyModel());
+        //winlist = new JComboBox();
+        //winlist.setModel(new MyModel());
 
         console.setEditable(false);
         console.setContentType("text/html");
@@ -1144,8 +1144,8 @@ public class Aurwindow extends JFrame {
         tool.add(scene);
         tool.addSeparator();
         tool.add(run);
-        tool.addSeparator();
-        tool.add(winlist);
+        //tool.addSeparator();
+        //tool.add(winlist);
         toolpopup = new ToolbarPopupMenu();
         tool.addMouseListener(new PopupListener(toolpopup));
     }
