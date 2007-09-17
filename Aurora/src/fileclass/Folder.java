@@ -9,12 +9,14 @@
 
 package fileclass;
 
+import exceptions.*;
+
 /**
  *
  * @author Luís
  */
 public class Folder extends Object{
-    private Object[] childNodes;
+    protected Object[] childNodes;
     
     
     
@@ -81,6 +83,27 @@ public class Folder extends Object{
         return group;
     }
     
+    public Folder findFolder(String name) throws NoSuchFolderException{
+        String tname = name;
+        tname = tname.substring(0, tname.indexOf("/")-1);
+        if(!tname.equals(this.name))
+            throw new NoSuchFolderException();
+        tname = tname.substring(tname.indexOf("/")+1);
+        if(tname.equals(this.name + "/"))
+            return this;
+        for(Object o : childNodes){
+            if(o != null && o instanceof Folder){
+                try{
+                    Folder a = findFolder(tname);
+                    return a;
+                }
+                catch(NoSuchFolderException e){}
+            }
+        }
+        throw new NoSuchFolderException();
+    }
+    
+    @Override
     public String getObjectType(){
         return "Folder";
     }

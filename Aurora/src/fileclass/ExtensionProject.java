@@ -9,6 +9,8 @@
 
 package fileclass;
 
+import managers.FilesFinder;
+
 /**
  *
  * @author Luís
@@ -35,5 +37,9 @@ public class ExtensionProject extends Project {
     
     public String getObjectType(){
         return "ExtensionProject";
+    }
+    
+    public fileclass.File[] getJavaFiles(){
+        return managers.FilesFinder.getFilesAt(this, "java");
     }
 }

@@ -66,4 +66,12 @@ public class PluginHelper {
         }
         SwingUtilities.updateComponentTreeUI(aurora.window.consolepopup);
     }
+    
+    public static String encrypt(String str){
+        return utilities.encrypt(str);
+    }
+    
+    public static String decrypt(String str){
+        return utilities.decrypt(str);
+    }
 }

@@ -9,6 +9,7 @@
 
 package fileclass;
 
+import exceptions.NoSuchFolderException;
 import fileclass.res.Actor;
 import fileclass.res.Classes;
 import fileclass.res.Image;
@@ -41,7 +42,22 @@ public class Project extends Folder{
         return null;
     }
     
+    @Override
     public String getObjectType(){
         return "Project";
+    }
+    
+    @Override
+    public Folder findFolder(String name) throws NoSuchFolderException{
+        for(Object o : childNodes){
+            if(o != null && o instanceof Folder){
+                try{
+                    Folder a = findFolder(name);
+                    return a;
+                }
+                catch(NoSuchFolderException e){}
+            }
+        }
+        throw new NoSuchFolderException();
     }
 }
