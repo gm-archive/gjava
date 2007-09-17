@@ -62,4 +62,10 @@ public class FilesFinder {
         }
         return files;
     }
+    
+    public static boolean contains(Folder folder, String format){
+        if(getFileCountAt(folder, format)>0)
+            return true;
+        return false;
+    }
 }

@@ -29,6 +29,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import units.ObjectNode;
+import managers.*;
 
 /**
  *
@@ -70,14 +71,22 @@ public class ResourceMenu extends JPanel implements MouseListener,
 			noresource = pm.add(new JMenuItem(def));
 			noresource.addActionListener(this);
 			}
-		populate(kind);
+		populate();
 		
 
     }
     
-    public void populate(String kind)
+    public void updateUI(){
+        super.updateUI();
+        populate();
+    }
+    
+    public void populate()
     {
+        if(pm==null)
+            return;
         pm.removeAll();
+        pm.add(noresource);
         Vector vect;
         Enumeration e = pro.node.children();
         if (kind.equals("actor"))
@@ -101,17 +110,18 @@ public class ResourceMenu extends JPanel implements MouseListener,
     {
         while (e.hasMoreElements()) {
             Object object = (Object) e.nextElement();
-            System.out.println(""+((ObjectNode)object).object.name);
-            if (((ObjectNode)object).object.getObjectType().contains("Group"))
+            ObjectNode node = (ObjectNode) object;
+            System.out.println(""+node.object.name);
+            if (node.object instanceof fileclass.Group)
             {
                 JMenu resbackup = null;
-                if (!(res == null))
+                if (res != null)
                     resbackup =res;
-                res = new JMenu(((ObjectNode)object).object.name);
-                populatefromEnum(((ObjectNode)object).object.node.children());
+                res = new JMenu(node.object.name);
+                populatefromEnum(node.object.node.children());
                 if (res ==null)
                     res = resbackup;
-                if (!(((ObjectNode)object).object.node.getChildCount() == 0) && res !=null)
+                if (node.object.node.getChildCount() != 0 && res !=null)
                 pm.add(res);
 //                if (resbackup != null)
 //                    res = resbackup;
@@ -119,22 +129,19 @@ public class ResourceMenu extends JPanel implements MouseListener,
             }
             else if (res == null)
             {
-            noresource = pm.add(new JMenuItem(((ObjectNode)object).object.name));
-			noresource.addActionListener(this);
-                        
+                pm.add(new JMenuItem(node.object.name)).addActionListener(this);
             }
             else
             {
                 //group
-              noresource =  res.add(new JMenuItem(((ObjectNode)object).object.name));
-              noresource.addActionListener(this);
+              res.add(new JMenuItem(node.object.name)).addActionListener(this);
             }
                         
         }
     }
     
     public void mouseClicked(MouseEvent e) {
-        populate(kind);
+        populate();
         if (pm.getComponentCount() == 0) return;
 		pm.show(e.getComponent(),e.getX(),e.getY());
     }
