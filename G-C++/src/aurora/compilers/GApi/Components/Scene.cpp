@@ -3,6 +3,13 @@
 
 #include "../../declare.h"
 
+GApi::Components::Scene::Scene(){}
+
+GApi::Components::Scene::Scene(GApi::Components::View** views, GApi::Components::Actor** actors){
+    viewArray = views;
+    actorArray = actors;
+}
+
 String GApi::Components::Scene::getName(){
     return name;
 }
@@ -25,6 +32,25 @@ GApi::Components::View* GApi::Components::Scene::getView(int pos){
 
 void GApi::Components::Scene::setView(int pos, GApi::Components::View* view){
     viewArray[pos] = view;
+}
+
+int GApi::Components::Scene::addActor(GApi::Components::Actor* actor){
+    int i = 0;
+    while(actorArray[i] != NULL){
+        i++;
+        if(i==sizeof(actorArray)/sizeof(actorArray[0]))
+            return -1;
+    }
+    actorArray[i] = actor;
+    return i;
+}
+
+GApi::Components::Actor** GApi::Components::Scene::getActors(){
+    return actorArray;
+}
+
+GApi::Components::Actor* GApi::Components::Scene::getActor(int pos){
+    return actorArray[pos];
 }
 
 int GApi::Components::Scene::getTileArrayLength(){
