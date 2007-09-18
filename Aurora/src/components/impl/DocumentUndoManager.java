@@ -184,6 +184,7 @@ public class DocumentUndoManager extends UndoManager implements CaretListener
 		caretUpdates++;
 		}
 
+    @Override
 	public void undoableEditHappened(UndoableEditEvent e)
 		{
 		caretUpdates = 0;

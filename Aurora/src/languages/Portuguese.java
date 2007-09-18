@@ -170,6 +170,10 @@ public class Portuguese extends Dictionary{
     public String getSpecialEntry(String value){
         if(value.equals("GPlus.CompileCur"))
             return "Compilar extensão actual";
+        if(value.equals("GAH.Menu"))
+            return "Avançado";
+     if(value.equals("GAH.GC"))
+            return "Forçar recolha de lixo";
         return "";
     }
 }

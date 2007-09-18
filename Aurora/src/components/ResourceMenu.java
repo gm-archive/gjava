@@ -164,7 +164,17 @@ public class ResourceMenu extends JPanel implements MouseListener,
 
     public void actionPerformed(ActionEvent e) {
        label.setText(e.getActionCommand());
-        
+        for(ActionListener listen : listeners){
+            listen.actionPerformed(e);
+        }
     }
-
+    
+    ActionListener[] listeners = new ActionListener[10];
+    
+    public void addActionListener(ActionListener a){
+        int i = 0;
+        while(listeners[i]!=null)
+            i++;
+        listeners[i] = a;
+    }
 }

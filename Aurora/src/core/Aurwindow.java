@@ -109,7 +109,7 @@ public class Aurwindow extends JFrame {
                 iii++;
             }
             if (!found) {
-                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor("", getCurrentProject().actors.size() + 1));
+                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor(""/*, getCurrentProject().actors.size() + 1*/));
                 foundloc = getCurrentProject().actors.size() + 1;
             }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
@@ -122,10 +122,13 @@ public class Aurwindow extends JFrame {
                 iii++;
             }
             if (!found) {
-                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor("", getCurrentProject().actors.size() + 1));
+                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor(""/*, getCurrentProject().actors.size() + 1*/));
                 foundloc = getCurrentProject().actors.size() + 1;
             }
-            addWindow(new ActorEditor(file, getCurrentProject().actors.get(foundloc), this.getCurrentProject()), file.name);
+            try{
+            addWindow(new ActorEditor(file/*, getCurrentProject().actors.get(foundloc)*/, this.getCurrentProject()), file.name);
+            }
+            catch(WrongResourceException e){}
         } else if (file.type.equals("scene")) {
             for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
                 if (((Scene) e.nextElement()).name.equals(file.name)) {
@@ -946,7 +949,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newActor" + i) != -1) {
                     i++;
                 }
-                getCurrentProject().actors.add(new Actor("newActor" + i, getCurrentProject().actors.size()));
+                getCurrentProject().actors.add(new Actor("newActor" + i/*, getCurrentProject().actors.size()*/));
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
                 break;
             case 9:

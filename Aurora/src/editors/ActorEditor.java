@@ -26,6 +26,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
+import exceptions.*;
 
 /**
  *
@@ -44,9 +45,15 @@ public class ActorEditor extends TabPanel {
     }
     
     /** Creates new form ActorEditor2 */
-    public ActorEditor(fileclass.File file, Actor actor,Project project) {
+    public ActorEditor(fileclass.File file,Project project) throws WrongResourceException{
         this.project = project;
-        this.actor = actor;
+        if(file.value==null)
+            this.actor = new Actor(file.name);
+        else
+            if(file.value instanceof Actor)
+                this.actor = (Actor) file.value;
+            else
+                throw new WrongResourceException();
         this.file = file;
        
         initComponents();
@@ -82,7 +89,7 @@ public class ActorEditor extends TabPanel {
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
-          file.value = actor.writeXml();
+        file.value = actor;
         return true;
     }
     

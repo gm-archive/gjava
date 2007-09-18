@@ -82,6 +82,7 @@ public class aurora {
         window.console.setText(output);
         if(splash!=null){
             Plugger.onSplashDispose(aurora.plugins);
+            window.menubar.updateUI();
             splash.dispose();
         }
         if(window!=null){

@@ -170,6 +170,10 @@ public class English extends Dictionary{
     public String getSpecialEntry(String value){
         if(value.equals("GPlus.CompileCur"))
             return "Compile Current Extension";
+        if(value.equals("GAH.Menu"))
+            return "Advanced";
+        if(value.equals("GAH.GC"))
+            return "Force garbage collection";
         return "";
     }
 }

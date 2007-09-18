@@ -20,7 +20,7 @@ public boolean visible, solid, persistant;
 public String name,sprite,extend,mask;
 public int index,depth;
 public Vector events;
-  public  Actor(String name, int index)
+  public  Actor(String name)
     {
         this.name = name;
     }
