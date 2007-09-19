@@ -6,6 +6,7 @@
 
 package editors;
 
+import components.popupmenus.ResourceMenu;
 import components.*;
 import units.*;
 import core.*;

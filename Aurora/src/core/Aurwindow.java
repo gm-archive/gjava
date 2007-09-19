@@ -256,7 +256,7 @@ public class Aurwindow extends JFrame {
         console.setContentType("text/html");
         scroller.setViewportView(console);
 
-        LangSupporter.activeLang = new English();
+        //LangSupporter.activeLang = new English();
 
 
         SettingsIO.console = console;

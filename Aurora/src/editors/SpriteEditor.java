@@ -6,7 +6,7 @@
 
 package editors;
 
-import components.ResourceMenu;
+import components.popupmenus.ResourceMenu;
 import components.SubimagePreview;
 import components.TabPanel;
 import fileclass.Project;

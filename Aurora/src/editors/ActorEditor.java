@@ -6,7 +6,8 @@
 
 package editors;
 
-import components.ResourceMenu;
+import components.popupmenus.EventSelect;
+import components.popupmenus.ResourceMenu;
 import components.TabPanel;
 import core.aurora;
 import fileclass.Project;

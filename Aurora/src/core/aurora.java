@@ -45,8 +45,6 @@ public class aurora {
     }
     
     public static void start(){
-        Plugger.onMainWindowStart(plugins);
-        ActorEditor.setupActions();
         String[] settings = SettingsIO.loadSettings();
 
         if (settings == null) {
@@ -58,6 +56,8 @@ public class aurora {
             settings[4] = "Visible";
         }
 
+        LangSupporter.activeLang = new English();
+        
         if (!settings[3].equals("English")) {
             if (settings[3].equals("Portuguese (European)")) {
                 LangSupporter.activeLang = new Portuguese();
@@ -77,6 +77,8 @@ public class aurora {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
             }
         } catch (Exception e) {}
+        Plugger.onMainWindowStart(plugins);
+        ActorEditor.setupActions();
         
         window = new Aurwindow(settings);
         window.console.setText(output);

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package components;
+package components.popupmenus;
 
 import core.aurora;
 import fileclass.Project;

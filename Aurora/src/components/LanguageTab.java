@@ -26,7 +26,7 @@ public class LanguageTab extends TabPanel {
         }
         catch(Exception e){}
         int l = 0;
-        if(Aurwindow.lang.equals("Portuguese"))
+        if(Aurwindow.lang.equals("Portuguese (European)"))
             l = 1;
         if(Aurwindow.lang.equals("German"))
             l = 2;
