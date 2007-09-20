@@ -39,6 +39,13 @@ public class ExtensionProject extends Project {
         return "ExtensionProject";
     }
     
+    @Override
+    public Group newGroup(String name){
+        Group group = new Group(this, name);
+        add(group);
+        return group;
+    }
+    
     public fileclass.File[] getJavaFiles(){
         return managers.FilesFinder.getFilesAt(this, "java");
     }
