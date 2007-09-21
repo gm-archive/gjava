@@ -150,6 +150,8 @@ public class Aurwindow extends JFrame {
             addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
+           } else if (file.type.equals("settings")) {
+            addWindow(new SettingsEditor(file), file.name); 
         } else {
             System.out.println(file.type);
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats

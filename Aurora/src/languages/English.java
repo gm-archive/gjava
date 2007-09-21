@@ -159,6 +159,13 @@ public class English extends Dictionary{
         entry[117] = "Hide toolbar";
         entry[118] = "Import image";
         entry[119] = "Zoom";
+        //Settings editor again
+        entry[120] = "Frequency";
+        entry[121] = "Other";
+        entry[122] = "Default Keys";
+        entry[123] = "Let <ESC> end the game";
+        entry[124] = "Let <F4> switch between screen modes";
+        entry[125] = "Let <F5> save the game and <F6> load it.";
         
         try{
             init();

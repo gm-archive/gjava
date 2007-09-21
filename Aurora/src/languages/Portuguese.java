@@ -159,6 +159,13 @@ public class Portuguese extends Dictionary{
         entry[117] = "Ocultar barra de ferramentas";
         entry[118] = "Importar imagem";
         entry[119] = "Aproximar";
+        //Settings editor again
+        entry[120] = "Frequencia";
+        entry[121] = "Outros";
+        entry[122] = "Teclas predefinidas";
+        entry[123] = "Deixar a tecla <ESC> terminar o jogo";
+        entry[124] = "Deixar a tecla <F4> trocar o modo de ecrã";
+        entry[125] = "Deixar a tecla <F5> guardar o jogo e a <F6> carregá-lo";
         
         try{
             init();
