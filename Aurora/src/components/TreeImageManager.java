@@ -9,6 +9,7 @@
 
 package components;
 
+import core.aurora;
 import units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
@@ -35,15 +36,35 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         this.logfileDeleted = logfileDeleted;
     }
 
+    boolean edition = false;
+    String val = "";
+    
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean bSelected, boolean bExpanded, boolean bLeaf, int iRow, boolean bHasFocus) {
 // Find out which node we are rendering and get its text
+        
+
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         String labelText = (String) node.getUserObject();
-        
         if(node instanceof ObjectNode){
             ObjectNode noder = (ObjectNode) node;
+            if(!tree.isEditing())
+                tree.setEditable(noder.object.editable);
             labelText = noder.object.name;
+            val = noder.getUserObject().toString();
+            if(edition!=tree.isEditing()&&tree.isEditing()==false){
+                //Finished editing
+                noder.object.name = val;
+            }
         }
+        else{
+            if(!tree.isEditing())
+                tree.setEditable(false);
+        }
+        
+        edition = tree.isEditing();
+        if(aurora.window!=null)
+            if(aurora.window.getCurrentObject()!=null)
+                val = aurora.window.getCurrentObject().node.getUserObject().toString();
 
         this.bSelected = bSelected;
         try{

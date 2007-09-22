@@ -31,4 +31,6 @@ public class Object {
     public String getObjectType(){
         return "Object";
     }
+    
+    public boolean editable = true;
 }

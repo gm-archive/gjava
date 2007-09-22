@@ -81,7 +81,7 @@ public class NewProject extends TabPanel {
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new EGMLGroup(project, "Classes"));
                 project.add(new Group(project, "Extensions"));
-                new fileclass.File(project, "Settings", "settings", null);
+                (new fileclass.File(project, "Settings", "settings", null)).editable = false;
             }
             else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
@@ -94,14 +94,22 @@ public class NewProject extends TabPanel {
             else if(type == 3){
                 project = new ExtensionProject(jTextField1.getText(), "");
                 StaticGroup src;
-                project.add(src = new StaticGroup(project, "Source"));
-                src.add(new JavaGroup(project, "Java"));
-                src.add(new CppGroup(project, "C++"));
-                src.add(new EGMLGroup(project, "EGML"));
+                Group grp;
+                project.add(grp = src = new StaticGroup(project, "Source"));
+                grp.editable = false;
+                src.add(grp = new JavaGroup(project, "Java"));
+                grp.editable = false;
+                src.add(grp = new CppGroup(project, "C++"));
+                grp.editable = false;
+                src.add(grp = new EGMLGroup(project, "EGML"));
+                grp.editable = false;
                 StaticGroup ref;
-                project.add(ref = new StaticGroup(project, "References"));
-                ref.add(new JavaRefGroup(project, "Java"));
-                ref.add(new CppRefGroup(project, "C++"));
+                project.add(grp = ref = new StaticGroup(project, "References"));
+                grp.editable = false;
+                ref.add(grp = new JavaRefGroup(project, "Java"));
+                grp.editable = false;
+                ref.add(grp = new CppRefGroup(project, "C++"));
+                grp.editable = false;
                 Aurwindow.setMainProject(project);
             }
             if(type!=-1){
