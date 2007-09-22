@@ -14,7 +14,7 @@ package fileclass.res;
  * @author Ali1
  */
 public abstract class Resource {
-public String name;
+    public String name;
     
     public abstract String writeXml();
     public abstract void readXml();

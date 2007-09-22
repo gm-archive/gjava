@@ -1,27 +1,24 @@
 /*
- * VarsRegistry.java
+ * TabValues.java
  * 
- * Created on 10/Set/2007, 23:42:51
+ * Created on 22/Set/2007, 11:18:02
  * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
-package plugins;
+package fileclass.res;
 
 /**
  *
  * @author Luís
  */
-
-//useful to store variables.
-
-public class VarsRegistry {
+public class TabValues{
+    public String name;
+    private String[] names;
+    private Object[] vars;
     
-    private static String[] names = new String[200];
-    private static Object[] vars = new Object[200];
-    
-    public static String[] getKeys(){
+    public String[] getKeys(){
         int a = 0;
         for(String name : names)
             if(name!=null)
@@ -36,7 +33,7 @@ public class VarsRegistry {
         return x;
     }
     
-    public static boolean setVariable(String name, Object var){
+    public boolean setVariable(String name, Object var){
         if(name==null)
             return false;
         int pos = -1;
@@ -56,7 +53,7 @@ public class VarsRegistry {
         return true;
     }
     
-    public static Object getVariable(String name){
+    public Object getValue(String name){
         if(name==null)
             return null;
         int pos = -1;
@@ -67,5 +64,4 @@ public class VarsRegistry {
             return null;
         return vars[pos];
     }
-    
 }

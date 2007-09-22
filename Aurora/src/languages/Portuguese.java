@@ -166,6 +166,10 @@ public class Portuguese extends Dictionary{
         entry[123] = "Deixar a tecla <ESC> terminar o jogo";
         entry[124] = "Deixar a tecla <F4> trocar o modo de ecrã";
         entry[125] = "Deixar a tecla <F5> guardar o jogo e a <F6> carregá-lo";
+        entry[126] = "A carregar";
+        entry[127] = "Mostrar imagem enquanto carrega";
+        entry[128] = "Imagem:";
+        entry[129] = "Icon:";
         
         try{
             init();

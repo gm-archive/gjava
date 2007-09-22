@@ -166,6 +166,11 @@ public class English extends Dictionary{
         entry[123] = "Let <ESC> end the game";
         entry[124] = "Let <F4> switch between screen modes";
         entry[125] = "Let <F5> save the game and <F6> load it.";
+        entry[126] = "Loading";
+        entry[127] = "Show image while loading";
+        entry[128] = "Image:";
+        entry[129] = "Icon:";
+        
         
         try{
             init();
