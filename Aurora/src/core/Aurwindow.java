@@ -141,7 +141,7 @@ public class Aurwindow extends JFrame {
                 getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
                 foundloc = getCurrentProject().scenes.size() + 1;
             }
-            addWindow(new SceneEditor(file, this.getCurrentProject(),getCurrentProject().scenes.get(foundloc)), file.name);
+            addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("egml")) {
             addWindow(new EGMLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("java")) {

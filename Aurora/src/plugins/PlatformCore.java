@@ -13,37 +13,13 @@ package plugins;
  *
  * @author Ali1
  */
-public abstract class PlatformCore extends PluginCore {
+public interface PlatformCore{
     
-    public static void parseSprites()
-    {
-        //get list of sprites TODO
-        
-        // for each sprite parse and write into platform's language
-        
-    }
+    public void parseSprites();
 
-    public static void parseActors()
-    {
-        //get list of actors TODO
-        
-        // for each actor parse and write into platform's language
-        
-    }
+    public void parseActors();
     
-    public static void parseScenes()
-    {
-        //get list of scenes TODO
-        
-        // for each scene parse and write into platform's language
-        
-    }
+    public void parseScenes();
     
-    public static void parseClass()
-    {
-        //get list of class's TODO
-        
-        // for each class parse and write into platform's language
-        
-    }
+    public void parseClass();
 }

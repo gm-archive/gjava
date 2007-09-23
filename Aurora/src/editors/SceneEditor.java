@@ -26,11 +26,13 @@ public class SceneEditor extends TabPanel {
     public ScenePanel scene;
     public fileclass.File file;
     public ViewsModel model;
-    public Scene sceneObject;
     public boolean changed = false;
+    public ResourceMenu curactor;
     
-    public SceneEditor(fileclass.File file,Project project, Scene s) {
-        this.sceneObject = s;
+    public SceneEditor(fileclass.File file,Project project) {
+        if(!(file.value instanceof Scene))
+            file.value = new Scene(file.name);
+        this.file = file;
         this.project = project;
         model = new ViewsModel();
         initComponents();
@@ -43,27 +45,37 @@ public class SceneEditor extends TabPanel {
         jTextField1.setText(file.name);
         Load();
         jPanel11.setLayout(new FlowLayout());
-        jPanel11.add(new ResourceMenu("actor","<no actor>",true,project));
+        jPanel11.add(curactor = new ResourceMenu("actor","<no actor>",true,project));
     }
 
     @Override
     public boolean Load() {
-        jEditorPane1.setText(sceneObject.caption);
-        jTextField2.setText(""+sceneObject.width);
-        jTextField3.setText(""+sceneObject.height);
+        jEditorPane1.setText(((Scene) file.value).caption);
+        if(((Scene) file.value).width==0){
+            jTextField2.setText("600");
+        }
+        else{
+            jTextField2.setText(""+((Scene) file.value).width);
+        }
+        if(((Scene) file.value).height==0){
+            jTextField3.setText("600");
+        }
+        else{
+            jTextField3.setText(""+((Scene) file.value).height);
+        }
         return true;
     }
 
     @Override
     public boolean Save() {
-        sceneObject.caption = this.jEditorPane1.getText();
-        sceneObject.width = Integer.parseInt(jTextField2.getText());
-        sceneObject.height = Integer.parseInt(jTextField3.getText());
-        sceneObject.speed = Integer.parseInt(jTextField4.getText());
-        sceneObject.persistant = this.jCheckBox3.isSelected();
-        sceneObject.snapX = (Integer)this.jSpinner2.getValue();
-        sceneObject.snapY = (Integer)this.jSpinner3.getValue();
-        file.value = sceneObject.writeXml();
+        ((Scene) file.value).caption = this.jEditorPane1.getText();
+        ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
+        ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
+        ((Scene) file.value).speed = Integer.parseInt(jTextField4.getText());
+        ((Scene) file.value).persistant = this.jCheckBox3.isSelected();
+        ((Scene) file.value).snapX = (Integer)this.jSpinner2.getValue();
+        ((Scene) file.value).snapY = (Integer)this.jSpinner3.getValue();
+        //file.value = sceneObject.writeXml();
         return true;
     }
 
@@ -103,12 +115,23 @@ public class SceneEditor extends TabPanel {
         return ((Integer) jSpinner3.getValue()).intValue();
     }
     
+
     public int getMapWidth(){
-        return 600;
+        try{
+            return Integer.parseInt(jTextField2.getText());
+        }
+        catch(NumberFormatException e){
+            return 0;
+        }
     }
     
     public int getMapHeight(){
-        return 600;
+        try{
+            return Integer.parseInt(jTextField3.getText());
+        }
+        catch(NumberFormatException e){
+            return 0;
+        }
     }
     
     public double getZoom(){
@@ -330,7 +353,7 @@ public class SceneEditor extends TabPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -348,12 +371,12 @@ public class SceneEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
             .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jCheckBox5)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -409,6 +432,11 @@ public class SceneEditor extends TabPanel {
         jLabel8.setText("Height");
 
         jTextField3.setText("480");
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Speed");
 
@@ -427,12 +455,12 @@ public class SceneEditor extends TabPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox3, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
@@ -442,9 +470,9 @@ public class SceneEditor extends TabPanel {
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))))
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -485,7 +513,7 @@ public class SceneEditor extends TabPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 167, Short.MAX_VALUE)
+            .addGap(0, 160, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -534,7 +562,7 @@ public class SceneEditor extends TabPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -831,7 +859,7 @@ public class SceneEditor extends TabPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(BottomLeft)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addComponent(BottomRight))
         );
         jPanel4Layout.setVerticalGroup(
@@ -846,7 +874,7 @@ public class SceneEditor extends TabPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -863,7 +891,7 @@ public class SceneEditor extends TabPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -936,20 +964,30 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
+        changed = true;
+        jScrollPane1.updateUI();
+        scene.updateUI();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jEditorPane1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyTyped
         changed = true;
     }//GEN-LAST:event_jEditorPane1KeyTyped
 
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        changed = true;
-    }//GEN-LAST:event_jTextField2KeyTyped
-
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        changed = true;
+        jScrollPane1.updateUI();
+        scene.updateUI();
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+        changed = true;
+        jScrollPane1.updateUI();
+        scene.updateUI();
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     public Color getMapBGColor(){
         if(jCheckBox1.isSelected())
