@@ -9,6 +9,8 @@ package editors;
 import components.popupmenus.EventSelect;
 import components.popupmenus.ResourceMenu;
 import components.TabPanel;
+import components.impl.EventSelectListener;
+import components.popupmenus.EventListModel;
 import core.aurora;
 import fileclass.Project;
 import fileclass.res.Actor;
@@ -28,6 +30,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
 import exceptions.*;
+import events.*;
 
 /**
  *
@@ -37,7 +40,8 @@ public class ActorEditor extends TabPanel {
     
     public fileclass.File file = null;
     public boolean changed = false;
-    static Vector<actionCat> actionCats;
+    public static Vector<actionCat> actionCats;
+    public EventListModel elist;
     Actor actor;
     
     static {
@@ -56,7 +60,7 @@ public class ActorEditor extends TabPanel {
             else
                 throw new WrongResourceException();
         this.file = file;
-       
+        elist = new EventListModel();
         initComponents();
         try{
             jTextField1.setText(file.name);
@@ -211,11 +215,8 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList1.setModel(elist);
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -223,13 +224,10 @@ public class ActorEditor extends TabPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -460,8 +458,21 @@ public class ActorEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public void event(int type){
+        System.out.println("Add");
+        if(type==EventSelectListener.CREATE)
+            elist.add(new CreateEvent());
+        jScrollPane1.updateUI();
+        jList1.updateUI();
+    }
+    
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-       new EventSelect(aurora.window,true);
+       EventSelectListener listener = new EventSelectListener(){
+           public void eventSelected(int type){
+               event(type);
+           }
+       };
+       EventSelect selector = new EventSelect(aurora.window,true, evt.getXOnScreen(), evt.getYOnScreen(), listener);
        changed = true;
     }//GEN-LAST:event_jButton5MouseClicked
 
