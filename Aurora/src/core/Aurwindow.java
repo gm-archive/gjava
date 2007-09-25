@@ -264,7 +264,7 @@ public class Aurwindow extends JFrame {
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
-        console.addMouseListener(new PopupListener(consolepopup));
+        console.addMouseListener(new PopupListener(console, consolepopup));
         tabs = new JTabbedPane();
         mdi = new JDesktopPane();
         splitter1 = new JSplitPane();
@@ -1154,7 +1154,7 @@ public class Aurwindow extends JFrame {
         //tool.addSeparator();
         //tool.add(winlist);
         toolpopup = new ToolbarPopupMenu();
-        tool.addMouseListener(new PopupListener(toolpopup));
+        tool.addMouseListener(new PopupListener(tool, toolpopup));
     }
 
     //</editor-fold>

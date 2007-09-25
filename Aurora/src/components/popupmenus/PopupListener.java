@@ -13,6 +13,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import core.*;
+import java.awt.*;
 
 /**
  *
@@ -20,8 +21,10 @@ import core.*;
  */
 public class PopupListener extends MouseAdapter{
     public JPopupMenu listened;
-    public PopupListener(JPopupMenu listen){
+    public Component component;
+    public PopupListener(Component component, JPopupMenu listen){
         listened = listen;
+        this.component = component;
     }
     @Override
     public void mousePressed(MouseEvent e) {
@@ -34,13 +37,9 @@ public class PopupListener extends MouseAdapter{
     }
 
     private void maybeShowPopup(MouseEvent e) {
-        if(listened instanceof ConsolePopupMenu)
+        if(component.isShowing())
             if (e.isPopupTrigger())
-                listened.show(aurora.window.console, e
-                .getX(), e.getY());
-        if(listened instanceof ToolbarPopupMenu)
-            if (e.isPopupTrigger())
-                listened.show(Aurwindow.tool, e
+                listened.show(component, e
                 .getX(), e.getY());
     }
 }

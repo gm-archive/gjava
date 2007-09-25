@@ -10,6 +10,7 @@
 package events;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -17,6 +18,21 @@ import javax.swing.*;
  */
 public class Event {
     public ImageIcon getImage(){
-        return null; //Unimplemented
+        return null;
+    }
+    public ImageIcon getSelectedImage(){
+        return getImage();
+    }
+    public Color getSelectedBackground(){
+        return Color.BLUE;
+    }
+    public Color getSelectedForeground(){
+        return Color.WHITE;
+    }
+    public Color getBackground(){
+        return Color.WHITE;
+    }
+    public Color getForeground(){
+        return Color.BLACK;
     }
 }

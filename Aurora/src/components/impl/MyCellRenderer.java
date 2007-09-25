@@ -25,22 +25,25 @@ public class MyCellRenderer extends JLabel implements ListCellRenderer {
 
          setText(value.toString());
 
-         Color background;
-         Color foreground;
+         Color background = null;
+         Color foreground = null;
+         ImageIcon icon = null;
 
          // check if this cell represents the current DnD drop location
          JList.DropLocation dropLocation = list.getDropLocation();
+         if(value instanceof events.Event)
          if(isSelected){
-             background = Color.BLUE;
-             foreground = Color.WHITE;
+             background = ((events.Event) value).getSelectedBackground();
+             foreground = ((events.Event) value).getSelectedForeground();
+             icon = ((events.Event) value).getSelectedImage();
          }
          else{
-             background = Color.WHITE;
-             foreground = Color.BLACK;
+             background = ((events.Event) value).getBackground();
+             foreground = ((events.Event) value).getForeground();
+             icon = ((events.Event) value).getImage();
          }
 
-         if(value instanceof events.Event)
-            setIcon(((events.Event) value).getImage());
+         setIcon(icon);
          setBackground(background);
          setForeground(foreground);
 

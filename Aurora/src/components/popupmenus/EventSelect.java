@@ -93,8 +93,11 @@ public class EventSelect extends javax.swing.JDialog {
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/events/step.png"))); // NOI18N
         jButton3.setText("Step");
         jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton3MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton3MouseReleased(evt);
             }
         });
 
@@ -187,9 +190,15 @@ public class EventSelect extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
-        StepPopupMenu selector = new StepPopupMenu(this ,true, evt.getXOnScreen(), evt.getYOnScreen());
-    }//GEN-LAST:event_jButton3MouseClicked
+    private void jButton3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MousePressed
+            StepListPopup steps = new StepListPopup(this);
+            steps.show(jButton3, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton3MousePressed
+
+    private void jButton3MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseReleased
+            StepListPopup steps = new StepListPopup(this);
+            steps.show(jButton3, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton3MouseReleased
     
     public void callEvent(int type){
         if(listener!=null)
