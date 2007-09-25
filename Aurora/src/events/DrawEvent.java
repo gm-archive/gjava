@@ -15,16 +15,16 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class CreateEvent extends Event{
+public class DrawEvent extends Event{
     
     ImageIcon icon;
-    public CreateEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/create.png"));
+    public DrawEvent(){
+        icon = new ImageIcon(getClass().getResource("/resources/events/draw.png"));
     }
     
     @Override
     public String toString(){
-        return "Create";
+        return "Draw";
     }
     
     @Override

@@ -25,6 +25,9 @@ public class EventListModel extends AbstractListModel{
     public Object getElementAt(int pos){
         return eventlist.get(pos);
     }
+    public ImageIcon getImageAt(int pos){
+        return eventlist.get(pos).getImage();
+    }
     public int getSize(){
         return eventlist.size();
     }

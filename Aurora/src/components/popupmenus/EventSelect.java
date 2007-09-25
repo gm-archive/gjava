@@ -84,12 +84,27 @@ public class EventSelect extends javax.swing.JDialog {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/events/destroy.png"))); // NOI18N
         jButton2.setText("Destroy");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/events/step.png"))); // NOI18N
         jButton3.setText("Step");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/events/draw.png"))); // NOI18N
         jButton4.setText("Draw");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/events/colision.png"))); // NOI18N
         jButton9.setText("Collision");
@@ -161,9 +176,22 @@ public class EventSelect extends javax.swing.JDialog {
         callEvent(EventSelectListener.CREATE);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        callEvent(EventSelectListener.DESTROY);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        callEvent(EventSelectListener.DRAW);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        StepPopupMenu selector = new StepPopupMenu(this ,true, evt.getXOnScreen(), evt.getYOnScreen());
+    }//GEN-LAST:event_jButton3MouseClicked
     
-    private void callEvent(int type){
-        System.out.println("!");
+    public void callEvent(int type){
         if(listener!=null)
             listener.eventSelected(type);
     }

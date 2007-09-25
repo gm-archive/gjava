@@ -15,16 +15,16 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class CreateEvent extends Event{
+public class EndStepEvent extends Event{
     
     ImageIcon icon;
-    public CreateEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/create.png"));
+    public EndStepEvent(){
+        icon = new ImageIcon(getClass().getResource("/resources/events/step.png"));
     }
     
     @Override
     public String toString(){
-        return "Create";
+        return "End Step";
     }
     
     @Override

@@ -18,6 +18,8 @@ public interface EventSelectListener {
     public static int BEGINSTEP = 1;
     public static int STEP = 2;
     public static int ENDSTEP = 3;
+    public static int DESTROY = 4;
+    public static int DRAW = 5;
     
     public void eventSelected(int type);
 }
