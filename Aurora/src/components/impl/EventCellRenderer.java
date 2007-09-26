@@ -12,8 +12,8 @@ package components.impl;
 import javax.swing.*;
 import java.awt.*;
         
-public class MyCellRenderer extends JLabel implements ListCellRenderer {
-     public MyCellRenderer() {
+public class EventCellRenderer extends JLabel implements ListCellRenderer {
+     public EventCellRenderer() {
          setOpaque(true);
      }
 

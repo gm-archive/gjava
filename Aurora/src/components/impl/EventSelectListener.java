@@ -14,7 +14,7 @@ package components.impl;
  * @author Luís
  */
 public interface EventSelectListener {
-    public static int CREATE = 0;
+    public static /* not final */ int CREATE = 0;
     public static int BEGINSTEP = 1;
     public static int STEP = 2;
     public static int ENDSTEP = 3;
@@ -23,15 +23,15 @@ public interface EventSelectListener {
     public static int MOUSELEFTCLICKED = 6;
     public static int MOUSELEFTPRESSED = 7;
     public static int MOUSELEFTRELEASED = 8;
-    public static int GLOBALLEFTMOUSECLICKED = 9;
-    public static int GLOBALLEFTMOUSEPRESSED = 10;
-    public static int GLOBALLEFTMOUSERELEASED = 11;
+    public static int GLOBALMOUSELEFTCLICKED = 9;
+    public static int GLOBALMOUSELEFTPRESSED = 10;
+    public static int GLOBALMOUSELEFTRELEASED = 11;
     public static int MOUSERIGHTCLICKED = 12;
     public static int MOUSERIGHTPRESSED = 13;
     public static int MOUSERIGHTRELEASED = 14;
-    public static int GLOBALRIGHTMOUSECLICKED = 15;
-    public static int GLOBALRIGHTMOUSEPRESSED = 16;
-    public static int GLOBALRIGHTMOUSERELEASED = 17;
+    public static int GLOBALMOUSERIGHTCLICKED = 15;
+    public static int GLOBALMOUSERIGHTPRESSED = 16;
+    public static int GLOBALMOUSERIGHTRELEASED = 17;
     public static int MOUSEOVER = 18;
     public static int MOUSEOUT = 19;
     

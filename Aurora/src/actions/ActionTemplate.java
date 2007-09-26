@@ -8,9 +8,7 @@
 
 package actions;
 
-import java.awt.Image;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /**
  * All Actions must extend this class
@@ -51,7 +49,7 @@ public class ActionTemplate extends JPanel {
         return "";
     }
     
-    public Image getImage()
+    public ImageIcon getImage()
     {
         return null;
     }
