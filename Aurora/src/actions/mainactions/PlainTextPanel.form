@@ -32,9 +32,9 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextPane" name="comment">
+        <Component class="javax.swing.JTextPane" name="text">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Some Comment"/>
+            <Property name="text" type="java.lang.String" value="Some Text"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

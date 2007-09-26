@@ -10,10 +10,10 @@ package actions.mainactions;
  *
  * @author  Luís
  */
-public class CommentPanel extends javax.swing.JPanel {
+public class PlainTextPanel extends javax.swing.JPanel {
     
     /** Creates new form CommentPanel */
-    public CommentPanel() {
+    public PlainTextPanel() {
         initComponents();
     }
     
@@ -26,10 +26,10 @@ public class CommentPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        comment = new javax.swing.JTextPane();
+        text = new javax.swing.JTextPane();
 
-        comment.setText("Some Comment");
-        jScrollPane1.setViewportView(comment);
+        text.setText("Some Text");
+        jScrollPane1.setViewportView(text);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -45,8 +45,8 @@ public class CommentPanel extends javax.swing.JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextPane comment;
     private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JTextPane text;
     // End of variables declaration//GEN-END:variables
     
 }

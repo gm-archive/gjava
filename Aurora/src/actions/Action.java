@@ -27,7 +27,8 @@ public class Action {
     
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
-        panel = pattern.createNewPanel(this);
+        if(pattern!=null)
+            panel = pattern.createNewPanel(this);
     }
     
     public ImageIcon getImage(){

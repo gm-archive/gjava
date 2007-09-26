@@ -19,6 +19,7 @@ import javax.swing.*;
 import exceptions.*;
 import events.*;
 import actions.*;
+import actions.mainactions.StartOfABlock;
 
 /**
  *
@@ -38,6 +39,7 @@ public class ActorEditor extends TabPanel {
     }
     
     Vector<ActionPattern> patterns = new Vector<ActionPattern>();
+    DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     
     /** Creates new form ActorEditor2 */
     public ActorEditor(fileclass.File file,Project project) throws WrongResourceException{
@@ -64,6 +66,8 @@ public class ActorEditor extends TabPanel {
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));
         jComboBox1.setRenderer(new ActionListCellRenderer());
+        jList2.setCellRenderer(new ActionsCellRenderer());
+        jList2.setModel(actmodel);
         
         //setup resource menu's
         jPanel13.setLayout(new FlowLayout());
@@ -202,12 +206,22 @@ public class ActorEditor extends TabPanel {
 
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList2.setDragEnabled(true);
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
         jScrollPane2.setViewportView(jList2);
 
         jSplitPane3.setRightComponent(jScrollPane2);
 
         jList1.setModel(elist);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton5.setText("Add event");
@@ -251,6 +265,11 @@ public class ActorEditor extends TabPanel {
         jSplitPane2.setLeftComponent(jPanel4);
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -473,9 +492,9 @@ public class ActorEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void event(int type){
-        System.out.println("Add");
-        if(type==EventSelectListener.CREATE)
+        if(type==EventSelectListener.CREATE){
             elist.add(new CreateEvent());
+        }
         if(type==EventSelectListener.DESTROY)
             elist.add(new DestroyEvent());
         if(type==EventSelectListener.DRAW)
@@ -490,6 +509,16 @@ public class ActorEditor extends TabPanel {
             elist.add(new events.MouseEvent(type));
         jScrollPane1.updateUI();
         jList1.updateUI();
+        updateActionList();
+    }
+    
+    public void updateActionList(){
+        actmodel.removeAllElements();
+        if(jList1.getSelectedValue()==null)
+            return;
+        Vector<actions.Action> actions = ((events.Event) jList1.getSelectedValue()).actions;
+        for(int i = 0; i < actions.size(); i++)
+            actmodel.addElement(actions.get(i));
     }
     
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
@@ -535,6 +564,27 @@ public class ActorEditor extends TabPanel {
     private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
         jButton5MouseClicked(evt);
     }//GEN-LAST:event_jButton5MouseReleased
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        updateActionList();
+        jScrollPane3.setViewportView(null);
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jList1.getSelectedValue()==null)
+            return;
+        if(jComboBox1.getSelectedItem()==null)
+            return;
+        actions.Action a = new actions.Action(this, (actions.ActionPattern) jComboBox1.getSelectedItem());
+        ((events.Event) jList1.getSelectedValue()).actions.add(a);
+        updateActionList();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        if(jList2.getSelectedValue()==null)
+            return;
+        jScrollPane3.setViewportView(((actions.Action) jList2.getSelectedValue()).getPanel());
+    }//GEN-LAST:event_jList2ValueChanged
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -550,7 +600,7 @@ public class ActorEditor extends TabPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
+    public javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
@@ -570,7 +620,7 @@ public class ActorEditor extends TabPanel {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
     
-    class Value
+    /*class Value
     {
     //value is the event name
         public String value,img;
@@ -584,9 +634,9 @@ public class ActorEditor extends TabPanel {
             
         }
         
-    }
+    }*/
     
-    class SimpleCellRenderer extends JLabel implements ListCellRenderer
+    /*class SimpleCellRenderer extends JLabel implements ListCellRenderer
     {
         public SimpleCellRenderer()
         {
@@ -605,6 +655,6 @@ public class ActorEditor extends TabPanel {
         }
         
         
-    }
+    }*/
 }
     

@@ -18,9 +18,9 @@ import java.util.*;
  * @author Luís
  */
 public class Event {
-    public Vector<Action> actions;
+    public Vector<actions.Action> actions;
     public Event(){
-        actions = new Vector<Action>();
+        actions = new Vector<actions.Action>();
     }
     public ImageIcon getImage(){
         return null;
