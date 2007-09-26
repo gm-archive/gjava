@@ -169,8 +169,9 @@ public class SettingsIO {
         }
         catch(Exception e)
         {
-            addError(32);
-            addStringFormatedMessage(e.getMessage(), null, false);
+            //the following 2 lines are out to make it run!
+          //  addError(32);
+           // addStringFormatedMessage(e.getMessage(), null, false);
             return null;
         }
     }
