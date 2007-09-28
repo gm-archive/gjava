@@ -17,9 +17,9 @@ import java.util.Vector;
  */
 public class Actor extends Resource {
 public boolean visible, solid, persistant;
-public String name,sprite,extend,mask;
+public String sprite,extend,mask;
 public int index,depth;
-public Vector events;
+public Vector<events.Event> events;
   public  Actor(String name)
     {
         this.name = name;
@@ -32,6 +32,8 @@ public Vector events;
       xml += "<Solid>"+solid+"</Solid>\n";
       xml += "<Visible>"+visible+"</Visible>\n";
       xml += "<Persistant>"+solid+"</Persistant>\n";
+      for(events.Event event : events)
+          xml += event.writeXml();
       return xml;
   }
     

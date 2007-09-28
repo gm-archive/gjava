@@ -19,7 +19,6 @@ import javax.swing.*;
 import exceptions.*;
 import events.*;
 import actions.*;
-import actions.mainactions.StartOfABlock;
 
 /**
  *
@@ -44,15 +43,18 @@ public class ActorEditor extends TabPanel {
     /** Creates new form ActorEditor2 */
     public ActorEditor(fileclass.File file,Project project) throws WrongResourceException{
         this.project = project;
-        if(file.value==null)
+        if(file.value==null){
             this.actor = new Actor(file.name);
+            file.value = actor;
+            actor.events = new Vector<events.Event>();
+        }
         else
             if(file.value instanceof Actor)
                 this.actor = (Actor) file.value;
             else
                 throw new WrongResourceException();
         this.file = file;
-        elist = new EventListModel();
+        elist = new EventListModel(file);
         initComponents();
         try{
             jTextField1.setText(file.name);

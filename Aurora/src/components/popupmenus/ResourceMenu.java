@@ -23,7 +23,7 @@ import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
@@ -38,14 +38,18 @@ import managers.*;
 public class ResourceMenu extends JPanel implements MouseListener,
 		ActionListener {
     public String kind;
-    public JLabel label;
+    public JTextField label;
     JButton button;
     JPopupMenu pm;
     JMenuItem noresource;
     JMenu res;
     Project pro;
 
-    public ResourceMenu(String kind, String def, boolean showDef, Project pro)
+    public ResourceMenu(String kind, String def, boolean showDef, Project pro){
+        this(kind,def,showDef,pro,false);
+    }
+    
+    public ResourceMenu(String kind, String def, boolean showDef, Project pro, boolean allowCustom)
     {
         this.pro = pro;
         this.kind = kind;
@@ -54,9 +58,10 @@ public class ResourceMenu extends JPanel implements MouseListener,
 		gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		gbc.weightx = 1.0;
-		label = new JLabel(def);
+		label = new JTextField(def);
 		label.setBorder(BorderFactory.createEtchedBorder());
 		label.addMouseListener(this);
+                label.setEnabled(allowCustom);
 		add(label,gbc);
 		gbc = new GridBagConstraints();
 		button = new JButton("...");
@@ -165,7 +170,8 @@ public class ResourceMenu extends JPanel implements MouseListener,
     public void actionPerformed(ActionEvent e) {
        label.setText(e.getActionCommand());
         for(ActionListener listen : listeners){
-            listen.actionPerformed(e);
+            if(listen!=null)
+                listen.actionPerformed(e);
         }
     }
     

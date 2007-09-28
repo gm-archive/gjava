@@ -66,4 +66,14 @@ public class Action {
     public Color getSelectedForeground(){
         return pattern.getSelectedForeground();
     }
+    
+    public String writeXml(){
+        String xml = "<action>\n";
+        xml += "<type>";
+        xml += pattern.getClass().getName();
+        xml += "</type>";
+        xml += pattern.writeXml(panel);
+        xml += "</action>\n";
+        return xml;
+    }
 }

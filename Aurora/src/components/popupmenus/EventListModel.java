@@ -12,29 +12,30 @@ package components.popupmenus;
 import java.util.*;
 import javax.swing.*;
 import events.*;
+import fileclass.res.Actor;
 
 /**
  *
  * @author Luís
  */
 public class EventListModel extends AbstractListModel{
-    private Vector<Event> eventlist;
-    public EventListModel(){
-        eventlist = new Vector<Event>();
+    fileclass.res.Actor val;
+    public EventListModel(fileclass.File file){
+        val = (fileclass.res.Actor) file.value;
     }
     public Object getElementAt(int pos){
-        return eventlist.get(pos);
+        return val.events.get(pos);
     }
     public ImageIcon getImageAt(int pos){
-        return eventlist.get(pos).getImage();
+        return val.events.get(pos).getImage();
     }
     public int getSize(){
-        return eventlist.size();
+        return val.events.size();
     }
     public void add(Event event){
-        eventlist.add(event);
+        val.events.add(event);
     }
     public void remove(Event event){
-        eventlist.remove(event);
+        val.events.remove(event);
     }
 }

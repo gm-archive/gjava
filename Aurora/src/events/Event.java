@@ -43,4 +43,11 @@ public class Event {
     public boolean allowsOther(){ //Collision
         return false;
     }
+    public String writeXml(){
+        String xml = "<event>\n";
+        for(actions.Action action : actions)
+            xml += action.writeXml();
+        xml += "</event>\n";
+        return xml;
+    }
 }

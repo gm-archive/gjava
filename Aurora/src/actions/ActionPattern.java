@@ -57,4 +57,8 @@ public class ActionPattern {
     public Color getSelectedForeground(){
         return Color.WHITE;
     }
+    
+    public String writeXml(JPanel panel){
+        return "";
+    }
 }

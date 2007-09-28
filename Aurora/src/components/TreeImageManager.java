@@ -10,6 +10,7 @@
 package components;
 
 import core.aurora;
+import fileclass.ExtensionProject;
 import units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
@@ -26,10 +27,22 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     boolean logfileDeleted;
     public ImageIcon workspace;
     public ImageIcon text;
+    public ImageIcon image;
+    public ImageIcon java;
+    public ImageIcon actor;
+    public ImageIcon project_game;
+    public ImageIcon project_pkg;
+    public ImageIcon project_ext;
 
     public TreeImageManager() {
         workspace = new ImageIcon(getClass().getResource("/resources/workspace.png"));
-        text = new ImageIcon(getClass().getResource("/resources/txt.png"));
+        text = new ImageIcon(getClass().getResource("/resources/text.png"));
+        image = new ImageIcon(getClass().getResource("/resources/img.png"));
+        java = new ImageIcon(getClass().getResource("/resources/java.png"));
+        actor = new ImageIcon(getClass().getResource("/resources/actor.png"));
+        project_game = new ImageIcon(getClass().getResource("/resources/game.png"));
+        project_pkg = new ImageIcon(getClass().getResource("/resources/package.png"));
+        project_ext = new ImageIcon(getClass().getResource("/resources/extension.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {
@@ -82,13 +95,29 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
             if(noder.object instanceof fileclass.File)
                 if(((fileclass.File) noder.object).type.equals("txt"))
                     setIcon(text);
+                else if(((fileclass.File) noder.object).type.equals("gif"))
+                    setIcon(image);
+                else if(((fileclass.File) noder.object).type.equals("jpg"))
+                    setIcon(image);
+                else if(((fileclass.File) noder.object).type.equals("png"))
+                    setIcon(image);
+                else if(((fileclass.File) noder.object).type.equals("java"))
+                    setIcon(java);
+                else if(((fileclass.File) noder.object).type.equals("actor"))
+                    setIcon(actor);
                 else
                     if(UIManager.get("Tree.leafIcon")!=null)
                         setIcon((Icon) UIManager.get("Tree.leafIcon"));
                     else
                         setIcon(null);
             else{
-                if(bExpanded)
+                if(noder.object instanceof fileclass.GameProject)
+                    setIcon(project_game);
+                else if(noder.object instanceof fileclass.PackageProject)
+                    setIcon(project_pkg);
+                else if(noder.object instanceof fileclass.ExtensionProject)
+                    setIcon(project_ext);
+                else if(bExpanded)
                     if(UIManager.get("Tree.openIcon")!=null)
                         setIcon((Icon) UIManager.get("Tree.openIcon"));
                     else

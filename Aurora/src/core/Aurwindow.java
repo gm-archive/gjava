@@ -27,7 +27,7 @@ import exceptions.*;
 import externproject.*;
 import fileclass.*;
 import editors.*;
-import fileclass.res.Actor;
+import fileclass.res.*;
 import plugins.*;
 import components.popupmenus.*;
 import fileclass.res.Scene;
@@ -101,16 +101,16 @@ public class Aurwindow extends JFrame {
         int iii = 0;
         int foundloc = 0;
         if (file.type.equals("sprite")) {
-            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
-                if (((Actor) e.nextElement()).name.equals(file.name)) {
+            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
+                if (((Sprite) e.nextElement()).name.equals(file.name)) {
                     found = true;
                     foundloc = iii;
                 }
                 iii++;
             }
             if (!found) {
-                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor(""/*, getCurrentProject().actors.size() + 1*/));
-                foundloc = getCurrentProject().actors.size() + 1;
+                getCurrentProject().sprites.add(/*getCurrentProject().sprites.size() + 1, */new Sprite(file.name/*"", getCurrentProject().actors.size() + 1*/));
+                foundloc = getCurrentProject().sprites.size() + 1;
             }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("actor")) {
@@ -122,7 +122,7 @@ public class Aurwindow extends JFrame {
                 iii++;
             }
             if (!found) {
-                getCurrentProject().actors.add(getCurrentProject().actors.size() + 1, new Actor(""/*, getCurrentProject().actors.size() + 1*/));
+                getCurrentProject().actors.add(/*getCurrentProject().actors.size() + 1, */new Actor(file.name/*, getCurrentProject().actors.size() + 1*/));
                 foundloc = getCurrentProject().actors.size() + 1;
             }
             try{
