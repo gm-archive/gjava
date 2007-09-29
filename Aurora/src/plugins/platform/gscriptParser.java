@@ -1,6 +1,6 @@
 package plugins.platform;
 
-// $ANTLR 3.0.1 C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g 2007-09-09 02:42:11
+//// $ANTLR 3.0.1 C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g 2007-09-09 02:42:11
 
 import org.antlr.runtime.*;
 import java.util.Stack;

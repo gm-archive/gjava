@@ -89,9 +89,9 @@ public class aurora {
             window.menubar.updateUI();
             splash.dispose();
         }
-        if(window!=null){
+        /*if(window!=null){
             SwingUtilities.updateComponentTreeUI(window.consolepopup);
             //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
-        }
+        }*/
     }
 }
