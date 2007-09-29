@@ -63,6 +63,8 @@ public class aurora {
                 LangSupporter.activeLang = new Portuguese();
             } else if (settings[3].equals("German")) {
                 LangSupporter.activeLang = new German();
+            } else if (settings[3].equals("Russian")) {
+                LangSupporter.activeLang = new Russian();
             } else {
                 utilities.addError(36);
             }
