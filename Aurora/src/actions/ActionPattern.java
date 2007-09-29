@@ -22,7 +22,7 @@ public class ActionPattern {
         icon = new ImageIcon();
     }
     
-    public JPanel createNewPanel(Action action){
+    public JComponent createNewPanel(Action action){
         return new JPanel();
     }
     
@@ -34,11 +34,11 @@ public class ActionPattern {
         return icon;
     }
     
-    public String getStandardText(JPanel panel){
+    public String getStandardText(JComponent panel){
         return "";
     }
     
-    public String generateEGML(JPanel panel){
+    public String generateEGML(JComponent panel){
         return "";
     }
     
@@ -58,7 +58,7 @@ public class ActionPattern {
         return Color.WHITE;
     }
     
-    public String writeXml(JPanel panel){
+    public String writeXml(JComponent panel){
         return "";
     }
 }

@@ -24,12 +24,12 @@ public class StartOfABlock extends ActionPattern{
     }
     
     @Override
-    public String getStandardText(JPanel panel){
+    public String getStandardText(JComponent panel){
         return "Begin block";
     }
     
     @Override
-    public String generateEGML(JPanel panel){
+    public String generateEGML(JComponent panel){
         return "{";
     }
 }

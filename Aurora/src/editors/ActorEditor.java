@@ -64,6 +64,7 @@ public class ActorEditor extends TabPanel {
         patterns.add(new actions.mainactions.StartOfABlock(this));
         patterns.add(new actions.mainactions.EndOfABlock(this));
         patterns.add(new actions.mainactions.Comment(this));
+        patterns.add(new actions.mainactions.ExecuteCode(this));
         
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));

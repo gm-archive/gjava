@@ -38,7 +38,7 @@ public Vector<events.Event> events;
   }
     
     @Override
-    public void readXml() {
+    public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

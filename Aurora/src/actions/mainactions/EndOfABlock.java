@@ -24,12 +24,12 @@ public class EndOfABlock extends ActionPattern{
     }
     
     @Override
-    public String getStandardText(JPanel panel){
+    public String getStandardText(JComponent panel){
         return "End block";
     }
     
     @Override
-    public String generateEGML(JPanel panel){
+    public String generateEGML(JComponent panel){
         return "}";
     }
 }

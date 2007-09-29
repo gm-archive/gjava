@@ -19,7 +19,7 @@ import editors.*;
  */
 public class Action {
     public ActionPattern pattern;
-    private JPanel panel;
+    private JComponent panel;
     
     public Action(ActorEditor editor){
         this(editor, null);
@@ -43,7 +43,7 @@ public class Action {
         this.panel = panel;
     }
     
-    public JPanel getPanel(){
+    public JComponent getPanel(){
         return panel;
     }
     

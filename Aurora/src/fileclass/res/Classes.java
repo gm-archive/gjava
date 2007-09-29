@@ -21,7 +21,7 @@ public class Classes extends Resource {
     }
 
     @Override
-    public void readXml() {
+    public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

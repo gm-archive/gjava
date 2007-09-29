@@ -17,5 +17,5 @@ public abstract class Resource {
     public String name;
     
     public abstract String writeXml();
-    public abstract void readXml();
+    public abstract void readXml(String xml);
 }

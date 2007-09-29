@@ -68,5 +68,5 @@ public class SettingsValues extends Resource{
         return "";
     }
     
-    public void readXml(){}
+    public void readXml(String xml){}
 }

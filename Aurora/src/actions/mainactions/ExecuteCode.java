@@ -13,22 +13,23 @@ import actions.*;
 import editors.*;
 import javax.swing.*;
 import java.awt.event.*;
+import components.*;
 
 /**
  *
  * @author Luís
  */
-public class Comment extends ActionPattern{
+public class ExecuteCode extends ActionPattern{
     ActorEditor context;
-    public Comment(ActorEditor context){
+    public ExecuteCode(ActorEditor context){
         super(context);
         this.context = context;
-        setStandardImage(new ImageIcon(getClass().getResource("/actions/images/comment.png")));
+        setStandardImage(new ImageIcon(getClass().getResource("/actions/images/Execute_Code.png")));
     }
     
     @Override
     public JComponent createNewPanel(actions.Action action){
-        PlainTextPanel panel = new PlainTextPanel();
+        EGMLTextArea panel = new EGMLTextArea("//Some EGML Code");
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -46,13 +47,13 @@ public class Comment extends ActionPattern{
     @Override
     public String getStandardText(JComponent panel){
         if(panel!=null)
-            return ((PlainTextPanel) panel).text.getText();
+            return ((EGMLTextArea) panel).getText();
         else
-            return "Comment";
+            return "Execute EGML Code";
     }
     
     @Override
     public String generateEGML(JComponent panel){
-        return ""; //It could generate a comment, but why should it?
+        return ((EGMLTextArea) panel).getText();
     }
 }

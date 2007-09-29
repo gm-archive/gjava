@@ -16,10 +16,9 @@ package fileclass.res;
 public class Sprite extends Resource {
 public String images[];
 public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
-public String name;
 public Sprite(String name)
 {
-    this.name =name;
+    this.name = name;
 }
 
     @Override
@@ -28,7 +27,7 @@ public Sprite(String name)
     }
 
     @Override
-    public void readXml() {
+    public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
