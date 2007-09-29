@@ -69,4 +69,9 @@ public class SettingsValues extends Resource{
     }
     
     public void readXml(String xml){}
+    
+    @Override
+    public String exportToHtml(boolean xhtml){
+        return "";
+    }
 }

@@ -18,4 +18,5 @@ public abstract class Resource {
     
     public abstract String writeXml();
     public abstract void readXml(String xml);
+    public abstract String exportToHtml(boolean xhtml);
 }

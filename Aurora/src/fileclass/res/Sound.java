@@ -25,4 +25,8 @@ public class Sound extends Resource {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Override
+    public String exportToHtml(boolean xhtml){
+        return "";
+    }
 }

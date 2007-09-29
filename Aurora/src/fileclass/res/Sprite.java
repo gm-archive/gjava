@@ -30,4 +30,9 @@ public Sprite(String name)
     public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    
+    @Override
+    public String exportToHtml(boolean xhtml){
+        return "";
+    }
 }
