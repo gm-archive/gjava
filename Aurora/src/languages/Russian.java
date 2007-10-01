@@ -20,7 +20,7 @@ public class Russian extends Dictionary{
         entry[1] = "Изменения";
         entry[2] = "Взгляд";
         entry[3] = "Строить&Старт";
-        entry[4] = "Помощ";
+        entry[4] = "Помощь";
         entry[5] = "Новый Проект";
         entry[6] = "Новый File/Group";
         entry[7] = "Открыть Проект";

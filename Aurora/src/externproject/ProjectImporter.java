@@ -102,11 +102,14 @@ public class ProjectImporter {
         Aurwindow.workspace.updateUI();
     }
     
+    private static JFileChooser fc = new JFileChooser();
+    static{
+        fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
+    }
+    
     public static void OpenProject(Component caller) {
         try {
             //open project
-            JFileChooser fc = new JFileChooser();
-            fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             fc.showOpenDialog(caller);
             java.io.File file = fc.getSelectedFile();
             if (file == null) {

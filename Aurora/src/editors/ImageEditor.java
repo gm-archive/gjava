@@ -19,33 +19,32 @@ public class ImageEditor extends TabPanel {
     
     /** Creates new form ImageEditor */
     private fileclass.File file;
-    private boolean changed = false;
+    
+    private ImageDisplayer displayer;
     
     public ImageEditor(fileclass.File file,Project project) {
         this.project = project;
         this.file = file;
-        
+        displayer = new ImageDisplayer(file);
         initComponents();
-        if(file.value instanceof Icon){
-            jLabel1.setIcon((ImageIcon) file.value);
-        }
+        
+        jScrollPane1.setViewportView(displayer);
+        
         jTextField1.setText(file.name);
     }
     
     @Override
     public boolean wasModified(){
-        return changed;
+        return false;
     }
     
     @Override
     public boolean canSave(){
-        return true;
+        return false; //Not needed
     }
         
     @Override
     public boolean Save(){
-        file.value = (ImageIcon) jLabel1.getIcon();
-        changed = false;
         return true;
     }
     
@@ -84,14 +83,9 @@ public class ImageEditor extends TabPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-
-        jFileChooser1.setDialogTitle("Select a file");
-        jFileChooser1.setDragEnabled(true);
 
         jButton1.setText(managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,9 +95,6 @@ public class ImageEditor extends TabPanel {
         });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jScrollPane1.setViewportView(jLabel1);
 
         jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,14 +137,17 @@ public class ImageEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    public static JFileChooser jFileChooser1 = new JFileChooser();
+    
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
         jFileChooser1.showDialog(this, "OK");
         if(jFileChooser1.getSelectedFile()!=null){
             java.io.File _file = jFileChooser1.getSelectedFile();
             file.type = _file.getName().substring(_file.getName().lastIndexOf(".")+1);
-            file.value = new ImageIcon(_file.getPath());
-            jLabel1.setIcon((ImageIcon) file.value);
+            file.value = new ImageIcon(_file.toURI().toURL());
+            jScrollPane1.updateUI();
             System.out.println(file.name + "." + file.type);
         }
         }
@@ -173,8 +167,6 @@ public class ImageEditor extends TabPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

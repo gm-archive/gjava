@@ -11,8 +11,9 @@ import components.SubimagePreview;
 import components.TabPanel;
 import fileclass.Project;
 import fileclass.res.Sprite;
-import java.awt.FlowLayout;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import javax.swing.*;
 
 /**
  *
@@ -424,6 +425,27 @@ public class SpriteEditor extends TabPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
     
+    public int getViewedId(){
+        try{
+            return Integer.parseInt(jTextField2.getText());
+        }
+        catch(Throwable t){
+            return -1;
+        }
+    }
+    
+    public void setViewedId(int id){
+        jTextField2.setText("" + id);
+        jScrollPane1.updateUI();
+    }
+    
+    public ImageIcon getImageAt(int id){
+        return null;
+    }
+    
+    public ImageIcon getCurrentImage(){
+        return getImageAt(getViewedId());
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
