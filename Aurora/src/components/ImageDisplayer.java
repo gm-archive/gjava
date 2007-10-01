@@ -17,6 +17,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
     
     /** Creates new form ImageDisplayer */
     private fileclass.File file;
+    public double zoom = 1;
     
     public ImageDisplayer(fileclass.File file) {
         initComponents();
@@ -27,14 +28,14 @@ public class ImageDisplayer extends javax.swing.JPanel {
     public int getWidth(){
         if(file.value==null)
             return 0;
-        return ((ImageIcon) file.value).getIconWidth();
+        return (int) (((ImageIcon) file.value).getIconWidth() * zoom);
     }
     
     @Override
     public int getHeight(){
         if(file.value==null)
             return 0;
-        return ((ImageIcon) file.value).getIconHeight();
+        return (int) (((ImageIcon) file.value).getIconHeight() * zoom);
     }
     
     @Override
@@ -59,7 +60,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
             isBlack = !isNBlack;
         }
         if(file.value!=null)
-            g.drawImage(((ImageIcon) file.value).getImage(), 0, 0, ((ImageIcon) file.value).getImageObserver());
+            g.drawImage(((ImageIcon) file.value).getImage(), 0, 0, getWidth(), getHeight(), ((ImageIcon) file.value).getImageObserver());
     }
     
     /*@Override

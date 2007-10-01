@@ -86,6 +86,8 @@ public class ImageEditor extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
 
         jButton1.setText(managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +110,14 @@ public class ImageEditor extends TabPanel {
             }
         });
 
+        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(119));
+
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,7 +131,11 @@ public class ImageEditor extends TabPanel {
                         .addContainerGap()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 247, Short.MAX_VALUE)))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -129,8 +143,10 @@ public class ImageEditor extends TabPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
                 .addContainerGap())
@@ -163,11 +179,44 @@ public class ImageEditor extends TabPanel {
         file.name = jTextField1.getText();
         core.Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        updateScroll();
+    }//GEN-LAST:event_jSpinner1StateChanged
     
+    public void updateScroll(){
+        System.out.println("Update");
+        if(((Integer) jSpinner1.getValue()) > 5)
+            jSpinner1.setValue(5);
+        else if(((Integer) jSpinner1.getValue()) < -5)
+            jSpinner1.setValue(-5);
+        displayer.zoom = getZoom();
+        displayer.updateUI();
+        jScrollPane1.updateUI();
+    }
+    
+    public double getZoom(){
+        int x = ((Integer) jSpinner1.getValue()).intValue();
+        switch(x){
+        case 5: return 6;
+        case 4: return 5;
+        case 3: return 4;
+        case 2: return 3;
+        case 1: return 2;
+        case 0: return 1;
+        case -1: return 0.5;
+        case -2: return 0.33;
+        case -3: return 0.25;
+        case -4: return 0.2;
+        default: return 0.16;
+        }
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
