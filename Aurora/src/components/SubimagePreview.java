@@ -40,7 +40,7 @@ public class SubimagePreview extends JPanel {
                 if (isBlack = !isBlack) {
                     g.setColor(Color.WHITE);
                 } else {
-                    g.setColor(Color.BLACK);
+                    g.setColor(Color.LIGHT_GRAY);
                 }
                 g.fillRect(i * 10 + 1, j * 10 + 1, 10, 10);
             }
@@ -54,11 +54,15 @@ public class SubimagePreview extends JPanel {
     
     @Override
     public int getWidth(){
+        if(editor.getCurrentImage()==null)
+            return 0;
         return editor.getCurrentImage().getIconWidth();
     }
     
     @Override
     public int getHeight(){
+        if(editor.getCurrentImage()==null)
+            return 0;
         return editor.getCurrentImage().getIconHeight();
     }
     

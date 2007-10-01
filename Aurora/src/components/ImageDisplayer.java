@@ -54,7 +54,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
                 if((isBlack=!isBlack))
                     g.setColor(Color.WHITE);
                 else
-                    g.setColor(Color.BLACK);
+                    g.setColor(Color.LIGHT_GRAY);
                 g.fillRect(i * 10 + 1, j * 10 + 1, 10, 10);
             }
             isBlack = !isNBlack;

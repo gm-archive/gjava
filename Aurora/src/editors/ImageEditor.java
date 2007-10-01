@@ -153,10 +153,12 @@ public class ImageEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static JFileChooser jFileChooser1 = new JFileChooser();
+    public static JFileChooser jFileChooser1 = null;
     
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(jFileChooser1==null)
+            jFileChooser1 = new JFileChooser();
         try{
         jFileChooser1.showDialog(this, "OK");
         if(jFileChooser1.getSelectedFile()!=null){
