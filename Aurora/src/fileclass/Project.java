@@ -26,7 +26,6 @@ public class Project extends Folder{
     public String location; //If project "Alfa" is in "C:/Program Files/Alfa", leave only "C:/Program Files/";
     
     //The following vectors are for saving, getting resouces etc
-    public Vector<Image> images = new Vector<Image>();
     public Vector<Actor> actors = new Vector<Actor>();
     public Vector<Sprite> sprites = new Vector<Sprite>(); 
     public Vector<Sound> sounds = new Vector<Sound>();

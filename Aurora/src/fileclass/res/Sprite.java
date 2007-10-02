@@ -9,18 +9,32 @@
 
 package fileclass.res;
 
+import java.util.Vector;
+import javax.swing.*;
+
 /**
  *
  * @author Ali1
  */
 public class Sprite extends Resource {
-public String images[];
-public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
-public Sprite(String name)
-{
-    this.name = name;
-}
+    public Vector<ImageIcon> images;
+    public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
+    public Sprite(String name)
+    {
+        this.name = name;
+        images = new Vector<ImageIcon>();
+    }
 
+    public ImageIcon getImageAt(int pos){
+        if(pos>=images.size())
+            return null;
+        return images.elementAt(pos);
+    }
+    
+    public void addToList(ImageIcon i){
+        images.add(i);
+    }
+    
     @Override
     public String writeXml() {
         throw new UnsupportedOperationException("Not supported yet.");

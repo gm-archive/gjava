@@ -36,8 +36,7 @@ Contributions:
         Most graphics
     DABAB
         Some action graphics
-    http://forum.java.sun.com/thread.jspa?threadID=755439&messageID=4316522
-        Tree Image handling
+    Tree Image handling based on http://forum.java.sun.com/thread.jspa?threadID=755439&messageID=4316522
 
 For more detailed information about the languages check the language itself.
 

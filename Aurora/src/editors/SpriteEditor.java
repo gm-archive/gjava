@@ -22,9 +22,10 @@ import javax.swing.*;
 public class SpriteEditor extends TabPanel {
     
     public fileclass.File file = null;
-    public BufferedImage subimage;
     Sprite sprite;
     boolean changed;
+    
+    ResourceMenu res;
     
     /** Creates new form SpriteEditor */
     public SpriteEditor(fileclass.File file,Project project) {
@@ -33,7 +34,7 @@ public class SpriteEditor extends TabPanel {
         //title = file.name + "(" + project.name+")";
         //if (file.value instanceof Sprite)
         //{
-        this.sprite = file.sp;
+        this.sprite = (Sprite) file.value;
         load();
         System.out.println("Load");
        // }
@@ -49,7 +50,7 @@ public class SpriteEditor extends TabPanel {
         jScrollPane1.setViewportView(new SubimagePreview(this));
         //setup resource menu
         jPanel13.setLayout(new FlowLayout());
-        jPanel13.add(new ResourceMenu("image","<new image>",true,project));
+        jPanel13.add(res = new ResourceMenu("image","<new image>",true,project));
     }
 
     @Override
@@ -61,7 +62,6 @@ public class SpriteEditor extends TabPanel {
         
         sprite.originX=(Integer)jSpinner1.getValue();
         sprite.originY=(Integer)jSpinner2.getValue();
-        file.sp = sprite;
         return true;
     }
 
@@ -77,7 +77,7 @@ public class SpriteEditor extends TabPanel {
             this.sprite = new Sprite(file.name);
             return;
         }
-        System.out.println("Loaing");
+        System.out.println("Loading");
         jSpinner1.setValue(sprite.originX);
         jSpinner2.setValue(sprite.originY);
     }
@@ -213,11 +213,21 @@ public class SpriteEditor extends TabPanel {
         jLabel5.setText("Show:");
 
         jButton3.setText("<");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setEditable(false);
         jTextField2.setText("0");
 
         jButton4.setText(">");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -422,8 +432,18 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        Object o = (((fileclass.File) res.getCurrentObject().object).value);
+        sprite.addToList((ImageIcon) o);
+        jScrollPane1.updateUI();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        setViewedId(getViewedId()+1);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        setViewedId(getViewedId()-1);
+    }//GEN-LAST:event_jButton3ActionPerformed
     
     public int getViewedId(){
         try{
@@ -440,7 +460,7 @@ public class SpriteEditor extends TabPanel {
     }
     
     public ImageIcon getImageAt(int id){
-        return null;
+        return sprite.getImageAt(id);
     }
     
     public ImageIcon getCurrentImage(){
