@@ -9,13 +9,13 @@
 
 package components;
 
-import components.popupmenus.ResourceMenu;
 import javax.swing.*;
 import java.awt.*;
 
 import editors.*;
 import core.*;
 import fileclass.res.*;
+import java.awt.event.*;
 import units.*;
 import java.util.*;
 
@@ -23,10 +23,34 @@ import java.util.*;
  *
  * @author Luís
  */
-public class ScenePanel extends JComponent{
+public class ScenePanel extends JComponent implements MouseListener{
     SceneEditor root;
     public ScenePanel(SceneEditor root){
         this.root = root;
+        this.addMouseListener(this);
+    }
+    
+    public void mouseExited(MouseEvent evt){}
+    public void mouseEntered(MouseEvent evt){}
+    public void mouseReleased(MouseEvent evt){}
+    public void mousePressed(MouseEvent evt){}
+    public void mouseClicked(MouseEvent evt){
+        int a = root.mode();
+        if(a==SceneEditor.INVALID)
+            return;
+        int x = (int) (evt.getX() / root.getZoom());
+        int y = (int) (evt.getY() / root.getZoom());
+        if(a==SceneEditor.ERASE)
+            eraseActorsAt(x, y);
+        if(a==SceneEditor.PENCIL)
+            addActorAt(x, y);
+        root.updateScroll();
+    }
+    
+    public void eraseActorsAt(int x, int y){}
+    public void addActorAt(int x, int y){
+        System.out.println("Add actor at " + x + ", " + y);
+        ((Scene) root.file.value).actors.add(root.makeNewActor(x,y));
     }
     
     @Override
