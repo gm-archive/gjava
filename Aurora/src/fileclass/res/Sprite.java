@@ -19,6 +19,8 @@ import javax.swing.*;
 public class Sprite extends Resource {
     public Vector<ImageIcon> images;
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
+    public boolean precise = true;
+    
     public Sprite(String name)
     {
         this.name = name;
@@ -29,6 +31,10 @@ public class Sprite extends Resource {
         if(pos>=images.size())
             return null;
         return images.elementAt(pos);
+    }
+    
+    public int countImages(){
+        return images.size();
     }
     
     public void addToList(ImageIcon i){

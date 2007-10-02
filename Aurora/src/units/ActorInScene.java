@@ -16,25 +16,12 @@ import java.awt.*;
  * @author Luís
  */
 public class ActorInScene {
-    private fileclass.File actor;
-    private int x;
-    private int y;
+    public fileclass.File actor;
+    public int x;
+    public int y;
     
     public ActorInScene(fileclass.File actor, int x, int y){
         this.actor = actor;
-        this.x = x;
-        this.y = y;
-    }
-    
-    public int getX(){
-        return x;
-    }
-    
-    public int getY(){
-        return y;
-    }
-    
-    public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
     }

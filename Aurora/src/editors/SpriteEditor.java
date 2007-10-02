@@ -12,7 +12,6 @@ import components.TabPanel;
 import fileclass.Project;
 import fileclass.res.Sprite;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 /**
@@ -34,7 +33,11 @@ public class SpriteEditor extends TabPanel {
         //title = file.name + "(" + project.name+")";
         //if (file.value instanceof Sprite)
         //{
-        this.sprite = (Sprite) file.value;
+        if(file.value != null)
+            this.sprite = (Sprite) file.value;
+        else
+            this.sprite = (Sprite) (file.value = new Sprite(file.name));
+        initComponents();
         load();
         System.out.println("Load");
        // }
@@ -42,7 +45,6 @@ public class SpriteEditor extends TabPanel {
 //        {
 //            this.sprite = new Sprite(file.name);
 //        }
-        initComponents();
         try{
             jTextField1.setText(file.name);
         }
@@ -62,6 +64,8 @@ public class SpriteEditor extends TabPanel {
         
         sprite.originX=(Integer)jSpinner1.getValue();
         sprite.originY=(Integer)jSpinner2.getValue();
+        
+        sprite.precise = jCheckBox1.isSelected();
         return true;
     }
 
@@ -80,6 +84,8 @@ public class SpriteEditor extends TabPanel {
         System.out.println("Loading");
         jSpinner1.setValue(sprite.originX);
         jSpinner2.setValue(sprite.originY);
+        
+        jCheckBox1.setSelected(sprite.precise);
     }
     
     /** This method is called from within the constructor to
@@ -364,6 +370,16 @@ public class SpriteEditor extends TabPanel {
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Precise collision checking");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jCheckBox1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jCheckBox1PropertyChange(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -438,12 +454,26 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        setViewedId(getViewedId()+1);
+        int id = getViewedId() + 1;
+        if(id >= sprite.countImages())
+            id = 0;
+        setViewedId(id);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        setViewedId(getViewedId()-1);
+        int id = getViewedId() - 1;
+        if(id < 0)
+            id = Math.max(0, sprite.countImages()-1);
+        setViewedId(id);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        sprite.precise = jCheckBox1.isSelected();
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCheckBox1PropertyChange
+        sprite.precise = jCheckBox1.isSelected();
+    }//GEN-LAST:event_jCheckBox1PropertyChange
     
     public int getViewedId(){
         try{

@@ -109,7 +109,11 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         return getObjectWithName(label.getText());
     }
 
-    public ObjectNode getObjectWithName(String name) {
+    public ObjectNode getObjectWithName(String name){
+        return getObjectWithName(name, kind, pro);
+    }
+    
+    public static ObjectNode getObjectWithName(String name, String kind, Project pro) {
         Enumeration e = pro.node.children();
         if (kind.equals("actor")) {
             e = pro.node.getChildAt(3).children();
@@ -127,7 +131,7 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         return getObjectWithName(name, e);
     }
 
-    private ObjectNode getObjectWithName(String name, Enumeration e) {
+    private static ObjectNode getObjectWithName(String name, Enumeration e) {
         if (e == null) {
             return null;
         }

@@ -9,11 +9,15 @@
 
 package components;
 
+import components.popupmenus.ResourceMenu;
 import javax.swing.*;
 import java.awt.*;
 
 import editors.*;
 import core.*;
+import fileclass.res.*;
+import units.*;
+import java.util.*;
 
 /**
  *
@@ -67,8 +71,24 @@ public class ScenePanel extends JComponent{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         drawField(g);
+        drawActors(g);
         if(root.isGridVisible())
             drawGrid(g);
+    }
+    
+    public void drawActors(Graphics g){
+        Scene scn = (Scene) root.file.value;
+        Enumeration<ActorInScene> e = scn.actors.elements();
+        while(e.hasMoreElements()){
+            ActorInScene a = e.nextElement();
+            fileclass.res.Actor b = (fileclass.res.Actor) a.actor.value;
+            ObjectNode c = components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", root.project);
+            fileclass.File d = (fileclass.File) c.object;
+            fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
+            ImageIcon h = f.getImageAt(0);
+            if(h!=null)
+                g.drawImage(h.getImage(), (int) (a.x * root.getZoom()), (int) (a.y * root.getZoom()), (int) (h.getIconWidth() * root.getZoom()), (int) (h.getIconHeight() * root.getZoom()), h.getImageObserver());
+        }
     }
     
     public void drawField(Graphics g){

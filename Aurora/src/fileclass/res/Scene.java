@@ -9,7 +9,8 @@
 
 package fileclass.res;
 
-import units.ViewsModel;
+import units.*;
+import java.util.*;
 
 /**
  *
@@ -20,10 +21,12 @@ public String caption,code; //name is already on the list
 public int width,height,speed,snapX,snapY;
 public boolean persistant,grid,isometric;
 public ViewsModel views;
+public Vector<ActorInScene> actors;
 
 public Scene(String name)
 {
     this.name = name;
+    actors = new Vector<ActorInScene>();
 }
 
 public String writeXml()
