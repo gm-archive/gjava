@@ -9,6 +9,7 @@
 
 package components;
 
+import components.popupmenus.ResourceMenu;
 import javax.swing.*;
 import java.awt.*;
 
@@ -38,8 +39,8 @@ public class ScenePanel extends JComponent implements MouseListener{
         int a = root.mode();
         if(a==SceneEditor.INVALID)
             return;
-        int x = (int) (evt.getX() / root.getZoom());
-        int y = (int) (evt.getY() / root.getZoom());
+        int x = (int) (evt.getX() * root.getZoom());
+        int y = (int) (evt.getY() * root.getZoom());
         if(a==SceneEditor.ERASE)
             eraseActorsAt(x, y);
         if(a==SceneEditor.PENCIL)
@@ -47,10 +48,21 @@ public class ScenePanel extends JComponent implements MouseListener{
         root.updateScroll();
     }
     
-    public void eraseActorsAt(int x, int y){}
+    public void eraseActorsAt(int x, int y){
+        root.eraseActorsAt(x, y);
+    }
+    
+    public void eraseActorsAt(Rectangle r){
+        root.eraseActorsAt(r);
+    }
+    
     public void addActorAt(int x, int y){
-        System.out.println("Add actor at " + x + ", " + y);
-        ((Scene) root.file.value).actors.add(root.makeNewActor(x,y));
+        ActorInScene act = root.makeNewActor(x,y);
+        if(root.eraseActorsBelow()){
+            Sprite s = (Sprite) ((fileclass.File) ResourceMenu.getObjectWithName(((Actor) act.actor.value).sprite, "sprite", root.project).object).value;
+            root.eraseActorsAt(new Rectangle(x, y, s.images.elementAt(0).getIconWidth(), s.images.elementAt(0).getIconHeight()));
+        }
+        ((Scene) root.file.value).actors.add(act);
     }
     
     @Override
@@ -112,7 +124,7 @@ public class ScenePanel extends JComponent implements MouseListener{
                 fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
                 ImageIcon h = f.getImageAt(0);
                 if(h!=null)
-                    g.drawImage(h.getImage(), (int) (a.x * root.getZoom()), (int) (a.y * root.getZoom()), (int) (h.getIconWidth() * root.getZoom()), (int) (h.getIconHeight() * root.getZoom()), h.getImageObserver());
+                    g.drawImage(h.getImage(), (int) (a.x / root.getZoom()), (int) (a.y / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
             }
         }
     }
