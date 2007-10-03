@@ -107,11 +107,13 @@ public class ScenePanel extends JComponent implements MouseListener{
             ActorInScene a = e.nextElement();
             fileclass.res.Actor b = (fileclass.res.Actor) a.actor.value;
             ObjectNode c = components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", root.project);
-            fileclass.File d = (fileclass.File) c.object;
-            fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
-            ImageIcon h = f.getImageAt(0);
-            if(h!=null)
-                g.drawImage(h.getImage(), (int) (a.x * root.getZoom()), (int) (a.y * root.getZoom()), (int) (h.getIconWidth() * root.getZoom()), (int) (h.getIconHeight() * root.getZoom()), h.getImageObserver());
+            if(c!=null){
+                fileclass.File d = (fileclass.File) c.object;
+                fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
+                ImageIcon h = f.getImageAt(0);
+                if(h!=null)
+                    g.drawImage(h.getImage(), (int) (a.x * root.getZoom()), (int) (a.y * root.getZoom()), (int) (h.getIconWidth() * root.getZoom()), (int) (h.getIconHeight() * root.getZoom()), h.getImageObserver());
+            }
         }
     }
     

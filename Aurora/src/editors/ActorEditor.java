@@ -40,6 +40,12 @@ public class ActorEditor extends TabPanel {
     Vector<ActionPattern> patterns = new Vector<ActionPattern>();
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     
+    ResourceMenu spriteres, extendres, maskres;
+    
+    public void spriteChanged(){
+        ((Actor) file.value).sprite = spriteres.label.getText();
+    }
+    
     /** Creates new form ActorEditor2 */
     public ActorEditor(fileclass.File file,Project project) throws WrongResourceException{
         this.project = project;
@@ -74,11 +80,17 @@ public class ActorEditor extends TabPanel {
         
         //setup resource menu's
         jPanel13.setLayout(new FlowLayout());
-        jPanel13.add(new ResourceMenu("sprite","<no sprite>",true,project));
+        jPanel13.add(spriteres = new ResourceMenu("sprite","<no sprite>",true,project));
+        spriteres.label.setText(actor.sprite);
+        spriteres.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                spriteChanged();
+            }
+        });
         jPanel11.setLayout(new FlowLayout());
-        jPanel11.add(new ResourceMenu("actor","<no actor>",true,project));
+        jPanel11.add(extendres = new ResourceMenu("actor","<no actor>",true,project));
         jPanel12.setLayout(new FlowLayout());
-        jPanel12.add(new ResourceMenu("sprite","<no mask>",true,project));
+        jPanel12.add(maskres = new ResourceMenu("sprite","<no mask>",true,project));
         //load variables
         jCheckBox1.setSelected(actor.visible);
         jCheckBox2.setSelected(actor.solid);
