@@ -37,4 +37,11 @@ public class ViewsModel extends AbstractListModel{
     public int getSize(){
         return 8;
     }
+    
+    public String writeXml(){
+        String xml = "";
+        for(ViewInScene each : view)
+            xml += each.writeXml();
+        return xml;
+    }
 }

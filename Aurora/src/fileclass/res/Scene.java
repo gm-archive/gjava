@@ -17,7 +17,9 @@ import java.util.*;
  * @author Ali1
  */
 public class Scene extends Resource {
-public String caption,code; //name is already on the list
+public String caption = "";
+public String code = "//Do nothing";
+ //name is already on the list
 public int width,height,speed,snapX,snapY;
 public boolean persistant,grid,isometric;
 public ViewsModel views;
@@ -31,7 +33,78 @@ public Scene(String name)
 
 public String writeXml()
   {
-      String xml = "";
+    /*
+     
+     Current format:
+     
+     <scene>
+        <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
+        <code>//Do nothing</code>
+        <dimensions>width, height</dimensions>
+        <preferences>
+            <snap>snapX, snapY</snap>
+            <grid>Visible Isometric</grid>
+        </preferences>
+     </scene>
+     
+     */
+    
+      String xml = "<scene>\n";
+      
+      xml += "\t<caption>";
+      
+      //The caption should be allowed to have 
+      xml += caption
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll("\"", "&quot;")
+              .replaceAll("'", "&apos;")
+              .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
+      
+      xml += "</caption>\n";
+      
+      xml += "\t<code>";
+      
+      //The caption should be allowed to have 
+      xml += code
+              .replaceAll("&", "&amp;")
+              .replaceAll("<", "&lt;")
+              .replaceAll(">", "&gt;")
+              .replaceAll("\"", "&quot;")
+              .replaceAll("'", "&apos;")
+              .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
+      
+      xml += "</code>\n";
+      
+      xml += "\t<dimensions>";
+      xml += width;
+      xml += ", ";
+      xml += height;
+      xml += "</dimensions>\n";
+      
+      xml += "\t<fps>";
+      xml += speed;
+      xml += "</fps>\n";
+      
+      xml += "\t<preferences>\n"; //User preferences
+      xml += "\t\t<snap>";
+      xml += snapX;
+      xml += ", ";
+      xml += snapY;
+      xml += "</snap>\n";
+      xml += "\t\t<grid>";
+      xml += grid ? "Visible" : "Hidden";
+      xml += " ";
+      xml += isometric ? "Isometric" : "Standard";
+      xml += "</grid>\n";
+      xml += "\t</preferences>\n";
+ 
+      xml += "\t<views>\n";
+      xml += views.writeXml();
+      xml += "\t</views>\n";
+      
+      xml += "</scene>";
       return xml;
 }
 

@@ -34,6 +34,36 @@ public class ViewInScene {
         this.name = name;
     }
     
+    public String writeXml(){
+        String xml = "\t\t<view>\n";
+        
+        xml += "\t\t\t<visible>" + (visibleonstart ? "True" : "False") + "</visible>\n";
+        
+        xml += "\t\t\t<scenepos>";
+        xml += viewx;
+        xml += ", ";
+        xml += viewy;
+        xml += ", ";
+        xml += vieww;
+        xml += ", ";
+        xml += viewh;
+        xml += "</inroom>\n";
+        
+        xml += "\t\t\t<portpos>";
+        xml += portx;
+        xml += ", ";
+        xml += porty;
+        xml += ", ";
+        xml += portw;
+        xml += ", ";
+        xml += porth;
+        xml += "</portpos>\n";
+        
+        xml += "\t\t</view>\n";
+        
+        return xml;
+    }
+    
     @Override
     public String toString(){
         return (visibleonstart ? "<HTML><b>" : "") + name;
