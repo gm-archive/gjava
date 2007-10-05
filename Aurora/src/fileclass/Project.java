@@ -12,7 +12,7 @@ package fileclass;
 import exceptions.NoSuchFolderException;
 import fileclass.res.Actor;
 import fileclass.res.Classes;
-import fileclass.res.Image;
+//import fileclass.res.Image;
 import fileclass.res.Scene;
 import fileclass.res.Sound;
 import fileclass.res.Sprite;
