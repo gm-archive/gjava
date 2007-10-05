@@ -356,8 +356,15 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
         items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
-        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import a file");
-        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export a file");
+        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import...");
+        items[MenuSupporter.GenerateMenuItemId(0, 8)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(0, 8, evt);
+            }
+        });
+        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export...");
         items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 11)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
         items[MenuSupporter.GenerateMenuItemId(0, 11)].addActionListener(new ActionListener() {
@@ -654,6 +661,11 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 0 && item == 3) {
             SaveProject();
+        }
+        if (menu == 0 && item == 8) {
+            importDialog _import = new importDialog(this, true);
+            _import.setVisible(true);
+            
         }
         if (menu == 0 && item == 11) {
             dispose();
