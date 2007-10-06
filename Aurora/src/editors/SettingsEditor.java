@@ -19,12 +19,36 @@ public class SettingsEditor extends TabPanel {
     
     /** Creates new form SettingsEditor */
     fileclass.File file;
+    SettingsValues value;
+    TabValues Graphics, Resolution;
     
     public SettingsEditor(fileclass.File file) {
         this.file = file;
-        if(file.value==null||!(file.value instanceof SettingsValues))
-            file.value = new SettingsValues();
+        if(file.value==null||!(file.value instanceof SettingsValues)){
+            file.value = value = new SettingsValues();
+        }
+        else{
+            value = (SettingsValues) file.value;
+        }
+        Graphics = value.getValue("Graphics");
+        if(Graphics==null){
+            value.setVariable("Graphics", Graphics = new TabValues("Graphics"));
+        }
+        Resolution = value.getValue("Resolution");
+        if(Resolution==null){
+            value.setVariable("Resolution", Resolution = new TabValues("Resolution"));
+        }
+        Object resize = Graphics.getValue("resize");
+        if(resize==null||!(resize instanceof Boolean)){
+            Graphics.setVariable("resize", resize = (Boolean) false);
+        }
+        Object setres = Resolution.getValue("setres");
+        if(setres==null||!(setres instanceof Boolean)){
+            Resolution.setVariable("retres", setres = (Boolean) false);
+        }
         initComponents();
+        jCheckBox4.setSelected((Boolean) resize);
+        jCheckBox7.setSelected((Boolean) setres);
         checkres();
     }
     
@@ -98,6 +122,11 @@ public class SettingsEditor extends TabPanel {
         jCheckBox4.setText(managers.LangSupporter.activeLang.getEntry(66));
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
 
         jCheckBox5.setText(managers.LangSupporter.activeLang.getEntry(67));
         jCheckBox5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -132,7 +161,7 @@ public class SettingsEditor extends TabPanel {
                     .addComponent(jCheckBox6)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2))
-                .addContainerGap(246, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,7 +374,7 @@ public class SettingsEditor extends TabPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckBox7))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -375,10 +404,10 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jCheckBox9, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-            .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+            .addComponent(jCheckBox9, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -408,8 +437,8 @@ public class SettingsEditor extends TabPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
-            .addComponent(jCheckBox11, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))
+            .addComponent(jCheckBox11, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -438,7 +467,7 @@ public class SettingsEditor extends TabPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -461,7 +490,7 @@ public class SettingsEditor extends TabPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(393, Short.MAX_VALUE)
                 .addComponent(jButton1))
@@ -482,9 +511,13 @@ public class SettingsEditor extends TabPanel {
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         checkres();
     }//GEN-LAST:event_jCheckBox7ActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        Graphics.setVariable("resize", jCheckBox4.isSelected());
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
     
     void checkres(){
-                if(jCheckBox7.isSelected()){
+       if(jCheckBox7.isSelected()){
             ((TitledBorder) jPanel3.getBorder()).setTitleColor(new Color(0,70,213));
             ((TitledBorder) jPanel4.getBorder()).setTitleColor(new Color(0,70,213));
             ((TitledBorder) jPanel5.getBorder()).setTitleColor(new Color(0,70,213));

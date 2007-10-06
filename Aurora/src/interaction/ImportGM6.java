@@ -90,6 +90,12 @@ public class ImportGM6 {
     private void readSettings(fileclass.File settings, Gm6FileContext c) throws IOException,Gm6FormatException,
 			DataFormatException
     {
+        SettingsValues value;
+        TabValues Graphics, Resolution;
+        settings.value = value = new SettingsValues();
+        value.setVariable("Graphics", Graphics = new TabValues("Graphics"));
+        value.setVariable("Resolution", Resolution = new TabValues("Resolution"));
+       
         GmStreamDecoder in = c.in;
         in.read4(); //Game ID - unused
         in.skip(16); // unknown bytes following game id
@@ -98,7 +104,15 @@ public class ImportGM6 {
             String msg = Messages.getString("Gm6FileReader.ERROR_UNSUPPORTED"); //$NON-NLS-1$
             throw new Gm6FormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
-        fileclass.res.SettingsValues value = new fileclass.res.SettingsValues();
-        settings.value = value;
+        boolean startFullscreen = in.readBool();
+        boolean interpolate = false;
+        if (ver > 542) interpolate = in.readBool();
+        boolean dontDrawBorder = in.readBool();
+        boolean displayCursor = in.readBool();
+        int scaling = in.read4();
+        Graphics.setVariable("resize", in.readBool());
+        boolean alwaysOnTop = alwaysOnTop = in.readBool();
+        in.read4(); //Color outside room
+        Resolution.setVariable("setres", in.readBool());
     }
 }

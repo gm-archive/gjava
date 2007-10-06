@@ -18,6 +18,12 @@ public class TabValues{
     private String[] names;
     private Object[] vars;
     
+    public TabValues(String name){
+        this.name = name;
+        names = new String[50];
+        vars = new Object[50];
+    }
+    
     public String[] getKeys(){
         int a = 0;
         for(String name : names)
@@ -55,6 +61,8 @@ public class TabValues{
     
     public Object getValue(String name){
         if(name==null)
+            return null;
+        if(names==null)
             return null;
         int pos = -1;
         for(int i = 0; i < names.length; i++)
