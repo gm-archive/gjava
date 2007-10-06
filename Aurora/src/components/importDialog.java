@@ -6,6 +6,7 @@
 
 package components;
 
+import interaction.ImportGM6;
 import javax.swing.AbstractListModel;
 
 /**
@@ -14,7 +15,7 @@ import javax.swing.AbstractListModel;
  */
 public class importDialog extends javax.swing.JDialog {
     
-    AbstractListModel gpffile = new AbstractListModel() {
+    static AbstractListModel gpffile = new AbstractListModel() {
             String[] strings = { "Old Game Maker Project (*.gmd)"
                     , "Game Maker 6 Project (*.gm6)"
                     , "Game Maker 7 Project (*.gmk)"};
@@ -22,7 +23,7 @@ public class importDialog extends javax.swing.JDialog {
             public Object getElementAt(int i) { return strings[i]; }
    };
     
-   AbstractListModel epffile = new AbstractListModel() {
+   static AbstractListModel epffile = new AbstractListModel() {
             String[] strings = { "Game Maker Library (*.lib)"
                     , "Game Maker 7 Extension (*.gmp, *.ged)"
                     , "Lateral Game Maker Library (*.lgl)"};
@@ -30,13 +31,13 @@ public class importDialog extends javax.swing.JDialog {
             public Object getElementAt(int i) { return strings[i]; }
    };
         
-   AbstractListModel pffolder = new AbstractListModel() {
+   static AbstractListModel pffolder = new AbstractListModel() {
             String[] strings = { "Old-style G-Creator Project (NetBeans project)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
    };
    
-   AbstractListModel res = new AbstractListModel() {
+   static AbstractListModel res = new AbstractListModel() {
             String[] strings = { "Image (*.png)"
                     , "Sprite (*.sprite)"
                     , "Actor (*.actor)"
@@ -79,9 +80,15 @@ public class importDialog extends javax.swing.JDialog {
         });
 
         jList1.setModel(gpffile);
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
-        jButton1.setText("Next");
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,22 +130,21 @@ public class importDialog extends javax.swing.JDialog {
         if(jComboBox1.getSelectedItem().toString().equals("Resource from file"))
             jList1.setModel(res);
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String selection = (String) jList1.getSelectedValue();
+        if(selection.equals("Game Maker 6 Project (*.gm6)")){
+            importGM6File();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                importDialog dialog = new importDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+    public void importGM6File(){
+        try{
+            ImportGM6 gm6 = interaction.ImportGM6.callDialog(this);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

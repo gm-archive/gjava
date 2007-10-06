@@ -46,6 +46,7 @@ public class ProjectTree {
                 }
             }
         }
+        core.Aurwindow.workspace.updateUI();
         return froot;
     }
 }
