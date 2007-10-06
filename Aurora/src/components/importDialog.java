@@ -14,16 +14,24 @@ import javax.swing.AbstractListModel;
  */
 public class importDialog extends javax.swing.JDialog {
     
-    AbstractListModel pffile = new AbstractListModel() {
+    AbstractListModel gpffile = new AbstractListModel() {
             String[] strings = { "Old Game Maker Project (*.gmd)"
                     , "Game Maker 6 Project (*.gm6)"
                     , "Game Maker 7 Project (*.gmk)"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
-        };
+   };
     
+   AbstractListModel epffile = new AbstractListModel() {
+            String[] strings = { "Game Maker Library (*.lib)"
+                    , "Game Maker 7 Extension (*.gmp, *.ged)"
+                    , "Lateral Game Maker Library (*.lgl)"};
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+   };
+        
    AbstractListModel pffolder = new AbstractListModel() {
-            String[] strings = { "Old-style G-Creator Project (NetBeans)" };
+            String[] strings = { "Old-style G-Creator Project (NetBeans project)" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
    };
@@ -63,14 +71,14 @@ public class importDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Import");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Project from file", "Project from folder", "Resource from file" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Game Project from file", "Extension Project from file", "Project from folder", "Resource from file" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
 
-        jList1.setModel(pffile);
+        jList1.setModel(gpffile);
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Next");
@@ -96,7 +104,7 @@ public class importDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -106,8 +114,10 @@ public class importDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if(jComboBox1.getSelectedItem().toString().equals("Project from file"))
-            jList1.setModel(pffile);
+        if(jComboBox1.getSelectedItem().toString().equals("Game Project from file"))
+            jList1.setModel(gpffile);
+        if(jComboBox1.getSelectedItem().toString().equals("Extension Project from file"))
+            jList1.setModel(epffile);
         if(jComboBox1.getSelectedItem().toString().equals("Project from folder"))
             jList1.setModel(pffolder);
         if(jComboBox1.getSelectedItem().toString().equals("Resource from file"))
