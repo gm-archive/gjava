@@ -449,17 +449,17 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        Object o = (((fileclass.File) res.getCurrentObject().object).value);
-        if (sprite.countImages()  == 0)
-        {
+        fileclass.File a = (fileclass.File) res.getCurrentObject().object;
+        Object o = a.value;
+        if (sprite.countImages()  == 0){
             sprite.width = ((ImageIcon) o).getIconWidth();
-        sprite.height = ((ImageIcon) o).getIconHeight();
-        jLabel2.setText("Width:"+sprite.width);
-        jLabel3.setText("Height:"+sprite.height);
+            sprite.height = ((ImageIcon) o).getIconHeight();
+            jLabel2.setText("Width:"+sprite.width);
+            jLabel3.setText("Height:"+sprite.height);
         } 
         
         if ((sprite.width == ((ImageIcon) o).getIconWidth()) && sprite.height == ((ImageIcon) o).getIconHeight() )
-        sprite.addToList((ImageIcon) o);
+            sprite.addToList(a);
         else
             System.out.println("Image not right size!");
         jLabel4.setText("Subimages:"+sprite.countImages());

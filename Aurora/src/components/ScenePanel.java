@@ -60,7 +60,7 @@ public class ScenePanel extends JComponent implements MouseListener{
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
             Sprite s = (Sprite) ((fileclass.File) ResourceMenu.getObjectWithName(((Actor) act.actor.value).sprite, "sprite", root.project).object).value;
-            root.eraseActorsAt(new Rectangle(x, y, s.images.elementAt(0).getIconWidth(), s.images.elementAt(0).getIconHeight()));
+            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
     }

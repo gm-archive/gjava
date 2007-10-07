@@ -17,27 +17,32 @@ import javax.swing.*;
  * @author Ali1
  */
 public class Sprite extends Resource {
-    public Vector<ImageIcon> images;
+    public Vector<fileclass.File> images;
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
     public Sprite(String name)
     {
         this.name = name;
-        images = new Vector<ImageIcon>();
+        images = new Vector<fileclass.File>();
     }
 
     public ImageIcon getImageAt(int pos){
         if(pos>=images.size())
             return null;
-        return images.elementAt(pos);
+        fileclass.File a = images.elementAt(pos);
+        if(a==null)
+            return null;
+        if(a.value instanceof ImageIcon)
+            return (ImageIcon) images.elementAt(pos).value;
+        return null;
     }
     
     public int countImages(){
         return images.size();
     }
     
-    public void addToList(ImageIcon i){
+    public void addToList(fileclass.File i){
         images.add(i);
     }
     

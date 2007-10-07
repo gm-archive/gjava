@@ -50,7 +50,7 @@ public class SceneEditor extends TabPanel {
             aisy = ais.y;
             ObjectNode k = ResourceMenu.getObjectWithName(((Actor) ais.actor.value).sprite, "sprite", project);
             Sprite j = (Sprite) ((fileclass.File) k.object).value;
-            ImageIcon i = j.images.get(0);
+            ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
             if(aisx<=r.x+r.width)
