@@ -692,8 +692,8 @@ public class Aurwindow extends JFrame {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
-            HelpTab help = new HelpTab(0, 0);
-            addWindow(help, 27);
+            help.AboutPanel panel = new help.AboutPanel();
+            addWindow(panel, 27);
         }
         if (menu == 4 && item == 1) {
             HelpTab help = new HelpTab();
