@@ -44,11 +44,45 @@ public class SettingsEditor extends TabPanel {
         }
         Object setres = Resolution.getValue("setres");
         if(setres==null||!(setres instanceof Boolean)){
-            Resolution.setVariable("retres", setres = (Boolean) false);
+            Resolution.setVariable("setres", setres = (Boolean) false);
         }
+        Object depth = Resolution.getValue("depth");
+        if(depth==null||!(depth instanceof Integer)){
+            Resolution.setVariable("depth", depth = (Integer) 0);
+        }
+        Integer dep = (Integer) depth;
+        if(dep!=0&&dep!=16&&dep!=32)
+            Resolution.setVariable("depth", dep = 0);
+        Object resol = Resolution.getValue("resol");
+        if(resol==null||!(resol instanceof Integer)){
+            Resolution.setVariable("resol", resol = (Integer) 0);
+        }
+        Integer res = (Integer) resol;
+        if(res!=0&&res!=320&&res!=640&&res!=800&&res!=1024&&res!=1280&&res!=1600)
+            Resolution.setVariable("resol", res = 0);
         initComponents();
         jCheckBox4.setSelected((Boolean) resize);
         jCheckBox7.setSelected((Boolean) setres);
+        if(dep==0)
+            jRadioButton1.setSelected(true);
+        else if(dep==16)
+            jRadioButton2.setSelected(true);
+        else if(dep==32)
+            jRadioButton3.setSelected(true);
+        if(res==0)
+            jRadioButton4.setSelected(true);
+        else if(res==320)
+            jRadioButton5.setSelected(true);
+        else if(res==640)
+            jRadioButton6.setSelected(true);
+        else if(res==800)
+            jRadioButton7.setSelected(true);
+        else if(res==1024)
+            jRadioButton8.setSelected(true);
+        else if(res==1280)
+            jRadioButton9.setSelected(true);
+        else if(res==1600)
+            jRadioButton10.setSelected(true);
         checkres();
     }
     
@@ -195,20 +229,34 @@ public class SettingsEditor extends TabPanel {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(managers.LangSupporter.activeLang.getEntry(73)));
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
         jRadioButton1.setText(managers.LangSupporter.activeLang.getEntry(74));
         jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("16-bit");
         jRadioButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("32-bit");
         jRadioButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton3.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -234,40 +282,74 @@ public class SettingsEditor extends TabPanel {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(managers.LangSupporter.activeLang.getEntry(71)));
 
         buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setSelected(true);
         jRadioButton4.setText(managers.LangSupporter.activeLang.getEntry(74));
         jRadioButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setText("320x240");
         jRadioButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton5.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton6);
         jRadioButton6.setText("640x480");
         jRadioButton6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton6ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton7);
         jRadioButton7.setText("800x600");
         jRadioButton7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton7.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton8);
         jRadioButton8.setText("1024x768");
         jRadioButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton8.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton8ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton9);
         jRadioButton9.setText("1280x1024");
         jRadioButton9.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton9.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton9ActionPerformed(evt);
+            }
+        });
 
         buttonGroup2.add(jRadioButton10);
         jRadioButton10.setText("1600x1200");
         jRadioButton10.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton10.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -510,11 +592,52 @@ public class SettingsEditor extends TabPanel {
 
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         checkres();
+        Resolution.setVariable("setres", jCheckBox7.isSelected());
     }//GEN-LAST:event_jCheckBox7ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         Graphics.setVariable("resize", jCheckBox4.isSelected());
     }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        Resolution.setVariable("depth", 0);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        Resolution.setVariable("depth", 16);
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        Resolution.setVariable("depth", 32);
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        Resolution.setVariable("resolution", 0);
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        Resolution.setVariable("resolution", 320);
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        Resolution.setVariable("resolution", 640);
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        Resolution.setVariable("resolution", 800);
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
+
+    private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
+        Resolution.setVariable("resolution", 1024);
+    }//GEN-LAST:event_jRadioButton8ActionPerformed
+
+    private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
+        Resolution.setVariable("resolution", 1280);
+    }//GEN-LAST:event_jRadioButton9ActionPerformed
+
+    private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
+        Resolution.setVariable("resolution", 1600);
+    }//GEN-LAST:event_jRadioButton10ActionPerformed
     
     void checkres(){
        if(jCheckBox7.isSelected()){

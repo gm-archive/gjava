@@ -114,5 +114,6 @@ public class ImportGM6 {
         boolean alwaysOnTop = alwaysOnTop = in.readBool();
         in.read4(); //Color outside room
         Resolution.setVariable("setres", in.readBool());
+        Resolution.setVariable("depth", in.read4() * 16);
     }
 }
