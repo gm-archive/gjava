@@ -252,6 +252,11 @@ public class SpriteEditor extends TabPanel {
         jLabel4.setText("Subimages:");
 
         jButton1.setText("Remove");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -487,6 +492,15 @@ public class SpriteEditor extends TabPanel {
     private void jCheckBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCheckBox1PropertyChange
         sprite.precise = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1PropertyChange
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int id = getViewedId();
+        sprite.images.remove(id);
+        if(id >= sprite.countImages())
+            id = 0;
+        jLabel4.setText("Subimages: " + sprite.countImages());
+        setViewedId(id);
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public int getViewedId(){
         try{
