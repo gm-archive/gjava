@@ -1,7 +1,9 @@
-Aurora License:
+G-Creator's License:
 
-    Aurora - Multiple languages and platforms game development.
+    G-Creator - Multiple languages and platforms game development.
+
     Copyright (C) 2007  Luís Reis
+    Copyright (C) 2007  TGMG
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,7 +27,6 @@ Please forgive me if I retrieved some source code from your site and forgot to p
 Contributions:
     Luís Reis
         Most features
-        Non-native tree icons
         A few icons (including the official application icon)
     TGMG
         Some menu items

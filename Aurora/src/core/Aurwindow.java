@@ -171,6 +171,7 @@ public class Aurwindow extends JFrame {
         addWindow(panel, LangSupporter.activeLang.getEntry(title));
     }
 
+    //<editor-fold defaultstate="collapsed" desc="addWindow(panel,title)">
     public void addWindow(TabPanel panel, String title) {
         try {
             panel.parent = this;
@@ -238,7 +239,9 @@ public class Aurwindow extends JFrame {
         }
         //winlist.updateUI();
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Constructor">
     protected Aurwindow(String[] settings) {
         super("Aurora");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -576,7 +579,7 @@ public class Aurwindow extends JFrame {
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
 
-        //<editor-fold defaultstate="expanded" desc="Layout Manager">
+        //<editor-fold defaultstate="collapsed" desc="Layout Manager">
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
@@ -641,6 +644,7 @@ public class Aurwindow extends JFrame {
         //</editor-fold>
         workspace.expandRow(0);
     }
+    //</editor-fold>
 
     private void tabsClicked(MouseEvent evt) {
         //Leave in blank... for now...
@@ -710,6 +714,7 @@ public class Aurwindow extends JFrame {
                 }
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 0;
+                workspace.updateUI();
             } catch (Exception e) {
             }
         }
@@ -724,6 +729,7 @@ public class Aurwindow extends JFrame {
                 }
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 1;
+                workspace.updateUI();
             } catch (Exception e) {
             }
         }
@@ -738,6 +744,7 @@ public class Aurwindow extends JFrame {
                 }
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 2;
+                workspace.updateUI();
             } catch (Exception e) {
             }
         }
