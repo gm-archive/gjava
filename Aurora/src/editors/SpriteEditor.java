@@ -433,12 +433,12 @@ public class SpriteEditor extends TabPanel {
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         file.name = jTextField1.getText();
-        core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
-        core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked

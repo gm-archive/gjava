@@ -46,7 +46,7 @@ public class ProjectTree {
                 }
             }
         }
-        core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.Aurwindow.workspace.updateUI();
         return froot;
     }
 }

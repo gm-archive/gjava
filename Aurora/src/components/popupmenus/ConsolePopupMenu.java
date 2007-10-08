@@ -13,7 +13,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-import core.*;
+import org.gcreator.core.*;
 import managers.*;
 
 /**
@@ -51,22 +51,22 @@ public class ConsolePopupMenu extends JPopupMenu{
     }
     
     private void copymessage(){
-        String content = aurora.window.console.getText();
+        String content = gcreator.window.console.getText();
         content = content.replaceAll("\n", "");
         content = content.replaceAll("<(b[^r]|[^b]).*?/?>", "");
         content = content.replaceAll("\\s+", " ");
         content = content.replaceAll("^\\s", "");
         content = content.replaceAll("<br/?>", "\n");
-        aurora.clipboard.setClipboardContents(content);
+        gcreator.clipboard.setClipboardContents(content);
     }
     
     private void clear(){
-        aurora.window.console.setText("");
-        aurora.output = "";
+        gcreator.window.console.setText("");
+        gcreator.output = "";
     }
     
     private void _hide(){
-        aurora.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(false);
-        aurora.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].getActionListeners()[0].actionPerformed(null);
+        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(false);
+        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].getActionListeners()[0].actionPerformed(null);
     }
 }

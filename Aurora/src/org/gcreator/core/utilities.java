@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package core;
+package org.gcreator.core;
 
 import managers.*;
 import javax.crypto.*;
@@ -50,9 +50,9 @@ public class utilities {
         }
         out += "<br/>";
         
-        aurora.output += out;
-        if(aurora.window!=null&&aurora.window.console!=null)
-            aurora.window.console.setText(aurora.output);
+        gcreator.output += out;
+        if(gcreator.window!=null&&gcreator.window.console!=null)
+            gcreator.window.console.setText(gcreator.output);
     }
     
     static Cipher ecipher;

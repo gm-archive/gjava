@@ -12,7 +12,7 @@ import java.io.*;
 import java.awt.*;
 import java.util.zip.*;
 import javax.swing.*;
-import core.*;
+import org.gcreator.core.*;
 import managers.*;
 import fileclass.res.*;
 import org.lateralgm.file.*;
@@ -86,7 +86,7 @@ public class ImportGM6 {
         
         in.close();
         
-        ProjectTree.importFolderToTree(project, core.aurora.window.top);
+        ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
     }
     
     private void readSettings(fileclass.File settings, Gm6FileContext c) throws IOException,Gm6FormatException,

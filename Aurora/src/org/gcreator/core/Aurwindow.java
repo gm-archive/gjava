@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package core;
+package org.gcreator.core;
 
 import units.ObjectNode;
 import java.beans.PropertyVetoException;
@@ -243,10 +243,9 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     protected Aurwindow(String[] settings) {
-        super("Aurora");
+        setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
-        setVisible(true);
         setIconImage(new ImageIcon(getClass().getResource("/resources/GCreator.png")).getImage());
         istabs = true;
         console = new JTextPane();
@@ -643,6 +642,7 @@ public class Aurwindow extends JFrame {
         utilities.addMessage(29);
         //</editor-fold>
         workspace.expandRow(0);
+        setVisible(true);
     }
     //</editor-fold>
 
@@ -675,7 +675,7 @@ public class Aurwindow extends JFrame {
             dispose();
         }
         if (menu == 1 && item == 2) {
-            aurora.output = "";
+            gcreator.output = "";
             console.setText("");
         }
         if (menu == 2 && item == 0) {
@@ -895,7 +895,7 @@ public class Aurwindow extends JFrame {
                 if (mainProject.location.equals("")) {
                     JFileChooser fc = new JFileChooser();
                     fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
-                    fc.showSaveDialog(aurora.window);
+                    fc.showSaveDialog(gcreator.window);
                     java.io.File file = fc.getSelectedFile();
                     mainProject.location = file.getPath().replaceAll(".gcp", "") + ".gcp";
                     if (file == null) {
@@ -1070,7 +1070,7 @@ public class Aurwindow extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
-                core.utilities.addStringMessage("G-Java is missing!");
+                org.gcreator.core.utilities.addStringMessage("G-Java is missing!");
             }
         });
         
@@ -1180,7 +1180,7 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
     public void dispose() {
-        Plugger.onMainWindowDispose(aurora.plugins);
+        Plugger.onMainWindowDispose(gcreator.plugins);
         saveSettings();
         if (istabs) {
             for (Component a : tabs.getComponents()) {

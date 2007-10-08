@@ -9,7 +9,7 @@
 
 package components;
 
-import core.aurora;
+import org.gcreator.core.gcreator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,10 +46,10 @@ public static void update(){
                 if (nextLine.contains("<version>"))
                 {
                     version = nextLine.replaceAll("<version>", "").replaceAll("</version>", "");
-                if (!version.equals(aurora.version))
-                JOptionPane.showMessageDialog(aurora.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
+                if (!version.equals(gcreator.version))
+                JOptionPane.showMessageDialog(gcreator.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
                 }
-                core.utilities.addStringMessage(nextLine);
+                org.gcreator.core.utilities.addStringMessage(nextLine);
                // System.out.println(nextLine); 
             }
             else{

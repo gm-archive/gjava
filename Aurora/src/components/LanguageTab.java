@@ -8,7 +8,7 @@ package components;
 
 import units.Dictionary;
 import managers.*;
-import core.*;
+import org.gcreator.core.*;
 import languages.*;
 
 /**

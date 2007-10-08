@@ -11,7 +11,7 @@ package components;
 
 import javax.swing.*;
 
-import core.*;
+import org.gcreator.core.*;
 
 /**
  *
@@ -22,13 +22,13 @@ public class MyModel extends DefaultComboBoxModel{
         super();
     }
     public Object getElementAt(int pos){
-        if(aurora.window!=null)
-            return aurora.window.getWindowListElementAt(pos);
+        if(gcreator.window!=null)
+            return gcreator.window.getWindowListElementAt(pos);
         return null;
     }
     public int getSize(){
-        if(aurora.window!=null)
-            return aurora.window.getWindowListSize();
+        if(gcreator.window!=null)
+            return gcreator.window.getWindowListSize();
         return 0;
     }
 }

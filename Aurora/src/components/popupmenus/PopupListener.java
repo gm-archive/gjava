@@ -12,7 +12,7 @@ package components.popupmenus;
 import java.awt.event.*;
 import javax.swing.*;
 
-import core.*;
+import org.gcreator.core.*;
 import java.awt.*;
 
 /**

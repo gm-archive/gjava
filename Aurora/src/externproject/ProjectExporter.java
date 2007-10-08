@@ -9,7 +9,7 @@
 
 package externproject;
 
-import core.*;
+import org.gcreator.core.*;
 import fileclass.*;
 import javax.swing.*;
 import components.*;

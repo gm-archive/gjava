@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import components.JavaTextArea;
 import components.TabPanel;
-import core.Aurwindow;
+import org.gcreator.core.Aurwindow;
 import fileclass.Project;
 
 /**

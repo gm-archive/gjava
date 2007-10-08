@@ -12,7 +12,7 @@ package components.popupmenus;
 import javax.swing.*;
 import java.awt.event.*;
 
-import core.*;
+import org.gcreator.core.*;
 import managers.*;
 
 /**
@@ -32,7 +32,7 @@ public class ToolbarPopupMenu extends JPopupMenu{
         this.updateUI();
     }
     private void _hide(){
-        aurora.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
-        aurora.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].getActionListeners()[0].actionPerformed(null);
+        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
+        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].getActionListeners()[0].actionPerformed(null);
     }
 }

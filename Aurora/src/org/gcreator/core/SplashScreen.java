@@ -4,7 +4,7 @@
  * Created on 5 de Setembro de 2007, 17:30
  */
 
-package core;
+package org.gcreator.core;
 
 import javax.swing.*;
 import java.awt.*;

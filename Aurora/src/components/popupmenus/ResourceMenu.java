@@ -9,7 +9,7 @@
 
 package components.popupmenus;
 
-import core.aurora;
+import org.gcreator.core.gcreator;
 import fileclass.Project;
 import fileclass.res.Resource;
 import java.awt.Dimension;

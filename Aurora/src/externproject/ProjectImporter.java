@@ -9,7 +9,7 @@
 
 package externproject;
 
-import core.*;
+import org.gcreator.core.*;
 
 import javax.swing.*;
 import components.*;
@@ -98,7 +98,7 @@ public class ProjectImporter {
         ii++;
         }
         if(project!=null)
-                    ProjectTree.importFolderToTree(project, core.aurora.window.top);
+                    ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
         Aurwindow.workspace.updateUI();
     }
     

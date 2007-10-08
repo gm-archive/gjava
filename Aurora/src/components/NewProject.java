@@ -8,7 +8,7 @@
 //I had to made this a normal class because NetBeans designer didn't allow me to do what I wanted to.
 package components;
 
-import core.Aurwindow;
+import org.gcreator.core.Aurwindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import managers.*;
@@ -68,7 +68,7 @@ public class NewProject extends TabPanel {
     }
     
     public void createProject(){
-            core.utilities.addStringMessage("create new project");
+            org.gcreator.core.utilities.addStringMessage("create new project");
             Project project = null;
             int type = getProjectType();
             if (type == 0){
@@ -114,7 +114,7 @@ public class NewProject extends TabPanel {
             }
             if(type!=-1){
                 if(project!=null)
-                    ProjectTree.importFolderToTree(project, core.aurora.window.top);
+                    ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
                 
                 Aurwindow.workspace.updateUI();
             }

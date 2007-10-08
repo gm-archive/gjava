@@ -9,7 +9,7 @@
 
 package components;
 
-import core.aurora;
+import org.gcreator.core.gcreator;
 import fileclass.ExtensionProject;
 import units.ObjectNode;
 import javax.swing.*;
@@ -75,14 +75,14 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         }
         
         edition = tree.isEditing();
-        if(aurora.window!=null)
-            if(aurora.window.getCurrentObject()!=null)
-                val = aurora.window.getCurrentObject().node.getUserObject().toString();
+        if(gcreator.window!=null)
+            if(gcreator.window.getCurrentObject()!=null)
+                val = gcreator.window.getCurrentObject().node.getUserObject().toString();
 
         this.bSelected = bSelected;
         try{
             this.isCurProject = 
-                    (node == core.aurora.window.getCurrentProject().node);
+                    (node == org.gcreator.core.gcreator.window.getCurrentProject().node);
         }
         catch(NullPointerException e){
             this.isCurProject = false;
@@ -130,7 +130,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
             }
         }
 // Add the text to the cell
-        if(core.Aurwindow.getMainProject()!=null&&node==core.Aurwindow.getMainProject().node)
+        if(org.gcreator.core.Aurwindow.getMainProject()!=null&&node==org.gcreator.core.Aurwindow.getMainProject().node)
             setText("<HTML><B>" + labelText);
         else
             setText(labelText);

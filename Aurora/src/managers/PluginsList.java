@@ -12,7 +12,7 @@ package managers;
 import java.io.*;
 import exceptions.*;
 import javax.swing.*;
-import core.*;
+import org.gcreator.core.*;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;

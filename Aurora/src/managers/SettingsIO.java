@@ -12,7 +12,7 @@ package managers;
 import java.io.*;
 import exceptions.*;
 import javax.swing.*;
-import core.*;
+import org.gcreator.core.*;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
 import org.xml.sax.*;
@@ -52,8 +52,8 @@ public class SettingsIO {
             out += "</font>";
         }
         out += "<br/>";
-        aurora.output += out;
-        console.setText(aurora.output);
+        gcreator.output += out;
+        console.setText(gcreator.output);
     }
 
     public static void saveSettings(int look, boolean istabs, boolean scrollvisible) {

@@ -10,7 +10,7 @@ import units.ObjectNode;
 import javax.swing.*;
 import javax.swing.tree.*;
 
-import core.*;
+import org.gcreator.core.*;
 
 /**
  *
@@ -35,12 +35,12 @@ public class NewFileGroup extends TabPanel {
     
     public NewFileGroup() {
         initComponents();
-        tree = new JTree(aurora.window.top);
+        tree = new JTree(gcreator.window.top);
         //jScrollPane1.setViewportView(tree);
         DefaultTreeSelectionModel model = new DefaultTreeSelectionModel();
         model.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setSelectionModel(model);
-        tree.setCellRenderer(aurora.window.renderer);
+        tree.setCellRenderer(gcreator.window.renderer);
         a1 = new Model() {
             String[] strings = {"Group", "Text file"};
             String[] truenames = {"Group", "Text"};
@@ -150,7 +150,7 @@ public class NewFileGroup extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String val = ((Model) jList2.getModel()).getTrueName(jList2.getSelectedIndex());
-        if(aurora.window.getCurrentFolder()!=null)
+        if(gcreator.window.getCurrentFolder()!=null)
             add(val);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -164,11 +164,11 @@ public class NewFileGroup extends TabPanel {
     }//GEN-LAST:event_jList1ValueChanged
     
     public fileclass.Folder getCurrentFolder() {
-        return aurora.window.getCurrentFolder();
+        return gcreator.window.getCurrentFolder();
     }
 
     public fileclass.Object getCurrentObject() {
-        return aurora.window.getCurrentObject();
+        return gcreator.window.getCurrentObject();
     }
     
     public void add(String val){
@@ -176,28 +176,28 @@ public class NewFileGroup extends TabPanel {
         if(name.equals(""))
             name = "newGroup";
         if(val.equals("Group"))
-            aurora.window.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
+            gcreator.window.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
         if(val.equals("Text"))
-            aurora.window.addFile(getCurrentFolder(), name, "txt");
+            gcreator.window.addFile(getCurrentFolder(), name, "txt");
         if(val.equals("Sprite"))
-            aurora.window.addFile(getCurrentFolder(), name, "sprite");
+            gcreator.window.addFile(getCurrentFolder(), name, "sprite");
         if(val.equals("Actor"))
-            aurora.window.addFile(getCurrentFolder(), name, "actor");
+            gcreator.window.addFile(getCurrentFolder(), name, "actor");
         if(val.equals("Scene"))
-            aurora.window.addFile(getCurrentFolder(), name, "scene");
+            gcreator.window.addFile(getCurrentFolder(), name, "scene");
         if(val.equals("EGML"))
-            aurora.window.addFile(getCurrentFolder(), name, "egml");
+            gcreator.window.addFile(getCurrentFolder(), name, "egml");
         if(val.equals("Java"))
-            aurora.window.addFile(getCurrentFolder(), name, "java");
+            gcreator.window.addFile(getCurrentFolder(), name, "java");
         if(val.equals("C++"))
-            aurora.window.addFile(getCurrentFolder(), name, "cpp");
+            gcreator.window.addFile(getCurrentFolder(), name, "cpp");
         if(val.equals("C++ header"))
-            aurora.window.addFile(getCurrentFolder(), name, "h");
+            gcreator.window.addFile(getCurrentFolder(), name, "h");
         if(val.equals("XML"))
-            aurora.window.addFile(getCurrentFolder(), name, "xml");
+            gcreator.window.addFile(getCurrentFolder(), name, "xml");
         Aurwindow.workspace.updateUI();
         this.dispose();
-        aurora.window.addWindow(new NewFileGroup(), 96);
+        gcreator.window.addWindow(new NewFileGroup(), 96);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

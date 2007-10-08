@@ -9,7 +9,7 @@ package plugins;
 import javax.swing.*;
 
 import fileclass.*;
-import core.*;
+import org.gcreator.core.*;
 import managers.*;
 
 /**
@@ -18,7 +18,7 @@ import managers.*;
  */
 public class PluginHelper {
     public static Aurwindow getWindow(){
-        return aurora.window;
+        return gcreator.window;
     }
     
     public static JTree getWorkspace(){
@@ -38,33 +38,33 @@ public class PluginHelper {
     }
     
     public static Project getCurrentProject(){
-        return aurora.window.getCurrentProject();
+        return gcreator.window.getCurrentProject();
     }
     
     public static Folder getCurrentFolder(){ //Can be project
-        return aurora.window.getCurrentFolder();
+        return gcreator.window.getCurrentFolder();
     }
     
     public static void addMenu(JMenu menu){
-        aurora.window.menubar.add(menu);
+        gcreator.window.menubar.add(menu);
     }
     
     public static String getClipboardContent(){
-        return aurora.clipboard.getClipboardContents();
+        return gcreator.clipboard.getClipboardContents();
     }
     
     public static void setClipboardContent(String content){
-        aurora.clipboard.setClipboardContents(content);
+        gcreator.clipboard.setClipboardContents(content);
     }
     
     public static void updateStyle(){
-        SwingUtilities.updateComponentTreeUI(aurora.window);
-        if (aurora.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(aurora.window.mdi);
+        SwingUtilities.updateComponentTreeUI(gcreator.window);
+        if (gcreator.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
         } else {
             SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
         }
-        SwingUtilities.updateComponentTreeUI(aurora.window.consolepopup);
+        SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
     }
     
     public static String encrypt(String str){

@@ -14,7 +14,7 @@ import javax.swing.*;
 import java.awt.event.*;
 
 
-import core.*;
+import org.gcreator.core.*;
 import managers.*;
 
 /**

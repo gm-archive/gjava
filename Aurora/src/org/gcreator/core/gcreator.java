@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package core;
+package org.gcreator.core;
 
 import editors.ActorEditor;
 import plugins.*;
@@ -21,7 +21,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class aurora {
+public class gcreator {
     private static String[] arguments;
     public static final String version = "1.0alpha"; 
     public static Aurwindow window;
@@ -85,7 +85,7 @@ public class aurora {
         window = new Aurwindow(settings);
         window.console.setText(output);
         if(splash!=null){
-            Plugger.onSplashDispose(aurora.plugins);
+            Plugger.onSplashDispose(gcreator.plugins);
             window.menubar.updateUI();
             splash.dispose();
         }

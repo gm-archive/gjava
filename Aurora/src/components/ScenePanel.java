@@ -14,7 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import editors.*;
-import core.*;
+import org.gcreator.core.*;
 import fileclass.res.*;
 import java.awt.event.*;
 import units.*;

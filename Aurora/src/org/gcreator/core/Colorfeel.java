@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package core;
+package org.gcreator.core;
 
 import java.awt.*;
 
