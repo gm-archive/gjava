@@ -1,8 +1,7 @@
 /*
- * Programmers.java
+ * Others.java
  *
- * Created on 7 de Outubro de 2007, 14:02
- * Feel free to replace your nickname by your name
+ * Created on 8 de Outubro de 2007, 16:31
  */
 
 package help;
@@ -11,10 +10,10 @@ package help;
  *
  * @author  Luís
  */
-public class Programmers extends javax.swing.JPanel {
+public class Others extends javax.swing.JPanel {
     
-    /** Creates new form Programmers */
-    public Programmers() {
+    /** Creates new form Others */
+    public Others() {
         initComponents();
     }
     
@@ -27,14 +26,15 @@ public class Programmers extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
 
-        jLabel1.setText("Luís Reis");
+        jLabel1.setText("We would also like to give some credit to:");
 
-        jLabel2.setText("TGMG");
-
-        jLabel3.setText("Listed in alphabetic order");
+        jEditorPane1.setContentType("text/html");
+        jEditorPane1.setEditable(false);
+        jEditorPane1.setText("<html>\n  <head>\n\n  </head>\n  <body>\n<h1>Lateral Game Maker Developers</h1>\nWe used some LGM components in G-Creator and if LGM wasn't open-source, we would have a hard time implementing them. (Listed in alphabetic order)\n<ul>\n<li>Clam</li>\n<li>IsmAvatar</li>\n<li>Quadduc</li>\n<li>TGMG</li>\n\n<h1>G-Java Community Members</h1>\nHaving a community really helps a product moving forward, thank you for any suggestions and/or other contributions.\n  </body>\n</html>\n");
+        jScrollPane1.setViewportView(jEditorPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -43,32 +43,26 @@ public class Programmers extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     
 }
