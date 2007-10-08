@@ -11,7 +11,7 @@ package aurora.compilers;
 
 import plugins.*;
 import managers.*;
-import core.*;
+import org.gcreator.core.*;
 import fileclass.*;
 import javax.swing.*;
 import java.awt.event.*;
@@ -20,6 +20,7 @@ import java.util.zip.ZipOutputStream;
 import java.util.zip.Deflater;
 import java.util.zip.ZipEntry;
 import javax.crypto.*;
+import org.gcreator.core.*;
 
 /**
  *
@@ -108,7 +109,7 @@ public class GPlus extends PluginCore {
 
         PluginHelper.println("!!!");
 
-        aurora.window.menus[3].add(compileext);
+        gcreator.window.menus[3].add(compileext);
 
         VarsRegistry.setVariable("GPlus.MenuItem", compileext);
     }
