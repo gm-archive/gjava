@@ -40,7 +40,8 @@ public class ProjectExporter {
                 out.write(config.charAt(i));
             }
             out.closeEntry();
-            putFolder(project, "", out, 1);
+            a = 1;
+            putFolder(project, "", out);
             out.close();
             utilities.addStringMessage("Saved");
         } catch (Exception e) {
@@ -50,21 +51,21 @@ public class ProjectExporter {
         return false; //Failed to export
     }
 
-    public static void putFolder(Folder folder, String prefix, ZipOutputStream out, int b) throws java.io.IOException {
-        int a = b;
+    private static int a;
+    
+    public static void putFolder(Folder folder, String prefix, ZipOutputStream out) throws java.io.IOException {
         fileclass.Object childNode;
 
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof fileclass.File) {
-                    out.putNextEntry(new ZipEntry("src/_" + a + "."+((fileclass.File)childNode).type));
-                    out.write(((fileclass.File) childNode).writeToBuffer().getBytes());
+                    out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((fileclass.File)childNode).type));
+                    ((fileclass.File) childNode).writeToBuffer(out);
                     out.closeEntry();
                 } else if (childNode instanceof fileclass.Folder) {
-                    putFolder((Folder) childNode, prefix + childNode.name + "/", out, a);
+                    putFolder((Folder) childNode, prefix + childNode.name + "/", out);
                 }
-                a++;
             }
         }
     }

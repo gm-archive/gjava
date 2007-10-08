@@ -72,4 +72,18 @@ public class TabValues{
             return null;
         return vars[pos];
     }
+    
+    public String writeXml(){
+        if(names==null)
+            return null;
+        String xml = "";
+        for(int i = 0; i < names.length; i++){
+            if(names[i]!=null)
+                xml += "\t\t<option>\n\t\t\t<name>" + names[i] + "</name>\n\t\t\t<value>" + vars[i].toString()
+                        .replaceAll("&", "&amp;")
+                        .replaceAll("<", "&lt;")
+                        .replaceAll(">", "&gt;") + "</value>\n\t\t</option>\n";
+        }
+        return xml;
+    }
 }

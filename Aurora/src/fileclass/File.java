@@ -11,9 +11,13 @@ package fileclass;
 
 import fileclass.res.Sprite;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.*;
+import javax.swing.ImageIcon;
+import javax.imageio.*;
+import javax.imageio.stream.ImageOutputStreamImpl;
 
 /**
  *
@@ -37,7 +41,40 @@ public class File extends Object{
         return "File";
     }
     
-    public String writeToBuffer(){
-        return ""+value;
+    private class MyOutputStream extends ImageOutputStreamImpl{
+                public ZipOutputStream out;
+                public MyOutputStream(ZipOutputStream out){
+                    this.out = out;
+                }
+                public void write(byte[] barray, int a, int b) throws IOException{
+                    for(int i = a; i < b; i++)
+                        out.write(barray[i]);
+                }
+                public void write(int a) throws IOException{
+                    out.write((byte) a);
+                }
+                public int read(byte[] barray, int a, int b){
+                    return 0;
+                }
+                public int read(int a){
+                    return 0;
+                }
+                public int read(){
+                    return 0;
+                }
+            }
+    
+    public void writeToBuffer(ZipOutputStream out) throws IOException{
+        if(value instanceof String)
+            out.write(value.toString().getBytes());
+        else if(value instanceof ImageIcon){
+            ImageIcon img = (ImageIcon) value;
+            Iterator iter = ImageIO.getImageWritersByFormatName(type);
+            MyOutputStream stream = new MyOutputStream(out);
+            //HELP!!! How do you convert an ImageIcon to BufferedImage?
+            //ImageIO.write(new BufferedImage img, type, stream);
+        }
+        else if(value instanceof fileclass.res.Resource)
+            out.write(((fileclass.res.Resource) value).writeXml().getBytes());
     }
 }

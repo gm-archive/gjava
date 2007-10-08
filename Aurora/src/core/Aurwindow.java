@@ -1195,6 +1195,7 @@ public class Aurwindow extends JFrame {
                 }
             }
         }
+        System.exit(0);
         super.dispose();
     }
 

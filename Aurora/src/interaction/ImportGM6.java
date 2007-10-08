@@ -84,6 +84,8 @@ public class ImportGM6 {
 	}
         readSettings(settings, c);
         
+        in.close();
+        
         ProjectTree.importFolderToTree(project, core.aurora.window.top);
     }
     
@@ -115,5 +117,6 @@ public class ImportGM6 {
         in.read4(); //Color outside room
         Resolution.setVariable("setres", in.readBool());
         Resolution.setVariable("depth", in.read4() * 16);
+        Resolution.setVariable("resol", (Integer) in.read4());
     }
 }

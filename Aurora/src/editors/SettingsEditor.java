@@ -58,7 +58,7 @@ public class SettingsEditor extends TabPanel {
             Resolution.setVariable("resol", resol = (Integer) 0);
         }
         Integer res = (Integer) resol;
-        if(res!=0&&res!=320&&res!=640&&res!=800&&res!=1024&&res!=1280&&res!=1600)
+        if(res<0||res>6)
             Resolution.setVariable("resol", res = 0);
         initComponents();
         jCheckBox4.setSelected((Boolean) resize);
@@ -71,17 +71,17 @@ public class SettingsEditor extends TabPanel {
             jRadioButton3.setSelected(true);
         if(res==0)
             jRadioButton4.setSelected(true);
-        else if(res==320)
+        else if(res==1)
             jRadioButton5.setSelected(true);
-        else if(res==640)
+        else if(res==2)
             jRadioButton6.setSelected(true);
-        else if(res==800)
+        else if(res==3)
             jRadioButton7.setSelected(true);
-        else if(res==1024)
+        else if(res==4)
             jRadioButton8.setSelected(true);
-        else if(res==1280)
+        else if(res==5)
             jRadioButton9.setSelected(true);
-        else if(res==1600)
+        else if(res==6)
             jRadioButton10.setSelected(true);
         checkres();
     }
@@ -212,7 +212,7 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox2)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(managers.LangSupporter.activeLang.getEntry(64), jPanel1);
@@ -378,8 +378,7 @@ public class SettingsEditor extends TabPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jRadioButton10))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(managers.LangSupporter.activeLang.getEntry(120)));
@@ -465,10 +464,10 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jCheckBox7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(managers.LangSupporter.activeLang.getEntry(71), jPanel2);
@@ -563,7 +562,7 @@ public class SettingsEditor extends TabPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(managers.LangSupporter.activeLang.getEntry(121), jPanel6);
@@ -582,7 +581,7 @@ public class SettingsEditor extends TabPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -612,31 +611,31 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
-        Resolution.setVariable("resolution", 0);
+        Resolution.setVariable("resol", 0);
     }//GEN-LAST:event_jRadioButton4ActionPerformed
 
     private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
-        Resolution.setVariable("resolution", 320);
+        Resolution.setVariable("resol", 1);
     }//GEN-LAST:event_jRadioButton5ActionPerformed
 
     private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
-        Resolution.setVariable("resolution", 640);
+        Resolution.setVariable("resol", 2);
     }//GEN-LAST:event_jRadioButton6ActionPerformed
 
     private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
-        Resolution.setVariable("resolution", 800);
+        Resolution.setVariable("resol", 3);
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     private void jRadioButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton8ActionPerformed
-        Resolution.setVariable("resolution", 1024);
+        Resolution.setVariable("resol", 4);
     }//GEN-LAST:event_jRadioButton8ActionPerformed
 
     private void jRadioButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton9ActionPerformed
-        Resolution.setVariable("resolution", 1280);
+        Resolution.setVariable("resol", 5);
     }//GEN-LAST:event_jRadioButton9ActionPerformed
 
     private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
-        Resolution.setVariable("resolution", 1600);
+        Resolution.setVariable("resol", 6);
     }//GEN-LAST:event_jRadioButton10ActionPerformed
     
     void checkres(){

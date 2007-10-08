@@ -68,11 +68,12 @@ public class SettingsValues extends Resource{
         String xml = "<settings>\n";
         for(int i = 0; i < keys.length; i++){
             if(keys[i]!=null){
-                xml += "\t<tab name=\"" + keys[i] + "\">";
+                xml += "\t<tab name=\"" + keys[i] + "\">\n";
+                xml += tabs[i].writeXml();
                 xml += "\t</tab>\n";
             }
         }
-        xml += "</settings\n";
+        xml += "</settings>\n";
         return xml;
     }
     
