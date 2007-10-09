@@ -10,7 +10,7 @@
 package managers;
 
 import java.io.*;
-import exceptions.*;
+import org.gcreator.exceptions.*;
 import javax.swing.*;
 import org.gcreator.core.*;
 import org.w3c.dom.*;

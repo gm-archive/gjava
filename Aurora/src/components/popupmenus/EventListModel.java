@@ -11,7 +11,7 @@ package components.popupmenus;
 
 import java.util.*;
 import javax.swing.*;
-import events.*;
+import org.gcreator.events.*;
 import fileclass.res.Actor;
 
 /**

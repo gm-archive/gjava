@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package events;
+package org.gcreator.events;
 
 
 import javax.swing.*;

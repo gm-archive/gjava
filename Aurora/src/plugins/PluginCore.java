@@ -11,7 +11,7 @@ package plugins;
 
 import javax.swing.*;
 
-import exceptions.*;
+import org.gcreator.exceptions.*;
 
 /**
  *

@@ -9,7 +9,7 @@
 
 package fileclass;
 
-import exceptions.*;
+import org.gcreator.exceptions.*;
 
 /**
  *

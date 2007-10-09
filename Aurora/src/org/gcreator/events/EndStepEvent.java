@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package events;
+package org.gcreator.events;
 
 import javax.swing.*;
 
@@ -15,16 +15,16 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class DrawEvent extends Event{
+public class EndStepEvent extends Event{
     
     ImageIcon icon;
-    public DrawEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/draw.png"));
+    public EndStepEvent(){
+        icon = new ImageIcon(getClass().getResource("/resources/events/step.png"));
     }
     
     @Override
     public String toString(){
-        return "Draw";
+        return "End Step";
     }
     
     @Override

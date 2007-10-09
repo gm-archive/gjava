@@ -9,7 +9,7 @@
 
 package units;
 
-import exceptions.*;
+import org.gcreator.exceptions.*;
 
 /**
  *

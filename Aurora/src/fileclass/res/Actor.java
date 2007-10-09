@@ -20,7 +20,7 @@ public boolean visible, solid, persistant;
 public String sprite = "<no sprite";
 public String extend,mask;
 public int index,depth;
-public Vector<events.Event> events;
+public Vector<org.gcreator.events.Event> events;
   public  Actor(String name)
     {
         this.name = name;
@@ -33,7 +33,7 @@ public Vector<events.Event> events;
       xml += "<Solid>"+solid+"</Solid>\n";
       xml += "<Visible>"+visible+"</Visible>\n";
       xml += "<Persistant>"+solid+"</Persistant>\n";
-      for(events.Event event : events)
+      for(org.gcreator.events.Event event : events)
           xml += event.writeXml();
       return xml;
   }

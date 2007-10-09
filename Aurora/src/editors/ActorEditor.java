@@ -16,8 +16,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
-import exceptions.*;
-import events.*;
+import org.gcreator.exceptions.*;
+import org.gcreator.events.*;
 import actions.*;
 
 /**
@@ -52,7 +52,7 @@ public class ActorEditor extends TabPanel {
         if(file.value==null){
             this.actor = new Actor(file.name);
             file.value = actor;
-            actor.events = new Vector<events.Event>();
+            actor.events = new Vector<org.gcreator.events.Event>();
         }
         else
             if(file.value instanceof Actor)
@@ -528,7 +528,7 @@ public class ActorEditor extends TabPanel {
         if(type==EventSelectListener.ENDSTEP)
             elist.add(new EndStepEvent());
         if(type>=EventSelectListener.MOUSELEFTCLICKED&&type<=EventSelectListener.MOUSEOUT)
-            elist.add(new events.MouseEvent(type));
+            elist.add(new org.gcreator.events.MouseEvent(type));
         jScrollPane1.updateUI();
         jList1.updateUI();
         updateActionList();
@@ -538,7 +538,7 @@ public class ActorEditor extends TabPanel {
         actmodel.removeAllElements();
         if(jList1.getSelectedValue()==null)
             return;
-        Vector<actions.Action> actions = ((events.Event) jList1.getSelectedValue()).actions;
+        Vector<actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
         for(int i = 0; i < actions.size(); i++)
             actmodel.addElement(actions.get(i));
     }
@@ -598,7 +598,7 @@ public class ActorEditor extends TabPanel {
         if(jComboBox1.getSelectedItem()==null)
             return;
         actions.Action a = new actions.Action(this, (actions.ActionPattern) jComboBox1.getSelectedItem());
-        ((events.Event) jList1.getSelectedValue()).actions.add(a);
+        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
         updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
 

@@ -7,11 +7,11 @@
  * and open the template in the editor.
  */
 
-package languages;
+package org.gcreator.languages;
 
 import units.Dictionary;
 import components.*;
-import exceptions.*;
+import org.gcreator.exceptions.*;
 
 /**
  *

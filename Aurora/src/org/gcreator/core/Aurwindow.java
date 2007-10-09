@@ -21,9 +21,9 @@ import java.awt.*;
 import java.awt.event.*;
 import components.*;
 import managers.*;
-import languages.*;
+import org.gcreator.languages.*;
 import java.io.*;
-import exceptions.*;
+import org.gcreator.exceptions.*;
 import externproject.*;
 import fileclass.*;
 import editors.*;
@@ -246,7 +246,7 @@ public class Aurwindow extends JFrame {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
-        setIconImage(new ImageIcon(getClass().getResource("/resources/GCreator.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")).getImage());
         istabs = true;
         console = new JTextPane();
         console.setEditable(false);
@@ -458,7 +458,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
-        items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/resources/GCreator.png")));
+        items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
 
             @Override

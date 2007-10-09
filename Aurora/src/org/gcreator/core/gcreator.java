@@ -13,7 +13,7 @@ import editors.ActorEditor;
 import plugins.*;
 import managers.*;
 import clipboard.*;
-import languages.*;
+import org.gcreator.languages.*;
 
 import javax.swing.*;
 

@@ -35,14 +35,14 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public ImageIcon project_ext;
 
     public TreeImageManager() {
-        workspace = new ImageIcon(getClass().getResource("/resources/workspace.png"));
-        text = new ImageIcon(getClass().getResource("/resources/text.png"));
-        image = new ImageIcon(getClass().getResource("/resources/img.png"));
-        java = new ImageIcon(getClass().getResource("/resources/java.png"));
-        actor = new ImageIcon(getClass().getResource("/resources/actor.png"));
-        project_game = new ImageIcon(getClass().getResource("/resources/game.png"));
-        project_pkg = new ImageIcon(getClass().getResource("/resources/package.png"));
-        project_ext = new ImageIcon(getClass().getResource("/resources/extension.png"));
+        workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
+        text = new ImageIcon(getClass().getResource("/org/gcreator/resources/text.png"));
+        image = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
+        java = new ImageIcon(getClass().getResource("/org/gcreator/resources/java.png"));
+        actor = new ImageIcon(getClass().getResource("/org/gcreator/resources/actor.png"));
+        project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/game.png"));
+        project_pkg = new ImageIcon(getClass().getResource("/org/gcreator/resources/package.png"));
+        project_ext = new ImageIcon(getClass().getResource("/org/gcreator/resources/extension.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {

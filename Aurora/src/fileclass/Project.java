@@ -9,7 +9,7 @@
 
 package fileclass;
 
-import exceptions.NoSuchFolderException;
+import org.gcreator.exceptions.NoSuchFolderException;
 import fileclass.res.Actor;
 import fileclass.res.Classes;
 //import fileclass.res.Image;
