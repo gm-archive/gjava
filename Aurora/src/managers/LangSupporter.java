@@ -9,7 +9,7 @@
 
 package managers;
 
-import units.Dictionary;
+import org.gcreator.units.Dictionary;
 import components.*;
 
 /**

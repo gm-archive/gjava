@@ -11,7 +11,7 @@ package components;
 
 import org.gcreator.core.gcreator;
 import fileclass.ExtensionProject;
-import units.ObjectNode;
+import org.gcreator.units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.tree.*;

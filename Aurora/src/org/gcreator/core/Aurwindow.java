@@ -9,7 +9,7 @@
 
 package org.gcreator.core;
 
-import units.ObjectNode;
+import org.gcreator.units.ObjectNode;
 import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -474,6 +474,15 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(7, 2, evt);
             }
         });
+        menus[7].addSeparator();
+        items[MenuSupporter.GenerateMenuItemId(7, 3)] = MenuSupporter.MakeMenuItem(menus[7], 130, "Global options");
+        items[MenuSupporter.GenerateMenuItemId(7, 3)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(7, 3, evt);
+            }
+        });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
@@ -817,7 +826,12 @@ public class Aurwindow extends JFrame {
             PluginsManager manager = new PluginsManager(this, true);
             manager.setVisible(true);
         }
+        if (menu == 7 && item == 3) {
+            addWindow(globalsettings, 131);
+        }
     }
+    
+    public static GlobalSettings globalsettings;
 
 //</editor-fold>
     //Tree accessing functions

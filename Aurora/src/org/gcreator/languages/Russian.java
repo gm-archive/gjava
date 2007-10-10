@@ -1,6 +1,6 @@
 package org.gcreator.languages;
 
-import units.Dictionary;
+import org.gcreator.units.Dictionary;
 import components.*;
 import org.gcreator.exceptions.*;
 

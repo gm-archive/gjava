@@ -17,7 +17,7 @@ import editors.*;
 import org.gcreator.core.*;
 import fileclass.res.*;
 import java.awt.event.*;
-import units.*;
+import org.gcreator.units.*;
 import java.util.*;
 
 /**

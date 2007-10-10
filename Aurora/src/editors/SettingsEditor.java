@@ -20,7 +20,7 @@ public class SettingsEditor extends TabPanel {
     /** Creates new form SettingsEditor */
     fileclass.File file;
     SettingsValues value;
-    TabValues Graphics, Resolution;
+    TabValues Graphics, Resolution, Other;
     
     public SettingsEditor(fileclass.File file) {
         this.file = file;
@@ -37,6 +37,10 @@ public class SettingsEditor extends TabPanel {
         Resolution = value.getValue("Resolution");
         if(Resolution==null){
             value.setVariable("Resolution", Resolution = new TabValues("Resolution"));
+        }
+        Other = value.getValue("Other");
+        if(Other==null){
+            value.setVariable("Other", Other = new TabValues("Other"));
         }
         Object resize = Graphics.getValue("resize");
         if(resize==null||!(resize instanceof Boolean)){
@@ -60,9 +64,28 @@ public class SettingsEditor extends TabPanel {
         Integer res = (Integer) resol;
         if(res<0||res>6)
             Resolution.setVariable("resol", res = 0);
+        if(res<0||res>6)
+            Resolution.setVariable("resol", res = 0);
+        Object frequency = Resolution.getValue("frequency");
+        if(frequency==null||!(frequency instanceof Integer)){
+            Resolution.setVariable("frequency", frequency = (Integer) 0);
+        }
+        Integer freq = (Integer) frequency;
+        if(res<0||res>5)
+            Resolution.setVariable("frequency", freq = 0);
+        Object esc = Other.getValue("ESC");
+        if(esc==null||!(esc instanceof Boolean)){
+            Other.setVariable("ESC", esc = (Boolean) false);
+        }
+        Object f4 = Other.getValue("F4");
+        if(f4==null||!(f4 instanceof Boolean)){
+            Other.setVariable("F4", f4 = (Boolean) false);
+        }
         initComponents();
         jCheckBox4.setSelected((Boolean) resize);
         jCheckBox7.setSelected((Boolean) setres);
+        jCheckBox8.setSelected((Boolean) esc);
+        jCheckBox9.setSelected((Boolean) f4);
         if(dep==0)
             jRadioButton1.setSelected(true);
         else if(dep==16)
@@ -83,6 +106,18 @@ public class SettingsEditor extends TabPanel {
             jRadioButton9.setSelected(true);
         else if(res==6)
             jRadioButton10.setSelected(true);
+        if(freq==0)
+            jRadioButton11.setSelected(true);
+        else if(freq==1)
+            jRadioButton12.setSelected(true);
+        else if(freq==2)
+            jRadioButton13.setSelected(true);
+        else if(freq==3)
+            jRadioButton14.setSelected(true);
+        else if(freq==4)
+            jRadioButton15.setSelected(true);
+        else if(freq==5)
+            jRadioButton16.setSelected(true);
         checkres();
     }
     
@@ -384,35 +419,64 @@ public class SettingsEditor extends TabPanel {
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(managers.LangSupporter.activeLang.getEntry(120)));
 
         buttonGroup3.add(jRadioButton11);
-        jRadioButton11.setSelected(true);
         jRadioButton11.setText(managers.LangSupporter.activeLang.getEntry(74));
         jRadioButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton11.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton11ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jRadioButton12);
         jRadioButton12.setText("60");
         jRadioButton12.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton12.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton12ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jRadioButton13);
         jRadioButton13.setText("70");
         jRadioButton13.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton13.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton13ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jRadioButton14);
         jRadioButton14.setText("85");
         jRadioButton14.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton14.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton14ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jRadioButton15);
         jRadioButton15.setText("100");
         jRadioButton15.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton15.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton15ActionPerformed(evt);
+            }
+        });
 
         buttonGroup3.add(jRadioButton16);
         jRadioButton16.setText("120");
         jRadioButton16.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton16.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jRadioButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton16ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -475,8 +539,18 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(managers.LangSupporter.activeLang.getEntry(122)));
 
         jCheckBox8.setText(managers.LangSupporter.activeLang.getEntry(123));
+        jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox8ActionPerformed(evt);
+            }
+        });
 
         jCheckBox9.setText(managers.LangSupporter.activeLang.getEntry(124));
+        jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox9ActionPerformed(evt);
+            }
+        });
 
         jCheckBox10.setText(managers.LangSupporter.activeLang.getEntry(125));
         jCheckBox10.setEnabled(false);
@@ -637,6 +711,38 @@ public class SettingsEditor extends TabPanel {
     private void jRadioButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton10ActionPerformed
         Resolution.setVariable("resol", 6);
     }//GEN-LAST:event_jRadioButton10ActionPerformed
+
+    private void jCheckBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox8ActionPerformed
+        Other.setVariable("ESC", jCheckBox8.isSelected());
+    }//GEN-LAST:event_jCheckBox8ActionPerformed
+
+    private void jCheckBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox9ActionPerformed
+        Other.setVariable("F4", jCheckBox9.isSelected());
+    }//GEN-LAST:event_jCheckBox9ActionPerformed
+
+    private void jRadioButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton11ActionPerformed
+        Resolution.setVariable("frequency", 0);
+    }//GEN-LAST:event_jRadioButton11ActionPerformed
+
+    private void jRadioButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton12ActionPerformed
+        Resolution.setVariable("frequency", 1);
+    }//GEN-LAST:event_jRadioButton12ActionPerformed
+
+    private void jRadioButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton13ActionPerformed
+        Resolution.setVariable("frequency", 2);
+    }//GEN-LAST:event_jRadioButton13ActionPerformed
+
+    private void jRadioButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton14ActionPerformed
+        Resolution.setVariable("frequency", 3);
+    }//GEN-LAST:event_jRadioButton14ActionPerformed
+
+    private void jRadioButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton15ActionPerformed
+        Resolution.setVariable("frequency", 4);
+    }//GEN-LAST:event_jRadioButton15ActionPerformed
+
+    private void jRadioButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton16ActionPerformed
+        Resolution.setVariable("frequency", 5);
+    }//GEN-LAST:event_jRadioButton16ActionPerformed
     
     void checkres(){
        if(jCheckBox7.isSelected()){

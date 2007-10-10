@@ -8,7 +8,7 @@ package editors;
 
 import components.popupmenus.ResourceMenu;
 import components.*;
-import units.*;
+import org.gcreator.units.*;
 import org.gcreator.core.*;
 import fileclass.Project;
 import fileclass.res.*;

@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package units;
+package org.gcreator.units;
 
 import javax.swing.tree.*;
 

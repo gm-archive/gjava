@@ -9,7 +9,7 @@
 
 package managers;
 
-import units.ObjectNode;
+import org.gcreator.units.ObjectNode;
 import javax.swing.*;
 import javax.swing.tree.*;
 

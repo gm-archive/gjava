@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package units;
+package org.gcreator.units;
 
 import org.gcreator.exceptions.*;
 

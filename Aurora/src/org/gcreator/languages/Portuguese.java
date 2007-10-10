@@ -9,7 +9,7 @@
 
 package org.gcreator.languages;
 
-import units.Dictionary;
+import org.gcreator.units.Dictionary;
 import components.*;
 import org.gcreator.exceptions.*;
 
@@ -170,6 +170,9 @@ public class Portuguese extends Dictionary{
         entry[127] = "Mostrar imagem enquanto carrega";
         entry[128] = "Imagem:";
         entry[129] = "Icon:";
+        //Options
+        entry[130] = "Opções gerais";
+        entry[131] = "Opções gerais"; //Title
         
         try{
             init();

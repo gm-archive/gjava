@@ -11,7 +11,7 @@ package org.gcreator.languages;
 
 import components.*;
 import org.gcreator.exceptions.*;
-import units.Dictionary;
+import org.gcreator.units.Dictionary;
 import java.util.Enumeration;
 
 /**

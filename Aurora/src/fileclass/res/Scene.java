@@ -9,7 +9,7 @@
 
 package fileclass.res;
 
-import units.*;
+import org.gcreator.units.*;
 import java.util.*;
 
 /**

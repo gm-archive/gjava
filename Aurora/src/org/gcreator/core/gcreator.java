@@ -89,6 +89,7 @@ public class gcreator {
             window.menubar.updateUI();
             splash.dispose();
         }
+        Aurwindow.globalsettings = new components.GlobalSettings();
         /*if(window!=null){
             SwingUtilities.updateComponentTreeUI(window.consolepopup);
             //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.

@@ -9,7 +9,7 @@
 
 package fileclass;
 
-import units.ObjectNode;
+import org.gcreator.units.ObjectNode;
 import components.*;
 
 /**
