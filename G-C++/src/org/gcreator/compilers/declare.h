@@ -3,8 +3,10 @@
 
 #include "types.h"
 
-namespace GApi
+namespace org
 {
+    namespace gcreator
+    {
 	namespace Components
 	{
 		class Image;
@@ -53,6 +55,7 @@ namespace GApi
 		class Mouse;
 		class Keyboard;
 	}
+    }
 }
 
 #include "GApi/Components/declare.h"

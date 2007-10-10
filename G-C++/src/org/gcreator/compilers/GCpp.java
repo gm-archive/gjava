@@ -7,11 +7,11 @@
  * and open the template in the editor.
  */
 
-package aurora.compilers;
+package org.gcreator.compilers;
 
 import plugins.*;
-import exceptions.*;
-import core.*;
+import org.gcreator.exceptions.*;
+import org.gcreator.core.*;
 
 /**
  *
@@ -21,7 +21,7 @@ public class GCpp extends PluginCore{
     public GCpp(){} //install
     
     //Since onMainWindowStart is called before
-    //the constructor, we need something after
+    //the window constructor, we need something after
     //it.
     
     @Override

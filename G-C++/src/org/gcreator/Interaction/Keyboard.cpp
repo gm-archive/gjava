@@ -4,7 +4,7 @@
 #include "../../declare.h"
 #include <allegro.h>
 
-String* GApi::Interaction::Keyboard::getPressedKeys(){
+String* org::gcreator::Interaction::Keyboard::getPressedKeys(){
     String* a = (String*) malloc(sizeof(String)*100);
     int b = 0;
     if(key[KEY_A])
@@ -137,7 +137,7 @@ String* GApi::Interaction::Keyboard::getPressedKeys(){
         a[b++] = "Up";
 }
 
-boolean GApi::Interaction::Keyboard::isKeyPressed(String key){
+boolean org::gcreator::Interaction::Keyboard::isKeyPressed(String key){
     //First, let's do a fast checking
     if(key == "Up")
         return (key[KEY_UP]!=0);
