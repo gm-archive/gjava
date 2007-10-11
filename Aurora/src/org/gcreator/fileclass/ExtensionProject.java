@@ -49,4 +49,8 @@ public class ExtensionProject extends Project {
     public org.gcreator.fileclass.File[] getJavaFiles(){
         return managers.FilesFinder.getFilesAt(this, "java");
     }
+    
+    public org.gcreator.fileclass.File[] getCppFiles(){
+        return managers.FilesFinder.getFilesAt(this, "cpp");
+    }
 }

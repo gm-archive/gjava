@@ -77,6 +77,8 @@ public class SettingsIO {
                 out.write("Cross-platform");
             } else if (look == 2) {
                 out.write("Motif");
+            } else if (look == 3) {
+                out.write("Metal"); 
             } else {
                 out.write("Unknown");
             }

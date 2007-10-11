@@ -32,6 +32,7 @@ import plugins.*;
 import components.popupmenus.*;
 import org.gcreator.fileclass.res.Scene;
 import java.util.Enumeration;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *
@@ -533,6 +534,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(5, 2, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(5, 3)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 132, "Ocean theme");
+        items[MenuSupporter.GenerateMenuItemId(5, 3)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(5, 3, evt);
+            }
+        });
         ButtonGroup agroup = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
@@ -611,6 +620,9 @@ public class Aurwindow extends JFrame {
             } else if (settings[0].equals("Motif")) {
                 items[MenuSupporter.GenerateMenuItemId(5, 2)].setSelected(true);
                 look = 2;
+            } else if (settings[0].equals("Metal")) {
+                items[MenuSupporter.GenerateMenuItemId(5, 3)].setSelected(true);
+                look = 3;
             } else {
                 items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
                 look = 1;
@@ -729,6 +741,7 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 5 && item == 1) {
             try {
+                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
@@ -753,6 +766,22 @@ public class Aurwindow extends JFrame {
                 }
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 2;
+                workspace.updateUI();
+            } catch (Exception e) {
+            }
+        }
+        if (menu == 5 && item == 3) {
+            try {
+                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                SwingUtilities.updateComponentTreeUI(this);
+                if (istabs) {
+                    SwingUtilities.updateComponentTreeUI(mdi);
+                } else {
+                    SwingUtilities.updateComponentTreeUI(tabs);
+                }
+                SwingUtilities.updateComponentTreeUI(consolepopup);
+                look = 3;
                 workspace.updateUI();
             } catch (Exception e) {
             }

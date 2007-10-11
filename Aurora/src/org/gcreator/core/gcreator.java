@@ -74,10 +74,15 @@ public class gcreator {
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
+                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             } else if (settings[0].equals("Motif")) {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            } else if (settings[0].equals("Metal")) {
+                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
+                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             }
+            
         } catch (Exception e) {}
         Plugger.onMainWindowStart(plugins);
         ActorEditor.setupActions();

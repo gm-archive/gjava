@@ -173,6 +173,8 @@ public class English extends Dictionary{
         //Options
         entry[130] = "Global settings";
         entry[131] = "Global settings"; //Title
+        //---
+        entry[132] = "Metal theme";
         
         
         try{

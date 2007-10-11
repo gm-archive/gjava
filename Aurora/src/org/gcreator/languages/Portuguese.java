@@ -173,6 +173,8 @@ public class Portuguese extends Dictionary{
         //Options
         entry[130] = "Opções gerais";
         entry[131] = "Opções gerais"; //Title
+        //---
+        entry[132] = "Tema Metálico";
         
         try{
             init();
