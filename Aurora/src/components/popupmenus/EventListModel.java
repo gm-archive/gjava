@@ -12,16 +12,16 @@ package components.popupmenus;
 import java.util.*;
 import javax.swing.*;
 import org.gcreator.events.*;
-import fileclass.res.Actor;
+import org.gcreator.fileclass.res.Actor;
 
 /**
  *
  * @author Luís
  */
 public class EventListModel extends AbstractListModel{
-    fileclass.res.Actor val;
-    public EventListModel(fileclass.File file){
-        val = (fileclass.res.Actor) file.value;
+    org.gcreator.fileclass.res.Actor val;
+    public EventListModel(org.gcreator.fileclass.File file){
+        val = (org.gcreator.fileclass.res.Actor) file.value;
     }
     public Object getElementAt(int pos){
         return val.events.get(pos);

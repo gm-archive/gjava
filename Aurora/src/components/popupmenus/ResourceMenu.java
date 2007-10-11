@@ -10,8 +10,8 @@
 package components.popupmenus;
 
 import org.gcreator.core.gcreator;
-import fileclass.Project;
-import fileclass.res.Resource;
+import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Resource;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -141,10 +141,10 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         while (e.hasMoreElements()) {
             Object object = e.nextElement();
             ObjectNode node = (ObjectNode) object;
-            if (node.object instanceof fileclass.File && name.equals(node.object.name)) {
+            if (node.object instanceof org.gcreator.fileclass.File && name.equals(node.object.name)) {
                 return node;
             }
-            if (node.object instanceof fileclass.Folder) {
+            if (node.object instanceof org.gcreator.fileclass.Folder) {
                 ObjectNode alpha = getObjectWithName(name, node.children());
                 if (alpha != null) {
                     return alpha;
@@ -159,7 +159,7 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
             Object object = e.nextElement();
             ObjectNode node = (ObjectNode) object;
             System.out.println("" + node.object.name);
-            if (node.object instanceof fileclass.Group) {
+            if (node.object instanceof org.gcreator.fileclass.Group) {
                 JMenu resbackup = null;
                 if (res != null) {
                     resbackup = res;

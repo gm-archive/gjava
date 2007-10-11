@@ -9,7 +9,7 @@ package editors;
 import javax.swing.*;
 
 import components.*;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -18,11 +18,11 @@ import fileclass.Project;
 public class ImageEditor extends TabPanel {
     
     /** Creates new form ImageEditor */
-    private fileclass.File file;
+    private org.gcreator.fileclass.File file;
     
     private ImageDisplayer displayer;
     
-    public ImageEditor(fileclass.File file,Project project) {
+    public ImageEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         this.file = file;
         displayer = new ImageDisplayer(file);

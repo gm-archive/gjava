@@ -15,7 +15,7 @@ import java.awt.*;
 
 import editors.*;
 import org.gcreator.core.*;
-import fileclass.res.*;
+import org.gcreator.fileclass.res.*;
 import java.awt.event.*;
 import org.gcreator.units.*;
 import java.util.*;
@@ -59,7 +59,7 @@ public class ScenePanel extends JComponent implements MouseListener{
     public void addActorAt(int x, int y){
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) ((fileclass.File) ResourceMenu.getObjectWithName(((Actor) act.actor.value).sprite, "sprite", root.project).object).value;
+            Sprite s = (Sprite) ((org.gcreator.fileclass.File) ResourceMenu.getObjectWithName(((Actor) act.actor.value).sprite, "sprite", root.project).object).value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
@@ -117,11 +117,11 @@ public class ScenePanel extends JComponent implements MouseListener{
         Enumeration<ActorInScene> e = scn.actors.elements();
         while(e.hasMoreElements()){
             ActorInScene a = e.nextElement();
-            fileclass.res.Actor b = (fileclass.res.Actor) a.actor.value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.actor.value;
             ObjectNode c = components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", root.project);
             if(c!=null){
-                fileclass.File d = (fileclass.File) c.object;
-                fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
+                org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
+                org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
                 ImageIcon h = f.getImageAt(0);
                 if(h!=null)
                     g.drawImage(h.getImage(), (int) (a.x / root.getZoom()), (int) (a.y / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());

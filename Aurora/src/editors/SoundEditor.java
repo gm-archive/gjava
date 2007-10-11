@@ -7,16 +7,16 @@
 package editors;
 
 import components.TabPanel;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 
 /**
  *
  * @author  Ali1
  */
 public class SoundEditor extends TabPanel {
-    private fileclass.File file;
+    private org.gcreator.fileclass.File file;
     /** Creates new form SoundEditor */
-    public SoundEditor(fileclass.File file,Project project) {
+    public SoundEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         this.file = file;
         initComponents();

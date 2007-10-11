@@ -19,7 +19,7 @@ public class DrawEvent extends Event{
     
     ImageIcon icon;
     public DrawEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/draw.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/draw.png"));
     }
     
     @Override

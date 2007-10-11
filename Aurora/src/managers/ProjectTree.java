@@ -14,7 +14,7 @@ import javax.swing.*;
 import javax.swing.tree.*;
 
 import components.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 
 /**
  *
@@ -33,7 +33,7 @@ public class ProjectTree {
         }
         else
             froot = root;
-        fileclass.Object childNode;
+        org.gcreator.fileclass.Object childNode;
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){
                 DefaultMutableTreeNode node = new ObjectNode(childNode);

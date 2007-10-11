@@ -8,7 +8,7 @@ package plugins;
 
 import javax.swing.*;
 
-import fileclass.*;
+import org.gcreator.fileclass.*;
 import org.gcreator.core.*;
 import managers.*;
 

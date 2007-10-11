@@ -10,7 +10,7 @@
 package components;
 
 import org.gcreator.core.Aurwindow;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 import javax.swing.*;
 
 /**

@@ -19,7 +19,7 @@ public class CreateEvent extends Event{
     
     ImageIcon icon;
     public CreateEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/create.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/create.png"));
     }
     
     @Override

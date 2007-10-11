@@ -10,8 +10,8 @@ import components.popupmenus.*;
 import components.TabPanel;
 import components.impl.*;
 import org.gcreator.core.gcreator;
-import fileclass.Project;
-import fileclass.res.Actor;
+import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -26,7 +26,7 @@ import actions.*;
  */
 public class ActorEditor extends TabPanel {
     
-    public fileclass.File file = null;
+    public org.gcreator.fileclass.File file = null;
     public boolean changed = false;
     public static Vector<actionCat> actionCats;
     public EventListModel elist;
@@ -47,7 +47,7 @@ public class ActorEditor extends TabPanel {
     }
     
     /** Creates new form ActorEditor2 */
-    public ActorEditor(fileclass.File file,Project project) throws WrongResourceException{
+    public ActorEditor(org.gcreator.fileclass.File file,Project project) throws WrongResourceException{
         this.project = project;
         if(file.value==null){
             this.actor = new Actor(file.name);

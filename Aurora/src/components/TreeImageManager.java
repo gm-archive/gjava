@@ -10,7 +10,7 @@
 package components;
 
 import org.gcreator.core.gcreator;
-import fileclass.ExtensionProject;
+import org.gcreator.fileclass.ExtensionProject;
 import org.gcreator.units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
@@ -92,18 +92,18 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
             setIcon(workspace);
         else{
             ObjectNode noder = (ObjectNode) node;
-            if(noder.object instanceof fileclass.File)
-                if(((fileclass.File) noder.object).type.equals("txt"))
+            if(noder.object instanceof org.gcreator.fileclass.File)
+                if(((org.gcreator.fileclass.File) noder.object).type.equals("txt"))
                     setIcon(text);
-                else if(((fileclass.File) noder.object).type.equals("gif"))
+                else if(((org.gcreator.fileclass.File) noder.object).type.equals("gif"))
                     setIcon(image);
-                else if(((fileclass.File) noder.object).type.equals("jpg"))
+                else if(((org.gcreator.fileclass.File) noder.object).type.equals("jpg"))
                     setIcon(image);
-                else if(((fileclass.File) noder.object).type.equals("png"))
+                else if(((org.gcreator.fileclass.File) noder.object).type.equals("png"))
                     setIcon(image);
-                else if(((fileclass.File) noder.object).type.equals("java"))
+                else if(((org.gcreator.fileclass.File) noder.object).type.equals("java"))
                     setIcon(java);
-                else if(((fileclass.File) noder.object).type.equals("actor"))
+                else if(((org.gcreator.fileclass.File) noder.object).type.equals("actor"))
                     setIcon(actor);
                 else
                     if(UIManager.get("Tree.leafIcon")!=null)
@@ -111,11 +111,11 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                     else
                         setIcon(null);
             else{
-                if(noder.object instanceof fileclass.GameProject)
+                if(noder.object instanceof org.gcreator.fileclass.GameProject)
                     setIcon(project_game);
-                else if(noder.object instanceof fileclass.PackageProject)
+                else if(noder.object instanceof org.gcreator.fileclass.PackageProject)
                     setIcon(project_pkg);
-                else if(noder.object instanceof fileclass.ExtensionProject)
+                else if(noder.object instanceof org.gcreator.fileclass.ExtensionProject)
                     setIcon(project_ext);
                 else if(bExpanded)
                     if(UIManager.get("Tree.openIcon")!=null)

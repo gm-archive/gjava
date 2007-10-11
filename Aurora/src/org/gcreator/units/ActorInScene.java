@@ -16,11 +16,11 @@ import java.awt.*;
  * @author Luís
  */
 public class ActorInScene {
-    public fileclass.File actor;
+    public org.gcreator.fileclass.File actor;
     public int x;
     public int y;
     
-    public ActorInScene(fileclass.File actor, int x, int y){
+    public ActorInScene(org.gcreator.fileclass.File actor, int x, int y){
         this.actor = actor;
         this.x = x;
         this.y = y;

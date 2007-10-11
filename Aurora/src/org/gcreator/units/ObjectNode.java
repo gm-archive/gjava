@@ -11,15 +11,15 @@ package org.gcreator.units;
 
 import javax.swing.tree.*;
 
-import fileclass.*;
+import org.gcreator.fileclass.*;
 
 /**
  *
  * @author Luís
  */
 public class ObjectNode extends DefaultMutableTreeNode{
-    public fileclass.Object object;
-    public ObjectNode(fileclass.Object object){
+    public org.gcreator.fileclass.Object object;
+    public ObjectNode(org.gcreator.fileclass.Object object){
         super(object.name);
         this.object = object;
         object.setObjectNode(this);

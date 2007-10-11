@@ -25,12 +25,12 @@ import org.gcreator.languages.*;
 import java.io.*;
 import org.gcreator.exceptions.*;
 import externproject.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 import editors.*;
-import fileclass.res.*;
+import org.gcreator.fileclass.res.*;
 import plugins.*;
 import components.popupmenus.*;
-import fileclass.res.Scene;
+import org.gcreator.fileclass.res.Scene;
 import java.util.Enumeration;
 
 /**
@@ -90,13 +90,13 @@ public class Aurwindow extends JFrame {
 
     public void treeDoubleClicked(MouseEvent e) {
 
-        fileclass.Object obj = getCurrentObject();
-        if (obj instanceof fileclass.File) {
-            Open((fileclass.File) obj);
+        org.gcreator.fileclass.Object obj = getCurrentObject();
+        if (obj instanceof org.gcreator.fileclass.File) {
+            Open((org.gcreator.fileclass.File) obj);
         }
     }
 
-    public void Open(fileclass.File file) {
+    public void Open(org.gcreator.fileclass.File file) {
         boolean found = false;
         int iii = 0;
         int foundloc = 0;
@@ -705,7 +705,7 @@ public class Aurwindow extends JFrame {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
-            help.AboutPanel panel = new help.AboutPanel();
+            org.gcreator.help.AboutPanel panel = new org.gcreator.help.AboutPanel();
             addWindow(panel, 27);
         }
         if (menu == 4 && item == 1) {
@@ -856,13 +856,13 @@ public class Aurwindow extends JFrame {
         if (getCurrentObject() instanceof Folder) {
             return (Folder) getCurrentObject();
         }
-        if (getCurrentObject() instanceof fileclass.File) {
-            return ((fileclass.File) getCurrentObject()).root;
+        if (getCurrentObject() instanceof org.gcreator.fileclass.File) {
+            return ((org.gcreator.fileclass.File) getCurrentObject()).root;
         }
         return null;
     }
 
-    public fileclass.Object getCurrentObject() {
+    public org.gcreator.fileclass.Object getCurrentObject() {
         //Currently selected object
         if (workspace.getSelectionCount() != 1) {
             return null;
@@ -1015,7 +1015,7 @@ public class Aurwindow extends JFrame {
                 }
                 else{
                 int lastindexof = f.getName().lastIndexOf('.');*/
-                fileclass.File file = addFile(getCurrentFolder(), "newImage0", "png");
+                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage0", "png");
                 /*file.value
                 }
                 }*/
@@ -1023,7 +1023,7 @@ public class Aurwindow extends JFrame {
     }
 
     //</editor-fold>
-    public fileclass.File addFile(Folder folder, String name, String type) {
+    public org.gcreator.fileclass.File addFile(Folder folder, String name, String type) {
 
         if (folder == null) {
             return null;
@@ -1031,7 +1031,7 @@ public class Aurwindow extends JFrame {
         if (!folder.allowsFileType(type)) {
             return null;
         }
-        fileclass.File file = new fileclass.File(folder, name, type, null);
+        org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());

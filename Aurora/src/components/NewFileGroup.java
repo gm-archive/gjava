@@ -163,11 +163,11 @@ public class NewFileGroup extends TabPanel {
             jList2.setModel(a3);
     }//GEN-LAST:event_jList1ValueChanged
     
-    public fileclass.Folder getCurrentFolder() {
+    public org.gcreator.fileclass.Folder getCurrentFolder() {
         return gcreator.window.getCurrentFolder();
     }
 
-    public fileclass.Object getCurrentObject() {
+    public org.gcreator.fileclass.Object getCurrentObject() {
         return gcreator.window.getCurrentObject();
     }
     

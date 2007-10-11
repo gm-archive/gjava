@@ -20,7 +20,7 @@ public class MouseEvent extends Event{
     public ImageIcon icon;
     public MouseEvent(int type){
         this.type = type;
-        icon = new ImageIcon(getClass().getResource("/resources/events/mouse.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));
     }
     @Override
     public String toString(){

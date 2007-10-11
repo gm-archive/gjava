@@ -19,7 +19,7 @@ public class DestroyEvent extends Event{
     
     ImageIcon icon;
     public DestroyEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/destroy.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/destroy.png"));
     }
     
     @Override

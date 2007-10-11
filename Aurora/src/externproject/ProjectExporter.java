@@ -10,7 +10,7 @@
 package externproject;
 
 import org.gcreator.core.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 import javax.swing.*;
 import components.*;
 import java.awt.*;
@@ -54,16 +54,16 @@ public class ProjectExporter {
     private static int a;
     
     public static void putFolder(Folder folder, String prefix, ZipOutputStream out) throws java.io.IOException {
-        fileclass.Object childNode;
+        org.gcreator.fileclass.Object childNode;
 
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
-                if (childNode instanceof fileclass.File) {
-                    out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((fileclass.File)childNode).type));
-                    ((fileclass.File) childNode).writeToBuffer(out);
+                if (childNode instanceof org.gcreator.fileclass.File) {
+                    out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
+                    ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
                     out.closeEntry();
-                } else if (childNode instanceof fileclass.Folder) {
+                } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode, prefix + childNode.name + "/", out);
                 }
             }
@@ -83,12 +83,12 @@ public class ProjectExporter {
 
     public static String getContent(String prefix, Folder folder) {
         String content = "";
-        fileclass.Object childNode;
+        org.gcreator.fileclass.Object childNode;
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 content += "<file type=\"" + childNode.getObjectType() + "\">" + childNode.name;
-                if (childNode instanceof fileclass.File) {
-                    content += "." + ((fileclass.File) childNode).type;
+                if (childNode instanceof org.gcreator.fileclass.File) {
+                    content += "." + ((org.gcreator.fileclass.File) childNode).type;
                 }
                 content += "</file>";
                 if (childNode instanceof Folder) {

@@ -23,7 +23,7 @@ public class ViewInScene {
     public int porty = 0;
     public int portw = 640;
     public int porth = 480;
-    public fileclass.File follow = null;
+    public org.gcreator.fileclass.File follow = null;
     public int hbor = 32;
     public int vbor = 32;
     public int hsp = -1;

@@ -13,7 +13,7 @@ import org.gcreator.core.*;
 
 import javax.swing.*;
 import components.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 
 import java.awt.*;
 import java.io.*;
@@ -40,7 +40,7 @@ public class ProjectImporter {
    
     public static void readConfig(String s)
     {
-        fileclass.Folder f = new fileclass.Folder("");
+        org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
         System.out.println("reading config file...");
         
         System.out.println(s);
@@ -66,7 +66,7 @@ public class ProjectImporter {
              String ssss[] = sss[1].split("\\.");
              System.out.println(""+ssss.length);
              if(ssss.length >0){
-             fileclass.File file = new fileclass.File(f, ssss[0], ssss[1], null);
+             org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(f, ssss[0], ssss[1], null);
            // f.add(file);
              }
          }

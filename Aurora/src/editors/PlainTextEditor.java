@@ -7,7 +7,7 @@
 package editors;
 
 import components.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 import javax.swing.*;
 
 /**
@@ -18,10 +18,10 @@ public class PlainTextEditor extends TabPanel {
     
     /** Creates new form PlainTextEditor */
     
-    public fileclass.File file;
+    public org.gcreator.fileclass.File file;
     public boolean changed = false;
     
-    public PlainTextEditor(fileclass.File file,Project project) {
+    public PlainTextEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         initComponents();
         jTextPane1.setText((String) file.value);

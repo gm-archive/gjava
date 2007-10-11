@@ -9,8 +9,8 @@ package editors;
 import components.popupmenus.ResourceMenu;
 import components.SubimagePreview;
 import components.TabPanel;
-import fileclass.Project;
-import fileclass.res.Sprite;
+import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;
 import javax.swing.*;
 
@@ -20,14 +20,14 @@ import javax.swing.*;
  */
 public class SpriteEditor extends TabPanel {
     
-    public fileclass.File file = null;
+    public org.gcreator.fileclass.File file = null;
     Sprite sprite;
     boolean changed;
     
     ResourceMenu res;
     
     /** Creates new form SpriteEditor */
-    public SpriteEditor(fileclass.File file,Project project) {
+    public SpriteEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         this.file = file;
         //title = file.name + "(" + project.name+")";
@@ -454,7 +454,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner2MouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        fileclass.File a = (fileclass.File) res.getCurrentObject().object;
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) res.getCurrentObject().object;
         Object o = a.value;
         if (sprite.countImages()  == 0){
             sprite.width = ((ImageIcon) o).getIconWidth();

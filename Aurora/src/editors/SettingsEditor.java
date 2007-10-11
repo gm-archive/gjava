@@ -9,7 +9,7 @@ package editors;
 import components.*;
 import javax.swing.border.*;
 import java.awt.*;
-import fileclass.res.*;
+import org.gcreator.fileclass.res.*;
 
 /**
  *
@@ -18,11 +18,11 @@ import fileclass.res.*;
 public class SettingsEditor extends TabPanel {
     
     /** Creates new form SettingsEditor */
-    fileclass.File file;
+    org.gcreator.fileclass.File file;
     SettingsValues value;
     TabValues Graphics, Resolution, Other;
     
-    public SettingsEditor(fileclass.File file) {
+    public SettingsEditor(org.gcreator.fileclass.File file) {
         this.file = file;
         if(file.value==null||!(file.value instanceof SettingsValues)){
             file.value = value = new SettingsValues();

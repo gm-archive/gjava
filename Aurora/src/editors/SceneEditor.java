@@ -10,8 +10,8 @@ import components.popupmenus.ResourceMenu;
 import components.*;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
-import fileclass.Project;
-import fileclass.res.*;
+import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -27,13 +27,13 @@ public class SceneEditor extends TabPanel {
     
     /** Creates new form SceneEditor */
     public ScenePanel scene;
-    public fileclass.File file;
+    public org.gcreator.fileclass.File file;
     public ViewsModel model;
     public boolean changed = false;
     public ResourceMenu curactor;
     
     public ActorInScene makeNewActor(int x, int y){
-        fileclass.File a = (fileclass.File) curactor.getCurrentObject().object;
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) curactor.getCurrentObject().object;
         return new ActorInScene(a, x, y);
     }
     
@@ -49,7 +49,7 @@ public class SceneEditor extends TabPanel {
             aisx = ais.x;
             aisy = ais.y;
             ObjectNode k = ResourceMenu.getObjectWithName(((Actor) ais.actor.value).sprite, "sprite", project);
-            Sprite j = (Sprite) ((fileclass.File) k.object).value;
+            Sprite j = (Sprite) ((org.gcreator.fileclass.File) k.object).value;
             ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
@@ -66,17 +66,17 @@ public class SceneEditor extends TabPanel {
     }
     
     public void updateImage(){
-        fileclass.res.Actor b = (Actor) ((fileclass.File) curactor.getCurrentObject().object).value;
+        org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.File) curactor.getCurrentObject().object).value;
         ObjectNode c = components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", project);
         if(c!=null){
-            fileclass.File d = (fileclass.File) c.object;
-            fileclass.res.Sprite f = (fileclass.res.Sprite) d.value;
+            org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
+            org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
             ImageIcon h = f.getImageAt(0);
             jLabel18.setIcon(h);
         }
     }
     
-    public SceneEditor(fileclass.File file,Project project) {
+    public SceneEditor(org.gcreator.fileclass.File file,Project project) {
         if(!(file.value instanceof Scene))
             file.value = new Scene(file.name);
         this.file = file;

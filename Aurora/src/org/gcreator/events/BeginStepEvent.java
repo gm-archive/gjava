@@ -19,7 +19,7 @@ public class BeginStepEvent extends Event{
     
     ImageIcon icon;
     public BeginStepEvent(){
-        icon = new ImageIcon(getClass().getResource("/resources/events/step.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/step.png"));
     }
     
     @Override

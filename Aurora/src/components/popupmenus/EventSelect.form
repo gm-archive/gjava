@@ -26,25 +26,21 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButton2" max="32767" attributes="1"/>
+                  <Component id="jButton2" pref="107" max="32767" attributes="1"/>
                   <Component id="jButton1" pref="107" max="32767" attributes="1"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton11" max="32767" attributes="1"/>
-                      <Component id="jButton9" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jButton4" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jButton3" alignment="0" max="32767" attributes="1"/>
-                  </Group>
+                  <Component id="jButton11" pref="107" max="32767" attributes="1"/>
+                  <Component id="jButton9" alignment="0" pref="107" max="32767" attributes="1"/>
+                  <Component id="jButton4" alignment="0" pref="107" max="32767" attributes="1"/>
+                  <Component id="jButton3" alignment="0" pref="107" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButton5" pref="125" max="32767" attributes="1"/>
                   <Component id="jButton12" pref="125" max="32767" attributes="1"/>
                   <Component id="jButton6" alignment="1" pref="125" max="32767" attributes="1"/>
-                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton7" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jButton8" alignment="0" max="32767" attributes="1"/>
-                      <Component id="jButton10" alignment="0" max="32767" attributes="1"/>
-                  </Group>
+                  <Component id="jButton8" alignment="0" pref="125" max="32767" attributes="1"/>
+                  <Component id="jButton10" alignment="0" pref="125" max="32767" attributes="1"/>
+                  <Component id="jButton7" alignment="0" pref="125" max="32767" attributes="1"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -65,8 +61,8 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -100,7 +96,7 @@
     <Component class="javax.swing.JButton" name="jButton10">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/alarm.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/alarm.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Alarm"/>
       </Properties>
@@ -108,7 +104,7 @@
     <Component class="javax.swing.JButton" name="jButton8">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/key_release.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/key_release.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Key release"/>
       </Properties>
@@ -116,7 +112,7 @@
     <Component class="javax.swing.JButton" name="jButton7">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/key_press.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/key_press.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Key press"/>
       </Properties>
@@ -124,7 +120,7 @@
     <Component class="javax.swing.JButton" name="jButton6">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/keyboard.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/keyboard.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Keyboard"/>
       </Properties>
@@ -132,7 +128,7 @@
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/mouse.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/mouse.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Mouse"/>
       </Properties>
@@ -144,7 +140,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/create.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/create.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
@@ -155,7 +151,7 @@
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/destroy.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/destroy.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Destroy"/>
       </Properties>
@@ -166,7 +162,7 @@
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/step.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/step.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Step"/>
       </Properties>
@@ -178,7 +174,7 @@
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/draw.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/draw.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Draw"/>
       </Properties>
@@ -189,7 +185,7 @@
     <Component class="javax.swing.JButton" name="jButton9">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/colision.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/colision.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Collision"/>
       </Properties>
@@ -197,7 +193,7 @@
     <Component class="javax.swing.JButton" name="jButton11">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/events/other.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/events/other.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Other"/>
       </Properties>

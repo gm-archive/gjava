@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import managers.*;
 import javax.swing.*;
-import fileclass.*;
+import org.gcreator.fileclass.*;
 
 /**
  *
@@ -81,7 +81,7 @@ public class NewProject extends TabPanel {
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new EGMLGroup(project, "Classes"));
                 project.add(new Group(project, "Extensions"));
-                (new fileclass.File(project, "Settings", "settings", null)).editable = false;
+                (new org.gcreator.fileclass.File(project, "Settings", "settings", null)).editable = false;
             }
             else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");

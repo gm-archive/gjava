@@ -8,7 +8,7 @@ package editors;
 
 import components.CppTextArea;
 import components.TabPanel;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -17,7 +17,7 @@ import fileclass.Project;
 public class CppEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public CppEditor(fileclass.File file,Project project) {
+    public CppEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         initComponents();
         CppTextArea g = new CppTextArea("//Cpp");

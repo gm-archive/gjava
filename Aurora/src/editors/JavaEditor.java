@@ -12,7 +12,7 @@ import javax.swing.*;
 import components.JavaTextArea;
 import components.TabPanel;
 import org.gcreator.core.Aurwindow;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -20,7 +20,7 @@ import fileclass.Project;
  */
 public class JavaEditor extends TabPanel {
     
-    private fileclass.File file;
+    private org.gcreator.fileclass.File file;
     private boolean changed = false;
     private JavaTextArea g;
     
@@ -73,7 +73,7 @@ public class JavaEditor extends TabPanel {
     }
     
     /** Creates new form CodeEditor2 */
-    public JavaEditor(fileclass.File file,Project project) {
+    public JavaEditor(org.gcreator.fileclass.File file,Project project) {
         this.file = file;
         this.project = project;
         initComponents();

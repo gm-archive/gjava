@@ -8,7 +8,7 @@ package editors;
 
 import components.GMLTextArea;
 import components.TabPanel;
-import fileclass.Project;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -17,7 +17,7 @@ import fileclass.Project;
 public class CodeEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public CodeEditor(fileclass.File file,Project project) {
+    public CodeEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         initComponents();
         GMLTextArea g = new GMLTextArea("//new class");
