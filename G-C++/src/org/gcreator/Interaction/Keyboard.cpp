@@ -1,7 +1,7 @@
 #ifndef _GCPP_INTERACTION_KEYBOARD_
 #define _GCPP_INTERACTION_KEYBOARD_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 #include <allegro.h>
 
 String* org::gcreator::Interaction::Keyboard::getPressedKeys(){

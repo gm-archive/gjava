@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_ACTOR_
 #define _GCPP_COMPONENTS_ACTOR_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Components::Actor::Actor()
 {

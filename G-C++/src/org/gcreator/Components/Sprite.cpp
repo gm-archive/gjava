@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_SPRITE_
 #define _GCPP_COMPONENTS_SPRITE_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Components::Sprite::Sprite()
 {

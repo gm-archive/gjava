@@ -1,7 +1,7 @@
 #ifndef _GCPP_SUPPORT_COLOR_
 #define _GCPP_SUPPORT_COLOR_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Support::Color::Color(int r, int g, int b){
 	int _r = r;

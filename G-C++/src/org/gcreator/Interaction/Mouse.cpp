@@ -1,7 +1,7 @@
 #ifndef _GCPP_INTERACTION_MOUSE_
 #define _GCPP_INTERACTION_MOUSE_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 #include <allegro.h>
 
 int org::gcreator::Interaction::Mouse::getX(){

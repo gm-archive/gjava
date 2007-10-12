@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_TILESET_
 #define _GCPP_COMPONENTS_TILESET_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Components::Tileset::Tileset()
 {

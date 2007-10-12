@@ -9,7 +9,7 @@
 
 package org.gcreator.compilers;
 
-import plugins.*;
+import org.gcreator.plugins.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.core.*;
 
@@ -18,11 +18,16 @@ import org.gcreator.core.*;
  * @author Luís
  */
 public class GCpp extends PluginCore{
-    public GCpp(){} //install
+    public GCpp(){
+        VarsRegistry.setVariable("gcpp.version", "draft");
+        settings = new GCppOptions();
+    } //install
     
     //Since onMainWindowStart is called before
     //the window constructor, we need something after
     //it.
+    
+    public GCppOptions settings;
     
     @Override
     public void onSplashDispose(){
@@ -30,8 +35,8 @@ public class GCpp extends PluginCore{
     }
     
     public void init(){
-        VarsRegistry.setVariable("gcpp.version", "draft");
         utilities.addStringMessage("Installed G-C++");
+        PluginHelper.addGlobalTab("G-C++", settings);
     }
     
     @Override

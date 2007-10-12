@@ -1,7 +1,7 @@
 #ifndef _GCPP_SCRIPTING_STRING_
 #define _GCPP_SCRIPTING_STRING_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 String org::gcreator::Scripting::string::chr(int num)
 {

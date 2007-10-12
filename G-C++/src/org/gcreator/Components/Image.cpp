@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_IMAGE_
 #define _GCPP_COMPONENTS_IMAGE_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Components::Image::Image(ALLEGRO_BITMAP* bitmap)
 {

@@ -1,7 +1,7 @@
 #ifndef _GCPP_SCRIPTING_GM4_
 #define _GCPP_SCRIPTING_GM4_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 int org::gcreator::Scripting::GM4::min3(int a, int b, int c)
 {

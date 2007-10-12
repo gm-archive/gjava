@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_SCENE_
 #define _GCPP_COMPONENTS_SCENE_
 
-#include "../../declare.h"
+#include "../compilers/declare.h"
 
 org::gcreator::Components::Scene::Scene(){}
 
