@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<pluglist><plugin>org.gcreator.compilers.GPlus</plugin></pluglist>
+<pluglist><plugin>org.gcreator.compilers.GPlus</plugin><plugin>org.gcreator.utilities.GAH</plugin></pluglist>

@@ -30,22 +30,25 @@ public class PluginsManager extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         jList1.setModel(new AcessibleModel(){
-            String[] strings = PluginsList.loadPluglist();
+            Object[] strings = PluginsList.loadPluglist();
             public int getSize() {
-                int i = 1;
+                int i = 0;
                 if(strings==null)
                     return 0;
-                for(String x : strings)
+                for(Object x : strings)
                     if(x==null)
                         return i;
+                    else
+                        i++;
                 return i;
             }
             public Object getElementAt(int i) { return strings[i]; }
+            @Override
             public Object[] getObjects(){
                 return strings;
             }
             public void setObjects(Object[] o){
-                strings = (String[]) o;
+                strings = o;
             }
         });
     }

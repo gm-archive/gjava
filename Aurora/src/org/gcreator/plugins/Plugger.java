@@ -22,9 +22,7 @@ public class Plugger {
             PluginCore[] plugins = new PluginCore[classFiles.length];
             File x = new File("plugins/");
             URL url = x.toURI().toURL();
-            URL[] urls = new URL[1];
-            urls[0] = url;
-            ClassLoader loader = new URLClassLoader(urls);
+            ClassLoader loader = new URLClassLoader(new URL[]{url});
             for(int i = 0; i < plugins.length; i++)
                 if(classFiles[i]!=null){
                     Class plugin = loader.loadClass(classFiles[i]);
