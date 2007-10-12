@@ -10,7 +10,7 @@
 package org.gcreator.core;
 
 import editors.ActorEditor;
-import plugins.*;
+import org.gcreator.plugins.*;
 import managers.*;
 import clipboard.*;
 import org.gcreator.languages.*;

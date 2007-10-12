@@ -9,8 +9,6 @@ package org.gcreator.core;
 import javax.swing.*;
 import java.awt.*;
 
-import plugins.*;
-
 /**
  *
  * @author  Luís

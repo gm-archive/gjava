@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.io.*;
 
 import managers.*;
-import plugins.*;
+import org.gcreator.plugins.*;
 
 /**
  *
