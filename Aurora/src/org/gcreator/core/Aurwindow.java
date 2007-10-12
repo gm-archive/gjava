@@ -11,8 +11,7 @@ package org.gcreator.core;
 
 import org.gcreator.units.ObjectNode;
 import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 import javax.swing.event.*;
@@ -30,9 +29,7 @@ import editors.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.plugins.*;
 import components.popupmenus.*;
-import org.gcreator.fileclass.res.Scene;
 import java.util.Enumeration;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /**
  *

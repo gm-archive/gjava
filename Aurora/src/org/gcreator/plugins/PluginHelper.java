@@ -6,6 +6,8 @@
 
 package org.gcreator.plugins;
 
+import components.GlobalSettings;
+import java.awt.Component;
 import javax.swing.*;
 
 import org.gcreator.fileclass.*;
@@ -73,5 +75,9 @@ public class PluginHelper {
     
     public static String decrypt(String str){
         return utilities.decrypt(str);
+    }
+    
+    public static Component addGlobalTab(String name, JComponent comp){
+        return Aurwindow.globalsettings.jTabbedPane1.add(name, comp);
     }
 }

@@ -89,12 +89,12 @@ public class gcreator {
         
         window = new Aurwindow(settings);
         window.console.setText(output);
+        Aurwindow.globalsettings = new components.GlobalSettings();
         if(splash!=null){
             Plugger.onSplashDispose(gcreator.plugins);
             window.menubar.updateUI();
             splash.dispose();
         }
-        Aurwindow.globalsettings = new components.GlobalSettings();
         /*if(window!=null){
             SwingUtilities.updateComponentTreeUI(window.consolepopup);
             //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.

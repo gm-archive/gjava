@@ -23,16 +23,24 @@ public class Plugger {
             File x = new File("plugins/");
             URL url = x.toURI().toURL();
             ClassLoader loader = new URLClassLoader(new URL[]{url});
-            for(int i = 0; i < plugins.length; i++)
+            for(int i = 0; i < plugins.length; i++){
                 if(classFiles[i]!=null){
                     Class plugin = loader.loadClass(classFiles[i]);
                     Object instance = plugin.newInstance();
-                    if(instance instanceof PluginCore)
+                    if(instance instanceof PluginCore){
                         plugins[i] = (PluginCore) instance;
+                    }
                 }
+            }
+            for(int i = 0; i < plugins.length; i++){
+                if(plugins[i]==null)
+                    break;
+                System.out.println(i + ": " + plugins[i].toString());
+            }
             return plugins;
         }
         catch(Exception e){
+            System.out.println(e.toString());
             return null;
         }
     }
