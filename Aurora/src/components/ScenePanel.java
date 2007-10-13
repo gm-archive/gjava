@@ -19,16 +19,20 @@ import org.gcreator.fileclass.res.*;
 import java.awt.event.*;
 import org.gcreator.units.*;
 import java.util.*;
+import components.popupmenus.*;
 
 /**
  *
  * @author Luís
  */
-public class ScenePanel extends JComponent implements MouseListener{
+public class ScenePanel extends JPanel implements MouseListener{
     SceneEditor root;
+    ScenePopupMenu popup;
     public ScenePanel(SceneEditor root){
         this.root = root;
         this.addMouseListener(this);
+        popup = new ScenePopupMenu(root);
+        this.addMouseListener(new PopupListener(this, popup));
     }
     
     public void mouseExited(MouseEvent evt){}
@@ -36,16 +40,18 @@ public class ScenePanel extends JComponent implements MouseListener{
     public void mouseReleased(MouseEvent evt){}
     public void mousePressed(MouseEvent evt){}
     public void mouseClicked(MouseEvent evt){
-        int a = root.mode();
-        if(a==SceneEditor.INVALID)
-            return;
-        int x = (int) (evt.getX() * root.getZoom());
-        int y = (int) (evt.getY() * root.getZoom());
-        if(a==SceneEditor.ERASE)
-            eraseActorsAt(x, y);
-        if(a==SceneEditor.PENCIL)
-            addActorAt(x, y);
-        root.updateScroll();
+        if(evt.getButton()==MouseEvent.BUTTON1){
+            int a = root.mode();
+            if(a==SceneEditor.INVALID)
+                return;
+            int x = (int) (evt.getX() * root.getZoom());
+            int y = (int) (evt.getY() * root.getZoom());
+            if(a==SceneEditor.ERASE)
+                eraseActorsAt(x, y);
+            if(a==SceneEditor.PENCIL)
+                addActorAt(x, y);
+            root.updateScroll();
+        }
     }
     
     public void eraseActorsAt(int x, int y){
