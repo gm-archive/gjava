@@ -16,15 +16,13 @@ import editors.*;
  *
  * @author luis
  */
-public class EventPopupMenu extends JPopupMenu{
+public class ActionPopupMenu extends JPopupMenu{
     
-    private Vector<Event> array;
     private ActorEditor edit;
     
     private JMenuItem delete;
     
-    public EventPopupMenu(ActorEditor edit){
-        this.array = edit.elist.getEvents();
+    public ActionPopupMenu(ActorEditor edit){
         this.edit = edit;
         delete = new JMenuItem("Delete");
         delete.addActionListener(new ActionListener(){
@@ -36,8 +34,9 @@ public class EventPopupMenu extends JPopupMenu{
     }
     
     public void onDelete(){
-        int x = edit.jList1.getSelectedIndex();
+        int x = edit.jList2.getSelectedIndex();
         try{
+            Vector<actions.Action> array = ((Event) edit.jList1.getSelectedValue()).actions;
             array.remove(x);
         }
         catch(Exception e){}

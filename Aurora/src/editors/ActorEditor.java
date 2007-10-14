@@ -97,6 +97,7 @@ public class ActorEditor extends TabPanel {
         jCheckBox3.setSelected(actor.persistant);
         
         jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
+        jList2.addMouseListener(new PopupListener(jList2, new ActionPopupMenu(this)));
     }
 
     @Override
@@ -282,6 +283,9 @@ public class ActorEditor extends TabPanel {
         );
 
         jSplitPane2.setLeftComponent(jPanel4);
+
+        jComboBox1.setBackground(java.awt.Color.white);
+        jComboBox1.setForeground(java.awt.Color.black);
 
         jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

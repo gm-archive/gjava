@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -56,16 +57,23 @@ public class File extends Object {
             this.out = out;
         }
 
+        @Override
         public void write(byte[] barray, int a, int b) throws IOException {
             for (int i = a; i < b; i++) {
+            }
+        }
+        
+        @Override
+        public void write(byte[] barray) throws IOException {
+            for (int i = 0; i < barray.length; i++) {
                 out.write(barray[i]);
             }
         }
-
+        
         public void write(int a) throws IOException {
             out.write((byte) a);
         }
-
+        
         public int read(byte[] barray, int a, int b) {
             return 0;
         }
@@ -83,11 +91,16 @@ public class File extends Object {
         if (value instanceof String) {
             out.write(value.toString().getBytes());
         } else if (value instanceof ImageIcon) {
-            ImageIcon img = (ImageIcon) value;
-            Iterator iter = ImageIO.getImageWritersByFormatName(type);
+            Image img = ((ImageIcon) value).getImage();
+            System.out.println(img.toString());
             MyOutputStream stream = new MyOutputStream(out);
-            //HELP!!! How do you convert an ImageIcon to BufferedImage?
-            //ImageIO.write(new BufferedImage img, type, stream);
+            int iw = img.getWidth(null);
+            int ih = img.getHeight(null);
+            BufferedImage ii = new BufferedImage(iw, ih, BufferedImage.TYPE_INT_RGB);
+            Graphics imageGraphics = ii.createGraphics();
+            imageGraphics.drawImage(img, 0, 0, null);
+            imageGraphics.dispose();
+            ImageIO.write(ii, type, stream);
         } else if (value instanceof org.gcreator.fileclass.res.Resource) {
             out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
         }
@@ -103,6 +116,7 @@ public class File extends Object {
         return null;
     }
 
+    @Override
     public Object clone() {
         File o = new File(name, type);
         if (value instanceof Resource) {
