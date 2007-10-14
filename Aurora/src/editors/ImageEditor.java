@@ -9,6 +9,7 @@ package editors;
 import javax.swing.*;
 
 import components.*;
+import org.gcreator.fileclass.File;
 import org.gcreator.fileclass.Project;
 
 /**
@@ -186,6 +187,7 @@ public class ImageEditor extends TabPanel {
             java.io.File _file = jFileChooser1.getSelectedFile();
             file.type = _file.getName().substring(_file.getName().lastIndexOf(".")+1);
             file.value = new ImageIcon(_file.toURI().toURL());
+            file.treeimage = File.getScaledIcon((ImageIcon)file.value);
             jScrollPane1.updateUI();
             System.out.println(file.name + "." + file.type);
         }

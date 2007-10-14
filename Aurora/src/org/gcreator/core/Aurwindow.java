@@ -98,6 +98,7 @@ public class Aurwindow extends JFrame {
         boolean found = false;
         int iii = 0;
         int foundloc = 0;
+        file.type = file.type.toLowerCase();
         if (file.type.equals("sprite")) {
             for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
                 if (((Sprite) e.nextElement()).name.equals(file.name)) {
@@ -1058,6 +1059,8 @@ public class Aurwindow extends JFrame {
             return null;
         }
         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
+        if (file.type.toLowerCase().equals("png"))
+        file.treeimage = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());

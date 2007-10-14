@@ -14,6 +14,7 @@ import org.gcreator.fileclass.ExtensionProject;
 import org.gcreator.units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import javax.swing.tree.*;
 
 /**
@@ -96,12 +97,14 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                 if(((org.gcreator.fileclass.File) noder.object).type.equals("txt"))
                     setIcon(text);
                 else if(((org.gcreator.fileclass.File) noder.object).type.equals("gif"))
-                    setIcon(image);
+                    setIcon((ImageIcon)((org.gcreator.fileclass.File) noder.object).value);
                 else if(((org.gcreator.fileclass.File) noder.object).type.equals("jpg"))
-                    setIcon(image);
+                    setIcon((ImageIcon)((org.gcreator.fileclass.File) noder.object).value);
                 else if(((org.gcreator.fileclass.File) noder.object).type.equals("png"))
-                    setIcon(image);
-                else if(((org.gcreator.fileclass.File) noder.object).type.equals("java"))
+                {
+                    setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                }
+                    else if(((org.gcreator.fileclass.File) noder.object).type.equals("java"))
                     setIcon(java);
                 else if(((org.gcreator.fileclass.File) noder.object).type.equals("actor"))
                     setIcon(actor);
@@ -138,6 +141,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         return this;
     }
 
+    
 // This is a hack to paint the background. Normally a JLabel can
 // paint its own background, but due to an apparent bug or
 // limitation in the TreeCellRenderer, the paint method is
