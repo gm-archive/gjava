@@ -49,99 +49,95 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public TreeImageManager(boolean logfileDeleted) {
         this.logfileDeleted = logfileDeleted;
     }
-
     boolean edition = false;
     String val = "";
-    
+
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean bSelected, boolean bExpanded, boolean bLeaf, int iRow, boolean bHasFocus) {
 // Find out which node we are rendering and get its text
-        
 
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         String labelText = (String) node.getUserObject();
-        if(node instanceof ObjectNode){
+        if (node instanceof ObjectNode) {
             ObjectNode noder = (ObjectNode) node;
-            if(!tree.isEditing())
+            if (!tree.isEditing()) {
                 tree.setEditable(noder.object.editable);
+            }
             labelText = noder.object.name;
             val = noder.getUserObject().toString();
-            if(edition!=tree.isEditing()&&tree.isEditing()==false){
+            if (edition != tree.isEditing() && tree.isEditing() == false) {
                 //Finished editing
                 noder.object.name = val;
             }
-        }
-        else{
-            if(!tree.isEditing())
+        } else {
+            if (!tree.isEditing()) {
                 tree.setEditable(false);
+            }
         }
-        
-        edition = tree.isEditing();
-        if(gcreator.window!=null)
-            if(gcreator.window.getCurrentObject()!=null)
-                val = gcreator.window.getCurrentObject().node.getUserObject().toString();
 
-        this.bSelected = bSelected;
-        try{
-            this.isCurProject = 
-                    (node == org.gcreator.core.gcreator.window.getCurrentProject().node);
+        edition = tree.isEditing();
+        if (gcreator.window != null) {
+            if (gcreator.window.getCurrentObject() != null) {
+                val = gcreator.window.getCurrentObject().node.getUserObject().toString();
+            }
         }
-        catch(NullPointerException e){
+        this.bSelected = bSelected;
+        try {
+            this.isCurProject = (node == org.gcreator.core.gcreator.window.getCurrentProject().node);
+        } catch (NullPointerException e) {
             this.isCurProject = false;
         }
 
-        if (!(node instanceof ObjectNode))
+        if (!(node instanceof ObjectNode)) {
             setIcon(workspace);
-        else{
+        } else {
             ObjectNode noder = (ObjectNode) node;
-            if(noder.object instanceof org.gcreator.fileclass.File)
-                if(((org.gcreator.fileclass.File) noder.object).type.equals("txt"))
+            if (noder.object instanceof org.gcreator.fileclass.File) {
+                if (((org.gcreator.fileclass.File) noder.object).type.equals("txt")) {
                     setIcon(text);
-                else if(((org.gcreator.fileclass.File) noder.object).type.equals("gif"))
-                    setIcon((ImageIcon)((org.gcreator.fileclass.File) noder.object).value);
-                else if(((org.gcreator.fileclass.File) noder.object).type.equals("jpg"))
-                    setIcon((ImageIcon)((org.gcreator.fileclass.File) noder.object).value);
-                else if(((org.gcreator.fileclass.File) noder.object).type.equals("png"))
-                {
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gif")) {
+                    setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("jpg")) {
                     setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
-                }
-                    else if(((org.gcreator.fileclass.File) noder.object).type.equals("java"))
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("png")) {
+                    setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("java")) {
                     setIcon(java);
-                else if(((org.gcreator.fileclass.File) noder.object).type.equals("actor"))
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("actor")) {
                     setIcon(actor);
-                else
-                    if(UIManager.get("Tree.leafIcon")!=null)
-                        setIcon((Icon) UIManager.get("Tree.leafIcon"));
-                    else
-                        setIcon(null);
-            else{
-                if(noder.object instanceof org.gcreator.fileclass.GameProject)
+                } else if (UIManager.get("Tree.leafIcon") != null) {
+                    setIcon((Icon) UIManager.get("Tree.leafIcon"));
+                } else {
+                    setIcon(null);
+                }
+            } else {
+                if (noder.object instanceof org.gcreator.fileclass.GameProject) {
                     setIcon(project_game);
-                else if(noder.object instanceof org.gcreator.fileclass.PackageProject)
+                } else if (noder.object instanceof org.gcreator.fileclass.PackageProject) {
                     setIcon(project_pkg);
-                else if(noder.object instanceof org.gcreator.fileclass.ExtensionProject)
+                } else if (noder.object instanceof org.gcreator.fileclass.ExtensionProject) {
                     setIcon(project_ext);
-                else if(bExpanded)
-                    if(UIManager.get("Tree.openIcon")!=null)
+                } else if (bExpanded) {
+                    if (UIManager.get("Tree.openIcon") != null) {
                         setIcon((Icon) UIManager.get("Tree.openIcon"));
-                    else
+                    } else {
                         setIcon(null);
-                else
-                    if(UIManager.get("Tree.closedIcon")!=null)
-                        setIcon((Icon) UIManager.get("Tree.closedIcon"));
-                    else
-                        setIcon(null);
+                    }
+                } else if (UIManager.get("Tree.closedIcon") != null) {
+                    setIcon((Icon) UIManager.get("Tree.closedIcon"));
+                } else {
+                    setIcon(null);
+                }
             }
         }
 // Add the text to the cell
-        if(org.gcreator.core.Aurwindow.getMainProject()!=null&&node==org.gcreator.core.Aurwindow.getMainProject().node)
+        if (org.gcreator.core.Aurwindow.getMainProject() != null && node == org.gcreator.core.Aurwindow.getMainProject().node) {
             setText("<HTML><B>" + labelText);
-        else
+        } else {
             setText(labelText);
-
+        }
         return this;
     }
 
-    
 // This is a hack to paint the background. Normally a JLabel can
 // paint its own background, but due to an apparent bug or
 // limitation in the TreeCellRenderer, the paint method is
@@ -151,12 +147,13 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         Icon currentI = getIcon();
 
 // Set the correct background color
-        if(bSelected)
+        if (bSelected) {
             bColor = Color.yellow;
-        else if(isCurProject)
+        } else if (isCurProject) {
             bColor = Color.orange;
-        else
+        } else {
             bColor = Color.white;
+        }
         g.setColor(bColor);
 
 // Draw a rectangle in the background of the cell

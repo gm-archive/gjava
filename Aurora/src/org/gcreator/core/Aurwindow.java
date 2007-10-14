@@ -1059,8 +1059,9 @@ public class Aurwindow extends JFrame {
             return null;
         }
         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
-        if (file.type.toLowerCase().equals("png"))
+        if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif"))
         file.treeimage = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
+        
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());
