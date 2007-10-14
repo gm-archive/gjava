@@ -13,7 +13,7 @@ import java.awt.*;
 import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.core.*;
-import managers.*;
+import org.gcreator.managers.*;
 import org.gcreator.fileclass.res.*;
 import org.lateralgm.file.*;
 import org.lateralgm.messages.*;

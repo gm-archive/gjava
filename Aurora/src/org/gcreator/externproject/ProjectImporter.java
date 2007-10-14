@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipInputStream;
-import managers.ProjectTree;
+import org.gcreator.managers.ProjectTree;
 
 /**
  *

@@ -101,7 +101,7 @@ public class ImageEditor extends TabPanel {
         widthLabel = new javax.swing.JLabel();
         heightLabel = new javax.swing.JLabel();
 
-        jButton1.setText(managers.LangSupporter.activeLang.getEntry(118));
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -122,7 +122,7 @@ public class ImageEditor extends TabPanel {
             }
         });
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(119));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
 
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {

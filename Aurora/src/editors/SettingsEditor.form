@@ -25,7 +25,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jTabbedPane1" alignment="0" pref="458" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="393" max="32767" attributes="0"/>
+              <EmptySpace pref="392" max="32767" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -35,7 +35,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTabbedPane1" pref="233" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" pref="217" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -44,7 +44,7 @@
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/resources/toolbar/save.png"/>
+          <Image iconType="3" name="/org/gcreator/resources/toolbar/save.png"/>
         </Property>
       </Properties>
       <Events>
@@ -63,7 +63,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(64)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(64)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -82,7 +82,7 @@
                           <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="278" max="32767" attributes="0"/>
+                      <EmptySpace pref="253" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -101,7 +101,7 @@
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="54" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -110,7 +110,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox3">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(65)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(65)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -126,7 +126,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox4">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(66)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(66)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -144,7 +144,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox5">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(67)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(67)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -160,7 +160,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox6">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(68)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(68)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -176,7 +176,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(69)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(69)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -192,7 +192,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox2">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(70)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(70)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -212,7 +212,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(71)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(71)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -233,7 +233,7 @@
                           </Group>
                           <Component id="jCheckBox7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace pref="17" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -248,7 +248,7 @@
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="25" max="32767" attributes="0"/>
+                      <EmptySpace pref="20" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -257,7 +257,7 @@
             <Component class="javax.swing.JCheckBox" name="jCheckBox7">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(72)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(72)" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -277,7 +277,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="managers.LangSupporter.activeLang.getEntry(73)" type="code"/>
+                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(73)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -315,7 +315,7 @@
                       <ComponentRef name="buttonGroup1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(74)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(74)" type="code"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -375,7 +375,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="managers.LangSupporter.activeLang.getEntry(71)" type="code"/>
+                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(71)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -420,7 +420,7 @@
                       <ComponentRef name="buttonGroup2"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(74)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(74)" type="code"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -556,7 +556,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="managers.LangSupporter.activeLang.getEntry(120)" type="code"/>
+                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(120)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -598,7 +598,7 @@
                       <ComponentRef name="buttonGroup3"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(74)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(74)" type="code"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -717,7 +717,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(121)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(121)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -734,7 +734,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" pref="281" max="32767" attributes="0"/>
+                              <Component id="jTextField2" pref="246" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -764,7 +764,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="managers.LangSupporter.activeLang.getEntry(122)" type="code"/>
+                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(122)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -773,10 +773,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jCheckBox9" alignment="0" pref="335" max="32767" attributes="0"/>
-                      <Component id="jCheckBox8" alignment="0" pref="335" max="32767" attributes="0"/>
+                      <Component id="jCheckBox9" alignment="0" pref="322" max="32767" attributes="0"/>
+                      <Component id="jCheckBox8" alignment="0" pref="322" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jCheckBox10" pref="329" max="32767" attributes="0"/>
+                          <Component id="jCheckBox10" pref="314" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -797,7 +797,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox8">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(123)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(123)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -807,7 +807,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox9">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(124)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(124)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -817,7 +817,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox10">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(125)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(125)" type="code"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -829,7 +829,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="managers.LangSupporter.activeLang.getEntry(126)" type="code"/>
+                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(126)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -841,9 +841,9 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" pref="265" max="32767" attributes="0"/>
+                          <Component id="jTextField1" pref="236" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jCheckBox11" alignment="0" pref="335" max="32767" attributes="0"/>
+                      <Component id="jCheckBox11" alignment="0" pref="322" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -863,7 +863,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox11">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(127)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(127)" type="code"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -871,7 +871,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="managers.LangSupporter.activeLang.getEntry(128)" type="code"/>
+                      <Connection code="LangSupporter.activeLang.getEntry(128)" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -886,7 +886,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="managers.LangSupporter.activeLang.getEntry(129)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(129)" type="code"/>
                 </Property>
               </Properties>
             </Component>

@@ -101,7 +101,7 @@
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/toolbar/clearall.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/toolbar/clearall.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Clear all instances"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -112,7 +112,7 @@
         <Component class="javax.swing.JButton" name="jButton6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/toolbar/shift.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/toolbar/shift.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Shift all instances"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -123,7 +123,7 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/toolbar/showgrid.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/toolbar/showgrid.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="toolTipText" type="java.lang.String" value="Show Grid"/>
@@ -141,7 +141,7 @@
         <Component class="javax.swing.JToggleButton" name="jToggleButton2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/resources/toolbar/iso.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/toolbar/iso.png"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Isometric"/>
             <Property name="focusable" type="boolean" value="false"/>
@@ -155,7 +155,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="managers.LangSupporter.activeLang.getEntry(119)" type="code"/>
+              <Connection code="org.gcreator.managers.LangSupporter.activeLang.getEntry(119)" type="code"/>
             </Property>
           </Properties>
         </Component>

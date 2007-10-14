@@ -11,8 +11,8 @@ package org.gcreator.core;
 
 import editors.ActorEditor;
 import org.gcreator.plugins.*;
-import managers.*;
-import clipboard.*;
+import org.gcreator.managers.*;
+import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
 
 import javax.swing.*;

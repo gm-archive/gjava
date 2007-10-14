@@ -35,25 +35,25 @@ public class FindDialog extends javax.swing.JDialog {
         jCheckBox3 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(managers.LangSupporter.activeLang.getEntry(76));
+        setTitle(org.gcreator.managers.LangSupporter.activeLang.getEntry(76));
         setAlwaysOnTop(true);
         setResizable(false);
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(77));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(77));
 
-        jLabel2.setText(managers.LangSupporter.activeLang.getEntry(78));
+        jLabel2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(78));
 
-        jButton1.setText(managers.LangSupporter.activeLang.getEntry(78));
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(78));
 
-        jCheckBox1.setText(managers.LangSupporter.activeLang.getEntry(80));
+        jCheckBox1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(80));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jCheckBox2.setText(managers.LangSupporter.activeLang.getEntry(81));
+        jCheckBox2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(81));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jCheckBox3.setText(managers.LangSupporter.activeLang.getEntry(82));
+        jCheckBox3.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(82));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 

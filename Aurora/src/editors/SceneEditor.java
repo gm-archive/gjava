@@ -290,19 +290,19 @@ public class SceneEditor extends TabPanel {
         jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/toolbar/clearall.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/clearall.png"))); // NOI18N
         jButton5.setToolTipText("Clear all instances");
         jButton5.setFocusable(false);
         jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/toolbar/shift.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/shift.png"))); // NOI18N
         jButton6.setToolTipText("Shift all instances");
         jButton6.setFocusable(false);
         jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/toolbar/showgrid.png"))); // NOI18N
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/showgrid.png"))); // NOI18N
         jToggleButton1.setSelected(true);
         jToggleButton1.setToolTipText("Show Grid");
         jToggleButton1.setFocusable(false);
@@ -314,7 +314,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/toolbar/iso.png"))); // NOI18N
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/iso.png"))); // NOI18N
         jToggleButton2.setToolTipText("Isometric");
         jToggleButton2.setFocusable(false);
         jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -325,7 +325,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(119));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {

@@ -7,7 +7,7 @@
 package components;
 
 import org.gcreator.core.*;
-import managers.*;
+import org.gcreator.managers.*;
 
 /**
  *

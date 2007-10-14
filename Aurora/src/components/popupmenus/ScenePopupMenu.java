@@ -10,7 +10,7 @@
 package components.popupmenus;
 
 import javax.swing.*;
-import managers.*;
+import org.gcreator.managers.*;
 import java.awt.event.*;
 import org.gcreator.core.*;
 import editors.*;

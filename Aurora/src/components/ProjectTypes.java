@@ -6,7 +6,7 @@
 
 package components;
 
-import managers.*;
+import org.gcreator.managers.*;
 import javax.swing.*;
 
 /**

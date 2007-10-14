@@ -9,7 +9,7 @@
 
 package org.gcreator.fileclass;
 
-import managers.FilesFinder;
+import org.gcreator.managers.FilesFinder;
 
 /**
  *
@@ -47,10 +47,10 @@ public class ExtensionProject extends Project {
     }
     
     public org.gcreator.fileclass.File[] getJavaFiles(){
-        return managers.FilesFinder.getFilesAt(this, "java");
+        return org.gcreator.managers.FilesFinder.getFilesAt(this, "java");
     }
     
     public org.gcreator.fileclass.File[] getCppFiles(){
-        return managers.FilesFinder.getFilesAt(this, "cpp");
+        return org.gcreator.managers.FilesFinder.getFilesAt(this, "cpp");
     }
 }

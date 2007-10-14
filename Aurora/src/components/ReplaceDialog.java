@@ -37,29 +37,29 @@ public class ReplaceDialog extends javax.swing.JDialog {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle(managers.LangSupporter.activeLang.getEntry(83));
+        setTitle(org.gcreator.managers.LangSupporter.activeLang.getEntry(83));
         setAlwaysOnTop(true);
         setResizable(false);
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(84));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(84));
 
-        jLabel2.setText(managers.LangSupporter.activeLang.getEntry(85));
+        jLabel2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(85));
 
-        jButton1.setText(managers.LangSupporter.activeLang.getEntry(87));
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(87));
 
-        jCheckBox1.setText(managers.LangSupporter.activeLang.getEntry(80));
+        jCheckBox1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(80));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jCheckBox2.setText(managers.LangSupporter.activeLang.getEntry(81));
+        jCheckBox2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(81));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jCheckBox3.setText(managers.LangSupporter.activeLang.getEntry(82));
+        jCheckBox3.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(82));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jButton2.setText(managers.LangSupporter.activeLang.getEntry(86));
+        jButton2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(86));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

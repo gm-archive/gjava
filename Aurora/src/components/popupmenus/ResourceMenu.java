@@ -28,7 +28,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import org.gcreator.units.ObjectNode;
-import managers.*;
+import org.gcreator.managers.*;
 
 /**
  *

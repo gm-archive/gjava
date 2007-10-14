@@ -15,7 +15,7 @@ import java.awt.event.*;
 
 
 import org.gcreator.core.*;
-import managers.*;
+import org.gcreator.managers.*;
 
 /**
  *

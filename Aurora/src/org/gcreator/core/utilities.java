@@ -9,7 +9,7 @@
 
 package org.gcreator.core;
 
-import managers.*;
+import org.gcreator.managers.*;
 import javax.crypto.*;
 
 /**

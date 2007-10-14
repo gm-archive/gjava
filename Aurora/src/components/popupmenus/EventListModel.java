@@ -38,4 +38,7 @@ public class EventListModel extends AbstractListModel{
     public void remove(Event event){
         val.events.remove(event);
     }
+    public Vector<Event> getEvents(){
+        return val.events;
+    }
 }

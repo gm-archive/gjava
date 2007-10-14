@@ -12,7 +12,7 @@ import javax.swing.*;
 
 import org.gcreator.fileclass.*;
 import org.gcreator.core.*;
-import managers.*;
+import org.gcreator.managers.*;
 
 /**
  *

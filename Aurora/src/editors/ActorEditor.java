@@ -71,7 +71,7 @@ public class ActorEditor extends TabPanel {
         patterns.add(new actions.mainactions.EndOfABlock(this));
         patterns.add(new actions.mainactions.Comment(this));
         patterns.add(new actions.mainactions.ExecuteCode(this));
-        
+
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));
         jComboBox1.setRenderer(new ActionListCellRenderer());
@@ -96,8 +96,7 @@ public class ActorEditor extends TabPanel {
         jCheckBox2.setSelected(actor.solid);
         jCheckBox3.setSelected(actor.persistant);
         
-        
-      
+        jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
     }
 
     @Override
@@ -625,7 +624,7 @@ public class ActorEditor extends TabPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList jList1;
+    public javax.swing.JList jList1;
     public javax.swing.JList jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel11;

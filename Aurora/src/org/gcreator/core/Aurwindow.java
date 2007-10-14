@@ -15,11 +15,11 @@ import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 import javax.swing.event.*;
-import managers.MenuSupporter;
+import org.gcreator.managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
 import components.*;
-import managers.*;
+import org.gcreator.managers.*;
 import org.gcreator.languages.*;
 import java.io.*;
 import org.gcreator.exceptions.*;
@@ -324,7 +324,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 0, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/newproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
         items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
 
@@ -333,9 +333,9 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 1, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/resources/general/newfile.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/newfile.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
-        items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
 
             @Override
@@ -354,9 +354,9 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
         items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
-        items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
-        items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/saveall.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import...");
         items[MenuSupporter.GenerateMenuItemId(0, 8)].addActionListener(new ActionListener() {
 
@@ -377,7 +377,7 @@ public class Aurwindow extends JFrame {
         });
         menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
         items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
-        items[MenuSupporter.GenerateMenuItemId(1, 0)].setIcon(new ImageIcon(getClass().getResource("/resources/general/find.png")));
+        items[MenuSupporter.GenerateMenuItemId(1, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/find.png")));
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
 
             @Override
@@ -661,6 +661,7 @@ public class Aurwindow extends JFrame {
         utilities.addMessage(29);
         //</editor-fold>
         workspace.expandRow(0);
+        setMinimumSize(new Dimension(200,200));
         setVisible(true);
     }
     //</editor-fold>
@@ -1097,18 +1098,18 @@ public class Aurwindow extends JFrame {
         tool = new JToolBar("Toolbar");
         tool.setFloatable(false);
 
-        JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/openproject.png")), 40);
-        JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/save.png")), 41);
-        JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/saveall.png")), 53);
-        JButton newp = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/newproject.png")), 39);
-        JButton image = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addimage.png")), 42);
-        JButton sprite = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor02.png")), 43);
-        JButton sound = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addsound.png")), 44);
-        JButton cl = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addscript.png")), 52);
-        JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addactor01.png")), 45);
-        JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/addroom.png")), 46);
+        JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
+        JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/save.png")), 41);
+        JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/saveall.png")), 53);
+        JButton newp = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
+        JButton image = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addimage.png")), 42);
+        JButton sprite = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addactor02.png")), 43);
+        JButton sound = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addsound.png")), 44);
+        JButton cl = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addscript.png")), 52);
+        JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addactor01.png")), 45);
+        JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
 
-        run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/resources/toolbar/run.png")), 50);
+        run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
         
         run.addActionListener(new ActionListener() {
 

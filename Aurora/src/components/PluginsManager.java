@@ -9,7 +9,7 @@ package components;
 import javax.swing.*;
 import java.io.*;
 
-import managers.*;
+import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
 
 /**

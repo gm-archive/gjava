@@ -83,10 +83,10 @@ public class NewFileGroup extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        jLabel1.setText(managers.LangSupporter.activeLang.getEntry(95));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(95));
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { managers.LangSupporter.activeLang.getEntry(97), "Game items", "Development items" };
+            String[] strings = { org.gcreator.managers.LangSupporter.activeLang.getEntry(97), "Game items", "Development items"  };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

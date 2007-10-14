@@ -11,7 +11,7 @@ package components;
 import org.gcreator.core.Aurwindow;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import managers.*;
+import org.gcreator.managers.*;
 import javax.swing.*;
 import org.gcreator.fileclass.*;
 
