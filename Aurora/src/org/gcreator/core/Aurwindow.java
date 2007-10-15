@@ -318,13 +318,21 @@ public class Aurwindow extends JFrame {
 		ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
 		//if (dragNode == dropNode) return false;
 		//if (dragNode.isNodeDescendant(dropNode)) return false;
+                if (dropNode.object instanceof  org.gcreator.fileclass.Group)
+                {
+                if ( ((org.gcreator.fileclass.Group)  dropNode.object).allowsFileType(((org.gcreator.fileclass.File)dragNode.object).type))
+                    return true;
+                else
+                    return false;
+                
+                }
                 if (dropNode.object instanceof  org.gcreator.fileclass.File)
 		System.out.println(""+ ((org.gcreator.fileclass.File)dropNode.object).name);
                 if (dragNode.object instanceof  org.gcreator.fileclass.File)
                 System.out.println(""+ ((org.gcreator.fileclass.File)dragNode.object).name);
 
 		
-                return true;
+                return false;
             }
             
             public boolean importData(TransferHandler.TransferSupport support)
