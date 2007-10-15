@@ -14,10 +14,10 @@ import org.gcreator.fileclass.Project;
  *
  * @author  Ali1
  */
-public class EGMLEditor extends TabPanel {
+public class GCLEditor extends TabPanel {
     
     /** Creates new form CodeEditor2 */
-    public EGMLEditor(org.gcreator.fileclass.File file,Project project) {
+    public GCLEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         initComponents();
         EGMLTextArea g = new EGMLTextArea("//new class");

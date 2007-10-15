@@ -114,36 +114,36 @@ public class Aurwindow extends JFrame {
 //            }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("actor")) {
-            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
-                if (((Actor) e.nextElement()).name.equals(file.name)) {
-                    found = true;
-                    foundloc = iii;
-                }
-                iii++;
-            }
-            if (!found) {
-                getCurrentProject().actors.add(new Actor(file.name));
-                foundloc = getCurrentProject().actors.size() + 1;
-            }
+//            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
+//                if (((Actor) e.nextElement()).name.equals(file.name)) {
+//                    found = true;
+//                    foundloc = iii;
+//                }
+//                iii++;
+//            }
+//            if (!found) {
+//                getCurrentProject().actors.add(new Actor(file.name));
+//                foundloc = getCurrentProject().actors.size() + 1;
+//            }
             try {
                 addWindow(new ActorEditor(file, this.getCurrentProject()), file.name);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("scene")) {
-            for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
-                if (((Scene) e.nextElement()).name.equals(file.name)) {
-                    found = true;
-                    foundloc = iii;
-                }
-                iii++;
-            }
-            if (!found) {
-                getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
-                foundloc = getCurrentProject().scenes.size() + 1;
-            }
+//            for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
+//                if (((Scene) e.nextElement()).name.equals(file.name)) {
+//                    found = true;
+//                    foundloc = iii;
+//                }
+//                iii++;
+//            }
+//            if (!found) {
+//                getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
+//                foundloc = getCurrentProject().scenes.size() + 1;
+//            }
             addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("egml")) {
-            addWindow(new EGMLEditor(file, this.getCurrentProject()), file.name);
+            addWindow(new editors.GCLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("java")) {
             addWindow(new JavaEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("cpp") || file.type.equals("h")) {
