@@ -89,7 +89,7 @@ org::gcreator::Components::Image* org::gcreator::Components::Tileset::getTileAt(
 		return NULL;
 	ALLEGRO_BITMAP* bitmap = create_bitmap(tilew,tileh);
 	blit(image->img, bitmap, x * (tilew + sepw) + startx, y * (tileh + seph) + starty, 0, 0, tilew, tileh);
-	return new GApi::Components::Image(bitmap);
+	return new org::gcreator::Components::Image(bitmap);
 }
 
 int org::gcreator::Components::Tileset::getWidth()

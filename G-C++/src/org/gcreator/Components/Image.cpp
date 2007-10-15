@@ -13,12 +13,12 @@ org::gcreator::Components::Image::Image()
 	img = NULL;
 }
 
-String GApi::Components::Image::getName()
+String org::gcreator::Components::Image::getName()
 {
 	return NULL;
 }
 
-boolean GApi::Components::Image::free()
+boolean org::gcreator::Components::Image::free()
 {
 	destroy_bitmap(img);
 	if(img==NULL)

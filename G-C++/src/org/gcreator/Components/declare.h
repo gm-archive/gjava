@@ -111,8 +111,8 @@ class org::gcreator::Components::View
 	public:
 		View();
 		View(org::gcreator::Support::Rectangle*
-    , org::gcreator::Support::Rectangle*
-    , org::gcreator::Components::Actor*, int, int);
+			, org::gcreator::Support::Rectangle*
+			, org::gcreator::Components::Actor*, int, int);
 		org::gcreator::Support::Rectangle* view;
 		org::gcreator::Support::Rectangle* port;
 		org::gcreator::Components::Actor* follow;
@@ -138,7 +138,7 @@ class org::gcreator::Components::Scene
                 int getTileArrayLength();
 	public:
 		Scene();
-		Scene(org::gcreatorGApi::Components::View**, org::gcreator::Components::Actor**);
+		Scene(org::gcreator::Components::View**, org::gcreator::Components::Actor**);
 		String getName();
 		String getCaption();
 		org::gcreator::Components::View** getViewArray();
@@ -155,5 +155,18 @@ class org::gcreator::Components::Scene
 		org::gcreator::Components::Image* getTile(int);
 		boolean removeTile(int);
 };
+
+class org::gcreator::Components::Application
+{
+	public:
+		Application(int argc, char** argv);
+	private:
+		int argc;
+		char** argv;
+};
+
+#ifndef _GCPP_COMPONENTS_APPLICATION_
+extern org::gcreator::Components::Application* Game;
+#endif
 
 #endif

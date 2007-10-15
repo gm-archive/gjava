@@ -42,7 +42,7 @@ org::gcreator::Support::Color* org::gcreator::Support::Color::Lighter(org::gcrea
 	return new org::gcreator::Support::Color(color->getRed()+light,color->getGreen()+light,color->getBlue()+light);
 }
 
-org::gcreator::Support::Color* GApi::Support::Color::Merge(org::gcreator::Support::Color* c1, org::gcreator::Support::Color* c2){
+org::gcreator::Support::Color* org::gcreator::Support::Color::Merge(org::gcreator::Support::Color* c1, org::gcreator::Support::Color* c2){
 	return new org::gcreator::Support::Color((c1->getRed()+c2->getRed()) / 2, (c1->getGreen()+c2->getRed()) / 2, (c1->getBlue()+c2->getRed()) / 2);
 }
 

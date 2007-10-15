@@ -1,7 +1,7 @@
 #ifndef _GCPP_SUPPORT_DECLARE_
 #define _GCPP_SUPPORT_DECLARE_
 
-class GApi::Support::Rectangle
+class org::gcreator::Support::Rectangle
 {
 	public:
 		Rectangle(int,int,int,int);
@@ -11,7 +11,7 @@ class GApi::Support::Rectangle
 		int height;
 };
 
-class GApi::Support::Color
+class org::gcreator::Support::Color
 {
 	private:
 		int red;
@@ -19,20 +19,20 @@ class GApi::Support::Color
 		int blue;
 	public:
 		Color(int,int,int);
-		static const GApi::Support::Color* const Red;
-		static const GApi::Support::Color* const Green;
-		static const GApi::Support::Color* const Blue;
-		static const GApi::Support::Color* const Yellow;
-		static const GApi::Support::Color* const Purple;
-		static const GApi::Support::Color* const LightBlue;
-		static const GApi::Support::Color* const Black;
-		static const GApi::Support::Color* const White;
+		static const org::gcreator::Support::Color* const Red;
+		static const org::gcreator::Support::Color* const Green;
+		static const org::gcreator::Support::Color* const Blue;
+		static const org::gcreator::Support::Color* const Yellow;
+		static const org::gcreator::Support::Color* const Purple;
+		static const org::gcreator::Support::Color* const LightBlue;
+		static const org::gcreator::Support::Color* const Black;
+		static const org::gcreator::Support::Color* const White;
 		int getRed();
 		int getGreen();
 		int getBlue();
-		static GApi::Support::Color* Darker(GApi::Support::Color*,int);
-		static GApi::Support::Color* Lighter(GApi::Support::Color*,int);
-		static GApi::Support::Color* Merge(GApi::Support::Color*,GApi::Support::Color*);
+		static org::gcreator::Support::Color* Darker(org::gcreator::Support::Color*,int);
+		static org::gcreator::Support::Color* Lighter(org::gcreator::Support::Color*,int);
+		static org::gcreator::Support::Color* Merge(org::gcreator::Support::Color*,org::gcreator::Support::Color*);
 };
 
 #endif
