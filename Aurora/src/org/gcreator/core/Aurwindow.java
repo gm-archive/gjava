@@ -29,6 +29,7 @@ import editors.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.plugins.*;
 import components.popupmenus.*;
+import java.awt.datatransfer.Transferable;
 import java.util.Enumeration;
 
 /**
@@ -108,7 +109,7 @@ public class Aurwindow extends JFrame {
                 iii++;
             }
             if (!found) {
-                getCurrentProject().sprites.add(/*getCurrentProject().sprites.size() + 1, */new Sprite(file.name/*"", getCurrentProject().actors.size() + 1*/));
+                getCurrentProject().sprites.add(new Sprite(file.name));
                 foundloc = getCurrentProject().sprites.size() + 1;
             }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
@@ -121,13 +122,13 @@ public class Aurwindow extends JFrame {
                 iii++;
             }
             if (!found) {
-                getCurrentProject().actors.add(/*getCurrentProject().actors.size() + 1, */new Actor(file.name/*, getCurrentProject().actors.size() + 1*/));
+                getCurrentProject().actors.add(new Actor(file.name));
                 foundloc = getCurrentProject().actors.size() + 1;
             }
-            try{
-            addWindow(new ActorEditor(file/*, getCurrentProject().actors.get(foundloc)*/, this.getCurrentProject()), file.name);
+            try {
+                addWindow(new ActorEditor(file, this.getCurrentProject()), file.name);
+            } catch (WrongResourceException e) {
             }
-            catch(WrongResourceException e){}
         } else if (file.type.equals("scene")) {
             for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
                 if (((Scene) e.nextElement()).name.equals(file.name)) {
@@ -149,8 +150,8 @@ public class Aurwindow extends JFrame {
             addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
-           } else if (file.type.equals("settings")) {
-            addWindow(new SettingsEditor(file), file.name); 
+        } else if (file.type.equals("settings")) {
+            addWindow(new SettingsEditor(file), file.name);
         } else {
             System.out.println(file.type);
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
@@ -254,13 +255,11 @@ public class Aurwindow extends JFrame {
         scroller = new JScrollPane();
         //winlist = new JComboBox();
         //winlist.setModel(new MyModel());
-
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
 
         //LangSupporter.activeLang = new English();
-
 
         SettingsIO.console = console;
 
@@ -284,11 +283,37 @@ public class Aurwindow extends JFrame {
 
         top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
         top.setAllowsChildren(true);
+
+        /*
+         * Set up tree
+         */
         workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         workspace.setDragEnabled(true);
+        // Tree drag and drop support
+        workspace.setTransferHandler(new TransferHandler() {
 
+            protected Transferable createTransferable(JComponent c) {
+                ObjectNode f = (ObjectNode)workspace.getLastSelectedPathComponent();
+                if (f.object instanceof  org.gcreator.fileclass.File)
+                System.out.println(""+ (((org.gcreator.fileclass.File)f.object)).name);
+                return null;
+            }
+
+            public int getSourceActions(JComponent c) {
+                return MOVE;
+            }
+
+            public boolean canImport(TransferHandler.TransferSupport support) {
+                return true;
+            }
+            
+            public boolean importData(TransferHandler.TransferSupport support)
+		{
+            return false;
+            }
+        });
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
         workspace.addMouseListener(new MouseListener() {
@@ -598,7 +623,7 @@ public class Aurwindow extends JFrame {
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 40,GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
         if (settings[2].equals("Hidden")) {
@@ -689,7 +714,6 @@ public class Aurwindow extends JFrame {
         if (menu == 0 && item == 8) {
             importDialog _import = new importDialog(this, true);
             _import.setVisible(true);
-            
         }
         if (menu == 0 && item == 11) {
             dispose();
@@ -858,7 +882,6 @@ public class Aurwindow extends JFrame {
             addWindow(globalsettings, 131);
         }
     }
-    
     public static GlobalSettings globalsettings;
 
 //</editor-fold>
@@ -1012,7 +1035,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newActor" + i) != -1) {
                     i++;
                 }
-                getCurrentProject().actors.add(new Actor("newActor" + i/*, getCurrentProject().actors.size()*/));
+                getCurrentProject().actors.add(new Actor("newActor" + i));
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
                 break;
             case 9:
@@ -1060,9 +1083,9 @@ public class Aurwindow extends JFrame {
             return null;
         }
         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
-        if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif"))
-        file.treeimage = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
-        
+        if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {
+            file.treeimage = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
+        }
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());
@@ -1110,7 +1133,7 @@ public class Aurwindow extends JFrame {
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
 
         run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
-        
+
         run.addActionListener(new ActionListener() {
 
             @Override
@@ -1118,7 +1141,7 @@ public class Aurwindow extends JFrame {
                 org.gcreator.core.utilities.addStringMessage("G-Java is missing!");
             }
         });
-        
+
         image.addActionListener(new ActionListener() {
 
             @Override
