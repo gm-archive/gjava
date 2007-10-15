@@ -48,7 +48,9 @@ public class Sprite extends Resource {
     
     @Override
     public String writeXml() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String xml = "";
+      xml += "<?xml version=\"1.0\"?>\n";
+      return xml;
     }
 
     @Override

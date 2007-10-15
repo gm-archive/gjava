@@ -41,7 +41,14 @@ public Vector<Event> events;
     
     @Override
     public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO read the XML
+        String[] data = xml.split("\n");
+        int version; // the version of the file
+        for(int i=0; i< data.length; i++)
+        {
+          if (data[i].contains("<?xml version"))  version = 1; //version 1 because no other versions have been released
+          else if (data[i].contains("<Solid>")) solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
+        }
     }
     
     @Override

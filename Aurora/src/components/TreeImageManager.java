@@ -63,11 +63,11 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                 tree.setEditable(noder.object.editable);
             }
             labelText = noder.object.name;
-            val = noder.getUserObject().toString();
-            if (edition != tree.isEditing() && tree.isEditing() == false) {
-                //Finished editing
-                noder.object.name = val;
-            }
+//            val = noder.getUserObject().toString();
+//            if (edition != tree.isEditing() && tree.isEditing() == false) {
+//                //Finished editing
+//                noder.object.name = "hey";//val;
+//            }
         } else {
             if (!tree.isEditing()) {
                 tree.setEditable(false);

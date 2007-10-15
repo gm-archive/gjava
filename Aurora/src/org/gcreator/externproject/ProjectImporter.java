@@ -17,6 +17,7 @@ import org.gcreator.fileclass.*;
 
 import java.awt.*;
 import java.io.*;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
@@ -32,16 +33,18 @@ public class ProjectImporter {
    static String name;
    static int type;
    static Project project;
+   static String config;
+  static Vector<String> files = new Vector();
    
    public static void readFile(String s,String name)
    {
-       
+       System.out.println(s);
+       files.add(s);
    }
    
     public static void readConfig(String s)
     {
         org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
-        System.out.println("reading config file...");
         
         System.out.println(s);
         
@@ -60,6 +63,7 @@ public class ProjectImporter {
         Aurwindow.setMainProject(project);
         String[] ss = s.split("<file type=\"");
         int ii=1;
+        int fileno = 0;
         while(ii < ss.length){
          String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
          if(sss[0].equals("File")){
@@ -67,7 +71,8 @@ public class ProjectImporter {
              System.out.println(""+ssss.length);
              if(ssss.length >0){
              org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(f, ssss[0], ssss[1], null);
-           // f.add(file);
+           file.xml = files.elementAt(fileno);
+           fileno++;
              }
          }
          else if(sss[0].equals("ActorGroup"))
@@ -130,7 +135,7 @@ public class ProjectImporter {
       }
                                 
                 if (zipe.getName().equals("config"))
-                    readConfig(stream+"");
+                    config = stream+"";
                  else
                     readFile(stream+"",zipe.getName());
                 }
@@ -142,5 +147,6 @@ public class ProjectImporter {
         } catch (IOException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+        readConfig(config);
     }
 }

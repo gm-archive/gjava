@@ -101,17 +101,17 @@ public class Aurwindow extends JFrame {
         int foundloc = 0;
         file.type = file.type.toLowerCase();
         if (file.type.equals("sprite")) {
-            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
-                if (((Sprite) e.nextElement()).name.equals(file.name)) {
-                    found = true;
-                    foundloc = iii;
-                }
-                iii++;
-            }
-            if (!found) {
-                getCurrentProject().sprites.add(new Sprite(file.name));
-                foundloc = getCurrentProject().sprites.size() + 1;
-            }
+//            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
+//                if (((Sprite) e.nextElement()).name.equals(file.name)) {
+//                    found = true;
+//                    foundloc = iii;
+//                }
+//                iii++;
+//            }
+//            if (!found) {
+//                getCurrentProject().sprites.add(new Sprite(file.name));
+//                foundloc = getCurrentProject().sprites.size() + 1;
+//            }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("actor")) {
             for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
@@ -326,12 +326,7 @@ public class Aurwindow extends JFrame {
                     return false;
                 
                 }
-                if (dropNode.object instanceof  org.gcreator.fileclass.File)
-		System.out.println(""+ ((org.gcreator.fileclass.File)dropNode.object).name);
-                if (dragNode.object instanceof  org.gcreator.fileclass.File)
-                System.out.println(""+ ((org.gcreator.fileclass.File)dragNode.object).name);
-
-		
+                		
                 return false;
             }
             

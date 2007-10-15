@@ -36,7 +36,10 @@ public class File extends Object implements Transferable {
     public String type; //If file is "a.txt", leave only "txt" here
     public java.lang.Object value;
     public ImageIcon treeimage;
+    public String xml=""; // the data xml used to load
 
+
+    
     public File(Folder root, String name, String type, Object value) {
         super(name);
         this.root = root;

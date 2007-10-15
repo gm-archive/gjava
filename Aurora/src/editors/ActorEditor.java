@@ -51,6 +51,7 @@ public class ActorEditor extends TabPanel {
         this.project = project;
         if(file.value==null){
             this.actor = new Actor(file.name);
+            actor.readXml(file.xml);
             file.value = actor;
             actor.events = new Vector<org.gcreator.events.Event>();
         }
@@ -91,10 +92,9 @@ public class ActorEditor extends TabPanel {
         jPanel11.add(extendres = new ResourceMenu("actor","<no actor>",true,project));
         jPanel12.setLayout(new FlowLayout());
         jPanel12.add(maskres = new ResourceMenu("sprite","<no mask>",true,project));
+        
         //load variables
-        jCheckBox1.setSelected(actor.visible);
-        jCheckBox2.setSelected(actor.solid);
-        jCheckBox3.setSelected(actor.persistant);
+        Load();
         
         jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
         jList2.addMouseListener(new PopupListener(jList2, new ActionPopupMenu(this)));
@@ -105,6 +105,14 @@ public class ActorEditor extends TabPanel {
         return changed;
     }
 
+    public boolean Load()
+    {
+        jCheckBox1.setSelected(actor.visible);
+        jCheckBox2.setSelected(actor.solid);
+        jCheckBox3.setSelected(actor.persistant);
+        return true;
+    }
+    
     @Override
     public boolean Save() {
        
