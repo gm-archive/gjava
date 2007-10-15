@@ -60,7 +60,7 @@ public class ProjectImporter {
         if (type == 2){
                 project = new ExtensionProject(name, "");
         }
-        Aurwindow.setMainProject(project);
+        project.name = name;
         String[] ss = s.split("<file type=\"");
         int ii=1;
         int fileno = 0;
@@ -104,6 +104,7 @@ public class ProjectImporter {
         }
         if(project!=null)
                     ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+        Aurwindow.setMainProject(project);
         Aurwindow.workspace.updateUI();
     }
     

@@ -31,6 +31,7 @@ public Vector<Event> events;
   {
       String xml = "";
       xml += "<?xml version=\"1.0\"?>\n"; //changes for new version of actor
+      xml += "<actoreditor version=\"1.0\"/>\n";
       xml += "<Solid>"+solid+"</Solid>\n";
       xml += "<Visible>"+visible+"</Visible>\n";
       xml += "<Persistant>"+solid+"</Persistant>\n";
@@ -43,11 +44,16 @@ public Vector<Event> events;
     public void readXml(String xml) {
         //TODO read the XML
         String[] data = xml.split("\n");
-        int version; // the version of the file
+        String version = "1.0"; //guess
         for(int i=0; i< data.length; i++)
         {
-          if (data[i].contains("<?xml version"))  version = 1; //version 1 because no other versions have been released
+          if (data[i].contains("<actoreditor")){
+              version = data[i].replaceAll("<actoreditor version=\\\"","").replaceAll("\\\"/>", "");
+              if(!version.equals("1.0"))
+                  System.out.println("Warning! Version is" + version);
+          }
           else if (data[i].contains("<Solid>")) solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
+          else if (data[i].contains("<Visible>")) visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
         }
     }
     

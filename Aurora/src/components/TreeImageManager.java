@@ -75,11 +75,14 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         }
 
         edition = tree.isEditing();
+        try{
         if (gcreator.window != null) {
             if (gcreator.window.getCurrentObject() != null) {
                 val = gcreator.window.getCurrentObject().node.getUserObject().toString();
             }
         }
+        }
+        catch(NullPointerException e){}
         this.bSelected = bSelected;
         try {
             this.isCurProject = (node == org.gcreator.core.gcreator.window.getCurrentProject().node);
