@@ -11,9 +11,11 @@ package org.gcreator.fileclass;
 
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
@@ -24,8 +26,12 @@ import org.gcreator.fileclass.res.*;
  *
  * @author Luís
  */
-public class File extends Object {
+public class File extends Object implements Transferable {
 
+    public static final DataFlavor NODE_FLAVOR = new DataFlavor(
+			DataFlavor.javaJVMLocalObjectMimeType,"Node");
+	private DataFlavor[] flavors = { NODE_FLAVOR };
+    
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
     public java.lang.Object value;
@@ -127,5 +133,18 @@ public class File extends Object {
             o.value = value;
         }
         return o;
+    }
+
+    public DataFlavor[] getTransferDataFlavors() {
+        return flavors;
+    }
+
+    public boolean isDataFlavorSupported(DataFlavor flavor) {
+        return flavor == NODE_FLAVOR;
+    }
+
+    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+        if (flavor != NODE_FLAVOR) throw new UnsupportedFlavorException(flavor);
+		return this;
     }
 }

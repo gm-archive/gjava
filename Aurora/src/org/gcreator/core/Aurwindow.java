@@ -291,14 +291,20 @@ public class Aurwindow extends JFrame {
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         workspace.setDragEnabled(true);
+        workspace.setDropMode(DropMode.ON_OR_INSERT);
+        workspace.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         // Tree drag and drop support
         workspace.setTransferHandler(new TransferHandler() {
 
             protected Transferable createTransferable(JComponent c) {
                 ObjectNode f = (ObjectNode)workspace.getLastSelectedPathComponent();
                 if (f.object instanceof  org.gcreator.fileclass.File)
-                System.out.println(""+ (((org.gcreator.fileclass.File)f.object)).name);
-                return null;
+                {
+                System.out.println(""+ ((org.gcreator.fileclass.File)f.object).name);
+                return ((org.gcreator.fileclass.File)f.object);
+                }
+                else
+                    return null;
             }
 
             public int getSourceActions(JComponent c) {
@@ -306,12 +312,39 @@ public class Aurwindow extends JFrame {
             }
 
             public boolean canImport(TransferHandler.TransferSupport support) {
+                TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
+		if (drop == null) return false;
+                ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
+		ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
+		//if (dragNode == dropNode) return false;
+		//if (dragNode.isNodeDescendant(dropNode)) return false;
+                if (dropNode.object instanceof  org.gcreator.fileclass.File)
+		System.out.println(""+ ((org.gcreator.fileclass.File)dropNode.object).name);
+                if (dragNode.object instanceof  org.gcreator.fileclass.File)
+                System.out.println(""+ ((org.gcreator.fileclass.File)dragNode.object).name);
+
+		
                 return true;
             }
             
             public boolean importData(TransferHandler.TransferSupport support)
 		{
-            return false;
+               if (!canImport(support)) return false;
+               JTree.DropLocation drop = (JTree.DropLocation) support.getDropLocation();
+		int dropIndex = drop.getChildIndex();
+		ObjectNode dropNode = (ObjectNode) drop.getPath().getLastPathComponent();
+		ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
+		if (dropIndex == -1)
+			{
+			dropIndex = dropNode.getChildCount();
+			}
+		if (dropNode == dragNode.getParent() && dropIndex > dragNode.getParent().getIndex(dragNode))
+			dropIndex--;
+		dropNode.insert(dragNode,dropIndex);
+		workspace.expandPath(new TreePath(dropNode.getPath()));
+		workspace.updateUI();
+		return true;
+            
             }
         });
         renderer = new TreeImageManager();
