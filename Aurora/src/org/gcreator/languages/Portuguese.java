@@ -175,6 +175,10 @@ public class Portuguese extends Dictionary{
         entry[131] = "Opções gerais"; //Title
         //---
         entry[132] = "Tema Metálico";
+        //Sprite editor
+        entry[133] = "Adicionar";
+        entry[134] = "Editar";
+        entry[135] = "Remover";
         
         try{
             init();

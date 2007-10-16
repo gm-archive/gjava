@@ -54,6 +54,7 @@ public Vector<Event> events;
           }
           else if (data[i].contains("<Solid>")) solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
           else if (data[i].contains("<Visible>")) visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
+          else if (data[i].contains("<Persistant>")) persistant = Boolean.parseBoolean(data[i].replaceAll("<Persistant>", "").replaceAll("</Persistant>", ""));
         }
     }
     
