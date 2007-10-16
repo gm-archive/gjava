@@ -20,6 +20,7 @@ import java.text.DecimalFormat;
 import javax.swing.*;
 import java.util.*;
 import org.gcreator.gjava.components.*;
+import org.gcreator.gjava.core.*;
 
 
 
@@ -433,7 +434,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static boolean room_exists(RoomPanel ind) {
+        public static boolean room_exists(Scene ind) {
             return true;
         }
 
@@ -442,7 +443,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static String room_get_name(RoomPanel ind) {
+        public static String room_get_name(Scene ind) {
             return ind.name;
         }
     }
@@ -480,7 +481,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double min3(double a, double b, double c) {
-            return GScript.math.min(a, b, c);
+            return math.min(a, b, c);
         }
 
         /**
@@ -493,7 +494,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double max3(double a, double b, double c) {
-            return GScript.math.max(a, b, c);
+            return math.max(a, b, c);
         }
 
         /**
@@ -506,7 +507,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double mean3(double a, double b, double c) {
-            return GScript.math.mean(a, b, c);
+            return math.mean(a, b, c);
         }
     }
 
@@ -1037,7 +1038,7 @@ return true;
         // messagebox = load_Rooms.Room;
         // messagebox.getContentPane().add(BorderLayout.CENTER, messagepanel);
         // messagebox.show();
-        MessageBox.show_message(str);
+        popups.show_message(str);
         basicgame.Current_room.Paused = false;
     }
 

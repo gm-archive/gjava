@@ -11,7 +11,7 @@ import org.gcreator.gjava.gscript.res.TimedAudioClip;
 public class sound extends Thread
 	{
 
-	String sound_name; // sound name including extension
+	public String sound_name; // sound name including extension
 
 	int preload, Effects;
 

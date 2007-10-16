@@ -16,7 +16,7 @@ public class sprite
 
 	Image spritename[];
 
-	int Transparent;
+	public int Transparent;
 
 	public int  sprite_width, sprite_height, sprite_xoffset, sprite_yoffset, image_number,
 			image_index, image_speed, subimages, image_count;

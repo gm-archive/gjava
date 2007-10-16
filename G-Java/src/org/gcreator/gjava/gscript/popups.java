@@ -126,7 +126,7 @@ import org.gcreator.gjava.core.basicgame;
         public static void show_error(String str, boolean abort) {
             GScript.msgbox(str, 1);
             if (abort) {
-                GScript.rooms.end_game();
+                System.exit(1);
             }
         }
     }
