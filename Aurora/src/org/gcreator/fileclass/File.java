@@ -97,19 +97,14 @@ public class File extends Object implements Transferable {
     }
 
     public void writeToBuffer(ZipOutputStream out) throws IOException {
+        System.out.println("Starting new entry");
         if (value instanceof String) {
             out.write(value.toString().getBytes());
         } else if (value instanceof ImageIcon) {
-            Image img = ((ImageIcon) value).getImage();
-            System.out.println(img.toString());
+            ImageIcon img = ((ImageIcon) value);
             MyOutputStream stream = new MyOutputStream(out);
-            int iw = img.getWidth(null);
-            int ih = img.getHeight(null);
-            BufferedImage ii = new BufferedImage(iw, ih, BufferedImage.TYPE_INT_RGB);
-            Graphics imageGraphics = ii.createGraphics();
-            imageGraphics.drawImage(img, 0, 0, null);
-            imageGraphics.dispose();
-            ImageIO.write(ii, type, stream);
+            BufferedImage ii = (BufferedImage) img.getImage();
+            ImageIO.write(ii, type, new java.io.File("./sample." + type));
         } else if (value instanceof org.gcreator.fileclass.res.Resource) {
             out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
         }
@@ -118,7 +113,7 @@ public class File extends Object implements Transferable {
     public static ImageIcon getScaledIcon(ImageIcon ii) {
         ImageIcon iii = new ImageIcon();
         if (ii != null) {
-            Image i = ii.getImage().getScaledInstance(16, 16, Image.SCALE_DEFAULT);
+            Image i = ii.getImage().getScaledInstance(16, 16, BufferedImage.SCALE_DEFAULT);
             iii.setImage(i);
             return iii;
         }

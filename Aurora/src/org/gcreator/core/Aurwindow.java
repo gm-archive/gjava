@@ -601,6 +601,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(5, 3, evt);
             }
         });
+        items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
+        items[MenuSupporter.GenerateMenuItemId(5, 4)].addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(5, 4, evt);
+            }
+        });
         ButtonGroup agroup = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
@@ -845,6 +853,22 @@ public class Aurwindow extends JFrame {
             } catch (Exception e) {
             }
         }
+        if (menu == 5 && item == 4) {
+            try {
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
+                SwingUtilities.updateComponentTreeUI(this);
+                if (istabs) {
+                    SwingUtilities.updateComponentTreeUI(mdi);
+                } else {
+                    SwingUtilities.updateComponentTreeUI(tabs);
+                }
+                SwingUtilities.updateComponentTreeUI(consolepopup);
+                look = 3;
+                workspace.updateUI();
+            } catch (Exception e) {
+            }
+        }
+        SwingUtilities.updateComponentTreeUI(this);
         if (menu == 6 && (item < 4)) {
             if (!istabs) {
                 int k = splitter2.getDividerLocation();

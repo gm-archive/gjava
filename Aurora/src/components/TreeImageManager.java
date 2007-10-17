@@ -95,6 +95,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         } else {
             ObjectNode noder = (ObjectNode) node;
             if (noder.object instanceof org.gcreator.fileclass.File) {
+                System.out.println("=>" + ((org.gcreator.fileclass.File) noder.object).toString());
                 if (((org.gcreator.fileclass.File) noder.object).type.equals("txt")) {
                     setIcon(text);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gif")) {
