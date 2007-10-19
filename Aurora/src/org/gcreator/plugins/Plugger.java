@@ -18,18 +18,29 @@ import java.net.*;
  */
 public class Plugger {
     public static PluginCore[] getPlugList(String[] classFiles){
-        try{
+        ClassLoader loader = null;
             PluginCore[] plugins = new PluginCore[classFiles.length];
             File x = new File("plugins/");
+            try {
             URL url = x.toURI().toURL();
-            ClassLoader loader = new URLClassLoader(new URL[]{url});
+            loader = new URLClassLoader(new URL[]{url});
+            } catch(Exception e){ }
+            
             for(int i = 0; i < plugins.length; i++){
                 if(classFiles[i]!=null){
+                    try {
+                        if (loader != null) {
                     Class plugin = loader.loadClass(classFiles[i]);
                     Object instance = plugin.newInstance();
                     if(instance instanceof PluginCore){
                         plugins[i] = (PluginCore) instance;
                     }
+                        }
+                    } catch(Exception e){ 
+            System.out.println(e.toString());
+            
+        }
+                    
                 }
             }
             for(int i = 0; i < plugins.length; i++){
@@ -38,11 +49,8 @@ public class Plugger {
                 System.out.println(i + ": " + plugins[i].toString());
             }
             return plugins;
-        }
-        catch(Exception e){
-            System.out.println(e.toString());
-            return null;
-        }
+        //}
+        
     }
     
     public static void loadPlugins(PluginCore[] plugins){
