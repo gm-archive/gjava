@@ -18,12 +18,16 @@ import java.net.*;
  */
 public class Plugger {
     public static PluginCore[] getPlugList(String[] classFiles){
+        if(classFiles==null)
+            return null;
         ClassLoader loader = null;
             PluginCore[] plugins = new PluginCore[classFiles.length];
-            File x = new File("plugins/");
+            File x = new File("./plugins/");
             try {
-            URL url = x.toURI().toURL();
-            loader = new URLClassLoader(new URL[]{url});
+            if(!x.exists())
+                x.createNewFile();
+                URL url = x.toURI().toURL();
+                loader = new URLClassLoader(new URL[]{url});
             } catch(Exception e){ }
             
             for(int i = 0; i < plugins.length; i++){

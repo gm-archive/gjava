@@ -53,7 +53,8 @@ public class SettingsIO {
         }
         out += "<br/>";
         gcreator.output += out;
-        console.setText(gcreator.output);
+        if(gcreator.output!=null&&console!=null)
+            console.setText(gcreator.output);
     }
 
     public static void saveSettings(int look, boolean istabs, boolean scrollvisible) {
@@ -116,9 +117,13 @@ public class SettingsIO {
     }
 
     public static String[] loadSettings() {
-        File target = new File("settings.xml");
+        File target = new File("./settings.xml");
         if (!target.exists()) {
             addStringFormatedMessage(target.getAbsolutePath() + " does not exist", null, false);
+            try{
+                target.createNewFile();
+            }
+            catch(Exception e){}
             return null;
         }
         String[] a = new String[5];

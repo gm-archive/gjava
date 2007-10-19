@@ -242,7 +242,7 @@ public class Aurwindow extends JFrame {
 
             mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
             frame.setSelected(true);
-        } catch (PropertyVetoException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         //winlist.updateUI();
