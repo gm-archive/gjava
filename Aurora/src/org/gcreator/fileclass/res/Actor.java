@@ -35,7 +35,7 @@ public Vector<Event> events;
       xml += "<Solid>"+solid+"</Solid>\n";
       xml += "<Visible>"+visible+"</Visible>\n";
       xml += "<Persistant>"+solid+"</Persistant>\n";
-      for(org.gcreator.events.Event event : events)
+      for(Event event : events)
           xml += event.writeXml();
       return xml;
   }
@@ -55,6 +55,15 @@ public Vector<Event> events;
           else if (data[i].contains("<Solid>")) solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
           else if (data[i].contains("<Visible>")) visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
           else if (data[i].contains("<Persistant>")) persistant = Boolean.parseBoolean(data[i].replaceAll("<Persistant>", "").replaceAll("</Persistant>", ""));
+          else{
+              String n = data[i].replaceAll("<event type=\"(.*?)\">", "$1");
+              try{
+                  Event evt;
+                  events.add(evt = Event.getNewEventFromName(n));
+                  i = evt.readXml(data, i);
+              }
+              catch(Exception e){}
+          }
         }
     }
     

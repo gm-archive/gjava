@@ -11,6 +11,7 @@ package org.gcreator.events;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URLClassLoader;
 import java.util.*;
 
 /**
@@ -44,10 +45,18 @@ public class Event {
         return false;
     }
     public String writeXml(){
-        String xml = "<event>\n";
+        String xml = "<event type=\""+getClass().getName()+"\">\n";
         for(actions.Action action : actions)
             xml += action.writeXml();
         xml += "</event>\n";
         return xml;
+    }
+    public static Event getNewEventFromName(String name) throws Exception{
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        Class x = loader.loadClass(name);
+        return (Event) x.newInstance();
+    }
+    public int readXml(String[] input, int initialpos){
+        return initialpos;
     }
 }
