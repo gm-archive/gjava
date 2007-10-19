@@ -15,6 +15,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
@@ -97,14 +98,15 @@ public class File extends Object implements Transferable {
     }
 
     public void writeToBuffer(ZipOutputStream out) throws IOException {
-        System.out.println("Starting new entry");
+        
         if (value instanceof String) {
             out.write(value.toString().getBytes());
         } else if (value instanceof ImageIcon) {
             ImageIcon img = ((ImageIcon) value);
-            MyOutputStream stream = new MyOutputStream(out);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
             BufferedImage ii = (BufferedImage) img.getImage();
-            ImageIO.write(ii, type, new java.io.File("./sample." + type));
+            ImageIO.write(ii, type, baos); 
+            out.write(baos.toByteArray());
         } else if (value instanceof org.gcreator.fileclass.res.Resource) {
             out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
         }

@@ -1074,7 +1074,6 @@ public class Aurwindow extends JFrame {
                 break;
             case 7:
                 //add class
-                //add sound
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
@@ -1111,25 +1110,17 @@ public class Aurwindow extends JFrame {
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
             case 10:
-                /*   JFileChooser fc = new JFileChooser();
-                fc.setAcceptAllFileFilterUsed(false);
-                JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.png|.*\\.jpg|.*\\.jpeg","Image Files  (*.gif *.png  *.jpg)");
-                fc.addChoosableFileFilter(filter);
-                fc.setFileFilter(filter);
-                if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-                {
-                java.io.File f = fc.getSelectedFile();
-                if (!f.exists())
-                {
-                JOptionPane.showMessageDialog(null,"File not found","G-Java",0);
-                return;
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    return;
                 }
-                else{
-                int lastindexof = f.getName().lastIndexOf('.');*/
-                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage0", "png");
-                /*file.value
+                while (a.findFromName("newImage" + i) != -1) {
+                    i++;
                 }
-                }*/
+                
+                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage"+i, "png");
+                
         }
     }
 

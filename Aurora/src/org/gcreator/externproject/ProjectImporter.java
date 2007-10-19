@@ -34,13 +34,16 @@ public class ProjectImporter {
    static int type;
    static Project project;
    static String config;
-  static Vector<String> files = new Vector();
+  static Vector<String> Stringfiles = new Vector();
+   static Vector<byte[]> Bytefiles = new Vector();
    
    public static void readFile(String s,String name)
    {
        System.out.println(s);
-       files.add(s);
+       Stringfiles.add(s);
    }
+   
+ 
    
     public static void readConfig(String s)
     {
@@ -71,7 +74,9 @@ public class ProjectImporter {
              System.out.println(""+ssss.length);
              if(ssss.length >0){
              org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(f, ssss[0], ssss[1], null);
-           file.xml = files.elementAt(fileno);
+           file.xml = Stringfiles.elementAt(fileno);
+           if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif"))
+           file.value = new ImageIcon(Bytefiles.elementAt(fileno));
            fileno++;
              }
          }
@@ -137,8 +142,16 @@ public class ProjectImporter {
                                 
                 if (zipe.getName().equals("config"))
                     config = stream+"";
-                 else
+                 else if (zipe.getName().contains(".jpg") || zipe.getName().contains(".gif") || zipe.getName().contains(".png")) 
+                 {
+                     Bytefiles.add(stream.toByteArray());
+                     Stringfiles.add("");
+                 }
+                 else {
                     readFile(stream+"",zipe.getName());
+                 Bytefiles.add(stream.toByteArray());
+                 }
+                 
                 }
            
             }
