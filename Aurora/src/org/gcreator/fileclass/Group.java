@@ -24,12 +24,14 @@ public class Group extends Folder{
         this.root = root;
     }
     
+    @Override
     public Group newGroup(String name){
         Group group = new Group(this, name);
         add(group);
         return group;
     }
     
+    @Override
     public String getObjectType(){
         return "Group";
     }

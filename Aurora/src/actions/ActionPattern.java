@@ -8,7 +8,8 @@
 
 package actions;
 
-import editors.*;
+import org.gcreator.editors.ActorEditor;
+import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.*;
 

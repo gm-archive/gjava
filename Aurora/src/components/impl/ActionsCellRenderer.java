@@ -11,7 +11,7 @@ package components.impl;
 
 import javax.swing.*;
 import java.awt.*;
-import editors.*;
+import org.gcreator.editors.*;
         
 public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
      public ActionsCellRenderer() {

@@ -10,36 +10,32 @@
 package org.gcreator.fileclass;
 
 import org.gcreator.exceptions.*;
+import java.util.*;
 
 /**
  *
  * @author Luís
  */
 public class Folder extends Object{
-    protected Object[] childNodes;
+    protected Vector<Object> childNodes;
     
     
     
     public Folder(String name){
         super(name);
-        childNodes = new Object[100]; //Up to 100 childNodes
+        childNodes = new Vector<Object>(); //Up to 100 childNodes
     }
     
     public boolean add(Object node){
         int i = 0;
-        while(i < 100 && childNodes[i]!=null)
-            i++;
-        if(i==100)
-            return false;
-        childNodes[i] = node;
-        return true;
+        return childNodes.add(node);
     }
     
     public int find(Object search){
         if(childNodes==null)
             return -1;
-        for(int i = 0; i < childNodes.length; i++)
-            if(childNodes[i]==search)
+        for(int i = 0; i < childNodes.size(); i++)
+            if(childNodes.get(i)==search)
                 return i;
         return -1;
     }
@@ -47,26 +43,26 @@ public class Folder extends Object{
     public int findFromName(String search){
         if(childNodes==null)
             return -1;
-        for(int i = 0; i < childNodes.length; i++)
-            if(childNodes[i]!=null&&childNodes[i].name.equals(search))
+        for(int i = 0; i < childNodes.size(); i++)
+            if(childNodes.get(i)!=null&&childNodes.get(i).name.equals(search))
                 return i;
         return -1;
     }
     
     public Object childAt(int pos){
-        return childNodes[pos];
+        return childNodes.get(pos);
     }
     
     public int getChildNum(){
         int num = 0;
-        for(int i = 0; i < childNodes.length; i++)
-            if(childNodes[i]!=null)
+        for(int i = 0; i < childNodes.size(); i++)
+            if(childNodes.get(i)!=null)
                 num++;
         return num;
     }
     
     public int getChildArrayNum(){
-        return childNodes.length;
+        return childNodes.size();
     }
     
     public boolean allowsFileType(String format){

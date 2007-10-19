@@ -34,7 +34,7 @@ public Vector<Event> events;
       xml += "<actoreditor version=\"1.0\"/>\n";
       xml += "<Solid>"+solid+"</Solid>\n";
       xml += "<Visible>"+visible+"</Visible>\n";
-      xml += "<Persistant>"+solid+"</Persistant>\n";
+      xml += "<Persistant>"+persistant+"</Persistant>\n";
       for(Event event : events)
           xml += event.writeXml();
       return xml;
@@ -55,8 +55,9 @@ public Vector<Event> events;
           else if (data[i].contains("<Solid>")) solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
           else if (data[i].contains("<Visible>")) visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
           else if (data[i].contains("<Persistant>")) persistant = Boolean.parseBoolean(data[i].replaceAll("<Persistant>", "").replaceAll("</Persistant>", ""));
-          else{
+          else if (data[i].contains("<event")){
               String n = data[i].replaceAll("<event type=\"(.*?)\">", "$1");
+              System.out.println("Event " + n);
               try{
                   Event evt;
                   events.add(evt = Event.getNewEventFromName(n));

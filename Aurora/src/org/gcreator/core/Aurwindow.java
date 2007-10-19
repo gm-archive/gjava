@@ -9,6 +9,14 @@
 
 package org.gcreator.core;
 
+import org.gcreator.editors.SceneEditor;
+import org.gcreator.editors.ActorEditor;
+import org.gcreator.editors.JavaEditor;
+import org.gcreator.editors.CppEditor;
+import org.gcreator.editors.PlainTextEditor;
+import org.gcreator.editors.SpriteEditor;
+import org.gcreator.editors.ImageEditor;
+import org.gcreator.editors.SettingsEditor;
 import org.gcreator.units.ObjectNode;
 import java.beans.PropertyVetoException;
 import java.util.logging.*;
@@ -25,7 +33,7 @@ import java.io.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.externproject.*;
 import org.gcreator.fileclass.*;
-import editors.*;
+import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.plugins.*;
 import components.popupmenus.*;
@@ -143,7 +151,7 @@ public class Aurwindow extends JFrame {
 //            }
             addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("egml")) {
-            addWindow(new editors.GCLEditor(file, this.getCurrentProject()), file.name);
+            addWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("java")) {
             addWindow(new JavaEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("cpp") || file.type.equals("h")) {

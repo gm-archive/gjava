@@ -30,26 +30,23 @@ import org.gcreator.managers.ProjectTree;
  * @author Luís
  */
 public class ProjectImporter {
-   static String name;
+   //static String name;
    static int type;
    static Project project;
    static String config;
   static Vector<String> Stringfiles = new Vector();
    static Vector<byte[]> Bytefiles = new Vector();
    
-   public static void readFile(String s,String name)
+   public static void readFile(String s, String name)
    {
-       System.out.println(s);
        Stringfiles.add(s);
    }
    
  
    
-    public static void readConfig(String s)
+    public static void readConfig(String s, String name)
     {
         org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
-        
-        System.out.println(s);
         
         if (s.split(">")[3].equals("Game")) type = 0;
         if (s.split(">")[3].equals("Package")) type = 1;
@@ -119,6 +116,7 @@ public class ProjectImporter {
     }
     
     public static void OpenProject(Component caller) {
+        String fname = null;
         try {
             //open project
             fc.showOpenDialog(caller);
@@ -130,6 +128,7 @@ public class ProjectImporter {
             ZipInputStream in = new ZipInputStream(new FileInputStream(file));
             ZipEntry zipe;
             byte[] b = new byte[1024];
+            fname = file.getName().replaceAll("^(.*)\\.(.*)$", "$1");
             while( (zipe = in.getNextEntry()) != null ){
                 System.out.println(""+zipe.getName());
                 if(!zipe.isDirectory())
@@ -161,6 +160,6 @@ public class ProjectImporter {
         } catch (IOException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        readConfig(config);
+        readConfig(config, fname);
     }
 }

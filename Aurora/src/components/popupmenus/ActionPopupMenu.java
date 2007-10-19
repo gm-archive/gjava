@@ -5,12 +5,13 @@
 
 package components.popupmenus;
 
+import org.gcreator.editors.ActorEditor;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
 import org.gcreator.events.*;
-import editors.*;
+import org.gcreator.editors.*;
 
 /**
  *

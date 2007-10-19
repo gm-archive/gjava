@@ -9,11 +9,12 @@
 
 package components.popupmenus;
 
+import org.gcreator.editors.SceneEditor;
 import javax.swing.*;
 import org.gcreator.managers.*;
 import java.awt.event.*;
 import org.gcreator.core.*;
-import editors.*;
+import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.*;
 
 /**

@@ -9,7 +9,7 @@
 
 package org.gcreator.core;
 
-import editors.ActorEditor;
+import org.gcreator.editors.ActorEditor;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;

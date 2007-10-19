@@ -9,9 +9,10 @@
 
 package actions;
 
+import org.gcreator.editors.ActorEditor;
 import javax.swing.*;
 import java.awt.*;
-import editors.*;
+import org.gcreator.editors.*;
 
 /**
  *

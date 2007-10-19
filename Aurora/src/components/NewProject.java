@@ -81,7 +81,9 @@ public class NewProject extends TabPanel {
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new EGMLGroup(project, "Classes"));
                 project.add(new Group(project, "Extensions"));
-                (new org.gcreator.fileclass.File(project, "Settings", "settings", null)).editable = false;
+                org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
+                a.editable = false;
+                a.value = new org.gcreator.fileclass.res.SettingsValues();
             }
             else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");

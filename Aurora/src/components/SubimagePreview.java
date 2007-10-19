@@ -9,7 +9,7 @@
 
 package components;
 
-import editors.SpriteEditor;
+import org.gcreator.editors.SpriteEditor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
