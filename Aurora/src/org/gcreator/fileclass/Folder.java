@@ -80,17 +80,24 @@ public class Folder extends Object{
     }
     
     public Folder findFolder(String name) throws NoSuchFolderException{
-        String tname = name;
-        tname = tname.substring(0, tname.indexOf("/")-1);
-        if(!tname.equals(this.name))
+        if(name==null)
             throw new NoSuchFolderException();
-        tname = tname.substring(tname.indexOf("/")+1);
-        if(tname.equals(this.name + "/"))
+        if(name.equals("")||name.equals("/"))
             return this;
-        for(Object o : childNodes){
+        if(name.charAt(0)=='/')
+            name = name.substring(1);
+        if(name.indexOf("/")==-1){
+            if(!name.equals(this.name))
+                throw new NoSuchFolderException();
+        }
+        else
+            if(!name.substring(name.indexOf("/")).equals(name))
+                throw new NoSuchFolderException();
+        for(int i = 0; i < childNodes.size(); i++){
+            Object o = childNodes.get(i);
             if(o != null && o instanceof Folder){
                 try{
-                    Folder a = findFolder(tname);
+                    Folder a = ((Folder) o).findFolder(name.substring(name.indexOf(name)));
                     return a;
                 }
                 catch(NoSuchFolderException e){}

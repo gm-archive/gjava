@@ -86,7 +86,7 @@ public class ProjectExporter {
         org.gcreator.fileclass.Object childNode;
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
-                content += "<file type=\"" + childNode.getObjectType() + "\">" + childNode.name;
+                content += "<file type=\"" + childNode.getObjectType() + "\">" + prefix + childNode.name;
                 if (childNode instanceof org.gcreator.fileclass.File) {
                     content += "." + ((org.gcreator.fileclass.File) childNode).type;
                 }

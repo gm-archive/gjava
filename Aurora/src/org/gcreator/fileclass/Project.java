@@ -48,10 +48,17 @@ public class Project extends Folder{
     
     @Override
     public Folder findFolder(String name) throws NoSuchFolderException{
-        for(Object o : childNodes){
+        if(name==null)
+            throw new NoSuchFolderException();
+        if(name.equals("")||name.equals("/"))
+            return this;
+        if(name.charAt(0)=='/')
+            name = name.substring(1);
+        for(int i = 0; i < childNodes.size(); i++){
+            Object o = childNodes.get(i);
             if(o != null && o instanceof Folder){
                 try{
-                    Folder a = findFolder(name);
+                    Folder a = ((Folder) o).findFolder(name.substring(name.indexOf(name)));
                     return a;
                 }
                 catch(NoSuchFolderException e){}
