@@ -18,10 +18,10 @@ import java.util.Enumeration;
  *
  * @author LuÃ­s
  */
-public class German extends Dictionary{
-    public German(){
+public class GermanOld extends Dictionary{
+    public GermanOld(){
         status = "Complete";
-        language = "German";
+        language = "German (Old)";
         authors = new String[10];
         authors[0] = "B Biglari";
         //If you changed this language, add your name here.

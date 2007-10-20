@@ -609,14 +609,14 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(5, 3, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
+        /*items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
         items[MenuSupporter.GenerateMenuItemId(5, 4)].addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent evt) {
                 onItemActionPerformed(5, 4, evt);
             }
-        });
+        });*/
         ButtonGroup agroup = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
