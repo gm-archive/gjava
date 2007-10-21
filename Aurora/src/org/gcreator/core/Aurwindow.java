@@ -771,12 +771,10 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
-            NewProject win = new NewProject();
-            addWindow(win, 55);
+            addWindow(newproject, 55);
         }
         if (menu == 0 && item == 1) {
-            NewFileGroup win = new NewFileGroup();
-            addWindow(win, 96);
+            addWindow(newfilegroup, 96);
         }
         if (menu == 0 && item == 2) {
             ProjectImporter.OpenProject(this);
@@ -972,6 +970,8 @@ public class Aurwindow extends JFrame {
         }
     }
     public static GlobalSettings globalsettings;
+    public static NewProject newproject;
+    public static NewFileGroup newfilegroup;
 
 //</editor-fold>
     //Tree accessing functions

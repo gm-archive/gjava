@@ -196,8 +196,6 @@ public class NewFileGroup extends TabPanel {
         if(val.equals("XML"))
             gcreator.window.addFile(getCurrentFolder(), name, "xml");
         Aurwindow.workspace.updateUI();
-        this.dispose();
-        gcreator.window.addWindow(new NewFileGroup(), 96);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
