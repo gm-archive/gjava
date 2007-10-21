@@ -56,6 +56,7 @@ import org.gcreator.plugins.*;
 import org.gcreator.components.popupmenus.*;
 import java.awt.datatransfer.Transferable;
 import java.util.Enumeration;
+import java.util.Vector;
 
 /**
  *
@@ -125,6 +126,9 @@ public class Aurwindow extends JFrame {
         int iii = 0;
         int foundloc = 0;
         file.type = file.type.toLowerCase();
+        FileOpenListener listener = getFileEditor(file.type);
+        if(listener!=null)
+            listener.openNewFile(file, this.getCurrentProject());
         if (file.type.equals("sprite")) {
 //            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
 //                if (((Sprite) e.nextElement()).name.equals(file.name)) {
@@ -178,7 +182,6 @@ public class Aurwindow extends JFrame {
         } else if (file.type.equals("settings")) {
             addWindow(new SettingsEditor(file), file.name);
         } else {
-            System.out.println(file.type);
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
     }
@@ -266,6 +269,32 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 
+    private Vector<FileOpenListener> listeners = new Vector<FileOpenListener>();
+    
+    public boolean installFileEditor(FileOpenListener listener){
+        return listeners.add(listener);
+    }
+    
+    public boolean unistallFileEditor(FileOpenListener listener){
+        return listeners.remove(listener);
+    }
+    
+    public FileOpenListener getFileEditor(String format){
+        Enumeration<FileOpenListener> enumeration = listeners.elements();
+        try{
+            FileOpenListener listener;
+            while(enumeration.hasMoreElements()){
+                listener = enumeration.nextElement();
+                String[] formats = listener.getFileFormats();
+                for(int i = 0; i < formats.length; i++)
+                    if(formats[i].toLowerCase().equals(format.toLowerCase()))
+                        return listener;
+            }
+        }
+        catch(Exception e){}
+        return null;
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="Constructor">
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
