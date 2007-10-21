@@ -14,5 +14,11 @@ package org.gcreator.exceptions;
  * @author Luís
  */
 public class NoSuchFolderException extends Exception{
-    public NoSuchFolderException(){}
+    public NoSuchFolderException(){
+        super();
+    }
+    
+    public NoSuchFolderException(String msg){
+        super(msg);
+    }
 }

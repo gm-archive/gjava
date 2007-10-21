@@ -8,23 +8,19 @@
  */
 package org.gcreator.externproject;
 
-import org.gcreator.components.CustomFileFilter;
-import org.gcreator.core.*;
-
-import javax.swing.*;
-import org.gcreator.components.*;
-import org.gcreator.fileclass.*;
-
 import java.awt.*;
 import java.io.*;
-import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipException;
-import java.util.zip.ZipInputStream;
-import org.gcreator.fileclass.res.SettingsValues;
-import org.gcreator.managers.ProjectTree;
+import java.util.*;
+import java.util.logging.*;
+import java.util.zip.*;
+
+import javax.swing.*;
+
+import org.gcreator.components.*;
+import org.gcreator.core.*;
+import org.gcreator.fileclass.*;
+import org.gcreator.fileclass.res.*;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -70,35 +66,43 @@ public class ProjectImporter {
         int ii = 0;
         int fileno = 0;
         while (ii < ss.length) {
-            System.out.println("ss[ii] = " + ss[ii]);
             String[] sss = ss[ii].replaceAll("</file>", "").split("\">");  //SpriteGroup">Sprites
             if (sss[0].equals("File")) {
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String ssss[] = sss[1].split("\\.");
                 String dir = sss[1];
-                System.out.println("dir = " + dir);
                 if(dir.indexOf("/")!=-1)
                     dir = dir.substring(0, dir.lastIndexOf("/"));
                 else
                     dir = "/";
-                System.out.println("dir = " + dir);
                 if (ssss.length > 0) {
                     try{
+                        String tname = ssss[0];
+                        if(tname.indexOf("/")!=-1){
+                            tname = tname.substring(tname.lastIndexOf("/")+1);
+                        }
                         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(
                             project.findFolder(dir)
-                            , ssss[0], ssss[1], null);
+                            , tname, ssss[1], null);
                         file.value = Stringfiles.elementAt(fileno);
                         if(ssss[1].equals("settings")){
                             SettingsValues w = new SettingsValues();
                             w.readXml((String) file.value);
                             file.value = w;
                         }
-                        if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) {
+                        else if(ssss[1].equals("actor")){
+                            Actor a = new Actor(file.name);
+                            a.readXml((String) file.value);
+                            file.value = a;
+                        }
+                        else if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) {
                             file.value = new ImageIcon(Bytefiles.elementAt(fileno));
                         }
                         fileno++;
                     }
-                    catch(Exception e){}
+                    catch(Exception e){
+                        System.out.println(e.getMessage());
+                    }
                 }
             } else if (sss[0].equals("ActorGroup")) {
                 project.add(f = new ActorGroup(project, sss[1].substring(sss[1].lastIndexOf("/")+1)));

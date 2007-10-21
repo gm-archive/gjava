@@ -89,6 +89,8 @@ public class Folder extends Object{
         if(name.indexOf("/")==-1){
             if(!name.equals(this.name))
                 throw new NoSuchFolderException();
+            else
+                return this;
         }
         else
             if(!name.substring(name.indexOf("/")).equals(name))
@@ -103,7 +105,7 @@ public class Folder extends Object{
                 catch(NoSuchFolderException e){}
             }
         }
-        throw new NoSuchFolderException();
+        throw new NoSuchFolderException("Folder");
     }
     
     @Override

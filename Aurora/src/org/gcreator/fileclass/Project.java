@@ -64,6 +64,6 @@ public class Project extends Folder{
                 catch(NoSuchFolderException e){}
             }
         }
-        throw new NoSuchFolderException();
+        throw new NoSuchFolderException("Project");
     }
 }

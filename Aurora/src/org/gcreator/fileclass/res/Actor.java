@@ -18,13 +18,14 @@ import org.gcreator.events.Event;
  */
 public class Actor extends Resource {
 public boolean visible, solid, persistant;
-public String sprite = "<no sprite";
+public String sprite = "<no sprite>";
 public String extend,mask;
 public int index,depth;
 public Vector<Event> events;
-  public  Actor(String name)
+  public Actor(String name)
     {
         this.name = name;
+        events = new Vector<Event>();
     }
   
   public String writeXml()
