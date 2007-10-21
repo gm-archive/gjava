@@ -21,6 +21,7 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
+import org.gcreator.plugins.FileOpenListener;
 
 /**
  *
@@ -90,13 +91,28 @@ public class ProjectImporter {
                             w.readXml((String) file.value);
                             file.value = w;
                         }
+                        else if(ssss[1].equals("sprite")){
+                            Sprite a = new Sprite(file.name);
+                            a.readXml((String) file.value);
+                            file.value = a;
+                        }
                         else if(ssss[1].equals("actor")){
                             Actor a = new Actor(file.name);
                             a.readXml((String) file.value);
                             file.value = a;
                         }
+                        else if(ssss[1].equals("scene")){
+                            Scene a = new Scene(file.name);
+                            a.readXml((String) file.value);
+                            file.value = a;
+                        }
                         else if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) {
                             file.value = new ImageIcon(Bytefiles.elementAt(fileno));
+                        }
+                        else{
+                            FileOpenListener l = gcreator.window.getFileEditor(ssss[1]);
+                            if(l!=null)
+                                file.value = l.generateResource(file, (String) file.value); 
                         }
                         fileno++;
                     }
@@ -168,7 +184,7 @@ public class ProjectImporter {
 
                     if (zipe.getName().equals("config")) {
                         config = stream + "";
-                    } else if (zipe.getName().contains(".jpg") || zipe.getName().contains(".gif") || zipe.getName().contains(".png")) {
+                    } else if (zipe.getName().endsWith(".jpg") || zipe.getName().endsWith(".gif") || zipe.getName().endsWith(".png")) {
                         Bytefiles.add(stream.toByteArray());
                         Stringfiles.add("");
                     } else {

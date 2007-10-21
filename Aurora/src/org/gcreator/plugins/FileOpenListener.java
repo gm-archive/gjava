@@ -13,4 +13,5 @@ import org.gcreator.fileclass.*;
 public interface FileOpenListener {
     public String[] getFileFormats();
     public boolean openNewFile(org.gcreator.fileclass.File file, Project project);
+    public java.lang.Object generateResource(org.gcreator.fileclass.File file, String value);
 }
