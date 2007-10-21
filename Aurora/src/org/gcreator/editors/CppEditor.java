@@ -6,8 +6,8 @@
 
 package org.gcreator.editors;
 
-import components.CppTextArea;
-import components.TabPanel;
+import org.gcreator.components.CppTextArea;
+import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 
 /**

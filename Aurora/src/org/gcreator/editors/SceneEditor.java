@@ -6,8 +6,10 @@
 
 package org.gcreator.editors;
 
-import components.popupmenus.ResourceMenu;
-import components.*;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.ScenePanel;
+import org.gcreator.components.popupmenus.ResourceMenu;
+import org.gcreator.components.*;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
@@ -67,7 +69,7 @@ public class SceneEditor extends TabPanel {
     
     public void updateImage(){
         org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.File) curactor.getCurrentObject().object).value;
-        ObjectNode c = components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", project);
+        ObjectNode c = org.gcreator.components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", project);
         if(c!=null){
             org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
@@ -252,7 +254,7 @@ public class SceneEditor extends TabPanel {
         jPanel5 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
-        colorSelection1 = new components.ColorSelection();
+        colorSelection1 = new org.gcreator.components.ColorSelection();
         jPanel7 = new javax.swing.JPanel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -612,23 +614,17 @@ public class SceneEditor extends TabPanel {
 
         jLabel4.setText("Color");
 
-        colorSelection1.setBackground(java.awt.Color.lightGray);
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        colorSelection1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                colorSelection1MouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout colorSelection1Layout = new javax.swing.GroupLayout(colorSelection1);
         colorSelection1.setLayout(colorSelection1Layout);
         colorSelection1Layout.setHorizontalGroup(
             colorSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 58, Short.MAX_VALUE)
+            .addGap(0, 75, Short.MAX_VALUE)
         );
         colorSelection1Layout.setVerticalGroup(
             colorSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 12, Short.MAX_VALUE)
+            .addGap(0, 14, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -638,12 +634,12 @@ public class SceneEditor extends TabPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, Short.MAX_VALUE)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(colorSelection1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGap(8, 8, 8))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -654,7 +650,7 @@ public class SceneEditor extends TabPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(colorSelection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(329, 329, 329))
         );
 
         jTabbedPane1.addTab("Backgrounds", jPanel5);
@@ -977,7 +973,7 @@ public class SceneEditor extends TabPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1023,10 +1019,6 @@ public class SceneEditor extends TabPanel {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         updateScroll();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
-
-    private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
-        updateScroll();
-    }//GEN-LAST:event_colorSelection1MouseClicked
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         ((ViewInScene) jList1.getSelectedValue()).visibleonstart = jCheckBox4.isSelected();
@@ -1135,7 +1127,7 @@ public class SceneEditor extends TabPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BottomLeft;
     private javax.swing.JLabel BottomRight;
-    private components.ColorSelection colorSelection1;
+    private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

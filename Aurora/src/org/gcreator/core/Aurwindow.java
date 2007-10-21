@@ -9,6 +9,23 @@
 
 package org.gcreator.core;
 
+import org.gcreator.components.HelpTab;
+import org.gcreator.components.ExtendedFrame;
+import org.gcreator.components.importDialog;
+import org.gcreator.components.Updater;
+import org.gcreator.components.CustomFileFilter;
+import org.gcreator.components.popupmenus.PopupListener;
+import org.gcreator.components.PluginsManager;
+import org.gcreator.components.WelcomeTab;
+import org.gcreator.components.ButtonTabComponent;
+import org.gcreator.components.NewProject;
+import org.gcreator.components.NewFileGroup;
+import org.gcreator.components.popupmenus.ConsolePopupMenu;
+import org.gcreator.components.popupmenus.ToolbarPopupMenu;
+import org.gcreator.components.LanguageTab;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.GlobalSettings;
+import org.gcreator.components.TreeImageManager;
 import org.gcreator.editors.SceneEditor;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.editors.JavaEditor;
@@ -26,7 +43,7 @@ import javax.swing.event.*;
 import org.gcreator.managers.MenuSupporter;
 import java.awt.*;
 import java.awt.event.*;
-import components.*;
+import org.gcreator.components.*;
 import org.gcreator.managers.*;
 import org.gcreator.languages.*;
 import java.io.*;
@@ -36,7 +53,7 @@ import org.gcreator.fileclass.*;
 import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.plugins.*;
-import components.popupmenus.*;
+import org.gcreator.components.popupmenus.*;
 import java.awt.datatransfer.Transferable;
 import java.util.Enumeration;
 

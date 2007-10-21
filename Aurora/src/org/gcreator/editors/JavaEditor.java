@@ -9,8 +9,8 @@ package org.gcreator.editors;
 import java.awt.event.*;
 import javax.swing.*;
 
-import components.JavaTextArea;
-import components.TabPanel;
+import org.gcreator.components.JavaTextArea;
+import org.gcreator.components.TabPanel;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.fileclass.Project;
 

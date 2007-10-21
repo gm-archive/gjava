@@ -12,7 +12,7 @@ package org.gcreator.externproject;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import javax.swing.*;
-import components.*;
+import org.gcreator.components.*;
 import java.awt.*;
 import java.io.*;
 import java.util.zip.ZipOutputStream;

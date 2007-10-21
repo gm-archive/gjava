@@ -1,7 +1,7 @@
 package org.gcreator.languages;
 
 import org.gcreator.units.Dictionary;
-import components.*;
+import org.gcreator.components.*;
 import org.gcreator.exceptions.*;
 
 /**

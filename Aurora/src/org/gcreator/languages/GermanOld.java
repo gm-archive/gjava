@@ -9,7 +9,7 @@
 
 package org.gcreator.languages;
 
-import components.*;
+import org.gcreator.components.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.units.Dictionary;
 import java.util.Enumeration;

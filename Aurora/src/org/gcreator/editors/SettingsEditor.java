@@ -6,7 +6,7 @@
 
 package org.gcreator.editors;
 
-import components.*;
+import org.gcreator.components.*;
 import javax.swing.border.*;
 import java.awt.*;
 import org.gcreator.fileclass.res.*;

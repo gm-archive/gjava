@@ -91,7 +91,7 @@ public class gcreator {
         
         window = new Aurwindow(settings);
         window.console.setText(output);
-        Aurwindow.globalsettings = new components.GlobalSettings();
+        Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings();
         if(splash!=null){
             Plugger.onSplashDispose(gcreator.plugins);
             window.menubar.updateUI();

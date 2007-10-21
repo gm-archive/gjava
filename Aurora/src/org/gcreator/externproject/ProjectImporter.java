@@ -8,10 +8,11 @@
  */
 package org.gcreator.externproject;
 
+import org.gcreator.components.CustomFileFilter;
 import org.gcreator.core.*;
 
 import javax.swing.*;
-import components.*;
+import org.gcreator.components.*;
 import org.gcreator.fileclass.*;
 
 import java.awt.*;

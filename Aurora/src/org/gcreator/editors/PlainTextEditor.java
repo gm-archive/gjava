@@ -6,7 +6,8 @@
 
 package org.gcreator.editors;
 
-import components.*;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.*;
 import org.gcreator.fileclass.*;
 import javax.swing.*;
 

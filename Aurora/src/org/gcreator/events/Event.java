@@ -19,9 +19,9 @@ import java.util.*;
  * @author Luís
  */
 public class Event {
-    public Vector<actions.Action> actions;
+    public Vector<org.gcreator.actions.Action> actions;
     public Event(){
-        actions = new Vector<actions.Action>();
+        actions = new Vector<org.gcreator.actions.Action>();
     }
     public ImageIcon getImage(){
         return null;
@@ -46,7 +46,7 @@ public class Event {
     }
     public String writeXml(){
         String xml = "<event type=\""+getClass().getName()+"\">\n";
-        for(actions.Action action : actions)
+        for(org.gcreator.actions.Action action : actions)
             xml += action.writeXml();
         xml += "</event>\n";
         return xml;

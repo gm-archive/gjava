@@ -10,7 +10,7 @@
 package org.gcreator.managers;
 
 import org.gcreator.units.Dictionary;
-import components.*;
+import org.gcreator.components.*;
 
 /**
  *

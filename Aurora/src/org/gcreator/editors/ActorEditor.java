@@ -6,9 +6,20 @@
 
 package org.gcreator.editors;
 
-import components.popupmenus.*;
-import components.TabPanel;
-import components.impl.*;
+import org.gcreator.components.impl.EventCellRenderer;
+import org.gcreator.components.popupmenus.EventSelect;
+import org.gcreator.components.popupmenus.PopupListener;
+import org.gcreator.components.popupmenus.EventListModel;
+import org.gcreator.components.impl.ActionListCellRenderer;
+import org.gcreator.components.impl.ActionsCellRenderer;
+import org.gcreator.components.popupmenus.ActionPopupMenu;
+import org.gcreator.components.popupmenus.ResourceMenu;
+import org.gcreator.components.popupmenus.EventPopupMenu;
+import org.gcreator.components.impl.EventSelectListener;
+import org.gcreator.actions.ActionPattern;
+import org.gcreator.components.popupmenus.*;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.impl.*;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
@@ -18,7 +29,7 @@ import java.util.*;
 import javax.swing.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
-import actions.*;
+import org.gcreator.actions.*;
 
 /**
  *
@@ -68,10 +79,10 @@ public class ActorEditor extends TabPanel {
         }
         catch(NullPointerException e){}
         
-        patterns.add(new actions.mainactions.StartOfABlock(this));
-        patterns.add(new actions.mainactions.EndOfABlock(this));
-        patterns.add(new actions.mainactions.Comment(this));
-        patterns.add(new actions.mainactions.ExecuteCode(this));
+        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock(this));
+        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock(this));
+        patterns.add(new org.gcreator.actions.mainactions.Comment(this));
+        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode(this));
 
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));
@@ -564,7 +575,7 @@ public class ActorEditor extends TabPanel {
         actmodel.removeAllElements();
         if(jList1.getSelectedValue()==null)
             return;
-        Vector<actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
+        Vector<org.gcreator.actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
         for(int i = 0; i < actions.size(); i++)
             actmodel.addElement(actions.get(i));
     }
@@ -623,7 +634,7 @@ public class ActorEditor extends TabPanel {
             return;
         if(jComboBox1.getSelectedItem()==null)
             return;
-        actions.Action a = new actions.Action(this, (actions.ActionPattern) jComboBox1.getSelectedItem());
+        org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, (org.gcreator.actions.ActionPattern) jComboBox1.getSelectedItem());
         ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
         updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -631,7 +642,7 @@ public class ActorEditor extends TabPanel {
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
         if(jList2.getSelectedValue()==null)
             return;
-        jScrollPane3.setViewportView(((actions.Action) jList2.getSelectedValue()).getPanel());
+        jScrollPane3.setViewportView(((org.gcreator.actions.Action) jList2.getSelectedValue()).getPanel());
     }//GEN-LAST:event_jList2ValueChanged
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

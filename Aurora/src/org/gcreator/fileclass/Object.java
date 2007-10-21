@@ -10,7 +10,7 @@
 package org.gcreator.fileclass;
 
 import org.gcreator.units.ObjectNode;
-import components.*;
+import org.gcreator.components.*;
 
 /**
  *

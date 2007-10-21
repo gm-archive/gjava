@@ -6,11 +6,13 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.ImageDisplayer;
 import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import javax.swing.*;
 
-import components.*;
+import org.gcreator.components.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;

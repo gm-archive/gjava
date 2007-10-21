@@ -6,7 +6,7 @@
 
 package org.gcreator.plugins;
 
-import components.GlobalSettings;
+import org.gcreator.components.GlobalSettings;
 import java.awt.Component;
 import javax.swing.*;
 

@@ -6,9 +6,9 @@
 
 package org.gcreator.editors;
 
-import components.popupmenus.ResourceMenu;
-import components.SubimagePreview;
-import components.TabPanel;
+import org.gcreator.components.popupmenus.ResourceMenu;
+import org.gcreator.components.SubimagePreview;
+import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;

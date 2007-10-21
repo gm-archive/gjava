@@ -6,8 +6,8 @@
 
 package org.gcreator.editors;
 
-import components.GMLTextArea;
-import components.TabPanel;
+import org.gcreator.components.GMLTextArea;
+import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 
 /**

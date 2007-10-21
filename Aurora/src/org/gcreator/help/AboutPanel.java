@@ -7,7 +7,8 @@
 
 package org.gcreator.help;
 
-import components.*;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.*;
 
 /**
  *
