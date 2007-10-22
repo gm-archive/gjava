@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers;
+package org.gcreator.compilers.gjava;
 
 import org.gcreator.plugins.*;
 
