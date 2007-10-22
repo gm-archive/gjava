@@ -38,21 +38,21 @@ public class NewFileGroup extends TabPanel {
         tree.setCellRenderer(gcreator.window.renderer);
         a1 = new Model() {
             String[] strings = {"Group", "Text file"};
-            String[] truenames = {"Group", "Text"};
+            String[] truenames = {"/", "txt"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
             public String getTrueName(int i){ return truenames[i]; }
         };
         a2 = new Model() {
             String[] strings = {"Sprite", "Actor", "Scene", "EGML Script"};
-            String[] truenames = {"Sprite", "Actor", "Scene", "EGML"};
+            String[] truenames = {"sprite", "actor", "scene", "egml"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
             public String getTrueName(int i){ return truenames[i]; }
         };
         a3 = new Model() {
             String[] strings = new String[]{"Java file", "C++ file", "C++ header file", "XML file"};
-            String[] truenames = {"Java", "C++", "C++ header", "XML"};
+            String[] truenames = {"java", "cpp", "h", "xml"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
             public String getTrueName(int i){ return truenames[i]; }
@@ -169,27 +169,11 @@ public class NewFileGroup extends TabPanel {
     public void add(String val){
         String name = jTextField1.getText();
         if(name.equals(""))
-            name = "newGroup";
-        if(val.equals("Group"))
+            name = "new";
+        if(val.equals("/"))
             gcreator.window.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
-        if(val.equals("Text"))
-            gcreator.window.addFile(getCurrentFolder(), name, "txt");
-        if(val.equals("Sprite"))
-            gcreator.window.addFile(getCurrentFolder(), name, "sprite");
-        if(val.equals("Actor"))
-            gcreator.window.addFile(getCurrentFolder(), name, "actor");
-        if(val.equals("Scene"))
-            gcreator.window.addFile(getCurrentFolder(), name, "scene");
-        if(val.equals("EGML"))
-            gcreator.window.addFile(getCurrentFolder(), name, "egml");
-        if(val.equals("Java"))
-            gcreator.window.addFile(getCurrentFolder(), name, "java");
-        if(val.equals("C++"))
-            gcreator.window.addFile(getCurrentFolder(), name, "cpp");
-        if(val.equals("C++ header"))
-            gcreator.window.addFile(getCurrentFolder(), name, "h");
-        if(val.equals("XML"))
-            gcreator.window.addFile(getCurrentFolder(), name, "xml");
+        else
+            gcreator.window.addFile(getCurrentFolder(), name, val);
         Aurwindow.workspace.updateUI();
     }
     

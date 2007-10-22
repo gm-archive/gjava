@@ -11,6 +11,7 @@ package org.gcreator.fileclass;
 
 import org.gcreator.exceptions.*;
 import java.util.*;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -111,5 +112,9 @@ public class Folder extends Object{
     @Override
     public String getObjectType(){
         return "Folder";
+    }
+    
+    public ImageIcon getImage(){
+        return null;
     }
 }

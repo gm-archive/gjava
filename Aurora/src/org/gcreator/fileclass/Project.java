@@ -17,6 +17,7 @@ import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sound;
 import org.gcreator.fileclass.res.Sprite;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *

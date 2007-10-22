@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import javax.swing.ImageIcon;
 import org.gcreator.managers.FilesFinder;
 
 /**
@@ -52,5 +53,11 @@ public class ExtensionProject extends Project {
     
     public org.gcreator.fileclass.File[] getCppFiles(){
         return org.gcreator.managers.FilesFinder.getFilesAt(this, "cpp");
+    }
+    
+    private ImageIcon img = new ImageIcon(getClass().getResource("/org/gcreator/resources/extension.png"));
+    
+    public ImageIcon getImage(){
+        return img;
     }
 }

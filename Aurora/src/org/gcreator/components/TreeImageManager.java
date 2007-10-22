@@ -31,9 +31,6 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public ImageIcon image;
     public ImageIcon java;
     public ImageIcon actor;
-    public ImageIcon project_game;
-    public ImageIcon project_pkg;
-    public ImageIcon project_ext;
 
     public TreeImageManager() {
         workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
@@ -41,9 +38,6 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         image = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
         java = new ImageIcon(getClass().getResource("/org/gcreator/resources/java.png"));
         actor = new ImageIcon(getClass().getResource("/org/gcreator/resources/actor.png"));
-        project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/game.png"));
-        project_pkg = new ImageIcon(getClass().getResource("/org/gcreator/resources/package.png"));
-        project_ext = new ImageIcon(getClass().getResource("/org/gcreator/resources/extension.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {
@@ -113,12 +107,8 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                     setIcon(null);
                 }
             } else {
-                if (noder.object instanceof org.gcreator.fileclass.GameProject) {
-                    setIcon(project_game);
-                } else if (noder.object instanceof org.gcreator.fileclass.PackageProject) {
-                    setIcon(project_pkg);
-                } else if (noder.object instanceof org.gcreator.fileclass.ExtensionProject) {
-                    setIcon(project_ext);
+                if (noder.object instanceof org.gcreator.fileclass.Folder && ((org.gcreator.fileclass.Folder) noder.object).getImage()!=null) {
+                    setIcon(((org.gcreator.fileclass.Folder) noder.object).getImage());
                 } else if (bExpanded) {
                     if (UIManager.get("Tree.openIcon") != null) {
                         setIcon((Icon) UIManager.get("Tree.openIcon"));

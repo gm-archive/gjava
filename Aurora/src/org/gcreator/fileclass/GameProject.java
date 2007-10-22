@@ -9,6 +9,8 @@
 
 package org.gcreator.fileclass;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Luís
@@ -40,5 +42,11 @@ public class GameProject extends Project {
     
     public String getObjectType(){
         return "GameProject";
+    }
+    
+    private ImageIcon project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/game.png"));
+    
+    public ImageIcon getImage(){
+        return project_game;
     }
 }

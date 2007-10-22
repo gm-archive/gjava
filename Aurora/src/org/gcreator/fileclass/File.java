@@ -59,7 +59,7 @@ public class File extends Object implements Transferable {
         return "File";
     }
 
-    private class MyOutputStream extends ImageOutputStreamImpl {
+    /*private class MyOutputStream extends ImageOutputStreamImpl {
 
         public ZipOutputStream out;
 
@@ -95,7 +95,7 @@ public class File extends Object implements Transferable {
         public int read() {
             return 0;
         }
-    }
+    }*/
 
     public void writeToBuffer(ZipOutputStream out) throws IOException {
         
