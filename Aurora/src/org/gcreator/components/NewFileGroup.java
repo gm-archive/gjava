@@ -56,7 +56,7 @@ public class NewFileGroup extends TabPanel {
             public String getTrueName(int i){ return truenames[i]; }
         };
         a3 = new Model() {
-            String[] strings = {"Java file", "C++ file", "C++ header file", "XML file"};
+            String[] strings = new String[]{"Java file", "C++ file", "C++ header file", "XML file"};
             String[] truenames = {"Java", "C++", "C++ header", "XML"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }

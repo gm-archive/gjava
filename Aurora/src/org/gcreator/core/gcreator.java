@@ -69,6 +69,8 @@ public class gcreator {
                 LangSupporter.activeLang = new GermanOld();
             } else if (settings[3].equals("Russian")) {
                 LangSupporter.activeLang = new Russian();
+            } else if (settings[3].equals("Spanish")) {
+                LangSupporter.activeLang = new Spanish();
             } else {
                 utilities.addError(36);
             }

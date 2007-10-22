@@ -34,6 +34,8 @@ public class LanguageTab extends TabPanel {
             l = 3;
         if(Aurwindow.lang.equals("Russian"))
             l = 4;
+        if(Aurwindow.lang.equals("Spanish"))
+            l = 5;
         jComboBox1.setSelectedIndex(l);
         updateLanguage();
     }
@@ -49,8 +51,10 @@ public class LanguageTab extends TabPanel {
             m = new GermanOld();
         else if(l==3)
             m = new Portuguese();
-        else
+        else if(l==4)
             m = new Russian();
+        else
+            m = new Spanish();
         jLabel1.setText(m.getEntry(47));
         jLabel2.setText(m.getEntry(48));
         jLabel3.setText(m.getStatus());
@@ -75,7 +79,7 @@ public class LanguageTab extends TabPanel {
 
         jLabel1.setText("Language");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "German", "German (Old)", "Portuguese (European)", "Russian" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
