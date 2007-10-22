@@ -50,15 +50,6 @@ public class ProjectTypes extends JPanel {
         return jTabbedPane1;
     }
     
-    public void selTab(int num){
-        if(num!=gmpro.tnum)
-            gmpro.turnOff();
-        if(num!=pkgpro.tnum)
-            pkgpro.turnOff();
-        if(num!=extpro.tnum)
-            extpro.turnOff();
-    }
-    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

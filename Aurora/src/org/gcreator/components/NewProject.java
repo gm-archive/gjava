@@ -8,12 +8,13 @@
 //I had to made this a normal class because NetBeans designer didn't allow me to do what I wanted to.
 package org.gcreator.components;
 
-import org.gcreator.core.Aurwindow;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import org.gcreator.managers.*;
+import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
+
+import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -22,7 +23,7 @@ import org.gcreator.fileclass.*;
 public class NewProject extends TabPanel {
 
     /** Creates new form NewProject */
-
+    public Vector<JButton> ProjectButtons = new Vector<JButton>();
 
     public NewProject() {
         initComponents();
@@ -31,6 +32,13 @@ public class NewProject extends TabPanel {
         //jLabel3.setVisible(false);
     }
 
+    public void uncheckAll(){
+        java.lang.Object[] btns = ProjectButtons.toArray();
+        for(java.lang.Object btn : btns)
+            if(btn!=null && btn instanceof AbstractButton)
+                ((JButton) btn).setSelected(false);
+    }
+    
     private void initComponents() {
 
         jLabel1 = new JLabel();

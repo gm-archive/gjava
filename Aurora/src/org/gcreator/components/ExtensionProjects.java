@@ -23,6 +23,7 @@ public class ExtensionProjects extends javax.swing.JPanel {
         this.ptypes = ptypes;
         initComponents();
         jButton1.setText(LangSupporter.activeLang.getEntry(63));
+        ptypes.npro.ProjectButtons.add(jButton1);
     }
     
     public int getSelectedProject(){
@@ -62,10 +63,9 @@ public class ExtensionProjects extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void setButton(int sel){
+        ptypes.npro.uncheckAll();
         if(sel==1)
             jButton1.setSelected(true);
-        else
-            jButton1.setSelected(false);
     }
     
     public void turnOff(){
@@ -74,7 +74,6 @@ public class ExtensionProjects extends javax.swing.JPanel {
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setButton(1);
-        ptypes.selTab(tnum);
         String str = jButton1.getText()
                 .replaceAll("\\s", "_")
                 .replaceAll("[\\.:?^(){}]","")

@@ -24,6 +24,8 @@ public class PackageProjects extends javax.swing.JPanel {
         initComponents();
         jButton1.setText(LangSupporter.activeLang.getEntry(59));
         jButton2.setText(LangSupporter.activeLang.getEntry(61));
+        ptypes.npro.ProjectButtons.add(jButton1);
+        ptypes.npro.ProjectButtons.add(jButton2);
     }
     
     public int getSelectedProject(){
@@ -79,7 +81,6 @@ public class PackageProjects extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         setButton(1);
-        ptypes.selTab(tnum);
         String str = jButton1.getText()
                 .replaceAll("\\s", "_")
                 .replaceAll("[\\.:?^(){}]","")
@@ -92,7 +93,6 @@ public class PackageProjects extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         setButton(2);
-        ptypes.selTab(tnum);
         String str = jButton2.getText()
                 .replaceAll("\\s", "_")
                 .replaceAll("[\\.:?^(){}]","")
@@ -104,14 +104,11 @@ public class PackageProjects extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
     
     public void setButton(int sel){
+        ptypes.npro.uncheckAll();
         if(sel==1)
             jButton1.setSelected(true);
-        else
-            jButton1.setSelected(false);
         if(sel==2)
             jButton2.setSelected(true);
-        else
-            jButton2.setSelected(false);
     }
     
     public void turnOff(){

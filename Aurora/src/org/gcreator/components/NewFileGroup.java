@@ -6,22 +6,17 @@
 
 package org.gcreator.components;
 
-import org.gcreator.components.*;
 import javax.swing.*;
 import javax.swing.tree.*;
 
+import org.gcreator.components.*;
+import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
 
 /**
  *
  * @author  Luís
  */
-
-abstract class Model extends AbstractListModel{
-    public String getTrueName(int i){
-        return null;
-    }
-}
 
 public class NewFileGroup extends TabPanel {
       
@@ -201,11 +196,11 @@ public class NewFileGroup extends TabPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList jList1;
-    private javax.swing.JList jList2;
+    public javax.swing.JList jList1;
+    public javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
 }
