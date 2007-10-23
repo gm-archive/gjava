@@ -17,7 +17,7 @@ import org.gcreator.core.*;
  *
  * @author Luís
  */
-public class GCpp extends PluginCore{
+public class GCpp extends PlatformCore{
     public GCpp(){
         VarsRegistry.setVariable("gcpp.version", "draft");
         settings = new GCppOptions();
