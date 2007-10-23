@@ -25,4 +25,8 @@ public class ActorInScene {
         this.x = x;
         this.y = y;
     }
+    
+    public String writeXml(){
+        return "<actor type=\"" + actor + "\" x=" + x + " y=" + y + " />";
+    }
 }

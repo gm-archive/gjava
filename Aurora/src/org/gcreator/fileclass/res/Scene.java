@@ -104,6 +104,13 @@ public String writeXml()
       xml += views.writeXml();
       xml += "\t</views>\n";
       
+      xml += "\t<content>\n";
+      Object[] o = actors.toArray();
+      for(Object a : o)
+          if(a!=null && a instanceof ActorInScene)
+              ((ActorInScene) a).writeXml();
+      xml += "\t</content>\n";
+      
       xml += "</scene>";
       return xml;
 }
