@@ -20,6 +20,8 @@ public class PackageProject extends Project {
         super(name, location);
     }
     
+    public PackageProject(){}
+    
     @Override
     public String getType(){
         return "Package";

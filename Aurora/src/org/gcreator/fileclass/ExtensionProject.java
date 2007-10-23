@@ -21,6 +21,8 @@ public class ExtensionProject extends Project {
         super(name, location);
     }
     
+    public ExtensionProject(){}
+    
     @Override
     public boolean allowsFileType(String format){
         return false;

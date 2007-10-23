@@ -33,6 +33,10 @@ public class Project extends Folder{
     public Vector<Scene> scenes = new Vector<Scene>(); 
     public Vector<Classes> classes = new Vector<Classes>(); 
     
+    public Project(){
+        super(null);
+    }
+    
     public Project(String name, String location){
         super(name);
         this.location = location;

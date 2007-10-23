@@ -20,6 +20,8 @@ public class GameProject extends Project {
         super(name, location);
     }
     
+    public GameProject(){}
+    
     @Override
     public String getType(){
         return "Game";

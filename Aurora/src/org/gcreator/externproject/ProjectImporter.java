@@ -42,24 +42,13 @@ public class ProjectImporter {
 
     public static void readConfig(String s, String name) {
         org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
-
-        if (s.split(">")[3].equals("Game")) {
-            type = 0;
+        try{
+        System.out.println(s.split(">")[3].split("<")[0]);
+        project = (Project) ClassLoader.getSystemClassLoader().loadClass(s.split(">")[3].split("<")[0]).newInstance();
+        
         }
-        if (s.split(">")[3].equals("Package")) {
-            type = 1;
-        }
-        if (s.split(">")[3].equals("Extension")) {
-            type = 2;
-        }
-        if (type == 0) {
-            project = new GameProject(name, "");
-        }
-        if (type == 1) {
-            project = new PackageProject(name, "");
-        }
-        if (type == 2) {
-            project = new ExtensionProject(name, "");
+        catch(Exception e){
+        
         }
         project.name = name;
         s = s.replaceAll("</content>", "");
