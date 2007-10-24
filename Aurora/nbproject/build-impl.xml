@@ -592,9 +592,9 @@ is divided into following sections:
             </customize>
         </j2seproject3:debug>
     </target>
-    <target depends="init,compile-single,-debug-start-debugger,-debug-start-debuggee-applet" if="netbeans.home" name="debug-applet"/>
-    <!--
-                ========
+    <!--<target depends="init,compile-single,-debug-start-debugger,-debug-start-debuggee-applet" if="netbeans.home" name="debug-applet"/>
+    
+                ======== 
             <customize>
                 <syspropertyset>
                     <propertyref prefix="test-sys-prop."/>
@@ -605,8 +605,8 @@ is divided into following sections:
                 <arg value="formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter"/>
                 <arg value="formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,${test.report.file}"/>
             </customize>
-        </j2seproject3:debug>
-    </target>
+        </j2seproject3:debug 
+    </target>-->
 
 
 
@@ -628,39 +628,4 @@ is divided into following sections:
     </target>
     <target depends="init,deps-clean,-do-clean,-post-clean" description="Clean build products." name="clean"/>
 </project>
-                INITIALIZATION SECTION 
-                ===============
-
-                COMPILATION SECTION
-                ============
-
-                JAR BUILDING SECTION
-                =============
-
-                EXECUTION SECTION
-                ==========
-
-                DEBUGGING SECTION
-                ==========
-
-                JAVADOC SECTION
-                ========
-
-                JUNIT COMPILATION SECTION
-                ==================
-
-                JUNIT EXECUTION SECTION
-                ================
-
-                JUNIT DEBUGGING SECTION
-                ================
-
-                APPLET EXECUTION SECTION
-                ==================
-
-                APPLET DEBUGGING  SECTION
-                ==================
-
-                CLEANUP SECTION
-                ========
-
+               

@@ -27,9 +27,9 @@ public class PlatformCore extends PluginCore {
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof org.gcreator.fileclass.File) {
-                  //  out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
-                    ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
-                    out.closeEntry();
+                  
+                    System.out.println(""+((org.gcreator.fileclass.File) childNode).type);
+                    
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode, prefix + childNode.name + "/", out);
                 }
@@ -38,7 +38,7 @@ public class PlatformCore extends PluginCore {
     }
     
     public void parseSprites(){
-    gcreator.window.workspace.get.getNextMatch("Sprite", 0, null).toString();
+    
     }
 
     public void parseActors(){}
