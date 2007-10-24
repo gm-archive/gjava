@@ -9,17 +9,41 @@
 
 package org.gcreator.plugins;
 
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+import org.gcreator.core.gcreator;
+import org.gcreator.fileclass.Folder;
+
 /**
  *
  * @author Ali1
  */
-public interface PlatformCore{
+public class PlatformCore extends PluginCore {
     
-    public void parseSprites();
+    public static void putFolder(Folder folder, String prefix, ZipOutputStream out) throws java.io.IOException {
+        org.gcreator.fileclass.Object childNode;
 
-    public void parseActors();
+
+        for (int i = 0; i < folder.getChildArrayNum(); i++) {
+            if ((childNode = folder.childAt(i)) != null) {
+                if (childNode instanceof org.gcreator.fileclass.File) {
+                  //  out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
+                    ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
+                    out.closeEntry();
+                } else if (childNode instanceof org.gcreator.fileclass.Folder) {
+                    putFolder((Folder) childNode, prefix + childNode.name + "/", out);
+                }
+            }
+        }
+    }
     
-    public void parseScenes();
+    public void parseSprites(){
+    gcreator.window.workspace.get.getNextMatch("Sprite", 0, null).toString();
+    }
+
+    public void parseActors(){}
     
-    public void parseClass();
+    public void parseScenes(){}
+    
+    public void parseClasses(){}
 }
