@@ -1,7 +1,7 @@
 package org.gcreator.compilers.gjava.components;
 
 import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.compilers.gjava.gscript.res.TimedAudioClip;
+import org.gcreator.gjava.api.res.TimedAudioClip;
 
 /**
  * Sound object to play a sound, not used in g-java 2.0 yet

@@ -7,7 +7,7 @@ import java.util.*;
 import org.gcreator.compilers.gjava.core.GameSettings;
 import org.gcreator.compilers.gjava.core.Runner;
 import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.compilers.gjava.gscript.main;
+import org.gcreator.gjava.api.main;
 
 /**
  * Creates a new Room that can be added to a JFrame
