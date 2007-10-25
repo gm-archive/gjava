@@ -33,6 +33,7 @@ import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
 import java.awt.datatransfer.Transferable;
 
+import org.gcreator.help.AboutPanel;
 import org.gcreator.units.*;
 
 
@@ -814,8 +815,7 @@ public class Aurwindow extends JFrame {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
-            org.gcreator.help.AboutPanel panel = new org.gcreator.help.AboutPanel();
-            addWindow(panel, 27);
+            addWindow(about, 27);
         }
         if (menu == 4 && item == 1) {
             HelpTab help = new HelpTab();
@@ -865,6 +865,7 @@ public class Aurwindow extends JFrame {
                 look = 2;
                 workspace.updateUI();
             } catch (Exception e) {
+                
             }
         }
         if (menu == 5 && item == 3) {
@@ -975,6 +976,7 @@ public class Aurwindow extends JFrame {
     public static GlobalSettings globalsettings;
     public static NewProject newproject;
     public static NewFileGroup newfilegroup;
+    public static AboutPanel about;
 
 //</editor-fold>
     //Tree accessing functions

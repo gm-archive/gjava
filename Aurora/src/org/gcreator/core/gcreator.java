@@ -18,6 +18,7 @@ import org.gcreator.languages.*;
 import javax.swing.*;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
+import org.gcreator.help.AboutPanel;
 
 /**
  *
@@ -98,6 +99,7 @@ public class gcreator {
         Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings();
         Aurwindow.newfilegroup = new NewFileGroup();
         Aurwindow.newproject = new NewProject();
+        Aurwindow.about = new AboutPanel();
         if(splash!=null){
             Plugger.onSplashDispose(gcreator.plugins);
             window.menubar.updateUI();

@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
  * @author Luís
  */
 public class Project extends Folder{
-    public String location; //If project "Alfa" is in "C:/Program Files/Alfa", leave only "C:/Program Files/";
+    public String location = ""; //If project "Alfa" is in "C:/Program Files/Alfa", leave only "C:/Program Files/";
     
     //The following vectors are for saving, getting resouces etc
     public Vector<Actor> actors = new Vector<Actor>();
