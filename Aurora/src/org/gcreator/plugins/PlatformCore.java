@@ -9,10 +9,17 @@
 
 package org.gcreator.plugins;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.zip.ZipOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
 
 /**
@@ -21,7 +28,7 @@ import org.gcreator.fileclass.res.Sprite;
  */
 public class PlatformCore extends PluginCore {
     
-    public static void putFolder(Folder folder) {
+    public void putFolder(Folder folder) {
       org.gcreator.fileclass.Object childNode;
 
 
@@ -40,13 +47,13 @@ public class PlatformCore extends PluginCore {
         }
     }
     
-    public static void parseSprite(Sprite s){
+    public void parseSprite(Sprite s){
     System.out.println(""+s.name);
     }
 
-    public static void parseActor(){}
+    public static void parseActor(Actor a){}
     
-    public static void parseScene(){}
+    public static void parseScene(Scene s){}
     
     public static void parseClass(){}
     
@@ -54,5 +61,45 @@ public class PlatformCore extends PluginCore {
     {
         if (project !=null)
         putFolder(project);
+    }
+    
+    // Print a line to the bufferedwriter
+	public static void print(BufferedWriter file,String printString) throws IOException
+		{
+		file.write(printString);
+		file.newLine();
+		}
+    
+    public void copyDirectory(File srcDir, File dstDir) throws IOException {
+        if (srcDir.isDirectory()) {
+            if (!dstDir.exists()) {
+                dstDir.mkdir();
+            }
+    
+            String[] children = srcDir.list();
+            for (int i=0; i<children.length; i++) {
+                copyDirectory(new File(srcDir, children[i]),
+                                     new File(dstDir, children[i]));
+            }
+        } else {
+            // This method is implemented in e1071 Copying a File
+            copyFile(srcDir, dstDir);
+        }
+    }
+    
+    // Copies src file to dst file.
+    // If the dst file does not exist, it is created
+    void copyFile(File src, File dst) throws IOException {
+        InputStream in = new FileInputStream(src);
+        OutputStream out = new FileOutputStream(dst);
+    
+        // Transfer bytes from in to out
+        byte[] buf = new byte[1024];
+        int len;
+        while ((len = in.read(buf)) > 0) {
+            out.write(buf, 0, len);
+        }
+        in.close();
+        out.close();
     }
 }

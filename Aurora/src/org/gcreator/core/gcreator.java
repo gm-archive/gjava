@@ -32,12 +32,20 @@ public class gcreator {
     private static SplashScreen splash;
     public static PluginCore[] plugins;
     public static ClipboardManager clipboard = new ClipboardManager();
+    public static String folder;
     
     public static String[] getargs(){
         return arguments;
     }
     
     public static void main(String[] args){
+        folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+		int location = folder.lastIndexOf("/");
+		folder = folder.substring(0,location+1);
+		folder = folder.replaceAll("file://","");
+		folder = folder.replaceAll("%20"," ");
+		folder = folder.substring(1);
+		folder = folder.replace("/","\\");
         plugins = Plugger.getPlugList(PluginsList.loadPluglist());
         arguments = args;
         Plugger.loadPlugins(plugins);
