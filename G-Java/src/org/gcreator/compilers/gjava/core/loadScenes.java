@@ -18,7 +18,7 @@ import org.gcreator.compilers.gjava.components.Scene;
  *
  * @author Ali
  */
-public class load_Rooms {
+public class loadScenes {
 
 public static JFrame Room;
 public static int firstroom = 1; 
@@ -29,9 +29,9 @@ public static int roomid;
 public static Image GIcon;
 public static int getroom[]= {1,0,3,4,5};
 
-load_Rooms(int roomid) {}
+loadScenes(int roomid) {}
 
-load_Rooms(int roomid,JApplet maingamep) {}
+loadScenes(int roomid,JApplet maingamep) {}
 
 public static boolean if_prev_room(int roomid) {return false;}
 

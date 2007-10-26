@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.gscript;
+package org.gcreator.compilers.gjava.api;
 
 import java.awt.AWTException;
 import java.awt.DisplayMode;

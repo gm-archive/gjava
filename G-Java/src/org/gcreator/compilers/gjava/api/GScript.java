@@ -3,22 +3,18 @@
  * @author G-Java development team (http://www.g-java.com)
  * @version 1.0
  */
-package org.gcreator.compilers.gjava.gscript;
+package org.gcreator.compilers.gjava.api;
 
 import java.awt.*;
 import java.awt.datatransfer.*;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.text.DecimalFormat;
 import javax.swing.*;
 import java.util.*;
+import org.gcreator.compilers.gjava.components.Actor;
+import org.gcreator.compilers.gjava.components.Timeline;
+import org.gcreator.compilers.gjava.components.font;
+import org.gcreator.compilers.gjava.components.sound;
+import org.gcreator.compilers.gjava.components.sprite;
 import org.gcreator.compilers.gjava.components.*;
 import org.gcreator.compilers.gjava.core.*;
 

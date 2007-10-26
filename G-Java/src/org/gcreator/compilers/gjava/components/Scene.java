@@ -5,9 +5,8 @@ import java.awt.*;
 import javax.swing.*;
 import java.util.*;
 import org.gcreator.compilers.gjava.core.GameSettings;
-import org.gcreator.compilers.gjava.core.Runner;
 import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.gjava.api.main;
+import org.gcreator.compilers.gjava.api.main;
 
 /**
  * Creates a new Room that can be added to a JFrame
@@ -198,9 +197,6 @@ public class Scene extends JPanel implements Runnable {
      */
     public int width;
     
-    // use runner class
-    Runner runr = new Runner();
-    
     // game settings
     GameSettings gs = new GameSettings();
     
@@ -211,8 +207,7 @@ public class Scene extends JPanel implements Runnable {
     
     GraphicsConfiguration gc = gd.getDefaultConfiguration();
     
-    DisplayMode dm = runr.bestmode(gd);
-    
+        
     /**
      * The background color for this room
      */
@@ -253,26 +248,19 @@ public class Scene extends JPanel implements Runnable {
         // room creation code
         Creation_code();
         
-        if (!GameSettings.DisplayCursor) {
-            
-            // hide the cursor
-            runr.hidecursor(Frame);
-        }
-        
+           
         if (basicgame.Runningas.equals("EApplet")) {
             // room caption
             Frame.setTitle(Caption);
             
         }
         
-        if (dm == null || gd.isFullScreenSupported() == false) {
-            GameSettings.FullScreenMode = false;
-        }
+        
         
         if ((GameSettings.FullScreenMode) && (basicgame.Runningas.equals("EApplet"))) {
             Frame.setUndecorated( true ); // No window decorations
             gd.setFullScreenWindow(Frame); // Create a full screen window
-            gd.setDisplayMode(dm); // Change to our preferred mode
+           // gd.setDisplayMode(dm); // Change to our preferred mode
             
         }
         setup_Room();
@@ -344,7 +332,7 @@ public class Scene extends JPanel implements Runnable {
         
         if (basicgame.Runningas.equals("EApplet")) {
             // use the statusbar as caption
-            basicgame.Eapplet.showStatus("" + local_caption);
+            basicgame.applet.showStatus("" + local_caption);
         } else {
             
             Frame.setTitle("" + local_caption);

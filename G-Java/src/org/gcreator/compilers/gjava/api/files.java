@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.gscript;
+package org.gcreator.compilers.gjava.api;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Enumeration;
-import org.gcreator.compilers.gjava.gscript.res.FileStream;
+import org.gcreator.compilers.gjava.api.res.FileStream;
 
 /**
      * It is useful to use external files in games. For example, you could make a file that describes at what moments certain things should happen. Also you probably want to save information for the next time the game is run (for example, the current room).

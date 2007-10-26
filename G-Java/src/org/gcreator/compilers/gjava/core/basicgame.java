@@ -23,7 +23,7 @@ import org.gcreator.compilers.gjava.components.sprite;
  * The basics for a game, rewritten in G-Java for your game.
  * @author G-java
  */
-public class basicgame {
+public class basicgame extends JApplet {
 
 //The Game Settings
 GameSettings gs = new GameSettings();
@@ -32,37 +32,28 @@ public static JFrame f;
 public static URL u;
 public static String Runningas;
 public static Scene Current_room;
-public static JApplet Eapplet;
+public static JApplet applet = null;
 
-// Declare the reasources
-public static sprite[] sprite = new sprite[5];
-public static font[] font = new font[2];
-public static Actor[] obj = new Actor[7];
-public basicgame(URL u) {
-
- }
-
-public basicgame(URL u, JApplet embed) {}
+    @Override
+    public void init() {
+        super.init();
+        Runningas = "Applet";
+        applet = this;
+        new loadScenes(0,applet);
+    }
 
 public basicgame() {}
 
+public static void main(String[] args){
+Runningas = "Application";
+new loadScenes(0);
+}
+
 public static void load_Sprites() {}
 public static void load_Sounds() {}
-public static void load_Backgrounds() {}
 public static void load_Fonts() {}
-public static Actor load_Objects(int objectid, int X, int Y, double id) {return null;}
+public static Actor load_Actors() {return null;}
 
-public static void load_Timelines()
-	{
-	// TODO Auto-generated method stub
-	
-	}
-
-public static void load_Paths()
-	{
-	// TODO Auto-generated method stub
-	
-	}
 }
 
 

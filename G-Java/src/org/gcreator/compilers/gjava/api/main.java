@@ -7,10 +7,11 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.gscript;
+package org.gcreator.compilers.gjava.api;
 
 import java.io.IOException;
 import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.core.loadScenes;
 
 /**
  *
@@ -110,12 +111,12 @@ public class main {
         /**
          * Index of the first room in the game.
          */
-        public static int room_first = load_Rooms.firstroom;
+        public static int room_first = loadScenes.firstroom;
 
         /**
          * Index of the last room in the game.
          */
-        public static int room_last = load_Rooms.lastroom;
+        public static int room_last = loadScenes.lastroom;
 
         /**
          * The width of the current room
@@ -144,11 +145,11 @@ public class main {
         public static void room_goto(int roomid) {
             int GJavalocalroomid = basicgame.Current_room.id;
             if (basicgame.Runningas != "EApplet") {
-                load_Rooms.change_room(roomid);
+                loadScenes.change_room(roomid);
             } else {
-                load_Rooms.change_room(roomid, basicgame.Eapplet);
+                loadScenes.change_room(roomid, basicgame.Eapplet);
             }
-            load_Rooms.remove_room(GJavalocalroomid);
+            loadScenes.remove_room(GJavalocalroomid);
         }
 
         /**
@@ -157,11 +158,11 @@ public class main {
         public static void room_goto_previous() {
             int GJavalocalroomid = basicgame.Current_room.id;
             if (basicgame.Runningas != "EApplet") {
-                load_Rooms.prev_room(basicgame.Current_room.roomid);
+                loadScenes.prev_room(basicgame.Current_room.roomid);
             } else {
-                load_Rooms.prev_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+                loadScenes.prev_room(basicgame.Current_room.roomid, basicgame.Eapplet);
             }
-            load_Rooms.remove_room(GJavalocalroomid);
+            loadScenes.remove_room(GJavalocalroomid);
         }
 
         /**
@@ -170,11 +171,11 @@ public class main {
         public static void room_goto_next() {
             int GJavalocalroomid = basicgame.Current_room.id;
             if (basicgame.Runningas != "EApplet") {
-                load_Rooms.next_room(basicgame.Current_room.roomid);
+                loadScenes.next_room(basicgame.Current_room.roomid);
             } else {
-                load_Rooms.next_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+                loadScenes.next_room(basicgame.Current_room.roomid, basicgame.Eapplet);
             }
-            load_Rooms.remove_room(GJavalocalroomid);
+            loadScenes.remove_room(GJavalocalroomid);
         }
 
         /**
@@ -183,9 +184,9 @@ public class main {
         public static void room_restart() {
 
             if (basicgame.Runningas != "EApplet") {
-                load_Rooms.restart_room(basicgame.Current_room.roomid);
+                loadScenes.restart_room(basicgame.Current_room.roomid);
             } else {
-                load_Rooms.restart_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+                loadScenes.restart_room(basicgame.Current_room.roomid, basicgame.Eapplet);
             }
         }
 
@@ -220,7 +221,7 @@ public class main {
                 if (basicgame.Runningas == "EApplet") {
                     basicgame.Eapplet.stop();
                 } else {
-                    load_Rooms.remove_room(basicgame.Current_room.id);
+                    loadScenes.remove_room(basicgame.Current_room.id);
                 }
             }
         }
@@ -231,11 +232,11 @@ public class main {
         public static void game_restart() {
             int GJavalocalroomid = basicgame.Current_room.id;
             if (!basicgame.Runningas.equals("EApplet")) {
-                load_Rooms.change_room(load_Rooms.firstroom);
+                loadScenes.change_room(loadScenes.firstroom);
             } else {
-                load_Rooms.change_room(load_Rooms.firstroom, basicgame.Eapplet);
+                loadScenes.change_room(loadScenes.firstroom, basicgame.Eapplet);
             }
-            load_Rooms.remove_room(GJavalocalroomid);
+            loadScenes.remove_room(GJavalocalroomid);
         }
 
         /**

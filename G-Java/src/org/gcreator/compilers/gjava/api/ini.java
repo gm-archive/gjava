@@ -7,9 +7,10 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.gscript;
+package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.gscript.res.INIFile;
+import org.gcreator.compilers.gjava.api.res.INIFile;
+
 
 /**
      * To pass certain parameter settings to programs a standard mechanism is the use of INI files. INI files contain sections and each section contains a number of name-value pairs. For example, here is a typical INI file:
