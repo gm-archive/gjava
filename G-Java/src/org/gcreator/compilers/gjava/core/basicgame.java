@@ -33,6 +33,7 @@ public static URL u;
 public static String Runningas;
 public static Scene Current_room;
 public static JApplet applet = null;
+public static int firstroom,lastroom;
 
     @Override
     public void init() {

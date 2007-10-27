@@ -11,7 +11,7 @@ package org.gcreator.compilers.gjava.api;
 
 import java.io.IOException;
 import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.compilers.gjava.core.loadScenes;
+import org.gcreator.compilers.gjava.core.basicgame;
 
 /**
  *
@@ -111,12 +111,12 @@ public class main {
         /**
          * Index of the first room in the game.
          */
-        public static int room_first = loadScenes.firstroom;
+        public static int room_first = basicgame.firstroom;
 
         /**
          * Index of the last room in the game.
          */
-        public static int room_last = loadScenes.lastroom;
+        public static int room_last = basicgame.lastroom;
 
         /**
          * The width of the current room
@@ -142,53 +142,53 @@ public class main {
          * Goto the room with index roomid.
          * @param roomid
          */
-        public static void room_goto(int roomid) {
-            int GJavalocalroomid = basicgame.Current_room.id;
-            if (basicgame.Runningas != "EApplet") {
-                loadScenes.change_room(roomid);
-            } else {
-                loadScenes.change_room(roomid, basicgame.Eapplet);
-            }
-            loadScenes.remove_room(GJavalocalroomid);
-        }
+//        public static void room_goto(int roomid) {
+//            int GJavalocalroomid = basicgame.Current_room.id;
+//            if (basicgame.Runningas != "EApplet") {
+//                basicgame.change_room(roomid);
+//            } else {
+//                basicgame.change_room(roomid, basicgame.Eapplet);
+//            }
+//            basicgame.remove_room(GJavalocalroomid);
+//        }
 
         /**
          * Go to the previous room.
          */
-        public static void room_goto_previous() {
-            int GJavalocalroomid = basicgame.Current_room.id;
-            if (basicgame.Runningas != "EApplet") {
-                loadScenes.prev_room(basicgame.Current_room.roomid);
-            } else {
-                loadScenes.prev_room(basicgame.Current_room.roomid, basicgame.Eapplet);
-            }
-            loadScenes.remove_room(GJavalocalroomid);
-        }
+//        public static void room_goto_previous() {
+//            int GJavalocalroomid = basicgame.Current_room.id;
+//            if (basicgame.Runningas != "EApplet") {
+//                basicgame.prev_room(basicgame.Current_room.roomid);
+//            } else {
+//                basicgame.prev_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//            }
+//            basicgame.remove_room(GJavalocalroomid);
+//        }
 
         /**
          * Go to the next room.
          */
-        public static void room_goto_next() {
-            int GJavalocalroomid = basicgame.Current_room.id;
-            if (basicgame.Runningas != "EApplet") {
-                loadScenes.next_room(basicgame.Current_room.roomid);
-            } else {
-                loadScenes.next_room(basicgame.Current_room.roomid, basicgame.Eapplet);
-            }
-            loadScenes.remove_room(GJavalocalroomid);
-        }
+//        public static void room_goto_next() {
+//            int GJavalocalroomid = basicgame.Current_room.id;
+//            if (basicgame.Runningas != "EApplet") {
+//                basicgame.next_room(basicgame.Current_room.roomid);
+//            } else {
+//                basicgame.next_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//            }
+//            basicgame.remove_room(GJavalocalroomid);
+//        }
 
         /**
          * Restart the current room.
          */
-        public static void room_restart() {
-
-            if (basicgame.Runningas != "EApplet") {
-                loadScenes.restart_room(basicgame.Current_room.roomid);
-            } else {
-                loadScenes.restart_room(basicgame.Current_room.roomid, basicgame.Eapplet);
-            }
-        }
+//        public static void room_restart() {
+//
+//            if (basicgame.Runningas != "EApplet") {
+//                basicgame.restart_room(basicgame.Current_room.roomid);
+//            } else {
+//                basicgame.restart_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//            }
+//        }
 
         /**
          * Return the index of the room before numb(-1 = none) but don't go there.
@@ -211,33 +211,33 @@ public class main {
         /**
          *  End the game.
          */
-        public static void end_game() {
-            // end the game
-            if (basicgame.Runningas == "Application") {
-                // close the application
-                System.exit(0);
-            } else {
-                // close the applet
-                if (basicgame.Runningas == "EApplet") {
-                    basicgame.Eapplet.stop();
-                } else {
-                    loadScenes.remove_room(basicgame.Current_room.id);
-                }
-            }
-        }
+//        public static void end_game() {
+//            // end the game
+//            if (basicgame.Runningas == "Application") {
+//                // close the application
+//                System.exit(0);
+//            } else {
+//                // close the applet
+//                if (basicgame.Runningas == "EApplet") {
+//                    basicgame.Eapplet.stop();
+//                } else {
+//                    basicgame.remove_room(basicgame.Current_room.id);
+//                }
+//            }
+//        }
 
         /**
          * Restart the game.
          */
-        public static void game_restart() {
-            int GJavalocalroomid = basicgame.Current_room.id;
-            if (!basicgame.Runningas.equals("EApplet")) {
-                loadScenes.change_room(loadScenes.firstroom);
-            } else {
-                loadScenes.change_room(loadScenes.firstroom, basicgame.Eapplet);
-            }
-            loadScenes.remove_room(GJavalocalroomid);
-        }
+//        public static void game_restart() {
+//            int GJavalocalroomid = basicgame.Current_room.id;
+//            if (!basicgame.Runningas.equals("EApplet")) {
+//                basicgame.change_room(basicgame.firstroom);
+//            } else {
+//                basicgame.change_room(basicgame.firstroom, basicgame.applet);
+//            }
+//            basicgame.remove_room(GJavalocalroomid);
+//        }
 
         /**
          * save game to file, only applications or signed applets

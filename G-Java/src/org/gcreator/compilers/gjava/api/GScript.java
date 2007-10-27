@@ -439,9 +439,9 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static String room_get_name(Scene ind) {
-            return ind.name;
-        }
+//        public static String room_get_name(Scene ind) {
+//            return ind.name;
+//        }
     }
 
 
