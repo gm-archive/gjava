@@ -21,7 +21,7 @@ public class EGMLTokenMarker extends TokenMarker
 	private KeywordMap stdKeywords, customKeywords;
 	private int lastOffset;
 	private int lastKeyword;
-	private static final String GML_TYPEDEFINERS, GML_KNOWNCLASSES, GML_STATEMENTS;
+	private static final String EGML_TYPEDEFINERS, EGML_KNOWNCLASSES, EGML_STATEMENTS;
 	private static final byte DQSTRING = Token.INTERNAL_FIRST;
 	private static final byte SQSTRING = Token.INTERNAL_FIRST + 1;
 
@@ -37,9 +37,9 @@ public class EGMLTokenMarker extends TokenMarker
 			{
 			e.printStackTrace();
 			}
-		GML_TYPEDEFINERS = p.getProperty("TYPEDEFINERS");
-		GML_KNOWNCLASSES = p.getProperty("KNOWNCLASSES");
-		GML_STATEMENTS = p.getProperty("STATEMENTS");
+		EGML_TYPEDEFINERS = p.getProperty("TYPEDEFINERS");
+		EGML_KNOWNCLASSES = p.getProperty("KNOWNCLASSES");
+		EGML_STATEMENTS = p.getProperty("STATEMENTS");
 		p.clear();
 		}
 
@@ -178,17 +178,17 @@ public class EGMLTokenMarker extends TokenMarker
 			gmlKeywords.add("div",Token.OPERATOR);
 			gmlKeywords.add("mod",Token.OPERATOR);
 			// Constants
-			for (String keyword : GML_TYPEDEFINERS.split(" "))
+			for (String keyword : EGML_TYPEDEFINERS.split(" "))
 				{
-				gmlKeywords.add(keyword,Token.KEYWORD1);
+				gmlKeywords.add(keyword,Token.KEYWORD2);
 				}
 			// Variables
-			for (String keyword : GML_KNOWNCLASSES.split(" "))
+			for (String keyword : EGML_KNOWNCLASSES.split(" "))
 				{
 				gmlKeywords.add(keyword,Token.LITERAL1);
 				}
 			// Functions
-			for (String keyword : GML_STATEMENTS.split(" "))
+			for (String keyword : EGML_STATEMENTS.split(" "))
 				{
 				gmlKeywords.add(keyword,Token.KEYWORD3);
 				}

@@ -51,7 +51,7 @@ public class EGMLTextArea extends JEditTextArea
 	{
 	private static final long serialVersionUID = 1L;
 	private final EGMLTokenMarker jTokenMarker = new EGMLTokenMarker();
-	public final ResourceChangeListener rcl = new ResourceChangeListener();
+	public final ResourceChangeListener rcl = null;
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
 	private Integer lastUpdateTaskID = 0;

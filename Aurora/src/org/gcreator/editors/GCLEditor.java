@@ -9,6 +9,7 @@ package org.gcreator.editors;
 import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
+import java.awt.*;
 
 /**
  *
@@ -16,11 +17,21 @@ import org.gcreator.fileclass.Project;
  */
 public class GCLEditor extends TabPanel {
     
+    public boolean Save(){
+        file.value = g.getText();
+        return true;
+    }
+    private EGMLTextArea g;
+    public org.gcreator.fileclass.File file;
+    
     /** Creates new form CodeEditor2 */
     public GCLEditor(org.gcreator.fileclass.File file,Project project) {
+        this.file = file;
         this.project = project;
         initComponents();
-        EGMLTextArea g = new EGMLTextArea("//new class");
+        if(file.value==null)
+            file.value = "//Some GCL code";
+        g = new EGMLTextArea(file.value.toString());
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -80,12 +91,13 @@ public class GCLEditor extends TabPanel {
                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE))
         );
 
         jSplitPane1.setBottomComponent(jPanel1);
 
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Courier", 0, 11));
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 

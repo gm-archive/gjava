@@ -89,7 +89,7 @@ public class SyntaxUtilities
 		styles[Token.COMMENT1] = new SyntaxStyle(new Color(0,100,0),true,false);
 		styles[Token.COMMENT2] = new SyntaxStyle(new Color(0,100,0),true,false);
 		styles[Token.KEYWORD1] = new SyntaxStyle(Color.black,false,true);
-		styles[Token.KEYWORD2] = new SyntaxStyle(Color.magenta,false,false);
+		styles[Token.KEYWORD2] = new SyntaxStyle(Color.magenta,false,true);
 		styles[Token.KEYWORD3] = new SyntaxStyle(Color.blue,false,true);
 		styles[Token.LITERAL1] = new SyntaxStyle(Color.red,false,false);
 		styles[Token.LITERAL2] = new SyntaxStyle(new Color(0x650099),false,true);
@@ -116,7 +116,13 @@ public class SyntaxUtilities
 	public static int paintSyntaxLine(Segment line, Token tokens, SyntaxStyle[] styles,
 			TabExpander expander, Graphics gfx, int x, int y)
 		{
-		Font defaultFont = gfx.getFont();
+		Font defaultFont;
+                try{
+                    defaultFont = new Font("Courier New", 0, 12);
+                }
+                catch(Exception e){
+                    defaultFont = gfx.getFont();
+                }
 		Color defaultColor = gfx.getColor();
 
 		int offset = 0;
