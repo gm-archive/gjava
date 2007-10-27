@@ -33,12 +33,14 @@ public class gcreator {
     public static PluginCore[] plugins;
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
+    public static final String java_version = System.getProperty("java.version");
     
     public static String[] getargs(){
         return arguments;
     }
     
     public static void main(String[] args){
+        System.out.println("Running Java version " + java_version);
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		int location = folder.lastIndexOf("/");
 		folder = folder.substring(0,location+1);
