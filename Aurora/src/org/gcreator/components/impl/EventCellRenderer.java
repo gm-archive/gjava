@@ -30,7 +30,7 @@ public class EventCellRenderer extends JLabel implements ListCellRenderer {
          ImageIcon icon = null;
 
          // check if this cell represents the current DnD drop location
-         JList.DropLocation dropLocation = list.getDropLocation();
+         //JList.DropLocation dropLocation = list.getDropLocation();
          if(value instanceof org.gcreator.events.Event)
          if(isSelected){
              background = ((org.gcreator.events.Event) value).getSelectedBackground();

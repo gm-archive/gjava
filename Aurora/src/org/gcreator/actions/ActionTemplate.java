@@ -27,7 +27,7 @@ public class ActionTemplate extends JPanel {
     }
     
     //show action window to edit it
-    @Override
+    
     public void setVisible(boolean visible)
     {
         frame.setVisible(visible);

@@ -35,10 +35,12 @@ public class PlatformCore extends PluginCore {
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof org.gcreator.fileclass.File) {
-                  
+                  try {
                     if (((org.gcreator.fileclass.File) childNode).type.equals("sprite"))
                         parseSprite((Sprite)((org.gcreator.fileclass.File) childNode).value);
-                    
+                    else if (((org.gcreator.fileclass.File) childNode).type.equals("scene"))
+                        parseScene((Scene)((org.gcreator.fileclass.File) childNode).value);
+                  } catch (Exception e) {}
                     
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode);
@@ -51,11 +53,11 @@ public class PlatformCore extends PluginCore {
     System.out.println(""+s.name);
     }
 
-    public static void parseActor(Actor a){}
+    public void parseActor(Actor a) throws IOException{}
     
-    public static void parseScene(Scene s){}
+    public void parseScene(Scene s) throws IOException{}
     
-    public static void parseClass(){}
+    public void parseClass()throws IOException{}
     
     public void run(Project project)
     {
@@ -82,7 +84,6 @@ public class PlatformCore extends PluginCore {
                                      new File(dstDir, children[i]));
             }
         } else {
-            // This method is implemented in e1071 Copying a File
             copyFile(srcDir, dstDir);
         }
     }

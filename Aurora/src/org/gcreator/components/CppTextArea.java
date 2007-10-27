@@ -34,18 +34,6 @@ import jedit.JEditTextArea;
 import jedit.KeywordMap;
 import jedit.SyntaxDocument;
 import jedit.Token;
-//import org.lateralgm.jedit.GMLTokenMarker;
-//import org.lateralgm.jedit.InputHandler;
-//import org.lateralgm.jedit.JEditTextArea;
-//import org.lateralgm.jedit.KeywordMap;
-//import org.lateralgm.jedit.SyntaxDocument;
-//import org.lateralgm.jedit.Token;
-//import org.lateralgm.main.LGM;
-//import org.lateralgm.main.Prefs;
-//import org.lateralgm.main.PrefsStore;
-//import org.lateralgm.main.Util;
-//import org.lateralgm.messages.Messages;
-//import org.lateralgm.resources.Resource;
 
 public class CppTextArea extends JEditTextArea
 	{
