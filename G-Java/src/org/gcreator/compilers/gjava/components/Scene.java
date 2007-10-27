@@ -24,11 +24,7 @@ public class Scene extends JPanel implements Runnable {
     public int Width;
     public int Height;
     
-    /**
-     * The room name
-     */
-    public String name="";
-    
+        
     /**
      * graphics Object used to draw to the screen
      */
@@ -227,8 +223,8 @@ public class Scene extends JPanel implements Runnable {
      * @param RoomH The room height
      * @param backcolor The room backgound color
      */
-    public Scene(JFrame R,String roomname, String Caption,long fps,int RoomW,int RoomH,Color backcolor) {
-        this.name = roomname;
+    public Scene(JFrame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
+        //this.name = roomname;
         basicgame.Current_room = this;
         this.speed = fps;
         this.Frame = R;

@@ -28,7 +28,7 @@ public class basicgame extends JApplet {
 //The Game Settings
 GameSettings gs = new GameSettings();
 
-public static JFrame f;
+public static JFrame frame;
 public static URL u;
 public static String Runningas;
 public static Scene Current_room;
@@ -39,20 +39,36 @@ public static JApplet applet = null;
         super.init();
         Runningas = "Applet";
         applet = this;
-        new loadScenes(0,applet);
+        //new loadScenes(0,applet);
     }
 
 public basicgame() {}
 
 public static void main(String[] args){
 Runningas = "Application";
-new loadScenes(0);
+//new loadScenes(0);
 }
 
-public static void load_Sprites() {}
-public static void load_Sounds() {}
-public static void load_Fonts() {}
-public static Actor load_Actors() {return null;}
+public static void loadSprites() {}
+public static void loadSounds() {}
+public static void loadFonts() {}
+public static Actor loadActors() {return null;}
+
+public static void loadScenes(){}
+
+public static boolean if_prev_room() {return false;}
+
+public static boolean if_next_room() {return false;}
+
+public static void prev_room() {}
+
+public static void next_room() {}
+
+public static void change_room(int roomid){}
+
+public static void restart_room() {}
+
+public static void remove_room() {}
 
 }
 

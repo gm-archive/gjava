@@ -12,9 +12,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.Scene;
+import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.*;
 
@@ -25,14 +29,49 @@ import org.gcreator.plugins.*;
 public class GJava extends PlatformCore {
 
     public static String projectname,  FileFolder;
+    public static int sprites,  actors,  scenes,  fonts;
 
     public GJava() {
 
     }
 
+    @Override
+    public void parseSprite(Sprite s) {
+        super.parseSprite(s);
+    }
+
+    @Override
+    public void parseActor(Actor a) {
+
+    }
+
+    @Override
+    public void parseClass() {
+
+    }
+
+    @Override
+    public void parseScene(Scene s) throws IOException {
+        FileWriter sceneFW = new FileWriter(FileFolder + File.separator+ s.name + ".java");
+        BufferedWriter scene = new BufferedWriter(sceneFW);
+        print(scene, "package org.gcreator.compilers.gjava;");
+        print(scene, "");
+        print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
+        print(scene, "import org.gcreator.compilers.gjava.core.*;");
+        print(scene, "import java.awt.Color;");
+        print(scene, "");
+        print(scene, "public class " + s.name + " extends Scene {");
+        print(scene, "");
+        print(scene, "    "+s.name+"() {");
+        print(scene, "        super(basicgame.frame,"+s.caption+","+s.speed+","+s.width+","+s.height+","+"Color.BLUE)");
+        print(scene, "    }");
+        print(scene, "");
+        print(scene, "}");
+    }
+
     public void createFolders() {
         try {
-            FileFolder = "Projects" + File.separator + projectname + File.separator + "Java"+ File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava";
+            FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava";
             File f1 = new File(FileFolder);
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
@@ -59,18 +98,16 @@ public class GJava extends PlatformCore {
                         run(gcreator.window.getMainProject());
                     }
                 });
-        gcreator.window.tool.add(run);
+        Aurwindow.tool.add(run);
     }
-    
-    public void createJavaFiles() throws IOException
-    {
-       FileWriter gameFW = new FileWriter(GJava.FileFolder + "gjava" + File.separator + "runner" + File.separator
-					+ "Game.java");
-       BufferedWriter game = new BufferedWriter(gameFW);
-       
-       print(game,"public class game extends basicgame {");
-       print(game,"}");
-       game.close();
+
+    public void createJavaFiles() throws IOException {
+        FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
+        BufferedWriter game = new BufferedWriter(gameFW);
+
+        print(game, "public class Game extends basicgame {");
+        print(game, "}");
+        game.close();
     }
 
     public void run(Project project) {
@@ -83,8 +120,8 @@ public class GJava extends PlatformCore {
         createFolders();
         super.run(project);
         try {
-        createJavaFiles();
-        } catch (Exception e){
+            createJavaFiles();
+        } catch (Exception e) {
         }
     }
 }
