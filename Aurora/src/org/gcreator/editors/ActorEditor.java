@@ -586,7 +586,7 @@ public class ActorEditor extends TabPanel {
                event(type);
            }
        };
-       EventSelect selector = new EventSelect(gcreator.window,true, evt.getXOnScreen(), evt.getYOnScreen(), listener);
+       EventSelect selector = new EventSelect(gcreator.window,true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()
        changed = true;
     }//GEN-LAST:event_jButton5MouseClicked
 

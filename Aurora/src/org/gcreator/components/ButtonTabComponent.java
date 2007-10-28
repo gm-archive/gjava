@@ -26,7 +26,7 @@ public class ButtonTabComponent extends JPanel {
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
             public String getText() {
-                int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+                int i = pane.indexOfComponent(ButtonTabComponent.this); //possible error as removed Tab from inside method name
                 if (i != -1) {
                     return pane.getTitleAt(i);
                 }
@@ -66,7 +66,7 @@ public class ButtonTabComponent extends JPanel {
         }
         
         public void actionPerformed(ActionEvent e) {
-            int i = pane.indexOfTabComponent(ButtonTabComponent.this);
+            int i = pane.indexOfComponent(ButtonTabComponent.this);
             if (i != -1) {
                 TabPanel panel = (TabPanel) pane.getComponentAt(i);
                 panel.dispose();

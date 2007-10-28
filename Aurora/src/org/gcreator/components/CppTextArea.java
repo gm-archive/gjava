@@ -15,8 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.annotation.Resource;
-import javax.rmi.CORBA.Util;
+//import javax.annotation.Resource;
 
 import javax.swing.AbstractAction;
 import javax.swing.Action;
@@ -25,15 +24,10 @@ import javax.swing.JToolBar;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.swing.text.PlainDocument;
-
-//import org.lateralgm.components.impl.DocumentUndoManager;
 import jedit.CppTokenMarker;
 import jedit.JEditTextArea;
 //import org.lateralgm.file.ResourceList;
-import jedit.KeywordMap;
 import jedit.SyntaxDocument;
-import jedit.Token;
 
 public class CppTextArea extends JEditTextArea
 	{

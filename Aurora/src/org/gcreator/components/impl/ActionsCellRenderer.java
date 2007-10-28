@@ -27,7 +27,7 @@ public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
          String val = value.toString();
 
          // check if this cell represents the current DnD drop location
-         JList.DropLocation dropLocation = list.getDropLocation();
+         //JList.DropLocation dropLocation = list.getDropLocation();
          
          if(value instanceof org.gcreator.actions.Action){
              icon = ((org.gcreator.actions.Action) value).getImage();

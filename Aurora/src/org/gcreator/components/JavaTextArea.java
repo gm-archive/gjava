@@ -15,7 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.annotation.Resource;
+//import javax.annotation.Resource;
 import javax.rmi.CORBA.Util;
 
 import javax.swing.AbstractAction;
