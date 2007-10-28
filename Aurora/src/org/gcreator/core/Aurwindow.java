@@ -34,13 +34,11 @@ import java.awt.datatransfer.Transferable;
 
 import org.gcreator.help.AboutPanel;
 import org.gcreator.units.*;
-import org.jdesktop.layout.GroupLayout;
-import org.jdesktop.layout.LayoutStyle;
 
 
 /**
  *
- * @author Luís
+ * @author LuÃƒÂ­s
  */
 public class Aurwindow extends JFrame {
 
@@ -202,7 +200,7 @@ public class Aurwindow extends JFrame {
                     }
                 }
                 tabs.addTab(panel.title, panel);
-                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //Tab will have to be removed for 1.5
+                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
                 tabs.setSelectedComponent(panel);
                 tabs.addMouseListener(new MouseAdapter() {
 
@@ -237,11 +235,11 @@ public class Aurwindow extends JFrame {
             frame.setVisible(true);
             frame.setTitle(panel.title);
             frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-            GroupLayout jInternalFrame1Layout = new GroupLayout(frame.getContentPane());
+            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
             frame.getContentPane().setLayout(jInternalFrame1Layout);
-            if (!istabs) { //TODO
-               // jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-               // jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+            if (!istabs) { 
+               jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+               jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
             }
             frame.setBounds(0, 0, 300, 300);
 
@@ -333,6 +331,7 @@ public class Aurwindow extends JFrame {
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         workspace.setDragEnabled(true);
+        workspace.setDropMode(DropMode.ON_OR_INSERT);
         workspace.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         try {
             int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
@@ -637,7 +636,7 @@ public class Aurwindow extends JFrame {
         /*items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
         items[MenuSupporter.GenerateMenuItemId(5, 4)].addActionListener(new ActionListener() {
 
-            
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 onItemActionPerformed(5, 4, evt);
             }
@@ -694,8 +693,8 @@ public class Aurwindow extends JFrame {
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(GroupLayout.LEADING).add(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addPreferredGap(LayoutStyle.RELATED).add(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
         if (settings[2].equals("Hidden")) {
@@ -909,7 +908,7 @@ public class Aurwindow extends JFrame {
                 for (int i = 0; i < mdi.getComponents().length; i++) {
                     TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
                     tabs.addTab(panel.title, panel);
-                    tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //TAB remove for 1.5
+                    tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
                     tabs.addMouseListener(new MouseAdapter() {
 
                                 public void mouseClicked(MouseEvent evt) {
@@ -946,8 +945,8 @@ public class Aurwindow extends JFrame {
                     if (panels[i] instanceof TabPanel) {
                         TabPanel panel = (TabPanel) panels[i];
                         GroupLayout jInternalFrame1Layout = (GroupLayout) panel.frame.getContentPane().getLayout();
-                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.LEADING).add(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.LEADING).add(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
                     }
                 }
             }

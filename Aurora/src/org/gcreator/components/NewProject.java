@@ -15,8 +15,6 @@ import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.managers.*;
-import org.jdesktop.layout.GroupLayout;
-import org.jdesktop.layout.LayoutStyle;
 
 /**
  *
@@ -70,53 +68,61 @@ public class NewProject extends TabPanel {
         GroupLayout layout = new GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.LEADING)
-                .add(
-                    GroupLayout.TRAILING,
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addGroup(
+                    GroupLayout.Alignment.TRAILING,
                     layout.createSequentialGroup()
                         .addContainerGap()
-                        .add(
-                            layout.createParallelGroup(GroupLayout.TRAILING)
-                            
-                            .add(
-                                GroupLayout.LEADING,
+                        .addGroup(
+                            layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(
+                                ptypes,
+                                GroupLayout.Alignment.LEADING,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                            .addComponent(
+                                jLabel1,
+                                GroupLayout.Alignment.LEADING)
+                            .addGroup(
+                                GroupLayout.Alignment.LEADING,
                                 layout.createSequentialGroup()
-                                    .add(jLabel2)
-                                    .addPreferredGap(LayoutStyle.RELATED)
-                                    .add(
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(
                                         jTextField1,
                                         GroupLayout.DEFAULT_SIZE,
                                         263,
                                         Short.MAX_VALUE)
-                                    .addPreferredGap(LayoutStyle.RELATED)
-                                    .add(jButton1)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButton1)
                             )
-                            .add(jLabel3)
+                            .addComponent(jLabel3)
                        )
                        .addContainerGap()
                  )
         );
         layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.LEADING)
-                    .add(
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(
                         layout.createSequentialGroup()
                             .addContainerGap()
-                            .add(jLabel1)
-                            .addPreferredGap(LayoutStyle.RELATED)
-                            .add(
+                            .addComponent(jLabel1)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(
                                 ptypes,
                                 GroupLayout.DEFAULT_SIZE,
                                 GroupLayout.DEFAULT_SIZE,
                                 Short.MAX_VALUE
                             )
-                            .addPreferredGap(LayoutStyle.RELATED)
-                            .add(jLabel3)
-                            .addPreferredGap(LayoutStyle.RELATED)
-                            .add(
-                            layout.createParallelGroup(GroupLayout.BASELINE)
-                                .add(jLabel2)
-                                .add(jButton1)
-                                .add(
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel3)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(
+                            layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jButton1)
+                                .addComponent(
                                     jTextField1,
                                     GroupLayout.PREFERRED_SIZE,
                                     GroupLayout.DEFAULT_SIZE,
