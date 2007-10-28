@@ -197,7 +197,7 @@ public class Aurwindow extends JFrame {
                     }
                 }
                 tabs.addTab(panel.title, panel);
-                tabs.setComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //Tab
+                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //Tab will have to be removed for 1.5
                 tabs.setSelectedComponent(panel);
                 tabs.addMouseListener(new MouseAdapter() {
 
@@ -346,7 +346,7 @@ public class Aurwindow extends JFrame {
                 return MOVE;
             }
 
-         /*   public boolean canImport(TransferHandler.TransferSupport support) {
+            public boolean canImport(TransferHandler.TransferSupport support) {
                 TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
 		if (drop == null) return false;
                 ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
@@ -383,7 +383,7 @@ public class Aurwindow extends JFrame {
 		workspace.updateUI();
 		return true;
             
-            }*/
+            }
         });
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
@@ -915,7 +915,7 @@ public class Aurwindow extends JFrame {
                 for (int i = 0; i < mdi.getComponents().length; i++) {
                     TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
                     tabs.addTab(panel.title, panel);
-                    tabs.setComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //TAB
+                    tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //TAB remove for 1.5
                     tabs.addMouseListener(new MouseAdapter() {
 
                         
