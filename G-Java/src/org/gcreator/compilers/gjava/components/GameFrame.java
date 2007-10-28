@@ -15,6 +15,7 @@ import org.gcreator.compilers.gjava.core.GameSettings;
 public class GameFrame extends JFrame implements WindowListener {
     String next_room, caption;
     boolean persistent;
+    
     /**
      * The width of the Room
      */
@@ -33,23 +34,23 @@ public class GameFrame extends JFrame implements WindowListener {
      * @param decorated
      * @param backcolor
      */
-    public GameFrame(int width, int height, boolean decorated, Color backcolor) {
+    public GameFrame(int width, int height, Color backcolor) {
         GameFrame.width = width;
         GameFrame.height = height;
         this.backcolor = backcolor;
         setBackground(backcolor);
-        
+        this.setTitle("Loading...");
         
             setResizable(GameSettings.ResizeFrame);
         
         
-        
-        if (decorated == false) {
-            
-            setUndecorated(true);
-        } else {
-            setUndecorated(false);
-        }
+        //TODO below
+//        if (decorated == false) {
+//            
+//            setUndecorated(true);
+//        } else {
+//            setUndecorated(false);
+//        }
         // execute the creation code
         //	basicgame.get_room_creation_code(this);
         

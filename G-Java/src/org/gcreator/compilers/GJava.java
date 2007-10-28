@@ -29,7 +29,8 @@ import org.gcreator.plugins.*;
 public class GJava extends PlatformCore {
 
     public static String projectname,  FileFolder;
-    public static int sprites,  actors,  scenes,  fonts;
+    public static int sprites=0,  actors=0,  scenes=0,  fonts=0;
+    String loadscene = "";
 
     public GJava() {
 
@@ -52,6 +53,8 @@ public class GJava extends PlatformCore {
 
     @Override
     public void parseScene(Scene s) throws IOException {
+        loadscene +="    scenes["+scenes+"] = new "+s.name+"();";
+        scenes++;
         FileWriter sceneFW = new FileWriter(FileFolder + File.separator+ s.name + ".java");
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
@@ -106,6 +109,9 @@ public class GJava extends PlatformCore {
         BufferedWriter game = new BufferedWriter(gameFW);
 
         print(game, "public class Game extends basicgame {");
+        print(game, "    public void loadScenes(){ scenes[] = new Scene["+scenes+"];");
+        print(game, ""+loadscene);
+        print(game, "    }");
         print(game, "}");
         game.close();
     }
@@ -123,5 +129,6 @@ public class GJava extends PlatformCore {
             createJavaFiles();
         } catch (Exception e) {
         }
+        GJavaCompiler compiler = new GJavaCompiler();
     }
 }

@@ -13,6 +13,7 @@ net.*;
 
 // the main class
 import org.gcreator.compilers.gjava.components.Actor;
+import org.gcreator.compilers.gjava.components.GameFrame;
 import org.gcreator.compilers.gjava.components.Scene;
 
 
@@ -28,34 +29,38 @@ public class basicgame extends JApplet {
 //The Game Settings
 GameSettings gs = new GameSettings();
 
-public static JFrame frame;
+public static JFrame frame = new GameFrame(100,200,Color.BLACK);
 public static URL u;
 public static String Runningas;
 public static Scene Current_room;
 public static JApplet applet = null;
-public static int firstroom,lastroom;
+public static int firstroom,lastroom,currentroom=-1;
+public static Container canvas;
+
+static Scene scenes[];
 
     @Override
     public void init() {
         super.init();
         Runningas = "Applet";
         applet = this;
-        //new loadScenes(0,applet);
+        canvas = applet.getContentPane(); 
+        canvas.add(scenes[0]);
     }
 
 public basicgame() {}
 
 public static void main(String[] args){
 Runningas = "Application";
-//new loadScenes(0);
+canvas=frame;
+canvas.add(scenes[0]);
 }
 
-public static void loadSprites() {}
-public static void loadSounds() {}
-public static void loadFonts() {}
-public static Actor loadActors() {return null;}
-
-public static void loadScenes(){}
+public void loadSprites() {}
+public void loadSounds() {}
+public void loadFonts() {}
+public void loadActors() {}
+public void loadScenes(){}
 
 public static boolean if_prev_room() {return false;}
 
@@ -63,9 +68,13 @@ public static boolean if_next_room() {return false;}
 
 public static void prev_room() {}
 
-public static void next_room() {}
+public static void next_room() {
+remove_room();
+}
 
-public static void change_room(int roomid){}
+public static void change_room(int roomid){
+
+}
 
 public static void restart_room() {}
 
