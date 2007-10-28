@@ -52,41 +52,41 @@ public class ImageDisplayer extends javax.swing.JPanel {
 
         //super.paint(g);
         boolean isBlack = true;
-        if (e.jToggleButton1.isSelected()) {
-            for (int i = 0; i <= getWidth() / 10; i++) {
-                boolean isNBlack = isBlack;
-                for (int j = 0; j <= getHeight() / 10; j++) {
-                    if ((isBlack = !isBlack)) {
-                        g.setColor(Color.WHITE);
-                    } else {
-                        g.setColor(Color.LIGHT_GRAY);
-                    }
-                    g.fillRect(i * 10 + 1, j * 10 + 1, 10, 10);
-                }
-                isBlack = !isNBlack;
-            }
-        }
-        if (e.jToggleButton2.isSelected()) {
-            g.setColor(Color.WHITE);
-            g.fillRect(0, 0, getWidth(), getHeight());
-        }
-        if (e.jToggleButton3.isSelected()) {
-            g.setColor(Color.GRAY);
-            g.fillRect(0, 0, getWidth(), getHeight());
-        }
-        if (e.jToggleButton4.isSelected()) {
-            g.setColor(Color.BLACK);
-            g.fillRect(0, 0, getWidth(), getHeight());
-        }
-        if(e.jToggleButton5.isSelected()){
-            g.setColor(Color.WHITE);
-            g.fillRect(0, 0, getWidth(), getHeight());
-            g.setColor(Color.BLACK);
-            for(int i = 0; i * 20 < getWidth(); i++)
-                g.drawLine(i * 20, 0, i * 20, getHeight());
-            for(int i = 0; i * 20 < getHeight(); i++)
-                g.drawLine(0, i * 20, getWidth(), i * 20);
-        }
+//        if (e.jToggleButton1.isSelected()) {
+//            for (int i = 0; i <= getWidth() / 10; i++) {
+//                boolean isNBlack = isBlack;
+//                for (int j = 0; j <= getHeight() / 10; j++) {
+//                    if ((isBlack = !isBlack)) {
+//                        g.setColor(Color.WHITE);
+//                    } else {
+//                        g.setColor(Color.LIGHT_GRAY);
+//                    }
+//                    g.fillRect(i * 10 + 1, j * 10 + 1, 10, 10);
+//                }
+//                isBlack = !isNBlack;
+//            }
+//        }
+//        if (e.jToggleButton2.isSelected()) {
+//            g.setColor(Color.WHITE);
+//            g.fillRect(0, 0, getWidth(), getHeight());
+//        }
+//        if (e.jToggleButton3.isSelected()) {
+//            g.setColor(Color.GRAY);
+//            g.fillRect(0, 0, getWidth(), getHeight());
+//        }
+//        if (e.jToggleButton4.isSelected()) {
+//            g.setColor(Color.BLACK);
+//            g.fillRect(0, 0, getWidth(), getHeight());
+//        }
+//        if(e.jToggleButton5.isSelected()){
+//            g.setColor(Color.WHITE);
+//            g.fillRect(0, 0, getWidth(), getHeight());
+//            g.setColor(Color.BLACK);
+//            for(int i = 0; i * 20 < getWidth(); i++)
+//                g.drawLine(i * 20, 0, i * 20, getHeight());
+//            for(int i = 0; i * 20 < getHeight(); i++)
+//                g.drawLine(0, i * 20, getWidth(), i * 20);
+//        }
         if (file.value != null) {
             g.drawImage(((ImageIcon) file.value).getImage(), 0, 0, getWidth(), getHeight(), ((ImageIcon) file.value).getImageObserver());
         }

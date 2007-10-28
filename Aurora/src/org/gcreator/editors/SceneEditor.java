@@ -254,6 +254,7 @@ public class SceneEditor extends TabPanel {
         jPanel5 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
+        colorSelection1 = new org.gcreator.components.ColorSelection();
         jPanel7 = new javax.swing.JPanel();
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -613,6 +614,19 @@ public class SceneEditor extends TabPanel {
 
         jLabel4.setText("Color");
 
+        colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        org.jdesktop.layout.GroupLayout colorSelection1Layout = new org.jdesktop.layout.GroupLayout(colorSelection1);
+        colorSelection1.setLayout(colorSelection1Layout);
+        colorSelection1Layout.setHorizontalGroup(
+            colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 44, Short.MAX_VALUE)
+        );
+        colorSelection1Layout.setVerticalGroup(
+            colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 23, Short.MAX_VALUE)
+        );
+
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -623,7 +637,9 @@ public class SceneEditor extends TabPanel {
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
                         .add(jLabel4)
-                        .add(81, 81, 81)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(33, 33, 33)))
                 .add(8, 8, 8))
         );
         jPanel5Layout.setVerticalGroup(
@@ -632,8 +648,10 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap()
                 .add(jCheckBox1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel4)
-                .add(329, 329, 329))
+                .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel4)
+                    .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(336, 336, 336))
         );
 
         jTabbedPane1.addTab("Backgrounds", jPanel5);
@@ -1094,7 +1112,7 @@ public class SceneEditor extends TabPanel {
     
     public Color getMapBGColor(){
         if(jCheckBox1.isSelected())
-            return null;//colorSelection1.getBackground(); PUT THIS BACK IN!
+            return colorSelection1.getBackground(); 
         return Color.BLACK;
     }
     
@@ -1110,6 +1128,7 @@ public class SceneEditor extends TabPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BottomLeft;
     private javax.swing.JLabel BottomRight;
+    private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
