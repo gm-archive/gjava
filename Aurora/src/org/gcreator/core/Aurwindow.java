@@ -6,7 +6,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.core;
 
 import java.awt.*;
@@ -46,6 +45,7 @@ import org.jdesktop.layout.LayoutStyle;
 public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Variables">
+
     public DefaultMutableTreeNode top;
     public JMenuBar menubar = new JMenuBar();
     public JMenu[] menus = new JMenu[MenuSupporter.MENULIMIT];
@@ -55,6 +55,7 @@ public class Aurwindow extends JFrame {
     public static JTabbedPane tabs;
     public int look;
     public boolean istabs; //True - tabs; False - MDI
+
     public JDesktopPane mdi;
     public JTextPane console;
     public JScrollPane scroller;
@@ -64,13 +65,15 @@ public class Aurwindow extends JFrame {
     public static JScrollPane treescroll;
     private static Project mainProject;
     public ButtonGroup stylegroup;
-    public JComboBox winlist; //This will be the windows list
+    //public JComboBox winlist; //This will be the windows list
+
     public TreeCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
-    
+
 
     //</editor-fold>
+
     public java.lang.Object getWindowListElementAt(int pos) {
         if (istabs) {
             Component[] panels = tabs.getComponents();
@@ -108,10 +111,11 @@ public class Aurwindow extends JFrame {
         int foundloc = 0;
         file.type = file.type.toLowerCase();
         FileOpenListener listener = getFileEditor(file.type);
-        if(listener!=null)
+        if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject());
+        }
         if (file.type.equals("sprite")) {
-//            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
+            //            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
 //                if (((Sprite) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
 //                    foundloc = iii;
@@ -124,7 +128,7 @@ public class Aurwindow extends JFrame {
 //            }
             addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("actor")) {
-//            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
+            //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
 //                    foundloc = iii;
@@ -140,7 +144,7 @@ public class Aurwindow extends JFrame {
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("scene")) {
-//            for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
+            //            for (Enumeration e = getCurrentProject().scenes.elements(); e.hasMoreElements();) {
 //                if (((Scene) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
 //                    foundloc = iii;
@@ -181,6 +185,7 @@ public class Aurwindow extends JFrame {
     }
 
     //<editor-fold defaultstate="collapsed" desc="addWindow(panel,title)">
+
     public void addWindow(TabPanel panel, String title) {
         try {
             panel.parent = this;
@@ -201,11 +206,10 @@ public class Aurwindow extends JFrame {
                 tabs.setSelectedComponent(panel);
                 tabs.addMouseListener(new MouseAdapter() {
 
-                    
-                    public void mouseClicked(MouseEvent evt) {
-                        tabsClicked(evt);
-                    }
-                });
+                            public void mouseClicked(MouseEvent evt) {
+                                tabsClicked(evt);
+                            }
+                        });
             }
             for (int i = 0; i < mdi.getComponentCount(); i++) {
                 if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
@@ -246,37 +250,40 @@ public class Aurwindow extends JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //winlist.updateUI();
+    //winlist.updateUI();
     }
     //</editor-fold>
 
     private Vector<FileOpenListener> listeners = new Vector<FileOpenListener>();
-    
-    public boolean installFileEditor(FileOpenListener listener){
+
+    public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
     }
-    
-    public boolean unistallFileEditor(FileOpenListener listener){
+
+    public boolean unistallFileEditor(FileOpenListener listener) {
         return listeners.remove(listener);
     }
-    
-    public FileOpenListener getFileEditor(String format){
+
+    public FileOpenListener getFileEditor(String format) {
         Enumeration<FileOpenListener> enumeration = listeners.elements();
-        try{
+        try {
             FileOpenListener listener;
-            while(enumeration.hasMoreElements()){
+            while (enumeration.hasMoreElements()) {
                 listener = enumeration.nextElement();
                 String[] formats = listener.getFileFormats();
-                for(int i = 0; i < formats.length; i++)
-                    if(formats[i].toLowerCase().equals(format.toLowerCase()))
+                for (int i = 0; i < formats.length; i++) {
+                    if (formats[i].toLowerCase().equals(format.toLowerCase())) {
                         return listener;
+                    }
+                }
             }
+        } catch (Exception e) {
         }
-        catch(Exception e){}
         return null;
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="Constructor">
+
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -326,88 +333,101 @@ public class Aurwindow extends JFrame {
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         workspace.setDragEnabled(true);
-        //workspace.setDropMode(DropMode.ON_OR_INSERT); TODO
         workspace.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        // Tree drag and drop support
-        workspace.setTransferHandler(new TransferHandler() {
+        try {
+            int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+            if (ver >= 6) {
+                // Tree drag and drop support
 
-            protected Transferable createTransferable(JComponent c) {
-                ObjectNode f = (ObjectNode)workspace.getLastSelectedPathComponent();
-                if (f.object instanceof  org.gcreator.fileclass.File)
-                {
-                System.out.println(""+ ((org.gcreator.fileclass.File)f.object).name);
-                return ((org.gcreator.fileclass.File)f.object);
-                }
-                else
-                    return null;
-            }
+                workspace.setDropMode(DropMode.ON_OR_INSERT);
 
-            public int getSourceActions(JComponent c) {
-                return MOVE;
-            }
+                workspace.setTransferHandler(new TransferHandler() {
 
-            public boolean canImport(TransferHandler.TransferSupport support) {
-                TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
-		if (drop == null) return false;
-                ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
-		ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
-		//if (dragNode == dropNode) return false;
+                            protected Transferable createTransferable(JComponent c) {
+                                ObjectNode f = (ObjectNode) workspace.getLastSelectedPathComponent();
+                                if (f.object instanceof org.gcreator.fileclass.File) {
+                                    System.out.println("" + ((org.gcreator.fileclass.File) f.object).name);
+                                    return ((org.gcreator.fileclass.File) f.object);
+                                } else {
+                                    return null;
+                                }
+                            }
+
+                            public int getSourceActions(JComponent c) {
+                                return MOVE;
+                            }
+
+                            public boolean canImport(TransferHandler.TransferSupport support) {
+                                TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
+                                if (drop == null) {
+                                    return false;
+                                }
+                                ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
+                                ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
+                                //if (dragNode == dropNode) return false;
 		//if (dragNode.isNodeDescendant(dropNode)) return false;
-                if (dropNode.object instanceof  org.gcreator.fileclass.Group)
-                {
-                if ( ((org.gcreator.fileclass.Group)  dropNode.object).allowsFileType(((org.gcreator.fileclass.File)dragNode.object).type))
-                    return true;
-                else
-                    return false;
-                
-                }
-                		
-                return false;
+                                if (dropNode.object instanceof org.gcreator.fileclass.Group) {
+                                    if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.File) dragNode.object).type)) {
+                                        return true;
+                                    } else {
+                                        return false;
+                                    }
+
+                                }
+
+                                return false;
+                            }
+
+                            public boolean importData(TransferHandler.TransferSupport support) {
+                                if (!canImport(support)) {
+                                    return false;
+                                }
+                                JTree.DropLocation drop = (JTree.DropLocation) support.getDropLocation();
+                                int dropIndex = drop.getChildIndex();
+                                ObjectNode dropNode = (ObjectNode) drop.getPath().getLastPathComponent();
+                                ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
+                                if (dropIndex == -1) {
+                                    dropIndex = dropNode.getChildCount();
+                                }
+                                if (dropNode == dragNode.getParent() && dropIndex > dragNode.getParent().getIndex(dragNode)) {
+                                    dropIndex--;
+                                }
+                                dropNode.insert(dragNode, dropIndex);
+                                workspace.expandPath(new TreePath(dropNode.getPath()));
+                                workspace.updateUI();
+                                return true;
+
+                            }
+                        });
             }
-            
-            public boolean importData(TransferHandler.TransferSupport support)
-		{
-               if (!canImport(support)) return false;
-               JTree.DropLocation drop = (JTree.DropLocation) support.getDropLocation();
-		int dropIndex = drop.getChildIndex();
-		ObjectNode dropNode = (ObjectNode) drop.getPath().getLastPathComponent();
-		ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
-		if (dropIndex == -1)
-			{
-			dropIndex = dropNode.getChildCount();
-			}
-		if (dropNode == dragNode.getParent() && dropIndex > dragNode.getParent().getIndex(dragNode))
-			dropIndex--;
-		dropNode.insert(dragNode,dropIndex);
-		workspace.expandPath(new TreePath(dropNode.getPath()));
-		workspace.updateUI();
-		return true;
-            
+            else{
+                System.out.println(ver);
             }
-        });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         renderer = new TreeImageManager();
         workspace.setCellRenderer(renderer);
         workspace.addMouseListener(new MouseListener() {
 
-            
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    treeDoubleClicked(e);
-                }
-            }
+                    public void mouseClicked(MouseEvent e) {
+                        if (e.getClickCount() == 2) {
+                            treeDoubleClicked(e);
+                        }
+                    }
 
-            public void mousePressed(MouseEvent e) {
-            }
+                    public void mousePressed(MouseEvent e) {
+                    }
 
-            public void mouseReleased(MouseEvent e) {
-            }
+                    public void mouseReleased(MouseEvent e) {
+                    }
 
-            public void mouseEntered(MouseEvent e) {
-            }
+                    public void mouseEntered(MouseEvent e) {
+                    }
 
-            public void mouseExited(MouseEvent e) {
-            }
-        });
+                    public void mouseExited(MouseEvent e) {
+                    }
+                });
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
 
@@ -415,38 +435,34 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/newproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
         items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 1, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/newfile.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
         items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 2, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], 8, "Save project");
         items[MenuSupporter.GenerateMenuItemId(0, 3)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 3, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 3, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
         items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
@@ -456,76 +472,68 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 10, "Import...");
         items[MenuSupporter.GenerateMenuItemId(0, 8)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 8, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 8, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export...");
         items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 11)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
         items[MenuSupporter.GenerateMenuItemId(0, 11)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(0, 11, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 11, evt);
+                    }
+                });
         menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
         items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
         items[MenuSupporter.GenerateMenuItemId(1, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/find.png")));
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(1, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(1, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(1, 1)] = MenuSupporter.MakeMenuItem(menus[1], 83, "Find&Replace");
         items[MenuSupporter.GenerateMenuItemId(1, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(1, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(1, 1, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(1, 2)] = MenuSupporter.MakeMenuItem(menus[1], 14, "Clear console");
         items[MenuSupporter.GenerateMenuItemId(1, 2)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(1, 2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(1, 2, evt);
+                    }
+                });
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
         menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Layout and design options are defined here.");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
         items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
         items[MenuSupporter.GenerateMenuItemId(2, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(2, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(2, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(2, 1)] = MenuSupporter.MakeCheckMenuItem(menus[2], 75, "Display the toolbar");
         items[MenuSupporter.GenerateMenuItemId(2, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(2, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(2, 1, evt);
+                    }
+                });
 
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
         items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
         items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(3, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(3, 0, evt);
+                    }
+                });
         MenuSupporter.MakeSeparator(menus[3]);
         /*items[MenuSupporter.GenerateMenuItemId(3, 1)] = MenuSupporter.MakeMenuItem(menus[3], 99, "Clean current project");
         items[MenuSupporter.GenerateMenuItemId(3, 2)] = MenuSupporter.MakeMenuItem(menus[3], 100, "Clean main project");
@@ -547,63 +555,56 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(7, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
         items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(7, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 1, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(7, 2)] = MenuSupporter.MakeMenuItem(menus[7], 109, "Extensions Manager");
         items[MenuSupporter.GenerateMenuItemId(7, 2)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(7, 2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 2, evt);
+                    }
+                });
         menus[7].addSeparator();
         items[MenuSupporter.GenerateMenuItemId(7, 3)] = MenuSupporter.MakeMenuItem(menus[7], 130, "Global options");
         items[MenuSupporter.GenerateMenuItemId(7, 3)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(7, 3, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 3, evt);
+                    }
+                });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(4, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(4, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(4, 1)] = MenuSupporter.MakeMenuItem(menus[4], 25, "Aurora help");
         items[MenuSupporter.GenerateMenuItemId(4, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(4, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(4, 1, evt);
+                    }
+                });
         stylegroup = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(5, 0)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 17, "Native look");
         items[MenuSupporter.GenerateMenuItemId(5, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(5, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(5, 0, evt);
+                    }
+                });
         if (look == 0) {
             items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
         }
@@ -611,11 +612,10 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(5, 1)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 18, "Cross-platform look");
         items[MenuSupporter.GenerateMenuItemId(5, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(5, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(5, 1, evt);
+                    }
+                });
         if (look == 1) {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
         }
@@ -623,19 +623,17 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(5, 2)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 19, "Linux look");
         items[MenuSupporter.GenerateMenuItemId(5, 2)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(5, 2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(5, 2, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(5, 3)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 132, "Ocean theme");
         items[MenuSupporter.GenerateMenuItemId(5, 3)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(5, 3, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(5, 3, evt);
+                    }
+                });
         /*items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
         items[MenuSupporter.GenerateMenuItemId(5, 4)].addActionListener(new ActionListener() {
 
@@ -648,45 +646,40 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(6, 0, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(6, 0, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(6, 0)].setSelected(true);
         items[MenuSupporter.GenerateMenuItemId(6, 1)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 90, "Tabs Left");
         items[MenuSupporter.GenerateMenuItemId(6, 1)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(6, 1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(6, 1, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(6, 2)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 91, "Tabs Bottom");
         items[MenuSupporter.GenerateMenuItemId(6, 2)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(6, 2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(6, 2, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(6, 3)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 92, "Tabs Right");
         items[MenuSupporter.GenerateMenuItemId(6, 3)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(6, 3, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(6, 3, evt);
+                    }
+                });
         MenuSupporter.MakeSeparator(menus[6]);
         items[MenuSupporter.GenerateMenuItemId(6, 4)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 21, "MDI");
         items[MenuSupporter.GenerateMenuItemId(6, 4)].addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onItemActionPerformed(6, 4, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(6, 4, evt);
+                    }
+                });
 
         //</editor-fold>
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -765,16 +758,17 @@ public class Aurwindow extends JFrame {
         utilities.addMessage(29);
         //</editor-fold>
         workspace.expandRow(0);
-        setMinimumSize(new Dimension(200,200));
+        setMinimumSize(new Dimension(200, 200));
         setVisible(true);
     }
     //</editor-fold>
 
     private void tabsClicked(MouseEvent evt) {
-        //Leave in blank... for now...
+    //Leave in blank... for now...
     }
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
+
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
             addWindow(newproject, 55);
@@ -867,7 +861,7 @@ public class Aurwindow extends JFrame {
                 look = 2;
                 workspace.updateUI();
             } catch (Exception e) {
-                
+
             }
         }
         if (menu == 5 && item == 3) {
@@ -888,7 +882,7 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 5 && item == 4) {
             try {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel"); 
+                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
                     SwingUtilities.updateComponentTreeUI(mdi);
@@ -918,11 +912,10 @@ public class Aurwindow extends JFrame {
                     tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs)); //TAB remove for 1.5
                     tabs.addMouseListener(new MouseAdapter() {
 
-                        
-                        public void mouseClicked(MouseEvent evt) {
-                            tabsClicked(evt);
-                        }
-                    });
+                                public void mouseClicked(MouseEvent evt) {
+                                    tabsClicked(evt);
+                                }
+                            });
                 }
             }
         }
@@ -980,8 +973,9 @@ public class Aurwindow extends JFrame {
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
 
-//</editor-fold>
+    //</editor-fold>
     //Tree accessing functions
+
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
         if (curfol == null) {
@@ -1023,6 +1017,7 @@ public class Aurwindow extends JFrame {
     }
 
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
+
     public void onToolbarActionPerformed(int item, ActionEvent evt) {
         int i;
         Folder a;
@@ -1154,13 +1149,14 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newImage" + i) != -1) {
                     i++;
                 }
-                
-                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage"+i, "png");
-                
+
+                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage" + i, "png");
+
         }
     }
 
     //</editor-fold>
+
     public org.gcreator.fileclass.File addFile(Folder folder, String name, String type) {
 
         if (folder == null) {
@@ -1196,6 +1192,7 @@ public class Aurwindow extends JFrame {
     }
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
+
     public void SaveProject() {
         if (getCurrentProject() != null) {
             ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
@@ -1204,6 +1201,7 @@ public class Aurwindow extends JFrame {
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
+
     public void createToolBar() {
         tool = new JToolBar("Toolbar");
         tool.setFloatable(false);
@@ -1219,87 +1217,77 @@ public class Aurwindow extends JFrame {
         JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addactor01.png")), 45);
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
 
-        
+
 
         image.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(10, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(10, evt);
+                    }
+                });
 
         sprite.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(5, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(5, evt);
+                    }
+                });
 
         sound.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(6, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(6, evt);
+                    }
+                });
 
         cl.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(7, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(7, evt);
+                    }
+                });
 
         actor.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(8, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(8, evt);
+                    }
+                });
 
         scene.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(9, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(9, evt);
+                    }
+                });
 
         newp.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(1, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(1, evt);
+                    }
+                });
 
         opn.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(2, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(2, evt);
+                    }
+                });
 
         save.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(3, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(3, evt);
+                    }
+                });
 
         saveall.addActionListener(new ActionListener() {
 
-            
-            public void actionPerformed(ActionEvent evt) {
-                onToolbarActionPerformed(4, evt);
-            }
-        });
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(4, evt);
+                    }
+                });
 
         tool.setPreferredSize(new Dimension(450, 50));
         tool.setRollover(true);
@@ -1325,7 +1313,7 @@ public class Aurwindow extends JFrame {
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="dispose">
-    
+
     public void dispose() {
         Plugger.onMainWindowDispose(gcreator.plugins);
         saveSettings();
@@ -1348,15 +1336,18 @@ public class Aurwindow extends JFrame {
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
+
     public void saveSettings() {
         SettingsIO.saveSettings(look, istabs, scroller.isVisible());
     }
 
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="remove">
+
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
         mdi.remove(frame);
     }
     //</editor-fold>
+
 }
