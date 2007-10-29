@@ -163,7 +163,7 @@ public class Aurwindow extends JFrame {
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
-            addWindow(new SettingsEditor(file), file.name);
+            addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
         } else {
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
@@ -1022,8 +1022,7 @@ public class Aurwindow extends JFrame {
         Folder a;
         switch (item) {
             case 1:
-                NewProject win = new NewProject();
-                addWindow(win, 55);
+                addWindow(newproject, 55);
                 break;
             case 2:
                 ProjectImporter.OpenProject(this);
