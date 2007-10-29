@@ -5,6 +5,7 @@ import java.awt.event.
         ////////////////////////////////////////
         *;
 import org.gcreator.compilers.gjava.core.GameSettings;
+import org.gcreator.compilers.gjava.core.basicgame;
 
 
 /**
@@ -42,7 +43,7 @@ public class GameFrame extends JFrame implements WindowListener {
         this.setTitle("Loading...");
         
             setResizable(GameSettings.ResizeFrame);
-        
+        this.addWindowListener(this);
         
         //TODO below
 //        if (decorated == false) {
@@ -90,15 +91,17 @@ public class GameFrame extends JFrame implements WindowListener {
     
     public void windowClosing(WindowEvent e) {
         JOptionPane.showMessageDialog(null,"Closing :(");
-        //       basicgame.Running = false;
+       //        basicgame.Running = false;
         //        room0.end();
-        //dispose();
-        
+        dispose();
+        System.exit(0);
     }
     
     public void windowClosed(WindowEvent e) {
-        JOptionPane.showMessageDialog(null,"Closing :)");
+        JOptionPane.showMessageDialog(null,"Closed :)");
+        System.out.println("closed");
         //room0.end();
+        System.exit(0);
     }
     
     public void windowOpened(WindowEvent e) {
@@ -114,7 +117,7 @@ public class GameFrame extends JFrame implements WindowListener {
     }
     
     public void windowActivated(WindowEvent e) {
-        JOptionPane.showMessageDialog(null,"Activated!");
+        //JOptionPane.showMessageDialog(null,"Activated!");
     }
     
     public void windowDeactivated(WindowEvent e) {

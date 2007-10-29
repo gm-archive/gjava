@@ -282,7 +282,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 				{
 				p = Runtime.getRuntime().exec(
 						"Java -jar " + "\"" + "Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator  + GJava.projectname + ".jar\"");
-
+p.waitFor();
 				BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 				String line = null;
 				textbox.setText(textbox.getText() + "\nPlease wait testing...\n");
