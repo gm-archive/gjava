@@ -268,10 +268,10 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 		if (c.equals("testapplet"))
 			{
 
-//			if (System.getProperty("os.name").indexOf("Windows") == 0)
-//				{
-//				GJava.openbrowser(GJava.FileFolder + GJava.projectname + ".html");
-//				}
+			if (System.getProperty("os.name").indexOf("Windows") == 0)
+				{
+				GJava.openbrowser("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + GJava.projectname +"_applet.html");
+				}
 
 			}
 
@@ -281,7 +281,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 			try
 				{
 				p = Runtime.getRuntime().exec(
-						"Java -jar " + "\"" + GJava.FileFolder + GJava.projectname + ".jar\"");
+						"Java -jar " + "\"" + "Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator  + GJava.projectname + ".jar\"");
 
 				BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 				String line = null;
