@@ -71,6 +71,25 @@ public class PlatformCore extends PluginCore {
 		file.write(printString);
 		file.newLine();
 		}
+        
+        public static void openbrowser(String location)
+		{
+		if (System.getProperty("os.name").indexOf("Windows") == 0)
+			{
+			try
+				{
+				Runtime.getRuntime().exec("explorer.exe " + location);
+				}
+			catch (IOException e)
+				{
+				e.printStackTrace();
+				}
+			}
+		else
+			{
+			// Unsupported OS for opening the browser
+			}
+		}
     
     public void copyDirectory(File srcDir, File dstDir) throws IOException {
         if (srcDir.isDirectory()) {
