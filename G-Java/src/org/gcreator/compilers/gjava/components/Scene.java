@@ -20,7 +20,6 @@ public class Scene extends JPanel implements Runnable {
     // number of instances and tiles for depth
     int createno = 1; // the number of created tiles and objects
     
-    // room variables
     public int Width;
     public int Height;
     
@@ -225,7 +224,7 @@ public class Scene extends JPanel implements Runnable {
      */
     public Scene(JFrame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
         //this.name = roomname;
-        basicgame.Current_room = this;
+        basicgame.Current = this;
         this.speed = fps;
         this.Frame = R;
         this.height = RoomH;
@@ -245,7 +244,7 @@ public class Scene extends JPanel implements Runnable {
         Creation_code();
         
            
-        if (basicgame.Runningas.equals("EApplet")) {
+        if (!basicgame.Runningas.equals("Applet")) {
             // room caption
             Frame.setTitle(Caption);
             
@@ -389,8 +388,8 @@ public class Scene extends JPanel implements Runnable {
             this.instance_id = dd;
             Actor o = (Actor) instances.get(dd);
             //o.Begin_Step_event();
-            //			if ((o.x <= -1) || (o.x >= basicgame.Current_room.Width + 1) || (o.y <= -1)
-            //					|| (o.y >= basicgame.Current_room.Height + 1))
+            //			if ((o.x <= -1) || (o.x >= basicgame.Current.Width + 1) || (o.y <= -1)
+            //					|| (o.y >= basicgame.Current.Height + 1))
             //				{
             //				o.Outside();
             //				}

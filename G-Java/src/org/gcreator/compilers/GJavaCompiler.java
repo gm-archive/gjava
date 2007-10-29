@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import org.gcreator.core.gcreator;
 
 public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 	{
@@ -85,13 +86,13 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 		FileWriter manifestFW, htmlFW;
 		try
 			{
-			manifestFW = new FileWriter(GJava.FileFolder + File.separator + "manifest.txt");
+			manifestFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + "manifest.txt");
 			BufferedWriter manifest = new BufferedWriter(manifestFW);
 			GJava.print(manifest,"Manifest-Version: 1.0");
-			GJava.print(manifest,"Main-Class: Game");
+			GJava.print(manifest,"Main-Class: org.gcreator.compilers.gjava.Game");
 			GJava.print(manifest,"Created-By: 1.2 (Sun Microsystems Inc.)");
 			manifest.close();
-			htmlFW = new FileWriter(GJava.FileFolder + GJava.projectname +"_applet.html");
+			htmlFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + GJava.projectname +"_applet.html");
 			BufferedWriter html = new BufferedWriter(htmlFW);
 			
 			GJava.print(html,"<html>");
@@ -179,48 +180,47 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 				{
 				com.sun.tools.javac.Main javac = new com.sun.tools.javac.Main();
 				
-				String[] args = new String[] {
-						"-classpath",
-						GJava.FileFolder+File.separator,
-						GJava.FileFolder + "gjava" + File.separator + "runner" + File.separator
-								+ "Global.java"	
-						 };
+//				String[] args = new String[] {
+//						"-classpath",
+//						GJava.FileFolder+File.separator,
+//						GJava.FileFolder  + File.separator +  "Global.java"	
+//						 };
 				File file = new File("gjavacompile.log");
 				PrintStream printStream = new PrintStream(file);
 				System.setErr(printStream);
-				int status = javac.compile(args);
+//				int status = javac.compile(args);
 								
-				args = new String[] {
+				String[] args = new String[] {
 						"-classpath",
-						GJava.FileFolder+File.separator,
-						GJava.FileFolder +"Game.java"
+						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator,
+						GJava.FileFolder  +"Game.java"
 				};
 				
 				int status2 = javac.compile(args);
 				
 					
-				args = new String[] {
-						"-classpath",
-						GJava.FileFolder+File.separator,
-						GJava.FileFolder + "gjava" + File.separator + "runner" + File.separator
-						+ "basicgame.java"
-				};
+//				args = new String[] {
+//						"-classpath",
+//						GJava.FileFolder+File.separator,
+//						GJava.FileFolder + "gjava" + File.separator + "runner" + File.separator
+//						+ "basicgame.java"
+//				};
 				
-				int status3 = javac.compile(args);
-				
-				args = new String[] {
-						GJava.FileFolder + GJava.projectname + ".java"
-				};
-				
-				int status4 = javac.compile(args);
+//				int status3 = javac.compile(args);
+//				
+//				args = new String[] {
+//						GJava.FileFolder + GJava.projectname + ".java"
+//				};
+//				
+//				int status4 = javac.compile(args);
 				
 				// create a jar
-				args = new String[] { "cfm",GJava.FileFolder + GJava.projectname + ".jar",
-						GJava.FileFolder + "manifest.txt","-C",GJava.FileFolder,
-						GJava.projectname + ".class","-C",GJava.FileFolder,"gjava" };
+				args = new String[] { "cfm","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator  + GJava.projectname + ".jar",
+						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + "manifest.txt","-C","Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator,
+						"org"};//,"-C","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator ,"org" };
 
 				sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + GJava.projectname
-						+ ".jar manifest.txt *.class gjava");
+						+ ".jar manifest.txt *.class org");
 				jar.run(args);
 
 				FileInputStream fstream = new FileInputStream(file);
@@ -238,7 +238,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 					textbox.setText(textbox.getText() + "\n" + thisline);
 					}
 
-				if (status == 0 && status2 == 0 && status3 == 0 && status4 == 0)
+				if (status2 == 0)// && status3 == 0 && status4 == 0)
 					{
 					runapp.setEnabled(true);
 					runapplet.setEnabled(true);
@@ -301,15 +301,15 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 			{
 			File gm = new File(GJava.FileFolder);
 			
-//			try
-//				{
-//				GJava.openbrowser(gm.getCanonicalPath());
-//				}
-//			catch (IOException e1)
-//				{
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//				}
+			try
+				{
+				GJava.openbrowser(gm.getCanonicalPath());
+				}
+			catch (IOException e1)
+				{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				}
 			}
 
 		}

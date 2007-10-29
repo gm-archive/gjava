@@ -12,6 +12,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import org.gcreator.components.ExtendedFrame;
+import org.gcreator.components.TabPanel;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
@@ -29,7 +31,7 @@ import org.gcreator.plugins.*;
 public class GJava extends PlatformCore {
 
     public static String projectname,  FileFolder;
-    public static int sprites=0,  actors=0,  scenes=0,  fonts=0;
+    public static int sprites = 0,  actors = 0,  scenes = 0,  fonts = 0;
     String loadscene = "";
 
     public GJava() {
@@ -53,9 +55,10 @@ public class GJava extends PlatformCore {
 
     @Override
     public void parseScene(Scene s) throws IOException {
-        loadscene +="    scenes["+scenes+"] = new "+s.name+"();";
+        System.out.println("Parse scene");
+        loadscene += "    scenes[" + scenes + "] = new " + s.name + "();";
         scenes++;
-        FileWriter sceneFW = new FileWriter(FileFolder + File.separator+ s.name + ".java");
+        FileWriter sceneFW = new FileWriter(FileFolder + File.separator + s.name + ".java");
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
         print(scene, "");
@@ -65,16 +68,17 @@ public class GJava extends PlatformCore {
         print(scene, "");
         print(scene, "public class " + s.name + " extends Scene {");
         print(scene, "");
-        print(scene, "    "+s.name+"() {");
-        print(scene, "        super(basicgame.frame,"+s.caption+","+s.speed+","+s.width+","+s.height+","+"Color.BLUE)");
+        print(scene, "    " + s.name + "() {");
+        print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + "," + "Color.BLUE);");
         print(scene, "    }");
         print(scene, "");
         print(scene, "}");
+        scene.close();
     }
 
     public void createFolders() {
         try {
-            FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava";
+            FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
@@ -107,17 +111,47 @@ public class GJava extends PlatformCore {
     public void createJavaFiles() throws IOException {
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
-
+        print(game, "package org.gcreator.compilers.gjava;");
+        print(game, "import org.gcreator.compilers.gjava.components.Scene;");
+        print(game, "import org.gcreator.compilers.gjava.core.basicgame;");
         print(game, "public class Game extends basicgame {");
-        print(game, "    public void loadScenes(){ scenes[] = new Scene["+scenes+"];");
-        print(game, ""+loadscene);
+        print(game, "    Game(){");
+        print(game, "        loadScenes();");
+        print(game, "        nextScene();");
         print(game, "    }");
+        print(game, "   public void loadScenes(){");
+        print(game, "  scenes = new Scene[" + scenes + "]; ");
+        print(game, "" + loadscene);
+        print(game, "    }");
+        print(game, "   public static void main(String[] args){");
+        print(game, "       Runningas = \"Application\";");
+        print(game, "       canvas=frame;");
+        print(game, "       frame.setVisible(true);");
+        print(game, "       new Game();");
+        print(game, "   }");
         print(game, "}");
         game.close();
     }
 
     public void run(Project project) {
+        System.out.println("Saving...");
+                if (gcreator.window.istabs) {
+                    for (int ii = 0; ii < gcreator.window.tabs.getTabCount(); ii++) {
+                        if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project == null) {
+                        } else if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).wasModified()) {
+                            ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).Save();
+                        }
+                    }
+                } else {
+                    for (int ii = 0; ii < gcreator.window.mdi.getComponentCount(); ii++) {
+                        if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project == null) {
+                        } else if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().wasModified()) {
+                            ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().Save();
+                        }
+                    }
+                }
         projectname = project.name;
+        loadscene = "";
         if (project == null) {
             return;
         }
@@ -129,6 +163,7 @@ public class GJava extends PlatformCore {
             createJavaFiles();
         } catch (Exception e) {
         }
+
         GJavaCompiler compiler = new GJavaCompiler();
     }
 }

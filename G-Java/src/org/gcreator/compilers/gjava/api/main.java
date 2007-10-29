@@ -106,7 +106,7 @@ public class main {
         /**
          * Index of the current room;
          */
-        public static int room = basicgame.Current_room.roomid;
+        public static int room = basicgame.Current.roomid;
 
         /**
          * Index of the first room in the game.
@@ -121,17 +121,17 @@ public class main {
         /**
          * The width of the current room
          */
-        public static int room_width = basicgame.Current_room.width;
+        public static int room_width = basicgame.Current.width;
 
         /**
          * The height of the current room
          */
-        public static int room_height = basicgame.Current_room.height;
+        public static int room_height = basicgame.Current.height;
 
         /**
          * The caption of the current room
          */
-        public static String room_caption = basicgame.Current_room.Caption;
+        public static String room_caption = basicgame.Current.Caption;
 
         /**
          * @deprecated Used for compatibility with gm
@@ -143,7 +143,7 @@ public class main {
          * @param roomid
          */
 //        public static void room_goto(int roomid) {
-//            int GJavalocalroomid = basicgame.Current_room.id;
+//            int GJavalocalroomid = basicgame.Current.id;
 //            if (basicgame.Runningas != "EApplet") {
 //                basicgame.change_room(roomid);
 //            } else {
@@ -156,11 +156,11 @@ public class main {
          * Go to the previous room.
          */
 //        public static void room_goto_previous() {
-//            int GJavalocalroomid = basicgame.Current_room.id;
+//            int GJavalocalroomid = basicgame.Current.id;
 //            if (basicgame.Runningas != "EApplet") {
-//                basicgame.prev_room(basicgame.Current_room.roomid);
+//                basicgame.prev_room(basicgame.Current.roomid);
 //            } else {
-//                basicgame.prev_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//                basicgame.prev_room(basicgame.Current.roomid, basicgame.Eapplet);
 //            }
 //            basicgame.remove_room(GJavalocalroomid);
 //        }
@@ -169,11 +169,11 @@ public class main {
          * Go to the next room.
          */
 //        public static void room_goto_next() {
-//            int GJavalocalroomid = basicgame.Current_room.id;
+//            int GJavalocalroomid = basicgame.Current.id;
 //            if (basicgame.Runningas != "EApplet") {
-//                basicgame.next_room(basicgame.Current_room.roomid);
+//                basicgame.next_room(basicgame.Current.roomid);
 //            } else {
-//                basicgame.next_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//                basicgame.next_room(basicgame.Current.roomid, basicgame.Eapplet);
 //            }
 //            basicgame.remove_room(GJavalocalroomid);
 //        }
@@ -184,9 +184,9 @@ public class main {
 //        public static void room_restart() {
 //
 //            if (basicgame.Runningas != "EApplet") {
-//                basicgame.restart_room(basicgame.Current_room.roomid);
+//                basicgame.restart_room(basicgame.Current.roomid);
 //            } else {
-//                basicgame.restart_room(basicgame.Current_room.roomid, basicgame.Eapplet);
+//                basicgame.restart_room(basicgame.Current.roomid, basicgame.Eapplet);
 //            }
 //        }
 
@@ -196,7 +196,7 @@ public class main {
          * @return
          */
         public static int room_previous(int numb) {
-            return basicgame.Current_room.roomid - 1;
+            return basicgame.Current.roomid - 1;
         }
 
         /**
@@ -205,7 +205,7 @@ public class main {
          * @return
          */
         public static int room_next(int numb) {
-            return basicgame.Current_room.roomid - 1;
+            return basicgame.Current.roomid - 1;
         }
 
         /**
@@ -221,7 +221,7 @@ public class main {
 //                if (basicgame.Runningas == "EApplet") {
 //                    basicgame.Eapplet.stop();
 //                } else {
-//                    basicgame.remove_room(basicgame.Current_room.id);
+//                    basicgame.remove_room(basicgame.Current.id);
 //                }
 //            }
 //        }
@@ -230,7 +230,7 @@ public class main {
          * Restart the game.
          */
 //        public static void game_restart() {
-//            int GJavalocalroomid = basicgame.Current_room.id;
+//            int GJavalocalroomid = basicgame.Current.id;
 //            if (!basicgame.Runningas.equals("EApplet")) {
 //                basicgame.change_room(basicgame.firstroom);
 //            } else {

@@ -517,8 +517,8 @@ public class GScript {
         // get the number of instances as a value
         int no_of_instances = 0;
         int jii = 0;
-        while (jii < basicgame.Current_room.instances.size()) {
-            Actor dt = (Actor) basicgame.Current_room.instances.get(jii);
+        while (jii < basicgame.Current.instances.size()) {
+            Actor dt = (Actor) basicgame.Current.instances.get(jii);
             if (dt.equals(actor)) {
                 // add onto the number of instances
                 no_of_instances = no_of_instances + 1;
@@ -1022,7 +1022,7 @@ return true;
     private static void show_message(String str) {
         // show a message
         // pause the room
-        basicgame.Current_room.Paused = true;
+        basicgame.Current.Paused = true;
 
         // show the message box
         // Room.center(messagebox);
@@ -1035,7 +1035,7 @@ return true;
         // messagebox.getContentPane().add(BorderLayout.CENTER, messagepanel);
         // messagebox.show();
         popups.show_message(str);
-        basicgame.Current_room.Paused = false;
+        basicgame.Current.Paused = false;
     }
 
     /**

@@ -12,14 +12,12 @@ net.*;
 
 
 // the main class
-import org.gcreator.compilers.gjava.components.Actor;
 import org.gcreator.compilers.gjava.components.GameFrame;
 import org.gcreator.compilers.gjava.components.Scene;
 
 
 // the main class
-import org.gcreator.compilers.gjava.components.font;
-import org.gcreator.compilers.gjava.components.sprite;
+import org.gcreator.core.gcreator;
 /**
  * The basics for a game, rewritten in G-Java for your game.
  * @author G-java
@@ -32,12 +30,12 @@ GameSettings gs = new GameSettings();
 public static JFrame frame = new GameFrame(100,200,Color.BLACK);
 public static URL u;
 public static String Runningas;
-public static Scene Current_room;
+public static Scene Current;
 public static JApplet applet = null;
-public static int firstroom,lastroom,currentroom=-1;
+public static int firstroom,lastroom,currentscene=-1;
 public static Container canvas;
 
-static Scene scenes[];
+public static Scene scenes[];// = new Scene[0];
 
     @Override
     public void init() {
@@ -50,11 +48,7 @@ static Scene scenes[];
 
 public basicgame() {}
 
-public static void main(String[] args){
-Runningas = "Application";
-canvas=frame;
-canvas.add(scenes[0]);
-}
+
 
 public void loadSprites() {}
 public void loadSounds() {}
@@ -62,23 +56,27 @@ public void loadFonts() {}
 public void loadActors() {}
 public void loadScenes(){}
 
-public static boolean if_prev_room() {return false;}
+public static boolean ifPrevScene() {return false;}
 
-public static boolean if_next_room() {return false;}
+public static boolean ifNextScene() {return false;}
 
-public static void prev_room() {}
+public static void prevScene() {}
 
-public static void next_room() {
-remove_room();
+public void nextScene() {
+    System.out.println("Next scene");
+removeScene();
+Current = scenes[currentscene+1];
+Current.setVisible(true);
+canvas.add(Current );
 }
 
-public static void change_room(int roomid){
+public static void changeScene(int id){
 
 }
 
-public static void restart_room() {}
+public static void restartScene() {}
 
-public static void remove_room() {}
+public static void removeScene() {}
 
 }
 

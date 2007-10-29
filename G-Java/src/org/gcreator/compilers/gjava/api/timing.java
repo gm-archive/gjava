@@ -23,7 +23,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
         /**
          * Number of frames that are actually drawn per second.
          */
-        public static double fps = basicgame.Current_room.averageFPS;
+        public static double fps = basicgame.Current.averageFPS;
         /**
          * Number of milliseconds that have passed since the system was started.
          */

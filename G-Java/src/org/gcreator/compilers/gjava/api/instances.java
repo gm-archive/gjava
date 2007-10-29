@@ -29,7 +29,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
          * @return
          */
         public static int count() {
-            return basicgame.Current_room.instances.size();
+            return basicgame.Current.instances.size();
         }
 
         /**
@@ -38,7 +38,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
          * @return
          */
         public static Actor get_actor(int id) {
-            return (Actor) basicgame.Current_room.instances.get(id);
+            return (Actor) basicgame.Current.instances.get(id);
         }
         
          /**
@@ -48,10 +48,10 @@ import org.gcreator.compilers.gjava.core.basicgame;
          * @param act
          */
         public static void create(double x, double y, Actor act) {
-            // (act.getClass()) instance = new act.getClass()(x,y,basicgame.Current_room.instance_id);
-            basicgame.Current_room.instance_id += 1;
-            basicgame.Current_room.SortDepth();
-            // basicgame.Current_room.instances.add(0, instance);
+            // (act.getClass()) instance = new act.getClass()(x,y,basicgame.Current.instance_id);
+            basicgame.Current.instance_id += 1;
+            basicgame.Current.SortDepth();
+            // basicgame.Current.instances.add(0, instance);
         }
 
         /**
@@ -61,7 +61,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
         public static void destroy(Actor instance) {
             // run the destory event
             instance.Destroy_event();
-           // basicgame.Current_room.instances.remove(instance.id);
+           // basicgame.Current.instances.remove(instance.id);
         }
         
         /**
@@ -70,15 +70,15 @@ import org.gcreator.compilers.gjava.core.basicgame;
          * @param notme
          */
         public static void instance_deactivate_all(Actor act, boolean notme) {
-            basicgame.Current_room.deactivated = basicgame.Current_room.instances;
-            basicgame.Current_room.instances = new Vector();
+            basicgame.Current.deactivated = basicgame.Current.instances;
+            basicgame.Current.instances = new Vector();
         }
 
         /**
          * Activates all instances in the room.
          */
         public static void instance_activate_all() {
-            basicgame.Current_room.instances.addAll(basicgame.Current_room.deactivated);
+            basicgame.Current.instances.addAll(basicgame.Current.deactivated);
         }
     }
 

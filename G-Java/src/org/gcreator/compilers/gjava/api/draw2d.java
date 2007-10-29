@@ -22,9 +22,9 @@ import org.gcreator.compilers.gjava.core.basicgame;
          * @param col Color to clear the room to
          */
         public static void draw_clear(Color col) {
-            if (basicgame.Current_room.graphics != null) {
-                basicgame.Current_room.graphics.setColor(col);
-                basicgame.Current_room.graphics.fillRect(0, 0, basicgame.Current_room.width, basicgame.Current_room.height);
+            if (basicgame.Current.graphics != null) {
+                basicgame.Current.graphics.setColor(col);
+                basicgame.Current.graphics.fillRect(0, 0, basicgame.Current.width, basicgame.Current.height);
             }
         }
 

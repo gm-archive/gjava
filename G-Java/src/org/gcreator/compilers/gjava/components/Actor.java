@@ -337,8 +337,8 @@ public class Actor extends tile {
     public void Collision_event() {
        /* Rectangle thisBounds = getBounds((int)X,(int)Y);
         int G_JAVA_ii = 0;
-        while (G_JAVA_ii < basicgame.Current_room.instances.size()) {
-            Actor o = (Actor) basicgame.Current_room.instances.get(G_JAVA_ii);
+        while (G_JAVA_ii < basicgame.Current.instances.size()) {
+            Actor o = (Actor) basicgame.Current.instances.get(G_JAVA_ii);
             bounds = o.getBounds((int)(o.x),(int)(o.y));
             if (bounds.intersects(thisBounds)) {
                 if (this.solid) {
