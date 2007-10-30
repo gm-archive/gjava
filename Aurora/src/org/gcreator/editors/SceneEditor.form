@@ -16,7 +16,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jSplitPane1" alignment="1" pref="687" max="32767" attributes="1"/>
-          <Component id="jPanel8" alignment="0" pref="687" max="32767" attributes="1"/>
+          <Component id="jPanel8" alignment="0" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -612,6 +612,9 @@
                       </Border>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="colorSelection1MousePressed"/>
+                  </Events>
 
                   <Layout>
                     <DimensionLayout dim="0">

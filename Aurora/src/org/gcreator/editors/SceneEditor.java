@@ -124,6 +124,7 @@ public class SceneEditor extends TabPanel {
 
     @Override
     public boolean Save() {
+        System.out.println("saved scene");
         ((Scene) file.value).caption = this.jEditorPane1.getText();
         ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
         ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
@@ -131,6 +132,8 @@ public class SceneEditor extends TabPanel {
         ((Scene) file.value).persistant = this.jCheckBox3.isSelected();
         ((Scene) file.value).snapX = (Integer)this.jSpinner2.getValue();
         ((Scene) file.value).snapY = (Integer)this.jSpinner3.getValue();
+        ((Scene) file.value).background = this.getMapBGColor();
+        ((Scene) file.value).drawbackcolor = this.jCheckBox1.isSelected();
         //file.value = sceneObject.writeXml();
         return true;
     }
@@ -615,6 +618,11 @@ public class SceneEditor extends TabPanel {
         jLabel4.setText("Color");
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        colorSelection1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                colorSelection1MousePressed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout colorSelection1Layout = new org.jdesktop.layout.GroupLayout(colorSelection1);
         colorSelection1.setLayout(colorSelection1Layout);
@@ -993,7 +1001,7 @@ public class SceneEditor extends TabPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
-            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1097,6 +1105,11 @@ public class SceneEditor extends TabPanel {
         jButton2.setSelected(false);
         jButton3.setSelected(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void colorSelection1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MousePressed
+        changed = true;
+        updateScroll();
+    }//GEN-LAST:event_colorSelection1MousePressed
 
     public static final int INVALID = 0;
     public static final int PENCIL = 1;

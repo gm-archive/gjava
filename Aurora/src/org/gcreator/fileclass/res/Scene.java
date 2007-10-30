@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass.res;
 
+import java.awt.Color;
 import org.gcreator.units.*;
 import java.util.*;
 
@@ -20,10 +21,11 @@ public class Scene extends Resource {
 public String caption = "";
 public String code = "//Do nothing";
  //name is already on the list
-public int width,height,speed,snapX,snapY;
-public boolean persistant,grid,isometric;
+public int width=640,height=480,speed=60,snapX=16,snapY=16;
+public boolean persistant,grid,isometric,drawbackcolor;
 public ViewsModel views;
 public Vector<ActorInScene> actors;
+public Color background;
 
 public Scene(String name)
 {

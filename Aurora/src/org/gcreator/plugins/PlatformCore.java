@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import javax.swing.ImageIcon;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
@@ -40,6 +41,12 @@ public class PlatformCore extends PluginCore {
                         parseSprite((Sprite)((org.gcreator.fileclass.File) childNode).value);
                     else if (((org.gcreator.fileclass.File) childNode).type.equals("scene"))
                         parseScene((Scene)((org.gcreator.fileclass.File) childNode).value);
+                    else if (((org.gcreator.fileclass.File) childNode).type.equals("jpg"))
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
+                    else if (((org.gcreator.fileclass.File) childNode).type.equals("png"))
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
+                    else if (((org.gcreator.fileclass.File) childNode).type.equals("gif"))
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
                   } catch (Exception e) {}
                     
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
@@ -51,6 +58,10 @@ public class PlatformCore extends PluginCore {
     
     public void parseSprite(Sprite s){
     System.out.println(""+s.name);
+    }
+    
+    public void parseImage(ImageIcon i){
+    
     }
 
     public void parseActor(Actor a) throws IOException{}
