@@ -106,9 +106,6 @@ public class ImageEditor extends TabPanel {
         widthLabel = new javax.swing.JLabel();
         heightLabel = new javax.swing.JLabel();
         colorSelection1 = new org.gcreator.components.ColorSelection();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
 
         jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -157,17 +154,6 @@ public class ImageEditor extends TabPanel {
             .add(0, 26, Short.MAX_VALUE)
         );
 
-        jCheckBox1.setText("Tileset?");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        jTextField2.setText("jTextField2");
-
-        jTextField3.setText("jTextField3");
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,7 +161,7 @@ public class ImageEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
@@ -187,28 +173,18 @@ public class ImageEditor extends TabPanel {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(6, 6, 6)
-                                .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(6, 6, 6)
-                                .add(jCheckBox1)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                                 .add(widthLabel)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(heightLabel)))
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                        .addContainerGap(20, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jCheckBox1)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jButton1)
@@ -231,7 +207,12 @@ public class ImageEditor extends TabPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(jFileChooser1==null)
             jFileChooser1 = new JFileChooser();
+        
         try{
+            jFileChooser1.resetChoosableFileFilters();
+			JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png","Image Files (png, gif, jpg)");
+			jFileChooser1.addChoosableFileFilter(filter);
+			jFileChooser1.setFileFilter(filter);
         jFileChooser1.showDialog(this, "OK");
         if(jFileChooser1.getSelectedFile()!=null){
             java.io.File _file = jFileChooser1.getSelectedFile();
@@ -268,10 +249,6 @@ public class ImageEditor extends TabPanel {
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         updateScroll();
     }//GEN-LAST:event_jSpinner1StateChanged
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
     
     public void updateScroll(){
         System.out.println("Update");
@@ -306,13 +283,10 @@ public class ImageEditor extends TabPanel {
     private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JLabel heightLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel widthLabel;
     // End of variables declaration//GEN-END:variables
     
