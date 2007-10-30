@@ -1,4 +1,0 @@
-Exception in thread "Thread-1" java.lang.NoClassDefFoundError: com/sun/tools/javac/main/Main
-	at com.sun.tools.javac.Main.compile(Main.java:65)
-	at org.gcreator.compilers.GJavaCompiler.run(GJavaCompiler.java:199)
-	at java.lang.Thread.run(Thread.java:619)
