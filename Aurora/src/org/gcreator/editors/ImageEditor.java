@@ -3,7 +3,6 @@
  *
  * Created on 10 September 2007, 02:24
  */
-
 package org.gcreator.editors;
 
 import org.gcreator.components.TabPanel;
@@ -12,7 +11,11 @@ import javax.swing.*;
 
 import org.gcreator.components.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.FileImageInputStream;
 import org.gcreator.fileclass.File;
 import org.gcreator.fileclass.Project;
 
@@ -21,74 +24,74 @@ import org.gcreator.fileclass.Project;
  * @author  Ali1
  */
 public class ImageEditor extends TabPanel {
-    
+
     /** Creates new form ImageEditor */
     private org.gcreator.fileclass.File file;
-    
     private ImageDisplayer displayer;
-    
-    public ImageEditor(org.gcreator.fileclass.File file,Project project) {
+
+    public ImageEditor(org.gcreator.fileclass.File file, Project project) {
         this.project = project;
         this.file = file;
         displayer = new ImageDisplayer(this, file);
         initComponents();
-        
+
         jScrollPane1.setViewportView(displayer);
-        
+
         jTextField1.setText(file.name);
-        
+
         int w = 0;
         int h = 0;
-        if(file.value!=null){
+        if (file.value != null) {
             w = ((ImageIcon) file.value).getIconWidth();
             h = ((ImageIcon) file.value).getIconHeight();
         }
         widthLabel.setText("Width: " + w);
         heightLabel.setText("Height: " + h);
     }
-    
+
     @Override
-    public boolean wasModified(){
+    public boolean wasModified() {
         return false;
     }
-    
+
     @Override
-    public boolean canSave(){
+    public boolean canSave() {
         return false; //Not needed
     }
-        
+
     @Override
-    public boolean Save(){
+    public boolean Save() {
         return true;
     }
-    
+
     @Override
-    public void dispose(){
-        if(!wasModified())
+    public void dispose() {
+        if (!wasModified()) {
             super.dispose();
-        else{
+        } else {
             java.lang.Object[] options = {"Yes",
                     "No",
                     "Cancel"};
             int n = JOptionPane.showOptionDialog(frame,
-            "You have unsaved changes in your document.\n" +
-            "Do you want to save it?",
-            "Save document?",
-            JOptionPane.YES_NO_CANCEL_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            options,
-            options[2]);
-            if(n==JOptionPane.YES_OPTION){
-                if(Save())
+                    "You have unsaved changes in your document.\n" +
+                    "Do you want to save it?",
+                    "Save document?",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[2]);
+            if (n == JOptionPane.YES_OPTION) {
+                if (Save()) {
                     super.dispose();
+                }
             }
-            if(n==JOptionPane.NO_OPTION){
+            if (n == JOptionPane.NO_OPTION) {
                 super.dispose();
             }
         }
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -202,35 +205,59 @@ public class ImageEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public static JFileChooser jFileChooser1 = null;
-    
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(jFileChooser1==null)
+        if (jFileChooser1 == null) {
             jFileChooser1 = new JFileChooser();
-        
-        try{
+        }
+
+        try {
             jFileChooser1.resetChoosableFileFilters();
-			JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png","Image Files (png, gif, jpg)");
-			jFileChooser1.addChoosableFileFilter(filter);
-			jFileChooser1.setFileFilter(filter);
-        jFileChooser1.showDialog(this, "OK");
-        if(jFileChooser1.getSelectedFile()!=null){
-            java.io.File _file = jFileChooser1.getSelectedFile();
-            file.type = _file.getName().substring(_file.getName().lastIndexOf(".")+1);
-            file.value = new ImageIcon(ImageIO.read(_file));
-            file.treeimage = File.getScaledIcon((ImageIcon) file.value);
-            //file.treeimage = File.getScaledIcon((ImageIcon) file.value);
-            org.gcreator.core.Aurwindow.workspace.updateUI();
-            jScrollPane1.updateUI();
-            System.out.println(file.name + "." + file.type);
+            JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (png, gif, jpg)");
+            jFileChooser1.addChoosableFileFilter(filter);
+            jFileChooser1.setFileFilter(filter);
+            jFileChooser1.showDialog(this, "OK");
+            if (jFileChooser1.getSelectedFile() != null) {
+                java.io.File _file = jFileChooser1.getSelectedFile();
+                file.type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
+                if (file.type.toLowerCase().equals("gif")) {
+                    System.out.println("GIF!");
+                    //                    boolean animated = false;
+                    ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
+                    //                    if (reader.getNumImages(true) > 1) {
+//                        animated = true;
+//                    }
+                    reader.setInput(new FileImageInputStream(_file));
+                    System.out.println("No: "+reader.getNumImages(true));
+                    BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
+                    
+                    for (int i = 0; i < reader.getNumImages(true); i++) {
+                        b[i] = reader.read(i);
+                    }
+                    file.value = new ImageIcon(b[0]);
+                    file.treeimage = File.getScaledIcon(new ImageIcon(b[1]));
+                } else {
+                    file.value = new ImageIcon(ImageIO.read(_file));
+                    file.treeimage = File.getScaledIcon((ImageIcon) file.value);
+                }
+                org.gcreator.core.Aurwindow.workspace.updateUI();
+                jScrollPane1.updateUI();
+                System.out.println(file.name + "." + file.type);
+            }
+        } catch (Exception e) {
         }
-        }
-        catch(Exception e){}
         int w = 0;
         int h = 0;
-        if(file.value!=null){
-            w = ((ImageIcon) file.value).getIconWidth();
-            h = ((ImageIcon) file.value).getIconHeight();
+        if (file.value != null) {
+//            if (file.type.toLowerCase().equals("gif")) {
+//                BufferedImage[] b = (BufferedImage[]) file.value;
+//                w = (new ImageIcon(b[0])).getIconWidth();
+//                h = (new ImageIcon(b[0])).getIconHeight();
+//            } else {
+
+                w = ((ImageIcon) file.value).getIconWidth();
+                h = ((ImageIcon) file.value).getIconHeight();
+//            }
         }
         widthLabel.setText("Width: " + w);
         heightLabel.setText("Height: " + h);
@@ -249,35 +276,46 @@ public class ImageEditor extends TabPanel {
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         updateScroll();
     }//GEN-LAST:event_jSpinner1StateChanged
-    
-    public void updateScroll(){
+
+    public void updateScroll() {
         System.out.println("Update");
-        if(((Integer) jSpinner1.getValue()) > 5)
+        if (((Integer) jSpinner1.getValue()) > 5) {
             jSpinner1.setValue(5);
-        else if(((Integer) jSpinner1.getValue()) < -5)
+        } else if (((Integer) jSpinner1.getValue()) < -5) {
             jSpinner1.setValue(-5);
+        }
         displayer.zoom = getZoom();
         displayer.updateUI();
         jScrollPane1.updateUI();
     }
-    
-    public double getZoom(){
+
+    public double getZoom() {
         int x = ((Integer) jSpinner1.getValue()).intValue();
-        switch(x){
-        case 5: return 6;
-        case 4: return 5;
-        case 3: return 4;
-        case 2: return 3;
-        case 1: return 2;
-        case 0: return 1;
-        case -1: return 0.5;
-        case -2: return 0.33;
-        case -3: return 0.25;
-        case -4: return 0.2;
-        default: return 0.16;
+        switch (x) {
+            case 5:
+                return 6;
+            case 4:
+                return 5;
+            case 3:
+                return 4;
+            case 2:
+                return 3;
+            case 1:
+                return 2;
+            case 0:
+                return 1;
+            case -1:
+                return 0.5;
+            case -2:
+                return 0.33;
+            case -3:
+                return 0.25;
+            case -4:
+                return 0.2;
+            default:
+                return 0.16;
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private org.gcreator.components.ColorSelection colorSelection1;
@@ -289,5 +327,5 @@ public class ImageEditor extends TabPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel widthLabel;
     // End of variables declaration//GEN-END:variables
-    
+
 }
