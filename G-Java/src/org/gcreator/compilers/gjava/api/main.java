@@ -106,7 +106,7 @@ public class main {
         /**
          * Index of the current room;
          */
-        public static int room = basicgame.Current.roomid;
+        //public static int room = basicgame.Current.roomid;
 
         /**
          * Index of the first room in the game.
@@ -195,18 +195,18 @@ public class main {
          * @param numb
          * @return
          */
-        public static int room_previous(int numb) {
-            return basicgame.Current.roomid - 1;
-        }
+//        public static int room_previous(int numb) {
+//            return basicgame.Current.roomid - 1;
+//        }
 
         /**
          * Return the index of the room after numb(-1 = none).
          * @param numb
          * @return
          */
-        public static int room_next(int numb) {
-            return basicgame.Current.roomid - 1;
-        }
+//        public static int room_next(int numb) {
+//            return basicgame.Current.roomid - 1;
+//        }
 
         /**
          *  End the game.

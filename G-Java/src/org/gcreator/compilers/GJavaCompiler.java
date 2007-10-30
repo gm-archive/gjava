@@ -285,7 +285,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 p.waitFor();
 				BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 				String line = null;
-				textbox.setText(textbox.getText() + "\nPlease wait testing...\n");
+				textbox.setText(textbox.getText() + "\nFinished testing...\n Errors will appear below:");
 				while ((line = b.readLine()) != null)
 					{
 					textbox.setText(textbox.getText() + "\n" + line);

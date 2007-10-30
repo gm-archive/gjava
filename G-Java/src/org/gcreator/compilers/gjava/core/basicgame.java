@@ -16,8 +16,7 @@ import org.gcreator.compilers.gjava.components.GameFrame;
 import org.gcreator.compilers.gjava.components.Scene;
 
 
-// the main class
-import org.gcreator.core.gcreator;
+
 /**
  * The basics for a game, rewritten in G-Java for your game.
  * @author G-java
@@ -63,11 +62,11 @@ public static boolean ifNextScene() {return false;}
 public static void prevScene() {}
 
 public void nextScene() {
-    System.out.println("Next scene");
+    if (currentscene !=-1)
 removeScene();
 Current = scenes[currentscene+1];
 Current.setVisible(true);
-canvas.add(Current );
+canvas.add(Current);
 }
 
 public static void changeScene(int id){
@@ -76,7 +75,10 @@ public static void changeScene(int id){
 
 public static void restartScene() {}
 
-public static void removeScene() {}
+public static void removeScene() {
+Current.disposeScene();
+canvas.remove(Current);
+}
 
 }
 

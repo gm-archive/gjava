@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Enumeration;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import org.gcreator.components.ExtendedFrame;
@@ -23,6 +24,7 @@ import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.*;
+import org.gcreator.units.ActorInScene;
 
 /**
  *
@@ -69,7 +71,15 @@ public class GJava extends PlatformCore {
         print(scene, "public class " + s.name + " extends Scene {");
         print(scene, "");
         print(scene, "    " + s.name + "() {");
-        print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + "," + "Color.BLUE);");
+        if (s.drawbackcolor)
+        print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", new Color(" + s.background.getRed() + "," + s.background.getGreen() + "," + s.background.getBlue() +  "));");
+        else
+            print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.BLACK);");
+        print(scene, "    }");
+        print(scene, "    private void setupScene() {");
+        for (Enumeration e = s.actors.elements() ; e.hasMoreElements() ;) {
+           print(scene, "instances.add(new "+((ActorInScene)e.nextElement()).actor.name+"("+((ActorInScene)e.nextElement()).x+","+((ActorInScene)e.nextElement()).y+"));");
+     }
         print(scene, "    }");
         print(scene, "");
         print(scene, "}");
@@ -152,6 +162,7 @@ public class GJava extends PlatformCore {
                 }
         projectname = project.name;
         loadscene = "";
+        scenes=0;
         if (project == null) {
             return;
         }

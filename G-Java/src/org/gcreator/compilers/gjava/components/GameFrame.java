@@ -90,7 +90,7 @@ public class GameFrame extends JFrame implements WindowListener {
     
     
     public void windowClosing(WindowEvent e) {
-        JOptionPane.showMessageDialog(null,"Closing :(");
+      //  JOptionPane.showMessageDialog(null,"Closing :(");
        //        basicgame.Running = false;
         //        room0.end();
         dispose();

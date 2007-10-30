@@ -2,6 +2,10 @@ package org.gcreator.compilers.gjava.components;
 
 import java.awt.*;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.*;
 import java.util.*;
 import org.gcreator.compilers.gjava.core.GameSettings;
@@ -13,58 +17,47 @@ import org.gcreator.compilers.gjava.api.main;
  * @author G-Java development team
  * @version 1.0
  */
-public class Scene extends JPanel implements Runnable {
+public class Scene extends JPanel implements Runnable,KeyListener,MouseListener {
+    
+    //<editor-fold defaultstate="collapsed" desc="Variables">
     // the start time
     long starttime = System.currentTimeMillis(), usedTime;
     
     // number of instances and tiles for depth
     int createno = 1; // the number of created tiles and objects
-    
-    public int Width;
-    public int Height;
-    
-        
+       
     /**
      * graphics Object used to draw to the screen
      */
     public static Graphics graphics;
-    
-    int i = 1, NumberX, NumberY;
-    
-    static int ii = 0;
-    
-    // the jframe
+   
     JFrame Frame;
-    
-    // booleans
     public boolean Paused = false;
-    
-    
     // the current vector id
     public int instance_id;
     
         /*
          * Background variables
          */
-    public int hspeed[] = new int[8];
-    
-    public int vspeed[] = new int[8];
-    
-    public int Rbackgrounds[] = new int[8];
-    
-    public int visible[] = new int[8];
-    
-    public int Xpos[] = new int[8];
-    
-    public int Ypos[] = new int[8];
-    
-    public int TileH[] = new int[8];
-    
-    public int TileV[] = new int[8];
-    
-    public int Xc[] = new int[8];// 0 = 0, Xc1 = 0, Xc2 = 0, Xc3 = 0, Xc4 = 0, Xc5 = 0, Xc6 = 0, Xc7 = 0;
-    
-    public int Yc[] = new int[8];// 0 = 0, Yc1 = 0, Yc2 = 0, Yc3 = 0, Yc4 = 0, Yc5 = 0, Yc6 = 0, Yc7 = 0;
+//    public int hspeed[] = new int[8];
+//    
+//    public int vspeed[] = new int[8];
+//    
+//    public int Rbackgrounds[] = new int[8];
+//    
+//    public int visible[] = new int[8];
+//    
+//    public int Xpos[] = new int[8];
+//    
+//    public int Ypos[] = new int[8];
+//    
+//    public int TileH[] = new int[8];
+//    
+//    public int TileV[] = new int[8];
+//    
+//    public int Xc[] = new int[8];
+//    
+//    public int Yc[] = new int[8];
     
     
     /**
@@ -75,7 +68,7 @@ public class Scene extends JPanel implements Runnable {
     /**
      * All the instances and tiles in this room as a {@link Vector} object sorted by depth
      */
-    public Vector depth = new Vector();
+    private Vector depth = new Vector();
     
     public Vector deactivated = new Vector();
     
@@ -83,38 +76,17 @@ public class Scene extends JPanel implements Runnable {
     /**
      * All the tiles in this room as a {@link Vector} object
      */
-    public static Vector tiles = new Vector();
+    private static Vector tiles = new Vector();
     
-    //int j = 0;
-    
-    //public Actor object;
-    
-    // public ListIterator iter;
     /**
      * The caption of this room
      */
     public String Caption;
-    
-    
-    
-    /**
-     * The room id
-     */
-    public int id = 0;
-    
-    /**
-     * The room id
-     */
-    public int roomid = 0;
-    
-    
-    //private static long past_time;
-    
-    //private static long next_second;
+  
     /**
      * The speed of the room
      */
-    public long speed = 1;
+    public long speed = 60;
     
     // used for double buffering
     private Image dbImage;
@@ -127,7 +99,7 @@ public class Scene extends JPanel implements Runnable {
     /**
      * Check if the game is running
      */
-    public static boolean Running = true;
+    boolean Running = true;
     
     // //////////////////////////////////////////////////////////////////////
     // Frames per second code:
@@ -209,6 +181,7 @@ public class Scene extends JPanel implements Runnable {
     public Color backcolor = Color.green;
     
     // end of declaring variables
+    //</editor-fold>
     
     public Scene(){}
     
@@ -229,12 +202,13 @@ public class Scene extends JPanel implements Runnable {
         this.Frame = R;
         this.height = RoomH;
         this.width = RoomW;
-        this.Width = RoomW + 7;
-        this.Height = RoomH + 25;
+//        this.Width = RoomW + 7;
+//        this.Height = RoomH + 25;
         this.backcolor = backcolor;
         this.Caption = Caption;
         this.period = (int) (1000.0 / speed);
         Scene.graphics = this.getGraphics();
+        R.setSize(width, height);
         if (basicgame.Runningas.equals("EApplet")) {
             totalElapsedTime = System.currentTimeMillis();
             R.setSize(640,620);
@@ -249,16 +223,17 @@ public class Scene extends JPanel implements Runnable {
             Frame.setTitle(Caption);
             
         }
-        
-        
-        
         if ((GameSettings.FullScreenMode) && (basicgame.Runningas.equals("EApplet"))) {
             Frame.setUndecorated( true ); // No window decorations
             gd.setFullScreenWindow(Frame); // Create a full screen window
            // gd.setDisplayMode(dm); // Change to our preferred mode
             
         }
-        setup_Room();
+        
+        basicgame.canvas.addKeyListener(this);
+        basicgame.canvas.addMouseListener(this);
+        
+        setupScene();
         // define a new thread
         Thread th = new Thread(this);
         // start this thread
@@ -273,6 +248,8 @@ public class Scene extends JPanel implements Runnable {
      */
     public void Draw(Graphics g) {
         this.graphics = g;
+        g.setColor( backcolor );
+        g.fillRect( 0, 0, width, height );
     }
     
     /**
@@ -282,6 +259,12 @@ public class Scene extends JPanel implements Runnable {
         depth.addAll(instances);
         java.util.Collections.sort(depth,Collections.reverseOrder());
         depth.trimToSize();
+    }
+    
+    public void disposeScene()
+    {
+        basicgame.canvas.removeKeyListener(this);
+        basicgame.canvas.removeMouseListener(this);
     }
     
     /**
@@ -299,7 +282,7 @@ public class Scene extends JPanel implements Runnable {
      * @return width
      */
     public int get_width() {
-        return Width;
+        return width;
     }
     
     /**
@@ -307,7 +290,7 @@ public class Scene extends JPanel implements Runnable {
      * @return height
      */
     public int get_height() {
-        return Height;
+        return height;
     }
     
     /**
@@ -352,23 +335,15 @@ public class Scene extends JPanel implements Runnable {
     /** Update - Method, implements double buffering */
     public void paint(Graphics g) {
         this.graphics = g;
-        // this.setBounds(Room.getWidth()/2- this.getWidth()/2,Room.getHeight()/2-this.getHeight()/2, 700, 600);
-        
-        // setPreferredSize (ScreenWidth,ScreenHeight);
         // initialize buffer
         if (dbImage == null) {
             dbImage = createImage(width,height);
             dbg = dbImage.getGraphics();
-            // dbg = bufferStrategy.getDrawGraphics();
         }
-        
         Draw(dbg);
         
         // draw image on the screen
-        g.drawImage(dbImage,0,0,this);
-        
-        // Room.setSize(10, ScreenHeight);
-        
+        g.drawImage(dbImage,0,0,this);        
     }
     
     /**
@@ -404,9 +379,9 @@ public class Scene extends JPanel implements Runnable {
     }
     
     /**
-     * Create all the objects backgrounds tiles etc
+     * Create all the actors, backgrounds tiles etc
      */
-    public void setup_Room() {
+    private void setupScene() {
     }
     
     private void storeStats()
@@ -527,6 +502,38 @@ public class Scene extends JPanel implements Runnable {
             }
             // end of if paused
         }
+    }
+
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void keyReleased(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }
