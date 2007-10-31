@@ -87,6 +87,8 @@ public class ImageDisplayer extends javax.swing.JPanel {
 //            for(int i = 0; i * 20 < getHeight(); i++)
 //                g.drawLine(0, i * 20, getWidth(), i * 20);
 //        }
+        g.setColor(e.getTransparencyColor());
+        g.fillRect(0, 0, getWidth(), getHeight());
         if (file.value != null) {
             g.drawImage(((ImageIcon) file.value).getImage(), 0, 0, getWidth(), getHeight(), ((ImageIcon) file.value).getImageObserver());
         }

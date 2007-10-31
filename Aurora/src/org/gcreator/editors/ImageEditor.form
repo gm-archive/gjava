@@ -69,7 +69,7 @@
                   <Component id="colorSelection1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="193" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="225" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -136,6 +136,9 @@
         </Property>
         <Property name="toolTipText" type="java.lang.String" value="Transparent Colour"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="colorSelection1MouseClicked"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">

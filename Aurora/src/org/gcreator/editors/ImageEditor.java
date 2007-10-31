@@ -29,6 +29,10 @@ public class ImageEditor extends TabPanel {
     private org.gcreator.fileclass.File file;
     private ImageDisplayer displayer;
 
+    public Color getTransparencyColor(){
+        return colorSelection1.getBackground();
+    }
+    
     public ImageEditor(org.gcreator.fileclass.File file, Project project) {
         this.project = project;
         this.file = file;
@@ -145,6 +149,11 @@ public class ImageEditor extends TabPanel {
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         colorSelection1.setToolTipText("Transparent Colour");
+        colorSelection1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                colorSelection1MouseClicked(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout colorSelection1Layout = new org.jdesktop.layout.GroupLayout(colorSelection1);
         colorSelection1.setLayout(colorSelection1Layout);
@@ -200,7 +209,7 @@ public class ImageEditor extends TabPanel {
                             .add(heightLabel)))
                     .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -276,6 +285,10 @@ public class ImageEditor extends TabPanel {
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         updateScroll();
     }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
+        displayer.updateUI();
+    }//GEN-LAST:event_colorSelection1MouseClicked
 
     public void updateScroll() {
         System.out.println("Update");
