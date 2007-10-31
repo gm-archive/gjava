@@ -9,7 +9,7 @@
 
 package org.gcreator.fileclass.res;
 
-import java.util.Vector;
+import java.util.*;
 import javax.swing.*;
 
 /**
@@ -50,6 +50,16 @@ public class Sprite extends Resource {
     public String writeXml() {
         String xml = "";
       xml += "<?xml version=\"1.0\"?>\n";
+      xml += "<sprite>\n";
+      xml += "<origin>" + originX + ", " + originY + "</origin>\n";
+      xml += "<BB>" + BBleft + ", " + BBRight + ", " + BBTop + ", " + BBBottom + "</BB>\n";
+      Enumeration<org.gcreator.fileclass.File> e = images.elements();
+      org.gcreator.fileclass.File f;
+      while(e.hasMoreElements()){
+          f = e.nextElement();
+          xml += "<image>" + f.name + "</image>\n";
+      }
+      xml += "</sprite>";
       return xml;
     }
 
