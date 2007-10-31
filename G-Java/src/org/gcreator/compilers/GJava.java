@@ -50,9 +50,15 @@ public class GJava extends PlatformCore {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
             BufferedImage ii = (BufferedImage) i.getImage();
             ImageIO.write(ii, f.type, baos); 
-            FileOutputStream fos = new FileOutputStream(new File(FileFolder + File.separator +"images"+File.separator+f.name+"."+f.type));
+                      
+            File ff = new File(FileFolder + File.separator +"images");
+            
+            ff.mkdirs();
+            ff = new File(FileFolder + File.separator +"images"+File.separator+f.name+"."+f.type);
+            FileOutputStream fos = new FileOutputStream(ff);
             
             fos.write(baos.toByteArray());
+            fos.close();
         }catch(Exception e) {}
     }
 
