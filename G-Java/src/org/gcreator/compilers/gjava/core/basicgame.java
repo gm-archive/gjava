@@ -48,7 +48,6 @@ public static Scene scenes[];// = new Scene[0];
 public basicgame() {}
 
 
-
 public void loadSprites() {}
 public void loadSounds() {}
 public void loadFonts() {}

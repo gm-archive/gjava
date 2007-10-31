@@ -6,11 +6,15 @@ package org.gcreator.compilers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import org.gcreator.components.ExtendedFrame;
@@ -34,15 +38,37 @@ public class GJava extends PlatformCore {
 
     public static String projectname,  FileFolder;
     public static int sprites = 0,  actors = 0,  scenes = 0,  fonts = 0;
-    String loadscene = "";
+    String loadscene = "",loadSprites="public static Sprite ", createSprites="public void loadSprites() { ";
 
     public GJava() {
 
     }
 
     @Override
+    public void parseImage(ImageIcon i,org.gcreator.fileclass.File f) {
+        try {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            BufferedImage ii = (BufferedImage) i.getImage();
+            ImageIO.write(ii, f.type, baos); 
+            FileOutputStream fos = new FileOutputStream(new File(FileFolder + File.separator +"images"+File.separator+f.name+"."+f.type));
+            
+            fos.write(baos.toByteArray());
+        }catch(Exception e) {}
+    }
+
+    
+    
+    @Override
     public void parseSprite(Sprite s) {
         super.parseSprite(s);
+        loadSprites+=s.name+",";
+        createSprites+=s.name+" = new Sprite(\""+s.name+"\","+s.height + ", "+s.width+ ", "+s.BBleft+ ", "+s.BBRight+ ", "+s.BBBottom+ ", "+s.BBTop+ ", "+ s.originX + ", "+s.originY + ", new String[] {";
+        for (Enumeration e = s.images.elements() ; e.hasMoreElements() ;) {
+            org.gcreator.fileclass.File f = (org.gcreator.fileclass.File) e.nextElement();
+           createSprites+="\""+f.name+"."+f.type+"\",";
+        }
+        
+        createSprites+="\"\"});";
     }
 
     @Override
@@ -125,6 +151,7 @@ public class GJava extends PlatformCore {
         print(game, "import org.gcreator.compilers.gjava.components.Scene;");
         print(game, "import org.gcreator.compilers.gjava.core.basicgame;");
         print(game, "public class Game extends basicgame {");
+        print(game,loadSprites+"G_Creator_EXTRA_SPRITE;");
         print(game, "    Game(){");
         print(game, "        loadScenes();");
         print(game, "        nextScene();");
@@ -133,6 +160,8 @@ public class GJava extends PlatformCore {
         print(game, "  scenes = new Scene[" + scenes + "]; ");
         print(game, "" + loadscene);
         print(game, "    }");
+        //Load sprites method
+        print(game, createSprites+"}");
         print(game, "   public static void main(String[] args){");
         print(game, "       Runningas = \"Application\";");
         print(game, "       canvas=frame;");

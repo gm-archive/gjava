@@ -8,6 +8,7 @@ package org.gcreator.compilers.gjava;
 import org.gcreator.compilers.gjava.components.Actor;
 import org.gcreator.compilers.gjava.components.Scene;
 import org.gcreator.compilers.gjava.components.Scene;
+import org.gcreator.compilers.gjava.components.Sprite;
 import org.gcreator.compilers.gjava.core.basicgame;
 
 /**
@@ -17,6 +18,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
 public class Game extends basicgame {
     
     Game(){
+       // Sprite Sprite = new Sprite();
       loadScenes();
         nextScene();
     }
