@@ -9,7 +9,6 @@
 
 package org.gcreator.fileclass;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -20,7 +19,6 @@ import java.io.IOException;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
-import javax.imageio.stream.ImageOutputStreamImpl;
 import org.gcreator.fileclass.res.*;
 
 /**

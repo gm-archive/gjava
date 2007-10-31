@@ -39,14 +39,16 @@ public class PlatformCore extends PluginCore {
                   try {
                     if (((org.gcreator.fileclass.File) childNode).type.equals("sprite"))
                         parseSprite((Sprite)((org.gcreator.fileclass.File) childNode).value);
+                    else if (((org.gcreator.fileclass.File) childNode).type.equals("actor"))
+                        parseActor((Actor)((org.gcreator.fileclass.File) childNode).value);
                     else if (((org.gcreator.fileclass.File) childNode).type.equals("scene"))
                         parseScene((Scene)((org.gcreator.fileclass.File) childNode).value);
                     else if (((org.gcreator.fileclass.File) childNode).type.equals("jpg"))
-                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode));
                     else if (((org.gcreator.fileclass.File) childNode).type.equals("png"))
-                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode));
                     else if (((org.gcreator.fileclass.File) childNode).type.equals("gif"))
-                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value);
+                        parseImage((ImageIcon)((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode));
                   } catch (Exception e) {}
                     
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
@@ -60,7 +62,7 @@ public class PlatformCore extends PluginCore {
     System.out.println(""+s.name);
     }
     
-    public void parseImage(ImageIcon i){
+    public void parseImage(ImageIcon i,org.gcreator.fileclass.File f){
     
     }
 

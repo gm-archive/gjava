@@ -39,7 +39,6 @@ public class SpriteEditor extends TabPanel {
             this.sprite = (Sprite) (file.value = new Sprite(file.name));
         initComponents();
         load();
-        System.out.println("Load");
        // }
 //        else
 //        {
@@ -84,6 +83,11 @@ public class SpriteEditor extends TabPanel {
         System.out.println("Loading");
         jSpinner1.setValue(sprite.originX);
         jSpinner2.setValue(sprite.originY);
+        
+        jSpinner6.setValue(sprite.BBBottom);
+        jSpinner5.setValue(sprite.BBRight);
+        jSpinner4.setValue(sprite.BBTop);
+        jSpinner3.setValue(sprite.BBleft);
         
         jCheckBox1.setSelected(sprite.precise);
         jLabel2.setText("Width:"+sprite.width);
