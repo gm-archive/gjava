@@ -79,7 +79,17 @@ public class GJava extends PlatformCore {
 
     @Override
     public void parseActor(Actor a) {
-
+        try {
+    FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
+        BufferedWriter actor = new BufferedWriter(actorFW);
+        print(actor, "package org.gcreator.compilers.gjava;");
+        print(actor, "");
+        
+        print(actor, "public class " + a.name + " extends Actor {");
+        print(actor, "}");
+        actor.close();
+        } catch(Exception e){}
+        
     }
 
     @Override
@@ -89,7 +99,6 @@ public class GJava extends PlatformCore {
 
     @Override
     public void parseScene(Scene s) throws IOException {
-        System.out.println("Parse scene");
         loadscene += "    scenes[" + scenes + "] = new " + s.name + "();";
         scenes++;
         FileWriter sceneFW = new FileWriter(FileFolder + File.separator + s.name + ".java");
