@@ -40,4 +40,8 @@ public class Object {
         o.node = (ObjectNode) node.clone();
         return o;
     }
+    
+    public String getPath(){
+        return name;
+    }
 }

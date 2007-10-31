@@ -50,7 +50,7 @@ public class SceneEditor extends TabPanel {
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            ObjectNode k = ResourceMenu.getObjectWithName(((Actor) ais.actor.value).sprite, "sprite", project);
+            ObjectNode k = (((Actor) ais.actor.value).sprite).node;
             Sprite j = (Sprite) ((org.gcreator.fileclass.File) k.object).value;
             ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();
@@ -69,7 +69,7 @@ public class SceneEditor extends TabPanel {
     
     public void updateImage(){
         org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.File) curactor.getCurrentObject().object).value;
-        ObjectNode c = org.gcreator.components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", project);
+        ObjectNode c = b.sprite.node;
         if(c!=null){
             org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;

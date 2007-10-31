@@ -147,4 +147,9 @@ public class File extends Object implements Transferable {
         if (flavor != NODE_FLAVOR) throw new UnsupportedFlavorException(flavor);
 		return this;
     }
+    
+    @Override
+    public String getPath(){
+        return root.getPath() + "/" + super.getPath();
+    }
 }

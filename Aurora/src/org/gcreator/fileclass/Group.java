@@ -35,4 +35,9 @@ public class Group extends Folder{
     public String getObjectType(){
         return "Group";
     }
+    
+    @Override
+    public String getPath(){
+        return root.getPath() + "/" + super.getPath();
+    }
 }

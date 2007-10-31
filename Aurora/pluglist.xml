@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<pluglist><plugin>com.sun.tools.javac.Main</plugin><plugin>org.gcreator.compilers.GJava</plugin></pluglist>
+<pluglist><plugin>org.gcreator.compilers.GJava</plugin></pluglist>

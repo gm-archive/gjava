@@ -57,7 +57,7 @@ public class Sprite extends Resource {
       org.gcreator.fileclass.File f;
       while(e.hasMoreElements()){
           f = e.nextElement();
-          xml += "<image>" + f.name + "</image>\n";
+          xml += "<image>" + f.getPath() + "</image>\n";
       }
       xml += "</sprite>";
       return xml;

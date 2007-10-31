@@ -66,7 +66,7 @@ public class ScenePanel extends JPanel implements MouseListener{
     public void addActorAt(int x, int y){
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) ((org.gcreator.fileclass.File) ResourceMenu.getObjectWithName(((Actor) act.actor.value).sprite, "sprite", root.project).object).value;
+            Sprite s = (Sprite) ((Actor) act.actor.value).sprite.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
@@ -125,7 +125,7 @@ public class ScenePanel extends JPanel implements MouseListener{
         while(e.hasMoreElements()){
             ActorInScene a = e.nextElement();
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.actor.value;
-            ObjectNode c = org.gcreator.components.popupmenus.ResourceMenu.getObjectWithName(b.sprite, "sprite", root.project);
+            ObjectNode c = b.sprite.node;
             if(c!=null){
                 org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
                 org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
