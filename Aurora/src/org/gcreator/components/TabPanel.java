@@ -24,7 +24,31 @@ public class TabPanel extends JPanel{
     public Project project;
     
     public void dispose(){
-        parent.remove(this, frame);
+       
+        if (!wasModified()) {
+             parent.remove(this, frame);
+        } else {
+            java.lang.Object[] options = {"Yes",
+                    "No",
+                    "Cancel"};
+            int n = JOptionPane.showOptionDialog(frame,
+                    "You have unsaved changes in your document.\n" +
+                    "Do you want to save it?",
+                    "Save document?",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[2]);
+            if (n == JOptionPane.YES_OPTION) {
+                if (Save()) {
+                     parent.remove(this, frame);
+                }
+            }
+            if (n == JOptionPane.NO_OPTION) {
+                 parent.remove(this, frame);
+            }
+        }
     }
     
     public boolean canSave(){

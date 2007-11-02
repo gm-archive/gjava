@@ -68,34 +68,7 @@ public class ImageEditor extends TabPanel {
         return true;
     }
 
-    @Override
-    public void dispose() {
-        if (!wasModified()) {
-            super.dispose();
-        } else {
-            java.lang.Object[] options = {"Yes",
-                    "No",
-                    "Cancel"};
-            int n = JOptionPane.showOptionDialog(frame,
-                    "You have unsaved changes in your document.\n" +
-                    "Do you want to save it?",
-                    "Save document?",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    options,
-                    options[2]);
-            if (n == JOptionPane.YES_OPTION) {
-                if (Save()) {
-                    super.dispose();
-                }
-            }
-            if (n == JOptionPane.NO_OPTION) {
-                super.dispose();
-            }
-        }
-    }
-
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

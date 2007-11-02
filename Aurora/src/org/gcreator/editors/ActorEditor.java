@@ -93,6 +93,7 @@ public class ActorEditor extends TabPanel {
         //setup resource menu's
         jPanel13.setLayout(new FlowLayout());
         jPanel13.add(spriteres = new ResourceMenu("sprite","<no sprite>",true,project));
+        if (actor.sprite !=null)
         spriteres.label.setText(actor.sprite.name);
         spriteres.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
