@@ -8,6 +8,7 @@
  */
 package org.gcreator.fileclass.res;
 
+import java.util.Enumeration;
 import java.util.Vector;
 import org.gcreator.events.Event;
 
@@ -40,8 +41,8 @@ public class Actor extends Resource {
         } else {
             xml += "<Sprite>" + sprite.getPath() + "</Sprite>";
         }
-        for (Event event : events) {
-            xml += event.writeXml();
+                for (Enumeration e = events.elements() ; e.hasMoreElements() ;) {
+            xml += ((Event)e.nextElement()).writeXml();
         }
         return xml;
     }

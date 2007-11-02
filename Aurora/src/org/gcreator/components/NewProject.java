@@ -10,8 +10,12 @@ package org.gcreator.components;
 
 import java.awt.event.*;
 import java.util.*;
-import javax.swing.*;
+//import javax.swing.*;
 
+import javax.swing.AbstractButton;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.managers.*;
@@ -77,15 +81,17 @@ public class NewProject extends TabPanel {
                         .addContainerGap()
                         .add(
                             layout.createParallelGroup(GroupLayout.TRAILING)
+//                            .add(
+//                                ptypes,
+//                                GroupLayout.LEADING,
+//                                GroupLayout.DEFAULT_SIZE,
+//                                GroupLayout.DEFAULT_SIZE,
+//                                Short.MAX_VALUE)
+//                                
                             .add(
-                                ptypes,
-                                GroupLayout.LEADING,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE)
-                            .add(
-                                jLabel1,
-                                GroupLayout.LEADING)
+                                jLabel1
+                                //GroupLayout.LEADING
+                                )
                             .add(
                                 GroupLayout.LEADING,
                                 layout.createSequentialGroup()
