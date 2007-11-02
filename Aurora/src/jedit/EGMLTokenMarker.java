@@ -49,8 +49,8 @@ public class EGMLTokenMarker extends TokenMarker
 		customKeywords = null;
 		}
 
-	@Override
-    @SuppressWarnings("fallthrough")
+	 
+    //SuppressWarnings("fallthrough")
 	protected byte markTokensImpl(byte token, Segment line, int lineIndex)
 		{
 		char[] array = line.array;
@@ -178,19 +178,25 @@ public class EGMLTokenMarker extends TokenMarker
 			gmlKeywords.add("div",Token.OPERATOR);
 			gmlKeywords.add("mod",Token.OPERATOR);
 			// Constants
-			for (String keyword : EGML_TYPEDEFINERS.split(" "))
+                        String[] s = EGML_TYPEDEFINERS.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : EGML_TYPEDEFINERS.split(" ")) 1.5+
 				{
-				gmlKeywords.add(keyword,Token.KEYWORD2);
+				gmlKeywords.add(s[ii],Token.KEYWORD2);
 				}
 			// Variables
-			for (String keyword : EGML_KNOWNCLASSES.split(" "))
+                        s = EGML_KNOWNCLASSES.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : EGML_KNOWNCLASSES.split(" "))
 				{
-				gmlKeywords.add(keyword,Token.LITERAL1);
+				gmlKeywords.add(s[ii],Token.LITERAL1);
 				}
 			// Functions
-			for (String keyword : EGML_STATEMENTS.split(" "))
+                        s = EGML_STATEMENTS.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : EGML_STATEMENTS.split(" ")) 1.5+
 				{
-				gmlKeywords.add(keyword,Token.KEYWORD3);
+				gmlKeywords.add(s[ii],Token.KEYWORD3);
 				}
 			}
 		return gmlKeywords;

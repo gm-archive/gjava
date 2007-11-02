@@ -83,11 +83,13 @@ public abstract class InputHandler extends KeyAdapter
 	// Default action
 	public static final ActionListener INSERT_CHAR = new insert_char();
 
-	private static Hashtable<String,ActionListener> actions;
+        private static Hashtable actions;//1.4
+	//private static Hashtable<String,ActionListener> actions; 1.5+
 
 	static
 		{
-		actions = new Hashtable<String,ActionListener>();
+		//actions = new Hashtable<String,ActionListener>(); 1.5+
+            actions = new Hashtable();
 		actions.put("backspace",BACKSPACE);
 		actions.put("backspace-word",BACKSPACE_WORD);
 		actions.put("delete",DELETE);
@@ -134,7 +136,7 @@ public abstract class InputHandler extends KeyAdapter
 	 */
 	public static ActionListener getAction(String name)
 		{
-		return actions.get(name);
+		return (ActionListener)actions.get(name);
 		}
 
 	/**
@@ -143,10 +145,10 @@ public abstract class InputHandler extends KeyAdapter
 	 */
 	public static String getOperationName(ActionListener listener)
 		{
-		Enumeration<String> en = getActions();
+		Enumeration en = getActions(); //<String> used in 1.5+
 		while (en.hasMoreElements())
 			{
-			String name = en.nextElement();
+			String name = (String)en.nextElement();
 			ActionListener l = getAction(name);
 			if (l == listener) return name;
 			}
@@ -156,7 +158,7 @@ public abstract class InputHandler extends KeyAdapter
 	/**
 	 * Returns an enumeration of all available actions.
 	 */
-	public static Enumeration<String> getActions()
+	public static Enumeration getActions()
 		{
 		return actions.keys();
 		}

@@ -50,8 +50,8 @@ public class JavaTokenMarker extends TokenMarker
 		customKeywords = null;
 		}
 
-	@Override
-    @SuppressWarnings("fallthrough")
+	 
+    //SuppressWarnings("fallthrough")
 	protected byte markTokensImpl(byte token, Segment line, int lineIndex)
 		{
 		char[] array = line.array;
@@ -173,23 +173,31 @@ public class JavaTokenMarker extends TokenMarker
 			{
 			jKeywords = new KeywordMap(false);
 			// Constants
-			for (String keyword : JAVA_KEYWORDS1.split(" "))
+                        String[] s = JAVA_KEYWORDS1.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : JAVA_KEYWORDS1.split(" ")) 1.5
 				{
-				jKeywords.add(keyword,Token.KEYWORD1);
+				jKeywords.add(s[ii],Token.KEYWORD1);
 				}
 			// Variables
-			for (String keyword : JAVA_KEYWORDS2.split(" "))
+                        s = JAVA_KEYWORDS2.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : JAVA_KEYWORDS2.split(" ")) 1.5
 				{
-				jKeywords.add(keyword,Token.KEYWORD2);
+				jKeywords.add(s[ii],Token.KEYWORD2);
 				}
 			// Functions
-			for (String keyword : JAVA_KEYWORDS3.split(" "))
+                        s = JAVA_KEYWORDS3.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : JAVA_KEYWORDS3.split(" ")) 1.5
 				{
-				jKeywords.add(keyword,Token.KEYWORD3);
+				jKeywords.add(s[ii],Token.KEYWORD3);
 				}
-                        for (String keyword : JAVA_LITERAL2.split(" "))
+                        s = JAVA_LITERAL2.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+                        //for (String keyword : JAVA_LITERAL2.split(" ")) 1.5
 				{
-				jKeywords.add(keyword,Token.LITERAL2);
+				jKeywords.add(s[ii],Token.LITERAL2);
 				}
 			}
 		return jKeywords;

@@ -376,7 +376,8 @@ public class TextAreaPainter extends JComponent implements TabExpander
 		Graphics2D g2 = (Graphics2D) gfx;
 		Toolkit tk = Toolkit.getDefaultToolkit();
 		Object mapo = tk.getDesktopProperty("awt.font.desktophints");
-		Map<?,?> map = (Map<?,?>) (mapo);
+                Map map = (Map) (mapo);
+		//Map<?,?> map = (Map<?,?>) (mapo); 1.5+
 		if (map != null)
 			{
 			g2.addRenderingHints(map);

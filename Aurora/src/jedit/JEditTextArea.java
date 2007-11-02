@@ -1703,10 +1703,10 @@ public class JEditTextArea extends JComponent
 			right.setBounds(ileft + centerWidth,itop,rightWidth,centerHeight);
 
 			// Lay out all status components, in order
-			Enumeration<Component> status = leftOfScrollBar.elements();
+			Enumeration status = leftOfScrollBar.elements(); //<Component> 1.5+
 			while (status.hasMoreElements())
 				{
-				Component comp = status.nextElement();
+				Component comp = (Component)status.nextElement();
 				Dimension dim = comp.getPreferredSize();
 				comp.setBounds(ileft,itop + centerHeight,dim.width,bottomHeight);
 				ileft += dim.width;
@@ -1720,7 +1720,7 @@ public class JEditTextArea extends JComponent
 		private Component center;
 		private Component right;
 		private Component bottom;
-		private Vector<Component> leftOfScrollBar = new Vector<Component>();
+		private Vector leftOfScrollBar = new Vector(); //<Component>
 		}
 
 	static class CaretBlinker implements ActionListener

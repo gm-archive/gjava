@@ -48,8 +48,8 @@ public class CppTokenMarker extends TokenMarker
 		customKeywords = null;
 		}
 
-	@Override
-    @SuppressWarnings("fallthrough")
+	 
+    //SuppressWarnings("fallthrough")
 	protected byte markTokensImpl(byte token, Segment line, int lineIndex)
 		{
 		char[] array = line.array;
@@ -171,14 +171,19 @@ public class CppTokenMarker extends TokenMarker
 			{
 			jKeywords = new KeywordMap(false);
 			// Constants
-			for (String keyword : CPP_KEYWORDS.split(" "))
+                        //for (String keyword =CPP_KEYWORDS.split(" ").iterator(); f.hasNext();)
+			String[] s = CPP_KEYWORDS.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+                        //for (String keyword : CPP_KEYWORDS.split(" ")) 1.5 only
 				{
-				jKeywords.add(keyword,Token.KEYWORD3);
+				jKeywords.add(s[ii],Token.KEYWORD3);
 				}
 			// Variables
-			for (String keyword : CPP_TYPES.split(" "))
+                         s = CPP_KEYWORDS.split(" ");
+                        for (int ii =0; ii<s.length;ii++) //1.4
+			//for (String keyword : CPP_TYPES.split(" ")) 1.5+
 				{
-				jKeywords.add(keyword,Token.KEYWORD2);
+				jKeywords.add(s[ii],Token.KEYWORD2);
 				}
                 }
 		return jKeywords;
