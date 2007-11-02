@@ -40,9 +40,12 @@ public class NewProject extends TabPanel {
 
     public void uncheckAll(){
         java.lang.Object[] btns = ProjectButtons.toArray();
-        for(java.lang.Object btn : btns)
+        java.lang.Object btn;
+        for(int i = 0; i < btns.length; i++){
+            btn = btns[i];
             if(btn!=null && btn instanceof AbstractButton)
                 ((JButton) btn).setSelected(false);
+        }
     }
     
     private void initComponents() {

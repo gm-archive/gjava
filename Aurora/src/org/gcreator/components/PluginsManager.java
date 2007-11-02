@@ -36,11 +36,14 @@ public class PluginsManager extends javax.swing.JDialog {
                 int i = 0;
                 if(strings==null)
                     return 0;
-                for(Object x : strings)
+                Object x;
+                for(int a = 0; a < strings.length; a++){
+                    x = strings[a];
                     if(x==null)
                         return i;
                     else
                         i++;
+                }
                 return i;
             }
             public Object getElementAt(int i) { return strings[i]; }
@@ -192,7 +195,9 @@ public class PluginsManager extends javax.swing.JDialog {
         //Saving
         String writter = "";
         String[] x = (String[]) ((AcessibleModel) jList1.getModel()).getObjects();
-        for(String alfa : x){
+        String alfa;
+        for(int i = 0; i < x.length; i++){
+            alfa = x[i];
             if(alfa!=null){
                 writter += "<plugin>";
                 writter += alfa;
