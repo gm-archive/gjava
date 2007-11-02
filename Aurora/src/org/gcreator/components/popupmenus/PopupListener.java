@@ -26,12 +26,12 @@ public class PopupListener extends MouseAdapter{
         listened = listen;
         this.component = component;
     }
-    @Override
+     
     public void mousePressed(MouseEvent e) {
       maybeShowPopup(e);
     }
 
-    @Override
+     
     public void mouseReleased(MouseEvent e) {
       maybeShowPopup(e);
     }

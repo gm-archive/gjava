@@ -22,17 +22,17 @@ public class StaticGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         return null;
     }

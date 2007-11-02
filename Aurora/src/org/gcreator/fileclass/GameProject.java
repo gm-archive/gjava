@@ -22,22 +22,22 @@ public class GameProject extends Project {
     
     public GameProject(){}
     
-    @Override
+     
     public String getType(){
         return "Game";
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         return null;
     }

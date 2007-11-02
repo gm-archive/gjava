@@ -22,21 +22,21 @@ public class EGMLGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("egml"))
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof EGMLGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new EGMLGroup(this, name);
         add(group);

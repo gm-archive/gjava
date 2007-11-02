@@ -22,21 +22,21 @@ public class SpriteGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("sprite"))
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof SpriteGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new SpriteGroup(this, name);
         add(group);

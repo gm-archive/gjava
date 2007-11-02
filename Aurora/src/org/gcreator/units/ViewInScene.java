@@ -64,7 +64,7 @@ public class ViewInScene {
         return xml;
     }
     
-    @Override
+     
     public String toString(){
         return (visibleonstart ? "<HTML><b>" : "") + name;
     }

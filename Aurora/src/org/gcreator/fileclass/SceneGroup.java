@@ -22,21 +22,21 @@ public class SceneGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("scene"))
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof SceneGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new SceneGroup(this, name);
         add(group);

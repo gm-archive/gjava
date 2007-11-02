@@ -112,7 +112,7 @@ public class ActorEditor extends TabPanel {
         jList2.addMouseListener(new PopupListener(jList2, new ActionPopupMenu(this)));
     }
 
-    @Override
+     
     public boolean wasModified() {
         return changed;
     }
@@ -125,7 +125,7 @@ public class ActorEditor extends TabPanel {
         return true;
     }
     
-    @Override
+     
     public boolean Save() {
        
         actor.visible = jCheckBox1.isSelected();

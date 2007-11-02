@@ -54,7 +54,7 @@ public class JavaTextArea extends JEditTextArea
 	public final ResourceChangeListener rcl = new ResourceChangeListener();
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
-	private Integer lastUpdateTaskID = 0;
+	private int lastUpdateTaskID = 0;
 
 	public JavaTextArea(String text)
 		{
@@ -165,7 +165,7 @@ public class JavaTextArea extends JEditTextArea
 
 		public UpdateTask()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				id = ++lastUpdateTaskID;
 				}
@@ -173,7 +173,7 @@ public class JavaTextArea extends JEditTextArea
 
 		public void run()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				if (id != lastUpdateTaskID) return;
 				}

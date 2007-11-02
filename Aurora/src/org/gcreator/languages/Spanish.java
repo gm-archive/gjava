@@ -181,7 +181,7 @@ public class Spanish extends Dictionary{
         catch(Exception e){} // To ignore
     }
     
-    @Override
+     
     public String getSpecialEntry(String value){
         if(value.equals("GPlus.CompileCur"))
             return "Compile Current Extension";

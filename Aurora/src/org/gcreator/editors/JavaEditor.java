@@ -28,19 +28,19 @@ public class JavaEditor extends TabPanel {
         changed = true;
     }
     
-        @Override
+         
     public boolean canSave(){
         return true;
     }
     
-    @Override
+     
     public boolean Save(){
         file.value = g.getText();
         changed = false;
         return true;
     }
     
-    @Override
+     
     public void dispose(){
         if(!wasModified())
             super.dispose();
@@ -67,7 +67,7 @@ public class JavaEditor extends TabPanel {
         }
     }
     
-    @Override
+     
     public boolean wasModified(){
         return changed;
     }

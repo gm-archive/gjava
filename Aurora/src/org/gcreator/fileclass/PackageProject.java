@@ -22,7 +22,7 @@ public class PackageProject extends Project {
     
     public PackageProject(){}
     
-    @Override
+     
     public String getType(){
         return "Package";
     }

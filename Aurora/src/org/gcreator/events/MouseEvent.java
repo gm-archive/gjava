@@ -22,7 +22,7 @@ public class MouseEvent extends Event{
         this.type = type;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));
     }
-    @Override
+     
     public String toString(){
         switch(type){
             case 6: return "Left Button Clicked";
@@ -43,7 +43,7 @@ public class MouseEvent extends Event{
         }
     }
     
-    @Override
+     
     public ImageIcon getImage(){
         return icon;
     }

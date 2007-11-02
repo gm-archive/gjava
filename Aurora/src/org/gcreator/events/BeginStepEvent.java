@@ -22,12 +22,12 @@ public class BeginStepEvent extends Event{
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/step.png"));
     }
     
-    @Override
+     
     public String toString(){
         return "Begin Step";
     }
     
-    @Override
+     
     public ImageIcon getImage(){
         return icon;
     }

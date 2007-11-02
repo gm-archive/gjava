@@ -26,7 +26,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
         this.e = e;
     }
 
-    @Override
+     
     public int getWidth() {
         if (file.value == null) {
             return 0;
@@ -34,7 +34,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
         return (int) (((ImageIcon) file.value).getIconWidth() * zoom);
     }
 
-    @Override
+     
     public int getHeight() {
         if (file.value == null) {
             return 0;
@@ -42,12 +42,12 @@ public class ImageDisplayer extends javax.swing.JPanel {
         return (int) (((ImageIcon) file.value).getIconHeight() * zoom);
     }
 
-    @Override
+     
     public Dimension getPreferredSize() {
         return new Dimension(getWidth(), getHeight());
     }
 
-    @Override
+     
     public void paint(Graphics g) {
 
         //super.paint(g);
@@ -94,7 +94,7 @@ public class ImageDisplayer extends javax.swing.JPanel {
         }
     }
 
-    /*@Override
+    /* 
     public void paintComponents(Graphics g){
         super.paintComponent(g);
         

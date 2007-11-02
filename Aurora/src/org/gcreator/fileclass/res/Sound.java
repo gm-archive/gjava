@@ -15,17 +15,17 @@ package org.gcreator.fileclass.res;
  */
 public class Sound extends Resource {
 
-    @Override
+     
     public String writeXml() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+     
     public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
+     
     public String exportToHtml(boolean xhtml){
         return "";
     }

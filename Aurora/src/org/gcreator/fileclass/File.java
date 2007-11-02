@@ -52,7 +52,7 @@ public class File extends Object implements Transferable {
         this.type = type;
     }
 
-    @Override
+     
     public String getObjectType() {
         return "File";
     }
@@ -65,13 +65,13 @@ public class File extends Object implements Transferable {
             this.out = out;
         }
 
-        @Override
+         
         public void write(byte[] barray, int a, int b) throws IOException {
             for (int i = a; i < b; i++) {
             }
         }
         
-        @Override
+         
         public void write(byte[] barray) throws IOException {
             for (int i = 0; i < barray.length; i++) {
                 out.write(barray[i]);
@@ -120,7 +120,7 @@ public class File extends Object implements Transferable {
         return null;
     }
 
-    @Override
+     
     public Object clone() {
         File o = new File(name, type);
         if (value instanceof Resource) {
@@ -146,7 +146,7 @@ public class File extends Object implements Transferable {
 		return this;
     }
     
-    @Override
+     
     public String getPath(){
         return root.getPath() + "/" + super.getPath();
     }

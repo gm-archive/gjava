@@ -22,21 +22,21 @@ public class ImageGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("gif")|format.equals("jpg")|format.equals("png"))
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof ImageGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new ImageGroup(this, name);
         add(group);

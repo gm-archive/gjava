@@ -24,12 +24,12 @@ public class EndOfABlock extends ActionPattern{
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/End_Block.png")));
     }
     
-    @Override
+     
     public String getStandardText(JComponent panel){
         return "End block";
     }
     
-    @Override
+     
     public String generateEGML(JComponent panel){
         return "}";
     }

@@ -139,12 +139,12 @@ public class TreePatternParser {
 		}
 		
 		// create node
-		int treeNodeType = (Integer)wizard.getTokenType(tokenName);
-		if ( treeNodeType==Token.INVALID_TOKEN_TYPE ) {
+		Integer treeNodeType =  new Integer(wizard.getTokenType(tokenName));
+		if ( treeNodeType.intValue()==Token.INVALID_TOKEN_TYPE ) {
 			return null;
 		}
 		Object node;
-		node = adaptor.create(treeNodeType, text);
+		node = adaptor.create(treeNodeType.intValue(), text);
 		if ( label!=null && node.getClass()==TreeWizard.TreePattern.class ) {
 			((TreeWizard.TreePattern)node).label = label;
 		}

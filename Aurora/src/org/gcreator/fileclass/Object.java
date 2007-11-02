@@ -34,7 +34,7 @@ public class Object {
     
     public boolean editable = true;
     
-    @Override
+     
     public Object clone(){
         Object o = new Object(name);
         o.node = (ObjectNode) node.clone();

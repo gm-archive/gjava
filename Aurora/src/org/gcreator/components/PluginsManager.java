@@ -44,7 +44,7 @@ public class PluginsManager extends javax.swing.JDialog {
                 return i;
             }
             public Object getElementAt(int i) { return strings[i]; }
-            @Override
+             
             public Object[] getObjects(){
                 return strings;
             }
@@ -187,7 +187,7 @@ public class PluginsManager extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
     
-    @Override
+     
     public void dispose(){
         //Saving
         String writter = "";

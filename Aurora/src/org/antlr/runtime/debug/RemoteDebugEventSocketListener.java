@@ -362,47 +362,47 @@ public class RemoteDebugEventSocketListener implements Runnable {
 			listener.consumeNode(node);
 		}
 		else if ( elements[0].equals("LN") ) {
-			int i = Integer.valueOf(elements[1]);
+			Integer i = Integer.valueOf(elements[1]);
 			ProxyTree node = deserializeNode(elements, 2);
-			listener.LT(i, node);
+			listener.LT(i.intValue(), node);
 		}
 		else if ( elements[0].equals("createNodeFromTokenElements") ) {
-			int ID = Integer.valueOf(elements[1]);
-			int type = Integer.valueOf(elements[2]);
+			int ID = Integer.valueOf(elements[1]).intValue();
+			int type = Integer.valueOf(elements[2]).intValue();
 			String text = elements[3];
 			text = unEscapeNewlines(text);
 			ProxyTree node = new ProxyTree(ID, type, -1, -1, -1, text);
 			listener.createNode(node);
 		}
 		else if ( elements[0].equals("createNode") ) {
-			int ID = Integer.valueOf(elements[1]);
-			int tokenIndex = Integer.valueOf(elements[2]);
+			int ID = Integer.valueOf(elements[1]).intValue();
+			int tokenIndex = Integer.valueOf(elements[2]).intValue();
 			// create dummy node/token filled with ID, tokenIndex
 			ProxyTree node = new ProxyTree(ID);
 			ProxyToken token = new ProxyToken(tokenIndex);
 			listener.createNode(node, token);
 		}
 		else if ( elements[0].equals("nilNode") ) {
-			int ID = Integer.valueOf(elements[1]);
+			int ID = Integer.valueOf(elements[1]).intValue();
 			ProxyTree node = new ProxyTree(ID);
 			listener.nilNode(node);
 		}
 		else if ( elements[0].equals("becomeRoot") ) {
-			int newRootID = Integer.valueOf(elements[1]);
-			int oldRootID = Integer.valueOf(elements[2]);
+			int newRootID = Integer.valueOf(elements[1]).intValue();
+			int oldRootID = Integer.valueOf(elements[2]).intValue();
 			ProxyTree newRoot = new ProxyTree(newRootID);
 			ProxyTree oldRoot = new ProxyTree(oldRootID);
 			listener.becomeRoot(newRoot, oldRoot);
 		}
 		else if ( elements[0].equals("addChild") ) {
-			int rootID = Integer.valueOf(elements[1]);
-			int childID = Integer.valueOf(elements[2]);
+			int rootID = Integer.valueOf(elements[1]).intValue();
+			int childID = Integer.valueOf(elements[2]).intValue();
 			ProxyTree root = new ProxyTree(rootID);
 			ProxyTree child = new ProxyTree(childID);
 			listener.addChild(root, child);
 		}
 		else if ( elements[0].equals("setTokenBoundaries") ) {
-			int ID = Integer.valueOf(elements[1]);
+			int ID = Integer.valueOf(elements[1]).intValue();
 			ProxyTree node = new ProxyTree(ID);
 			listener.setTokenBoundaries(
 				node,
@@ -415,11 +415,11 @@ public class RemoteDebugEventSocketListener implements Runnable {
 	}
 
 	protected ProxyTree deserializeNode(String[] elements, int offset) {
-		int ID = Integer.valueOf(elements[offset+0]);
-		int type = Integer.valueOf(elements[offset+1]);
-		int tokenLine = Integer.valueOf(elements[offset+2]);
-		int charPositionInLine = Integer.valueOf(elements[offset+3]);
-		int tokenIndex = Integer.valueOf(elements[offset+4]);
+		int ID = Integer.valueOf(elements[offset+0]).intValue();
+		int type = Integer.valueOf(elements[offset+1]).intValue();
+		int tokenLine = Integer.valueOf(elements[offset+2]).intValue();
+		int charPositionInLine = Integer.valueOf(elements[offset+3]).intValue();
+		int tokenIndex = Integer.valueOf(elements[offset+4]).intValue();
 		String text = elements[offset+5];
 		text = unEscapeNewlines(text);
 		return new ProxyTree(ID, type, tokenLine, charPositionInLine, tokenIndex, text);

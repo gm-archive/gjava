@@ -54,7 +54,7 @@ public class SpriteEditor extends TabPanel {
         jPanel13.add(res = new ResourceMenu("image","<new image>",true,project));
     }
 
-    @Override
+     
     public boolean Save() {
         sprite.BBBottom=(Integer)jSpinner6.getValue();
         sprite.BBRight=(Integer)jSpinner5.getValue();
@@ -68,7 +68,7 @@ public class SpriteEditor extends TabPanel {
         return true;
     }
 
-    @Override
+     
     public boolean wasModified() {
         return changed;
     }

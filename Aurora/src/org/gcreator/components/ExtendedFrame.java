@@ -26,7 +26,7 @@ public class ExtendedFrame extends JInternalFrame{
         return pane;
     }
     
-    @Override
+     
     public void dispose(){
         if(pane!=null)
             pane.dispose();

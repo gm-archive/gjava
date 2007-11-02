@@ -22,21 +22,21 @@ public class CppGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("cpp")||format.equals("h"))
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof CppGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new CppGroup(this, name);
         add(group);

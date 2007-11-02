@@ -36,7 +36,7 @@ public class CppTextArea extends JEditTextArea
 	public final ResourceChangeListener rcl = new ResourceChangeListener();
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
-	private Integer lastUpdateTaskID = 0;
+	private int lastUpdateTaskID = 0;
 
 	public CppTextArea(String text)
 		{
@@ -147,7 +147,7 @@ public class CppTextArea extends JEditTextArea
 
 		public UpdateTask()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				id = ++lastUpdateTaskID;
 				}
@@ -155,7 +155,7 @@ public class CppTextArea extends JEditTextArea
 
 		public void run()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				if (id != lastUpdateTaskID) return;
 				}

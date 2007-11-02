@@ -21,11 +21,11 @@ public class Actor extends Resource {
     public org.gcreator.fileclass.File sprite = null;
     public String extend,  mask;
     public int index,  depth;
-    public Vector<Event> events;
+    public Vector events; //<Event>
 
     public Actor(String name) {
         this.name = name;
-        events = new Vector<Event>();
+        events = new Vector(); //<Event>
     }
 
     public String writeXml() {
@@ -46,7 +46,7 @@ public class Actor extends Resource {
         return xml;
     }
 
-    @Override
+     
     public void readXml(String xml) {
         //TODO read the XML
         String[] data = xml.split("\n");
@@ -76,7 +76,7 @@ public class Actor extends Resource {
         }
     }
 
-    @Override
+     
     public String exportToHtml(boolean xhtml) {
         String html = "";
         if (xhtml) {
@@ -184,13 +184,13 @@ public class Actor extends Resource {
         return html;
     }
 
-    @SuppressWarnings("unchecked")
+    //SuppressWarnings("unchecked")
     public Resource clone() {
         Actor a = new Actor(name);
         a.depth = depth;
         Object o = events.clone();
-        if (o != null && o instanceof Vector<?>) {
-            a.events = (Vector<Event>) o;
+        if (o != null && o instanceof Vector) { //<?>
+            a.events = (Vector) o; //<Event>
         } else {
             a = null;
         }

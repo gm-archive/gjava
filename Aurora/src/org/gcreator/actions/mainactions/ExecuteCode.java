@@ -29,7 +29,7 @@ public class ExecuteCode extends ActionPattern{
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Execute_Code.png")));
     }
     
-    @Override
+     
     public JComponent createNewPanel(org.gcreator.actions.Action action){
         EGMLTextArea panel = new EGMLTextArea("//Some EGML Code");
         /*panel.addKeyListener(new KeyListener(){
@@ -46,7 +46,7 @@ public class ExecuteCode extends ActionPattern{
         return panel;
     }
     
-    @Override
+     
     public String getStandardText(JComponent panel){
         if(panel!=null)
             return ((EGMLTextArea) panel).getText();
@@ -54,7 +54,7 @@ public class ExecuteCode extends ActionPattern{
             return "Execute EGML Code";
     }
     
-    @Override
+     
     public String generateEGML(JComponent panel){
         return ((EGMLTextArea) panel).getText();
     }

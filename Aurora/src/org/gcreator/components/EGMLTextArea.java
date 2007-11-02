@@ -52,7 +52,7 @@ public class EGMLTextArea extends JEditTextArea
 	public final ResourceChangeListener rcl = null;
 	private final DocumentUndoManager undoManager = new DocumentUndoManager();
 	private static Timer timer;
-	private Integer lastUpdateTaskID = 0;
+	private int lastUpdateTaskID = 0;
 
 	public EGMLTextArea(String text)
 		{
@@ -163,7 +163,7 @@ public class EGMLTextArea extends JEditTextArea
 
 		public UpdateTask()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				id = ++lastUpdateTaskID;
 				}
@@ -171,7 +171,7 @@ public class EGMLTextArea extends JEditTextArea
 
 		public void run()
 			{
-			synchronized (lastUpdateTaskID)
+			synchronized (new Integer(lastUpdateTaskID))
 				{
 				if (id != lastUpdateTaskID) return;
 				}

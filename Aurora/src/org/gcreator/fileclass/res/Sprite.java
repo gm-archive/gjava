@@ -46,7 +46,7 @@ public class Sprite extends Resource {
         images.add(i);
     }
     
-    @Override
+     
     public String writeXml() {
         String xml = "";
       xml += "<?xml version=\"1.0\"?>\n";
@@ -63,17 +63,17 @@ public class Sprite extends Resource {
       return xml;
     }
 
-    @Override
+     
     public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
-    @Override
+     
     public String exportToHtml(boolean xhtml){
         return "";
     }
     
-    @SuppressWarnings("unchecked")
+    //SuppressWarnings("unchecked")
     public Resource clone(){
         Sprite a = new Sprite(name);
         a.BBBottom = BBBottom;

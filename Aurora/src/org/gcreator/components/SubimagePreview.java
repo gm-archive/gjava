@@ -31,7 +31,7 @@ public class SubimagePreview extends JPanel {
         editor = frame;
     }
 
-    @Override
+     
     public void paint(Graphics g) {
         boolean isBlack = true;
         for (int i = 0; i <= getWidth() / 10; i++) {
@@ -52,21 +52,21 @@ public class SubimagePreview extends JPanel {
         }
     }
     
-    @Override
+     
     public int getWidth(){
         if(editor.getCurrentImage()==null)
             return 0;
         return editor.getCurrentImage().getIconWidth();
     }
     
-    @Override
+     
     public int getHeight(){
         if(editor.getCurrentImage()==null)
             return 0;
         return editor.getCurrentImage().getIconHeight();
     }
     
-    @Override
+     
     public Dimension getPreferredSize(){
         return new Dimension(getWidth(), getHeight());
     }

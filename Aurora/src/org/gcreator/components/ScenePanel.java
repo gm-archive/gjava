@@ -72,45 +72,45 @@ public class ScenePanel extends JPanel implements MouseListener{
         ((Scene) root.file.value).actors.add(act);
     }
     
-    @Override
+     
     public int getWidth(){
         double zoom = root.getZoom();
         return (int) (root.getMapWidth() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
-    @Override
+     
     public int getHeight(){
         double zoom = root.getZoom();
         return (int) (root.getMapHeight() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
-    @Override
+     
     public Dimension getSize(){
         return new Dimension(getWidth(), getHeight());
     }
     
-    @Override
+     
     public Dimension getPreferredSize(){
         return getSize();
     }
     
-    @Override
+     
     public Dimension getMinimumSize(){
         return getSize();
     }
     
-    @Override
+     
     public Dimension getMaximumSize(){
         return getSize();
     }
     
-    @Override
+     
     public void update(Graphics g){
         super.update(g);
         super.setSize(getWidth(), getHeight());
     }
     
-    @Override
+     
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         drawField(g);
@@ -121,9 +121,9 @@ public class ScenePanel extends JPanel implements MouseListener{
     
     public void drawActors(Graphics g){
         Scene scn = (Scene) root.file.value;
-        Enumeration<ActorInScene> e = scn.actors.elements();
+        Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
-            ActorInScene a = e.nextElement();
+            ActorInScene a = (ActorInScene)e.nextElement();
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.actor.value;
             ObjectNode c = b.sprite.node;
             if(c!=null){

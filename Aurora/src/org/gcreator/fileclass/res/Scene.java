@@ -117,16 +117,16 @@ public String writeXml()
       return xml;
 }
 
-    @Override
+     
     public void readXml(String xml) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    @Override
+     
     public String exportToHtml(boolean xhtml){
         return "";
     }
     
-    @SuppressWarnings("unchecked")
+    //SuppressWarnings("unchecked")
     public Resource clone(){
         Scene a = new Scene(name);
         Object obj = actors.clone();

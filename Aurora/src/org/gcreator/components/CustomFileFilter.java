@@ -17,7 +17,7 @@ import javax.swing.filechooser.FileFilter;
 
 public class CustomFileFilter extends FileFilter implements FilenameFilter
 	{
-	private ArrayList<String> ext = new ArrayList<String>();
+	private ArrayList ext = new ArrayList(); //<String> 
 	private String desc;
 
 	/**

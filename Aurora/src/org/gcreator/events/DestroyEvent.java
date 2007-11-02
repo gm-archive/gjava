@@ -22,12 +22,12 @@ public class DestroyEvent extends Event{
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/destroy.png"));
     }
     
-    @Override
+     
     public String toString(){
         return "Destroy";
     }
     
-    @Override
+     
     public ImageIcon getImage(){
         return icon;
     }

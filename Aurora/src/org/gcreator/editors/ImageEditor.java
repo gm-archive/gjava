@@ -53,17 +53,17 @@ public class ImageEditor extends TabPanel {
         heightLabel.setText("Height: " + h);
     }
 
-    @Override
+     
     public boolean wasModified() {
         return false;
     }
 
-    @Override
+     
     public boolean canSave() {
         return false; //Not needed
     }
 
-    @Override
+     
     public boolean Save() {
         return true;
     }

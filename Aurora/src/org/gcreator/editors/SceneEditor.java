@@ -105,7 +105,7 @@ public class SceneEditor extends TabPanel {
         colorSelection1.setBackground(((Scene) file.value).background);
     }
 
-    @Override
+     
     public boolean Load() {
         jEditorPane1.setText(((Scene) file.value).caption);
         if(((Scene) file.value).width==0){
@@ -123,7 +123,7 @@ public class SceneEditor extends TabPanel {
         return true;
     }
 
-    @Override
+     
     public boolean Save() {
         System.out.println("saved scene");
         ((Scene) file.value).caption = this.jEditorPane1.getText();
@@ -139,7 +139,7 @@ public class SceneEditor extends TabPanel {
         return true;
     }
 
-    @Override
+     
     public boolean wasModified() {
         return changed;
     }

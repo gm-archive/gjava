@@ -22,21 +22,21 @@ public class SoundGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("wav")||format.equals("mid")) //Just add new formats if needed
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         if(group instanceof SoundGroup)
             return true;
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new SoundGroup(this, name);
         add(group);

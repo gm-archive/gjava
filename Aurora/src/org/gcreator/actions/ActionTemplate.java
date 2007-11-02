@@ -38,7 +38,7 @@ public class ActionTemplate extends JPanel {
         
     }
     
-    @Override
+     
     public String getName()
     {
         return "";

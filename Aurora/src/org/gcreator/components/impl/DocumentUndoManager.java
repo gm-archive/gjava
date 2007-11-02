@@ -1,5 +1,6 @@
 /*
  * Copyright (C) 2007 Quadduc <quadduc@gmail.com>
+ *  Modified by TGMG
  *
  * This file is part of Lateral GM.
  * Lateral GM is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -89,7 +90,7 @@ public class DocumentUndoManager extends UndoManager implements CaretListener
 		return result;
 		}
 
-	@Override
+	 
 	public synchronized boolean addEdit(UndoableEdit anEdit)
 		{
 		UndoableEdit le = lastEdit();
@@ -121,15 +122,15 @@ public class DocumentUndoManager extends UndoManager implements CaretListener
 		{
 		private static final long serialVersionUID = 1L;
 
-		@Override
+		 
 		public boolean canUndo()
 			{
-			if (edits.size() == 0 || edits.lastElement() != null && edits.lastElement().canUndo()
+			if (edits.size() == 0 || edits.lastElement() != null && ((UndoableEdit)edits.lastElement()).canUndo()
 					|| super.canUndo()) return true;
 			return false;
 			}
 
-		@Override
+		 
 		public boolean addEdit(UndoableEdit anEdit)
 			{
 			UndoableEdit le = lastEdit();
@@ -184,7 +185,7 @@ public class DocumentUndoManager extends UndoManager implements CaretListener
 		caretUpdates++;
 		}
 
-    @Override
+     
 	public void undoableEditHappened(UndoableEditEvent e)
 		{
 		caretUpdates = 0;
@@ -196,7 +197,7 @@ public class DocumentUndoManager extends UndoManager implements CaretListener
 		private static final long serialVersionUID = 1L;
 		protected boolean significant = false;
 
-		@Override
+		 
 		public boolean isSignificant()
 			{
 			return significant;

@@ -22,12 +22,12 @@ public class DrawEvent extends Event{
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/draw.png"));
     }
     
-    @Override
+     
     public String toString(){
         return "Draw";
     }
     
-    @Override
+     
     public ImageIcon getImage(){
         return icon;
     }

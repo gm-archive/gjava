@@ -22,19 +22,19 @@ public class CppRefGroup extends Group{
         super(root, name);
     }
     
-    @Override
+     
     public boolean allowsFileType(String format){
         if(format.equals("a")) //Static library
             return true;
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         return false;
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new JavaGroup(this, name);
         add(group);

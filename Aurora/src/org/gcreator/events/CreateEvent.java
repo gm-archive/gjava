@@ -22,12 +22,12 @@ public class CreateEvent extends Event{
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/create.png"));
     }
     
-    @Override
+     
     public String toString(){
         return "Create";
     }
     
-    @Override
+     
     public ImageIcon getImage(){
         return icon;
     }

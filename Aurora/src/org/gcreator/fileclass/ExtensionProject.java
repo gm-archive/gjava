@@ -23,17 +23,17 @@ public class ExtensionProject extends Project {
     
     public ExtensionProject(){}
     
-    @Override
+     
     public boolean allowsFileType(String format){
         return false;
     }
     
-    @Override
+     
     public boolean allowsGroup(Group group){
         return false;
     }
     
-    @Override
+     
     public String getType(){
         return "Extension";
     }
@@ -42,7 +42,7 @@ public class ExtensionProject extends Project {
         return "ExtensionProject";
     }
     
-    @Override
+     
     public Group newGroup(String name){
         Group group = new Group(this, name);
         add(group);

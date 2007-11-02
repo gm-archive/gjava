@@ -27,7 +27,7 @@ public class Comment extends ActionPattern{
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/comment.png")));
     }
     
-    @Override
+     
     public JComponent createNewPanel(org.gcreator.actions.Action action){
         PlainTextPanel panel = new PlainTextPanel();
         /*panel.addKeyListener(new KeyListener(){
@@ -44,7 +44,7 @@ public class Comment extends ActionPattern{
         return panel;
     }
     
-    @Override
+     
     public String getStandardText(JComponent panel){
         if(panel!=null)
             return ((PlainTextPanel) panel).text.getText();
@@ -52,7 +52,7 @@ public class Comment extends ActionPattern{
             return "Comment";
     }
     
-    @Override
+     
     public String generateEGML(JComponent panel){
         return ""; //It could generate a comment, but why should it?
     }

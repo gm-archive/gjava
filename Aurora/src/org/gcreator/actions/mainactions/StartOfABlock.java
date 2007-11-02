@@ -24,12 +24,12 @@ public class StartOfABlock extends ActionPattern{
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Start_Block.png")));
     }
     
-    @Override
+     
     public String getStandardText(JComponent panel){
         return "Begin block";
     }
     
-    @Override
+     
     public String generateEGML(JComponent panel){
         return "{";
     }
