@@ -36,7 +36,7 @@ public static Container canvas;
 
 public static Scene scenes[];// = new Scene[0];
 
-    @Override
+     
     public void init() {
         super.init();
         Runningas = "Applet";

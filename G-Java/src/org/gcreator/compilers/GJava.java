@@ -44,7 +44,7 @@ public class GJava extends PlatformCore {
 
     }
 
-    @Override
+     
     public void parseImage(ImageIcon i,org.gcreator.fileclass.File f) {
         try {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -64,7 +64,7 @@ public class GJava extends PlatformCore {
 
     
     
-    @Override
+     
     public void parseSprite(Sprite s) {
         super.parseSprite(s);
         loadSprites+=s.name+",";
@@ -77,7 +77,7 @@ public class GJava extends PlatformCore {
         createSprites+="\"\"});";
     }
 
-    @Override
+     
     public void parseActor(Actor a) {
         try {
     FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
@@ -92,12 +92,12 @@ public class GJava extends PlatformCore {
         
     }
 
-    @Override
+     
     public void parseClass() {
 
     }
 
-    @Override
+     
     public void parseScene(Scene s) throws IOException {
         loadscene += "    scenes[" + scenes + "] = new " + s.name + "();";
         scenes++;
@@ -139,7 +139,7 @@ public class GJava extends PlatformCore {
         }
     }
 
-    @Override
+     
     public void onSplashDispose() {
         init();
     }
@@ -151,7 +151,7 @@ public class GJava extends PlatformCore {
 
         run.addActionListener(new ActionListener() {
 
-                    @Override
+                     
             public void actionPerformed(ActionEvent evt) {
                         run(gcreator.window.getMainProject());
                     }
