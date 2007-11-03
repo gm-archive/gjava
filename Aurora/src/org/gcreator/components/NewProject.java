@@ -84,13 +84,13 @@ public class NewProject extends TabPanel {
                         .addContainerGap()
                         .add(
                             layout.createParallelGroup(GroupLayout.TRAILING)
-//                            .add(
-//                                ptypes,
-//                                GroupLayout.LEADING,
-//                                GroupLayout.DEFAULT_SIZE,
-//                                GroupLayout.DEFAULT_SIZE,
-//                                Short.MAX_VALUE)
-//                                
+                            .add(
+                                ptypes,
+                                //GroupLayout.LEADING,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
+                                
                             .add(
                                 jLabel1
                                 //GroupLayout.LEADING
