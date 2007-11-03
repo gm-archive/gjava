@@ -33,6 +33,7 @@ import org.gcreator.plugins.*;
 import java.awt.datatransfer.Transferable;
 
 import org.gcreator.help.AboutPanel;
+import org.gcreator.help.HelpPanel;
 import org.gcreator.units.*;
 
 
@@ -813,7 +814,7 @@ public class Aurwindow extends JFrame {
             addWindow(about, 27);
         }
         if (menu == 4 && item == 1) {
-            HelpTab help = new HelpTab();
+            HelpPanel help = new HelpPanel();
             addWindow(help, 27);
         }
         if (menu == 5 && item == 0) {
