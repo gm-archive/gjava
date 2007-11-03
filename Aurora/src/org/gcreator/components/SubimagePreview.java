@@ -50,6 +50,13 @@ public class SubimagePreview extends JPanel {
         if (editor.getCurrentImage() != null) {
             g.drawImage(editor.getCurrentImage().getImage(), 0, 0, editor.getCurrentImage().getImageObserver());
         }
+        g.setColor(Color.BLACK);
+        g.drawLine(editor.sprite.originX-10, editor.sprite.originY, editor.sprite.originX+10, editor.sprite.originY);
+        g.drawLine(editor.sprite.originX, editor.sprite.originY-10, editor.sprite.originX, editor.sprite.originY+10);
+        g.drawRect(editor.sprite.BBleft-1, editor.sprite.BBTop-1, editor.sprite.width-editor.sprite.BBRight-editor.sprite.BBleft, editor.sprite.height-editor.sprite.BBTop-editor.sprite.BBBottom);
+        g.drawRect(editor.sprite.BBleft+1, editor.sprite.BBTop+1, editor.sprite.width-editor.sprite.BBRight-editor.sprite.BBleft, editor.sprite.height-editor.sprite.BBTop-editor.sprite.BBBottom);
+        g.setColor(Color.WHITE);
+        g.drawRect(editor.sprite.BBleft, editor.sprite.BBTop, editor.sprite.width-editor.sprite.BBRight-editor.sprite.BBleft, editor.sprite.height-editor.sprite.BBTop-editor.sprite.BBBottom);
     }
     
      

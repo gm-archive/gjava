@@ -21,8 +21,9 @@ import javax.swing.*;
 public class SpriteEditor extends TabPanel {
     
     public org.gcreator.fileclass.File file = null;
-    Sprite sprite;
+    public Sprite sprite;
     boolean changed;
+    private SubimagePreview prev;
     
     ResourceMenu res;
     
@@ -48,7 +49,7 @@ public class SpriteEditor extends TabPanel {
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
-        jScrollPane1.setViewportView(new SubimagePreview(this));
+        jScrollPane1.setViewportView(prev = new SubimagePreview(this));
         //setup resource menu
         jPanel13.setLayout(new FlowLayout());
         jPanel13.add(res = new ResourceMenu("image","<new image>",true,project));
@@ -251,7 +252,7 @@ public class SpriteEditor extends TabPanel {
                     .add(jLabel3))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel4)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 143, Short.MAX_VALUE)
                 .add(jLabel5)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
@@ -289,9 +290,38 @@ public class SpriteEditor extends TabPanel {
 
         jLabel11.setText("Bottom:");
 
+        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner3StateChanged(evt);
+            }
+        });
+
+        jSpinner4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner4StateChanged(evt);
+            }
+        });
+
+        jSpinner5.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner5StateChanged(evt);
+            }
+        });
+
+        jSpinner6.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner6StateChanged(evt);
+            }
+        });
+
         jButton8.setText("Automatic");
 
         jButton9.setText("Full Image");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -308,16 +338,13 @@ public class SpriteEditor extends TabPanel {
                             .add(jLabel10))
                         .add(31, 31, 31)
                         .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jSpinner6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .add(jSpinner4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .add(jSpinner3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
-                            .add(jSpinner5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE))
-                        .addContainerGap())
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jButton8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .add(jButton9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
-                        .addContainerGap())))
+                            .add(jSpinner6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .add(jSpinner4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .add(jSpinner3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                            .add(jSpinner5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)))
+                    .add(jButton8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jButton9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -372,7 +399,7 @@ public class SpriteEditor extends TabPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 107, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 104, Short.MAX_VALUE)
                 .add(jCheckBox1)
                 .addContainerGap())
         );
@@ -386,10 +413,20 @@ public class SpriteEditor extends TabPanel {
         jLabel7.setText("Y:");
 
         jButton6.setText("Centre");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jSpinner1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSpinner1MouseClicked(evt);
+            }
+        });
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
             }
         });
         jSpinner1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -401,6 +438,11 @@ public class SpriteEditor extends TabPanel {
         jSpinner2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jSpinner2MouseClicked(evt);
+            }
+        });
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner2StateChanged(evt);
             }
         });
 
@@ -419,7 +461,7 @@ public class SpriteEditor extends TabPanel {
                         .add(12, 12, 12)
                         .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)))
+                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -448,7 +490,7 @@ public class SpriteEditor extends TabPanel {
             .add(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(263, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Other", jPanel6);
@@ -557,6 +599,48 @@ public class SpriteEditor extends TabPanel {
         jLabel4.setText("Subimages: " + sprite.countImages());
         setViewedId(id);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        sprite.originX = (Integer) jSpinner1.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        sprite.originY = (Integer) jSpinner2.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner2StateChanged
+
+    private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
+        sprite.BBTop = (Integer) jSpinner4.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner4StateChanged
+
+    private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
+        sprite.BBBottom = (Integer) jSpinner6.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner6StateChanged
+
+    private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
+        sprite.BBRight = (Integer) jSpinner5.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner5StateChanged
+
+    private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+        sprite.BBleft = (Integer) jSpinner3.getValue();
+        jScrollPane1.updateUI();
+    }//GEN-LAST:event_jSpinner3StateChanged
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        jSpinner1.setValue(sprite.width / 2);
+        jSpinner2.setValue(sprite.height / 2);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        jSpinner3.setValue(0);
+        jSpinner4.setValue(0);
+        jSpinner5.setValue(0);
+        jSpinner6.setValue(0);
+    }//GEN-LAST:event_jButton9ActionPerformed
     
     public int getViewedId(){
         try{
