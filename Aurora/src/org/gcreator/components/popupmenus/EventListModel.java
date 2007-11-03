@@ -33,8 +33,20 @@ public class EventListModel extends AbstractListModel{
         return val.events.size();
     }
     public void add(Event event){
+        if (!contains(event))
         val.events.add(event);
     }
+    public boolean contains(Event e)
+    {
+        for (Enumeration en = getEvents().elements() ; en.hasMoreElements() ;)
+        {
+            Event ev = (Event)en.nextElement();
+            if (ev.toString().equals(e.toString()))
+                return true;
+        }
+        return false;
+    }
+    
     public void remove(Event event){
         val.events.remove(event);
     }

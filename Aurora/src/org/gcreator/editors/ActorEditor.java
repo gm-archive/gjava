@@ -552,20 +552,21 @@ public class ActorEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void event(int type){
+        
         if(type==EventSelectListener.CREATE){
             elist.add(new CreateEvent());
         }
-        if(type==EventSelectListener.DESTROY)
+        else if(type==EventSelectListener.DESTROY)
             elist.add(new DestroyEvent());
-        if(type==EventSelectListener.DRAW)
+        else if(type==EventSelectListener.DRAW)
             elist.add(new DrawEvent());
-        if(type==EventSelectListener.BEGINSTEP)
+        else if(type==EventSelectListener.BEGINSTEP)
             elist.add(new BeginStepEvent());
-        if(type==EventSelectListener.STEP)
+        else if(type==EventSelectListener.STEP)
             elist.add(new StepEvent());
-        if(type==EventSelectListener.ENDSTEP)
+        else if(type==EventSelectListener.ENDSTEP)
             elist.add(new EndStepEvent());
-        if(type>=EventSelectListener.MOUSELEFTCLICKED&&type<=EventSelectListener.MOUSEOUT)
+        else if(type>=EventSelectListener.MOUSELEFTCLICKED&&type<=EventSelectListener.MOUSEOUT)
             elist.add(new org.gcreator.events.MouseEvent(type));
         jScrollPane1.updateUI();
         jList1.updateUI();
