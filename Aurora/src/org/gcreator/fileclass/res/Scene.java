@@ -22,10 +22,10 @@ public String caption = "";
 public String code = "//Do nothing";
  //name is already on the list
 public int width=640,height=480,speed=60,snapX=16,snapY=16;
-public boolean persistant,grid,isometric,drawbackcolor;
+public boolean persistant,grid = true,isometric,drawbackcolor;
 public ViewsModel views;
 public Vector<ActorInScene> actors;
-public Color background;
+public Color background = Color.lightGray;
 
 public Scene(String name)
 {
@@ -43,10 +43,16 @@ public String writeXml()
         <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
         <code>//Do nothing</code>
         <dimensions>width, height</dimensions>
+        <bgcolor>r, g, b</bgcolor>
+        <fps>FPS</fps>
         <preferences>
             <snap>snapX, snapY</snap>
             <grid>Visible Isometric</grid>
         </preferences>
+        <views>
+        </views>
+        <content>
+        </content>
      </scene>
      
      */
@@ -68,7 +74,7 @@ public String writeXml()
       
       xml += "\t<code>";
       
-      //The caption should be allowed to have 
+      //The code should be allowed to have 
       xml += code
               .replaceAll("&", "&amp;")
               .replaceAll("<", "&lt;")
@@ -84,6 +90,10 @@ public String writeXml()
       xml += ", ";
       xml += height;
       xml += "</dimensions>\n";
+      
+      xml += "\t<bgcolor>";
+      xml += background.getRed() + ", " + background.getGreen() + ", " + background.getBlue();
+      xml += "</bgcolor>\n";
       
       xml += "\t<fps>";
       xml += speed;
