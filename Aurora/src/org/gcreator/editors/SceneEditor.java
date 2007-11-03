@@ -103,7 +103,7 @@ public class SceneEditor extends TabPanel {
         });
         jToggleButton1.setSelected(((Scene) file.value).grid);
         colorSelection1.setBackground(((Scene) file.value).background);
-        jTabbedPane1.remove(jPanel7);
+        jSpinner12.setValue(((Scene) file.value).speed);
     }
 
      
@@ -130,7 +130,7 @@ public class SceneEditor extends TabPanel {
         ((Scene) file.value).caption = this.jEditorPane1.getText();
         ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
         ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
-        ((Scene) file.value).speed = Integer.parseInt(jTextField4.getText());
+        ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
         ((Scene) file.value).persistant = this.jCheckBox3.isSelected();
         ((Scene) file.value).snapX = (Integer)this.jSpinner2.getValue();
         ((Scene) file.value).snapY = (Integer)this.jSpinner3.getValue();
@@ -252,9 +252,9 @@ public class SceneEditor extends TabPanel {
         jLabel8 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
         jCheckBox3 = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
+        jSpinner12 = new javax.swing.JSpinner();
         jPanel5 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -522,13 +522,18 @@ public class SceneEditor extends TabPanel {
 
         jLabel9.setText("Speed");
 
-        jTextField4.setText("60");
-
         jCheckBox3.setText("Persistent");
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jButton1.setText("Creation code");
+
+        jSpinner12.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(60), Integer.valueOf(1), null, Integer.valueOf(1)));
+        jSpinner12.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner12StateChanged(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -552,9 +557,9 @@ public class SceneEditor extends TabPanel {
                             .add(jLabel9))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jTextField4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                             .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))))
+                            .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
+                            .add(jSpinner12, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -579,7 +584,7 @@ public class SceneEditor extends TabPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel9)
-                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jSpinner12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -997,7 +1002,7 @@ public class SceneEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .add(jPanel8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jSplitPane1))
+                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1107,6 +1112,10 @@ public class SceneEditor extends TabPanel {
         updateScroll();
     }//GEN-LAST:event_colorSelection1MouseClicked
 
+    private void jSpinner12StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner12StateChanged
+       ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
+    }//GEN-LAST:event_jSpinner12StateChanged
+
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
     public static final int ERASE = 2;
@@ -1187,6 +1196,7 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner10;
     private javax.swing.JSpinner jSpinner11;
+    private javax.swing.JSpinner jSpinner12;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
@@ -1200,7 +1210,6 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField jTextField2;
     public javax.swing.JTextField jTextField3;
-    public javax.swing.JTextField jTextField4;
     public javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;

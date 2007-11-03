@@ -162,12 +162,11 @@ public class NewProject extends TabPanel {
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new EGMLGroup(project, "Classes"));
-                project.add(new Group(project, "Extensions"));
                 org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
                 a.editable = false;
                 a.value = new org.gcreator.fileclass.res.SettingsValues();
             }
-            else if(type == 1){
+            /*else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
                 Aurwindow.setMainProject(project);
             }
@@ -195,7 +194,7 @@ public class NewProject extends TabPanel {
                 ref.add(grp = new CppRefGroup(project, "C++"));
                 grp.editable = false;
                 Aurwindow.setMainProject(project);
-            }
+            }*/
             if(type!=-1){
                 if(project!=null)
                     ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);

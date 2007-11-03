@@ -18,8 +18,8 @@ public class ProjectTypes extends JPanel {
     /** Creates new form ProjectTypes */
     
     public GameProjects gmpro;
-    public PackageProjects pkgpro;
-    public ExtensionProjects extpro;
+    //public PackageProjects pkgpro;
+    //public ExtensionProjects extpro;
     public NewProject npro;
     
     public ProjectTypes(NewProject npro) {
@@ -27,22 +27,24 @@ public class ProjectTypes extends JPanel {
         this.npro = npro;
         gmpro = new GameProjects(this);
         gmpro.tnum = 1;
-        pkgpro = new PackageProjects(this);
-        pkgpro.tnum = 2;
-        extpro = new ExtensionProjects(this);
-        extpro.tnum = 3;
+        //pkgpro = new PackageProjects(this);
+        //pkgpro.tnum = 2;
+        //extpro = new ExtensionProjects(this);
+        //extpro.tnum = 3;
         jScrollPane1.setViewportView(gmpro);
-        jScrollPane2.setViewportView(pkgpro);
-        jScrollPane3.setViewportView(extpro);
+        //jScrollPane2.setViewportView(pkgpro);
+        //jScrollPane3.setViewportView(extpro);
+        jTabbedPane1.remove(jScrollPane2);
+        jTabbedPane1.remove(jScrollPane3);
     }
     
     public int getProjectType(){
         if(gmpro.getSelectedProject()!=-1)
             return gmpro.getSelectedProject();
-        if(pkgpro.getSelectedProject()!=-1)
+        /*if(pkgpro.getSelectedProject()!=-1)
             return pkgpro.getSelectedProject();
         if(extpro.getSelectedProject()!=-1)
-            return extpro.getSelectedProject();
+            return extpro.getSelectedProject();*/
         return -1;
     }
     
@@ -63,7 +65,6 @@ public class ProjectTypes extends JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane3 = new javax.swing.JScrollPane();
 
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(56), jScrollPane1);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(57), jScrollPane2);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(62), jScrollPane3);
