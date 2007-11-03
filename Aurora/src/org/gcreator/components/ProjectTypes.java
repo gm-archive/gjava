@@ -34,7 +34,7 @@ public class ProjectTypes extends JPanel {
         jScrollPane1.setViewportView(gmpro);
         //jScrollPane2.setViewportView(pkgpro);
         //jScrollPane3.setViewportView(extpro);
-        jTabbedPane1.remove(jScrollPane2);
+        //jTabbedPane1.remove(jScrollPane2);
         jTabbedPane1.remove(jScrollPane3);
     }
     
