@@ -449,7 +449,10 @@ public class RemoteDebugEventSocketListener implements Runnable {
 	/** Create a thread to listen to the remote running recognizer */
 	public void start() {
 		Thread t = new Thread(this);
+                try{
 		t.start();
+                }
+                catch(java.security.AccessControlException e){}
 	}
 
 	public void run() {

@@ -40,7 +40,12 @@ public class gcreator {
     }
     
     public static void main(String[] args){
+        __main(args, false);
+    }
+    
+    public static void __main(String[] args, boolean applet){
         System.out.println("Running Java version " + java_version);
+        if(!applet){
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		int location = folder.lastIndexOf("/");
 		folder = folder.substring(0,location+1);
@@ -48,17 +53,20 @@ public class gcreator {
 		folder = folder.replaceAll("%20"," ");
 		folder = folder.substring(1);
 		folder = folder.replace("/","\\");
-        plugins = Plugger.getPlugList(PluginsList.loadPluglist());
+                plugins = Plugger.getPlugList(PluginsList.loadPluglist());
+        }
         arguments = args;
-        Plugger.loadPlugins(plugins);
-        Plugger.onSplashStart(plugins);
-        splash = new SplashScreen();
-        start();
-        //Edit the plugin list at pluglist.xml (same directory as settings.xml)
-    }
-    
-    public static void start(){
-        String[] settings = SettingsIO.loadSettings();
+        if(!applet){
+            Plugger.loadPlugins(plugins);
+            Plugger.onSplashStart(plugins);
+        }
+        splash = new SplashScreen(applet);
+        
+        String[] settings = null;
+        
+        if(!applet){
+            settings = SettingsIO.loadSettings();
+        }
 
         if (settings == null) {
             settings = new String[5];
@@ -115,9 +123,5 @@ public class gcreator {
             window.menubar.updateUI();
             splash.dispose();
         }
-        /*if(window!=null){
-            SwingUtilities.updateComponentTreeUI(window.consolepopup);
-            //SwingUtilities.updateComponentTreeUI(window); //NULLPOINTEREXCEPTION try...catch doesn't work.
-        }*/
     }
 }
