@@ -9,18 +9,13 @@
 
 package org.gcreator.components;
 
-import org.gcreator.editors.SpriteEditor;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Rectangle;
-import java.awt.Shape;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
+import org.gcreator.editors.*;
+import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 
-public class SubimagePreview extends JPanel {
+public class SubimagePreview extends JPanel implements MouseListener{
 
     private static final long serialVersionUID = 1L;
     private SpriteEditor editor;
@@ -29,8 +24,23 @@ public class SubimagePreview extends JPanel {
     public SubimagePreview(SpriteEditor frame) {
         super();
         editor = frame;
+        addMouseListener(this);
     }
 
+    public void mouseExited(MouseEvent evt){}
+    public void mouseEntered(MouseEvent evt){}
+    public void mouseReleased(MouseEvent evt){
+        editor.jSpinner1.setValue(evt.getX());
+        editor.jSpinner2.setValue(evt.getY());
+    }
+    public void mousePressed(MouseEvent evt){
+        editor.jSpinner1.setValue(evt.getX());
+        editor.jSpinner2.setValue(evt.getY());
+    }
+    public void mouseClicked(MouseEvent evt){
+        editor.jSpinner1.setValue(evt.getX());
+        editor.jSpinner2.setValue(evt.getY());
+    }
      
     public void paint(Graphics g) {
         boolean isBlack = true;
