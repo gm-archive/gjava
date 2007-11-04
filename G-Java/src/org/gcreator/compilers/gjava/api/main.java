@@ -260,7 +260,7 @@ public class main {
         public static void game_load(String savFilename) {
         }
         
-        public double version() {
+    public double version() {
         return 0.33;
     }
 

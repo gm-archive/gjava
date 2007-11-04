@@ -10,11 +10,6 @@ import java.awt.datatransfer.*;
 import java.lang.reflect.Method;
 import javax.swing.*;
 import java.util.*;
-import org.gcreator.compilers.gjava.components.Actor;
-import org.gcreator.compilers.gjava.components.Timeline;
-import org.gcreator.compilers.gjava.components.font;
-import org.gcreator.compilers.gjava.components.sound;
-import org.gcreator.compilers.gjava.components.Sprite;
 import org.gcreator.compilers.gjava.components.*;
 import org.gcreator.compilers.gjava.core.*;
 
@@ -64,8 +59,10 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static boolean sprite_exists(Sprite ind) {
-            return true;
+        public static boolean sprite_exists(sprite ind) {
+            if(ind!=null)
+                return true;
+            return false;
         }
 
 
@@ -74,7 +71,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static String sprite_get_name(Sprite ind) {
+        public static String sprite_get_name(sprite ind) {
             return "";
         }
 
@@ -83,7 +80,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static int sprite_get_number(Sprite ind) {
+        public static int sprite_get_number(sprite ind) {
             return ind.subimages;
         }
 
@@ -92,7 +89,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_width(Sprite ind) {
+        public static double sprite_get_width(sprite ind) {
             return ind.sprite_width;
         }
 
@@ -101,7 +98,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_height(Sprite ind) {
+        public static double sprite_get_height(sprite ind) {
             return ind.sprite_height;
         }
 
@@ -110,7 +107,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static boolean sprite_get_transparent(Sprite ind) {
+        public static boolean sprite_get_transparent(sprite ind) {
             return ind.Transparent == 1;
         }
 
@@ -120,7 +117,7 @@ public class GScript {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_smooth(Sprite ind) {
+        public static boolean sprite_get_smooth(sprite ind) {
             return false;
         }
 
@@ -129,7 +126,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_xoffset(Sprite ind) {
+        public static double sprite_get_xoffset(sprite ind) {
             return ind.sprite_xoffset;
         }
 
@@ -138,7 +135,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_yoffset(Sprite ind) {
+        public static double sprite_get_yoffset(sprite ind) {
             return ind.sprite_yoffset;
         }
 
@@ -147,7 +144,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_left(Sprite ind) {
+        public static double sprite_get_bbox_left(sprite ind) {
             return ind.BBLeft;
         }
 
@@ -156,7 +153,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_right(Sprite ind) {
+        public static double sprite_get_bbox_right(sprite ind) {
             return ind.BBRight;
         }
 
@@ -165,7 +162,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_top(Sprite ind) {
+        public static double sprite_get_bbox_top(sprite ind) {
             return ind.BBTop;
         }
 
@@ -174,7 +171,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static double sprite_get_bbox_bottom(Sprite ind) {
+        public static double sprite_get_bbox_bottom(sprite ind) {
             return ind.BBBottom;
         }
 
@@ -184,7 +181,7 @@ public class GScript {
          * @param ind
          * @return 2
          */
-        public static int sprite_get_bbox_mode(Sprite ind) {
+        public static int sprite_get_bbox_mode(sprite ind) {
             return 2;
         }
 
@@ -193,7 +190,7 @@ public class GScript {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_precise(Sprite ind) {
+        public static boolean sprite_get_precise(sprite ind) {
             return false;
         }
 
@@ -202,7 +199,7 @@ public class GScript {
          * @param ind
          * @return false
          */
-        public static boolean sprite_get_preload(Sprite ind) {
+        public static boolean sprite_get_preload(sprite ind) {
             return false;
         }
     }
@@ -376,7 +373,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static Sprite actor_get_sprite(Actor ind) {
+        public static sprite actor_get_sprite(Actor ind) {
             return ind.sprite;
         }
 

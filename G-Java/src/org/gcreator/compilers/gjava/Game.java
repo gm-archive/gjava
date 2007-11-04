@@ -8,7 +8,7 @@ package org.gcreator.compilers.gjava;
 import org.gcreator.compilers.gjava.components.Actor;
 import org.gcreator.compilers.gjava.components.Scene;
 import org.gcreator.compilers.gjava.components.Scene;
-import org.gcreator.compilers.gjava.components.Sprite;
+import org.gcreator.compilers.gjava.components.sprite;
 import org.gcreator.compilers.gjava.core.basicgame;
 
 /**
