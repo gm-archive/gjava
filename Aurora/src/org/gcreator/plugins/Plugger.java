@@ -25,7 +25,7 @@ public class Plugger {
             File x = new File("./plugins/");
             try {
             if(!x.exists())
-                x.createNewFile();
+                x.mkdir();
                 URL url = x.toURI().toURL();
                 loader = new URLClassLoader(new URL[]{url});
             } catch(Exception e){ }
