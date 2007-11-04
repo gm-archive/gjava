@@ -1,6 +1,7 @@
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-04 23:26:29
+
 package org.gcreator.plugins.platform;
 
-// $ANTLR 3.0.1 C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g 2007-09-09 02:42:12
 
 import org.antlr.runtime.*;
 import java.util.Stack;
@@ -98,14 +99,14 @@ public class gscriptLexer extends Lexer {
     public gscriptLexer(CharStream input) {
         super(input);
     }
-    public String getGrammarFileName() { return "C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g"; }
+    public String getGrammarFileName() { return "C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g"; }
 
     // $ANTLR start PLUS
     public final void mPLUS() throws RecognitionException {
         try {
             int _type = PLUS;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:3:6: ( '+' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:3:8: '+'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:6:6: ( '+' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:6:8: '+'
             {
             match('+'); 
 
@@ -122,8 +123,8 @@ public class gscriptLexer extends Lexer {
     public final void mMINUS() throws RecognitionException {
         try {
             int _type = MINUS;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:4:7: ( '-' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:4:9: '-'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:7:7: ( '-' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:7:9: '-'
             {
             match('-'); 
 
@@ -140,8 +141,8 @@ public class gscriptLexer extends Lexer {
     public final void mMULT() throws RecognitionException {
         try {
             int _type = MULT;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:5:6: ( '*' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:5:8: '*'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:8:6: ( '*' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:8:8: '*'
             {
             match('*'); 
 
@@ -158,8 +159,8 @@ public class gscriptLexer extends Lexer {
     public final void mDIV() throws RecognitionException {
         try {
             int _type = DIV;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:6:5: ( '/' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:6:7: '/'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:9:5: ( '/' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:9:7: '/'
             {
             match('/'); 
 
@@ -176,8 +177,8 @@ public class gscriptLexer extends Lexer {
     public final void mLPAREN() throws RecognitionException {
         try {
             int _type = LPAREN;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:7:8: ( '(' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:7:10: '('
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:10:8: ( '(' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:10:10: '('
             {
             match('('); 
 
@@ -194,8 +195,8 @@ public class gscriptLexer extends Lexer {
     public final void mRPAREN() throws RecognitionException {
         try {
             int _type = RPAREN;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:8:8: ( ')' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:8:10: ')'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:11:8: ( ')' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:11:10: ')'
             {
             match(')'); 
 
@@ -212,8 +213,8 @@ public class gscriptLexer extends Lexer {
     public final void mLBRAC() throws RecognitionException {
         try {
             int _type = LBRAC;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:9:7: ( '{' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:9:9: '{'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:12:7: ( '{' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:12:9: '{'
             {
             match('{'); 
 
@@ -230,8 +231,8 @@ public class gscriptLexer extends Lexer {
     public final void mRBRAC() throws RecognitionException {
         try {
             int _type = RBRAC;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:10:7: ( '}' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:10:9: '}'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:13:7: ( '}' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:13:9: '}'
             {
             match('}'); 
 
@@ -248,8 +249,8 @@ public class gscriptLexer extends Lexer {
     public final void mEQUALS() throws RecognitionException {
         try {
             int _type = EQUALS;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:11:8: ( '=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:11:10: '='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:14:8: ( '=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:14:10: '='
             {
             match('='); 
 
@@ -266,8 +267,8 @@ public class gscriptLexer extends Lexer {
     public final void mEQUALS2() throws RecognitionException {
         try {
             int _type = EQUALS2;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:12:9: ( '==' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:12:11: '=='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:15:9: ( '==' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:15:11: '=='
             {
             match("=="); 
 
@@ -285,8 +286,8 @@ public class gscriptLexer extends Lexer {
     public final void mNOT_EQUALS() throws RecognitionException {
         try {
             int _type = NOT_EQUALS;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:13:12: ( '!=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:13:14: '!='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:16:12: ( '!=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:16:14: '!='
             {
             match("!="); 
 
@@ -304,8 +305,8 @@ public class gscriptLexer extends Lexer {
     public final void mGT() throws RecognitionException {
         try {
             int _type = GT;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:14:4: ( '>' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:14:6: '>'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:17:4: ( '>' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:17:6: '>'
             {
             match('>'); 
 
@@ -322,8 +323,8 @@ public class gscriptLexer extends Lexer {
     public final void mGTE() throws RecognitionException {
         try {
             int _type = GTE;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:15:5: ( '>=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:15:7: '>='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:18:5: ( '>=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:18:7: '>='
             {
             match(">="); 
 
@@ -341,8 +342,8 @@ public class gscriptLexer extends Lexer {
     public final void mLT() throws RecognitionException {
         try {
             int _type = LT;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:16:4: ( '<' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:16:6: '<'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:19:4: ( '<' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:19:6: '<'
             {
             match('<'); 
 
@@ -359,8 +360,8 @@ public class gscriptLexer extends Lexer {
     public final void mLTE() throws RecognitionException {
         try {
             int _type = LTE;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:17:5: ( '<=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:17:7: '<='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:20:5: ( '<=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:20:7: '<='
             {
             match("<="); 
 
@@ -378,8 +379,8 @@ public class gscriptLexer extends Lexer {
     public final void mCOMMENT1() throws RecognitionException {
         try {
             int _type = COMMENT1;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:18:10: ( '//' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:18:12: '//'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:21:10: ( '//' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:21:12: '//'
             {
             match("//"); 
 
@@ -397,8 +398,8 @@ public class gscriptLexer extends Lexer {
     public final void mT36() throws RecognitionException {
         try {
             int _type = T36;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:19:5: ( ';' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:19:7: ';'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:22:5: ( ';' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:22:7: ';'
             {
             match(';'); 
 
@@ -415,8 +416,8 @@ public class gscriptLexer extends Lexer {
     public final void mT37() throws RecognitionException {
         try {
             int _type = T37;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:20:5: ( 'public' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:20:7: 'public'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:23:5: ( 'public' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:23:7: 'public'
             {
             match("public"); 
 
@@ -434,8 +435,8 @@ public class gscriptLexer extends Lexer {
     public final void mT38() throws RecognitionException {
         try {
             int _type = T38;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:21:5: ( 'private' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:21:7: 'private'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:24:5: ( 'private' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:24:7: 'private'
             {
             match("private"); 
 
@@ -453,8 +454,8 @@ public class gscriptLexer extends Lexer {
     public final void mT39() throws RecognitionException {
         try {
             int _type = T39;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:22:5: ( 'static' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:22:7: 'static'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:25:5: ( 'static' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:25:7: 'static'
             {
             match("static"); 
 
@@ -472,8 +473,8 @@ public class gscriptLexer extends Lexer {
     public final void mT40() throws RecognitionException {
         try {
             int _type = T40;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:23:5: ( '()' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:23:7: '()'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:26:5: ( '()' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:26:7: '()'
             {
             match("()"); 
 
@@ -491,8 +492,8 @@ public class gscriptLexer extends Lexer {
     public final void mT41() throws RecognitionException {
         try {
             int _type = T41;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:24:5: ( 'class' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:24:7: 'class'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:27:5: ( 'class' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:27:7: 'class'
             {
             match("class"); 
 
@@ -510,8 +511,8 @@ public class gscriptLexer extends Lexer {
     public final void mT42() throws RecognitionException {
         try {
             int _type = T42;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:25:5: ( 'begin' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:25:7: 'begin'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:28:5: ( 'begin' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:28:7: 'begin'
             {
             match("begin"); 
 
@@ -529,8 +530,8 @@ public class gscriptLexer extends Lexer {
     public final void mT43() throws RecognitionException {
         try {
             int _type = T43;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:26:5: ( 'end' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:26:7: 'end'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:29:5: ( 'end' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:29:7: 'end'
             {
             match("end"); 
 
@@ -548,8 +549,8 @@ public class gscriptLexer extends Lexer {
     public final void mT44() throws RecognitionException {
         try {
             int _type = T44;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:27:5: ( ',' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:27:7: ','
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:30:5: ( ',' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:30:7: ','
             {
             match(','); 
 
@@ -566,8 +567,8 @@ public class gscriptLexer extends Lexer {
     public final void mT45() throws RecognitionException {
         try {
             int _type = T45;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:28:5: ( 'return' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:28:7: 'return'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:31:5: ( 'return' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:31:7: 'return'
             {
             match("return"); 
 
@@ -585,8 +586,8 @@ public class gscriptLexer extends Lexer {
     public final void mT46() throws RecognitionException {
         try {
             int _type = T46;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:29:5: ( 'exit' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:29:7: 'exit'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:32:5: ( 'exit' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:32:7: 'exit'
             {
             match("exit"); 
 
@@ -604,8 +605,8 @@ public class gscriptLexer extends Lexer {
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:30:5: ( 'if' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:30:7: 'if'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:33:5: ( 'if' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:33:7: 'if'
             {
             match("if"); 
 
@@ -623,8 +624,8 @@ public class gscriptLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:31:5: ( 'then' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:31:7: 'then'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:34:5: ( 'then' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:34:7: 'then'
             {
             match("then"); 
 
@@ -642,8 +643,8 @@ public class gscriptLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:32:5: ( 'else' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:32:7: 'else'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:35:5: ( 'else' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:35:7: 'else'
             {
             match("else"); 
 
@@ -661,8 +662,8 @@ public class gscriptLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:33:5: ( 'elsif' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:33:7: 'elsif'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:36:5: ( 'elsif' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:36:7: 'elsif'
             {
             match("elsif"); 
 
@@ -680,8 +681,8 @@ public class gscriptLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:34:5: ( 'not' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:34:7: 'not'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:37:5: ( 'not' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:37:7: 'not'
             {
             match("not"); 
 
@@ -699,8 +700,8 @@ public class gscriptLexer extends Lexer {
     public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:35:5: ( '!' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:35:7: '!'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:38:5: ( '!' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:38:7: '!'
             {
             match('!'); 
 
@@ -717,8 +718,8 @@ public class gscriptLexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:36:5: ( '|' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:36:7: '|'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:39:5: ( '|' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:39:7: '|'
             {
             match('|'); 
 
@@ -735,8 +736,8 @@ public class gscriptLexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:37:5: ( '&' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:37:7: '&'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:40:5: ( '&' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:40:7: '&'
             {
             match('&'); 
 
@@ -753,8 +754,8 @@ public class gscriptLexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:38:5: ( '^' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:38:7: '^'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:41:5: ( '^' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:41:7: '^'
             {
             match('^'); 
 
@@ -771,8 +772,8 @@ public class gscriptLexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:39:5: ( '<<' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:39:7: '<<'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:42:5: ( '<<' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:42:7: '<<'
             {
             match("<<"); 
 
@@ -790,8 +791,8 @@ public class gscriptLexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:40:5: ( '>>' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:40:7: '>>'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:43:5: ( '>>' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:43:7: '>>'
             {
             match(">>"); 
 
@@ -809,8 +810,8 @@ public class gscriptLexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:41:5: ( 'div' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:41:7: 'div'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:44:5: ( 'div' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:44:7: 'div'
             {
             match("div"); 
 
@@ -828,8 +829,8 @@ public class gscriptLexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:42:5: ( 'mod' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:42:7: 'mod'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:45:5: ( 'mod' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:45:7: 'mod'
             {
             match("mod"); 
 
@@ -847,8 +848,8 @@ public class gscriptLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:43:5: ( '&&' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:43:7: '&&'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:46:5: ( '&&' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:46:7: '&&'
             {
             match("&&"); 
 
@@ -866,8 +867,8 @@ public class gscriptLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:44:5: ( 'and' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:44:7: 'and'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:5: ( 'and' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:7: 'and'
             {
             match("and"); 
 
@@ -885,8 +886,8 @@ public class gscriptLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:45:5: ( '||' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:45:7: '||'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:5: ( '||' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:7: '||'
             {
             match("||"); 
 
@@ -904,8 +905,8 @@ public class gscriptLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:46:5: ( 'or' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:46:7: 'or'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:5: ( 'or' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:7: 'or'
             {
             match("or"); 
 
@@ -923,8 +924,8 @@ public class gscriptLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:47:5: ( '^^' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:47:7: '^^'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:5: ( '^^' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:7: '^^'
             {
             match("^^"); 
 
@@ -942,8 +943,8 @@ public class gscriptLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:48:5: ( 'xor' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:48:7: 'xor'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:5: ( 'xor' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:7: 'xor'
             {
             match("xor"); 
 
@@ -961,8 +962,8 @@ public class gscriptLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:49:5: ( ':=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:49:7: ':='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:5: ( ':=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:7: ':='
             {
             match(":="); 
 
@@ -980,8 +981,8 @@ public class gscriptLexer extends Lexer {
     public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:50:5: ( 'repeat' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:50:7: 'repeat'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:5: ( 'repeat' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:7: 'repeat'
             {
             match("repeat"); 
 
@@ -999,8 +1000,8 @@ public class gscriptLexer extends Lexer {
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:51:5: ( 'break' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:51:7: 'break'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:5: ( 'break' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:7: 'break'
             {
             match("break"); 
 
@@ -1018,8 +1019,8 @@ public class gscriptLexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:52:5: ( 'continue' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:52:7: 'continue'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:5: ( 'continue' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:7: 'continue'
             {
             match("continue"); 
 
@@ -1037,8 +1038,8 @@ public class gscriptLexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:53:5: ( 'do' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:53:7: 'do'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:5: ( 'do' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:7: 'do'
             {
             match("do"); 
 
@@ -1056,8 +1057,8 @@ public class gscriptLexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:54:5: ( 'until' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:54:7: 'until'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:5: ( 'until' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:7: 'until'
             {
             match("until"); 
 
@@ -1075,8 +1076,8 @@ public class gscriptLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:55:5: ( 'while' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:55:7: 'while'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:5: ( 'while' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:7: 'while'
             {
             match("while"); 
 
@@ -1094,8 +1095,8 @@ public class gscriptLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:56:5: ( 'for' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:56:7: 'for'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:5: ( 'for' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:7: 'for'
             {
             match("for"); 
 
@@ -1113,8 +1114,8 @@ public class gscriptLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:57:5: ( 'switch' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:57:7: 'switch'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:5: ( 'switch' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:7: 'switch'
             {
             match("switch"); 
 
@@ -1132,8 +1133,8 @@ public class gscriptLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:58:5: ( 'case' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:58:7: 'case'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:5: ( 'case' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:7: 'case'
             {
             match("case"); 
 
@@ -1151,8 +1152,8 @@ public class gscriptLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:59:5: ( 'default' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:59:7: 'default'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:5: ( 'default' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:7: 'default'
             {
             match("default"); 
 
@@ -1170,8 +1171,8 @@ public class gscriptLexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:60:5: ( ':' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:60:7: ':'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:5: ( ':' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:7: ':'
             {
             match(':'); 
 
@@ -1188,8 +1189,8 @@ public class gscriptLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:61:5: ( 'with' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:61:7: 'with'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:5: ( 'with' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:7: 'with'
             {
             match("with"); 
 
@@ -1207,8 +1208,8 @@ public class gscriptLexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:62:5: ( '+=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:62:7: '+='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:5: ( '+=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:7: '+='
             {
             match("+="); 
 
@@ -1226,8 +1227,8 @@ public class gscriptLexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:63:5: ( '-=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:63:7: '-='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:5: ( '-=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:7: '-='
             {
             match("-="); 
 
@@ -1245,8 +1246,8 @@ public class gscriptLexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:64:5: ( '*=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:64:7: '*='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:5: ( '*=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:7: '*='
             {
             match("*="); 
 
@@ -1264,8 +1265,8 @@ public class gscriptLexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:65:5: ( '/=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:65:7: '/='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:5: ( '/=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:7: '/='
             {
             match("/="); 
 
@@ -1283,8 +1284,8 @@ public class gscriptLexer extends Lexer {
     public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:66:5: ( '|=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:66:7: '|='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:5: ( '|=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:7: '|='
             {
             match("|="); 
 
@@ -1302,8 +1303,8 @@ public class gscriptLexer extends Lexer {
     public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:67:5: ( '&\\\\' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:67:7: '&\\\\'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:5: ( '&\\\\' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:7: '&\\\\'
             {
             match("&\\"); 
 
@@ -1321,8 +1322,8 @@ public class gscriptLexer extends Lexer {
     public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:68:5: ( '^=' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:68:7: '^='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:5: ( '^=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:7: '^='
             {
             match("^="); 
 
@@ -1340,8 +1341,8 @@ public class gscriptLexer extends Lexer {
     public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:69:5: ( '[' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:69:7: '['
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:5: ( '[' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:7: '['
             {
             match('['); 
 
@@ -1358,8 +1359,8 @@ public class gscriptLexer extends Lexer {
     public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:70:5: ( ']' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:70:7: ']'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:5: ( ']' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:7: ']'
             {
             match(']'); 
 
@@ -1376,11 +1377,11 @@ public class gscriptLexer extends Lexer {
     public final void mNEGINTEGER() throws RecognitionException {
         try {
             int _type = NEGINTEGER;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:177:1: ( ( '-' ) NUMBER )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:177:3: ( '-' ) NUMBER
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:200:1: ( ( '-' ) NUMBER )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:200:3: ( '-' ) NUMBER
             {
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:177:3: ( '-' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:177:4: '-'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:200:3: ( '-' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:200:4: '-'
             {
             match('-'); 
 
@@ -1401,10 +1402,10 @@ public class gscriptLexer extends Lexer {
     public final void mNUMBER() throws RecognitionException {
         try {
             int _type = NUMBER;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:8: ( ( '-' )? ( DIGIT )+ )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:10: ( '-' )? ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:8: ( ( '-' )? ( DIGIT )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:10: ( '-' )? ( DIGIT )+
             {
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:10: ( '-' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:10: ( '-' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -1413,7 +1414,7 @@ public class gscriptLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:11: '-'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:11: '-'
                     {
                     match('-'); 
 
@@ -1422,7 +1423,7 @@ public class gscriptLexer extends Lexer {
 
             }
 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:17: ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:17: ( DIGIT )+
             int cnt2=0;
             loop2:
             do {
@@ -1436,7 +1437,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:180:18: DIGIT
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:203:18: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1466,11 +1467,11 @@ public class gscriptLexer extends Lexer {
     public final void mHEXNUMBER() throws RecognitionException {
         try {
             int _type = HEXNUMBER;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:183:1: ( '$' ( DIGIT | LETTER )* )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:183:3: '$' ( DIGIT | LETTER )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:206:1: ( '$' ( DIGIT | LETTER )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:206:3: '$' ( DIGIT | LETTER )*
             {
             match('$'); 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:183:7: ( DIGIT | LETTER )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:206:7: ( DIGIT | LETTER )*
             loop3:
             do {
                 int alt3=2;
@@ -1483,7 +1484,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -1518,8 +1519,8 @@ public class gscriptLexer extends Lexer {
     public final void mGLOBALVAR() throws RecognitionException {
         try {
             int _type = GLOBALVAR;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:187:1: ( 'global' '.' WORD )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:187:3: 'global' '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:210:1: ( 'global' '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:210:3: 'global' '.' WORD
             {
             match("global"); 
 
@@ -1539,8 +1540,8 @@ public class gscriptLexer extends Lexer {
     public final void mOIVAR() throws RecognitionException {
         try {
             int _type = OIVAR;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:189:7: ( WORD '.' WORD )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:189:9: WORD '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:212:7: ( WORD '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:212:9: WORD '.' WORD
             {
             mWORD(); 
             match('.'); 
@@ -1559,8 +1560,8 @@ public class gscriptLexer extends Lexer {
     public final void mDECIMAL() throws RecognitionException {
         try {
             int _type = DECIMAL;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:191:9: ( NUMBER '.' NUMBER )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:191:11: NUMBER '.' NUMBER
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:9: ( NUMBER '.' NUMBER )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:11: NUMBER '.' NUMBER
             {
             mNUMBER(); 
             match('.'); 
@@ -1579,10 +1580,10 @@ public class gscriptLexer extends Lexer {
     public final void mWHITESPACE() throws RecognitionException {
         try {
             int _type = WHITESPACE;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:193:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:193:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:216:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:216:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:193:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:216:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt4=0;
             loop4:
             do {
@@ -1596,7 +1597,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||(input.LA(1)>='\f' && input.LA(1)<='\r')||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1635,8 +1636,8 @@ public class gscriptLexer extends Lexer {
     // $ANTLR start DIGIT
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:195:16: ( '0' .. '9' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:195:18: '0' .. '9'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:218:16: ( '0' .. '9' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:218:18: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1652,11 +1653,11 @@ public class gscriptLexer extends Lexer {
     public final void mWORD() throws RecognitionException {
         try {
             int _type = WORD;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:198:1: ( LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:198:3: LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:221:1: ( LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:221:3: LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             mLETTER(); 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:198:10: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:221:10: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop5:
             do {
                 int alt5=2;
@@ -1669,7 +1670,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -1704,8 +1705,8 @@ public class gscriptLexer extends Lexer {
     public final void mLETTER() throws RecognitionException {
         try {
             int _type = LETTER;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:201:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:201:10: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:224:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:224:10: ( 'a' .. 'z' | 'A' .. 'Z' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1731,11 +1732,11 @@ public class gscriptLexer extends Lexer {
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:206:3: ( COMMENT1 (~ ( '\\n' | '\\r' ) )* )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:206:5: COMMENT1 (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:229:3: ( COMMENT1 (~ ( '\\n' | '\\r' ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:229:5: COMMENT1 (~ ( '\\n' | '\\r' ) )*
             {
             mCOMMENT1(); 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:206:14: (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:229:14: (~ ( '\\n' | '\\r' ) )*
             loop6:
             do {
                 int alt6=2;
@@ -1748,7 +1749,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:206:15: ~ ( '\\n' | '\\r' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:229:15: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1784,12 +1785,12 @@ public class gscriptLexer extends Lexer {
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:212:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:212:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:235:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:235:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:212:14: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:235:14: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -1814,7 +1815,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:212:41: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:235:41: .
             	    {
             	    matchAny(); 
 
@@ -1843,7 +1844,7 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:215:8: ( STRING_DOUBLE | STRING_SINGLE )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:238:8: ( STRING_DOUBLE | STRING_SINGLE )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1855,20 +1856,20 @@ public class gscriptLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("215:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 8, 0, input);
+                    new NoViableAltException("238:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 8, 0, input);
 
                 throw nvae;
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:215:10: STRING_DOUBLE
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:238:10: STRING_DOUBLE
                     {
                     mSTRING_DOUBLE(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:215:24: STRING_SINGLE
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:238:24: STRING_SINGLE
                     {
                     mSTRING_SINGLE(); 
 
@@ -1887,11 +1888,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_DOUBLE() throws RecognitionException {
         try {
             int _type = STRING_DOUBLE;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:219:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:219:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:242:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:242:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
             {
             match('\"'); 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:220:5: ( '\"' '\"' | ~ ( '\"' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:243:5: ( '\"' '\"' | ~ ( '\"' ) )*
             loop9:
             do {
                 int alt9=3;
@@ -1913,7 +1914,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:220:7: '\"' '\"'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:243:7: '\"' '\"'
             	    {
             	    match('\"'); 
             	    match('\"'); 
@@ -1921,7 +1922,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:221:7: ~ ( '\"' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:244:7: ~ ( '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1942,8 +1943,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:223:5: ( '\"' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:223:7: '\"'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:246:5: ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:246:7: '\"'
             {
             match('\"'); 
 
@@ -1963,11 +1964,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_SINGLE() throws RecognitionException {
         try {
             int _type = STRING_SINGLE;
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:228:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:228:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:251:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:251:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
             {
             match('\''); 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:229:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:252:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -1989,7 +1990,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:229:7: '\\'' '\\''
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:252:7: '\\'' '\\''
             	    {
             	    match('\''); 
             	    match('\''); 
@@ -1997,7 +1998,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:230:7: ~ ( '\\'' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:253:7: ~ ( '\\'' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2018,8 +2019,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:232:5: ( '\\'' )
-            // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:232:7: '\\''
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:255:5: ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:255:7: '\\''
             {
             match('\''); 
 
@@ -2036,579 +2037,579 @@ public class gscriptLexer extends Lexer {
     // $ANTLR end STRING_SINGLE
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | NEGINTEGER | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | NEGINTEGER | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE )
         int alt11=82;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:10: PLUS
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:10: PLUS
                 {
                 mPLUS(); 
 
                 }
                 break;
             case 2 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:15: MINUS
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:15: MINUS
                 {
                 mMINUS(); 
 
                 }
                 break;
             case 3 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:21: MULT
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:21: MULT
                 {
                 mMULT(); 
 
                 }
                 break;
             case 4 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:26: DIV
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:26: DIV
                 {
                 mDIV(); 
 
                 }
                 break;
             case 5 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:30: LPAREN
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:30: LPAREN
                 {
                 mLPAREN(); 
 
                 }
                 break;
             case 6 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:37: RPAREN
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:37: RPAREN
                 {
                 mRPAREN(); 
 
                 }
                 break;
             case 7 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:44: LBRAC
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:44: LBRAC
                 {
                 mLBRAC(); 
 
                 }
                 break;
             case 8 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:50: RBRAC
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:50: RBRAC
                 {
                 mRBRAC(); 
 
                 }
                 break;
             case 9 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:56: EQUALS
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:56: EQUALS
                 {
                 mEQUALS(); 
 
                 }
                 break;
             case 10 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:63: EQUALS2
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:63: EQUALS2
                 {
                 mEQUALS2(); 
 
                 }
                 break;
             case 11 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:71: NOT_EQUALS
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:71: NOT_EQUALS
                 {
                 mNOT_EQUALS(); 
 
                 }
                 break;
             case 12 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:82: GT
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:82: GT
                 {
                 mGT(); 
 
                 }
                 break;
             case 13 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:85: GTE
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:85: GTE
                 {
                 mGTE(); 
 
                 }
                 break;
             case 14 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:89: LT
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:89: LT
                 {
                 mLT(); 
 
                 }
                 break;
             case 15 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:92: LTE
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:92: LTE
                 {
                 mLTE(); 
 
                 }
                 break;
             case 16 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:96: COMMENT1
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:96: COMMENT1
                 {
                 mCOMMENT1(); 
 
                 }
                 break;
             case 17 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:105: T36
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:105: T36
                 {
                 mT36(); 
 
                 }
                 break;
             case 18 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:109: T37
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:109: T37
                 {
                 mT37(); 
 
                 }
                 break;
             case 19 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:113: T38
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:113: T38
                 {
                 mT38(); 
 
                 }
                 break;
             case 20 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:117: T39
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:117: T39
                 {
                 mT39(); 
 
                 }
                 break;
             case 21 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:121: T40
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:121: T40
                 {
                 mT40(); 
 
                 }
                 break;
             case 22 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:125: T41
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:125: T41
                 {
                 mT41(); 
 
                 }
                 break;
             case 23 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:129: T42
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:129: T42
                 {
                 mT42(); 
 
                 }
                 break;
             case 24 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:133: T43
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:133: T43
                 {
                 mT43(); 
 
                 }
                 break;
             case 25 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:137: T44
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:137: T44
                 {
                 mT44(); 
 
                 }
                 break;
             case 26 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:141: T45
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:141: T45
                 {
                 mT45(); 
 
                 }
                 break;
             case 27 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:145: T46
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:145: T46
                 {
                 mT46(); 
 
                 }
                 break;
             case 28 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:149: T47
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:149: T47
                 {
                 mT47(); 
 
                 }
                 break;
             case 29 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:153: T48
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:153: T48
                 {
                 mT48(); 
 
                 }
                 break;
             case 30 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:157: T49
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:157: T49
                 {
                 mT49(); 
 
                 }
                 break;
             case 31 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:161: T50
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:161: T50
                 {
                 mT50(); 
 
                 }
                 break;
             case 32 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:165: T51
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:165: T51
                 {
                 mT51(); 
 
                 }
                 break;
             case 33 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:169: T52
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:169: T52
                 {
                 mT52(); 
 
                 }
                 break;
             case 34 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:173: T53
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:173: T53
                 {
                 mT53(); 
 
                 }
                 break;
             case 35 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:177: T54
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:177: T54
                 {
                 mT54(); 
 
                 }
                 break;
             case 36 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:181: T55
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:181: T55
                 {
                 mT55(); 
 
                 }
                 break;
             case 37 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:185: T56
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:185: T56
                 {
                 mT56(); 
 
                 }
                 break;
             case 38 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:189: T57
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:189: T57
                 {
                 mT57(); 
 
                 }
                 break;
             case 39 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:193: T58
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:193: T58
                 {
                 mT58(); 
 
                 }
                 break;
             case 40 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:197: T59
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:197: T59
                 {
                 mT59(); 
 
                 }
                 break;
             case 41 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:201: T60
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:201: T60
                 {
                 mT60(); 
 
                 }
                 break;
             case 42 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:205: T61
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:205: T61
                 {
                 mT61(); 
 
                 }
                 break;
             case 43 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:209: T62
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:209: T62
                 {
                 mT62(); 
 
                 }
                 break;
             case 44 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:213: T63
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:213: T63
                 {
                 mT63(); 
 
                 }
                 break;
             case 45 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:217: T64
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:217: T64
                 {
                 mT64(); 
 
                 }
                 break;
             case 46 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:221: T65
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:221: T65
                 {
                 mT65(); 
 
                 }
                 break;
             case 47 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:225: T66
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:225: T66
                 {
                 mT66(); 
 
                 }
                 break;
             case 48 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:229: T67
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:229: T67
                 {
                 mT67(); 
 
                 }
                 break;
             case 49 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:233: T68
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:233: T68
                 {
                 mT68(); 
 
                 }
                 break;
             case 50 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:237: T69
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:237: T69
                 {
                 mT69(); 
 
                 }
                 break;
             case 51 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:241: T70
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:241: T70
                 {
                 mT70(); 
 
                 }
                 break;
             case 52 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:245: T71
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:245: T71
                 {
                 mT71(); 
 
                 }
                 break;
             case 53 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:249: T72
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:249: T72
                 {
                 mT72(); 
 
                 }
                 break;
             case 54 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:253: T73
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:253: T73
                 {
                 mT73(); 
 
                 }
                 break;
             case 55 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:257: T74
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:257: T74
                 {
                 mT74(); 
 
                 }
                 break;
             case 56 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:261: T75
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:261: T75
                 {
                 mT75(); 
 
                 }
                 break;
             case 57 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:265: T76
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:265: T76
                 {
                 mT76(); 
 
                 }
                 break;
             case 58 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:269: T77
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:269: T77
                 {
                 mT77(); 
 
                 }
                 break;
             case 59 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:273: T78
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:273: T78
                 {
                 mT78(); 
 
                 }
                 break;
             case 60 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:277: T79
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:277: T79
                 {
                 mT79(); 
 
                 }
                 break;
             case 61 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:281: T80
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:281: T80
                 {
                 mT80(); 
 
                 }
                 break;
             case 62 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:285: T81
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:285: T81
                 {
                 mT81(); 
 
                 }
                 break;
             case 63 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:289: T82
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:289: T82
                 {
                 mT82(); 
 
                 }
                 break;
             case 64 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:293: T83
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:293: T83
                 {
                 mT83(); 
 
                 }
                 break;
             case 65 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:297: T84
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:297: T84
                 {
                 mT84(); 
 
                 }
                 break;
             case 66 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:301: T85
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:301: T85
                 {
                 mT85(); 
 
                 }
                 break;
             case 67 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:305: T86
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:305: T86
                 {
                 mT86(); 
 
                 }
                 break;
             case 68 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:309: T87
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:309: T87
                 {
                 mT87(); 
 
                 }
                 break;
             case 69 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:313: NEGINTEGER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:313: NEGINTEGER
                 {
                 mNEGINTEGER(); 
 
                 }
                 break;
             case 70 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:324: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:324: NUMBER
                 {
                 mNUMBER(); 
 
                 }
                 break;
             case 71 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:331: HEXNUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:331: HEXNUMBER
                 {
                 mHEXNUMBER(); 
 
                 }
                 break;
             case 72 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:341: GLOBALVAR
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:341: GLOBALVAR
                 {
                 mGLOBALVAR(); 
 
                 }
                 break;
             case 73 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:351: OIVAR
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:351: OIVAR
                 {
                 mOIVAR(); 
 
                 }
                 break;
             case 74 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:357: DECIMAL
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:357: DECIMAL
                 {
                 mDECIMAL(); 
 
                 }
                 break;
             case 75 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:365: WHITESPACE
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:365: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
             case 76 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:376: WORD
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:376: WORD
                 {
                 mWORD(); 
 
                 }
                 break;
             case 77 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:381: LETTER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:381: LETTER
                 {
                 mLETTER(); 
 
                 }
                 break;
             case 78 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:388: COMMENT
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:388: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
             case 79 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:396: ML_COMMENT
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:396: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
                 }
                 break;
             case 80 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:407: STRING
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:407: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
             case 81 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:414: STRING_DOUBLE
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:414: STRING_DOUBLE
                 {
                 mSTRING_DOUBLE(); 
 
                 }
                 break;
             case 82 :
-                // C:\\Documents and Settings\\Ali1\\My Documents\\Aurora\\src\\plugins\\platform\\gscript.g:1:428: STRING_SINGLE
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:428: STRING_SINGLE
                 {
                 mSTRING_SINGLE(); 
 

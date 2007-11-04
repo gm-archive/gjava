@@ -13,15 +13,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import javax.swing.ImageIcon;
+import org.antlr.runtime.ANTLRFileStream;
+import org.antlr.runtime.CommonTokenStream;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
+import org.gcreator.plugins.platform.gscriptLexer;
+import org.gcreator.plugins.platform.gscriptParser;
 
 /**
  *
@@ -71,6 +76,41 @@ public class PlatformCore extends PluginCore {
     public void parseScene(Scene s) throws IOException{}
     
     public void parseClass()throws IOException{}
+    
+    /**
+     * Varstatement called when a varstatement is parsed, returns the language code
+     * @param type - type of variable 
+     * @param vars 
+     * @return the language code for this statement
+     */
+    public String varstatement(String type, String vars)
+    {
+        System.out.println("Var statement: "+type+vars);
+        return "";
+    }
+    
+    public String parseGCL(String code,PlatformCore p) throws IOException  {
+        //change code simply for testing
+        gscriptParser parser;
+        gscriptLexer lex = null;
+        
+        code = "int i; int ii; int iii; { me = 3; if (5==2) {}}";
+        
+        FileWriter ftempcode = new FileWriter("tempcode.gcl");
+    		BufferedWriter tempcode = new BufferedWriter(ftempcode);
+    		tempcode.write(code);
+    		tempcode.close();
+        
+        lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
+        CommonTokenStream tokens = new CommonTokenStream(lex);
+
+        parser = new gscriptParser(tokens);
+        parser.setPlatform(p);
+        try {
+        parser.code();
+        } catch(Exception e) {System.out.println("Error:"+e.getLocalizedMessage()+" "+e.getMessage());}
+        return "";
+    }
     
     public void run(Project project)
     {

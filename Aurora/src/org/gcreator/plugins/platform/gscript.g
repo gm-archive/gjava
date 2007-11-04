@@ -25,142 +25,165 @@ LTE = '<=';
 COMMENT1 = '//';
 DOC_COMMENT;
 }
+@members {
+public PlatformCore pc;
 
+public void setPlatform(PlatformCore p)
+{
+pc = p;
+}
+
+}
+
+@header {
+package org.gcreator.plugins.platform;
+import org.gcreator.plugins.*;
+}
+
+@lexer::header {
+package org.gcreator.plugins.platform;
+}
 
 
 /*------------------------------------------------------------------
 * PARSER RULES
 *------------------------------------------------------------------*/
 
-program
-
-: ((field|method|innerclass) (';'{System.out.println(";");})*)* {//write("hi");
+program returns [String value]
+: ((field|method|innerclass) (';'{System.out.println(";");})*)* {
+//write("hi");
 }
 ;
 
-statement
-: (bstatement|varstatement|returnstatement|exitstatement|ifstatement|repeatstatement|dostatement|whilestatement|continuestatement|breakstatement|forstatement|switchstatement|withstatement|function2|assignment|function) (';'{System.out.println(";");})*
+code	returns [String value]
+: {System.out.println("Start parsing value ");} ((statement)*)	{System.out.println("Parsed code in antlr!");} 
+	;
+
+statement returns [String value]
+: {System.out.print("statement: ");} (bstatement|varstatement|returnstatement|exitstatement|ifstatement|repeatstatement|dostatement|whilestatement|continuestatement|breakstatement|forstatement|switchstatement|withstatement|function2|assignment|function) (';'{System.out.println(";");})* {System.out.print("statement ");}
 ;
 
-field 
+field returns [String value]
 : ('public'|'private')? ('static')? type=WORD name=WORD '=' (WORD|NUMBER) 
 ;
 
-method 
+method returns [String value]
 :  ('public'|'private')? ('static')? arg=WORD name=WORD '()' bstatement
 ;
 
-innerclass
+innerclass returns [String value]
 	:	'class' WORD (LBRAC|'begin') (field|method)* (RBRAC|'end')
 	;
 
-bstatement
-: (LBRAC|'begin') (statement)* (RBRAC|'end')
+bstatement returns [String value]
+: {System.out.println("bstatement ");} (LBRAC|'begin') (statement)* (RBRAC|'end') {System.out.print("bstatement ");}
 ;
 
-varstatement
-: type=WORD variable (',' variable)*
+varstatement returns [String value] @init {String s = "";}
+: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )* {System.out.println(" endvar statement ");} {pc.varstatement($type.text,s);} 
 ;
 
-returnstatement
-: 'return' {System.out.print("return ");} (expression)
+returnstatement returns [String value]
+: 'return' {System.out.print("return ");} (expression) {$value ="";}
 ;
 
-exitstatement
-:'exit' {System.out.println("return ;");}
+exitstatement returns [String value]
+:'exit' {System.out.println("exit statement");} {$value ="";}
 ;
 
-ifstatement
-: 'if' expression ('then')? (statement) (elsestatement)*
+ifstatement returns [String value]
+: {System.out.println("if statement ");} 'if' expression ('then')? (statement) (elsestatement)*  {$value ="";}
 ;
 
-elsestatement
-: ('else'|('elsif' expression)) (statement)
+elsestatement returns [String value]
+: ('else'|('elsif' expression)) (statement) {$value ="";}
 ;
 
-expression
-:  (pexpression|relationalExpression|notexpression) (aexpression)* ((andexpression|orexpression|xorexpression) (expression))*
+expression returns [String value] @init {String a = "";}
+:  e=(pexpression|relationalExpression|notexpression) (aa=aexpression {a+= $aa.text;})* ((andexpression|orexpression|xorexpression) (expression))* {$value ="";}
 ;
 
-notexpression
-: ('not'|'!') expression
+notexpression returns [String value]
+: n=('not'|'!') e=expression {$value=$n.text+" "+$e.text;}
 ;
 
-aexpression
-: ('+'|'-'|NEGINTEGER|'*'|'/'|'|'|'&'|'^'|'<<'|'>>'|'div'|'mod') (expression)?
+aexpression returns [String value]
+: a=('+'|'-'|NEGINTEGER|'*'|'/'|'|'|'&'|'^'|'<<'|'>>'|'div'|'mod') (expression)? {$value=$a.text;}
 ; //(NUMBER|HEXNUMBER|STRING|variable)
 
-value : (NUMBER|HEXNUMBER|STRING|variable)
+value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
 ;
 
-pexpression
-: LPAREN expression RPAREN
+pexpression returns [String value]
+: LPAREN e=expression RPAREN {$value=$e.text;}
 ;
 
-andexpression
-: ('&&'|'and')
+andexpression returns [String value]
+: a=('&&'|'and') {$value=$a.text;}
 ;
 
-orexpression
-: ('||'|'or')
+orexpression returns [String value]
+: o=('||'|'or') {$value =$o.text;}
 ;
 
-xorexpression
-: ('^^'|'xor')
+xorexpression returns [String value]
+: x=('^^'|'xor') {$value =$x.text;}
 ;
 
-relationalExpression
+relationalExpression returns [String value]
   :
-  (function|HEXNUMBER|STRING|NUMBER|variable|DECIMAL|WORD) ( ('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (function|HEXNUMBER|STRING|NUMBER|variable|WORD))*
+  (function|HEXNUMBER|STRING|NUMBER|variable|DECIMAL|WORD) ( ('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (function|HEXNUMBER|STRING|NUMBER|variable|WORD))* {$value ="";}
   ;
  
-repeatstatement
-: 'repeat' expression (statement)
+repeatstatement returns [String value]
+: 'repeat' expression (statement) {$value ="";}
 ;
 
-breakstatement
-: 'break'  {System.out.println("break;");}
+breakstatement returns [String value]
+: 'break'  {System.out.println("break;");} {$value ="";}
 ;
-continuestatement
-: 'continue' {System.out.println("continue;");}
-;
-
-dostatement
-: 'do' statement 'until' expression
+continuestatement returns [String value]
+: 'continue' {System.out.println("continue;");} {$value ="";}
 ;
 
-whilestatement
-: 'while' expression (statement)
+dostatement returns [String value]
+: 'do' statement 'until' expression {$value ="";}
 ;
 
-forstatement
-: 'for' '(' statement expression ';' statement ')' statement
+whilestatement returns [String value]
+: 'while' expression (statement) {$value ="";}
 ;
 
-switchstatement
-: 'switch' (expression) '{' (('case'|'default') expression ':' (statement)*)* '}'//BETA
+forstatement returns [String value]
+: 'for' '(' statement expression ';' statement ')' statement {$value ="";}
 ;
 
-withstatement
-: 'with'  expression  statement
+switchstatement returns [String value]
+: 'switch' (expression) '{' (('case'|'default') expression ':' (statement)*)* '}' {$value ="";} //BETA 
 ;
 
-assignment
-: variable ('='|':='|'+='|'-='|'*='|'/='|'|='|'&\\'| '^=') expression
+withstatement returns [String value]
+: 'with'  expression  statement {$value ="";}
 ;
 
-variable
-: array|WORD|OIVAR|GLOBALVAR
+assignment returns [String value]
+: {System.out.println("assignment ");} valuee=variable op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&\\'| '^=') e=expression {$value = $valuee.text+$op.text+$e.text;}
 ;
 
-function: WORD '(' (expression ((',') (expression)?)*)? ')'
+variable returns [String value]
+: {System.out.println("variable ");} (a=array{$value = $a.value;}|valuee=(WORD|OIVAR|GLOBALVAR){$value = $valuee.text;}) 
 ;
 
-function2
-	:	OIVAR '(' (expression ((',') (expression)?)*)? ')'
+function returns [String value]
+: WORD '(' (expression ((',') (expression)?)*)? ')' {$value ="";}
+;
+
+function2 returns [String value]
+	:	OIVAR '(' (expression ((',') (expression)?)*)? ')' {$value ="";}
 	;
 
-array  : (WORD|OIVAR|GLOBALVAR) '[' expression ']'
+array returns [String value]
+  : {System.out.println("array ");} valuee=(WORD|OIVAR|GLOBALVAR) '[' expression ']' {$value = $valuee.text;}
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
