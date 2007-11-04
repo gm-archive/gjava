@@ -45,7 +45,7 @@ public class Actor extends tile {
     /**
      * The sprite for this actor
      */
-    public Sprite sprite;
+    public sprite sprite;
     //public sprite G_JAVA_Object_mask;
     
     /**
