@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 02:43:25
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 02:51:31
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -2363,22 +2363,35 @@ public class gscriptParser extends Parser {
     };
 
     // $ANTLR start expression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:1: expression returns [String value] : e= ( pexpression | relationalExpression | notexpression ) (aa= aexpression )* ( ( andexpression | orexpression | xorexpression ) ( expression ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:1: expression returns [String value] : (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
     public final expression_return expression() throws RecognitionException {
         expression_return retval = new expression_return();
         retval.start = input.LT(1);
         int expression_StartIndex = input.index();
-        Token e=null;
-        aexpression_return aa = null;
+        String p = null;
+
+        String r = null;
+
+        String n = null;
+
+        String aa = null;
+
+        String an = null;
+
+        String orr = null;
+
+        String x = null;
+
+        expression_return e = null;
 
 
         String a = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:1: (e= ( pexpression | relationalExpression | notexpression ) (aa= aexpression )* ( ( andexpression | orexpression | xorexpression ) ( expression ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:4: e= ( pexpression | relationalExpression | notexpression ) (aa= aexpression )* ( ( andexpression | orexpression | xorexpression ) ( expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:1: ( (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:4: (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:6: ( pexpression | relationalExpression | notexpression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:4: (p= pexpression | r= relationalExpression | n= notexpression )
             int alt19=3;
             switch ( input.LA(1) ) {
             case LPAREN:
@@ -2406,46 +2419,55 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("104:6: ( pexpression | relationalExpression | notexpression )", 19, 0, input);
+                    new NoViableAltException("104:4: (p= pexpression | r= relationalExpression | n= notexpression )", 19, 0, input);
 
                 throw nvae;
             }
 
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:7: pexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:5: p= pexpression
                     {
                     pushFollow(FOLLOW_pexpression_in_expression681);
-                    pexpression();
+                    p=pexpression();
                     _fsp--;
                     if (failed) return retval;
+                    if ( backtracking==0 ) {
+                      retval.value =p;
+                    }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:19: relationalExpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:38: r= relationalExpression
                     {
-                    pushFollow(FOLLOW_relationalExpression_in_expression683);
-                    relationalExpression();
+                    pushFollow(FOLLOW_relationalExpression_in_expression686);
+                    r=relationalExpression();
                     _fsp--;
                     if (failed) return retval;
+                    if ( backtracking==0 ) {
+                      retval.value =r;
+                    }
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:40: notexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:80: n= notexpression
                     {
-                    pushFollow(FOLLOW_notexpression_in_expression685);
-                    notexpression();
+                    pushFollow(FOLLOW_notexpression_in_expression691);
+                    n=notexpression();
                     _fsp--;
                     if (failed) return retval;
+                    if ( backtracking==0 ) {
+                      retval.value =n;
+                    }
 
                     }
                     break;
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:55: (aa= aexpression )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:116: (aa= aexpression )*
             loop20:
             do {
                 int alt20=2;
@@ -2464,14 +2486,14 @@ public class gscriptParser extends Parser {
 
                 switch (alt20) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:56: aa= aexpression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:117: aa= aexpression
             	    {
-            	    pushFollow(FOLLOW_aexpression_in_expression691);
+            	    pushFollow(FOLLOW_aexpression_in_expression698);
             	    aa=aexpression();
             	    _fsp--;
             	    if (failed) return retval;
             	    if ( backtracking==0 ) {
-            	      a+= input.toString(aa.start,aa.stop);
+            	      retval.value+= " "+ aa;
             	    }
 
             	    }
@@ -2482,7 +2504,7 @@ public class gscriptParser extends Parser {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:89: ( ( andexpression | orexpression | xorexpression ) ( expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:161: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             loop22:
             do {
                 int alt22=2;
@@ -2528,9 +2550,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt22) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:90: ( andexpression | orexpression | xorexpression ) ( expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:162: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:90: ( andexpression | orexpression | xorexpression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:162: (an= andexpression | orr= orexpression | x= xorexpression )
             	    int alt21=3;
             	    switch ( input.LA(1) ) {
             	    case 60:
@@ -2554,52 +2576,64 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("104:90: ( andexpression | orexpression | xorexpression )", 21, 0, input);
+            	            new NoViableAltException("104:162: (an= andexpression | orr= orexpression | x= xorexpression )", 21, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt21) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:91: andexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:163: an= andexpression
             	            {
-            	            pushFollow(FOLLOW_andexpression_in_expression699);
-            	            andexpression();
+            	            pushFollow(FOLLOW_andexpression_in_expression708);
+            	            an=andexpression();
             	            _fsp--;
             	            if (failed) return retval;
+            	            if ( backtracking==0 ) {
+            	              retval.value +=" "+an;
+            	            }
 
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:105: orexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:205: orr= orexpression
             	            {
-            	            pushFollow(FOLLOW_orexpression_in_expression701);
-            	            orexpression();
+            	            pushFollow(FOLLOW_orexpression_in_expression713);
+            	            orr=orexpression();
             	            _fsp--;
             	            if (failed) return retval;
+            	            if ( backtracking==0 ) {
+            	              retval.value +=" "+orr;
+            	            }
 
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:118: xorexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:248: x= xorexpression
             	            {
-            	            pushFollow(FOLLOW_xorexpression_in_expression703);
-            	            xorexpression();
+            	            pushFollow(FOLLOW_xorexpression_in_expression718);
+            	            x=xorexpression();
             	            _fsp--;
             	            if (failed) return retval;
+            	            if ( backtracking==0 ) {
+            	              retval.value +=" "+x;
+            	            }
 
             	            }
             	            break;
 
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:133: ( expression )
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:134: expression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:289: (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:290: e= expression
             	    {
-            	    pushFollow(FOLLOW_expression_in_expression707);
-            	    expression();
+            	    pushFollow(FOLLOW_expression_in_expression725);
+            	    e=expression();
             	    _fsp--;
             	    if (failed) return retval;
+            	    if ( backtracking==0 ) {
+            	      retval.value =" "+e.value;
+            	    }
 
             	    }
 
@@ -2613,7 +2647,7 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              retval.value ="";
+              retval.value =pc.expression(retval.value);
             }
 
             }
@@ -2654,10 +2688,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression725);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression744);    throw mse;
             }
 
-            pushFollow(FOLLOW_expression_in_notexpression733);
+            pushFollow(FOLLOW_expression_in_notexpression752);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -2679,20 +2713,16 @@ public class gscriptParser extends Parser {
     }
     // $ANTLR end notexpression
 
-    public static class aexpression_return extends ParserRuleReturnScope {
-        public String value;
-    };
 
     // $ANTLR start aexpression
     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:1: aexpression returns [String value] : a= ( '+' | '-' | NEGINTEGER | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) ( expression )? ;
-    public final aexpression_return aexpression() throws RecognitionException {
-        aexpression_return retval = new aexpression_return();
-        retval.start = input.LT(1);
+    public final String aexpression() throws RecognitionException {
+        String value = null;
         int aexpression_StartIndex = input.index();
         Token a=null;
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 15) ) { return retval; }
+            if ( backtracking>0 && alreadyParsedRule(input, 15) ) { return value; }
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:1: (a= ( '+' | '-' | NEGINTEGER | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) ( expression )? )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:3: a= ( '+' | '-' | NEGINTEGER | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) ( expression )?
             {
@@ -2702,10 +2732,10 @@ public class gscriptParser extends Parser {
                 errorRecovery=false;failed=false;
             }
             else {
-                if (backtracking>0) {failed=true; return retval;}
+                if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression750);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression769);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:68: ( expression )?
@@ -3702,10 +3732,10 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:69: expression
                     {
-                    pushFollow(FOLLOW_expression_in_aexpression777);
+                    pushFollow(FOLLOW_expression_in_aexpression796);
                     expression();
                     _fsp--;
-                    if (failed) return retval;
+                    if (failed) return value;
 
                     }
                     break;
@@ -3713,12 +3743,10 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              retval.value =a.getText();
+              value =a.getText();
             }
 
             }
-
-            retval.stop = input.LT(-1);
 
         }
         catch (RecognitionException re) {
@@ -3728,7 +3756,7 @@ public class gscriptParser extends Parser {
         finally {
             if ( backtracking>0 ) { memoize(input, 15, aexpression_StartIndex); }
         }
-        return retval;
+        return value;
     }
     // $ANTLR end aexpression
 
@@ -3782,28 +3810,28 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:35: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_value798); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_value817); if (failed) return value;
 
                     }
                     break;
                 case 2 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:42: HEXNUMBER
                     {
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value800); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value819); if (failed) return value;
 
                     }
                     break;
                 case 3 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:52: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_value802); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_value821); if (failed) return value;
 
                     }
                     break;
                 case 4 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:59: variable
                     {
-                    pushFollow(FOLLOW_variable_in_value804);
+                    pushFollow(FOLLOW_variable_in_value823);
                     variable();
                     _fsp--;
                     if (failed) return value;
@@ -3845,12 +3873,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:1: ( LPAREN e= expression RPAREN )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:3: LPAREN e= expression RPAREN
             {
-            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression820); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_pexpression824);
+            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression839); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_pexpression843);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression826); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression845); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.pexpression(e.value);
             }
@@ -3891,7 +3919,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression843);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression862);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -3934,7 +3962,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression864);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression883);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -3977,7 +4005,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression885);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression904);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -4072,7 +4100,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:4: function
                     {
-                    pushFollow(FOLLOW_function_in_relationalExpression909);
+                    pushFollow(FOLLOW_function_in_relationalExpression928);
                     function();
                     _fsp--;
                     if (failed) return value;
@@ -4082,28 +4110,28 @@ public class gscriptParser extends Parser {
                 case 2 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:13: HEXNUMBER
                     {
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression911); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression930); if (failed) return value;
 
                     }
                     break;
                 case 3 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:23: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_relationalExpression913); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_relationalExpression932); if (failed) return value;
 
                     }
                     break;
                 case 4 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:30: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression915); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression934); if (failed) return value;
 
                     }
                     break;
                 case 5 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:37: variable
                     {
-                    pushFollow(FOLLOW_variable_in_relationalExpression917);
+                    pushFollow(FOLLOW_variable_in_relationalExpression936);
                     variable();
                     _fsp--;
                     if (failed) return value;
@@ -4113,14 +4141,14 @@ public class gscriptParser extends Parser {
                 case 6 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:46: DECIMAL
                     {
-                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression919); if (failed) return value;
+                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression938); if (failed) return value;
 
                     }
                     break;
                 case 7 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:54: WORD
                     {
-                    match(input,WORD,FOLLOW_WORD_in_relationalExpression921); if (failed) return value;
+                    match(input,WORD,FOLLOW_WORD_in_relationalExpression940); if (failed) return value;
 
                     }
                     break;
@@ -4212,7 +4240,7 @@ public class gscriptParser extends Parser {
             	        if (backtracking>0) {failed=true; return value;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression926);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression945);    throw mse;
             	    }
 
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
@@ -4273,7 +4301,7 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:114: function
             	            {
-            	            pushFollow(FOLLOW_function_in_relationalExpression947);
+            	            pushFollow(FOLLOW_function_in_relationalExpression966);
             	            function();
             	            _fsp--;
             	            if (failed) return value;
@@ -4283,28 +4311,28 @@ public class gscriptParser extends Parser {
             	        case 2 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:123: HEXNUMBER
             	            {
-            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression949); if (failed) return value;
+            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression968); if (failed) return value;
 
             	            }
             	            break;
             	        case 3 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:133: STRING
             	            {
-            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression951); if (failed) return value;
+            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression970); if (failed) return value;
 
             	            }
             	            break;
             	        case 4 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:140: NUMBER
             	            {
-            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression953); if (failed) return value;
+            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression972); if (failed) return value;
 
             	            }
             	            break;
             	        case 5 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:147: variable
             	            {
-            	            pushFollow(FOLLOW_variable_in_relationalExpression955);
+            	            pushFollow(FOLLOW_variable_in_relationalExpression974);
             	            variable();
             	            _fsp--;
             	            if (failed) return value;
@@ -4314,7 +4342,7 @@ public class gscriptParser extends Parser {
             	        case 6 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:156: WORD
             	            {
-            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression957); if (failed) return value;
+            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression976); if (failed) return value;
 
             	            }
             	            break;
@@ -4364,15 +4392,15 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:1: ( 'repeat' e= expression (s= statement ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:3: 'repeat' e= expression (s= statement )
             {
-            match(input,67,FOLLOW_67_in_repeatstatement978); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_repeatstatement982);
+            match(input,67,FOLLOW_67_in_repeatstatement997); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_repeatstatement1001);
             e=expression();
             _fsp--;
             if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:25: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:26: s= statement
             {
-            pushFollow(FOLLOW_statement_in_repeatstatement987);
+            pushFollow(FOLLOW_statement_in_repeatstatement1006);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4408,7 +4436,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:1: ( 'break' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'break'
             {
-            match(input,68,FOLLOW_68_in_breakstatement1003); if (failed) return value;
+            match(input,68,FOLLOW_68_in_breakstatement1022); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("break;");
             }
@@ -4441,7 +4469,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:1: ( 'continue' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:3: 'continue'
             {
-            match(input,69,FOLLOW_69_in_continuestatement1020); if (failed) return value;
+            match(input,69,FOLLOW_69_in_continuestatement1039); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("continue;");
             }
@@ -4479,13 +4507,13 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:1: ( 'do' s= statement 'until' e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:3: 'do' s= statement 'until' e= expression
             {
-            match(input,70,FOLLOW_70_in_dostatement1037); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_dostatement1041);
+            match(input,70,FOLLOW_70_in_dostatement1056); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_dostatement1060);
             s=statement();
             _fsp--;
             if (failed) return value;
-            match(input,71,FOLLOW_71_in_dostatement1043); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_dostatement1047);
+            match(input,71,FOLLOW_71_in_dostatement1062); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_dostatement1066);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -4523,15 +4551,15 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:1: ( 'while' e= expression (s= statement ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:3: 'while' e= expression (s= statement )
             {
-            match(input,72,FOLLOW_72_in_whilestatement1062); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_whilestatement1066);
+            match(input,72,FOLLOW_72_in_whilestatement1081); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_whilestatement1085);
             e=expression();
             _fsp--;
             if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:24: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:25: s= statement
             {
-            pushFollow(FOLLOW_statement_in_whilestatement1071);
+            pushFollow(FOLLOW_statement_in_whilestatement1090);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4576,23 +4604,23 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:1: ( 'for' '(' s1= statement e= expression ';' s2= statement ')' s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:3: 'for' '(' s1= statement e= expression ';' s2= statement ')' s= statement
             {
-            match(input,73,FOLLOW_73_in_forstatement1087); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1089); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1093);
+            match(input,73,FOLLOW_73_in_forstatement1106); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1108); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1112);
             s1=statement();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_expression_in_forstatement1097);
+            pushFollow(FOLLOW_expression_in_forstatement1116);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,36,FOLLOW_36_in_forstatement1099); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1103);
+            match(input,36,FOLLOW_36_in_forstatement1118); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1122);
             s2=statement();
             _fsp--;
             if (failed) return value;
-            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1105); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1109);
+            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1124); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1128);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4625,18 +4653,18 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:1: ( 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:3: 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}'
             {
-            match(input,74,FOLLOW_74_in_switchstatement1124); if (failed) return value;
+            match(input,74,FOLLOW_74_in_switchstatement1143); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:12: ( expression )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:13: expression
             {
-            pushFollow(FOLLOW_expression_in_switchstatement1127);
+            pushFollow(FOLLOW_expression_in_switchstatement1146);
             expression();
             _fsp--;
             if (failed) return value;
 
             }
 
-            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1130); if (failed) return value;
+            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1149); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:29: ( ( 'case' | 'default' ) expression ':' ( statement )* )*
             loop29:
             do {
@@ -4660,14 +4688,14 @@ public class gscriptParser extends Parser {
             	        if (backtracking>0) {failed=true; return value;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1133);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1152);    throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_expression_in_switchstatement1139);
+            	    pushFollow(FOLLOW_expression_in_switchstatement1158);
             	    expression();
             	    _fsp--;
             	    if (failed) return value;
-            	    match(input,77,FOLLOW_77_in_switchstatement1141); if (failed) return value;
+            	    match(input,77,FOLLOW_77_in_switchstatement1160); if (failed) return value;
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:64: ( statement )*
             	    loop28:
             	    do {
@@ -4683,7 +4711,7 @@ public class gscriptParser extends Parser {
             	    	case 1 :
             	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:65: statement
             	    	    {
-            	    	    pushFollow(FOLLOW_statement_in_switchstatement1144);
+            	    	    pushFollow(FOLLOW_statement_in_switchstatement1163);
             	    	    statement();
             	    	    _fsp--;
             	    	    if (failed) return value;
@@ -4705,7 +4733,7 @@ public class gscriptParser extends Parser {
                 }
             } while (true);
 
-            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1150); if (failed) return value;
+            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1169); if (failed) return value;
             if ( backtracking==0 ) {
               value ="";
             }
@@ -4740,12 +4768,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:1: ( 'with' e= expression s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:3: 'with' e= expression s= statement
             {
-            match(input,78,FOLLOW_78_in_withstatement1166); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_withstatement1171);
+            match(input,78,FOLLOW_78_in_withstatement1185); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_withstatement1190);
             e=expression();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_statement_in_withstatement1176);
+            pushFollow(FOLLOW_statement_in_withstatement1195);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4787,7 +4815,7 @@ public class gscriptParser extends Parser {
             if ( backtracking==0 ) {
               System.out.println("assignment ");
             }
-            pushFollow(FOLLOW_variable_in_assignment1195);
+            pushFollow(FOLLOW_variable_in_assignment1214);
             valuee=variable();
             _fsp--;
             if (failed) return value;
@@ -4800,10 +4828,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1199);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1218);    throw mse;
             }
 
-            pushFollow(FOLLOW_expression_in_assignment1222);
+            pushFollow(FOLLOW_expression_in_assignment1241);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -4879,7 +4907,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:39: a= array
                     {
-                    pushFollow(FOLLOW_array_in_variable1242);
+                    pushFollow(FOLLOW_array_in_variable1261);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
@@ -4901,7 +4929,7 @@ public class gscriptParser extends Parser {
                         if (backtracking>0) {failed=true; return retval;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1247);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1266);    throw mse;
                     }
 
                     if ( backtracking==0 ) {
@@ -4946,8 +4974,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1271); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1273); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function1290); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1292); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt33=2;
             int LA33_0 = input.LA(1);
@@ -4959,7 +4987,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function1278);
+                    pushFollow(FOLLOW_expression_in_function1297);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -4984,7 +5012,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:49: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:50: ','
                     	    {
-                    	    match(input,44,FOLLOW_44_in_function1284); if (failed) return value;
+                    	    match(input,44,FOLLOW_44_in_function1303); if (failed) return value;
 
                     	    }
 
@@ -4999,7 +5027,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:56: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function1290);
+                    	            pushFollow(FOLLOW_expression_in_function1309);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -5027,7 +5055,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1299); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1318); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.functionstatement(n.getText(), value);
             }
@@ -5062,8 +5090,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21317); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21319); if (failed) return value;
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21336); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21338); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:16: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt36=2;
             int LA36_0 = input.LA(1);
@@ -5075,7 +5103,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:17: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function21324);
+                    pushFollow(FOLLOW_expression_in_function21343);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -5100,7 +5128,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:51: ','
                     	    {
-                    	    match(input,44,FOLLOW_44_in_function21329); if (failed) return value;
+                    	    match(input,44,FOLLOW_44_in_function21348); if (failed) return value;
 
                     	    }
 
@@ -5115,7 +5143,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:57: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function21335);
+                    	            pushFollow(FOLLOW_expression_in_function21354);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -5143,7 +5171,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21344); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21363); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -5189,15 +5217,15 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1366);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1385);    throw mse;
             }
 
-            match(input,86,FOLLOW_86_in_array1374); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_array1378);
+            match(input,86,FOLLOW_86_in_array1393); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_array1397);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,87,FOLLOW_87_in_array1380); if (failed) return value;
+            match(input,87,FOLLOW_87_in_array1399); if (failed) return value;
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),input.toString(e.start,e.stop));
             }
@@ -5327,10 +5355,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred43
     public final void synpred43_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:56: ( aexpression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:56: aexpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:117: ( aexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:117: aexpression
         {
-        pushFollow(FOLLOW_aexpression_in_synpred43691);
+        pushFollow(FOLLOW_aexpression_in_synpred43698);
         aexpression();
         _fsp--;
         if (failed) return ;
@@ -5341,10 +5369,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred46
     public final void synpred46_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:90: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:90: ( andexpression | orexpression | xorexpression ) ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:162: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:162: ( andexpression | orexpression | xorexpression ) ( expression )
         {
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:90: ( andexpression | orexpression | xorexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:162: ( andexpression | orexpression | xorexpression )
         int alt40=3;
         switch ( input.LA(1) ) {
         case 60:
@@ -5368,16 +5396,16 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("104:90: ( andexpression | orexpression | xorexpression )", 40, 0, input);
+                new NoViableAltException("104:162: ( andexpression | orexpression | xorexpression )", 40, 0, input);
 
             throw nvae;
         }
 
         switch (alt40) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:91: andexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:163: andexpression
                 {
-                pushFollow(FOLLOW_andexpression_in_synpred46699);
+                pushFollow(FOLLOW_andexpression_in_synpred46708);
                 andexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5385,9 +5413,9 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:105: orexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:205: orexpression
                 {
-                pushFollow(FOLLOW_orexpression_in_synpred46701);
+                pushFollow(FOLLOW_orexpression_in_synpred46713);
                 orexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5395,9 +5423,9 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:118: xorexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:248: xorexpression
                 {
-                pushFollow(FOLLOW_xorexpression_in_synpred46703);
+                pushFollow(FOLLOW_xorexpression_in_synpred46718);
                 xorexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5407,10 +5435,10 @@ public class gscriptParser extends Parser {
 
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:133: ( expression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:134: expression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:289: ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:104:290: expression
         {
-        pushFollow(FOLLOW_expression_in_synpred46707);
+        pushFollow(FOLLOW_expression_in_synpred46725);
         expression();
         _fsp--;
         if (failed) return ;
@@ -5427,7 +5455,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:69: ( expression )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:69: expression
         {
-        pushFollow(FOLLOW_expression_in_synpred59777);
+        pushFollow(FOLLOW_expression_in_synpred59796);
         expression();
         _fsp--;
         if (failed) return ;
@@ -5441,7 +5469,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:37: ( variable )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:37: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred70917);
+        pushFollow(FOLLOW_variable_in_synpred70936);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5455,7 +5483,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:147: ( variable )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:147: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred84955);
+        pushFollow(FOLLOW_variable_in_synpred84974);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5477,7 +5505,7 @@ public class gscriptParser extends Parser {
             if (backtracking>0) {failed=true; return ;}
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred85926);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred85945);    throw mse;
         }
 
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
@@ -5538,7 +5566,7 @@ public class gscriptParser extends Parser {
             case 1 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:114: function
                 {
-                pushFollow(FOLLOW_function_in_synpred85947);
+                pushFollow(FOLLOW_function_in_synpred85966);
                 function();
                 _fsp--;
                 if (failed) return ;
@@ -5548,28 +5576,28 @@ public class gscriptParser extends Parser {
             case 2 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:123: HEXNUMBER
                 {
-                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred85949); if (failed) return ;
+                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred85968); if (failed) return ;
 
                 }
                 break;
             case 3 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:133: STRING
                 {
-                match(input,STRING,FOLLOW_STRING_in_synpred85951); if (failed) return ;
+                match(input,STRING,FOLLOW_STRING_in_synpred85970); if (failed) return ;
 
                 }
                 break;
             case 4 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:140: NUMBER
                 {
-                match(input,NUMBER,FOLLOW_NUMBER_in_synpred85953); if (failed) return ;
+                match(input,NUMBER,FOLLOW_NUMBER_in_synpred85972); if (failed) return ;
 
                 }
                 break;
             case 5 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:147: variable
                 {
-                pushFollow(FOLLOW_variable_in_synpred85955);
+                pushFollow(FOLLOW_variable_in_synpred85974);
                 variable();
                 _fsp--;
                 if (failed) return ;
@@ -5579,7 +5607,7 @@ public class gscriptParser extends Parser {
             case 6 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:156: WORD
                 {
-                match(input,WORD,FOLLOW_WORD_in_synpred85957); if (failed) return ;
+                match(input,WORD,FOLLOW_WORD_in_synpred85976); if (failed) return ;
 
                 }
                 break;
@@ -5851,93 +5879,93 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_expression_in_elsestatement644 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
     public static final BitSet FOLLOW_statement_in_elsestatement653 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_pexpression_in_expression681 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_relationalExpression_in_expression683 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_notexpression_in_expression685 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_aexpression_in_expression691 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_andexpression_in_expression699 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_expression701 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_expression703 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_expression707 = new BitSet(new long[]{0xF000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_set_in_notexpression725 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_notexpression733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_aexpression750 = new BitSet(new long[]{0x001800001FA00102L});
-    public static final BitSet FOLLOW_expression_in_aexpression777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_value798 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_value800 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_value802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_value804 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_pexpression820 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_pexpression824 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_pexpression826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_andexpression843 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_orexpression864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_xorexpression885 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_relationalExpression909 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression911 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression913 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression915 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression917 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression919 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression921 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_relationalExpression926 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_relationalExpression947 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression949 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression951 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression953 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression955 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression957 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_67_in_repeatstatement978 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_repeatstatement982 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_repeatstatement987 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_breakstatement1003 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_continuestatement1020 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_dostatement1037 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_dostatement1041 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_dostatement1043 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_dostatement1047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_whilestatement1062 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_whilestatement1066 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_whilestatement1071 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_forstatement1087 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_forstatement1089 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1093 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_forstatement1097 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_forstatement1099 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1103 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_forstatement1105 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1109 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_switchstatement1124 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1127 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LBRAC_in_switchstatement1130 = new BitSet(new long[]{0x0000000000000800L,0x0000000000001800L});
-    public static final BitSet FOLLOW_set_in_switchstatement1133 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1139 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_switchstatement1141 = new BitSet(new long[]{0x0000E40018200C00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_statement_in_switchstatement1144 = new BitSet(new long[]{0x0000E40018200C00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_RBRAC_in_switchstatement1150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_withstatement1166 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_withstatement1171 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_withstatement1176 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_assignment1195 = new BitSet(new long[]{0x0000000000001000L,0x00000000003F8004L});
-    public static final BitSet FOLLOW_set_in_assignment1199 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_assignment1222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_variable1247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function1271 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1273 = new BitSet(new long[]{0x001800001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1278 = new BitSet(new long[]{0x0000100000000200L});
-    public static final BitSet FOLLOW_44_in_function1284 = new BitSet(new long[]{0x001810001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1290 = new BitSet(new long[]{0x0000100000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1299 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OIVAR_in_function21317 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21319 = new BitSet(new long[]{0x001800001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21324 = new BitSet(new long[]{0x0000100000000200L});
-    public static final BitSet FOLLOW_44_in_function21329 = new BitSet(new long[]{0x001810001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21335 = new BitSet(new long[]{0x0000100000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21344 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1366 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_array1374 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_array1378 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_array1380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpression_in_expression686 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_notexpression_in_expression691 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_aexpression_in_expression698 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_andexpression_in_expression708 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_expression713 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_expression718 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_expression725 = new BitSet(new long[]{0xF000000000000002L,0x0000000000000003L});
+    public static final BitSet FOLLOW_set_in_notexpression744 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_notexpression752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_aexpression769 = new BitSet(new long[]{0x001800001FA00102L});
+    public static final BitSet FOLLOW_expression_in_aexpression796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_value817 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_value819 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_value821 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_value823 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_pexpression839 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_pexpression843 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_pexpression845 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_andexpression862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_orexpression883 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_xorexpression904 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_relationalExpression928 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression930 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression932 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression934 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression936 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression938 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression940 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_relationalExpression945 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_relationalExpression966 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression968 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression970 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression972 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression974 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression976 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_67_in_repeatstatement997 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_repeatstatement1001 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_repeatstatement1006 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_breakstatement1022 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_continuestatement1039 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_dostatement1056 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_dostatement1060 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_71_in_dostatement1062 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_dostatement1066 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_whilestatement1081 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_whilestatement1085 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_whilestatement1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_forstatement1106 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_forstatement1108 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1112 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_forstatement1116 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_forstatement1118 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1122 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_forstatement1124 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_switchstatement1143 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1146 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LBRAC_in_switchstatement1149 = new BitSet(new long[]{0x0000000000000800L,0x0000000000001800L});
+    public static final BitSet FOLLOW_set_in_switchstatement1152 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1158 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_switchstatement1160 = new BitSet(new long[]{0x0000E40018200C00L,0x0000000000005F78L});
+    public static final BitSet FOLLOW_statement_in_switchstatement1163 = new BitSet(new long[]{0x0000E40018200C00L,0x0000000000005F78L});
+    public static final BitSet FOLLOW_RBRAC_in_switchstatement1169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_withstatement1185 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_withstatement1190 = new BitSet(new long[]{0x0000E40018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_withstatement1195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_assignment1214 = new BitSet(new long[]{0x0000000000001000L,0x00000000003F8004L});
+    public static final BitSet FOLLOW_set_in_assignment1218 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_assignment1241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1261 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_variable1266 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_function1290 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1292 = new BitSet(new long[]{0x001800001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1297 = new BitSet(new long[]{0x0000100000000200L});
+    public static final BitSet FOLLOW_44_in_function1303 = new BitSet(new long[]{0x001810001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1309 = new BitSet(new long[]{0x0000100000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1318 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21336 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21338 = new BitSet(new long[]{0x001800001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21343 = new BitSet(new long[]{0x0000100000000200L});
+    public static final BitSet FOLLOW_44_in_function21348 = new BitSet(new long[]{0x001810001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21354 = new BitSet(new long[]{0x0000100000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1385 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_array1393 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_array1397 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_array1399 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_field_in_synpred1199 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred2201 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_synpred21336 = new BitSet(new long[]{0x0000000000000002L});
@@ -5946,20 +5974,20 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_variable_in_synpred35510 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred36527 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_elsestatement_in_synpred39617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aexpression_in_synpred43691 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andexpression_in_synpred46699 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_synpred46701 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_synpred46703 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_synpred46707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred59777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred70917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred84955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred85926 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_synpred85947 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred85949 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred85951 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred85953 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred85955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred85957 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aexpression_in_synpred43698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andexpression_in_synpred46708 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_synpred46713 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_synpred46718 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_synpred46725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred59796 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred70936 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred84974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred85945 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_synpred85966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred85968 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred85970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred85972 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred85974 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred85976 = new BitSet(new long[]{0x0000000000000002L});
 
 }

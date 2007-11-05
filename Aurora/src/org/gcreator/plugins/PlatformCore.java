@@ -117,7 +117,9 @@ public class PlatformCore extends PluginCore {
         return "{ \n"+st+"\n }";
     }
 
-    
+    public String expression(String ex) {
+        return ex;
+    }
     
     public String notexpression(String exp) {
         return " !("+exp+")";

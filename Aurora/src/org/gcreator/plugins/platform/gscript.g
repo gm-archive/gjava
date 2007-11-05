@@ -101,7 +101,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  e=(pexpression|relationalExpression|notexpression) (aa=aexpression {a+= $aa.text;})* ((andexpression|orexpression|xorexpression) (expression))* {$value ="";}
+:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value =" "+$e.value;}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
