@@ -56,7 +56,9 @@ public class PlatformCore extends PluginCore {
                             parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
                         } else if (((org.gcreator.fileclass.File) childNode).type.equals("gif")) {
                             parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
-                        }
+                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("egml")) {
+                            parseClass((String) ((org.gcreator.fileclass.File) childNode).value);
+ }
                     } catch (Exception e) {
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
@@ -79,7 +81,7 @@ public class PlatformCore extends PluginCore {
     public void parseScene(Scene s) throws IOException {
     }
 
-    public void parseClass() throws IOException {
+    public void parseClass(String s) throws IOException {
     }
 
     /**

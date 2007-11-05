@@ -49,7 +49,7 @@ package org.gcreator.plugins.platform;
 * PARSER RULES
 *------------------------------------------------------------------*/
 
-program returns [String value]
+classes returns [String value]
 : ((field|method|innerclass) (';'{System.out.println(";");})*)* {
 //write("hi");
 }
@@ -60,7 +60,7 @@ code // never put: returns after this!
 	;
 
 statement returns [String value]
-: {System.out.print("statement: "); $value = "";} (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value;}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value;}|br=breakstatement{$value += $br.value;}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value;}|ass=assignment{$value += $ass.value;}|fun=function{$value += $fun.value;}) (';'{System.out.println(";");})* 
+: {System.out.print("statement: "); $value = "";} (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value;}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value;}|br=breakstatement{$value += $br.value;}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value;}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value;}) (';'{System.out.println(";");})* 
 ;
 
 field returns [String value]
@@ -76,7 +76,7 @@ innerclass returns [String value]
 	;
 
 bstatement returns [String value]
-: {System.out.println("bstatement ");} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
+: {System.out.println("bstatement "); $value = "";} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
 ;
 
 varstatement returns [String value] @init {String s = "";}

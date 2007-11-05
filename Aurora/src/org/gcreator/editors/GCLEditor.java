@@ -20,12 +20,18 @@ import java.awt.*;
  */
 public class GCLEditor extends TabPanel {
     
+    public boolean changed = true;
+    private EGMLTextArea g;
+    public org.gcreator.fileclass.File file;
+    
     public boolean Save(){
         file.value = g.getText();
         return true;
     }
-    private EGMLTextArea g;
-    public org.gcreator.fileclass.File file;
+
+    
+    
+    
     
     /** Creates new form CodeEditor2 */
     public GCLEditor(org.gcreator.fileclass.File file,Project project) {
@@ -46,6 +52,11 @@ public class GCLEditor extends TabPanel {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
+    }
+
+    
+    public boolean wasModified() {
+        return changed;
     }
     
     /** This method is called from within the constructor to
@@ -153,6 +164,7 @@ public class GCLEditor extends TabPanel {
         } catch (BadLocationException ex) {
             Logger.getLogger(GCLEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
     
     

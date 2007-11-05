@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 03:08:04
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 15:20:26
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -68,11 +68,11 @@ public class gscriptParser extends Parser {
 
 
 
-    // $ANTLR start program
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:1: program returns [String value] : ( ( field | method | innerclass ) ( ';' )* )* ;
-    public final String program() throws RecognitionException {
+    // $ANTLR start classes
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:1: classes returns [String value] : ( ( field | method | innerclass ) ( ';' )* )* ;
+    public final String classes() throws RecognitionException {
         String value = null;
-        int program_StartIndex = input.index();
+        int classes_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 1) ) { return value; }
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:1: ( ( ( field | method | innerclass ) ( ';' )* )* )
@@ -334,7 +334,7 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:5: field
             	            {
-            	            pushFollow(FOLLOW_field_in_program199);
+            	            pushFollow(FOLLOW_field_in_classes199);
             	            field();
             	            _fsp--;
             	            if (failed) return value;
@@ -344,7 +344,7 @@ public class gscriptParser extends Parser {
             	        case 2 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:11: method
             	            {
-            	            pushFollow(FOLLOW_method_in_program201);
+            	            pushFollow(FOLLOW_method_in_classes201);
             	            method();
             	            _fsp--;
             	            if (failed) return value;
@@ -354,7 +354,7 @@ public class gscriptParser extends Parser {
             	        case 3 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:18: innerclass
             	            {
-            	            pushFollow(FOLLOW_innerclass_in_program203);
+            	            pushFollow(FOLLOW_innerclass_in_classes203);
             	            innerclass();
             	            _fsp--;
             	            if (failed) return value;
@@ -379,7 +379,7 @@ public class gscriptParser extends Parser {
             	    	case 1 :
             	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:31: ';'
             	    	    {
-            	    	    match(input,36,FOLLOW_36_in_program207); if (failed) return value;
+            	    	    match(input,36,FOLLOW_36_in_classes207); if (failed) return value;
             	    	    if ( backtracking==0 ) {
             	    	      System.out.println(";");
             	    	    }
@@ -415,11 +415,11 @@ public class gscriptParser extends Parser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 1, program_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 1, classes_StartIndex); }
         }
         return value;
     }
-    // $ANTLR end program
+    // $ANTLR end classes
 
 
     // $ANTLR start code
@@ -869,13 +869,13 @@ public class gscriptParser extends Parser {
                     _fsp--;
                     if (failed) return retval;
                     if ( backtracking==0 ) {
-                      retval.value += ass;
+                      retval.value += ass+";";
                     }
 
                     }
                     break;
                 case 16 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:645: fun= function
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:649: fun= function
                     {
                     pushFollow(FOLLOW_function_in_statement331);
                     fun=function();
@@ -890,7 +890,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:682: ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:686: ( ';' )*
             loop6:
             do {
                 int alt6=2;
@@ -909,7 +909,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:683: ';'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:687: ';'
             	    {
             	    match(input,36,FOLLOW_36_in_statement336); if (failed) return retval;
             	    if ( backtracking==0 ) {
@@ -1368,7 +1368,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:79:3: ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' )
             {
             if ( backtracking==0 ) {
-              System.out.println("bstatement ");
+              System.out.println("bstatement "); value = "";
             }
             if ( input.LA(1)==LBRAC||input.LA(1)==42 ) {
                 input.consume();
@@ -1381,7 +1381,7 @@ public class gscriptParser extends Parser {
                 recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement463);    throw mse;
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:79:56: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:79:69: (s= statement )*
             loop12:
             do {
                 int alt12=2;
@@ -1394,7 +1394,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt12) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:79:57: s= statement
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:79:70: s= statement
             	    {
             	    pushFollow(FOLLOW_statement_in_bstatement472);
             	    s=statement();
@@ -5274,8 +5274,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred21
     public final void synpred21_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:683: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:683: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:687: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:687: ';'
         {
         match(input,36,FOLLOW_36_in_synpred21336); if (failed) return ;
 
@@ -5819,10 +5819,10 @@ public class gscriptParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_field_in_program199 = new BitSet(new long[]{0x000002F000200002L});
-    public static final BitSet FOLLOW_method_in_program201 = new BitSet(new long[]{0x000002F000200002L});
-    public static final BitSet FOLLOW_innerclass_in_program203 = new BitSet(new long[]{0x000002F000200002L});
-    public static final BitSet FOLLOW_36_in_program207 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_field_in_classes199 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_method_in_classes201 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_innerclass_in_classes203 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_36_in_classes207 = new BitSet(new long[]{0x000002F000200002L});
     public static final BitSet FOLLOW_statement_in_code230 = new BitSet(new long[]{0x0000E40018200402L,0x0000000000004778L});
     public static final BitSet FOLLOW_bstatement_in_statement256 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_varstatement_in_statement261 = new BitSet(new long[]{0x0000001000000002L});
