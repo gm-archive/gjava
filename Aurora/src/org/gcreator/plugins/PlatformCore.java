@@ -100,7 +100,7 @@ public class PlatformCore extends PluginCore {
     		BufferedWriter tempcode = new BufferedWriter(ftempcode);
     		tempcode.write(code);
     		tempcode.close();
-        
+        System.out.println("test");
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
 

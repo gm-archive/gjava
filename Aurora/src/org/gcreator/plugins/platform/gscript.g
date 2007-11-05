@@ -55,7 +55,7 @@ program returns [String value]
 }
 ;
 
-code	returns [String value]
+code // never put: returns after this!
 : {System.out.println("Start parsing value ");} ((statement)*)	{System.out.println("Parsed code in antlr!");} 
 	;
 
