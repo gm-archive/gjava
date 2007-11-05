@@ -90,11 +90,11 @@ public class PlatformCore extends PluginCore {
      */
     public String varstatement(String type, String vars) {
         System.out.println("Var statement: " + type + vars);
-        return "";
+        return type + " "+vars+";";
     }
 
     public String fieldstatement(String m, String varstatement) {
-        return "";
+        return ";";
     }
 
     public String returnstatement(String exp) {
@@ -194,7 +194,7 @@ public class PlatformCore extends PluginCore {
         gscriptParser parser;
         gscriptLexer lex = null;
 
-        code = "int i; int ii; int iii; { me = 3; if (5==2) {}}";
+        code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
 
         FileWriter ftempcode = new FileWriter("tempcode.gcl");
         BufferedWriter tempcode = new BufferedWriter(ftempcode);
@@ -208,7 +208,7 @@ public class PlatformCore extends PluginCore {
         parser.setPlatform(p);
         try {
             parser.code();
-            System.out.println("Finished!");
+            System.out.println("Finished! Code output:"+this.returncode);
         } catch (Exception e) {
             System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
         }

@@ -80,7 +80,7 @@ bstatement returns [String value]
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {pc.varstatement($type.text,s);} 
+: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {$value=pc.varstatement($type.text,s);} 
 ;
 
 returnstatement returns [String value]

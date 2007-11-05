@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 02:51:31
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 03:08:04
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -2044,7 +2044,7 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              pc.varstatement(type.getText(),s);
+              retval.value =pc.varstatement(type.getText(),s);
             }
 
             }
