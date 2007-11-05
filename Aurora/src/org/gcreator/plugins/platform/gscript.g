@@ -49,10 +49,8 @@ package org.gcreator.plugins.platform;
 * PARSER RULES
 *------------------------------------------------------------------*/
 
-classes returns [String value]
-: ((field|method|innerclass) (';'{System.out.println(";");})*)* {
-//write("hi");
-}
+classes
+: {pc.returncode ="";} ((f=field{pc.returncode += "\n " + $f.value;}|m=method{pc.returncode += "\n " + $m.value;}|i=innerclass{pc.returncode += "\n " + $i.value;}) (';'{System.out.println(";");})*)*
 ;
 
 code // never put: returns after this!
@@ -67,8 +65,8 @@ field returns [String value]
 : ('public' {$value = "public";}|'private' {$value = "private";})? ('static'{$value += " static";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
 ;
 
-method returns [String value]
-:  ('public'|'private')? ('static')? arg=WORD name=WORD '()' bstatement
+method returns [String value] @init {String s = "";}
+:  ('public'{$value = "public";}|'private'{$value = "private";})? ('static'{$value += " static";})? arg=WORD name=WORD '(' (e=expression {s = $e.text;} ((',') (e=expression{s += ", "+$e.text;})?)*)? ')' b=bstatement {$value = pc.methodstatement($value,$arg.text,$name.text,$b.value,s);}
 ;
 
 innerclass returns [String value]

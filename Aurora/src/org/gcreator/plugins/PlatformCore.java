@@ -34,7 +34,7 @@ import org.gcreator.plugins.platform.gscriptParser;
  */
 public class PlatformCore extends PluginCore {
 
-    public String returncode = "";
+    public static String returncode = "";
 
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.Object childNode;
@@ -57,7 +57,7 @@ public class PlatformCore extends PluginCore {
                         } else if (((org.gcreator.fileclass.File) childNode).type.equals("gif")) {
                             parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
                         } else if (((org.gcreator.fileclass.File) childNode).type.equals("egml")) {
-                            parseClass((String) ((org.gcreator.fileclass.File) childNode).value);
+                            parseClass((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
  }
                     } catch (Exception e) {
                     }
@@ -81,7 +81,8 @@ public class PlatformCore extends PluginCore {
     public void parseScene(Scene s) throws IOException {
     }
 
-    public void parseClass(String s) throws IOException {
+    public void parseClass(String s,String name) throws IOException {
+    System.out.println("called wrong method!");
     }
 
     /**
@@ -190,13 +191,17 @@ public class PlatformCore extends PluginCore {
     public String array(String name, String exp) {
         return name + "[" + exp + "]";
     }
+    
+    public String methodstatement(String m, String retvalue, String name, String st, String args) {
+        return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; //TODO
+    } 
 
     public String parseGCL(String code, PlatformCore p) throws IOException {
         //change code simply for testing
         gscriptParser parser;
         gscriptLexer lex = null;
 
-        code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
+        //code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
 
         FileWriter ftempcode = new FileWriter("tempcode.gcl");
         BufferedWriter tempcode = new BufferedWriter(ftempcode);
@@ -210,7 +215,33 @@ public class PlatformCore extends PluginCore {
         parser.setPlatform(p);
         try {
             parser.code();
-            System.out.println("Finished! Code output:"+this.returncode);
+            System.out.println("Finished! Code output:"+returncode);
+        } catch (Exception e) {
+            System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
+        }
+        return "";
+    }
+    
+    public String parseGCLClass(String code, PlatformCore p) throws IOException {
+        //change code simply for testing
+        gscriptParser parser;
+        gscriptLexer lex = null;
+
+        //code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
+
+        FileWriter ftempcode = new FileWriter("tempcode.gcl");
+        BufferedWriter tempcode = new BufferedWriter(ftempcode);
+        tempcode.write(code);
+        tempcode.close();
+        System.out.println("test");
+        lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
+        CommonTokenStream tokens = new CommonTokenStream(lex);
+
+        parser = new gscriptParser(tokens);
+        parser.setPlatform(p);
+        try {
+            parser.classes();
+            System.out.println("Finished! Code output:"+returncode);
         } catch (Exception e) {
             System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
         }
