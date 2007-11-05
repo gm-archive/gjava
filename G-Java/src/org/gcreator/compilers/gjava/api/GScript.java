@@ -10,7 +10,13 @@ import java.awt.datatransfer.*;
 import java.lang.reflect.Method;
 import javax.swing.*;
 import java.util.*;
-import org.gcreator.compilers.gjava.components.*;
+import org.gcreator.compilers.gjava.components.Actor;
+import org.gcreator.compilers.gjava.components.Scene;
+import org.gcreator.compilers.gjava.components.Timeline;
+import org.gcreator.compilers.gjava.components.font;
+import org.gcreator.compilers.gjava.components.sound;
+import org.gcreator.compilers.gjava.components.sprite;
+
 import org.gcreator.compilers.gjava.core.*;
 
 
@@ -59,6 +65,7 @@ public class GScript {
          * @param ind
          * @return
          */
+
         public static boolean sprite_exists(sprite ind) {
             if(ind!=null)
                 return true;
