@@ -56,15 +56,15 @@ program returns [String value]
 ;
 
 code // never put: returns after this!
-: {System.out.println("Start parsing value ");} ((statement)*)	{System.out.println("Parsed code in antlr!");} 
+: {System.out.println("Start parsing code ");} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{System.out.println("Parsed code in antlr!");} 
 	;
 
 statement returns [String value]
-: {System.out.print("statement: ");} (bstatement|varstatement|returnstatement|exitstatement|ifstatement|repeatstatement|dostatement|whilestatement|continuestatement|breakstatement|forstatement|switchstatement|withstatement|function2|assignment|function) (';'{System.out.println(";");})* {System.out.print("statement ");}
+: {System.out.print("statement: "); $value = "";} (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value;}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value;}|br=breakstatement{$value += $br.value;}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value;}|ass=assignment{$value += $ass.value;}|fun=function{$value += $fun.value;}) (';'{System.out.println(";");})* 
 ;
 
 field returns [String value]
-: ('public'|'private')? ('static')? type=WORD name=WORD '=' (WORD|NUMBER) 
+: ('public' {$value = "public";}|'private' {$value = "private";})? ('static'{$value += " static";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
 ;
 
 method returns [String value]
@@ -76,15 +76,15 @@ innerclass returns [String value]
 	;
 
 bstatement returns [String value]
-: {System.out.println("bstatement ");} (LBRAC|'begin') (statement)* (RBRAC|'end') {System.out.print("bstatement ");}
+: {System.out.println("bstatement ");} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )* {System.out.println(" endvar statement ");} {pc.varstatement($type.text,s);} 
+: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {pc.varstatement($type.text,s);} 
 ;
 
 returnstatement returns [String value]
-: 'return' {System.out.print("return ");} (expression) {$value ="";}
+: 'return' {System.out.println("return statement ");} (e=expression{$value=$e.text;}) {$value =pc.returnstatement($value);}
 ;
 
 exitstatement returns [String value]
@@ -92,19 +92,20 @@ exitstatement returns [String value]
 ;
 
 ifstatement returns [String value]
-: {System.out.println("if statement ");} 'if' expression ('then')? (statement) (elsestatement)*  {$value ="";}
+: {System.out.println("if statement ");} 'if' e=expression ('then')? (s=statement) (el=elsestatement{$value +=$el.value;})*  {$value =pc.ifstatement($e.value,$s.value,$value);}
 ;
 
 elsestatement returns [String value]
-: ('else'|('elsif' expression)) (statement) {$value ="";}
+: ('else'|('elsif' e=expression {$value ="if "+$e.text;})) (s=statement {$value +=" "+$s.text;}) {$value =pc.elsestatement($value);}
 ;
 
+//todo
 expression returns [String value] @init {String a = "";}
 :  e=(pexpression|relationalExpression|notexpression) (aa=aexpression {a+= $aa.text;})* ((andexpression|orexpression|xorexpression) (expression))* {$value ="";}
 ;
 
 notexpression returns [String value]
-: n=('not'|'!') e=expression {$value=$n.text+" "+$e.text;}
+: ('not'|'!') e=expression {$value =pc.notexpression($e.value);}
 ;
 
 aexpression returns [String value]
@@ -115,19 +116,19 @@ value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.t
 ;
 
 pexpression returns [String value]
-: LPAREN e=expression RPAREN {$value=$e.text;}
+: LPAREN e=expression RPAREN {$value =pc.pexpression($e.value);}
 ;
 
 andexpression returns [String value]
-: a=('&&'|'and') {$value=$a.text;}
+: a=('&&'|'and') {$value =pc.andexpression();}
 ;
 
 orexpression returns [String value]
-: o=('||'|'or') {$value =$o.text;}
+: o=('||'|'or') {$value =pc.orexpression();}
 ;
 
 xorexpression returns [String value]
-: x=('^^'|'xor') {$value =$x.text;}
+: x=('^^'|'xor') {$value =pc.xorexpression();}
 ;
 
 relationalExpression returns [String value]
@@ -136,26 +137,26 @@ relationalExpression returns [String value]
   ;
  
 repeatstatement returns [String value]
-: 'repeat' expression (statement) {$value ="";}
+: 'repeat' e=expression (s=statement) {$value =pc.repeatstatement($e.value,$s.value);}
 ;
 
 breakstatement returns [String value]
-: 'break'  {System.out.println("break;");} {$value ="";}
+: 'break'  {System.out.println("break;");} {$value =pc.breakstatement();}
 ;
 continuestatement returns [String value]
-: 'continue' {System.out.println("continue;");} {$value ="";}
+: 'continue' {System.out.println("continue;");} {$value =pc.continuestatement();}
 ;
 
 dostatement returns [String value]
-: 'do' statement 'until' expression {$value ="";}
+: 'do' s=statement 'until' e=expression {$value =pc.dostatement($s.value,$e.value);}
 ;
 
 whilestatement returns [String value]
-: 'while' expression (statement) {$value ="";}
+: 'while' e=expression (s=statement) {$value =pc.whilestatement($e.value,$s.value);}
 ;
 
 forstatement returns [String value]
-: 'for' '(' statement expression ';' statement ')' statement {$value ="";}
+: 'for' '(' s1=statement e=expression ';' s2=statement ')' s=statement {$value =pc.forstatement($s1.value,$e.value,$s2.value,$s.value);}
 ;
 
 switchstatement returns [String value]
@@ -163,11 +164,11 @@ switchstatement returns [String value]
 ;
 
 withstatement returns [String value]
-: 'with'  expression  statement {$value ="";}
+: 'with'  e=expression  s=statement {$value =pc.withstatement($e.value,$s.value);}
 ;
 
 assignment returns [String value]
-: {System.out.println("assignment ");} valuee=variable op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&\\'| '^=') e=expression {$value = $valuee.text+$op.text+$e.text;}
+: {System.out.println("assignment ");} valuee=variable op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&\\'| '^=') e=expression {$value = pc.assignmentstatement($valuee.text,$op.text,$e.text);}
 ;
 
 variable returns [String value]
@@ -175,15 +176,15 @@ variable returns [String value]
 ;
 
 function returns [String value]
-: WORD '(' (expression ((',') (expression)?)*)? ')' {$value ="";}
+: n=WORD '(' (e=expression {$value = $e.text;} ((',') (e=expression{$value += ", "+$e.text;})?)*)? ')' {$value =pc.functionstatement($n.text, $value);}
 ;
 
 function2 returns [String value]
-	:	OIVAR '(' (expression ((',') (expression)?)*)? ')' {$value ="";}
+	:	n=OIVAR '(' (e=expression {$value = $e.text;}((',') (e=expression{$value += ", "+$e.text;})?)*)? ')' {$value =pc.otherclassfunctionstatement($n.text, $value);}
 	;
 
 array returns [String value]
-  : {System.out.println("array ");} valuee=(WORD|OIVAR|GLOBALVAR) '[' expression ']' {$value = $valuee.text;}
+  : {System.out.println("array");} valuee=(WORD|OIVAR|GLOBALVAR) '[' e=expression ']' {$value = pc.array($valuee.text,$e.text);}
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
