@@ -222,7 +222,7 @@ public class PlatformCore extends PluginCore {
         return "";
     }
     
-    public String parseGCLClass(String code, PlatformCore p) throws IOException {
+    public static String parseGCLClass(String code, PlatformCore p) throws IOException {
         //change code simply for testing
         gscriptParser parser;
         gscriptLexer lex = null;
