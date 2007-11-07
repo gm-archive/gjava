@@ -204,7 +204,7 @@ public class NewProject extends TabPanel {
     }
     
     // Variables declaration
-    private JButton jButton1;
+    public JButton jButton1;
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
