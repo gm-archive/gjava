@@ -29,7 +29,7 @@ import org.jdesktop.layout.LayoutStyle;
 public class NewProject extends TabPanel {
 
     /** Creates new form NewProject */
-    public Vector ProjectButtons = new Vector(); //<JButton>
+    public Vector ProjectButtons = new Vector(); //
 
     public NewProject() {
         initComponents();
@@ -208,7 +208,7 @@ public class NewProject extends TabPanel {
     private JLabel jLabel1;
     private JLabel jLabel2;
     private JLabel jLabel3;
-    private ProjectTypes ptypes;
+    public ProjectTypes ptypes;
     public JTextField jTextField1;
     // End of variables declaration
 }

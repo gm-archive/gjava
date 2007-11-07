@@ -70,7 +70,11 @@ public class Aurwindow extends JFrame {
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
 
-
+    public static GlobalSettings globalsettings;
+    public static NewProject newproject;
+    public static NewFileGroup newfilegroup;
+    public static AboutPanel about;
+    
     //</editor-fold>
 
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -968,10 +972,6 @@ public class Aurwindow extends JFrame {
             addWindow(globalsettings, 131);
         }
     }
-    public static GlobalSettings globalsettings;
-    public static NewProject newproject;
-    public static NewFileGroup newfilegroup;
-    public static AboutPanel about;
 
     //</editor-fold>
     //Tree accessing functions
