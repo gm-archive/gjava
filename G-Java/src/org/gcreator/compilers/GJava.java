@@ -196,7 +196,7 @@ public class GJava extends PlatformCore {
         run.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
-                        run(gcreator.window.getMainProject());
+                        run(Aurwindow.getMainProject());
                     }
                 });
         Aurwindow.tool.add(run);
@@ -265,6 +265,22 @@ public class GJava extends PlatformCore {
         }
 
         GJavaCompiler compiler = new GJavaCompiler();
+    }
+    
+    @Override
+    public Object onSignalReceived(PluginCore caller, Object signal){
+        if(signal instanceof Object[]){
+            Object[] args = (Object[]) signal;
+            if(args[0] instanceof String&&((String) args[0]).equals("compile")){
+                for(int i = 1; i < args.length; i++){
+                    if(args[i]!=null&&args[i] instanceof Project){
+                        run((Project) args[i]);
+                    }
+                }
+                return true;
+            }
+        }
+        return false;
     }
 
 //    public String varstatement(String type, String vars) {
