@@ -282,6 +282,10 @@ public class GJava extends PlatformCore {
         }
         return false;
     }
+    
+    public String getID(){
+        return "G-Java";
+    }
 
 //    public String varstatement(String type, String vars) {
 //        System.out.println("G-java var");
