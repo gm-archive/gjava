@@ -509,7 +509,7 @@ public class Aurwindow extends JFrame {
                     }
                 });
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
-        menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Layout and design options are defined here.");
+        menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
         items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
         items[MenuSupporter.GenerateMenuItemId(2, 0)].addActionListener(new ActionListener() {

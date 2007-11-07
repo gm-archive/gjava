@@ -29,4 +29,7 @@ public abstract class PluginCore {
     protected Object onSignalReceived(PluginCore caller, Object signal) throws InvalidSignalException{
         return null;
     }
+    public String getID(){
+        return null;
+    }
 }
