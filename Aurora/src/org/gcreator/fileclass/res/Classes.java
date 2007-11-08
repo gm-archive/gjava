@@ -14,15 +14,19 @@ package org.gcreator.fileclass.res;
  * @author Ali1
  */
 public class Classes extends Resource {
-
+    public String value = "";
      
+    public Classes(String value){
+        this.value = value;
+    }
+    
     public String writeXml() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return value;
     }
 
      
     public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        value = xml;
     }
 
      
@@ -31,8 +35,13 @@ public class Classes extends Resource {
     }
     
     public Resource clone(){
-        Classes a = new Classes();
+        Classes a = new Classes(value);
         a.name = name;
         return a;
+    }
+    
+    @Override
+    public String toString(){
+        return value;
     }
 }

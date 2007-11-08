@@ -13,6 +13,7 @@ import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 import java.awt.*;
+import org.gcreator.fileclass.res.Classes;
 
 /**
  *
@@ -39,7 +40,7 @@ public class GCLEditor extends TabPanel {
         this.project = project;
         initComponents();
         if(file.value==null)
-            file.value = "//Some GCL code";
+            file.value = new Classes("//Some GCL code");
         g = new EGMLTextArea(file.value.toString());
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
