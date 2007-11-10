@@ -51,6 +51,14 @@ public class PluginHelper {
         gcreator.window.menubar.add(menu);
     }
     
+    public static void addMenuItem(int menu, JMenuItem item){
+        gcreator.window.menus[menu].add(item);
+    }
+    
+    public static void addMenuSeparator(int menu){
+        gcreator.window.menus[menu].addSeparator();
+    }
+    
     public static String getClipboardContent(){
         return gcreator.clipboard.getClipboardContents();
     }
