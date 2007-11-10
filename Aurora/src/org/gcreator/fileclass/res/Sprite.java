@@ -88,6 +88,16 @@ public class Sprite extends Resource {
                 originX = Integer.parseInt(orx);
                 originY = Integer.parseInt(ory);
             }
+            if(line.matches("<BB>[0-9]*, [0-9]*, [0-9]*, [0-9]*</BB>")){
+                String or1 = line.replaceAll("<BB>([0-9]*), [0-9]*, [0-9]*, [0-9]*</BB>", "$1");
+                String or2 = line.replaceAll("<BB>[0-9]*, ([0-9]*), [0-9]*, [0-9]*</BB>", "$1");
+                String or3 = line.replaceAll("<BB>[0-9]*, [0-9]*, ([0-9]*), [0-9]*</BB>", "$1");
+                String or4 = line.replaceAll("<BB>[0-9]*, [0-9]*, [0-9]*, ([0-9]*)</BB>", "$1");
+                BBleft = Integer.parseInt(or1);
+                BBRight = Integer.parseInt(or2);
+                BBTop = Integer.parseInt(or3);
+                BBBottom = Integer.parseInt(or4);
+            }
             i++;
         }
     }
