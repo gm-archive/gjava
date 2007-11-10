@@ -314,6 +314,7 @@ public class Aurwindow extends JFrame {
         mdi = new JDesktopPane();
         splitter1 = new JSplitPane();
         splitter2 = new JSplitPane();
+        tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         try {
             if (LangSupporter.activeLang != null) {

@@ -13,6 +13,9 @@ import java.awt.event.*;
  */ 
 public class ButtonTabComponent extends JPanel {
     private final JTabbedPane pane;
+    public static ImageIcon close = new ImageIcon(ButtonTabComponent.class.getResource("/org/gcreator/resources/close.png"));
+    public static ImageIcon closehover = new ImageIcon(ButtonTabComponent.class.getResource("/org/gcreator/resources/closehover.png"));
+    public static ImageIcon closepressed = new ImageIcon(ButtonTabComponent.class.getResource("/org/gcreator/resources/closepressed.png"));
 
     public ButtonTabComponent(final JTabbedPane pane) {
         //unset default FlowLayout' gaps
@@ -49,15 +52,16 @@ public class ButtonTabComponent extends JPanel {
         public TabButton() {
             int size = 17;
             setPreferredSize(new Dimension(size, size));
-            setToolTipText("close this tab");
+            setToolTipText("Close this tab");
             //Make the button looks the same for all Laf's
             setUI(new BasicButtonUI());
             //Make it transparent
             setContentAreaFilled(false);
             //No need to be focusable
             setFocusable(false);
-            setBorder(BorderFactory.createEtchedBorder());
+            //setBorder(BorderFactory.createEtchedBorder());
             setBorderPainted(false);
+            setBorder(null);
             //Making nice rollover effect
             //we use the same listener for all buttons
             addMouseListener(buttonMouseListener);
@@ -81,8 +85,14 @@ public class ButtonTabComponent extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g.create();
+            if(getModel().isPressed())
+                g2.drawImage(ButtonTabComponent.closepressed.getImage(), 0, 0, ButtonTabComponent.closepressed.getImageObserver());
+            else if(getModel().isRollover())
+                g2.drawImage(ButtonTabComponent.closehover.getImage(), 0, 0, ButtonTabComponent.closehover.getImageObserver());
+            else
+                g2.drawImage(ButtonTabComponent.close.getImage(), 0, 0, ButtonTabComponent.close.getImageObserver());
             //shift the image for pressed buttons
-            if (getModel().isPressed()) {
+            /*if (getModel().isPressed()) {
                 g2.translate(1, 1);
             }
             g2.setStroke(new BasicStroke(2));
@@ -90,13 +100,21 @@ public class ButtonTabComponent extends JPanel {
             int delta = 6;
             g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
             g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
-	    
+	    */
             g2.dispose();
         }
     }
 
-    private final static MouseListener buttonMouseListener = new MouseAdapter() {
+    public void hover(){
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }
+    public void out(){
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+    
+    private MouseListener buttonMouseListener = new MouseAdapter() {
         public void mouseEntered(MouseEvent e) {
+            hover();
             Component component = e.getComponent();
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
@@ -105,6 +123,7 @@ public class ButtonTabComponent extends JPanel {
         }
 
         public void mouseExited(MouseEvent e) {
+            out();
             Component component = e.getComponent();
             if (component instanceof AbstractButton) {
                 AbstractButton button = (AbstractButton) component;
