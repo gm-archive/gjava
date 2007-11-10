@@ -13,6 +13,7 @@ import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 import java.awt.*;
+import java.beans.*;
 import org.gcreator.fileclass.res.Classes;
 
 /**
@@ -53,6 +54,11 @@ public class GCLEditor extends TabPanel {
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
         );
+        g.addPropertyChangeListener(new PropertyChangeListener(){
+            public void propertyChange(PropertyChangeEvent evt){
+                changed = true;
+            }
+        });
     }
 
     

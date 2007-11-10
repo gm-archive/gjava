@@ -84,6 +84,11 @@ public class PlainTextEditor extends TabPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
 
+        jTextPane1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextPane1PropertyChange(evt);
+            }
+        });
         jTextPane1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextPane1KeyTyped(evt);
@@ -106,6 +111,10 @@ public class PlainTextEditor extends TabPanel {
     private void jTextPane1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane1KeyTyped
         changed = true;
     }//GEN-LAST:event_jTextPane1KeyTyped
+
+    private void jTextPane1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextPane1PropertyChange
+        changed = true;
+    }//GEN-LAST:event_jTextPane1PropertyChange
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
