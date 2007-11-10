@@ -34,8 +34,15 @@ public class SpriteEditor extends TabPanel {
         //title = file.name + "(" + project.name+")";
         //if (file.value instanceof Sprite)
         //{
-        if(file.value != null)
-            this.sprite = (Sprite) file.value;
+        if(file.value != null){
+            if(file.value instanceof String){
+                Sprite spr = new Sprite(file.name);
+                spr.readXml((String) file.value);
+                file.value = spr;
+            }
+            else
+                this.sprite = (Sprite) file.value;
+        }
         else
             this.sprite = (Sprite) (file.value = new Sprite(file.name));
         initComponents();

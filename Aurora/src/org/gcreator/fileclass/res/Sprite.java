@@ -64,8 +64,32 @@ public class Sprite extends Resource {
     }
 
      
-    public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void readXml(String xml){
+        String[] lines = xml.split("\n");
+        String line;
+        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>"))
+            return;
+        if(!lines[1].matches("<sprite>"))
+            return;
+        if(lines.length<2)
+            return;
+        int i = 2;
+        while(i < lines.length){
+            line = lines[i];
+            System.out.println(line);
+            if(line==null||line.equals(""))
+                continue;
+            if(line.equals("</sprite>")){
+                break;
+            }
+            if(line.matches("<origin>[0-9]*, [0-9]*</origin>")){
+                String orx = line.replaceAll("<origin>([0-9]*), [0-9]*</origin>", "$1");
+                String ory = line.replaceAll("<origin>[0-9]*, ([0-9]*)</origin>", "$1");
+                originX = Integer.parseInt(orx);
+                originY = Integer.parseInt(ory);
+            }
+            i++;
+        }
     }
     
      
