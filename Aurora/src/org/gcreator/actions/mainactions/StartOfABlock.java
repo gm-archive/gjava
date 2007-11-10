@@ -19,8 +19,8 @@ import javax.swing.*;
  * @author Luís
  */
 public class StartOfABlock extends ActionPattern{
-    public StartOfABlock(ActorEditor context){
-        super(context);
+    public StartOfABlock(){
+        super();
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Start_Block.png")));
     }
     

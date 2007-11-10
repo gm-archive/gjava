@@ -22,10 +22,10 @@ import org.gcreator.components.*;
  * @author Luís
  */
 public class ExecuteCode extends ActionPattern{
-    ActorEditor context;
-    public ExecuteCode(ActorEditor context){
-        super(context);
-        this.context = context;
+    //ActorEditor context;
+    public ExecuteCode(){
+        super();
+        //this.context = context;
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Execute_Code.png")));
     }
     

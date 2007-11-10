@@ -79,10 +79,10 @@ public class ActorEditor extends TabPanel {
         }
         catch(NullPointerException e){}
         
-        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock(this));
-        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock(this));
-        patterns.add(new org.gcreator.actions.mainactions.Comment(this));
-        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode(this));
+        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock());
+        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock());
+        patterns.add(new org.gcreator.actions.mainactions.Comment());
+        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode());
 
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));

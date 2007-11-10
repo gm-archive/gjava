@@ -6,17 +6,17 @@
 
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.actions.ActionTemplate;
+import javax.swing.*;
 
 /**
  *
  * @author  Ali1
  */
-public class SetVariableAction extends ActionTemplate {
+public class SetVariableAction extends JPanel {
     
     /** Creates new form SetVariableAction */
     public SetVariableAction() {
-        super("");
+        //super("");
         //initComponents();
     }
     

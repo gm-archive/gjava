@@ -19,7 +19,7 @@ import java.awt.*;
  */
 public class ActionPattern {
     private ImageIcon icon;
-    public ActionPattern(ActorEditor editorcontext){
+    public ActionPattern(){
         icon = new ImageIcon();
     }
     

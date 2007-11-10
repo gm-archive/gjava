@@ -20,10 +20,10 @@ import java.awt.event.*;
  * @author Luís
  */
 public class Comment extends ActionPattern{
-    ActorEditor context;
-    public Comment(ActorEditor context){
-        super(context);
-        this.context = context;
+    //ActorEditor context;
+    public Comment(){
+        super();
+        //this.context = context;
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/comment.png")));
     }
     

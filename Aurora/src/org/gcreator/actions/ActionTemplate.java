@@ -15,7 +15,7 @@ import javax.swing.*;
  * @author TGMG
  */
 public class ActionTemplate extends JPanel {
-    JFrame frame;
+    /*JFrame frame;
     String xml;
     
     public ActionTemplate(String title)
@@ -31,7 +31,7 @@ public class ActionTemplate extends JPanel {
     public void setVisible(boolean visible)
     {
         frame.setVisible(visible);
-    }
+    }*/
     
    private void initComponents()
     {

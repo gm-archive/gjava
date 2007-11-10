@@ -19,8 +19,8 @@ import javax.swing.*;
  * @author Luís
  */
 public class EndOfABlock extends ActionPattern{
-    public EndOfABlock(ActorEditor context){
-        super(context);
+    public EndOfABlock(){
+        super();
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/End_Block.png")));
     }
     
