@@ -245,6 +245,7 @@ public class ActorEditor extends TabPanel {
         jSplitPane2.setDividerLocation(260);
         jSplitPane2.setDividerSize(3);
 
+        jSplitPane3.setDividerLocation(100);
         jSplitPane3.setDividerSize(3);
 
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -267,7 +268,7 @@ public class ActorEditor extends TabPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton5.setText("Add event");
+        jButton5.setText(LangSupporter.activeLang.getEntry(145));
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton5MouseClicked(evt);
@@ -282,7 +283,7 @@ public class ActorEditor extends TabPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jButton5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 99, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -307,7 +308,7 @@ public class ActorEditor extends TabPanel {
 
         jSplitPane2.setLeftComponent(jPanel4);
 
-        jButton1.setText("Add");
+        jButton1.setText(LangSupporter.activeLang.getEntry(146));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -457,15 +458,15 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jLabel3.setText("Extends:");
+        jLabel3.setText(LangSupporter.activeLang.getEntry(143));
 
-        jLabel4.setText("Mask:");
+        jLabel4.setText(LangSupporter.activeLang.getEntry(144));
 
         org.jdesktop.layout.GroupLayout jPanel11Layout = new org.jdesktop.layout.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 72, Short.MAX_VALUE)
+            .add(0, 49, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -476,7 +477,7 @@ public class ActorEditor extends TabPanel {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 87, Short.MAX_VALUE)
+            .add(0, 49, Short.MAX_VALUE)
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

@@ -186,6 +186,10 @@ public class English extends Dictionary{
         entry[140] = "Solid";
         entry[141] = "Persistant";
         entry[142] = "Depth:";
+        entry[143] = "Extends:";
+        entry[144] = "Mask:";
+        entry[145] = "Add Event";
+        entry[146] = "Add";
         
         
         try{

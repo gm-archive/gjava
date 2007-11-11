@@ -186,6 +186,10 @@ public class Portuguese extends Dictionary{
         entry[140] = "Sólido";
         entry[141] = "Persistente";
         entry[142] = "Profundidade:";
+        entry[143] = "Extende:";
+        entry[144] = "Máscara:";
+        entry[145] = "Adicionar evento";
+        entry[146] = "Adicionar";
         
         try{
             init();
