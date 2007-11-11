@@ -31,6 +31,7 @@ public Scene(String name)
 {
     this.name = name;
     actors = new Vector<ActorInScene>();
+    views = new ViewsModel();
 }
 
 public String writeXml()
@@ -40,29 +41,30 @@ public String writeXml()
      Current format:
      
      <scene>
-        <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
-        <code>//Do nothing</code>
-        <dimensions>width, height</dimensions>
-        <bgcolor>r, g, b</bgcolor>
-        <fps>FPS</fps>
-        <preferences>
-            <snap>snapX, snapY</snap>
-            <grid>Visible Isometric</grid>
-        </preferences>
-        <views>
-        </views>
-        <content>
-        </content>
+     <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
+     <code>//Do nothing</code>
+     <dimensions>width, height</dimensions>
+     <bgcolor>r, g, b</bgcolor>
+     <fps>FPS</fps>
+     <preferences>
+     <snap>snapX, snapY</snap>
+     <grid>Visible Isometric</grid>
+     </preferences>
+     <views>
+     </views>
+     <content>
+     </content>
      </scene>
      
      */
     
-      String xml = "<scene>\n";
+      String xml = "<scene version=\"1.0\">\n";
       
-      xml += "\t<caption>";
+      xml += "<caption>";
       
-      //The caption should be allowed to have 
-      xml += caption
+      //The caption should be allowed to have
+      if(caption!=null)
+        xml += caption
               .replaceAll("&", "&amp;")
               .replaceAll("<", "&lt;")
               .replaceAll(">", "&gt;")
@@ -72,10 +74,11 @@ public String writeXml()
       
       xml += "</caption>\n";
       
-      xml += "\t<code>";
+      xml += "<code>";
       
-      //The code should be allowed to have 
-      xml += code
+      //The code should be allowed to have
+      if(code!=null)
+        xml += code
               .replaceAll("&", "&amp;")
               .replaceAll("<", "&lt;")
               .replaceAll(">", "&gt;")
@@ -85,43 +88,48 @@ public String writeXml()
       
       xml += "</code>\n";
       
-      xml += "\t<dimensions>";
+      
+      xml += "<dimensions>";
       xml += width;
       xml += ", ";
       xml += height;
       xml += "</dimensions>\n";
       
-      xml += "\t<bgcolor>";
+      xml += "<bgcolor>";
       xml += background.getRed() + ", " + background.getGreen() + ", " + background.getBlue();
       xml += "</bgcolor>\n";
       
-      xml += "\t<fps>";
+      xml += "<fps>";
       xml += speed;
       xml += "</fps>\n";
       
-      xml += "\t<preferences>\n"; //User preferences
-      xml += "\t\t<snap>";
+      
+      xml += "<preferences>\n"; //User preferences
+      xml += "<snap>";
       xml += snapX;
       xml += ", ";
       xml += snapY;
       xml += "</snap>\n";
-      xml += "\t\t<grid>";
+      xml += "<grid>";
       xml += grid ? "Visible" : "Hidden";
       xml += " ";
       xml += isometric ? "Isometric" : "Standard";
       xml += "</grid>\n";
-      xml += "\t</preferences>\n";
- 
-      xml += "\t<views>\n";
-      xml += views.writeXml();
-      xml += "\t</views>\n";
+      xml += "</preferences>\n";
+
       
-      xml += "\t<content>\n";
+      xml += "<views>\n";
+      
+      xml += views.writeXml();
+      
+      xml += "</views>\n";
+       
+      xml += "<content>\n";
       Object[] o = actors.toArray();
       for(Object a : o)
           if(a!=null && a instanceof ActorInScene)
               ((ActorInScene) a).writeXml();
-      xml += "\t</content>\n";
+      xml += "</content>\n";
       
       xml += "</scene>";
       return xml;
@@ -129,7 +137,35 @@ public String writeXml()
 
      
     public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String[] str = xml.split("\n");
+        if(str[0]==null||!str[0].equals("<scene version=\"1.0\">"))
+            return; //Fails if erroneous scene
+        String line;
+        for(int i = 1; i < str.length; i++){
+            line = str[i];
+            System.out.println("line: " + line);
+            if(line==null||line.equals(""))
+                continue;
+            if(line.matches("<caption>.*</caption>")){
+                caption = line.replaceAll("<caption>(.*)</caption>", "$1")
+                        .replaceAll("&lt;", "<")
+                        .replaceAll("&gt;", ">")
+                        .replaceAll("&quot;", "\"")
+                        .replaceAll("&apos;", "'")
+                        .replaceAll("&LINEBREAK;", "\n")
+                        .replaceAll("&amp;","&");
+                continue;
+            }
+            if(line.matches("<code>.*</code>")){
+                code = line.replaceAll("<code>(.*)</code>", "$1")
+                        .replaceAll("&lt;", "<")
+                        .replaceAll("&gt;", ">")
+                        .replaceAll("&quot;", "\"")
+                        .replaceAll("&apos;", "'")
+                        .replaceAll("&LINEBREAK;", "\n")
+                        .replaceAll("&amp;","&");
+            }
+        }
     }
      
     public String exportToHtml(boolean xhtml){

@@ -27,6 +27,6 @@ public class ActorInScene {
     }
     
     public String writeXml(){
-        return "<actor type=\"" + actor + "\" x=" + x + " y=" + y + " />";
+        return "<actor type=\"" + actor.getPath() + "\" x=" + x + " y=" + y + " />";
     }
 }

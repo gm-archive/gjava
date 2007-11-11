@@ -35,11 +35,11 @@ public class ViewInScene {
     }
     
     public String writeXml(){
-        String xml = "\t\t<view>\n";
+        String xml = "<view>\n";
         
-        xml += "\t\t\t<visible>" + (visibleonstart ? "True" : "False") + "</visible>\n";
+        xml += "<visible>" + (visibleonstart ? "True" : "False") + "</visible>\n";
         
-        xml += "\t\t\t<scenepos>";
+        xml += "<scenepos>";
         xml += viewx;
         xml += ", ";
         xml += viewy;
@@ -47,9 +47,9 @@ public class ViewInScene {
         xml += vieww;
         xml += ", ";
         xml += viewh;
-        xml += "</inroom>\n";
+        xml += "</scenepos>\n";
         
-        xml += "\t\t\t<portpos>";
+        xml += "<portpos>";
         xml += portx;
         xml += ", ";
         xml += porty;
@@ -59,7 +59,7 @@ public class ViewInScene {
         xml += porth;
         xml += "</portpos>\n";
         
-        xml += "\t\t</view>\n";
+        xml += "</view>\n";
         
         return xml;
     }

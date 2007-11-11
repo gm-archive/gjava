@@ -44,7 +44,7 @@ public class gcreator {
     }
     
     public static void __main(String[] args, boolean applet){
-        System.setProperty("file.encoding", "UTF-16");
+        //System.setProperty("file.encoding", "UTF-8");
         System.out.println("Running Java version " + java_version);
         if(!applet){
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
