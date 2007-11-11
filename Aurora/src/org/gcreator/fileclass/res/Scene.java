@@ -46,10 +46,8 @@ public String writeXml()
      <dimensions>width, height</dimensions>
      <bgcolor>r, g, b</bgcolor>
      <fps>FPS</fps>
-     <preferences>
      <snap>snapX, snapY</snap>
      <grid>Visible Isometric</grid>
-     </preferences>
      <views>
      </views>
      <content>
@@ -96,7 +94,10 @@ public String writeXml()
       xml += "</dimensions>\n";
       
       xml += "<bgcolor>";
-      xml += background.getRed() + ", " + background.getGreen() + ", " + background.getBlue();
+      if(drawbackcolor)
+        xml += background.getRed() + ", " + background.getGreen() + ", " + background.getBlue();
+      else
+        xml += "-";
       xml += "</bgcolor>\n";
       
       xml += "<fps>";
@@ -104,7 +105,6 @@ public String writeXml()
       xml += "</fps>\n";
       
       
-      xml += "<preferences>\n"; //User preferences
       xml += "<snap>";
       xml += snapX;
       xml += ", ";
@@ -115,7 +115,6 @@ public String writeXml()
       xml += " ";
       xml += isometric ? "Isometric" : "Standard";
       xml += "</grid>\n";
-      xml += "</preferences>\n";
 
       
       xml += "<views>\n";
@@ -164,6 +163,45 @@ public String writeXml()
                         .replaceAll("&apos;", "'")
                         .replaceAll("&LINEBREAK;", "\n")
                         .replaceAll("&amp;","&");
+                continue;
+            }
+            if(line.matches("<dimensions>[0-9]+, [0-9]+</dimensions>")){
+                width = Integer.parseInt(line.replaceAll("<dimensions>([0-9]+), [0-9]+</dimensions>", "$1"));
+                height = Integer.parseInt(line.replaceAll("<dimensions>[0-9]+, ([0-9]+)</dimensions>", "$1"));
+                continue;
+            }
+            if(line.matches("<bgcolor>[0-9]+, [0-9]+, [0-9]+</bgcolor>")){
+                drawbackcolor = true;
+                int r = Integer.parseInt(line.replaceAll("<bgcolor>([0-9]+), [0-9]+, [0-9]+</bgcolor>", "$1"));
+                int g = Integer.parseInt(line.replaceAll("<bgcolor>[0-9]+, ([0-9]+), [0-9]+</bgcolor>", "$1"));
+                int b = Integer.parseInt(line.replaceAll("<bgcolor>[0-9]+, [0-9]+, ([0-9]+)</bgcolor>", "$1"));
+                background = new Color(r,g,b);
+                continue;
+            }
+            if(line.matches("<bgcolor>-</bgcolor>")){
+                drawbackcolor = false;
+            }
+            if(line.matches("<fps>[0-9]+</fps>")){
+                speed = Integer.parseInt(line.replaceAll("<fps>([0-9]+)</fps>", "$1"));
+                continue;
+            }
+            if(line.matches("<snap>[0-9]+, [0-9]+</snap>")){
+                snapX = Integer.parseInt(line.replaceAll("<snap>([0-9]+), [0-9]+</snap>", "$1"));
+                snapY = Integer.parseInt(line.replaceAll("<snap>[0-9]+, ([0-9]+)</snap>", "$1"));
+                continue;
+            }
+            if(line.matches("<grid>(Visible|Hidden) (Standard|Isometric)</grid>")){
+                String x = line.replaceAll("<grid>(Visible|Hidden) (Standard|Isometric)</grid>", "$1");
+                String y = line.replaceAll("<grid>(Visible|Hidden) (Standard|Isometric)</grid>", "$2");
+                if(x.equals("Visible"))
+                    grid = true;
+                else
+                    grid = false;
+                if(y.equals("Standard"))
+                    isometric = false;
+                else
+                    isometric = true;
+                continue;
             }
         }
     }
