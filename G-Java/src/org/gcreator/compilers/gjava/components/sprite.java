@@ -9,7 +9,7 @@ import javax.swing.*;
  * @author G-Java development team
  * @version 1.0
  */
-public class sprite
+public class Sprite
 	{
 
 	String filename;
@@ -43,7 +43,7 @@ public class sprite
 	 * @param OriginY 
 	 * @param subimages 
 	 */
-	public sprite(String sprite_name,int Height,int Width,int BBLeft,int BBRight,int BBBottom,int BBTop,
+	public Sprite(String sprite_name,int Height,int Width,int BBLeft,int BBRight,int BBBottom,int BBTop,
 			int OriginX,int OriginY, String[] images)
 		{
 
