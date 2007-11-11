@@ -6,14 +6,13 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.TabPanel;
-import org.gcreator.components.ScenePanel;
 import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.components.*;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
+import org.gcreator.managers.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -473,7 +472,7 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Actors", jPanel2);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(147), jPanel2);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -594,12 +593,12 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(120, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Settings", jPanel1);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(148), jPanel1);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Draw Background Color");
+        jCheckBox1.setText(LangSupporter.activeLang.getEntry(157));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -608,7 +607,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel4.setText("Color");
+        jLabel4.setText(LangSupporter.activeLang.getEntry(158));
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         colorSelection1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -638,7 +637,7 @@ public class SceneEditor extends TabPanel {
             .add(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
                         .add(jLabel4)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -658,11 +657,11 @@ public class SceneEditor extends TabPanel {
                 .add(347, 347, 347))
         );
 
-        jTabbedPane1.addTab("Backgrounds", jPanel5);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(149), jPanel5);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jCheckBox2.setText("Enable the use of views");
+        jCheckBox2.setText(LangSupporter.activeLang.getEntry(153));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
@@ -675,7 +674,7 @@ public class SceneEditor extends TabPanel {
         });
         jScrollPane3.setViewportView(jList1);
 
-        jCheckBox4.setText("<HTML>Visible when the<br/>room starts");
+        jCheckBox4.setText(LangSupporter.activeLang.getEntry(154));
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
@@ -684,7 +683,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder("View in scene"));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(155)));
 
         jLabel10.setText("X");
 
@@ -766,7 +765,7 @@ public class SceneEditor extends TabPanel {
                     .add(jSpinner7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Port on screen"));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(156)));
 
         jLabel14.setText("X");
 
@@ -877,10 +876,10 @@ public class SceneEditor extends TabPanel {
                 .add(jPanel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Views", jPanel7);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(150), jPanel7);
 
         jSplitPane1.setLeftComponent(jTabbedPane1);
 
@@ -909,7 +908,7 @@ public class SceneEditor extends TabPanel {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jButton2.setText("Pencil");
+        jButton2.setText(LangSupporter.activeLang.getEntry(151));
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setSelected(true);
@@ -921,7 +920,7 @@ public class SceneEditor extends TabPanel {
         });
         jToolBar1.add(jButton2);
 
-        jButton3.setText("Eraser");
+        jButton3.setText(LangSupporter.activeLang.getEntry(152));
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -957,7 +956,7 @@ public class SceneEditor extends TabPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
-            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)

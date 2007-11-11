@@ -190,6 +190,18 @@ public class Portuguese extends Dictionary{
         entry[144] = "Máscara:";
         entry[145] = "Adicionar evento";
         entry[146] = "Adicionar";
+        entry[147] = "Actores";
+        entry[148] = "Opções";
+        entry[149] = "Fundos";
+        entry[150] = "Vistas";
+        entry[151] = "Lápis";
+        entry[152] = "Borracha";
+        entry[153] = "Permitir o uso de vistas";
+        entry[154] = "<HTML>Visivel quando a<br/>cena é iniciada";
+        entry[155] = "Vista na cena";
+        entry[156] = "Posição no ecrã";
+        entry[157] = "Desenhar cor de fundo";
+        entry[158] = "Cor:";
         
         try{
             init();

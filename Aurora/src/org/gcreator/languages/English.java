@@ -190,6 +190,18 @@ public class English extends Dictionary{
         entry[144] = "Mask:";
         entry[145] = "Add Event";
         entry[146] = "Add";
+        entry[147] = "Actors";
+        entry[148] = "Settings";
+        entry[149] = "Backgrounds";
+        entry[150] = "Views";
+        entry[151] = "Pencil";
+        entry[152] = "Eraser";
+        entry[153] = "Enable the use of views";
+        entry[154] = "<HTML>Visible when the<br/>room starts";
+        entry[155] = "View in scene";
+        entry[156] = "Port on screen";
+        entry[157] = "Draw background Color";
+        entry[158] = "Color:";
         
         
         try{

@@ -16,7 +16,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jSplitPane1" alignment="1" pref="687" max="32767" attributes="1"/>
-          <Component id="jPanel8" alignment="0" max="32767" attributes="1"/>
+          <Component id="jPanel8" alignment="0" pref="687" max="32767" attributes="1"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -235,8 +235,10 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Actors">
-                    <Property name="tabTitle" type="java.lang.String" value="Actors"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(147)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -325,8 +327,10 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Settings">
-                    <Property name="tabTitle" type="java.lang.String" value="Settings"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(148)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -515,8 +519,10 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Backgrounds">
-                    <Property name="tabTitle" type="java.lang.String" value="Backgrounds"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(149)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -527,7 +533,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jCheckBox1" alignment="1" pref="135" max="32767" attributes="1"/>
+                              <Component id="jCheckBox1" alignment="1" pref="149" max="32767" attributes="1"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -558,7 +564,9 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox1">
                   <Properties>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Draw Background Color"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(157)" type="code"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -574,7 +582,9 @@
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Color"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(158)" type="code"/>
+                    </Property>
                   </Properties>
                 </Component>
                 <Container class="org.gcreator.components.ColorSelection" name="colorSelection1">
@@ -615,8 +625,10 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Views">
-                    <Property name="tabTitle" type="java.lang.String" value="Views"/>
+                  <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
+                    <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(150)" type="code"/>
+                    </Property>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -657,7 +669,7 @@
                           <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="64" max="32767" attributes="0"/>
+                          <EmptySpace pref="78" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -665,7 +677,9 @@
               <SubComponents>
                 <Component class="javax.swing.JCheckBox" name="jCheckBox2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Enable the use of views"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(153)" type="code"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -701,7 +715,9 @@
                 </Container>
                 <Component class="javax.swing.JCheckBox" name="jCheckBox4">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="&lt;HTML&gt;Visible when the&lt;br/&gt;room starts"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(154)" type="code"/>
+                    </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                         <EmptyBorder bottom="0" left="0" right="0" top="0"/>
@@ -719,7 +735,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="View in scene"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(155)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
@@ -848,7 +866,9 @@
                   <Properties>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Port on screen"/>
+                        <TitledBorder title="&lt;User Code&gt;">
+                          <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(156)" type="code"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                   </Properties>
@@ -1057,7 +1077,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Pencil"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(151)" type="code"/>
+                    </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="selected" type="boolean" value="true"/>
@@ -1069,7 +1091,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton3">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Eraser"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="LangSupporter.activeLang.getEntry(152)" type="code"/>
+                    </Property>
                     <Property name="focusable" type="boolean" value="false"/>
                     <Property name="horizontalTextPosition" type="int" value="0"/>
                     <Property name="verticalTextPosition" type="int" value="3"/>
