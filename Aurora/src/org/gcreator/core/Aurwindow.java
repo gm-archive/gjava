@@ -31,6 +31,7 @@ import org.gcreator.languages.*;
 import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
 import java.awt.datatransfer.Transferable;
+import net.iharder.dnd.FileDrop;
 
 import org.gcreator.help.AboutPanel;
 import org.gcreator.help.HelpPanel;
@@ -304,8 +305,15 @@ public class Aurwindow extends JFrame {
         console.setContentType("text/html");
         scroller.setViewportView(console);
 
-        //LangSupporter.activeLang = new English();
-
+        new  FileDrop( this, new FileDrop.Listener()
+      {   public void  filesDropped( java.io.File[] files )
+          {   
+              // handle file drop
+              for (int i=0; i<files.length; i++)
+              System.out.println(files[i].getName());
+          }   // end filesDropped
+      }); // end FileDrop.Listener
+      
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
@@ -363,10 +371,13 @@ public class Aurwindow extends JFrame {
                             }
 
                             public boolean canImport(TransferHandler.TransferSupport support) {
+                               // System.out.println(""+support);
                                 TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
                                 if (drop == null) {
                                     return false;
                                 }
+                                if (!(drop.getLastPathComponent() instanceof ObjectNode))
+                                {return false;}
                                 ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
                                 ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
                                 //if (dragNode == dropNode) return false;
