@@ -40,13 +40,17 @@ public class ActorEditor extends TabPanel {
     
     public org.gcreator.fileclass.File file = null;
     public boolean changed = false;
-    public static Vector<actionCat> actionCats;
+    public static Vector<String> actioncat;
     public EventListModel elist;
     Actor actor;
     
     static {
         jComboBox1 = new javax.swing.JComboBox();
-        actionCats = new Vector<actionCat>();
+        actioncat = new Vector<String>();
+        actioncat.add("Main");
+        actioncat.add("Draw2D");
+        actioncat.add("Platform");
+        
     }
     
     public static Vector<ActionPattern> main = new Vector<ActionPattern>(), draw2D = new Vector<ActionPattern>();
@@ -140,39 +144,39 @@ public class ActorEditor extends TabPanel {
         return true;
     }
     
-      public static void setupActions()
-    {
-        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        addAction(p,"test");
-        addAction(p,"test2");
-        addActionCat(p,"Move");
-        p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        addAction(p,"OtherCat");
-        addAction(p,"2");
-        addActionCat(p,"Main");
-        addActionCat(p,"Control");
-        addActionCat(p,"Draw");
-        
-        jComboBox1.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                JComboBox cb = (JComboBox)e.getSource();
-        String name = (String)cb.getSelectedItem();
-                
-        for (Enumeration en = actionCats.elements(); en.hasMoreElements() ;) {
-            actionCat a = ((actionCat)en.nextElement());
-         if (a.name.equals(name))
-         {
-            //jScrollPane3.setViewportView(a.j); 
-         }
-
-     }
-        
-        
-            }
-        });
-    }
-    
+//      public static void setupActions()
+//    {
+//        JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+//        addAction(p,"test");
+//        addAction(p,"test2");
+//        addActionCat(p,"Move");
+//        p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
+//        addAction(p,"OtherCat");
+//        addAction(p,"2");
+//        addActionCat(p,"Main");
+//        addActionCat(p,"Control");
+//        addActionCat(p,"Draw");
+//        
+//        jComboBox1.addActionListener(new ActionListener() {
+//
+//            public void actionPerformed(ActionEvent e) {
+//                JComboBox cb = (JComboBox)e.getSource();
+//        String name = (String)cb.getSelectedItem();
+//                
+////        for (Enumeration en = actionCats.elements(); en.hasMoreElements() ;) {
+////            actionCat a = ((actionCat)en.nextElement());
+////         if (a.name.equals(name))
+////         {
+////            //jScrollPane3.setViewportView(a.j); 
+////         }
+////
+////     }
+//        
+//        
+//            }
+//        });
+//    }
+//    
     public static void addAction(JPanel p, String name)
     {
         JLabel b = new JLabel(name);
@@ -183,11 +187,11 @@ public class ActorEditor extends TabPanel {
                                 p.add(b);
     }
     
-    public static void addActionCat(JPanel p, String name)
-    {
-        jComboBox1.addItem(name);
-        actionCats.add(new actionCat(name,p));
-    }
+//    public static void addActionCat(JPanel p, String name)
+//    {
+//        jComboBox1.addItem(name);
+//        actionCats.add(new actionCat(name,p));
+//    }
     
     static class actionCat
     {
@@ -316,7 +320,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main", "Move", "Draw2D", "Platform" }));
+        jComboBox2.setModel(new DefaultComboBoxModel(actioncat));
         jComboBox2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jComboBox2PropertyChange(evt);
@@ -382,7 +386,7 @@ public class ActorEditor extends TabPanel {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 113, Short.MAX_VALUE)
+            .add(0, 117, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -393,7 +397,7 @@ public class ActorEditor extends TabPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
             .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -544,7 +548,7 @@ public class ActorEditor extends TabPanel {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel4)
                     .add(jPanel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);

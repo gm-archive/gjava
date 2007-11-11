@@ -111,7 +111,7 @@ public class gcreator {
             
         } catch (Exception e) {}
         Plugger.onMainWindowStart(plugins);
-        ActorEditor.setupActions();
+        //ActorEditor.setupActions();
         
         window = new Aurwindow(settings);
         window.console.setText(output);
