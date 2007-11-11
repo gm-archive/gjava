@@ -44,4 +44,17 @@ public class ViewsModel extends AbstractListModel{
             xml += each.writeXml();
         return xml;
     }
+    
+    public int readXml(int init, String[] xml){
+        String line;
+        int curview = 0;
+        for(int i = init + 1; i < xml.length; i++){
+            line = xml[i];
+            if(line.equals("</views>"))
+                return i;
+            if(line.equals("<view>"))
+                i = view[curview++].readXml(i, xml);
+        }
+        return init;
+    }
 }

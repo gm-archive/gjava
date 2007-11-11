@@ -65,6 +65,34 @@ public class ViewInScene {
     }
     
      
+    public int readXml(int init, String[] xml){
+        String line;
+        for(int i = init + 1; i < xml.length; i++){
+            line = xml[i];
+            if(line.equals("</view>"))
+                return i;
+            if(line.matches("<visible>(True|False)</visible>")){
+                visibleonstart = line.replaceAll("<visible>(True|False)</visible>", "$1").equals("True");
+                continue;
+            }
+            if(line.matches("<scenepos>[0-9]+, [0-9]+, [0-9]+, [0-9]+</scenepos>")){
+                viewx = Integer.parseInt(line.replaceAll("<scenepos>([0-9]+), [0-9]+, [0-9]+, [0-9]+</scenepos>", "$1"));
+                viewy = Integer.parseInt(line.replaceAll("<scenepos>[0-9]+, ([0-9]+), [0-9]+, [0-9]+</scenepos>", "$1"));
+                vieww = Integer.parseInt(line.replaceAll("<scenepos>[0-9]+, [0-9]+, ([0-9]+), [0-9]+</scenepos>", "$1"));
+                viewh = Integer.parseInt(line.replaceAll("<scenepos>[0-9]+, [0-9]+, [0-9]+, ([0-9]+)</scenepos>", "$1"));
+                continue;
+            }
+            if(line.matches("<portpos>[0-9]+, [0-9]+, [0-9]+, [0-9]+</portpos>")){
+                portx = Integer.parseInt(line.replaceAll("<portpos>([0-9]+), [0-9]+, [0-9]+, [0-9]+</portpos>", "$1"));
+                porty = Integer.parseInt(line.replaceAll("<portpos>[0-9]+, ([0-9]+), [0-9]+, [0-9]+</portpos>", "$1"));
+                portw = Integer.parseInt(line.replaceAll("<portpos>[0-9]+, [0-9]+, ([0-9]+), [0-9]+</portpos>", "$1"));
+                porth = Integer.parseInt(line.replaceAll("<portpos>[0-9]+, [0-9]+, [0-9]+, ([0-9]+)</portpos>", "$1"));
+                continue;
+            }
+        }
+        return init;
+    }
+    
     public String toString(){
         return (visibleonstart ? "<HTML><b>" : "") + name;
     }

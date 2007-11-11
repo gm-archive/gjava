@@ -127,15 +127,16 @@ public class SceneEditor extends TabPanel {
      
     public boolean Save() {
         System.out.println("saved scene");
-        ((Scene) file.value).caption = this.jEditorPane1.getText();
-        ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
-        ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
-        ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
-        ((Scene) file.value).persistant = this.jCheckBox3.isSelected();
-        ((Scene) file.value).snapX = (Integer)this.jSpinner2.getValue();
-        ((Scene) file.value).snapY = (Integer)this.jSpinner3.getValue();
-        ((Scene) file.value).background = this.getMapBGColor();
-        ((Scene) file.value).drawbackcolor = this.jCheckBox1.isSelected();
+        Scene s = (Scene) file.value;
+        s.caption = this.jEditorPane1.getText();
+        s.width = Integer.parseInt(jTextField2.getText());
+        s.height = Integer.parseInt(jTextField3.getText());
+        s.speed = (Integer) jSpinner12.getValue();
+        s.persistant = this.jCheckBox3.isSelected();
+        s.snapX = (Integer)this.jSpinner2.getValue();
+        s.snapY = (Integer)this.jSpinner3.getValue();
+        s.background = this.getMapBGColor();
+        s.drawbackcolor = this.jCheckBox1.isSelected();
         //file.value = sceneObject.writeXml();
         return true;
     }
@@ -147,15 +148,16 @@ public class SceneEditor extends TabPanel {
     
     public void setup(){
         try{
-            jCheckBox4.setSelected(((ViewInScene) jList1.getSelectedValue()).visibleonstart);
-            jSpinner4.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).viewx);
-            jSpinner5.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).viewy);
-            jSpinner6.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).vieww);
-            jSpinner7.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).viewh);
-            jSpinner8.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).portx);
-            jSpinner9.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).porty);
-            jSpinner10.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).portw);
-            jSpinner11.setValue((Integer) ((ViewInScene) jList1.getSelectedValue()).porth);
+            ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+            jCheckBox4.setSelected(v.visibleonstart);
+            jSpinner4.setValue((Integer) v.viewx);
+            jSpinner5.setValue((Integer) v.viewy);
+            jSpinner6.setValue((Integer) v.vieww);
+            jSpinner7.setValue((Integer) v.viewh);
+            jSpinner8.setValue((Integer) v.portx);
+            jSpinner9.setValue((Integer) v.porty);
+            jSpinner10.setValue((Integer) v.portw);
+            jSpinner11.setValue((Integer) v.porth);
         }
         catch(NullPointerException e){}
     }
@@ -695,48 +697,28 @@ public class SceneEditor extends TabPanel {
         jSpinner4.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner4.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner4StateChanged(evt);
             }
         });
 
         jSpinner5.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner5.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner5.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner5StateChanged(evt);
             }
         });
 
         jSpinner6.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner6.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner6.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner6StateChanged(evt);
             }
         });
 
         jSpinner7.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner7.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner7.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner7StateChanged(evt);
             }
         });
 
@@ -797,48 +779,28 @@ public class SceneEditor extends TabPanel {
         jSpinner8.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner8.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner8.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner8StateChanged(evt);
             }
         });
 
         jSpinner9.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner9.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner9.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner9StateChanged(evt);
             }
         });
 
         jSpinner10.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner10.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner10.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner10StateChanged(evt);
             }
         });
 
         jSpinner11.setModel(new javax.swing.SpinnerNumberModel());
         jSpinner11.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ViewPropChanged(evt);
-            }
-        });
-        jSpinner11.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jSpinner4KeyReleased(evt);
+                jSpinner11StateChanged(evt);
             }
         });
 
@@ -995,7 +957,7 @@ public class SceneEditor extends TabPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
-            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 687, Short.MAX_VALUE)
+            .add(jPanel8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1032,28 +994,8 @@ public class SceneEditor extends TabPanel {
         setup();
     }//GEN-LAST:event_jList1ValueChanged
 
-    private void ViewPropChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ViewPropChanged
-        ((ViewInScene) jList1.getSelectedValue()).viewx = (Integer) jSpinner4.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).viewy = (Integer) jSpinner5.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).vieww = (Integer) jSpinner6.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).viewh = (Integer) jSpinner7.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).portx = (Integer) jSpinner8.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).porty = (Integer) jSpinner9.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).portw = (Integer) jSpinner10.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).porth = (Integer) jSpinner11.getValue();
-}//GEN-LAST:event_ViewPropChanged
 
-    private void jSpinner4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner4KeyReleased
-        ((ViewInScene) jList1.getSelectedValue()).viewx = (Integer) jSpinner4.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).viewy = (Integer) jSpinner5.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).vieww = (Integer) jSpinner6.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).viewh = (Integer) jSpinner7.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).portx = (Integer) jSpinner8.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).porty = (Integer) jSpinner9.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).portw = (Integer) jSpinner10.getValue();
-        ((ViewInScene) jList1.getSelectedValue()).porth = (Integer) jSpinner11.getValue();
-    }//GEN-LAST:event_jSpinner4KeyReleased
-
+    
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         file.name = jTextField1.getText();
         Aurwindow.workspace.updateUI();
@@ -1115,7 +1057,47 @@ public class SceneEditor extends TabPanel {
     private void jSpinner12StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner12StateChanged
        ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
     }//GEN-LAST:event_jSpinner12StateChanged
+    
+    private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.viewx = (Integer) jSpinner4.getValue();
+    }//GEN-LAST:event_jSpinner4StateChanged
 
+    private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.viewy = (Integer) jSpinner5.getValue();
+    }//GEN-LAST:event_jSpinner5StateChanged
+
+    private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.vieww = (Integer) jSpinner6.getValue();
+    }//GEN-LAST:event_jSpinner6StateChanged
+
+    private void jSpinner7StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner7StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.viewh = (Integer) jSpinner7.getValue();
+    }//GEN-LAST:event_jSpinner7StateChanged
+
+    private void jSpinner8StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner8StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.portx = (Integer) jSpinner8.getValue();
+    }//GEN-LAST:event_jSpinner8StateChanged
+
+    private void jSpinner9StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner9StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.porty = (Integer) jSpinner9.getValue();
+    }//GEN-LAST:event_jSpinner9StateChanged
+
+    private void jSpinner10StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner10StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.portw = (Integer) jSpinner10.getValue();
+    }//GEN-LAST:event_jSpinner10StateChanged
+
+    private void jSpinner11StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner11StateChanged
+        ViewInScene v = (ViewInScene) jList1.getSelectedValue();
+        v.porth = (Integer) jSpinner11.getValue();
+    }//GEN-LAST:event_jSpinner11StateChanged
+    
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
     public static final int ERASE = 2;

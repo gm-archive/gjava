@@ -50,8 +50,6 @@ public String writeXml()
      <grid>Visible Isometric</grid>
      <views>
      </views>
-     <content>
-     </content>
      </scene>
      
      */
@@ -122,13 +120,10 @@ public String writeXml()
       xml += views.writeXml();
       
       xml += "</views>\n";
-       
-      xml += "<content>\n";
       Object[] o = actors.toArray();
       for(Object a : o)
           if(a!=null && a instanceof ActorInScene)
               ((ActorInScene) a).writeXml();
-      xml += "</content>\n";
       
       xml += "</scene>";
       return xml;
@@ -203,6 +198,8 @@ public String writeXml()
                     isometric = true;
                 continue;
             }
+            if(line.matches("<views>"))
+                i = views.readXml(i, str);
         }
     }
      
