@@ -91,6 +91,6 @@ public class PluginHelper {
     }
     
     public static void addNewActionPattern(ActionPattern pattern){
-        ActorEditor.patterns.add(pattern);
+        ActorEditor.main.add(pattern);
     }
 }

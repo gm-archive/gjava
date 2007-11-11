@@ -17,10 +17,11 @@ import java.awt.*;
  *
  * @author Luís
  */
-public class ActionPattern {
+public class ActionPattern extends JPanel {
     private ImageIcon icon;
     public ActionPattern(){
         icon = new ImageIcon();
+        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));
     }
     
     public JComponent createNewPanel(Action action){

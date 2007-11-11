@@ -1,7 +1,7 @@
 grammar gscript;
 
 options {
-k = 3;
+k = 4;
 backtrack = true;
 memoize=true;
 }
@@ -50,11 +50,11 @@ package org.gcreator.plugins.platform;
 *------------------------------------------------------------------*/
 
 classes
-: {pc.returncode ="";} ((f=field{pc.returncode += "\n " + $f.value;}|m=method{pc.returncode += "\n " + $m.value;}|i=innerclass{pc.returncode += "\n " + $i.value;}) (';'{System.out.println(";");})*)*
+: {System.out.println("start parsing class "); pc.returncode ="";} ((f=method{pc.returncode += "\n " + $f.value;}|m=field{pc.returncode += "\n " + $m.value;}|i=innerclass{pc.returncode += "\n " + $i.value;}) (';'{System.out.println(";");})*)*
 ;
 
 code // never put: returns after this!
-: {System.out.println("Start parsing code ");} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{System.out.println("Parsed code in antlr!");} 
+: {System.out.println("Start parsing code "); pc.returncode ="";} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{System.out.println("Parsed code in antlr!");} 
 	;
 
 statement returns [String value]
@@ -62,11 +62,11 @@ statement returns [String value]
 ;
 
 field returns [String value]
-: ('public' {$value = "public";}|'private' {$value = "private";})? ('static'{$value += " static";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
+: {System.out.println("Field "); }('public' {$value = "public";}|'private' {$value = "private";})? ('static'{$value += " static";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
 ;
 
 method returns [String value] @init {String s = "";}
-:  ('public'{$value = "public";}|'private'{$value = "private";})? ('static'{$value += " static";})? arg=WORD name=WORD '(' (e=expression {s = $e.text;} ((',') (e=expression{s += ", "+$e.text;})?)*)? ')' b=bstatement {$value = pc.methodstatement($value,$arg.text,$name.text,$b.value,s);}
+: {System.out.println("method ");} ('public'{$value = "public";}|'private'{$value = "private";})? ('static'{$value += " static";})? arg=WORD name=WORD '(' (e=expression {s = $e.text;} ((',') (e=expression{s += ", "+$e.text;})?)*)? ')' b=bstatement {$value = pc.methodstatement($value,$arg.text,$name.text,$b.value,s);}
 ;
 
 innerclass returns [String value]
@@ -131,7 +131,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value]
   :
-  (function|HEXNUMBER|STRING|NUMBER|variable|DECIMAL|WORD) ( ('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (function|HEXNUMBER|STRING|NUMBER|variable|WORD))* {$value ="";}
+  (f=function{$value = $f.value;}|h=HEXNUMBER{$value = $h.text;}|s=STRING{$value = $s.text;}|n=NUMBER{$value = $n.text;}|v=variable{$value = $v.value;}|d=DECIMAL{$value = $d.text;}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (function|HEXNUMBER|STRING|NUMBER|variable|WORD))* {}
   ;
  
 repeatstatement returns [String value]

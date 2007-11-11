@@ -92,12 +92,12 @@ public class PlatformCore extends PluginCore {
      * @return the language code for this statement
      */
     public String varstatement(String type, String vars) {
-        System.out.println("Var statement: " + type + vars);
+        //System.out.println("Var statement: " + type + vars);
         return type + " "+vars+";";
     }
 
     public String fieldstatement(String m, String varstatement) {
-        return ";";
+        return m+" "+varstatement+";";
     }
 
     public String returnstatement(String exp) {
@@ -193,7 +193,7 @@ public class PlatformCore extends PluginCore {
     }
     
     public String methodstatement(String m, String retvalue, String name, String st, String args) {
-        return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; //TODO
+        return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
 
     public String parseGCL(String code, PlatformCore p) throws IOException {

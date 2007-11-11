@@ -30,6 +30,7 @@ import javax.swing.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
 import org.gcreator.actions.*;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -48,15 +49,15 @@ public class ActorEditor extends TabPanel {
         actionCats = new Vector<actionCat>();
     }
     
-    public static Vector<ActionPattern> patterns = new Vector<ActionPattern>();
+    public static Vector<ActionPattern> main = new Vector<ActionPattern>(), draw2D = new Vector<ActionPattern>();
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     
     static{
-        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock());
-        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock());
-        patterns.add(new org.gcreator.actions.mainactions.Comment());
-        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode());
-        patterns.add(new org.gcreator.actions.mainactions.AddImageToSprite());
+        main.add(new org.gcreator.actions.mainactions.StartOfABlock());
+        main.add(new org.gcreator.actions.mainactions.EndOfABlock());
+        main.add(new org.gcreator.actions.mainactions.Comment());
+        main.add(new org.gcreator.actions.mainactions.ExecuteCode());
+        draw2D.add(new org.gcreator.actions.mainactions.AddImageToSprite());
     }
     
     ResourceMenu spriteres, extendres, maskres;
@@ -88,7 +89,7 @@ public class ActorEditor extends TabPanel {
         catch(NullPointerException e){}
 
         jList1.setCellRenderer(new EventCellRenderer());
-        jComboBox1.setModel(new DefaultComboBoxModel(patterns));
+        jComboBox1.setModel(new DefaultComboBoxModel(main));
         jComboBox1.setRenderer(new ActionListCellRenderer());
         jList2.setCellRenderer(new ActionsCellRenderer());
         jList2.setModel(actmodel);
@@ -135,6 +136,7 @@ public class ActorEditor extends TabPanel {
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
         file.value = actor;
+        
         return true;
     }
     
@@ -314,7 +316,12 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "categorys", "main", "move" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Main", "Move", "Draw2D", "Platform" }));
+        jComboBox2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox2PropertyChange(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -661,6 +668,16 @@ public class ActorEditor extends TabPanel {
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         actor.persistant = jCheckBox3.isSelected();
     }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jComboBox2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox2PropertyChange
+        System.out.println(""+jComboBox2.getSelectedItem());
+        if (jComboBox2.getSelectedItem().equals("Main"))
+        jComboBox1.setModel(new DefaultComboBoxModel(main));
+        else if (jComboBox2.getSelectedItem().equals("Draw2D"))
+            jComboBox1.setModel(new DefaultComboBoxModel(draw2D)); 
+        else
+          jComboBox1.setModel(new DefaultComboBoxModel(main));  
+    }//GEN-LAST:event_jComboBox2PropertyChange
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

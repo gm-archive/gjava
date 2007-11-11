@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 16:47:30
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-11-05 17:46:15
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -69,7 +69,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start classes
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:1: classes : ( (f= field | m= method | i= innerclass ) ( ';' )* )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:1: classes : ( (f= method | m= field | i= innerclass ) ( ';' )* )* ;
     public final void classes() throws RecognitionException {
         int classes_StartIndex = input.index();
         String f = null;
@@ -81,13 +81,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 1) ) { return ; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:1: ( ( (f= field | m= method | i= innerclass ) ( ';' )* )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:3: ( (f= field | m= method | i= innerclass ) ( ';' )* )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:1: ( ( (f= method | m= field | i= innerclass ) ( ';' )* )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:3: ( (f= method | m= field | i= innerclass ) ( ';' )* )*
             {
             if ( backtracking==0 ) {
-              pc.returncode ="";
+              System.out.println("start parsing class "); pc.returncode ="";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:24: ( (f= field | m= method | i= innerclass ) ( ';' )* )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:68: ( (f= method | m= field | i= innerclass ) ( ';' )* )*
             loop3:
             do {
                 int alt3=2;
@@ -100,9 +100,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:25: (f= field | m= method | i= innerclass ) ( ';' )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:69: (f= method | m= field | i= innerclass ) ( ';' )*
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:25: (f= field | m= method | i= innerclass )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:69: (f= method | m= field | i= innerclass )
             	    int alt1=3;
             	    switch ( input.LA(1) ) {
             	    case 37:
@@ -115,16 +115,30 @@ public class gscriptParser extends Parser {
             	            if ( (LA1_6==WORD) ) {
             	                int LA1_13 = input.LA(4);
 
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
+            	                if ( (LA1_13==WORD) ) {
+            	                    int LA1_32 = input.LA(5);
+
+            	                    if ( (synpred1()) ) {
+            	                        alt1=1;
+            	                    }
+            	                    else if ( (synpred2()) ) {
+            	                        alt1=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return ;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 32, input);
+
+            	                        throw nvae;
+            	                    }
             	                }
-            	                else if ( (synpred2()) ) {
+            	                else if ( ((LA1_13>=OIVAR && LA1_13<=GLOBALVAR)) ) {
             	                    alt1=2;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 13, input);
+            	                        new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 13, input);
 
             	                    throw nvae;
             	                }
@@ -132,7 +146,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 6, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 6, input);
 
             	                throw nvae;
             	            }
@@ -143,27 +157,27 @@ public class gscriptParser extends Parser {
             	            if ( (LA1_7==WORD) ) {
             	                int LA1_14 = input.LA(4);
 
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (synpred2()) ) {
+            	                if ( (LA1_14==EOF||LA1_14==EQUALS||LA1_14==WORD||(LA1_14>=36 && LA1_14<=41)||LA1_14==65||(LA1_14>=78 && LA1_14<=85)) ) {
             	                    alt1=2;
+            	                }
+            	                else if ( (LA1_14==LPAREN) ) {
+            	                    alt1=1;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 14, input);
+            	                        new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 14, input);
 
             	                    throw nvae;
             	                }
             	            }
             	            else if ( ((LA1_7>=OIVAR && LA1_7<=GLOBALVAR)) ) {
-            	                alt1=1;
+            	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 7, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 7, input);
 
             	                throw nvae;
             	            }
@@ -171,7 +185,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 1, input);
+            	                new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 1, input);
 
             	            throw nvae;
             	        }
@@ -187,16 +201,30 @@ public class gscriptParser extends Parser {
             	            if ( (LA1_8==WORD) ) {
             	                int LA1_16 = input.LA(4);
 
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
+            	                if ( (LA1_16==WORD) ) {
+            	                    int LA1_45 = input.LA(5);
+
+            	                    if ( (synpred1()) ) {
+            	                        alt1=1;
+            	                    }
+            	                    else if ( (synpred2()) ) {
+            	                        alt1=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return ;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 45, input);
+
+            	                        throw nvae;
+            	                    }
             	                }
-            	                else if ( (synpred2()) ) {
+            	                else if ( ((LA1_16>=OIVAR && LA1_16<=GLOBALVAR)) ) {
             	                    alt1=2;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 16, input);
+            	                        new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 16, input);
 
             	                    throw nvae;
             	                }
@@ -204,7 +232,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 8, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 8, input);
 
             	                throw nvae;
             	            }
@@ -215,27 +243,27 @@ public class gscriptParser extends Parser {
             	            if ( (LA1_9==WORD) ) {
             	                int LA1_17 = input.LA(4);
 
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (synpred2()) ) {
+            	                if ( (LA1_17==EOF||LA1_17==EQUALS||LA1_17==WORD||(LA1_17>=36 && LA1_17<=41)||LA1_17==65||(LA1_17>=78 && LA1_17<=85)) ) {
             	                    alt1=2;
+            	                }
+            	                else if ( (LA1_17==LPAREN) ) {
+            	                    alt1=1;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 17, input);
+            	                        new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 17, input);
 
             	                    throw nvae;
             	                }
             	            }
             	            else if ( ((LA1_9>=OIVAR && LA1_9<=GLOBALVAR)) ) {
-            	                alt1=1;
+            	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 9, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 9, input);
 
             	                throw nvae;
             	            }
@@ -243,7 +271,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 2, input);
+            	                new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 2, input);
 
             	            throw nvae;
             	        }
@@ -259,27 +287,27 @@ public class gscriptParser extends Parser {
             	            if ( (LA1_10==WORD) ) {
             	                int LA1_19 = input.LA(4);
 
-            	                if ( (synpred1()) ) {
-            	                    alt1=1;
-            	                }
-            	                else if ( (synpred2()) ) {
+            	                if ( (LA1_19==EOF||LA1_19==EQUALS||LA1_19==WORD||(LA1_19>=36 && LA1_19<=41)||LA1_19==65||(LA1_19>=78 && LA1_19<=85)) ) {
             	                    alt1=2;
+            	                }
+            	                else if ( (LA1_19==LPAREN) ) {
+            	                    alt1=1;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 19, input);
+            	                        new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 19, input);
 
             	                    throw nvae;
             	                }
             	            }
             	            else if ( ((LA1_10>=OIVAR && LA1_10<=GLOBALVAR)) ) {
-            	                alt1=1;
+            	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 10, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 10, input);
 
             	                throw nvae;
             	            }
@@ -287,7 +315,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 3, input);
+            	                new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 3, input);
 
             	            throw nvae;
             	        }
@@ -301,26 +329,26 @@ public class gscriptParser extends Parser {
             	            int LA1_11 = input.LA(3);
 
             	            if ( (LA1_11==EOF||LA1_11==EQUALS||LA1_11==WORD||(LA1_11>=36 && LA1_11<=41)||LA1_11==65||(LA1_11>=78 && LA1_11<=85)) ) {
-            	                alt1=1;
+            	                alt1=2;
             	            }
             	            else if ( (LA1_11==LPAREN) ) {
-            	                alt1=2;
+            	                alt1=1;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 11, input);
+            	                    new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 11, input);
 
             	                throw nvae;
             	            }
             	        }
             	        else if ( ((LA1_4>=OIVAR && LA1_4<=GLOBALVAR)) ) {
-            	            alt1=1;
+            	            alt1=2;
             	        }
             	        else {
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 4, input);
+            	                new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 4, input);
 
             	            throw nvae;
             	        }
@@ -334,17 +362,17 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return ;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("53:25: (f= field | m= method | i= innerclass )", 1, 0, input);
+            	            new NoViableAltException("53:69: (f= method | m= field | i= innerclass )", 1, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt1) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: f= field
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: f= method
             	            {
-            	            pushFollow(FOLLOW_field_in_classes199);
-            	            f=field();
+            	            pushFollow(FOLLOW_method_in_classes199);
+            	            f=method();
             	            _fsp--;
             	            if (failed) return ;
             	            if ( backtracking==0 ) {
@@ -354,10 +382,10 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: m= method
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:115: m= field
             	            {
-            	            pushFollow(FOLLOW_method_in_classes204);
-            	            m=method();
+            	            pushFollow(FOLLOW_field_in_classes204);
+            	            m=field();
             	            _fsp--;
             	            if (failed) return ;
             	            if ( backtracking==0 ) {
@@ -367,7 +395,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:115: i= innerclass
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:159: i= innerclass
             	            {
             	            pushFollow(FOLLOW_innerclass_in_classes209);
             	            i=innerclass();
@@ -382,7 +410,7 @@ public class gscriptParser extends Parser {
 
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:165: ( ';' )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:209: ( ';' )*
             	    loop2:
             	    do {
             	        int alt2=2;
@@ -395,7 +423,7 @@ public class gscriptParser extends Parser {
 
             	        switch (alt2) {
             	    	case 1 :
-            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:166: ';'
+            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:210: ';'
             	    	    {
             	    	    match(input,36,FOLLOW_36_in_classes214); if (failed) return ;
             	    	    if ( backtracking==0 ) {
@@ -448,12 +476,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:3: ( (s= statement )* )
             {
             if ( backtracking==0 ) {
-              System.out.println("Start parsing code ");
+              System.out.println("Start parsing code "); pc.returncode ="";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:48: ( (s= statement )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:49: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:67: ( (s= statement )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:68: (s= statement )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:49: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:68: (s= statement )*
             loop4:
             do {
                 int alt4=2;
@@ -466,7 +494,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:50: s= statement
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:69: s= statement
             	    {
             	    pushFollow(FOLLOW_statement_in_code235);
             	    s=statement();
@@ -968,7 +996,10 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:1: ( ( 'public' | 'private' )? ( 'static' )? (v= varstatement ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:3: ( 'public' | 'private' )? ( 'static' )? (v= varstatement )
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:3: ( 'public' | 'private' )?
+            if ( backtracking==0 ) {
+              System.out.println("Field "); 
+            }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:35: ( 'public' | 'private' )?
             int alt7=3;
             int LA7_0 = input.LA(1);
 
@@ -980,9 +1011,9 @@ public class gscriptParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:4: 'public'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:36: 'public'
                     {
-                    match(input,37,FOLLOW_37_in_field359); if (failed) return value;
+                    match(input,37,FOLLOW_37_in_field360); if (failed) return value;
                     if ( backtracking==0 ) {
                       value = "public";
                     }
@@ -990,9 +1021,9 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:34: 'private'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:66: 'private'
                     {
-                    match(input,38,FOLLOW_38_in_field363); if (failed) return value;
+                    match(input,38,FOLLOW_38_in_field364); if (failed) return value;
                     if ( backtracking==0 ) {
                       value = "private";
                     }
@@ -1002,7 +1033,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:68: ( 'static' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:100: ( 'static' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1011,9 +1042,9 @@ public class gscriptParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:69: 'static'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:101: 'static'
                     {
-                    match(input,39,FOLLOW_39_in_field370); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_field371); if (failed) return value;
                     if ( backtracking==0 ) {
                       value += " static";
                     }
@@ -1023,10 +1054,10 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:102: (v= varstatement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:103: v= varstatement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:134: (v= varstatement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:135: v= varstatement
             {
-            pushFollow(FOLLOW_varstatement_in_field378);
+            pushFollow(FOLLOW_varstatement_in_field379);
             v=varstatement();
             _fsp--;
             if (failed) return value;
@@ -1068,9 +1099,12 @@ public class gscriptParser extends Parser {
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 5) ) { return value; }
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:1: ( ( 'public' | 'private' )? ( 'static' )? arg= WORD name= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' b= bstatement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:4: ( 'public' | 'private' )? ( 'static' )? arg= WORD name= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' b= bstatement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:3: ( 'public' | 'private' )? ( 'static' )? arg= WORD name= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' b= bstatement
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:4: ( 'public' | 'private' )?
+            if ( backtracking==0 ) {
+              System.out.println("method ");
+            }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:36: ( 'public' | 'private' )?
             int alt9=3;
             int LA9_0 = input.LA(1);
 
@@ -1082,9 +1116,9 @@ public class gscriptParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:5: 'public'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:37: 'public'
                     {
-                    match(input,37,FOLLOW_37_in_method401); if (failed) return value;
+                    match(input,37,FOLLOW_37_in_method403); if (failed) return value;
                     if ( backtracking==0 ) {
                       value = "public";
                     }
@@ -1092,9 +1126,9 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:34: 'private'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:66: 'private'
                     {
-                    match(input,38,FOLLOW_38_in_method404); if (failed) return value;
+                    match(input,38,FOLLOW_38_in_method406); if (failed) return value;
                     if ( backtracking==0 ) {
                       value = "private";
                     }
@@ -1104,7 +1138,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: ( 'static' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:99: ( 'static' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1113,9 +1147,9 @@ public class gscriptParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:68: 'static'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:100: 'static'
                     {
-                    match(input,39,FOLLOW_39_in_method410); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_method412); if (failed) return value;
                     if ( backtracking==0 ) {
                       value += " static";
                     }
@@ -1126,11 +1160,11 @@ public class gscriptParser extends Parser {
             }
 
             arg=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_method417); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_method419); if (failed) return value;
             name=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_method421); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_method423); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:124: (e= expression ( ( ',' ) (e= expression )? )* )?
+            match(input,WORD,FOLLOW_WORD_in_method423); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_method425); if (failed) return value;
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:156: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1139,16 +1173,16 @@ public class gscriptParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:125: e= expression ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:157: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_method428);
+                    pushFollow(FOLLOW_expression_in_method430);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
                     if ( backtracking==0 ) {
                       s = input.toString(e.start,e.stop);
                     }
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:153: ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:185: ( ( ',' ) (e= expression )? )*
                     loop12:
                     do {
                         int alt12=2;
@@ -1161,16 +1195,16 @@ public class gscriptParser extends Parser {
 
                         switch (alt12) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:154: ( ',' ) (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:186: ( ',' ) (e= expression )?
                     	    {
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:154: ( ',' )
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:155: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:186: ( ',' )
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:187: ','
                     	    {
-                    	    match(input,40,FOLLOW_40_in_method434); if (failed) return value;
+                    	    match(input,40,FOLLOW_40_in_method436); if (failed) return value;
 
                     	    }
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:160: (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:192: (e= expression )?
                     	    int alt11=2;
                     	    int LA11_0 = input.LA(1);
 
@@ -1179,9 +1213,9 @@ public class gscriptParser extends Parser {
                     	    }
                     	    switch (alt11) {
                     	        case 1 :
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:161: e= expression
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:193: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_method440);
+                    	            pushFollow(FOLLOW_expression_in_method442);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -1209,8 +1243,8 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_method449); if (failed) return value;
-            pushFollow(FOLLOW_bstatement_in_method453);
+            match(input,RPAREN,FOLLOW_RPAREN_in_method451); if (failed) return value;
+            pushFollow(FOLLOW_bstatement_in_method455);
             b=bstatement();
             _fsp--;
             if (failed) return value;
@@ -1243,8 +1277,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:2: ( 'class' WORD ( LBRAC | 'begin' ) ( field | method )* ( RBRAC | 'end' ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:4: 'class' WORD ( LBRAC | 'begin' ) ( field | method )* ( RBRAC | 'end' )
             {
-            match(input,41,FOLLOW_41_in_innerclass469); if (failed) return value;
-            match(input,WORD,FOLLOW_WORD_in_innerclass471); if (failed) return value;
+            match(input,41,FOLLOW_41_in_innerclass471); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_innerclass473); if (failed) return value;
             if ( input.LA(1)==LBRAC||input.LA(1)==42 ) {
                 input.consume();
                 errorRecovery=false;failed=false;
@@ -1253,7 +1287,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_innerclass473);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_innerclass475);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:33: ( field | method )*
@@ -1271,11 +1305,20 @@ public class gscriptParser extends Parser {
                         if ( (LA14_6==WORD) ) {
                             int LA14_13 = input.LA(4);
 
-                            if ( (synpred32()) ) {
-                                alt14=1;
+                            if ( (LA14_13==WORD) ) {
+                                int LA14_30 = input.LA(5);
+
+                                if ( (synpred32()) ) {
+                                    alt14=1;
+                                }
+                                else if ( (synpred33()) ) {
+                                    alt14=2;
+                                }
+
+
                             }
-                            else if ( (synpred33()) ) {
-                                alt14=2;
+                            else if ( ((LA14_13>=OIVAR && LA14_13<=GLOBALVAR)) ) {
+                                alt14=1;
                             }
 
 
@@ -1289,10 +1332,10 @@ public class gscriptParser extends Parser {
                         if ( (LA14_7==WORD) ) {
                             int LA14_14 = input.LA(4);
 
-                            if ( (synpred32()) ) {
+                            if ( ((LA14_14>=RBRAC && LA14_14<=EQUALS)||LA14_14==WORD||(LA14_14>=37 && LA14_14<=40)||LA14_14==43||LA14_14==65||(LA14_14>=78 && LA14_14<=85)) ) {
                                 alt14=1;
                             }
-                            else if ( (synpred33()) ) {
+                            else if ( (LA14_14==LPAREN) ) {
                                 alt14=2;
                             }
 
@@ -1318,11 +1361,20 @@ public class gscriptParser extends Parser {
                         if ( (LA14_8==WORD) ) {
                             int LA14_16 = input.LA(4);
 
-                            if ( (synpred32()) ) {
-                                alt14=1;
+                            if ( (LA14_16==WORD) ) {
+                                int LA14_41 = input.LA(5);
+
+                                if ( (synpred32()) ) {
+                                    alt14=1;
+                                }
+                                else if ( (synpred33()) ) {
+                                    alt14=2;
+                                }
+
+
                             }
-                            else if ( (synpred33()) ) {
-                                alt14=2;
+                            else if ( ((LA14_16>=OIVAR && LA14_16<=GLOBALVAR)) ) {
+                                alt14=1;
                             }
 
 
@@ -1336,10 +1388,10 @@ public class gscriptParser extends Parser {
                         if ( (LA14_9==WORD) ) {
                             int LA14_17 = input.LA(4);
 
-                            if ( (synpred32()) ) {
+                            if ( ((LA14_17>=RBRAC && LA14_17<=EQUALS)||LA14_17==WORD||(LA14_17>=37 && LA14_17<=40)||LA14_17==43||LA14_17==65||(LA14_17>=78 && LA14_17<=85)) ) {
                                 alt14=1;
                             }
-                            else if ( (synpred33()) ) {
+                            else if ( (LA14_17==LPAREN) ) {
                                 alt14=2;
                             }
 
@@ -1365,10 +1417,10 @@ public class gscriptParser extends Parser {
                         if ( (LA14_10==WORD) ) {
                             int LA14_19 = input.LA(4);
 
-                            if ( (synpred32()) ) {
+                            if ( ((LA14_19>=RBRAC && LA14_19<=EQUALS)||LA14_19==WORD||(LA14_19>=37 && LA14_19<=40)||LA14_19==43||LA14_19==65||(LA14_19>=78 && LA14_19<=85)) ) {
                                 alt14=1;
                             }
-                            else if ( (synpred33()) ) {
+                            else if ( (LA14_19==LPAREN) ) {
                                 alt14=2;
                             }
 
@@ -1414,7 +1466,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:34: field
             	    {
-            	    pushFollow(FOLLOW_field_in_innerclass480);
+            	    pushFollow(FOLLOW_field_in_innerclass482);
             	    field();
             	    _fsp--;
             	    if (failed) return value;
@@ -1424,7 +1476,7 @@ public class gscriptParser extends Parser {
             	case 2 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:40: method
             	    {
-            	    pushFollow(FOLLOW_method_in_innerclass482);
+            	    pushFollow(FOLLOW_method_in_innerclass484);
             	    method();
             	    _fsp--;
             	    if (failed) return value;
@@ -1445,7 +1497,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_innerclass486);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_innerclass488);    throw mse;
             }
 
 
@@ -1488,7 +1540,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement506);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement508);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:77:69: (s= statement )*
@@ -1506,7 +1558,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:77:70: s= statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_bstatement515);
+            	    pushFollow(FOLLOW_statement_in_bstatement517);
             	    s=statement();
             	    _fsp--;
             	    if (failed) return value;
@@ -1530,7 +1582,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement520);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement522);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -1579,7 +1631,7 @@ public class gscriptParser extends Parser {
               System.out.println("var statement ");
             }
             type=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_varstatement548); if (failed) return retval;
+            match(input,WORD,FOLLOW_WORD_in_varstatement550); if (failed) return retval;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:53: (vari= variable | ass= assignment )
             int alt16=2;
             int LA16_0 = input.LA(1);
@@ -1591,156 +1643,1289 @@ public class gscriptParser extends Parser {
                     switch ( input.LA(3) ) {
                     case LPAREN:
                         {
-                        int LA16_39 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case LPAREN:
+                            {
+                            int LA16_47 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 47, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case WORD:
+                            {
+                            int LA16_48 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 48, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case HEXNUMBER:
+                            {
+                            int LA16_49 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 49, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case STRING:
+                            {
+                            int LA16_50 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 50, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case NUMBER:
+                            {
+                            int LA16_51 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 51, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case OIVAR:
+                        case GLOBALVAR:
+                            {
+                            int LA16_52 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 52, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case DECIMAL:
+                            {
+                            int LA16_53 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 53, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 50:
+                        case 51:
+                            {
+                            int LA16_54 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 54, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 39, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case WORD:
                         {
-                        int LA16_40 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case LPAREN:
+                            {
+                            int LA16_55 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 55, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 85:
+                            {
+                            int LA16_56 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 56, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_57 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 57, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_58 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 58, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_59 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 59, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_60 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 60, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_61 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 61, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_62 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 62, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 40, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case HEXNUMBER:
                         {
-                        int LA16_41 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_63 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 63, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_64 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 64, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_65 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 65, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_66 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 66, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_67 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 67, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_68 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 68, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 41, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case STRING:
                         {
-                        int LA16_42 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_69 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 69, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_70 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 70, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_71 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 71, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_72 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 72, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_73 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 73, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_74 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 74, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 42, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case NUMBER:
                         {
-                        int LA16_43 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_75 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 75, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_76 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 76, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_77 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 77, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_78 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 78, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_79 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 79, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_80 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 80, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 43, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        int LA16_44 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case 85:
+                            {
+                            int LA16_81 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 81, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_82 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 82, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_83 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 83, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_84 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 84, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_85 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 85, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_86 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 86, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_87 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 87, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 44, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case DECIMAL:
                         {
-                        int LA16_45 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case EQUALS:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 51:
+                        case 65:
+                            {
+                            int LA16_88 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 88, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case NEGINTEGER:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                            {
+                            int LA16_89 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 89, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 59:
+                        case 60:
+                            {
+                            int LA16_90 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 90, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 61:
+                        case 62:
+                            {
+                            int LA16_91 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 91, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 63:
+                        case 64:
+                            {
+                            int LA16_92 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 92, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 86:
+                            {
+                            int LA16_93 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 93, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 45, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     case 50:
                     case 51:
                         {
-                        int LA16_46 = input.LA(4);
+                        switch ( input.LA(4) ) {
+                        case LPAREN:
+                            {
+                            int LA16_94 = input.LA(5);
 
-                        if ( (synpred38()) ) {
-                            alt16=1;
-                        }
-                        else if ( (true) ) {
-                            alt16=2;
-                        }
-                        else {
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 94, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case WORD:
+                            {
+                            int LA16_95 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 95, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case HEXNUMBER:
+                            {
+                            int LA16_96 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 96, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case STRING:
+                            {
+                            int LA16_97 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 97, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case NUMBER:
+                            {
+                            int LA16_98 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 98, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case OIVAR:
+                        case GLOBALVAR:
+                            {
+                            int LA16_99 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 99, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case DECIMAL:
+                            {
+                            int LA16_100 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 100, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        case 50:
+                        case 51:
+                            {
+                            int LA16_101 = input.LA(5);
+
+                            if ( (synpred38()) ) {
+                                alt16=1;
+                            }
+                            else if ( (true) ) {
+                                alt16=2;
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return retval;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 101, input);
+
+                                throw nvae;
+                            }
+                            }
+                            break;
+                        default:
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("81:53: (vari= variable | ass= assignment )", 16, 46, input);
 
                             throw nvae;
                         }
+
                         }
                         break;
                     default:
@@ -1828,7 +3013,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:54: vari= variable
                     {
-                    pushFollow(FOLLOW_variable_in_varstatement553);
+                    pushFollow(FOLLOW_variable_in_varstatement555);
                     vari=variable();
                     _fsp--;
                     if (failed) return retval;
@@ -1841,7 +3026,7 @@ public class gscriptParser extends Parser {
                 case 2 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:90: ass= assignment
                     {
-                    pushFollow(FOLLOW_assignment_in_varstatement559);
+                    pushFollow(FOLLOW_assignment_in_varstatement561);
                     ass=assignment();
                     _fsp--;
                     if (failed) return retval;
@@ -1869,7 +3054,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:128: ',' (varii= variable | ass= assignment )
             	    {
-            	    match(input,40,FOLLOW_40_in_varstatement565); if (failed) return retval;
+            	    match(input,40,FOLLOW_40_in_varstatement567); if (failed) return retval;
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:132: (varii= variable | ass= assignment )
             	    int alt17=2;
             	    int LA17_0 = input.LA(1);
@@ -1881,156 +3066,1289 @@ public class gscriptParser extends Parser {
             	            switch ( input.LA(3) ) {
             	            case LPAREN:
             	                {
-            	                int LA17_39 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case LPAREN:
+            	                    {
+            	                    int LA17_47 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 47, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case WORD:
+            	                    {
+            	                    int LA17_48 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 48, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case HEXNUMBER:
+            	                    {
+            	                    int LA17_49 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 49, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case STRING:
+            	                    {
+            	                    int LA17_50 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 50, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case NUMBER:
+            	                    {
+            	                    int LA17_51 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 51, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case OIVAR:
+            	                case GLOBALVAR:
+            	                    {
+            	                    int LA17_52 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 52, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case DECIMAL:
+            	                    {
+            	                    int LA17_53 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 53, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 50:
+            	                case 51:
+            	                    {
+            	                    int LA17_54 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 54, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 39, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case WORD:
             	                {
-            	                int LA17_40 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case 85:
+            	                    {
+            	                    int LA17_55 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 55, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case LPAREN:
+            	                    {
+            	                    int LA17_56 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 56, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_57 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 57, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_58 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 58, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_59 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 59, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_60 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 60, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_61 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 61, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_62 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 62, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 40, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case HEXNUMBER:
             	                {
-            	                int LA17_41 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_63 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 63, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_64 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 64, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_65 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 65, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_66 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 66, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_67 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 67, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_68 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 68, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 41, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case STRING:
             	                {
-            	                int LA17_42 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_69 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 69, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_70 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 70, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_71 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 71, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_72 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 72, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_73 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 73, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_74 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 74, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 42, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case NUMBER:
             	                {
-            	                int LA17_43 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_75 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 75, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_76 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 76, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_77 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 77, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_78 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 78, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_79 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 79, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_80 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 80, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 43, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case OIVAR:
             	            case GLOBALVAR:
             	                {
-            	                int LA17_44 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case 85:
+            	                    {
+            	                    int LA17_81 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 81, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_82 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 82, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_83 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 83, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_84 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 84, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_85 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 85, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_86 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 86, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_87 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 87, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 44, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case DECIMAL:
             	                {
-            	                int LA17_45 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case EQUALS:
+            	                case EQUALS2:
+            	                case NOT_EQUALS:
+            	                case GT:
+            	                case GTE:
+            	                case LT:
+            	                case LTE:
+            	                case 51:
+            	                case 65:
+            	                    {
+            	                    int LA17_88 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 88, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case PLUS:
+            	                case MINUS:
+            	                case MULT:
+            	                case DIV:
+            	                case NEGINTEGER:
+            	                case 52:
+            	                case 53:
+            	                case 54:
+            	                case 55:
+            	                case 56:
+            	                case 57:
+            	                case 58:
+            	                    {
+            	                    int LA17_89 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 89, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 59:
+            	                case 60:
+            	                    {
+            	                    int LA17_90 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 90, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 61:
+            	                case 62:
+            	                    {
+            	                    int LA17_91 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 91, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 63:
+            	                case 64:
+            	                    {
+            	                    int LA17_92 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 92, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 86:
+            	                    {
+            	                    int LA17_93 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 93, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 45, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            case 50:
             	            case 51:
             	                {
-            	                int LA17_46 = input.LA(4);
+            	                switch ( input.LA(4) ) {
+            	                case LPAREN:
+            	                    {
+            	                    int LA17_94 = input.LA(5);
 
-            	                if ( (synpred39()) ) {
-            	                    alt17=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt17=2;
-            	                }
-            	                else {
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 94, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case WORD:
+            	                    {
+            	                    int LA17_95 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 95, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case HEXNUMBER:
+            	                    {
+            	                    int LA17_96 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 96, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case STRING:
+            	                    {
+            	                    int LA17_97 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 97, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case NUMBER:
+            	                    {
+            	                    int LA17_98 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 98, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case OIVAR:
+            	                case GLOBALVAR:
+            	                    {
+            	                    int LA17_99 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 99, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case DECIMAL:
+            	                    {
+            	                    int LA17_100 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 100, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                case 50:
+            	                case 51:
+            	                    {
+            	                    int LA17_101 = input.LA(5);
+
+            	                    if ( (synpred39()) ) {
+            	                        alt17=1;
+            	                    }
+            	                    else if ( (true) ) {
+            	                        alt17=2;
+            	                    }
+            	                    else {
+            	                        if (backtracking>0) {failed=true; return retval;}
+            	                        NoViableAltException nvae =
+            	                            new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 101, input);
+
+            	                        throw nvae;
+            	                    }
+            	                    }
+            	                    break;
+            	                default:
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("81:132: (varii= variable | ass= assignment )", 17, 46, input);
 
             	                    throw nvae;
             	                }
+
             	                }
             	                break;
             	            default:
@@ -2118,7 +4436,7 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:133: varii= variable
             	            {
-            	            pushFollow(FOLLOW_variable_in_varstatement570);
+            	            pushFollow(FOLLOW_variable_in_varstatement572);
             	            varii=variable();
             	            _fsp--;
             	            if (failed) return retval;
@@ -2131,7 +4449,7 @@ public class gscriptParser extends Parser {
             	        case 2 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:174: ass= assignment
             	            {
-            	            pushFollow(FOLLOW_assignment_in_varstatement576);
+            	            pushFollow(FOLLOW_assignment_in_varstatement578);
             	            ass=assignment();
             	            _fsp--;
             	            if (failed) return retval;
@@ -2187,14 +4505,14 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:1: ( 'return' (e= expression ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:3: 'return' (e= expression )
             {
-            match(input,44,FOLLOW_44_in_returnstatement598); if (failed) return value;
+            match(input,44,FOLLOW_44_in_returnstatement600); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("return statement ");
             }
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:55: (e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:56: e= expression
             {
-            pushFollow(FOLLOW_expression_in_returnstatement605);
+            pushFollow(FOLLOW_expression_in_returnstatement607);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -2233,7 +4551,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:89:1: ( 'exit' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:89:2: 'exit'
             {
-            match(input,45,FOLLOW_45_in_exitstatement621); if (failed) return value;
+            match(input,45,FOLLOW_45_in_exitstatement623); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("exit statement");
             }
@@ -2276,8 +4594,8 @@ public class gscriptParser extends Parser {
             if ( backtracking==0 ) {
               System.out.println("if statement ");
             }
-            match(input,46,FOLLOW_46_in_ifstatement640); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_ifstatement644);
+            match(input,46,FOLLOW_46_in_ifstatement642); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_ifstatement646);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -2292,7 +4610,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:61: 'then'
                     {
-                    match(input,47,FOLLOW_47_in_ifstatement647); if (failed) return value;
+                    match(input,47,FOLLOW_47_in_ifstatement649); if (failed) return value;
 
                     }
                     break;
@@ -2302,7 +4620,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:70: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:71: s= statement
             {
-            pushFollow(FOLLOW_statement_in_ifstatement654);
+            pushFollow(FOLLOW_statement_in_ifstatement656);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -2339,7 +4657,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:85: el= elsestatement
             	    {
-            	    pushFollow(FOLLOW_elsestatement_in_ifstatement660);
+            	    pushFollow(FOLLOW_elsestatement_in_ifstatement662);
             	    el=elsestatement();
             	    _fsp--;
             	    if (failed) return value;
@@ -2410,7 +4728,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:4: 'else'
                     {
-                    match(input,48,FOLLOW_48_in_elsestatement680); if (failed) return value;
+                    match(input,48,FOLLOW_48_in_elsestatement682); if (failed) return value;
 
                     }
                     break;
@@ -2420,8 +4738,8 @@ public class gscriptParser extends Parser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:11: ( 'elsif' e= expression )
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:12: 'elsif' e= expression
                     {
-                    match(input,49,FOLLOW_49_in_elsestatement683); if (failed) return value;
-                    pushFollow(FOLLOW_expression_in_elsestatement687);
+                    match(input,49,FOLLOW_49_in_elsestatement685); if (failed) return value;
+                    pushFollow(FOLLOW_expression_in_elsestatement689);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -2440,7 +4758,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:60: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:61: s= statement
             {
-            pushFollow(FOLLOW_statement_in_elsestatement696);
+            pushFollow(FOLLOW_statement_in_elsestatement698);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -2538,7 +4856,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:5: p= pexpression
                     {
-                    pushFollow(FOLLOW_pexpression_in_expression724);
+                    pushFollow(FOLLOW_pexpression_in_expression726);
                     p=pexpression();
                     _fsp--;
                     if (failed) return retval;
@@ -2551,7 +4869,7 @@ public class gscriptParser extends Parser {
                 case 2 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:38: r= relationalExpression
                     {
-                    pushFollow(FOLLOW_relationalExpression_in_expression729);
+                    pushFollow(FOLLOW_relationalExpression_in_expression731);
                     r=relationalExpression();
                     _fsp--;
                     if (failed) return retval;
@@ -2564,7 +4882,7 @@ public class gscriptParser extends Parser {
                 case 3 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:80: n= notexpression
                     {
-                    pushFollow(FOLLOW_notexpression_in_expression734);
+                    pushFollow(FOLLOW_notexpression_in_expression736);
                     n=notexpression();
                     _fsp--;
                     if (failed) return retval;
@@ -2598,7 +4916,7 @@ public class gscriptParser extends Parser {
             	case 1 :
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:117: aa= aexpression
             	    {
-            	    pushFollow(FOLLOW_aexpression_in_expression741);
+            	    pushFollow(FOLLOW_aexpression_in_expression743);
             	    aa=aexpression();
             	    _fsp--;
             	    if (failed) return retval;
@@ -2695,7 +5013,7 @@ public class gscriptParser extends Parser {
             	        case 1 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:163: an= andexpression
             	            {
-            	            pushFollow(FOLLOW_andexpression_in_expression751);
+            	            pushFollow(FOLLOW_andexpression_in_expression753);
             	            an=andexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -2708,7 +5026,7 @@ public class gscriptParser extends Parser {
             	        case 2 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:205: orr= orexpression
             	            {
-            	            pushFollow(FOLLOW_orexpression_in_expression756);
+            	            pushFollow(FOLLOW_orexpression_in_expression758);
             	            orr=orexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -2721,7 +5039,7 @@ public class gscriptParser extends Parser {
             	        case 3 :
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:248: x= xorexpression
             	            {
-            	            pushFollow(FOLLOW_xorexpression_in_expression761);
+            	            pushFollow(FOLLOW_xorexpression_in_expression763);
             	            x=xorexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -2737,7 +5055,7 @@ public class gscriptParser extends Parser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:289: (e= expression )
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:290: e= expression
             	    {
-            	    pushFollow(FOLLOW_expression_in_expression768);
+            	    pushFollow(FOLLOW_expression_in_expression770);
             	    e=expression();
             	    _fsp--;
             	    if (failed) return retval;
@@ -2798,10 +5116,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression787);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression789);    throw mse;
             }
 
-            pushFollow(FOLLOW_expression_in_notexpression795);
+            pushFollow(FOLLOW_expression_in_notexpression797);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -2845,7 +5163,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression812);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression814);    throw mse;
             }
 
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:110:68: ( expression )?
@@ -2859,76 +5177,691 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case LPAREN:
                                     {
-                                    int LA26_391 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_740 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_741 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_742 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_743 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_744 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_745 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_746 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_747 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA26_392 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case 85:
+                                            {
+                                            int LA26_748 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case LPAREN:
+                                            {
+                                            int LA26_749 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_750 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_751 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_752 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_753 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_754 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_755 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA26_393 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_756 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_757 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_758 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_759 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_760 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_761 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA26_394 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_762 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_763 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_764 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_765 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_766 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_767 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA26_395 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_768 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_769 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_770 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_771 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_772 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_773 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA26_396 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case 85:
+                                            {
+                                            int LA26_774 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_775 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_776 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_777 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_778 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_779 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_780 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA26_397 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_781 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_782 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_783 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_784 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_785 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_786 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 50:
                                 case 51:
                                     {
-                                    int LA26_398 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_787 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_788 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_789 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_790 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_791 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_792 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_793 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_794 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                             }
@@ -2940,20 +5873,173 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case 85:
                                     {
-                                    int LA26_399 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_795 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_796 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_797 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_798 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_799 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_800 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_801 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_802 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA26_400 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_803 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_804 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_805 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_806 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_807 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_808 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_809 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_810 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_811 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case EQUALS:
@@ -2966,11 +6052,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_401 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_812 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_813 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_814 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_815 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_816 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -2986,41 +6116,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_402 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_817 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_818 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_819 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_820 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_821 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_822 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_823 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_824 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_825 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_826 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_827 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_828 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_829 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_403 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_830 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_831 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_832 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_833 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_834 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_835 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_836 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_837 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_404 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_838 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_839 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_840 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_841 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_842 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_843 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_844 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_845 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_405 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_846 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_847 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_848 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_849 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_850 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_851 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_852 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_853 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3049,11 +6526,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_407 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_898 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_899 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_900 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_901 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_902 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -3069,41 +6590,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_408 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_903 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_904 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_905 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_906 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_907 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_908 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_909 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_910 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_911 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_912 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_913 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_914 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_915 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_409 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_916 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_917 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_918 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_919 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_920 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_921 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_922 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_923 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_410 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_924 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_925 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_926 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_927 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_928 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_929 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_930 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_931 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_411 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_932 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_933 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_934 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_935 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_936 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_937 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_938 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_939 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3132,11 +7000,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_413 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_984 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_985 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_986 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_987 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_988 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -3152,41 +7064,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_414 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_989 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_990 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_991 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_992 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_993 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_994 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_995 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_996 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_997 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_998 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_999 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1000 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1001 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_415 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1002 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1003 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1004 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1005 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1006 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1007 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1008 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1009 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_416 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1010 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1011 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1012 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1013 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1014 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1015 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1016 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1017 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_417 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1018 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1019 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1020 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1021 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1022 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1023 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1024 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1025 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3215,11 +7474,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_419 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_1070 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1071 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1072 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1073 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1074 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -3235,41 +7538,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_420 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1075 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1076 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1077 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1078 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1079 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1080 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1081 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1082 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1083 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1084 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1085 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1086 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1087 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_421 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1088 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1089 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1090 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1091 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1092 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1093 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1094 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1095 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_422 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1096 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1097 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1098 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1099 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1100 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1101 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1102 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1103 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_423 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1104 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1105 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1106 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1107 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1108 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1109 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1110 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1111 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3291,11 +7941,83 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case 85:
                                     {
-                                    int LA26_425 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1156 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1157 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1158 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1159 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1160 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1161 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1162 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1163 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case EQUALS:
@@ -3308,11 +8030,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_426 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_1164 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1165 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1166 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1167 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1168 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -3328,41 +8094,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_427 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1169 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1170 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1171 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1172 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1173 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1174 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1175 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1176 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1177 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1178 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1179 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1180 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1181 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_428 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1182 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1183 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1184 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1185 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1186 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1187 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1188 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1189 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_429 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1190 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1191 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1192 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1193 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1194 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1195 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1196 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1197 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_430 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1198 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1199 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1200 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1201 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1202 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1203 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1204 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1205 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3391,11 +8504,55 @@ public class gscriptParser extends Parser {
                                 case 51:
                                 case 65:
                                     {
-                                    int LA26_432 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case WORD:
+                                            {
+                                            int LA26_1250 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1251 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1252 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1253 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1254 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case PLUS:
@@ -3411,41 +8568,388 @@ public class gscriptParser extends Parser {
                                 case 57:
                                 case 58:
                                     {
-                                    int LA26_433 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1255 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1256 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1257 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1258 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1259 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1260 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1261 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1262 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1263 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1264 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1265 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1266 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1267 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 59:
                                 case 60:
                                     {
-                                    int LA26_434 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1268 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1269 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1270 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1271 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1272 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1273 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1274 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1275 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 61:
                                 case 62:
                                     {
-                                    int LA26_435 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1276 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1277 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1278 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1279 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1280 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1281 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1282 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1283 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 63:
                                 case 64:
                                     {
-                                    int LA26_436 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1284 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1285 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1286 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1287 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1288 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1289 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1290 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1291 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case RPAREN:
@@ -3467,76 +8971,691 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case LPAREN:
                                     {
-                                    int LA26_438 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1336 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1337 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1338 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1339 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1340 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1341 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1342 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1343 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA26_439 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1344 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 85:
+                                            {
+                                            int LA26_1345 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1346 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1347 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1348 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1349 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1350 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1351 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA26_440 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1352 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1353 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1354 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1355 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1356 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1357 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA26_441 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1358 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1359 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1360 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1361 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1362 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1363 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA26_442 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1364 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1365 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1366 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1367 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1368 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1369 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA26_443 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case 85:
+                                            {
+                                            int LA26_1370 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1371 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1372 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1373 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1374 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1375 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1376 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA26_444 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1377 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1378 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1379 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1380 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1381 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1382 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 50:
                                 case 51:
                                     {
-                                    int LA26_445 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1383 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1384 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1385 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1386 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1387 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1388 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1389 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1390 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                             }
@@ -3610,76 +9729,691 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case LPAREN:
                                     {
-                                    int LA26_446 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1391 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1392 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1393 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1394 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1395 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1396 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1397 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1398 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA26_447 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1399 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 85:
+                                            {
+                                            int LA26_1400 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1401 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1402 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1403 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1404 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1405 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1406 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA26_448 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1407 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1408 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1409 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1410 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1411 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1412 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA26_449 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1413 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1414 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1415 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1416 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1417 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1418 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA26_450 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1419 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1420 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1421 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1422 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1423 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1424 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA26_451 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case 85:
+                                            {
+                                            int LA26_1425 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1426 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1427 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1428 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1429 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1430 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1431 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA26_452 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case EQUALS:
+                                        case EQUALS2:
+                                        case NOT_EQUALS:
+                                        case GT:
+                                        case GTE:
+                                        case LT:
+                                        case LTE:
+                                        case 51:
+                                        case 65:
+                                            {
+                                            int LA26_1432 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case PLUS:
+                                        case MINUS:
+                                        case MULT:
+                                        case DIV:
+                                        case NEGINTEGER:
+                                        case 52:
+                                        case 53:
+                                        case 54:
+                                        case 55:
+                                        case 56:
+                                        case 57:
+                                        case 58:
+                                            {
+                                            int LA26_1433 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 59:
+                                        case 60:
+                                            {
+                                            int LA26_1434 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 61:
+                                        case 62:
+                                            {
+                                            int LA26_1435 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 63:
+                                        case 64:
+                                            {
+                                            int LA26_1436 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case RPAREN:
+                                            {
+                                            int LA26_1437 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case 50:
                                 case 51:
                                     {
-                                    int LA26_453 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1438 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1439 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1440 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1441 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1442 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1443 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1444 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1445 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                             }
@@ -3747,11 +10481,83 @@ public class gscriptParser extends Parser {
                             switch ( input.LA(3) ) {
                                 case LPAREN:
                                     {
-                                    int LA26_732 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1446 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1447 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1448 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1449 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1450 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1451 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1452 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1453 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                                 case WORD:
@@ -3812,11 +10618,83 @@ public class gscriptParser extends Parser {
                                 case 50:
                                 case 51:
                                     {
-                                    int LA26_739 = input.LA(4);
+                                    switch ( input.LA(4) ) {
+                                        case LPAREN:
+                                            {
+                                            int LA26_1732 = input.LA(5);
 
-                                    if ( (synpred62()) ) {
-                                        alt26=1;
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case WORD:
+                                            {
+                                            int LA26_1733 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case HEXNUMBER:
+                                            {
+                                            int LA26_1734 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case STRING:
+                                            {
+                                            int LA26_1735 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case NUMBER:
+                                            {
+                                            int LA26_1736 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case OIVAR:
+                                        case GLOBALVAR:
+                                            {
+                                            int LA26_1737 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case DECIMAL:
+                                            {
+                                            int LA26_1738 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
+                                        case 50:
+                                        case 51:
+                                            {
+                                            int LA26_1739 = input.LA(5);
+
+                                            if ( (synpred62()) ) {
+                                                alt26=1;
+                                            }
+                                            }
+                                            break;
                                     }
+
                                     }
                                     break;
                             }
@@ -3842,7 +10720,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:110:69: expression
                     {
-                    pushFollow(FOLLOW_expression_in_aexpression839);
+                    pushFollow(FOLLOW_expression_in_aexpression841);
                     expression();
                     _fsp--;
                     if (failed) return value;
@@ -3920,28 +10798,28 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:113:35: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_value860); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_value862); if (failed) return value;
 
                     }
                     break;
                 case 2 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:113:42: HEXNUMBER
                     {
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value862); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value864); if (failed) return value;
 
                     }
                     break;
                 case 3 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:113:52: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_value864); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_value866); if (failed) return value;
 
                     }
                     break;
                 case 4 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:113:59: variable
                     {
-                    pushFollow(FOLLOW_variable_in_value866);
+                    pushFollow(FOLLOW_variable_in_value868);
                     variable();
                     _fsp--;
                     if (failed) return value;
@@ -3983,12 +10861,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:117:1: ( LPAREN e= expression RPAREN )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:117:3: LPAREN e= expression RPAREN
             {
-            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression882); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_pexpression886);
+            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression884); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_pexpression888);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression888); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression890); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.pexpression(e.value);
             }
@@ -4029,7 +10907,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression905);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression907);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -4072,7 +10950,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression926);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression928);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -4115,7 +10993,7 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression947);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression949);    throw mse;
             }
 
             if ( backtracking==0 ) {
@@ -4138,16 +11016,27 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start relationalExpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:132:1: relationalExpression returns [String value] : ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:132:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )* ;
     public final String relationalExpression() throws RecognitionException {
         String value = null;
         int relationalExpression_StartIndex = input.index();
+        Token h=null;
+        Token s=null;
+        Token n=null;
+        Token d=null;
+        Token w=null;
+        Token op=null;
+        String f = null;
+
+        variable_return v = null;
+
+
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 21) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:3: ( ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:3: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:3: ( (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:3: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
             int alt28=7;
             switch ( input.LA(1) ) {
             case WORD:
@@ -4166,7 +11055,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("134:3: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 28, 1, input);
+                        new NoViableAltException("134:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 28, 1, input);
 
                     throw nvae;
                 }
@@ -4201,71 +11090,97 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("134:3: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 28, 0, input);
+                    new NoViableAltException("134:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 28, 0, input);
 
                 throw nvae;
             }
 
             switch (alt28) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:4: function
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:4: f= function
                     {
-                    pushFollow(FOLLOW_function_in_relationalExpression971);
-                    function();
+                    pushFollow(FOLLOW_function_in_relationalExpression975);
+                    f=function();
                     _fsp--;
                     if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = f;
+                    }
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:13: HEXNUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:35: h= HEXNUMBER
                     {
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression973); if (failed) return value;
+                    h=(Token)input.LT(1);
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression980); if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = h.getText();
+                    }
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:23: STRING
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:66: s= STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_relationalExpression975); if (failed) return value;
+                    s=(Token)input.LT(1);
+                    match(input,STRING,FOLLOW_STRING_in_relationalExpression985); if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = s.getText();
+                    }
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:30: NUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:94: n= NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression977); if (failed) return value;
+                    n=(Token)input.LT(1);
+                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression990); if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = n.getText();
+                    }
 
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:37: variable
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:122: v= variable
                     {
-                    pushFollow(FOLLOW_variable_in_relationalExpression979);
-                    variable();
+                    pushFollow(FOLLOW_variable_in_relationalExpression995);
+                    v=variable();
                     _fsp--;
                     if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = v.value;
+                    }
 
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:46: DECIMAL
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:153: d= DECIMAL
                     {
-                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression981); if (failed) return value;
+                    d=(Token)input.LT(1);
+                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1000); if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = d.getText();
+                    }
 
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:54: WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:182: w= WORD
                     {
-                    match(input,WORD,FOLLOW_WORD_in_relationalExpression983); if (failed) return value;
+                    w=(Token)input.LT(1);
+                    match(input,WORD,FOLLOW_WORD_in_relationalExpression1005); if (failed) return value;
+                    if ( backtracking==0 ) {
+                      value = w.getText();
+                    }
 
                     }
                     break;
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:60: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:209: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )*
             loop30:
             do {
                 int alt30=2;
@@ -4340,8 +11255,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt30) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:62: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:211: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
             	    {
+            	    op=(Token)input.LT(1);
             	    if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==51||input.LA(1)==65 ) {
             	        input.consume();
             	        errorRecovery=false;failed=false;
@@ -4350,10 +11266,10 @@ public class gscriptParser extends Parser {
             	        if (backtracking>0) {failed=true; return value;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression988);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1013);    throw mse;
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
             	    int alt29=6;
             	    switch ( input.LA(1) ) {
             	    case WORD:
@@ -4372,7 +11288,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return value;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 29, 1, input);
+            	                new NoViableAltException("134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 29, 1, input);
 
             	            throw nvae;
             	        }
@@ -4402,16 +11318,16 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return value;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 29, 0, input);
+            	            new NoViableAltException("134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 29, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt29) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:114: function
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:266: function
             	            {
-            	            pushFollow(FOLLOW_function_in_relationalExpression1009);
+            	            pushFollow(FOLLOW_function_in_relationalExpression1034);
             	            function();
             	            _fsp--;
             	            if (failed) return value;
@@ -4419,30 +11335,30 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:123: HEXNUMBER
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:275: HEXNUMBER
             	            {
-            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1011); if (failed) return value;
+            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1036); if (failed) return value;
 
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:133: STRING
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:285: STRING
             	            {
-            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression1013); if (failed) return value;
+            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression1038); if (failed) return value;
 
             	            }
             	            break;
             	        case 4 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:140: NUMBER
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:292: NUMBER
             	            {
-            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1015); if (failed) return value;
+            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1040); if (failed) return value;
 
             	            }
             	            break;
             	        case 5 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:147: variable
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:299: variable
             	            {
-            	            pushFollow(FOLLOW_variable_in_relationalExpression1017);
+            	            pushFollow(FOLLOW_variable_in_relationalExpression1042);
             	            variable();
             	            _fsp--;
             	            if (failed) return value;
@@ -4450,9 +11366,9 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 6 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:156: WORD
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:308: WORD
             	            {
-            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression1019); if (failed) return value;
+            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression1044); if (failed) return value;
 
             	            }
             	            break;
@@ -4469,7 +11385,6 @@ public class gscriptParser extends Parser {
             } while (true);
 
             if ( backtracking==0 ) {
-              value ="";
             }
 
             }
@@ -4502,15 +11417,15 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:138:1: ( 'repeat' e= expression (s= statement ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:138:3: 'repeat' e= expression (s= statement )
             {
-            match(input,66,FOLLOW_66_in_repeatstatement1040); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_repeatstatement1044);
+            match(input,66,FOLLOW_66_in_repeatstatement1065); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_repeatstatement1069);
             e=expression();
             _fsp--;
             if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:138:25: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:138:26: s= statement
             {
-            pushFollow(FOLLOW_statement_in_repeatstatement1049);
+            pushFollow(FOLLOW_statement_in_repeatstatement1074);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4546,7 +11461,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:142:1: ( 'break' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:142:3: 'break'
             {
-            match(input,67,FOLLOW_67_in_breakstatement1065); if (failed) return value;
+            match(input,67,FOLLOW_67_in_breakstatement1090); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("break;");
             }
@@ -4579,7 +11494,7 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:145:1: ( 'continue' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:145:3: 'continue'
             {
-            match(input,68,FOLLOW_68_in_continuestatement1082); if (failed) return value;
+            match(input,68,FOLLOW_68_in_continuestatement1107); if (failed) return value;
             if ( backtracking==0 ) {
               System.out.println("continue;");
             }
@@ -4617,13 +11532,13 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:149:1: ( 'do' s= statement 'until' e= expression )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:149:3: 'do' s= statement 'until' e= expression
             {
-            match(input,69,FOLLOW_69_in_dostatement1099); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_dostatement1103);
+            match(input,69,FOLLOW_69_in_dostatement1124); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_dostatement1128);
             s=statement();
             _fsp--;
             if (failed) return value;
-            match(input,70,FOLLOW_70_in_dostatement1105); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_dostatement1109);
+            match(input,70,FOLLOW_70_in_dostatement1130); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_dostatement1134);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -4661,15 +11576,15 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:153:1: ( 'while' e= expression (s= statement ) )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:153:3: 'while' e= expression (s= statement )
             {
-            match(input,71,FOLLOW_71_in_whilestatement1124); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_whilestatement1128);
+            match(input,71,FOLLOW_71_in_whilestatement1149); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_whilestatement1153);
             e=expression();
             _fsp--;
             if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:153:24: (s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:153:25: s= statement
             {
-            pushFollow(FOLLOW_statement_in_whilestatement1133);
+            pushFollow(FOLLOW_statement_in_whilestatement1158);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4714,23 +11629,23 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:157:1: ( 'for' '(' s1= statement e= expression ';' s2= statement ')' s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:157:3: 'for' '(' s1= statement e= expression ';' s2= statement ')' s= statement
             {
-            match(input,72,FOLLOW_72_in_forstatement1149); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1151); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1155);
+            match(input,72,FOLLOW_72_in_forstatement1174); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1176); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1180);
             s1=statement();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_expression_in_forstatement1159);
+            pushFollow(FOLLOW_expression_in_forstatement1184);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,36,FOLLOW_36_in_forstatement1161); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1165);
+            match(input,36,FOLLOW_36_in_forstatement1186); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1190);
             s2=statement();
             _fsp--;
             if (failed) return value;
-            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1167); if (failed) return value;
-            pushFollow(FOLLOW_statement_in_forstatement1171);
+            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1192); if (failed) return value;
+            pushFollow(FOLLOW_statement_in_forstatement1196);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4763,18 +11678,18 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:1: ( 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}' )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:3: 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}'
             {
-            match(input,73,FOLLOW_73_in_switchstatement1186); if (failed) return value;
+            match(input,73,FOLLOW_73_in_switchstatement1211); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:12: ( expression )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:13: expression
             {
-            pushFollow(FOLLOW_expression_in_switchstatement1189);
+            pushFollow(FOLLOW_expression_in_switchstatement1214);
             expression();
             _fsp--;
             if (failed) return value;
 
             }
 
-            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1192); if (failed) return value;
+            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1217); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:29: ( ( 'case' | 'default' ) expression ':' ( statement )* )*
             loop32:
             do {
@@ -4798,14 +11713,14 @@ public class gscriptParser extends Parser {
             	        if (backtracking>0) {failed=true; return value;}
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1195);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1220);    throw mse;
             	    }
 
-            	    pushFollow(FOLLOW_expression_in_switchstatement1201);
+            	    pushFollow(FOLLOW_expression_in_switchstatement1226);
             	    expression();
             	    _fsp--;
             	    if (failed) return value;
-            	    match(input,76,FOLLOW_76_in_switchstatement1203); if (failed) return value;
+            	    match(input,76,FOLLOW_76_in_switchstatement1228); if (failed) return value;
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:64: ( statement )*
             	    loop31:
             	    do {
@@ -4821,7 +11736,7 @@ public class gscriptParser extends Parser {
             	    	case 1 :
             	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:161:65: statement
             	    	    {
-            	    	    pushFollow(FOLLOW_statement_in_switchstatement1206);
+            	    	    pushFollow(FOLLOW_statement_in_switchstatement1231);
             	    	    statement();
             	    	    _fsp--;
             	    	    if (failed) return value;
@@ -4843,7 +11758,7 @@ public class gscriptParser extends Parser {
                 }
             } while (true);
 
-            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1212); if (failed) return value;
+            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1237); if (failed) return value;
             if ( backtracking==0 ) {
               value ="";
             }
@@ -4878,12 +11793,12 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:165:1: ( 'with' e= expression s= statement )
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:165:3: 'with' e= expression s= statement
             {
-            match(input,77,FOLLOW_77_in_withstatement1228); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_withstatement1233);
+            match(input,77,FOLLOW_77_in_withstatement1253); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_withstatement1258);
             e=expression();
             _fsp--;
             if (failed) return value;
-            pushFollow(FOLLOW_statement_in_withstatement1238);
+            pushFollow(FOLLOW_statement_in_withstatement1263);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4925,7 +11840,7 @@ public class gscriptParser extends Parser {
             if ( backtracking==0 ) {
               System.out.println("assignment ");
             }
-            pushFollow(FOLLOW_variable_in_assignment1257);
+            pushFollow(FOLLOW_variable_in_assignment1282);
             valuee=variable();
             _fsp--;
             if (failed) return value;
@@ -4938,10 +11853,10 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1261);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1286);    throw mse;
             }
 
-            pushFollow(FOLLOW_expression_in_assignment1284);
+            pushFollow(FOLLOW_expression_in_assignment1309);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -5017,7 +11932,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:173:39: a= array
                     {
-                    pushFollow(FOLLOW_array_in_variable1304);
+                    pushFollow(FOLLOW_array_in_variable1329);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
@@ -5039,7 +11954,7 @@ public class gscriptParser extends Parser {
                         if (backtracking>0) {failed=true; return retval;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1309);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1334);    throw mse;
                     }
 
                     if ( backtracking==0 ) {
@@ -5084,8 +11999,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1333); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1335); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function1358); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1360); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt36=2;
             int LA36_0 = input.LA(1);
@@ -5097,7 +12012,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function1340);
+                    pushFollow(FOLLOW_expression_in_function1365);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -5122,7 +12037,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:49: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:50: ','
                     	    {
-                    	    match(input,40,FOLLOW_40_in_function1346); if (failed) return value;
+                    	    match(input,40,FOLLOW_40_in_function1371); if (failed) return value;
 
                     	    }
 
@@ -5137,7 +12052,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:177:56: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function1352);
+                    	            pushFollow(FOLLOW_expression_in_function1377);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -5165,7 +12080,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1361); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1386); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.functionstatement(n.getText(), value);
             }
@@ -5200,8 +12115,8 @@ public class gscriptParser extends Parser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21379); if (failed) return value;
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21381); if (failed) return value;
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21404); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21406); if (failed) return value;
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:16: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt39=2;
             int LA39_0 = input.LA(1);
@@ -5213,7 +12128,7 @@ public class gscriptParser extends Parser {
                 case 1 :
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:17: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    pushFollow(FOLLOW_expression_in_function21386);
+                    pushFollow(FOLLOW_expression_in_function21411);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -5238,7 +12153,7 @@ public class gscriptParser extends Parser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:50: ( ',' )
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:51: ','
                     	    {
-                    	    match(input,40,FOLLOW_40_in_function21391); if (failed) return value;
+                    	    match(input,40,FOLLOW_40_in_function21416); if (failed) return value;
 
                     	    }
 
@@ -5253,7 +12168,7 @@ public class gscriptParser extends Parser {
                     	        case 1 :
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:181:57: e= expression
                     	            {
-                    	            pushFollow(FOLLOW_expression_in_function21397);
+                    	            pushFollow(FOLLOW_expression_in_function21422);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -5281,7 +12196,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21406); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21431); if (failed) return value;
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -5327,15 +12242,15 @@ public class gscriptParser extends Parser {
                 if (backtracking>0) {failed=true; return value;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1428);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1453);    throw mse;
             }
 
-            match(input,85,FOLLOW_85_in_array1436); if (failed) return value;
-            pushFollow(FOLLOW_expression_in_array1440);
+            match(input,85,FOLLOW_85_in_array1461); if (failed) return value;
+            pushFollow(FOLLOW_expression_in_array1465);
             e=expression();
             _fsp--;
             if (failed) return value;
-            match(input,86,FOLLOW_86_in_array1442); if (failed) return value;
+            match(input,86,FOLLOW_86_in_array1467); if (failed) return value;
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),input.toString(e.start,e.stop));
             }
@@ -5356,11 +12271,11 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: ( field )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: field
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: ( method )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: method
         {
-        pushFollow(FOLLOW_field_in_synpred1199);
-        field();
+        pushFollow(FOLLOW_method_in_synpred1199);
+        method();
         _fsp--;
         if (failed) return ;
 
@@ -5370,11 +12285,11 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred2
     public final void synpred2_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: ( method )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:70: method
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:115: ( field )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:115: field
         {
-        pushFollow(FOLLOW_method_in_synpred2204);
-        method();
+        pushFollow(FOLLOW_field_in_synpred2204);
+        field();
         _fsp--;
         if (failed) return ;
 
@@ -5398,7 +12313,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:34: ( field )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:34: field
         {
-        pushFollow(FOLLOW_field_in_synpred32480);
+        pushFollow(FOLLOW_field_in_synpred32482);
         field();
         _fsp--;
         if (failed) return ;
@@ -5412,7 +12327,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:40: ( method )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:40: method
         {
-        pushFollow(FOLLOW_method_in_synpred33482);
+        pushFollow(FOLLOW_method_in_synpred33484);
         method();
         _fsp--;
         if (failed) return ;
@@ -5426,7 +12341,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:54: ( variable )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:54: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred38553);
+        pushFollow(FOLLOW_variable_in_synpred38555);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5440,7 +12355,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:133: ( variable )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:133: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred39570);
+        pushFollow(FOLLOW_variable_in_synpred39572);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5454,7 +12369,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:85: ( elsestatement )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:85: elsestatement
         {
-        pushFollow(FOLLOW_elsestatement_in_synpred42660);
+        pushFollow(FOLLOW_elsestatement_in_synpred42662);
         elsestatement();
         _fsp--;
         if (failed) return ;
@@ -5468,7 +12383,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:117: ( aexpression )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:117: aexpression
         {
-        pushFollow(FOLLOW_aexpression_in_synpred46741);
+        pushFollow(FOLLOW_aexpression_in_synpred46743);
         aexpression();
         _fsp--;
         if (failed) return ;
@@ -5515,7 +12430,7 @@ public class gscriptParser extends Parser {
             case 1 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:163: andexpression
                 {
-                pushFollow(FOLLOW_andexpression_in_synpred49751);
+                pushFollow(FOLLOW_andexpression_in_synpred49753);
                 andexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5525,7 +12440,7 @@ public class gscriptParser extends Parser {
             case 2 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:205: orexpression
                 {
-                pushFollow(FOLLOW_orexpression_in_synpred49756);
+                pushFollow(FOLLOW_orexpression_in_synpred49758);
                 orexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5535,7 +12450,7 @@ public class gscriptParser extends Parser {
             case 3 :
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:248: xorexpression
                 {
-                pushFollow(FOLLOW_xorexpression_in_synpred49761);
+                pushFollow(FOLLOW_xorexpression_in_synpred49763);
                 xorexpression();
                 _fsp--;
                 if (failed) return ;
@@ -5548,7 +12463,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:289: ( expression )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:290: expression
         {
-        pushFollow(FOLLOW_expression_in_synpred49768);
+        pushFollow(FOLLOW_expression_in_synpred49770);
         expression();
         _fsp--;
         if (failed) return ;
@@ -5565,7 +12480,7 @@ public class gscriptParser extends Parser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:110:69: ( expression )
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:110:69: expression
         {
-        pushFollow(FOLLOW_expression_in_synpred62839);
+        pushFollow(FOLLOW_expression_in_synpred62841);
         expression();
         _fsp--;
         if (failed) return ;
@@ -5576,10 +12491,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred73
     public final void synpred73_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:37: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:37: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:122: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:122: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred73979);
+        pushFollow(FOLLOW_variable_in_synpred73995);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5590,10 +12505,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred87
     public final void synpred87_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:147: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:147: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:299: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:299: variable
         {
-        pushFollow(FOLLOW_variable_in_synpred871017);
+        pushFollow(FOLLOW_variable_in_synpred871042);
         variable();
         _fsp--;
         if (failed) return ;
@@ -5604,8 +12519,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred88
     public final void synpred88_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:62: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:62: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:211: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD ) )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:211: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
         {
         if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==51||input.LA(1)==65 ) {
             input.consume();
@@ -5615,10 +12530,10 @@ public class gscriptParser extends Parser {
             if (backtracking>0) {failed=true; return ;}
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred88988);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred881013);    throw mse;
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )
         int alt47=6;
         switch ( input.LA(1) ) {
         case WORD:
@@ -5637,7 +12552,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 47, 1, input);
+                    new NoViableAltException("134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 47, 1, input);
 
                 throw nvae;
             }
@@ -5667,16 +12582,16 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("134:113: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 47, 0, input);
+                new NoViableAltException("134:265: ( function | HEXNUMBER | STRING | NUMBER | variable | WORD )", 47, 0, input);
 
             throw nvae;
         }
 
         switch (alt47) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:114: function
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:266: function
                 {
-                pushFollow(FOLLOW_function_in_synpred881009);
+                pushFollow(FOLLOW_function_in_synpred881034);
                 function();
                 _fsp--;
                 if (failed) return ;
@@ -5684,30 +12599,30 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:123: HEXNUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:275: HEXNUMBER
                 {
-                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred881011); if (failed) return ;
+                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred881036); if (failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:133: STRING
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:285: STRING
                 {
-                match(input,STRING,FOLLOW_STRING_in_synpred881013); if (failed) return ;
+                match(input,STRING,FOLLOW_STRING_in_synpred881038); if (failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:140: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:292: NUMBER
                 {
-                match(input,NUMBER,FOLLOW_NUMBER_in_synpred881015); if (failed) return ;
+                match(input,NUMBER,FOLLOW_NUMBER_in_synpred881040); if (failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:147: variable
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:299: variable
                 {
-                pushFollow(FOLLOW_variable_in_synpred881017);
+                pushFollow(FOLLOW_variable_in_synpred881042);
                 variable();
                 _fsp--;
                 if (failed) return ;
@@ -5715,9 +12630,9 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:156: WORD
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:308: WORD
                 {
-                match(input,WORD,FOLLOW_WORD_in_synpred881019); if (failed) return ;
+                match(input,WORD,FOLLOW_WORD_in_synpred881044); if (failed) return ;
 
                 }
                 break;
@@ -5929,8 +12844,8 @@ public class gscriptParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_field_in_classes199 = new BitSet(new long[]{0x000002F000200002L});
-    public static final BitSet FOLLOW_method_in_classes204 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_method_in_classes199 = new BitSet(new long[]{0x000002F000200002L});
+    public static final BitSet FOLLOW_field_in_classes204 = new BitSet(new long[]{0x000002F000200002L});
     public static final BitSet FOLLOW_innerclass_in_classes209 = new BitSet(new long[]{0x000002F000200002L});
     public static final BitSet FOLLOW_36_in_classes214 = new BitSet(new long[]{0x000002F000200002L});
     public static final BitSet FOLLOW_statement_in_code235 = new BitSet(new long[]{0x0000740018200402L,0x00000000000023BCL});
@@ -5951,158 +12866,158 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_assignment_in_statement331 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_function_in_statement336 = new BitSet(new long[]{0x0000001000000002L});
     public static final BitSet FOLLOW_36_in_statement341 = new BitSet(new long[]{0x0000001000000002L});
-    public static final BitSet FOLLOW_37_in_field359 = new BitSet(new long[]{0x0000008000200000L});
-    public static final BitSet FOLLOW_38_in_field363 = new BitSet(new long[]{0x0000008000200000L});
-    public static final BitSet FOLLOW_39_in_field370 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_varstatement_in_field378 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_method401 = new BitSet(new long[]{0x0000008000200000L});
-    public static final BitSet FOLLOW_38_in_method404 = new BitSet(new long[]{0x0000008000200000L});
-    public static final BitSet FOLLOW_39_in_method410 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_method417 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_method421 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_method423 = new BitSet(new long[]{0x000C00001FA00300L});
-    public static final BitSet FOLLOW_expression_in_method428 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_40_in_method434 = new BitSet(new long[]{0x000C01001FA00300L});
-    public static final BitSet FOLLOW_expression_in_method440 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_method449 = new BitSet(new long[]{0x0000040000000400L});
-    public static final BitSet FOLLOW_bstatement_in_method453 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_innerclass469 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_innerclass471 = new BitSet(new long[]{0x0000040000000400L});
-    public static final BitSet FOLLOW_set_in_innerclass473 = new BitSet(new long[]{0x000008E000200800L});
-    public static final BitSet FOLLOW_field_in_innerclass480 = new BitSet(new long[]{0x000008E000200800L});
-    public static final BitSet FOLLOW_method_in_innerclass482 = new BitSet(new long[]{0x000008E000200800L});
-    public static final BitSet FOLLOW_set_in_innerclass486 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_bstatement506 = new BitSet(new long[]{0x00007C0018200C00L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_bstatement515 = new BitSet(new long[]{0x00007C0018200C00L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_set_in_bstatement520 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_varstatement548 = new BitSet(new long[]{0x0000000018200000L});
-    public static final BitSet FOLLOW_variable_in_varstatement553 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_assignment_in_varstatement559 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_40_in_varstatement565 = new BitSet(new long[]{0x0000000018200000L});
-    public static final BitSet FOLLOW_variable_in_varstatement570 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_assignment_in_varstatement576 = new BitSet(new long[]{0x0000010000000002L});
-    public static final BitSet FOLLOW_44_in_returnstatement598 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_returnstatement605 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_45_in_exitstatement621 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_ifstatement640 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_ifstatement644 = new BitSet(new long[]{0x0000F40018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_47_in_ifstatement647 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_ifstatement654 = new BitSet(new long[]{0x0003000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_ifstatement660 = new BitSet(new long[]{0x0003000000000002L});
-    public static final BitSet FOLLOW_48_in_elsestatement680 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_49_in_elsestatement683 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_elsestatement687 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_elsestatement696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pexpression_in_expression724 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
-    public static final BitSet FOLLOW_relationalExpression_in_expression729 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
-    public static final BitSet FOLLOW_notexpression_in_expression734 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
-    public static final BitSet FOLLOW_aexpression_in_expression741 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
-    public static final BitSet FOLLOW_andexpression_in_expression751 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_expression756 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_expression761 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_expression768 = new BitSet(new long[]{0xF800000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_set_in_notexpression787 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_notexpression795 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_aexpression812 = new BitSet(new long[]{0x000C00001FA00102L});
-    public static final BitSet FOLLOW_expression_in_aexpression839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_value860 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_value862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_value864 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_value866 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_pexpression882 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_pexpression886 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_pexpression888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_andexpression905 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_orexpression926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_xorexpression947 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_relationalExpression971 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression973 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression975 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression977 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression979 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression981 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression983 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_relationalExpression988 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_relationalExpression1009 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1011 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression1013 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1015 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression1017 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1019 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_repeatstatement1040 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_repeatstatement1044 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_repeatstatement1049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_breakstatement1065 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_continuestatement1082 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_dostatement1099 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_dostatement1103 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_dostatement1105 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_dostatement1109 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_whilestatement1124 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_whilestatement1128 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_whilestatement1133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_forstatement1149 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_forstatement1151 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_forstatement1155 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_forstatement1159 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_forstatement1161 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_forstatement1165 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_forstatement1167 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_forstatement1171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_switchstatement1186 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1189 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LBRAC_in_switchstatement1192 = new BitSet(new long[]{0x0000000000000800L,0x0000000000000C00L});
-    public static final BitSet FOLLOW_set_in_switchstatement1195 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1201 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
-    public static final BitSet FOLLOW_76_in_switchstatement1203 = new BitSet(new long[]{0x0000740018200C00L,0x0000000000002FBCL});
-    public static final BitSet FOLLOW_statement_in_switchstatement1206 = new BitSet(new long[]{0x0000740018200C00L,0x0000000000002FBCL});
-    public static final BitSet FOLLOW_RBRAC_in_switchstatement1212 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_77_in_withstatement1228 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_withstatement1233 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
-    public static final BitSet FOLLOW_statement_in_withstatement1238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_assignment1257 = new BitSet(new long[]{0x0000000000001000L,0x00000000001FC002L});
-    public static final BitSet FOLLOW_set_in_assignment1261 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_assignment1284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1304 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_variable1309 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function1333 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1335 = new BitSet(new long[]{0x000C00001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1340 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_40_in_function1346 = new BitSet(new long[]{0x000C01001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1352 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OIVAR_in_function21379 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21381 = new BitSet(new long[]{0x000C00001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21386 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_40_in_function21391 = new BitSet(new long[]{0x000C01001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21397 = new BitSet(new long[]{0x0000010000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21406 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1428 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
-    public static final BitSet FOLLOW_85_in_array1436 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_array1440 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_array1442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_field_in_synpred1199 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_in_synpred2204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_field360 = new BitSet(new long[]{0x0000008000200000L});
+    public static final BitSet FOLLOW_38_in_field364 = new BitSet(new long[]{0x0000008000200000L});
+    public static final BitSet FOLLOW_39_in_field371 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_varstatement_in_field379 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_method403 = new BitSet(new long[]{0x0000008000200000L});
+    public static final BitSet FOLLOW_38_in_method406 = new BitSet(new long[]{0x0000008000200000L});
+    public static final BitSet FOLLOW_39_in_method412 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_method419 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_method423 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_method425 = new BitSet(new long[]{0x000C00001FA00300L});
+    public static final BitSet FOLLOW_expression_in_method430 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_40_in_method436 = new BitSet(new long[]{0x000C01001FA00300L});
+    public static final BitSet FOLLOW_expression_in_method442 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_method451 = new BitSet(new long[]{0x0000040000000400L});
+    public static final BitSet FOLLOW_bstatement_in_method455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_innerclass471 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_innerclass473 = new BitSet(new long[]{0x0000040000000400L});
+    public static final BitSet FOLLOW_set_in_innerclass475 = new BitSet(new long[]{0x000008E000200800L});
+    public static final BitSet FOLLOW_field_in_innerclass482 = new BitSet(new long[]{0x000008E000200800L});
+    public static final BitSet FOLLOW_method_in_innerclass484 = new BitSet(new long[]{0x000008E000200800L});
+    public static final BitSet FOLLOW_set_in_innerclass488 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_bstatement508 = new BitSet(new long[]{0x00007C0018200C00L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_bstatement517 = new BitSet(new long[]{0x00007C0018200C00L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_set_in_bstatement522 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_varstatement550 = new BitSet(new long[]{0x0000000018200000L});
+    public static final BitSet FOLLOW_variable_in_varstatement555 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_assignment_in_varstatement561 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_40_in_varstatement567 = new BitSet(new long[]{0x0000000018200000L});
+    public static final BitSet FOLLOW_variable_in_varstatement572 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_assignment_in_varstatement578 = new BitSet(new long[]{0x0000010000000002L});
+    public static final BitSet FOLLOW_44_in_returnstatement600 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_returnstatement607 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_exitstatement623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_ifstatement642 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_ifstatement646 = new BitSet(new long[]{0x0000F40018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_47_in_ifstatement649 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_ifstatement656 = new BitSet(new long[]{0x0003000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_ifstatement662 = new BitSet(new long[]{0x0003000000000002L});
+    public static final BitSet FOLLOW_48_in_elsestatement682 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_49_in_elsestatement685 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_elsestatement689 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_elsestatement698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pexpression_in_expression726 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
+    public static final BitSet FOLLOW_relationalExpression_in_expression731 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
+    public static final BitSet FOLLOW_notexpression_in_expression736 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
+    public static final BitSet FOLLOW_aexpression_in_expression743 = new BitSet(new long[]{0xFFF00000004000F2L,0x0000000000000001L});
+    public static final BitSet FOLLOW_andexpression_in_expression753 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_expression758 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_expression763 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_expression770 = new BitSet(new long[]{0xF800000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_set_in_notexpression789 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_notexpression797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_aexpression814 = new BitSet(new long[]{0x000C00001FA00102L});
+    public static final BitSet FOLLOW_expression_in_aexpression841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_value862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_value864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_value866 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_value868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_pexpression884 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_pexpression888 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_pexpression890 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_andexpression907 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_orexpression928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_xorexpression949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_relationalExpression975 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression980 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression985 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression990 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression995 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1000 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1005 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_relationalExpression1013 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1034 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1036 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1038 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1040 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1042 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1044 = new BitSet(new long[]{0x000800000007F002L,0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_repeatstatement1065 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_repeatstatement1069 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_repeatstatement1074 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_breakstatement1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_continuestatement1107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_dostatement1124 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_dostatement1128 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_dostatement1130 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_dostatement1134 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_whilestatement1149 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_whilestatement1153 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_whilestatement1158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_forstatement1174 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_forstatement1176 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_forstatement1180 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_forstatement1184 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_forstatement1186 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_forstatement1190 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_forstatement1192 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_forstatement1196 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_switchstatement1211 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1214 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LBRAC_in_switchstatement1217 = new BitSet(new long[]{0x0000000000000800L,0x0000000000000C00L});
+    public static final BitSet FOLLOW_set_in_switchstatement1220 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1226 = new BitSet(new long[]{0x0000000000000000L,0x0000000000001000L});
+    public static final BitSet FOLLOW_76_in_switchstatement1228 = new BitSet(new long[]{0x0000740018200C00L,0x0000000000002FBCL});
+    public static final BitSet FOLLOW_statement_in_switchstatement1231 = new BitSet(new long[]{0x0000740018200C00L,0x0000000000002FBCL});
+    public static final BitSet FOLLOW_RBRAC_in_switchstatement1237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_77_in_withstatement1253 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_withstatement1258 = new BitSet(new long[]{0x0000740018200400L,0x00000000000023BCL});
+    public static final BitSet FOLLOW_statement_in_withstatement1263 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_assignment1282 = new BitSet(new long[]{0x0000000000001000L,0x00000000001FC002L});
+    public static final BitSet FOLLOW_set_in_assignment1286 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_assignment1309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_variable1334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_function1358 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1360 = new BitSet(new long[]{0x000C00001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1365 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_40_in_function1371 = new BitSet(new long[]{0x000C01001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1377 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1386 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21404 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21406 = new BitSet(new long[]{0x000C00001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21411 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_40_in_function21416 = new BitSet(new long[]{0x000C01001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21422 = new BitSet(new long[]{0x0000010000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21431 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1453 = new BitSet(new long[]{0x0000000000000000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_85_in_array1461 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_array1465 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_array1467 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_in_synpred1199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_field_in_synpred2204 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_synpred21341 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_field_in_synpred32480 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_method_in_synpred33482 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred38553 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred39570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_synpred42660 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aexpression_in_synpred46741 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andexpression_in_synpred49751 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_synpred49756 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_synpred49761 = new BitSet(new long[]{0x000C00001FA00100L});
-    public static final BitSet FOLLOW_expression_in_synpred49768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred62839 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred73979 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred871017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred88988 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_synpred881009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred881011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred881013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred881015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred881017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred881019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_field_in_synpred32482 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_method_in_synpred33484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred38555 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred39572 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_synpred42662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aexpression_in_synpred46743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andexpression_in_synpred49753 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_synpred49758 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_synpred49763 = new BitSet(new long[]{0x000C00001FA00100L});
+    public static final BitSet FOLLOW_expression_in_synpred49770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred62841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred73995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred871042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred881013 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_synpred881034 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred881036 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred881038 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred881040 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred881042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred881044 = new BitSet(new long[]{0x0000000000000002L});
 
 }

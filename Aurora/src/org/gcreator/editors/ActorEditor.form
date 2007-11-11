@@ -237,13 +237,17 @@
                     <Component class="javax.swing.JComboBox" name="jComboBox2">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="3">
-                            <StringItem index="0" value="categorys"/>
-                            <StringItem index="1" value="main"/>
-                            <StringItem index="2" value="move"/>
+                          <StringArray count="4">
+                            <StringItem index="0" value="Main"/>
+                            <StringItem index="1" value="Move"/>
+                            <StringItem index="2" value="Draw2D"/>
+                            <StringItem index="3" value="Platform"/>
                           </StringArray>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="propertyChange" listener="java.beans.PropertyChangeListener" parameters="java.beans.PropertyChangeEvent" handler="jComboBox2PropertyChange"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -328,7 +332,7 @@
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel12" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="184" max="32767" attributes="0"/>
+                      <EmptySpace pref="187" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -361,7 +365,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButton2" alignment="0" pref="113" max="32767" attributes="0"/>
+                      <Component id="jButton2" alignment="0" pref="117" max="32767" attributes="0"/>
                       <Component id="jPanel13" alignment="0" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
@@ -388,7 +392,7 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="113" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="117" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
