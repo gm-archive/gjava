@@ -90,11 +90,11 @@ public class PluginHelper {
         return Aurwindow.globalsettings.jTabbedPane1.add(name, comp);
     }
     
-    /*public static void addNewActionPattern(ActionPattern pattern){
+    public static void addNewActionPattern(ActionPattern pattern){
         ActorEditor.actionCats.get(0).add(pattern);
     }
     
     public static void addNewActionPattern(ActionCategory category, ActionPattern pattern){
         category.add(pattern);
-    }*/
+    }
 }
