@@ -97,4 +97,8 @@ public class PluginHelper {
     public static void addNewActionPattern(ActionCategory category, ActionPattern pattern){
         category.add(pattern);
     }
+    
+    public static void addNewActionCategory(ActionCategory category){
+        ActorEditor.actionCats.add(category);
+    }
 }
