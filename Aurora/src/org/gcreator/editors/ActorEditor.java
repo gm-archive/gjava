@@ -287,7 +287,7 @@ public class ActorEditor extends TabPanel {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel6Layout.createSequentialGroup()
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton5))
         );
@@ -302,7 +302,7 @@ public class ActorEditor extends TabPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jSplitPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
+            .add(jSplitPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
         );
 
         jSplitPane2.setLeftComponent(jPanel4);
@@ -336,7 +336,7 @@ public class ActorEditor extends TabPanel {
                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jButton1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE))
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel5);
@@ -349,12 +349,12 @@ public class ActorEditor extends TabPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jSplitPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+            .add(jSplitPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
 
         jSplitPane1.setRightComponent(jPanel1);
 
-        jLabel1.setText("Name:");
+        jLabel1.setText(LangSupporter.activeLang.getEntry(136));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -367,15 +367,15 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Sprite"));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(137)));
 
-        jButton2.setText("Edit");
+        jButton2.setText(LangSupporter.activeLang.getEntry(138));
 
         org.jdesktop.layout.GroupLayout jPanel13Layout = new org.jdesktop.layout.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 117, Short.MAX_VALUE)
+            .add(0, 113, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -386,7 +386,7 @@ public class ActorEditor extends TabPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
             .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -397,7 +397,7 @@ public class ActorEditor extends TabPanel {
                 .add(jButton2))
         );
 
-        jCheckBox1.setText("Visible");
+        jCheckBox1.setText(LangSupporter.activeLang.getEntry(139));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -416,7 +416,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jCheckBox2.setText("Solid");
+        jCheckBox2.setText(LangSupporter.activeLang.getEntry(140));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -430,7 +430,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jCheckBox3.setText("Persistant");
+        jCheckBox3.setText(LangSupporter.activeLang.getEntry(141));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -444,7 +444,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jLabel2.setText("Depth:");
+        jLabel2.setText(LangSupporter.activeLang.getEntry(142));
 
         jTextField3.setText("0");
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -494,12 +494,12 @@ public class ActorEditor extends TabPanel {
                             .add(jPanel2Layout.createSequentialGroup()
                                 .add(jLabel1)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                             .add(jCheckBox3)
                             .add(jPanel2Layout.createSequentialGroup()
                                 .add(jLabel2)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                                .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
                             .add(jPanel2Layout.createSequentialGroup()
                                 .add(jLabel4)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

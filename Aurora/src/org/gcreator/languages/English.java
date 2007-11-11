@@ -179,6 +179,13 @@ public class English extends Dictionary{
         entry[133] = "Add";
         entry[134] = "Edit";
         entry[135] = "Remove";
+        entry[136] = "Name:";
+        entry[137] = "Sprite";
+        entry[138] = "Edit";
+        entry[139] = "Visible";
+        entry[140] = "Solid";
+        entry[141] = "Persistant";
+        entry[142] = "Depth:";
         
         
         try{

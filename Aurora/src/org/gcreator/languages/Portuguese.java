@@ -179,6 +179,13 @@ public class Portuguese extends Dictionary{
         entry[133] = "Adicionar";
         entry[134] = "Editar";
         entry[135] = "Remover";
+        entry[136] = "Nome:";
+        entry[137] = "Sprite";
+        entry[138] = "Editar";
+        entry[139] = "Visivel";
+        entry[140] = "Sólido";
+        entry[141] = "Persistente";
+        entry[142] = "Profundidade:";
         
         try{
             init();
