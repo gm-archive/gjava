@@ -48,8 +48,16 @@ public class ActorEditor extends TabPanel {
         actionCats = new Vector<actionCat>();
     }
     
-    Vector<ActionPattern> patterns = new Vector<ActionPattern>();
+    public static Vector<ActionPattern> patterns = new Vector<ActionPattern>();
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
+    
+    static{
+        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock());
+        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock());
+        patterns.add(new org.gcreator.actions.mainactions.Comment());
+        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode());
+        patterns.add(new org.gcreator.actions.mainactions.AddImageToSprite());
+    }
     
     ResourceMenu spriteres, extendres, maskres;
     
@@ -78,11 +86,6 @@ public class ActorEditor extends TabPanel {
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
-        
-        patterns.add(new org.gcreator.actions.mainactions.StartOfABlock());
-        patterns.add(new org.gcreator.actions.mainactions.EndOfABlock());
-        patterns.add(new org.gcreator.actions.mainactions.Comment());
-        patterns.add(new org.gcreator.actions.mainactions.ExecuteCode());
 
         jList1.setCellRenderer(new EventCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(patterns));
