@@ -6,12 +6,13 @@
 
 package org.gcreator.plugins;
 
-import org.gcreator.components.GlobalSettings;
 import java.awt.Component;
 import javax.swing.*;
 
+import org.gcreator.actions.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.core.*;
+import org.gcreator.editors.*;
 import org.gcreator.managers.*;
 
 /**
@@ -87,5 +88,9 @@ public class PluginHelper {
     
     public static Component addGlobalTab(String name, JComponent comp){
         return Aurwindow.globalsettings.jTabbedPane1.add(name, comp);
+    }
+    
+    public static void addNewActionPattern(ActionPattern pattern){
+        ActorEditor.patterns.add(pattern);
     }
 }
