@@ -26,7 +26,7 @@ import org.gcreator.components.popupmenus.*;
  *
  * @author Luís
  */
-public class ScenePanel extends JPanel implements MouseListener{
+public class ScenePanel extends JPanel implements MouseListener, MouseMotionListener{
     SceneEditor root;
     ScenePopupMenu popup;
     public ScenePanel(SceneEditor root){
@@ -34,6 +34,7 @@ public class ScenePanel extends JPanel implements MouseListener{
         this.addMouseListener(this);
         popup = new ScenePopupMenu(root);
         this.addMouseListener(new PopupListener(this, popup));
+        this.addMouseMotionListener(this);
     }
     
     public void mouseExited(MouseEvent evt){}
@@ -182,5 +183,13 @@ public class ScenePanel extends JPanel implements MouseListener{
             }
             }
         }
+    }
+
+    public void mouseDragged(MouseEvent e) {
+        //do nothing
+    }
+
+    public void mouseMoved(MouseEvent evt) {
+        root.BottomLeft.setText("X:"+evt.getX()+ " Y:"+evt.getY());
     }
 }

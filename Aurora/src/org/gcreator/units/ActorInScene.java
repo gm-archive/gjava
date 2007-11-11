@@ -19,14 +19,16 @@ public class ActorInScene {
     public org.gcreator.fileclass.File actor;
     public int x;
     public int y;
+    public double id;
     
-    public ActorInScene(org.gcreator.fileclass.File actor, int x, int y){
+    public ActorInScene(org.gcreator.fileclass.File actor, int x, int y,double id){
         this.actor = actor;
         this.x = x;
         this.y = y;
+        this.id = id;
     }
     
     public String writeXml(){
-        return "<actor type=\"" + actor.getPath() + "\" x=" + x + " y=" + y + " />";
+        return "<actor type=\"" + actor.getPath() + "\" x=" + x + " y=" + y + " id="+id+" />";
     }
 }

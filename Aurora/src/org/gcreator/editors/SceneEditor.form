@@ -643,7 +643,7 @@
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jPanel9" alignment="0" max="32767" attributes="0"/>
                                       <Component id="jCheckBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jScrollPane3" alignment="0" pref="147" max="32767" attributes="0"/>
+                                      <Component id="jScrollPane3" alignment="0" pref="143" max="32767" attributes="0"/>
                                       <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1055,6 +1055,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Bottom-left content"/>
                   </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+                  </AuxValues>
                 </Component>
                 <Component class="javax.swing.JLabel" name="BottomRight">
                   <Properties>
@@ -1064,6 +1067,9 @@
               </SubComponents>
             </Container>
             <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+              <Events>
+                <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="jScrollPane1MouseMoved"/>
+              </Events>
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
             </Container>

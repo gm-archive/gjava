@@ -32,10 +32,12 @@ public class SceneEditor extends TabPanel {
     public ViewsModel model;
     public boolean changed = false;
     public ResourceMenu curactor;
+    double instanceids = 0;
     
     public ActorInScene makeNewActor(int x, int y){
         org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) curactor.getCurrentObject().object;
-        return new ActorInScene(a, x, y);
+        instanceids++;
+        return new ActorInScene(a, x, y, instanceids);
     }
     
     public void eraseActorsAt(int x, int y){
@@ -856,7 +858,7 @@ public class SceneEditor extends TabPanel {
                         .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jCheckBox4)
-                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                             .add(jCheckBox2)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel7Layout.createSequentialGroup()
                         .add(9, 9, 9)
@@ -904,6 +906,12 @@ public class SceneEditor extends TabPanel {
                 .add(BottomRight)
                 .add(BottomLeft))
         );
+
+        jScrollPane1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseMoved(evt);
+            }
+        });
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -1096,6 +1104,11 @@ public class SceneEditor extends TabPanel {
         ViewInScene v = (ViewInScene) jList1.getSelectedValue();
         v.porth = (Integer) jSpinner11.getValue();
     }//GEN-LAST:event_jSpinner11StateChanged
+
+    private void jScrollPane1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseMoved
+       this.BottomLeft.setText("X:"+evt.getX()+ " Y:"+evt.getY());
+       
+    }//GEN-LAST:event_jScrollPane1MouseMoved
     
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
@@ -1125,7 +1138,7 @@ public class SceneEditor extends TabPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BottomLeft;
+    public javax.swing.JLabel BottomLeft;
     private javax.swing.JLabel BottomRight;
     private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JButton jButton1;
