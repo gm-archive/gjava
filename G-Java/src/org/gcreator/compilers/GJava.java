@@ -85,6 +85,7 @@ public class GJava extends PlatformCore {
             FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
+            print(actor, "import org.gcreator.compilers.gjava.components.*;");
             print(actor, "");
 
             print(actor, "public class " + a.name + " extends Actor {");
@@ -176,6 +177,8 @@ public class GJava extends PlatformCore {
         try {
             FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
+            if(f1.exists())
+                new File("Projects" + File.separator + projectname+ File.separator).delete();
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
             copyDirectory(f2, f1);
@@ -206,7 +209,8 @@ public class GJava extends PlatformCore {
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
-        print(game, "import org.gcreator.compilers.gjava.components.*;");
+        print(game, "import org.gcreator.compilers.gjava.components.Sprite;");
+        
         //import org.gcreator.compilers.gjava.components.Sprite;
         print(game, "import org.gcreator.compilers.gjava.core.basicgame;");
         print(game, "public class Game extends basicgame {");
