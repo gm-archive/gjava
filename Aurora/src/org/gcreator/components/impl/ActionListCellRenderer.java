@@ -40,6 +40,18 @@ public class ActionListCellRenderer extends JLabel implements ListCellRenderer {
                 setForeground(((org.gcreator.actions.ActionPattern) value).getForeground());
              }
          }
+         else if(value instanceof org.gcreator.actions.ActionCategory){
+             icon = ((org.gcreator.actions.ActionCategory) value).icon;
+             val = ((org.gcreator.actions.ActionCategory) value).name;
+             if(isSelected){
+                setBackground(((org.gcreator.actions.ActionCategory) value).selectedBackground);
+                setForeground(((org.gcreator.actions.ActionCategory) value).selectedForeground);
+             }
+             else{
+                setBackground(((org.gcreator.actions.ActionCategory) value).background);
+                setForeground(((org.gcreator.actions.ActionCategory) value).foreground);
+             }
+         }
          setText(val);
          setIcon(icon);
 
