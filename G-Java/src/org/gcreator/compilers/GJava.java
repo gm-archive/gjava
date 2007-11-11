@@ -209,7 +209,7 @@ public class GJava extends PlatformCore {
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
-        print(game, "import org.gcreator.compilers.gjava.components.Sprite;");
+        print(game, "import org.gcreator.compilers.gjava.components.*;");
         
         //import org.gcreator.compilers.gjava.components.Sprite;
         print(game, "import org.gcreator.compilers.gjava.core.basicgame;");
