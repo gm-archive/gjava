@@ -6,7 +6,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.fileclass;
 
 import java.awt.Image;
@@ -14,9 +13,11 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
@@ -27,20 +28,21 @@ import org.gcreator.fileclass.res.*;
  *
  * @author Luís
  */
-public class File extends Object implements Transferable{
+public class File extends Object implements Transferable {
+
     static final long serialVersionUID = 1L;
-    public static final DataFlavor NODE_FLAVOR = new DataFlavor(
-			DataFlavor.javaJVMLocalObjectMimeType,"Node");
-	private DataFlavor[] flavors = { NODE_FLAVOR };
-    
+    public static final DataFlavor NODE_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, "Node");
+    private static DataFlavor[] flavors = {NODE_FLAVOR};
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
+
     public java.lang.Object value;
     public ImageIcon treeimage;
-    public String xml=""; // the data xml used to load
+    public String xml = ""; // the data xml used to load
 
+    private static final ObjectStreamField[] serialPersistentFields = {/*new ObjectStreamField("root", Folder.class),*/ new ObjectStreamField("type", String.class), 
+    new ObjectStreamField("value", java.lang.Object.class)};
 
-    
     public File(Folder root, String name, String type, Object value) {
         super(name);
         this.root = root;
@@ -54,7 +56,6 @@ public class File extends Object implements Transferable{
         this.type = type;
     }
 
-     
     public String getObjectType() {
         return "File";
     }
@@ -96,15 +97,12 @@ public class File extends Object implements Transferable{
             return 0;
         }
     }*/
-
     public void writeToBuffer(ZipOutputStream out) throws IOException {
+
         
-        ObjectOutput s = new ObjectOutputStream(out);
-    s.writeObject(value);
-    s.flush();
-        
-        //will have to put the following back in later
-       /* if (value instanceof String) {
+
+    
+        if (value instanceof String) {
             out.write(value.toString().getBytes());
         } else if (value instanceof ImageIcon) {
             ImageIcon img = ((ImageIcon) value);
@@ -112,9 +110,12 @@ public class File extends Object implements Transferable{
             BufferedImage ii = (BufferedImage) img.getImage();
             ImageIO.write(ii, type, baos); 
             out.write(baos.toByteArray());
-        } else if (value instanceof org.gcreator.fileclass.res.Resource) {
-            out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
-        }*/
+        } else {//if (value instanceof org.gcreator.fileclass.res.Resource) {
+            ObjectOutput s = new ObjectOutputStream(out);
+        s.writeObject(value);
+        s.flush();
+            //out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
+        }
     }
 
     public static ImageIcon getScaledIcon(ImageIcon ii) {
@@ -127,7 +128,6 @@ public class File extends Object implements Transferable{
         return null;
     }
 
-     
     public Object clone() {
         File o = new File(name, type);
         if (value instanceof Resource) {
@@ -149,12 +149,13 @@ public class File extends Object implements Transferable{
     }
 
     public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
-        if (flavor != NODE_FLAVOR) throw new UnsupportedFlavorException(flavor);
-		return this;
+        if (flavor != NODE_FLAVOR) {
+            throw new UnsupportedFlavorException(flavor);
+        }
+        return this;
     }
-    
-     
-    public String getPath(){
+
+    public String getPath() {
         return root.getPath() + "/" + super.getPath();
     }
 }

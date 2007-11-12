@@ -31,6 +31,7 @@ public class ProjectExporter {
         //byte[] buffer = new byte[18024];
         try {
             ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
+            
             out.setLevel(Deflater.BEST_COMPRESSION);
             //out.putNextEntry(new ZipEntry(""));
             //out.closeEntry();

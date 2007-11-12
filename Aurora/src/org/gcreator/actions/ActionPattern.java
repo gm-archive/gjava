@@ -12,19 +12,25 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.ObjectStreamField;
 import java.io.Serializable;
 
 /**
  *
  * @author Luís
  */
-public class ActionPattern extends JPanel implements Serializable {
+public class ActionPattern implements Serializable {
     static final long serialVersionUID = 1L;
-    private ImageIcon icon;
+   
+     private ImageIcon icon;
+    private static final ObjectStreamField[] serialPersistentFields
+                 = {};
     
     public ActionPattern(){
-        icon = new ImageIcon();
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));
+        //icon = new ImageIcon();
+      //  icon  = new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png"));
+   
+        //setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));
     }
     
     public JComponent createNewPanel(Action action){
@@ -65,5 +71,10 @@ public class ActionPattern extends JPanel implements Serializable {
     
     public String writeXml(JComponent panel){
         return "";
+    }
+    
+    public void setLayout(Object o)
+    {
+        
     }
 }

@@ -7,6 +7,7 @@
 package org.gcreator.actions.platform;
 
 import javax.swing.JComponent;
+import javax.swing.JPanel;
 import org.gcreator.actions.Action;
 import org.gcreator.actions.ActionPattern;
 
@@ -18,9 +19,10 @@ public class CmdAction extends ActionPattern {
     
     
     public JComponent createNewPanel(Action action) {
-        initComponents();
-        return this;
-        //return null;
+//        initComponents();
+       // return this;
+        
+        return null;
     }
 
     @Override
@@ -33,6 +35,7 @@ public class CmdAction extends ActionPattern {
         return super.writeXml(panel);
     }
     
+    class test extends JPanel {
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -93,5 +96,5 @@ public class CmdAction extends ActionPattern {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    
+    }
 }

@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class MouseEvent extends Event{
     public int type;
-    public ImageIcon icon;
+    public static ImageIcon icon;
     public MouseEvent(int type){
         this.type = type;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));

@@ -43,7 +43,7 @@ static final long serialVersionUID = 1L;
                 context.jList2.updateUI();
             }
         }); //Doesn't seem to be working */
-         System.out.println(this.getName()+" "+text);
+         //System.out.println(this.getName()+" "+text);
         panel.text.setText(text);
         return panel;// new PlainTextPanel();
     }

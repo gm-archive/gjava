@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class DestroyEvent extends Event{
     
-    ImageIcon icon;
+    static ImageIcon icon;
     public DestroyEvent(){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/destroy.png"));
     }

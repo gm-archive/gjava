@@ -569,7 +569,7 @@ public class SpriteEditor extends TabPanel {
         } 
         
         if ((sprite.width == ((ImageIcon) o).getIconWidth()) && sprite.height == ((ImageIcon) o).getIconHeight() )
-            sprite.addToList(a);
+            sprite.addToList((org.gcreator.fileclass.File) res.getCurrentObject().object);
         else
             System.out.println("Image not right size!");
         jLabel4.setText("Subimages:"+sprite.countImages());

@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class EndStepEvent extends Event{
     
-    ImageIcon icon;
+    static ImageIcon icon;
     public EndStepEvent(){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/step.png"));
     }

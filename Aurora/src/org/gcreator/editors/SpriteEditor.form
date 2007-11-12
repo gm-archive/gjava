@@ -166,7 +166,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="143" max="32767" attributes="0"/>
+                          <EmptySpace pref="146" max="32767" attributes="0"/>
                           <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -296,7 +296,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="1"/>
-                      <EmptySpace pref="104" max="32767" attributes="0"/>
+                      <EmptySpace pref="107" max="32767" attributes="0"/>
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -328,14 +328,14 @@
                                   </Group>
                                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jSpinner6" alignment="0" pref="81" max="32767" attributes="1"/>
-                                      <Component id="jSpinner4" alignment="0" pref="81" max="32767" attributes="0"/>
-                                      <Component id="jSpinner3" alignment="0" pref="81" max="32767" attributes="1"/>
-                                      <Component id="jSpinner5" alignment="0" pref="81" max="32767" attributes="1"/>
+                                      <Component id="jSpinner6" alignment="0" pref="85" max="32767" attributes="1"/>
+                                      <Component id="jSpinner4" alignment="0" pref="85" max="32767" attributes="0"/>
+                                      <Component id="jSpinner3" alignment="0" pref="85" max="32767" attributes="1"/>
+                                      <Component id="jSpinner5" alignment="0" pref="85" max="32767" attributes="1"/>
                                   </Group>
                               </Group>
-                              <Component id="jButton8" alignment="0" pref="150" max="32767" attributes="1"/>
-                              <Component id="jButton9" alignment="1" pref="150" max="32767" attributes="1"/>
+                              <Component id="jButton8" alignment="0" pref="154" max="32767" attributes="1"/>
+                              <Component id="jButton9" alignment="1" pref="154" max="32767" attributes="1"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -475,7 +475,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="1"/>
-                      <EmptySpace pref="263" max="32767" attributes="0"/>
+                      <EmptySpace pref="266" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -504,7 +504,7 @@
                                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                                   <Component id="jLabel7" min="-2" pref="18" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jSpinner2" pref="60" max="32767" attributes="0"/>
+                                  <Component id="jSpinner2" pref="64" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>

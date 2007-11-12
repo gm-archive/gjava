@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class DrawEvent extends Event{
     
-    ImageIcon icon;
+    static ImageIcon icon;
     public DrawEvent(){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/draw.png"));
     }

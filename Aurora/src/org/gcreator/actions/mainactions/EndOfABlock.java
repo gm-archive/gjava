@@ -19,9 +19,13 @@ import javax.swing.*;
  * @author Luís
  */
 public class EndOfABlock extends ActionPattern{
+    
+     private static ImageIcon icon;
+     
+     
     public EndOfABlock(){
         super();
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/End_Block.png")));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/actions/images/End_Block.png"));
     }
     
      
@@ -33,4 +37,10 @@ public class EndOfABlock extends ActionPattern{
     public String generateEGML(JComponent panel){
         return "}";
     }
+
+    
+    public ImageIcon getStandardImage() {
+        return icon;
+    }
+    
 }
