@@ -28,6 +28,7 @@ public class SettingsEditor extends TabPanel {
     
     public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.File file) {
         this.file = file;
+        this.project = project;
         if(file.value==null||!(file.value instanceof SettingsValues)){
             file.value = value = new SettingsValues();
         }
