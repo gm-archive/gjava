@@ -9,11 +9,15 @@
 
 package org.gcreator.fileclass.res;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luís
  */
-public class TabValues{
+public class TabValues implements Serializable {
+    
+    static final long serialVersionUID = 1L;
     public String name;
     private String[] names;
     private Object[] vars;
