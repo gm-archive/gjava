@@ -21,7 +21,7 @@ public class AddImageToSprite extends ActionPattern{
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Add_Image_To_Sprite.png")));
     }
     
-    public JComponent createNewPanel(org.gcreator.actions.Action action){
+    public  JComponent createNewPanel(org.gcreator.actions.Action action){
         AddImageToSpritePanel panel = new AddImageToSpritePanel();
         return panel;
     }

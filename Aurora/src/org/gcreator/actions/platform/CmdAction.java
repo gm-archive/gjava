@@ -16,10 +16,11 @@ import org.gcreator.actions.ActionPattern;
  */
 public class CmdAction extends ActionPattern {
     
-    @Override
+    
     public JComponent createNewPanel(Action action) {
         initComponents();
         return this;
+        //return null;
     }
 
     @Override

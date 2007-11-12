@@ -134,7 +134,7 @@ public class ActorEditor extends TabPanel {
     }
 
     public boolean Save() {
-
+        this.jList2.updateUI();
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
@@ -658,6 +658,7 @@ public class ActorEditor extends TabPanel {
         if (jList2.getSelectedValue() == null) {
             return;
         }
+        
         jScrollPane3.setViewportView(((org.gcreator.actions.Action) jList2.getSelectedValue()).getPanel());
     }//GEN-LAST:event_jList2ValueChanged
 

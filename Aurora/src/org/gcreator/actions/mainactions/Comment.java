@@ -6,7 +6,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.actions.mainactions;
 
 import org.gcreator.actions.*;
@@ -18,17 +17,21 @@ import java.awt.event.*;
  *
  * @author Luís
  */
-public class Comment extends ActionPattern{
+public class Comment extends ActionPattern {
+
+    public static PlainTextPanel panel = new PlainTextPanel();
+    public String text;
+
     //ActorEditor context;
-    public Comment(){
+
+    public Comment() {
         super();
         //this.context = context;
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/comment.png")));
     }
-    
-     
-    public JComponent createNewPanel(org.gcreator.actions.Action action){
-        PlainTextPanel panel = new PlainTextPanel();
+
+    public JComponent createNewPanel(org.gcreator.actions.Action action) {
+        // PlainTextPanel panel = new PlainTextPanel();
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -40,19 +43,21 @@ public class Comment extends ActionPattern{
                 context.jList2.updateUI();
             }
         }); //Doesn't seem to be working */
-        return panel;
+        panel.text.setText(text);
+        return panel;// new PlainTextPanel();
     }
-    
-     
-    public String getStandardText(JComponent panel){
-        if(panel!=null)
-            return ((PlainTextPanel) panel).text.getText();
-        else
+
+    public String getStandardText(JComponent panel) {
+
+        if (panel != null) {
+            text = ((PlainTextPanel) panel).text.getText();
+            return text;
+        } else {
             return "Comment";
+        }
     }
-    
-     
-    public String generateEGML(JComponent panel){
+
+    public String generateEGML(JComponent panel) {
         return ""; //It could generate a comment, but why should it?
     }
 }

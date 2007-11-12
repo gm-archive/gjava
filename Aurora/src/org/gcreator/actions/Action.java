@@ -12,6 +12,7 @@ package org.gcreator.actions;
 //import org.gcreator.editors.ActorEditor;
 import javax.swing.*;
 import java.awt.*;
+import java.io.ObjectStreamField;
 import java.io.Serializable;
 //import org.gcreator.editors.*;
 import org.gcreator.editors.ActorEditor;
@@ -27,10 +28,15 @@ public class Action implements Serializable {
     public ActionPattern pattern;
     private JComponent panel;
     
+    private static final ObjectStreamField[] serialPersistentFields
+                 = {new ObjectStreamField("pattern", ActionPattern.class)};
+    
 //    public Action(ActorEditor editor){
 //        this(editor, null);
 //    }
 //    
+    
+        
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
@@ -46,10 +52,16 @@ public class Action implements Serializable {
     }
     
     public void setPanel(JPanel panel){
+        
         this.panel = panel;
     }
     
     public JComponent getPanel(){
+        if (panel == null)
+        {
+           
+           panel= pattern.createNewPanel(this);
+        }
         return panel;
     }
     

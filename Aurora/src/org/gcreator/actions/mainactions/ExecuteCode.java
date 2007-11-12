@@ -30,7 +30,7 @@ public class ExecuteCode extends ActionPattern{
     }
     
      
-    public JComponent createNewPanel(org.gcreator.actions.Action action){
+    public  JComponent createNewPanel(org.gcreator.actions.Action action){
         EGMLTextArea panel = new EGMLTextArea("//Some EGML Code");
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){

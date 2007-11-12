@@ -64,12 +64,32 @@ public class EventSelect extends javax.swing.JDialog {
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"))); // NOI18N
         jButton8.setText("Key release");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton8MouseReleased(evt);
+            }
+        });
 
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_press.png"))); // NOI18N
         jButton7.setText("Key press");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton7MouseReleased(evt);
+            }
+        });
 
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/keyboard.png"))); // NOI18N
         jButton6.setText("Keyboard");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton6MouseReleased(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"))); // NOI18N
         jButton5.setText("Mouse");
@@ -215,6 +235,25 @@ public class EventSelect extends javax.swing.JDialog {
     private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
         jButton5MousePressed(evt);
     }//GEN-LAST:event_jButton5MouseReleased
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseReleased
+        KeyboardListPopup kb = new KeyboardListPopup(this);
+        kb.show(jButton6, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton6MouseReleased
+
+    private void jButton7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseReleased
+        KeyboardListPopup kb = new KeyboardListPopup(this);
+        kb.show(jButton7, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton7MouseReleased
+
+    private void jButton8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseReleased
+        KeyboardListPopup kb = new KeyboardListPopup(this);
+        kb.show(jButton8, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton8MouseReleased
     
     public void callEvent(int type){
         if(listener!=null)
