@@ -39,13 +39,30 @@ public class gcreator {
         return arguments;
     }
     
+    protected static boolean applet;
+    
     public static void main(String[] args){
-        __main(args, false);
+        applet = false;
+        __main(args);
     }
     
-    public static void __main(String[] args, boolean applet){
+    protected static boolean plugload = true;
+    
+    public static void __main(String[] args, boolean plugload, boolean applet){
+        gcreator.plugload = plugload;
+        gcreator.applet = applet;
+        __main(args);
+    }
+    
+    public static void __main(String[] args){
         //System.setProperty("file.encoding", "UTF-8");
+        boolean plugload = true;
         System.out.println("Running Java version " + java_version);
+        for(int i = 0; i < args.length; i++){
+            System.out.println("args[" + i + "] = " + args[i]);
+            if(args[i].equals("-safe"))
+                plugload = false;
+        }
         if(!applet){
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		int location = folder.lastIndexOf("/");
@@ -54,10 +71,11 @@ public class gcreator {
 		folder = folder.replaceAll("%20"," ");
 		folder = folder.substring(1);
 		folder = folder.replace("/","\\");
-                plugins = Plugger.getPlugList(PluginsList.loadPluglist());
+                if(plugload)
+                    plugins = Plugger.getPlugList(PluginsList.loadPluglist());
         }
         arguments = args;
-        if(!applet){
+        if(!applet&&plugload){
             Plugger.loadPlugins(plugins);
             Plugger.onSplashStart(plugins);
         }
@@ -110,7 +128,8 @@ public class gcreator {
             }
             
         } catch (Exception e) {}
-        Plugger.onMainWindowStart(plugins);
+        if(!applet&&plugload)
+            Plugger.onMainWindowStart(plugins);
         //ActorEditor.setupActions();
         
         window = new Aurwindow(settings);
@@ -120,7 +139,8 @@ public class gcreator {
         Aurwindow.newproject = new NewProject();
         Aurwindow.about = new AboutPanel();
         if(splash!=null){
-            Plugger.onSplashDispose(gcreator.plugins);
+            if(!applet&&plugload)
+                Plugger.onSplashDispose(gcreator.plugins);
             window.menubar.updateUI();
             splash.dispose();
         }

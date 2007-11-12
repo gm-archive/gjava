@@ -1327,6 +1327,7 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="dispose">
 
     public void dispose() {
+        if(!gcreator.applet&&gcreator.plugload)
         Plugger.onMainWindowDispose(gcreator.plugins);
         saveSettings();
         if (istabs) {
