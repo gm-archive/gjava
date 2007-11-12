@@ -168,6 +168,8 @@ public class Aurwindow extends JFrame {
             addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
+        } else if (file.type.equals("wav") || file.type.equals("mid")){
+            addWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
             addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
         } else {
@@ -1113,7 +1115,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newSound" + i) != -1) {
                     i++;
                 }
-                addFile(getCurrentFolder(), "newSound" + i, "sound");
+                addFile(getCurrentFolder(), "newSound" + i, "wav");
 
                 break;
             case 7:
