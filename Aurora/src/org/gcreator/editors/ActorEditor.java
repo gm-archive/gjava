@@ -66,7 +66,7 @@ public class ActorEditor extends TabPanel {
     ResourceMenu spriteres, extendres, maskres;
 
     public void spriteChanged() {
-        ((Actor) file.value).sprite = (org.gcreator.fileclass.File) spriteres.getObjectWithName(spriteres.label.getText()).object;
+        ((Actor) file.value).sprite = ((org.gcreator.fileclass.File) spriteres.getObjectWithName(spriteres.label.getText()).object).name;
     }
 
     /** Creates new form ActorEditor2 */
@@ -104,7 +104,7 @@ public class ActorEditor extends TabPanel {
         jPanel13.setLayout(new FlowLayout());
         jPanel13.add(spriteres = new ResourceMenu("sprite", "<no sprite>", true, project));
         if (actor.sprite != null) {
-            spriteres.label.setText(actor.sprite.name);
+            spriteres.label.setText(actor.getSpriteFile().name);
         }
         spriteres.addActionListener(new ActionListener() {
 
