@@ -88,7 +88,9 @@ public class ProjectImporter {
 //                            Scene a = new Scene(file.name);
 //                            a.readXml((String) file.value);
 //                            file.value = a;
-                        /*} else*/ if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) 
+                        /*} else*/
+                        
+                        if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) 
                             file.value = new ImageIcon(Bytefiles.elementAt(fileno));
                         
                         
@@ -170,7 +172,16 @@ public class ProjectImporter {
                     if (zipe.getName().equals("config")) {
                         config = stream + "";
                     } else {
-                        /// following code beta
+                        
+                    
+                    ///
+                        if (zipe.getName().endsWith(".jpg") || zipe.getName().endsWith(".gif") || zipe.getName().endsWith(".png")) {
+                            Bytefiles.add(stream.toByteArray());
+                            Stringfiles.add("");
+                            objects.add("");
+                        } else {
+                            
+                            /// following code beta
                     ObjectInputStream s = new ObjectInputStream(new ByteArrayInputStream(stream.toByteArray()));
                     
                     try {
@@ -180,12 +191,7 @@ public class ProjectImporter {
                         //class not found?
                         System.out.println("Class error(projectimporter): " + e.getLocalizedMessage());
                     }
-                    
-                    ///
-                        if (zipe.getName().endsWith(".jpg") || zipe.getName().endsWith(".gif") || zipe.getName().endsWith(".png")) {
-                            Bytefiles.add(stream.toByteArray());
-                            Stringfiles.add("");
-                        } else {
+                            
                             readFile(stream + "", zipe.getName());
 
                             Bytefiles.add(stream.toByteArray());

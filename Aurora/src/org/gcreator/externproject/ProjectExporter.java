@@ -46,7 +46,7 @@ public class ProjectExporter {
             out.close();
             utilities.addStringMessage("Saved");
         } catch (Exception e) {
-            System.out.println("" + e.getLocalizedMessage());
+            System.out.println("ProjectExport: " + e.getLocalizedMessage());
             return false;
         }
         return false; //Failed to export

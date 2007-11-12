@@ -23,6 +23,7 @@ import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
 import org.gcreator.fileclass.res.*;
+import sun.awt.image.ToolkitImage;
 
 /**
  *
@@ -107,7 +108,14 @@ public class File extends Object implements Transferable {
         } else if (value instanceof ImageIcon) {
             ImageIcon img = ((ImageIcon) value);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            BufferedImage ii = (BufferedImage) img.getImage();
+            System.out.println("just before");
+            BufferedImage ii = null;
+            if (img.getImage() instanceof ToolkitImage) {System.out.println("Toolkit");
+            ii = ((ToolkitImage)img.getImage()).getBufferedImage();
+            }
+            else
+            ii =  (BufferedImage) ((Image)img.getImage());
+            System.out.println("just after");
             ImageIO.write(ii, type, baos); 
             out.write(baos.toByteArray());
         } else {//if (value instanceof org.gcreator.fileclass.res.Resource) {

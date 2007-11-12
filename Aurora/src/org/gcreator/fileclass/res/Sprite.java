@@ -11,39 +11,44 @@ package org.gcreator.fileclass.res;
 
 import java.util.*;
 import javax.swing.*;
+import org.gcreator.components.popupmenus.ResourceMenu;
+import org.gcreator.core.gcreator;
 
 /**
  *
  * @author Ali1
  */
 public class Sprite extends Resource {
-    public Vector<org.gcreator.fileclass.File> images;
+    //public Vector<org.gcreator.fileclass.File> images;
+    public Vector<String> Simages;
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
     public Sprite(String name)
     {
         this.name = name;
-        images = new Vector<org.gcreator.fileclass.File>();
+       // images = new Vector<org.gcreator.fileclass.File>();
+        Simages = new Vector<String>();
     }
 
     public ImageIcon getImageAt(int pos){
-        if(pos>=images.size())
+        if(pos>=Simages.size())
             return null;
-        org.gcreator.fileclass.File a = images.elementAt(pos);
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(Simages.elementAt(pos),"image",gcreator.window.getCurrentProject()).object;
         if(a==null)
             return null;
         if(a.value instanceof ImageIcon)
-            return (ImageIcon) images.elementAt(pos).value;
+            return (ImageIcon) a.value;
         return null;
     }
     
     public int countImages(){
-        return images.size();
+        return Simages.size();
     }
     
     public void addToList(org.gcreator.fileclass.File i){
-        images.add(i);
+        //images.add(i);
+        Simages.add(i.name);
     }
     
      
@@ -53,13 +58,13 @@ public class Sprite extends Resource {
       xml += "<sprite>\n";
       xml += "<origin>" + originX + ", " + originY + "</origin>\n";
       xml += "<BB>" + BBleft + ", " + BBRight + ", " + BBTop + ", " + BBBottom + "</BB>\n";
-      Enumeration<org.gcreator.fileclass.File> e = images.elements();
-      org.gcreator.fileclass.File f;
-      while(e.hasMoreElements()){
-          f = e.nextElement();
-          xml += "<image>" + f.getPath() + "</image>\n";
-      }
-      xml += "</sprite>";
+//      Enumeration<org.gcreator.fileclass.File> e = images.elements();
+//      org.gcreator.fileclass.File f;
+//      while(e.hasMoreElements()){
+//          f = e.nextElement();
+//          xml += "<image>" + f.getPath() + "</image>\n";
+//      }
+//      xml += "</sprite>";
       return xml;
     }
 
@@ -115,7 +120,7 @@ public class Sprite extends Resource {
         a.BBTop = BBTop;
         a.BBleft = BBleft;
         a.height = height;
-        a.images = (Vector<org.gcreator.fileclass.File>) images.clone();
+        a.Simages = (Vector<String>) Simages.clone();
         a.originX = originX;
         a.originY = originY;
         a.precise = precise;

@@ -600,7 +600,7 @@ public class SpriteEditor extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int id = getViewedId();
-        sprite.images.remove(id);
+        sprite.Simages.remove(id);
         if(id >= sprite.countImages())
             id = 0;
         jLabel4.setText("Subimages: " + sprite.countImages());
