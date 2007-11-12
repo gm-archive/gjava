@@ -75,7 +75,7 @@ public class SettingsEditor extends TabPanel {
             Resolution.setVariable("frequency", frequency = (Integer) 0);
         }
         Integer freq = (Integer) frequency;
-        if(res<0||res>5)
+        if(freq<0||freq>5)
             Resolution.setVariable("frequency", freq = 0);
         Object esc = Other.getValue("ESC");
         if(esc==null||!(esc instanceof Boolean)){
