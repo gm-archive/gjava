@@ -23,7 +23,7 @@ public class German extends Dictionary{
         status = "Finished";
         language = "German";
         authors = new String[10];
-        authors[0] = "André Reichelt";
+        authors[0] = "Andr\u00E9 Reichelt";
         //If you changed this language, add your name here.
         entry = new String[200];
         entry[0] = "Datei";
@@ -38,19 +38,19 @@ public class German extends Dictionary{
         entry[9] = "Projekt speichern als...";
         entry[10] = "Importieren...";
         entry[11] = "Exportieren...";
-        entry[12] = "Projekt schließen";
+        entry[12] = "Projekt schlie\u00DFen";
         entry[13] = "Beenden";
         entry[14] = "Konsole leeren";
         entry[15] = "Look & Feel";
         entry[16] = "Anzeigemodus";
         entry[17] = "Systemeigener Stil";
-        entry[18] = "Plattformübergreifender Stil";
+        entry[18] = "Plattform\u00FCbergreifender Stil";
         entry[19] = "Motif-Stil";
         entry[20] = "Tabs (Oben)";
         entry[21] = "Seperate Fenster";
         entry[22] = "Zeige Ausgabe-Box";
         entry[23] = "Sprache w\u00E4hlen...";
-        entry[24] = "Über";
+        entry[24] = "\u00DCber";
         entry[25] = "Hilfe"; //The menu item, not the menu itself
         entry[26] = "Herzlich Willkommen!"; //Tab name
         entry[27] = "Hilfe!"; //Tab name
@@ -62,7 +62,7 @@ public class German extends Dictionary{
         entry[33] = "Fehlerhafte Struktur der Einstellungsdatei";
         entry[34] = "Einstellung doppelt gesetzt";
         entry[35] = "Fehlende Einstellung in der Einstellungsdatei";
-        entry[36] = "Sprache nicht verfügbar";
+        entry[36] = "Sprache nicht verf\u00FCgbar";
         entry[37] = "Herzlich Willkommen bei Aurora,";
         entry[38] = "die n\u00E4chste Generation des G-Creators.";
         //Toolbar
@@ -70,19 +70,19 @@ public class German extends Dictionary{
 	entry[40] = "\u00D6ffnen"; 
 	entry[41] = "Speichern"; 
 	entry[42] = "Speichern Unter..."; 
-	entry[43] = "Sprite hinzufügen";
-	entry[44] = "Sound hinzufügen"; 
-	entry[45] = "Actor hinzufügen";
-	entry[46] = "Scene hinzufügen";
+	entry[43] = "Sprite hinzuf\u00FCgen";
+	entry[44] = "Sound hinzuf\u00FCgen"; 
+	entry[45] = "Actor hinzuf\u00FCgen";
+	entry[46] = "Scene hinzuf\u00FCgen";
         //Language menu
         entry[47] = "Sprache";
         entry[48] = "Status";
-        entry[49] = "Sprache Übernehmen";
-        entry[50] = "Starten Sie das Programm neu, um die \u00C4nderungen zu übernehmen.";
+        entry[49] = "Sprache \u00DCbernehmen";
+        entry[50] = "Starten Sie das Programm neu, um die \u00C4nderungen zu \u00FCbernehmen.";
         //Tree
         entry[51] = "Arbeitsplatz";
         //Toolbar
-        entry[52] = "Klasse hinzufügen";
+        entry[52] = "Klasse hinzuf\u00FCgen";
         //Menu
         entry[53] = "Speichere alle Projekte";
         //New Project Wizard
@@ -115,7 +115,7 @@ public class German extends Dictionary{
         entry[78] = "Text, der gesucht werden soll";
         entry[79] = "Finde"; //Button
         entry[80] = "Gro\u00DF-/Kleinschreibung beachten"; 
-        entry[81] = "Nutze gel\u00E4ufige Ausdrücke";
+        entry[81] = "Nutze gel\u00E4ufige Ausdr\u00FCcke";
         entry[82] = "Behandle \\n als Zeilenumbruch";
         //Find&Replace
         entry[83] = "Finde & ersetze"; //Title
@@ -142,17 +142,17 @@ public class German extends Dictionary{
         entry[101] = "Erzeuge aktuelles Projekt";
         entry[102] = "Teste aktuelles Projekt";
         entry[103] = "Erzeuge und teste aktuelles Projekt";
-        entry[104] = "Erzeuge aktuelles Projekt endgültig";
+        entry[104] = "Erzeuge aktuelles Projekt endg\u00FCltig";
         entry[105] = "Erzeuge Hauptprojekt";
         entry[106] = "Teste Hauptprojekt";
         entry[107] = "Erzeuge und teste Hauptprojekt";
-        entry[108] = "Erzeuge aktuelles Hauptpndgültig";
+        entry[108] = "Erzeuge aktuelles Hauptpndg\u00FCltig";
         //Extensions manager
         entry[109] = "Erweiterungs-Manager";
         entry[110] = "Erweiterungs-Manager"; //Title
-        entry[111] = "Füge hinzu";
+        entry[111] = "F\u00FCge hinzu";
         entry[112] = "L\u00F6sche";
-        entry[113] = "Setze Änderungen zurück";
+        entry[113] = "Setze \u00C4nderungen zur\u00FCck";
         //Popup
         //114 is already used
         entry[115] = "Kopiere Nachricht";
@@ -177,7 +177,7 @@ public class German extends Dictionary{
         //---
         entry[132] = "Metall-Theme";
         //Sprite editor
-        entry[133] = "Füge hinzu";
+        entry[133] = "F\u00FCge hinzu";
         entry[134] = "Bearbeite";
         entry[135] = "L\u00F6sche";
         
