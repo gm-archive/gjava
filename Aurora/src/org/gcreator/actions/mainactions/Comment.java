@@ -18,8 +18,8 @@ import java.awt.event.*;
  * @author Luís
  */
 public class Comment extends ActionPattern {
-
-    public static PlainTextPanel panel = new PlainTextPanel();
+static final long serialVersionUID = 1L;
+    //public PlainTextPanel panel = new PlainTextPanel();
     public String text;
 
     //ActorEditor context;
@@ -31,7 +31,7 @@ public class Comment extends ActionPattern {
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action) {
-        // PlainTextPanel panel = new PlainTextPanel();
+         PlainTextPanel panel = new PlainTextPanel();
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -43,6 +43,7 @@ public class Comment extends ActionPattern {
                 context.jList2.updateUI();
             }
         }); //Doesn't seem to be working */
+         System.out.println(this.getName()+" "+text);
         panel.text.setText(text);
         return panel;// new PlainTextPanel();
     }

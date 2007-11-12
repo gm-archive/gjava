@@ -5,6 +5,8 @@
  */
 package org.gcreator.editors;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.gcreator.components.impl.EventCellRenderer;
 import org.gcreator.components.popupmenus.EventSelect;
 import org.gcreator.components.popupmenus.PopupListener;
@@ -643,15 +645,25 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jList1.getSelectedValue() == null) {
-            return;
+        try {
+            if (jList1.getSelectedValue() == null) {
+                return;
+            }
+            if (jComboBox1.getSelectedItem() == null) {
+                return;
+            }
+            ActionPattern ap = (org.gcreator.actions.ActionPattern) jComboBox1.getSelectedItem();
+            
+            ap = ap.getClass().newInstance();
+            org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
+            ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
+            updateActionList();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(ActorEditor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(ActorEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
-        if (jComboBox1.getSelectedItem() == null) {
-            return;
-        }
-        org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, (org.gcreator.actions.ActionPattern) jComboBox1.getSelectedItem());
-        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
-        updateActionList();
+;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
