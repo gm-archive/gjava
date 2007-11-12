@@ -5,8 +5,7 @@
  */
 
 package org.gcreator.editors;
-
-import org.gcreator.components.TabPanel;
+import org.gcreator.components.*;
 import org.gcreator.fileclass.Project;
 
 /**

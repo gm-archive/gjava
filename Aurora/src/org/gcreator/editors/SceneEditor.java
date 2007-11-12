@@ -79,18 +79,20 @@ public class SceneEditor extends TabPanel {
         }
     }
     
+    public EGMLTextArea egml;
+    
     public SceneEditor(org.gcreator.fileclass.File file,Project project) {
         if(!(file.value instanceof Scene))
             file.value = new Scene(file.name);
         this.file = file;
         this.project = project;
         model = new ViewsModel();
-        
         initComponents();
         scene = new ScenePanel(this);
         scene.setSize(500,500);
         jScrollPane1.setViewportView(scene);
         this.file = file;
+        egml = new EGMLTextArea(((Scene) file.value).code);
         jList1.setSelectedIndex(0);
         setup();
         jTextField1.setText(file.name);
@@ -105,6 +107,7 @@ public class SceneEditor extends TabPanel {
         jToggleButton1.setSelected(((Scene) file.value).grid);
         colorSelection1.setBackground(((Scene) file.value).background);
         jSpinner12.setValue(((Scene) file.value).speed);
+        jScrollPane5.setViewportView(egml);
     }
 
      
@@ -256,8 +259,9 @@ public class SceneEditor extends TabPanel {
         jTextField3 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jCheckBox3 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
         jSpinner12 = new javax.swing.JSpinner();
+        jLabel19 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
         jPanel5 = new javax.swing.JPanel();
         jCheckBox1 = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
@@ -289,10 +293,10 @@ public class SceneEditor extends TabPanel {
         jPanel4 = new javax.swing.JPanel();
         BottomLeft = new javax.swing.JLabel();
         BottomRight = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jToolBar1 = new javax.swing.JToolBar();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
 
         jButton4.setText("Undo");
         jButton4.setFocusable(false);
@@ -529,8 +533,6 @@ public class SceneEditor extends TabPanel {
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
-        jButton1.setText("Creation code");
-
         jSpinner12.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(60), Integer.valueOf(1), null, Integer.valueOf(1)));
         jSpinner12.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -538,22 +540,24 @@ public class SceneEditor extends TabPanel {
             }
         });
 
+        jLabel19.setText("Creation code");
+
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
+            .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane2)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                    .add(jScrollPane2)
+                    .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel5)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel6)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jCheckBox3)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1Layout.createSequentialGroup()
+                    .add(jLabel6)
+                    .add(jCheckBox3)
+                    .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel7)
                             .add(jLabel8)
@@ -562,7 +566,8 @@ public class SceneEditor extends TabPanel {
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
                             .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)
-                            .add(jSpinner12, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))))
+                            .add(jSpinner12, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE)))
+                    .add(jLabel19))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -591,8 +596,10 @@ public class SceneEditor extends TabPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox3)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton1)
-                .addContainerGap(120, Short.MAX_VALUE))
+                .add(jLabel19)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(148), jPanel1);
@@ -858,7 +865,7 @@ public class SceneEditor extends TabPanel {
                         .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jCheckBox4)
-                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
                             .add(jCheckBox2)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel7Layout.createSequentialGroup()
                         .add(9, 9, 9)
@@ -907,12 +914,6 @@ public class SceneEditor extends TabPanel {
                 .add(BottomLeft))
         );
 
-        jScrollPane1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jScrollPane1MouseMoved(evt);
-            }
-        });
-
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
@@ -945,7 +946,7 @@ public class SceneEditor extends TabPanel {
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(jToolBar1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1104,11 +1105,6 @@ public class SceneEditor extends TabPanel {
         ViewInScene v = (ViewInScene) jList1.getSelectedValue();
         v.porth = (Integer) jSpinner11.getValue();
     }//GEN-LAST:event_jSpinner11StateChanged
-
-    private void jScrollPane1MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseMoved
-       this.BottomLeft.setText("X:"+evt.getX()+ " Y:"+evt.getY());
-       
-    }//GEN-LAST:event_jScrollPane1MouseMoved
     
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
@@ -1141,7 +1137,6 @@ public class SceneEditor extends TabPanel {
     public javax.swing.JLabel BottomLeft;
     private javax.swing.JLabel BottomRight;
     private org.gcreator.components.ColorSelection colorSelection1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1164,6 +1159,7 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1187,6 +1183,7 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner10;
     private javax.swing.JSpinner jSpinner11;
