@@ -14,10 +14,10 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
@@ -27,8 +27,8 @@ import org.gcreator.fileclass.res.*;
  *
  * @author Luís
  */
-public class File extends Object implements Transferable {
-
+public class File extends Object implements Transferable{
+    static final long serialVersionUID = 1L;
     public static final DataFlavor NODE_FLAVOR = new DataFlavor(
 			DataFlavor.javaJVMLocalObjectMimeType,"Node");
 	private DataFlavor[] flavors = { NODE_FLAVOR };

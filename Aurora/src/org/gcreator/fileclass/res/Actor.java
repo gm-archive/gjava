@@ -17,12 +17,13 @@ import org.gcreator.events.Event;
  * @author Ali1
  */
 public class Actor extends Resource {
-
+static final long serialVersionUID = 1L;
     public boolean visible,  solid,  persistant;
-    public org.gcreator.fileclass.File sprite = null;
+    public org.gcreator.fileclass.File sprite;
     public String extend,  mask;
     public int index,  depth;
     public Vector events; //<Event>
+    
 
     public Actor(String name) {
         this.name = name;

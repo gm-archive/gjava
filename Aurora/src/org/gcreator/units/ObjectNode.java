@@ -9,6 +9,7 @@
 
 package org.gcreator.units;
 
+import java.io.Serializable;
 import javax.swing.tree.*;
 
 import org.gcreator.fileclass.*;
@@ -17,7 +18,8 @@ import org.gcreator.fileclass.*;
  *
  * @author Luís
  */
-public class ObjectNode extends DefaultMutableTreeNode{
+public class ObjectNode extends DefaultMutableTreeNode implements Serializable {
+    static final long serialVersionUID = 1L;
     public org.gcreator.fileclass.Object object;
     public ObjectNode(org.gcreator.fileclass.Object object){
         super(object.name);

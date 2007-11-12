@@ -6,11 +6,16 @@
 
 package org.gcreator.actions.mainactions;
 
+import java.io.ObjectStreamField;
+import java.io.Serializable;
+
 /**
  *
  * @author  Luís
  */
-public class PlainTextPanel extends javax.swing.JPanel {
+public class PlainTextPanel extends javax.swing.JPanel implements Serializable {
+    static final long serialVersionUID = 1L;
+        
     
     /** Creates new form CommentPanel */
     public PlainTextPanel() {

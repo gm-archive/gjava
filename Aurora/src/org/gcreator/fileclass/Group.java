@@ -9,11 +9,14 @@
 
 package org.gcreator.fileclass;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luís
  */
-public class Group extends Folder{
+public class Group extends Folder implements Serializable{
+    static final long serialVersionUID = 1L;
     public Folder root;
 
     public Group(){super("");}

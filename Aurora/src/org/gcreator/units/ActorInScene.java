@@ -10,12 +10,14 @@
 package org.gcreator.units;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Luís
  */
-public class ActorInScene {
+public class ActorInScene implements Serializable {
+    static final long serialVersionUID = 1L;
     public org.gcreator.fileclass.File actor;
     public int x;
     public int y;

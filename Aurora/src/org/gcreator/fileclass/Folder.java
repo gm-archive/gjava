@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import java.io.Serializable;
 import org.gcreator.exceptions.*;
 import java.util.*;
 import javax.swing.ImageIcon;
@@ -17,10 +18,11 @@ import javax.swing.ImageIcon;
  *
  * @author Luís
  */
-public class Folder extends Object{
+public class Folder extends Object implements Serializable{
     protected Vector<Object> childNodes;
-    
-    
+    static final long serialVersionUID = 1L;
+    //used for serialize
+    public Folder(){}
     
     public Folder(String name){
         super(name);

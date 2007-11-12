@@ -9,13 +9,15 @@
 
 package org.gcreator.units;
 
+import java.io.Serializable;
 import javax.swing.*;
 
 /**
  *
  * @author Luís
  */
-public class ViewsModel extends AbstractListModel{
+public class ViewsModel extends AbstractListModel implements Serializable{
+    static final long serialVersionUID = 1L;
     public ViewInScene[] view;
     
     public ViewsModel(){

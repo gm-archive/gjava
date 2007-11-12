@@ -19,7 +19,9 @@ import java.io.Serializable;
  * @author Luís
  */
 public class ActionPattern extends JPanel implements Serializable {
+    static final long serialVersionUID = 1L;
     private ImageIcon icon;
+    
     public ActionPattern(){
         icon = new ImageIcon();
         setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));

@@ -9,11 +9,14 @@
 
 package org.gcreator.units;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Luís
  */
-public class ViewInScene {
+public class ViewInScene implements Serializable {
+    static final long serialVersionUID = 1L;
     public boolean visibleonstart = false;
     public int viewx = 0;
     public int viewy = 0;

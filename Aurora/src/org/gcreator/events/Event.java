@@ -20,6 +20,10 @@ import java.util.*;
  * @author Luís
  */
 public class Event implements Serializable {
+    
+    static final long serialVersionUID = 1L;
+    
+    
     public Vector<org.gcreator.actions.Action> actions;
     public Event(){
         actions = new Vector<org.gcreator.actions.Action>();

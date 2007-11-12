@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import java.io.Serializable;
 import org.gcreator.exceptions.NoSuchFolderException;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Classes;
@@ -23,7 +24,8 @@ import javax.swing.ImageIcon;
  *
  * @author Luís
  */
-public class Project extends Folder{
+public class Project extends Folder {
+     
     public String location = ""; //If project "Alfa" is in "C:/Program Files/Alfa", leave only "C:/Program Files/";
     
     //The following vectors are for saving, getting resouces etc

@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import java.io.Serializable;
 import org.gcreator.units.ObjectNode;
 import org.gcreator.components.*;
 
@@ -16,9 +17,13 @@ import org.gcreator.components.*;
  *
  * @author Luís
  */
-public class Object {
+public class Object implements Serializable {
+    static final long serialVersionUID = 1L;
     public String name;
     public ObjectNode node;
+    
+    //Used for serilization only
+    public Object(){}
     
     public Object(String name){
         this.name = name;

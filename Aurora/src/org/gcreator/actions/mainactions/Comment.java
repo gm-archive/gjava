@@ -10,7 +10,7 @@
 package org.gcreator.actions.mainactions;
 
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
+//import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.event.*;
 

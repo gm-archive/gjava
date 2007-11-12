@@ -9,11 +9,14 @@
 
 package org.gcreator.fileclass;
 
+
+
 /**
  *
  * @author Luís
  */
-public class ImageGroup extends Group{
+public class ImageGroup extends Group {
+    
     public ImageGroup(){
         super();
     }

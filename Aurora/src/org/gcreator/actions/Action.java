@@ -9,24 +9,28 @@
 
 package org.gcreator.actions;
 
-import org.gcreator.editors.ActorEditor;
+//import org.gcreator.editors.ActorEditor;
 import javax.swing.*;
 import java.awt.*;
 import java.io.Serializable;
-import org.gcreator.editors.*;
+//import org.gcreator.editors.*;
+import org.gcreator.editors.ActorEditor;
 
 /**
  *
  * @author Luís
  */
 public class Action implements Serializable {
+    
+    static final long serialVersionUID = 1L;
+    
     public ActionPattern pattern;
     private JComponent panel;
     
-    public Action(ActorEditor editor){
-        this(editor, null);
-    }
-    
+//    public Action(ActorEditor editor){
+//        this(editor, null);
+//    }
+//    
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
