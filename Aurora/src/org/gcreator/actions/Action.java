@@ -12,13 +12,14 @@ package org.gcreator.actions;
 import org.gcreator.editors.ActorEditor;
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import org.gcreator.editors.*;
 
 /**
  *
  * @author Luís
  */
-public class Action {
+public class Action implements Serializable {
     public ActionPattern pattern;
     private JComponent panel;
     

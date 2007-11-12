@@ -25,20 +25,20 @@ public class MouseEvent extends Event{
      
     public String toString(){
         switch(type){
-            case 6: return "Left Button Clicked";
-            case 7: return "Left Button Pressed";
-            case 8: return "Left Button Released";
-            case 9: return "Global Left Button Clicked";
-            case 10: return "Global Left Button Pressed";
-            case 11: return "Global Left Button Released";
-            case 12: return "Right Button Clicked";
-            case 13: return "Right Button Pressed";
-            case 14: return "Right Button Released";
-            case 15: return "Global Right Button Clicked";
-            case 16: return "Global Right Button Pressed";
-            case 17: return "Global Right Button Released";
-            case 18: return "Mouse Entered (Over)";
-            case 19: return "Mouse Exited (Out)";
+            case 5006: return "Left Button Clicked";
+            case 5007: return "Left Button Pressed";
+            case 5008: return "Left Button Released";
+            case 5009: return "Global Left Button Clicked";
+            case 5010: return "Global Left Button Pressed";
+            case 5011: return "Global Left Button Released";
+            case 5012: return "Right Button Clicked";
+            case 5013: return "Right Button Pressed";
+            case 5014: return "Right Button Released";
+            case 5015: return "Global Right Button Clicked";
+            case 5016: return "Global Right Button Pressed";
+            case 5017: return "Global Right Button Released";
+            case 5018: return "Mouse Entered (Over)";
+            case 5019: return "Mouse Exited (Out)";
             default: return "Invalid Mouse Event";
         }
     }

@@ -9,11 +9,13 @@
 
 package org.gcreator.fileclass.res;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Ali1
  */
-public abstract class Resource {
+public abstract class Resource implements Serializable {
     public String name;
     
     public abstract String writeXml();

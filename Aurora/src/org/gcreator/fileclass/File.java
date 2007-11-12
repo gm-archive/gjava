@@ -16,6 +16,8 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
@@ -97,7 +99,12 @@ public class File extends Object implements Transferable {
 
     public void writeToBuffer(ZipOutputStream out) throws IOException {
         
-        if (value instanceof String) {
+        ObjectOutput s = new ObjectOutputStream(out);
+    s.writeObject(value);
+    s.flush();
+        
+        //will have to put the following back in later
+       /* if (value instanceof String) {
             out.write(value.toString().getBytes());
         } else if (value instanceof ImageIcon) {
             ImageIcon img = ((ImageIcon) value);
@@ -107,7 +114,7 @@ public class File extends Object implements Transferable {
             out.write(baos.toByteArray());
         } else if (value instanceof org.gcreator.fileclass.res.Resource) {
             out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
-        }
+        }*/
     }
 
     public static ImageIcon getScaledIcon(ImageIcon ii) {

@@ -12,12 +12,13 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  *
  * @author Luís
  */
-public class ActionPattern extends JPanel {
+public class ActionPattern extends JPanel implements Serializable {
     private ImageIcon icon;
     public ActionPattern(){
         icon = new ImageIcon();

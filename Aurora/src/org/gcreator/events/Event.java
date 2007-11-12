@@ -11,6 +11,7 @@ package org.gcreator.events;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.net.URLClassLoader;
 import java.util.*;
 
@@ -18,7 +19,7 @@ import java.util.*;
  *
  * @author Luís
  */
-public class Event {
+public class Event implements Serializable {
     public Vector<org.gcreator.actions.Action> actions;
     public Event(){
         actions = new Vector<org.gcreator.actions.Action>();
