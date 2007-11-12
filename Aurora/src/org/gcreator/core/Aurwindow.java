@@ -1068,7 +1068,8 @@ public class Aurwindow extends JFrame {
                         return;
                     }
                     mainProject.location = file.getPath();
-                    
+                    if(!mainProject.location.contains("."))
+                        mainProject.location += ".gcp";
                 }
                 ProjectExporter.export(mainProject, mainProject.location);
                 break;
