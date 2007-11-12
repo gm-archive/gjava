@@ -67,7 +67,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void addActorAt(int x, int y){
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) ((Actor) act.actor.value).sprite.value;
+            Sprite s = (Sprite) (((Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(act.Sactor,"actor",gcreator.window.getCurrentProject()).object).value)).sprite.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
@@ -125,7 +125,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.actor.value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
             ObjectNode c = b.sprite.node;
             if(c!=null){
                 org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;

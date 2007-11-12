@@ -51,7 +51,7 @@ public class SceneEditor extends TabPanel {
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            ObjectNode k = (((Actor) ais.actor.value).sprite).node;
+            ObjectNode k = (((Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(ais.Sactor,"actor",gcreator.window.getCurrentProject()).object).value).sprite).node;
             Sprite j = (Sprite) ((org.gcreator.fileclass.File) k.object).value;
             ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();

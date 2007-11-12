@@ -18,19 +18,21 @@ import java.io.Serializable;
  */
 public class ActorInScene implements Serializable {
     static final long serialVersionUID = 1L;
-    public org.gcreator.fileclass.File actor;
+   // public org.gcreator.fileclass.File actor;
+    public String Sactor;
     public int x;
     public int y;
     public double id;
     
     public ActorInScene(org.gcreator.fileclass.File actor, int x, int y,double id){
-        this.actor = actor;
+        //this.actor = actor;
+        Sactor = actor.name;
         this.x = x;
         this.y = y;
         this.id = id;
     }
     
     public String writeXml(){
-        return "<actor type=\"" + actor.getPath() + "\" x=" + x + " y=" + y + " id="+id+" />";
+        return "<actor type=\"" + Sactor + "\" x=" + x + " y=" + y + " id="+id+" />";
     }
 }
