@@ -6,18 +6,17 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.popupmenus.ResourceMenu;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
+import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.*;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 
 /**
  *
@@ -108,6 +107,16 @@ public class SceneEditor extends TabPanel {
         colorSelection1.setBackground(((Scene) file.value).background);
         jSpinner12.setValue(((Scene) file.value).speed);
         jScrollPane5.setViewportView(egml);
+        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
+            public void adjustmentValueChanged(AdjustmentEvent evt){
+                jScrollPane1.updateUI();
+            }
+        });
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener(){
+            public void adjustmentValueChanged(AdjustmentEvent evt){
+                jScrollPane1.updateUI();
+            }
+        });
     }
 
      

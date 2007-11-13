@@ -190,6 +190,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
 
     public void mouseMoved(MouseEvent evt) {
-        root.BottomLeft.setText("X:"+evt.getX()+ " Y:"+evt.getY());
+        double zoom = root.getZoom();
+        root.BottomLeft.setText("X:" + (int) (evt.getX()*zoom) + " Y:" + (int) (evt.getY()*zoom));
     }
 }

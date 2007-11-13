@@ -5,7 +5,12 @@
  */
 
 package org.gcreator.editors;
+
+import java.applet.*;
+import java.io.*;
+import javax.swing.*;
 import org.gcreator.components.*;
+import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 
 /**
@@ -19,6 +24,7 @@ public class SoundEditor extends TabPanel {
         this.project = project;
         this.file = file;
         initComponents();
+        jTextField1.setText(file.name);
     }
     
     /** This method is called from within the constructor to
@@ -29,22 +35,52 @@ public class SoundEditor extends TabPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFileChooser1 = new javax.swing.JFileChooser();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
+        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Programas\\NetBeans 6.0 beta2"));
+        jFileChooser1.setDialogTitle("Choose a sound");
 
         jLabel1.setText("Name:");
 
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
+
         jButton1.setText("Load Sound");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Play");
-
-        jButton4.setText("Pause");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Stop");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Play&Loop");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -57,13 +93,12 @@ public class SoundEditor extends TabPanel {
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(jButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(jButton3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton4)
+                        .add(jButton2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton5)
-                        .add(162, 162, 162))
+                        .add(jButton5))
                     .add(jButton1))
                 .addContainerGap())
         );
@@ -74,23 +109,62 @@ public class SoundEditor extends TabPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton4)
-                    .add(jButton5)
-                    .add(jButton3))
+                    .add(jButton3)
+                    .add(jButton2)
+                    .add(jButton5))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton1)
-                .addContainerGap())
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jFileChooser1.showDialog(this, "OK");
+        File f = jFileChooser1.getSelectedFile();
+        try{
+            if(f!=null)
+                if(file.value!=null&&file.value instanceof AudioClip){
+                    ((AudioClip) file.value).stop();
+                }
+                file.value = JApplet.newAudioClip(f.toURI().toURL());
+            }
+        catch(Exception e){}
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        if(file.value!=null&&file.value instanceof AudioClip){
+            ((AudioClip) file.value).stop();
+            ((AudioClip) file.value).play();
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if(file.value!=null&&file.value instanceof AudioClip){
+            ((AudioClip) file.value).stop();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(file.value!=null&&file.value instanceof AudioClip){
+            ((AudioClip) file.value).stop();
+            ((AudioClip) file.value).loop();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+        file.name = jTextField1.getText();
+        Aurwindow.workspace.updateUI();
+    }//GEN-LAST:event_jTextField1CaretUpdate
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
+    public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
-    public javax.swing.JButton jButton4;
     public javax.swing.JButton jButton5;
+    public javax.swing.JFileChooser jFileChooser1;
     public javax.swing.JLabel jLabel1;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
