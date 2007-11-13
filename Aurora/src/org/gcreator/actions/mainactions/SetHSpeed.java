@@ -8,6 +8,7 @@ package org.gcreator.actions.mainactions;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import java.awt.event.*;
+import org.gcreator.actions.components.HSpeedEditor;
 
 /**
  *
@@ -27,14 +28,22 @@ static final long serialVersionUID = 1L;
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action) {
-         return null;
+         return new HSpeedEditor();
     }
 
     public String getStandardText(JComponent panel) {
+        if(panel != null&& panel instanceof HSpeedEditor){
+            HSpeedEditor editor = (HSpeedEditor) panel;
+            return "Set the hspeed of " + editor.of.getText() + " to " + editor.to.getText();
+        }
         return "Set Horizontal Speed";
     }
 
     public String generateEGML(JComponent panel) {
+        if(panel != null&& panel instanceof HSpeedEditor){
+            HSpeedEditor editor = (HSpeedEditor) panel;
+            return editor.of.getText() + ".hspeed = " + editor.to.getText() + ";";
+        }
         return "";
     }
 }
