@@ -131,7 +131,6 @@ public class gcreator {
         if(!applet&&plugload)
             Plugger.onMainWindowStart(plugins);
         //ActorEditor.setupActions();
-        
         window = new Aurwindow(settings);
         window.console.setText(output);
         Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings();

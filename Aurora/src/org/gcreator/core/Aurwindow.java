@@ -183,7 +183,10 @@ public class Aurwindow extends JFrame {
 
     public static void setMainProject(Project newmain) {
         mainProject = newmain;
+        try{
         workspace.updateUI();
+        }
+        catch(Exception e){}
     }
 
     public void addWindow(TabPanel panel, int title) {
@@ -196,7 +199,8 @@ public class Aurwindow extends JFrame {
         try {
             panel.parent = this;
             panel.title = title;
-            if (istabs) {
+            int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+            if (istabs&&ver>=6) {
                 for (int i = 0; i < tabs.getTabCount(); i++) {
                     if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project == null) {
                         tabs.setSelectedComponent(tabs.getComponentAt(i));
@@ -243,11 +247,11 @@ public class Aurwindow extends JFrame {
             frame.setVisible(true);
             frame.setTitle(panel.title);
             frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
-            javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(frame.getContentPane());
+            org.jdesktop.layout.GroupLayout jInternalFrame1Layout = new org.jdesktop.layout.GroupLayout(frame.getContentPane());
             frame.getContentPane().setLayout(jInternalFrame1Layout);
             if (!istabs) { 
-               jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-               jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(panel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+               jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+               jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
             }
             frame.setBounds(0, 0, 300, 300);
 
@@ -307,6 +311,8 @@ public class Aurwindow extends JFrame {
         console.setContentType("text/html");
         scroller.setViewportView(console);
 
+        int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+        if(ver>=6){
         new  FileDrop( this, new FileDrop.Listener()
       {   public void  filesDropped( java.io.File[] files )
           {   
@@ -315,7 +321,7 @@ public class Aurwindow extends JFrame {
               System.out.println(files[i].getName());
           }   // end filesDropped
       }); // end FileDrop.Listener
-      
+        }
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
@@ -346,11 +352,12 @@ public class Aurwindow extends JFrame {
         workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
-        workspace.setDragEnabled(true);
-        workspace.setDropMode(DropMode.ON_OR_INSERT);
+        if (ver >= 6) {
+            workspace.setDragEnabled(true);
+            workspace.setDropMode(DropMode.ON_OR_INSERT);
+        }
         workspace.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         try {
-            int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
             if (ver >= 6) {
                 // Tree drag and drop support
 
@@ -710,10 +717,10 @@ public class Aurwindow extends JFrame {
         addWindow(welcome, 26);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
-        GroupLayout layout = new GroupLayout(getContentPane());
+        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(tool, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(splitter1, GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
+        layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
+        layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
         if (settings[2].equals("Hidden")) {
@@ -835,8 +842,8 @@ public class Aurwindow extends JFrame {
             HelpPanel help = new HelpPanel();
             addWindow(help, 27);
         }
+        try{
         if (menu == 5 && item == 0) {
-            try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
@@ -847,11 +854,9 @@ public class Aurwindow extends JFrame {
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 0;
                 workspace.updateUI();
-            } catch (Exception e) {
-            }
+            
         }
         if (menu == 5 && item == 1) {
-            try {
                 javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 SwingUtilities.updateComponentTreeUI(this);
@@ -863,11 +868,8 @@ public class Aurwindow extends JFrame {
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 1;
                 workspace.updateUI();
-            } catch (Exception e) {
-            }
         }
         if (menu == 5 && item == 2) {
-            try {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
@@ -878,12 +880,8 @@ public class Aurwindow extends JFrame {
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 2;
                 workspace.updateUI();
-            } catch (Exception e) {
-
-            }
         }
         if (menu == 5 && item == 3) {
-            try {
                 javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
                 SwingUtilities.updateComponentTreeUI(this);
@@ -895,11 +893,8 @@ public class Aurwindow extends JFrame {
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 3;
                 workspace.updateUI();
-            } catch (Exception e) {
-            }
         }
         if (menu == 5 && item == 4) {
-            try {
                 UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
                 SwingUtilities.updateComponentTreeUI(this);
                 if (istabs) {
@@ -910,10 +905,11 @@ public class Aurwindow extends JFrame {
                 SwingUtilities.updateComponentTreeUI(consolepopup);
                 look = 3;
                 workspace.updateUI();
-            } catch (Exception e) {
-            }
         }
+    }
+    catch(Exception e){
         SwingUtilities.updateComponentTreeUI(this);
+    }
         if (menu == 6 && (item < 4)) {
             if (!istabs) {
                 int k = splitter2.getDividerLocation();
@@ -963,9 +959,9 @@ public class Aurwindow extends JFrame {
                 for (int i = 0; i < panels.length; i++) {
                     if (panels[i] instanceof TabPanel) {
                         TabPanel panel = (TabPanel) panels[i];
-                        GroupLayout jInternalFrame1Layout = (GroupLayout) panel.frame.getContentPane().getLayout();
-                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                        org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
+                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
                     }
                 }
             }

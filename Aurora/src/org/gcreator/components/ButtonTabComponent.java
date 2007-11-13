@@ -29,9 +29,12 @@ public class ButtonTabComponent extends JPanel {
         //make JLabel read titles from JTabbedPane
         JLabel label = new JLabel() {
             public String getText() {
-                int i = pane.indexOfTabComponent(ButtonTabComponent.this); //possible error as removed Tab from inside method name (1.5)
-                if (i != -1) {
-                    return pane.getTitleAt(i);
+                int ver = Integer.parseInt(org.gcreator.core.gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+                if (ver >= 6) {
+                    int i = pane.indexOfTabComponent(ButtonTabComponent.this); //possible error as removed Tab from inside method name (1.5)
+                    if (i != -1) {
+                        return pane.getTitleAt(i);
+                    }
                 }
                 return null;
             }

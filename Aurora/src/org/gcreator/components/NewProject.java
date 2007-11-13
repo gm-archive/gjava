@@ -198,8 +198,10 @@ public class NewProject extends TabPanel {
             if(type!=-1){
                 if(project!=null)
                     ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
-                
+                try{
                 Aurwindow.workspace.updateUI();
+                }
+                catch(Exception e){}
             }
     }
     
