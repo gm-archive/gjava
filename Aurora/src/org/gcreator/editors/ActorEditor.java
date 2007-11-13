@@ -52,17 +52,22 @@ public class ActorEditor extends TabPanel {
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     static {
         
-        ActionCategory main = new ActionCategory(), draw2D = new ActionCategory();
+        ActionCategory main = new ActionCategory(), move = new ActionCategory(), draw2D = new ActionCategory();
         main.add(new org.gcreator.actions.mainactions.StartOfABlock());
         main.add(new org.gcreator.actions.mainactions.EndOfABlock());
         main.add(new org.gcreator.actions.mainactions.Comment());
         main.add(new org.gcreator.actions.mainactions.ExecuteCode());
         main.name = "Main";
         main.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/Main.png"));
+        move.add(new org.gcreator.actions.mainactions.SetHSpeed());
+        move.add(new org.gcreator.actions.mainactions.SetVSpeed());
+        move.name = "Move";
+        move.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/hspeed.png"));
         draw2D.add(new org.gcreator.actions.mainactions.AddImageToSprite());
         draw2D.name = "Draw 2D";
         draw2D.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/Draw2D.png"));
         actionCats.add(main);
+        actionCats.add(move);
         actionCats.add(draw2D);
         
     }

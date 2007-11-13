@@ -18,7 +18,7 @@ import java.awt.event.*;
  * @author Luís
  */
 public class Comment extends ActionPattern {
-static final long serialVersionUID = 1L;
+    static final long serialVersionUID = 1L;
     //public PlainTextPanel panel = new PlainTextPanel();
     public String text;
 
