@@ -29,6 +29,8 @@ public class CreateEvent extends Event{
     
      
     public ImageIcon getImage(){
+        if (icon==null)
+            icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/create.png"));
         return icon;
     }
 }

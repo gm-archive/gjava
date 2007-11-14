@@ -24,6 +24,8 @@ public class DrawEvent extends Event{
     
      
     public String toString(){
+        if (icon==null)
+            icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/draw.png"));
         return "Draw";
     }
     
