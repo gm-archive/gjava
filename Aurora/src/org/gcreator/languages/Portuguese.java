@@ -202,6 +202,18 @@ public class Portuguese extends Dictionary{
         entry[156] = "Posição no ecrã";
         entry[157] = "Desenhar cor de fundo";
         entry[158] = "Cor:";
+        entry[159] = "Nome:";
+        entry[160] = "Descrição para a cena:";
+        entry[161] = "Comprimento";
+        entry[162] = "Altura";
+        entry[163] = "Velocidade";
+        entry[164] = "Persistente";
+        entry[165] = "Código de criação";
+        entry[166] = "Nome:";
+        entry[167] = "Tocar som";
+        entry[168] = "Tocar som continuamente";
+        entry[169] = "Parar som";
+        entry[170] = "Importar som";
         
         try{
             init();

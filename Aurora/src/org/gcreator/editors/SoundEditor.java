@@ -12,6 +12,7 @@ import javax.swing.*;
 import org.gcreator.components.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -46,7 +47,7 @@ public class SoundEditor extends TabPanel {
         jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Programas\\NetBeans 6.0 beta2"));
         jFileChooser1.setDialogTitle("Choose a sound");
 
-        jLabel1.setText("Name:");
+        jLabel1.setText(LangSupporter.activeLang.getEntry(166));
 
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -54,28 +55,28 @@ public class SoundEditor extends TabPanel {
             }
         });
 
-        jButton1.setText("Load Sound");
+        jButton1.setText(LangSupporter.activeLang.getEntry(170));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Play");
+        jButton3.setText(LangSupporter.activeLang.getEntry(167));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Stop");
+        jButton5.setText(LangSupporter.activeLang.getEntry(169));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Play&Loop");
+        jButton2.setText(LangSupporter.activeLang.getEntry(168));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -92,7 +93,7 @@ public class SoundEditor extends TabPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jButton3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)

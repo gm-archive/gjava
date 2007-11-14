@@ -202,6 +202,18 @@ public class English extends Dictionary{
         entry[156] = "Port on screen";
         entry[157] = "Draw background Color";
         entry[158] = "Color:";
+        entry[159] = "Name:";
+        entry[160] = "Caption for the scene:";
+        entry[161] = "Width";
+        entry[162] = "Height";
+        entry[163] = "Speed";
+        entry[164] = "Persistent";
+        entry[165] = "Creation code";
+        entry[166] = "Name:";
+        entry[167] = "Play";
+        entry[168] = "Play&Loop";
+        entry[169] = "Stop";
+        entry[170] = "Load Sound";
         
         
         try{
