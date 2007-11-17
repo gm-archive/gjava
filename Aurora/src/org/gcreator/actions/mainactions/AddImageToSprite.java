@@ -16,9 +16,18 @@ import java.awt.event.*;
  * @author Luís
  */
 public class AddImageToSprite extends ActionPattern{
+    public static ImageIcon img = new ImageIcon(Comment.class.getResource("/org/gcreator/actions/images/Add_Image_To_Sprite.png"));
+    
     public AddImageToSprite(){
         super();
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Add_Image_To_Sprite.png")));
+    }
+    
+    public void setStandardImage(ImageIcon img){
+        AddImageToSprite.img = img;
+    }
+    
+    public ImageIcon getStandardImage(){
+        return img;
     }
     
     public  JComponent createNewPanel(org.gcreator.actions.Action action){
@@ -28,5 +37,9 @@ public class AddImageToSprite extends ActionPattern{
     
     public String getStandardText(JComponent panel){
         return "Add Image To Sprite";
+    }
+    
+    public String generateEGML(JComponent cmp){
+        return "";
     }
 }

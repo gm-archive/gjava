@@ -20,12 +20,10 @@ import javax.swing.*;
  */
 public class EndOfABlock extends ActionPattern{
     
-     private static ImageIcon icon;
-     
+     private static ImageIcon icon = new ImageIcon(EndOfABlock.class.getResource("/org/gcreator/actions/images/End_Block.png"));
      
     public EndOfABlock(){
         super();
-        icon = new ImageIcon(getClass().getResource("/org/gcreator/actions/images/End_Block.png"));
     }
     
      
@@ -38,6 +36,9 @@ public class EndOfABlock extends ActionPattern{
         return "}";
     }
 
+    public void setStandardImage(ImageIcon icon){
+        EndOfABlock.icon = icon;
+    }
     
     public ImageIcon getStandardImage() {
         return icon;

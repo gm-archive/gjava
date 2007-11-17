@@ -15,7 +15,7 @@ import org.gcreator.actions.ActionPattern;
  *
  * @author  Ali
  */
-public class CmdAction extends ActionPattern {
+public abstract class CmdAction extends ActionPattern {
     
     
     public JComponent createNewPanel(Action action) {
@@ -27,7 +27,7 @@ public class CmdAction extends ActionPattern {
 
     @Override
     public String generateEGML(JComponent panel) {
-        return super.generateEGML(panel);
+        return "";
     }
 
     @Override

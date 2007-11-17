@@ -20,17 +20,18 @@ import javax.swing.*;
  */
 public class StartOfABlock extends ActionPattern{
     
-    private static ImageIcon icon;
+    private static ImageIcon icon = new ImageIcon(StartOfABlock.class.getResource("/org/gcreator/actions/images/Start_Block.png"));
     public StartOfABlock(){
         super();
-        icon = new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Start_Block.png"));
     }
     
      
     public String getStandardText(JComponent panel){
         return "Begin block";
     }
-    
+    public void setStandardImage(ImageIcon icon){
+        StartOfABlock.icon = icon;
+    }
      
     public String generateEGML(JComponent panel){
         return "{";

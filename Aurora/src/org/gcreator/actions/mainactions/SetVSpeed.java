@@ -18,15 +18,22 @@ public class SetVSpeed extends ActionPattern {
 static final long serialVersionUID = 1L;
     //public PlainTextPanel panel = new PlainTextPanel();
     public String text;
+    public static ImageIcon icon = new ImageIcon(SetVSpeed.class.getResource("/org/gcreator/actions/images/vspeed.png"));
 
     //ActorEditor context;
 
     public SetVSpeed() {
         super();
-        //this.context = context;
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/vspeed.png")));
     }
 
+    public ImageIcon getStandardImage(){
+        return icon;
+    }
+    
+    public void setStandardImage(ImageIcon img){
+        icon = img;
+    }
+    
     public JComponent createNewPanel(org.gcreator.actions.Action action) {
          return new VSpeedEditor();
     }

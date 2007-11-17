@@ -23,12 +23,20 @@ import org.gcreator.components.*;
  */
 public class ExecuteCode extends ActionPattern{
     //ActorEditor context;
+    public static ImageIcon img = new ImageIcon(ExecuteCode.class.getResource("/org/gcreator/actions/images/Execute_Code.png"));
+    
     public ExecuteCode(){
         super();
         //this.context = context;
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Execute_Code.png")));
     }
     
+    public void setStandardImage(ImageIcon icon){
+        img = icon;
+    }
+    
+    public ImageIcon getStandardImage(){
+        return img;
+    }
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action){
         EGMLTextArea panel = new EGMLTextArea("//Some EGML Code");

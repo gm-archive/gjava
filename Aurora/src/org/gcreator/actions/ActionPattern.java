@@ -19,10 +19,9 @@ import java.io.Serializable;
  *
  * @author Luís
  */
-public class ActionPattern implements Serializable {
+public abstract class ActionPattern implements Serializable {
     static final long serialVersionUID = 1L;
    
-     private ImageIcon icon;
     private static final ObjectStreamField[] serialPersistentFields
                  = {};
     
@@ -37,21 +36,15 @@ public class ActionPattern implements Serializable {
         return new JPanel();
     }
     
-    public void setStandardImage(ImageIcon icon){
-        this.icon = icon;
-    }
+    public abstract void setStandardImage(ImageIcon icon);
     
-    public ImageIcon getStandardImage(){
-        return icon;
-    }
+    public abstract ImageIcon getStandardImage();
     
     public String getStandardText(JComponent panel){
         return "";
     }
     
-    public String generateEGML(JComponent panel){
-        return "";
-    }
+    public abstract String generateEGML(JComponent panel);
     
     public Color getBackground(){
         return Color.WHITE;

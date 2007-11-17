@@ -21,15 +21,23 @@ public class Comment extends ActionPattern {
     static final long serialVersionUID = 1L;
     //public PlainTextPanel panel = new PlainTextPanel();
     public String text;
+    public static ImageIcon img = new ImageIcon(Comment.class.getResource("/org/gcreator/actions/images/comment.png"));
 
     //ActorEditor context;
 
     public Comment() {
         super();
         //this.context = context;
-        setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/comment.png")));
     }
-
+    
+    public void setStandardImage(ImageIcon img){
+        Comment.img = img;
+    }
+    
+    public ImageIcon getStandardImage(){
+        return img;
+    }
+    
     public JComponent createNewPanel(org.gcreator.actions.Action action) {
          PlainTextPanel panel = new PlainTextPanel();
         /*panel.addKeyListener(new KeyListener(){
