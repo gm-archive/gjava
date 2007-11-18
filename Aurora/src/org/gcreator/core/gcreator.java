@@ -71,6 +71,15 @@ public class gcreator {
             }
             else if(args[i].equals("-mdi"))
                 ismdi = true;
+            else if(args[i].matches("^-(-?)help$")){
+                System.out.println("G-Creator version: " + version);
+                System.out.println("Licensed under GPL v3. More information in README.txt and 'About'.");
+                System.out.println("-safe\t\tStarts G-Creator in safe mode. (No plugins)");
+                System.out.println("-jemul:version\tPretends the user is running G-Creator with version 'version'");
+                System.out.println("-mdi\t\tStarts G-Creator in MDI mode");
+                System.out.println("-help\t\tDisplays info about G-Creator");
+                System.exit(0);
+            }
         }
         System.out.println("Running Java version " + java_version);
         if(!applet){
