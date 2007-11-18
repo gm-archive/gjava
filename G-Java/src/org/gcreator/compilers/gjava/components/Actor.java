@@ -179,7 +179,7 @@ public class Actor extends tile {
     /**
      * If the actor is visible or not
      */
-    public boolean visible;
+    public boolean visible=true;
     
     private static Vector G_JAVA_keyboard = new Vector();
     
@@ -462,10 +462,11 @@ public class Actor extends tile {
         
         if (visible) {
             
-            if (image == null) {
+            if (sprite == null) {
                 // don't draw sprite
                 
             } else {
+                System.out.println("drawing sprite!");
                 // System.out.println("Draw Sprite"+image.getImage().getHeight(null));
                                 /*if (subimage == 0)
                                         {
@@ -487,7 +488,7 @@ public class Actor extends tile {
                                                         - G_JAVA_Object_sprite.sprite_yoffset,null);
                                  
                                         }*/
-                g.drawImage(image.getImage(), (int)x,(int)y, null);
+                g.drawImage(sprite.imshow(), (int)x,(int)y, null);
                 
             }
             // draw bb

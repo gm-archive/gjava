@@ -9,116 +9,117 @@ import javax.swing.*;
  * @author G-Java development team
  * @version 1.0
  */
-public class Sprite
-	{
+public class Sprite {
 
-	String filename;
+    String filename;
+    Image[] spritename;
+    public int Transparent;
+    public int sprite_width;
+    public int sprite_height;
+    public int sprite_xoffset;
+    public int sprite_yoffset;
+    public int index;
+    public int image_speed;
+    public int subimages;
+    public int image_count;
+    public int currentimage;
+    public int BBLeft;
+    public int BBRight;
+    public int BBTop;
+    public int BBBottom;
 
-	Image spritename[];
+    /**
+     * Create a new sprite object
+     * @param sprite_name
+     * @param Height
+     * @param Width
+     * @param BBLeft
+     * @param BBRight
+     * @param BBBottom
+     * @param BBTop
+     * @param Transparent
+     * @param SmoothEdges
+     * @param PreLoadTexture
+     * @param BoundingBox
+     * @param PreciseCollisionDetection
+     * @param OriginX
+     * @param OriginY
+     * @param subimages
+     */
+    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, String[] images) {
 
-	public int Transparent;
+        this.sprite_width = Width;
+        this.sprite_height = Height;
+        this.BBBottom = BBBottom;
+        this.BBTop = BBTop;
+        this.BBRight = BBRight;
+        this.BBLeft = BBLeft;
+        this.sprite_xoffset = OriginX;
+        this.sprite_yoffset = OriginY;
 
-	public int  sprite_width, sprite_height, sprite_xoffset, sprite_yoffset, image_number,
-			image_index, image_speed, subimages, image_count;
+        this.subimages = images.length;
+        filename = sprite_name;
+        this.spritename = new Image[subimages];
+        for (int i = 0; i < images.length; i++) {
+            if (images[i].equals("")) subimages--;
+            else
+            spritename[i] = new ImageIcon(images[i]).getImage();
+        }
+        //loadImage();
+    }
 
-	public int currentimage;
-	
-	public int BBLeft, BBRight, BBTop, BBBottom;
+    public Image imshow() {
+        index++;
+        if (index > subimages) index = 0;
+        
+        return imshow(index);
+        
+    }
 
-	/**
-	 * Create a new sprite object
-	 * @param sprite_name 
-	 * @param Height 
-	 * @param Width 
-	 * @param BBLeft 
-	 * @param BBRight 
-	 * @param BBBottom 
-	 * @param BBTop 
-	 * @param Transparent 
-	 * @param SmoothEdges 
-	 * @param PreLoadTexture 
-	 * @param BoundingBox 
-	 * @param PreciseCollisionDetection 
-	 * @param OriginX 
-	 * @param OriginY 
-	 * @param subimages 
-	 */
-	public Sprite(String sprite_name,int Height,int Width,int BBLeft,int BBRight,int BBBottom,int BBTop,
-			int OriginX,int OriginY, String[] images)
-		{
+    /**
+     * Get a subimage from this sprite as an Image object
+     * @param subimage The sub image number
+     * @return the Image object of the sprite
+     */
+    public Image imshow(int subimage) {
 
-		this.sprite_width = Width;
-		this.sprite_height = Height;
-		this.BBBottom = BBBottom;
-		this.BBTop = BBTop;
-		this.BBRight = BBRight;
-		this.BBLeft = BBLeft;
-		this.sprite_xoffset = OriginX;
-		this.sprite_yoffset = OriginY;
-		
-		this.subimages = images.length;
-		filename = sprite_name;
-		this.spritename = new Image[subimages];
-		loadImage();
-		}
+//        while (subimage >= this.subimages) {
+//            subimage = subimage - subimages;
+//        }
 
-	/**
-	 * Get a subimage from this sprite as an Image object
-	 * @param subimage The sub image number
-	 * @return the Image object of the sprite
-	 */
-	public Image imshow(int subimage)
-		{
-		
-		while (subimage>=this.subimages)
-			{
-			subimage=subimage-subimages;
-			}
-		
-		if ((subimage) == -1)
-			{
-			subimage = currentimage;
-			}
-		else
-			{
-			currentimage = subimage;
-			}
-		
-		
-		
-		return spritename[subimage];
+        if ((subimage) == -1) {
+            subimage = currentimage;
+        } else {
+            currentimage = subimage;
+        }
 
-		}
 
-	// Crop sprite to bounding box
 
-	private void cropSprite(Image img)
-		{
-		// Crop all 8x8 blocks
+        return spritename[subimage];
+    }
+    // Crop sprite to bounding box
 
-		// PixelGrabber pg=new PixelGrabber(img,0,0,64*8,32*8,false);
-		// try { pg.grabPixels(); } catch (InterruptedException ex) { };
-		// byte[] map = (byte[])pg.getPixels();
-		// offscrcm = pg.getColorModel();
+    private void cropSprite(Image img) {
+        // Crop all 8x8 blocks
+        // PixelGrabber pg=new PixelGrabber(img,0,0,64*8,32*8,false);
+        // try { pg.grabPixels(); } catch (InterruptedException ex) { };
+        // byte[] map = (byte[])pg.getPixels();
+        // offscrcm = pg.getColorModel();
+        // for (int x=0; x<16; x++) for (int y=0; y<128; y++)
+        // for (int sx=0; sx<bw; sx++) for (int sy=0; sy<bw; sy++)
+        // maps[x+y*16][sx+sy*bw] = map[(x*8)+(sx/scale)+(y/32*16*8)+(y%32*64*8*8)+(sy/scale*64*8)];
+    }
 
-		// for (int x=0; x<16; x++) for (int y=0; y<128; y++)
-		// for (int sx=0; sx<bw; sx++) for (int sy=0; sy<bw; sy++)
-		// maps[x+y*16][sx+sy*bw] = map[(x*8)+(sx/scale)+(y/32*16*8)+(y%32*64*8*8)+(sy/scale*64*8)];
-		}
+    private final boolean loadImage() {
+        for (int i = 0; i < subimages; i++) {
 
-	private final boolean loadImage()
-		{
-		for (int i = 0; i < subimages; i++)
-			{
-			
-				// get image inside jar
-				spritename[i] = new ImageIcon(getClass().getResource(filename + "N" + i + ".png")).getImage();
+            // get image inside jar
+            spritename[i] = new ImageIcon(getClass().getResource(filename + "N" + i + ".png")).getImage();
 
-				
 
-			this.spritename[i] = spritename[i];
-			}
-		return true;
-		}
 
-	}
+            this.spritename[i] = spritename[i];
+        }
+        return true;
+    }
+}

@@ -214,6 +214,9 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
             R.setSize(640,620);
         }
         this.setSize(RoomW,RoomH);
+        
+        
+        
         // room creation code
         Creation_code();
         
@@ -234,6 +237,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         basicgame.canvas.addMouseListener(this);
         
         setupScene();
+        SortDepth();
         // define a new thread
         Thread th = new Thread(this);
         // start this thread
@@ -250,6 +254,12 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         this.graphics = g;
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
+        System.out.println("Draw event");
+        int dd = 0;
+        while (dd < depth.size()) {
+            tile t = (tile) depth.get(dd);
+            t.Draw_event(g);
+        }
     }
     
     /**

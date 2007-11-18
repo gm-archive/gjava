@@ -4,6 +4,7 @@
  */
 package org.gcreator.compilers;
 
+import java.awt.Image;
 import org.antlr.runtime.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ import org.gcreator.plugins.*;
 import org.gcreator.plugins.platform.gscriptLexer;
 import org.gcreator.plugins.platform.gscriptParser;
 import org.gcreator.units.ActorInScene;
+import sun.awt.image.ToolkitImage;
 
 /**
  *
@@ -52,20 +54,27 @@ public class GJava extends PlatformCore {
     }
 
     public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
+        System.out.println("parsing image");
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            BufferedImage ii = (BufferedImage) i.getImage();
+            BufferedImage ii;
+            if ((i.getImage()) instanceof ToolkitImage) {System.out.println("Toolkit");
+            ii = ((ToolkitImage)(i.getImage())).getBufferedImage();
+            }
+            else
+            ii = (BufferedImage) i.getImage();
             ImageIO.write(ii, f.type, baos);
 
-            File ff = new File(FileFolder + File.separator + "images");
-
-            ff.mkdirs();
-            ff = new File(FileFolder + File.separator + "images" + File.separator + f.name + "." + f.type);
+//            File ff = new File(FileFolder + File.separator + "images");
+//
+//            ff.mkdirs();
+            File ff = new File(FileFolder +  File.separator + f.name + "." + f.type);
             FileOutputStream fos = new FileOutputStream(ff);
 
             fos.write(baos.toByteArray());
             fos.close();
         } catch (Exception e) {
+            System.out.println("Exception parsing image"+e.getMessage());
         }
     }
 
@@ -75,10 +84,14 @@ public class GJava extends PlatformCore {
         createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new String[] {";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             String str = ""+e.nextElement();
-            org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(str,"image",gcreator.window.getCurrentProject()).object;
-        if(a!=null)
-            
-            createSprites += "\"" + e.nextElement() + "." + a.type + "\",";
+            System.out.println("Image:"+str);
+            System.out.println("got here");
+            try {
+            org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)(ResourceMenu.getObjectWithName(str,"image",gcreator.window.getCurrentProject()).object);
+        //if(a!=null)
+            } catch(Exception ee){System.out.println("exception"+ee.getLocalizedMessage());}
+            System.out.println("got here");
+            createSprites += "\"" + str + ".png" + "\",";
         }
 
         createSprites += "\"\"});";
@@ -233,7 +246,7 @@ public class GJava extends PlatformCore {
         print(game, "" + loadscene);
         print(game, "    }");
         //Load sprites method
-        print(game, createSprites + "});}");
+        print(game, createSprites + "}");
         print(game, "   public static void main(String[] args){");
         print(game, "       Runningas = \"Application\";");
         print(game, "       canvas=frame;");
