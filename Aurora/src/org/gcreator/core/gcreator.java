@@ -81,6 +81,7 @@ public class gcreator {
                 System.exit(0);
             }
         }
+        int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         System.out.println("Running Java version " + java_version);
         if(!applet){
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
@@ -93,6 +94,8 @@ public class gcreator {
                 if(plugload)
                     plugins = Plugger.getPlugList(PluginsList.loadPluglist());
         }
+        if(ver<=4)
+            plugload = false;
         arguments = args;
         if(!applet&&plugload){
             Plugger.loadPlugins(plugins);
