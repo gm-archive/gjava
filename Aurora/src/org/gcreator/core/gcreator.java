@@ -61,7 +61,7 @@ public class gcreator {
     public static void __main(String[] args){
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
-        
+        boolean ismdi = false;
         for(int i = 0; i < args.length; i++){
             System.out.println("args[" + i + "] = " + args[i]);
             if(args[i].equals("-safe"))
@@ -69,6 +69,8 @@ public class gcreator {
             else if(args[i].matches("^-jemul:.*$")){
                 java_version = args[i].replaceFirst("^-jemul:(.*)$", "$1");
             }
+            else if(args[i].equals("-mdi"))
+                ismdi = true;
         }
         System.out.println("Running Java version " + java_version);
         if(!applet){
@@ -98,11 +100,17 @@ public class gcreator {
         if (settings == null) {
             settings = new String[5];
             settings[0] = "Native";
-            settings[1] = "Tabs";
+            if(ismdi)
+                settings[1] = "MDI";
+            else
+                settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
             settings[3] = "English";
             settings[4] = "Visible";
         }
+
+        if(ismdi)
+            settings[1] = "MDI";
 
         LangSupporter.activeLang = new English();
         
