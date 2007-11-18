@@ -167,7 +167,7 @@ public class SettingsIO {
                 }
                 if(a[id]!=null)
                     addError(34);
-                a[id] = child.getNodeValue(); //1.4
+                a[id] = child.getTextContent(); //1.4 
             }
             if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null){
                 addError(35);
