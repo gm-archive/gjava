@@ -145,7 +145,7 @@ public class File extends Object implements Transferable {
         } else {
             o.value = value;
         }
-        return o;
+        return null;//(Object)o;
     }
 
     public DataFlavor[] getTransferDataFlavors() {

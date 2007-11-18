@@ -30,7 +30,7 @@ public class TabValues implements Serializable {
     
     public String[] getKeys(){
         int a = 0;
-        for(String name : names)
+        for(String name : names) //TODO remove for-each
             if(name!=null)
                 a++;
         if(a==0)

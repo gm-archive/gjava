@@ -56,34 +56,34 @@ static final long serialVersionUID = 1L;
     }
 
      
-    public void readXml(String xml) {
-        //TODO read the XML
-        String[] data = xml.split("\n");
-        String version = "1.0"; //guess
-        for (int i = 0; i < data.length; i++) {
-            if (data[i].contains("<actoreditor")) {
-                version = data[i].replaceAll("<actoreditor version=\\\"", "").replaceAll("\\\"/>", "");
-                if (!version.equals("1.0")) {
-                    System.out.println("Warning! Version is" + version);
-                }
-            } else if (data[i].contains("<Solid>")) {
-                solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
-            } else if (data[i].contains("<Visible>")) {
-                visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
-            } else if (data[i].contains("<Persistant>")) {
-                persistant = Boolean.parseBoolean(data[i].replaceAll("<Persistant>", "").replaceAll("</Persistant>", ""));
-            } else if (data[i].contains("<event")) {
-                String n = data[i].replaceAll("<event type=\"(.*?)\">", "$1");
-                System.out.println("Event " + n);
-                try {
-                    Event evt;
-                    events.add(evt = Event.getNewEventFromName(n));
-                    i = evt.readXml(data, i);
-                } catch (Exception e) {
-                }
-            }
-        }
-    }
+//    public void readXml(String xml) {
+//        //TODO read the XML
+//        String[] data = xml.split("\n");
+//        String version = "1.0"; //guess
+//        for (int i = 0; i < data.length; i++) {
+//            if (data[i].indexOf("<actoreditor") !=-1) {
+//                version = data[i].replaceAll("<actoreditor version=\\\"", "").replaceAll("\\\"/>", "");
+//                if (!version.equals("1.0")) {
+//                    System.out.println("Warning! Version is" + version);
+//                }
+//            } else if (data[i].indexOf("<Solid>") !=-1) {
+//                solid = Boolean.parseBoolean(data[i].replaceAll("<Solid>", "").replaceAll("</Solid>", ""));
+//            } else if (data[i].contains("<Visible>")) {
+//                visible = Boolean.parseBoolean(data[i].replaceAll("<Visible>", "").replaceAll("</Visible>", ""));
+//            } else if (data[i].contains("<Persistant>")) {
+//                persistant = Boolean.parseBoolean(data[i].replaceAll("<Persistant>", "").replaceAll("</Persistant>", ""));
+//            } else if (data[i].contains("<event")) {
+//                String n = data[i].replaceAll("<event type=\"(.*?)\">", "$1");
+//                System.out.println("Event " + n);
+//                try {
+//                    Event evt;
+//                    events.add(evt = Event.getNewEventFromName(n));
+//                    i = evt.readXml(data, i);
+//                } catch (Exception e) {
+//                }
+//            }
+//        }
+//    }
 
      
     public String exportToHtml(boolean xhtml) {
@@ -194,7 +194,7 @@ static final long serialVersionUID = 1L;
     }
 
     //SuppressWarnings("unchecked")
-    public Resource clone() {
+    public Object clone() {
         Actor a = new Actor(name);
         a.depth = depth;
         Object o = events.clone();
@@ -211,5 +211,9 @@ static final long serialVersionUID = 1L;
         a.visible = visible;
         a.sprite = sprite;
         return a;
+    }
+
+    public void readXml(String xml) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

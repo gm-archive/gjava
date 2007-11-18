@@ -14,7 +14,7 @@ import javax.swing.*;
  * @author Luís
  */
 public class ActionCategory {
-    public Vector<ActionPattern> patterns = new Vector<ActionPattern>();
+    public Vector patterns = new Vector();
     public String name = "";
     public ImageIcon icon = null;
     public Color selectedForeground = Color.WHITE;

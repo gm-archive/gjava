@@ -6,7 +6,7 @@
 
 package org.gcreator.components;
 
-import org.gcreator.interaction.ImportGM6;
+//import org.gcreator.interaction.ImportGM6;
 import javax.swing.AbstractListModel;
 
 /**
@@ -140,7 +140,7 @@ public class importDialog extends javax.swing.JDialog {
     
     public void importGM6File(){
         try{
-            ImportGM6 gm6 = org.gcreator.interaction.ImportGM6.callDialog(this);
+          //  ImportGM6 gm6 = org.gcreator.interaction.ImportGM6.callDialog(this);
         }
         catch(Exception e){
             System.out.println(e.getMessage());

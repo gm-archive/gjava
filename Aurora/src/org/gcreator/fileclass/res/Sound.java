@@ -30,7 +30,7 @@ public class Sound extends Resource {
         return "";
     }
     
-    public Resource clone(){
+    public Object clone(){
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

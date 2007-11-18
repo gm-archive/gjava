@@ -73,6 +73,7 @@ public class PlatformCore extends PluginCore {
     }
 
     public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
+        System.out.println("called wrong method!");
     }
 
     public void parseActor(Actor a) throws IOException {

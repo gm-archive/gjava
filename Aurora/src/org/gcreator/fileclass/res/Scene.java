@@ -24,13 +24,13 @@ public String code = "//Do nothing";
 public int width=640,height=480,speed=60,snapX=16,snapY=16;
 public boolean persistant,grid = true,isometric,drawbackcolor;
 public ViewsModel views;
-public Vector<ActorInScene> actors;
+public Vector actors;
 public Color background = Color.lightGray;
 
 public Scene(String name)
 {
     this.name = name;
-    actors = new Vector<ActorInScene>();
+    actors = new Vector();
     views = new ViewsModel();
 }
 
@@ -121,7 +121,7 @@ public String writeXml()
       
       xml += "</views>\n";
       Object[] o = actors.toArray();
-      for(Object a : o)
+      for(Object a : o) //TODO remove for each loop
           if(a!=null && a instanceof ActorInScene)
               ((ActorInScene) a).writeXml();
       
@@ -208,13 +208,13 @@ public String writeXml()
     }
     
     //SuppressWarnings("unchecked")
-    public Resource clone(){
+    public Object clone(){
         Scene a = new Scene(name);
         Object obj = actors.clone();
         if(obj == null)
             a.actors = null;
         else
-            a.actors = (Vector<ActorInScene>) obj;
+            a.actors = (Vector) obj;
         a.caption = caption;
         a.code = code;
         a.grid = grid;

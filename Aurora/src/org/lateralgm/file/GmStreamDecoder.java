@@ -58,7 +58,7 @@ public class GmStreamDecoder
 		if (ret != len)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(String.format(error,pos));
+			throw new IOException(""+error +pos);
 			}
 		if (table != null)
 			{
@@ -79,7 +79,7 @@ public class GmStreamDecoder
 		if (t == -1)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(String.format(error,pos));
+			throw new IOException(""+(error+pos));
 			}
 		if (table != null) t = (table[t] - pos) & 0xFF;
 		pos++;
@@ -117,7 +117,7 @@ public class GmStreamDecoder
 		if (check < data.length)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(String.format(error,pos));
+			throw new IOException(""+(error+pos));
 			}
 		return new String(data);
 		}
@@ -129,7 +129,7 @@ public class GmStreamDecoder
 		if (check < data.length)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(String.format(error,pos));
+			throw new IOException(""+(error+pos));
 			}
 		return new String(data);
 		}
@@ -140,7 +140,7 @@ public class GmStreamDecoder
 		if (val != 0 && val != 1)
 			{
 			String error = Messages.getString("GmStreamDecoder.INVALID_BOOLEAN"); //$NON-NLS-1$
-			throw new IOException(String.format(error,val,pos));
+			throw new IOException(""+error+pos);
 			}
 		return val == 0 ? false : true;
 		}

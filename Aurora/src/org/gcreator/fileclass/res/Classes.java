@@ -34,13 +34,13 @@ public class Classes extends Resource {
         return "";
     }
     
-    public Resource clone(){
+    public Object clone(){
         Classes a = new Classes(value);
         a.name = name;
         return a;
     }
     
-    @Override
+     
     public String toString(){
         return value;
     }

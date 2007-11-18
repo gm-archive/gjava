@@ -47,7 +47,7 @@ public class PluginsList {
                 String name = child.getNodeName();
                 if(!name.equals("plugin"))
                     return null;
-                a[id++] = child.getTextContent();
+                a[id++] = child.getTextContent(); //modified for 1.4 .getTextContent()
             }
             return a;
         }

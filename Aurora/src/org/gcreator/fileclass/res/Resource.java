@@ -22,5 +22,5 @@ public abstract class Resource implements Serializable {
     public abstract void readXml(String xml);
     public abstract String exportToHtml(boolean xhtml);
      
-    public abstract Resource clone();
+    public abstract Object clone();
 }

@@ -19,7 +19,7 @@ public class SettingsValues extends Resource{
     
     public String[] getKeys(){
         int a = 0;
-        for(String key : keys)
+        for(String key : keys) //TODO for each
             if(key!=null)
                 a++;
         if(a==0)
@@ -84,11 +84,11 @@ public class SettingsValues extends Resource{
         return "";
     }
     
-    public Resource clone(){
+    public Object clone(){
         SettingsValues a = new SettingsValues();
-        a.keys = keys.clone();
+        //a.keys = keys.clone();
         a.name = name;
-        a.tabs = tabs.clone();
+        //a.tabs = tabs.clone();
         return a;
     }
 }

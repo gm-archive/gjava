@@ -20,7 +20,7 @@ import org.gcreator.core.gcreator;
  */
 public class Sprite extends Resource {
     //public Vector<org.gcreator.fileclass.File> images;
-    public Vector<String> Simages;
+    public Vector Simages;
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
@@ -28,13 +28,13 @@ public class Sprite extends Resource {
     {
         this.name = name;
        // images = new Vector<org.gcreator.fileclass.File>();
-        Simages = new Vector<String>();
+        Simages = new Vector();
     }
 
     public ImageIcon getImageAt(int pos){
         if(pos>=Simages.size())
             return null;
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(Simages.elementAt(pos),"image",gcreator.window.getCurrentProject()).object;
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+Simages.elementAt(pos),"image",gcreator.window.getCurrentProject()).object;
         if(a==null)
             return null;
         if(a.value instanceof ImageIcon)
@@ -113,14 +113,14 @@ public class Sprite extends Resource {
     }
     
     //SuppressWarnings("unchecked")
-    public Resource clone(){
+    public Object clone(){
         Sprite a = new Sprite(name);
         a.BBBottom = BBBottom;
         a.BBRight = BBRight;
         a.BBTop = BBTop;
         a.BBleft = BBleft;
         a.height = height;
-        a.Simages = (Vector<String>) Simages.clone();
+        a.Simages = (Vector) Simages.clone();
         a.originX = originX;
         a.originY = originY;
         a.precise = precise;

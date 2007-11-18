@@ -23,7 +23,7 @@ public class VarsRegistry {
     
     public static String[] getKeys(){
         int a = 0;
-        for(String name : names)
+        for(String name : names) //TODO for each loop
             if(name!=null)
                 a++;
         if(a==0)

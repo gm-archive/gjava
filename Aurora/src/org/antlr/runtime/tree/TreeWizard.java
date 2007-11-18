@@ -159,7 +159,7 @@ public class TreeWizard {
 			return;
 		}
 		int ttype = adaptor.getType(t);
-		List elements = (List)m.get(ttype);
+		List elements = (List)m.get(new Integer(ttype));
 		if ( elements==null ) {
 			elements = new ArrayList();
 			m.put(new Integer(ttype), elements);

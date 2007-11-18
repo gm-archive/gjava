@@ -23,7 +23,7 @@
 public class Applet extends java.applet.Applet {
     
     /** Initializes the applet Applet */
-    @Override
+    
     public void init() {
         initComponents();
         org.gcreator.core.gcreator.__main(null, false, true);

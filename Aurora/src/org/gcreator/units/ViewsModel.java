@@ -42,7 +42,7 @@ public class ViewsModel extends AbstractListModel implements Serializable{
     
     public String writeXml(){
         String xml = "";
-        for(ViewInScene each : view)
+        for(ViewInScene each : view) //TODO remove for each loop
             xml += each.writeXml();
         return xml;
     }

@@ -25,12 +25,12 @@ public abstract class CmdAction extends ActionPattern {
         return null;
     }
 
-    @Override
+     
     public String generateEGML(JComponent panel) {
         return "";
     }
 
-    @Override
+     
     public String writeXml(JComponent panel) {
         return super.writeXml(panel);
     }
