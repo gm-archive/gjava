@@ -115,6 +115,8 @@ public class GJava extends PlatformCore {
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
+            print(actor, "        x = X;");
+            print(actor, "        y = Y;");
             print(actor, "        this.instance_id = instance_id;");
             print(actor, "    }");
             //events
@@ -240,6 +242,8 @@ public class GJava extends PlatformCore {
         print(game, "public class Game extends basicgame {");
         print(game, loadSprites + "G_Creator_NULL_SPRITE;");
         print(game, "    Game(){");
+        print(game, "//loading image code will go here");
+        print(game, "loadSprites();");
         print(game, "        loadScenes();");
         print(game, "        nextScene();");
         print(game, "    }");

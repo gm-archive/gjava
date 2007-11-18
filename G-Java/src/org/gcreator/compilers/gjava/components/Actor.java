@@ -459,12 +459,12 @@ public class Actor extends tile {
      * @param g 
      */
     public void Draw_event(Graphics g) {
-        System.out.println("actor draw!");
+        
         if (visible) {
             
             if (sprite == null) {
                 // don't draw sprite
-                
+                System.out.println("null sprite");
             } else {
                 System.out.println("drawing sprite!");
                 // System.out.println("Draw Sprite"+image.getImage().getHeight(null));

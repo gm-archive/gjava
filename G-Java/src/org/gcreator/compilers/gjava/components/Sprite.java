@@ -3,6 +3,7 @@ package org.gcreator.compilers.gjava.components;
 import java.awt.*;
 import java.net.*;
 import javax.swing.*;
+import org.gcreator.compilers.gjava.Game;
 
 /**
  * Sprite object, may be replaced with another object in G-java 2.0
@@ -62,9 +63,10 @@ public class Sprite {
         this.spritename = new Image[subimages];
         for (int i = 0; i < images.length; i++) {
             if (images[i].equals("")) subimages--;
-            else
-            spritename[i] = new ImageIcon(images[i]).getImage();
-        }
+            else {
+                //Game g;
+            spritename[i] = new ImageIcon((images[i])).getImage();
+        } }
         //loadImage();
     }
 
