@@ -199,7 +199,7 @@ public class Aurwindow extends JFrame {
         try {
             panel.parent = this;
             panel.title = title;
-            int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+            int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
             if (istabs&&ver>=6) {
                 for (int i = 0; i < tabs.getTabCount(); i++) {
                     if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project == null) {
@@ -311,7 +311,7 @@ public class Aurwindow extends JFrame {
         console.setContentType("text/html");
         scroller.setViewportView(console);
 
-        int ver = Integer.parseInt(gcreator.java_version.replaceAll("1\\.([0-9])\\..*", "$1"));
+        int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if(ver>=6){
         new  FileDrop( this, new FileDrop.Listener()
       {   public void  filesDropped( java.io.File[] files )

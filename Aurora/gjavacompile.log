@@ -1,7 +1,2 @@
-Projects\Jogo_Vazio1\Java\org\gcreator\compilers\gjava\Game.java:12: cannot access org.gcreator.compilers.gjava.newScene1
-bad class file: Projects\Jogo_Vazio1\Java\org\gcreator\compilers\gjava\newScene1.java
-file does not contain class org.gcreator.compilers.gjava.newScene1
-Please remove or make sure it appears in the correct subdirectory of the classpath.
-    scenes[0] = new newScene1();
-                    ^
-1 error
+Note: Projects\Jogo_Vazio1\Java\org\gcreator\compilers\gjava\newScene1.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.

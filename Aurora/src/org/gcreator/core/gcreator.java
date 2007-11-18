@@ -33,10 +33,14 @@ public class gcreator {
     public static PluginCore[] plugins;
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
-    public static final String java_version = System.getProperty("java.version");
+    private static String java_version = System.getProperty("java.version");
     
     public static String[] getargs(){
         return arguments;
+    }
+
+    public static final String getJavaVersion(){
+        return java_version;
     }
     
     protected static boolean applet;
@@ -57,12 +61,16 @@ public class gcreator {
     public static void __main(String[] args){
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
-        System.out.println("Running Java version " + java_version);
+        
         for(int i = 0; i < args.length; i++){
             System.out.println("args[" + i + "] = " + args[i]);
             if(args[i].equals("-safe"))
                 plugload = false;
+            else if(args[i].matches("^-jemul:.*$")){
+                java_version = args[i].replaceFirst("^-jemul:(.*)$", "$1");
+            }
         }
+        System.out.println("Running Java version " + java_version);
         if(!applet){
         folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
 		int location = folder.lastIndexOf("/");
