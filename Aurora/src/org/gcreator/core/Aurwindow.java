@@ -713,13 +713,11 @@ public class Aurwindow extends JFrame {
         splitter1.setRightComponent(scroller);
         splitter2.setLeftComponent(treescroll);
         splitter2.setRightComponent(tabs);
-        WelcomeTab welcome = new WelcomeTab();
-        addWindow(welcome, 26);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
+        layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
 
 
@@ -782,6 +780,8 @@ public class Aurwindow extends JFrame {
         //setSize(550, 550);
         utilities.addMessage(29);
         //</editor-fold>
+        WelcomeTab welcome = new WelcomeTab();
+        addWindow(welcome, 26);
         workspace.expandRow(0);
         setMinimumSize(new Dimension(200, 200));
         setVisible(true);
@@ -923,7 +923,10 @@ public class Aurwindow extends JFrame {
                 for (int i = 0; i < mdi.getComponents().length; i++) {
                     TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
                     tabs.addTab(panel.title, panel);
-                    tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+                    int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
+                    if (ver >= 6) {
+                        tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+                    }
                     tabs.addMouseListener(new MouseAdapter() {
 
                                 public void mouseClicked(MouseEvent evt) {

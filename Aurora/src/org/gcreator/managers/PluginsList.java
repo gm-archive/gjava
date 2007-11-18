@@ -48,6 +48,7 @@ public class PluginsList {
                 if(!name.equals("plugin"))
                     return null;
                 a[id++] = child.getTextContent(); //modified for 1.4 .getTextContent()
+                System.out.println("val: " + a[id-1]);
             }
             return a;
         }

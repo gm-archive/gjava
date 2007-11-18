@@ -214,6 +214,6 @@ static final long serialVersionUID = 1L;
     }
 
     public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

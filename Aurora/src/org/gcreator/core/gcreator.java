@@ -118,7 +118,7 @@ public class gcreator {
             settings[4] = "Visible";
         }
 
-        if(ismdi)
+        if(ismdi||ver<=6)
             settings[1] = "MDI";
 
         LangSupporter.activeLang = new English();
