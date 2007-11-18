@@ -20,6 +20,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
@@ -72,9 +73,12 @@ public class GJava extends PlatformCore {
         super.parseSprite(s);
         loadSprites += s.name + ",";
         createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new String[] {";
-        for (Enumeration e = s.images.elements(); e.hasMoreElements();) {
-            org.gcreator.fileclass.File f = (org.gcreator.fileclass.File) e.nextElement();
-            createSprites += "\"" + f.name + "." + f.type + "\",";
+        for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
+            String str = ""+e.nextElement();
+            org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(str,"image",gcreator.window.getCurrentProject()).object;
+        if(a!=null)
+            
+            createSprites += "\"" + e.nextElement() + "." + a.type + "\",";
         }
 
         createSprites += "\"\"});";
@@ -94,7 +98,7 @@ public class GJava extends PlatformCore {
             if (a.sprite == null) {
                 print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
@@ -164,12 +168,17 @@ public class GJava extends PlatformCore {
         }
         print(scene, "    }");
         print(scene, "    private void setupScene() {");
-        for (Enumeration e = s.actors.elements(); e.hasMoreElements();) {
-            print(scene, "instances.add(new " + ((ActorInScene) e.nextElement()).actor.name + "(" + ((ActorInScene) e.nextElement()).x + "," + ((ActorInScene) e.nextElement()).y + "));");
-        }
+        
+        for(int i=0; i<s.actors.size(); i++)
+        print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + ","+((ActorInScene) s.actors.get(i)).id +"));");
+
+//        for (Enumeration e = s.actors.elements(); e.hasMoreElements();) {
+//            print(scene, "instances.add(new " + ((ActorInScene) e.nextElement()).actor.name + "(" + ((ActorInScene) e.nextElement()).x + "," + ((ActorInScene) e.nextElement()).y + "));");
+//        }
         print(scene, "    }");
         print(scene, "");
         print(scene, "}");
+        System.out.println("scene close");
         scene.close();
     }
 
@@ -224,7 +233,7 @@ public class GJava extends PlatformCore {
         print(game, "" + loadscene);
         print(game, "    }");
         //Load sprites method
-        print(game, createSprites + "}");
+        print(game, createSprites + "});}");
         print(game, "   public static void main(String[] args){");
         print(game, "       Runningas = \"Application\";");
         print(game, "       canvas=frame;");

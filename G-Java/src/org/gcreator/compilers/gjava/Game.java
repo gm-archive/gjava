@@ -17,11 +17,14 @@ import org.gcreator.compilers.gjava.core.basicgame;
  */
 public class Game extends basicgame {
     public static Sprite G_Creator_NULL_SPRITE;
+    private Sprite newSprite1;
     Game(){
        // Sprite Sprite = new Sprite();
       loadScenes();
         nextScene();
     }
+    
+    public void loadSprites() { newSprite1 = new Sprite("newSprite1",106, 416, 0, 0, 0, 0, 0, 0, new String[] {});}
     
     public static void main(String[] args){
         Runningas = "Application";

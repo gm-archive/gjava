@@ -211,18 +211,16 @@ public class Actor extends tile {
     /**
      * Creates a new actor, don't call this, call other constructor
      */
-    Actor(String Object_name,String img,boolean Solid,boolean Visible,int Depth,int Persistent) {
+   public Actor(String Object_name,Sprite spr,boolean Solid,boolean Visible,int Depth,boolean Persistent) {
                 /*
                  * Objects(int id,String Object_name,sprite Object_sprite,sprite Object_mask,double Object_depth, int
                  * Object_solid,int Object_visible,int parent,boolean Object_persistent)
                  */
-        this.persistent = (Persistent == 1);
+        this.persistent = Persistent;
         this.alarms = new int[20];
         this.name = Object_name;
         //if (Object_sprite != -1) this.G_JAVA_Object_sprite = basicgame.sprite[Object_sprite];
-        if (!img.equals("null"))
-        this.image = new ImageIcon(this.getClass().getResource(img.replaceAll("/images", "images")));
-        
+        this.sprite = spr;
         
             this.visible = Visible;
         this.depth = Depth;
