@@ -25,12 +25,13 @@ public interface VisualWidget{
     public int getHeight();
     public Point getLocation();
     public void setLocation(Point p);
+    public void setLocation(int x, int y);
     public int getX();
     public int getY();
     public void setX(int x);
     public void setY(int y);
     public boolean isVisible();
-    public void setVisible();
+    public void setVisible(boolean visible);
     public boolean isIcon();
     public boolean isIconizable();
     public void setIcon(boolean icon);
@@ -39,8 +40,9 @@ public interface VisualWidget{
     public String getText();
     public void setText(String text);
     public boolean isClosable();
-    public void setClosable();
+    public void setClosable(boolean closable);
     public void close();
     public int getBorderWidth();
     public void setBorderWidth(int border);
+    public GoManager getGoManager();
 }
