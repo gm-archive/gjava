@@ -8,8 +8,11 @@ public class newScene1 extends Scene {
 
     newScene1() {
         super(basicgame.frame,"",60,640,480, new Color(255,0,51));
+        setupScene();
+        this.SortDepth();
     }
     private void setupScene() {
+        System.out.println("setup real scene!!!");
 instances.add(new newActor1(41,110,1.0));
     }
 

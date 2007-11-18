@@ -459,7 +459,7 @@ public class Actor extends tile {
      * @param g 
      */
     public void Draw_event(Graphics g) {
-        
+        System.out.println("actor draw!");
         if (visible) {
             
             if (sprite == null) {

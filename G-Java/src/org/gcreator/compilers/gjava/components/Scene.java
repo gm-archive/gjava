@@ -236,8 +236,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         basicgame.canvas.addKeyListener(this);
         basicgame.canvas.addMouseListener(this);
         
-        setupScene();
-        SortDepth();
+       
         // define a new thread
         Thread th = new Thread(this);
         // start this thread
@@ -254,10 +253,11 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         this.graphics = g;
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
-        System.out.println("Draw event");
+        System.out.println("Draw event"+depth.size());
         int dd = 0;
         while (dd < depth.size()) {
             tile t = (tile) depth.get(dd);
+            System.out.println("calling draw");
             t.Draw_event(g);
         }
     }
@@ -266,6 +266,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
      * This will sort the depth vector by depth
      */
     public void SortDepth() {
+        System.out.println("sort depth");
         depth.addAll(instances);
         java.util.Collections.sort(depth,Collections.reverseOrder());
         depth.trimToSize();
@@ -392,6 +393,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
      * Create all the actors, backgrounds tiles etc
      */
     private void setupScene() {
+        System.out.println("setup null scene");
     }
     
     private void storeStats()

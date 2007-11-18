@@ -179,6 +179,8 @@ public class GJava extends PlatformCore {
         } else {
             print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.BLACK);");
         }
+        print(scene, "    setupScene();");
+        print(scene, "    SortDepth();");
         print(scene, "    }");
         print(scene, "    private void setupScene() {");
         
