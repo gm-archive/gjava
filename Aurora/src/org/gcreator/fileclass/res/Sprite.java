@@ -19,6 +19,7 @@ import org.gcreator.core.gcreator;
  * @author Ali1
  */
 public class Sprite extends Resource {
+    static final long serialVersionUID = 1L;
     //public Vector<org.gcreator.fileclass.File> images;
     public Vector Simages;
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;

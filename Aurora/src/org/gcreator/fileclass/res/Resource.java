@@ -18,8 +18,8 @@ import java.io.Serializable;
 public abstract class Resource implements Serializable {
     public String name;
     static final long serialVersionUID = 1L;
-    public abstract String writeXml();
-    public abstract void readXml(String xml);
+//    public abstract String writeXml();
+//    public abstract void readXml(String xml);
     public abstract String exportToHtml(boolean xhtml);
      
     public abstract Object clone();

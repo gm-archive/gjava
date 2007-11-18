@@ -14,6 +14,7 @@ package org.gcreator.fileclass.res;
  * @author Ali1
  */
 public class Classes extends Resource {
+    static final long serialVersionUID = 1L;
     public String value = "";
      
     public Classes(String value){

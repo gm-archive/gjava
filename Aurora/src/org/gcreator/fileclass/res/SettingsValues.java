@@ -14,6 +14,7 @@ package org.gcreator.fileclass.res;
  * @author Luís
  */
 public class SettingsValues extends Resource{
+    static final long serialVersionUID = 1L;
     private String[] keys = new String[20];
     private TabValues[] tabs = new TabValues[20];
     

@@ -18,6 +18,7 @@ import java.util.*;
  * @author Ali1
  */
 public class Scene extends Resource {
+    static final long serialVersionUID = 1L;
 public String caption = "";
 public String code = "//Do nothing";
  //name is already on the list
