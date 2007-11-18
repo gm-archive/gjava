@@ -22,6 +22,7 @@ import javax.swing.event.*;
 
 import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.*;
+import org.gcreator.components.gowidgets.*;
 import org.gcreator.editors.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.externproject.*;
@@ -33,8 +34,7 @@ import org.gcreator.plugins.*;
 import java.awt.datatransfer.Transferable;
 import net.iharder.dnd.FileDrop;
 
-import org.gcreator.help.AboutPanel;
-import org.gcreator.help.HelpPanel;
+import org.gcreator.help.*;
 import org.gcreator.units.*;
 
 
