@@ -76,6 +76,8 @@ public class Aurwindow extends JFrame {
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
     
+    public GoManager go;
+    
     //</editor-fold>
 
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -291,7 +293,7 @@ public class Aurwindow extends JFrame {
         }
         return null;
     }
-
+    
     //<editor-fold defaultstate="collapsed" desc="Constructor">
 
     protected Aurwindow(String[] settings) {
@@ -310,6 +312,11 @@ public class Aurwindow extends JFrame {
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
+        go = new GoManager();
+        JComponent c = new JScrollBar();
+        c.setSize(100, 100);
+        c.setLocation(50, 50);
+        go.addWidget(new SwingWidget(c));
 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if(ver>=6){
@@ -1203,6 +1210,21 @@ public class Aurwindow extends JFrame {
         folder.node.add(node);
         workspace.updateUI();
         return true;
+    }
+    
+    public void paint(Graphics g){
+        super.paint(g);
+        go.paint((Graphics2D) g);
+    }
+    
+    public void paintAll(Graphics g){
+        super.paintAll(g);
+        go.paint((Graphics2D) g);
+    }
+    
+    public void paintComponents(Graphics g){
+        super.paintComponents(g);
+        go.paint((Graphics2D) g);
     }
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject">
