@@ -22,7 +22,6 @@ import javax.swing.event.*;
 
 import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.*;
-import org.gcreator.components.gowidgets.*;
 import org.gcreator.editors.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.externproject.*;
@@ -75,8 +74,6 @@ public class Aurwindow extends JFrame {
     public static NewProject newproject;
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
-    
-    public GoManager go;
     
     //</editor-fold>
 
@@ -239,7 +236,12 @@ public class Aurwindow extends JFrame {
                     }
                 }
             }
-            ExtendedFrame frame = new ExtendedFrame();
+            ExtendedFrame frame = new ExtendedFrame(){
+                public void paint(Graphics g){
+                    super.paint(g);
+                    paintGraph();
+                }
+            };
             panel.frame = frame;
             frame.setPanel(panel);
             frame.setClosable(true);
@@ -296,13 +298,22 @@ public class Aurwindow extends JFrame {
     
     //<editor-fold defaultstate="collapsed" desc="Constructor">
 
+    public void paintGraph(){
+        Graphics g = getGraphics();
+    }
+    
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setIconImage(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")).getImage());
         istabs = true;
-        console = new JTextPane();
+        console = new JTextPane(){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
         console.setEditable(false);
         console.setBackground(Colorfeel.ConsoleBGColor);
         console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
@@ -312,11 +323,6 @@ public class Aurwindow extends JFrame {
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
-        go = new GoManager();
-        JComponent c = new JScrollBar();
-        c.setSize(100, 100);
-        c.setLocation(50, 50);
-        go.addWidget(new SwingWidget(c));
 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if(ver>=6){
@@ -333,10 +339,30 @@ public class Aurwindow extends JFrame {
 
         consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(console, consolepopup));
-        tabs = new JTabbedPane();
-        mdi = new JDesktopPane();
-        splitter1 = new JSplitPane();
-        splitter2 = new JSplitPane();
+        tabs = new JTabbedPane(){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
+        mdi = new JDesktopPane(){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
+        splitter1 = new JSplitPane(){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
+        splitter2 = new JSplitPane(){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         try {
@@ -356,7 +382,12 @@ public class Aurwindow extends JFrame {
         /*
          * Set up tree
          */
-        workspace = new JTree(top);
+        workspace = new JTree(top){
+            public void paint(Graphics g){
+                super.paint(g);
+                paintGraph();
+            }
+        };
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         if (ver >= 6) {
@@ -1214,17 +1245,14 @@ public class Aurwindow extends JFrame {
     
     public void paint(Graphics g){
         super.paint(g);
-        go.paint((Graphics2D) g);
     }
     
     public void paintAll(Graphics g){
         super.paintAll(g);
-        go.paint((Graphics2D) g);
     }
     
     public void paintComponents(Graphics g){
         super.paintComponents(g);
-        go.paint((Graphics2D) g);
     }
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject">

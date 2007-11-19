@@ -11,6 +11,7 @@ package org.gcreator.managers;
 
 import javax.swing.*;
 import java.awt.*;
+import org.gcreator.core.*;
 
 /**
  *
@@ -20,28 +21,48 @@ public class MenuSupporter {
     public static final int MENULIMIT = 30;
     public static final int ITEMLIMIT = 30;
     public static JMenu MakeMenu(JMenuBar menubar, int label, String description){
-        JMenu menu = new JMenu(LangSupporter.activeLang.getEntry(label));
+        JMenu menu = new JMenu(LangSupporter.activeLang.getEntry(label)){
+            public void paint(Graphics g){
+                super.paint(g);
+                gcreator.window.paintGraph();
+            }
+            };
         menu.getAccessibleContext().setAccessibleDescription(description);
         menubar.add(menu);
         return menu;
     }
     
     public static JMenu MakeSubMenu(JMenu menu, int label, String description){
-        JMenu amenu = new JMenu(LangSupporter.activeLang.getEntry(label));
+        JMenu amenu = new JMenu(LangSupporter.activeLang.getEntry(label)){
+            public void paint(Graphics g){
+                super.paint(g);
+                gcreator.window.paintGraph();
+            }
+            };
         menu.getAccessibleContext().setAccessibleDescription(description);
         menu.add(amenu);
         return amenu;
     }
     
     public static JMenuItem MakeMenuItem(JMenu menu, int label, String description){
-        JMenuItem item = new JMenuItem(LangSupporter.activeLang.getEntry(label));
+        JMenuItem item = new JMenuItem(LangSupporter.activeLang.getEntry(label)){
+            public void paint(Graphics g){
+                super.paint(g);
+                gcreator.window.paintGraph();
+            }
+            };
         item.getAccessibleContext().setAccessibleDescription(description);
         menu.add(item);
         return item;
     }
     
     public static JRadioButtonMenuItem MakeRadioMenuItem(ButtonGroup group, JMenu menu, int label, String description){
-        JRadioButtonMenuItem item = new JRadioButtonMenuItem(LangSupporter.activeLang.getEntry(label));
+        JRadioButtonMenuItem item = new JRadioButtonMenuItem(LangSupporter.activeLang.getEntry(label)){
+            public void paint(Graphics g){
+                super.paint(g);
+                gcreator.window.paintGraph();
+            }
+            };
         item.getAccessibleContext().setAccessibleDescription(description);
         group.add(item);
         menu.add(item);
@@ -49,7 +70,12 @@ public class MenuSupporter {
     }
     
     public static JCheckBoxMenuItem MakeCheckMenuItem(JMenu menu, int label, String description){
-        JCheckBoxMenuItem item = new JCheckBoxMenuItem(LangSupporter.activeLang.getEntry(label));
+        JCheckBoxMenuItem item = new JCheckBoxMenuItem(LangSupporter.activeLang.getEntry(label)){
+            public void paint(Graphics g){
+                super.paint(g);
+                gcreator.window.paintGraph();
+            }
+            };
         item.getAccessibleContext().setAccessibleDescription(description);
         menu.add(item);
         return item;
