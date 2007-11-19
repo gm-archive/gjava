@@ -11,6 +11,10 @@ import javax.swing.ImageIcon;
  * @version 1.0
  */
 public class Actor extends tile {
+    
+//    ImageIcon ii = new ImageIcon(getClass().getResource("image.png"));
+ //   Image iii = ii.getImage();
+    
     /**
      * The Actor name
      */
@@ -206,6 +210,7 @@ public class Actor extends tile {
         ystart = Y;
         id = objid;
         this.instance_id = instance_id;
+        
     }
     
     /**
@@ -216,6 +221,7 @@ public class Actor extends tile {
                  * Objects(int id,String Object_name,sprite Object_sprite,sprite Object_mask,double Object_depth, int
                  * Object_solid,int Object_visible,int parent,boolean Object_persistent)
                  */
+       
         this.persistent = Persistent;
         this.alarms = new int[20];
         this.name = Object_name;
@@ -466,7 +472,7 @@ public class Actor extends tile {
                 // don't draw sprite
                 System.out.println("null sprite");
             } else {
-                System.out.println("drawing sprite!");
+               // System.out.println("drawing sprite!");
                 // System.out.println("Draw Sprite"+image.getImage().getHeight(null));
                                 /*if (subimage == 0)
                                         {

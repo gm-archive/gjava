@@ -4,6 +4,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
 public class Game extends basicgame {
 public static Sprite newSprite1,G_Creator_NULL_SPRITE;
     Game(){
+        loadSprites();
         loadScenes();
         nextScene();
     }

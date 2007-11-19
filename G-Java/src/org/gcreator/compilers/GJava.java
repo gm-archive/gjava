@@ -54,7 +54,7 @@ public class GJava extends PlatformCore {
     }
 
     public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
-        System.out.println("parsing image");
+        
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             BufferedImage ii;
@@ -68,7 +68,7 @@ public class GJava extends PlatformCore {
 //            File ff = new File(FileFolder + File.separator + "images");
 //
 //            ff.mkdirs();
-            File ff = new File(FileFolder +  File.separator + f.name + "." + f.type);
+            File ff = new File(FileFolder + "components"+ File.separator + f.name + "." + f.type);
             FileOutputStream fos = new FileOutputStream(ff);
 
             fos.write(baos.toByteArray());
@@ -299,7 +299,7 @@ public class GJava extends PlatformCore {
         GJavaCompiler compiler = new GJavaCompiler();
     }
     
-    @Override
+     
     public Object onSignalReceived(PluginCore caller, Object signal){
         if(signal instanceof Object[]){
             Object[] args = (Object[]) signal;

@@ -257,6 +257,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         while (dd < depth.size()) {
             tile t = (tile) depth.get(dd);
             t.Draw_event(g);
+            dd++;
         }
     }
     
@@ -514,35 +515,35 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
     }
 
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+     //   throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+     //   throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void keyReleased(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //  throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void mouseClicked(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //  throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void mousePressed(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+     //   throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void mouseReleased(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+      //  throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void mouseEntered(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+//        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void mouseExited(MouseEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+   //     throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

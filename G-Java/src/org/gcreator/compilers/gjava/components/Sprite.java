@@ -60,22 +60,29 @@ public class Sprite {
 
         this.subimages = images.length;
         filename = sprite_name;
-        this.spritename = new Image[subimages];
+        this.spritename = new Image[subimages-1];
+        
         for (int i = 0; i < images.length; i++) {
+            
             if (images[i].equals("")) subimages--;
             else {
-                //Game g;
-            spritename[i] = new ImageIcon((images[i])).getImage();
+                
+                try{
+                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
+                    
+            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
+                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
         } }
         //loadImage();
     }
 
     public Image imshow() {
         index++;
-        if (index > subimages) index = 0;
+        //System.out.println(""+index);
+        if (index >= subimages) index = 0;
         
         return imshow(index);
-        
+        //return spritename[0];
     }
 
     /**
@@ -94,7 +101,7 @@ public class Sprite {
         } else {
             currentimage = subimage;
         }
-
+        
 
 
         return spritename[subimage];
@@ -112,16 +119,16 @@ public class Sprite {
         // maps[x+y*16][sx+sy*bw] = map[(x*8)+(sx/scale)+(y/32*16*8)+(y%32*64*8*8)+(sy/scale*64*8)];
     }
 
-    private final boolean loadImage() {
-        for (int i = 0; i < subimages; i++) {
-
-            // get image inside jar
-            spritename[i] = new ImageIcon(getClass().getResource(filename + "N" + i + ".png")).getImage();
-
-
-
-            this.spritename[i] = spritename[i];
-        }
-        return true;
-    }
+//    private final boolean loadImage() {
+//        for (int i = 0; i < subimages; i++) {
+//
+//            // get image inside jar
+//            spritename[i] = new ImageIcon(getClass().getResource(filename + "N" + i + ".png")).getImage();
+//
+//
+//
+//            this.spritename[i] = spritename[i];
+//        }
+//        return true;
+//    }
 }
