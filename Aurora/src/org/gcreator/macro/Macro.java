@@ -54,8 +54,8 @@ public class Macro {
      * Starts to record a new macro
      * @param name The name of the macro to be recorded
      */
-    public static void record(String name){
-        recordingMacro = new Macro(name);
+    public static Macro record(String name){
+        return recordingMacro = new Macro(name);
     }
     
     

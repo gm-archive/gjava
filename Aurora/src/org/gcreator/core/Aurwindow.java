@@ -15,11 +15,10 @@ import java.beans.*;
 import java.io.*;
 import java.util.*;
 import java.util.logging.*;
-
 import javax.swing.*;
 import javax.swing.tree.*;
 import javax.swing.event.*;
-
+import net.iharder.dnd.*;
 import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.editors.*;
@@ -27,13 +26,11 @@ import org.gcreator.exceptions.*;
 import org.gcreator.externproject.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
+import org.gcreator.help.*;
 import org.gcreator.languages.*;
 import org.gcreator.managers.*;
+import org.gcreator.macro.*;
 import org.gcreator.plugins.*;
-import java.awt.datatransfer.Transferable;
-import net.iharder.dnd.FileDrop;
-
-import org.gcreator.help.*;
 import org.gcreator.units.*;
 
 
@@ -1044,6 +1041,18 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 7 && item == 3) {
             addWindow(globalsettings, 131);
+        }
+        if (menu == 8 && item == 2) {
+            String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
+            if(mname!=null&&mname.length()>0)
+                if(MacroLibrary.findMacro(mname)!=null)
+                    JOptionPane.showMessageDialog(
+                            this,
+                            LangSupporter.activeLang.getEntry(177),
+                            LangSupporter.activeLang.getEntry(176),
+                            JOptionPane.ERROR_MESSAGE);
+                else
+                    MacroLibrary.addMacro(Macro.record(mname));
         }
     }
 

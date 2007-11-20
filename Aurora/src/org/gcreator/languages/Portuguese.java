@@ -218,6 +218,9 @@ public class Portuguese extends Dictionary{
         entry[172] = "Executar macro";
         entry[173] = "Editar macro";   
         entry[174] = "Gravar nova macro";
+        entry[175] = "Escolher nome da macro";
+        entry[176] = "Erro de gravação de macro";
+        entry[177] = "Já existe uma macro com esse nome";
         
         try{
             init();
