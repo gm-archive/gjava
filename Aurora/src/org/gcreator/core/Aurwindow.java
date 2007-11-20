@@ -645,6 +645,29 @@ public class Aurwindow extends JFrame {
                         onItemActionPerformed(7, 3, evt);
                     }
                 });
+        menus[7].addSeparator();
+        menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 0)] = MenuSupporter.MakeMenuItem(menus[8], 172, "Play macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 0)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(8, 0, evt);
+                    }
+                });
+        items[MenuSupporter.GenerateMenuItemId(8, 1)] = MenuSupporter.MakeMenuItem(menus[8], 173, "Edit macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 1)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(8, 1, evt);
+                    }
+                });
+        items[MenuSupporter.GenerateMenuItemId(8, 2)] = MenuSupporter.MakeMenuItem(menus[8], 174, "Record new macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 2)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(8, 2, evt);
+                    }
+                });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {

@@ -214,6 +214,10 @@ public class Portuguese extends Dictionary{
         entry[168] = "Tocar som continuamente";
         entry[169] = "Parar som";
         entry[170] = "Importar som";
+        entry[171] = "Macros";
+        entry[172] = "Executar macro";
+        entry[173] = "Editar macro";   
+        entry[174] = "Gravar nova macro";
         
         try{
             init();

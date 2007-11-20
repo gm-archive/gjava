@@ -214,7 +214,10 @@ public class English extends Dictionary{
         entry[168] = "Play&Loop";
         entry[169] = "Stop";
         entry[170] = "Load Sound";
-        
+        entry[171] = "Macros";
+        entry[172] = "Play macro";
+        entry[173] = "Edit macro";   
+        entry[174] = "Record new macro";
         
         try{
             init();
