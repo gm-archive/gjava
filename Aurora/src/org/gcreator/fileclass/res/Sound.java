@@ -13,7 +13,7 @@ package org.gcreator.fileclass.res;
  *
  * @author Ali1
  */
-public class Sound extends Resource {
+public class Sound extends Resource  {
 static final long serialVersionUID = 1L;
      
     public String writeXml() {

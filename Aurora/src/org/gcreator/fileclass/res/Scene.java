@@ -23,7 +23,7 @@ public String caption = "";
 public String code = "//Do nothing";
  //name is already on the list
 public int width=640,height=480,speed=60,snapX=16,snapY=16;
-public boolean persistant,grid = true,isometric,drawbackcolor;
+public boolean persistant,grid = true,isometric,drawbackcolor=true;
 public ViewsModel views;
 public Vector actors;
 public Color background = Color.lightGray;
