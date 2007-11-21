@@ -221,6 +221,10 @@ public class English extends Dictionary{
         entry[175] = "Choose macro name";
         entry[176] = "Macro recording error";
         entry[177] = "Macro with the same name already exists";
+        entry[178] = "Choose a macro to play";
+        entry[179] = "Cancel";
+        entry[180] = "Play Macro";
+        entry[181] = "Macro player";
         
         try{
             init();
