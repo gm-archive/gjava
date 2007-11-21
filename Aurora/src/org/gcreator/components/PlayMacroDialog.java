@@ -58,6 +58,11 @@ public class PlayMacroDialog extends JDialog {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText(LangSupporter.activeLang.getEntry(180));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText(LangSupporter.activeLang.getEntry(179));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +110,11 @@ public class PlayMacroDialog extends JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+        ((Macro) jList1.getSelectedValue()).play();
+    }//GEN-LAST:event_jButton1ActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
