@@ -33,7 +33,7 @@ public class StartOfABlock extends ActionPattern{
         StartOfABlock.icon = icon;
     }
      
-    public String generateEGML(JComponent panel){
+    public String generateGCL(JComponent panel){
         return "{";
     }
      public ImageIcon getStandardImage() {

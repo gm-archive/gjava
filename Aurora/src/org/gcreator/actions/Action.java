@@ -66,7 +66,7 @@ public class Action implements Serializable {
     }
     
     public String getEGML(){
-        return pattern.generateEGML(getPanel());
+        return pattern.generateGCL(getPanel());
     }
     
     public Color getBackground(){

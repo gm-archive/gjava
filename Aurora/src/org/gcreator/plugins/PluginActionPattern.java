@@ -15,7 +15,7 @@ import javax.swing.*;
 public class PluginActionPattern extends ActionPattern{
     public ImageIcon img;
     
-    public String generateEGML(JComponent comp){
+    public String generateGCL(JComponent comp){
         return "";
     }
     

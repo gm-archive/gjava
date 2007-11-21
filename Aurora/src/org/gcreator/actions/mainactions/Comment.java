@@ -51,7 +51,7 @@ public class Comment extends ActionPattern {
         }
     }
 
-    public String generateEGML(JComponent panel) {
+    public String generateGCL(JComponent panel) {
         return ""; //It could generate a comment, but why should it?
     }
 }

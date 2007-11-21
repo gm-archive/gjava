@@ -63,7 +63,7 @@ public class ExecuteCode extends ActionPattern{
     }
     
      
-    public String generateEGML(JComponent panel){
+    public String generateGCL(JComponent panel){
         return ((EGMLTextArea) panel).getText();
     }
 }

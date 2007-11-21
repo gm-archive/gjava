@@ -44,7 +44,7 @@ public abstract class ActionPattern implements Serializable {
         return "";
     }
     
-    public abstract String generateEGML(JComponent panel);
+    public abstract String generateGCL(JComponent panel);
     
     public Color getBackground(){
         return Color.WHITE;

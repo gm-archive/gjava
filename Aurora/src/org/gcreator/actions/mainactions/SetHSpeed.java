@@ -48,7 +48,7 @@ static final long serialVersionUID = 1L;
         return "Set Horizontal Speed";
     }
 
-    public String generateEGML(JComponent panel) {
+    public String generateGCL(JComponent panel) {
         if(panel != null&& panel instanceof HSpeedEditor){
             HSpeedEditor editor = (HSpeedEditor) panel;
             return editor.of.getText() + ".hspeed = " + editor.to.getText() + ";";

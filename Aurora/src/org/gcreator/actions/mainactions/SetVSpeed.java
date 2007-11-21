@@ -46,7 +46,7 @@ static final long serialVersionUID = 1L;
         return "Set Vertical Speed";
     }
 
-    public String generateEGML(JComponent panel) {
+    public String generateGCL(JComponent panel) {
         if(panel != null&& panel instanceof VSpeedEditor){
             VSpeedEditor editor = (VSpeedEditor) panel;
             return editor.of.getText() + ".vspeed = " + editor.to.getText() + ";";

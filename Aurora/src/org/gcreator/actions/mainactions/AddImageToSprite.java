@@ -39,7 +39,7 @@ public class AddImageToSprite extends ActionPattern{
         return "Add Image To Sprite";
     }
     
-    public String generateEGML(JComponent cmp){
+    public String generateGCL(JComponent cmp){
         return "";
     }
 }

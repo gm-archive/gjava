@@ -220,7 +220,7 @@ public class PlatformCore extends PluginCore {
         } catch (Exception e) {
             System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
         }
-        return "";
+        return returncode;
     }
     
     public static String parseGCLClass(String code, PlatformCore p) throws IOException {

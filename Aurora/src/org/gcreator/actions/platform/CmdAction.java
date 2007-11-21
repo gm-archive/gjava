@@ -6,6 +6,7 @@
 
 package org.gcreator.actions.platform;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import org.gcreator.actions.Action;
@@ -15,19 +16,22 @@ import org.gcreator.actions.ActionPattern;
  *
  * @author  Ali
  */
-public abstract class CmdAction extends ActionPattern {
+public class CmdAction extends ActionPattern {
+    
+    String text = "";
+    
     
     
     public JComponent createNewPanel(Action action) {
 //        initComponents();
        // return this;
         
-        return null;
+        return new test();
     }
 
      
-    public String generateEGML(JComponent panel) {
-        return "";
+    public String generateGCL(JComponent panel) {
+        return "Platform.printCmd(\""+text+"\");";
     }
 
      
@@ -36,6 +40,11 @@ public abstract class CmdAction extends ActionPattern {
     }
     
     class test extends JPanel {
+        
+        test(){
+        initComponents();
+        this.jTextField1.setText(text);
+        }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -51,7 +60,7 @@ public abstract class CmdAction extends ActionPattern {
 
         jLabel1.setText("Command line message:");
 
-        jTextField1.setText("jTextField1");
+        jTextField1.setText("Hello World");
 
         jCheckBox1.setText("As Error (Will be treated as an error on the command line)");
 
@@ -94,7 +103,25 @@ public abstract class CmdAction extends ActionPattern {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+    }
+
+    public void setStandardImage(ImageIcon icon) {
+       // throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public String getStandardText(JComponent panel){
+        if(panel != null&& panel instanceof test){
+            test editor = (test) panel;
+           text = editor.jTextField1.getText();
+        } 
+        else
+            text = "";
+        return "CMD: "+text;
+    }
+
+    public ImageIcon getStandardImage() {
+       return new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png"));
     }
 }

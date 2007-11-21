@@ -8,6 +8,7 @@
  */
 package org.gcreator.fileclass;
 
+import java.applet.AudioClip;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -105,7 +106,13 @@ public class File extends Object implements Transferable {
     
         if (value instanceof String) {
             out.write(value.toString().getBytes());
-        } else if (value instanceof ImageIcon) {
+        } 
+//else if (value instanceof AudioClip) {
+//            System.out.println("audio clip");
+//            AudioClip ac = (AudioClip)value;
+//            
+//        }
+        else if (value instanceof ImageIcon) {
             ImageIcon img = ((ImageIcon) value);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             
