@@ -665,6 +665,13 @@ public class Aurwindow extends JFrame {
                         onItemActionPerformed(8, 2, evt);
                     }
                 });
+        items[MenuSupporter.GenerateMenuItemId(8, 3)] = MenuSupporter.MakeMenuItem(menus[8], 182, "Stop recording macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 3)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(8, 3, evt);
+                    }
+                });  
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
@@ -1042,6 +1049,10 @@ public class Aurwindow extends JFrame {
         if (menu == 7 && item == 3) {
             addWindow(globalsettings, 131);
         }
+        if(menu == 8 && item == 0){
+            PlayMacroDialog dialog = new PlayMacroDialog(this, true);
+            dialog.setVisible(true);
+        }
         if (menu == 8 && item == 2) {
             String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
             if(mname!=null&&mname.length()>0)
@@ -1053,6 +1064,9 @@ public class Aurwindow extends JFrame {
                             JOptionPane.ERROR_MESSAGE);
                 else
                     MacroLibrary.addMacro(Macro.record(mname));
+        }
+        if ( menu == 8 && item == 3) {
+            Macro.recordingMacro = null;
         }
     }
 

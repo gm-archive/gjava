@@ -11,7 +11,7 @@ import java.util.*;
  * Stores all the information about macros
  * @author Luís
  */
-public class MacroLibrary {
+public class MacroLibrary{
     private static Vector<Macro> macros = new Vector<Macro>();
     
     public static boolean addMacro(Macro macro){
@@ -35,6 +35,10 @@ public class MacroLibrary {
                 return m;
         }
         return null;
+    }
+    
+    public static int getSize(){
+        return macros.size();
     }
     
     public static String[] getMacroNames(){

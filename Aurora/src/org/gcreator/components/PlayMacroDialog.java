@@ -6,18 +6,31 @@
 
 package org.gcreator.components;
 
+import javax.swing.*;
+import org.gcreator.components.*;
+import org.gcreator.components.impl.*;
 import org.gcreator.managers.*;
+import org.gcreator.macro.*;
 
 /**
  *
  * @author  Luís
  */
-public class PlayMacroDialog extends javax.swing.JDialog {
+public class PlayMacroDialog extends JDialog {
     
     /** Creates new form PlayMacroDialog */
     public PlayMacroDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        jList1.setModel(new AbstractListModel(){
+            public Object getElementAt(int pos){
+                return MacroLibrary.getMacroAt(pos);
+            }
+            public int getSize(){
+                return MacroLibrary.getSize();
+            }
+        });
+        jList1.setCellRenderer(new MacroCellRenderer());
     }
     
     /** This method is called from within the constructor to
@@ -47,6 +60,11 @@ public class PlayMacroDialog extends javax.swing.JDialog {
         jButton1.setText(LangSupporter.activeLang.getEntry(180));
 
         jButton2.setText(LangSupporter.activeLang.getEntry(179));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,24 +101,11 @@ public class PlayMacroDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                PlayMacroDialog dialog = new PlayMacroDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-    
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

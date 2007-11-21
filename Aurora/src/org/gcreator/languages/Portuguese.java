@@ -225,6 +225,7 @@ public class Portuguese extends Dictionary{
         entry[179] = "Cancelar";
         entry[180] = "Executar Macro";
         entry[181] = "Executador de macros";
+        entry[182] = "Parar de gravar macro";
         
         try{
             init();
