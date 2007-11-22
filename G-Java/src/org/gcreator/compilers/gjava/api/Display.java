@@ -62,7 +62,7 @@ import java.awt.Toolkit;
                 // Multiple bit depths are supported in this display mode
                 return 0;
             } else {
-                return (int) Math.pow(2, bitDepth);
+                return (int) java.lang.Math.pow(2, bitDepth);
             }
         }
 

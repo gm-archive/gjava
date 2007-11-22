@@ -21,7 +21,7 @@ import java.util.Calendar;
  * <p>Example:
  * double datetime = Functions.date.current_datetime();</p>
  */
-public class date {
+public class Date {
 
     private static Calendar then;
     private static final int dateConvert = 86400000;

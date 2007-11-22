@@ -19,7 +19,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
 /**
      *
      */
-    public class popups {
+    public class Popups {
 
         /**
          * Displays a dialog box with the string as a message.

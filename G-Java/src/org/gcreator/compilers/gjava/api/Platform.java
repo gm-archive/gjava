@@ -9,7 +9,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
-public class platform {
+public class Platform {
 
         public static String get_os_name() {
             return System.getProperty("os.name", "unknown");

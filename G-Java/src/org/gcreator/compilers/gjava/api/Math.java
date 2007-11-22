@@ -23,7 +23,7 @@ import java.util.Arrays;
      * Example:<br>
      * <code>int randomnumber = Functions.Math.random(10); //Random number between 0 and 10</code>
      */
-    public class math {
+    public class Math {
 
         /**
          * The Mathematical constant PI to 17 decimal places
@@ -43,7 +43,7 @@ import java.util.Arrays;
          * @return
          */
         public static double cbrt(double x) {
-            return Math.cbrt(x);
+            return java.lang.Math.cbrt(x);
         }
 
         /**
@@ -52,7 +52,7 @@ import java.util.Arrays;
          * @return
          */
         public static double random(double x) {
-            return Math.random() * x;
+            return java.lang.Math.random() * x;
         }
 
         /**
@@ -61,7 +61,7 @@ import java.util.Arrays;
          * @return
          */
         public static double abs(double x) {
-            return Math.abs(x);
+            return java.lang.Math.abs(x);
         }
 
         /**
@@ -79,7 +79,7 @@ import java.util.Arrays;
          * @return
          */
         public static double round(double x) {
-            return Math.round(x);
+            return java.lang.Math.round(x);
         }
 
         /**
@@ -88,7 +88,7 @@ import java.util.Arrays;
          * @return
          */
         public static double floor(double x) {
-            return Math.floor(x);
+            return java.lang.Math.floor(x);
         }
 
         /**
@@ -97,7 +97,7 @@ import java.util.Arrays;
          * @return
          */
         public static double ceil(double x) {
-            return Math.ceil(x);
+            return java.lang.Math.ceil(x);
         }
 
         /**
@@ -106,7 +106,7 @@ import java.util.Arrays;
          * @return the fractional part of x, that is, the part behind the decimal dot.
          */
         public static double frac(double x) {
-            return x - Math.floor(x);
+            return x - java.lang.Math.floor(x);
         }
 
         /**
@@ -115,7 +115,7 @@ import java.util.Arrays;
          * @return the square root of x. x must be non-negative.
          */
         public static double sqrt(double x) {
-            return Math.sqrt(x);
+            return java.lang.Math.sqrt(x);
         }
 
         /**
@@ -134,7 +134,7 @@ import java.util.Arrays;
          * @return
          */
         public static double power(double x, double n) {
-            return Math.pow(x, n);
+            return java.lang.Math.pow(x, n);
         }
 
         /**
@@ -143,7 +143,7 @@ import java.util.Arrays;
          * @return
          */
         public static double exp(double x) {
-            return Math.log(x) / Math.log(Math.E);
+            return java.lang.Math.log(x) / java.lang.Math.log(Math.E);
         }
 
         /**
@@ -161,7 +161,7 @@ import java.util.Arrays;
          * @return
          */
         public static double log2(double x) {
-            return Math.log(x) / Math.log(2);
+            return java.lang.Math.log(x) / java.lang.Math.log(2);
         }
 
         /**
@@ -170,7 +170,7 @@ import java.util.Arrays;
          * @return
          */
         public static double log10(double x) {
-            return Math.log(x);
+            return java.lang.Math.log(x);
         }
 
         /**
@@ -180,7 +180,7 @@ import java.util.Arrays;
          * @return
          */
         public static double logn(double n, double x) {
-            return Math.log(x) / Math.log(n);
+            return java.lang.Math.log(x) / java.lang.Math.log(n);
         }
 
         /**
@@ -189,7 +189,7 @@ import java.util.Arrays;
          * @return
          */
         public static double sin(double x) {
-            return Math.sin(x);
+            return java.lang.Math.sin(x);
         }
 
         /**
@@ -198,7 +198,7 @@ import java.util.Arrays;
          * @return
          */
         public static double signum(double x) {
-            return Math.signum(x);
+            return java.lang.Math.signum(x);
         }
 
         /**
@@ -207,7 +207,7 @@ import java.util.Arrays;
          * @return
          */
         public static double sinh(double x) {
-            return Math.sinh(x);
+            return java.lang.Math.sinh(x);
         }
 
         /**
@@ -216,7 +216,7 @@ import java.util.Arrays;
          * @return
          */
         public static double cos(double x) {
-            return Math.cos(x);
+            return java.lang.Math.cos(x);
         }
 
         /**
@@ -225,7 +225,7 @@ import java.util.Arrays;
          * @return
          */
         public static double cosh(double x) {
-            return Math.cosh(x);
+            return java.lang.Math.cosh(x);
         }
 
         /**
@@ -234,7 +234,7 @@ import java.util.Arrays;
          * @return
          */
         public static double expm1(double x) {
-            return Math.expm1(x);
+            return java.lang.Math.expm1(x);
         }
 
         /**
@@ -244,7 +244,7 @@ import java.util.Arrays;
          * @return
          */
         public static double hypot(double x, double y) {
-            return Math.hypot(x, x);
+            return java.lang.Math.hypot(x, x);
         }
 
         /**
@@ -253,7 +253,7 @@ import java.util.Arrays;
          * @return
          */
         public static double ulp(double x) {
-            return Math.ulp(x);
+            return java.lang.Math.ulp(x);
         }
 
         /**
@@ -262,7 +262,7 @@ import java.util.Arrays;
          * @return
          */
         public static double tanh(double x) {
-            return Math.tanh(x);
+            return java.lang.Math.tanh(x);
         }
 
         /**
@@ -271,7 +271,7 @@ import java.util.Arrays;
          * @return
          */
         public static double tan(double x) {
-            return Math.tan(x);
+            return java.lang.Math.tan(x);
         }
 
         /**
@@ -280,7 +280,7 @@ import java.util.Arrays;
          * @return
          */
         public static double arcsin(double x) {
-            return Math.asin(x);
+            return java.lang.Math.asin(x);
         }
 
         /**
@@ -289,7 +289,7 @@ import java.util.Arrays;
          * @return
          */
         public static double arccos(double x) {
-            return Math.acos(x);
+            return java.lang.Math.acos(x);
         }
 
         /**
@@ -298,7 +298,7 @@ import java.util.Arrays;
          * @return
          */
         public static double arctan(double x) {
-            return Math.atan(x);
+            return java.lang.Math.atan(x);
         }
 
         /**
@@ -308,7 +308,7 @@ import java.util.Arrays;
          * @return
          */
         public static double arctan2(double y, double x) {
-            return Math.atan2(y, x);
+            return java.lang.Math.atan2(y, x);
         }
 
         /**
@@ -317,7 +317,7 @@ import java.util.Arrays;
          * @return radians double value
          */
         public static double degtorad(double x) {
-            return Math.toRadians(x);
+            return java.lang.Math.toRadians(x);
         }
 
         /**
@@ -326,7 +326,7 @@ import java.util.Arrays;
          * @return degrees double value
          */
         public static double radtodeg(double x) {
-            return Math.toDegrees(x);
+            return java.lang.Math.toDegrees(x);
         }
 
         /**
@@ -336,7 +336,7 @@ import java.util.Arrays;
          * @return
          */
         public static double min(double v1, double v2) {
-            return Math.min(v1, v2);
+            return java.lang.Math.min(v1, v2);
         }
 
         /**
@@ -1044,7 +1044,7 @@ import java.util.Arrays;
             } else if (y1 > y2 && x1 == x2) {
                 return 270;
             }
-            double basic = Math.atan((y1 - y2) / (x1 - x2));
+            double basic = java.lang.Math.atan((y1 - y2) / (x1 - x2));
             if (x1 < x2 && y1 > y2) {
                 return basic;
             } else if (x1 > x2 && y1 > y2) {

@@ -22,7 +22,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
      * <p>Example:<br>
      *
      */
-    public class instances {
+    public class Instances {
 
         /**
          * Number of instances that currently exist in the room.

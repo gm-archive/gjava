@@ -11,7 +11,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import org.gcreator.compilers.gjava.core.basicgame;
 
-    public class draw2d {
+    public class Draw2d {
 
         /**
          * Clears the entire room in the given color (no alpha blending).

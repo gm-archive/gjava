@@ -10,7 +10,6 @@
 package org.gcreator.compilers.gjava.api;
 
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
@@ -30,7 +29,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
     public class Clipboard {
 
         
-        private static Clipboard systemClipboard;
+        private static java.awt.datatransfer.Clipboard systemClipboard;
         
         static{
             // setup clipboard

@@ -17,7 +17,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
  *
  * @author Ali1
  */
-public class main {
+public class Main {
 /**
          *  The game score, Starts at 0
          * @since 2.0

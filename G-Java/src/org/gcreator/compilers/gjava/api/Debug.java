@@ -12,7 +12,7 @@ package org.gcreator.compilers.gjava.api;
 /**
      * Here are some variables and functions that deal with errors.
      */
-    public class debug {
+    public class Debug {
 
         /**
          * Indicates whether an error has occurred, either true or false

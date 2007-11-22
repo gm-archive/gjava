@@ -14,7 +14,7 @@ import org.gcreator.compilers.gjava.core.basicgame;
 /**
      * Good games require careful timing of things happening. Fortunately G-Java does most of the timing for you.
      */
-    public class timing {
+    public class Timing {
 
         /**
          * Speed of the game in the current room (in steps per second).
@@ -27,36 +27,36 @@ import org.gcreator.compilers.gjava.core.basicgame;
         /**
          * Number of milliseconds that have passed since the system was started.
          */
-        public static double current_time = date.current_time();
+        public static double current_time = Date.current_time();
         /**
          *  The current year.
          */
-        public static double current_year = date.get_year(date.current_date());
+        public static double current_year = Date.get_year(Date.current_date());
 
         /**
          *  The current month.
          */
-        public static double current_month = date.get_month(date.current_date());
+        public static double current_month = Date.get_month(Date.current_date());
         /**
          * The current day.
          */
-        public static double current_day = date.get_day(date.current_date());
+        public static double current_day = Date.get_day(Date.current_date());
         /**
          * The current day of the week (1=sunday, ..., 7=saturday).
          */
-        public static double current_weekday = date.get_weekday(date.current_date());
+        public static double current_weekday = Date.get_weekday(Date.current_date());
         /**
          * The current hour.
          */
-        public static double current_hour = date.get_hour(date.current_time());
+        public static double current_hour = Date.get_hour(Date.current_time());
         /**
          * The current minute.
          */
-        public static double current_minute = date.get_minute(date.current_time());
+        public static double current_minute = Date.get_minute(Date.current_time());
         /**
          * The current second.
          */
-        public static double current_second = date.get_second(date.current_time());
+        public static double current_second = Date.get_second(Date.current_time());
 
         /**
          * Sleeps numb milliseconds.

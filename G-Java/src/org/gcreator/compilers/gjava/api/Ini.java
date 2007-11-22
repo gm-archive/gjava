@@ -25,7 +25,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
      * This file contains two sections, one call Form and the other called Game. The first section contains three pairs. The first two have a real value while the third has a string value. Such INI files are easy to create and change.
      *
      */
-    public class ini {
+    public class Ini {
  private static INIFile ini;
         /**
          * Opens the INI file with the given name.
