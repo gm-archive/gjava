@@ -20,9 +20,9 @@ import java.text.DecimalFormat;
      * <p>Example:<br>
      * String ascivalue = Functions.string.chr(40);</p>
      */
-    public class string {
+    public class StringH {
 
-        // String functions
+        
         /**
          * Returns a string containing the character with asci code val.
          * @param v
@@ -58,6 +58,15 @@ import java.text.DecimalFormat;
         public static String string(double v) {
             return "" + v;
         }
+        
+        /**
+         * Turns the real value into a string using a standard format (no decimal places when it is an integer, and two decimal places otherwise).
+         * @param v
+         * @return
+         */
+        public static String string(int v) {
+            return "" + v;
+        }
 
         /**
          * Turns val into a string using your own format: tot indicates the total number of places and dec indicated the number of decimal places.
@@ -66,7 +75,7 @@ import java.text.DecimalFormat;
          * @param d
          * @return
          */
-        public static String string_format(double v, double t, double d) {
+        public static String stringFormat(double v, double t, double d) {
             String form = "";
             for (int i = 0; i < (int) t; i++) {
                 form += "0";
@@ -86,7 +95,7 @@ import java.text.DecimalFormat;
          * @param s
          * @return
          */
-        public static double string_length(String s) {
+        public static double stringLength(String s) {
             return s.length();
         }
 
@@ -96,7 +105,7 @@ import java.text.DecimalFormat;
          * @param s
          * @return
          */
-        public static double string_pos(String sub, String s) {
+        public static double stringPos(String sub, String s) {
             return s.indexOf(sub) != -1 ? s.indexOf(sub) : 0;
         }
 

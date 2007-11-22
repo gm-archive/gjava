@@ -25,7 +25,7 @@ import java.awt.Toolkit;
      * <p>Example:<br>
      * double w = Functions.display.<strong>display_get_width()</strong>;</p>
      */
-    public class display {
+    public class Display {
 
         static GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         static GraphicsDevice gs = ge.getDefaultScreenDevice();
