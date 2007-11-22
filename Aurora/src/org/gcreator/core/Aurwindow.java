@@ -171,6 +171,7 @@ public class Aurwindow extends JFrame {
         } else {
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
+        Macro.macroAction(new OpenFileAction(file));
     }
 
     public static Project getMainProject() {
