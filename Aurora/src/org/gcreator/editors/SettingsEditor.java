@@ -6,10 +6,13 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.*;
-import javax.swing.border.*;
 import java.awt.*;
-import org.gcreator.components.popupmenus.ResourceMenu;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.border.*;
+import org.gcreator.components.*;
+import org.gcreator.components.impl.*;
+import org.gcreator.components.popupmenus.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
 
@@ -25,8 +28,10 @@ public class SettingsEditor extends TabPanel {
     TabValues Graphics, Resolution, Other;
     ResourceMenu scenes;
     
+    private Vector<org.gcreator.fileclass.File> scenelist;
     
     public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.File file) {
+        scenelist = new Vector<org.gcreator.fileclass.File>();
         this.file = file;
         this.project = project;
         if(file.value==null||!(file.value instanceof SettingsValues)){
@@ -126,6 +131,15 @@ public class SettingsEditor extends TabPanel {
         checkres();
         jPanel10.setLayout(new FlowLayout());
         jPanel10.add(scenes = new ResourceMenu("scene","<no scene>",true,project));
+        jList1.setModel(new AbstractListModel(){
+            public Object getElementAt(int pos){
+                return scenelist.get(pos);
+            }
+            public int getSize(){
+                return scenelist.size();
+            }
+        });
+        jList1.setCellRenderer(new SceneCellRenderer());
     }
     
     /** This method is called from within the constructor to
@@ -656,6 +670,7 @@ public class SettingsEditor extends TabPanel {
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
 
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         org.jdesktop.layout.GroupLayout jPanel10Layout = new org.jdesktop.layout.GroupLayout(jPanel10);
@@ -670,15 +685,20 @@ public class SettingsEditor extends TabPanel {
         );
 
         jButton2.setText("Add");
-
-        jButton3.setText("Remove");
-
-        jButton4.setText("Up");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+
+        jButton3.setText("Remove");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Up");
 
         jButton5.setText("Down");
 
@@ -823,9 +843,25 @@ public class SettingsEditor extends TabPanel {
         Resolution.setVariable("frequency", 5);
     }//GEN-LAST:event_jRadioButton16ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        addScene((org.gcreator.fileclass.File) scenes.getCurrentObject().object);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        removeSelectedScene();
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
+    public void addScene(org.gcreator.fileclass.File file){
+        scenelist.add(file);
+        jList1.updateUI();
+    }
+    
+    public void removeSelectedScene(){
+        if(jList1.getSelectedValue()!=null)
+            scenelist.remove(jList1.getSelectedIndex());
+        scenelist.trimToSize();
+        jList1.updateUI();
+    }
     
     void checkres(){
        if(jCheckBox7.isSelected()){
