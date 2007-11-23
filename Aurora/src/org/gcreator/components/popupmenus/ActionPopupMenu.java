@@ -37,7 +37,7 @@ public class ActionPopupMenu extends JPopupMenu{
     public void onDelete(){
         int x = edit.jList2.getSelectedIndex();
         try{
-            Vector<org.gcreator.actions.Action> array = ((Event) edit.jList1.getSelectedValue()).actions;
+            Vector array = ((Event) edit.jList1.getSelectedValue()).actions;
             array.remove(x);
         }
         catch(Exception e){}

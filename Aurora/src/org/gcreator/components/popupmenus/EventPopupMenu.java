@@ -19,7 +19,7 @@ import org.gcreator.editors.*;
  */
 public class EventPopupMenu extends JPopupMenu{
     
-    private Vector<Event> array;
+    private Vector array;
     private ActorEditor edit;
     
     private JMenuItem delete;

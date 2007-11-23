@@ -23,7 +23,6 @@ public class WelcomeTab extends TabPanel{
         jLabel2.setText(LangSupporter.activeLang.getEntry(38));
     }
     
-    @Override
     public void paint(Graphics _g){
         Graphics2D g = (Graphics2D) _g;
         DarkGradientPainter.paint(g, getWidth(), getHeight());

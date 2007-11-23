@@ -16,7 +16,7 @@ import org.gcreator.core.*;
  * @author Luís
  */
 public class GoManager {
-    private Vector<VisualWidget> widgets = new Vector<VisualWidget>();
+    private Vector widgets = new Vector();
     
     public GoManager(){}
     
@@ -30,10 +30,10 @@ public class GoManager {
         return widgets.contains(widget);
     }
     public void paint(Graphics2D g){
-        Enumeration<VisualWidget> wenum = widgets.elements();
+        Enumeration wenum = widgets.elements();
         VisualWidget vw;
         while(wenum.hasMoreElements()){
-            vw = wenum.nextElement();
+            vw = (VisualWidget) wenum.nextElement();
             if(vw.isVisible()){
                 paintWidget(g, vw);
             }
