@@ -25,7 +25,7 @@ public class SettingsEditor extends TabPanel {
     /** Creates new form SettingsEditor */
     org.gcreator.fileclass.File file;
     SettingsValues value;
-    TabValues Graphics, Resolution, Other;
+    TabValues Graphics, Resolution, Other, SceneOrder;
     ResourceMenu scenes;
     
     private Vector<org.gcreator.fileclass.File> scenelist;
@@ -51,6 +51,10 @@ public class SettingsEditor extends TabPanel {
         Other = value.getValue("Other");
         if(Other==null){
             value.setVariable("Other", Other = new TabValues("Other"));
+        }
+        SceneOrder = value.getValue("Scene Order");
+        if(SceneOrder==null){
+            value.setVariable("Scene Order", Other = new TabValues("Scene Order"));
         }
         Object resize = Graphics.getValue("resize");
         if(resize==null||!(resize instanceof Boolean)){
@@ -128,6 +132,10 @@ public class SettingsEditor extends TabPanel {
             jRadioButton15.setSelected(true);
         else if(freq==5)
             jRadioButton16.setSelected(true);
+        Object scn = SceneOrder.getValue("Scenes");
+        if(scn==null||!(scn instanceof Vector))
+            SceneOrder.setVariable("Scenes", scn = new Vector());
+        scenelist = (Vector/*<org.gcreator.fileclass.File>*/) scn;
         checkres();
         jPanel10.setLayout(new FlowLayout());
         jPanel10.add(scenes = new ResourceMenu("scene","<no scene>",true,project));
