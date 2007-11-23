@@ -62,8 +62,8 @@ public class ButtonTabComponent extends JPanel {
             setContentAreaFilled(false);
             //No need to be focusable
             setFocusable(false);
-            //setBorder(BorderFactory.createEtchedBorder());
-            setBorderPainted(false);
+            setBorder(BorderFactory.createEtchedBorder());
+            setBorderPainted(true);
             setBorder(null);
             //Making nice rollover effect
             //we use the same listener for all buttons
@@ -91,31 +91,35 @@ public class ButtonTabComponent extends JPanel {
         protected void paintComponent(Graphics g) {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g.create();
-            if(getModel().isPressed())
+            /*if(getModel().isPressed())
                 g2.drawImage(ButtonTabComponent.closepressed.getImage(), 0, 0, ButtonTabComponent.closepressed.getImageObserver());
             else if(getModel().isRollover())
                 g2.drawImage(ButtonTabComponent.closehover.getImage(), 0, 0, ButtonTabComponent.closehover.getImageObserver());
             else
                 g2.drawImage(ButtonTabComponent.close.getImage(), 0, 0, ButtonTabComponent.close.getImageObserver());
-            //shift the image for pressed buttons
-            /*if (getModel().isPressed()) {
+            //shift the image for pressed buttons*/
+            if (getModel().isPressed()) {
                 g2.translate(1, 1);
             }
+            if(getModel().isRollover())
+                setBorder(BorderFactory.createEtchedBorder());
+            else
+                setBorder(null);
             g2.setStroke(new BasicStroke(2));
             g2.setColor(Color.BLACK);
             int delta = 6;
             g2.drawLine(delta, delta, getWidth() - delta - 1, getHeight() - delta - 1);
             g2.drawLine(getWidth() - delta - 1, delta, delta, getHeight() - delta - 1);
-	    */
+	    
             g2.dispose();
         }
     }
 
     public void hover(){
-        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        //setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
     public void out(){
-        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        //setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
     
     private MouseListener buttonMouseListener = new MouseAdapter() {

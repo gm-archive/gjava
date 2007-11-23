@@ -112,16 +112,13 @@ public class gcreator {
         if (settings == null) {
             settings = new String[5];
             settings[0] = "Native";
-            if(ismdi)
-                settings[1] = "MDI";
-            else
-                settings[1] = "Tabs (Top)";
+            settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
             settings[3] = "English";
             settings[4] = "Visible";
         }
 
-        if(ismdi||ver<=6)
+        if(ismdi||ver<6)
             settings[1] = "MDI";
 
         LangSupporter.activeLang = new English();
