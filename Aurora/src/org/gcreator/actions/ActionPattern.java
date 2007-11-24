@@ -70,4 +70,8 @@ public abstract class ActionPattern implements Serializable {
     {
         
     }
+    
+    public Action clone(JComponent panel){
+        return null;
+    }
 }

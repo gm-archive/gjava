@@ -81,7 +81,7 @@ public class CmdAction extends ActionPattern {
                         .add(jLabel1)
                         .addContainerGap(287, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
-                        .add(jCheckBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 279, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jCheckBox1)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -94,7 +94,7 @@ public class CmdAction extends ActionPattern {
                 .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jCheckBox1)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     

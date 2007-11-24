@@ -94,4 +94,8 @@ public class Action implements Serializable {
         xml += "</action>\n";
         return xml;
     }
+    
+    public Action clone(){
+        return pattern.clone(panel);
+    }
 }
