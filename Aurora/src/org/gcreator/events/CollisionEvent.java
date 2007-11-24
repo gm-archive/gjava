@@ -26,7 +26,7 @@ public class CollisionEvent extends Event {
     
      
     public String toString(){
-        return actor;
+        return "Collision with " + actor;
     }
     
      
