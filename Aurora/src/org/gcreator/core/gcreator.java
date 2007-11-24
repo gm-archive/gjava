@@ -26,7 +26,7 @@ import org.gcreator.help.AboutPanel;
  */
 public class gcreator {
     private static String[] arguments;
-    public static final String version = "1.0alpha"; 
+    public static final String version = "1.0m1"; 
     public static Aurwindow window;
     public static String output = "";
     private static SplashScreen splash;
