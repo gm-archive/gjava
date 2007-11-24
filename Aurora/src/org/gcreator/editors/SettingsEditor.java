@@ -58,7 +58,7 @@ public class SettingsEditor extends TabPanel {
         }
         SceneOrder = value.getValue("Scene Order");
         if(SceneOrder==null){
-            value.setVariable("Scene Order", Other = new TabValues("Scene Order"));
+            value.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
         }
         Object resize = Graphics.getValue("resize");
         if(resize==null||!(resize instanceof Boolean)){
@@ -143,14 +143,7 @@ public class SettingsEditor extends TabPanel {
         checkres();
         jPanel10.setLayout(new FlowLayout());
         jPanel10.add(scenes = new ResourceMenu("scene","<no scene>",true,project));
-        jList1.setModel(new AbstractListModel(){
-            public Object getElementAt(int pos){
-                return scenelist.get(pos);
-            }
-            public int getSize(){
-                return scenelist.size();
-            }
-        });
+        jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer());
     }
     
@@ -560,7 +553,7 @@ public class SettingsEditor extends TabPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jCheckBox7))
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -572,7 +565,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(71), jPanel2);
@@ -600,10 +593,10 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
-            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
             .add(jPanel7Layout.createSequentialGroup()
-                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -633,8 +626,8 @@ public class SettingsEditor extends TabPanel {
             .add(jPanel8Layout.createSequentialGroup()
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE))
-            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -677,7 +670,7 @@ public class SettingsEditor extends TabPanel {
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
@@ -721,8 +714,18 @@ public class SettingsEditor extends TabPanel {
         });
 
         jButton4.setText("Up");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Down");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel9Layout = new org.jdesktop.layout.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -885,6 +888,30 @@ public class SettingsEditor extends TabPanel {
         from = jList1.locationToIndex(evt.getPoint());
  
     }//GEN-LAST:event_jList1MousePressed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int pos = jList1.getSelectedIndex();
+        if(pos<=0) //0 or -1
+            return; //Do nothing
+        org.gcreator.fileclass.File o = (org.gcreator.fileclass.File) scenelist.get(pos);
+        org.gcreator.fileclass.File p = (org.gcreator.fileclass.File) scenelist.get(pos-1);
+        scenelist.set(pos-1, o);
+        scenelist.set(pos, p);
+        jList1.setSelectedIndex(pos-1);
+        jList1.updateUI();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        int pos = jList1.getSelectedIndex();
+        if(pos<0||pos>=scenelist.size()-1) //-1
+            return; //Do nothing
+        org.gcreator.fileclass.File o = (org.gcreator.fileclass.File) scenelist.get(pos);
+        org.gcreator.fileclass.File p = (org.gcreator.fileclass.File) scenelist.get(pos+1);
+        scenelist.set(pos+1, o);
+        scenelist.set(pos, p);
+        jList1.setSelectedIndex(pos+1);
+        jList1.updateUI();
+    }//GEN-LAST:event_jButton5ActionPerformed
     
     public void addScene(org.gcreator.fileclass.File file){
         scenelist.add(file);
