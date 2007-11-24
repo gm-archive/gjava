@@ -8,6 +8,9 @@ package org.gcreator.editors;
 
 import java.applet.*;
 import java.io.*;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import org.gcreator.components.*;
 import org.gcreator.core.*;
@@ -122,36 +125,72 @@ public class SoundEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        jFileChooser1.showDialog(this, "OK");
-        File f = jFileChooser1.getSelectedFile();
-        try{
-            if(f!=null)
-                if(file.value!=null&&file.value instanceof AudioClip){
-                    ((AudioClip) file.value).stop();
+        try {
+            jFileChooser1.showDialog(this, "OK");
+            File f = jFileChooser1.getSelectedFile();
+            try {
+                if (f != null) {
+                    if (file.value != null && file.value instanceof AudioClip) {
+                        (JApplet.newAudioClip((URL) file.value)).stop();
+                    }
                 }
-                file.value = JApplet.newAudioClip(f.toURI().toURL());
+                //file.value = f.toURI().toURL(); //JApplet.newAudioClip(f.toURI().toURL());
             }
-        catch(Exception e){}
+
+            catch (Exception e) {
+            }
+
+            InputStream is = new FileInputStream(f);
+
+            // Get the size of the file
+            long length = f.length();
+
+            if (length > Integer.MAX_VALUE) {
+                // File is too large
+            }
+
+            // Create the byte array to hold the data
+            byte[] bytes = new byte[(int) length];
+
+            // Read in the bytes
+            int offset = 0;
+            int numRead = 0;
+            
+                while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
+                    offset += numRead;
+                }
+            
+            // Ensure all the bytes have been read in
+            if (offset < bytes.length) {
+                System.out.println("Could not completely read file " + f.getName());
+            }
+
+            // Close the input stream and return bytes
+            is.close();
+            file.value = bytes;
+        } catch (IOException ex) {
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        if(file.value!=null&&file.value instanceof AudioClip){
-            ((AudioClip) file.value).stop();
-            ((AudioClip) file.value).play();
-        }
+//        if(file.value!=null&&file.value instanceof AudioClip){
+//            (JApplet.newAudioClip((URL)file.value)).stop();
+//            (JApplet.newAudioClip((URL) file.value)).play();
+//        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if(file.value!=null&&file.value instanceof AudioClip){
-            ((AudioClip) file.value).stop();
-        }
+//        if(file.value!=null&&file.value instanceof AudioClip){
+//            (JApplet.newAudioClip((URL) file.value)).stop();
+//        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(file.value!=null&&file.value instanceof AudioClip){
-            ((AudioClip) file.value).stop();
-            ((AudioClip) file.value).loop();
-        }
+//        if(file.value!=null&&file.value instanceof AudioClip){
+//            (JApplet.newAudioClip((URL) file.value)).stop();
+//            (JApplet.newAudioClip((URL) file.value)).loop();
+//        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate

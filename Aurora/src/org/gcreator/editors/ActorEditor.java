@@ -31,6 +31,7 @@ import javax.swing.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
 import org.gcreator.actions.*;
+import org.gcreator.actions.platform.CmdAction;
 import org.gcreator.managers.LangSupporter;
 
 /**
@@ -52,7 +53,7 @@ public class ActorEditor extends TabPanel {
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     static {
         
-        ActionCategory main = new ActionCategory(), move = new ActionCategory(), draw2D = new ActionCategory();
+        ActionCategory main = new ActionCategory(), move = new ActionCategory(), draw2D = new ActionCategory(), platform = new ActionCategory();
         main.add(new org.gcreator.actions.mainactions.StartOfABlock());
         main.add(new org.gcreator.actions.mainactions.EndOfABlock());
         main.add(new org.gcreator.actions.mainactions.Comment());
@@ -66,9 +67,12 @@ public class ActorEditor extends TabPanel {
         draw2D.add(new org.gcreator.actions.mainactions.AddImageToSprite());
         draw2D.name = "Draw 2D";
         draw2D.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/Draw2D.png"));
+        platform.name = "Platform";
+       platform.add(new org.gcreator.actions.platform.CmdAction());
         actionCats.add(main);
         actionCats.add(move);
         actionCats.add(draw2D);
+        actionCats.add(platform);
         
     }
     ResourceMenu spriteres, extendres, maskres;
