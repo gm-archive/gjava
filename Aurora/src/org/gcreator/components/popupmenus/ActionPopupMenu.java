@@ -21,16 +21,24 @@ public class ActionPopupMenu extends JPopupMenu{
     
     private ActorEditor edit;
     
-    private JMenuItem delete;
+    private JMenuItem delete,cut,copy,paste,editaction;
     
     public ActionPopupMenu(ActorEditor edit){
         this.edit = edit;
         delete = new JMenuItem("Delete");
+        cut = new JMenuItem("Cut");
+        copy = new JMenuItem("Copy");
+        paste = new JMenuItem("Paste");
+       editaction = new JMenuItem("Edit");
         delete.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onDelete();
             }
         });
+        this.add(editaction);
+        this.add(cut);
+        this.add(copy);
+        this.add(paste);
         this.add(delete);
     }
     

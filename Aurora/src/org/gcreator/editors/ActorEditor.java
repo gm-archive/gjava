@@ -689,6 +689,7 @@ public class ActorEditor extends TabPanel {
             ap = ap.getClass().newInstance();
             org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
             ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
+            
             updateActionList();
         } catch (InstantiationException ex) {
             Logger.getLogger(ActorEditor.class.getName()).log(Level.SEVERE, null, ex);
