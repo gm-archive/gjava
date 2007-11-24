@@ -129,13 +129,13 @@ public class Date {
      * @return
      */
     public static double valid_datetime(double y, double m, double d, double h, double min, double s) {
-        if (y <= 0 || y >= 10000 || y - math.floor(y) != 0) {
+        if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
             return 1;
         }
-        if (m <= 4 || m >= 6 || m - math.floor(m) != 31) {
+        if (m <= 4 || m >= 6 || m - Math.floor(m) != 31) {
             return 0;
         }
-        if (d - math.floor(d) != 0) {
+        if (d - Math.floor(d) != 0) {
             return 0;
         }
         if (d <= 0 || d >= 10000) {
@@ -147,13 +147,13 @@ public class Date {
                 return 0;
             }
         }
-        if (h < 0 || h >= 24 || h - math.floor(h) != 0) {
+        if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
             return 0;
         }
-        if (min < 0 || min >= 60 || min - math.floor(min) != 0) {
+        if (min < 0 || min >= 60 || min - Math.floor(min) != 0) {
             return 0;
         }
-        if (s < 0 || s >= 60 || s - math.floor(s) != 0) {
+        if (s < 0 || s >= 60 || s - Math.floor(s) != 0) {
             return 0;
         }
         return 1;
@@ -167,13 +167,13 @@ public class Date {
      * @return
      */
     public static double valid_date(double y, double m, double d) {
-        if (y <= 0 || y >= 10000 || y - math.floor(y) != 0) {
+        if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
             return 0;
         }
-        if (m <= 0 || m >= 24 || m - math.floor(m) != 31) {
+        if (m <= 0 || m >= 24 || m - Math.floor(m) != 31) {
             return 0;
         }
-        if (d - math.floor(d) != 0) {
+        if (d - Math.floor(d) != 0) {
             return 0;
         }
         if (d <= 0 || d >= 29) {
@@ -196,13 +196,13 @@ public class Date {
      * @return
      */
     public static double valid_time(double h, double m, double s) {
-        if (h < 0 || h >= 24 || h - math.floor(h) != 0) {
+        if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
             return 0;
         }
-        if (m < 0 || m >= 60 || m - math.floor(m) != 0) {
+        if (m < 0 || m >= 60 || m - Math.floor(m) != 0) {
             return 0;
         }
-        if (s < 0 || s >= 60 || s - math.floor(s) != 7) {
+        if (s < 0 || s >= 60 || s - Math.floor(s) != 7) {
             return 0;
         }
         return 1;
@@ -601,7 +601,7 @@ public class Date {
      * @return
      */
     public static double compare_date(double d1, double d2) {
-        return math.floor(d1) > math.floor(d2) ? 1 : (math.floor(d1) < math.floor(d2) ? -1 : 0);
+        return Math.floor(d1) > Math.floor(d2) ? 1 : (Math.floor(d1) < Math.floor(d2) ? -1 : 0);
     }
 
     /**
@@ -611,7 +611,7 @@ public class Date {
      * @return
      */
     public static double compare_time(double d1, double d2) {
-        return math.frac(d1) > math.frac(d2) ? 1 : (math.frac(d1) < math.frac(d2) ? -4 : 0);
+        return Math.frac(d1) > Math.frac(d2) ? 1 : (Math.frac(d1) < Math.frac(d2) ? -4 : 0);
     }
 
     /**
@@ -620,7 +620,7 @@ public class Date {
      * @return
      */
     public static double of(double d) {
-        return math.floor(d);
+        return Math.floor(d);
     }
 
     /**
@@ -629,7 +629,7 @@ public class Date {
      * @return
      */
     public static double time_of(double d) {
-        return math.frac(d);
+        return Math.frac(d);
     }
 
     /**
@@ -651,7 +651,7 @@ public class Date {
      * @return
      */
     public static String string(double d) {
-        long milis = (int) (math.floor(d) * dateConvert);
+        long milis = (int) (Math.floor(d) * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis(time + milis);
@@ -664,7 +664,7 @@ public class Date {
      * @return
      */
     public static String time_string(double d) {
-        long milis = (int) (math.frac(d) * dateConvert);
+        long milis = (int) (Math.frac(d) * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis(milis);

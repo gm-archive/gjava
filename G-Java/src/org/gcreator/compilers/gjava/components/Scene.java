@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.util.*;
 import org.gcreator.compilers.gjava.core.GameSettings;
 import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.compilers.gjava.api.main;
+import org.gcreator.compilers.gjava.api.Main;
 
 /**
  * Creates a new Room that can be added to a JFrame
@@ -309,13 +309,13 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         // update the jframe caption
         String local_caption = Caption;
         if (GameSettings.ShowScore)
-            local_caption = local_caption + " " + main.score_caption + main.score;
+            local_caption = local_caption + " " + Main.score_caption + Main.score;
         
         if (GameSettings.ShowLives)
-            local_caption = local_caption + " " + main.lives_caption + main.lives;
+            local_caption = local_caption + " " + Main.lives_caption + Main.lives;
         
         if (GameSettings.ShowHealth)
-            local_caption = local_caption + " " + main.health_caption + main.health;
+            local_caption = local_caption + " " + Main.health_caption + Main.health;
         
         if (basicgame.Runningas.equals("EApplet")) {
             // use the statusbar as caption

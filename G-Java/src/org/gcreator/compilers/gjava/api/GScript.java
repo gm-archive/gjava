@@ -481,7 +481,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double min3(double a, double b, double c) {
-            return math.min(a, b, c);
+            return Math.min(a, b, c);
         }
 
         /**
@@ -494,7 +494,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double max3(double a, double b, double c) {
-            return math.max(a, b, c);
+            return Math.max(a, b, c);
         }
 
         /**
@@ -507,7 +507,7 @@ public class GScript {
          * @author luiscubal
          */
         public static double mean3(double a, double b, double c) {
-            return math.mean(a, b, c);
+            return Math.mean(a, b, c);
         }
     }
 
@@ -1038,7 +1038,7 @@ return true;
         // messagebox = load_Rooms.Room;
         // messagebox.getContentPane().add(BorderLayout.CENTER, messagepanel);
         // messagebox.show();
-        popups.show_message(str);
+        Popups.show_message(str);
         basicgame.Current.Paused = false;
     }
 
