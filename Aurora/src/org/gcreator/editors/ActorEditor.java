@@ -45,6 +45,7 @@ public class ActorEditor extends TabPanel {
     public static Vector<ActionCategory> actionCats;
     public EventListModel elist;
     Actor actor;
+    int from;
     static {
         jComboBox1 = new javax.swing.JComboBox();
         actionCats = new Vector<ActionCategory>();
@@ -263,10 +264,19 @@ public class ActorEditor extends TabPanel {
         jSplitPane3.setDividerSize(3);
 
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList2.setDragEnabled(true);
+        jList2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList2MousePressed(evt);
+            }
+        });
         jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList2ValueChanged(evt);
+            }
+        });
+        jList2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jList2MouseDragged(evt);
             }
         });
         jScrollPane2.setViewportView(jList2);
@@ -394,7 +404,7 @@ public class ActorEditor extends TabPanel {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 113, Short.MAX_VALUE)
+            .add(0, 117, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -405,7 +415,7 @@ public class ActorEditor extends TabPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
             .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -556,7 +566,7 @@ public class ActorEditor extends TabPanel {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel4)
                     .add(jPanel12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -702,6 +712,19 @@ public class ActorEditor extends TabPanel {
         jComboBox1.setModel(new DefaultComboBoxModel(((ActionCategory) jComboBox2.getSelectedItem()).patterns));
         jComboBox1.updateUI();
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jList2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseDragged
+        int to  = jList2.locationToIndex(evt.getPoint());
+     if (to == from) return;
+       org.gcreator.actions.Action remove = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.remove(from);
+      ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to,remove);
+      from = to;
+      updateActionList();
+    }//GEN-LAST:event_jList2MouseDragged
+
+    private void jList2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MousePressed
+        from = jList2.locationToIndex(evt.getPoint());
+    }//GEN-LAST:event_jList2MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

@@ -136,7 +136,10 @@ public class SettingsEditor extends TabPanel {
             jRadioButton15.setSelected(true);
         else if(freq==5)
             jRadioButton16.setSelected(true);
-        Object scn = SceneOrder.getValue("Scenes");
+        Object scn=null;
+        try{
+        scn = SceneOrder.getValue("Scenes");
+        } catch (Exception e){}
         if(scn==null||!(scn instanceof Vector))
             SceneOrder.setVariable("Scenes", scn = new Vector());
         scenelist = (Vector/*<org.gcreator.fileclass.File>*/) scn;
