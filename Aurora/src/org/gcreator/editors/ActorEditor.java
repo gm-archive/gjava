@@ -285,9 +285,19 @@ public class ActorEditor extends TabPanel {
 
         jList1.setModel(elist);
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList1MousePressed(evt);
+            }
+        });
         jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 jList1ValueChanged(evt);
+            }
+        });
+        jList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jList1MouseDragged(evt);
             }
         });
         jScrollPane1.setViewportView(jList1);
@@ -725,6 +735,19 @@ public class ActorEditor extends TabPanel {
     private void jList2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MousePressed
         from = jList2.locationToIndex(evt.getPoint());
     }//GEN-LAST:event_jList2MousePressed
+
+    private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
+         int to  = jList1.locationToIndex(evt.getPoint());
+     if (to == from) return;
+       org.gcreator.events.Event remove = (org.gcreator.events.Event) this.elist.getEvents().remove(from);
+      (this.elist.getEvents()).add(to,remove);
+      from = to;
+      
+    }//GEN-LAST:event_jList1MouseDragged
+
+    private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
+        from = jList1.locationToIndex(evt.getPoint());
+    }//GEN-LAST:event_jList1MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
