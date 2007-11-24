@@ -28,6 +28,7 @@ public class PopupListener extends MouseAdapter{
     }
      
     public void mousePressed(MouseEvent e) {
+        
       maybeShowPopup(e);
     }
 
