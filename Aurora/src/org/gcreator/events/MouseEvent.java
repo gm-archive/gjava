@@ -16,6 +16,7 @@ import javax.swing.*;
  * @author Luís
  */
 public class MouseEvent extends Event{
+    static final long serialVersionUID = 1L;
     public int type;
     public static ImageIcon icon;
     public MouseEvent(int type){

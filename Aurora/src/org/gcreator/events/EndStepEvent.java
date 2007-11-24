@@ -16,7 +16,7 @@ import javax.swing.*;
  * @author Luís
  */
 public class EndStepEvent extends Event{
-    
+    static final long serialVersionUID = 1L;
     static ImageIcon icon;
     public EndStepEvent(){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/step.png"));

@@ -10,5 +10,5 @@ package org.gcreator.events;
  * @author Ali
  */
 public class KeyboardEvent {
-
+static final long serialVersionUID = 1L;
 }

@@ -35,6 +35,7 @@ public interface EventSelectListener {
     public static int MOUSEOVER = 5018;
     public static int MOUSEOUT = 5019;
     public static int Keyboard = 6000;
+    public static int Collision = 7000;
     
     public void eventSelected(int type);
 }

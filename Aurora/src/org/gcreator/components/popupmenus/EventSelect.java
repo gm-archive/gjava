@@ -7,6 +7,7 @@
 package org.gcreator.components.popupmenus;
 
 import org.gcreator.components.impl.EventSelectListener;
+import org.gcreator.editors.ActorEditor;
 
 /**
  *
@@ -16,15 +17,15 @@ public class EventSelect extends javax.swing.JDialog {
     
     /** Creates new form EventSelect */
     EventSelectListener listener;
+    ActorEditor ae;
     
-    public EventSelect(java.awt.Frame parent, boolean modal, int x, int y, EventSelectListener listener) {
+    public EventSelect(ActorEditor ae, java.awt.Frame parent, boolean modal, int x, int y, EventSelectListener listener) {
         super(parent, modal);
-        
+        this.ae = ae;
         this.listener = listener;
         initComponents();
         this.setLocation(x,y);
         this.setVisible(true);
-        //main(new String[] {""});
     }
     
     /** This method is called from within the constructor to

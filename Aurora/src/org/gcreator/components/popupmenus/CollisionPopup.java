@@ -13,6 +13,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
+import org.gcreator.events.CollisionEvent;
 import org.gcreator.units.ObjectNode;
 
 /**
@@ -24,6 +25,7 @@ public class CollisionPopup extends JPopupMenu implements ActionListener{
     JMenu res;
     EventSelect selector;
     public CollisionPopup(EventSelect selector){
+        this.selector = selector;
         populate();
     }
 
@@ -70,7 +72,19 @@ public class CollisionPopup extends JPopupMenu implements ActionListener{
     }
 
     public void actionPerformed(ActionEvent e) {
-        System.out.println(""+e.getActionCommand());
+     System.out.println("go9t here");
+        selector.ae.elist.add(new CollisionEvent(e.getActionCommand()));
+        selector.ae.jList1.updateUI();
+        selector.ae.updateActionList();
+        selector.dispose();
+        selector = null; //Perhaps this will help with garbage collection?
+        //selector.ae.jScrollPane1.updateUI();
+        
+    }
+    
+     public void cause(int num){
+        //selector.callEvent(EventSelectListener.MOUSELEFTCLICKED+num);
+         
         
     }
 

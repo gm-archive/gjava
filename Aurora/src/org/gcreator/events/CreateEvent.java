@@ -16,7 +16,7 @@ import javax.swing.*;
  * @author Luís
  */
 public class CreateEvent extends Event{
-    
+    static final long serialVersionUID = 1L;
    static ImageIcon icon;
     public CreateEvent(){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/create.png"));
