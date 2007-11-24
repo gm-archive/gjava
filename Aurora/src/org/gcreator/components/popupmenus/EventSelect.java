@@ -139,6 +139,11 @@ public class EventSelect extends javax.swing.JDialog {
 
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/colision.png"))); // NOI18N
         jButton9.setText("Collision");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jButton9MousePressed(evt);
+            }
+        });
 
         jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/other.png"))); // NOI18N
         jButton11.setText("Other");
@@ -254,6 +259,11 @@ public class EventSelect extends javax.swing.JDialog {
         KeyboardListPopup kb = new KeyboardListPopup(this);
         kb.show(jButton8, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton8MouseReleased
+
+    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
+       CollisionPopup col = new CollisionPopup(this);
+        col.show(jButton9, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton9MousePressed
     
     public void callEvent(int type){
         if(listener!=null)
