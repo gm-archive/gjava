@@ -49,6 +49,8 @@ namespace org.gcreator.Native
 
             XNA.batch.Begin();
 
+            currentScene.Draw();
+
             XNA.batch.End();
 
             base.Draw(gameTime);
