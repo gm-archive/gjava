@@ -7,7 +7,10 @@
 package org.gcreator.components;
 
 import java.awt.Color;
-import javax.swing.ImageIcon;
+import java.io.File;
+import java.util.*;
+import javax.imageio.*;
+import javax.swing.*;
 
 /**
  *
@@ -21,13 +24,21 @@ public class PowerPackImporter extends TabPanel {
         initComponents();
         project = null;
         list.setColumns(5);
-        list.addElement("Blue Sky", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/bluesky.png")));
-        list.addElement("Close Button", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/close.png")));
-        list.addElement("G-Creator", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/GCreator.png")));
-        list.addElement("MiniMinimize", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/min.png")));
-        list.addElement("MiniRestore", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/dec.png")));
-        list.addElement("MiniMaximize", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/max.png")));
-        list.addElement("MiniClose", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/close2.png")));
+        File powerpack = new File("./powerpack");
+        if(!powerpack.exists()){
+            jScrollPane1.setViewportView(new JLabel("Could not find PowerPack!"));
+        }
+        if(!powerpack.isDirectory()){
+            jScrollPane1.setViewportView(new JLabel("PowerPack must be a folder!"));
+        }
+        File[] files = powerpack.listFiles();
+        for(int i = 0; i < files.length; i++){
+            if(files[i]!=null&&files[i].isFile())
+                try{
+                    list.addElement(files[i].getName(), new ImageIcon(ImageIO.read(files[i])));
+                }
+                catch(Exception e){}
+        }
         jScrollPane1.setViewportView(list);
         list.setBackground(Color.WHITE);
     }
