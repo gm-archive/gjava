@@ -36,6 +36,11 @@ public class Action implements Serializable {
 //    }
 //    
     
+    public Action (ActionPattern pattern){
+        this.pattern = pattern;
+        if(pattern!=null)
+            panel = pattern.createNewPanel(this);
+    }
         
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
@@ -96,6 +101,7 @@ public class Action implements Serializable {
     }
     
     public Action clone(){
-        return pattern.clone(panel);
+        Action a = new Action(pattern);
+        return a;//pattern.clone(panel);
     }
 }

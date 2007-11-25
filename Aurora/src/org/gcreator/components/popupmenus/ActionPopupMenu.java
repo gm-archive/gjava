@@ -90,7 +90,7 @@ public class ActionPopupMenu extends JPopupMenu{
         try{
             Vector array = ((Event) edit.jList1.getSelectedValue()).actions;
             org.gcreator.actions.Action a = (org.gcreator.actions.Action)array.get(x);
-            ActorEditorClipboard.copiedAction = a;
+            ActorEditorClipboard.copiedAction = a.clone();
             
         }
         catch(Exception e){}
