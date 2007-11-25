@@ -1,0 +1,2 @@
+--G-C# is based on Mono.XNA. However, you should have any trouble in converting it to Microsoft XNA.--
+--This folder already includes a pre-compiled version of libGCS. You should override it once you've changed it--
