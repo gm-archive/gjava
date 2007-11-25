@@ -12,10 +12,7 @@ import java.awt.event.*;
 import java.util.*;
 //import javax.swing.*;
 
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.managers.*;
@@ -162,6 +159,7 @@ public class NewProject extends TabPanel {
                 project.add(new ActorGroup(project, "Actors"));
                 project.add(new SceneGroup(project, "Scenes"));
                 project.add(new EGMLGroup(project, "Classes"));
+                project.add(new Group(project, "Distribution"));
                 org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
                 a.editable = false;
                 a.value = new org.gcreator.fileclass.res.SettingsValues();
