@@ -645,6 +645,13 @@ public class Aurwindow extends JFrame {
                 });
         menus[7].addSeparator();
         menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
+        items[MenuSupporter.GenerateMenuItemId(7, 4)] = MenuSupporter.MakeMenuItem(menus[7], 183, "PowerPack");
+        items[MenuSupporter.GenerateMenuItemId(7, 4)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 4, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(8, 0)] = MenuSupporter.MakeMenuItem(menus[8], 172, "Play macro");
         items[MenuSupporter.GenerateMenuItemId(8, 0)].addActionListener(new ActionListener() {
 
@@ -1049,6 +1056,9 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 7 && item == 3) {
             addWindow(globalsettings, 131);
+        }
+        if (menu == 7 && item == 4) {
+            addWindow(new PowerPackImporter(), 184);
         }
         if(menu == 8 && item == 0){
             PlayMacroDialog dialog = new PlayMacroDialog(this, true);

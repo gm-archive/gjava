@@ -226,6 +226,8 @@ public class Portuguese extends Dictionary{
         entry[180] = "Executar Macro";
         entry[181] = "Executador de macros";
         entry[182] = "Parar de gravar macro";
+        entry[183] = "Importar do PowerPack";
+        entry[184] = "Explorador do PowerPack";
         
         try{
             init();
