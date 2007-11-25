@@ -16,6 +16,7 @@ import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
 
 import javax.swing.*;
+import org.gcreator.api.util.CreateApiList;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
 import org.gcreator.help.AboutPanel;
@@ -102,6 +103,10 @@ public class gcreator {
             Plugger.onSplashStart(plugins);
         }
         splash = new SplashScreen(applet);
+        
+        //setup api list
+        CreateApiList.setup();
+        
         
         String[] settings = null;
         

@@ -14,6 +14,13 @@ import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 import java.awt.*;
 import java.beans.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import org.gcreator.api.util.ApiClass;
+import org.gcreator.api.util.ApiFunction;
+import org.gcreator.api.util.CreateApiList;
 import org.gcreator.fileclass.res.Classes;
 
 /**
@@ -43,7 +50,7 @@ public class GCLEditor extends TabPanel {
         this.project = project;
         initComponents();
         if(file.value==null)
-            file.value = "//Some GCL code";
+            file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
         g = new EGMLTextArea(file.value.toString());
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -61,6 +68,12 @@ public class GCLEditor extends TabPanel {
                 changed = true;
             }
         });
+        
+        jComboBox1.setModel(new DefaultComboBoxModel(CreateApiList.classes));
+        this.jComboBox1.setRenderer(new ApiListCellRenderer());
+         this.jComboBox2.setRenderer(new ApiListCellRenderer());
+         jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox2.getItemAt(0)).functions));
+        jComboBox1.updateUI();
     }
 
     
@@ -92,6 +105,11 @@ public class GCLEditor extends TabPanel {
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -168,13 +186,17 @@ public class GCLEditor extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            g.getDocument().insertString(g.getCaretPosition(), ""+this.jComboBox1.getSelectedItem()+"."+this.jComboBox2.getSelectedItem(), null);//GEN-LAST:event_jButton1ActionPerformed
-            
-        } catch (BadLocationException ex) {
+        g.getDocument().insertString(g.getCaretPosition(), ""+this.jComboBox1.getSelectedItem()+"."+this.jComboBox2.getSelectedItem(), null);                                        
+} catch (BadLocationException ex) {
             Logger.getLogger(GCLEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+       jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox2.getSelectedItem()).functions));
+        jComboBox1.updateUI();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,3 +214,34 @@ public class GCLEditor extends TabPanel {
     // End of variables declaration//GEN-END:variables
     
 }
+
+class ApiListCellRenderer extends JLabel implements ListCellRenderer {
+     public ApiListCellRenderer() {
+         setOpaque(true);
+     }
+
+     public Component getListCellRendererComponent(JList list,
+                                                   Object value,
+                                                   int index,
+                                                   boolean isSelected,
+                                                   boolean cellHasFocus) {
+         String val="";// = value.toString();
+
+         // check if this cell represents the current DnD drop location
+         //JList.DropLocation dropLocation = list.getDropLocation();
+         
+         if(value instanceof ApiFunction){
+           //  icon = ((org.gcreator.actions.ActionPattern) value).getStandardImage();
+             val = ((ApiFunction) value).name;
+             
+         }
+         else if(value instanceof ApiClass){
+            // icon = ((org.gcreator.actions.ActionCategory) value).icon;
+             val = ((ApiClass) value).name;
+             
+         }
+         setText(val);
+         //setIcon(icon);
+return this;
+     }
+     }
