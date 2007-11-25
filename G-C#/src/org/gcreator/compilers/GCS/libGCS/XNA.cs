@@ -43,6 +43,10 @@ namespace org.gcreator.Native
             base.Run();
         }
 
+        protected override void LoadGraphicsContent(bool loadAllContent)
+        {
+        }
+
         protected override void Draw(GameTime gameTime)
         {
             XNA.graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
@@ -57,3 +61,4 @@ namespace org.gcreator.Native
         }
     }
 }
+

@@ -14,7 +14,7 @@ namespace org.gcreator.Components
 
         public Image(String path)
         {
-            texture = org.gcreator.Native.XNA.content.Load<Texture2D>(path) as Texture2D;
+            texture = org.gcreator.Native.XNA.content.Load<Texture2D>(path);
         }
     }
 
@@ -227,3 +227,4 @@ namespace org.gcreator.Components
         }
     }
 }
+
