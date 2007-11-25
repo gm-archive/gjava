@@ -29,12 +29,12 @@ import java.util.Arrays;
          * The Mathematical constant PI to 17 decimal places
          *  @since 2.0
          */
-        public static double PI = Math.PI;
+        public static double PI = java.lang.Math.PI;
 
         /**
          * The Mathematical constant E, the base of the natural logarithms
          */
-        public static double E = Math.E;
+        public static double E = java.lang.Math.E;
 
         /**
          * Returns the cube root of a double value. For positive finite x, cbrt(-x) == -cbrt(x); that is, the cube root of a negative value is the negative of the cube root of that value's magnitude.
@@ -143,7 +143,7 @@ import java.util.Arrays;
          * @return
          */
         public static double exp(double x) {
-            return java.lang.Math.log(x) / java.lang.Math.log(Math.E);
+            return java.lang.Math.log(x) / java.lang.Math.log(java.lang.Math.E);
         }
 
         /**
@@ -472,7 +472,7 @@ import java.util.Arrays;
          * @return
          */
         public static double max(double v1, double v2) {
-            return Math.max(v1, v2);
+            return java.lang.Math.max(v1, v2);
         }
 
         public static double max(double v1, double v2, double v3) {
@@ -1027,7 +1027,7 @@ import java.util.Arrays;
          * @return
          */
         public static double point_distance(double x1, double y1, double x2, double y2) {
-            return Math.sqrt(sqr(x2 - x1) + sqr(y2 - y1));
+            return java.lang.Math.sqrt(sqr(x2 - x1) + sqr(y2 - y1));
         }
 
         /**

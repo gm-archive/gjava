@@ -36,7 +36,7 @@ public class Date {
      * Returns the date-time value that corresponds to the current moment.
      * @return
      */
-    public static double current_datetime() {
+    public static double currentDatetime() {
         Calendar now = Calendar.getInstance();
         long milis = now.getTime().getTime() - then.getTime().getTime();
         // convert milis to days
@@ -47,7 +47,7 @@ public class Date {
      * Returns the date-time value that corresponds to the current date only (ignoring the time).
      * @return
      */
-    public static double current_date() {
+    public static double currentDate() {
         Calendar now = Calendar.getInstance();
         now.set(Calendar.HOUR_OF_DAY, 0);
         now.set(Calendar.MINUTE, 0);
@@ -61,7 +61,7 @@ public class Date {
      * Returns the date-time value that corresponds to the current time only (ignoring the date).
      * @return
      */
-    public static double current_time() {
+    public static double currentTime() {
         Calendar now = Calendar.getInstance();
         now.set(Calendar.YEAR, then.get(Calendar.YEAR));
         now.set(Calendar.MONTH, then.get(Calendar.MONTH));
@@ -81,7 +81,7 @@ public class Date {
      * @param s
      * @return
      */
-    public static double create_datetime(double y, double m, double d, double h, double min, double s) {
+    public static double createDatetime(double y, double m, double d, double h, double min, double s) {
         Calendar nDate = Calendar.getInstance();
         nDate.set((int) y, (int) m - 1, (int) d, (int) h, (int) min, (int) s);
         long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -724,6 +724,6 @@ public class Date {
      * @return
      */
     public static double is_today(double d) {
-        return current_date() == of(d) ? 1 : 0;
+        return currentDate() == of(d) ? 1 : 0;
     }
 }

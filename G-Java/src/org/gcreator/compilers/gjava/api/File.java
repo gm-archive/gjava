@@ -11,7 +11,7 @@ package org.gcreator.compilers.gjava.api;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
+//import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -23,7 +23,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 /**
      * It is useful to use external files in games. For example, you could make a file that describes at what moments certain things should happen. Also you probably want to save information for the next time the game is run (for example, the current room).
      */
-    public class Files {
+    public class File {
 
         /**
          * read-only files
@@ -217,7 +217,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
                     thenumber += "" + fileid.read();
                 }
 
-                return string.real(thenumber);
+                return StringH.real(thenumber);
             } catch (Exception ex) {
                 ex.printStackTrace();
                 GScript.msgbox("Error reading real!", 1);
@@ -272,7 +272,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @return
          */
         public static boolean file_exists(String fname) {
-            return new File(fname).exists();
+            return new java.io.File(fname).exists();
         }
 
         /**
@@ -280,7 +280,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          */
         public static void file_delete(String fname) {
-            new File(fname).delete();
+            new java.io.File(fname).delete();
         }
 
         /**
@@ -289,7 +289,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param newname
          */
         public static void file_rename(String oldname, String newname) {
-            new File(oldname).renameTo(new File(newname));
+            new java.io.File(oldname).renameTo(new java.io.File(newname));
         }
 
         /**
@@ -327,7 +327,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @return
          */
         public static boolean directory_exists(String dname) {
-            return new File(dname).exists();
+            return new java.io.File(dname).exists();
         }
 
         /**
@@ -335,7 +335,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param dname
          */
         public static void directory_create(String dname) {
-            new File(dname).mkdir();
+            new java.io.File(dname).mkdir();
         }
 
 
@@ -345,7 +345,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @return
          */
         public static String filename_name(String fname) {
-            return string.string_replace(fname, filename_path(fname), "");
+            return StringH.string_replace(fname, filename_path(fname), "");
         }
 
         /**
@@ -398,8 +398,8 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          *
          */
         public static void filename_change_ext(String fname, String newext) {
-            File f = new File(fname);
-            f.renameTo(new File(filename_path(fname).replaceAll(filename_ext(fname), newext)));
+            java.io.File f = new java.io.File(fname);
+            f.renameTo(new java.io.File(filename_path(fname).replaceAll(filename_ext(fname), newext)));
         }
 
 

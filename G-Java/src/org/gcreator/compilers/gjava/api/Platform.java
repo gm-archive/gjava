@@ -54,4 +54,12 @@ public class Platform {
         public static String get_os_version(){
             return System.getProperty("os.version", "-1");
         }
+        
+        public static void printCmd(String message){
+            System.out.println(message);
+        }
+        
+        public static void printError(String message){
+            System.err.println(message);
+        }
     }

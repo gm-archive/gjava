@@ -103,6 +103,7 @@ public class GJava extends PlatformCore {
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
             print(actor, "import org.gcreator.compilers.gjava.components.*;");
+            print(actor, "import org.gcreator.compilers.gjava.api.*;");
             print(actor, "");
 
             print(actor, "public class " + a.name + " extends Actor {");
@@ -128,10 +129,10 @@ public class GJava extends PlatformCore {
             for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();)
             {
               org.gcreator.actions.Action G_Java_aa =  (org.gcreator.actions.Action)ee.nextElement();
-              //G_Java_aa.getEGML()
-              //parseGCL(G_Java_aa.getEGML(),this);
+              
+              print(actor,parseGCL(G_Java_aa.getEGML(),this));
               System.out.println("action parse!");
-              parseGCL(";;; {}",this);
+              //parseGCL(";;; {}",this);
             }
             print(actor, "    }");
             }
@@ -171,6 +172,7 @@ public class GJava extends PlatformCore {
         print(scene, "");
         print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
         print(scene, "import org.gcreator.compilers.gjava.core.*;");
+        print(scene, "import org.gcreator.compilers.gjava.api.*;");
         print(scene, "import java.awt.Color;");
         print(scene, "");
         print(scene, "public class " + s.name + " extends Scene {");
