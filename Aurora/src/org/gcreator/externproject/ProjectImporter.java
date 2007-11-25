@@ -179,6 +179,11 @@ public class ProjectImporter {
                             Bytefiles.add(stream.toByteArray());
                             Stringfiles.add("");
                             objects.add("");
+                        }
+                        else if(zipe.getName().endsWith(".txt")||zipe.getName().endsWith(".egml")){
+                            Bytefiles.add(stream.toByteArray());
+                            Stringfiles.add(new String(stream.toByteArray()));
+                            objects.add(new String(stream.toByteArray()));
                         } else {
                             
                             /// following code beta
@@ -202,8 +207,10 @@ public class ProjectImporter {
                 }
             }
         } catch (ZipException ex) {
+            System.out.println(ex.toString() + ": " + ex.getMessage());
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            System.out.println(ex.toString() + ": " + ex.getMessage());
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
         }
         

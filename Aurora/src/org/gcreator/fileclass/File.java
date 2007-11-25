@@ -104,6 +104,7 @@ public class File extends Object implements Transferable {
         
 
     
+        if(value!=null){
         if (value instanceof String) {
             out.write(value.toString().getBytes());
         } 
@@ -130,6 +131,7 @@ public class File extends Object implements Transferable {
         s.writeObject(value);
         s.flush();
             //out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
+        }
         }
     }
 

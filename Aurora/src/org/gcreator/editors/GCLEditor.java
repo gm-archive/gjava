@@ -28,6 +28,8 @@ public class GCLEditor extends TabPanel {
     
     public boolean Save(){
         file.value = g.getText();
+        if(file.value==null)
+            file.value = "";
         return true;
     }
 
@@ -41,7 +43,7 @@ public class GCLEditor extends TabPanel {
         this.project = project;
         initComponents();
         if(file.value==null)
-            file.value = new Classes("//Some GCL code");
+            file.value = "//Some GCL code";
         g = new EGMLTextArea(file.value.toString());
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
