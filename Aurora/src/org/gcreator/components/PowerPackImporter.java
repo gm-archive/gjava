@@ -20,10 +20,14 @@ public class PowerPackImporter extends TabPanel {
     public PowerPackImporter() {
         initComponents();
         project = null;
+        list.setColumns(5);
         list.addElement("Blue Sky", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/bluesky.png")));
-        list.addElement("Blue Sky", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/bluesky.png")));
+        list.addElement("Close Button", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/close.png")));
         list.addElement("G-Creator", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/GCreator.png")));
-        list.addElement("G-Creator", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/GCreator.png")));
+        list.addElement("MiniMinimize", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/min.png")));
+        list.addElement("MiniRestore", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/dec.png")));
+        list.addElement("MiniMaximize", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/max.png")));
+        list.addElement("MiniClose", new ImageIcon(getClass().getResource("/org/gcreator/powerpack/close2.png")));
         jScrollPane1.setViewportView(list);
         list.setBackground(Color.WHITE);
     }
@@ -46,8 +50,10 @@ public class PowerPackImporter extends TabPanel {
 
         jLabel2.setText("Filter:");
 
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Show image files");
 
+        jCheckBox2.setSelected(true);
         jCheckBox2.setText("Show audio files");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

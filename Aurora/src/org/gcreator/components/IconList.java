@@ -6,6 +6,7 @@
 package org.gcreator.components;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
@@ -16,12 +17,60 @@ import javax.swing.*;
 public class IconList extends JComponent{
     private int columns = 3;
     private Vector<IconListElement> elements = new Vector<IconListElement>();
-    private int columnWidth = 100;
-    private int columnHeight = 100;
+    private int columnWidth = 120;
+    private int columnHeight = 120;
     private int selIndex = 0;
     private int wgap = 10;
     private int hgap = 10;
     private Color selectionColor = Color.BLUE;
+    
+    public IconList(){
+        super();
+        addMouseListener(new MouseListener(){
+            public void mouseEntered(MouseEvent evt){}
+            public void mouseExited(MouseEvent evt){}
+            public void mousePressed(MouseEvent evt){}
+            public void mouseReleased(MouseEvent evt){
+                mouseAction(evt);
+            }
+            public void mouseClicked(MouseEvent evt){
+                mouseAction(evt);
+            }
+        });
+    }
+    
+    public void mouseAction(MouseEvent evt){
+        int x = evt.getX();
+        int y = evt.getY();
+        int b = evt.getButton();
+        if(b!=MouseEvent.BUTTON1)
+            return;
+        x -= wgap; //Remove initial gaps
+        y -= hgap;
+        if((x%(columnWidth+wgap))>columnWidth)
+            return;
+        if((y%(columnHeight+hgap))>columnHeight)
+            return;
+        x /= (columnWidth+wgap);
+        y /= (columnHeight+hgap);
+        int t = y*columns + x;
+        if(t<countVisibleElements()){
+            selIndex = t;
+            repaint();
+            //updateUI();
+        }
+    }
+    
+    public int countVisibleElements(){
+        int cf = 0;
+        Enumeration<IconListElement> e = elements.elements();
+        while(e.hasMoreElements()){
+            IconListElement element = e.nextElement();
+            if(element.visible)
+                cf++;
+        }
+        return cf;
+    }
     
     public Color getSelectionColor(){
         return selectionColor;
@@ -157,17 +206,37 @@ public class IconList extends JComponent{
     
     public Dimension getPreferredSize(){
         int rows = calcRows();
-        return new Dimension(columnWidth*columns+((columns+1)*wgap), columnHeight*rows+((rows+1)*hgap));
+        return new Dimension(columnWidth*columns+(columns+1)*wgap, columnHeight*rows+(rows+1)*hgap);
     }
     
     private void paintComponent(Graphics g, IconListElement element, int r, int c, int i){
         int wstart = c*columnWidth + (c+1)*wgap;
         int hstart = r*columnHeight + (r+1)*hgap;
-        if(i==selIndex)
+        if(i==selIndex){
             g.setColor(Color.BLUE);
+            g.drawRect(wstart+1, hstart+1, columnWidth-2, columnHeight-2);
+        }
         else
             g.setColor(Color.GRAY);
         g.drawRect(wstart, hstart, columnWidth, columnHeight);
+        int imgw = columnWidth-4;
+        int imgh = columnHeight-22;
+        ImageIcon img = element.img;
+        int iconh = img.getIconHeight();
+        int iconw = img.getIconWidth();
+        if(iconw>=imgw&&iconh>=imgh){
+            g.drawImage(img.getImage(), wstart + 2, hstart + 2, imgw, imgh, img.getImageObserver());
+        }
+        if(iconw>=imgw&&iconh<imgh){
+            g.drawImage(img.getImage(), wstart + 2, hstart + 2 + (imgh-iconh)/2, imgw, iconh, img.getImageObserver());
+        }
+        if(img.getIconWidth()<imgw&&img.getIconHeight()>=imgh){
+            g.drawImage(img.getImage(), wstart + 2 + (imgw-iconw)/2, hstart + 2, iconw, imgh, img.getImageObserver());
+        }
+        if(img.getIconWidth()<imgw&&img.getIconHeight()<imgh){
+            g.drawImage(img.getImage(), wstart + 2 + (imgw-iconw)/2, hstart + 2 + (imgh-iconh)/2, iconw, img.getIconHeight(), img.getImageObserver());
+        }
+        g.drawString(element.text, wstart+3, hstart+imgh+16);
     }
     
     public void paint(Graphics g){
