@@ -1,21 +1,17 @@
 /*This is the first G-C# test*/
 
-//gmcs test1.cs -out:test1.exe -r:Microsoft.Xna.Framework.dll -r:Microsoft.Xna.Framework.Game.dll -r:libGCS.dll
+//gmcs test1.cs -out:test1.exe -r:libGCS.dll
 
 using org.gcreator.Components;
 using org.gcreator.Native;
-using Microsoft.Xna.Framework.Graphics;
+using org.gcreator.Support;
 
 class Scene1 : Scene
 {
-	private Image img = null;
+	private Image img = new Image("graphics/Minimize.png");
 	public override void Draw()
 	{
-		if(img==null)
-			img = new Image("graphics/Minimize.png");
-		Texture2D t = XNA.getTexture(img);
-		System.Console.WriteLine("Printing 0, 0, " + t.Width + ", " + t.Height);
-		XNA.batch.Draw(t, new Microsoft.Xna.Framework.Rectangle(0,0,t.Width,t.Height), new Microsoft.Xna.Framework.Rectangle(0,0,t.Width,t.Height), Microsoft.Xna.Framework.Graphics.Color.White);
+		SDL.DrawToSurface(img, SDL.Game.game.master, new Rectangle(0,0,30,30));
 	}
 }
 
@@ -27,6 +23,7 @@ public class Test1
 
 	public static void Main()
 	{
-		XNA.Start(scenelist);
+		SDL.Game game = new SDL.Game(scenelist, false, true, 800, 600, "Test1");
+		game.Run();
 	}
 }
