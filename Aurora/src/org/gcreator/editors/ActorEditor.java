@@ -170,23 +170,23 @@ public class ActorEditor extends TabPanel {
         //addActionCat(p,"Control");
         //addActionCat(p,"Draw");
 
-        jComboBox1.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent e) {
-                        JComboBox cb = (JComboBox) e.getSource();
-                        String name = (String) cb.getSelectedItem();
-
-                        for (Enumeration en = actionCats.elements(); en.hasMoreElements();) {
-                            ActionCategory a = ((ActionCategory) en.nextElement());
-                            if (a.name.equals(name)) {
-                            //jScrollPane3.setViewportView(a.j); 
-                            }
-
-                        }
-
-
-                    }
-                });
+//        jComboBox1.addActionListener(new ActionListener() {
+//
+//                    public void actionPerformed(ActionEvent e) {
+//                        JComboBox cb = (JComboBox) e.getSource();
+//                        String name = (String) cb.getSelectedItem();
+//
+//                        for (Enumeration en = actionCats.elements(); en.hasMoreElements();) {
+//                            ActionCategory a = ((ActionCategory) en.nextElement());
+//                            if (a.name.equals(name)) {
+//                            //jScrollPane3.setViewportView(a.j); 
+//                            }
+//
+//                        }
+//
+//
+//                    }
+//                });
     }
 
     /*public static void addAction(JPanel p, String name) {
@@ -264,6 +264,7 @@ public class ActorEditor extends TabPanel {
         jSplitPane3.setDividerSize(3);
 
         jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList2.setMaximumSize(new java.awt.Dimension(250, 0));
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jList2MousePressed(evt);
@@ -341,6 +342,8 @@ public class ActorEditor extends TabPanel {
         );
 
         jSplitPane2.setLeftComponent(jPanel4);
+
+        jPanel5.setMinimumSize(new java.awt.Dimension(100, 0));
 
         jButton1.setText(LangSupporter.activeLang.getEntry(146));
         jButton1.addActionListener(new java.awt.event.ActionListener() {

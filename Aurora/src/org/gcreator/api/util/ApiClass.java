@@ -19,6 +19,11 @@ public class ApiClass {
         this.name = name;
         //this.functions = functions;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
     
     public void add(ApiFunction af) {
       functions.add(af);  

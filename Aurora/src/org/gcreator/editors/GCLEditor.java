@@ -70,10 +70,10 @@ public class GCLEditor extends TabPanel {
         });
         
         jComboBox1.setModel(new DefaultComboBoxModel(CreateApiList.classes));
-        this.jComboBox1.setRenderer(new ApiListCellRenderer());
-         this.jComboBox2.setRenderer(new ApiListCellRenderer());
-         jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox2.getItemAt(0)).functions));
-        jComboBox1.updateUI();
+        jComboBox1.setRenderer(new ApiListCellRenderer());
+         jComboBox2.setRenderer(new ApiListCellRenderer());
+         jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox1.getItemAt(0)).functions));
+        //jComboBox2.updateUI();
     }
 
     
@@ -104,7 +104,7 @@ public class GCLEditor extends TabPanel {
         jSplitPane1.setDividerLocation(225);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new DefaultComboBoxModel(CreateApiList.classes));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -186,7 +186,7 @@ public class GCLEditor extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-        g.getDocument().insertString(g.getCaretPosition(), ""+this.jComboBox1.getSelectedItem()+"."+this.jComboBox2.getSelectedItem(), null);                                        
+        g.getDocument().insertString(g.getCaretPosition(), ""+((ApiClass)this.jComboBox1.getSelectedItem()).name+"."+this.jComboBox2.getSelectedItem(), null);                                        
 } catch (BadLocationException ex) {
             Logger.getLogger(GCLEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -194,7 +194,7 @@ public class GCLEditor extends TabPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-       jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox2.getSelectedItem()).functions));
+       jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox1.getSelectedItem()).functions));
         jComboBox1.updateUI();
     }//GEN-LAST:event_jComboBox1ActionPerformed
     

@@ -17,7 +17,10 @@ public static void setup() {
     ApiClass test = new ApiClass("Test");
     test.add(new ApiFunction("test","test doc"));
     test.add(new ApiFunction("test2","test2 doc"));
+     ApiClass test2 = new ApiClass("Test2");
+     test2.add(new ApiFunction("test2","test2 doc"));
     classes.add(test);
+    classes.add(test2);
 }
 
 
