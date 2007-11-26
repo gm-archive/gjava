@@ -10,11 +10,11 @@ namespace org.gcreator.Components
 
     public class Image
     {
-        private Texture2D texture;
+        internal Texture2D texture;
 
-        public Image(String path)
+        public Image(string path)
         {
-            texture = org.gcreator.Native.XNA.content.Load<Texture2D>(path);
+            texture = Texture2D.FromFile(Native.XNA.graphics.GraphicsDevice, path);
         }
     }
 
@@ -221,10 +221,9 @@ namespace org.gcreator.Components
 
     public class Scene
     {
-        public void Draw()
+        public virtual void Draw()
         {
 
         }
     }
 }
-

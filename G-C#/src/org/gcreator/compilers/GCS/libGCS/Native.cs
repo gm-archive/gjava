@@ -19,6 +19,11 @@ namespace org.gcreator.Native
             Game game = new Game();
             game.RunWith(scenelist);
         }
+
+        public static Texture2D getTexture(Image img)
+        {
+            return img.texture;
+        }
     }
 
     internal class Game : Microsoft.Xna.Framework.Game
@@ -54,11 +59,10 @@ namespace org.gcreator.Native
             XNA.batch.Begin();
 
             currentScene.Draw();
-
+            
             XNA.batch.End();
 
-            base.Draw(gameTime);
+            //base.Draw(gameTime);
         }
     }
 }
-
