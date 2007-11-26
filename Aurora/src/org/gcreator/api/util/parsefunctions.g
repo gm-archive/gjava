@@ -2,6 +2,7 @@ grammar parsefunctions;
 
 options {
 k = 3;
+backtrack = true;
 }
 
 
@@ -110,18 +111,18 @@ STRING_DOUBLE
 
 program	
 
-:  'public' 'class' p=WORD {String catname = ""+$p.text;} {System.out.println("clas = new ApiClass(\""+$p.text+"\");");} '{' (m=method{System.out.println("clas.add(new ApiFunction(\""+$m.result+"\n classes.add(clas);");})* '}'
+:  'public' 'class' p=WORD {String catname = ""+$p.text;} {System.out.println("clas = new ApiClass(\""+$p.text+"\");");} '{' (m=method{System.out.println("clas.add(new ApiFunction(\""+$m.result+"\n classes.add(clas);");}|field)* '}'
 ;
 
 block	:	'{' (~('{'|'}')|block)* '}'
 	;
 	
-	mlcomment returns [String result]: '/*' {String pp="";} (p=~('@'){pp= pp+" "+ $p.text;})* (~('*/'))* '*/' {$result=pp;}
+	mlcomment   returns [String result] @init{String pp="";}: '/*' (p=~('@'){pp= pp+" "+ $p.text;})* (~('*/'))* '*/' {$result=pp;}
 	;
 	
-	field returns [String result]: (mm=mlcomment)* 'public' 'static' arg=WORD name=WORD '=' (WORD)* {$result=$name.text+"\");\n keyworddoc.add(\"<b>"+$arg.text+"</b> "+$name.text+" <br><br>"+($mm.result).replaceAll("\\*","")+"\");";}
+	field returns [String result]: (mm=mlcomment)* ('public'|'private') ('static')* arg=WORD name=WORD ('=' (WORD)* {$result=$name.text+"\");\n keyworddoc.add(\"<b>"+$arg.text+"</b> "+$name.text+" <br><br>"+($mm.result).replaceAll("\\*","")+"\");";})*(';')*
 	;
 
 method returns [String result]
-: (mm=mlcomment)* 'public' 'static' arg=WORD name=WORD args=ARGS {$result=$name.text+"\",\"<b>"+$arg.text+"</b> "+$name.text+" <i>"+$args.text+"</i><br><br>"+($mm.result).replaceAll("\\*","")+"\"));";} block 
+: (mm=mlcomment)* 'public' ('static')* arg=WORD name=WORD args=ARGS {$result=$name.text+" "+$args.text+"\",\"<b>"+$arg.text+"</b> "+$name.text+" <i>"+$args.text+"</i><br><br>"+($mm.result).replaceAll("\\*","")+"\"));";} block 
 	;
