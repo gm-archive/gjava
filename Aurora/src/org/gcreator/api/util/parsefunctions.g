@@ -110,7 +110,7 @@ STRING_DOUBLE
 
 program	
 
-:  'public' 'static' 'class' p=WORD {String catname = ""+$p.text;} '{' (m=method{System.out.println("keywords.add(\""+$p.text+"."+$m.result);})* '}'
+:  'public' 'class' p=WORD {String catname = ""+$p.text;} {System.out.println("clas = new ApiClass(\""+$p.text+"\");");} '{' (m=method{System.out.println("clas.add(new ApiFunction(\""+$m.result+"\n classes.add(clas);");})* '}'
 ;
 
 block	:	'{' (~('{'|'}')|block)* '}'
@@ -123,5 +123,5 @@ block	:	'{' (~('{'|'}')|block)* '}'
 	;
 
 method returns [String result]
-: (mm=mlcomment)* 'public' 'static' arg=WORD name=WORD args=ARGS {$result=$name.text+"\");\n keyworddoc.add(\"<b>"+$arg.text+"</b> "+$name.text+" <i>"+$args.text+"</i><br><br>"+($mm.result).replaceAll("\\*","")+"\");";} block 
+: (mm=mlcomment)* 'public' 'static' arg=WORD name=WORD args=ARGS {$result=$name.text+"\",\"<b>"+$arg.text+"</b> "+$name.text+" <i>"+$args.text+"</i><br><br>"+($mm.result).replaceAll("\\*","")+"\"));";} block 
 	;
