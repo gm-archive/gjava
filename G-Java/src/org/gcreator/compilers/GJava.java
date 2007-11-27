@@ -19,6 +19,7 @@ import java.util.Enumeration;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JMenuItem;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.popupmenus.ResourceMenu;
@@ -230,6 +231,16 @@ public class GJava extends PlatformCore {
                         run(Aurwindow.getMainProject());
                     }
                 });
+                
+        
+        JMenuItem i = new JMenuItem("Compile with G-Java");
+        i.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt) {
+                run(Aurwindow.getMainProject());
+            }
+        });
+        
+        PluginHelper.addMenuItem(7, i);
         Aurwindow.tool.add(run);
     }
 
