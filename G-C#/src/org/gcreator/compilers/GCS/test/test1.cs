@@ -6,12 +6,28 @@ using org.gcreator.Components;
 using org.gcreator.Native;
 using org.gcreator.Support;
 
-class Scene1 : Scene
+class Actor1 : Actor
 {
-	private Image img = new Image("graphics/Minimize.png");
-	public override void Draw()
+	public Actor1()
+	{
+		Sprite s;
+		setSprite(s = new Sprite());
+		s.setImageArray(new Image[]{
+			new Image("graphics/Minimize.png")
+		});
+		setSpritePosition(0);
+	}
+	/*public override void Draw()
 	{
 		SDL.DrawToSurface(img, SDL.Game.game.master, new Rectangle(0,0,30,30));
+	}*/
+}
+
+class Scene1 : Scene
+{
+	public override void Create()
+	{
+		base.addActor(new Actor1());
 	}
 }
 

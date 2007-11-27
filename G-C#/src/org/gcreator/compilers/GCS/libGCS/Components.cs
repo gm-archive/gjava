@@ -67,7 +67,7 @@ namespace org.gcreator.Components
 
         public Image[] getImageArray()
         {
-            return (Image[])images.ToArray(typeof(Image));
+            return (Image[]) images.ToArray(typeof(Image));
         }
 
         public void setImageArray(Image[] images)
@@ -78,12 +78,16 @@ namespace org.gcreator.Components
 
         public int getWidth()
         {
-            return 0;
+			if(images==null||images[0]==null)
+				return -1;
+            return (images[0] as Image).texture.Width;
         }
 
         public int getHeight()
         {
-            return 0;
+            if(images==null||images[0]==null)
+				return -1;
+            return (images[0] as Image).texture.Height;
         }
 
         public Rectangle getBounds()
@@ -104,7 +108,7 @@ namespace org.gcreator.Components
 
     public class Actor
     {
-        private int x, y, z, spritepos, spritemovdelay, spritet, spritett;
+        private int x, y, z, spritepos, spritemovdelay, spritet, spritett = 0;
         //spritet-current position(only on -1 mode)
         //spritett-time to fill delay
         private Sprite sprite = null;
@@ -228,16 +232,77 @@ namespace org.gcreator.Components
             this.persistent = persistent;
         }
 		
+		public void Loop(){
+			BeginStep();
+			MouseCheck();
+			KeyboardCheck();
+			spritett++;
+			if(spritett >= spritemovdelay)
+			{
+				spritett = 0;
+				spritet++;
+				if(spritet>=sprite.getImageCount())
+				{
+					spritet = 0;
+				}
+			}
+			Step();
+			CollisionCheck();
+			EndStep();
+			Draw();
+		}
+		public virtual void MouseCheck(){} //Call Mouse events
+		public virtual void KeyboardCheck(){} //Call Keyboard events
 		public virtual void BeginStep(){}
 		public virtual void Step(){}
 		public virtual void EndStep(){}
+		public virtual void Draw()
+		{
+			//Unless otherwise specified
+			Native.SDL.DrawToSurface(
+				sprite.getImage(getCurrentSpritePosition()),
+				Native.SDL.Game.game.master,
+				new Rectangle(x, y, sprite.getWidth(), sprite.getHeight()));
+		}
+		public virtual void CollisionCheck(){} //TODO: Check collisions/solid
     }
 
     public class Scene
     {
-        public virtual void Draw()
-        {
-
-        }
+		private ArrayList actors = new ArrayList();
+		public virtual void Create()
+		{
+		
+		}
+		public void addActor(Actor actor)
+		{
+			actors.Add(actor);
+		}
+		internal void InheritPersistents(Actor[] persistents)
+		{
+		
+		}
+		public void Destroy()
+		{
+		
+		}
+		public void Loop()
+		{
+			foreach(object o in actors)
+			{
+				if(o is Actor)
+				{
+					(o as Actor).Loop();
+				}
+			}
+		}
+		internal Actor[] getPersistentActors()
+		{
+			return null;
+		}
+		internal Actor[] getNonPersistentActors()
+		{
+			return null;
+		}
     }
 }

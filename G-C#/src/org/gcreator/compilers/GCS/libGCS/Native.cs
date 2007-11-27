@@ -60,12 +60,14 @@ namespace org.gcreator.Native
 		
 		public static void DrawToSurface(Surface image, Surface screen, org.gcreator.Support.Rectangle destination)
 		{
-			screen.Blit(image, CSharp.ToDrawingRectangle(destination));
+			Surface t = image.CreateStretchedSurface(new System.Drawing.Size(destination.width, destination.height));
+			screen.Blit(t, CSharp.ToDrawingRectangle(destination));
 		}
 		
 		public static void DrawToSurface(Surface image, Surface screen, System.Drawing.Rectangle destination)
 		{
-			screen.Blit(image, destination);
+			Surface t = image.CreateStretchedSurface(new System.Drawing.Size(destination.Width, destination.Height));
+			screen.Blit(t, destination);
 		}
 	
 		public Surface getSDLTexture(Image img)
@@ -82,7 +84,7 @@ namespace org.gcreator.Native
 	
         public class Game
         {
-            public Scene currentScene;
+            internal Scene currentScene;
             public Scene[] scenes;
 			public static Game game;
 
@@ -100,6 +102,7 @@ namespace org.gcreator.Native
 				this.height = height;
                 scenes = scenelist;
                 currentScene = scenelist[0];
+				currentScene.Create();
                 screen = Video.SetVideoMode(width, height, resizable, false, fullscreen);
 				master = new Surface(width, height);
                 Video.WindowCaption = title;
@@ -115,7 +118,7 @@ namespace org.gcreator.Native
 
             private void Draw()
             {
-                currentScene.Draw();
+                currentScene.Loop();
 				master.Update();
 				screen.Blit(master);
 				screen.Update();
