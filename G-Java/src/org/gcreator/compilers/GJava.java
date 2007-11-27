@@ -240,7 +240,7 @@ public class GJava extends PlatformCore {
             }
         });
         
-        PluginHelper.addMenuItem(7, i);
+        PluginHelper.addMenuItem(3, i);
         Aurwindow.tool.add(run);
     }
 
