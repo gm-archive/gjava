@@ -49,7 +49,7 @@ public class Sprite extends Resource {
     
     public void addToList(org.gcreator.fileclass.File i){
         //images.add(i);
-        Simages.add(i.name);
+        Simages.add(i);
     }
     
      

@@ -895,9 +895,10 @@ public class Aurwindow extends JFrame {
             Dimension a = this.getSize();
             int b = this.getExtendedState();
             scroller.setVisible(!scroller.isVisible());
-            pack();
-            this.setSize(a);
-            this.setExtendedState(b);
+            //pack();
+            //this.setSize(a);
+            //this.setExtendedState(b);
+            this.repaint();
             splitter1.setDividerLocation(0.80);
         }
         if (menu == 2 && item == 1) {
