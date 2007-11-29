@@ -786,6 +786,7 @@ public class Aurwindow extends JFrame {
         splitter1.setRightComponent(scroller);
         splitter2.setLeftComponent(treescroll);
         splitter2.setRightComponent(tabs);
+        splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -849,8 +850,8 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
 
-        pack();
-        //setSize(550, 550);
+        //pack();
+        setSize(550, 550);
         utilities.addMessage(29);
         //</editor-fold>
         WelcomeTab welcome = new WelcomeTab();

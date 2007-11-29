@@ -659,6 +659,8 @@ public class SpriteEditor extends TabPanel {
     }
     
     public ImageIcon getImageAt(int id){
+        //if(id<sprite.countImages())
+        //    return null;
         return sprite.getImageAt(id);
     }
     

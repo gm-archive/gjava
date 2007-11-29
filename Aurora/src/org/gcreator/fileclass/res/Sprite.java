@@ -35,7 +35,8 @@ public class Sprite extends Resource {
     public ImageIcon getImageAt(int pos){
         if(pos>=Simages.size())
             return null;
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+Simages.elementAt(pos),"image",gcreator.window.getCurrentProject()).object;
+        //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) Simages.elementAt(pos);
         if(a==null)
             return null;
         if(a.value instanceof ImageIcon)

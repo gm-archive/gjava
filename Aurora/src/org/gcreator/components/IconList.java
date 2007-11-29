@@ -108,6 +108,10 @@ public class IconList extends JComponent{
         updateUI();
     }
     
+    public String getSelectedText(){
+        return getTextAt(getSelectedIndex(), true);
+    }
+    
     public int getColumnWidth(){
         return columnWidth;
     }
@@ -146,9 +150,25 @@ public class IconList extends JComponent{
     }
     
     public String getTextAt(int i){
+        return getTextAt(i, false);
+    }
+    
+    public String getTextAt(int i, boolean visibleonly){
         if(i<0||i>=elements.size())
             return null;
-        return elements.get(i).text;
+        int x = i;
+        if(visibleonly){
+            x = 0;
+            Enumeration<IconListElement> e = elements.elements();
+            while(e.hasMoreElements()){
+                if(x==i)
+                    return e.nextElement().text;
+                if(e.nextElement().visible==true)
+                    x++;
+            }
+            return null;
+        }
+        return elements.get(x).text;
     }
     
     public ImageIcon getImageAt(int i){
