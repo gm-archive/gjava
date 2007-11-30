@@ -132,7 +132,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
                 ImageIcon h = f.getImageAt(0);
                 if(h!=null)
-                    g.drawImage(h.getImage(), (int) (a.x / root.getZoom()), (int) (a.y / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
+                    g.drawImage(h.getImage(), (int) ((a.x - f.originX) / root.getZoom()), (int) ((a.y - f.originY) / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
             }
         }
     }
