@@ -10,8 +10,8 @@
 package org.gcreator.compilers.gjava.api;
 
 import java.io.IOException;
-import org.gcreator.compilers.gjava.core.basicgame;
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
  *

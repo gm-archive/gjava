@@ -5,6 +5,7 @@
  */
 package org.gcreator.compilers.gjava.api;
 
+import org.gcreator.compilers.gjava.java2d.basicgame;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.lang.reflect.Method;

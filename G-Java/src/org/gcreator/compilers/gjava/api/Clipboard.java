@@ -15,7 +15,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
      * <h2>Clipboard Functions</h2>

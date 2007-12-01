@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import javax.swing.*;
 import java.util.*;
 import org.gcreator.compilers.gjava.core.GameSettings;
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 import org.gcreator.compilers.gjava.api.Main;
 
 /**

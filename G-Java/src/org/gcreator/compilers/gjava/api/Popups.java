@@ -14,7 +14,7 @@ import java.io.File;
 import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
      *

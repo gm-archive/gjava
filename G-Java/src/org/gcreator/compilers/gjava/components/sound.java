@@ -1,6 +1,6 @@
 package org.gcreator.compilers.gjava.components;
 
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 import org.gcreator.compilers.gjava.api.res.TimedAudioClip;
 
 /**

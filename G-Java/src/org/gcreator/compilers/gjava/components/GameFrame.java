@@ -5,7 +5,7 @@ import java.awt.event.
         ////////////////////////////////////////
         *;
 import org.gcreator.compilers.gjava.core.GameSettings;
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 
 
 /**

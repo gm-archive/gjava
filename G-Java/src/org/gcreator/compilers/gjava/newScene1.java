@@ -1,5 +1,6 @@
 package org.gcreator.compilers.gjava;
 
+import org.gcreator.compilers.gjava.java2d.basicgame;
 import org.gcreator.compilers.gjava.components.Scene;
 import org.gcreator.compilers.gjava.core.*;
 import java.awt.Color;

@@ -2,7 +2,8 @@
 // by TGMG
 
 // import the required classes
-package org.gcreator.compilers.gjava.core;
+package org.gcreator.compilers.gjava.java2d;
+import org.gcreator.compilers.gjava.core.*;
 import java.awt.*;
 import javax.swing.*;
 import java.
@@ -34,7 +35,7 @@ public static JApplet applet = null;
 public static int firstroom,lastroom,currentscene=-1;
 public static Container canvas;
 
-public static Scene scenes[];// = new Scene[0];
+public static Scene scenes[];
 
      
     public void init() {

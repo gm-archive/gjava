@@ -9,7 +9,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.core.basicgame;
+import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
      * Good games require careful timing of things happening. Fortunately G-Java does most of the timing for you.
