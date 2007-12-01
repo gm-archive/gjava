@@ -111,7 +111,7 @@ STRING_DOUBLE
 
 program	
 
-:  'public' 'class' p=WORD {String catname = ""+$p.text;} {System.out.println("clas = new ApiClass(\""+$p.text+"\");");} '{' (m=method{System.out.println("clas.add(new ApiFunction(\""+$m.result+"\n classes.add(clas);");}|field)* '}'
+: (mm=mlcomment)? 'public' 'class' p=WORD {String catname = ""+$p.text;} {System.out.println("clas = new ApiClass(\""+$p.text+"\");");} '{' (m=method{System.out.println("clas.add(new ApiFunction(\""+$m.result+","+($mm.result).replaceAll("\\*","")+");");}|field)* '}' {System.out.println("classes.add(clas);");}
 ;
 
 block	:	'{' (~('{'|'}')|block)* '}'
@@ -120,7 +120,7 @@ block	:	'{' (~('{'|'}')|block)* '}'
 	mlcomment   returns [String result] @init{String pp="";}: '/*' (p=~('@'){pp= pp+" "+ $p.text;})* (~('*/'))* '*/' {$result=pp;}
 	;
 	
-	field returns [String result]: (mm=mlcomment)* ('public'|'private') ('static')* arg=WORD name=WORD ('=' (WORD)* {$result=$name.text+"\");\n keyworddoc.add(\"<b>"+$arg.text+"</b> "+$name.text+" <br><br>"+($mm.result).replaceAll("\\*","")+"\");";})*(';')*
+	field returns [String result]: (mm=mlcomment)* ('public'|'private') ('static')* arg=WORD name=WORD ('=' (WORD)* {$result=$name.text+"\");\n keyworddoc.add(\"<b>"+$arg.text+"</b> "+$name.text+" <br><br>"+($mm.result).replaceAll("\\*","")+"\"";})*(';')*
 	;
 
 method returns [String result]

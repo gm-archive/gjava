@@ -11,7 +11,7 @@ import java.util.Vector;
  * @author Ali
  */
 public class ApiClass {
-    public String name="";
+    public String name="",doc="";
     public Vector functions = new Vector<ApiFunction>();
    // ApiFunction[] functions;
     ApiClass(String name )
