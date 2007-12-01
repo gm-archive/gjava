@@ -44,6 +44,14 @@ public class Sprite extends Resource {
         return null;
     }
     
+    public org.gcreator.fileclass.File getAt(int pos){
+        if(pos>=Simages.size())
+            return null;
+        //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
+        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) Simages.elementAt(pos);
+        return a;
+    }
+    
     public int countImages(){
         return Simages.size();
     }
