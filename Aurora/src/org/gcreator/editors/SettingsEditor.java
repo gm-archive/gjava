@@ -18,6 +18,7 @@ import org.gcreator.components.popupmenus.*;
 import org.gcreator.fileclass.File;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
+import org.gcreator.plugins.*;
 
 /**
  *
@@ -31,6 +32,12 @@ public class SettingsEditor extends TabPanel {
     TabValues Graphics, Resolution, Other, SceneOrder;
     ResourceMenu scenes;
     int from;
+    private static Vector<SettingsManager> managers = new Vector<SettingsManager>();
+    
+    public static void addManager(SettingsManager manager)
+    {
+        managers.add(manager);
+    }
     
     private Vector<org.gcreator.fileclass.File> scenelist;
     
