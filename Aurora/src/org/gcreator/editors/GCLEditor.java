@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import javax.swing.text.html.HTMLEditorKit;
 import org.gcreator.api.util.ApiClass;
 import org.gcreator.api.util.ApiFunction;
 import org.gcreator.api.util.CreateApiList;
@@ -94,7 +95,7 @@ public class GCLEditor extends TabPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jComboBox2 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jLabel1 = new javax.swing.JLabel();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -112,9 +113,15 @@ public class GCLEditor extends TabPanel {
         });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("jLabel1");
-        jScrollPane2.setViewportView(jLabel1);
+        jEditorPane1.setEditable(false);
+        jEditorPane1.setEditorKit(new HTMLEditorKit());
+        jScrollPane2.setViewportView(jEditorPane1);
 
         jButton1.setText("Insert");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -197,13 +204,18 @@ public class GCLEditor extends TabPanel {
        jComboBox2.setModel(new DefaultComboBoxModel(((ApiClass) jComboBox1.getSelectedItem()).functions));
         jComboBox1.updateUI();
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+      ApiFunction af = (ApiFunction) jComboBox2.getSelectedItem();
+      this.jEditorPane1.setText(af.doc);
+    }//GEN-LAST:event_jComboBox2ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jButton1;
     public javax.swing.JComboBox jComboBox1;
     public javax.swing.JComboBox jComboBox2;
-    public javax.swing.JLabel jLabel1;
+    public javax.swing.JEditorPane jEditorPane1;
     public javax.swing.JPanel jPanel1;
     public javax.swing.JPanel jPanel2;
     public javax.swing.JScrollPane jScrollPane1;
