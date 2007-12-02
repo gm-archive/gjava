@@ -171,18 +171,19 @@ public class GJava extends PlatformCore {
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
         print(scene, "");
-        print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
+        //print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
         print(scene, "import org.gcreator.compilers.gjava.core.*;");
         print(scene, "import org.gcreator.compilers.gjava.api.*;");
         print(scene, "import java.awt.Color;");
         print(scene, "");
-        print(scene, "public class " + s.name + " extends Scene {");
+        // can do a opengl scene for now, in future pure java2d will be added here
+        print(scene, "public class " + s.name + " extends org.gcreator.compilers.gjava.lwjgl.Scene2D {");
         print(scene, "");
         print(scene, "    " + s.name + "() {");
         if (s.drawbackcolor) {
-            print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", new Color(" + s.background.getRed() + "," + s.background.getGreen() + "," + s.background.getBlue() + "));");
+            print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", new Color(" + s.background.getRed() + "," + s.background.getGreen() + "," + s.background.getBlue() + "));");
         } else {
-            print(scene, "        super(basicgame.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.BLACK);");
+            print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.BLACK);");
         }
         print(scene, "    setupScene();");
         print(scene, "    SortDepth();");
@@ -192,13 +193,10 @@ public class GJava extends PlatformCore {
         for(int i=0; i<s.actors.size(); i++)
         print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + ","+((ActorInScene) s.actors.get(i)).id +"));");
 
-//        for (Enumeration e = s.actors.elements(); e.hasMoreElements();) {
-//            print(scene, "instances.add(new " + ((ActorInScene) e.nextElement()).actor.name + "(" + ((ActorInScene) e.nextElement()).x + "," + ((ActorInScene) e.nextElement()).y + "));");
-//        }
         print(scene, "    }");
         print(scene, "");
         print(scene, "}");
-        System.out.println("scene close");
+        
         scene.close();
     }
 
@@ -211,6 +209,11 @@ public class GJava extends PlatformCore {
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
             copyDirectory(f2, f1);
+            f1=new File("Projects" + File.separator + projectname + File.separator + "Java" + File.separator+"lib"+ File.separator);
+            f1.mkdirs();
+            f2=new File("lib"+ File.separator);
+            copyDirectory(f2, f1);
+            
         } catch (IOException ex) {
             System.out.println("" + ex.getLocalizedMessage());
         }
@@ -249,10 +252,10 @@ public class GJava extends PlatformCore {
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
         print(game, "import org.gcreator.compilers.gjava.components.*;");
-        
+        print(game, "import org.gcreator.compilers.gjava.lwjgl.*;");
         //import org.gcreator.compilers.gjava.components.Sprite;
-        print(game, "import org.gcreator.compilers.gjava.core.basicgame;");
-        print(game, "public class Game extends basicgame {");
+        print(game, "//import org.gcreator.compilers.gjava.core.basicgame;");
+        print(game, "public class Game extends org.gcreator.compilers.gjava.lwjgl.Basicgame {");
         print(game, loadSprites + "G_Creator_NULL_SPRITE;");
         print(game, "    Game(){");
         print(game, "//loading image code will go here");
@@ -261,7 +264,7 @@ public class GJava extends PlatformCore {
         print(game, "        nextScene();");
         print(game, "    }");
         print(game, "   public void loadScenes(){");
-        print(game, "  scenes = new Scene[" + scenes + "]; ");
+        print(game, "  scenes = new Scene2D[" + scenes + "]; ");
         print(game, "" + loadscene);
         print(game, "    }");
         //Load sprites method

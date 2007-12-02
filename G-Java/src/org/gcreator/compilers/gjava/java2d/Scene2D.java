@@ -1,5 +1,6 @@
-package org.gcreator.compilers.gjava.components;
+package org.gcreator.compilers.gjava.java2d;
 
+import org.gcreator.compilers.gjava.components.*;
 import java.awt.*;
 
 import java.awt.event.KeyEvent;
@@ -17,7 +18,7 @@ import org.gcreator.compilers.gjava.api.Main;
  * @author G-Java development team
  * @version 1.0
  */
-public class Scene extends JPanel implements Runnable,KeyListener,MouseListener {
+public class Scene2D extends JPanel implements Runnable,KeyListener,MouseListener {
     
     //<editor-fold defaultstate="collapsed" desc="Variables">
     // the start time
@@ -183,7 +184,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
     // end of declaring variables
     //</editor-fold>
     
-    public Scene(){}
+    public Scene2D(){}
     
     /**
      * Creates a new RoomPanel object
@@ -195,7 +196,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
      * @param RoomH The room height
      * @param backcolor The room backgound color
      */
-    public Scene(JFrame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
+    public Scene2D(JFrame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
         //this.name = roomname;
         basicgame.Current = this;
         this.speed = fps;
@@ -207,7 +208,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
         this.backcolor = backcolor;
         this.Caption = Caption;
         this.period = (int) (1000.0 / speed);
-        Scene.graphics = this.getGraphics();
+        Scene2D.graphics = this.getGraphics();
         R.setSize(width, height);
         if (basicgame.Runningas.equals("EApplet")) {
             totalElapsedTime = System.currentTimeMillis();
@@ -325,22 +326,7 @@ public class Scene extends JPanel implements Runnable,KeyListener,MouseListener 
             Frame.setTitle("" + local_caption);
         }
     }
-    
-    //	public int collsion_at_position(int x,int y,boolean solid)
-    //		{
-    //		// this returns 1 if there is a collsion at a position
-    //		ii = 0;
-    //		while (ii < instances.size())
-    //			{
-    //			Actor o = (Actor) instances.get(ii);
-    //			if (o.solid == 1)
-    //				{
-    //
-    //				}
-    //			}
-    //		return 0;
-    //		}
-    
+       
     /** Update - Method, implements double buffering */
     public void paint(Graphics g) {
         this.graphics = g;

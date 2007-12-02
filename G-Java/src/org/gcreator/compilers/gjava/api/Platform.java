@@ -16,23 +16,23 @@ public class Platform {
         }
         
         public static boolean is_windows(){
-            return get_os_name().toLowerCase().indexOf("windows") > -1;
+            return get_os_name().toLowerCase().startsWith("Win");
         }
         
         public static boolean is_linux(){
-            return get_os_name().toLowerCase().indexOf("linux") > -1;
+            return get_os_name().toLowerCase().startsWith("Linux") ;
         }
         
         public static boolean is_mac(){
-            return get_os_name().toLowerCase().indexOf("mac os") > -1;
+            return get_os_name().toLowerCase().startsWith("Mac");
         }
         
         public static boolean is_solaris(){
-            return get_os_name().toLowerCase().indexOf("solaris") > -1;
+            return get_os_name().toLowerCase().startsWith("SunOS");
         }
         
         public static boolean is_free_bsd(){
-            return get_os_name().toLowerCase().indexOf("freebsd") > -1;
+            return get_os_name().toLowerCase().startsWith("FreeBSD");
         }
         
         public static boolean is_windows_xp(){

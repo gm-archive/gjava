@@ -14,7 +14,7 @@ net.*;
 
 // the main class
 import org.gcreator.compilers.gjava.components.GameFrame;
-import org.gcreator.compilers.gjava.components.Scene;
+import org.gcreator.compilers.gjava.java2d.Scene2D;
 
 
 
@@ -30,12 +30,12 @@ GameSettings gs = new GameSettings();
 public static JFrame frame = new GameFrame(100,200,Color.BLACK);
 public static URL u;
 public static String Runningas;
-public static Scene Current;
+public static Scene2D Current;
 public static JApplet applet = null;
 public static int firstroom,lastroom,currentscene=-1;
 public static Container canvas;
 
-public static Scene scenes[];
+public static Scene2D scenes[];
 
      
     public void init() {

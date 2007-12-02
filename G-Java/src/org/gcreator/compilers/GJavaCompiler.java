@@ -91,6 +91,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 			GJava.print(manifest,"Manifest-Version: 1.0");
 			GJava.print(manifest,"Main-Class: org.gcreator.compilers.gjava.Game");
 			GJava.print(manifest,"Created-By: 1.2 (Sun Microsystems Inc.)");
+                        GJava.print(manifest,"Class-Path: lib/slick.jar lib/lwjgl.jar lib/natives.jar lib/lwjgl_util_applet.jar");
 			manifest.close();
 			htmlFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + GJava.projectname +"_applet.html");
 			BufferedWriter html = new BufferedWriter(htmlFW);

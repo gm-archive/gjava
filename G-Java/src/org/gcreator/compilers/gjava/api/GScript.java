@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
 import javax.swing.*;
 import java.util.*;
 import org.gcreator.compilers.gjava.components.Actor;
-import org.gcreator.compilers.gjava.components.Scene;
+import org.gcreator.compilers.gjava.java2d.Scene2D;
 import org.gcreator.compilers.gjava.components.Timeline;
 import org.gcreator.compilers.gjava.components.font;
 import org.gcreator.compilers.gjava.components.sound;
@@ -435,7 +435,7 @@ public class GScript {
          * @param ind
          * @return
          */
-        public static boolean room_exists(Scene ind) {
+        public static boolean room_exists(Scene2D ind) {
             return true;
         }
 

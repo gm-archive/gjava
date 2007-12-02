@@ -6,14 +6,14 @@
 package org.gcreator.compilers.gjava;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 import java.awt.Color;
-import org.gcreator.compilers.gjava.components.Scene;
+import org.gcreator.compilers.gjava.java2d.Scene2D;
 import org.gcreator.compilers.gjava.core.*;
 
 /**
  *
  * @author Ali
  */
-public class TestScene extends Scene {
+public class TestScene extends Scene2D {
 
     TestScene()
     {
