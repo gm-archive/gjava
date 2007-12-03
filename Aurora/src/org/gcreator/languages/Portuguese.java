@@ -35,7 +35,7 @@ public class Portuguese extends Dictionary{
         entry[7] = "Abrir Projecto";
         entry[8] = "Guardar Projecto";
         entry[9] = "Guardar Projecto como";
-        entry[10] = "Importar...";
+        entry[10] = "Importar";
         entry[11] = "Exportar...";
         entry[12] = "Fechar projecto";
         entry[13] = "Sair";

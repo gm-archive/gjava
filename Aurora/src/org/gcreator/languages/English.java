@@ -35,7 +35,7 @@ public class English extends Dictionary{
         entry[7] = "Open Project";
         entry[8] = "Save Project";
         entry[9] = "Save Project As";
-        entry[10] = "Import...";
+        entry[10] = "Import";
         entry[11] = "Export...";
         entry[12] = "Close Project";
         entry[13] = "Exit";
