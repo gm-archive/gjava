@@ -206,7 +206,8 @@ public class GJava extends PlatformCore {
             FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
             if(f1.exists())
-                new File("Projects" + File.separator + projectname+ File.separator).delete();
+                recursivelyDeleteDirectory(new File("Projects" + File.separator + projectname+ File.separator)); 
+                //new File("Projects" + File.separator + projectname+ File.separator).delete();
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
             copyDirectory(f2, f1);
@@ -273,8 +274,9 @@ public class GJava extends PlatformCore {
         print(game, "   public static void main(String[] args){");
         print(game, "       Runningas = \"Application\";");
         print(game, "       canvas=frame;");
-        print(game, "       frame.setVisible(true);");
+        
         print(game, "       new Game();");
+        print(game, "       frame.setVisible(true);");
         print(game, "   }");
         print(game, "}");
         game.close();

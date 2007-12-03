@@ -7,12 +7,18 @@ package org.gcreator.compilers.gjava.lwjgl;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Frame;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
 import org.gcreator.compilers.gjava.components.GameFrame;
 import org.gcreator.compilers.gjava.core.GameSettings;
+import org.lwjgl.LWJGLException;
 import org.lwjgl.util.applet.LWJGLInstaller;
+import org.newdawn.slick.CanvasGameContainer;
+import org.newdawn.slick.tests.GradientTest;
 
 
 
@@ -26,7 +32,7 @@ public class Basicgame  {
 //The Game Settings
 GameSettings gs = new GameSettings();
 
-public static JFrame frame = new GameFrame(100,200,Color.BLACK);
+public static Frame frame = new GameFrame(100,200,Color.BLACK);
 public static URL u;
 public static String Runningas;
 public static Scene2D Current;
@@ -39,6 +45,7 @@ public static Scene2D scenes[];
 
 
 public Basicgame() {
+    System.out.println("install");
     //install LWJGL
       try {
   LWJGLInstaller.tempInstall();
@@ -61,11 +68,18 @@ public static boolean ifNextScene() {return false;}
 public static void prevScene() {}
 
 public void nextScene() {
-    if (currentscene !=-1)
-removeScene();
-Current = scenes[currentscene+1];
-
+        try {
+            if (currentscene != -1) {
+                removeScene();
+            }
+            Current = scenes[currentscene + 1];
+            System.out.println("add canvas to frame");
 canvas.add(Current.getCanvas());
+            //canvas.add(new CanvasGameContainer(new GradientTest()));
+            //new CanvasGameContainer(new GradientTest())
+        } catch (Exception ex) {
+            System.out.println("LWJGLex"+ex);
+        }
 }
 
 public static void changeScene(int id){

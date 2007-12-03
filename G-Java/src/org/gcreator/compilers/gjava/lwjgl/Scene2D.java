@@ -6,6 +6,7 @@
 package org.gcreator.compilers.gjava.lwjgl;
 
 
+import java.awt.Frame;
 import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ public class Scene2D extends BasicGame {
     /** The container for the test */
 	private GameContainer container;
     
-    JFrame Frame;
+    Frame Frame;
    
     /**
      * All the instances in this room as a {@link Vector} object
@@ -97,7 +98,7 @@ public class Scene2D extends BasicGame {
      * @param RoomH The room height
      * @param backcolor The room backgound color
      */
-    public Scene2D(JFrame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
+    public Scene2D(Frame R, String Caption, long fps,int RoomW,int RoomH,Color backcolor) {
         //this.name = roomname;
         super(Caption);
         Basicgame.Current = this;
@@ -141,14 +142,16 @@ public class Scene2D extends BasicGame {
    /**
      * Override with creation code
      */
-    public void Creation_code(){}
+    public void Creation_code(){
+    //System.out.println("creation code");
+    }
     
     public CanvasGameContainer getCanvas()
     {
         try {
             return new CanvasGameContainer(this);
         } catch (LWJGLException ex) {
-            Logger.getLogger(Scene2D.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("exception with getCanvas"+ex);
             return null;
         }
     }
@@ -164,7 +167,7 @@ public class Scene2D extends BasicGame {
     @Override
     public void init(GameContainer container) throws SlickException {
         this.container = container;
-        
+        System.out.println("init");
     }
 
     @Override
@@ -175,6 +178,7 @@ public class Scene2D extends BasicGame {
     public void render(GameContainer arg0, Graphics g) throws SlickException {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
+         System.out.println("render");
     }
    
     
