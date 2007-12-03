@@ -219,6 +219,7 @@ public class Aurwindow extends JFrame {
                         });
             }
             for (int i = 0; i < mdi.getComponentCount(); i++) {
+                try{
                 if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
                     ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
 
@@ -233,6 +234,8 @@ public class Aurwindow extends JFrame {
                         Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+                }
+                catch(ClassCastException e){}
             }
             ExtendedFrame frame = new ExtendedFrame(){
                 public void paint(Graphics g){
@@ -1464,7 +1467,10 @@ public class Aurwindow extends JFrame {
 
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
-        mdi.remove(frame);
+        try{
+            mdi.remove(frame);
+        }
+        catch(NullPointerException e){}
     }
     //</editor-fold>
 
