@@ -135,7 +135,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
 // paint its own background, but due to an apparent bug or
 // limitation in the TreeCellRenderer, the paint method is
 // required to handle this.
-    public void paint(Graphics g) {
+    /*public void paint(Graphics g) {
         Color bColor;
         Icon currentI = getIcon();
 
@@ -153,5 +153,5 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         g.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
 
         super.paint(g);
-    }
+    }*/
 }
