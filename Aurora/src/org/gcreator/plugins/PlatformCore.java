@@ -67,6 +67,19 @@ public class PlatformCore extends PluginCore {
             }
         }
     }
+    
+    public static void recursivelyDeleteDirectory(File dir) throws IOException {	       
+  if ((dir == null) || !dir.isDirectory()) throw new IllegalArgumentException(dir + " not a directory");	  	      
+  final File[] files = dir.listFiles();
+  final int size = files.length; 
+  for (int i = 0; i < size; i++) {
+    if(files[i].isDirectory()) {
+      recursivelyDeleteDirectory(files[i]);
+    } else files[i].delete();	    
+  }	     
+  dir.delete();
+}
+
 
     public void parseSprite(Sprite s) {
         System.out.println("" + s.name);
