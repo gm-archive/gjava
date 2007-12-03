@@ -84,7 +84,7 @@ namespace org.gcreator.Native
 	
         public class Game
         {
-            internal Scene currentScene;
+            internal Scene currentScene = null;
             public Scene[] scenes;
 			public static Game game;
 
@@ -92,6 +92,7 @@ namespace org.gcreator.Native
 			
 			private bool fullscreen, resizable;
 			private int width, height; //Initial
+			public Surface cursurface;
 			
             public Game(Scene[] scenelist, bool fullscreen, bool resizable, int width, int height, string title)
             {
@@ -101,8 +102,10 @@ namespace org.gcreator.Native
 				this.width = width;
 				this.height = height;
                 scenes = scenelist;
-                currentScene = scenelist[0];
-				currentScene.Create();
+				if(scenelist!=null&&scenelist.Length>0){
+					currentScene = scenelist[0];
+					currentScene.Create();
+				}
                 screen = Video.SetVideoMode(width, height, resizable, false, fullscreen);
 				master = new Surface(width, height);
                 Video.WindowCaption = title;
@@ -118,7 +121,9 @@ namespace org.gcreator.Native
 
             private void Draw()
             {
-                currentScene.Loop();
+				cursurface = master;
+				if(currentScene!=null)
+					currentScene.Loop();
 				master.Update();
 				screen.Blit(master);
 				screen.Update();

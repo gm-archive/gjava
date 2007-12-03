@@ -103,7 +103,6 @@ namespace org.gcreator.Components
 
     public class Sound
     {
-
     }
 
     public class Actor
@@ -114,7 +113,27 @@ namespace org.gcreator.Components
         private Sprite sprite = null;
         private double gravity, gravitydir;
         private bool visible, solid, persistent;
-
+		private int startx, starty;
+		
+		public Actor(int x, int y, int z)
+		{
+			this.x = x;
+			this.y = y;
+			this.z = z;
+			this.startx = x;
+			this.starty = y;
+		}
+		
+		public int getStartingX()
+		{
+			return startx;
+		}
+		
+		public int getStartingY()
+		{
+			return starty;
+		}
+		
         public int getSpritePosition()
         {
             return spritepos;
@@ -249,7 +268,6 @@ namespace org.gcreator.Components
 			Step();
 			CollisionCheck();
 			EndStep();
-			Draw();
 		}
 		public virtual void MouseCheck(){} //Call Mouse events
 		public virtual void KeyboardCheck(){} //Call Keyboard events
@@ -261,8 +279,8 @@ namespace org.gcreator.Components
 			//Unless otherwise specified
 			Native.SDL.DrawToSurface(
 				sprite.getImage(getCurrentSpritePosition()),
-				Native.SDL.Game.game.master,
-				new Rectangle(x, y, sprite.getWidth(), sprite.getHeight()));
+				Native.SDL.Game.game.cursurface,
+				new Rectangle(x - sprite.getOriginX(), y - sprite.getOriginY(), sprite.getWidth(), sprite.getHeight()));
 		}
 		public virtual void CollisionCheck(){} //TODO: Check collisions/solid
     }
@@ -293,6 +311,14 @@ namespace org.gcreator.Components
 				if(o is Actor)
 				{
 					(o as Actor).Loop();
+				}
+			}
+			foreach(object o in actors)
+			{
+				//Should be more careful with views
+				if(o is Actor)
+				{
+					(o as Actor).Draw();
 				}
 			}
 		}

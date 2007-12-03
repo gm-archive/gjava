@@ -8,7 +8,7 @@ using org.gcreator.Support;
 
 class Actor1 : Actor
 {
-	public Actor1()
+	public Actor1(int x, int y, int z) : base(x,y,z)
 	{
 		Sprite s;
 		setSprite(s = new Sprite());
@@ -27,13 +27,17 @@ class Scene1 : Scene
 {
 	public override void Create()
 	{
-		base.addActor(new Actor1());
+		base.addActor(new Actor1(10,10,0));
+		base.addActor(new Actor1(40,10,0));
+		base.addActor(new Actor1(10,40,0));
+		base.addActor(new Actor1(100,10,0));
 	}
 }
 
 public class Test1
 {
-	public static Scene[] scenelist = new Scene[]{
+	public static Scene[] scenelist = new Scene[]
+	{
 		new Scene1()
 	};
 
