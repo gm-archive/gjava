@@ -12,6 +12,7 @@ import javax.swing.JApplet;
 import javax.swing.JFrame;
 import org.gcreator.compilers.gjava.components.GameFrame;
 import org.gcreator.compilers.gjava.core.GameSettings;
+import org.lwjgl.util.applet.LWJGLInstaller;
 
 
 
@@ -38,6 +39,12 @@ public static Scene2D scenes[];
 
 
 public Basicgame() {
+    //install LWJGL
+      try {
+  LWJGLInstaller.tempInstall();
+} catch (Exception le) {
+ System.out.println(""+le.getLocalizedMessage());
+}
 }
 
 

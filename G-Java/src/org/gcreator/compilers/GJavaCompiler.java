@@ -193,7 +193,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 								
 				String[] args = new String[] {
 						"-classpath",
-						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator,
+						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator+";Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator+"lib"+ File.separator+"slick.jar",
 						GJava.FileFolder  +"Game.java"
 				};
 				

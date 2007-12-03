@@ -5,7 +5,7 @@
 
 package org.gcreator.compilers.gjava.lwjgl;
 
-import java.awt.Color;
+
 import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 import org.lwjgl.LWJGLException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.CanvasGameContainer;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -168,11 +169,12 @@ public class Scene2D extends BasicGame {
 
     @Override
     public void update(GameContainer arg0, int arg1) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println("update");
     }
 
-    public void render(GameContainer arg0, Graphics arg1) throws SlickException {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void render(GameContainer arg0, Graphics g) throws SlickException {
+        g.setColor( backcolor );
+        g.fillRect( 0, 0, width, height );
     }
    
     

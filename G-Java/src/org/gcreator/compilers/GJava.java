@@ -174,7 +174,8 @@ public class GJava extends PlatformCore {
         //print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
         print(scene, "import org.gcreator.compilers.gjava.core.*;");
         print(scene, "import org.gcreator.compilers.gjava.api.*;");
-        print(scene, "import java.awt.Color;");
+        //print(scene, "import java.awt.Color;");
+        print(scene, "import org.newdawn.slick.Color;");
         print(scene, "");
         // can do a opengl scene for now, in future pure java2d will be added here
         print(scene, "public class " + s.name + " extends org.gcreator.compilers.gjava.lwjgl.Scene2D {");
