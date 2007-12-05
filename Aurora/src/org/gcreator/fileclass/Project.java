@@ -29,11 +29,11 @@ public class Project extends Folder {
     public String location = "";
     
     //The following vectors are for saving, getting resouces etc
-    public Vector<Actor> actors = new Vector<Actor>();
+    /*public Vector<Actor> actors = new Vector<Actor>();
     public Vector<Sprite> sprites = new Vector<Sprite>(); 
     public Vector<Sound> sounds = new Vector<Sound>();
     public Vector<Scene> scenes = new Vector<Scene>(); 
-    public Vector<Classes> classes = new Vector<Classes>(); 
+    public Vector<Classes> classes = new Vector<Classes>(); */
     
     public Project(){
         super(null);

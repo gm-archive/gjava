@@ -48,6 +48,10 @@ public class PluginHelper {
         return gcreator.window.getCurrentFolder();
     }
     
+    public static org.gcreator.fileclass.Object getCurrentObject(){ //Can be project or folder
+        return gcreator.window.getCurrentObject();
+    }
+    
     public static void addMenu(JMenu menu){
         gcreator.window.menubar.add(menu);
     }
@@ -58,6 +62,10 @@ public class PluginHelper {
     
     public static void addMenuSeparator(int menu){
         gcreator.window.menus[menu].addSeparator();
+    }
+    
+    public static void addSubMenu(int menu, JMenu submenu){
+        gcreator.window.menus[menu].add(submenu);
     }
     
     public static String getClipboardContent(){

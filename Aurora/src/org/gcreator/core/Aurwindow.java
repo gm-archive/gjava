@@ -114,7 +114,7 @@ public class Aurwindow extends JFrame {
         if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject());
         }
-        if (file.type.equals("sprite")) {
+        else if (file.type.equals("sprite")) {
             //            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
 //                if (((Sprite) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
@@ -383,12 +383,7 @@ public class Aurwindow extends JFrame {
         /*
          * Set up tree
          */
-        workspace = new JTree(top){
-            public void paint(Graphics g){
-                super.paint(g);
-                paintGraph();
-            }
-        };
+        workspace = new JTree(top);
         workspace.setVisible(true);
         workspace.setScrollsOnExpand(true);
         if (ver >= 6) {
@@ -724,7 +719,7 @@ public class Aurwindow extends JFrame {
                         onItemActionPerformed(5, 2, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(5, 3)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 132, "Ocean theme");
+        items[MenuSupporter.GenerateMenuItemId(5, 3)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 132, "Metal theme");
         items[MenuSupporter.GenerateMenuItemId(5, 3)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -1231,7 +1226,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newActor" + i) != -1) {
                     i++;
                 }
-                getCurrentProject().actors.add(new Actor("newActor" + i));
+                //getCurrentProject().actors.add(new Actor("newActor" + i));
                 addFile(getCurrentFolder(), "newActor" + i, "actor");
                 break;
             case 9:
@@ -1243,7 +1238,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newScene" + i) != -1) {
                     i++;
                 }
-                getCurrentProject().scenes.add(new Scene("newScene" + i));
+                //getCurrentProject().scenes.add(new Scene("newScene" + i));
                 addFile(getCurrentFolder(), "newScene" + i, "scene");
                 break;
             case 10:

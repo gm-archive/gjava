@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<pluglist><plugin>org.gcreator.compilers.GCS.plugin.GCSharp</plugin></pluglist>
+<pluglist><plugin>org.gcreator.compilers.GCS.plugin.GCSharp</plugin><plugin>org.gcreator.utils.GMImporter.plugin</plugin></pluglist>
