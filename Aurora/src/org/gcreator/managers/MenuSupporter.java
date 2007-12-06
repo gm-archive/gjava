@@ -24,7 +24,6 @@ public class MenuSupporter {
         JMenu menu = new JMenu(LangSupporter.activeLang.getEntry(label)){
             public void paint(Graphics g){
                 super.paint(g);
-                gcreator.window.paintGraph();
             }
             };
         menu.getAccessibleContext().setAccessibleDescription(description);
@@ -36,7 +35,6 @@ public class MenuSupporter {
         JMenu amenu = new JMenu(LangSupporter.activeLang.getEntry(label)){
             public void paint(Graphics g){
                 super.paint(g);
-                gcreator.window.paintGraph();
             }
             };
         menu.getAccessibleContext().setAccessibleDescription(description);
@@ -48,7 +46,6 @@ public class MenuSupporter {
         JMenuItem item = new JMenuItem(LangSupporter.activeLang.getEntry(label)){
             public void paint(Graphics g){
                 super.paint(g);
-                gcreator.window.paintGraph();
             }
             };
         item.getAccessibleContext().setAccessibleDescription(description);
@@ -60,7 +57,6 @@ public class MenuSupporter {
         JRadioButtonMenuItem item = new JRadioButtonMenuItem(LangSupporter.activeLang.getEntry(label)){
             public void paint(Graphics g){
                 super.paint(g);
-                gcreator.window.paintGraph();
             }
             };
         item.getAccessibleContext().setAccessibleDescription(description);
@@ -73,7 +69,6 @@ public class MenuSupporter {
         JCheckBoxMenuItem item = new JCheckBoxMenuItem(LangSupporter.activeLang.getEntry(label)){
             public void paint(Graphics g){
                 super.paint(g);
-                gcreator.window.paintGraph();
             }
             };
         item.getAccessibleContext().setAccessibleDescription(description);

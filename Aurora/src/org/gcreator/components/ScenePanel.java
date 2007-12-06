@@ -140,6 +140,44 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void drawField(Graphics g){
         g.setColor(root.getMapBGColor());
         g.fillRect(0, 0, getWidth(), getHeight());
+        ImageIcon i = ((Scene) root.file.value).getBackground();
+        if(i==null)
+            return;
+        int hrep = ((Scene) root.file.value).hmode;
+        int vrep = ((Scene) root.file.value).vmode;
+        if(hrep==Scene.MODE_SINGLE&&vrep==Scene.MODE_SINGLE){
+            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_STRETCH&&vrep==Scene.MODE_SINGLE){
+            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_STRETCH&&vrep==Scene.MODE_STRETCH){
+            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_SINGLE&&vrep==Scene.MODE_STRETCH){
+            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_REPEAT&&vrep==Scene.MODE_SINGLE){
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
+                g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_REPEAT&&vrep==Scene.MODE_STRETCH){
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
+                g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_SINGLE&&vrep==Scene.MODE_REPEAT){
+            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++)
+                g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_STRETCH&&vrep==Scene.MODE_REPEAT){
+            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++)
+                g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
+        else if(hrep==Scene.MODE_REPEAT&&vrep==Scene.MODE_REPEAT){
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
+                for(int k = 0; k * i.getIconHeight() < ((Scene) root.file.value).height; k++)
+                    g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), (int) (k * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+        }
     }
     
     public void drawGrid(Graphics g){

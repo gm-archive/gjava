@@ -237,12 +237,7 @@ public class Aurwindow extends JFrame {
                 }
                 catch(ClassCastException e){}
             }
-            ExtendedFrame frame = new ExtendedFrame(){
-                public void paint(Graphics g){
-                    super.paint(g);
-                    paintGraph();
-                }
-            };
+            ExtendedFrame frame = new ExtendedFrame();
             panel.frame = frame;
             frame.setPanel(panel);
             frame.setClosable(true);
@@ -297,12 +292,6 @@ public class Aurwindow extends JFrame {
         return null;
     }
     
-    //<editor-fold defaultstate="collapsed" desc="Constructor">
-
-    public void paintGraph(){
-        Graphics g = getGraphics();
-    }
-    
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -312,7 +301,6 @@ public class Aurwindow extends JFrame {
         console = new JTextPane(){
             public void paint(Graphics g){
                 super.paint(g);
-                paintGraph();
             }
         };
         console.setEditable(false);
@@ -340,30 +328,10 @@ public class Aurwindow extends JFrame {
 
         consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(console, consolepopup));
-        tabs = new JTabbedPane(){
-            public void paint(Graphics g){
-                super.paint(g);
-                paintGraph();
-            }
-        };
-        mdi = new JDesktopPane(){
-            public void paint(Graphics g){
-                super.paint(g);
-                paintGraph();
-            }
-        };
-        splitter1 = new JSplitPane(){
-            public void paint(Graphics g){
-                super.paint(g);
-                paintGraph();
-            }
-        };
-        splitter2 = new JSplitPane(){
-            public void paint(Graphics g){
-                super.paint(g);
-                paintGraph();
-            }
-        };
+        tabs = new JTabbedPane();
+        mdi = new JDesktopPane();
+        splitter1 = new JSplitPane();
+        splitter2 = new JSplitPane();
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         try {
