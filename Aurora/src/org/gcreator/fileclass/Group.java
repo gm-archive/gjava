@@ -33,6 +33,12 @@ public class Group extends Folder implements Serializable{
         return root.magicAddition(type);
     }
      
+    public Folder magicAddition(Group folder){
+        if(allowsGroup(folder))
+            return this;
+        return root.magicAddition(folder);
+    }
+    
     public Group newGroup(String name){
         Group group = new Group(this, name);
         add(group);

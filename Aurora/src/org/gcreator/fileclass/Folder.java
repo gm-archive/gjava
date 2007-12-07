@@ -46,6 +46,12 @@ public class Folder extends Object implements Serializable{
         return null;
     }
     
+    public Folder magicAddition(Group folder){
+        if(allowsGroup(folder))
+            return this;
+        return null;
+    }
+    
     public int find(Object search){
         if(childNodes==null)
             return -1;

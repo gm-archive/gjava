@@ -36,7 +36,28 @@ public class GameProject extends Project {
                 return findFolder("Sprites");
             else if(file.equals("actor"))
                 return findFolder("Actors");
+            else if(file.equals("scene"))
+                return findFolder("Scenes");
+            else if(file.equals("egml"))
+                return findFolder("Classes");
+            return findFolder("Distribution");
+        }
+        catch(Exception e){
             return null;
+        }
+    }
+    
+    public Folder magicAddition(Group folder){
+        try{
+            if(folder instanceof ImageGroup)
+                return findFolder("Images");
+            else if(folder instanceof SpriteGroup)
+                return findFolder("Sprites");
+            else if(folder instanceof ActorGroup)
+                return findFolder("Actors");
+            else if(folder instanceof SceneGroup)
+                return findFolder("Scenes");
+            return findFolder("Distribution");
         }
         catch(Exception e){
             return null;
