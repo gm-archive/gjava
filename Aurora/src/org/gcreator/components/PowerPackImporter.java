@@ -122,9 +122,13 @@ public class PowerPackImporter extends TabPanel {
             return;
         }
         org.gcreator.fileclass.Folder f = org.gcreator.core.gcreator.window.getCurrentFolder();
-        if (!f.allowsFileType(sel.replaceAll(".*\\.", ""))) {
-            System.out.println("Forbidden " + f.allowsFileType(sel.replaceAll(".*\\.", "")));
-            return;
+        String t = sel.replaceAll(".*\\.", "");
+        if (!f.allowsFileType(t)) {
+            System.out.println(t);
+            f = f.magicAddition(t);
+            if(f==null){
+                return;
+            }
         }
         System.out.println(f.name);
         java.io.File _file = new File("powerpack" + File.separator + sel);

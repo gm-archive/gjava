@@ -27,6 +27,11 @@ public class Group extends Folder implements Serializable{
         this.root = root;
     }
     
+    public Folder magicAddition(String type){
+        if(allowsFileType(type))
+            return this;
+        return root.magicAddition(type);
+    }
      
     public Group newGroup(String name){
         Group group = new Group(this, name);

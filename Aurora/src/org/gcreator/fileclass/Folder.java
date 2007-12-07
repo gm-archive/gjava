@@ -34,6 +34,18 @@ public class Folder extends Object implements Serializable{
         return childNodes.add(node);
     }
     
+    public Folder magicAddition(File file)
+    {
+        return magicAddition(file.type);
+    }
+    
+    public Folder magicAddition(String type)
+    {
+        if(allowsFileType(type))
+            return this;
+        return null;
+    }
+    
     public int find(Object search){
         if(childNodes==null)
             return -1;

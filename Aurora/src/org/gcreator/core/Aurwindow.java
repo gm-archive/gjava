@@ -1234,7 +1234,9 @@ public class Aurwindow extends JFrame {
             return null;
         }
         if (!folder.allowsFileType(type)) {
-            return null;
+            folder = folder.magicAddition(type);
+            if(folder==null)
+                return null;
         }
         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
         if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {

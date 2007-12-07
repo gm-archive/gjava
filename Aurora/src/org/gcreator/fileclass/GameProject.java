@@ -27,6 +27,21 @@ public class GameProject extends Project {
         return "Game";
     }
     
+    public Folder magicAddition(String file)
+    {
+        try{
+            if(file.equals("png")||file.equals("gif")||file.equals("jpg"))
+                return findFolder("Images");
+            else if(file.equals("sprite"))
+                return findFolder("Sprites");
+            else if(file.equals("actor"))
+                return findFolder("Actors");
+            return null;
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
      
     public boolean allowsFileType(String format){
         return false;
