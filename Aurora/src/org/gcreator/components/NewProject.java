@@ -151,7 +151,9 @@ public class NewProject extends TabPanel {
             Project project = null;
             int type = getProjectType();
             if (type == 0){
-                project = new GameProject(jTextField1.getText(), "");
+                project = GameProject.balancedCreation();
+                project.name = jTextField1.getText();
+                project.location = "";
                 Aurwindow.setMainProject(project);
                 project.add(new ImageGroup(project, "Images"));
                 project.add(new SpriteGroup(project, "Sprites"));
