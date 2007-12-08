@@ -151,20 +151,10 @@ public class NewProject extends TabPanel {
             Project project = null;
             int type = getProjectType();
             if (type == 0){
-                project = GameProject.balancedCreation();
+                project = GameProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
-                project.add(new ImageGroup(project, "Images"));
-                project.add(new SpriteGroup(project, "Sprites"));
-                project.add(new SoundGroup(project, "Sounds"));
-                project.add(new ActorGroup(project, "Actors"));
-                project.add(new SceneGroup(project, "Scenes"));
-                project.add(new EGMLGroup(project, "Classes"));
-                project.add(new Group(project, "Distribution"));
-                org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
-                a.editable = false;
-                a.value = new org.gcreator.fileclass.res.SettingsValues();
             }
             /*else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");

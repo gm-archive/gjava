@@ -15,7 +15,7 @@ import javax.swing.ImageIcon;
  *
  * @author Luís
  */
-public class GameProject extends Project {
+public class GameProject extends Project{
     public GameProject(String name, String location){
         super(name, location);
     }
@@ -25,6 +25,10 @@ public class GameProject extends Project {
      
     public String getType(){
         return "Game";
+    }
+    
+    public static GameProject balance(){
+        return (GameProject) balancedCreation();
     }
     
     public Folder magicAddition(String file)
@@ -64,7 +68,7 @@ public class GameProject extends Project {
         }
     }
      
-    public static Project balancedCreation(){
+    private static Project balancedCreation(){
         Project project = new GameProject();
         project.add(new ImageGroup(project, "Images"));
         project.add(new SpriteGroup(project, "Sprites"));

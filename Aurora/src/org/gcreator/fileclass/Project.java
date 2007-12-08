@@ -48,14 +48,9 @@ public class Project extends Folder {
         return null;
     }
     
-    public static Project balancedCreation(){
-        try{
-            return new Project();
-        }
-        catch(Exception e){
-            return null;
-        }
-    }
+    public static Project balance(){
+        return new Project();
+    } 
      
     public String getObjectType(){
         return "Project";
