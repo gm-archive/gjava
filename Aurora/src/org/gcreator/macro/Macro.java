@@ -78,6 +78,8 @@ public class Macro {
             macro = gnum.nextElement();
             macro.play();
         }
+        if(recordingMacro!=this) //Avoid cyclic references.
+            Macro.macroAction(new PlayMacroAction(this));
     }
     
     /**

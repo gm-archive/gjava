@@ -15,6 +15,7 @@ import java.util.*;
 import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
+import org.gcreator.macro.*;
 import org.gcreator.managers.*;
 import org.jdesktop.layout.GroupLayout;
 import org.jdesktop.layout.LayoutStyle;
@@ -186,8 +187,10 @@ public class NewProject extends TabPanel {
                 Aurwindow.setMainProject(project);
             }*/
             if(type!=-1){
-                if(project!=null)
+                if(project!=null){
                     ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+                    Macro.macroAction(new NewProjectAction(project.name));
+                }
                 try{
                 Aurwindow.workspace.updateUI();
                 }
