@@ -109,4 +109,13 @@ public class PluginHelper {
     public static void addNewActionCategory(ActionCategory category){
         ActorEditor.actionCats.add(category);
     }
+    public static void setMainProject(Project p){
+        Aurwindow.setMainProject(p);
+    }
+    public static Project getMainProject(){
+        return Aurwindow.getMainProject();
+    }
+    public static void addToTree(Project p){
+        ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.window.top);
+    }
 }
