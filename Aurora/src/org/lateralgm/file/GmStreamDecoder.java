@@ -18,7 +18,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-//import java.util.Stack;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
@@ -28,13 +27,14 @@ import org.lateralgm.messages.Messages;
 
 public class GmStreamDecoder
 	{
-	private BufferedInputStream in;
+	private InputStream in;
 	private int[] table = null;
 	private int pos = 0;
 
 	public GmStreamDecoder(InputStream in)
 		{
-		this.in = new BufferedInputStream(in);
+		if (in instanceof BufferedInputStream) this.in = in;
+		else this.in = new BufferedInputStream(in);
 		}
 
 	public GmStreamDecoder(String path) throws FileNotFoundException
@@ -58,7 +58,7 @@ public class GmStreamDecoder
 		if (ret != len)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(""+error +pos);
+			throw new IOException(String.format(error,pos));
 			}
 		if (table != null)
 			{
@@ -79,7 +79,7 @@ public class GmStreamDecoder
 		if (t == -1)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(""+(error+pos));
+			throw new IOException(String.format(error,pos));
 			}
 		if (table != null) t = (table[t] - pos) & 0xFF;
 		pos++;
@@ -117,7 +117,7 @@ public class GmStreamDecoder
 		if (check < data.length)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(""+(error+pos));
+			throw new IOException(String.format(error,pos));
 			}
 		return new String(data);
 		}
@@ -129,7 +129,7 @@ public class GmStreamDecoder
 		if (check < data.length)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
-			throw new IOException(""+(error+pos));
+			throw new IOException(String.format(error,pos));
 			}
 		return new String(data);
 		}
@@ -140,7 +140,7 @@ public class GmStreamDecoder
 		if (val != 0 && val != 1)
 			{
 			String error = Messages.getString("GmStreamDecoder.INVALID_BOOLEAN"); //$NON-NLS-1$
-			throw new IOException(""+error+pos);
+			throw new IOException(String.format(error,val,pos));
 			}
 		return val == 0 ? false : true;
 		}
@@ -162,12 +162,18 @@ public class GmStreamDecoder
 
 	public byte[] decompress(int length) throws IOException,DataFormatException
 		{
+		//BAOS default buffer size is 32
+		return decompress(length,32);
+		}
+
+	public byte[] decompress(int length, int initialCapacity) throws IOException,DataFormatException
+		{
 		Inflater decompresser = new Inflater();
 		byte[] compressedData = new byte[length];
 		read(compressedData,0,length);
 		decompresser.setInput(compressedData);
 		byte[] result = new byte[1000];
-		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		ByteArrayOutputStream baos = new ByteArrayOutputStream(initialCapacity);
 		while (!decompresser.finished())
 			{
 			int len = decompresser.inflate(result);
@@ -177,10 +183,16 @@ public class GmStreamDecoder
 		return baos.toByteArray();
 		}
 
-	public BufferedImage readImage() throws IOException,DataFormatException
+	public BufferedImage readImage(int width, int height) throws IOException,DataFormatException
 		{
 		int length = read4();
-		return ImageIO.read(new ByteArrayInputStream(decompress(length)));
+		int estimate = height * width * 4 + 100; //100 for generous header
+		return ImageIO.read(new ByteArrayInputStream(decompress(length,estimate)));
+		}
+
+	public BufferedImage readImage() throws IOException,DataFormatException
+		{
+		return readImage(0,0);
 		}
 
 	public void close() throws IOException
@@ -199,42 +211,6 @@ public class GmStreamDecoder
 		return total;
 		}
 
-	/*public void readTree(ResNode root, Gm6File src, int rootnodes) throws IOException
-		{
-		Stack<ResNode> path = new Stack<ResNode>();
-		Stack<Integer> left = new Stack<Integer>();
-		path.push(root);
-		while (rootnodes-- > 0)
-			{
-			byte status = (byte) read4();
-			byte type = (byte) read4();
-			int ind = read4();
-			String name = readStr();
-			ResNode node = path.peek().addChild(name,status,type);
-			if (status == ResNode.STATUS_SECONDARY && type != Resource.GAMEINFO
-					&& type != Resource.GAMESETTINGS && type != Resource.EXTENSIONS)
-				{
-				node.res = src.getList(node.kind).getUnsafe(ind);
-
-				// GM actually ignores the name given
-				// in the tree data
-				node.setUserObject(src.getList(node.kind).getUnsafe(ind).getName());
-				}
-			int contents = read4();
-			if (contents > 0)
-				{
-				left.push(new Integer(rootnodes));
-				rootnodes = contents;
-				path.push(node);
-				}
-			while (rootnodes == 0 && !left.isEmpty())
-				{
-				rootnodes = left.pop().intValue();
-				path.pop();
-				}
-			}
-		}*/
-
 	/**
 	 * Convenience method to retrieve whether the given bit is masked in bits,
 	 * That is, if given flag is set.
@@ -248,7 +224,7 @@ public class GmStreamDecoder
 		return (bits & bit) == bit;
 		}
 
-	public BufferedInputStream getInputStream()
+	public InputStream getInputStream()
 		{
 		return in;
 		}

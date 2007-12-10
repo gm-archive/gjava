@@ -11,13 +11,16 @@ package org.gcreator.components.impl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
+import javax.swing.border.EmptyBorder;
+import javax.swing.plaf.basic.BasicHTML;
 import org.gcreator.editors.*;
         
 public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
      public ActionsCellRenderer() {
          setOpaque(true);
      }
-
+     
      public Component getListCellRendererComponent(JList list,
                                                    Object value,
                                                    int index,
@@ -43,8 +46,10 @@ public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
                 setForeground(((org.gcreator.actions.Action) value).getForeground());
              }
          }
+        
          setText(val);
          setIcon(icon);
+         setBorder(BorderFactory.createEmptyBorder(0, 30, 0, 0));
 
          return this;
      }
