@@ -9,6 +9,7 @@
 
 package org.gcreator.actions.mainactions;
 
+import java.util.Vector;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
@@ -44,4 +45,7 @@ public class EndOfABlock extends ActionPattern{
         return icon;
     }
     
+    public boolean unindentsNext(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
+         return true;
+     }
 }

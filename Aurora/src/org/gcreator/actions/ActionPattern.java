@@ -14,6 +14,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
+import java.util.Vector;
 
 /**
  *
@@ -73,5 +74,21 @@ public abstract class ActionPattern implements Serializable {
     
     public Action clone(JComponent panel){
         return null;
+    }
+    
+    public boolean indents(JComponent panel, Vector<Action> indented, Vector<Action> unindented,JList list, boolean selected){
+        return false;
+    }
+    
+    public boolean unindents(JComponent panel, Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return false;
+    }
+    
+    public boolean indentsNext(JComponent panel, Vector<Action> indented, Vector<Action> unindented,JList list, boolean selected){
+        return false;
+    }
+    
+    public boolean unindentsNext(JComponent panel, Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return false;
     }
 }

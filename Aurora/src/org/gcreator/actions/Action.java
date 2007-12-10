@@ -15,6 +15,7 @@ import java.awt.*;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 //import org.gcreator.editors.*;
+import java.util.Vector;
 import org.gcreator.editors.ActorEditor;
 
 /**
@@ -103,5 +104,21 @@ public class Action implements Serializable {
     public Action clone(){
         Action a = new Action(pattern);
         return a;//pattern.clone(panel);
+    }
+    
+    public boolean indents(Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return pattern.indents(panel, indented, unindented, list, selected);
+    }
+    
+    public boolean unindents(Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return pattern.unindents(panel, indented, unindented, list, selected);
+    }
+    
+    public boolean indentsNext(Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return pattern.indentsNext(panel, indented, unindented, list, selected);
+    }
+    
+    public boolean unindentsNext(Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
+        return pattern.unindentsNext(panel, indented, unindented, list, selected);
     }
 }

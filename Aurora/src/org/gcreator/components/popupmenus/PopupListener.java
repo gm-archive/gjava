@@ -21,20 +21,26 @@ import java.awt.*;
  */
 public class PopupListener extends MouseAdapter{
     public JPopupMenu listened;
-    public Component component;
-    public PopupListener(Component component, JPopupMenu listen){
+    public JComponent component;
+    public PopupListener(JComponent component, JPopupMenu listen){
         listened = listen;
         this.component = component;
     }
      
+    public boolean update;
+    
     public void mousePressed(MouseEvent e) {
         
       maybeShowPopup(e);
+      if(update)
+          component.updateUI();
     }
 
      
     public void mouseReleased(MouseEvent e) {
       maybeShowPopup(e);
+      if(update)
+          component.updateUI();
     }
 
     private void maybeShowPopup(MouseEvent e) {

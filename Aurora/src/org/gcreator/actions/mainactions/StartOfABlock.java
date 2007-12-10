@@ -9,6 +9,7 @@
 
 package org.gcreator.actions.mainactions;
 
+import java.util.Vector;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
@@ -39,4 +40,8 @@ public class StartOfABlock extends ActionPattern{
      public ImageIcon getStandardImage() {
         return icon;
     }
+     
+     public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
+         return true;
+     }
 }
