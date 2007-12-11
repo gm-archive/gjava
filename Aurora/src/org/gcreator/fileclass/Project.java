@@ -10,6 +10,7 @@
 package org.gcreator.fileclass;
 
 import java.io.Serializable;
+import java.util.Enumeration;
 import org.gcreator.exceptions.NoSuchFolderException;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Classes;
@@ -56,6 +57,9 @@ public class Project extends Folder {
         return "Project";
     }
     
+    public Enumeration getEnum(String key){
+        return null;
+    }
      
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)

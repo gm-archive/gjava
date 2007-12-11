@@ -85,21 +85,7 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         }
         pm.removeAll();
         pm.add(noresource);
-        Enumeration e = pro.node.children();
-        if (kind.equals("actor")) {
-            e = pro.node.getChildAt(3).children();
-        } else if (kind.equals("scene")) {
-            e = pro.node.getChildAt(4).children();
-        } else if (kind.equals("image")) {
-            e = pro.node.getChildAt(0).children();
-        } else if (kind.equals("sprite")) {
-            e = pro.node.getChildAt(1).children();
-        } else if (kind.equals("sound")) {
-            e = pro.node.getChildAt(2).children();
-        } else if (kind.equals("class")) {
-            e = pro.node.getChildAt(5).children();
-        }
-        
+        Enumeration e = pro.getEnum(kind);
         res = null;
         populatefromEnum(e);
     }
@@ -113,20 +99,7 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
     }
     
     public static ObjectNode getObjectWithName(String name, String kind, Project pro) {
-        Enumeration e = pro.node.children();
-        if (kind.equals("actor")) {
-            e = pro.node.getChildAt(3).children();
-        } else if (kind.equals("scene")) {
-            e = pro.node.getChildAt(4).children();
-        } else if (kind.equals("image")) {
-            e = pro.node.getChildAt(0).children();
-        } else if (kind.equals("sprite")) {
-            e = pro.node.getChildAt(1).children();
-        } else if (kind.equals("sound")) {
-            e = pro.node.getChildAt(2).children();
-        } else if (kind.equals("class")) {
-            e = pro.node.getChildAt(5).children();
-        }
+        Enumeration e = pro.getEnum(kind);
         return getObjectWithName(name, e);
     }
 

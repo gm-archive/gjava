@@ -9,6 +9,7 @@
 
 package org.gcreator.fileclass;
 
+import java.util.Enumeration;
 import javax.swing.ImageIcon;
 
 /**
@@ -29,6 +30,24 @@ public class GameProject extends Project{
     
     public static GameProject balance(){
         return (GameProject) balancedCreation();
+    }
+    
+    public Enumeration getEnum(String key){
+        Enumeration e = null;
+        if (key.equals("actor")) {
+            e = node.getChildAt(3).children();
+        } else if (key.equals("scene")) {
+            e = node.getChildAt(4).children();
+        } else if (key.equals("image")) {
+            e = node.getChildAt(0).children();
+        } else if (key.equals("sprite")) {
+            e = node.getChildAt(1).children();
+        } else if (key.equals("sound")) {
+            e = node.getChildAt(2).children();
+        } else if (key.equals("class")) {
+            e = node.getChildAt(5).children();
+        }
+        return e;
     }
     
     public Folder magicAddition(String file)
