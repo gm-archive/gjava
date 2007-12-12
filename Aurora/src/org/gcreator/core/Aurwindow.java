@@ -499,7 +499,9 @@ public class Aurwindow extends JFrame {
         menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
         menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
         menus[11] = MenuSupporter.MakeSubMenu(menus[9], 186, "Project");
-        items[MenuSupporter.GenerateMenuItemId(0, 8)] = MenuSupporter.MakeMenuItem(menus[0], 11, "Export...");
+        menus[12] = MenuSupporter.MakeSubMenu(menus[0], 11, "Export...");
+        menus[13] = MenuSupporter.MakeSubMenu(menus[12], 185, "File");
+        menus[14] = MenuSupporter.MakeSubMenu(menus[12], 186, "Project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
         items[MenuSupporter.GenerateMenuItemId(0, 10)].addActionListener(new ActionListener() {
