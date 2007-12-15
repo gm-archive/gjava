@@ -16,6 +16,8 @@ import org.gcreator.components.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.*;
+import org.gcreator.components.impl.*;
+import sun.applet.AppletAudioClip;
 
 /**
  *
@@ -124,14 +126,18 @@ public class SoundEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //public SoundPlayer p = null;
+    public AudioClip clip = null;
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            jFileChooser1.showDialog(this, "OK");
+            jFileChooser1.showDialog(this, null);
             File f = jFileChooser1.getSelectedFile();
             try {
                 if (f != null) {
-                    if (file.value != null && file.value instanceof AudioClip) {
-                        (JApplet.newAudioClip((URL) file.value)).stop();
+                    if (file.value != null && file.value instanceof byte[]) {
+                        if(clip!=null)
+                            clip.stop();
                     }
                 }
                 //file.value = f.toURI().toURL(); //JApplet.newAudioClip(f.toURI().toURL());
@@ -168,22 +174,29 @@ public class SoundEditor extends TabPanel {
             // Close the input stream and return bytes
             is.close();
             file.value = bytes;
-        } catch (IOException ex) {
+            
+            clip = new AppletAudioClip(bytes);
+            //p = new SoundPlayer((byte[]) file.value);
+            //p = new SoundPlayer(f.getAbsolutePath());
+        } catch (Exception ex) {
             Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-//        if(file.value!=null&&file.value instanceof AudioClip){
-//            (JApplet.newAudioClip((URL)file.value)).stop();
-//            (JApplet.newAudioClip((URL) file.value)).play();
-//        }
+try{
+        if(clip!=null)
+            clip.play();
+}
+catch(Exception e){}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-//        if(file.value!=null&&file.value instanceof AudioClip){
-//            (JApplet.newAudioClip((URL) file.value)).stop();
-//        }
+try{
+        if(clip!=null)
+            clip.stop();
+}
+catch(Exception e){}
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

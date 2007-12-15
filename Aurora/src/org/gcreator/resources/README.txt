@@ -23,6 +23,7 @@ You can find the full copy of GPL version 3 after the contributions
 Contributions:
 
 Please forgive me if I retrieved some source code from your site and forgot to place it here.
+If such thing happened, warn us at the G-Java forums.
 
 Contributions:
     Luís Reis
@@ -38,6 +39,8 @@ Contributions:
     DABAB
         Some action graphics
     Tree Image handling based on http://forum.java.sun.com/thread.jspa?threadID=755439&messageID=4316522
+
+Some code was retrieved from the LGM source code, which is licensed under the same license.
 
 For more detailed information about the languages check the language itself.
 
