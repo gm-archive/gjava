@@ -9,6 +9,8 @@ package org.gcreator.components;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
 
+import java.awt.*;
+
 /**
  *
  * @author  Luís
@@ -47,6 +49,17 @@ public class GlobalSettings extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    
+    public void dispose(){
+        int len = jTabbedPane1.getTabCount();
+        for(int i = 0; i < len; i++){
+            Component p = jTabbedPane1.getComponentAt(i);
+            if(p instanceof OptionPanel)
+                if(!((OptionPanel) p).dispose())
+                    return;
+        }
+        super.dispose();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;

@@ -230,6 +230,8 @@ public class Portuguese extends Dictionary{
         entry[184] = "Explorador do PowerPack";
         entry[185] = "Ficheiro";
         entry[186] = "Projecto";
+        entry[187] = "Escolha o recurso a importar";
+        entry[188] = "Filtro:";
         
         try{
             init();

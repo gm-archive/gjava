@@ -13,6 +13,7 @@ import javax.imageio.*;
 import javax.imageio.stream.FileImageInputStream;
 import javax.swing.*;
 import org.gcreator.units.ObjectNode;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -62,9 +63,9 @@ public class PowerPackImporter extends TabPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
 
-        jLabel1.setText("Choose resource to import");
+        jLabel1.setText(LangSupporter.activeLang.getEntry(187));
 
-        jLabel2.setText("Filter:");
+        jLabel2.setText(LangSupporter.activeLang.getEntry(188));
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Show image files");
@@ -92,7 +93,7 @@ public class PowerPackImporter extends TabPanel {
                     .addComponent(jCheckBox1)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,7 +101,7 @@ public class PowerPackImporter extends TabPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
