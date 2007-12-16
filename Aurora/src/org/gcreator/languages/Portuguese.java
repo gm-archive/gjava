@@ -232,6 +232,7 @@ public class Portuguese extends Dictionary{
         entry[186] = "Projecto";
         entry[187] = "Escolha o recurso a importar";
         entry[188] = "Filtro:";
+        entry[189] = "Imagem"; //From the Import Menu
         
         try{
             init();

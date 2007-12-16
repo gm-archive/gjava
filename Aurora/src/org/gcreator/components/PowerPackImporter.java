@@ -12,6 +12,7 @@ import java.util.*;
 import javax.imageio.*;
 import javax.imageio.stream.FileImageInputStream;
 import javax.swing.*;
+import org.gcreator.externproject.StdImport;
 import org.gcreator.units.ObjectNode;
 import org.gcreator.managers.*;
 
@@ -122,45 +123,9 @@ public class PowerPackImporter extends TabPanel {
             System.out.println("No selection");
             return;
         }
-        org.gcreator.fileclass.Folder f = org.gcreator.core.gcreator.window.getCurrentFolder();
-        String t = sel.replaceAll(".*\\.", "");
-        if (!f.allowsFileType(t)) {
-            System.out.println(t);
-            f = f.magicAddition(t);
-            if(f==null){
-                return;
-            }
-        }
-        System.out.println(f.name);
-        java.io.File _file = new File("powerpack" + File.separator + sel);
+        sel = "." + File.separator + "powerpack" + File.separator + sel;
         try {
-            org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(f, sel.substring(0, sel.lastIndexOf(".")), "", null);
-            file.type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
-            if (file.type.toLowerCase().equals("gif")) {
-                System.out.println("GIF!");
-                //                    boolean animated = false;
-                ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
-                //                    if (reader.getNumImages(true) > 1) {
-//                        animated = true;
-//                    }
-                reader.setInput(new FileImageInputStream(_file));
-                System.out.println("No: " + reader.getNumImages(true));
-                BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
-
-                for (int i = 0; i < reader.getNumImages(true); i++) {
-                    b[i] = reader.read(i);
-                }
-                file.value = new ImageIcon(b[0]);
-                file.treeimage = org.gcreator.fileclass.File.getScaledIcon(new ImageIcon(b[1]));
-            } else {
-                System.out.println("Type:" + file.type.toLowerCase());
-                file.value = new ImageIcon(ImageIO.read(_file));
-                file.treeimage = org.gcreator.fileclass.File.getScaledIcon((ImageIcon) file.value);
-            }
-            System.out.println("will add");
-            f.add(file);
-            ObjectNode node = new ObjectNode(file);
-            f.node.add(node);
+            StdImport.importImage(org.gcreator.core.gcreator.window.getCurrentFolder(), sel);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

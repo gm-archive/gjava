@@ -232,6 +232,7 @@ public class English extends Dictionary{
         entry[186] = "Project";
         entry[187] = "Choose resource to import";
         entry[188] = "Filter";
+        entry[189] = "Image"; //From the Import Menu
         
         try{
             init();

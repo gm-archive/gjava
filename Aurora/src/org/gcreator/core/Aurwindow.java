@@ -498,6 +498,13 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/saveall.png")));
         menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
         menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
+        items[MenuSupporter.GenerateMenuItemId(10, 0)] = MenuSupporter.MakeMenuItem(menus[10], 189, "Import Image");
+        items[MenuSupporter.GenerateMenuItemId(10, 0)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(10, 0, evt);
+                    }
+                });
         menus[11] = MenuSupporter.MakeSubMenu(menus[9], 186, "Project");
         menus[12] = MenuSupporter.MakeSubMenu(menus[0], 11, "Export...");
         menus[13] = MenuSupporter.MakeSubMenu(menus[12], 185, "File");
@@ -832,6 +839,14 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
 
+    public static JFileChooser chooseImage = new JFileChooser();
+    static{
+        chooseImage.setDialogTitle("Select Image");
+        chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
+        chooseImage.setApproveButtonText("OK");
+        chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
+    }
+    
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
             addWindow(newproject, 55);
@@ -1040,6 +1055,16 @@ public class Aurwindow extends JFrame {
         }
         if ( menu == 8 && item == 3) {
             Macro.recordingMacro = null;
+        }
+        if(menu == 10 && item == 0){
+            chooseImage.showDialog(this, null);
+            java.io.File f = chooseImage.getSelectedFile();
+            try{
+            if(f != null){
+                StdImport.importImage(getCurrentFolder(), f);
+            }
+            }
+            catch(IOException e){}
         }
     }
 
