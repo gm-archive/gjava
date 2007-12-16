@@ -1,9 +1,9 @@
 /*
+ * Changes Copyright (C) 2007 TGMG www.g-creator.org
  * Copyright (C) 2007 Quadduc <quadduc@gmail.com>
  * 
- * This file is part of Lateral GM.
- * Lateral GM is free software and comes with ABSOLUTELY NO WARRANTY.
- * See LICENSE for details.
+ * This file was modified from LGM and is licensed under the GNU GPL v3.
+ * See README for more details
  */
 
 package org.gcreator.components;
