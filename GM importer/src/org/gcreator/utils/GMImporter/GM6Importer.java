@@ -16,7 +16,8 @@ import org.gcreator.core.*;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.res.*;
 import org.lateralgm.file.*;
-import org.lateralgm.messages.*;
+import org.gcreator.plugins.*;
+//import org.lateralgm.messages.*;
 
 /**
  *
@@ -48,21 +49,15 @@ public class GM6Importer {
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
-        org.gcreator.fileclass.GameProject project = new org.gcreator.fileclass.GameProject(fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3"),"");
+        org.gcreator.fileclass.GameProject project = org.gcreator.fileclass.GameProject.balance();
+        project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
         Aurwindow.setMainProject(project);
-        project.add(new org.gcreator.fileclass.ImageGroup(project, "Images"));
-        project.add(new org.gcreator.fileclass.SpriteGroup(project, "Sprites"));
-        project.add(new org.gcreator.fileclass.SoundGroup(project, "Sounds"));
-        project.add(new org.gcreator.fileclass.ActorGroup(project, "Actors"));
-        project.add(new org.gcreator.fileclass.SceneGroup(project, "Scenes"));
-        project.add(new org.gcreator.fileclass.EGMLGroup(project, "Classes"));
-        project.add(new org.gcreator.fileclass.Group(project, "Distribution"));
-        org.gcreator.fileclass.File settings = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
+        org.gcreator.fileclass.File settings = (org.gcreator.fileclass.File) project.childAt(project.findFromName("Settings"));
         settings.editable = false;
         Gm6FileContext c = new Gm6FileContext(project, in);
         int identifier = in.read4();
         if (identifier != 1234321) {
-            throw new Gm6FormatException(String.format(Messages.getString("Gm6FileReader.ERROR_INVALID"), fileName, identifier)); //$NON-NLS-1$
+            throw new Gm6FormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
         if (ver != 600){
@@ -73,7 +68,8 @@ public class GM6Importer {
         
         in.close();
         
-        ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+        ProjectTree.importFolderToTree(project, PluginHelper.getWindow().top);
+        PluginHelper.getWindow().workspace.updateUI();
     }
     
     private void readSettings(org.gcreator.fileclass.File settings, Gm6FileContext c) throws IOException,Gm6FormatException,
@@ -90,7 +86,7 @@ public class GM6Importer {
         in.skip(16); // unknown bytes following game id
         int ver = in.read4();
         if (ver != 542 && ver != 600 && ver != 702){
-            String msg = Messages.getString("Gm6FileReader.ERROR_UNSUPPORTED"); //$NON-NLS-1$
+            String msg = "Unsupported"; //$NON-NLS-1$
             throw new Gm6FormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
         boolean startFullscreen = in.readBool();
