@@ -71,6 +71,10 @@ public class SettingsEditor extends TabPanel {
         if(resize==null||!(resize instanceof Boolean)){
             Graphics.setVariable("resize", resize = (Boolean) false);
         }
+        Object borderless = Graphics.getValue("borderless");
+        if(borderless==null||!(borderless instanceof Boolean)){
+            Graphics.setVariable("borderless", borderless = (Boolean) false);
+        }
         Object setres = Resolution.getValue("setres");
         if(setres==null||!(setres instanceof Boolean)){
             Resolution.setVariable("setres", setres = (Boolean) false);
@@ -108,6 +112,7 @@ public class SettingsEditor extends TabPanel {
         }
         initComponents();
         jCheckBox4.setSelected((Boolean) resize);
+        jCheckBox5.setSelected((Boolean) borderless);
         jCheckBox7.setSelected((Boolean) setres);
         jCheckBox8.setSelected((Boolean) esc);
         jCheckBox9.setSelected((Boolean) f4);
@@ -230,11 +235,9 @@ public class SettingsEditor extends TabPanel {
         jCheckBox3.setText(LangSupporter.activeLang.getEntry(65));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setEnabled(false);
-        jCheckBox3.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jCheckBox4.setText(LangSupporter.activeLang.getEntry(66));
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jCheckBox4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox4ActionPerformed(evt);
@@ -243,23 +246,23 @@ public class SettingsEditor extends TabPanel {
 
         jCheckBox5.setText(LangSupporter.activeLang.getEntry(67));
         jCheckBox5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jCheckBox5.setEnabled(false);
-        jCheckBox5.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox5ActionPerformed(evt);
+            }
+        });
 
         jCheckBox6.setText(LangSupporter.activeLang.getEntry(68));
         jCheckBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox6.setEnabled(false);
-        jCheckBox6.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jCheckBox1.setText(LangSupporter.activeLang.getEntry(69));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setEnabled(false);
-        jCheckBox1.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         jCheckBox2.setText(LangSupporter.activeLang.getEntry(70));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setEnabled(false);
-        jCheckBox2.setMargin(new java.awt.Insets(0, 0, 0, 0));
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -274,7 +277,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jCheckBox6)
                     .add(jCheckBox1)
                     .add(jCheckBox2))
-                .addContainerGap(351, Short.MAX_VALUE))
+                .addContainerGap(298, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -291,14 +294,13 @@ public class SettingsEditor extends TabPanel {
                 .add(jCheckBox1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox2)
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(64), jPanel1);
 
         jCheckBox7.setText(LangSupporter.activeLang.getEntry(72));
         jCheckBox7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jCheckBox7.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox7ActionPerformed(evt);
@@ -310,7 +312,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText(LangSupporter.activeLang.getEntry(74));
         jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -320,7 +321,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("16-bit");
         jRadioButton2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton2.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -330,7 +330,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup1.add(jRadioButton3);
         jRadioButton3.setText("32-bit");
         jRadioButton3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton3.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -363,7 +362,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton4);
         jRadioButton4.setText(LangSupporter.activeLang.getEntry(74));
         jRadioButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
@@ -373,7 +371,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setText("320x240");
         jRadioButton5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton5.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
@@ -383,7 +380,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton6);
         jRadioButton6.setText("640x480");
         jRadioButton6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton6ActionPerformed(evt);
@@ -393,7 +389,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton7);
         jRadioButton7.setText("800x600");
         jRadioButton7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton7.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton7ActionPerformed(evt);
@@ -403,7 +398,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton8);
         jRadioButton8.setText("1024x768");
         jRadioButton8.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton8.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);
@@ -413,7 +407,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton9);
         jRadioButton9.setText("1280x1024");
         jRadioButton9.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton9.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton9ActionPerformed(evt);
@@ -423,7 +416,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup2.add(jRadioButton10);
         jRadioButton10.setText("1600x1200");
         jRadioButton10.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton10.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton10ActionPerformed(evt);
@@ -465,7 +457,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton11);
         jRadioButton11.setText(LangSupporter.activeLang.getEntry(74));
         jRadioButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton11.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton11ActionPerformed(evt);
@@ -475,7 +466,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton12);
         jRadioButton12.setText("60");
         jRadioButton12.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton12.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton12ActionPerformed(evt);
@@ -485,7 +475,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton13);
         jRadioButton13.setText("70");
         jRadioButton13.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton13.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton13ActionPerformed(evt);
@@ -495,7 +484,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton14);
         jRadioButton14.setText("85");
         jRadioButton14.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton14.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton14ActionPerformed(evt);
@@ -505,7 +493,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton15);
         jRadioButton15.setText("100");
         jRadioButton15.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton15.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton15ActionPerformed(evt);
@@ -515,7 +502,6 @@ public class SettingsEditor extends TabPanel {
         buttonGroup3.add(jRadioButton16);
         jRadioButton16.setText("120");
         jRadioButton16.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        jRadioButton16.setMargin(new java.awt.Insets(0, 0, 0, 0));
         jRadioButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton16ActionPerformed(evt);
@@ -563,7 +549,7 @@ public class SettingsEditor extends TabPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jCheckBox7))
-                .addContainerGap(115, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -575,7 +561,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(71), jPanel2);
@@ -603,10 +589,10 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
             .add(jPanel7Layout.createSequentialGroup()
-                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE)
+                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -636,8 +622,8 @@ public class SettingsEditor extends TabPanel {
             .add(jPanel8Layout.createSequentialGroup()
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
-            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
+            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -666,7 +652,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jPanel6Layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
+                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -680,7 +666,7 @@ public class SettingsEditor extends TabPanel {
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
@@ -702,7 +688,7 @@ public class SettingsEditor extends TabPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 174, Short.MAX_VALUE)
+            .add(0, 195, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -744,7 +730,7 @@ public class SettingsEditor extends TabPanel {
             .add(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
                         .add(jPanel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -769,7 +755,7 @@ public class SettingsEditor extends TabPanel {
                         .add(jButton2))
                     .add(jPanel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 314, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -781,7 +767,7 @@ public class SettingsEditor extends TabPanel {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 531, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(466, Short.MAX_VALUE)
+                .addContainerGap(487, Short.MAX_VALUE)
                 .add(jButton1))
         );
         layout.setVerticalGroup(
@@ -922,6 +908,10 @@ public class SettingsEditor extends TabPanel {
         jList1.setSelectedIndex(pos+1);
         jList1.updateUI();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        Graphics.setVariable("borderless", jCheckBox5.isSelected());
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
     
     public void addScene(org.gcreator.fileclass.File file){
         scenelist.add(file);

@@ -98,7 +98,7 @@ public class GM6Importer {
         boolean startFullscreen = in.readBool();
         boolean interpolate = false;
         if (ver > 542) interpolate = in.readBool();
-        boolean dontDrawBorder = in.readBool();
+        Graphics.setVariable("borderless", in.readBool());
         boolean displayCursor = in.readBool();
         int scaling = in.read4();
         if (ver == 530)
