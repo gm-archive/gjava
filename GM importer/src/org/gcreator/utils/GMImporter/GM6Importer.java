@@ -71,13 +71,10 @@ public class GM6Importer {
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
-        System.out.println("parse settings");
         SettingsValues values = readSettings(settings, c);
-        System.out.println("parse sounds");
         readSounds(c);
-        System.out.println("parse sprites");
         readSprites(c);
-        System.out.println("end parse");
+        readBackgrounds(c);
         
         in.close();
         
@@ -116,7 +113,7 @@ public class GM6Importer {
         boolean alwaysOnTop = alwaysOnTop = in.readBool();
         in.read4(); //Color outside room
         }
-        Resolution.setVariable("setres", in.readBool());
+        Resolution.setVariable("setrereadBackgrounds(c);s", in.readBool());
         if (ver == 530)
 			{
 			in.skip(8); //Color Depth, Exclusive Graphics
@@ -216,8 +213,9 @@ public class GM6Importer {
         return value;
     }
     
-    public void readSounds(GmFileContext c) throws IOException,GmFormatException,
+    private void readSounds(GmFileContext c) throws IOException,GmFormatException,
 			DataFormatException{
+        //Dumps sounds
         GmStreamDecoder in = c.in;
         int ver = in.read4();
 	if (ver != 400) throw versionError("BEFORE","SOUNDS",ver); //$NON-NLS-1$ //$NON-NLS-2$
@@ -253,20 +251,18 @@ public class GM6Importer {
         }
     }
     
-    public void readSprites(GmFileContext c) throws IOException,GmFormatException,
+    private void readSprites(GmFileContext c) throws IOException,GmFormatException,
 			DataFormatException{
         GmStreamDecoder in = c.in;
         int ver = in.read4();
 	if (ver != 400) throw versionError("BEFORE","SPRITES",ver);
         int noSprites = in.read4();
-        System.out.println("Begin main loop");
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
+        Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("Sprites"));
         for (int i = 0; i < noSprites; i++){
-            System.out.println("Sprite no." + i);
             if (!in.readBool()){
                 continue;
             }
-            Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
-            Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("Sprites"));
             org.gcreator.fileclass.File spriteFile;
             String name = in.readStr();
             ver = in.read4();
@@ -294,9 +290,7 @@ public class GM6Importer {
             val.originX = in.read4();
             val.originY = in.read4();
             int nosub = in.read4();
-            System.out.println("Beginning image importing");
             for (int j = 0; j < nosub; j++){
-                System.out.println("Image " + j + " begin.");
 		if (in.read4() == -1) continue;
 		BufferedImage img = in.readImage(val.width,val.height);
                 org.gcreator.fileclass.File imgF;
@@ -304,9 +298,74 @@ public class GM6Importer {
                 ImageIcon iico;
                 imgF.value = iico = new ImageIcon(img);
                 imgF.treeimage = org.gcreator.fileclass.File.getScaledIcon(iico);
-                System.out.println("Adding to list");
                 val.addToList(imgF);
-                System.out.println("Image " + j + " end.");
+            }
+        }
+    }
+    
+    private static void readBackgrounds(GmFileContext c) throws IOException,GmFormatException,
+			DataFormatException
+    {
+        GmStreamDecoder in = c.in;
+        int ver = in.read4();
+	if (ver != 400) throw versionError("BEFORE","BACKGROUNDS",ver); //$NON-NLS-1$ //$NON-NLS-2$
+        int noBackgrounds = in.read4();
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
+        Group tilesetFolder = (Group) c.pro.childAt(c.pro.findFromName("Tilesets"));
+        for (int i = 0; i < noBackgrounds; i++){
+            /*Must deal with backgrounds and tilesets separatelly*/
+            if (!in.readBool()){
+		continue;
+            }
+            String name = in.readStr();
+            ver = in.read4();
+            if (ver != 400 && ver != 543) throw versionError("IN","BACKGROUNDS",i,ver);
+            int width = in.read4();
+            int height = in.read4();
+            boolean transparent = in.readBool();
+            boolean tileset = false;
+            boolean preload;
+            int tileWidth = 0;
+            int tileHeight = 0;
+            int horizOffset = 0;
+            int vertOffset = 0;
+            int horizSep = 0;
+            int vertSep = 0;
+            if (ver > 400){
+                boolean smooth = in.readBool();
+                preload = in.readBool();
+		tileset = in.readBool();
+		tileWidth = in.read4();
+		tileHeight = in.read4();
+		horizOffset = in.read4();
+		vertOffset = in.read4();
+		horizSep = in.read4();
+		vertSep = in.read4();
+            }
+            else{
+		in.skip(4); //use video memory
+		preload = !in.readBool();
+            }
+            BufferedImage backgroundImage = null;
+            if (in.readBool()){
+                if (in.read4() == -1) continue;
+		backgroundImage = in.readImage(width,height);
+            }
+            org.gcreator.fileclass.File bkimg;
+            bkimg = new org.gcreator.fileclass.File(imageFolder, "bgimg_" + name, "bmp", null);
+            ImageIcon iicon = new ImageIcon(backgroundImage);
+            bkimg.value = iicon;
+            if(tileset){
+                org.gcreator.fileclass.File tlimg;
+                tlimg = new org.gcreator.fileclass.File(tilesetFolder, name, "tileset", null);
+                Tileset t = new Tileset(tlimg.name);
+                tlimg.value = t;
+                t.startx = horizOffset;
+                t.starty = vertOffset;
+                t.bwidth = horizSep;
+                t.bheight = vertSep;
+                t.tilew = tileWidth;
+                t.tileh = tileHeight;
             }
         }
     }
