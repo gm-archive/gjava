@@ -17,6 +17,7 @@ import org.gcreator.core.*;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.res.*;
 import org.lateralgm.file.*;
+import org.lateralgm.file.iconio.*;
 import org.gcreator.plugins.*;
 //import org.lateralgm.messages.*;
 
@@ -42,15 +43,15 @@ public class GM6Importer {
         }
     }
 
-    private static Gm6FormatException versionError(String error, String res, int ver) {
+    private static GmFormatException versionError(String error, String res, int ver) {
         return versionError(error, res, 0, ver);
     }
 
-    private static Gm6FormatException versionError(String error, String res, int i, int ver) {
-        return new Gm6FormatException("Unsupported"); //$NON-NLS-1$
+    private static GmFormatException versionError(String error, String res, int i, int ver) {
+        return new GmFormatException("Unsupported"); //$NON-NLS-1$
     }
 
-    public GM6Importer(String fileName) throws IOException, Gm6FormatException, DataFormatException{
+    public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException{
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -62,12 +63,12 @@ public class GM6Importer {
         Gm6FileContext c = new Gm6FileContext(project, in);
         int identifier = in.read4();
         if (identifier != 1234321) {
-            throw new Gm6FormatException("Invalid"); //$NON-NLS-1$
+            throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
         if (ver != 600){
             String msg = "Unsupported"; //$NON-NLS-1$
-            throw new Gm6FormatException(String.format(msg,"",ver)); //$NON-NLS-1$
+            throw new GmFormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
         SettingsValues values = readSettings(settings, c);
         
@@ -77,7 +78,7 @@ public class GM6Importer {
         PluginHelper.getWindow().workspace.updateUI();
     }
     
-    private SettingsValues readSettings(org.gcreator.fileclass.File settings, Gm6FileContext c) throws IOException,Gm6FormatException,
+    private SettingsValues readSettings(org.gcreator.fileclass.File settings, Gm6FileContext c) throws IOException,GmFormatException,
 			DataFormatException
     {
         SettingsValues value;
@@ -93,7 +94,7 @@ public class GM6Importer {
         int ver = in.read4();
         if (ver != 542 && ver != 600 && ver != 702){
             String msg = "Unsupported"; //$NON-NLS-1$
-            throw new Gm6FormatException(String.format(msg,"",ver)); //$NON-NLS-1$
+            throw new GmFormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
         boolean startFullscreen = in.readBool();
         boolean interpolate = false;
@@ -150,6 +151,66 @@ public class GM6Importer {
         BufferedImage loadingImage = null;
         if (showCustomLoadImage) if (in.read4() != -1) loadingImage = in.readImage();
         boolean imagePartiallyTransparent = in.readBool();
+        int loadImageAlpha = in.read4();
+        boolean scaleProgressBar = in.readBool();
+        int length = in.read4();
+        byte[] gameIconData = new byte[length];
+        in.read(gameIconData,0,length);
+        BufferedImage gameIcon = null;
+        try{
+			ByteArrayInputStream bais = new ByteArrayInputStream(gameIconData);
+			gameIcon = (BufferedImage) new ICOFile(bais).getDescriptor(0).getImageRGB();
+	}
+	catch (Exception e){
+            // hopefully this won't happen
+            e.printStackTrace();
+	}
+        boolean displayErrors = in.readBool();
+        boolean writeToLog = in.readBool();
+        boolean abortOnError = in.readBool();
+        boolean treatUninitializedAs0 = in.readBool();
+        String author = in.readStr();
+        String version;
+        if (ver > 600)
+            version = in.readStr();
+	else
+            version = Integer.toString(in.read4());
+        double lastChanged = in.readD();
+        String information = in.readStr();
+        int no = in.read4();
+	for (int i = 0; i < no; i++){
+            /*Constant con = new Constant();
+            g.constants.add(con);*/
+            /*con.name = */in.readStr();
+            /*con.value = */in.readStr();
+	}
+        if (ver > 600){
+            in.skip(4); //Major
+            in.skip(4); //Minor
+            in.skip(4); //Release
+            in.skip(4); //Build
+            in.skip(in.read4()); //Company
+            in.skip(in.read4()); //Product
+            in.skip(in.read4()); //Copyright
+            in.skip(in.read4()); //Description
+	}
+	else if (ver > 530){
+            no = in.read4();
+            for (int i = 0; i < no; i++)
+            {
+                /*Include inc = new Include();
+		g.includes.add(inc);
+		inc.filePath = */in.readStr();
+            }
+            int includeFolder = in.read4();
+            boolean overwriteExisting = in.readBool();
+            boolean removeAtGameEnd = in.readBool();
+	}
         return value;
+    }
+    
+    public void readSounds(Gm6FileContext c) throws IOException,GmFormatException,
+			DataFormatException{
+        //Will have to figure out how to ignore files until the sound system is implemented
     }
 }

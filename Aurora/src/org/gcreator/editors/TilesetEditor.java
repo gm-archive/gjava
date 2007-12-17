@@ -8,6 +8,7 @@ package org.gcreator.editors;
 
 import org.gcreator.components.*;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.*;
 
 /**
  *
@@ -16,10 +17,14 @@ import org.gcreator.fileclass.Project;
 public class TilesetEditor extends TabPanel {
     
     public org.gcreator.fileclass.File file;
+    public Tileset value;
     
     /** Creates new form TilesetEditor */
     public TilesetEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
+        if(file.value == null || !(file.value instanceof Tileset))
+            file.value = new Tileset(file.name);
+        value = (Tileset) file.value;
         initComponents();
     }
     
