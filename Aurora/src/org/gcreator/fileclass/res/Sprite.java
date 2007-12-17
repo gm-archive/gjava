@@ -11,8 +11,6 @@ package org.gcreator.fileclass.res;
 
 import java.util.*;
 import javax.swing.*;
-import org.gcreator.components.popupmenus.ResourceMenu;
-import org.gcreator.core.gcreator;
 
 /**
  *

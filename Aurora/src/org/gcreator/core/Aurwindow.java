@@ -168,6 +168,8 @@ public class Aurwindow extends JFrame {
             addWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
             addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
+        } else if (file.type.equals("tileset")) {
+            addWindow(new TilesetEditor(file, this.getCurrentProject()), file.name);
         } else {
             addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
@@ -811,7 +813,6 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
             onItemActionPerformed(6, 3, null);
         }
-        splitter2.setDividerLocation(0.33);
 
         if (settings[4].equals("Visible")) {
             tool.setVisible(true);
@@ -822,7 +823,10 @@ public class Aurwindow extends JFrame {
         }
 
         //pack();
-        setSize(550, 550);
+        setSize(800, 600);
+        splitter2.setDividerLocation(100);
+        splitter1.setDividerSize(5);
+        splitter2.setDividerSize(5);
         utilities.addMessage(29);
         //</editor-fold>
         WelcomeTab welcome = new WelcomeTab();

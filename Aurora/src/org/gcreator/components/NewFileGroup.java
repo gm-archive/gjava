@@ -44,8 +44,8 @@ public class NewFileGroup extends TabPanel {
             public String getTrueName(int i){ return truenames[i]; }
         };
         a2 = new Model() {
-            String[] strings = {"Sprite", "Actor", "Scene", "EGML Script"};
-            String[] truenames = {"sprite", "actor", "scene", "egml"};
+            String[] strings = {"Sprite", "Tileset", "Actor", "Scene", "EGML Script"};
+            String[] truenames = {"sprite", "tileset", "actor", "scene", "egml"};
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
             public String getTrueName(int i){ return truenames[i]; }

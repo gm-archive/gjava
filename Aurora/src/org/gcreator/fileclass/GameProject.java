@@ -35,17 +35,19 @@ public class GameProject extends Project{
     public Enumeration getEnum(String key){
         Enumeration e = null;
         if (key.equals("actor")) {
-            e = node.getChildAt(3).children();
-        } else if (key.equals("scene")) {
             e = node.getChildAt(4).children();
+        } else if (key.equals("scene")) {
+            e = node.getChildAt(5).children();
         } else if (key.equals("image")) {
             e = node.getChildAt(0).children();
         } else if (key.equals("sprite")) {
             e = node.getChildAt(1).children();
-        } else if (key.equals("sound")) {
+        } else if (key.equals("tileset")) {
             e = node.getChildAt(2).children();
+        } else if (key.equals("sound")) {
+            e = node.getChildAt(3).children();
         } else if (key.equals("class")) {
-            e = node.getChildAt(5).children();
+            e = node.getChildAt(6).children();
         }
         return e;
     }
@@ -57,6 +59,8 @@ public class GameProject extends Project{
                 return findFolder("Images");
             else if(file.equals("sprite"))
                 return findFolder("Sprites");
+            else if(file.equals("tileset"))
+                return findFolder("Tilesets");
             else if(file.equals("actor"))
                 return findFolder("Actors");
             else if(file.equals("scene"))
@@ -80,6 +84,8 @@ public class GameProject extends Project{
                 return findFolder("Actors");
             else if(folder instanceof SceneGroup)
                 return findFolder("Scenes");
+            else if(folder instanceof TilesetGroup)
+                return findFolder("Tilesets");
             return findFolder("Distribution");
         }
         catch(Exception e){
@@ -91,6 +97,7 @@ public class GameProject extends Project{
         Project project = new GameProject();
         project.add(new ImageGroup(project, "Images"));
         project.add(new SpriteGroup(project, "Sprites"));
+        project.add(new TilesetGroup(project, "Tilesets"));
         project.add(new SoundGroup(project, "Sounds"));
         project.add(new ActorGroup(project, "Actors"));
         project.add(new SceneGroup(project, "Scenes"));
