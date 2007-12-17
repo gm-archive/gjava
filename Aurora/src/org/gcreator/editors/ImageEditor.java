@@ -195,8 +195,10 @@ public class ImageEditor extends TabPanel {
 
         try {
             jFileChooser1.resetChoosableFileFilters();
-            JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (png, gif, jpg)");
+            JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
             jFileChooser1.addChoosableFileFilter(filter);
+            JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
+            jFileChooser1.addChoosableFileFilter(filter2);
             jFileChooser1.setFileFilter(filter);
             jFileChooser1.showDialog(this, "OK");
             if (jFileChooser1.getSelectedFile() != null) {

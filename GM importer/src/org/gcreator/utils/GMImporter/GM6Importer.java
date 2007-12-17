@@ -15,6 +15,7 @@ import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
+import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.*;
 import org.lateralgm.file.*;
 import org.lateralgm.file.iconio.*;
@@ -34,10 +35,10 @@ public class GM6Importer {
     private GM6Importer() {
     }
 
-    static class Gm6FileContext {
+    static class GmFileContext {
         org.gcreator.fileclass.GameProject pro;
         GmStreamDecoder in;
-        Gm6FileContext(org.gcreator.fileclass.GameProject pro, GmStreamDecoder in) {
+        GmFileContext(org.gcreator.fileclass.GameProject pro, GmStreamDecoder in) {
             this.pro = pro;
             this.in = in;
         }
@@ -60,7 +61,7 @@ public class GM6Importer {
         Aurwindow.setMainProject(project);
         org.gcreator.fileclass.File settings = (org.gcreator.fileclass.File) project.childAt(project.findFromName("Settings"));
         settings.editable = false;
-        Gm6FileContext c = new Gm6FileContext(project, in);
+        GmFileContext c = new GmFileContext(project, in);
         int identifier = in.read4();
         if (identifier != 1234321) {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
@@ -70,7 +71,13 @@ public class GM6Importer {
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg,"",ver)); //$NON-NLS-1$
 	}
+        System.out.println("parse settings");
         SettingsValues values = readSettings(settings, c);
+        System.out.println("parse sounds");
+        readSounds(c);
+        System.out.println("parse sprites");
+        readSprites(c);
+        System.out.println("end parse");
         
         in.close();
         
@@ -78,7 +85,7 @@ public class GM6Importer {
         PluginHelper.getWindow().workspace.updateUI();
     }
     
-    private SettingsValues readSettings(org.gcreator.fileclass.File settings, Gm6FileContext c) throws IOException,GmFormatException,
+    private SettingsValues readSettings(org.gcreator.fileclass.File settings, GmFileContext c) throws IOException,GmFormatException,
 			DataFormatException
     {
         SettingsValues value;
@@ -209,8 +216,98 @@ public class GM6Importer {
         return value;
     }
     
-    public void readSounds(Gm6FileContext c) throws IOException,GmFormatException,
+    public void readSounds(GmFileContext c) throws IOException,GmFormatException,
 			DataFormatException{
-        //Will have to figure out how to ignore files until the sound system is implemented
+        GmStreamDecoder in = c.in;
+        int ver = in.read4();
+	if (ver != 400) throw versionError("BEFORE","SOUNDS",ver); //$NON-NLS-1$ //$NON-NLS-2$
+        int noSounds = in.read4();
+        for (int i = 0; i < noSounds; i++){
+            if (!in.readBool()){
+                continue;
+            }
+            in.readStr(); //Name
+            ver = in.read4();
+            if (ver != 440 && ver != 600) throw versionError("IN","SOUNDS",i,ver);
+            int kind53 = -1;
+            if (ver == 440)
+                kind53 = in.read4(); //kind (wav, mp3, etc)
+            else
+		/*snd.kind = (byte) */in.read4(); //normal, background, etc
+            in.readStr(); //fileType
+            if (ver == 440){
+		//-1 = no sound
+		/*if (kind53 != -1) snd.data = in.decompress(*/in.read4()/*)*/;
+		in.skip(8);
+		/*snd.preload = !*/in.readBool();
+            }
+            else{
+		/*snd.fileName = */in.readStr();
+		if (in.readBool()) /*snd.data =*/ in.decompress(in.read4());
+		int effects = in.read4();
+		//snd.setEffects(effects);
+		/*snd.volume =*/ in.readD();
+		/*snd.pan =*/ in.readD();
+		/*snd.preload =*/ in.readBool();
+            }
+        }
+    }
+    
+    public void readSprites(GmFileContext c) throws IOException,GmFormatException,
+			DataFormatException{
+        GmStreamDecoder in = c.in;
+        int ver = in.read4();
+	if (ver != 400) throw versionError("BEFORE","SPRITES",ver);
+        int noSprites = in.read4();
+        System.out.println("Begin main loop");
+        for (int i = 0; i < noSprites; i++){
+            System.out.println("Sprite no." + i);
+            if (!in.readBool()){
+                continue;
+            }
+            Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
+            Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("Sprites"));
+            org.gcreator.fileclass.File spriteFile;
+            String name = in.readStr();
+            ver = in.read4();
+            if (ver != 400 && ver != 542) throw versionError("IN","SPRITES",i,ver); //$NON-NLS-1$ //$NON-NLS-2$
+            spriteFile = new org.gcreator.fileclass.File(spriteFolder,name, "sprite", null);
+            Sprite val;
+            spriteFile.value = val = new Sprite(name);
+            val.width = in.read4();
+            val.height = in.read4();
+            val.BBleft = in.read4();
+            val.BBRight = in.read4();
+            val.BBBottom = in.read4();
+            val.BBTop = in.read4();
+            in.readBool(); //Transparent
+            if (ver > 400){
+                /*spr.smoothEdges = */in.readBool();
+                /*spr.preload = */in.readBool();
+            }
+            /*spr.boundingBoxMode = (byte) */in.read4();
+            val.precise = in.readBool();
+            if (ver == 400){
+                in.skip(4); //use video memory
+                /*spr.preload = !*/in.readBool();
+            }
+            val.originX = in.read4();
+            val.originY = in.read4();
+            int nosub = in.read4();
+            System.out.println("Beginning image importing");
+            for (int j = 0; j < nosub; j++){
+                System.out.println("Image " + j + " begin.");
+		if (in.read4() == -1) continue;
+		BufferedImage img = in.readImage(val.width,val.height);
+                org.gcreator.fileclass.File imgF;
+                imgF = new org.gcreator.fileclass.File(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
+                ImageIcon iico;
+                imgF.value = iico = new ImageIcon(img);
+                imgF.treeimage = org.gcreator.fileclass.File.getScaledIcon(iico);
+                System.out.println("Adding to list");
+                val.addToList(imgF);
+                System.out.println("Image " + j + " end.");
+            }
+        }
     }
 }
