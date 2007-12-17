@@ -126,8 +126,8 @@ public class SoundEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    //public SoundPlayer p = null;
-    public AudioClip clip = null;
+    public SoundPlayer p = null;
+    //public AudioClip clip = null;
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
@@ -136,8 +136,8 @@ public class SoundEditor extends TabPanel {
             try {
                 if (f != null) {
                     if (file.value != null && file.value instanceof byte[]) {
-                        if(clip!=null)
-                            clip.stop();
+                        if(p!=null)
+                            p.stop();
                     }
                 }
                 //file.value = f.toURI().toURL(); //JApplet.newAudioClip(f.toURI().toURL());
@@ -149,7 +149,7 @@ public class SoundEditor extends TabPanel {
             InputStream is = new FileInputStream(f);
 
             // Get the size of the file
-            long length = f.length();
+            /*long length = f.length();
 
             if (length > Integer.MAX_VALUE) {
                 // File is too large
@@ -173,9 +173,10 @@ public class SoundEditor extends TabPanel {
 
             // Close the input stream and return bytes
             is.close();
-            file.value = bytes;
+            file.value = bytes;*/
+            p = new SoundPlayer(is);
             
-            clip = new AppletAudioClip(bytes);
+            //clip = new AppletAudioClip(bytes);
             //p = new SoundPlayer((byte[]) file.value);
             //p = new SoundPlayer(f.getAbsolutePath());
         } catch (Exception ex) {
@@ -185,16 +186,16 @@ public class SoundEditor extends TabPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 try{
-        if(clip!=null)
-            clip.play();
+        if(p!=null)
+            p.play();
 }
 catch(Exception e){}
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 try{
-        if(clip!=null)
-            clip.stop();
+        if(p!=null)
+            p.stop();
 }
 catch(Exception e){}
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -204,6 +205,11 @@ catch(Exception e){}
 //            (JApplet.newAudioClip((URL) file.value)).stop();
 //            (JApplet.newAudioClip((URL) file.value)).loop();
 //        }
+        try{
+        if(p!=null)
+            p.loop();
+}
+catch(Exception e){}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate

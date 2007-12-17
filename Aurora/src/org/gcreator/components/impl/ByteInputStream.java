@@ -24,30 +24,16 @@ public class ByteInputStream extends InputStream{
         if(res==null)
             throw new IOException("Null buffer");
         if(pos+1>=res.length)
-            throw new IOException("Buffer end");
+            return -1;
         return res[pos++];
     }
     
-    public void reset() throws IOException{
-        if(pos>=markinvalid)
-            pos = 0;
-        else
-            pos = markpos;
-    }
-    
-    public void mark(int readlimit){
-        markpos = pos;
-        markinvalid = markpos + readlimit;
-    }
-    
-    public boolean markSupported(){
-        return true;
-    }
-    
     public void skip(int len) throws IOException{
-        pos += len;
         if(res==null)
             throw new IOException("Null buffer");
+        if(len<=0)
+            return;
+        pos += len;
         if(pos>=res.length)
             throw new IOException("Buffer end");
     }
