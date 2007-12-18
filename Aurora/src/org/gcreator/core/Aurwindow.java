@@ -1251,7 +1251,18 @@ public class Aurwindow extends JFrame {
                 }
 
                 org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage" + i, "png");
-
+                break;
+            case 11:
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    return;
+                }
+                while (a.findFromName("newTileset" + i) != -1) {
+                    i++;
+                }
+                addFile(getCurrentFolder(), "newTileset" + i, "tileset");
+                break;
         }
     }
 
@@ -1332,7 +1343,7 @@ public class Aurwindow extends JFrame {
         JButton cl = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addscript.png")), 52);
         JButton actor = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addactor01.png")), 45);
         JButton scene = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
-
+        JButton tileset = ToolbarManager.addButton(null, 190);
 
 
         image.addActionListener(new ActionListener() {
@@ -1404,6 +1415,13 @@ public class Aurwindow extends JFrame {
                         onToolbarActionPerformed(4, evt);
                     }
                 });
+                
+        tileset.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onToolbarActionPerformed(11, evt);
+                    }
+                });
 
         tool.setPreferredSize(new Dimension(450, 50));
         tool.setRollover(true);
@@ -1415,6 +1433,7 @@ public class Aurwindow extends JFrame {
         tool.addSeparator();
         tool.add(image);
         tool.add(sprite);
+        tool.add(tileset);
         tool.add(sound);
         tool.add(cl);
         tool.add(actor);

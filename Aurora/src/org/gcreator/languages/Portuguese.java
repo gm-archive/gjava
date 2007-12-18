@@ -233,6 +233,10 @@ public class Portuguese extends Dictionary{
         entry[187] = "Escolha o recurso a importar";
         entry[188] = "Filtro:";
         entry[189] = "Imagem"; //From the Import Menu
+        entry[190] = "Adicionar Tileset";
+        //Tileset Editor
+        entry[191] = "Nome";
+        entry[192] = "Começar em:";
         
         try{
             init();

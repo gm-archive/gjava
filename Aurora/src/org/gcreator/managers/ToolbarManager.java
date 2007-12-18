@@ -20,6 +20,8 @@ public class ToolbarManager {
         JButton button = new JButton();
         button.setToolTipText(LangSupporter.activeLang.getEntry(label));
         button.setIcon(icon);
+        if(icon==null)
+            button.setText(button.getToolTipText());
         return button;
     }
 }
