@@ -75,6 +75,8 @@ public class GM6Importer {
         readSounds(c);
         readSprites(c);
         readBackgrounds(c);
+        readPaths(c);
+        readScripts(c);
         
         in.close();
         
@@ -368,5 +370,67 @@ public class GM6Importer {
                 t.tileh = tileHeight;
             }
         }
+    }
+    
+    private static void readPaths(GmFileContext c) throws IOException,GmFormatException,
+			DataFormatException
+    {
+        GmStreamDecoder in = c.in;
+        
+        int ver = in.read4();
+	if (ver != 420) throw versionError("BEFORE","PATHS",ver);
+        int noPaths = in.read4();
+        
+        //Dump paths
+        for (int i = 0; i < noPaths; i++){
+            if(!in.readBool())
+                continue;
+            in.readStr(); //name
+            ver = in.read4();
+            if (ver != 530) throw versionError("IN","PATHS",i,ver);
+            in.readBool(); //smooth
+            in.readBool(); //closed
+            in.read4(); //precision
+            in.read4(); //Background room
+            in.read4(); //snap x
+            in.read4(); //snap y
+            int nopoints = in.read4();
+            for (int j = 0; j < nopoints; j++){
+                //Point point = path.addPoint();
+                /*point.x = (int) */in.readD();
+		/*point.y = (int) */in.readD();
+		/*point.speed = (int) */in.readD();
+            }
+        }
+    }
+    
+    private static void readScripts(GmFileContext c) throws IOException,GmFormatException{
+        GmStreamDecoder in = c.in;
+        
+        int ver = in.read4();
+	if (ver != 400) throw versionError("BEFORE","SCRIPTS",ver);
+        
+        int noScripts = in.read4();
+        
+        Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("Classes"));
+        for (int i = 0; i < noScripts; i++){
+            if (!in.readBool()){
+                continue;
+            }
+            org.gcreator.fileclass.File script;
+            script = new org.gcreator.fileclass.File(scriptsGroup, in.readStr(), "egml", null);
+            ver = in.read4();
+            if (ver != 400) throw versionError("IN","SCRIPTS",i,ver);
+            script.value = parseGML(in.readStr());
+        }
+    }
+    
+    /**@todo The parser itself
+     * @param gml The text to be parsed
+     * @return The parsed text
+     */
+    private static String parseGML(String gml){
+        String egml = gml;
+        return egml;
     }
 }

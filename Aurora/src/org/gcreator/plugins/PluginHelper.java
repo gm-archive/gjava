@@ -20,14 +20,26 @@ import org.gcreator.managers.*;
  * @author Luís
  */
 public class PluginHelper {
+    /**
+     * Allows the plugin to fetch the main window
+     * @return The main window
+     */
     public static Aurwindow getWindow(){
         return gcreator.window;
     }
     
+    /**
+     * Allows the plugin to fetch the workspace tree
+     * @return The workspace tree
+     */
     public static JTree getWorkspace(){
         return Aurwindow.workspace;
     }
     
+    /**
+     * Prints an error message in G-Creator's console
+     * @param message The message to be written
+     */
     public static void println(String message){
             utilities.addStringMessage(message);
     }
