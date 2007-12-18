@@ -1,3 +1,5 @@
+//Modified by Luís Reis(disabled main function)
+
 package net.iharder.dnd;
 
 import java.awt.datatransfer.DataFlavor;
@@ -604,7 +606,7 @@ public class FileDrop
     
 
     /** Runs a sample program that shows dropped files */
-    public static void main( String[] args )
+    /*public static void main( String[] args )
     {
         javax.swing.JFrame frame = new javax.swing.JFrame( "FileDrop" );
         //javax.swing.border.TitledBorder dragBorder = new javax.swing.border.TitledBorder( "Drop 'em" );
@@ -613,7 +615,9 @@ public class FileDrop
             new javax.swing.JScrollPane( text ), 
             java.awt.BorderLayout.CENTER );
         
-        new FileDrop( System.out, text, /*dragBorder,*/ new FileDrop.Listener()
+        new FileDrop( System.out, text,
+       //dragBorder,
+       new FileDrop.Listener()
         {   public void filesDropped( java.io.File[] files )
             {   for( int i = 0; i < files.length; i++ )
                 {   try
