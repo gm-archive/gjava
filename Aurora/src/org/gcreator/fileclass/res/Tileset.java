@@ -16,7 +16,7 @@ public class Tileset extends Resource{
     static final long serialVersionUID = 1L;
     public File image;
     public int startx = 0, starty = 0, bwidth = 0, bheight = 0;
-    public int tilew = 0, tileh = 0;
+    public int tilew = 20, tileh = 20;
     
     private Tileset(){
         image = null;
