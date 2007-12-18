@@ -8,7 +8,7 @@ package org.gcreator.components.impl;
 import java.io.*;
 import javax.sound.sampled.*;
 import org.gcreator.threading.*;
-import sun.audio.*;
+//import sun.audio.*;
 
 /**
  *
@@ -23,9 +23,9 @@ public class SoundPlayer/* extends SafeThread*/{
     private int nBytesRead;
     private byte[] abData;
     private static final int EXTERNAL_BUFFER_SIZE = 524288;*/
-    private AudioStream au;
-    private AudioData aud;
-    private ContinuousAudioDataStream cau;
+    //private AudioStream au;
+    //private AudioData aud;
+    //private ContinuousAudioDataStream cau;
     
     public SoundPlayer(String fname) throws IOException, UnsupportedAudioFileException, LineUnavailableException{
         /*soundFile = new File(fname);
@@ -75,9 +75,9 @@ public class SoundPlayer/* extends SafeThread*/{
         auline.start();
         nBytesRead = 0;
 	abData = new byte[EXTERNAL_BUFFER_SIZE];*/
-        au = new AudioStream(stream);
-        aud = au.getData();
-        cau = new ContinuousAudioDataStream(aud);
+        //au = new AudioStream(stream);
+        //aud = au.getData();
+        //cau = new ContinuousAudioDataStream(aud);
         
     }
     
@@ -95,9 +95,9 @@ public class SoundPlayer/* extends SafeThread*/{
         auline.start();
         nBytesRead = 0;
 	abData = new byte[EXTERNAL_BUFFER_SIZE];*/
-        au = new AudioStream(stream);
-        aud = au.getData();
-        cau = new ContinuousAudioDataStream(aud);
+        //au = new AudioStream(stream);
+        //aud = au.getData();
+        //cau = new ContinuousAudioDataStream(aud);
         
     }
     
@@ -109,7 +109,7 @@ public class SoundPlayer/* extends SafeThread*/{
         return pan.getValue();
     }*/
     
-    private boolean continuous = false;
+    //private boolean continuous = false;
     
     public void loop() throws TerminatedThreadException{
         /*try{
@@ -122,24 +122,24 @@ public class SoundPlayer/* extends SafeThread*/{
             }
         }
         catch(Exception e){}*/
-        stop();
-        AudioPlayer.player.start(cau);
-        continuous = true;
+        //stop();
+        //AudioPlayer.player.start(cau);
+        //continuous = true;
     }
     
     public void play() throws TerminatedThreadException{
-        stop();
-        AudioPlayer.player.start(au);
-        continuous = false;
+        //stop();
+        //AudioPlayer.player.start(au);
+        //continuous = false;
     }
     
     public void stop() throws TerminatedThreadException{
         /*super.stop();
         auline.drain();
         auline.close();*/
-        if(continuous)
-            AudioPlayer.player.stop(cau);
-        else
-            AudioPlayer.player.stop(au);
+        //if(continuous)
+        //    AudioPlayer.player.stop(cau);
+        //else
+        //    AudioPlayer.player.stop(au);
     }
 }
