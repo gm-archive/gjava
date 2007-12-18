@@ -975,7 +975,8 @@ public class Aurwindow extends JFrame {
                 }
                 istabs = true;
                 for (int i = 0; i < mdi.getComponents().length; i++) {
-                    TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
+                    try{
+                        TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
                     tabs.addTab(panel.title, panel);
                     int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
                     if (ver >= 6) {
@@ -987,6 +988,8 @@ public class Aurwindow extends JFrame {
                                     tabsClicked(evt);
                                 }
                             });
+                    }
+                    catch(ClassCastException e){}
                 }
             }
         }
