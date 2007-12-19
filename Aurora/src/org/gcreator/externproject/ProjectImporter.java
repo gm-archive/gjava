@@ -42,12 +42,15 @@ public class ProjectImporter {
     public static void readConfig(String s, String name) {
         org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
         String ptype = s.split(">")[3].split("<")[0];
+        boolean run2 = false;
         try {
             System.out.println(ptype);
             project = (Project) ClassLoader.getSystemClassLoader().loadClass(ptype).newInstance();
         } catch (Exception e) {
         System.out.println(e.toString());
+        run2 = true;
         }
+        if(run2)
         try {
             project = (Project) Plugger.getPluginClassLoader().loadClass(ptype).newInstance();
         } catch (Exception e) {
@@ -138,13 +141,18 @@ public class ProjectImporter {
                 project.add(f = new Group(project, sss[1].substring(sss[1].lastIndexOf("/") + 1)));
             }*/
             else{
+                boolean rung = false;
                 try{
                     Group t = (Group) Class.forName(sss[0]).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
                     project.add(t);
                 }
-                catch(Exception e){}
+                catch(Exception e)
+                {
+                    rung = true;
+                }
+                if(rung)
                 try{
                     Group t = (Group) Class.forName(sss[0], true, Plugger.getPluginClassLoader()).newInstance();
                     t.root = project;
