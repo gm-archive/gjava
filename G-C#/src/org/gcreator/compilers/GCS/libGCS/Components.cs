@@ -288,6 +288,72 @@ namespace org.gcreator.Components
     public class Scene
     {
 		private ArrayList actors = new ArrayList();
+		private int width, height;
+
+		private int getMinimumDepth()
+		{
+			int result = Int32.MaxValue;
+			foreach(object o in actors)
+			{
+				if(o is Actor)
+				{
+					int adep = ((Actor) o).getDepth();
+					if(adep<result)
+						result = adep;
+				}
+			}
+			return result;
+		}
+
+		private int getMaximumDepth()
+		{
+			int result = Int32.MinValue;
+			foreach(object o in actors)
+			{
+				if(o is Actor)
+				{
+					int adep = ((Actor) o).getDepth();
+					if(adep>result)
+						result = adep;
+				}
+			}
+			return result;
+		}
+		private int getNextDepth(int Depth)
+		{
+			int result = Int32.MinValue;
+			foreach(object o in actors)
+			{
+				if(o is Actor)
+				{
+					int adep = ((Actor) o).getDepth();
+					if(adep>result&&adep<Depth)
+						result = adep;
+				}
+			}
+			return result;
+		}
+
+		public int getWidth()
+		{
+			return width;
+		}
+
+		public int getHeight()
+		{
+			return height;
+		}
+
+		public void setWidth(int w)
+		{
+			width = w;
+		}
+
+		public void setHeight(int h)
+		{
+			height = h;
+		}
+
 		public virtual void Create()
 		{
 		
@@ -313,15 +379,33 @@ namespace org.gcreator.Components
 					(o as Actor).Loop();
 				}
 			}
-			foreach(object o in actors)
-			{
-				//Should be more careful with views
-				if(o is Actor)
+			Surface t = new Surface(getWidth(), getHeight());
+			Native.SDL.Game.game.cursurface = t;
+			int a = getMaximumDepth();
+			while(a >= getMinimumDepth()){
+				foreach(object o in actors)
 				{
-					(o as Actor).Draw();
+					if(o is Actor)
+					{
+						if((o as Actor).getDepth()==a)
+							(o as Actor).Draw();
+					}
 				}
+				if(a!=getNextDepth(a))
+					a = getNextDepth(a);
+				else
+					break;
 			}
+			viewDrawer(t);
+			Native.SDL.Game.game.cursurface = Native.SDL.Game.game.master;
 		}
+
+		private void viewDrawer(Surface t)
+		{
+			//No Views
+			Native.SDL.DrawToSurface(t, Native.SDL.Game.game.master, new Rectangle(0, 0, getWidth(), getHeight()), new Rectangle(0,0,Native.SDL.Game.game.master.Width, Native.SDL.Game.game.master.Height));
+		}
+
 		internal Actor[] getPersistentActors()
 		{
 			return null;

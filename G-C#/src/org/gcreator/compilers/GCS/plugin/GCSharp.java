@@ -107,7 +107,22 @@ public class GCSharp extends PlatformCore {
             print(actor, "");
             //events
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
-
+                    org.gcreator.events.Event evt = (org.gcreator.events.Event) e.nextElement();
+                    if(evt instanceof org.gcreator.events.BeginStepEvent){
+                        print(actor, "\tpublic virtual void BeginStep()");
+                    }
+                    if(evt instanceof org.gcreator.events.StepEvent){
+                        print(actor, "\tpublic virtual void Step()");
+                    }
+                    if(evt instanceof org.gcreator.events.EndStepEvent){
+                        print(actor, "\tpublic virtual void End()");
+                    }
+                    if(evt instanceof org.gcreator.events.DrawEvent){
+                        print(actor, "\tpublic virtual void Draw()");
+                    }
+                    print(actor, "\t{");
+                    print(actor, "\t}");
+                    print(actor, "");
             }
             print(actor, "}");
             actor.close();
@@ -116,6 +131,18 @@ public class GCSharp extends PlatformCore {
 
     }
 
+    public void parseClass(String s, String name){
+        try{
+            FileWriter scriptFW = new FileWriter(FileFolder + name + ".cs");
+            BufferedWriter script = new BufferedWriter(scriptFW);
+            print(script, "using org.gcreator.Components;");
+            print(script, "using org.gcreator.Support;");
+            print(script, "using org.gcreator.Scripting;");
+            super.parseGCLClass(s, this);
+        }
+        catch(Exception e){}
+    }
+    
     public void parseScene(Scene s) throws IOException {
         files.add(s.name);
         FileWriter sceneFW = new FileWriter(FileFolder + s.name + ".cs");
