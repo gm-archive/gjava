@@ -53,7 +53,7 @@ public class ProjectImporter {
         int fileno = 0;
         while (ii < ss.length) {
             String[] sss = ss[ii].replaceAll("</file>", "").split("\">"); //SpriteGroup">Sprites
-            if (sss[0].equals("File")) {
+            if (sss[0].equals("org.gcreator.fileclass.File")) {
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String[] ssss = sss[1].split("\\.");
                 String dir = sss[1];
@@ -105,7 +105,7 @@ public class ProjectImporter {
                         System.out.println(e.getMessage());
                     }
                 }
-            } else if (sss[0].equals("ActorGroup")) {
+            }/* else if (sss[0].equals("ActorGroup")) {
                 project.add(f = new ActorGroup(project, sss[1].substring(sss[1].lastIndexOf("/") + 1)));
             } else if (sss[0].equals("CppGroup")) {
                 project.add(f = new CppGroup(project, sss[1].substring(sss[1].lastIndexOf("/") + 1)));
@@ -129,6 +129,15 @@ public class ProjectImporter {
                 project.add(f = new StaticGroup(project, sss[1].substring(sss[1].lastIndexOf("/") + 1)));
             } else if (sss[0].equals("Group")) {
                 project.add(f = new Group(project, sss[1].substring(sss[1].lastIndexOf("/") + 1)));
+            }*/
+            else{
+                try{
+                    Group t = (Group) Class.forName(sss[0]).newInstance();
+                    t.root = project;
+                    t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
+                    project.add(t);
+                }
+                catch(Exception e){}
             }
 
             ii++;
