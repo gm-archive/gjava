@@ -27,6 +27,7 @@ public int width=640,height=480,speed=60,snapX=16,snapY=16;
 public boolean persistant,grid = true,isometric,drawbackcolor=true;
 public ViewsModel views;
 public Vector actors;
+public Vector tiles;
 public Color background = Color.lightGray;
 public org.gcreator.fileclass.File bgimage = null;
 public static final int MODE_SINGLE = 0;
@@ -49,6 +50,7 @@ public Scene(String name)
 {
     this.name = name;
     actors = new Vector();
+    tiles = new Vector();
     views = new ViewsModel();
 }
 

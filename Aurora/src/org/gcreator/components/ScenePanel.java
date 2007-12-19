@@ -105,6 +105,62 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         return getSize();
     }
     
+    public int getMinimumDepth(){
+        int result = Integer.MAX_VALUE;
+        Scene scn = (Scene) root.file.value;
+        Enumeration e = scn.actors.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            ActorInScene a = (ActorInScene)e.nextElement();
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            if(b.depth<result)
+                result = b.depth;
+        }
+        e = scn.tiles.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            Tile a = (Tile) e.nextElement();
+            if(a.depth<result)
+                result = a.depth;
+        }
+        return result;
+    }
+    
+    public int getMaximumDepth(){
+        int result = Integer.MIN_VALUE;
+        Scene scn = (Scene) root.file.value;
+        Enumeration e = scn.actors.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            ActorInScene a = (ActorInScene)e.nextElement();
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            if(b.depth>result)
+                result = b.depth;
+        }
+        e = scn.tiles.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            Tile a = (Tile) e.nextElement();
+            if(a.depth>result)
+                result = a.depth;
+        }
+        return result;
+    }
+    
+    public int getNextDepth(int Depth){
+        int result = Integer.MIN_VALUE;
+        Scene scn = (Scene) root.file.value;
+        Enumeration e = scn.actors.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            ActorInScene a = (ActorInScene)e.nextElement();
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            if(b.depth>result&&b.depth<Depth)
+                b.depth = result;
+        }
+        e = scn.tiles.elements(); //<ActorInScene>
+        while(e.hasMoreElements()){
+            Tile a = (Tile) e.nextElement();
+            if(a.depth>result&&a.depth<Depth)
+                a.depth = result;
+        }
+        return result;
+    }
      
     public void update(Graphics g){
         super.update(g);
@@ -121,9 +177,67 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
     
     public void drawActors(Graphics g){
+        System.out.println("drawActors");
         Scene scn = (Scene) root.file.value;
-        Enumeration e = scn.actors.elements(); //<ActorInScene>
-        while(e.hasMoreElements()){
+        if(scn.actors.isEmpty()&&scn.tiles.isEmpty())
+            return;
+        System.out.println("Enumeration e");
+        Enumeration e;
+        System.out.println("get Depths");
+        int dep = getMaximumDepth();
+        int mindep = getMinimumDepth();
+        System.out.println("min" + mindep + "; max=" + dep);
+        while(dep>=mindep){
+            System.out.println("Current depth:" + dep);
+            e = scn.actors.elements();//<ActorInScene>
+            while(e.hasMoreElements()){
+                ActorInScene ascn = (ActorInScene) e.nextElement();
+                org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(ascn.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+                if(b.depth==dep){
+                    try{
+                    org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) b.getSpriteFile().value;
+                    ImageIcon h = f.getImageAt(0);
+                    if(h!=null)
+                        g.drawImage(
+                                h.getImage(),
+                                (int) ((ascn.x - f.originX) / root.getZoom()),
+                                (int) ((ascn.y - f.originY) / root.getZoom()),
+                                (int) (h.getIconWidth() / root.getZoom()),
+                                (int) (h.getIconHeight() / root.getZoom()),
+                                h.getImageObserver()
+                        );
+                    }
+                    catch(NullPointerException ex){}
+                }
+            }
+            e = scn.tiles.elements();//<ActorInScene>
+            while(e.hasMoreElements()){
+                Tile ascn = (Tile) e.nextElement();
+                if(ascn.depth==dep){
+                    try{
+                    ImageIcon h = ascn.getTilesetImage();
+                    if(h!=null)
+                        g.drawImage(
+                                h.getImage(),
+                                (int) ((ascn.dx) / root.getZoom()),
+                                (int) ((ascn.dy) / root.getZoom()),
+                                (int) (ascn.width / root.getZoom()),
+                                (int) (ascn.height / root.getZoom()),
+                                ascn.sx,
+                                ascn.sy,
+                                ascn.width,
+                                ascn.height,
+                                h.getImageObserver()
+                        );
+                    }
+                    catch(NullPointerException ex){}
+                }
+            }
+            if(dep<=mindep)
+                break;
+            dep = getNextDepth(dep);
+        }
+        /*while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
             ObjectNode c = b.getSpriteFile().node;
@@ -134,7 +248,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 if(h!=null)
                     g.drawImage(h.getImage(), (int) ((a.x - f.originX) / root.getZoom()), (int) ((a.y - f.originY) / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
             }
-        }
+        }*/
     }
     
     public void drawField(Graphics g){
