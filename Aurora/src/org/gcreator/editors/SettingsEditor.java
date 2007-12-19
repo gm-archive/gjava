@@ -865,7 +865,8 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jRadioButton16ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        addScene((org.gcreator.fileclass.File) scenes.getCurrentObject().object);
+        if(scenes.getCurrentObject()!=null)
+            addScene((org.gcreator.fileclass.File) scenes.getCurrentObject().object);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
