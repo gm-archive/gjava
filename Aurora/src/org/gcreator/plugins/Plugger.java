@@ -17,11 +17,12 @@ import java.net.*;
  * @author Luís
  */
 public class Plugger {
+    private static ClassLoader loader = null;
     public static PluginCore[] getPlugList(String[] classFiles){
         if(classFiles==null)
             return null;
-        ClassLoader loader = null;
             PluginCore[] plugins = new PluginCore[classFiles.length];
+            if(loader==null){
             File x = new File("./plugins/");
             try {
             if(!x.exists())
@@ -29,7 +30,7 @@ public class Plugger {
                 URL url = x.toURI().toURL();
                 loader = new URLClassLoader(new URL[]{url});
             } catch(Exception e){ }
-            
+            }
             for(int i = 0; i < plugins.length; i++){
                 if(classFiles[i]!=null){
                     try {
@@ -55,6 +56,10 @@ public class Plugger {
             return plugins;
         //}
         
+    }
+    
+    public static ClassLoader getPluginClassLoader(){
+        return loader;
     }
     
     public static void loadPlugins(PluginCore[] plugins){

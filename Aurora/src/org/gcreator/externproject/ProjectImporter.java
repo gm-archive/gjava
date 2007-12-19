@@ -19,7 +19,7 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
-import org.gcreator.plugins.FileOpenListener;
+import org.gcreator.plugins.Plugger;
 
 /**
  *
@@ -41,10 +41,17 @@ public class ProjectImporter {
 
     public static void readConfig(String s, String name) {
         org.gcreator.fileclass.Folder f = new org.gcreator.fileclass.Folder("");
+        String ptype = s.split(">")[3].split("<")[0];
         try {
-            System.out.println(s.split(">")[3].split("<")[0]);
-            project = (Project) ClassLoader.getSystemClassLoader().loadClass(s.split(">")[3].split("<")[0]).newInstance();
+            System.out.println(ptype);
+            project = (Project) ClassLoader.getSystemClassLoader().loadClass(ptype).newInstance();
         } catch (Exception e) {
+        System.out.println(e.toString());
+        }
+        try {
+            project = (Project) Plugger.getPluginClassLoader().loadClass(ptype).newInstance();
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         project.name = name;
         s = s.replaceAll("</content>", "");
@@ -133,6 +140,13 @@ public class ProjectImporter {
             else{
                 try{
                     Group t = (Group) Class.forName(sss[0]).newInstance();
+                    t.root = project;
+                    t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
+                    project.add(t);
+                }
+                catch(Exception e){}
+                try{
+                    Group t = (Group) Class.forName(sss[0], true, Plugger.getPluginClassLoader()).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
                     project.add(t);

@@ -1149,7 +1149,7 @@ public class Aurwindow extends JFrame {
                     }
                 }
                 //save to gcp file
-                if (mainProject.location.equals("")) {
+                if (mainProject.location==null||mainProject.location.equals("")) {
                     JFileChooser fc = new JFileChooser();
                     fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
                     fc.showSaveDialog(gcreator.window);
