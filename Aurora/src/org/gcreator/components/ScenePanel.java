@@ -223,8 +223,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                                 (int) ((ascn.dy) / root.getZoom()),
                                 (int) (ascn.width / root.getZoom()),
                                 (int) (ascn.height / root.getZoom()),
-                                ascn.sx,
-                                ascn.sy,
+                                ascn.sx+((Tileset) ascn.tileset.value).startx,
+                                ascn.sy+((Tileset) ascn.tileset.value).starty,
                                 ascn.width,
                                 ascn.height,
                                 h.getImageObserver()

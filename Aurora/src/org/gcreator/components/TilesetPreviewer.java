@@ -13,7 +13,7 @@ import org.gcreator.editors.*;
  *
  * @author luis
  */
-public class TilesetPreviewer extends JPanel{
+public class TilesetPreviewer extends JComponent{
     private TilesetEditor editor;
     
     public TilesetPreviewer(TilesetEditor editor){
