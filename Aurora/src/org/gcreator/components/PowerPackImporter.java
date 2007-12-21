@@ -63,6 +63,8 @@ public class PowerPackImporter extends TabPanel {
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText(LangSupporter.activeLang.getEntry(187));
 
@@ -81,6 +83,12 @@ public class PowerPackImporter extends TabPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
+        jLabel3.setForeground(java.awt.Color.red);
+        jLabel3.setText(LangSupporter.activeLang.getEntry(196));
+
+        jLabel4.setText(LangSupporter.activeLang.getEntry(197));
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,13 +96,15 @@ public class PowerPackImporter extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jCheckBox2)
                     .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jLabel2)
-                    .add(jCheckBox1)
-                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jLabel3, 0, 0, Short.MAX_VALUE)
+                    .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jCheckBox2, 0, 0, Short.MAX_VALUE)
+                    .add(jCheckBox1, 0, 0, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -111,7 +121,11 @@ public class PowerPackImporter extends TabPanel {
                         .add(jCheckBox1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jCheckBox2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 244, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel3)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel4)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 198, Short.MAX_VALUE)
                         .add(jButton1)))
                 .addContainerGap())
         );
@@ -139,6 +153,8 @@ public class PowerPackImporter extends TabPanel {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

@@ -240,6 +240,10 @@ public class Portuguese extends Dictionary{
         entry[193] = "Posição da Árvore de Projectos";
         entry[194] = "Esquerda";
         entry[195] = "Direita";
+        entry[196] = "ATENÇÃO!";
+        entry[197] = "<HTML>Se usar recursos do Powerpack, o seu jogo<br/>" +
+                "<b>TEM</b> de estar obrigatóriamente licenciado<br/>" +
+                "em GPL v3";
         
         try{
             init();

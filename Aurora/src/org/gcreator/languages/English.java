@@ -241,6 +241,9 @@ public class English extends Dictionary{
         entry[193] = "Workspace Tree position";
         entry[194] = "Left";
         entry[195] = "Right";
+        entry[196] = "WARNING:";
+        entry[197] = "<HTML>If you use a PowerPack resource, your game<br/>" +
+                "<b>MUST</b> be licensed under GPL v3";
         
         try{
             init();

@@ -232,7 +232,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addscn);
         ToolbarManager.toolbuttons.add(addcls);
         
-        Toolbar tool = new Toolbar();
+        /*Toolbar tool = new Toolbar();
         tool.horizontal = true;
         tool.first = true;
         tool.rollover = true;
@@ -249,7 +249,7 @@ public class gcreator {
         tool.items.add(addact);
         tool.items.add(addscn);
         tool.items.add(addcls);
-        ToolbarManager.toolbars.add(tool);
+        ToolbarManager.toolbars.add(tool);*/
         
         if(!applet&&plugload){
             Plugger.loadPlugins(plugins);
