@@ -52,6 +52,7 @@ public class Aurwindow extends JFrame {
     public int look;
     public boolean istabs; //True - tabs; False - MDI
 
+    public static boolean showToolbars;
     public JDesktopPane mdi;
     public JTextPane console;
     public JScrollPane scroller;
@@ -808,12 +809,13 @@ public class Aurwindow extends JFrame {
         rightContainer.setLayout(new GridLayout(1,0));
         leftContainer.setLayout(new GridLayout(1,0));
         //Begin content manager
-        topContainer.add(tool);
+        //topContainer.add(tool);
         panel.add(topContainer, BorderLayout.NORTH);
         panel.add(bottomContainer, BorderLayout.SOUTH);
         panel.add(leftContainer, BorderLayout.WEST);
         panel.add(rightContainer, BorderLayout.EAST);
         panel.add(splitter1, BorderLayout.CENTER);
+        
 
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
@@ -862,10 +864,16 @@ public class Aurwindow extends JFrame {
         }
 
         if (settings[4].equals("Visible")) {
-            tool.setVisible(true);
+            showToolbars = true;
+            //tool.setVisible(true);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(true);
         } else {
-            tool.setVisible(false);
+            //tool.setVisible(false);
+            showToolbars = false;
+            topContainer.setVisible(false);
+            bottomContainer.setVisible(false);
+            leftContainer.setVisible(false);
+            rightContainer.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
 
@@ -930,7 +938,12 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 2 && item == 1) {
             Dimension a = this.getSize();
-            tool.setVisible(!tool.isVisible());
+            //tool.setVisible(!tool.isVisible());
+            showToolbars = items[MenuSupporter.GenerateMenuItemId(2, 1)].isSelected();
+            topContainer.setVisible(showToolbars);
+            bottomContainer.setVisible(showToolbars);
+            leftContainer.setVisible(showToolbars);
+            rightContainer.setVisible(showToolbars);
             this.setSize(a);
         }
         if (menu == 3 && item == 0) {
@@ -1417,10 +1430,11 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
 
     public void createToolBar() {
-        tool = new JToolBar("Toolbar");
-        tool.setFloatable(false);
+        ToolbarManager.makeToolbars(this);
+        //tool = new JToolBar("Toolbar");
+        //tool.setFloatable(false);
 
-        JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
+        /*JButton opn = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
         JButton save = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/save.png")), 41);
         JButton saveall = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/saveall.png")), 53);
         JButton newp = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
@@ -1530,7 +1544,7 @@ public class Aurwindow extends JFrame {
         //tool.addSeparator();
         //tool.add(winlist);
         toolpopup = new ToolbarPopupMenu();
-        tool.addMouseListener(new PopupListener(tool, toolpopup));
+        tool.addMouseListener(new PopupListener(tool, toolpopup));*/
     }
 
     //</editor-fold>

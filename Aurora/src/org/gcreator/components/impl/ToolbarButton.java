@@ -5,40 +5,40 @@
 
 package org.gcreator.components.impl;
 
+import java.awt.*;
+import java.awt.font.*;
+import java.awt.geom.*;
 import javax.swing.*;
 
 /**
  *
  * @author luis
  */
-public class ToolbarButton{
-    private String id = null; //Invalid
-    private String name = null;
+public class ToolbarButton extends ToolbarItem{
+    private String id = null;
+    private String text = null;
     private ImageIcon image = null;
-    private boolean showImage, showText;
+    private boolean showImage = false;
+    private boolean showText = false;
     
     /**
-     * Builds a new toolbar button with no name nor image
+     * Builds a new toolbar button with no text nor image
      */
     public ToolbarButton(){
-        showText = false;
-        showImage = false;
     }
     
     /**
      * Builds a new toolbar button with a given name and image
-     * @param name The name of the toolbar button
+     * @param text The text of the toolbar button
      * @param image The image of the toolbar button
      */
-    public ToolbarButton(String id, String name, ImageIcon image){
+    public ToolbarButton(String id, String text, ImageIcon image){
         setID(id);
-        setName(name);
+        setText(text);
         setImage(image);
-        showImage = false;
-        showText = false;
         if(image!=null)
             showImage = true;
-        else if(name!=null)
+        else if(text!=null)
             showText = true;
     }
     
@@ -46,16 +46,16 @@ public class ToolbarButton{
      * Gets the name of the toolbar button
      * @return The name of the toolbar button
      */
-    public String getName(){
-        return name;
+    public String getText(){
+        return text;
     }
     
     /**
-     * Sets the name of the toolbar button
-     * @param name The name of the toolbar button
+     * Sets the text of the toolbar button
+     * @param text The name of the toolbar button
      */
-    public void setName(String name){
-        this.name = name;
+    public void setText(String text){
+        this.text = text;
     }
     
     /**
@@ -110,7 +110,7 @@ public class ToolbarButton{
      * Checks if the text is visible or not
      * @return True if the text is visible, false otherwise
      */
-    public boolean getTextVisible(){
+    public boolean isTextVisible(){
         return showText;
     }
     
@@ -118,7 +118,37 @@ public class ToolbarButton{
      * Checks if the image is visible or not
      * @return True if the image is visible, false otherwise
      */
-    public boolean getImageVisible(){
+    public boolean isImageVisible(){
         return showImage;
+    }
+    
+    public void paint(Graphics g, int x, int height){
+        
+    }
+    
+    /**
+     * @todo
+     */
+    public int getWidth(){
+        int size = 0;
+        if(isImageVisible())
+            size += image.getIconWidth();
+        if(isTextVisible()){
+            size += (int) (new JLabel(text)).getPreferredSize().getWidth();
+        }
+        return size;
+    }
+    
+    /**
+     * @todo
+     */
+    public int getHeight(){
+        int size = 0;
+        if(isImageVisible())
+            size += image.getIconHeight();
+        if(isTextVisible()){
+            size += (int) (new JLabel(text)).getPreferredSize().getHeight();
+        }
+        return size;
     }
 }

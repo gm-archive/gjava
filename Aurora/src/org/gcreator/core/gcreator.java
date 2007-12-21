@@ -9,6 +9,8 @@
 
 package org.gcreator.core;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
@@ -19,6 +21,10 @@ import javax.swing.*;
 import org.gcreator.api.util.CreateApiList;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
+import org.gcreator.components.impl.DefaultToolbarItem;
+import org.gcreator.components.impl.Toolbar;
+import org.gcreator.components.impl.ToolbarButton;
+import org.gcreator.components.impl.ToolbarSeparator;
 import org.gcreator.help.AboutPanel;
 
 /**
@@ -98,17 +104,8 @@ public class gcreator {
         if(ver<=4)
             plugload = false;
         arguments = args;
-        if(!applet&&plugload){
-            Plugger.loadPlugins(plugins);
-            Plugger.onSplashStart(plugins);
-        }
-        splash = new SplashScreen(applet);
         
-        //setup api list
-        CreateApiList.setup();
-        
-        
-        String[] settings = null;
+                String[] settings = null;
         
         if(!applet){
             settings = SettingsIO.loadSettings();
@@ -144,6 +141,124 @@ public class gcreator {
                 utilities.addError(36);
             }
         }
+        
+        ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
+        ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
+        ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), 41);
+        ToolbarButton saveall = new DefaultToolbarItem("std_saveAll", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/saveall.png")), 53);
+        ToolbarButton addimg = new DefaultToolbarItem("std_addImage", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addimage.png")), 42);
+        ToolbarButton addspr = new DefaultToolbarItem("std_addSprite", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor02.png")), 43);
+        ToolbarButton addtls = new DefaultToolbarItem("std_addTileset",null, 190);
+        ToolbarButton addsnd = new DefaultToolbarItem("std_addSound", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsound.png")), 44);
+        ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor01.png")), 52);
+        ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), 45);
+        ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 46);
+
+        newp.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(1, evt);
+            }
+        });
+
+        opn.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(2, evt);
+            }
+        });
+        
+        save.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(3, evt);
+            }
+        });
+        
+        saveall.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(4, evt);
+            }
+        });
+        
+        addimg.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(10, evt);
+            }
+        });
+        
+        addspr.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(5, evt);
+            }
+        });
+        
+        addtls.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(11, evt);
+            }
+        });
+        
+        addsnd.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(6, evt);
+            }
+        });
+        
+        addact.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(8, evt);
+            }
+        });
+        
+        addscn.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(9, evt);
+            }
+        });
+        
+        addcls.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(7, evt);
+            }
+        });
+        
+        ToolbarManager.toolbuttons.add(newp);
+        ToolbarManager.toolbuttons.add(opn);
+        ToolbarManager.toolbuttons.add(save);
+        ToolbarManager.toolbuttons.add(saveall);
+        ToolbarManager.toolbuttons.add(addimg);
+        ToolbarManager.toolbuttons.add(addspr);
+        ToolbarManager.toolbuttons.add(addtls);
+        ToolbarManager.toolbuttons.add(addsnd);
+        ToolbarManager.toolbuttons.add(addact);
+        ToolbarManager.toolbuttons.add(addscn);
+        ToolbarManager.toolbuttons.add(addcls);
+        
+        Toolbar tool = new Toolbar();
+        tool.horizontal = true;
+        tool.first = true;
+        tool.rollover = true;
+        tool.items.add(newp);
+        tool.items.add(opn);
+        tool.items.add(new ToolbarSeparator());
+        tool.items.add(save);
+        tool.items.add(saveall);
+        tool.items.add(new ToolbarSeparator());
+        tool.items.add(addimg);
+        tool.items.add(addspr);
+        tool.items.add(addtls);
+        tool.items.add(addsnd);
+        tool.items.add(addact);
+        tool.items.add(addscn);
+        tool.items.add(addcls);
+        ToolbarManager.toolbars.add(tool);
+        
+        if(!applet&&plugload){
+            Plugger.loadPlugins(plugins);
+            Plugger.onSplashStart(plugins);
+        }
+        splash = new SplashScreen(applet);
+        
+        //setup api list
+        CreateApiList.setup();
 
         try {
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {

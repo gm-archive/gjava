@@ -106,7 +106,7 @@ public class SettingsIO {
             out.write(Aurwindow.lang);
             out.write("</language>");
             out.write("<toolbar>");
-            out.write(Aurwindow.tool.isVisible() ? "Visible" : "Hidden");
+            out.write(Aurwindow.showToolbars ? "Visible" : "Hidden");
             out.write("</toolbar>");
             out.write("<tree>");
             if(gcreator.window.splitter2.getLeftComponent()==Aurwindow.treescroll){
