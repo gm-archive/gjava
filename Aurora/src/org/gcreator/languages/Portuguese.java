@@ -237,6 +237,9 @@ public class Portuguese extends Dictionary{
         //Tileset Editor
         entry[191] = "Nome";
         entry[192] = "Começar em:";
+        entry[193] = "Posição da Árvore de Projectos";
+        entry[194] = "Esquerda";
+        entry[195] = "Direita";
         
         try{
             init();

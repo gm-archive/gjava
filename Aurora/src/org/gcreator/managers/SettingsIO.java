@@ -108,6 +108,18 @@ public class SettingsIO {
             out.write("<toolbar>");
             out.write(Aurwindow.tool.isVisible() ? "Visible" : "Hidden");
             out.write("</toolbar>");
+            out.write("<tree>");
+            if(gcreator.window.splitter2.getLeftComponent()==Aurwindow.treescroll){
+                out.write("Left");
+            }
+            else if(gcreator.window.splitter2.getRightComponent()==Aurwindow.treescroll){
+                out.write("Right");
+            }
+            else{
+                addStringFormatedMessage("Invalid tree position-setting to Left", "red", false);
+                out.write("Left");
+            }
+            out.write("</tree>");
             out.write("</settings>");
             out.close();
         } catch (IOException e) {
@@ -126,12 +138,13 @@ public class SettingsIO {
             catch(Exception e){}
             return null;
         }
-        String[] a = new String[5];
+        String[] a = new String[6];
         a[0] = null;
         a[1] = null;
         a[2] = null;
         a[3] = null;
         a[4] = null;
+        a[5] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         Document doc;
@@ -160,6 +173,8 @@ public class SettingsIO {
                     id = 3;
                 else if(name.equals("toolbar"))
                     id = 4;
+                else if(name.equals("tree"))
+                    id = 5;
                 if(id==-1){
                     addError(33);
                     addStringFormatedMessage(name, null, true);
@@ -169,7 +184,7 @@ public class SettingsIO {
                     addError(34);
                 a[id] = child.getTextContent(); //1.4 
             }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null){
+            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null){
                 addError(35);
             }
             return a;

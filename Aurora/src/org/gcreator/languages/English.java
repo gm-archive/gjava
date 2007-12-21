@@ -237,6 +237,10 @@ public class English extends Dictionary{
         //Tileset Editor
         entry[191] = "Name";
         entry[192] = "Begin At";
+        //Workspace position
+        entry[193] = "Workspace Tree position";
+        entry[194] = "Left";
+        entry[195] = "Right";
         
         try{
             init();

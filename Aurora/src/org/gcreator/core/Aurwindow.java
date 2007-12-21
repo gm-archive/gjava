@@ -60,7 +60,7 @@ public class Aurwindow extends JFrame {
     public static JTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
-    public ButtonGroup stylegroup;
+    public ButtonGroup stylegroup, wtreepos;
     //public JComboBox winlist; //This will be the windows list
 
     public TreeCellRenderer renderer;
@@ -71,6 +71,12 @@ public class Aurwindow extends JFrame {
     public static NewProject newproject;
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
+    
+    private boolean isWorkspaceLeft(){
+        if(items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected())
+            return true;
+        return false;
+    }
     
     //</editor-fold>
 
@@ -545,6 +551,7 @@ public class Aurwindow extends JFrame {
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
         menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
+        menus[15] = MenuSupporter.MakeSubMenu(menus[2], 193, "Display mode");
         items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
         items[MenuSupporter.GenerateMenuItemId(2, 0)].addActionListener(new ActionListener() {
 
@@ -751,14 +758,37 @@ public class Aurwindow extends JFrame {
                         onItemActionPerformed(6, 4, evt);
                     }
                 });
+        wtreepos = new ButtonGroup();
+        items[MenuSupporter.GenerateMenuItemId(15, 0)] = MenuSupporter.MakeRadioMenuItem(wtreepos, menus[15], 194, "Tree Left");
+        items[MenuSupporter.GenerateMenuItemId(15, 0)].addActionListener(new ActionListener() {
 
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(15, 0, evt);
+                    }
+                });
+        items[MenuSupporter.GenerateMenuItemId(15, 0)].setSelected(true);
+        items[MenuSupporter.GenerateMenuItemId(15, 1)] = MenuSupporter.MakeRadioMenuItem(wtreepos, menus[15], 195, "Tree Right");
+        items[MenuSupporter.GenerateMenuItemId(15, 1)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(15, 1, evt);
+                    }
+                });
         //</editor-fold>
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
-        splitter2.setLeftComponent(treescroll);
-        splitter2.setRightComponent(tabs);
+        if(settings==null||settings.length<6||settings[5]==null||!settings[5].equals("Right")){
+            splitter2.setLeftComponent(treescroll);
+            splitter2.setRightComponent(tabs);
+            items[MenuSupporter.GenerateMenuItemId(15, 0)].setSelected(true);
+        }
+        else{
+            splitter2.setRightComponent(treescroll);
+            splitter2.setLeftComponent(tabs);
+            items[MenuSupporter.GenerateMenuItemId(15, 1)].setSelected(true);
+        }
         splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
@@ -969,9 +999,17 @@ public class Aurwindow extends JFrame {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(true);
                 mdi.setVisible(false);
-                splitter2.setRightComponent(tabs);
+                if(isWorkspaceLeft()){
+                    splitter2.setRightComponent(tabs);
                 if (splitter2.getRightComponent().isVisible()) {
                     splitter2.setDividerLocation(k);
+                }
+                }
+                else{
+                    splitter2.setLeftComponent(tabs);
+                if (splitter2.getLeftComponent().isVisible()) {
+                    splitter2.setDividerLocation(k);
+                }
                 }
                 istabs = true;
                 for (int i = 0; i < mdi.getComponents().length; i++) {
@@ -1010,10 +1048,19 @@ public class Aurwindow extends JFrame {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(false);
                 mdi.setVisible(true);
-                splitter2.setRightComponent(mdi);
-                if (splitter2.getRightComponent().isVisible()) {
-                    splitter2.setDividerLocation(k);
+                if(isWorkspaceLeft()){
+                    splitter2.setRightComponent(mdi);
+                    if (splitter2.getRightComponent().isVisible()) {
+                        splitter2.setDividerLocation(k);
+                    }
                 }
+                else{
+                    splitter2.setLeftComponent(mdi);
+                    if (splitter2.getLeftComponent().isVisible()) {
+                        splitter2.setDividerLocation(k);
+                    }
+                }
+                    
                 istabs = false;
                 Component[] panels = tabs.getComponents();
                 for (int i = 0; i < panels.length; i++) {
@@ -1072,6 +1119,26 @@ public class Aurwindow extends JFrame {
             }
             }
             catch(IOException e){}
+        }
+        if(menu == 15 && item == 0){
+            splitter2.setRightComponent(null);
+            splitter2.setLeftComponent(null);
+            splitter2.setRightComponent(istabs ? tabs : mdi);
+            splitter2.setLeftComponent(treescroll);
+            tabs.updateUI();
+            mdi.updateUI();
+            splitter2.updateUI();
+            splitter1.updateUI();
+        }
+        if(menu == 15 && item == 1){
+            splitter2.setRightComponent(null);
+            splitter2.setLeftComponent(null);
+            splitter2.setRightComponent(treescroll);
+            splitter2.setLeftComponent(istabs ? tabs : mdi);
+            tabs.updateUI();
+            mdi.updateUI();
+            splitter2.updateUI();
+            splitter1.updateUI();
         }
     }
 
