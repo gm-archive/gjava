@@ -71,6 +71,7 @@ public class Aurwindow extends JFrame {
     public static NewProject newproject;
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
+    public Container topContainer, bottomContainer, leftContainer, rightContainer;
     
     private boolean isWorkspaceLeft(){
         if(items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected())
@@ -311,6 +312,10 @@ public class Aurwindow extends JFrame {
                 super.paint(g);
             }
         };
+        topContainer = new Container();
+        bottomContainer = new Container();
+        rightContainer = new Container();
+        leftContainer = new Container();
         console.setEditable(false);
         console.setBackground(Colorfeel.ConsoleBGColor);
         console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
@@ -792,11 +797,21 @@ public class Aurwindow extends JFrame {
         splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        /*org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
-        layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));
-
+        layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));*/
+        Container panel = getContentPane();
+        panel.setLayout(new BorderLayout());
+        topContainer.setLayout(new GridLayout(0,1));
+        topContainer.setVisible(true);
+        topContainer.add(tool);
+        topContainer.add(new JLabel("Some other toolbar"));
+        panel.add(topContainer, BorderLayout.NORTH);
+        panel.add(bottomContainer, BorderLayout.SOUTH);
+        panel.add(leftContainer, BorderLayout.WEST);
+        panel.add(rightContainer, BorderLayout.EAST);
+        panel.add(splitter1, BorderLayout.CENTER);
 
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
