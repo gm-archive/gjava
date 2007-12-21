@@ -804,9 +804,11 @@ public class Aurwindow extends JFrame {
         Container panel = getContentPane();
         panel.setLayout(new BorderLayout());
         topContainer.setLayout(new GridLayout(0,1));
-        topContainer.setVisible(true);
+        bottomContainer.setLayout(new GridLayout(0,1));
+        rightContainer.setLayout(new GridLayout(1,0));
+        leftContainer.setLayout(new GridLayout(1,0));
+        //Begin content manager
         topContainer.add(tool);
-        topContainer.add(new JLabel("Some other toolbar"));
         panel.add(topContainer, BorderLayout.NORTH);
         panel.add(bottomContainer, BorderLayout.SOUTH);
         panel.add(leftContainer, BorderLayout.WEST);
