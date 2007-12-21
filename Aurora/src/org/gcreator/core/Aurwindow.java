@@ -1430,6 +1430,7 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
 
     public void createToolBar() {
+        toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
         //tool = new JToolBar("Toolbar");
         //tool.setFloatable(false);
@@ -1576,6 +1577,10 @@ public class Aurwindow extends JFrame {
 
     public void saveSettings() {
         SettingsIO.saveSettings(look, istabs, scroller.isVisible());
+        try{
+            ToolbarManager.writeToolbarFile("toolbarList.gctl");
+        }
+        catch(IOException e){}
     }
 
     //</editor-fold>

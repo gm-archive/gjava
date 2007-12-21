@@ -257,6 +257,11 @@ public class gcreator {
         }
         splash = new SplashScreen(applet);
         
+        try{
+            ToolbarManager.parseToolbarFile("toolbarList.gctl");
+        }
+        catch(Exception e){}
+        
         //setup api list
         CreateApiList.setup();
 

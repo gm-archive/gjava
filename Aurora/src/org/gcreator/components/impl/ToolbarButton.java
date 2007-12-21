@@ -43,8 +43,8 @@ public class ToolbarButton extends ToolbarItem{
     }
     
     /**
-     * Gets the name of the toolbar button
-     * @return The name of the toolbar button
+     * Gets the text of the toolbar button
+     * @return The text of the toolbar button
      */
     public String getText(){
         return text;
@@ -52,23 +52,23 @@ public class ToolbarButton extends ToolbarItem{
     
     /**
      * Sets the text of the toolbar button
-     * @param text The name of the toolbar button
+     * @param text The text of the toolbar button
      */
     public void setText(String text){
         this.text = text;
     }
     
     /**
-     * Gets the name of the toolbar button
-     * @return The name of the toolbar button
+     * Gets the name/ID of the toolbar button
+     * @return The name/ID of the toolbar button
      */
     public String getID(){
         return id;
     }
     
     /**
-     * Sets the id of the toolbar button
-     * @param id The ID of the toolbar button
+     * Sets the name/ID of the toolbar button
+     * @param id The name/ID of the toolbar button
      */
     public void setID(String id){
         this.id = id;

@@ -7,6 +7,7 @@ package org.gcreator.components.impl;
 
 import java.util.*;
 import javax.swing.*;
+import org.gcreator.components.popupmenus.PopupListener;
 import org.gcreator.core.*;
 
 /**
@@ -52,5 +53,6 @@ public class Toolbar {
             else
                 gcreator.window.rightContainer.add(toolbar);
         }
+        toolbar.addMouseListener(new PopupListener(toolbar, window.toolpopup));
     }
 }
