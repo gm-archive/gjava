@@ -107,7 +107,7 @@ public class Portuguese extends Dictionary{
         entry[73] = "Qualidade de cor";
         entry[74] = "Não mudar";
         //View
-        entry[75] = "Ver barra de ferramentas";
+        entry[75] = "Ver barras de ferramentas";
         //Find
         entry[76] = "Procurar"; //Title
         entry[77] = "Procurar"; //Label

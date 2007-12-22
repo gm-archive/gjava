@@ -302,11 +302,17 @@ public class Aurwindow extends JFrame {
         return null;
     }
     
+    /**
+     * @deprecated
+     */
+    public void setContentPane(Container c){}
+    
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setIconImage(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")).getImage());
+        super.setContentPane(new JPanel());
         istabs = true;
         console = new JTextPane(){
             public void paint(Graphics g){
@@ -898,6 +904,10 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
 
+    public void updateUI(){
+        ((JPanel) this.getContentPane()).updateUI();
+    }
+    
     public static JFileChooser chooseImage = new JFileChooser();
     static{
         chooseImage.setDialogTitle("Select Image");
@@ -944,7 +954,15 @@ public class Aurwindow extends JFrame {
             bottomContainer.setVisible(showToolbars);
             leftContainer.setVisible(showToolbars);
             rightContainer.setVisible(showToolbars);
-            this.setSize(a);
+            /*if(!showToolbars){
+                ToolbarManager.destroyToolbars();
+            }
+            else{
+                ToolbarManager.makeToolbars(this);
+            }*/
+            //this.setSize(a);
+            updateUI();
+            
         }
         if (menu == 3 && item == 0) {
             setMainProject(getCurrentProject());

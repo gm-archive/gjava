@@ -4,14 +4,12 @@
 Version=1.0.0
 
 [Toolbar]
+Name=Main
 Position=Top
 Rollover=True
 Floatable=True
 TextVisible=False
 ImageVisible=True
-Item=std_newProject
-Item=std_openProject
-Separator=Standard
 Item=std_save
 Item=std_saveAll
 Separator=Standard
@@ -24,4 +22,14 @@ Item=std_addSound
 Item=std_addActor
 Item=std_addScene
 Item=std_addClass
+
+[Toolbar]
+Name=Projects
+Position=Left
+Rollover=True
+Floatable=False
+TextVisible=False
+ImageVisible=True
+Item=std_newProject
+Item=std_openProject
 

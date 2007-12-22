@@ -21,8 +21,16 @@ public class Toolbar {
     public boolean first = true;
     public boolean rollover = true;
     public boolean floatable = true;
+    public String name = null;
+    public Vector<JToolBar> toolbars = new Vector<JToolBar>();
+    
     public void make(Aurwindow window){
         JToolBar toolbar = new JToolBar();
+        toolbars.add(toolbar);
+        if(name!=null){
+            toolbar.setToolTipText(name);
+            toolbar.setName(name);
+        }
         for(ToolbarItem item : items){
             if(item instanceof ToolbarSeparator)
                 toolbar.addSeparator();
@@ -50,9 +58,9 @@ public class Toolbar {
         else{
             toolbar.setOrientation(JToolBar.VERTICAL);
             if(first)
-                gcreator.window.leftContainer.add(toolbar);
+                window.leftContainer.add(toolbar);
             else
-                gcreator.window.rightContainer.add(toolbar);
+                window.rightContainer.add(toolbar);
         }
         toolbar.addMouseListener(new PopupListener(toolbar, window.toolpopup));
     }

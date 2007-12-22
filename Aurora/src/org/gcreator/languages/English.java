@@ -107,7 +107,7 @@ public class English extends Dictionary{
         entry[73] = "Colour Depth";
         entry[74] = "No change";
         //View
-        entry[75] = "View toolbar";
+        entry[75] = "View toolbars";
         //Find
         entry[76] = "Find"; //Title
         entry[77] = "Find"; //Label

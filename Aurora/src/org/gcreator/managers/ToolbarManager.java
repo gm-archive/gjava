@@ -84,6 +84,7 @@ public class ToolbarManager {
             if(t==null){
                 if(line.equals("[Toolbar]")){
                     t = new Toolbar();
+                    t.name = null;
                     toolbars.add(t);
                     tvisible = false;
                     ivisible = false;
@@ -94,13 +95,24 @@ public class ToolbarManager {
                     break;
                 }
             }
+            if(line.equals("[Toolbar]")){
+                    t = new Toolbar();
+                    t.name = null;
+                    toolbars.add(t);
+                    tvisible = false;
+                    ivisible = false;
+                    continue;
+            }
             if(!line.matches("[a-zA-Z0-9_]+=[^;\\[\\]]+")){
                 System.out.println("Invalid format in " + t +"\nShould be in format 'Property=Value'");
                 break;
             }
             String key = line.replaceAll("([a-zA-Z0-9_]+)=[^;\\[\\]]+", "$1");
             String value = line.replaceAll("[a-zA-Z0-9_]+=([^;\\[\\]]+)", "$1");
-            if(key.equals("Position")){
+            if(key.equals("Name")){
+                t.name = value;
+            }
+            else if(key.equals("Position")){
                 if(!value.equals("Top")&&!value.equals("Bottom")&&!value.equals("Left")&&!value.equals("Right")){
                     System.out.println("Invalid position " + value);
                     break;
@@ -195,6 +207,8 @@ public class ToolbarManager {
         writer.write("\n");
         for(Toolbar toolbar : toolbars){
             writer.write("[Toolbar]\n");
+            if(toolbar.name!=null)
+                writer.write("Name=" + toolbar.name + "\n");
             writer.write("Position=");
             writer.write((toolbar.horizontal?(toolbar.first? "Top" : "Bottom"):(toolbar.first? "Left" : "Right"))+"\n");
             writer.write("Rollover=" + (toolbar.rollover ? "True" : "False") + "\n");
@@ -216,8 +230,8 @@ public class ToolbarManager {
                     writer.write("Item=" + btn.getID() + "\n");
                 }
             }
+            writer.write("\n");
         }
-        writer.write("\n");
         writer.close();
     }
 }
