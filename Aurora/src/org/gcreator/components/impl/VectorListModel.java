@@ -25,4 +25,12 @@ public class VectorListModel extends AbstractListModel{
     public int getSize(){
         return v.size();
     }
+    
+    public void setVector(Vector v){
+        this.v = v;
+    }
+    
+    public int getIndexOf(Object o){
+        return v.indexOf(o);
+    }
 }

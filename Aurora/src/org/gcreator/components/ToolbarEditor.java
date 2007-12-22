@@ -6,6 +6,9 @@
 
 package org.gcreator.components;
 
+import org.gcreator.components.impl.*;
+import org.gcreator.managers.*;
+
 /**
  *
  * @author  luis
@@ -17,6 +20,9 @@ public class ToolbarEditor extends javax.swing.JPanel {
     public ToolbarEditor() {
         initComponents();
         jScrollPane1.setViewportView(previewer = new ToolbarPreviewer());
+        jComboBox1.setModel(new VectorComboBoxModel(ToolbarManager.toolbars));
+        jComboBox1.setRenderer(new ToolbarCellRenderer());
+        jComboBox1.setSelectedIndex(0);
     }
     
     /** This method is called from within the constructor to

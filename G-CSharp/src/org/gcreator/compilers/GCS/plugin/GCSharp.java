@@ -155,6 +155,8 @@ public class GCSharp extends PlatformCore {
         print(scene, "{");
         print(scene, "\tpublic " + s.name + "()");
         print(scene, "\t{");
+        print(scene, "\t\tbase.setWidth(" + s.width + ");");
+        print(scene, "\t\tbase.setHeight(" + s.height + ");");
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
             ActorInScene ais = e.nextElement();
             print(scene, "\t\taddActor(new " + ais.Sactor + "(" + ais.x + ", " + ais.y + "));");
@@ -166,10 +168,10 @@ public class GCSharp extends PlatformCore {
     
     public void createFolders() {
         try {
-            FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString() + File.separator + "Projects" + File.separator + projectname + File.separator + "CSharp";
+            FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString() + File.separator + "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
             File f1 = new File(FileFolder);
-            FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
             FileFolder += "/";
+            FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
             if (f1.exists()) {
                 f1.delete();
             }
@@ -259,13 +261,13 @@ public class GCSharp extends PlatformCore {
     public void onSplashDispose() {
         PluginHelper.println("Installed G-C#");
         PluginHelper.addGlobalTab("G-C#", settings);
-        JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
-        run.addActionListener(new ActionListener() {
+        //JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
+        /*run.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         run(Aurwindow.getMainProject());
                     }
-                });
+                });*/
         JMenuItem i = new JMenuItem("Compile with G-C#");
         i.addActionListener(new ActionListener() {
 
@@ -275,7 +277,7 @@ public class GCSharp extends PlatformCore {
                 });
 
         PluginHelper.addMenuItem(3, i);
-        Aurwindow.tool.add(run);
+        //Aurwindow.tool.add(run);
     }
 
     public Object onSignalReceived(PluginCore caller, Object signal) {

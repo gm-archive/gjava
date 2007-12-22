@@ -15,6 +15,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -83,16 +87,18 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
         public int compile(String res)
         {
             String command = "gmcs";
-            command += " -r:" + res + "SdlDotNet.dll";
-            command += " -r:" + res + "Tao.Sdl.dll";
-            command += " -r:" + res + "libGCS.dll";
-            command += " -out:" + res + "Game.exe";
+            command += " -r:System.Drawing";
+            command += " -r:SdlDotNet.dll";
+            command += " -r:Tao.Sdl.dll";
+            command += " -r:libGCS.dll";
+            command += " -target:winexe";
+            command += " -out:Game.exe";
             Enumeration<String> e = GCSharp.files.elements();
             while(e.hasMoreElements())
-                command += " " + res + File.separator + e.nextElement();
+                command += " " + e.nextElement();
             try{
-                Process p = Runtime.getRuntime().exec(command);
-                 InputStream stderr = p.getErrorStream();
+                Process p = Runtime.getRuntime().exec(command, new String[]{}, new File(res));
+                InputStream stderr = p.getErrorStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);
                 String line = null;
@@ -246,6 +252,21 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
 			}
 		}
 
+        public String[] environmentVars(){
+            Map variables = System.getenv();
+            Set variableNames = variables.keySet();
+            Iterator nameIterator = variableNames.iterator();
+
+            String[] v = new String[variableNames.size()];
+            for (int index = 0; index < variableNames.size(); index++)
+            {
+                String name = (String) nameIterator.next();
+                String value = (String) variables.get(name);
+                v[index] = name + "=" + value;
+            }
+            return v;
+        }
+        
 	public void actionPerformed(ActionEvent e)
 		{
 		String c = e.getActionCommand();
@@ -255,7 +276,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
 			try
 				{
 				p = Runtime.getRuntime().exec(
-						"mono " + GCSharp.FileFolder + "Game.exe");
+						"mono Game.exe", environmentVars(), new File(GCSharp.FileFolder));
 p.waitFor();
 				BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
 				String line = null;
