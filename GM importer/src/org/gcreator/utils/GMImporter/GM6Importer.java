@@ -77,6 +77,7 @@ public class GM6Importer {
         readBackgrounds(c);
         readPaths(c);
         readScripts(c);
+        readFonts(c);
         
         in.close();
         
@@ -432,5 +433,25 @@ public class GM6Importer {
     private static String parseGML(String gml){
         String egml = gml;
         return egml;
+    }
+    
+    private static void readFonts(GmFileContext c) throws IOException,GmFormatException{
+        GmStreamDecoder in = c.in;
+        int ver = in.read4();
+	if (ver != 440 && ver != 540) throw versionError("BEFORE","FONTS",ver);
+        if (ver == 440){
+            int noDataFiles = in.read4();
+            for (int i = 0; i < noDataFiles; i++){
+                if (!in.readBool()) continue;
+                in.skip(in.read4());
+		if (in.read4() != 440)
+                    throw new GmFormatException("");
+                in.readStr();
+                if (in.readBool()) in.skip(in.read4());
+                in.skip(16);
+            }
+            return;
+        }
+        int noFonts = in.read4();
     }
 }
