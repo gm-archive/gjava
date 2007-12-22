@@ -21,6 +21,7 @@ public class GlobalSettings extends TabPanel {
     public GlobalSettings() {
         initComponents();
         jTabbedPane1.add("Language", new LanguageTab());
+        jTabbedPane1.add("Toolbar Editor", new ToolbarEditor());
     }
     
     /** This method is called from within the constructor to
