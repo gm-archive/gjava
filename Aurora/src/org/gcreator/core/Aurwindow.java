@@ -954,12 +954,14 @@ public class Aurwindow extends JFrame {
             bottomContainer.setVisible(showToolbars);
             leftContainer.setVisible(showToolbars);
             rightContainer.setVisible(showToolbars);
-            /*if(!showToolbars){
-                ToolbarManager.destroyToolbars();
+            if(!showToolbars){
+                //ToolbarManager.destroyToolbars();
+                ToolbarManager.hideAll();
             }
             else{
-                ToolbarManager.makeToolbars(this);
-            }*/
+                //ToolbarManager.makeToolbars(this);
+                ToolbarManager.showAll();
+            }
             //this.setSize(a);
             updateUI();
             

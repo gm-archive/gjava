@@ -23,6 +23,7 @@ public class ToolbarEditor extends javax.swing.JPanel {
         jComboBox1.setModel(new VectorComboBoxModel(ToolbarManager.toolbars));
         jComboBox1.setRenderer(new ToolbarCellRenderer());
         jComboBox1.setSelectedIndex(0);
+        updateToolbar();
     }
     
     /** This method is called from within the constructor to
@@ -43,6 +44,12 @@ public class ToolbarEditor extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
 
         jLabel1.setText("Select toolbar to edit:");
+
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Create new Toolbar");
 
@@ -65,6 +72,11 @@ public class ToolbarEditor extends javax.swing.JPanel {
         jLabel2.setText("Location:");
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Top", "Bottom", "Left", "Right" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,13 +125,53 @@ public class ToolbarEditor extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        // TODO add your handling code here:
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        t.floatable = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        // TODO add your handling code here:
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        t.rollover = jCheckBox2.isSelected();
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        updateToolbar();
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        int index = jComboBox2.getSelectedIndex();
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        if(index==0){
+            t.horizontal = true;
+            t.first = true;
+        }
+        if(index==1){
+            t.horizontal = true;
+            t.first = false;
+        }
+        if(index==2){
+            t.horizontal = false;
+            t.first = true;
+        }
+        if(index==3){
+            t.horizontal = false;
+            t.first = false;
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
     
+    public void updateToolbar(){
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        jCheckBox1.setSelected(t.floatable);
+        jCheckBox2.setSelected(t.rollover);
+        if(t.first&&t.horizontal)
+            jComboBox2.setSelectedIndex(0);
+        if(!t.first&&t.horizontal)
+            jComboBox2.setSelectedIndex(1);
+        if(t.first&&!t.horizontal)
+            jComboBox2.setSelectedIndex(2);
+        if(!t.first&&!t.horizontal)
+            jComboBox2.setSelectedIndex(3);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

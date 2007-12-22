@@ -24,6 +24,22 @@ public class Toolbar {
     public String name = null;
     public Vector<JToolBar> toolbars = new Vector<JToolBar>();
     
+    public void hideAll(){
+        Enumeration<JToolBar> e = toolbars.elements();
+        while(e.hasMoreElements()){
+            JToolBar t = e.nextElement();
+            t.setVisible(false);
+        }
+    }
+    
+    public void showAll(){
+        Enumeration<JToolBar> e = toolbars.elements();
+        while(e.hasMoreElements()){
+            JToolBar t = e.nextElement();
+            t.setVisible(true);
+        }
+    }
+    
     public void make(Aurwindow window){
         JToolBar toolbar = new JToolBar();
         toolbars.add(toolbar);

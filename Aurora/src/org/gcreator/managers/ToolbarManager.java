@@ -19,11 +19,29 @@ public class ToolbarManager {
     public static Vector<ToolbarButton> toolbuttons = new Vector<ToolbarButton>();
     
     public static void destroyToolbars(){
+        hideAll();
         gcreator.window.topContainer.removeAll();
         gcreator.window.bottomContainer.removeAll();
         gcreator.window.leftContainer.removeAll();
         gcreator.window.rightContainer.removeAll();
     }
+    
+    public static void hideAll(){
+        Enumeration<Toolbar> e = toolbars.elements();
+        while(e.hasMoreElements()){
+            Toolbar t = e.nextElement();
+            t.hideAll();
+        }
+    }
+    
+    public static void showAll(){
+        Enumeration<Toolbar> e = toolbars.elements();
+        while(e.hasMoreElements()){
+            Toolbar t = e.nextElement();
+            t.showAll();
+        }
+    }
+    
     public static void makeToolbars(Aurwindow window){
         for(Toolbar toolbar : toolbars){
             toolbar.make(window);
