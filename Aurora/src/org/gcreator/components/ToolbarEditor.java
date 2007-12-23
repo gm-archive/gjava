@@ -6,6 +6,9 @@
 
 package org.gcreator.components;
 
+import java.util.Vector;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import org.gcreator.components.impl.*;
 import org.gcreator.managers.*;
 
@@ -20,7 +23,10 @@ public class ToolbarEditor extends javax.swing.JPanel {
         initComponents();
         jComboBox1.setModel(new VectorComboBoxModel(ToolbarManager.toolbars));
         jComboBox1.setRenderer(new ToolbarCellRenderer());
-        jComboBox1.setSelectedIndex(0);
+        if(ToolbarManager.toolbars.size()>0)
+            jComboBox1.setSelectedIndex(0);
+        else
+            jComboBox1.setSelectedIndex(-1);
         updateToolbar();
         jList1.setCellRenderer(new ToolButtonListCellRenderer());
     }
@@ -64,6 +70,11 @@ public class ToolbarEditor extends javax.swing.JPanel {
         });
 
         jButton1.setText("Create new Toolbar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Floatable");
@@ -115,6 +126,11 @@ public class ToolbarEditor extends javax.swing.JPanel {
         });
 
         jButton5.setText("Delete Toolbar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Move Up");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -177,11 +193,11 @@ public class ToolbarEditor extends javax.swing.JPanel {
                                     .addComponent(jCheckBox4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
                             .addComponent(jButton6)
                             .addComponent(jButton7))))
@@ -219,15 +235,13 @@ public class ToolbarEditor extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton3)
-                            .addComponent(jButton4))
+                            .addComponent(jButton4)
+                            .addComponent(jButton2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton7))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -304,9 +318,45 @@ public class ToolbarEditor extends javax.swing.JPanel {
         t.items.add(new ToolbarSeparator());
         updateToolbar();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        if(t!=null){
+            ToolbarManager.toolbars.remove(t);
+            updateToolbar();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String name = JOptionPane.showInputDialog(this, "Toolbar name", "untitled");
+        if(name==null)
+            return;
+        Toolbar t = new Toolbar();
+        t.name = name;
+        ToolbarManager.toolbars.add(t);
+        updateToolbar();
+        jComboBox1.setSelectedIndex(ToolbarManager.toolbars.indexOf(t));
+    }//GEN-LAST:event_jButton1ActionPerformed
     
     public void updateToolbar(){
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        if(t==null){
+            jCheckBox1.setSelected(false);
+            jCheckBox2.setSelected(false);
+            jCheckBox1.setEnabled(false);
+            jCheckBox2.setEnabled(false);
+            jComboBox2.setEnabled(false);
+            jList1.setModel(new VectorListModel(new Vector()));
+            jList1.setEnabled(false);
+            jButton5.setEnabled(false);
+            jButton8.setEnabled(false);
+            return;
+        }
+        jCheckBox1.setEnabled(true);
+        jCheckBox2.setEnabled(true);
+        jComboBox2.setEnabled(true);
+        jButton5.setEnabled(true);
+        jButton8.setEnabled(true);
         jCheckBox1.setSelected(t.floatable);
         jCheckBox2.setSelected(t.rollover);
         if(t.first&&t.horizontal)
@@ -317,6 +367,7 @@ public class ToolbarEditor extends javax.swing.JPanel {
             jComboBox2.setSelectedIndex(2);
         if(!t.first&&!t.horizontal)
             jComboBox2.setSelectedIndex(3);
+        jList1.setEnabled(true);
         jList1.setModel(new VectorListModel(t.items));
     }
     
