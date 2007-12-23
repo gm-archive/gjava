@@ -66,7 +66,7 @@ public class Portuguese extends Dictionary{
         entry[38] = "a próxima geração do G-Creator.";
         //Toolbar
 	entry[39] = "Novo Projecto"; 
-	entry[40] = "Abrir"; 
+	entry[40] = "Abrir Projecto"; 
 	entry[41] = "Guardar"; 
 	entry[42] = "Guardar como"; 
 	entry[43] = "Adicionar Sprite";
@@ -244,6 +244,7 @@ public class Portuguese extends Dictionary{
         entry[197] = "<HTML>Se usar recursos do Powerpack, o seu jogo<br/>" +
                 "<b>TEM</b> de estar obrigatóriamente licenciado<br/>" +
                 "em GPL v3";
+        entry[198] = "Adicionar imagem";
         
         try{
             init();

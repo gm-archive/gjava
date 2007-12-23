@@ -66,7 +66,7 @@ public class English extends Dictionary{
         entry[38] = "the next generation of G-Creator.";
         //Toolbar
 	entry[39] = "New Project"; 
-	entry[40] = "Open"; 
+	entry[40] = "Open Project"; 
 	entry[41] = "Save"; 
 	entry[42] = "Save As"; 
 	entry[43] = "Add Sprite";
@@ -244,6 +244,7 @@ public class English extends Dictionary{
         entry[196] = "WARNING:";
         entry[197] = "<HTML>If you use a PowerPack resource, your game<br/>" +
                 "<b>MUST</b> be licensed under GPL v3";
+        entry[198] = "Add Image";
         
         try{
             init();
