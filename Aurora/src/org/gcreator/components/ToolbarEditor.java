@@ -324,14 +324,8 @@ public class ToolbarEditor extends javax.swing.JPanel {
         if(t==null)
             return;
         ToolbarItem item = (ToolbarItem) jList2.getSelectedValue();
-        if(item instanceof ToolbarSeparator){
-            t.items.add(new ToolbarSeparator());
-            updateToolbar();
-        }
-        else{
-            t.items.add(item);
-            updateToolbar();
-        }
+        t.items.add(item);
+        updateToolbar();
     }//GEN-LAST:event_jButton3ActionPerformed
     
     public void updateToolbar(){

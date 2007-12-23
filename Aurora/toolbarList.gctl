@@ -4,7 +4,7 @@
 Version=1.0.0
 
 [Toolbar]
-Name=Main
+Name=untitled
 Position=Top
 Rollover=True
 Floatable=True
@@ -14,16 +14,13 @@ Item=std_newProject
 Item=std_openProject
 Separator=Standard
 Item=std_save
-Item=std_saveAll
-Separator=Standard
 Item=std_addImage
 Item=std_addSprite
 TextVisible=True
+ImageVisible=False
 Item=std_addTileset
-Separator=Standard
 TextVisible=False
-Item=std_addSound
-Separator=Standard
+ImageVisible=True
 Item=std_addActor
 Item=std_addScene
 Item=std_addClass
