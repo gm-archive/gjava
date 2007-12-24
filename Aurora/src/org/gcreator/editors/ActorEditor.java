@@ -34,10 +34,6 @@ import org.gcreator.actions.*;
 import org.gcreator.actions.platform.CmdAction;
 import org.gcreator.managers.LangSupporter;
 
-/**
- *
- * @author  Ali1
- */
 public class ActorEditor extends TabPanel {
 
     public org.gcreator.fileclass.File file = null;
@@ -615,6 +611,8 @@ public class ActorEditor extends TabPanel {
             elist.add(new EndStepEvent());
         } else if (type >= EventSelectListener.MOUSELEFTCLICKED && type <= EventSelectListener.MOUSEOUT) {
             elist.add(new org.gcreator.events.MouseEvent(type));
+        } else if (type >= EventSelectListener.ALARM && type <= EventSelectListener.ALARM + 11){
+            elist.add(new org.gcreator.events.AlarmEvent(type-EventSelectListener.ALARM));
         }
         jScrollPane1.updateUI();
         jList1.updateUI();

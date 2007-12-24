@@ -34,6 +34,7 @@ public interface EventSelectListener {
     public static int GLOBALMOUSERIGHTRELEASED = 5017;
     public static int MOUSEOVER = 5018;
     public static int MOUSEOUT = 5019;
+    public static int ALARM = 5020;
     public static int Keyboard = 6000;
     public static int Collision = 7000;
     

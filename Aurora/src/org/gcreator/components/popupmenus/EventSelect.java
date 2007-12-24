@@ -9,10 +9,6 @@ package org.gcreator.components.popupmenus;
 import org.gcreator.components.impl.EventSelectListener;
 import org.gcreator.editors.ActorEditor;
 
-/**
- *
- * @author  Ali1
- */
 public class EventSelect extends javax.swing.JDialog {
     
     /** Creates new form EventSelect */
@@ -62,6 +58,16 @@ public class EventSelect extends javax.swing.JDialog {
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/alarm.png"))); // NOI18N
         jButton10.setText("Alarm");
+        jButton10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton10MouseReleased(evt);
+            }
+        });
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"))); // NOI18N
         jButton8.setText("Key release");
@@ -265,6 +271,15 @@ public class EventSelect extends javax.swing.JDialog {
        CollisionPopup col = new CollisionPopup(this);
         col.show(jButton9, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton9MousePressed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton10MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton10MouseReleased
+        AlarmListPopup alarm = new AlarmListPopup(this);
+        alarm.show(jButton10, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton10MouseReleased
     
     public void callEvent(int type){
         if(listener!=null)
