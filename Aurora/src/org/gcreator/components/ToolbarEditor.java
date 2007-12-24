@@ -105,10 +105,25 @@ public class ToolbarEditor extends javax.swing.JPanel {
         });
 
         jCheckBox3.setText("Text Visible");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
 
         jCheckBox4.setText("Image Visible");
+        jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox4ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remove Item");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Add");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +162,11 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
         jScrollPane2.setViewportView(jList2);
 
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -327,6 +347,35 @@ public class ToolbarEditor extends javax.swing.JPanel {
         t.items.add(item);
         updateToolbar();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
+        if(t==null)
+            return;
+        ToolbarItem item = (ToolbarItem) jList2.getSelectedValue();
+        if(item==null)
+            return;
+        t.items.remove(item);
+        updateToolbar();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        updateToolItem();
+    }//GEN-LAST:event_jList1ValueChanged
+
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
+        if(item==null||item instanceof ToolbarSeparator)
+            return;
+        ((ToolbarButton) item).setTextVisible(jCheckBox3.isSelected());
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
+        ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
+        if(item==null||item instanceof ToolbarSeparator)
+            return;
+        ((ToolbarButton) item).setImageVisible(jCheckBox4.isSelected());
+    }//GEN-LAST:event_jCheckBox4ActionPerformed
     
     public void updateToolbar(){
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
@@ -359,6 +408,26 @@ public class ToolbarEditor extends javax.swing.JPanel {
             jComboBox2.setSelectedIndex(3);
         jList1.setEnabled(true);
         jList1.setModel(new VectorListModel(t.items));
+        if(t.items.size()==0)
+            jList1.setSelectedIndex(-1);
+        else
+            jList1.setSelectedIndex(0);
+        updateToolItem();
+    }
+    
+    public void updateToolItem(){
+        ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
+        if(item==null||item instanceof ToolbarSeparator){
+            jCheckBox3.setSelected(false);
+            jCheckBox4.setSelected(false);
+            jCheckBox3.setEnabled(false);
+            jCheckBox4.setEnabled(false);
+            return;
+        }
+        jCheckBox3.setEnabled(true);
+        jCheckBox4.setEnabled(true);
+        jCheckBox3.setSelected(((ToolbarButton) item).isTextVisible());
+        jCheckBox4.setSelected(((ToolbarButton) item).isImageVisible());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
