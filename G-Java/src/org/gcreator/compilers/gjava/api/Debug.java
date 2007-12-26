@@ -25,10 +25,10 @@ package org.gcreator.compilers.gjava.api;
 
         /**
          * 
-         * 
+         * Show an error message.
          * @param str
          */
-        public static void show_debug_message(String str) {
+        public static void showDebugMessage(String str) {
             System.err.println(str);
         }
     }
