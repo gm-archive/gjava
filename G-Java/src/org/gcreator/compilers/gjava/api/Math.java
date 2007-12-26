@@ -1,10 +1,8 @@
 /*
- * math.java
+ * Math.java
  * 
  * Created on 11-Sep-2007, 00:40:55
  * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 
 package org.gcreator.compilers.gjava.api;
@@ -13,34 +11,29 @@ import java.util.Arrays;
 
 /**
      * <h2>Math Functions</h2>
-     * The following functions exist that deal with real numbers. All of these functions require the G-Java api functions. These functions mainly deal with doubles, for more Math functions for other data types such as float look into java.lang.Math. Although the G-java API provides more functions for Math than java.lang.Math!<br>
+     * The class Math contains methods for performing basic numeric operations such as the elementary exponential, logarithm, square root, and trigonometric functions.
      * <br>
-     * To use:<br>
-     * Functions.Math.functionname(args);<br>
-     * <br>
-     * The code completion in the java editor will bring up a list of functions as soon as you type the "." in Math, if not you can manually call code completion using Ctrl+Space.<br>
-     * <br>
-     * Example:<br>
-     * <code>int randomnumber = Functions.Math.random(10); //Random number between 0 and 10</code>
+     * Version: 1.0
      */
     public class Math {
 
         /**
-         * The Mathematical constant PI to 17 decimal places
-         *  @since 2.0
+         * The Mathematical constant PI to 17 decimal places.
+         *  @since 1.0
          */
         public static double PI = java.lang.Math.PI;
 
         /**
-         * The Mathematical constant E, the base of the natural logarithms
+         * The Mathematical constant E, the base of the natural logarithms.
+         *  @since 1.0
          */
         public static double E = java.lang.Math.E;
 
         /**
          * Returns the cube root of a double value. For positive finite x, cbrt(-x) == -cbrt(x); that is, the cube root of a negative value is the negative of the cube root of that value's magnitude.
-         *
          * @param x
-         * @return
+         * @return Cube root of x as double.
+         *  @since 1.0
          */
         public static double cbrt(double x) {
             return java.lang.Math.cbrt(x);
@@ -49,7 +42,8 @@ import java.util.Arrays;
         /**
          * Returns a random real number between 0 and x. The number is always smaller than x.
          * @param x
-         * @return
+         * @return A random double value between 0 and x.
+         *  @since 1.0
          */
         public static double random(double x) {
             return java.lang.Math.random() * x;
@@ -58,7 +52,8 @@ import java.util.Arrays;
         /**
          * Returns the absolute value of x.
          * @param x
-         * @return
+         * @return Absolute value of x
+         *  @since 1.0
          */
         public static double abs(double x) {
             return java.lang.Math.abs(x);
@@ -67,7 +62,8 @@ import java.util.Arrays;
         /**
          * Returns the sign of x (-1, 0 or 1).
          * @param x
-         * @return
+         * @return The sign of x (-1, 0 or 1).
+         *  @since 1.0
          */
         public static double sign(double x) {
             return x < 0 ? -1 : (x > 0 ? 1 : 0);
@@ -76,16 +72,18 @@ import java.util.Arrays;
         /**
          * Returns x rounded to the nearest integer.
          * @param x
-         * @return
+         * @return x rounded to the nearest integer.
+         *  @since 1.0
          */
         public static double round(double x) {
             return java.lang.Math.round(x);
         }
 
         /**
-         * Returns the floor of x, that is, x rounded down to an integer.
+         * The floor of x, that is, x rounded down to an integer.
          * @param x
-         * @return
+         * @return The floor of x, that is, x rounded down to an integer.
+         *  @since 1.0
          */
         public static double floor(double x) {
             return java.lang.Math.floor(x);
@@ -94,7 +92,8 @@ import java.util.Arrays;
         /**
          * Returns the ceiling of x, that is, x rounded up to an integer.
          * @param x
-         * @return
+         * @return The ceiling of x, that is, x rounded up to an integer.
+         *  @since 1.0
          */
         public static double ceil(double x) {
             return java.lang.Math.ceil(x);
@@ -103,7 +102,8 @@ import java.util.Arrays;
         /**
          * Returns the fractional part of x, that is, the part behind the decimal dot.
          * @param x
-         * @return the fractional part of x, that is, the part behind the decimal dot.
+         * @return The fractional part of x, that is, the part behind the decimal dot.
+         *  @since 1.0
          */
         public static double frac(double x) {
             return x - java.lang.Math.floor(x);
@@ -112,7 +112,8 @@ import java.util.Arrays;
         /**
          * Returns the square root of x. x must be non-negative.
          * @param x
-         * @return the square root of x. x must be non-negative.
+         * @return The square root of x. x must be non-negative.
+         *  @since 1.0
          */
         public static double sqrt(double x) {
             return java.lang.Math.sqrt(x);
@@ -122,6 +123,7 @@ import java.util.Arrays;
          * Returns x*x.
          * @param x
          * @return x*x.
+         *  @since 1.0
          */
         public static double sqr(double x) {
             return x * x;
@@ -132,6 +134,7 @@ import java.util.Arrays;
          * @param x
          * @param n
          * @return
+         *  @since 1.0
          */
         public static double power(double x, double n) {
             return java.lang.Math.pow(x, n);
@@ -141,6 +144,7 @@ import java.util.Arrays;
          * Returns e to the power x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double exp(double x) {
             return java.lang.Math.log(x) / java.lang.Math.log(java.lang.Math.E);
@@ -150,6 +154,7 @@ import java.util.Arrays;
          * Returns the natural logarithm of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double ln(double x) {
             return 0;
@@ -159,6 +164,7 @@ import java.util.Arrays;
          * Returns the log base 2 of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double log2(double x) {
             return java.lang.Math.log(x) / java.lang.Math.log(2);
@@ -168,6 +174,7 @@ import java.util.Arrays;
          * Returns the log base 10 of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double log10(double x) {
             return java.lang.Math.log(x);
@@ -178,6 +185,7 @@ import java.util.Arrays;
          * @param n
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double logn(double n, double x) {
             return java.lang.Math.log(x) / java.lang.Math.log(n);
@@ -187,6 +195,7 @@ import java.util.Arrays;
          * Returns the sine of x (x in radians).
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double sin(double x) {
             return java.lang.Math.sin(x);
@@ -196,6 +205,7 @@ import java.util.Arrays;
          * Returns the signum function of the argument; zero if the argument is zero, 1.0 if the argument is greater than zero, -1.0 if the argument is less than zero.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double signum(double x) {
             return java.lang.Math.signum(x);
@@ -205,6 +215,7 @@ import java.util.Arrays;
          * Returns the hyperbolic sine of x
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double sinh(double x) {
             return java.lang.Math.sinh(x);
@@ -214,6 +225,7 @@ import java.util.Arrays;
          * Returns the cosine of x (x in radians).
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double cos(double x) {
             return java.lang.Math.cos(x);
@@ -223,6 +235,7 @@ import java.util.Arrays;
          * Returns the hyperbolic cosine of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double cosh(double x) {
             return java.lang.Math.cosh(x);
@@ -232,6 +245,7 @@ import java.util.Arrays;
          * Returns ex -1.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double expm1(double x) {
             return java.lang.Math.expm1(x);
@@ -242,6 +256,7 @@ import java.util.Arrays;
          * @param x
          * @param y
          * @return
+         *  @since 1.0
          */
         public static double hypot(double x, double y) {
             return java.lang.Math.hypot(x, x);
@@ -251,6 +266,7 @@ import java.util.Arrays;
          * Returns the size of an ulp of the argument.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double ulp(double x) {
             return java.lang.Math.ulp(x);
@@ -260,6 +276,7 @@ import java.util.Arrays;
          * Returns the hyperbolic tangent of x
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double tanh(double x) {
             return java.lang.Math.tanh(x);
@@ -269,6 +286,7 @@ import java.util.Arrays;
          * Returns the tangent of x (x in radians).
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double tan(double x) {
             return java.lang.Math.tan(x);
@@ -278,6 +296,7 @@ import java.util.Arrays;
          * Returns the inverse sine of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double arcsin(double x) {
             return java.lang.Math.asin(x);
@@ -287,6 +306,7 @@ import java.util.Arrays;
          * Returns the inverse cosine of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double arccos(double x) {
             return java.lang.Math.acos(x);
@@ -296,6 +316,7 @@ import java.util.Arrays;
          * Returns the inverse tangent of x.
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double arctan(double x) {
             return java.lang.Math.atan(x);
@@ -306,6 +327,7 @@ import java.util.Arrays;
          * @param y
          * @param x
          * @return
+         *  @since 1.0
          */
         public static double arctan2(double y, double x) {
             return java.lang.Math.atan2(y, x);
@@ -315,6 +337,7 @@ import java.util.Arrays;
          * Converts degrees to radians.
          * @param x degrees to convert
          * @return radians double value
+         *  @since 1.0
          */
         public static double degtorad(double x) {
             return java.lang.Math.toRadians(x);
@@ -324,6 +347,7 @@ import java.util.Arrays;
          * Converts radians to degrees.
          * @param x radians to convert
          * @return degrees double value
+         *  @since 1.0
          */
         public static double radtodeg(double x) {
             return java.lang.Math.toDegrees(x);
@@ -334,6 +358,7 @@ import java.util.Arrays;
          * @param v1
          * @param v2
          * @return
+         *  @since 1.0
          */
         public static double min(double v1, double v2) {
             return java.lang.Math.min(v1, v2);
@@ -345,6 +370,7 @@ import java.util.Arrays;
          * @param v2
          * @param v3
          * @return
+         *  @since 1.0
          */
         public static double min(double v1, double v2, double v3) {
             return min(v3, min(v1, v2));
@@ -470,6 +496,7 @@ import java.util.Arrays;
          * @param v1
          * @param v2
          * @return
+         *  @since 1.0
          */
         public static double max(double v1, double v2) {
             return java.lang.Math.max(v1, v2);
@@ -536,6 +563,7 @@ import java.util.Arrays;
          * @param v1
          * @param v2
          * @return
+         *  @since 1.0
          */
         public static double mean(double v1, double v2) {
             return (v1 + v2) / 2;
@@ -603,6 +631,7 @@ import java.util.Arrays;
          * @return
          * @since 2.0
          * @author luiscubal
+         *  @since 1.0
          */
         public double median(double a) {
             return a;
@@ -812,6 +841,7 @@ import java.util.Arrays;
          * @return
          * @since 2.0
          * @author luiscubal
+         *  @since 1.0
          */
         public static double true_median(double a) {
             return a;
@@ -1025,6 +1055,7 @@ import java.util.Arrays;
          * @param x2
          * @param y2
          * @return
+         *  @since 1.0
          */
         public static double point_distance(double x1, double y1, double x2, double y2) {
             return java.lang.Math.sqrt(sqr(x2 - x1) + sqr(y2 - y1));
@@ -1037,6 +1068,7 @@ import java.util.Arrays;
          * @param x2
          * @param y2
          * @return
+         *  @since 1.0
          */
         public static double point_direction(double x1, double y1, double x2, double y2) {
             if (y1 < y2 && x1 == x2) {
@@ -1062,8 +1094,9 @@ import java.util.Arrays;
          * @return
          * @since 2.0
          * @author luiscubal
+         *  @since 1.0
          */
-        public static boolean is_string(String a) {
+        public static boolean isString(String a) {
             return true;
         }
 
@@ -1129,6 +1162,7 @@ import java.util.Arrays;
          * @param dir
          * @return length
          * @author ChIkEn AtE mY dOnUtS
+         *  @since 1.0
          */
         public static double lengthdir_x(double len, double dir) {
             return len * cos(dir);
@@ -1140,6 +1174,7 @@ import java.util.Arrays;
          * @param dir
          * @return
          * @author ChIkEn AtE mY dOnUtS
+         *  @since 1.0
          */
         public static double lengthdir_y(double len, double dir) {
             return len * sin(dir);
