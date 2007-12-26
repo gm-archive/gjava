@@ -3,6 +3,7 @@ namespace org.gcreator.Scripting
 	public class Math
 	{
 		public static readonly double PI = 3.14159265358979324;
+		public static readonly double E = 2.71828182845904523;
 	
 		public static int abs(int value)
 		{
@@ -18,7 +19,62 @@ namespace org.gcreator.Scripting
 		{
 			return value>0 ? value : 0-value;
 		}
+
+		public static double arccos(double value)
+		{
+			return System.Math.Acos(value);
+		}
+
+		public static double arcsin(double value)
+		{
+			return System.Math.Asin(value);
+		}
+
+		public static double arctan(double value)
+		{
+			return System.Math.Atan(value);
+		}
+
+		public static double arctan2(double y, double x)
+		{
+			return System.Math.Atan2(y,x);
+		}
 		
+		public static double sqrt(double value)
+		{
+			return System.Math.Sqrt(value);
+		}
+
+		public static double cbrt(double value)
+		{
+			return System.Math.Pow(value, 1.0/3.0);
+		}
+
+		public static double ceil(double value)
+		{
+			return System.Math.Ceiling(value);
+		}
+
+		public static double floor(double value)
+		{
+			return System.Math.Floor(value);
+		}
+
+		public static double round(double value)
+		{
+			return System.Math.Round(value);
+		}
+
+		public static double cos(double value)
+		{
+			return System.Math.Cos(value);
+		}
+
+		public static double cosh(double value)
+		{
+			return System.Math.Cosh(value);
+		}
+
 		[System.Obsolete("No longer needed")]
 		public static bool is_real(bool a)
 		{
@@ -109,6 +165,16 @@ namespace org.gcreator.Scripting
 			return (int) ((rad*180)/PI);
 		}
 		
+		public static double exp(double x)
+		{
+			return System.Math.Pow(E,x);
+		}
+
+		public static double expm1(double x)
+		{
+			return (E*x) - 1;
+		}
+
 		public static int sign(int x)
 		{
 			if(x<0)
