@@ -1,6 +1,6 @@
 package org.gcreator.compilers.gjava.java2d;
 
-import org.gcreator.compilers.gjava.components.*;
+import org.gcreator.compilers.gjava.api.components.*;
 import java.awt.*;
 
 import java.awt.event.KeyEvent;

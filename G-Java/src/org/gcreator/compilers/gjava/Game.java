@@ -3,7 +3,7 @@ import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import org.gcreator.compilers.gjava.components.*;
+import org.gcreator.compilers.gjava.api.components.*;
 import org.gcreator.compilers.gjava.lwjgl.*;
 //import org.gcreator.compilers.gjava.core.basicgame;
 import org.lwjgl.LWJGLException;

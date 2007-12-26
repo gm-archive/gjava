@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JApplet;
 import javax.swing.JFrame;
-import org.gcreator.compilers.gjava.components.GameFrame;
+import org.gcreator.compilers.gjava.api.components.GameFrame;
 import org.gcreator.compilers.gjava.core.GameSettings;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.util.applet.LWJGLInstaller;

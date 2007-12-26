@@ -11,12 +11,12 @@ import java.awt.datatransfer.*;
 import java.lang.reflect.Method;
 import javax.swing.*;
 import java.util.*;
-import org.gcreator.compilers.gjava.components.Actor;
+import org.gcreator.compilers.gjava.api.components.Actor;
 import org.gcreator.compilers.gjava.java2d.Scene2D;
-import org.gcreator.compilers.gjava.components.Timeline;
-import org.gcreator.compilers.gjava.components.font;
-import org.gcreator.compilers.gjava.components.sound;
-import org.gcreator.compilers.gjava.components.Sprite;
+import org.gcreator.compilers.gjava.api.components.Timeline;
+import org.gcreator.compilers.gjava.api.components.font;
+import org.gcreator.compilers.gjava.api.components.sound;
+import org.gcreator.compilers.gjava.api.components.Sprite;
 
 import org.gcreator.compilers.gjava.core.*;
 

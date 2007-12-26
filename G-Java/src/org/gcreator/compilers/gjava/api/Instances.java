@@ -10,7 +10,7 @@
 package org.gcreator.compilers.gjava.api;
 
 import java.util.Vector;
-import org.gcreator.compilers.gjava.components.Actor;
+import org.gcreator.compilers.gjava.api.components.Actor;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**

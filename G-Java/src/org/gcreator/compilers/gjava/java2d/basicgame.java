@@ -13,7 +13,7 @@ net.*;
 
 
 // the main class
-import org.gcreator.compilers.gjava.components.GameFrame;
+import org.gcreator.compilers.gjava.api.components.GameFrame;
 import org.gcreator.compilers.gjava.java2d.Scene2D;
 
 

@@ -228,15 +228,15 @@ public class GJava extends PlatformCore {
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         // add toolbar button
-        JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
-
-        run.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        run(Aurwindow.getMainProject());
-                    }
-                });
-                
+//        JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
+//
+//        run.addActionListener(new ActionListener() {
+//
+//                    public void actionPerformed(ActionEvent evt) {
+//                        run(Aurwindow.getMainProject());
+//                    }
+//                });
+//                
         
         JMenuItem i = new JMenuItem("Compile with G-Java");
         i.addActionListener(new ActionListener(){
@@ -246,7 +246,7 @@ public class GJava extends PlatformCore {
         });
         
         PluginHelper.addMenuItem(3, i);
-        Aurwindow.tool.add(run);
+        //Aurwindow.tool.add(run);
     }
 
     public void createJavaFiles() throws IOException {

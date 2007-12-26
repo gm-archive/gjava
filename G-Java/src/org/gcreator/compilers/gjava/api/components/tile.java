@@ -1,5 +1,5 @@
 // tile.java
-package org.gcreator.compilers.gjava.components;
+package org.gcreator.compilers.gjava.api.components;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.Toolkit;
