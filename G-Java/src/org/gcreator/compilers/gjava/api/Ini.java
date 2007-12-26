@@ -3,8 +3,6 @@
  * 
  * Created on 11-Sep-2007, 01:43:52
  * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 
 package org.gcreator.compilers.gjava.api;
@@ -13,17 +11,8 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
 
 
 /**
-     * To pass certain parameter settings to programs a standard mechanism is the use of INI files. INI files contain sections and each section contains a number of name-value pairs. For example, here is a typical INI file:
-     * <br>
-     * [Form]<br>
-     * Top=100<br>
-     * Left=100<br>
-     * Caption=The best game ever<br>
-     * [Game]<br>
-     * MaxScore=12324<br>
-     * <br>
-     * This file contains two sections, one call Form and the other called Game. The first section contains three pairs. The first two have a real value while the third has a string value. Such INI files are easy to create and change.
-     *
+     * Work with .ini files in G-creator!
+ * Version 1.0
      */
     public class Ini {
  private static INIFile ini;
@@ -31,14 +20,14 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * Opens the INI file with the given name.
          * @param name
          */
-        public static void ini_open(String name) {
+        public static void Open(String name) {
             ini = new INIFile(name);
         }
 
         /**
          * Closes the currently open INI file.
          */
-        public static void ini_close() {
+        public static void Close() {
             ini.save();
         }
 
@@ -49,7 +38,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param def
          * @return
          */
-        public static String ini_read_string(String section, String key, String def) {
+        public static String readString(String section, String key, String def) {
             return ini.getStringProperty(section, key);
         }
 
@@ -60,7 +49,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param def
          * @return
          */
-        public static double ini_read_real(String section, String key, double def) {
+        public static double readReal(String section, String key, double def) {
             return ini.getDoubleProperty(section, key).doubleValue();
         }
 
@@ -70,7 +59,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param key
          * @param value
          */
-        public static void ini_write_string(String section, String key, String value) {
+        public static void writeString(String section, String key, String value) {
             ini.setStringProperty(section, key, value, "");
         }
 
@@ -80,17 +69,17 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param key
          * @param value
          */
-        public static void ini_write_real(String section, String key, double value) {
+        public static void writeReal(String section, String key, double value) {
             ini.setDoubleProperty(section, key, value, "");
         }
 
         /**
-         * Returns whether the indicated key exists in the indicated section.
+         * Returns whether the key exists in the section.
          * @param section
          * @param key
          * @return
          */
-        public static boolean ini_key_exists(String section, String key) {
+        public static boolean keyExists(String section, String key) {
             String[] keys = ini.getPropertyNames(section);
             for (int i = 0; i <= keys.length; i++) {
                 if (keys[i].equals(key)) {
@@ -101,11 +90,11 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
         }
 
         /**
-         * Returns whether the indicated section exists.
+         * Returns whether the section exists.
          * @param section
          * @return
          */
-        public static boolean ini_section_exists(String section) {
+        public static boolean sectionExists(String section) {
             String[] sections = ini.getAllSectionNames();
             for (int i = 0; i <= ini.getTotalSections(); i++) {
                 if (sections[i].equals(section)) {
@@ -116,19 +105,19 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
         }
 
         /**
-         * Deletes the indicated key from the indicated section.
+         * Deletes the key from the section.
          * @param section
          * @param key
          */
-        public static void ini_key_delete(String section, String key) {
+        public static void keyDelete(String section, String key) {
             ini.removeProperty(section, key);
         }
 
         /**
-         * Deletes the indicated section.
+         * Deletes the section.
          * @param section
          */
-        public static void ini_section_delete(String section) {
+        public static void sectionDelete(String section) {
             ini.removeSection(section);
         }
     }
