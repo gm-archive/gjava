@@ -19,12 +19,8 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
      * <h2>Clipboard Functions</h2>
-     * <p>The following functions deal with the clipboard for storing text. </p>
-     * <p>   To use:<br>
-     * Functions.clipboard.&lt;functionname&gt;(args);</p>
-     * <p>The code completion in the java editor will bring up a list of functions as soon as you type the &quot;.&quot; after clipboard, if not you can manually call code completion using Ctrl+Space.</p>
-     * <p>Example:<br>
-     * String ctext = Functions.clipboard.clipboard_get_text();</p>
+     * Functions for modifying the Operating system clipboard!
+ * Version 1.0
      */
     public class Clipboard {
 
@@ -41,16 +37,16 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * Returns whether there is any text on the clipboard.
          * @return
          */
-        public static double clipboard_has_text() {
+        public static boolean hasText() {
             Transferable clipboardContents = systemClipboard.getContents(null);
-            return clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor) ? 1 : 0;
+            return clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor) ;
         }
 
         /**
          * Returns the current text on the clipboard.
          * @return
          */
-        public static String clipboard_get_text() {
+        public static String getText() {
             Transferable clipboardContents = systemClipboard.getContents(null);
             if (clipboardContents == null) {
                 return "";
@@ -68,13 +64,12 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
         }
 
         /**
-         * Sets the string str on the clipboard.
-         * @param s
-         * @return
+         * Sets the Clipboard to string s.
+         * @param s String to set clipboard to
          */
-        public static double clipboard_set_text(String s) {
+        public static void setText(String s) {
             Transferable transferableText = new StringSelection(s);
             systemClipboard.setContents(transferableText, null);
-            return 0;
+            
         }
     }
