@@ -6,7 +6,6 @@
 package org.gcreator.components.impl;
 
 import java.awt.*;
-import java.awt.event.*;
 
 /**
  *
@@ -21,14 +20,7 @@ public abstract class ToolbarItem {
      * @param x The X position
      * @param height The Height of the toolbar
      */
-    private ActionListener actionlistener = null;
     public abstract void paint(Graphics g, int x, int height);
     public abstract int getWidth();
     public abstract int getHeight();
-    public ActionListener getActionListener(){
-        return actionlistener;
-    }
-    public void setActionListener(ActionListener alisten){
-        actionlistener = alisten;
-    }
 }

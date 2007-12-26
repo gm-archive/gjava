@@ -6,6 +6,7 @@
 package org.gcreator.components.impl;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.awt.font.*;
 import java.awt.geom.*;
 import javax.swing.*;
@@ -18,6 +19,7 @@ public class ToolbarButton extends ToolbarItem{
     private String id = null;
     private String text = null;
     private ImageIcon image = null;
+    private ActionListener actionlistener = null;
     private boolean showImage = false;
     private boolean showText = false;
     
@@ -150,5 +152,12 @@ public class ToolbarButton extends ToolbarItem{
             size += (int) (new JLabel(text)).getPreferredSize().getHeight();
         }
         return size;
+    }
+    
+    public ActionListener getActionListener(){
+        return actionlistener;
+    }
+    public void setActionListener(ActionListener alisten){
+        actionlistener = alisten;
     }
 }
