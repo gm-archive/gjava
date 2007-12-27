@@ -24,7 +24,7 @@ public class English extends Dictionary{
         authors = new String[10];
         authors[0] = "Luís Reis";
         //If you changed this language, add your name here.
-        entry = new String[200];
+        entry = new String[300];
         entry[0] = "File";
         entry[1] = "Edit";
         entry[2] = "View";
@@ -245,6 +245,11 @@ public class English extends Dictionary{
         entry[197] = "<HTML>If you use a PowerPack resource, your game<br/>" +
                 "<b>MUST</b> be licensed under GPL v3";
         entry[198] = "Add Image";
+        entry[199] = "Main";
+        entry[200] = "Move";
+        entry[201] = "Draw 2D";
+        entry[202] = "Clipboard";
+        entry[203] = "System";
         
         try{
             init();

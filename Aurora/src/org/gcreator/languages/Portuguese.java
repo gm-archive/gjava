@@ -24,7 +24,7 @@ public class Portuguese extends Dictionary{
         authors = new String[10];
         authors[0] = "Luís Reis";
         //If you changed this language, add your name here.
-        entry = new String[200];
+        entry = new String[300];
         entry[0] = "Ficheiro";
         entry[1] = "Editar";
         entry[2] = "Ver";
@@ -245,6 +245,11 @@ public class Portuguese extends Dictionary{
                 "<b>TEM</b> de estar obrigatóriamente licenciado<br/>" +
                 "em GPL v3";
         entry[198] = "Adicionar imagem";
+        entry[199] = "Principal";
+        entry[200] = "Movimento";
+        entry[201] = "Desenho 2D";
+        entry[202] = "Área de transferência";
+        entry[203] = "Sistema";
         
         try{
             init();
