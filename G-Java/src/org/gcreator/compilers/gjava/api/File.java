@@ -38,7 +38,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         private BufferedWriter writer;
 
         /**
-         * Opens the file with the indicated name for reading and writing. You can open multiple files at the same time. Don't forget to close them once you are finished with them.
+         * Opens the text file for reading and writing. Don't forget to close them once you are finished with them.
          * @param fname
          * @return
          */
@@ -56,7 +56,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
        /**
          * Opens the indicated file for appending data at the end, creating it if it does not exist. The function returns the FileWriter of the file that must be used in the other functions.
          * @param fname
-         * @return
+         * 
          */
         public void openAppend(String fname) {
             try {
@@ -70,7 +70,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         /**
          * Closes the file.
          * @param fname The FileWriter object to close
-         * @return
+         * 
          */
         public void close() {
             try {
@@ -78,7 +78,6 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
                 reader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
-                //unable to close
             }
         }
 
@@ -98,7 +97,6 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         /**
          * Write the real value to the file.
          * @param fname
-         
          */
         public void writeDouble(double x) {
             try {
@@ -136,7 +134,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         }
 
         /**
-         * Reads a real value from the file and returns this value.
+         * Reads a double value from the file and returns this value.
          * @param fname
          * @return
          */
