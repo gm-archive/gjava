@@ -654,8 +654,7 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            if (jList1.getSelectedValue() == null) {
+                    if (jList1.getSelectedValue() == null) {
                 return;
             }
             if (jComboBox1.getSelectedItem() == null) {
@@ -663,16 +662,10 @@ public class ActorEditor extends TabPanel {
             }
             ActionPattern ap = (org.gcreator.actions.ActionPattern) jComboBox1.getSelectedItem();
             
-            ap = ap.getClass().newInstance();
             org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
             ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
             
             updateActionList();
-        } catch (InstantiationException ex) {
-            Logger.getLogger(ActorEditor.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(ActorEditor.class.getName()).log(Level.SEVERE, null, ex);
-        }
 ;
     }//GEN-LAST:event_jButton1ActionPerformed
 

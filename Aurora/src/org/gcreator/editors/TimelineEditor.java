@@ -58,6 +58,8 @@ public class TimelineEditor extends TabPanel {
                 updateName();
             }
         });
+        jComboBox3.setModel(new VectorComboBoxModel(timeline.steps));
+        jComboBox3.setRenderer(new TimelineStepsCellRenderer());
         jComboBox2.setModel(new DefaultComboBoxModel(ActionContainer.actionCats));
         jComboBox2.setRenderer(new ActionListCellRenderer());
         jComboBox1.setModel(new DefaultComboBoxModel(ActionContainer.actionCats.get(0).patterns));
@@ -74,10 +76,10 @@ public class TimelineEditor extends TabPanel {
     
     public void updateActionList() {
         actmodel.removeAllElements();
-        if (jList1.getSelectedValue() == null) {
+        if (jComboBox3.getSelectedItem() == null) {
             return;
         }
-        Vector<org.gcreator.actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
+        Vector<org.gcreator.actions.Action> actions = (TimelineStep) jComboBox3.getSelectedItem();
         for (int i = 0; i < actions.size(); i++) {
             actmodel.addElement(actions.get(i));
         }
@@ -117,6 +119,11 @@ public class TimelineEditor extends TabPanel {
         jTextField1.setText("jTextField1");
 
         jButton2.setText("Add");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Remove");
 
@@ -184,8 +191,8 @@ public class TimelineEditor extends TabPanel {
                 .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1))
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
-            .addComponent(jComboBox2, 0, 298, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, 268, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +208,11 @@ public class TimelineEditor extends TabPanel {
 
         jSplitPane2.setRightComponent(jPanel5);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Step 0", "Step 1", "Step 100" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.setMaximumSize(new java.awt.Dimension(250, 0));
@@ -229,15 +240,15 @@ public class TimelineEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jComboBox3, 0, 100, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(jComboBox3, 0, 130, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE))
         );
 
         jSplitPane2.setLeftComponent(jPanel2);
@@ -258,6 +269,23 @@ public class TimelineEditor extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+            System.out.println("adding");
+            if (jComboBox3.getSelectedItem() == null) {
+                return;
+            }
+            if (jComboBox1.getSelectedItem() == null) {
+                return;
+            }
+            System.out.println("creating ap");
+            ActionPattern ap = (org.gcreator.actions.ActionPattern) jComboBox1.getSelectedItem();
+            System.out.println("proceeding");
+            org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
+            System.out.println("Action: "+a.getLabel());
+            TimelineStep step = (TimelineStep) jComboBox3.getSelectedItem();
+            System.out.println("Step " + step.stepnum);
+            step.add(a);
+            System.out.println("added");
+            updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -290,6 +318,27 @@ public class TimelineEditor extends TabPanel {
         from = to;
         updateActionList();
 }//GEN-LAST:event_jList1MouseDragged
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String s = JOptionPane.showInputDialog(this, "Step number:", 0);
+        if(s==null)
+            return;
+        try{
+            int i = Integer.parseInt(s);
+            if(i<0)
+                return;
+            TimelineStep step = new TimelineStep();
+            step.stepnum = i;
+            timeline.steps.add(step);
+            jList1.updateUI();
+            jComboBox3.updateUI();
+        }
+        catch(Exception e){}
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        updateActionList();
+    }//GEN-LAST:event_jComboBox3ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -300,7 +349,7 @@ public class TimelineEditor extends TabPanel {
     private javax.swing.JButton jButton5;
     public static javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
-    private javax.swing.JComboBox jComboBox3;
+    public javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     public javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;

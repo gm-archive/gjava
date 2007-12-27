@@ -69,7 +69,7 @@ public class GameProject extends Project{
                 return findFolder("Scenes");
             else if(file.equals("egml"))
                 return findFolder("Classes");
-            else if(file.equals("egml"))
+            else if(file.equals("timeline"))
                 return findFolder("Timelines");
             return findFolder("Distribution");
         }

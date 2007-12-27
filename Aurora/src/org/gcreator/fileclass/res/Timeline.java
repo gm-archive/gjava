@@ -5,12 +5,15 @@
 
 package org.gcreator.fileclass.res;
 
+import java.util.*;
+
 /**
  *
  * @author luis
  */
 public class Timeline extends Resource{
     static final long serialVersionUID = 1L;
+    public Vector<TimelineStep> steps = new Vector<TimelineStep>();
     public Timeline(String name){
         this.name = name;
     }

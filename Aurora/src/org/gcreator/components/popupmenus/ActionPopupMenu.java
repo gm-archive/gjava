@@ -12,6 +12,7 @@ import javax.swing.*;
 
 import org.gcreator.events.*;
 import org.gcreator.editors.*;
+import org.gcreator.fileclass.res.TimelineStep;
 import org.gcreator.managers.ActorEditorClipboard;
 
 /**
@@ -132,6 +133,8 @@ public class ActionPopupMenu extends JPopupMenu{
             Vector array = null;
             if(aedit!=null)
                 array = ((Event) aedit.jList1.getSelectedValue()).actions;
+            if(tedit!=null)
+                array = (TimelineStep) tedit.jComboBox3.getSelectedItem();
             org.gcreator.actions.Action a = (org.gcreator.actions.Action)array.get(x);
             ActorEditorClipboard.copiedAction = a;
             array.remove(x);
@@ -155,6 +158,8 @@ public class ActionPopupMenu extends JPopupMenu{
             Vector array = null;
             if(aedit!=null)
                 array = ((Event) aedit.jList1.getSelectedValue()).actions;
+            if(tedit!=null)
+                array = (TimelineStep) tedit.jComboBox3.getSelectedItem();
             org.gcreator.actions.Action a = (org.gcreator.actions.Action)array.get(x);
             ActorEditorClipboard.copiedAction = a.clone();
             
@@ -176,6 +181,8 @@ public class ActionPopupMenu extends JPopupMenu{
         Vector array = null;
             if(aedit!=null)
                 array = ((Event) aedit.jList1.getSelectedValue()).actions;
+            if(tedit!=null)
+                array = (TimelineStep) tedit.jComboBox3.getSelectedItem();
             array.add(ActorEditorClipboard.copiedAction);
         }
         catch(Exception e){}
@@ -199,6 +206,8 @@ public class ActionPopupMenu extends JPopupMenu{
             Vector array = null;
             if(aedit!=null)
                 array = ((Event) aedit.jList1.getSelectedValue()).actions;
+            if(tedit!=null)
+                array = (TimelineStep) tedit.jComboBox3.getSelectedItem();
             array.remove(x);
         }
         catch(Exception e){}
