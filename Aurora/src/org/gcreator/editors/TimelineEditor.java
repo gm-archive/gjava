@@ -6,9 +6,19 @@
 
 package org.gcreator.editors;
 
+import java.util.Vector;
+import java.util.logging.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import org.gcreator.actions.*;
 import org.gcreator.components.*;
+import org.gcreator.components.impl.*;
+import org.gcreator.components.popupmenus.*;
+import org.gcreator.core.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.fileclass.*;
+import org.gcreator.fileclass.res.*;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -16,10 +26,61 @@ import org.gcreator.fileclass.*;
  */
 public class TimelineEditor extends TabPanel {
     
+    private org.gcreator.fileclass.File file;
+    private Timeline timeline;
+    int from;
+    DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     /** Creates new form TimelineEditor */
     public TimelineEditor(org.gcreator.fileclass.File file, Project project) throws WrongResourceException {
         this.project = project;
+        this.file = file;
+        if (file.value == null) {
+            timeline = new Timeline(file.name);
+            file.value = timeline;
+        } else if (file.value instanceof Timeline) {
+            this.timeline = (Timeline) file.value;
+        } else {
+            throw new WrongResourceException();
+        }
         initComponents();
+        PopupListener a = new PopupListener(jList1, new ActionPopupMenu(this));
+        a.update = true;
+        jList1.addMouseListener(a);
+        jTextField1.setText(file.name);
+        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
+            public void changedUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void insertUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void removeUpdate(DocumentEvent evt){
+                updateName();
+            }
+        });
+        jComboBox2.setModel(new DefaultComboBoxModel(ActionContainer.actionCats));
+        jComboBox2.setRenderer(new ActionListCellRenderer());
+        jComboBox1.setModel(new DefaultComboBoxModel(ActionContainer.actionCats.get(0).patterns));
+        jComboBox1.setRenderer(new ActionListCellRenderer());
+        jList1.setCellRenderer(new ActionsCellRenderer());
+        jList1.setModel(actmodel);
+    }
+    
+    public void updateName(){
+        file.name = jTextField1.getText();
+        timeline.name = file.name;
+        Aurwindow.workspace.updateUI();
+    }
+    
+    public void updateActionList() {
+        actmodel.removeAllElements();
+        if (jList1.getSelectedValue() == null) {
+            return;
+        }
+        Vector<org.gcreator.actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
+        for (int i = 0; i < actions.size(); i++) {
+            actmodel.addElement(actions.get(i));
+        }
     }
     
     /** This method is called from within the constructor to
@@ -30,20 +91,226 @@ public class TimelineEditor extends TabPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jSplitPane2 = new javax.swing.JSplitPane();
+        jPanel5 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jComboBox2 = new javax.swing.JComboBox();
+        jPanel2 = new javax.swing.JPanel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+
+        jSplitPane1.setDividerLocation(150);
+
+        jLabel1.setText(LangSupporter.activeLang.getEntry(136));
+
+        jTextField1.setText("jTextField1");
+
+        jButton2.setText("Add");
+
+        jButton3.setText("Remove");
+
+        jButton4.setText("Change");
+
+        jButton5.setText("Duplicate");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap(182, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(jPanel1);
+
+        jSplitPane2.setDividerLocation(130);
+
+        jPanel5.setMinimumSize(new java.awt.Dimension(100, 0));
+
+        jButton1.setText(LangSupporter.activeLang.getEntry(146));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jComboBox1, 0, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, 298, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
+        );
+
+        jSplitPane2.setRightComponent(jPanel5);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Step 0", "Step 1", "Step 100" }));
+
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setMaximumSize(new java.awt.Dimension(250, 0));
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jList1MousePressed(evt);
+            }
+        });
+        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList1ValueChanged(evt);
+            }
+        });
+        jList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jList1MouseDragged(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jList1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jComboBox3, 0, 100, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
+        );
+
+        jSplitPane2.setLeftComponent(jPanel2);
+
+        jSplitPane1.setRightComponent(jSplitPane2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        jComboBox1.setModel(new DefaultComboBoxModel(((ActionCategory) jComboBox2.getSelectedItem()).patterns));
+        jComboBox1.updateUI();
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        jList1.setSelectedIndex(jList1.locationToIndex(evt.getPoint()));
+}//GEN-LAST:event_jList1MouseClicked
+
+    private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
+        from = jList1.locationToIndex(evt.getPoint());
+        //jList2.updateUI();
+}//GEN-LAST:event_jList1MousePressed
+
+    private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
+        if (jList1.getSelectedValue() == null) {
+            return;
+        }
+        
+        jScrollPane3.setViewportView(((org.gcreator.actions.Action) jList1.getSelectedValue()).getPanel());
+}//GEN-LAST:event_jList1ValueChanged
+
+    private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
+        int to  = jList1.locationToIndex(evt.getPoint());
+        if (to == from) return;
+        org.gcreator.actions.Action remove = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.remove(from);
+        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to,remove);
+        from = to;
+        updateActionList();
+}//GEN-LAST:event_jList1MouseDragged
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    public static javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JLabel jLabel1;
+    public javax.swing.JList jList1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JSplitPane jSplitPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
 }

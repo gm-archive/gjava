@@ -16,7 +16,7 @@ import java.io.ObjectStreamField;
 import java.io.Serializable;
 //import org.gcreator.editors.*;
 import java.util.Vector;
-import org.gcreator.editors.ActorEditor;
+import org.gcreator.editors.*;
 
 /**
  *
@@ -44,6 +44,12 @@ public class Action implements Serializable {
     }
         
     public Action(ActorEditor editor, ActionPattern pattern){
+        this.pattern = pattern;
+        if(pattern!=null)
+            panel = pattern.createNewPanel(this);
+    }
+    
+    public Action(TimelineEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
             panel = pattern.createNewPanel(this);
