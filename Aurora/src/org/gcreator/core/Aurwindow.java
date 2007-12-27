@@ -176,6 +176,11 @@ public class Aurwindow extends JFrame {
             addWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
             addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
+        } else if (file.type.equals("timeline")) {
+            try{
+                addWindow(new TimelineEditor(file, this.getCurrentProject()), file.name);
+            }
+            catch(WrongResourceException e){}
         } else if (file.type.equals("tileset")) {
             addWindow(new TilesetEditor(file, this.getCurrentProject()), file.name);
         } else {
@@ -1382,6 +1387,17 @@ public class Aurwindow extends JFrame {
                     i++;
                 }
                 addFile(getCurrentFolder(), "newTileset" + i, "tileset");
+                break;
+            case 12:
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    return;
+                }
+                while (a.findFromName("newTimeline" + i) != -1) {
+                    i++;
+                }
+                addFile(getCurrentFolder(), "newTimeline" + i, "timeline");
                 break;
         }
     }

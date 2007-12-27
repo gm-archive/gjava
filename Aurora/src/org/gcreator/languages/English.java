@@ -250,6 +250,7 @@ public class English extends Dictionary{
         entry[201] = "Draw 2D";
         entry[202] = "Clipboard";
         entry[203] = "System";
+        entry[204] = "Add timeline";
         
         try{
             init();
