@@ -111,7 +111,7 @@ public class PluginHelper {
     }
     
     public static void addNewActionPattern(ActionPattern pattern){
-        ActorEditor.actionCats.get(0).add(pattern);
+        ActionContainer.actionCats.get(0).add(pattern);
     }
     
     public static void addNewActionPattern(ActionCategory category, ActionPattern pattern){
@@ -119,7 +119,7 @@ public class PluginHelper {
     }
     
     public static void addNewActionCategory(ActionCategory category){
-        ActorEditor.actionCats.add(category);
+        ActionContainer.actionCats.add(category);
     }
     public static void setMainProject(Project p){
         Aurwindow.setMainProject(p);

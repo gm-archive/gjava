@@ -38,47 +38,15 @@ public class ActorEditor extends TabPanel {
 
     public org.gcreator.fileclass.File file = null;
     public boolean changed = false;
-    public static Vector<ActionCategory> actionCats;
     public EventListModel elist;
     Actor actor;
     int from;
     static {
         jComboBox1 = new javax.swing.JComboBox();
-        actionCats = new Vector<ActionCategory>();
     }
     
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
-    static {
-        ActionCategory main = new ActionCategory();
-        ActionCategory move = new ActionCategory();
-        ActionCategory draw2D = new ActionCategory();
-        ActionCategory clipboard = new ActionCategory();
-        ActionCategory platform = new ActionCategory();
-        main.add(new org.gcreator.actions.mainactions.StartOfABlock());
-        main.add(new org.gcreator.actions.mainactions.EndOfABlock());
-        main.add(new org.gcreator.actions.mainactions.Comment());
-        main.add(new org.gcreator.actions.mainactions.ExecuteCode());
-        main.name = LangSupporter.activeLang.getEntry(199);
-        main.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/Main.png"));
-        move.add(new org.gcreator.actions.mainactions.SetHSpeed());
-        move.add(new org.gcreator.actions.mainactions.SetVSpeed());
-        move.name = LangSupporter.activeLang.getEntry(200);
-        move.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/hspeed.png"));
-        draw2D.add(new org.gcreator.actions.mainactions.AddImageToSprite());
-        draw2D.name = LangSupporter.activeLang.getEntry(201);
-        draw2D.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/actions/images/Draw2D.png"));
-        clipboard.name = LangSupporter.activeLang.getEntry(202);
-        clipboard.icon = new ImageIcon(ActorEditor.class.getResource("/org/gcreator/resources/general/paste.png"));
-        clipboard.add(new org.gcreator.actions.mainactions.IfClipboardHasContent());
-        platform.name = LangSupporter.activeLang.getEntry(203);
-        platform.add(new org.gcreator.actions.platform.CmdAction());
-        actionCats.add(main);
-        actionCats.add(move);
-        actionCats.add(draw2D);
-        actionCats.add(clipboard);
-        actionCats.add(platform);
-        
-    }
+    
     ResourceMenu spriteres, extendres, maskres;
 
     public void spriteChanged() {
@@ -105,7 +73,7 @@ public class ActorEditor extends TabPanel {
         jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
         a.update = true;
         jList2.addMouseListener(a);
-        jComboBox2.setModel(new DefaultComboBoxModel(actionCats));
+        jComboBox2.setModel(new DefaultComboBoxModel(ActionContainer.actionCats));
         jComboBox2.setRenderer(new ActionListCellRenderer());
         try {
             jTextField1.setText(file.name);
@@ -113,7 +81,7 @@ public class ActorEditor extends TabPanel {
         }
 
         jList1.setCellRenderer(new EventCellRenderer());
-        jComboBox1.setModel(new DefaultComboBoxModel(actionCats.get(0).patterns));
+        jComboBox1.setModel(new DefaultComboBoxModel(ActionContainer.actionCats.get(0).patterns));
         jComboBox1.setRenderer(new ActionListCellRenderer());
         jList2.setCellRenderer(new ActionsCellRenderer());
         jList2.setModel(actmodel);
