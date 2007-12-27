@@ -194,8 +194,8 @@ public class English extends Dictionary{
         entry[148] = "Settings";
         entry[149] = "Backgrounds";
         entry[150] = "Views";
-        entry[151] = "Pencil";
-        entry[152] = "Eraser";
+        entry[151] = "Add";
+        entry[152] = "Remove";
         entry[153] = "Enable the use of views";
         entry[154] = "<HTML>Visible when the<br/>room starts";
         entry[155] = "View in scene";
