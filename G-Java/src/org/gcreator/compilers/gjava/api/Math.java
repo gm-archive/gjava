@@ -1057,7 +1057,7 @@ import java.util.Arrays;
          * @return
          *  @since 1.0
          */
-        public static double point_distance(double x1, double y1, double x2, double y2) {
+        public static double pointDistance(double x1, double y1, double x2, double y2) {
             return java.lang.Math.sqrt(sqr(x2 - x1) + sqr(y2 - y1));
         }
 
@@ -1070,7 +1070,7 @@ import java.util.Arrays;
          * @return
          *  @since 1.0
          */
-        public static double point_direction(double x1, double y1, double x2, double y2) {
+        public static double pointDirection(double x1, double y1, double x2, double y2) {
             if (y1 < y2 && x1 == x2) {
                 return 90;
             } else if (y1 > y2 && x1 == x2) {
@@ -1164,7 +1164,7 @@ import java.util.Arrays;
          * @author ChIkEn AtE mY dOnUtS
          *  @since 1.0
          */
-        public static double lengthdir_x(double len, double dir) {
+        public static double lengthDirX(double len, double dir) {
             return len * cos(dir);
         }
 
@@ -1176,7 +1176,7 @@ import java.util.Arrays;
          * @author ChIkEn AtE mY dOnUtS
          *  @since 1.0
          */
-        public static double lengthdir_y(double len, double dir) {
+        public static double lengthDirY(double len, double dir) {
             return len * sin(dir);
         }
     }

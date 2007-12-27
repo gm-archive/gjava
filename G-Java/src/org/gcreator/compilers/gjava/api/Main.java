@@ -10,6 +10,7 @@
 package org.gcreator.compilers.gjava.api;
 
 import java.io.IOException;
+import java.util.Enumeration;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 
@@ -18,6 +19,8 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
  * @author Ali1
  */
 public class Main {
+    private static String[] parameters;
+    private static int parameter_count;
 /**
          *  The game score, Starts at 0
          * @since 2.0
@@ -260,13 +263,66 @@ public class Main {
         public static void game_load(String savFilename) {
         }
         
-    public double version() {
-        return 0.33;
-    }
-
-    public String location() {
+    /**
+         * Returns the number of command-line parameters (note that the name of the program itself is one of them)
+         * @return
+         */
+        public static int parameter_count() {
+            return parameter_count;
+        }
         
-        //TODO this fucntion
-        return ""; //parameters[0];
-    }
+         /**
+         * Returns command-line parameters n. The first parameter has index 0. This is the name of the program.
+         * @param n
+         * @return
+         */
+        public static String parameter_string(int n) {
+            return parameters[n];
+        }
+        
+        /**
+         * Returns the value (a string) of the environment variable with the given name.
+         * @param name
+         * @return
+         */
+        public static String environment_get_variable(String name) {
+            try {
+                java.util.Properties envProps = new java.util.Properties();
+                java.lang.Runtime r = java.lang.Runtime.getRuntime();
+                java.lang.Process p = r.exec("cmd /c set>temp.env");
+                java.lang.Thread.sleep(500);
+                java.io.FileInputStream in = new java.io.FileInputStream("temp.env");
+                java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(in));
+                java.lang.String line = null;
+                while ((line = br.readLine()) != null) {
+                    int index = -1;
+                    if ((index = line.indexOf("=")) > -1) {
+                        java.lang.String key = line.substring(0, index).trim();
+                        java.lang.String value = line.substring(index + 1).trim();
+                        envProps.setProperty(key, value);
+                    } else {
+                        envProps.setProperty(line, "");
+                    }
+                }
+                in.close();
+                new java.io.File("temp.env").delete();
+
+                Enumeration names = envProps.propertyNames();
+                for (Enumeration e = names; e.hasMoreElements();) {
+                    String name2 = (String) e.nextElement();
+                    if (name2.equals(name)) {
+                        return envProps.getProperty(name);
+                    }
+                }
+                return "";
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+                return "";
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return "";
+            }
+        }
+
+    
 }

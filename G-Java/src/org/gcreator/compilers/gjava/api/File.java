@@ -1,10 +1,5 @@
 /*
- * files.java
- * 
- * Created on 11-Sep-2007, 01:41:27
- * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * File.java
  */
 
 package org.gcreator.compilers.gjava.api;
@@ -20,101 +15,55 @@ import java.net.MalformedURLException;
 import java.util.Enumeration;
 import org.gcreator.compilers.gjava.api.res.FileStream;
 
-/**
-     * It is useful to use external files in games. For example, you could make a file that describes at what moments certain things should happen. Also you probably want to save information for the next time the game is run (for example, the current room).
+   /**
+     * This class allows you to modify text files. It also contains general functions for manipulating files.
+    * When a file is open it is open for both reading and writing.
      */
     public class File {
 
-        /**
-         * read-only files
-         */
-        public static int fa_readonly = 0;
-        /**
-         * hidden files
-         */
-        public static int fa_hidden = 1;
-        /**
-         * system files
-         */
-        public static int fa_sysfile = 2;
-        /**
-         * volume-id files
-         */
-        public static int fa_volumeid = 3;
-        /**
-         * directories
-         */
-        public static int fa_directory = 4;
-        /**
-         * archived files
-         */
-        public static int fa_archive = 5;
-
-        /**
-         * Unique identifier for the game. You can use this if you need a unique file name.
-         */
-        public static double game_id = 0;
 
         /**
          * Temporary directory created for the game. You can store temporary files here. They will be removed at the end of the game.
          */
-        public static String temp_directory = System.getProperty("java.io.tmpdir");
+        public static String TempDirectory = System.getProperty("java.io.tmpdir");
 
         /**
          * Working directory for the game. (Not including the final backslash.)
          */
-        public static String working_directory = System.getProperty("user.dir");
+        public static String WorkingDirectory = System.getProperty("user.dir");
 
 
-        /**
-         * Returns the number of command-line parameters (note that the name of the program itself is one of them.
-         */
-        public static int parameter_count = 0;
-
-        /**
-         * A String array of the program parameters
-         */
-        public static String[] parameters;
+              
+        private BufferedReader reader;
+        private BufferedWriter writer;
 
         /**
-         * Opens the file with the indicated name for reading. The function returns the FileWriter of the file that must be used in the other functions. You can open multiple files at the same time. Don't forget to close them once you are finished with them.
+         * Opens the file with the indicated name for reading and writing. You can open multiple files at the same time. Don't forget to close them once you are finished with them.
          * @param fname
          * @return
          */
-        public static BufferedReader file_text_open_read(String fname) {
+        public void open(String fname,int readwrite) {
             try {
-                return new BufferedReader(new java.io.FileReader(fname));
-            } catch (FileNotFoundException ex) {
+                writer = new BufferedWriter(new java.io.FileWriter(fname));
+                reader = new BufferedReader(new java.io.FileReader(fname));
+                
+            } catch (Exception ex) {
                 ex.printStackTrace();
-                return null;
+                
             }
         }
 
-        /**
-         * Opens the indicated file for writing, creating it if it does not exist. The function returns the FileWriter object of the file that must be used in the other functions.
-         * @param fname
-         * @return The FileWriter object of the file that must be used in the other functions
-         */
-        public static BufferedWriter file_text_open_write(String fname) {
-            try {
-                return new BufferedWriter(new java.io.FileWriter(fname));
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return null;
-            }
-        }
-
-        /**
+       /**
          * Opens the indicated file for appending data at the end, creating it if it does not exist. The function returns the FileWriter of the file that must be used in the other functions.
          * @param fname
          * @return
          */
-        public static BufferedWriter file_text_open_append(String fname) {
+        public void openAppend(String fname) {
             try {
-                return new BufferedWriter(new java.io.FileWriter(fname, true));
+                writer = new BufferedWriter(new java.io.FileWriter(fname, true));
             } catch (IOException ex) {
                 ex.printStackTrace();
-                return null;
+                
             }
         }
 
@@ -123,38 +72,24 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname The FileWriter object to close
          * @return
          */
-        public static void file_text_close(BufferedWriter fileid) {
+        public void close() {
             try {
-                fileid.close();
+                writer.close();
+                reader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
                 //unable to close
             }
         }
 
-        /**
-         * Closes the file.
-         * @param fname The FileWriter object to close
-         * @return
-         */
-        public static void file_text_close(BufferedReader fileid) {
-            try {
-                fileid.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                //unable to close
-            }
-        }
-
-
-        /**
+       /**
          * Writes the string to the file.
          * @param fname
          * @return
          */
-        public static void file_text_write_string(BufferedWriter fileid, String str) {
+        public void writeString(String str) {
             try {
-                fileid.write(str);
+                writer.write(str);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -163,11 +98,11 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         /**
          * Write the real value to the file.
          * @param fname
-         * @return
+         
          */
-        public static void file_text_write_real(FileWriter fileid, double x) {
+        public void writeDouble(double x) {
             try {
-                fileid.write(" " + x);
+                writer.write(" " + x);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -178,9 +113,9 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static void file_text_writeln(BufferedWriter fileid) {
+        public void newLine() {
             try {
-                fileid.newLine();
+                writer.newLine();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -191,9 +126,9 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String file_text_read_string(BufferedReader fileid) {
+        public String readString() {
             try {
-                return fileid.readLine();
+                return reader.readLine();
             } catch (IOException ex) {
                 ex.printStackTrace();
                 return "";
@@ -205,22 +140,22 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static double file_text_read_real(FileReader fileid) {
+        public double readDouble() {
             try {
-                int i = fileid.read();
+                int i = reader.read();
                 //get rid of spaces
                 while ((("" + i).equals(" ")) && (i != -1)) {
-                    i = fileid.read();
+                    i = reader.read();
                 }
                 String thenumber = "" + i;
                 while ((!("" + i).equals(" ")) && (i != -1)) {
-                    thenumber += "" + fileid.read();
+                    thenumber += "" + reader.read();
                 }
 
                 return StringH.real(thenumber);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                GScript.msgbox("Error reading real!", 1);
+                GScript.msgbox("Error reading double!", 1);
                 return 0;
             }
         }
@@ -229,32 +164,23 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * Skips the rest of the line in the file and starts at the start of the next line.
          *
          */
-        public static void file_text_readln(BufferedReader fileid) {
+        public void readln() {
             try {
-                fileid.readLine();
+                reader.readLine();
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
 
         /**
-         * Returns whether we reached the end of the file.
+         * Returns whether we reached the end of the file in the reader.
          * @param fileid
          * @return
          */
-        public static boolean file_text_eof(BufferedWriter fileid) {
-            return true;
-        }
-
-        /**
-         * Returns whether we reached the end of the file.
-         * @param fileid
-         * @return
-         */
-        public static boolean file_text_eof(BufferedReader fileid) {
+        public boolean endOfFile() {
             try {
-                fileid.mark(4);
-                if (fileid.read() == -1) {
+                reader.mark(4);
+                if (reader.read() == -1) {
 
                     return true;
                 } else {
@@ -271,7 +197,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static boolean file_exists(String fname) {
+        public static boolean exists(String fname) {
             return new java.io.File(fname).exists();
         }
 
@@ -279,7 +205,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          *  Deletes the file with the given name.
          * @param fname
          */
-        public static void file_delete(String fname) {
+        public static void delete(String fname) {
             new java.io.File(fname).delete();
         }
 
@@ -288,7 +214,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param oldname
          * @param newname
          */
-        public static void file_rename(String oldname, String newname) {
+        public static void rename(String oldname, String newname) {
             new java.io.File(oldname).renameTo(new java.io.File(newname));
         }
 
@@ -297,7 +223,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @param newname
          */
-        public static void file_copy(String fname, String newname) {
+        public static void copy(String fname, String newname) {
             try {
                 java.io.InputStream in;
                 in = new java.io.FileInputStream(new java.io.File(fname));
@@ -326,7 +252,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param dname
          * @return
          */
-        public static boolean directory_exists(String dname) {
+        public static boolean directoryExists(String dname) {
             return new java.io.File(dname).exists();
         }
 
@@ -334,7 +260,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * Creates a directory with the given name(including the path towards it) if it does not exist.
          * @param dname
          */
-        public static void directory_create(String dname) {
+        public static void directoryCreate(String dname) {
             new java.io.File(dname).mkdir();
         }
 
@@ -344,8 +270,8 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String filename_name(String fname) {
-            return StringH.string_replace(fname, filename_path(fname), "");
+        public static String getFileName(String fname) {
+            return StringH.string_replace(fname, getFilePath(fname), "");
         }
 
         /**
@@ -353,7 +279,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String filename_path(String fname) {
+        public static String getFilePath(String fname) {
             try {
                 java.net.URL u = new java.net.URL(fname);
                 return u.getPath();
@@ -368,8 +294,8 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String filename_dir(String fname) {
-            return filename_path(fname).substring(0, filename_path(fname).length() - 1);
+        public static String getFileDir(String fname) {
+            return getFilePath(fname).substring(0, getFilePath(fname).length() - 1);
         }
 
         /**
@@ -377,9 +303,9 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String filename_drive(String fname) {
+        public static String getFileDrive(String fname) {
 
-            return filename_path(fname).substring(0, 1);
+            return getFilePath(fname).substring(0, 1);
         }
 
         /**
@@ -387,195 +313,21 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @return
          */
-        public static String filename_ext(String fname) {
-            return filename_name(fname).substring(filename_name(fname).length() - 4, filename_name(fname).length());
+        public static String getFileExtension(String fname) {
+            return getFileName(fname).substring(getFileName(fname).length() - 4, getFileName(fname).length());
         }
 
         /**
-         * Returns the indicated file name, with the extension(including the dot) changed to the new extension. By using an empty string as the new extension you can remove the extension.
+         * Changes the extension of file fname with newext
          * @param fname
          * @param newext
          *
          */
-        public static void filename_change_ext(String fname, String newext) {
+        public static void changeFileExtension(String fname, String newext) {
             java.io.File f = new java.io.File(fname);
-            f.renameTo(new java.io.File(filename_path(fname).replaceAll(filename_ext(fname), newext)));
-        }
-
-
-
-        /**
-         * Opens the file with the indicated name. The mode indicates what can be done with the file: 0 = reading, 1 = writing, 2 = both reading and writing). The function returns the id of the file that must be used in the other functions. You can open multiple files at the same time. Don't forget to close them once you are finished with them.
-         * @param fname
-         * @param mode
-         * @return
-         */
-        public static FileStream file_bin_open(String fname, int mode) {
-            try {
-                FileStream f = new FileStream();
-                if (mode == 0) {
-                    f.open(fname, false);
-                } else {
-                    f.open(fname, true);
-                }
-                return f;
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return null;
-            }
-        }
-
-        /**
-         * Rewrites the file with the given file id, that is, clears it and starts writing at the start.
-         * @param fileid
-         */
-        public static void file_bin_rewrite(FileStream fileid) {
-            try {
-                fileid.open(fileid.fname, true);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        /**
-         *
-         * @param fileid
-         */
-        public static void file_bin_close(FileStream fileid) {
-            try {
-                fileid.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        /**
-         * Returns the size(in bytes) of the file with the given file id.
-         * @param fileid
-         * @return
-         */
-        public static double file_bin_size(FileStream fileid) {
-            try {
-                return fileid.size();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return 0;
-            }
-        }
-
-        /**
-         * Returns the current position(in bytes; 0 is the first position) of the file with the given file id.
-         * @return
-         */
-        public static double file_bin_position(FileStream fileid) {
-            try {
-                return fileid.pos();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return 0;
-            }
-        }
-
-        /**
-         * Moves the current position of the file to the indicated position. To append to a file move the position to the size of the file before writing.
-         * @param fileid
-         * @param pos
-         */
-        public static void file_bin_seek(FileStream fileid, int pos) {
-            try {
-                fileid.seek(pos);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        /**
-         * Writes a byte of data to the file with the given file id.
-         * @param fileid
-         * @param b
-         */
-        public static void file_bin_write_byte(FileStream fileid, byte b) {
-            try {
-                fileid.writeByte(b);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
-        /**
-         * Reads a byte of data from the file and returns this.
-         * @param fileid
-         * @return
-         */
-        public static byte file_bin_read_byte(FileStream fileid) {
-            try {
-                return fileid.readByte();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return 0;
-            }
-        }
-
-        /**
-         * Returns the number of command-line parameters (note that the name of the program itself is one of them.
-         * @return
-         */
-        public static int parameter_count() {
-            return parameter_count;
-        }
-
-        /**
-         * Returns command-line parameters n. The first parameter has index 0. This is the name of the program.
-         * @param n
-         * @return
-         */
-        public static String parameter_string(int n) {
-            return parameters[n];
-        }
-
-        /**
-         * Returns the value (a string) of the environment variable with the given name.
-         * @param name
-         * @return
-         */
-        public static String environment_get_variable(String name) {
-            try {
-                java.util.Properties envProps = new java.util.Properties();
-                java.lang.Runtime r = java.lang.Runtime.getRuntime();
-                java.lang.Process p = r.exec("cmd /c set>temp.env");
-                java.lang.Thread.sleep(500);
-                java.io.FileInputStream in = new java.io.FileInputStream("temp.env");
-                java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(in));
-                java.lang.String line = null;
-                while ((line = br.readLine()) != null) {
-                    int index = -1;
-                    if ((index = line.indexOf("=")) > -1) {
-                        java.lang.String key = line.substring(0, index).trim();
-                        java.lang.String value = line.substring(index + 1).trim();
-                        envProps.setProperty(key, value);
-                    } else {
-                        envProps.setProperty(line, "");
-                    }
-                }
-                in.close();
-                new java.io.File("temp.env").delete();
-
-                Enumeration names = envProps.propertyNames();
-                for (Enumeration e = names; e.hasMoreElements();) {
-                    String name2 = (String) e.nextElement();
-                    if (name2.equals(name)) {
-                        return envProps.getProperty(name);
-                    }
-                }
-                return "";
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-                return "";
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return "";
-            }
-        }
+            f.renameTo(new java.io.File(getFilePath(fname).replaceAll(getFileExtension(fname), newext)));
+        }     
+        
     }
 
 
