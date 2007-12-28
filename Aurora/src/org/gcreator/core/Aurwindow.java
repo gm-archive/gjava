@@ -75,6 +75,8 @@ public class Aurwindow extends JFrame {
     public static AboutPanel about;
     public Container topContainer, bottomContainer, leftContainer, rightContainer;
     
+    private ChangeListener changed;
+    
     private boolean isWorkspaceLeft(){
         if(items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected())
             return true;
@@ -262,6 +264,27 @@ public class Aurwindow extends JFrame {
             frame.setResizable(true);
             frame.setVisible(true);
             frame.setTitle(panel.title);
+            frame.addInternalFrameListener(new InternalFrameListener(){
+                public void internalFrameDeactivated(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+                public void internalFrameActivated(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+                public void internalFrameDeiconified(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+                public void internalFrameIconified(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+                public void internalFrameClosed(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+                public void internalFrameClosing(InternalFrameEvent evt){}
+                public void internalFrameOpened(InternalFrameEvent evt){
+                    changed.stateChanged(null);
+                }
+            });
             frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
             org.jdesktop.layout.GroupLayout jInternalFrame1Layout = new org.jdesktop.layout.GroupLayout(frame.getContentPane());
             frame.getContentPane().setLayout(jInternalFrame1Layout);
@@ -270,7 +293,6 @@ public class Aurwindow extends JFrame {
                jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
             }
             frame.setBounds(0, 0, 300, 300);
-
             mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
             frame.setSelected(true);
         } catch (Exception ex) {
@@ -360,6 +382,25 @@ public class Aurwindow extends JFrame {
         splitter2 = new JSplitPane();
         splitter3 = new JSplitPane();
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        changed = new ChangeListener(){
+            public void stateChanged(ChangeEvent evt){
+                if(istabs){
+                Component c = tabs.getSelectedComponent();
+                if(c!=null)
+                    selectedDocumentChanged((TabPanel) c);
+                else
+                    selectedDocumentChanged(null);
+                }
+                else{
+                    JInternalFrame f = mdi.getSelectedFrame();
+                    if(f!=null)
+                        selectedDocumentChanged(((ExtendedFrame) f).getPanel());
+                    else
+                        selectedDocumentChanged(null);
+                }
+            }
+        };
+        tabs.addChangeListener(changed);
 
         try {
             if (LangSupporter.activeLang != null) {
@@ -907,8 +948,17 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 
+    
+    int tabsi = 0;
     private void tabsClicked(MouseEvent evt) {
-    //Leave in blank... for now...
+        //Leave in blank... for now...
+    }
+    
+    private void selectedDocumentChanged(TabPanel tabpanel){
+        if(tabpanel!=null)
+            System.out.println(tabpanel.title + " was selected.");
+        else
+            System.out.println("null");
     }
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
