@@ -176,7 +176,7 @@ public class English extends Dictionary{
         //---
         entry[132] = "Metal theme";
         //Sprite editor
-        entry[133] = "Add";
+        entry[133] = "Add To Sprite";
         entry[134] = "Edit";
         entry[135] = "Remove";
         entry[136] = "Name:";
