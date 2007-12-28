@@ -48,6 +48,7 @@ public class Aurwindow extends JFrame {
     public JMenuItem[] items = new JMenuItem[MenuSupporter.MENULIMIT * MenuSupporter.ITEMLIMIT];
     public JSplitPane splitter1;
     public JSplitPane splitter2;
+    public JSplitPane splitter3;
     public static JTabbedPane tabs;
     public int look;
     public boolean istabs; //True - tabs; False - MDI
@@ -357,6 +358,7 @@ public class Aurwindow extends JFrame {
         mdi = new JDesktopPane();
         splitter1 = new JSplitPane();
         splitter2 = new JSplitPane();
+        splitter3 = new JSplitPane();
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
 
         try {
@@ -794,18 +796,20 @@ public class Aurwindow extends JFrame {
         //</editor-fold>
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
+        splitter3.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
         if(settings==null||settings.length<6||settings[5]==null||!settings[5].equals("Right")){
-            splitter2.setLeftComponent(treescroll);
+            splitter2.setLeftComponent(splitter3);
             splitter2.setRightComponent(tabs);
             items[MenuSupporter.GenerateMenuItemId(15, 0)].setSelected(true);
         }
         else{
-            splitter2.setRightComponent(treescroll);
+            splitter2.setRightComponent(splitter3);
             splitter2.setLeftComponent(tabs);
             items[MenuSupporter.GenerateMenuItemId(15, 1)].setSelected(true);
         }
+        splitter3.setTopComponent(treescroll);
         splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
@@ -1179,7 +1183,7 @@ public class Aurwindow extends JFrame {
             splitter2.setRightComponent(null);
             splitter2.setLeftComponent(null);
             splitter2.setRightComponent(istabs ? tabs : mdi);
-            splitter2.setLeftComponent(treescroll);
+            splitter2.setLeftComponent(splitter3);
             tabs.updateUI();
             mdi.updateUI();
             splitter2.updateUI();
@@ -1188,7 +1192,7 @@ public class Aurwindow extends JFrame {
         if(menu == 15 && item == 1){
             splitter2.setRightComponent(null);
             splitter2.setLeftComponent(null);
-            splitter2.setRightComponent(treescroll);
+            splitter2.setRightComponent(splitter3);
             splitter2.setLeftComponent(istabs ? tabs : mdi);
             tabs.updateUI();
             mdi.updateUI();
