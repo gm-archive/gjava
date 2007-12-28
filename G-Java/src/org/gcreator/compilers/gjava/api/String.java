@@ -7,8 +7,10 @@ package org.gcreator.compilers.gjava.api;
 
 /**
  *
- * @author Ali
+ * @author TGMG
  */
-public class Variable {
+public class String extends Object{
+    
+   
 
 }

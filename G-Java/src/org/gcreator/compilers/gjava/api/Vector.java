@@ -13,7 +13,7 @@ package org.gcreator.compilers.gjava.api;
  * @author TGMG
  * @version 1.0
  */
-public class Vector {
+public class Vector extends Object {
 
     java.util.Vector source;
 
