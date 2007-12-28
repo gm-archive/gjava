@@ -330,6 +330,22 @@ public class Aurwindow extends JFrame {
         return null;
     }
     
+    private Vector<PanelSelectedListener> psel = new Vector<PanelSelectedListener>();
+    
+    public boolean addPanelSelectedListener(PanelSelectedListener psl){
+        return psel.add(psl);
+    }
+    
+    public boolean removePanelSelectedListener(PanelSelectedListener psl){
+        return psel.remove(psl);
+    }
+    
+    public void callAllPanelSelectedListeners(TabPanel panel){
+        for(PanelSelectedListener psl : psel){
+            psl.panelSelected(panel);
+        }
+    }
+    
     /**
      * @deprecated
      */
@@ -955,10 +971,7 @@ public class Aurwindow extends JFrame {
     }
     
     private void selectedDocumentChanged(TabPanel tabpanel){
-        if(tabpanel!=null)
-            System.out.println(tabpanel.title + " was selected.");
-        else
-            System.out.println("null");
+        callAllPanelSelectedListeners(tabpanel);
     }
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
