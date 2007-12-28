@@ -176,7 +176,7 @@ public class Portuguese extends Dictionary{
         //---
         entry[132] = "Tema Metálico";
         //Sprite editor
-        entry[133] = "Adicionar";
+        entry[133] = "Adicionar ao sprite";
         entry[134] = "Editar";
         entry[135] = "Remover";
         entry[136] = "Nome:";
