@@ -20,6 +20,7 @@ import javax.swing.tree.*;
 import javax.swing.event.*;
 import net.iharder.dnd.*;
 import org.gcreator.components.*;
+import org.gcreator.components.navigator.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.editors.*;
 import org.gcreator.exceptions.*;
@@ -344,6 +345,24 @@ public class Aurwindow extends JFrame {
         for(PanelSelectedListener psl : psel){
             psl.panelSelected(panel);
         }
+    }
+    
+    public void updateNavigatorPanel(JComponent panel){
+        splitter3.setBottomComponent(panel);
+    }
+    
+    public static JPanel nofileselnavigator;
+    public static JPanel unkresnav;
+    public void updateToDefaultNavigatorPanel(TabPanel panel){
+        if(panel==null||panel.project==null){
+            updateNavigatorPanel(nofileselnavigator);
+            return;
+        }
+        if(panel instanceof ActorEditor){
+            updateNavigatorPanel(new ActorNavigator(((ActorEditor) panel).file));
+            return;
+        }
+        updateNavigatorPanel(unkresnav);
     }
     
     /**
@@ -959,6 +978,7 @@ public class Aurwindow extends JFrame {
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
         workspace.expandRow(0);
+        updateToDefaultNavigatorPanel(welcome);
         setMinimumSize(new Dimension(200, 200));
         setVisible(true);
     }
@@ -971,6 +991,7 @@ public class Aurwindow extends JFrame {
     }
     
     private void selectedDocumentChanged(TabPanel tabpanel){
+        updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
     }
 

@@ -25,6 +25,7 @@ import org.gcreator.components.impl.DefaultToolbarItem;
 import org.gcreator.components.impl.Toolbar;
 import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.impl.ToolbarSeparator;
+import org.gcreator.components.navigator.*;
 import org.gcreator.help.AboutPanel;
 
 /**
@@ -296,6 +297,9 @@ public class gcreator {
         Aurwindow.newfilegroup = new NewFileGroup();
         Aurwindow.newproject = new NewProject();
         Aurwindow.about = new AboutPanel();
+        Aurwindow.nofileselnavigator = new NoFileSelectedNavigator();
+        Aurwindow.unkresnav = new UnknownResourceNavigator();
+        
         if(splash!=null){
             if(!applet&&plugload)
                 Plugger.onSplashDispose(gcreator.plugins);
