@@ -41,4 +41,5 @@ public class Integer {
     public static int parseString(java.lang.String s) {
         return java.lang.Integer.parseInt(s);
     }
+    
 }
