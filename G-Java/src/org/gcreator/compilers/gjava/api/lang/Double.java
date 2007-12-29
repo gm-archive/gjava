@@ -34,7 +34,7 @@ public class Double {
     public static double POSITIVE_INFINITY = java.lang.Double.POSITIVE_INFINITY;
 
     /**
-     * Returns the value of this Character object as a char primitive.
+     * Returns the value of this Double object as a char primitive.
      * @return
      */
     public double getPrimitive() {
@@ -87,7 +87,7 @@ public class Double {
      * @param s
      * @return
      */
-    public static double parseDouble(java.lang.String s) {
+    public static double parseString(java.lang.String s) {
         return java.lang.Double.parseDouble(s);
     }
 
