@@ -5,6 +5,8 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import org.gcreator.compilers.gjava.api.lang.String;
+
 /**
  * The Basic Object Class
  * 

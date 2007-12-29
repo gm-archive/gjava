@@ -9,6 +9,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import org.gcreator.compilers.gjava.api.lang.String;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JColorChooser;

@@ -13,13 +13,7 @@ import java.util.Calendar;
 
 
 /**
- * <h2>Date Functions</h2>
- * <p>In G-Java there are a number of functions to deal with dates and time. A date-time combination is stored in a real number. The integral part of a date-time value is the number of days that have passed since 12/30/1899. The fractional part of the date-time value is fraction of a 24 hour day that has elapsed. </p>
- * <p>To use:
- * Functions.date.&lt;functionname&gt;(args);</p>
- * <p>The code completion in the java editor will bring up a list of functions as soon as you type the &quot;.&quot; in date, if not you can manually call code completion using Ctrl+Space.</p>
- * <p>Example:
- * double datetime = Functions.date.current_datetime();</p>
+ * Date class
  */
 public class Date {
 
@@ -95,7 +89,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double create_date(double y, double m, double d) {
+    public static double createDate(double y, double m, double d) {
         Calendar nDate = Calendar.getInstance();
         nDate.set((int) y, (int) m, (int) d, 0, 0, 0);
         long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -110,7 +104,7 @@ public class Date {
      * @param s
      * @return
      */
-    public static double create_time(double h, double m, double s) {
+    public static double createTime(double h, double m, double s) {
         Calendar nDate = Calendar.getInstance();
         nDate.set(then.get(Calendar.YEAR), then.get(Calendar.MONTH), then.get(Calendar.DATE), (int) h, (int) m, (int) s);
         long milis = nDate.getTime().getTime() - then.getTime().getTime();
@@ -128,7 +122,7 @@ public class Date {
      * @param s
      * @return
      */
-    public static double valid_datetime(double y, double m, double d, double h, double min, double s) {
+    public static double validDateTime(double y, double m, double d, double h, double min, double s) {
         if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
             return 1;
         }
@@ -166,7 +160,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double valid_date(double y, double m, double d) {
+    public static double validDate(double y, double m, double d) {
         if (y <= 0 || y >= 10000 || y - Math.floor(y) != 0) {
             return 0;
         }
@@ -195,7 +189,7 @@ public class Date {
      * @param s
      * @return
      */
-    public static double valid_time(double h, double m, double s) {
+    public static double validTime(double h, double m, double s) {
         if (h < 0 || h >= 24 || h - Math.floor(h) != 0) {
             return 0;
         }
@@ -214,7 +208,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_year(double d, double a) {
+    public static double incYear(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -231,7 +225,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_month(double d, double a) {
+    public static double incMonth(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -248,7 +242,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_week(double d, double a) {
+    public static double incWeek(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -265,7 +259,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_day(double d, double a) {
+    public static double incDay(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -282,7 +276,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_hour(double d, double a) {
+    public static double incHour(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -299,7 +293,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_minute(double d, double a) {
+    public static double incMinute(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -316,7 +310,7 @@ public class Date {
      * @param a
      * @return
      */
-    public static double inc_second(double d, double a) {
+    public static double incSecond(double d, double a) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -332,7 +326,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_year(double d) {
+    public static double getYear(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -345,7 +339,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_month(double d) {
+    public static double getMonth(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -358,7 +352,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_week(double d) {
+    public static double getWeek(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -371,7 +365,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_day(double d) {
+    public static double getDay(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -384,7 +378,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_hour(double d) {
+    public static double getHour(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -397,7 +391,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_minute(double d) {
+    public static double getMinute(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -410,7 +404,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_second(double d) {
+    public static double getSecond(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -423,7 +417,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_weekday(double d) {
+    public static double getWeekday(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -436,7 +430,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_day_of_year(double d) {
+    public static double getDayOfYear(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         int fin = 0;
@@ -450,7 +444,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_hour_of_year(double d) {
+    public static double getHourOfYear(double d) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
@@ -472,7 +466,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_minute_of_year(double d) {
+    public static double getMinuteOfYear(double d) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
@@ -495,7 +489,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double get_second_of_year(double d) {
+    public static double getSecondOfYear(double d) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
@@ -520,7 +514,7 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double year_span(double d1, double d2) {
+    public static double yearSpan(double d1, double d2) {
         return d1 * 365.25 - d2 * 365.25;
     }
 
@@ -530,8 +524,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double month_span(double d1, double d2) {
-        return get_month(d1) - get_month(d2);
+    public static double monthSpan(double d1, double d2) {
+        return getMonth(d1) - getMonth(d2);
     }
 
     /**
@@ -540,8 +534,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double week_span(double d1, double d2) {
-        return get_week(d1) - get_week(d2);
+    public static double weekSpan(double d1, double d2) {
+        return getWeek(d1) - getWeek(d2);
     }
 
     /**
@@ -550,8 +544,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double day_span(double d1, double d2) {
-        return get_day(d1) - get_day(d2);
+    public static double daySpan(double d1, double d2) {
+        return getDay(d1) - getDay(d2);
     }
 
     /**
@@ -560,8 +554,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double hour_span(double d1, double d2) {
-        return get_hour(d1) - get_hour(d2);
+    public static double hourSpan(double d1, double d2) {
+        return getHour(d1) - getHour(d2);
     }
 
     /**
@@ -570,8 +564,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double minute_span(double d1, double d2) {
-        return get_minute(d1) - get_minute(d2);
+    public static double minuteSpan(double d1, double d2) {
+        return getMinute(d1) - getMinute(d2);
     }
 
     /**
@@ -580,8 +574,8 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double second_span(double d1, double d2) {
-        return get_second(d1) - get_second(d2);
+    public static double secondSpan(double d1, double d2) {
+        return getSecond(d1) - getSecond(d2);
     }
 
     /**
@@ -590,7 +584,7 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double compare_datetime(double d1, double d2) {
+    public static double compareDateTime(double d1, double d2) {
         return d1 > d2 ? 1 : (d1 < d2 ? -1 : 0);
     }
 
@@ -600,7 +594,7 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double compare_date(double d1, double d2) {
+    public static double compareDate(double d1, double d2) {
         return Math.floor(d1) > Math.floor(d2) ? 1 : (Math.floor(d1) < Math.floor(d2) ? -1 : 0);
     }
 
@@ -610,7 +604,7 @@ public class Date {
      * @param d2
      * @return
      */
-    public static double compare_time(double d1, double d2) {
+    public static double compareTime(double d1, double d2) {
         return Math.frac(d1) > Math.frac(d2) ? 1 : (Math.frac(d1) < Math.frac(d2) ? -4 : 0);
     }
 
@@ -619,7 +613,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double of(double d) {
+    public static double dateOf(double d) {
         return Math.floor(d);
     }
 
@@ -628,7 +622,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double time_of(double d) {
+    public static double timeOf(double d) {
         return Math.frac(d);
     }
 
@@ -637,7 +631,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static String datetime_string(double d) {
+    public static String datetimetoString(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -663,7 +657,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static String time_string(double d) {
+    public static String timeString(double d) {
         long milis = (int) (Math.frac(d) * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -676,7 +670,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double days_in_month(double d) {
+    public static double daysInMonth(double d) {
         int[] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
@@ -693,7 +687,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double days_in_year(double d) {
+    public static double daysInYear(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -710,7 +704,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double leap_year(double d) {
+    public static double leapYear(double d) {
         long milis = (int) (d * dateConvert);
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
@@ -723,7 +717,7 @@ public class Date {
      * @param d
      * @return
      */
-    public static double is_today(double d) {
-        return currentDate() == of(d) ? 1 : 0;
+    public static double isToday(double d) {
+        return currentDate() == dateOf(d) ? 1 : 0;
     }
 }
