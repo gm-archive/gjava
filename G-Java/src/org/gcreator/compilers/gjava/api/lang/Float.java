@@ -9,6 +9,10 @@ package org.gcreator.compilers.gjava.api.lang;
 public class Float {
 float f;
 
+Float(float ff) {
+    f=ff;
+}
+
 /**
      * The largest positive finite value of type float.
      */

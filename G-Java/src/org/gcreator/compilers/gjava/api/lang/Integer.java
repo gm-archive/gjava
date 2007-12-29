@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.compilers.gjava.api.lang;
 
 /**
@@ -11,9 +10,13 @@ package org.gcreator.compilers.gjava.api.lang;
  * @author TGMG
  */
 public class Integer {
-    
+
     int i;
-/**
+
+    Integer(int ii) {
+        i = ii;
+    }
+    /**
      * The largest positive finite value of type float.
      */
     public static float MAX_VALUE = java.lang.Float.MAX_VALUE;
@@ -21,25 +24,21 @@ public class Integer {
      * The smallest positive value of type float.
      */
     public static float MIN_VALUE = java.lang.Float.MIN_VALUE;
-    
+
     /**
-     * Returns the value of this Float object as a char primitive.
+     * Returns the value of this Float object as a primitive.
      * @return
      */
     public int getPrimitive() {
         return i;
     }
 
-         
-         
-
     /**
-     * Returns a new double initialized to the value represented by the specified String, as performed by the valueOf  method of class Double.
+     * Returns a new double initialized to the value represented by the specified String.
      * @param s
      * @return
      */
     public static int parseString(java.lang.String s) {
         return java.lang.Integer.parseInt(s);
     }
-
 }
