@@ -52,6 +52,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 eraseActorsAt(x, y);
             if(a==SceneEditor.PENCIL)
                 addActorAt(x, y);
+            if(a==SceneEditor.TILEADD)
+                addTileAt(x, y);
             root.updateScroll();
         }
     }
@@ -73,6 +75,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         ((Scene) root.file.value).actors.add(act);
     }
     
+    public void addTileAt(int x, int y){
+        Tile tile = root.makeNewTile(x, y);
+        ((Scene) root.file.value).tiles.add(tile);
+    }
      
     public int getWidth(){
         double zoom = root.getZoom();
