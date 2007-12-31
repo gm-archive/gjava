@@ -50,47 +50,45 @@ package org.gcreator.plugins.platform;
 *------------------------------------------------------------------*/
 
 classes
-: {System.out.println("start parsing class "); pc.returncode ="";} ((f=method{pc.returncode += "\n " + $f.value;}|m=field{pc.returncode += "\n " + $m.value;}|i=innerclass{pc.returncode += "\n " + $i.value;}) (';'{System.out.println(";");})*)*
+: {pc.returncode ="";} ((f=method{pc.returncode += "\n " + $f.value;}|m=field{pc.returncode += "\n " + $m.value;}) (';'{System.out.println(";");})*)*
 ;
 
-code // never put: returns after this!
-: {System.out.println("Start parsing code "); pc.returncode ="";} ((s=statement{pc.returncode += "\n " + $s.value;})*)	{System.out.println("Parsed code in antlr!");} 
-	;
+code // never put: returns after this! This is for script and parameter code
+: { pc.returncode ="";} ((s=statement{pc.returncode += "\n " + $s.value;})*)	
+;
 
 statement returns [String value]
-: {System.out.print("statement: "); $value = "";} (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value+";";}|e=exitstatement{$value += $e.value+";";}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}) (';'{System.out.println(";");})* 
+: {$value = "";} (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value+";";}|e=exitstatement{$value += $e.value+";";}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}) (';'{System.out.println(";");})* 
 ;
 
-field returns [String value]
-: {System.out.println("Field "); }('public' {$value = "public";}|'private' {$value = "private";})? ('static'{$value += " static";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
+
+field returns [String value] //their are 2 finals in this for a reason ;)
+: ('public' {$value = "public";}|('private'|'var') {$value = "private";})? ('final'{$value += " final";})? ('static'{$value += " static";})? ('final'{$value += " final";})? (v=varstatement) {$value = pc.fieldstatement($value,$v.text);}
 ;
 
 method returns [String value] @init {String s = "";}
-: {System.out.println("method ");} ('public'{$value = "public";}|'private'{$value = "private";})? ('static'{$value += " static";})? arg=WORD name=WORD '(' (e=expression {s = $e.text;} ((',') (e=expression{s += ", "+$e.text;})?)*)? ')' b=bstatement {$value = pc.methodstatement($value,$arg.text,$name.text,$b.value,s);}
+: ('public'{$value = "public";}|'private'{$value = "private";})? ('final'{$value += " final";})? ('static'{$value += " static";})? ('final'{$value += " final";})? name=WORD '(' (e=WORD {s = $e.text;} ((',') (e=WORD{s += ", "+$e.text;})?)*)? ')' b=bstatement {$value = pc.methodstatement($value,"",$name.text,$b.value,s);}
 ;
 
-innerclass returns [String value]
-	:	'class' WORD (LBRAC|'begin') (field|method)* (RBRAC|'end')
-	;
-
+//statement surrounded by brackets
 bstatement returns [String value]
-: {System.out.println("bstatement "); $value = "";} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
+: {$value = "";} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: {System.out.println("var statement ");} type=WORD (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {$value=pc.varstatement($type.text,s);} 
+: 'var' (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {$value=pc.varstatement("var",s);} 
 ;
 
 returnstatement returns [String value]
-: 'return' {System.out.println("return statement ");} (e=expression{$value=$e.text;}) {$value =pc.returnstatement($value);}
+: 'return' (e=expression{$value=$e.text;}) {$value =pc.returnstatement($value);}
 ;
 
 exitstatement returns [String value]
-:'exit' {System.out.println("exit statement");} {$value ="";}
+:'exit'  {$value ="";}
 ;
 
 ifstatement returns [String value]
-: {System.out.println("if statement ");} 'if' e=expression ('then')? (s=statement) (el=elsestatement{$value +=$el.value;})*  {$value =pc.ifstatement($e.value,$s.value,$value);}
+:  'if' e=expression ('then')? (s=statement) (el=elsestatement{$value +=$el.value;})*  {$value =pc.ifstatement($e.value,$s.value,$value);}
 ;
 
 elsestatement returns [String value]
@@ -113,6 +111,7 @@ aexpression returns [String value]
 value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
 ;
 
+//expression surrounded with parenthesis
 pexpression returns [String value]
 : LPAREN e=expression RPAREN {$value =pc.pexpression($e.value);}
 ;
