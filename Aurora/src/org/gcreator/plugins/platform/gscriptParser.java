@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-12-31 02:37:05
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2007-12-31 03:00:11
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -93,7 +93,7 @@ public class gscriptParser extends DebugParser {
     public String getGrammarFileName() { return "C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g"; }
 
     
-    public PlatformCore pc;
+    public PlatformCore pc = new PlatformCore();
     
     public void setPlatform(PlatformCore p)
     {
@@ -177,38 +177,15 @@ public class gscriptParser extends DebugParser {
             	                break;
             	            case 41:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case 40:
-            	                    {
-            	                    int LA1_43 = input.LA(5);
+            	                int LA1_24 = input.LA(4);
 
-            	                    if ( (synpred1()) ) {
-            	                        alt1=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt1=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return ;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("53:25: (f= method | m= field )", 1, 43, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case WORD:
-            	                    {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
-            	                    }
-            	                    break;
-            	                case 39:
-            	                    {
+            	                }
+            	                else if ( (true) ) {
             	                    alt1=2;
-            	                    }
-            	                    break;
-            	                default:
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 24, input);
@@ -216,17 +193,16 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case 40:
             	                {
             	                int LA1_25 = input.LA(4);
 
-            	                if ( (LA1_25==WORD) ) {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
             	                }
-            	                else if ( (LA1_25==39) ) {
+            	                else if ( (true) ) {
             	                    alt1=2;
             	                }
             	                else {
@@ -257,11 +233,11 @@ public class gscriptParser extends DebugParser {
             	                {
             	                int LA1_26 = input.LA(4);
 
-            	                if ( (LA1_26==39) ) {
-            	                    alt1=2;
-            	                }
-            	                else if ( (LA1_26==WORD) ) {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
@@ -333,38 +309,15 @@ public class gscriptParser extends DebugParser {
             	                break;
             	            case 41:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case 40:
-            	                    {
-            	                    int LA1_50 = input.LA(5);
+            	                int LA1_31 = input.LA(4);
 
-            	                    if ( (synpred1()) ) {
-            	                        alt1=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt1=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return ;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("53:25: (f= method | m= field )", 1, 50, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case WORD:
-            	                    {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
-            	                    }
-            	                    break;
-            	                case 39:
-            	                    {
+            	                }
+            	                else if ( (true) ) {
             	                    alt1=2;
-            	                    }
-            	                    break;
-            	                default:
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 31, input);
@@ -372,17 +325,16 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case 40:
             	                {
             	                int LA1_32 = input.LA(4);
 
-            	                if ( (LA1_32==WORD) ) {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
             	                }
-            	                else if ( (LA1_32==39) ) {
+            	                else if ( (true) ) {
             	                    alt1=2;
             	                }
             	                else {
@@ -413,11 +365,11 @@ public class gscriptParser extends DebugParser {
             	                {
             	                int LA1_33 = input.LA(4);
 
-            	                if ( (LA1_33==39) ) {
-            	                    alt1=2;
-            	                }
-            	                else if ( (LA1_33==WORD) ) {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
@@ -491,11 +443,11 @@ public class gscriptParser extends DebugParser {
             	                {
             	                int LA1_36 = input.LA(4);
 
-            	                if ( (LA1_36==39) ) {
-            	                    alt1=2;
-            	                }
-            	                else if ( (LA1_36==WORD) ) {
+            	                if ( (synpred1()) ) {
             	                    alt1=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt1=2;
             	                }
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
@@ -2104,170 +2056,15 @@ public class gscriptParser extends DebugParser {
                     switch ( input.LA(3) ) {
                     case LPAREN:
                         {
-                        switch ( input.LA(4) ) {
-                        case LPAREN:
-                            {
-                            int LA19_48 = input.LA(5);
+                        int LA19_40 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 48, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case WORD:
-                            {
-                            int LA19_49 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 49, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case HEXNUMBER:
-                            {
-                            int LA19_50 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 50, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case STRING:
-                            {
-                            int LA19_51 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 51, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case NUMBER:
-                            {
-                            int LA19_52 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 52, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case OIVAR:
-                        case GLOBALVAR:
-                            {
-                            int LA19_53 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 53, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case DECIMAL:
-                            {
-                            int LA19_54 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 54, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 51:
-                        case 52:
-                            {
-                            int LA19_55 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 55, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 40, input);
@@ -2275,195 +2072,19 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case WORD:
                         {
-                        switch ( input.LA(4) ) {
-                        case LPAREN:
-                            {
-                            int LA19_56 = input.LA(5);
+                        int LA19_41 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 56, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 86:
-                            {
-                            int LA19_57 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 57, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_58 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 58, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_59 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 59, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_60 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 60, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_61 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 61, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_62 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 62, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_63 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 63, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 41, input);
@@ -2471,155 +2092,19 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case HEXNUMBER:
                         {
-                        switch ( input.LA(4) ) {
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_64 = input.LA(5);
+                        int LA19_42 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 64, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_65 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 65, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_66 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 66, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_67 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 67, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_68 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 68, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_69 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 69, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 42, input);
@@ -2627,155 +2112,19 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case STRING:
                         {
-                        switch ( input.LA(4) ) {
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_70 = input.LA(5);
+                        int LA19_43 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 70, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_71 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 71, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_72 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 72, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_73 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 73, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_74 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 74, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_75 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 75, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 43, input);
@@ -2783,155 +2132,19 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case NUMBER:
                         {
-                        switch ( input.LA(4) ) {
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_76 = input.LA(5);
+                        int LA19_44 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 76, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_77 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 77, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_78 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 78, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_79 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 79, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_80 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 80, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_81 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 81, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 44, input);
@@ -2939,176 +2152,20 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        switch ( input.LA(4) ) {
-                        case 86:
-                            {
-                            int LA19_82 = input.LA(5);
+                        int LA19_45 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 82, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_83 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 83, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_84 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 84, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_85 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 85, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_86 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 86, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_87 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 87, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_88 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 88, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 45, input);
@@ -3116,155 +2173,19 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case DECIMAL:
                         {
-                        switch ( input.LA(4) ) {
-                        case EQUALS:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 52:
-                        case 66:
-                            {
-                            int LA19_89 = input.LA(5);
+                        int LA19_46 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 89, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case NEGINTEGER:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                            {
-                            int LA19_90 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 90, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 60:
-                        case 61:
-                            {
-                            int LA19_91 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 91, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 62:
-                        case 63:
-                            {
-                            int LA19_92 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 92, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 64:
-                        case 65:
-                            {
-                            int LA19_93 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 93, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 87:
-                            {
-                            int LA19_94 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 94, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 46, input);
@@ -3272,176 +2193,20 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     case 51:
                     case 52:
                         {
-                        switch ( input.LA(4) ) {
-                        case LPAREN:
-                            {
-                            int LA19_95 = input.LA(5);
+                        int LA19_47 = input.LA(4);
 
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 95, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case WORD:
-                            {
-                            int LA19_96 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 96, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case HEXNUMBER:
-                            {
-                            int LA19_97 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 97, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case STRING:
-                            {
-                            int LA19_98 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 98, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case NUMBER:
-                            {
-                            int LA19_99 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 99, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case OIVAR:
-                        case GLOBALVAR:
-                            {
-                            int LA19_100 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 100, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case DECIMAL:
-                            {
-                            int LA19_101 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 101, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case 51:
-                        case 52:
-                            {
-                            int LA19_102 = input.LA(5);
-
-                            if ( (synpred38()) ) {
-                                alt19=1;
-                            }
-                            else if ( (true) ) {
-                                alt19=2;
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return retval;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 102, input);
-
-                                dbg.recognitionException(nvae);
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        default:
+                        if ( (synpred38()) ) {
+                            alt19=1;
+                        }
+                        else if ( (true) ) {
+                            alt19=2;
+                        }
+                        else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("79:9: (vari= variable | ass= assignment )", 19, 47, input);
@@ -3449,7 +2214,6 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-
                         }
                         break;
                     default:
@@ -3619,170 +2383,15 @@ public class gscriptParser extends DebugParser {
             	            switch ( input.LA(3) ) {
             	            case LPAREN:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case LPAREN:
-            	                    {
-            	                    int LA20_48 = input.LA(5);
+            	                int LA20_40 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 48, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case WORD:
-            	                    {
-            	                    int LA20_49 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 49, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case HEXNUMBER:
-            	                    {
-            	                    int LA20_50 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 50, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case STRING:
-            	                    {
-            	                    int LA20_51 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 51, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case NUMBER:
-            	                    {
-            	                    int LA20_52 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 52, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case OIVAR:
-            	                case GLOBALVAR:
-            	                    {
-            	                    int LA20_53 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 53, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case DECIMAL:
-            	                    {
-            	                    int LA20_54 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 54, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 51:
-            	                case 52:
-            	                    {
-            	                    int LA20_55 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 55, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 40, input);
@@ -3790,195 +2399,19 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case WORD:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case LPAREN:
-            	                    {
-            	                    int LA20_56 = input.LA(5);
+            	                int LA20_41 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 56, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 86:
-            	                    {
-            	                    int LA20_57 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 57, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_58 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 58, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_59 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 59, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_60 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 60, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_61 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 61, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_62 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 62, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_63 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 63, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 41, input);
@@ -3986,155 +2419,19 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case HEXNUMBER:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_64 = input.LA(5);
+            	                int LA20_42 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 64, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_65 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 65, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_66 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 66, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_67 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 67, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_68 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 68, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_69 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 69, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 42, input);
@@ -4142,155 +2439,19 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case STRING:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_70 = input.LA(5);
+            	                int LA20_43 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 70, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_71 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 71, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_72 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 72, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_73 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 73, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_74 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 74, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_75 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 75, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 43, input);
@@ -4298,155 +2459,19 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case NUMBER:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_76 = input.LA(5);
+            	                int LA20_44 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 76, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_77 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 77, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_78 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 78, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_79 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 79, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_80 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 80, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_81 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 81, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 44, input);
@@ -4454,176 +2479,20 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case OIVAR:
             	            case GLOBALVAR:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case 86:
-            	                    {
-            	                    int LA20_82 = input.LA(5);
+            	                int LA20_45 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 82, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_83 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 83, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_84 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 84, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_85 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 85, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_86 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 86, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_87 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 87, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_88 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 88, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 45, input);
@@ -4631,155 +2500,19 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case DECIMAL:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case EQUALS:
-            	                case EQUALS2:
-            	                case NOT_EQUALS:
-            	                case GT:
-            	                case GTE:
-            	                case LT:
-            	                case LTE:
-            	                case 52:
-            	                case 66:
-            	                    {
-            	                    int LA20_89 = input.LA(5);
+            	                int LA20_46 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 89, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case PLUS:
-            	                case MINUS:
-            	                case MULT:
-            	                case DIV:
-            	                case NEGINTEGER:
-            	                case 53:
-            	                case 54:
-            	                case 55:
-            	                case 56:
-            	                case 57:
-            	                case 58:
-            	                case 59:
-            	                    {
-            	                    int LA20_90 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 90, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 60:
-            	                case 61:
-            	                    {
-            	                    int LA20_91 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 91, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 62:
-            	                case 63:
-            	                    {
-            	                    int LA20_92 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 92, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 64:
-            	                case 65:
-            	                    {
-            	                    int LA20_93 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 93, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 87:
-            	                    {
-            	                    int LA20_94 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 94, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 46, input);
@@ -4787,176 +2520,20 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            case 51:
             	            case 52:
             	                {
-            	                switch ( input.LA(4) ) {
-            	                case LPAREN:
-            	                    {
-            	                    int LA20_95 = input.LA(5);
+            	                int LA20_47 = input.LA(4);
 
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 95, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case WORD:
-            	                    {
-            	                    int LA20_96 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 96, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case HEXNUMBER:
-            	                    {
-            	                    int LA20_97 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 97, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case STRING:
-            	                    {
-            	                    int LA20_98 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 98, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case NUMBER:
-            	                    {
-            	                    int LA20_99 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 99, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case OIVAR:
-            	                case GLOBALVAR:
-            	                    {
-            	                    int LA20_100 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 100, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case DECIMAL:
-            	                    {
-            	                    int LA20_101 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 101, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                case 51:
-            	                case 52:
-            	                    {
-            	                    int LA20_102 = input.LA(5);
-
-            	                    if ( (synpred39()) ) {
-            	                        alt20=1;
-            	                    }
-            	                    else if ( (true) ) {
-            	                        alt20=2;
-            	                    }
-            	                    else {
-            	                        if (backtracking>0) {failed=true; return retval;}
-            	                        NoViableAltException nvae =
-            	                            new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 102, input);
-
-            	                        dbg.recognitionException(nvae);
-            	                        throw nvae;
-            	                    }
-            	                    }
-            	                    break;
-            	                default:
+            	                if ( (synpred39()) ) {
+            	                    alt20=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt20=2;
+            	                }
+            	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("79:88: (varii= variable | ass= assignment )", 20, 47, input);
@@ -4964,7 +2541,6 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-
             	                }
             	                break;
             	            default:
@@ -5103,7 +2679,7 @@ public class gscriptParser extends DebugParser {
             } while (true);
             } finally {dbg.exitSubRule(21);}
 
-            dbg.location(79,173);
+            dbg.location(79,174);
             if ( backtracking==0 ) {
               retval.value =pc.varstatement("var",s);
             }
@@ -5155,7 +2731,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:83:3: 'return' (e= expression )
             {
             dbg.location(83,3);
-            match(input,45,FOLLOW_45_in_returnstatement576); if (failed) return value;
+            match(input,45,FOLLOW_45_in_returnstatement577); if (failed) return value;
             dbg.location(83,12);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:83:12: (e= expression )
             dbg.enterAlt(1);
@@ -5163,7 +2739,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:83:13: e= expression
             {
             dbg.location(83,14);
-            pushFollow(FOLLOW_expression_in_returnstatement581);
+            pushFollow(FOLLOW_expression_in_returnstatement582);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -5221,7 +2797,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:87:2: 'exit'
             {
             dbg.location(87,2);
-            match(input,46,FOLLOW_46_in_exitstatement597); if (failed) return value;
+            match(input,46,FOLLOW_46_in_exitstatement598); if (failed) return value;
             dbg.location(87,10);
             if ( backtracking==0 ) {
               value ="";
@@ -5276,9 +2852,9 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:91:4: 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )*
             {
             dbg.location(91,4);
-            match(input,47,FOLLOW_47_in_ifstatement614); if (failed) return value;
+            match(input,47,FOLLOW_47_in_ifstatement615); if (failed) return value;
             dbg.location(91,10);
-            pushFollow(FOLLOW_expression_in_ifstatement618);
+            pushFollow(FOLLOW_expression_in_ifstatement619);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -5302,7 +2878,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:91:23: 'then'
                     {
                     dbg.location(91,23);
-                    match(input,48,FOLLOW_48_in_ifstatement621); if (failed) return value;
+                    match(input,48,FOLLOW_48_in_ifstatement622); if (failed) return value;
 
                     }
                     break;
@@ -5317,7 +2893,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:91:33: s= statement
             {
             dbg.location(91,34);
-            pushFollow(FOLLOW_statement_in_ifstatement628);
+            pushFollow(FOLLOW_statement_in_ifstatement629);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -5364,7 +2940,7 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:91:47: el= elsestatement
             	    {
             	    dbg.location(91,49);
-            	    pushFollow(FOLLOW_elsestatement_in_ifstatement634);
+            	    pushFollow(FOLLOW_elsestatement_in_ifstatement635);
             	    el=elsestatement();
             	    _fsp--;
             	    if (failed) return value;
@@ -5464,7 +3040,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:95:4: 'else'
                     {
                     dbg.location(95,4);
-                    match(input,49,FOLLOW_49_in_elsestatement654); if (failed) return value;
+                    match(input,49,FOLLOW_49_in_elsestatement655); if (failed) return value;
 
                     }
                     break;
@@ -5480,9 +3056,9 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:95:12: 'elsif' e= expression
                     {
                     dbg.location(95,12);
-                    match(input,50,FOLLOW_50_in_elsestatement657); if (failed) return value;
+                    match(input,50,FOLLOW_50_in_elsestatement658); if (failed) return value;
                     dbg.location(95,21);
-                    pushFollow(FOLLOW_expression_in_elsestatement661);
+                    pushFollow(FOLLOW_expression_in_elsestatement662);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -5507,7 +3083,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:95:61: s= statement
             {
             dbg.location(95,62);
-            pushFollow(FOLLOW_statement_in_elsestatement670);
+            pushFollow(FOLLOW_statement_in_elsestatement671);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -5633,7 +3209,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:5: p= pexpression
                     {
                     dbg.location(100,6);
-                    pushFollow(FOLLOW_pexpression_in_expression698);
+                    pushFollow(FOLLOW_pexpression_in_expression699);
                     p=pexpression();
                     _fsp--;
                     if (failed) return retval;
@@ -5650,7 +3226,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:38: r= relationalExpression
                     {
                     dbg.location(100,39);
-                    pushFollow(FOLLOW_relationalExpression_in_expression703);
+                    pushFollow(FOLLOW_relationalExpression_in_expression704);
                     r=relationalExpression();
                     _fsp--;
                     if (failed) return retval;
@@ -5667,7 +3243,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:80: n= notexpression
                     {
                     dbg.location(100,81);
-                    pushFollow(FOLLOW_notexpression_in_expression708);
+                    pushFollow(FOLLOW_notexpression_in_expression709);
                     n=notexpression();
                     _fsp--;
                     if (failed) return retval;
@@ -5713,7 +3289,7 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:117: aa= aexpression
             	    {
             	    dbg.location(100,119);
-            	    pushFollow(FOLLOW_aexpression_in_expression715);
+            	    pushFollow(FOLLOW_aexpression_in_expression716);
             	    aa=aexpression();
             	    _fsp--;
             	    if (failed) return retval;
@@ -5831,7 +3407,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:163: an= andexpression
             	            {
             	            dbg.location(100,165);
-            	            pushFollow(FOLLOW_andexpression_in_expression725);
+            	            pushFollow(FOLLOW_andexpression_in_expression726);
             	            an=andexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -5848,7 +3424,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:205: orr= orexpression
             	            {
             	            dbg.location(100,208);
-            	            pushFollow(FOLLOW_orexpression_in_expression730);
+            	            pushFollow(FOLLOW_orexpression_in_expression731);
             	            orr=orexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -5865,7 +3441,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:248: x= xorexpression
             	            {
             	            dbg.location(100,249);
-            	            pushFollow(FOLLOW_xorexpression_in_expression735);
+            	            pushFollow(FOLLOW_xorexpression_in_expression736);
             	            x=xorexpression();
             	            _fsp--;
             	            if (failed) return retval;
@@ -5887,7 +3463,7 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:290: e= expression
             	    {
             	    dbg.location(100,291);
-            	    pushFollow(FOLLOW_expression_in_expression742);
+            	    pushFollow(FOLLOW_expression_in_expression743);
             	    e=expression();
             	    _fsp--;
             	    if (failed) return retval;
@@ -5969,11 +3545,11 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression761);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression762);    throw mse;
             }
 
             dbg.location(104,16);
-            pushFollow(FOLLOW_expression_in_notexpression769);
+            pushFollow(FOLLOW_expression_in_notexpression770);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -6036,7 +3612,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression786);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression787);    throw mse;
             }
 
             dbg.location(108,68);
@@ -6048,11 +3624,698 @@ public class gscriptParser extends DebugParser {
             switch ( input.LA(1) ) {
                 case LPAREN:
                     {
-                    int LA29_1 = input.LA(2);
+                    switch ( input.LA(2) ) {
+                        case LPAREN:
+                            {
+                            switch ( input.LA(3) ) {
+                                case LPAREN:
+                                    {
+                                    int LA29_399 = input.LA(4);
 
-                    if ( (synpred62()) ) {
-                        alt29=1;
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA29_400 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA29_401 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA29_402 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA29_403 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA29_404 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA29_405 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA29_406 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case WORD:
+                            {
+                            switch ( input.LA(3) ) {
+                                case LPAREN:
+                                    {
+                                    int LA29_407 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 86:
+                                    {
+                                    int LA29_408 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_409 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_410 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_411 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_412 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_413 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_414 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case HEXNUMBER:
+                            {
+                            switch ( input.LA(3) ) {
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_415 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_416 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_417 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_418 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_419 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_420 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case STRING:
+                            {
+                            switch ( input.LA(3) ) {
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_421 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_422 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_423 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_424 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_425 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_426 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case NUMBER:
+                            {
+                            switch ( input.LA(3) ) {
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_427 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_428 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_429 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_430 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_431 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_432 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case OIVAR:
+                        case GLOBALVAR:
+                            {
+                            switch ( input.LA(3) ) {
+                                case 86:
+                                    {
+                                    int LA29_433 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_434 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_435 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_436 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_437 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_438 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_439 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case DECIMAL:
+                            {
+                            switch ( input.LA(3) ) {
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 66:
+                                    {
+                                    int LA29_440 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case NEGINTEGER:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                    {
+                                    int LA29_441 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                case 61:
+                                    {
+                                    int LA29_442 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 62:
+                                case 63:
+                                    {
+                                    int LA29_443 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 64:
+                                case 65:
+                                    {
+                                    int LA29_444 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA29_445 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case 51:
+                        case 52:
+                            {
+                            switch ( input.LA(3) ) {
+                                case LPAREN:
+                                    {
+                                    int LA29_446 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA29_447 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA29_448 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA29_449 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA29_450 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA29_451 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA29_452 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA29_453 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
                     }
+
                     }
                     break;
                 case WORD:
@@ -6112,11 +4375,227 @@ public class gscriptParser extends DebugParser {
                 case 51:
                 case 52:
                     {
-                    int LA29_8 = input.LA(2);
+                    switch ( input.LA(2) ) {
+                        case LPAREN:
+                            {
+                            switch ( input.LA(3) ) {
+                                case LPAREN:
+                                    {
+                                    int LA29_454 = input.LA(4);
 
-                    if ( (synpred62()) ) {
-                        alt29=1;
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA29_455 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA29_456 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA29_457 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA29_458 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA29_459 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA29_460 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA29_461 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case WORD:
+                            {
+                            int LA29_342 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case HEXNUMBER:
+                            {
+                            int LA29_343 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case STRING:
+                            {
+                            int LA29_344 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case NUMBER:
+                            {
+                            int LA29_345 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case OIVAR:
+                        case GLOBALVAR:
+                            {
+                            int LA29_346 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case DECIMAL:
+                            {
+                            int LA29_347 = input.LA(3);
+
+                            if ( (synpred62()) ) {
+                                alt29=1;
+                            }
+                            }
+                            break;
+                        case 51:
+                        case 52:
+                            {
+                            switch ( input.LA(3) ) {
+                                case LPAREN:
+                                    {
+                                    int LA29_746 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA29_747 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA29_748 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA29_749 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA29_750 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA29_751 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA29_752 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA29_753 = input.LA(4);
+
+                                    if ( (synpred62()) ) {
+                                        alt29=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
                     }
+
                     }
                     break;
                 case GLOBALVAR:
@@ -6139,7 +4618,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:69: expression
                     {
                     dbg.location(108,69);
-                    pushFollow(FOLLOW_expression_in_aexpression813);
+                    pushFollow(FOLLOW_expression_in_aexpression814);
                     expression();
                     _fsp--;
                     if (failed) return value;
@@ -6245,7 +4724,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:35: NUMBER
                     {
                     dbg.location(111,35);
-                    match(input,NUMBER,FOLLOW_NUMBER_in_value834); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_value835); if (failed) return value;
 
                     }
                     break;
@@ -6255,7 +4734,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:42: HEXNUMBER
                     {
                     dbg.location(111,42);
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value836); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value837); if (failed) return value;
 
                     }
                     break;
@@ -6265,7 +4744,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:52: STRING
                     {
                     dbg.location(111,52);
-                    match(input,STRING,FOLLOW_STRING_in_value838); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_value839); if (failed) return value;
 
                     }
                     break;
@@ -6275,7 +4754,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:59: variable
                     {
                     dbg.location(111,59);
-                    pushFollow(FOLLOW_variable_in_value840);
+                    pushFollow(FOLLOW_variable_in_value841);
                     variable();
                     _fsp--;
                     if (failed) return value;
@@ -6336,14 +4815,14 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:116:3: LPAREN e= expression RPAREN
             {
             dbg.location(116,3);
-            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression857); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression858); if (failed) return value;
             dbg.location(116,11);
-            pushFollow(FOLLOW_expression_in_pexpression861);
+            pushFollow(FOLLOW_expression_in_pexpression862);
             e=expression();
             _fsp--;
             if (failed) return value;
             dbg.location(116,23);
-            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression863); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression864); if (failed) return value;
             dbg.location(116,30);
             if ( backtracking==0 ) {
               value =pc.pexpression(e.value);
@@ -6403,7 +4882,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression880);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression881);    throw mse;
             }
 
             dbg.location(120,18);
@@ -6465,7 +4944,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression901);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression902);    throw mse;
             }
 
             dbg.location(124,17);
@@ -6527,7 +5006,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression922);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression923);    throw mse;
             }
 
             dbg.location(128,18);
@@ -6661,7 +5140,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:4: f= function
                     {
                     dbg.location(133,5);
-                    pushFollow(FOLLOW_function_in_relationalExpression948);
+                    pushFollow(FOLLOW_function_in_relationalExpression949);
                     f=function();
                     _fsp--;
                     if (failed) return value;
@@ -6679,7 +5158,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(133,36);
                     h=(Token)input.LT(1);
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression953); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression954); if (failed) return value;
                     dbg.location(133,46);
                     if ( backtracking==0 ) {
                       value = h.getText();
@@ -6694,7 +5173,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(133,67);
                     s=(Token)input.LT(1);
-                    match(input,STRING,FOLLOW_STRING_in_relationalExpression958); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_relationalExpression959); if (failed) return value;
                     dbg.location(133,74);
                     if ( backtracking==0 ) {
                       value = s.getText();
@@ -6709,7 +5188,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(133,95);
                     n=(Token)input.LT(1);
-                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression963); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression964); if (failed) return value;
                     dbg.location(133,102);
                     if ( backtracking==0 ) {
                       value = n.getText();
@@ -6723,7 +5202,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:122: v= variable
                     {
                     dbg.location(133,123);
-                    pushFollow(FOLLOW_variable_in_relationalExpression968);
+                    pushFollow(FOLLOW_variable_in_relationalExpression969);
                     v=variable();
                     _fsp--;
                     if (failed) return value;
@@ -6741,7 +5220,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(133,154);
                     d=(Token)input.LT(1);
-                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression973); if (failed) return value;
+                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression974); if (failed) return value;
                     dbg.location(133,162);
                     if ( backtracking==0 ) {
                       value = d.getText();
@@ -6756,7 +5235,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(133,183);
                     w=(Token)input.LT(1);
-                    match(input,WORD,FOLLOW_WORD_in_relationalExpression978); if (failed) return value;
+                    match(input,WORD,FOLLOW_WORD_in_relationalExpression979); if (failed) return value;
                     dbg.location(133,188);
                     if ( backtracking==0 ) {
                       value = w.getText();
@@ -6865,7 +5344,7 @@ public class gscriptParser extends DebugParser {
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
             	        dbg.recognitionException(mse);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression986);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression987);    throw mse;
             	    }
 
             	    dbg.location(133,265);
@@ -6937,7 +5416,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:266: function
             	            {
             	            dbg.location(133,266);
-            	            pushFollow(FOLLOW_function_in_relationalExpression1007);
+            	            pushFollow(FOLLOW_function_in_relationalExpression1008);
             	            function();
             	            _fsp--;
             	            if (failed) return value;
@@ -6950,7 +5429,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:275: HEXNUMBER
             	            {
             	            dbg.location(133,275);
-            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1009); if (failed) return value;
+            	            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1010); if (failed) return value;
 
             	            }
             	            break;
@@ -6960,7 +5439,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:285: STRING
             	            {
             	            dbg.location(133,285);
-            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression1011); if (failed) return value;
+            	            match(input,STRING,FOLLOW_STRING_in_relationalExpression1012); if (failed) return value;
 
             	            }
             	            break;
@@ -6970,7 +5449,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:292: NUMBER
             	            {
             	            dbg.location(133,292);
-            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1013); if (failed) return value;
+            	            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1014); if (failed) return value;
 
             	            }
             	            break;
@@ -6980,7 +5459,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:299: variable
             	            {
             	            dbg.location(133,299);
-            	            pushFollow(FOLLOW_variable_in_relationalExpression1015);
+            	            pushFollow(FOLLOW_variable_in_relationalExpression1016);
             	            variable();
             	            _fsp--;
             	            if (failed) return value;
@@ -6993,7 +5472,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:308: WORD
             	            {
             	            dbg.location(133,308);
-            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression1017); if (failed) return value;
+            	            match(input,WORD,FOLLOW_WORD_in_relationalExpression1018); if (failed) return value;
 
             	            }
             	            break;
@@ -7062,9 +5541,9 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:3: 'repeat' e= expression (s= statement )
             {
             dbg.location(137,3);
-            match(input,67,FOLLOW_67_in_repeatstatement1038); if (failed) return value;
+            match(input,67,FOLLOW_67_in_repeatstatement1039); if (failed) return value;
             dbg.location(137,13);
-            pushFollow(FOLLOW_expression_in_repeatstatement1042);
+            pushFollow(FOLLOW_expression_in_repeatstatement1043);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -7075,7 +5554,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:26: s= statement
             {
             dbg.location(137,27);
-            pushFollow(FOLLOW_statement_in_repeatstatement1047);
+            pushFollow(FOLLOW_statement_in_repeatstatement1048);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -7129,7 +5608,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:141:3: 'break'
             {
             dbg.location(141,3);
-            match(input,68,FOLLOW_68_in_breakstatement1063); if (failed) return value;
+            match(input,68,FOLLOW_68_in_breakstatement1064); if (failed) return value;
             dbg.location(141,12);
             if ( backtracking==0 ) {
               System.out.println("break;");
@@ -7181,7 +5660,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'continue'
             {
             dbg.location(144,3);
-            match(input,69,FOLLOW_69_in_continuestatement1080); if (failed) return value;
+            match(input,69,FOLLOW_69_in_continuestatement1081); if (failed) return value;
             dbg.location(144,14);
             if ( backtracking==0 ) {
               System.out.println("continue;");
@@ -7238,16 +5717,16 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:148:3: 'do' s= statement 'until' e= expression
             {
             dbg.location(148,3);
-            match(input,70,FOLLOW_70_in_dostatement1097); if (failed) return value;
+            match(input,70,FOLLOW_70_in_dostatement1098); if (failed) return value;
             dbg.location(148,9);
-            pushFollow(FOLLOW_statement_in_dostatement1101);
+            pushFollow(FOLLOW_statement_in_dostatement1102);
             s=statement();
             _fsp--;
             if (failed) return value;
             dbg.location(148,20);
-            match(input,71,FOLLOW_71_in_dostatement1103); if (failed) return value;
+            match(input,71,FOLLOW_71_in_dostatement1104); if (failed) return value;
             dbg.location(148,29);
-            pushFollow(FOLLOW_expression_in_dostatement1107);
+            pushFollow(FOLLOW_expression_in_dostatement1108);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -7303,9 +5782,9 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:3: 'while' e= expression (s= statement )
             {
             dbg.location(152,3);
-            match(input,72,FOLLOW_72_in_whilestatement1122); if (failed) return value;
+            match(input,72,FOLLOW_72_in_whilestatement1123); if (failed) return value;
             dbg.location(152,12);
-            pushFollow(FOLLOW_expression_in_whilestatement1126);
+            pushFollow(FOLLOW_expression_in_whilestatement1127);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -7316,7 +5795,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:25: s= statement
             {
             dbg.location(152,26);
-            pushFollow(FOLLOW_statement_in_whilestatement1131);
+            pushFollow(FOLLOW_statement_in_whilestatement1132);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -7379,30 +5858,30 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:156:3: 'for' '(' s1= statement e= expression ';' s2= statement ')' s= statement
             {
             dbg.location(156,3);
-            match(input,73,FOLLOW_73_in_forstatement1147); if (failed) return value;
+            match(input,73,FOLLOW_73_in_forstatement1148); if (failed) return value;
             dbg.location(156,9);
-            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1149); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1150); if (failed) return value;
             dbg.location(156,15);
-            pushFollow(FOLLOW_statement_in_forstatement1153);
+            pushFollow(FOLLOW_statement_in_forstatement1154);
             s1=statement();
             _fsp--;
             if (failed) return value;
             dbg.location(156,27);
-            pushFollow(FOLLOW_expression_in_forstatement1157);
+            pushFollow(FOLLOW_expression_in_forstatement1158);
             e=expression();
             _fsp--;
             if (failed) return value;
             dbg.location(156,39);
-            match(input,36,FOLLOW_36_in_forstatement1159); if (failed) return value;
+            match(input,36,FOLLOW_36_in_forstatement1160); if (failed) return value;
             dbg.location(156,45);
-            pushFollow(FOLLOW_statement_in_forstatement1163);
+            pushFollow(FOLLOW_statement_in_forstatement1164);
             s2=statement();
             _fsp--;
             if (failed) return value;
             dbg.location(156,56);
-            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1165); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1166); if (failed) return value;
             dbg.location(156,61);
-            pushFollow(FOLLOW_statement_in_forstatement1169);
+            pushFollow(FOLLOW_statement_in_forstatement1170);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -7453,7 +5932,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:3: 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}'
             {
             dbg.location(160,3);
-            match(input,74,FOLLOW_74_in_switchstatement1184); if (failed) return value;
+            match(input,74,FOLLOW_74_in_switchstatement1185); if (failed) return value;
             dbg.location(160,12);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:12: ( expression )
             dbg.enterAlt(1);
@@ -7461,7 +5940,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:13: expression
             {
             dbg.location(160,13);
-            pushFollow(FOLLOW_expression_in_switchstatement1187);
+            pushFollow(FOLLOW_expression_in_switchstatement1188);
             expression();
             _fsp--;
             if (failed) return value;
@@ -7469,7 +5948,7 @@ public class gscriptParser extends DebugParser {
             }
 
             dbg.location(160,25);
-            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1190); if (failed) return value;
+            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1191); if (failed) return value;
             dbg.location(160,29);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:29: ( ( 'case' | 'default' ) expression ':' ( statement )* )*
             try { dbg.enterSubRule(35);
@@ -7504,16 +5983,16 @@ public class gscriptParser extends DebugParser {
             	        MismatchedSetException mse =
             	            new MismatchedSetException(null,input);
             	        dbg.recognitionException(mse);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1193);    throw mse;
+            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1194);    throw mse;
             	    }
 
             	    dbg.location(160,49);
-            	    pushFollow(FOLLOW_expression_in_switchstatement1199);
+            	    pushFollow(FOLLOW_expression_in_switchstatement1200);
             	    expression();
             	    _fsp--;
             	    if (failed) return value;
             	    dbg.location(160,60);
-            	    match(input,77,FOLLOW_77_in_switchstatement1201); if (failed) return value;
+            	    match(input,77,FOLLOW_77_in_switchstatement1202); if (failed) return value;
             	    dbg.location(160,64);
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:64: ( statement )*
             	    try { dbg.enterSubRule(34);
@@ -7539,7 +6018,7 @@ public class gscriptParser extends DebugParser {
             	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:65: statement
             	    	    {
             	    	    dbg.location(160,65);
-            	    	    pushFollow(FOLLOW_statement_in_switchstatement1204);
+            	    	    pushFollow(FOLLOW_statement_in_switchstatement1205);
             	    	    statement();
             	    	    _fsp--;
             	    	    if (failed) return value;
@@ -7564,7 +6043,7 @@ public class gscriptParser extends DebugParser {
             } finally {dbg.exitSubRule(35);}
 
             dbg.location(160,79);
-            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1210); if (failed) return value;
+            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1211); if (failed) return value;
             dbg.location(160,83);
             if ( backtracking==0 ) {
               value ="";
@@ -7617,14 +6096,14 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:164:3: 'with' e= expression s= statement
             {
             dbg.location(164,3);
-            match(input,78,FOLLOW_78_in_withstatement1226); if (failed) return value;
+            match(input,78,FOLLOW_78_in_withstatement1227); if (failed) return value;
             dbg.location(164,12);
-            pushFollow(FOLLOW_expression_in_withstatement1231);
+            pushFollow(FOLLOW_expression_in_withstatement1232);
             e=expression();
             _fsp--;
             if (failed) return value;
             dbg.location(164,26);
-            pushFollow(FOLLOW_statement_in_withstatement1236);
+            pushFollow(FOLLOW_statement_in_withstatement1237);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -7685,7 +6164,7 @@ public class gscriptParser extends DebugParser {
               System.out.println("assignment ");
             }
             dbg.location(168,46);
-            pushFollow(FOLLOW_variable_in_assignment1255);
+            pushFollow(FOLLOW_variable_in_assignment1256);
             valuee=variable();
             _fsp--;
             if (failed) return value;
@@ -7700,11 +6179,11 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1259);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1260);    throw mse;
             }
 
             dbg.location(168,108);
-            pushFollow(FOLLOW_expression_in_assignment1282);
+            pushFollow(FOLLOW_expression_in_assignment1283);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -7809,7 +6288,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:39: a= array
                     {
                     dbg.location(172,40);
-                    pushFollow(FOLLOW_array_in_variable1302);
+                    pushFollow(FOLLOW_array_in_variable1303);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
@@ -7836,7 +6315,7 @@ public class gscriptParser extends DebugParser {
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
                         dbg.recognitionException(mse);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1307);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1308);    throw mse;
                     }
 
                     dbg.location(172,96);
@@ -7900,9 +6379,9 @@ public class gscriptParser extends DebugParser {
             {
             dbg.location(176,4);
             n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1331); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_function1332); if (failed) return value;
             dbg.location(176,10);
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1333); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1334); if (failed) return value;
             dbg.location(176,14);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt39=2;
@@ -7923,7 +6402,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
                     dbg.location(176,16);
-                    pushFollow(FOLLOW_expression_in_function1338);
+                    pushFollow(FOLLOW_expression_in_function1339);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -7962,7 +6441,7 @@ public class gscriptParser extends DebugParser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:50: ','
                     	    {
                     	    dbg.location(176,50);
-                    	    match(input,42,FOLLOW_42_in_function1344); if (failed) return value;
+                    	    match(input,42,FOLLOW_42_in_function1345); if (failed) return value;
 
                     	    }
 
@@ -7986,7 +6465,7 @@ public class gscriptParser extends DebugParser {
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:56: e= expression
                     	            {
                     	            dbg.location(176,57);
-                    	            pushFollow(FOLLOW_expression_in_function1350);
+                    	            pushFollow(FOLLOW_expression_in_function1351);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -8019,7 +6498,7 @@ public class gscriptParser extends DebugParser {
             } finally {dbg.exitSubRule(39);}
 
             dbg.location(176,100);
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1359); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1360); if (failed) return value;
             dbg.location(176,104);
             if ( backtracking==0 ) {
               value =pc.functionstatement(n.getText(), value);
@@ -8072,9 +6551,9 @@ public class gscriptParser extends DebugParser {
             {
             dbg.location(180,5);
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21377); if (failed) return value;
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21378); if (failed) return value;
             dbg.location(180,12);
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21379); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21380); if (failed) return value;
             dbg.location(180,16);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:16: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt42=2;
@@ -8095,7 +6574,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:17: e= expression ( ( ',' ) (e= expression )? )*
                     {
                     dbg.location(180,18);
-                    pushFollow(FOLLOW_expression_in_function21384);
+                    pushFollow(FOLLOW_expression_in_function21385);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -8134,7 +6613,7 @@ public class gscriptParser extends DebugParser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:51: ','
                     	    {
                     	    dbg.location(180,51);
-                    	    match(input,42,FOLLOW_42_in_function21389); if (failed) return value;
+                    	    match(input,42,FOLLOW_42_in_function21390); if (failed) return value;
 
                     	    }
 
@@ -8158,7 +6637,7 @@ public class gscriptParser extends DebugParser {
                     	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:57: e= expression
                     	            {
                     	            dbg.location(180,58);
-                    	            pushFollow(FOLLOW_expression_in_function21395);
+                    	            pushFollow(FOLLOW_expression_in_function21396);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
@@ -8191,7 +6670,7 @@ public class gscriptParser extends DebugParser {
             } finally {dbg.exitSubRule(42);}
 
             dbg.location(180,101);
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21404); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21405); if (failed) return value;
             dbg.location(180,105);
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
@@ -8257,18 +6736,18 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1426);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1427);    throw mse;
             }
 
             dbg.location(184,66);
-            match(input,86,FOLLOW_86_in_array1434); if (failed) return value;
+            match(input,86,FOLLOW_86_in_array1435); if (failed) return value;
             dbg.location(184,71);
-            pushFollow(FOLLOW_expression_in_array1438);
+            pushFollow(FOLLOW_expression_in_array1439);
             e=expression();
             _fsp--;
             if (failed) return value;
             dbg.location(184,83);
-            match(input,87,FOLLOW_87_in_array1440); if (failed) return value;
+            match(input,87,FOLLOW_87_in_array1441); if (failed) return value;
             dbg.location(184,87);
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),input.toString(e.start,e.stop));
@@ -8398,7 +6877,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:91:47: elsestatement
         {
         dbg.location(91,50);
-        pushFollow(FOLLOW_elsestatement_in_synpred42634);
+        pushFollow(FOLLOW_elsestatement_in_synpred42635);
         elsestatement();
         _fsp--;
         if (failed) return ;
@@ -8415,7 +6894,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:117: aexpression
         {
         dbg.location(100,120);
-        pushFollow(FOLLOW_aexpression_in_synpred46715);
+        pushFollow(FOLLOW_aexpression_in_synpred46716);
         aexpression();
         _fsp--;
         if (failed) return ;
@@ -8474,7 +6953,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:163: andexpression
                 {
                 dbg.location(100,166);
-                pushFollow(FOLLOW_andexpression_in_synpred49725);
+                pushFollow(FOLLOW_andexpression_in_synpred49726);
                 andexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8487,7 +6966,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:205: orexpression
                 {
                 dbg.location(100,209);
-                pushFollow(FOLLOW_orexpression_in_synpred49730);
+                pushFollow(FOLLOW_orexpression_in_synpred49731);
                 orexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8500,7 +6979,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:248: xorexpression
                 {
                 dbg.location(100,250);
-                pushFollow(FOLLOW_xorexpression_in_synpred49735);
+                pushFollow(FOLLOW_xorexpression_in_synpred49736);
                 xorexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8518,7 +6997,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:100:290: expression
         {
         dbg.location(100,292);
-        pushFollow(FOLLOW_expression_in_synpred49742);
+        pushFollow(FOLLOW_expression_in_synpred49743);
         expression();
         _fsp--;
         if (failed) return ;
@@ -8538,7 +7017,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:69: expression
         {
         dbg.location(108,69);
-        pushFollow(FOLLOW_expression_in_synpred62813);
+        pushFollow(FOLLOW_expression_in_synpred62814);
         expression();
         _fsp--;
         if (failed) return ;
@@ -8555,7 +7034,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:122: variable
         {
         dbg.location(133,124);
-        pushFollow(FOLLOW_variable_in_synpred73968);
+        pushFollow(FOLLOW_variable_in_synpred73969);
         variable();
         _fsp--;
         if (failed) return ;
@@ -8572,7 +7051,7 @@ public class gscriptParser extends DebugParser {
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:299: variable
         {
         dbg.location(133,299);
-        pushFollow(FOLLOW_variable_in_synpred871015);
+        pushFollow(FOLLOW_variable_in_synpred871016);
         variable();
         _fsp--;
         if (failed) return ;
@@ -8598,7 +7077,7 @@ public class gscriptParser extends DebugParser {
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
             dbg.recognitionException(mse);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred88986);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred88987);    throw mse;
         }
 
         dbg.location(133,265);
@@ -8670,7 +7149,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:266: function
                 {
                 dbg.location(133,266);
-                pushFollow(FOLLOW_function_in_synpred881007);
+                pushFollow(FOLLOW_function_in_synpred881008);
                 function();
                 _fsp--;
                 if (failed) return ;
@@ -8683,7 +7162,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:275: HEXNUMBER
                 {
                 dbg.location(133,275);
-                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred881009); if (failed) return ;
+                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred881010); if (failed) return ;
 
                 }
                 break;
@@ -8693,7 +7172,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:285: STRING
                 {
                 dbg.location(133,285);
-                match(input,STRING,FOLLOW_STRING_in_synpred881011); if (failed) return ;
+                match(input,STRING,FOLLOW_STRING_in_synpred881012); if (failed) return ;
 
                 }
                 break;
@@ -8703,7 +7182,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:292: NUMBER
                 {
                 dbg.location(133,292);
-                match(input,NUMBER,FOLLOW_NUMBER_in_synpred881013); if (failed) return ;
+                match(input,NUMBER,FOLLOW_NUMBER_in_synpred881014); if (failed) return ;
 
                 }
                 break;
@@ -8713,7 +7192,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:299: variable
                 {
                 dbg.location(133,299);
-                pushFollow(FOLLOW_variable_in_synpred881015);
+                pushFollow(FOLLOW_variable_in_synpred881016);
                 variable();
                 _fsp--;
                 if (failed) return ;
@@ -8726,7 +7205,7 @@ public class gscriptParser extends DebugParser {
                 // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:308: WORD
                 {
                 dbg.location(133,308);
-                match(input,WORD,FOLLOW_WORD_in_synpred881017); if (failed) return ;
+                match(input,WORD,FOLLOW_WORD_in_synpred881018); if (failed) return ;
 
                 }
                 break;
@@ -8999,127 +7478,127 @@ public class gscriptParser extends DebugParser {
     public static final BitSet FOLLOW_42_in_varstatement543 = new BitSet(new long[]{0x0000000018200000L});
     public static final BitSet FOLLOW_variable_in_varstatement548 = new BitSet(new long[]{0x0000040000000002L});
     public static final BitSet FOLLOW_assignment_in_varstatement554 = new BitSet(new long[]{0x0000040000000002L});
-    public static final BitSet FOLLOW_45_in_returnstatement576 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_returnstatement581 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_exitstatement597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ifstatement614 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_ifstatement618 = new BitSet(new long[]{0x0001E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_48_in_ifstatement621 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_ifstatement628 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_ifstatement634 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_49_in_elsestatement654 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_50_in_elsestatement657 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_elsestatement661 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_elsestatement670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pexpression_in_expression698 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_relationalExpression_in_expression703 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_notexpression_in_expression708 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_aexpression_in_expression715 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_andexpression_in_expression725 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_expression730 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_expression735 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_expression742 = new BitSet(new long[]{0xF000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_set_in_notexpression761 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_notexpression769 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_aexpression786 = new BitSet(new long[]{0x001800001FA00102L});
-    public static final BitSet FOLLOW_expression_in_aexpression813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_value834 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_value836 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_value838 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_value840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_pexpression857 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_pexpression861 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_pexpression863 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_andexpression880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_orexpression901 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_xorexpression922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_relationalExpression948 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression953 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression958 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression963 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression968 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression973 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression978 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_relationalExpression986 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_relationalExpression1007 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1009 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression1011 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1013 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression1015 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1017 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_67_in_repeatstatement1038 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_repeatstatement1042 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_repeatstatement1047 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_breakstatement1063 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_continuestatement1080 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_dostatement1097 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_dostatement1101 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_dostatement1103 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_dostatement1107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_whilestatement1122 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_whilestatement1126 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_whilestatement1131 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_forstatement1147 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_forstatement1149 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1153 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_forstatement1157 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_forstatement1159 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1163 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_forstatement1165 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1169 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_switchstatement1184 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1187 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LBRAC_in_switchstatement1190 = new BitSet(new long[]{0x0000000000000800L,0x0000000000001800L});
-    public static final BitSet FOLLOW_set_in_switchstatement1193 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1199 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_switchstatement1201 = new BitSet(new long[]{0x0000E88018200C00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_statement_in_switchstatement1204 = new BitSet(new long[]{0x0000E88018200C00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_RBRAC_in_switchstatement1210 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_withstatement1226 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_withstatement1231 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_withstatement1236 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_assignment1255 = new BitSet(new long[]{0x0000000000001000L,0x00000000003F8004L});
-    public static final BitSet FOLLOW_set_in_assignment1259 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_assignment1282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1302 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_variable1307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function1331 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1333 = new BitSet(new long[]{0x001800001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1338 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_42_in_function1344 = new BitSet(new long[]{0x001804001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function1350 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OIVAR_in_function21377 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21379 = new BitSet(new long[]{0x001800001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21384 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_42_in_function21389 = new BitSet(new long[]{0x001804001FA00300L});
-    public static final BitSet FOLLOW_expression_in_function21395 = new BitSet(new long[]{0x0000040000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21404 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1426 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_array1434 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_array1438 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_array1440 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_45_in_returnstatement577 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_returnstatement582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_exitstatement598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ifstatement615 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_ifstatement619 = new BitSet(new long[]{0x0001E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_48_in_ifstatement622 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_ifstatement629 = new BitSet(new long[]{0x0006000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_ifstatement635 = new BitSet(new long[]{0x0006000000000002L});
+    public static final BitSet FOLLOW_49_in_elsestatement655 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_50_in_elsestatement658 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_elsestatement662 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_elsestatement671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pexpression_in_expression699 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_relationalExpression_in_expression704 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_notexpression_in_expression709 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_aexpression_in_expression716 = new BitSet(new long[]{0xFFE00000004000F2L,0x0000000000000003L});
+    public static final BitSet FOLLOW_andexpression_in_expression726 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_expression731 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_expression736 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_expression743 = new BitSet(new long[]{0xF000000000000002L,0x0000000000000003L});
+    public static final BitSet FOLLOW_set_in_notexpression762 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_notexpression770 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_aexpression787 = new BitSet(new long[]{0x001800001FA00102L});
+    public static final BitSet FOLLOW_expression_in_aexpression814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_value835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_value837 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_value839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_value841 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_pexpression858 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_pexpression862 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_pexpression864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_andexpression881 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_orexpression902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_xorexpression923 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_relationalExpression949 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression954 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression959 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression964 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression969 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression974 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression979 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_set_in_relationalExpression987 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1008 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1010 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1012 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1014 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1016 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1018 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
+    public static final BitSet FOLLOW_67_in_repeatstatement1039 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_repeatstatement1043 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_repeatstatement1048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_breakstatement1064 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_continuestatement1081 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_dostatement1098 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_dostatement1102 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
+    public static final BitSet FOLLOW_71_in_dostatement1104 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_dostatement1108 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_72_in_whilestatement1123 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_whilestatement1127 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_whilestatement1132 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_forstatement1148 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_forstatement1150 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1154 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_forstatement1158 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_forstatement1160 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1164 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_forstatement1166 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_forstatement1170 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_switchstatement1185 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1188 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LBRAC_in_switchstatement1191 = new BitSet(new long[]{0x0000000000000800L,0x0000000000001800L});
+    public static final BitSet FOLLOW_set_in_switchstatement1194 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1200 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
+    public static final BitSet FOLLOW_77_in_switchstatement1202 = new BitSet(new long[]{0x0000E88018200C00L,0x0000000000005F78L});
+    public static final BitSet FOLLOW_statement_in_switchstatement1205 = new BitSet(new long[]{0x0000E88018200C00L,0x0000000000005F78L});
+    public static final BitSet FOLLOW_RBRAC_in_switchstatement1211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_78_in_withstatement1227 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_withstatement1232 = new BitSet(new long[]{0x0000E88018200400L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_withstatement1237 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_assignment1256 = new BitSet(new long[]{0x0000000000001000L,0x00000000003F8004L});
+    public static final BitSet FOLLOW_set_in_assignment1260 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_assignment1283 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1303 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_variable1308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_function1332 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1334 = new BitSet(new long[]{0x001800001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1339 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_42_in_function1345 = new BitSet(new long[]{0x001804001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function1351 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21378 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21380 = new BitSet(new long[]{0x001800001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21385 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_42_in_function21390 = new BitSet(new long[]{0x001804001FA00300L});
+    public static final BitSet FOLLOW_expression_in_function21396 = new BitSet(new long[]{0x0000040000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21405 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1427 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
+    public static final BitSet FOLLOW_86_in_array1435 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_array1439 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_array1441 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred1199 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_synpred20333 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_synpred24368 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_40_in_synpred29419 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred38531 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred39548 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_synpred42634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aexpression_in_synpred46715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andexpression_in_synpred49725 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_orexpression_in_synpred49730 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_xorexpression_in_synpred49735 = new BitSet(new long[]{0x001800001FA00100L});
-    public static final BitSet FOLLOW_expression_in_synpred49742 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred62813 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred73968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred871015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred88986 = new BitSet(new long[]{0x000000001BA00000L});
-    public static final BitSet FOLLOW_function_in_synpred881007 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred881009 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred881011 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred881013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred881015 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred881017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_synpred42635 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aexpression_in_synpred46716 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andexpression_in_synpred49726 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_orexpression_in_synpred49731 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_xorexpression_in_synpred49736 = new BitSet(new long[]{0x001800001FA00100L});
+    public static final BitSet FOLLOW_expression_in_synpred49743 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred62814 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred73969 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred871016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred88987 = new BitSet(new long[]{0x000000001BA00000L});
+    public static final BitSet FOLLOW_function_in_synpred881008 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred881010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred881012 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred881014 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred881016 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred881018 = new BitSet(new long[]{0x0000000000000002L});
 
 }

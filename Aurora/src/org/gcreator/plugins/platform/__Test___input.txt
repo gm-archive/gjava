@@ -1,1 +1,8 @@
-//test comment
+functionname(arg1, arg2) {
+}
+
+final function2(arg) {
+}
+
+private final function3() {
+}

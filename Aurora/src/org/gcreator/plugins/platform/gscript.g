@@ -1,7 +1,7 @@
 grammar gscript;
 
 options {
-k = 4;
+k = 3;
 backtrack = true;
 memoize=true;
 }
@@ -26,7 +26,7 @@ COMMENT1 = '//';
 DOC_COMMENT;
 }
 @members {
-public PlatformCore pc;
+public PlatformCore pc = new PlatformCore();
 
 public void setPlatform(PlatformCore p)
 {
@@ -76,7 +76,7 @@ bstatement returns [String value]
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: 'var' (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*  {$value=pc.varstatement("var",s);} 
+: 'var' (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*   {$value=pc.varstatement("var",s);} 
 ;
 
 returnstatement returns [String value]
