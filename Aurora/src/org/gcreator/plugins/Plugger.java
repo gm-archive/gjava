@@ -41,17 +41,9 @@ public class Plugger {
                         plugins[i] = (PluginCore) instance;
                     }
                         }
-                    } catch(Exception e){ 
-            System.out.println(e.toString());
-            
-        }
+                    } catch(Exception e){}
                     
                 }
-            }
-            for(int i = 0; i < plugins.length; i++){
-                if(plugins[i]==null)
-                    break;
-                System.out.println(i + ": " + plugins[i].toString());
             }
             return plugins;
         //}
