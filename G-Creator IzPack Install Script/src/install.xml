@@ -11,52 +11,59 @@
 <installation version="1.0">
     <info>
         <appname>G-Creator</appname>
-        <appversion>1.0 alpha 1</appversion>
+        <appversion>1.0 Milestone 2</appversion>
         <authors>
-            <!--TODO -->
+            <author name="Luís Reis" email="luiscubal@gmail.com" />
+            <author name="TGMG" email=""/><!--email?-->
         </authors>
         <url>http://www.g-creator.org</url>
+        <javaversion>1.5</javaversion>
     </info>
     
-    <guiprefs width="640" height="480" resizable="no"/>
+    <guiprefs width="640" height="480" resizable="no" />
     
     <locale>
-        <langpack iso3="English" />
+        <langpack iso3="eng" />
     </locale>
     
     <resources>
         <res id="InfoPanel.info" src="README.txt"/>
-        <res id="LicencePanel.licence" src="GPLv3.txt"/>
+        <res id="HTMLLicencePanel.licence" src="GPLv3.html"/>
     </resources>
     
     <panels>
         <panel classname="HelloPanel"/>
-        <panel classname="AboutPanel"/>
-        <panel classname="LicencePanel"/>
-        <panel classname="TargetPanel"/> 
+        <!--panel classname="AboutPanel"/-->
+        <panel classname="HTMLLicencePanel"/>
         <panel classname="PacksPanel"/>
+        <panel classname="TargetPanel"/>
         <panel classname="InstallPanel"/>
-        <panel classname="FinishPanel"/>
+        <panel classname="SimpleFinishPanel"/>
     </panels>
     
     <packs>
         <pack name="G-Creator" required="yes">
             <description>G-Creator core files</description>
-            <file src="Readme.txt" targetdir="$INSTALL_PATH"/>
+            <!--file src="Readme.txt" targetdir="$INSTALL_PATH"/>
             <file src="Licence.txt" targetdir="$INSTALL_PATH"/>
-            <!----><file src="G-Creator.jar" targetdir="$INSTALL_PATH"/>
+            <file src="G-Creator.jar" targetdir="$INSTALL_PATH"/-->
+            <fileset dir="G-Creator" targetdir="$INSTALL_PATH">
+                <include name="*.*"/>
+            </fileset>
         </pack>
         <pack name="G-Java" required="no">
             <description>Generates Java applications and applets</description>
-            <!--G-Java files: $INSTALL_PATH/plugins/...-->
+            <!--fileset dir="G-Java" targetdir="$INSTALL_PATH/plugins">
+                <include name="*"/>
+            </fileset-->
         </pack>
-        <pack name="G-C++" required="no">
-            <description>Generates Allegro C++ code, which can be compiled into Windows and Linux applications</description>
+        <pack name="G-C#" required="no">
+            <description>Generates C# applications that can be run with .NET and Mono</description>
             <!--G-C++ files: $INSTALL_PATH/plugins/...-->
         </pack>
-        <pack name="G-Plus" required="no">
-            <description>Allows the user to compile G-Creator extensions</description>
-            <!--G-Plus files: $INSTALL_PATH/plugins/...-->
+        <pack name="Game Maker Importer" required="no">
+            <description>Imports a gmd, gm6 or gmk file and converts it into a G-Creator project</description>
+            <!--G-C++ files: $INSTALL_PATH/plugins/...-->
         </pack>
     </packs>
     
