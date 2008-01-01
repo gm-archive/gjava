@@ -1,10 +1,5 @@
 /*
  * PlatformCore.java
- *
- * Created on 07-Sep-2007, 19:34:25
- *
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 
 package org.gcreator.plugins;
@@ -107,7 +102,9 @@ public class PlatformCore extends PluginCore {
      */
     public String varstatement(String type, String vars) {
         //System.out.println("Var statement: " + type + vars);
-        return type + " "+vars+";";
+        if (type.equals("var"))
+            type = "Object";
+        return type + " "+vars;
     }
 
     public String fieldstatement(String m, String varstatement) {
@@ -209,6 +206,36 @@ public class PlatformCore extends PluginCore {
     public String methodstatement(String m, String retvalue, String name, String st, String args) {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
+    
+    public String aexpression(String operator, String expression)
+    {
+        if (operator.equals("+"))
+        return ".add("+expression+")";
+        else if (operator.equals("-"))
+        return ".sub("+expression+")";
+        return "";
+    }
+    
+    public String relationalExpression(String name, String operator, String name2)
+    {
+        if (operator.equals("=="))
+        return name+".equals("+name2+")";
+        else if (operator.equals("="))
+        return name+".equals("+name2+")";
+        else if (operator.equals(":="))
+        return name+".equals("+name2+")";
+        else if (operator.equals("!="))  
+        return name+".notequals("+name2+")";
+        else if (operator.equals(">"))
+        return name+".gt("+name2+")";
+        else if (operator.equals(">="))
+        return name+".gte("+name2+")";
+        else if (operator.equals("<"))
+        return name+".lt("+name2+")";
+        else if (operator.equals("<="))
+        return name+".lte("+name2+")";
+        else return "";
+    }
 
     public String parseGCL(String code, PlatformCore p) throws IOException {
         //change code simply for testing
