@@ -40,7 +40,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         /**
          * Opens the text file for reading and writing. Don't forget to close them once you are finished with them.
          * @param fname
-         * @return
+         * @param readwrite 
          */
         public void open(String fname,int readwrite) {
             try {
@@ -69,7 +69,6 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Closes the file.
-         * @param fname The FileWriter object to close
          * 
          */
         public void close() {
@@ -83,9 +82,8 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
        /**
          * Writes the string to the file.
-         * @param fname
-         * @return
-         */
+        * @param str 
+        */
         public void writeString(String str) {
             try {
                 writer.write(str);
@@ -96,7 +94,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Write the real value to the file.
-         * @param fname
+         * @param x 
          */
         public void writeDouble(double x) {
             try {
@@ -108,8 +106,6 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Write a newline character to the file.
-         * @param fname
-         * @return
          */
         public void newLine() {
             try {
@@ -121,8 +117,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Reads a string from the file and returns this string. A string ends at the end of line.
-         * @param fname
-         * @return
+         * @return 
          */
         public String readString() {
             try {
@@ -135,8 +130,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Reads a double value from the file and returns this value.
-         * @param fname
-         * @return
+         * @return 
          */
         public double readDouble() {
             try {
@@ -150,10 +144,10 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
                     thenumber += "" + reader.read();
                 }
 
-                return StringH.real(thenumber);
+                return Double.parseDouble(thenumber);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                GScript.msgbox("Error reading double!", 1);
+                
                 return 0;
             }
         }
@@ -172,8 +166,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
 
         /**
          * Returns whether we reached the end of the file in the reader.
-         * @param fileid
-         * @return
+         * @return 
          */
         public boolean endOfFile() {
             try {
@@ -269,7 +262,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @return
          */
         public static String getFileName(String fname) {
-            return StringH.string_replace(fname, getFilePath(fname), "");
+            return org.gcreator.compilers.gjava.api.lang.String.replace(fname, getFilePath(fname), "");
         }
 
         /**
