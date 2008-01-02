@@ -53,9 +53,9 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         String labelText = (String) node.getUserObject();
         if (node instanceof ObjectNode) {
             ObjectNode noder = (ObjectNode) node;
-            if (!tree.isEditing()) {
+            /*if (!tree.isEditing()) {
                 tree.setEditable(noder.object.editable);
-            }
+            }*/
             labelText = noder.object.name;
 //            val = noder.getUserObject().toString();
 //            if (edition != tree.isEditing() && tree.isEditing() == false) {
@@ -63,10 +63,11 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
 //                noder.object.name = "hey";//val;
 //            }
         } else {
-            if (!tree.isEditing()) {
+            /*if (!tree.isEditing()) {
                 tree.setEditable(false);
-            }
+            }*/
         }
+        tree.setEditable(false);
 
         edition = tree.isEditing();
         try{
