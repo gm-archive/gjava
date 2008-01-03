@@ -24,8 +24,8 @@ import org.gcreator.plugins.platform.gscriptLexer;
 import org.gcreator.plugins.platform.gscriptParser;
 
 /**
- *
- * @author Ali1
+ * The main PlaformCore class, all converters should extend this class!
+ * @author TGMG
  */
 public class PlatformCore extends PluginCore {
 
@@ -116,11 +116,11 @@ public class PlatformCore extends PluginCore {
     }
 
     public String exitstatement() {
-        return "return;";
+        return "return null;";
     }
 
     public String ifstatement(String exp, String statement, String elses) {
-        return "if (" + exp + ") \n" + statement + " \n " + elses;
+        return "if (" + exp + ".getBoolean()) \n" + statement + " \n " + elses;
     }
 
     public String elsestatement(String statement) {
@@ -132,6 +132,7 @@ public class PlatformCore extends PluginCore {
     }
 
     public String expression(String ex) {
+       // System.out.println("Expression:"+ex);
         return ex;
     }
     
@@ -172,11 +173,14 @@ public class PlatformCore extends PluginCore {
     }
     
     public String whilestatement(String exp, String st) {
-        return "while ("+exp + ") "+ st;
+        return "while ("+exp + ".getBoolean()) "+ st;
     }
     
     public String forstatement(String statement1, String exp, String statement2, String statements) {
-        return "for ("+statement1+"; "+exp+"; "+statement2+") "+statements;
+        System.out.println(statement2.substring(statement2.length()-1,statement2.length()));
+        if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";"))
+        statement2 = statement2.substring(0, statement2.length()-1);
+        return "for (Object"+statement1+exp+".getBoolean(); "+statement2+") "+statements;
     }
     
     public String switchstatement() {
@@ -188,7 +192,28 @@ public class PlatformCore extends PluginCore {
     }    
     
     public String assignmentstatement(String variable, String operator, String expression) {
-        return variable+" "+operator+" "+expression;
+        //System.out.println("assignment:"+expression);
+        if (operator.equals("="))
+            operator = "=";
+        else if (operator.equals(":="))
+            operator = "=";
+        else if (operator.equals("+="))
+            operator = ".add";
+        else if (operator.equals("*="))
+            operator = ".mult";
+        else if (operator.equals("-="))
+            operator = ".sub";
+        else if (operator.equals("/="))
+            operator = ".div";
+        else if (operator.equals("-="))
+            operator = ".sub";
+        else if (operator.equals("&="))
+            operator = ".band";
+        else if (operator.equals("|="))
+            operator = ".bor";
+        else if (operator.equals("^="))
+            operator = ".bxor";
+        return variable+operator+"("+expression+")";
     }
     
     public String functionstatement(String name, String parameters) {
@@ -207,17 +232,25 @@ public class PlatformCore extends PluginCore {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
     
+    /**
+     * For c++ change the '.' to '->'
+     * @param operator
+     * @param expression
+     * @return
+     */
     public String aexpression(String operator, String expression)
     {
+        //System.out.println("aexpression: "+operator+" "+expression);
         if (operator.equals("+"))
         return ".add("+expression+")";
         else if (operator.equals("-"))
         return ".sub("+expression+")";
-        return "";
+        return "aexpression";
     }
     
     public String relationalExpression(String name, String operator, String name2)
     {
+       // System.out.println("relationalExpression:"+name+" "+operator+" "+name2);
         if (operator.equals("=="))
         return name+".equals("+name2+")";
         else if (operator.equals("="))
@@ -234,7 +267,8 @@ public class PlatformCore extends PluginCore {
         return name+".lt("+name2+")";
         else if (operator.equals("<="))
         return name+".lte("+name2+")";
-        else return "";
+        else 
+            return name;
     }
 
     public String parseGCL(String code, PlatformCore p) throws IOException {
