@@ -58,7 +58,7 @@ code // never put: returns after this! This is for script and parameter code
 ;
 
 statement returns [String value]
-: {$value = "";}  (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value+";";}|e=exitstatement{$value += $e.value+";";}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}) (';')* 	
+: {$value = "";}  (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}) (';')* 	
 ;
 
 field returns [String value] //their are 2 finals in this for a reason ;)
@@ -83,11 +83,11 @@ returnstatement returns [String value]
 ;
 
 exitstatement returns [String value]
-:'exit'  {$value ="exit";}
+:'exit'  {$value =pc.exitstatement();}
 ;
 
 ifstatement returns [String value]
-:  'if' e=expression ('then')? (s=statement) (el=elsestatement{$value +=$el.value;})*  {$value =pc.ifstatement($e.value,$s.value,$value);}
+:  {$value = "";}'if' e=expression ('then')? (s=statement) (el=elsestatement{$value +=$el.value;})*  {$value =pc.ifstatement($e.value,$s.value,$value);}
 ;
 
 elsestatement returns [String value]
@@ -96,7 +96,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value =" "+$e.value;}))* {$value =pc.expression($value);}
+:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" "+$e.value;}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -105,7 +105,7 @@ notexpression returns [String value]
 
 // this ia an experssion that deals with operators such as +
 aexpression returns [String value]
-: a=('+'|'-'|'*'|'/'|'|'|'&'|'^'|'<<'|'>>'|'div'|'mod') (e=expression)? {$value =pc.aexpression($a.text,$e.value);}
+: a=('+'|'-'|'*'|'/'|'|'|'&'|'^'|'<<'|'>>'|'div'|'mod') (e=expression) {$value =pc.aexpression($a.text,$e.value);}
 ; //(NUMBER|HEXNUMBER|STRING|variable)
 
 value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
@@ -130,7 +130,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER{$value = $h.text;}|s=STRING{$value = $s.text;}|n=NUMBER{$value = $n.text;}|v=variable{$value = $v.value;}|d=DECIMAL{$value = $d.text;}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = $s.text;}|n=NUMBER{a = $n.text;}|v=variable{a = $v.value;}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER{$value = $h.text;}|s=STRING{$value = "(new String("+$s.text+"))";}|n=NUMBER{$value = "(new Integer("+$n.text+"))";}|v=variable{$value = $v.value;}|d=DECIMAL{$value = "(new Double("+$d.text+"))";}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = "(new String("+$s.text+"))";}|n=NUMBER{a = "(new Integer("+$n.text+"))";}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -165,7 +165,7 @@ withstatement returns [String value]
 ;
 
 assignment returns [String value]
-:  valuee=variable op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&\\'| '^=') e=expression {$value = pc.assignmentstatement($valuee.text,$op.text,$e.text);}
+:  valuee=variable op=('='|':='|'+='|'-='|'*='|'/='|'|='|'&='| '^=') e=expression {$value = pc.assignmentstatement($valuee.text,$op.text,$e.value);}
 ;
 
 variable returns [String value]
@@ -211,7 +211,7 @@ OIVAR : WORD '.' WORD ; /* Other instance variable */
 
 DECIMAL : NUMBER '.' NUMBER;
 
-WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
+WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
 
 fragment DIGIT : '0'..'9' ;
 
