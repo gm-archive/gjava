@@ -29,41 +29,56 @@ public class ProjectExporter {
 
         String config = getConfigFile(project);
         //byte[] buffer = new byte[18024];
+        ZipOutputStream out = null;
         try {
-            ZipOutputStream out = new ZipOutputStream(new FileOutputStream(filename));
-            
-            out.setLevel(Deflater.BEST_COMPRESSION);
-            //out.putNextEntry(new ZipEntry(""));
-            //out.closeEntry();
-
-            out.putNextEntry(new ZipEntry("config"));
-            for (int i = 0; i < config.length(); i++) {
-                out.write(config.charAt(i));
-            }
-            out.closeEntry();
-            a = 1;
-            putFolder(project, "", out);
-            out.close();
-            utilities.addStringMessage("Saved");
+            out = new ZipOutputStream(new FileOutputStream(filename));
         } catch (Exception e) {
             System.out.println("ProjectExport: " + e.getLocalizedMessage());
             return false;
         }
+        out.setLevel(Deflater.BEST_COMPRESSION);
+        //out.putNextEntry(new ZipEntry(""));
+        //out.closeEntry();
+
+        try{
+        out.putNextEntry(new ZipEntry("config"));
+        for (int i = 0; i < config.length(); i++) {
+            out.write(config.charAt(i));
+        }
+        out.closeEntry();
+        }
+        catch(Exception e){
+            System.out.println("ProjectExport: " + e.getLocalizedMessage());
+        }
+        a = 1;
+        putFolder(project, "", out);
+        try{
+            out.close();
+        }
+        catch(Exception e){
+            System.out.println("ProjectExport: " + e.getLocalizedMessage());
+        }
+        utilities.addStringMessage("Saved");
         return false; //Failed to export
     }
 
     private static int a;
     
-    public static void putFolder(Folder folder, String prefix, ZipOutputStream out) throws java.io.IOException {
+    public static void putFolder(Folder folder, String prefix, ZipOutputStream out){
         org.gcreator.fileclass.Object childNode;
 
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof org.gcreator.fileclass.File) {
-                    out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
-                    ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
-                    out.closeEntry();
+                    try{
+                        out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
+                        ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
+                        out.closeEntry();
+                    }
+                    catch(IOException e){
+                        System.out.println("ProjectExport: " + e.getLocalizedMessage());
+                    }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode, prefix + childNode.name + "/", out);
                 }
