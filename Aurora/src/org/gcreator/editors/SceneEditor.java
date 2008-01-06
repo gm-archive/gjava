@@ -54,6 +54,10 @@ public class SceneEditor extends TabPanel {
         return (Tileset) ((org.gcreator.fileclass.File) curtileset.getCurrentObject().object).value;
     }
     
+    /**
+     * Remove actors from the scene within the rectangle
+     * @param r
+     */
     public void eraseActorsAt(Rectangle r){
         Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
         while(e.hasMoreElements()){

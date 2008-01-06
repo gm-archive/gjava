@@ -17,6 +17,9 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.*;
 import org.gcreator.components.impl.*;
+//import org.newdawn.slick.Sound;
+import org.gcreator.fileclass.res.Sound;
+import org.newdawn.slick.SlickException;
 import sun.applet.AppletAudioClip;
 
 /**
@@ -25,13 +28,21 @@ import sun.applet.AppletAudioClip;
  */
 public class SoundEditor extends TabPanel {
     private org.gcreator.fileclass.File file;
-    /** Creates new form SoundEditor */
+    static int number = 0;
+    /** Creates new form SoundEditor
+     * @param file
+     * @param project 
+     */
     public SoundEditor(org.gcreator.fileclass.File file,Project project) {
+        if(!(file.value instanceof Sound))
+            file.value = new Sound(file.name);
         this.project = project;
         this.file = file;
         initComponents();
         jTextField1.setText(file.name);
     }
+    
+    
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -126,30 +137,31 @@ public class SoundEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public SoundPlayer p = null;
+    
+    org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
+//fx.play();
+   // public SoundPlayer p = null;
     //public AudioClip clip = null;
     
+    //open the file
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
+            
             jFileChooser1.showDialog(this, null);
+            
             File f = jFileChooser1.getSelectedFile();
-            try {
-                if (f != null) {
-                    if (file.value != null && file.value instanceof byte[]) {
-                        if(p!=null)
-                            p.stop();
-                    }
-                }
-                //file.value = f.toURI().toURL(); //JApplet.newAudioClip(f.toURI().toURL());
-            }
-
-            catch (Exception e) {
-            }
-
+            System.out.println("Name:"+f.getName());
+            System.out.println("path:"+f.getPath());
+            if(f.getName().endsWith(".wav"))
+                ((Sound)file.value).extension = ".wav";
+            else if (f.getName().endsWith(".ogg"))
+                ((Sound)file.value).extension = ".ogg";
+            else
+                return;
             InputStream is = new FileInputStream(f);
 
             // Get the size of the file
-            /*long length = f.length();
+            long length = f.length();
 
             if (length > Integer.MAX_VALUE) {
                 // File is too large
@@ -173,43 +185,56 @@ public class SoundEditor extends TabPanel {
 
             // Close the input stream and return bytes
             is.close();
-            file.value = bytes;*/
-            p = new SoundPlayer(is);
+            ((Sound)file.value).sound = bytes;
+           
             
             //clip = new AppletAudioClip(bytes);
             //p = new SoundPlayer((byte[]) file.value);
             //p = new SoundPlayer(f.getAbsolutePath());
         } catch (Exception ex) {
+            System.out.println("Exception in load sound");
             Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-try{
-        if(p!=null)
-            p.play();
-}
-catch(Exception e){}
-    }//GEN-LAST:event_jButton3ActionPerformed
+        try {
+//      Delete old file
+        File ff = new File("./Sound/play"+number+".ogg");
+        if (ff.exists())
+           ff.delete();
+        ff = new File("./Sound/play"+number+".wav");
+        if (ff.exists())
+           ff.delete();
+          number++;  
+          
+            FileOutputStream f = new FileOutputStream("./Sound/play"+number+((Sound)file.value).extension); //+ ((Sound) file.value).extension);
+
+//GEN-LAST:event_jButton3ActionPerformed
+                byte[] b = ((Sound)file.value).sound;
+               // f = new FileOutputStream("./Sound/play.wav");// + ((Sound) file.value).extension);
+                f.write(b);
+                f.close();
+                fx=null;
+                
+                 fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
+            fx.play();
+            //fx.poll(WIDTH);
+            } catch (Exception ex) {
+                Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        
+                
+    }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-try{
-        if(p!=null)
-            p.stop();
-}
-catch(Exception e){}
+//stop sound
+       fx.stop(); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        if(file.value!=null&&file.value instanceof AudioClip){
-//            (JApplet.newAudioClip((URL) file.value)).stop();
-//            (JApplet.newAudioClip((URL) file.value)).loop();
-//        }
-        try{
-        if(p!=null)
-            p.loop();
-}
-catch(Exception e){}
+//loop sound
+        fx.loop();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
