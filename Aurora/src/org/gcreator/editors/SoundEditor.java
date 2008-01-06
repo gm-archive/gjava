@@ -200,7 +200,10 @@ public class SoundEditor extends TabPanel {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
 //      Delete old file
-        File ff = new File("./Sound/play"+number+".ogg");
+        File ff = new File("./Sound/");
+        if(!ff.exists())
+            ff.mkdir();
+        ff = new File("./Sound/play"+number+".ogg");
         if (ff.exists())
            ff.delete();
         ff = new File("./Sound/play"+number+".wav");
