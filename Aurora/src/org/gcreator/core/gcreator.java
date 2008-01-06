@@ -27,6 +27,7 @@ import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.impl.ToolbarSeparator;
 import org.gcreator.components.navigator.*;
 import org.gcreator.help.AboutPanel;
+import org.lwjgl.util.applet.LWJGLInstaller;
 
 /**
  *
@@ -273,6 +274,13 @@ public class gcreator {
         
         //setup api list
         CreateApiList.setup();
+        
+        //install LWJGL
+      try {
+  LWJGLInstaller.tempInstall();
+} catch (Exception le) {
+ System.out.println(""+le.getLocalizedMessage());
+}
 
         try {
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
