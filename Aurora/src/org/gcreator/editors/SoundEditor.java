@@ -6,6 +6,8 @@
 
 package org.gcreator.editors;
 
+import com.jmex.audio.AudioSystem;
+import com.jmex.audio.AudioTrack;
 import java.applet.*;
 import java.io.*;
 import java.net.URL;
@@ -24,11 +26,13 @@ import sun.applet.AppletAudioClip;
 
 /**
  *
- * @author  Ali1
+ * @author  TGMG
  */
 public class SoundEditor extends TabPanel {
     private org.gcreator.fileclass.File file;
     static int number = 0;
+    AudioSystem audio;
+    private AudioTrack targetSound;
     /** Creates new form SoundEditor
      * @param file
      * @param project 
@@ -40,6 +44,7 @@ public class SoundEditor extends TabPanel {
         this.file = file;
         initComponents();
         jTextField1.setText(file.name);
+        audio = AudioSystem.getSystem();
     }
     
     
@@ -59,8 +64,10 @@ public class SoundEditor extends TabPanel {
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel2 = new javax.swing.JLabel();
 
-        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Programas\\NetBeans 6.0 beta2"));
+        jFileChooser1.setCurrentDirectory(new java.io.File("C:\\Program Files\\NetBeans 6.0"));
         jFileChooser1.setDialogTitle("Choose a sound");
 
         jLabel1.setText(LangSupporter.activeLang.getEntry(166));
@@ -99,6 +106,16 @@ public class SoundEditor extends TabPanel {
             }
         });
 
+        jCheckBox1.setSelected(true);
+        jCheckBox1.setText("Stream");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("<html>If it is a large file (over 1mb) then make sure \"Stream\" is on, otherwise it will load the whole file into memory when playing. Only take \"Stream\" off if you are having trouble playing very small files.</html>");
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,14 +126,18 @@ public class SoundEditor extends TabPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jButton3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton5))
-                    .add(jButton1))
+                    .add(layout.createSequentialGroup()
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jCheckBox1))
+                    .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 407, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -132,13 +153,17 @@ public class SoundEditor extends TabPanel {
                     .add(jButton2)
                     .add(jButton5))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jButton1)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton1)
+                    .add(jCheckBox1))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jLabel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     
-    org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
+   // org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
 //fx.play();
    // public SoundPlayer p = null;
     //public AudioClip clip = null;
@@ -199,6 +224,7 @@ public class SoundEditor extends TabPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
+         //   audio.cleanup();
 //      Delete old file
         File ff = new File("./Sound/");
         if(!ff.exists())
@@ -218,12 +244,20 @@ public class SoundEditor extends TabPanel {
                // f = new FileOutputStream("./Sound/play.wav");// + ((Sound) file.value).extension);
                 f.write(b);
                 f.close();
-                fx=null;
                 
-                 fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
-            fx.play();
-            //fx.poll(WIDTH);
+                ff= new File("Sound/play"+number+((Sound)file.value).extension );
+               if (this.jCheckBox1.isSelected())
+             targetSound = audio.createAudioTrack(ff.toURI().toURL() , true); 
+                else
+                   targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);  
+             
+             targetSound.setVolume(1.0f);
+             targetSound.play();
+             //    fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
+           // fx.play();
+            
             } catch (Exception ex) {
+                System.out.println(""+ex);
                 Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
             } 
         
@@ -232,18 +266,30 @@ public class SoundEditor extends TabPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //stop sound
-       fx.stop(); 
+        if (targetSound != null) {
+            targetSound.setLooping(false);
+            targetSound.stop();
+        }
+       //fx.stop(); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //loop sound
-        fx.loop();
+       // fx.loop();
+        if (targetSound != null) {
+            targetSound.setLooping(true);
+            targetSound.play();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
         file.name = jTextField1.getText();
         Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1CaretUpdate
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -251,8 +297,10 @@ public class SoundEditor extends TabPanel {
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton5;
+    public javax.swing.JCheckBox jCheckBox1;
     public javax.swing.JFileChooser jFileChooser1;
     public javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel2;
     public javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
     
