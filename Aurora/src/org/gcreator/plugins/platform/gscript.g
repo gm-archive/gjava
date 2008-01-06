@@ -75,7 +75,7 @@ bstatement returns [String value]
 ;
 
 varstatement returns [String value] @init {String s = "";}
-: (w='var'|w=WORD) (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*   {$value=pc.varstatement($w.text,s);} 
+: (w='var'|w=WORD|w='globalvar') (vari=variable{s = ""+$vari.value;}| ass=assignment{s = ""+$ass.value;})  (',' (varii=variable{s += ", "+$varii.value;}| ass=assignment{s += ","+ $ass.value;}) )*   {$value=pc.varstatement($w.text,s);} 
 ;
 
 returnstatement returns [String value]
@@ -96,7 +96,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" "+$e.value;}))* {$value =pc.expression($value);}
+:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -169,7 +169,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = $a.value;}|valuee=(WORD|OIVAR|GLOBALVAR){$value = $valuee.text;}) 
+:  (a=array{$value = $a.value;}|valuee=(WORD|OIVAR|GLOBALVAR){$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) 
 ;
 
 function returns [String value]
@@ -181,7 +181,7 @@ function2 returns [String value]
 	;
 
 array returns [String value]
-  : valuee=(WORD|OIVAR|GLOBALVAR) '[' e=expression ']' {$value = pc.array($valuee.text,$e.text);}
+  : valuee=(WORD|OIVAR|GLOBALVAR) '[' e=expression (',' e1=expression{$value = $e.value + ","+$e1.value;})? ']' {$value = pc.array($valuee.text,$e.text);}
 ;
 
 //definestatement: '#define' WORD //used for testing scripts
@@ -211,12 +211,12 @@ OIVAR : WORD '.' WORD ; /* Other instance variable */
 
 DECIMAL : NUMBER '.' NUMBER;
 
-WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
+WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' WORD )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
 
 fragment DIGIT : '0'..'9' ;
 
 WORD
-: LETTER ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+: LETTER ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
 ;
 
 LETTER : ('a'..'z'|'A'..'Z')

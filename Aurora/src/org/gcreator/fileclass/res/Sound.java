@@ -15,15 +15,14 @@ package org.gcreator.fileclass.res;
  */
 public class Sound extends Resource  {
 static final long serialVersionUID = 1L;
-     
-    public String writeXml() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+    // String name;
+    public byte[] sound;
+    public String extension="";
 
-     
-    public void readXml(String xml) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public Sound(String name) {
+        this.name = name;
     }
+    
 
      
     public String exportToHtml(boolean xhtml){

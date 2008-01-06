@@ -37,7 +37,7 @@ import org.gcreator.units.*;
 
 /**
  *
- * @author LuÃƒÂ­s
+ * @author LuÃƒÆ’Ã‚Â­s
  */
 public class Aurwindow extends JFrame {
 

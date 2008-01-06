@@ -18,6 +18,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
+import javax.swing.SwingUtilities;
 import javax.swing.text.html.HTMLEditorKit;
 import org.gcreator.api.util.ApiClass;
 import org.gcreator.api.util.ApiFunction;
@@ -45,7 +46,9 @@ public class GCLEditor extends TabPanel {
     
     
     
-    /** Creates new form CodeEditor2 */
+    /** Creates new form CodeEditor2
+     * @param file 
+     */
     public GCLEditor(org.gcreator.fileclass.File file,Project project) {
         this.file = file;
         this.project = project;
@@ -69,6 +72,15 @@ public class GCLEditor extends TabPanel {
                 changed = true;
             }
         });
+        
+        SwingUtilities.invokeLater(new Runnable()
+			{
+				public void run()
+					{
+					g.requestFocusInWindow();
+					}
+			});
+		
         
         jComboBox1.setModel(new DefaultComboBoxModel(CreateApiList.classes));
         jComboBox1.setRenderer(new ApiListCellRenderer());

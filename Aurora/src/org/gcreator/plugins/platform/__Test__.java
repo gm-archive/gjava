@@ -13,7 +13,7 @@ public class __Test__ {
 
         gscriptParser g = new gscriptParser(tokens, 49174);
         try {
-            g.classes();
+            g.code();
         } catch (RecognitionException e) {
             e.printStackTrace();
         }

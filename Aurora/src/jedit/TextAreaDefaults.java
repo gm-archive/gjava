@@ -65,7 +65,7 @@ public class TextAreaDefaults
 			DEFAULTS.electricScroll = 3;
 
 			DEFAULTS.cols = 80;
-			DEFAULTS.rows = 25;
+			DEFAULTS.rows = 5;
 			DEFAULTS.styles = SyntaxUtilities.getDefaultSyntaxStyles();
 			DEFAULTS.caretColor = Color.red;
 			DEFAULTS.selectionColor = new Color(0xccccff);

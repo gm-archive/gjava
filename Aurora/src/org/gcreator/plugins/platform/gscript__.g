@@ -19,15 +19,16 @@ GTE : '>=' ;
 LT : '<' ;
 LTE : '<=' ;
 COMMENT1 : '//' ;
-T36 : ';' ;
-T37 : 'public' ;
-T38 : 'private' ;
-T39 : 'var' ;
-T40 : 'final' ;
-T41 : 'static' ;
-T42 : ',' ;
-T43 : 'begin' ;
-T44 : 'end' ;
+T35 : ';' ;
+T36 : 'public' ;
+T37 : 'private' ;
+T38 : 'var' ;
+T39 : 'final' ;
+T40 : 'static' ;
+T41 : ',' ;
+T42 : 'begin' ;
+T43 : 'end' ;
+T44 : 'globalvar' ;
 T45 : 'return' ;
 T46 : 'exit' ;
 T47 : 'if' ;
@@ -67,18 +68,14 @@ T80 : '-=' ;
 T81 : '*=' ;
 T82 : '/=' ;
 T83 : '|=' ;
-T84 : '&\\' ;
+T84 : '&=' ;
 T85 : '^=' ;
-T86 : '[' ;
-T87 : ']' ;
-
-// $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 197
-NEGINTEGER
-: ('-') NUMBER
-;
+T86 : '.' ;
+T87 : '[' ;
+T88 : ']' ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 201
-NUMBER : ('-')? (DIGIT)+ ;
+NUMBER : (DIGIT)+ ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 203
 HEXNUMBER
@@ -96,14 +93,14 @@ OIVAR : WORD '.' WORD ; /* Other instance variable */
 DECIMAL : NUMBER '.' NUMBER;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 214
-WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
+WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' |'#define' WORD )+  { $channel = HIDDEN; } ; /* Ignore all spaces and newline characters */
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 216
 fragment DIGIT : '0'..'9' ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 218
 WORD
-: LETTER ('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+: LETTER ('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
 ;
 
 // $ANTLR src "C:\Users\Ali.Ali-Laptop\Documents\NetBeansProjects\G-Creator\Aurora\src\org\gcreator\plugins\platform\gscript.g" 222

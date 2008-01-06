@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -30,6 +31,8 @@ import org.gcreator.plugins.platform.gscriptParser;
 public class PlatformCore extends PluginCore {
 
     public static String returncode = "";
+    int usingwith = 0;
+    Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
 
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.Object childNode;
@@ -145,19 +148,19 @@ public class PlatformCore extends PluginCore {
     }
     
     public String andexpression() {
-        return " && ";
+        return " .and ";
     }
     
     public String orexpression() {
-        return " || ";
+        return " .or ";
     }
     
     public String xorexpression() {
-        return " ^^ ";
+        return " .xor ";
     }
     
     public String repeatstatement(String ex, String st) {
-        return ""; //todo
+        return "double G_CREATOR__repeat; \n while(G_CREATOR__repeat < ("+ex+".getBoolean())){\n"+st+" G_CREATOR__repeat++;}"; 
     }
     
     public String breakstatement() {
@@ -168,8 +171,8 @@ public class PlatformCore extends PluginCore {
         return "continue;";
     }
     
-    public String dostatement(String st, String exp) {
-        return ""; //todo
+    public String dostatement(String statement, String expression) {
+        return "do "+statement+"while("+expression+".getBoolean());"; //todo
     }
     
     public String whilestatement(String exp, String st) {
@@ -180,7 +183,7 @@ public class PlatformCore extends PluginCore {
         System.out.println(statement2.substring(statement2.length()-1,statement2.length()));
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";"))
         statement2 = statement2.substring(0, statement2.length()-1);
-        return "for (Object"+statement1+exp+".getBoolean(); "+statement2+") "+statements;
+        return "for (Object "+statement1+exp+".getBoolean(); "+statement2+") "+statements;
     }
     
     public String switchstatement() {
@@ -188,17 +191,39 @@ public class PlatformCore extends PluginCore {
     }    
     
     public String withstatement(String exp, String statement) {
-        return "with " + exp + " " + statement;
+        usingwith++;
+        with.add(exp);
+        return "\n{\n" + statement+"\n}\n";
     }    
     
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
+        
+        String instance="";
+        
+        if(variable.contains("all."))
+            ;
+        else if(variable.contains("other."))
+            instance="other";
+        else if(variable.contains("noone."))
+            ;
+        else if(variable.contains("self."))
+            instance="self";
+        else if(variable.contains("."))
+            ;
+        else if(variable.contains("("))
+            ;
+        else
+            instance="self";
+        if (instance.equals("self")||instance.equals("other")||instance.equals("noone"))
+           expression = instance+".setVariable("+variable+"," ;
+        
         if (operator.equals("="))
-            operator = "=";
+            ;
         else if (operator.equals(":="))
-            operator = "=";
+            ;
         else if (operator.equals("+="))
-            operator = ".add";
+            expression = instance+".getVariable("+variable+").add("+expression+")";
         else if (operator.equals("*="))
             operator = ".mult";
         else if (operator.equals("-="))
@@ -213,7 +238,7 @@ public class PlatformCore extends PluginCore {
             operator = ".bor";
         else if (operator.equals("^="))
             operator = ".bxor";
-        return variable+operator+"("+expression+")";
+        return expression;
     }
     
     public String functionstatement(String name, String parameters) {
@@ -232,6 +257,11 @@ public class PlatformCore extends PluginCore {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
     
+    public String variable(String var)
+    {
+        return var;
+    }
+    
     /**
      * For c++ change the '.' to '->'
      * @param operator
@@ -245,6 +275,24 @@ public class PlatformCore extends PluginCore {
         return ".add("+expression+")";
         else if (operator.equals("-"))
         return ".sub("+expression+")";
+        else if (operator.equals("*"))
+        return ".mult("+expression+")";
+        else if (operator.equals("/"))
+        return ".div("+expression+")";
+        else if (operator.equals("|"))
+        return ".bor("+expression+")";
+        else if (operator.equals("&"))
+        return ".band("+expression+")";
+        else if (operator.equals("^"))
+        return ".bxor("+expression+")";
+        else if (operator.equals(">>"))
+        return ".bright("+expression+")";
+        else if (operator.equals("<<"))
+        return ".bleft("+expression+")";
+        else if (operator.equals("div"))
+        return ".div("+expression+")";
+        else if (operator.equals("mod"))
+        return ".mod("+expression+")";
         return "aexpression";
     }
     
