@@ -9,6 +9,8 @@ package org.gcreator.editors;
 import javax.swing.GroupLayout;
 import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
+import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Classes;
 
 /**
  *
@@ -16,12 +18,26 @@ import org.gcreator.components.TabPanel;
  */
 public class ScriptEditor extends TabPanel {
     
-    EGMLTextArea code;
+    EGMLTextArea g;
+    org.gcreator.fileclass.File file;
     /** Creates new form ScriptEditor */
-    public ScriptEditor() {
-        //initComponents();
-        code = new EGMLTextArea("//test code");
-        this.add(code);
+    public ScriptEditor(org.gcreator.fileclass.File file,Project project) {
+        initComponents();
+        
+        if(file.value==null)
+            file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
+        g = new EGMLTextArea(((Classes)file.value).toString());
+        
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+        );
         
     }
     

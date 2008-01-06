@@ -42,11 +42,8 @@ public class GCLEditor extends TabPanel {
         return true;
     }
 
-    
-    
-    
-    
-    /** Creates new form CodeEditor2
+    /** 
+     * Creates new form GCLEditor
      * @param file 
      */
     public GCLEditor(org.gcreator.fileclass.File file,Project project) {
