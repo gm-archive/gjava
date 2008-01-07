@@ -1397,6 +1397,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newSprite" + i) != -1) {
@@ -1410,6 +1411,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newSound" + i) != -1) {
@@ -1423,6 +1425,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newClass" + i) != -1) {
@@ -1435,6 +1438,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newActor" + i) != -1) {
@@ -1447,6 +1451,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newScene" + i) != -1) {
@@ -1459,6 +1464,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newImage" + i) != -1) {
@@ -1471,6 +1477,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newTileset" + i) != -1) {
@@ -1482,6 +1489,7 @@ public class Aurwindow extends JFrame {
                 i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 while (a.findFromName("newTimeline" + i) != -1) {

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-01-04 21:15:51
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-01-07 04:13:33
 
 package org.gcreator.plugins.platform;
 
@@ -62,7 +62,7 @@ public class gscriptLexer extends Lexer {
     public static final int MINUS=5;
     public static final int MULT=6;
     public static final int T43=43;
-    public static final int Tokens=89;
+    public static final int Tokens=90;
     public static final int T42=42;
     public static final int T41=41;
     public static final int T40=40;
@@ -72,6 +72,7 @@ public class gscriptLexer extends Lexer {
     public static final int T45=45;
     public static final int T44=44;
     public static final int T88=88;
+    public static final int T89=89;
     public static final int T84=84;
     public static final int T85=85;
     public static final int T86=86;
@@ -868,11 +869,10 @@ public class gscriptLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:5: ( '&&' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:7: '&&'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:5: ( '~' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:47:7: '~'
             {
-            match("&&"); 
-
+            match('~'); 
 
             }
 
@@ -887,10 +887,10 @@ public class gscriptLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:5: ( 'and' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:7: 'and'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:5: ( '&&' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:48:7: '&&'
             {
-            match("and"); 
+            match("&&"); 
 
 
             }
@@ -906,10 +906,10 @@ public class gscriptLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:5: ( '||' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:7: '||'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:5: ( 'and' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:49:7: 'and'
             {
-            match("||"); 
+            match("and"); 
 
 
             }
@@ -925,10 +925,10 @@ public class gscriptLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:5: ( 'or' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:7: 'or'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:5: ( '||' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:50:7: '||'
             {
-            match("or"); 
+            match("||"); 
 
 
             }
@@ -944,10 +944,10 @@ public class gscriptLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:5: ( '^^' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:7: '^^'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:5: ( 'or' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:51:7: 'or'
             {
-            match("^^"); 
+            match("or"); 
 
 
             }
@@ -963,10 +963,10 @@ public class gscriptLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:5: ( 'xor' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:7: 'xor'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:5: ( '^^' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:7: '^^'
             {
-            match("xor"); 
+            match("^^"); 
 
 
             }
@@ -982,10 +982,10 @@ public class gscriptLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:5: ( ':=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:7: ':='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:5: ( 'xor' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:7: 'xor'
             {
-            match(":="); 
+            match("xor"); 
 
 
             }
@@ -1001,10 +1001,10 @@ public class gscriptLexer extends Lexer {
     public final void mT67() throws RecognitionException {
         try {
             int _type = T67;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:5: ( 'repeat' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:7: 'repeat'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:5: ( ':=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:54:7: ':='
             {
-            match("repeat"); 
+            match(":="); 
 
 
             }
@@ -1020,10 +1020,10 @@ public class gscriptLexer extends Lexer {
     public final void mT68() throws RecognitionException {
         try {
             int _type = T68;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:5: ( 'break' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:7: 'break'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:5: ( 'repeat' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:55:7: 'repeat'
             {
-            match("break"); 
+            match("repeat"); 
 
 
             }
@@ -1039,10 +1039,10 @@ public class gscriptLexer extends Lexer {
     public final void mT69() throws RecognitionException {
         try {
             int _type = T69;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:5: ( 'continue' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:7: 'continue'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:5: ( 'break' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:7: 'break'
             {
-            match("continue"); 
+            match("break"); 
 
 
             }
@@ -1058,10 +1058,10 @@ public class gscriptLexer extends Lexer {
     public final void mT70() throws RecognitionException {
         try {
             int _type = T70;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:5: ( 'do' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:7: 'do'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:5: ( 'continue' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:7: 'continue'
             {
-            match("do"); 
+            match("continue"); 
 
 
             }
@@ -1077,10 +1077,10 @@ public class gscriptLexer extends Lexer {
     public final void mT71() throws RecognitionException {
         try {
             int _type = T71;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:5: ( 'until' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:7: 'until'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:5: ( 'do' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:58:7: 'do'
             {
-            match("until"); 
+            match("do"); 
 
 
             }
@@ -1096,10 +1096,10 @@ public class gscriptLexer extends Lexer {
     public final void mT72() throws RecognitionException {
         try {
             int _type = T72;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:5: ( 'while' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:7: 'while'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:5: ( 'until' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:59:7: 'until'
             {
-            match("while"); 
+            match("until"); 
 
 
             }
@@ -1115,10 +1115,10 @@ public class gscriptLexer extends Lexer {
     public final void mT73() throws RecognitionException {
         try {
             int _type = T73;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:5: ( 'for' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:7: 'for'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:5: ( 'while' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:7: 'while'
             {
-            match("for"); 
+            match("while"); 
 
 
             }
@@ -1134,10 +1134,10 @@ public class gscriptLexer extends Lexer {
     public final void mT74() throws RecognitionException {
         try {
             int _type = T74;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:5: ( 'switch' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:7: 'switch'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:5: ( 'for' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:7: 'for'
             {
-            match("switch"); 
+            match("for"); 
 
 
             }
@@ -1153,10 +1153,10 @@ public class gscriptLexer extends Lexer {
     public final void mT75() throws RecognitionException {
         try {
             int _type = T75;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:5: ( 'case' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:7: 'case'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:5: ( 'switch' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:62:7: 'switch'
             {
-            match("case"); 
+            match("switch"); 
 
 
             }
@@ -1172,10 +1172,10 @@ public class gscriptLexer extends Lexer {
     public final void mT76() throws RecognitionException {
         try {
             int _type = T76;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:5: ( 'default' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:7: 'default'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:5: ( 'case' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:63:7: 'case'
             {
-            match("default"); 
+            match("case"); 
 
 
             }
@@ -1191,10 +1191,11 @@ public class gscriptLexer extends Lexer {
     public final void mT77() throws RecognitionException {
         try {
             int _type = T77;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:5: ( ':' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:7: ':'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:5: ( 'default' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:7: 'default'
             {
-            match(':'); 
+            match("default"); 
+
 
             }
 
@@ -1209,11 +1210,10 @@ public class gscriptLexer extends Lexer {
     public final void mT78() throws RecognitionException {
         try {
             int _type = T78;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:5: ( 'with' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:7: 'with'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:5: ( ':' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:7: ':'
             {
-            match("with"); 
-
+            match(':'); 
 
             }
 
@@ -1228,10 +1228,10 @@ public class gscriptLexer extends Lexer {
     public final void mT79() throws RecognitionException {
         try {
             int _type = T79;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:5: ( '+=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:7: '+='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:5: ( 'with' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:66:7: 'with'
             {
-            match("+="); 
+            match("with"); 
 
 
             }
@@ -1247,10 +1247,10 @@ public class gscriptLexer extends Lexer {
     public final void mT80() throws RecognitionException {
         try {
             int _type = T80;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:5: ( '-=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:7: '-='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:5: ( '+=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:67:7: '+='
             {
-            match("-="); 
+            match("+="); 
 
 
             }
@@ -1266,10 +1266,10 @@ public class gscriptLexer extends Lexer {
     public final void mT81() throws RecognitionException {
         try {
             int _type = T81;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:5: ( '*=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:7: '*='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:5: ( '-=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:7: '-='
             {
-            match("*="); 
+            match("-="); 
 
 
             }
@@ -1285,10 +1285,10 @@ public class gscriptLexer extends Lexer {
     public final void mT82() throws RecognitionException {
         try {
             int _type = T82;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:5: ( '/=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:7: '/='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:5: ( '*=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:7: '*='
             {
-            match("/="); 
+            match("*="); 
 
 
             }
@@ -1304,10 +1304,10 @@ public class gscriptLexer extends Lexer {
     public final void mT83() throws RecognitionException {
         try {
             int _type = T83;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:5: ( '|=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:7: '|='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:5: ( '/=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:70:7: '/='
             {
-            match("|="); 
+            match("/="); 
 
 
             }
@@ -1323,10 +1323,10 @@ public class gscriptLexer extends Lexer {
     public final void mT84() throws RecognitionException {
         try {
             int _type = T84;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:5: ( '&=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:7: '&='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:5: ( '|=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:71:7: '|='
             {
-            match("&="); 
+            match("|="); 
 
 
             }
@@ -1342,10 +1342,10 @@ public class gscriptLexer extends Lexer {
     public final void mT85() throws RecognitionException {
         try {
             int _type = T85;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:5: ( '^=' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:7: '^='
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:5: ( '&=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:7: '&='
             {
-            match("^="); 
+            match("&="); 
 
 
             }
@@ -1361,10 +1361,11 @@ public class gscriptLexer extends Lexer {
     public final void mT86() throws RecognitionException {
         try {
             int _type = T86;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:5: ( '.' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:7: '.'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:5: ( '^=' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:7: '^='
             {
-            match('.'); 
+            match("^="); 
+
 
             }
 
@@ -1379,10 +1380,10 @@ public class gscriptLexer extends Lexer {
     public final void mT87() throws RecognitionException {
         try {
             int _type = T87;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:5: ( '[' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:7: '['
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:5: ( '.' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:7: '.'
             {
-            match('['); 
+            match('.'); 
 
             }
 
@@ -1397,10 +1398,10 @@ public class gscriptLexer extends Lexer {
     public final void mT88() throws RecognitionException {
         try {
             int _type = T88;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:75:5: ( ']' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:75:7: ']'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:75:5: ( '[' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:75:7: '['
             {
-            match(']'); 
+            match('['); 
 
             }
 
@@ -1411,14 +1412,32 @@ public class gscriptLexer extends Lexer {
     }
     // $ANTLR end T88
 
+    // $ANTLR start T89
+    public final void mT89() throws RecognitionException {
+        try {
+            int _type = T89;
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:76:5: ( ']' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:76:7: ']'
+            {
+            match(']'); 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T89
+
     // $ANTLR start NUMBER
     public final void mNUMBER() throws RecognitionException {
         try {
             int _type = NUMBER;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:201:8: ( ( DIGIT )+ )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:201:10: ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:8: ( ( DIGIT )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:10: ( DIGIT )+
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:201:10: ( DIGIT )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:10: ( DIGIT )+
             int cnt1=0;
             loop1:
             do {
@@ -1432,7 +1451,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:201:11: DIGIT
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:11: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1462,11 +1481,11 @@ public class gscriptLexer extends Lexer {
     public final void mHEXNUMBER() throws RecognitionException {
         try {
             int _type = HEXNUMBER;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:1: ( '$' ( DIGIT | LETTER )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:3: '$' ( DIGIT | LETTER )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:207:1: ( '$' ( DIGIT | LETTER )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:207:3: '$' ( DIGIT | LETTER )*
             {
             match('$'); 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:204:7: ( DIGIT | LETTER )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:207:7: ( DIGIT | LETTER )*
             loop2:
             do {
                 int alt2=2;
@@ -1514,8 +1533,8 @@ public class gscriptLexer extends Lexer {
     public final void mGLOBALVAR() throws RecognitionException {
         try {
             int _type = GLOBALVAR;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:208:1: ( 'global' '.' WORD )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:208:3: 'global' '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:211:1: ( 'global' '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:211:3: 'global' '.' WORD
             {
             match("global"); 
 
@@ -1535,8 +1554,8 @@ public class gscriptLexer extends Lexer {
     public final void mOIVAR() throws RecognitionException {
         try {
             int _type = OIVAR;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:210:7: ( WORD '.' WORD )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:210:9: WORD '.' WORD
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:213:7: ( WORD '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:213:9: WORD '.' WORD
             {
             mWORD(); 
             match('.'); 
@@ -1555,8 +1574,8 @@ public class gscriptLexer extends Lexer {
     public final void mDECIMAL() throws RecognitionException {
         try {
             int _type = DECIMAL;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:212:9: ( NUMBER '.' NUMBER )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:212:11: NUMBER '.' NUMBER
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:215:9: ( NUMBER '.' NUMBER )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:215:11: NUMBER '.' NUMBER
             {
             mNUMBER(); 
             match('.'); 
@@ -1575,10 +1594,10 @@ public class gscriptLexer extends Lexer {
     public final void mWHITESPACE() throws RecognitionException {
         try {
             int _type = WHITESPACE;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+ )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:12: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+ )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' | '#define' WORD )+
             int cnt3=0;
             loop3:
             do {
@@ -1619,42 +1638,42 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:16: '\\t'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:16: '\\t'
             	    {
             	    match('\t'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:23: ' '
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:23: ' '
             	    {
             	    match(' '); 
 
             	    }
             	    break;
             	case 3 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:29: '\\r'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:29: '\\r'
             	    {
             	    match('\r'); 
 
             	    }
             	    break;
             	case 4 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:36: '\\n'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:36: '\\n'
             	    {
             	    match('\n'); 
 
             	    }
             	    break;
             	case 5 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:42: '\\u000C'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:42: '\\u000C'
             	    {
             	    match('\f'); 
 
             	    }
             	    break;
             	case 6 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:214:52: '#define' WORD
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:217:52: '#define' WORD
             	    {
             	    match("#define"); 
 
@@ -1686,8 +1705,8 @@ public class gscriptLexer extends Lexer {
     // $ANTLR start DIGIT
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:216:16: ( '0' .. '9' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:216:18: '0' .. '9'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:219:16: ( '0' .. '9' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:219:18: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1703,11 +1722,11 @@ public class gscriptLexer extends Lexer {
     public final void mWORD() throws RecognitionException {
         try {
             int _type = WORD;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:219:1: ( LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:219:3: LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:222:1: ( LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:222:3: LETTER ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             {
             mLETTER(); 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:219:10: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:222:10: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )*
             loop4:
             do {
                 int alt4=2;
@@ -1755,8 +1774,8 @@ public class gscriptLexer extends Lexer {
     public final void mLETTER() throws RecognitionException {
         try {
             int _type = LETTER;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:222:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:222:10: ( 'a' .. 'z' | 'A' .. 'Z' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:225:8: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:225:10: ( 'a' .. 'z' | 'A' .. 'Z' )
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z') ) {
                 input.consume();
@@ -1782,11 +1801,11 @@ public class gscriptLexer extends Lexer {
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:227:3: ( COMMENT1 (~ ( '\\n' | '\\r' ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:227:5: COMMENT1 (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:230:3: ( COMMENT1 (~ ( '\\n' | '\\r' ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:230:5: COMMENT1 (~ ( '\\n' | '\\r' ) )*
             {
             mCOMMENT1(); 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:227:14: (~ ( '\\n' | '\\r' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:230:14: (~ ( '\\n' | '\\r' ) )*
             loop5:
             do {
                 int alt5=2;
@@ -1799,7 +1818,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:227:15: ~ ( '\\n' | '\\r' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:230:15: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1835,12 +1854,12 @@ public class gscriptLexer extends Lexer {
     public final void mML_COMMENT() throws RecognitionException {
         try {
             int _type = ML_COMMENT;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:233:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:233:9: '/*' ( options {greedy=false; } : . )* '*/'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:5: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:9: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:233:14: ( options {greedy=false; } : . )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:14: ( options {greedy=false; } : . )*
             loop6:
             do {
                 int alt6=2;
@@ -1865,7 +1884,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:233:41: .
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:41: .
             	    {
             	    matchAny(); 
 
@@ -1894,7 +1913,7 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:8: ( STRING_DOUBLE | STRING_SINGLE )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:239:8: ( STRING_DOUBLE | STRING_SINGLE )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1906,20 +1925,20 @@ public class gscriptLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("236:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 7, 0, input);
+                    new NoViableAltException("239:1: STRING : ( STRING_DOUBLE | STRING_SINGLE );", 7, 0, input);
 
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:10: STRING_DOUBLE
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:239:10: STRING_DOUBLE
                     {
                     mSTRING_DOUBLE(); 
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:236:24: STRING_SINGLE
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:239:24: STRING_SINGLE
                     {
                     mSTRING_SINGLE(); 
 
@@ -1938,11 +1957,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_DOUBLE() throws RecognitionException {
         try {
             int _type = STRING_DOUBLE;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:240:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:240:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:243:3: ( '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:243:5: '\"' ( '\"' '\"' | ~ ( '\"' ) )* ( '\"' )
             {
             match('\"'); 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:241:5: ( '\"' '\"' | ~ ( '\"' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:244:5: ( '\"' '\"' | ~ ( '\"' ) )*
             loop8:
             do {
                 int alt8=3;
@@ -1964,7 +1983,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:241:7: '\"' '\"'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:244:7: '\"' '\"'
             	    {
             	    match('\"'); 
             	    match('\"'); 
@@ -1972,7 +1991,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:242:7: ~ ( '\"' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:245:7: ~ ( '\"' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -1993,8 +2012,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:244:5: ( '\"' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:244:7: '\"'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:247:5: ( '\"' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:247:7: '\"'
             {
             match('\"'); 
 
@@ -2014,11 +2033,11 @@ public class gscriptLexer extends Lexer {
     public final void mSTRING_SINGLE() throws RecognitionException {
         try {
             int _type = STRING_SINGLE;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:249:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:249:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:252:5: ( '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:252:7: '\\'' ( '\\'' '\\'' | ~ ( '\\'' ) )* ( '\\'' )
             {
             match('\''); 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:250:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:253:5: ( '\\'' '\\'' | ~ ( '\\'' ) )*
             loop9:
             do {
                 int alt9=3;
@@ -2040,7 +2059,7 @@ public class gscriptLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:250:7: '\\'' '\\''
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:253:7: '\\'' '\\''
             	    {
             	    match('\''); 
             	    match('\''); 
@@ -2048,7 +2067,7 @@ public class gscriptLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:251:7: ~ ( '\\'' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:254:7: ~ ( '\\'' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -2069,8 +2088,8 @@ public class gscriptLexer extends Lexer {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:253:5: ( '\\'' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:253:7: '\\''
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:256:5: ( '\\'' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:256:7: '\\''
             {
             match('\''); 
 
@@ -2087,8 +2106,8 @@ public class gscriptLexer extends Lexer {
     // $ANTLR end STRING_SINGLE
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE )
-        int alt10=83;
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:8: ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE )
+        int alt10=84;
         alt10 = dfa10.predict(input);
         switch (alt10) {
             case 1 :
@@ -2582,91 +2601,98 @@ public class gscriptLexer extends Lexer {
                 }
                 break;
             case 71 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:321: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:321: T89
+                {
+                mT89(); 
+
+                }
+                break;
+            case 72 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:325: NUMBER
                 {
                 mNUMBER(); 
 
                 }
                 break;
-            case 72 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:328: HEXNUMBER
+            case 73 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:332: HEXNUMBER
                 {
                 mHEXNUMBER(); 
 
                 }
                 break;
-            case 73 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:338: GLOBALVAR
+            case 74 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:342: GLOBALVAR
                 {
                 mGLOBALVAR(); 
 
                 }
                 break;
-            case 74 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:348: OIVAR
+            case 75 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:352: OIVAR
                 {
                 mOIVAR(); 
 
                 }
                 break;
-            case 75 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:354: DECIMAL
+            case 76 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:358: DECIMAL
                 {
                 mDECIMAL(); 
 
                 }
                 break;
-            case 76 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:362: WHITESPACE
+            case 77 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:366: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
-            case 77 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:373: WORD
+            case 78 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:377: WORD
                 {
                 mWORD(); 
 
                 }
                 break;
-            case 78 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:378: LETTER
+            case 79 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:382: LETTER
                 {
                 mLETTER(); 
 
                 }
                 break;
-            case 79 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:385: COMMENT
+            case 80 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:389: COMMENT
                 {
                 mCOMMENT(); 
 
                 }
                 break;
-            case 80 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:393: ML_COMMENT
+            case 81 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:397: ML_COMMENT
                 {
                 mML_COMMENT(); 
 
                 }
                 break;
-            case 81 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:404: STRING
+            case 82 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:408: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
-            case 82 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:411: STRING_DOUBLE
+            case 83 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:415: STRING_DOUBLE
                 {
                 mSTRING_DOUBLE(); 
 
                 }
                 break;
-            case 83 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:425: STRING_SINGLE
+            case 84 :
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:1:429: STRING_SINGLE
                 {
                 mSTRING_SINGLE(); 
 
@@ -2680,138 +2706,139 @@ public class gscriptLexer extends Lexer {
 
     protected DFA10 dfa10 = new DFA10(this);
     static final String DFA10_eotS =
-        "\1\uffff\1\60\1\62\1\64\1\70\4\uffff\1\72\1\74\1\77\1\102\1\uffff"+
-        "\4\105\1\uffff\7\105\1\131\1\134\1\137\5\105\1\150\3\105\3\uffff"+
-        "\1\156\1\uffff\1\105\11\uffff\1\164\15\uffff\2\105\1\uffff\1\105"+
-        "\1\uffff\14\105\1\u0085\2\105\11\uffff\1\105\1\u0089\3\105\1\u008d"+
-        "\1\105\2\uffff\5\105\2\uffff\1\u0095\1\uffff\1\u0095\3\uffff\2\105"+
-        "\1\u0099\1\u009a\7\105\1\u00a3\3\105\1\uffff\1\105\1\u00a8\1\u00a9"+
-        "\1\uffff\1\105\1\u00ab\1\u00ac\1\uffff\1\u00ad\5\105\3\uffff\2\105"+
-        "\2\uffff\5\105\1\u00ba\1\105\1\u00bc\1\uffff\3\105\1\u00c0\2\uffff"+
-        "\1\105\3\uffff\1\105\1\u00c3\2\105\1\u00c6\2\105\1\u00c9\2\105\1"+
-        "\u00cc\1\u00cd\1\uffff\1\u00ce\1\uffff\3\105\1\uffff\2\105\1\uffff"+
-        "\1\u00d4\1\u00d5\1\uffff\1\105\1\u00d7\1\uffff\1\u00d8\1\u00d9\3"+
-        "\uffff\1\105\1\u00dc\1\u00dd\2\105\2\uffff\1\u00e0\3\uffff\1\105"+
-        "\3\uffff\1\u00e3\1\105\1\uffff\1\105\1\u00e6\1\uffff\1\u00e8\1\u00e9"+
-        "\1\uffff\1\u00e6\2\uffff";
+        "\1\uffff\1\61\1\63\1\65\1\71\4\uffff\1\73\1\75\1\100\1\103\1\uffff"+
+        "\4\106\1\uffff\7\106\1\132\1\135\1\140\2\106\1\uffff\3\106\1\151"+
+        "\3\106\3\uffff\1\157\1\uffff\1\106\11\uffff\1\165\15\uffff\2\106"+
+        "\1\uffff\1\106\1\uffff\14\106\1\u0086\2\106\11\uffff\1\106\1\u008a"+
+        "\3\106\1\u008e\1\106\2\uffff\5\106\2\uffff\1\u0096\1\uffff\1\u0096"+
+        "\3\uffff\2\106\1\u009a\1\u009b\7\106\1\u00a4\3\106\1\uffff\1\106"+
+        "\1\u00a9\1\u00aa\1\uffff\1\106\1\u00ac\1\u00ad\1\uffff\1\u00ae\5"+
+        "\106\3\uffff\2\106\2\uffff\5\106\1\u00bb\1\106\1\u00bd\1\uffff\3"+
+        "\106\1\u00c1\2\uffff\1\106\3\uffff\1\106\1\u00c4\2\106\1\u00c7\2"+
+        "\106\1\u00ca\2\106\1\u00cd\1\u00ce\1\uffff\1\u00cf\1\uffff\3\106"+
+        "\1\uffff\2\106\1\uffff\1\u00d5\1\u00d6\1\uffff\1\u00d7\1\106\1\uffff"+
+        "\1\u00d9\1\u00da\3\uffff\1\106\1\u00dd\1\u00de\2\106\3\uffff\1\u00e1"+
+        "\3\uffff\1\106\2\uffff\1\u00e4\1\106\1\uffff\1\u00e6\1\106\1\uffff"+
+        "\1\u00e9\1\uffff\1\u00e6\1\u00ea\2\uffff";
     static final String DFA10_eofS =
-        "\u00ea\uffff";
+        "\u00eb\uffff";
     static final String DFA10_minS =
         "\1\11\3\75\1\52\4\uffff\3\75\1\74\1\uffff\4\56\1\uffff\7\56\1\75"+
-        "\1\46\1\75\5\56\1\75\3\56\3\uffff\1\56\1\uffff\1\56\1\uffff\2\0"+
-        "\6\uffff\1\0\15\uffff\2\56\1\uffff\1\56\1\uffff\17\56\11\uffff\7"+
-        "\56\2\uffff\5\56\2\uffff\1\42\1\0\1\47\1\0\2\uffff\17\56\1\uffff"+
-        "\3\56\1\uffff\3\56\1\uffff\6\56\1\0\1\uffff\1\0\2\56\2\uffff\10"+
-        "\56\1\uffff\4\56\2\uffff\1\56\3\uffff\14\56\1\uffff\1\56\1\uffff"+
-        "\3\56\1\uffff\2\56\1\uffff\2\56\1\uffff\2\56\1\uffff\2\56\3\uffff"+
-        "\5\56\2\uffff\1\56\3\uffff\1\56\1\101\2\uffff\2\56\1\uffff\1\56"+
-        "\1\60\1\uffff\2\56\1\uffff\1\60\2\uffff";
+        "\1\46\1\75\2\56\1\uffff\3\56\1\75\3\56\3\uffff\1\56\1\uffff\1\56"+
+        "\1\uffff\2\0\6\uffff\1\0\15\uffff\2\56\1\uffff\1\56\1\uffff\17\56"+
+        "\11\uffff\7\56\2\uffff\5\56\2\uffff\1\42\1\0\1\47\1\0\2\uffff\17"+
+        "\56\1\uffff\3\56\1\uffff\3\56\1\uffff\6\56\1\0\1\uffff\1\0\2\56"+
+        "\2\uffff\10\56\1\uffff\4\56\2\uffff\1\56\3\uffff\14\56\1\uffff\1"+
+        "\56\1\uffff\3\56\1\uffff\2\56\1\uffff\2\56\1\uffff\2\56\1\uffff"+
+        "\2\56\3\uffff\5\56\3\uffff\1\56\2\uffff\1\101\1\56\2\uffff\2\56"+
+        "\1\uffff\1\60\1\56\1\uffff\1\56\1\uffff\1\60\1\56\2\uffff";
     static final String DFA10_maxS =
-        "\1\175\4\75\4\uffff\2\75\1\76\1\75\1\uffff\4\172\1\uffff\7\172\1"+
-        "\174\1\75\1\136\5\172\1\75\3\172\3\uffff\1\71\1\uffff\1\172\1\uffff"+
-        "\2\ufffe\6\uffff\1\ufffe\15\uffff\2\172\1\uffff\1\172\1\uffff\17"+
-        "\172\11\uffff\7\172\2\uffff\5\172\2\uffff\1\42\1\ufffe\1\47\1\ufffe"+
-        "\2\uffff\17\172\1\uffff\3\172\1\uffff\3\172\1\uffff\6\172\1\ufffe"+
-        "\1\uffff\1\ufffe\2\172\2\uffff\10\172\1\uffff\4\172\2\uffff\1\172"+
-        "\3\uffff\14\172\1\uffff\1\172\1\uffff\3\172\1\uffff\2\172\1\uffff"+
-        "\2\172\1\uffff\2\172\1\uffff\2\172\3\uffff\5\172\2\uffff\1\172\3"+
-        "\uffff\2\172\2\uffff\2\172\1\uffff\2\172\1\uffff\2\172\1\uffff\1"+
-        "\172\2\uffff";
+        "\1\176\4\75\4\uffff\2\75\1\76\1\75\1\uffff\4\172\1\uffff\7\172\1"+
+        "\174\1\75\1\136\2\172\1\uffff\3\172\1\75\3\172\3\uffff\1\71\1\uffff"+
+        "\1\172\1\uffff\2\ufffe\6\uffff\1\ufffe\15\uffff\2\172\1\uffff\1"+
+        "\172\1\uffff\17\172\11\uffff\7\172\2\uffff\5\172\2\uffff\1\42\1"+
+        "\ufffe\1\47\1\ufffe\2\uffff\17\172\1\uffff\3\172\1\uffff\3\172\1"+
+        "\uffff\6\172\1\ufffe\1\uffff\1\ufffe\2\172\2\uffff\10\172\1\uffff"+
+        "\4\172\2\uffff\1\172\3\uffff\14\172\1\uffff\1\172\1\uffff\3\172"+
+        "\1\uffff\2\172\1\uffff\2\172\1\uffff\2\172\1\uffff\2\172\3\uffff"+
+        "\5\172\3\uffff\1\172\2\uffff\2\172\2\uffff\2\172\1\uffff\2\172\1"+
+        "\uffff\1\172\1\uffff\2\172\2\uffff";
     static final String DFA10_acceptS =
-        "\5\uffff\1\5\1\6\1\7\1\10\4\uffff\1\21\4\uffff\1\27\23\uffff\1\104"+
-        "\1\105\1\106\1\uffff\1\110\1\uffff\1\114\2\uffff\1\75\1\1\1\76\1"+
-        "\2\1\77\1\3\1\uffff\1\100\1\120\1\4\1\12\1\11\1\13\1\42\1\47\1\15"+
-        "\1\14\1\46\1\17\1\16\2\uffff\1\115\1\uffff\1\112\17\uffff\1\54\1"+
-        "\101\1\43\1\52\1\102\1\44\1\56\1\103\1\45\7\uffff\1\60\1\73\5\uffff"+
-        "\1\107\1\113\4\uffff\1\20\1\117\17\uffff\1\35\3\uffff\1\64\3\uffff"+
-        "\1\55\7\uffff\1\121\3\uffff\1\24\1\67\10\uffff\1\31\4\uffff\1\41"+
-        "\1\50\1\uffff\1\51\1\53\1\57\14\uffff\1\34\1\uffff\1\37\3\uffff"+
-        "\1\36\2\uffff\1\71\2\uffff\1\74\2\uffff\1\25\2\uffff\1\62\1\30\1"+
-        "\40\5\uffff\1\65\1\66\1\uffff\1\22\1\70\1\26\2\uffff\1\33\1\61\2"+
-        "\uffff\1\23\2\uffff\1\72\2\uffff\1\111\1\uffff\1\63\1\32";
+        "\5\uffff\1\5\1\6\1\7\1\10\4\uffff\1\21\4\uffff\1\27\14\uffff\1\52"+
+        "\7\uffff\1\105\1\106\1\107\1\uffff\1\111\1\uffff\1\115\2\uffff\1"+
+        "\76\1\1\1\77\1\2\1\100\1\3\1\uffff\1\101\1\121\1\4\1\12\1\11\1\13"+
+        "\1\42\1\47\1\15\1\14\1\46\1\17\1\16\2\uffff\1\116\1\uffff\1\113"+
+        "\17\uffff\1\55\1\102\1\43\1\53\1\103\1\44\1\57\1\104\1\45\7\uffff"+
+        "\1\61\1\74\5\uffff\1\110\1\114\4\uffff\1\20\1\120\17\uffff\1\35"+
+        "\3\uffff\1\65\3\uffff\1\56\7\uffff\1\122\3\uffff\1\24\1\70\10\uffff"+
+        "\1\31\4\uffff\1\41\1\50\1\uffff\1\51\1\54\1\60\14\uffff\1\34\1\uffff"+
+        "\1\37\3\uffff\1\36\2\uffff\1\72\2\uffff\1\75\2\uffff\1\25\2\uffff"+
+        "\1\63\1\30\1\40\5\uffff\1\66\1\67\1\22\1\uffff\1\71\1\26\2\uffff"+
+        "\1\62\1\33\2\uffff\1\23\2\uffff\1\73\1\uffff\1\112\2\uffff\1\64"+
+        "\1\32";
     static final String DFA10_specialS =
-        "\u00ea\uffff}>";
+        "\u00eb\uffff}>";
     static final String[] DFA10_transitionS = {
-            "\2\54\1\uffff\2\54\22\uffff\1\54\1\12\1\55\1\54\1\52\1\uffff"+
-            "\1\33\1\56\1\5\1\6\1\3\1\1\1\22\1\2\1\46\1\4\12\51\1\42\1\15"+
-            "\1\14\1\11\1\13\2\uffff\32\53\1\47\1\uffff\1\50\1\34\2\uffff"+
-            "\1\37\1\23\1\43\1\35\1\24\1\20\1\25\1\53\1\27\3\53\1\36\1\31"+
-            "\1\40\1\16\1\53\1\26\1\21\1\30\1\44\1\17\1\45\1\41\2\53\1\7"+
-            "\1\32\1\10",
-            "\1\57",
-            "\1\61",
-            "\1\63",
-            "\1\67\4\uffff\1\65\15\uffff\1\66",
+            "\2\55\1\uffff\2\55\22\uffff\1\55\1\12\1\56\1\55\1\53\1\uffff"+
+            "\1\33\1\57\1\5\1\6\1\3\1\1\1\22\1\2\1\47\1\4\12\52\1\43\1\15"+
+            "\1\14\1\11\1\13\2\uffff\32\54\1\50\1\uffff\1\51\1\34\2\uffff"+
+            "\1\40\1\23\1\44\1\35\1\24\1\20\1\25\1\54\1\27\3\54\1\36\1\31"+
+            "\1\41\1\16\1\54\1\26\1\21\1\30\1\45\1\17\1\46\1\42\2\54\1\7"+
+            "\1\32\1\10\1\37",
+            "\1\60",
+            "\1\62",
+            "\1\64",
+            "\1\70\4\uffff\1\66\15\uffff\1\67",
             "",
             "",
             "",
             "",
-            "\1\71",
-            "\1\73",
-            "\1\76\1\75",
-            "\1\100\1\101",
+            "\1\72",
+            "\1\74",
+            "\1\77\1\76",
+            "\1\101\1\102",
             "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\103\2\106\1\104\5\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\110\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\112\5\106\1\111\13\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\114\2\106\1\113\3\106",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\105\2\107\1\104\5\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\111\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\113\5\107\1\112\13\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\115\2\107\1\114\3\107",
             "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\116\14\106\1\115\10\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\120\1\106\1\121\11\106\1\117\2\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\122\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\123\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\5"+
-            "\106\1\124\24\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\7"+
-            "\106\1\125\22\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\16"+
-            "\106\1\126\13\106",
-            "\1\130\76\uffff\1\127",
-            "\1\132\26\uffff\1\133",
-            "\1\136\40\uffff\1\135",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\142\3\106\1\140\5\106\1\141\13\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\16"+
-            "\106\1\143\13\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\144\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\145\10\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\16"+
-            "\106\1\146\13\106",
-            "\1\147",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\152\15\106\1\151\13\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\153\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\7"+
-            "\106\1\154\1\155\21\106",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\117\14\107\1\116\10\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\121\1\107\1\122\11\107\1\120\2\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\123\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\124\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\5"+
+            "\107\1\125\24\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\7"+
+            "\107\1\126\22\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\16"+
+            "\107\1\127\13\107",
+            "\1\131\76\uffff\1\130",
+            "\1\133\26\uffff\1\134",
+            "\1\137\40\uffff\1\136",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\143\3\107\1\141\5\107\1\142\13\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\16"+
+            "\107\1\144\13\107",
             "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\145\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\146\10\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\16"+
+            "\107\1\147\13\107",
+            "\1\150",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\153\15\107\1\152\13\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\154\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\7"+
+            "\107\1\155\1\156\21\107",
             "",
             "",
-            "\1\157\1\uffff\12\51",
             "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
+            "\1\160\1\uffff\12\52",
             "",
-            "\42\161\1\160\uffdc\161",
-            "\47\163\1\162\uffd7\163",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
             "",
+            "\42\162\1\161\uffdc\162",
+            "\47\164\1\163\uffd7\164",
             "",
             "",
             "",
             "",
             "",
-            "\12\165\1\uffff\2\165\1\uffff\ufff1\165",
             "",
+            "\12\166\1\uffff\2\166\1\uffff\ufff1\166",
             "",
             "",
             "",
@@ -2821,282 +2848,283 @@ public class gscriptLexer extends Lexer {
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\166\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\106\1\167\30\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\170\10\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\171\10\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\172\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\173\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\174\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\175\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\6"+
-            "\106\1\176\23\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\177\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\22"+
-            "\106\1\u0080\7\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\3"+
-            "\106\1\u0081\26\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\16"+
-            "\106\1\u0082\13\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\17"+
-            "\106\1\u0084\3\106\1\u0083\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u0086\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u0087\6\106",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\25"+
-            "\106\1\u0088\4\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\5"+
-            "\106\1\u008a\24\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\3"+
-            "\106\1\u008b\26\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\3"+
-            "\106\1\u008c\26\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\u008e\10\106",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\u008f\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\22"+
-            "\106\1\u0090\7\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u0091\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u0092\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u0093\6\106",
-            "",
-            "",
-            "\1\u0094",
-            "\42\161\1\160\uffdc\161",
-            "\1\u0096",
-            "\47\163\1\162\uffd7\163",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\25"+
-            "\106\1\u0097\4\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u0098\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u009b\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u009c\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u009d\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u009e\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u009f\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u00a0\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00a2\3\106\1\u00a1\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\106\1\u00a4\30\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\24"+
-            "\106\1\u00a5\5\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00a6\25\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\u00a7\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u00aa\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u00ae\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00af\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u00b0\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u00b1\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\7"+
-            "\106\1\u00b2\22\106",
-            "\42\161\1\160\uffdc\161",
-            "",
-            "\47\163\1\162\uffd7\163",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u00b3\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u00b4\21\106",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u00b5\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\2"+
-            "\106\1\u00b6\27\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u00b7\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\12"+
-            "\106\1\u00b8\17\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\u00b9\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\5"+
-            "\106\1\u00bb\24\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u00bd\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\u00be\10\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u00bf\31\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\24"+
-            "\106\1\u00c1\5\106",
-            "",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\10"+
-            "\106\1\u00c2\21\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u00c4\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00c5\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u00c7\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\2"+
-            "\106\1\u00c8\27\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\7"+
-            "\106\1\u00ca\22\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\2"+
-            "\106\1\u00cb\27\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u00cf\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\u00d0\14\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u00d1\6\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\13"+
-            "\106\1\u00d2\16\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\15"+
-            "\106\1\u00d3\14\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00d6\25\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "",
-            "",
-            "\1\u00db\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff"+
-            "\25\106\1\u00da\4\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\23"+
-            "\106\1\u00de\6\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\24"+
-            "\106\1\u00df\5\106",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "",
-            "",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\1"+
-            "\u00e1\31\106",
+            "",
+            "",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\107\1\167\30\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\170\21\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\171\10\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\172\10\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\173\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\174\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\175\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\176\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\6"+
+            "\107\1\177\23\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u0080\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\22"+
+            "\107\1\u0081\7\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\3"+
+            "\107\1\u0082\26\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\16"+
+            "\107\1\u0083\13\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\17"+
+            "\107\1\u0084\3\107\1\u0085\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u0087\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u0088\6\107",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\25"+
+            "\107\1\u0089\4\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\5"+
+            "\107\1\u008b\24\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\3"+
+            "\107\1\u008c\26\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\3"+
+            "\107\1\u008d\26\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\u008f\10\107",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\u0090\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\22"+
+            "\107\1\u0091\7\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u0092\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u0093\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u0094\6\107",
+            "",
+            "",
+            "\1\u0095",
+            "\42\162\1\161\uffdc\162",
+            "\1\u0097",
+            "\47\164\1\163\uffd7\164",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u0098\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\25"+
+            "\107\1\u0099\4\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u009c\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u009d\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u009e\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u009f\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u00a0\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u00a1\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00a3\3\107\1\u00a2\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\107\1\u00a5\30\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00a6\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\24"+
+            "\107\1\u00a7\5\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\u00a8\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u00ab\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u00af\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00b0\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u00b1\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u00b2\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\7"+
+            "\107\1\u00b3\22\107",
+            "\42\162\1\161\uffdc\162",
+            "",
+            "\47\164\1\163\uffd7\164",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u00b4\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u00b5\31\107",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u00b6\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\2"+
+            "\107\1\u00b7\27\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u00b8\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\12"+
+            "\107\1\u00b9\17\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\u00ba\14\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\5"+
+            "\107\1\u00bc\24\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u00be\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u00bf\31\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\u00c0\10\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\24"+
+            "\107\1\u00c2\5\107",
+            "",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\10"+
+            "\107\1\u00c3\21\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u00c5\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00c6\25\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\2"+
+            "\107\1\u00c8\27\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u00c9\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\7"+
+            "\107\1\u00cb\22\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\2"+
+            "\107\1\u00cc\27\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u00d0\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u00d1\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\u00d2\14\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\13"+
+            "\107\1\u00d3\16\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\15"+
+            "\107\1\u00d4\14\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00d8\25\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "",
+            "",
+            "\1\u00db\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff"+
+            "\25\107\1\u00dc\4\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\23"+
+            "\107\1\u00df\6\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\24"+
+            "\107\1\u00e0\5\107",
+            "",
+            "",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "",
             "\32\u00e2\6\uffff\32\u00e2",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\1"+
+            "\u00e3\31\107",
             "",
             "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\4"+
-            "\106\1\u00e4\25\106",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\21"+
-            "\106\1\u00e5\10\106",
-            "\12\u00e7\7\uffff\32\u00e7\4\uffff\1\u00e7\1\uffff\32\u00e7",
-            "",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
-            "\1\107\1\uffff\12\106\7\uffff\32\106\4\uffff\1\106\1\uffff\32"+
-            "\106",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\4"+
+            "\107\1\u00e5\25\107",
             "",
             "\12\u00e7\7\uffff\32\u00e7\4\uffff\1\u00e7\1\uffff\32\u00e7",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\21"+
+            "\107\1\u00e8\10\107",
+            "",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
+            "",
+            "\12\u00e7\7\uffff\32\u00e7\4\uffff\1\u00e7\1\uffff\32\u00e7",
+            "\1\110\1\uffff\12\107\7\uffff\32\107\4\uffff\1\107\1\uffff\32"+
+            "\107",
             "",
             ""
     };
@@ -3131,7 +3159,7 @@ public class gscriptLexer extends Lexer {
             this.transition = DFA10_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE );";
+            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | LPAREN | RPAREN | LBRAC | RBRAC | EQUALS | EQUALS2 | NOT_EQUALS | GT | GTE | LT | LTE | COMMENT1 | T35 | T36 | T37 | T38 | T39 | T40 | T41 | T42 | T43 | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | T77 | T78 | T79 | T80 | T81 | T82 | T83 | T84 | T85 | T86 | T87 | T88 | T89 | NUMBER | HEXNUMBER | GLOBALVAR | OIVAR | DECIMAL | WHITESPACE | WORD | LETTER | COMMENT | ML_COMMENT | STRING | STRING_DOUBLE | STRING_SINGLE );";
         }
     }
  

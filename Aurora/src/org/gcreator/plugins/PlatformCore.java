@@ -160,7 +160,7 @@ public class PlatformCore extends PluginCore {
     }
     
     public String repeatstatement(String ex, String st) {
-        return "double G_CREATOR__repeat; \n while(G_CREATOR__repeat < ("+ex+".getBoolean())){\n"+st+" G_CREATOR__repeat++;}"; 
+        return "G_CREATOR__repeat=new Double(0); \n while(G_CREATOR__repeat.lt("+ex+").getBoolean()){\n"+st+" G_CREATOR__repeat.add(new Integer(1));}"; 
     }
     
     public String breakstatement() {
@@ -199,7 +199,7 @@ public class PlatformCore extends PluginCore {
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
         
-        String instance="";
+        String instance="",value="";
         
         if(variable.contains("all."))
             ;
@@ -216,29 +216,27 @@ public class PlatformCore extends PluginCore {
         else
             instance="self";
         if (instance.equals("self")||instance.equals("other")||instance.equals("noone"))
-           expression = instance+".setVariable("+variable+"," ;
+           value = instance+".setVariable(\""+variable+"\"," ;
         
         if (operator.equals("="))
-            ;
+            value+=expression;
         else if (operator.equals(":="))
-            ;
+            value+=expression;
         else if (operator.equals("+="))
-            expression = instance+".getVariable("+variable+").add("+expression+")";
+            value += instance+".getVariable(\""+variable+"\").setadd("+expression+")";
         else if (operator.equals("*="))
-            operator = ".mult";
+            value += instance+".getVariable(\""+variable+"\").setmult("+expression+")";
         else if (operator.equals("-="))
-            operator = ".sub";
+            value += instance+".getVariable(\""+variable+"\").setsub("+expression+")";
         else if (operator.equals("/="))
-            operator = ".div";
-        else if (operator.equals("-="))
-            operator = ".sub";
+            value += instance+".getVariable(\""+variable+"\").setdiv("+expression+")";
         else if (operator.equals("&="))
-            operator = ".band";
+            value += instance+".getVariable(\""+variable+"\").setband("+expression+")";
         else if (operator.equals("|="))
-            operator = ".bor";
+            value += instance+".getVariable(\""+variable+"\").setbor("+expression+")";
         else if (operator.equals("^="))
-            operator = ".bxor";
-        return expression;
+            value += instance+".getVariable(\""+variable+"\").setbxor("+expression+")";
+        return value+")";
     }
     
     public String functionstatement(String name, String parameters) {
@@ -257,9 +255,27 @@ public class PlatformCore extends PluginCore {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
     
-    public String variable(String var)
+    public String variable(String variable)
     {
-        return var;
+        String instance="",value="";
+        
+        if(variable.contains("all."))
+            instance="(new All())";
+        else if(variable.contains("other."))
+            instance="other";
+        else if(variable.contains("noone."))
+            instance="(new Object())";
+        else if(variable.contains("self."))
+            instance="self";
+        else if(variable.contains("."))
+            instance="(new All(new "+variable+"()))";
+        else if(variable.contains("("))
+            ;
+        else
+            instance="self";
+        
+        value=instance+".getVariable(\""+variable+"\")";
+        return value;
     }
     
     /**

@@ -1,310 +1,77 @@
-/*
-
-Start of test gml code
-
-*/
-
-
-
-// test var
-
-var varname1,varname2;
-
-varname1 = 3-4;
-
-varname1 = 3
-
-varname1 -= 3-4
-
-varname1 *= 3-4
-
-varname1 += 3-4
-
-varname1 := 3-4
-
-varname1 /= 3-4
-
-varname1 |= 3-4
-
-varname1 ^= 3-4
-
-varname1 &= 3-4
-
-
-//test return
-
-return i;
-
-
-
-//test exit
-
-exit;
-
-
-
-// test proper if
-
-if (1 == 2) {
-
-// do something
-
-}
-
-
-
-// test lazy if
-
-if 1 = 2 {}
-
-
-
-// test no {} if
-
-if 1 == 2
-
-exit;
-
-else
-
-exit;
-
-
-
-// test repeat
-
-repeat (5)
-
-{
-
-//repeat something
-
-continue;
-
-break;
-
-}
-
-
-
-// test do statement
-
-do
-
-{
-
-exit;
-
-} until 2 == 3
-
-
-
-// test while statement
-
-while (1 == 1)
-
-{
-
-exit;
-
-}
-
-
-
-// test for statement
-
-for (i=1; i<2; i=1;)
-
-{
-
-break;
-
-}
-
-
-
-//test switch statement
-
-
-
-switch (keyboard_key)
-
-{
-
-case vk_left:
-
-case vk_numpad4:
-
-x -= 4; break;
-
-case vk_right:
-
-case vk_numpad6:
-
-x += 4; break;
-
-}
-
-
-
-// test with statement
-
-with (ball)
-
-{
-
-break;
-
-}
-
-
-
-// test assignment
-ball = 3;
-
-
-
-// test and,or
-
-if ((1=5) and (2=3)) or 5=6
-
-{}
-
-
-
-//test expressions
-
-{
-
-x = 23;
-
-color = $FFAA00;
-
-str = 'hello world';
-
-y += 5;
-
-x *= y;
-
-x = y << 2;
-
-x = 23*((2+4) / sin(y));
-
-str = 'hello' + " world";
-
-b = (x < 5) && !(x==2 || x==4);
-
-}
-
-{
-  a[0] = 1;
-  i = 1;
-  while (i < 10) { a[i] = 2*a[i-1]; i += 1;}
-  b[4,6] = 32;
-}
-
-
-
-
-
-// test function
-
-my_function((1+2)/2,3);
-
-
-
-//test begin,end,then
-
-if 1==2 then
-
-begin
-
-my_function((1+2)/2,3);
-
-end
-
-
-
-var a, b,c= 2, d := 0,e;
-
-
-
-for (a = 0;a<2 a +=1) begin
-
-repeat show_message(string( a) );
-
-end;
-
-q[ds_list_size(
-d)] = ds_list_size
-()
-
-if (q[0] ^ ds_list_size == true) then show_message(string(q[0 ^ 0]));
-else { show_message("er" + "r" + "or") end
-
-q[ds_list_size(
-d)] = ds_list_size
-()
-
-if (q[0] ^ ds_list_size == true) then show_message(string(q[0 ^ 0]));
-else { show_message("er" + "r" + "or") end
-
-//end of test gml code
-
-str="if draw = false { exit;}"
-str2=""
-for( i=0; i<=150; i+=1 )
- {
-  str += "if bgdraw >= "+string(i)+" draw_background( global.level_"+string(i)+", lengthdir_x( "+string(i/3)+", -view_angle + 90 ), lengthdir_y( "+string(i/3)+", -view_angle + 90 ) ); if obj_controller.z = "+string(i)+" || "+string(i)+"=1 draw_sprite_ext(spr_guy,0,x,y,1/6,1/6,image_angle,image_blend,1);"
- }
-
-for( i=1; i<=150; i+=1 )
- {
-  str2 += "draw_set_blend_mode(bm_normal); with all { if variable_local_exists('z') { if "+string(i)+" >= z && "+string(i)+" < z + sprite_get_number( sprite_index ) { draw_sprite_ext( sprite_index, "+string(i)+" - z, x, y, image_xscale, image_yscale, image_angle, image_blend, 1 ); } } }"
-  str2 += "global.level_"+string(i)+" = background_create_from_screen( 0, 0, room_width, room_height, true, false, true );"
-  str2 += "draw_rectangle_color( 0, 0, room_width, room_height, c_purple, c_purple, c_purple, c_purple, false );"
- }
- 
-str2+="draw_set_blend_mode(bm_normal);"
-
-makef = file_text_open_write(temp_directory+"makef.txt")
-file_text_write_string(makef,string(str2))
-file_text_close(makef)
- 
-object_event_add( obj_controller, ev_draw, 0, string( str ) )
-
-draw_rectangle_color( 0, 0, room_width, room_height, c_purple, c_purple, c_purple, c_purple, false )
-
-for( i=0; i<room_width; i+=25 )
-  for( j=0; j<room_height; j+=25 )
-    draw_background( bg_olis_kitchen, i, j )
-with all
- {
-  if variable_local_exists('z')
-   {
-    if z = 0
-     {
-      draw_sprite_ext( sprite_index, 0, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha )
-     }
-   }
- }
-with all
- {
-  if variable_local_exists('lights')
-   {
-    draw_set_blend_mode( bm_add )
-    draw_sprite_ext( spr_light, 0, x, y, 1, 1, 3, c_yellow, .3 )
-    draw_set_blend_mode( bm_normal )
-   }
- }
- 
-global.level_0 = background_create_from_screen( 0, 0, room_width, room_height, false, false, false )
-draw_rectangle_color( 0, 0, room_width, room_height, c_purple, c_purple, c_purple, c_purple, false )
- 
-execute_file(temp_directory+"makef.txt")
-
-instance_create( x, y, obj_simple_guy )
-with instance_create( x, y, obj_controller ) draw = true
-instance_destroy()
-
-(100032).speed = 0;
+d3d_start()
+d3d_end()
+d3d_set_hidden(enable)
+d3d_set_perspective(enable)
+d3d_set_depth(depth)
+d3d_primitive_begin(kind)
+d3d_vertex(x,y,z)
+d3d_vertex_color(x,y,z,col,alpha)
+d3d_primitive_end()
+d3d_primitive_begin_texture(kind,texid)
+d3d_vertex_texture(x,y,z,xtex,ytex)
+d3d_vertex_texture_color(x,y,z,xtex,ytex,col,alpha)
+d3d_draw_block(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
+d3d_draw_cylinder(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,closed,steps)
+d3d_draw_cone(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,closed,steps)
+d3d_draw_ellipsoid(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,steps)
+d3d_draw_wall(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
+d3d_draw_floor(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
+d3d_set_projection(xfrom,yfrom,zfrom,xto,yto,zto,xup,yup,zup)
+d3d_set_projection_ext(xfrom,yfrom,zfrom,xto,yto,zto,xup,yup,zup,angle,aspect,znear,zfar)
+d3d_set_projection_ortho(x,y,w,h,angle)
+d3d_set_projection_perspective(x,y,w,h,angle)
+d3d_transform_set_identity()
+d3d_transform_set_translation(xt,yt,zt)
+d3d_transform_set_scaling(xs,ys,zs)
+d3d_transform_set_rotation_x(angle)
+d3d_transform_set_rotation_y(angle)
+d3d_transform_set_rotation_z(angle)
+d3d_transform_set_rotation_axis(xa,ya,za,angle)
+d3d_transform_add_translation(xt,yt,zt)
+d3d_transform_add_scaling(xs,ys,zs)
+d3d_transform_add_rotation_x(angle)
+d3d_transform_add_rotation_y(angle)
+d3d_transform_add_rotation_z(angle)
+d3d_transform_add_rotation_axis(xa,ya,za,angle)
+d3d_transform_stack_clear()
+d3d_transform_stack_empty()
+d3d_transform_stack_push()
+d3d_transform_stack_pop()
+d3d_transform_stack_top()
+d3d_transform_stack_discard()
+d3d_set_fog(enable,color,start,end)
+d3d_set_lighting(enable)
+d3d_set_shading(smooth)
+d3d_set_culling(cull)
+d3d_light_define_direction(ind,dx,dy,dz,col)
+d3d_light_define_point(ind,x,y,z,range,col)
+d3d_light_enable(ind,enable)
+d3d_vertex_normal(x,y,z,nx,ny,nz)
+d3d_vertex_normal_color(x,y,z,nx,ny,nz,col,alpha)
+d3d_vertex_normal_texture(x,y,z,nx,ny,nz,xtex,ytex)
+d3d_vertex_normal_texture_color(x,y,z,nx,ny,nz,xtex,ytex,col,alpha)
+
+d3d_model_create()
+d3d_model_destroy(ind)
+d3d_model_clear(ind)
+d3d_model_save(ind,fname)
+d3d_model_load(ind,fname)
+d3d_model_draw(ind,x,y,z,texid)
+
+d3d_model_primitive_begin(ind,kind)
+d3d_model_vertex(ind,x,y,z)
+d3d_model_vertex_color(ind,x,y,z,col,alpha)
+d3d_model_vertex_texture(ind,x,y,z,xtex,ytex)
+d3d_model_vertex_texture_color(ind,x,y,z,xtex,ytex,col,alpha)
+d3d_model_vertex_normal(ind,x,y,z,nx,ny,nz)
+d3d_model_vertex_normal_color(ind,x,y,z,nx,ny,nz,col,alpha)
+d3d_model_vertex_normal_texture(ind,x,y,z,nx,ny,nz,xtex,ytex)
+d3d_model_vertex_normal_texture_color(ind,x,y,z,nx,ny,nz,xtex,ytex,col,alpha)
+d3d_model_primitive_end(ind)
+
+d3d_model_block(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)
+d3d_model_cylinder(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,closed,steps)
+d3d_model_cone(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,closed,steps)
+d3d_model_ellipsoid(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,steps)
+d3d_model_wall(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)
+d3d_model_floor(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)

@@ -58,7 +58,7 @@ code // never put: returns after this! This is for script and parameter code
 ;
 
 statement returns [String value]
-: {$value = "";}  (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}) (';')* 	
+: {$value = "";}  (b=bstatement{$value += $b.value;}|v=varstatement{$value += $v.value+";";}|r=returnstatement{$value += $r.value;}|e=exitstatement{$value += $e.value;}|ifs=ifstatement{$value += $ifs.value;}|rep=repeatstatement{$value += $rep.value;}|dos=dostatement{$value += $dos.value;}|wh=whilestatement{$value += $wh.value;}|con=continuestatement{$value += $con.value+";";}|br=breakstatement{$value += $br.value+";";}|fors=forstatement{$value += $fors.value;}|sw=switchstatement{$value += $sw.value;}|wit=withstatement{$value += $wit.value;}|fun2=function2{$value += $fun2.value+";";}|ass=assignment{$value += $ass.value+";";}|fun=function{$value += $fun.value+";";}|';') (';')* 	
 ;
 
 field returns [String value] //their are 2 finals in this for a reason ;)
@@ -71,7 +71,7 @@ method returns [String value] @init {String s = "";}
 
 //statement surrounded by brackets
 bstatement returns [String value]
-: {$value = "";} (LBRAC|'begin') (s=statement{$value +=$s.value;})* (RBRAC|'end') {$value=pc.bstatement($value);}
+: {$value = "";} (LBRAC|'begin') (s=statement{$value +=$s.value+"\n";})* (RBRAC|'end') {$value=pc.bstatement($value);}
 ;
 
 varstatement returns [String value] @init {String s = "";}
@@ -96,7 +96,7 @@ elsestatement returns [String value]
 
 //todo
 expression returns [String value] @init {String a = "";}
-:  (p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
+:  (neg=negate{$value = $neg.value;}|p=pexpression{$value =$p.value;}|r=relationalExpression{$value =$r.value;}|n=notexpression{$value =$n.value;}) (aa=aexpression {$value+= " "+ $aa.value;})* ((an=andexpression{$value +=" "+$an.value;}|orr=orexpression{$value +=" "+$orr.value;}|x=xorexpression{$value +=" "+$x.value;}) (e=expression{$value +=" ("+$e.value+")";}))* {$value =pc.expression($value);}
 ;
 
 notexpression returns [String value]
@@ -110,6 +110,9 @@ aexpression returns [String value]
 
 value returns [String value] : a=(NUMBER|HEXNUMBER|STRING|variable) {$value=$a.text;}
 ;
+
+negate returns [String value]	:	('-'{$value="negate(";}|'~'{$value="bnegate(";}) e=expression {$value += $e.value+")";}
+	;
 
 //expression surrounded with parenthesis
 pexpression returns [String value]
@@ -130,7 +133,7 @@ xorexpression returns [String value]
 
 relationalExpression returns [String value] @init {String a = "";}
   :
-  (f=function{$value = $f.value;}|h=HEXNUMBER{$value = $h.text;}|s=STRING{$value = "(new String("+$s.text+"))";}|n=NUMBER{$value = "(new Integer("+$n.text+"))";}|v=variable{$value = $v.value;}|d=DECIMAL{$value = "(new Double("+$d.text+"))";}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = "(new String("+$s.text+"))";}|n=NUMBER{a = "(new Integer("+$n.text+"))";}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
+  (f=function{$value = $f.value;}|h=HEXNUMBER{$value = "(new String(\""+$h.text+"\"))";}|s=STRING{$value = "(new String(\""+$s.text.substring(1, $s.text.length()-1)+"\"))";}|'-' n=NUMBER{$value = "(new Integer("+$n.text+"))";} |n=NUMBER{$value = "(new Integer("+$n.text+"))";}|v=variable{$value = $v.value;}|d=DECIMAL{$value = "(new Double("+$d.text+"))";}|w=WORD{$value = $w.text;}) ( op=('!'|EQUALS|EQUALS2|':='|NOT_EQUALS|GT|GTE|LT|LTE) (f=function{a = $f.value;}|h=HEXNUMBER{a = $h.text;}|s=STRING{a = "(new String("+$s.text+"))";}|n=NUMBER{a = "(new Integer("+$n.text+"))";}|v=variable{a = $v.value;}|d=DECIMAL{a = "(new Double("+$d.text+"))";}|w=WORD{a = $w.text;}) {$value =pc.relationalExpression($value,$op.text,a);})? 
   ;
  
 repeatstatement returns [String value]
@@ -157,7 +160,7 @@ forstatement returns [String value]
 ;
 
 switchstatement returns [String value]
-: 'switch' (expression) '{' (('case'|'default') expression ':' (statement)*)* '}' {$value ="";} //BETA 
+: 'switch' (expression) '{' (('case' expression|'default')  ':' (statement)*)* '}' {$value ="";} //BETA 
 ;
 
 withstatement returns [String value]
@@ -169,7 +172,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = $a.value;}|valuee=(WORD|OIVAR|GLOBALVAR){$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) 
+:  (a=array{$value = $a.value;}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) ('.' (array|(WORD|OIVAR|GLOBALVAR)) )*
 ;
 
 function returns [String value]

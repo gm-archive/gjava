@@ -1,0 +1,11 @@
+WORD=4
+ML_COMMENT=8
+LETTER=6
+WHITESPACE=5
+COMMENT=7
+'#'=9
+'('=11
+'*'=10
+','=12
+')'=14
+'...'=13

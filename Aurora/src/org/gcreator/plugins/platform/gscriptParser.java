@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-01-04 21:15:50
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-01-07 04:13:33
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -14,7 +14,7 @@ import org.antlr.runtime.debug.*;
 import java.io.IOException;
 public class gscriptParser extends DebugParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", "RPAREN", "LBRAC", "RBRAC", "EQUALS", "EQUALS2", "NOT_EQUALS", "GT", "GTE", "LT", "LTE", "COMMENT1", "DOC_COMMENT", "WORD", "NUMBER", "HEXNUMBER", "STRING", "DECIMAL", "OIVAR", "GLOBALVAR", "DIGIT", "LETTER", "WHITESPACE", "COMMENT", "ML_COMMENT", "STRING_DOUBLE", "STRING_SINGLE", "';'", "'public'", "'private'", "'var'", "'final'", "'static'", "','", "'begin'", "'end'", "'globalvar'", "'return'", "'exit'", "'if'", "'then'", "'else'", "'elsif'", "'not'", "'!'", "'|'", "'&'", "'^'", "'<<'", "'>>'", "'div'", "'mod'", "'&&'", "'and'", "'||'", "'or'", "'^^'", "'xor'", "':='", "'repeat'", "'break'", "'continue'", "'do'", "'until'", "'while'", "'for'", "'switch'", "'case'", "'default'", "':'", "'with'", "'+='", "'-='", "'*='", "'/='", "'|='", "'&='", "'^='", "'.'", "'['", "']'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "PLUS", "MINUS", "MULT", "DIV", "LPAREN", "RPAREN", "LBRAC", "RBRAC", "EQUALS", "EQUALS2", "NOT_EQUALS", "GT", "GTE", "LT", "LTE", "COMMENT1", "DOC_COMMENT", "WORD", "NUMBER", "HEXNUMBER", "STRING", "DECIMAL", "OIVAR", "GLOBALVAR", "DIGIT", "LETTER", "WHITESPACE", "COMMENT", "ML_COMMENT", "STRING_DOUBLE", "STRING_SINGLE", "';'", "'public'", "'private'", "'var'", "'final'", "'static'", "','", "'begin'", "'end'", "'globalvar'", "'return'", "'exit'", "'if'", "'then'", "'else'", "'elsif'", "'not'", "'!'", "'|'", "'&'", "'^'", "'<<'", "'>>'", "'div'", "'mod'", "'~'", "'&&'", "'and'", "'||'", "'or'", "'^^'", "'xor'", "':='", "'repeat'", "'break'", "'continue'", "'do'", "'until'", "'while'", "'for'", "'switch'", "'case'", "'default'", "':'", "'with'", "'+='", "'-='", "'*='", "'/='", "'|='", "'&='", "'^='", "'.'", "'['", "']'"
     };
     public static final int COMMENT1=19;
     public static final int LT=17;
@@ -52,14 +52,15 @@ public class gscriptParser extends DebugParser {
         "invalidRule", "classes", "code", "statement", "field", "method", 
         "bstatement", "varstatement", "returnstatement", "exitstatement", 
         "ifstatement", "elsestatement", "expression", "notexpression", "aexpression", 
-        "value", "pexpression", "andexpression", "orexpression", "xorexpression", 
-        "relationalExpression", "repeatstatement", "breakstatement", "continuestatement", 
-        "dostatement", "whilestatement", "forstatement", "switchstatement", 
-        "withstatement", "assignment", "variable", "function", "function2", 
-        "array", "synpred1", "synpred6", "synpred20", "synpred23", "synpred24", 
-        "synpred29", "synpred40", "synpred41", "synpred44", "synpred46", 
-        "synpred47", "synpred48", "synpred51", "synpred73", "synpred87", 
-        "synpred89", "synpred90", "synpred91"
+        "value", "negate", "pexpression", "andexpression", "orexpression", 
+        "xorexpression", "relationalExpression", "repeatstatement", "breakstatement", 
+        "continuestatement", "dostatement", "whilestatement", "forstatement", 
+        "switchstatement", "withstatement", "assignment", "variable", "function", 
+        "function2", "array", "synpred1", "synpred6", "synpred20", "synpred21", 
+        "synpred24", "synpred25", "synpred30", "synpred41", "synpred42", 
+        "synpred45", "synpred47", "synpred48", "synpred49", "synpred50", 
+        "synpred53", "synpred77", "synpred91", "synpred93", "synpred94", 
+        "synpred95", "synpred96"
     };
 
     public int ruleLevel = 0;
@@ -74,7 +75,7 @@ public class gscriptParser extends DebugParser {
                 reportError(ioe);
             }
 
-            ruleMemo = new Map[151+1];
+            ruleMemo = new Map[160+1];
     }
     public gscriptParser(TokenStream input) {
         this(input, DebugEventSocketProxy.DEFAULT_DEBUGGER_PORT);
@@ -497,17 +498,11 @@ public class gscriptParser extends DebugParser {
 
             	            }
             	            break;
-            	        case 38:
-            	        case 44:
-            	            {
-            	            alt1=2;
-            	            }
-            	            break;
             	        case WORD:
             	            {
-            	            int LA1_16 = input.LA(3);
+            	            int LA1_15 = input.LA(3);
 
-            	            if ( (LA1_16==LPAREN) ) {
+            	            if ( (LA1_15==LPAREN) ) {
             	                int LA1_49 = input.LA(4);
 
             	                if ( (synpred1()) ) {
@@ -525,17 +520,23 @@ public class gscriptParser extends DebugParser {
             	                    throw nvae;
             	                }
             	            }
-            	            else if ( (LA1_16==WORD||(LA1_16>=OIVAR && LA1_16<=GLOBALVAR)) ) {
+            	            else if ( (LA1_15==WORD||(LA1_15>=OIVAR && LA1_15<=GLOBALVAR)) ) {
             	                alt1=2;
             	            }
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 16, input);
+            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 15, input);
 
             	                dbg.recognitionException(nvae);
             	                throw nvae;
             	            }
+            	            }
+            	            break;
+            	        case 38:
+            	        case 44:
+            	            {
+            	            alt1=2;
             	            }
             	            break;
             	        default:
@@ -1022,7 +1023,7 @@ public class gscriptParser extends DebugParser {
 
                 int LA4_0 = input.LA(1);
 
-                if ( (LA4_0==LPAREN||LA4_0==LBRAC||LA4_0==WORD||(LA4_0>=OIVAR && LA4_0<=GLOBALVAR)||LA4_0==38||LA4_0==42||(LA4_0>=44 && LA4_0<=47)||(LA4_0>=67 && LA4_0<=70)||(LA4_0>=72 && LA4_0<=74)||LA4_0==78) ) {
+                if ( (LA4_0==LPAREN||LA4_0==LBRAC||LA4_0==WORD||(LA4_0>=OIVAR && LA4_0<=GLOBALVAR)||LA4_0==35||LA4_0==38||LA4_0==42||(LA4_0>=44 && LA4_0<=47)||(LA4_0>=68 && LA4_0<=71)||(LA4_0>=73 && LA4_0<=75)||LA4_0==79) ) {
                     alt4=1;
                 }
 
@@ -1087,7 +1088,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start statement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:1: statement returns [String value] : (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function ) ( ';' )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:1: statement returns [String value] : (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* ;
     public final String statement() throws RecognitionException {
         String value = null;
         int statement_StartIndex = input.index();
@@ -1131,18 +1132,18 @@ public class gscriptParser extends DebugParser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 3) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:1: ( (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function ) ( ';' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:1: ( (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:3: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function ) ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:3: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )*
             {
             dbg.location(61,3);
             if ( backtracking==0 ) {
               value = "";
             }
             dbg.location(61,19);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )
-            int alt5=16;
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )
+            int alt5=17;
             try { dbg.enterSubRule(5);
             try { dbg.enterDecision(5);
 
@@ -1162,23 +1163,38 @@ public class gscriptParser extends DebugParser {
             case WORD:
                 {
                 switch ( input.LA(2) ) {
+                case EQUALS:
+                case 67:
+                case 80:
+                case 81:
+                case 82:
+                case 83:
+                case 84:
+                case 85:
+                case 86:
+                case 87:
+                case 88:
+                    {
+                    alt5=15;
+                    }
+                    break;
                 case LPAREN:
                     {
                     switch ( input.LA(3) ) {
                     case NUMBER:
                         {
-                        int LA5_26 = input.LA(4);
+                        int LA5_29 = input.LA(4);
 
                         if ( (synpred6()) ) {
                             alt5=2;
                         }
-                        else if ( (true) ) {
+                        else if ( (synpred20()) ) {
                             alt5=16;
                         }
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 26, input);
+                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 29, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -1187,18 +1203,18 @@ public class gscriptParser extends DebugParser {
                         break;
                     case WORD:
                         {
-                        int LA5_27 = input.LA(4);
+                        int LA5_30 = input.LA(4);
 
                         if ( (synpred6()) ) {
                             alt5=2;
                         }
-                        else if ( (true) ) {
+                        else if ( (synpred20()) ) {
                             alt5=16;
                         }
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 27, input);
+                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 30, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -1207,18 +1223,18 @@ public class gscriptParser extends DebugParser {
                         break;
                     case LPAREN:
                         {
-                        int LA5_28 = input.LA(4);
+                        int LA5_31 = input.LA(4);
 
                         if ( (synpred6()) ) {
                             alt5=2;
                         }
-                        else if ( (true) ) {
+                        else if ( (synpred20()) ) {
                             alt5=16;
                         }
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 28, input);
+                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 31, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -1228,30 +1244,32 @@ public class gscriptParser extends DebugParser {
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        int LA5_29 = input.LA(4);
+                        int LA5_32 = input.LA(4);
 
                         if ( (synpred6()) ) {
                             alt5=2;
                         }
-                        else if ( (true) ) {
+                        else if ( (synpred20()) ) {
                             alt5=16;
                         }
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 29, input);
+                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 32, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
                         }
                         break;
+                    case MINUS:
                     case RPAREN:
                     case HEXNUMBER:
                     case STRING:
                     case DECIMAL:
                     case 51:
                     case 52:
+                    case 60:
                         {
                         alt5=16;
                         }
@@ -1259,26 +1277,12 @@ public class gscriptParser extends DebugParser {
                     default:
                         if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 19, input);
+                            new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 21, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
                     }
 
-                    }
-                    break;
-                case EQUALS:
-                case 66:
-                case 79:
-                case 80:
-                case 81:
-                case 82:
-                case 83:
-                case 84:
-                case 85:
-                case 87:
-                    {
-                    alt5=15;
                     }
                     break;
                 case WORD:
@@ -1291,7 +1295,7 @@ public class gscriptParser extends DebugParser {
                 default:
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 3, input);
+                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 3, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
@@ -1314,42 +1318,42 @@ public class gscriptParser extends DebugParser {
                 alt5=5;
                 }
                 break;
-            case 67:
+            case 68:
                 {
                 alt5=6;
                 }
                 break;
-            case 70:
+            case 71:
                 {
                 alt5=7;
                 }
                 break;
-            case 72:
+            case 73:
                 {
                 alt5=8;
                 }
                 break;
-            case 69:
+            case 70:
                 {
                 alt5=9;
                 }
                 break;
-            case 68:
+            case 69:
                 {
                 alt5=10;
                 }
                 break;
-            case 73:
+            case 74:
                 {
                 alt5=11;
                 }
                 break;
-            case 74:
+            case 75:
                 {
                 alt5=12;
                 }
                 break;
-            case 78:
+            case 79:
                 {
                 alt5=13;
                 }
@@ -1358,7 +1362,7 @@ public class gscriptParser extends DebugParser {
                 {
                 int LA5_16 = input.LA(2);
 
-                if ( (LA5_16==EQUALS||LA5_16==66||(LA5_16>=79 && LA5_16<=85)||LA5_16==87) ) {
+                if ( (LA5_16==EQUALS||LA5_16==67||(LA5_16>=80 && LA5_16<=88)) ) {
                     alt5=15;
                 }
                 else if ( (LA5_16==LPAREN) ) {
@@ -1367,7 +1371,7 @@ public class gscriptParser extends DebugParser {
                 else {
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 16, input);
+                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 16, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
@@ -1380,10 +1384,15 @@ public class gscriptParser extends DebugParser {
                 alt5=15;
                 }
                 break;
+            case 35:
+                {
+                alt5=17;
+                }
+                break;
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function )", 5, 0, input);
+                    new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
@@ -1664,12 +1673,22 @@ public class gscriptParser extends DebugParser {
 
                     }
                     break;
+                case 17 :
+                    dbg.enterAlt(17);
+
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:673: ';'
+                    {
+                    dbg.location(61,673);
+                    match(input,35,FOLLOW_35_in_statement333); if (failed) return value;
+
+                    }
+                    break;
 
             }
             } finally {dbg.exitSubRule(5);}
 
-            dbg.location(61,674);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:674: ( ';' )*
+            dbg.location(61,678);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:678: ( ';' )*
             try { dbg.enterSubRule(6);
 
             loop6:
@@ -1680,9 +1699,9 @@ public class gscriptParser extends DebugParser {
                 int LA6_0 = input.LA(1);
 
                 if ( (LA6_0==35) ) {
-                    int LA6_23 = input.LA(2);
+                    int LA6_20 = input.LA(2);
 
-                    if ( (synpred20()) ) {
+                    if ( (synpred21()) ) {
                         alt6=1;
                     }
 
@@ -1696,10 +1715,10 @@ public class gscriptParser extends DebugParser {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:675: ';'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:679: ';'
             	    {
-            	    dbg.location(61,675);
-            	    match(input,35,FOLLOW_35_in_statement335); if (failed) return value;
+            	    dbg.location(61,679);
+            	    match(input,35,FOLLOW_35_in_statement337); if (failed) return value;
 
             	    }
             	    break;
@@ -1771,22 +1790,22 @@ public class gscriptParser extends DebugParser {
                     {
                     int LA7_2 = input.LA(2);
 
-                    if ( (LA7_2==WORD) ) {
-                        int LA7_8 = input.LA(3);
+                    if ( ((LA7_2>=38 && LA7_2<=40)||LA7_2==44) ) {
+                        alt7=2;
+                    }
+                    else if ( (LA7_2==WORD) ) {
+                        int LA7_11 = input.LA(3);
 
-                        if ( (LA7_8==WORD) ) {
-                            int LA7_23 = input.LA(4);
+                        if ( (LA7_11==WORD) ) {
+                            int LA7_24 = input.LA(4);
 
-                            if ( (synpred23()) ) {
+                            if ( (synpred24()) ) {
                                 alt7=2;
                             }
                         }
-                        else if ( (LA7_8==LPAREN||(LA7_8>=OIVAR && LA7_8<=GLOBALVAR)) ) {
+                        else if ( (LA7_11==LPAREN||(LA7_11>=OIVAR && LA7_11<=GLOBALVAR)) ) {
                             alt7=2;
                         }
-                    }
-                    else if ( ((LA7_2>=38 && LA7_2<=40)||LA7_2==44) ) {
-                        alt7=2;
                     }
                     }
                     break;
@@ -1806,7 +1825,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:4: 'public'
                     {
                     dbg.location(65,4);
-                    match(input,36,FOLLOW_36_in_field354); if (failed) return value;
+                    match(input,36,FOLLOW_36_in_field356); if (failed) return value;
                     dbg.location(65,13);
                     if ( backtracking==0 ) {
                       value = "public";
@@ -1829,7 +1848,7 @@ public class gscriptParser extends DebugParser {
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
                         dbg.recognitionException(mse);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_field358);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_field360);    throw mse;
                     }
 
                     dbg.location(65,52);
@@ -1854,7 +1873,7 @@ public class gscriptParser extends DebugParser {
             if ( (LA8_0==39) ) {
                 int LA8_1 = input.LA(2);
 
-                if ( (synpred24()) ) {
+                if ( (synpred25()) ) {
                     alt8=1;
                 }
             }
@@ -1867,7 +1886,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: 'final'
                     {
                     dbg.location(65,77);
-                    match(input,39,FOLLOW_39_in_field369); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_field371); if (failed) return value;
                     dbg.location(65,84);
                     if ( backtracking==0 ) {
                       value += " final";
@@ -1899,7 +1918,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:109: 'static'
                     {
                     dbg.location(65,109);
-                    match(input,40,FOLLOW_40_in_field375); if (failed) return value;
+                    match(input,40,FOLLOW_40_in_field377); if (failed) return value;
                     dbg.location(65,117);
                     if ( backtracking==0 ) {
                       value += " static";
@@ -1931,7 +1950,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:143: 'final'
                     {
                     dbg.location(65,143);
-                    match(input,39,FOLLOW_39_in_field381); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_field383); if (failed) return value;
                     dbg.location(65,150);
                     if ( backtracking==0 ) {
                       value += " final";
@@ -1950,7 +1969,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:175: v= varstatement
             {
             dbg.location(65,176);
-            pushFollow(FOLLOW_varstatement_in_field389);
+            pushFollow(FOLLOW_varstatement_in_field391);
             v=varstatement();
             _fsp--;
             if (failed) return value;
@@ -2032,7 +2051,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:4: 'public'
                     {
                     dbg.location(69,4);
-                    match(input,36,FOLLOW_36_in_method411); if (failed) return value;
+                    match(input,36,FOLLOW_36_in_method413); if (failed) return value;
                     dbg.location(69,12);
                     if ( backtracking==0 ) {
                       value = "public";
@@ -2046,7 +2065,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:33: 'private'
                     {
                     dbg.location(69,33);
-                    match(input,37,FOLLOW_37_in_method414); if (failed) return value;
+                    match(input,37,FOLLOW_37_in_method416); if (failed) return value;
                     dbg.location(69,42);
                     if ( backtracking==0 ) {
                       value = "private";
@@ -2069,7 +2088,7 @@ public class gscriptParser extends DebugParser {
             if ( (LA12_0==39) ) {
                 int LA12_1 = input.LA(2);
 
-                if ( (synpred29()) ) {
+                if ( (synpred30()) ) {
                     alt12=1;
                 }
             }
@@ -2082,7 +2101,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: 'final'
                     {
                     dbg.location(69,67);
-                    match(input,39,FOLLOW_39_in_method420); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_method422); if (failed) return value;
                     dbg.location(69,74);
                     if ( backtracking==0 ) {
                       value += " final";
@@ -2114,7 +2133,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:99: 'static'
                     {
                     dbg.location(69,99);
-                    match(input,40,FOLLOW_40_in_method426); if (failed) return value;
+                    match(input,40,FOLLOW_40_in_method428); if (failed) return value;
                     dbg.location(69,107);
                     if ( backtracking==0 ) {
                       value += " static";
@@ -2146,7 +2165,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:133: 'final'
                     {
                     dbg.location(69,133);
-                    match(input,39,FOLLOW_39_in_method432); if (failed) return value;
+                    match(input,39,FOLLOW_39_in_method434); if (failed) return value;
                     dbg.location(69,140);
                     if ( backtracking==0 ) {
                       value += " final";
@@ -2160,9 +2179,9 @@ public class gscriptParser extends DebugParser {
 
             dbg.location(69,168);
             name=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_method439); if (failed) return value;
+            match(input,WORD,FOLLOW_WORD_in_method441); if (failed) return value;
             dbg.location(69,174);
-            match(input,LPAREN,FOLLOW_LPAREN_in_method441); if (failed) return value;
+            match(input,LPAREN,FOLLOW_LPAREN_in_method443); if (failed) return value;
             dbg.location(69,178);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:178: (e= WORD ( ( ',' ) (e= WORD )? )* )?
             int alt17=2;
@@ -2184,7 +2203,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(69,180);
                     e=(Token)input.LT(1);
-                    match(input,WORD,FOLLOW_WORD_in_method446); if (failed) return value;
+                    match(input,WORD,FOLLOW_WORD_in_method448); if (failed) return value;
                     dbg.location(69,186);
                     if ( backtracking==0 ) {
                       s = e.getText();
@@ -2220,7 +2239,7 @@ public class gscriptParser extends DebugParser {
                     	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:203: ','
                     	    {
                     	    dbg.location(69,203);
-                    	    match(input,41,FOLLOW_41_in_method452); if (failed) return value;
+                    	    match(input,41,FOLLOW_41_in_method454); if (failed) return value;
 
                     	    }
 
@@ -2245,7 +2264,7 @@ public class gscriptParser extends DebugParser {
                     	            {
                     	            dbg.location(69,210);
                     	            e=(Token)input.LT(1);
-                    	            match(input,WORD,FOLLOW_WORD_in_method458); if (failed) return value;
+                    	            match(input,WORD,FOLLOW_WORD_in_method460); if (failed) return value;
                     	            dbg.location(69,215);
                     	            if ( backtracking==0 ) {
                     	              s += ", "+e.getText();
@@ -2275,9 +2294,9 @@ public class gscriptParser extends DebugParser {
             } finally {dbg.exitSubRule(17);}
 
             dbg.location(69,242);
-            match(input,RPAREN,FOLLOW_RPAREN_in_method467); if (failed) return value;
+            match(input,RPAREN,FOLLOW_RPAREN_in_method469); if (failed) return value;
             dbg.location(69,247);
-            pushFollow(FOLLOW_bstatement_in_method471);
+            pushFollow(FOLLOW_bstatement_in_method473);
             b=bstatement();
             _fsp--;
             if (failed) return value;
@@ -2344,7 +2363,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement489);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement491);    throw mse;
             }
 
             dbg.location(74,34);
@@ -2358,7 +2377,7 @@ public class gscriptParser extends DebugParser {
 
                 int LA18_0 = input.LA(1);
 
-                if ( (LA18_0==LPAREN||LA18_0==LBRAC||LA18_0==WORD||(LA18_0>=OIVAR && LA18_0<=GLOBALVAR)||LA18_0==38||LA18_0==42||(LA18_0>=44 && LA18_0<=47)||(LA18_0>=67 && LA18_0<=70)||(LA18_0>=72 && LA18_0<=74)||LA18_0==78) ) {
+                if ( (LA18_0==LPAREN||LA18_0==LBRAC||LA18_0==WORD||(LA18_0>=OIVAR && LA18_0<=GLOBALVAR)||LA18_0==35||LA18_0==38||LA18_0==42||(LA18_0>=44 && LA18_0<=47)||(LA18_0>=68 && LA18_0<=71)||(LA18_0>=73 && LA18_0<=75)||LA18_0==79) ) {
                     alt18=1;
                 }
 
@@ -2372,13 +2391,13 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:35: s= statement
             	    {
             	    dbg.location(74,36);
-            	    pushFollow(FOLLOW_statement_in_bstatement498);
+            	    pushFollow(FOLLOW_statement_in_bstatement500);
             	    s=statement();
             	    _fsp--;
             	    if (failed) return value;
             	    dbg.location(74,46);
             	    if ( backtracking==0 ) {
-            	      value +=s;
+            	      value +=s+"\n";
             	    }
 
             	    }
@@ -2390,7 +2409,7 @@ public class gscriptParser extends DebugParser {
             } while (true);
             } finally {dbg.exitSubRule(18);}
 
-            dbg.location(74,69);
+            dbg.location(74,74);
             if ( input.LA(1)==RBRAC||input.LA(1)==43 ) {
                 input.consume();
                 errorRecovery=false;failed=false;
@@ -2400,10 +2419,10 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement503);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement505);    throw mse;
             }
 
-            dbg.location(74,83);
+            dbg.location(74,88);
             if ( backtracking==0 ) {
               value =pc.bstatement(value);
             }
@@ -2503,7 +2522,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(78,5);
                     w=(Token)input.LT(1);
-                    match(input,38,FOLLOW_38_in_varstatement530); if (failed) return retval;
+                    match(input,38,FOLLOW_38_in_varstatement532); if (failed) return retval;
 
                     }
                     break;
@@ -2514,7 +2533,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(78,13);
                     w=(Token)input.LT(1);
-                    match(input,WORD,FOLLOW_WORD_in_varstatement534); if (failed) return retval;
+                    match(input,WORD,FOLLOW_WORD_in_varstatement536); if (failed) return retval;
 
                     }
                     break;
@@ -2525,7 +2544,7 @@ public class gscriptParser extends DebugParser {
                     {
                     dbg.location(78,20);
                     w=(Token)input.LT(1);
-                    match(input,44,FOLLOW_44_in_varstatement538); if (failed) return retval;
+                    match(input,44,FOLLOW_44_in_varstatement540); if (failed) return retval;
 
                     }
                     break;
@@ -2543,94 +2562,14 @@ public class gscriptParser extends DebugParser {
 
             if ( (LA20_0==WORD||(LA20_0>=OIVAR && LA20_0<=GLOBALVAR)) ) {
                 switch ( input.LA(2) ) {
-                case 87:
+                case 88:
                     {
                     switch ( input.LA(3) ) {
-                    case LPAREN:
-                        {
-                        int LA20_46 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 46, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case WORD:
-                        {
-                        int LA20_47 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 47, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case HEXNUMBER:
-                        {
-                        int LA20_48 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 48, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case STRING:
-                        {
-                        int LA20_49 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 49, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case NUMBER:
+                    case MINUS:
                         {
                         int LA20_50 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -2646,12 +2585,11 @@ public class gscriptParser extends DebugParser {
                         }
                         }
                         break;
-                    case OIVAR:
-                    case GLOBALVAR:
+                    case LPAREN:
                         {
                         int LA20_51 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -2667,11 +2605,11 @@ public class gscriptParser extends DebugParser {
                         }
                         }
                         break;
-                    case DECIMAL:
+                    case WORD:
                         {
                         int LA20_52 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -2687,12 +2625,11 @@ public class gscriptParser extends DebugParser {
                         }
                         }
                         break;
-                    case 51:
-                    case 52:
+                    case HEXNUMBER:
                         {
                         int LA20_53 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -2702,6 +2639,128 @@ public class gscriptParser extends DebugParser {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
                                 new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 53, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case STRING:
+                        {
+                        int LA20_54 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 54, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case 60:
+                        {
+                        int LA20_55 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 55, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case NUMBER:
+                        {
+                        int LA20_56 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 56, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case OIVAR:
+                    case GLOBALVAR:
+                        {
+                        int LA20_57 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 57, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case DECIMAL:
+                        {
+                        int LA20_58 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 58, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case 51:
+                    case 52:
+                        {
+                        int LA20_59 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 59, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -2719,20 +2778,53 @@ public class gscriptParser extends DebugParser {
 
                     }
                     break;
+                case 87:
+                    {
+                    int LA20_4 = input.LA(3);
+
+                    if ( (LA20_4==WORD||(LA20_4>=OIVAR && LA20_4<=GLOBALVAR)) ) {
+                        int LA20_60 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 60, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                    }
+                    else {
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 4, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+                    }
+                    }
+                    break;
                 case EQUALS:
-                case 66:
-                case 79:
+                case 67:
                 case 80:
                 case 81:
                 case 82:
                 case 83:
                 case 84:
                 case 85:
+                case 86:
                     {
                     alt20=2;
                     }
                     break;
                 case EOF:
+                case MINUS:
                 case LPAREN:
                 case RPAREN:
                 case LBRAC:
@@ -2761,7 +2853,7 @@ public class gscriptParser extends DebugParser {
                 case 50:
                 case 51:
                 case 52:
-                case 67:
+                case 60:
                 case 68:
                 case 69:
                 case 70:
@@ -2771,7 +2863,8 @@ public class gscriptParser extends DebugParser {
                 case 74:
                 case 75:
                 case 76:
-                case 78:
+                case 77:
+                case 79:
                     {
                     alt20=1;
                     }
@@ -2790,179 +2883,12 @@ public class gscriptParser extends DebugParser {
                 switch ( input.LA(2) ) {
                 case NUMBER:
                     {
-                    int LA20_42 = input.LA(3);
+                    int LA20_46 = input.LA(3);
 
-                    if ( (LA20_42==RPAREN) ) {
-                        int LA20_54 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 54, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                    }
-                    else {
-                        if (backtracking>0) {failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 42, input);
-
-                        dbg.recognitionException(nvae);
-                        throw nvae;
-                    }
-                    }
-                    break;
-                case WORD:
-                    {
-                    switch ( input.LA(3) ) {
-                    case LPAREN:
-                        {
-                        int LA20_55 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 55, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case 87:
-                        {
-                        int LA20_56 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 56, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case RPAREN:
-                        {
-                        int LA20_57 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 57, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    default:
-                        if (backtracking>0) {failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 43, input);
-
-                        dbg.recognitionException(nvae);
-                        throw nvae;
-                    }
-
-                    }
-                    break;
-                case LPAREN:
-                    {
-                    switch ( input.LA(3) ) {
-                    case NUMBER:
-                        {
-                        int LA20_58 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 58, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case WORD:
-                        {
-                        int LA20_59 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 59, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case LPAREN:
-                        {
-                        int LA20_60 = input.LA(4);
-
-                        if ( (synpred40()) ) {
-                            alt20=1;
-                        }
-                        else if ( (true) ) {
-                            alt20=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 60, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case OIVAR:
-                    case GLOBALVAR:
-                        {
+                    if ( (LA20_46==RPAREN) ) {
                         int LA20_61 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -2976,28 +2902,25 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-                        }
-                        break;
-                    default:
+                    }
+                    else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 44, input);
+                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 46, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
                     }
-
                     }
                     break;
-                case OIVAR:
-                case GLOBALVAR:
+                case WORD:
                     {
-                    int LA20_45 = input.LA(3);
-
-                    if ( (LA20_45==87) ) {
+                    switch ( input.LA(3) ) {
+                    case 88:
+                        {
                         int LA20_62 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -3011,11 +2934,13 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-                    }
-                    else if ( (LA20_45==RPAREN) ) {
+                        }
+                        break;
+                    case LPAREN:
+                        {
                         int LA20_63 = input.LA(4);
 
-                        if ( (synpred40()) ) {
+                        if ( (synpred41()) ) {
                             alt20=1;
                         }
                         else if ( (true) ) {
@@ -3029,15 +2954,227 @@ public class gscriptParser extends DebugParser {
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
-                    }
-                    else {
+                        }
+                        break;
+                    case 87:
+                        {
+                        int LA20_64 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 64, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case RPAREN:
+                        {
+                        int LA20_65 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 65, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 45, input);
+                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 47, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
                     }
+
+                    }
+                    break;
+                case LPAREN:
+                    {
+                    switch ( input.LA(3) ) {
+                    case NUMBER:
+                        {
+                        int LA20_66 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 66, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case WORD:
+                        {
+                        int LA20_67 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 67, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case LPAREN:
+                        {
+                        int LA20_68 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 68, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case OIVAR:
+                    case GLOBALVAR:
+                        {
+                        int LA20_69 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 69, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    default:
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 48, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+                    }
+
+                    }
+                    break;
+                case OIVAR:
+                case GLOBALVAR:
+                    {
+                    switch ( input.LA(3) ) {
+                    case 88:
+                        {
+                        int LA20_70 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 70, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case 87:
+                        {
+                        int LA20_71 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 71, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case RPAREN:
+                        {
+                        int LA20_72 = input.LA(4);
+
+                        if ( (synpred41()) ) {
+                            alt20=1;
+                        }
+                        else if ( (true) ) {
+                            alt20=2;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 72, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    default:
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 49, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+                    }
+
                     }
                     break;
                 default:
@@ -3067,7 +3204,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: vari= variable
                     {
                     dbg.location(78,39);
-                    pushFollow(FOLLOW_variable_in_varstatement544);
+                    pushFollow(FOLLOW_variable_in_varstatement546);
                     vari=variable();
                     _fsp--;
                     if (failed) return retval;
@@ -3084,7 +3221,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:71: ass= assignment
                     {
                     dbg.location(78,74);
-                    pushFollow(FOLLOW_assignment_in_varstatement550);
+                    pushFollow(FOLLOW_assignment_in_varstatement552);
                     ass=assignment();
                     _fsp--;
                     if (failed) return retval;
@@ -3124,7 +3261,7 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:109: ',' (varii= variable | ass= assignment )
             	    {
             	    dbg.location(78,109);
-            	    match(input,41,FOLLOW_41_in_varstatement556); if (failed) return retval;
+            	    match(input,41,FOLLOW_41_in_varstatement558); if (failed) return retval;
             	    dbg.location(78,113);
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:113: (varii= variable | ass= assignment )
             	    int alt21=2;
@@ -3135,94 +3272,14 @@ public class gscriptParser extends DebugParser {
 
             	    if ( (LA21_0==WORD||(LA21_0>=OIVAR && LA21_0<=GLOBALVAR)) ) {
             	        switch ( input.LA(2) ) {
-            	        case 87:
+            	        case 88:
             	            {
             	            switch ( input.LA(3) ) {
-            	            case LPAREN:
-            	                {
-            	                int LA21_46 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 46, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case WORD:
-            	                {
-            	                int LA21_47 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 47, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case HEXNUMBER:
-            	                {
-            	                int LA21_48 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 48, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case STRING:
-            	                {
-            	                int LA21_49 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 49, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case NUMBER:
+            	            case MINUS:
             	                {
             	                int LA21_50 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3238,12 +3295,11 @@ public class gscriptParser extends DebugParser {
             	                }
             	                }
             	                break;
-            	            case OIVAR:
-            	            case GLOBALVAR:
+            	            case LPAREN:
             	                {
             	                int LA21_51 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3259,11 +3315,11 @@ public class gscriptParser extends DebugParser {
             	                }
             	                }
             	                break;
-            	            case DECIMAL:
+            	            case WORD:
             	                {
             	                int LA21_52 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3279,12 +3335,11 @@ public class gscriptParser extends DebugParser {
             	                }
             	                }
             	                break;
-            	            case 51:
-            	            case 52:
+            	            case HEXNUMBER:
             	                {
             	                int LA21_53 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3294,6 +3349,128 @@ public class gscriptParser extends DebugParser {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
             	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 53, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case STRING:
+            	                {
+            	                int LA21_54 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 54, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case 60:
+            	                {
+            	                int LA21_55 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 55, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case NUMBER:
+            	                {
+            	                int LA21_56 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 56, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case OIVAR:
+            	            case GLOBALVAR:
+            	                {
+            	                int LA21_57 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 57, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case DECIMAL:
+            	                {
+            	                int LA21_58 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 58, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case 51:
+            	            case 52:
+            	                {
+            	                int LA21_59 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 59, input);
 
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
@@ -3311,7 +3488,40 @@ public class gscriptParser extends DebugParser {
 
             	            }
             	            break;
+            	        case 87:
+            	            {
+            	            int LA21_4 = input.LA(3);
+
+            	            if ( (LA21_4==WORD||(LA21_4>=OIVAR && LA21_4<=GLOBALVAR)) ) {
+            	                int LA21_60 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 60, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	            }
+            	            else {
+            	                if (backtracking>0) {failed=true; return retval;}
+            	                NoViableAltException nvae =
+            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 4, input);
+
+            	                dbg.recognitionException(nvae);
+            	                throw nvae;
+            	            }
+            	            }
+            	            break;
             	        case EOF:
+            	        case MINUS:
             	        case LPAREN:
             	        case RPAREN:
             	        case LBRAC:
@@ -3340,7 +3550,7 @@ public class gscriptParser extends DebugParser {
             	        case 50:
             	        case 51:
             	        case 52:
-            	        case 67:
+            	        case 60:
             	        case 68:
             	        case 69:
             	        case 70:
@@ -3350,20 +3560,21 @@ public class gscriptParser extends DebugParser {
             	        case 74:
             	        case 75:
             	        case 76:
-            	        case 78:
+            	        case 77:
+            	        case 79:
             	            {
             	            alt21=1;
             	            }
             	            break;
             	        case EQUALS:
-            	        case 66:
-            	        case 79:
+            	        case 67:
             	        case 80:
             	        case 81:
             	        case 82:
             	        case 83:
             	        case 84:
             	        case 85:
+            	        case 86:
             	            {
             	            alt21=2;
             	            }
@@ -3382,179 +3593,12 @@ public class gscriptParser extends DebugParser {
             	        switch ( input.LA(2) ) {
             	        case NUMBER:
             	            {
-            	            int LA21_42 = input.LA(3);
+            	            int LA21_46 = input.LA(3);
 
-            	            if ( (LA21_42==RPAREN) ) {
-            	                int LA21_54 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 54, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	            }
-            	            else {
-            	                if (backtracking>0) {failed=true; return retval;}
-            	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 42, input);
-
-            	                dbg.recognitionException(nvae);
-            	                throw nvae;
-            	            }
-            	            }
-            	            break;
-            	        case WORD:
-            	            {
-            	            switch ( input.LA(3) ) {
-            	            case 87:
-            	                {
-            	                int LA21_55 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 55, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case LPAREN:
-            	                {
-            	                int LA21_56 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 56, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case RPAREN:
-            	                {
-            	                int LA21_57 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 57, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            default:
-            	                if (backtracking>0) {failed=true; return retval;}
-            	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 43, input);
-
-            	                dbg.recognitionException(nvae);
-            	                throw nvae;
-            	            }
-
-            	            }
-            	            break;
-            	        case LPAREN:
-            	            {
-            	            switch ( input.LA(3) ) {
-            	            case NUMBER:
-            	                {
-            	                int LA21_58 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 58, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case WORD:
-            	                {
-            	                int LA21_59 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 59, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case LPAREN:
-            	                {
-            	                int LA21_60 = input.LA(4);
-
-            	                if ( (synpred41()) ) {
-            	                    alt21=1;
-            	                }
-            	                else if ( (true) ) {
-            	                    alt21=2;
-            	                }
-            	                else {
-            	                    if (backtracking>0) {failed=true; return retval;}
-            	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 60, input);
-
-            	                    dbg.recognitionException(nvae);
-            	                    throw nvae;
-            	                }
-            	                }
-            	                break;
-            	            case OIVAR:
-            	            case GLOBALVAR:
-            	                {
+            	            if ( (LA21_46==RPAREN) ) {
             	                int LA21_61 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3568,28 +3612,25 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-            	                }
-            	                break;
-            	            default:
+            	            }
+            	            else {
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 44, input);
+            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 46, input);
 
             	                dbg.recognitionException(nvae);
             	                throw nvae;
             	            }
-
             	            }
             	            break;
-            	        case OIVAR:
-            	        case GLOBALVAR:
+            	        case WORD:
             	            {
-            	            int LA21_45 = input.LA(3);
-
-            	            if ( (LA21_45==87) ) {
+            	            switch ( input.LA(3) ) {
+            	            case LPAREN:
+            	                {
             	                int LA21_62 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3603,11 +3644,13 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-            	            }
-            	            else if ( (LA21_45==RPAREN) ) {
+            	                }
+            	                break;
+            	            case 88:
+            	                {
             	                int LA21_63 = input.LA(4);
 
-            	                if ( (synpred41()) ) {
+            	                if ( (synpred42()) ) {
             	                    alt21=1;
             	                }
             	                else if ( (true) ) {
@@ -3621,15 +3664,227 @@ public class gscriptParser extends DebugParser {
             	                    dbg.recognitionException(nvae);
             	                    throw nvae;
             	                }
-            	            }
-            	            else {
+            	                }
+            	                break;
+            	            case 87:
+            	                {
+            	                int LA21_64 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 64, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case RPAREN:
+            	                {
+            	                int LA21_65 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 65, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            default:
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 45, input);
+            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 47, input);
 
             	                dbg.recognitionException(nvae);
             	                throw nvae;
             	            }
+
+            	            }
+            	            break;
+            	        case LPAREN:
+            	            {
+            	            switch ( input.LA(3) ) {
+            	            case NUMBER:
+            	                {
+            	                int LA21_66 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 66, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case WORD:
+            	                {
+            	                int LA21_67 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 67, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case LPAREN:
+            	                {
+            	                int LA21_68 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 68, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case OIVAR:
+            	            case GLOBALVAR:
+            	                {
+            	                int LA21_69 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 69, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            default:
+            	                if (backtracking>0) {failed=true; return retval;}
+            	                NoViableAltException nvae =
+            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 48, input);
+
+            	                dbg.recognitionException(nvae);
+            	                throw nvae;
+            	            }
+
+            	            }
+            	            break;
+            	        case OIVAR:
+            	        case GLOBALVAR:
+            	            {
+            	            switch ( input.LA(3) ) {
+            	            case 88:
+            	                {
+            	                int LA21_70 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 70, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case 87:
+            	                {
+            	                int LA21_71 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 71, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            case RPAREN:
+            	                {
+            	                int LA21_72 = input.LA(4);
+
+            	                if ( (synpred42()) ) {
+            	                    alt21=1;
+            	                }
+            	                else if ( (true) ) {
+            	                    alt21=2;
+            	                }
+            	                else {
+            	                    if (backtracking>0) {failed=true; return retval;}
+            	                    NoViableAltException nvae =
+            	                        new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 72, input);
+
+            	                    dbg.recognitionException(nvae);
+            	                    throw nvae;
+            	                }
+            	                }
+            	                break;
+            	            default:
+            	                if (backtracking>0) {failed=true; return retval;}
+            	                NoViableAltException nvae =
+            	                    new NoViableAltException("78:113: (varii= variable | ass= assignment )", 21, 49, input);
+
+            	                dbg.recognitionException(nvae);
+            	                throw nvae;
+            	            }
+
             	            }
             	            break;
             	        default:
@@ -3659,7 +3914,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:114: varii= variable
             	            {
             	            dbg.location(78,119);
-            	            pushFollow(FOLLOW_variable_in_varstatement561);
+            	            pushFollow(FOLLOW_variable_in_varstatement563);
             	            varii=variable();
             	            _fsp--;
             	            if (failed) return retval;
@@ -3676,7 +3931,7 @@ public class gscriptParser extends DebugParser {
             	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:155: ass= assignment
             	            {
             	            dbg.location(78,158);
-            	            pushFollow(FOLLOW_assignment_in_varstatement567);
+            	            pushFollow(FOLLOW_assignment_in_varstatement569);
             	            ass=assignment();
             	            _fsp--;
             	            if (failed) return retval;
@@ -3753,7 +4008,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:3: 'return' (e= expression )
             {
             dbg.location(82,3);
-            match(input,45,FOLLOW_45_in_returnstatement590); if (failed) return value;
+            match(input,45,FOLLOW_45_in_returnstatement592); if (failed) return value;
             dbg.location(82,12);
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:12: (e= expression )
             dbg.enterAlt(1);
@@ -3761,7 +4016,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:13: e= expression
             {
             dbg.location(82,14);
-            pushFollow(FOLLOW_expression_in_returnstatement595);
+            pushFollow(FOLLOW_expression_in_returnstatement597);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -3819,7 +4074,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:2: 'exit'
             {
             dbg.location(86,2);
-            match(input,46,FOLLOW_46_in_exitstatement611); if (failed) return value;
+            match(input,46,FOLLOW_46_in_exitstatement613); if (failed) return value;
             dbg.location(86,10);
             if ( backtracking==0 ) {
               value =pc.exitstatement();
@@ -3878,9 +4133,9 @@ public class gscriptParser extends DebugParser {
               value = "";
             }
             dbg.location(90,18);
-            match(input,47,FOLLOW_47_in_ifstatement629); if (failed) return value;
+            match(input,47,FOLLOW_47_in_ifstatement631); if (failed) return value;
             dbg.location(90,24);
-            pushFollow(FOLLOW_expression_in_ifstatement633);
+            pushFollow(FOLLOW_expression_in_ifstatement635);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -3904,7 +4159,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:37: 'then'
                     {
                     dbg.location(90,37);
-                    match(input,48,FOLLOW_48_in_ifstatement636); if (failed) return value;
+                    match(input,48,FOLLOW_48_in_ifstatement638); if (failed) return value;
 
                     }
                     break;
@@ -3919,7 +4174,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:47: s= statement
             {
             dbg.location(90,48);
-            pushFollow(FOLLOW_statement_in_ifstatement643);
+            pushFollow(FOLLOW_statement_in_ifstatement645);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -3940,7 +4195,7 @@ public class gscriptParser extends DebugParser {
                 if ( (LA24_0==49) ) {
                     int LA24_22 = input.LA(2);
 
-                    if ( (synpred44()) ) {
+                    if ( (synpred45()) ) {
                         alt24=1;
                     }
 
@@ -3949,7 +4204,7 @@ public class gscriptParser extends DebugParser {
                 else if ( (LA24_0==50) ) {
                     int LA24_23 = input.LA(2);
 
-                    if ( (synpred44()) ) {
+                    if ( (synpred45()) ) {
                         alt24=1;
                     }
 
@@ -3966,7 +4221,7 @@ public class gscriptParser extends DebugParser {
             	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: el= elsestatement
             	    {
             	    dbg.location(90,63);
-            	    pushFollow(FOLLOW_elsestatement_in_ifstatement649);
+            	    pushFollow(FOLLOW_elsestatement_in_ifstatement651);
             	    el=elsestatement();
             	    _fsp--;
             	    if (failed) return value;
@@ -4070,7 +4325,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:18: 'else'
                     {
                     dbg.location(94,18);
-                    match(input,49,FOLLOW_49_in_elsestatement671); if (failed) return value;
+                    match(input,49,FOLLOW_49_in_elsestatement673); if (failed) return value;
 
                     }
                     break;
@@ -4086,9 +4341,9 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:26: 'elsif' e= expression
                     {
                     dbg.location(94,26);
-                    match(input,50,FOLLOW_50_in_elsestatement674); if (failed) return value;
+                    match(input,50,FOLLOW_50_in_elsestatement676); if (failed) return value;
                     dbg.location(94,35);
-                    pushFollow(FOLLOW_expression_in_elsestatement678);
+                    pushFollow(FOLLOW_expression_in_elsestatement680);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -4113,7 +4368,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:76: s= statement
             {
             dbg.location(94,77);
-            pushFollow(FOLLOW_statement_in_elsestatement687);
+            pushFollow(FOLLOW_statement_in_elsestatement689);
             s=statement();
             _fsp--;
             if (failed) return value;
@@ -4157,11 +4412,13 @@ public class gscriptParser extends DebugParser {
     };
 
     // $ANTLR start expression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:1: expression returns [String value] : (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:1: expression returns [String value] : (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
     public final expression_return expression() throws RecognitionException {
         expression_return retval = new expression_return();
         retval.start = input.LT(1);
         int expression_StartIndex = input.index();
+        String neg = null;
+
         String p = null;
 
         String r = null;
@@ -4187,158 +4444,65 @@ public class gscriptParser extends DebugParser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:1: ( (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:1: ( (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             {
             dbg.location(99,4);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (p= pexpression | r= relationalExpression | n= notexpression )
-            int alt26=3;
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )
+            int alt26=4;
             try { dbg.enterSubRule(26);
             try { dbg.enterDecision(26);
 
             switch ( input.LA(1) ) {
-            case LPAREN:
+            case MINUS:
                 {
-                switch ( input.LA(2) ) {
-                case NUMBER:
-                    {
-                    int LA26_9 = input.LA(3);
+                int LA26_1 = input.LA(2);
 
-                    if ( ((LA26_9>=PLUS && LA26_9<=DIV)||(LA26_9>=EQUALS && LA26_9<=LTE)||(LA26_9>=52 && LA26_9<=66)) ) {
+                if ( (LA26_1==NUMBER) ) {
+                    int LA26_11 = input.LA(3);
+
+                    if ( (synpred47()) ) {
                         alt26=1;
                     }
-                    else if ( (LA26_9==RPAREN) ) {
-                        int LA26_22 = input.LA(4);
-
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
-                            alt26=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 22, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
+                    else if ( (synpred49()) ) {
+                        alt26=3;
                     }
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 9, input);
+                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 11, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
                     }
-                    }
-                    break;
-                case WORD:
+                }
+                else if ( (LA26_1==MINUS||LA26_1==LPAREN||LA26_1==WORD||(LA26_1>=HEXNUMBER && LA26_1<=GLOBALVAR)||(LA26_1>=51 && LA26_1<=52)||LA26_1==60) ) {
+                    alt26=1;
+                }
+                else {
+                    if (backtracking>0) {failed=true; return retval;}
+                    NoViableAltException nvae =
+                        new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 1, input);
+
+                    dbg.recognitionException(nvae);
+                    throw nvae;
+                }
+                }
+                break;
+            case LPAREN:
+                {
+                switch ( input.LA(2) ) {
+                case MINUS:
+                case HEXNUMBER:
+                case STRING:
+                case DECIMAL:
+                case 51:
+                case 52:
+                case 60:
                     {
-                    switch ( input.LA(3) ) {
-                    case 87:
-                        {
-                        int LA26_23 = input.LA(4);
-
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
-                            alt26=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 23, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case LPAREN:
-                        {
-                        int LA26_24 = input.LA(4);
-
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
-                            alt26=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 24, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case RPAREN:
-                        {
-                        int LA26_25 = input.LA(4);
-
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
-                            alt26=2;
-                        }
-                        else {
-                            if (backtracking>0) {failed=true; return retval;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 25, input);
-
-                            dbg.recognitionException(nvae);
-                            throw nvae;
-                        }
-                        }
-                        break;
-                    case PLUS:
-                    case MINUS:
-                    case MULT:
-                    case DIV:
-                    case EQUALS:
-                    case EQUALS2:
-                    case NOT_EQUALS:
-                    case GT:
-                    case GTE:
-                    case LT:
-                    case LTE:
-                    case 52:
-                    case 53:
-                    case 54:
-                    case 55:
-                    case 56:
-                    case 57:
-                    case 58:
-                    case 59:
-                    case 60:
-                    case 61:
-                    case 62:
-                    case 63:
-                    case 64:
-                    case 65:
-                    case 66:
-                        {
-                        alt26=1;
-                        }
-                        break;
-                    default:
-                        if (backtracking>0) {failed=true; return retval;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 10, input);
-
-                        dbg.recognitionException(nvae);
-                        throw nvae;
-                    }
-
+                    alt26=2;
                     }
                     break;
                 case LPAREN:
@@ -4346,18 +4510,18 @@ public class gscriptParser extends DebugParser {
                     switch ( input.LA(3) ) {
                     case NUMBER:
                         {
-                        int LA26_31 = input.LA(4);
+                        int LA26_81 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 31, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 81, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -4366,18 +4530,18 @@ public class gscriptParser extends DebugParser {
                         break;
                     case WORD:
                         {
-                        int LA26_32 = input.LA(4);
+                        int LA26_82 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 32, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 82, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -4386,18 +4550,18 @@ public class gscriptParser extends DebugParser {
                         break;
                     case LPAREN:
                         {
-                        int LA26_33 = input.LA(4);
+                        int LA26_83 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 33, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 83, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -4407,37 +4571,39 @@ public class gscriptParser extends DebugParser {
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        int LA26_34 = input.LA(4);
+                        int LA26_84 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 34, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 84, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
                         }
                         break;
+                    case MINUS:
                     case HEXNUMBER:
                     case STRING:
                     case DECIMAL:
                     case 51:
                     case 52:
+                    case 60:
                         {
-                        alt26=1;
+                        alt26=2;
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 11, input);
+                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 22, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
@@ -4445,44 +4611,43 @@ public class gscriptParser extends DebugParser {
 
                     }
                     break;
-                case OIVAR:
-                case GLOBALVAR:
+                case WORD:
                     {
                     switch ( input.LA(3) ) {
-                    case 87:
+                    case LPAREN:
                         {
-                        int LA26_39 = input.LA(4);
+                        int LA26_91 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 39, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 91, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
                         }
                         }
                         break;
-                    case RPAREN:
+                    case 88:
                         {
-                        int LA26_40 = input.LA(4);
+                        int LA26_92 = input.LA(4);
 
-                        if ( (synpred46()) ) {
-                            alt26=1;
-                        }
-                        else if ( (synpred47()) ) {
+                        if ( (synpred48()) ) {
                             alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 40, input);
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 92, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -4508,21 +4673,61 @@ public class gscriptParser extends DebugParser {
                     case 57:
                     case 58:
                     case 59:
-                    case 60:
                     case 61:
                     case 62:
                     case 63:
                     case 64:
                     case 65:
                     case 66:
+                    case 67:
                         {
-                        alt26=1;
+                        alt26=2;
+                        }
+                        break;
+                    case RPAREN:
+                        {
+                        int LA26_98 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 98, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case 87:
+                        {
+                        int LA26_99 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 99, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 12, input);
+                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 23, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
@@ -4530,19 +4735,150 @@ public class gscriptParser extends DebugParser {
 
                     }
                     break;
-                case HEXNUMBER:
-                case STRING:
-                case DECIMAL:
-                case 51:
-                case 52:
+                case NUMBER:
                     {
-                    alt26=1;
+                    int LA26_27 = input.LA(3);
+
+                    if ( (LA26_27==RPAREN) ) {
+                        int LA26_100 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 100, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                    }
+                    else if ( ((LA26_27>=PLUS && LA26_27<=DIV)||(LA26_27>=EQUALS && LA26_27<=LTE)||(LA26_27>=52 && LA26_27<=59)||(LA26_27>=61 && LA26_27<=67)) ) {
+                        alt26=2;
+                    }
+                    else {
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 27, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+                    }
+                    }
+                    break;
+                case OIVAR:
+                case GLOBALVAR:
+                    {
+                    switch ( input.LA(3) ) {
+                    case 88:
+                        {
+                        int LA26_106 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 106, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case 87:
+                        {
+                        int LA26_107 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 107, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    case PLUS:
+                    case MINUS:
+                    case MULT:
+                    case DIV:
+                    case EQUALS:
+                    case EQUALS2:
+                    case NOT_EQUALS:
+                    case GT:
+                    case GTE:
+                    case LT:
+                    case LTE:
+                    case 52:
+                    case 53:
+                    case 54:
+                    case 55:
+                    case 56:
+                    case 57:
+                    case 58:
+                    case 59:
+                    case 61:
+                    case 62:
+                    case 63:
+                    case 64:
+                    case 65:
+                    case 66:
+                    case 67:
+                        {
+                        alt26=2;
+                        }
+                        break;
+                    case RPAREN:
+                        {
+                        int LA26_113 = input.LA(4);
+
+                        if ( (synpred48()) ) {
+                            alt26=2;
+                        }
+                        else if ( (synpred49()) ) {
+                            alt26=3;
+                        }
+                        else {
+                            if (backtracking>0) {failed=true; return retval;}
+                            NoViableAltException nvae =
+                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 113, input);
+
+                            dbg.recognitionException(nvae);
+                            throw nvae;
+                        }
+                        }
+                        break;
+                    default:
+                        if (backtracking>0) {failed=true; return retval;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 28, input);
+
+                        dbg.recognitionException(nvae);
+                        throw nvae;
+                    }
+
                     }
                     break;
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 1, input);
+                        new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 2, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
@@ -4558,19 +4894,24 @@ public class gscriptParser extends DebugParser {
             case OIVAR:
             case GLOBALVAR:
                 {
-                alt26=2;
+                alt26=3;
+                }
+                break;
+            case 60:
+                {
+                alt26=1;
                 }
                 break;
             case 51:
             case 52:
                 {
-                alt26=3;
+                alt26=4;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("99:4: (p= pexpression | r= relationalExpression | n= notexpression )", 26, 0, input);
+                    new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
@@ -4582,16 +4923,16 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: p= pexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: neg= negate
                     {
-                    dbg.location(99,6);
-                    pushFollow(FOLLOW_pexpression_in_expression715);
-                    p=pexpression();
+                    dbg.location(99,8);
+                    pushFollow(FOLLOW_negate_in_expression717);
+                    neg=negate();
                     _fsp--;
                     if (failed) return retval;
-                    dbg.location(99,18);
+                    dbg.location(99,15);
                     if ( backtracking==0 ) {
-                      retval.value =p;
+                      retval.value = neg;
                     }
 
                     }
@@ -4599,16 +4940,16 @@ public class gscriptParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: r= relationalExpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: p= pexpression
                     {
                     dbg.location(99,39);
-                    pushFollow(FOLLOW_relationalExpression_in_expression720);
-                    r=relationalExpression();
+                    pushFollow(FOLLOW_pexpression_in_expression722);
+                    p=pexpression();
                     _fsp--;
                     if (failed) return retval;
-                    dbg.location(99,60);
+                    dbg.location(99,51);
                     if ( backtracking==0 ) {
-                      retval.value =r;
+                      retval.value =p;
                     }
 
                     }
@@ -4616,14 +4957,31 @@ public class gscriptParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:80: n= notexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: r= relationalExpression
                     {
-                    dbg.location(99,81);
-                    pushFollow(FOLLOW_notexpression_in_expression725);
+                    dbg.location(99,72);
+                    pushFollow(FOLLOW_relationalExpression_in_expression727);
+                    r=relationalExpression();
+                    _fsp--;
+                    if (failed) return retval;
+                    dbg.location(99,93);
+                    if ( backtracking==0 ) {
+                      retval.value =r;
+                    }
+
+                    }
+                    break;
+                case 4 :
+                    dbg.enterAlt(4);
+
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:113: n= notexpression
+                    {
+                    dbg.location(99,114);
+                    pushFollow(FOLLOW_notexpression_in_expression732);
                     n=notexpression();
                     _fsp--;
                     if (failed) return retval;
-                    dbg.location(99,95);
+                    dbg.location(99,128);
                     if ( backtracking==0 ) {
                       retval.value =n;
                     }
@@ -4634,8 +4992,8 @@ public class gscriptParser extends DebugParser {
             }
             } finally {dbg.exitSubRule(26);}
 
-            dbg.location(99,116);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:116: (aa= aexpression )*
+            dbg.location(99,149);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:149: (aa= aexpression )*
             try { dbg.enterSubRule(27);
 
             loop27:
@@ -4645,10 +5003,19 @@ public class gscriptParser extends DebugParser {
 
                 int LA27_0 = input.LA(1);
 
-                if ( ((LA27_0>=PLUS && LA27_0<=DIV)||(LA27_0>=53 && LA27_0<=59)) ) {
-                    int LA27_37 = input.LA(2);
+                if ( (LA27_0==MINUS) ) {
+                    int LA27_28 = input.LA(2);
 
-                    if ( (synpred48()) ) {
+                    if ( (synpred50()) ) {
+                        alt27=1;
+                    }
+
+
+                }
+                else if ( (LA27_0==PLUS||(LA27_0>=MULT && LA27_0<=DIV)||(LA27_0>=53 && LA27_0<=59)) ) {
+                    int LA27_40 = input.LA(2);
+
+                    if ( (synpred50()) ) {
                         alt27=1;
                     }
 
@@ -4662,14 +5029,14 @@ public class gscriptParser extends DebugParser {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:117: aa= aexpression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: aa= aexpression
             	    {
-            	    dbg.location(99,119);
-            	    pushFollow(FOLLOW_aexpression_in_expression732);
+            	    dbg.location(99,152);
+            	    pushFollow(FOLLOW_aexpression_in_expression739);
             	    aa=aexpression();
             	    _fsp--;
             	    if (failed) return retval;
-            	    dbg.location(99,132);
+            	    dbg.location(99,165);
             	    if ( backtracking==0 ) {
             	      retval.value+= " "+ aa;
             	    }
@@ -4683,8 +5050,8 @@ public class gscriptParser extends DebugParser {
             } while (true);
             } finally {dbg.exitSubRule(27);}
 
-            dbg.location(99,161);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:161: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            dbg.location(99,194);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:194: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             try { dbg.enterSubRule(29);
 
             loop29:
@@ -4693,36 +5060,36 @@ public class gscriptParser extends DebugParser {
                 try { dbg.enterDecision(29);
 
                 switch ( input.LA(1) ) {
-                case 60:
                 case 61:
-                    {
-                    int LA29_34 = input.LA(2);
-
-                    if ( (synpred51()) ) {
-                        alt29=1;
-                    }
-
-
-                    }
-                    break;
                 case 62:
-                case 63:
                     {
-                    int LA29_35 = input.LA(2);
+                    int LA29_37 = input.LA(2);
 
-                    if ( (synpred51()) ) {
+                    if ( (synpred53()) ) {
                         alt29=1;
                     }
 
 
                     }
                     break;
+                case 63:
                 case 64:
-                case 65:
                     {
-                    int LA29_36 = input.LA(2);
+                    int LA29_38 = input.LA(2);
 
-                    if ( (synpred51()) ) {
+                    if ( (synpred53()) ) {
+                        alt29=1;
+                    }
+
+
+                    }
+                    break;
+                case 65:
+                case 66:
+                    {
+                    int LA29_39 = input.LA(2);
+
+                    if ( (synpred53()) ) {
                         alt29=1;
                     }
 
@@ -4738,29 +5105,29 @@ public class gscriptParser extends DebugParser {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:162: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
             	    {
-            	    dbg.location(99,162);
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:162: (an= andexpression | orr= orexpression | x= xorexpression )
+            	    dbg.location(99,195);
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: (an= andexpression | orr= orexpression | x= xorexpression )
             	    int alt28=3;
             	    try { dbg.enterSubRule(28);
             	    try { dbg.enterDecision(28);
 
             	    switch ( input.LA(1) ) {
-            	    case 60:
             	    case 61:
+            	    case 62:
             	        {
             	        alt28=1;
             	        }
             	        break;
-            	    case 62:
             	    case 63:
+            	    case 64:
             	        {
             	        alt28=2;
             	        }
             	        break;
-            	    case 64:
             	    case 65:
+            	    case 66:
             	        {
             	        alt28=3;
             	        }
@@ -4768,7 +5135,7 @@ public class gscriptParser extends DebugParser {
             	    default:
             	        if (backtracking>0) {failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("99:162: (an= andexpression | orr= orexpression | x= xorexpression )", 28, 0, input);
+            	            new NoViableAltException("99:195: (an= andexpression | orr= orexpression | x= xorexpression )", 28, 0, input);
 
             	        dbg.recognitionException(nvae);
             	        throw nvae;
@@ -4780,14 +5147,14 @@ public class gscriptParser extends DebugParser {
             	        case 1 :
             	            dbg.enterAlt(1);
 
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:163: an= andexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:196: an= andexpression
             	            {
-            	            dbg.location(99,165);
-            	            pushFollow(FOLLOW_andexpression_in_expression742);
+            	            dbg.location(99,198);
+            	            pushFollow(FOLLOW_andexpression_in_expression749);
             	            an=andexpression();
             	            _fsp--;
             	            if (failed) return retval;
-            	            dbg.location(99,179);
+            	            dbg.location(99,212);
             	            if ( backtracking==0 ) {
             	              retval.value +=" "+an;
             	            }
@@ -4797,14 +5164,14 @@ public class gscriptParser extends DebugParser {
             	        case 2 :
             	            dbg.enterAlt(2);
 
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:205: orr= orexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:238: orr= orexpression
             	            {
-            	            dbg.location(99,208);
-            	            pushFollow(FOLLOW_orexpression_in_expression747);
+            	            dbg.location(99,241);
+            	            pushFollow(FOLLOW_orexpression_in_expression754);
             	            orr=orexpression();
             	            _fsp--;
             	            if (failed) return retval;
-            	            dbg.location(99,221);
+            	            dbg.location(99,254);
             	            if ( backtracking==0 ) {
             	              retval.value +=" "+orr;
             	            }
@@ -4814,14 +5181,14 @@ public class gscriptParser extends DebugParser {
             	        case 3 :
             	            dbg.enterAlt(3);
 
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:248: x= xorexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:281: x= xorexpression
             	            {
-            	            dbg.location(99,249);
-            	            pushFollow(FOLLOW_xorexpression_in_expression752);
+            	            dbg.location(99,282);
+            	            pushFollow(FOLLOW_xorexpression_in_expression759);
             	            x=xorexpression();
             	            _fsp--;
             	            if (failed) return retval;
-            	            dbg.location(99,263);
+            	            dbg.location(99,296);
             	            if ( backtracking==0 ) {
             	              retval.value +=" "+x;
             	            }
@@ -4832,18 +5199,18 @@ public class gscriptParser extends DebugParser {
             	    }
             	    } finally {dbg.exitSubRule(28);}
 
-            	    dbg.location(99,289);
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:289: (e= expression )
+            	    dbg.location(99,322);
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:322: (e= expression )
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:290: e= expression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:323: e= expression
             	    {
-            	    dbg.location(99,291);
-            	    pushFollow(FOLLOW_expression_in_expression759);
+            	    dbg.location(99,324);
+            	    pushFollow(FOLLOW_expression_in_expression766);
             	    e=expression();
             	    _fsp--;
             	    if (failed) return retval;
-            	    dbg.location(99,302);
+            	    dbg.location(99,335);
             	    if ( backtracking==0 ) {
             	      retval.value +=" ("+e.value+")";
             	    }
@@ -4860,7 +5227,7 @@ public class gscriptParser extends DebugParser {
             } while (true);
             } finally {dbg.exitSubRule(29);}
 
-            dbg.location(99,335);
+            dbg.location(99,368);
             if ( backtracking==0 ) {
               retval.value =pc.expression(retval.value);
             }
@@ -4921,11 +5288,11 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression778);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_notexpression785);    throw mse;
             }
 
             dbg.location(103,16);
-            pushFollow(FOLLOW_expression_in_notexpression786);
+            pushFollow(FOLLOW_expression_in_notexpression793);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -4990,7 +5357,7 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression804);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression811);    throw mse;
             }
 
             dbg.location(108,57);
@@ -5000,7 +5367,7 @@ public class gscriptParser extends DebugParser {
             // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:58: e= expression
             {
             dbg.location(108,59);
-            pushFollow(FOLLOW_expression_in_aexpression831);
+            pushFollow(FOLLOW_expression_in_aexpression838);
             e=expression();
             _fsp--;
             if (failed) return value;
@@ -5103,7 +5470,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:35: NUMBER
                     {
                     dbg.location(111,35);
-                    match(input,NUMBER,FOLLOW_NUMBER_in_value851); if (failed) return value;
+                    match(input,NUMBER,FOLLOW_NUMBER_in_value858); if (failed) return value;
 
                     }
                     break;
@@ -5113,7 +5480,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:42: HEXNUMBER
                     {
                     dbg.location(111,42);
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value853); if (failed) return value;
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value860); if (failed) return value;
 
                     }
                     break;
@@ -5123,7 +5490,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:52: STRING
                     {
                     dbg.location(111,52);
-                    match(input,STRING,FOLLOW_STRING_in_value855); if (failed) return value;
+                    match(input,STRING,FOLLOW_STRING_in_value862); if (failed) return value;
 
                     }
                     break;
@@ -5133,7 +5500,7 @@ public class gscriptParser extends DebugParser {
                     // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:59: variable
                     {
                     dbg.location(111,59);
-                    pushFollow(FOLLOW_variable_in_value857);
+                    pushFollow(FOLLOW_variable_in_value864);
                     variable();
                     _fsp--;
                     if (failed) return value;
@@ -5173,8 +5540,75 @@ public class gscriptParser extends DebugParser {
     // $ANTLR end value
 
 
+    // $ANTLR start negate
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:1: negate returns [String value] : ( '-' | '~' ) e= expression ;
+    public final String negate() throws RecognitionException {
+        String value = null;
+        int negate_StartIndex = input.index();
+        expression_return e = null;
+
+
+        try { dbg.enterRule("negate");
+        if ( ruleLevel==0 ) {dbg.commence();}
+        ruleLevel++;
+        dbg.location(114, 1);
+
+        try {
+            if ( backtracking>0 && alreadyParsedRule(input, 16) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:31: ( ( '-' | '~' ) e= expression )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:33: ( '-' | '~' ) e= expression
+            {
+            dbg.location(114,33);
+            if ( input.LA(1)==MINUS||input.LA(1)==60 ) {
+                input.consume();
+                errorRecovery=false;failed=false;
+            }
+            else {
+                if (backtracking>0) {failed=true; return value;}
+                MismatchedSetException mse =
+                    new MismatchedSetException(null,input);
+                dbg.recognitionException(mse);
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_negate880);    throw mse;
+            }
+
+            dbg.location(114,44);
+            pushFollow(FOLLOW_expression_in_negate888);
+            e=expression();
+            _fsp--;
+            if (failed) return value;
+            dbg.location(114,56);
+            if ( backtracking==0 ) {
+              value = e.value;
+            }
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+            if ( backtracking>0 ) { memoize(input, 16, negate_StartIndex); }
+        }
+        dbg.location(115, 2);
+
+        }
+        finally {
+            dbg.exitRule("negate");
+            ruleLevel--;
+            if ( ruleLevel==0 ) {dbg.terminate();}
+        }
+
+        return value;
+    }
+    // $ANTLR end negate
+
+
     // $ANTLR start pexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:1: pexpression returns [String value] : LPAREN e= expression RPAREN ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:1: pexpression returns [String value] : LPAREN e= expression RPAREN ;
     public final String pexpression() throws RecognitionException {
         String value = null;
         int pexpression_StartIndex = input.index();
@@ -5184,25 +5618,25 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("pexpression");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(115, 1);
+        dbg.location(118, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 16) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:116:1: ( LPAREN e= expression RPAREN )
+            if ( backtracking>0 && alreadyParsedRule(input, 17) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:1: ( LPAREN e= expression RPAREN )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:116:3: LPAREN e= expression RPAREN
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:3: LPAREN e= expression RPAREN
             {
-            dbg.location(116,3);
-            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression874); if (failed) return value;
-            dbg.location(116,11);
-            pushFollow(FOLLOW_expression_in_pexpression878);
+            dbg.location(119,3);
+            match(input,LPAREN,FOLLOW_LPAREN_in_pexpression905); if (failed) return value;
+            dbg.location(119,11);
+            pushFollow(FOLLOW_expression_in_pexpression909);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(116,23);
-            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression880); if (failed) return value;
-            dbg.location(116,30);
+            dbg.location(119,23);
+            match(input,RPAREN,FOLLOW_RPAREN_in_pexpression911); if (failed) return value;
+            dbg.location(119,30);
             if ( backtracking==0 ) {
               value =pc.pexpression(e.value);
             }
@@ -5215,9 +5649,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 16, pexpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 17, pexpression_StartIndex); }
         }
-        dbg.location(117, 1);
+        dbg.location(120, 1);
 
         }
         finally {
@@ -5232,7 +5666,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start andexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:1: andexpression returns [String value] : a= ( '&&' | 'and' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:122:1: andexpression returns [String value] : a= ( '&&' | 'and' ) ;
     public final String andexpression() throws RecognitionException {
         String value = null;
         int andexpression_StartIndex = input.index();
@@ -5241,18 +5675,18 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("andexpression");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(119, 1);
+        dbg.location(122, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 17) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:120:1: (a= ( '&&' | 'and' ) )
+            if ( backtracking>0 && alreadyParsedRule(input, 18) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:1: (a= ( '&&' | 'and' ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:120:3: a= ( '&&' | 'and' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:3: a= ( '&&' | 'and' )
             {
-            dbg.location(120,4);
+            dbg.location(123,4);
             a=(Token)input.LT(1);
-            if ( (input.LA(1)>=60 && input.LA(1)<=61) ) {
+            if ( (input.LA(1)>=61 && input.LA(1)<=62) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -5261,10 +5695,10 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression897);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_andexpression928);    throw mse;
             }
 
-            dbg.location(120,18);
+            dbg.location(123,18);
             if ( backtracking==0 ) {
               value =pc.andexpression();
             }
@@ -5277,9 +5711,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 17, andexpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 18, andexpression_StartIndex); }
         }
-        dbg.location(121, 1);
+        dbg.location(124, 1);
 
         }
         finally {
@@ -5294,7 +5728,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start orexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:1: orexpression returns [String value] : o= ( '||' | 'or' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:126:1: orexpression returns [String value] : o= ( '||' | 'or' ) ;
     public final String orexpression() throws RecognitionException {
         String value = null;
         int orexpression_StartIndex = input.index();
@@ -5303,18 +5737,18 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("orexpression");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(123, 1);
+        dbg.location(126, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 18) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:124:1: (o= ( '||' | 'or' ) )
+            if ( backtracking>0 && alreadyParsedRule(input, 19) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:1: (o= ( '||' | 'or' ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:124:3: o= ( '||' | 'or' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:3: o= ( '||' | 'or' )
             {
-            dbg.location(124,4);
+            dbg.location(127,4);
             o=(Token)input.LT(1);
-            if ( (input.LA(1)>=62 && input.LA(1)<=63) ) {
+            if ( (input.LA(1)>=63 && input.LA(1)<=64) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -5323,10 +5757,10 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression918);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_orexpression949);    throw mse;
             }
 
-            dbg.location(124,17);
+            dbg.location(127,17);
             if ( backtracking==0 ) {
               value =pc.orexpression();
             }
@@ -5339,9 +5773,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 18, orexpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 19, orexpression_StartIndex); }
         }
-        dbg.location(125, 1);
+        dbg.location(128, 1);
 
         }
         finally {
@@ -5356,7 +5790,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start xorexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:1: xorexpression returns [String value] : x= ( '^^' | 'xor' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:130:1: xorexpression returns [String value] : x= ( '^^' | 'xor' ) ;
     public final String xorexpression() throws RecognitionException {
         String value = null;
         int xorexpression_StartIndex = input.index();
@@ -5365,18 +5799,18 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("xorexpression");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(127, 1);
+        dbg.location(130, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 19) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:128:1: (x= ( '^^' | 'xor' ) )
+            if ( backtracking>0 && alreadyParsedRule(input, 20) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:1: (x= ( '^^' | 'xor' ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:128:3: x= ( '^^' | 'xor' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:3: x= ( '^^' | 'xor' )
             {
-            dbg.location(128,4);
+            dbg.location(131,4);
             x=(Token)input.LT(1);
-            if ( (input.LA(1)>=64 && input.LA(1)<=65) ) {
+            if ( (input.LA(1)>=65 && input.LA(1)<=66) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -5385,10 +5819,10 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression939);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_xorexpression970);    throw mse;
             }
 
-            dbg.location(128,18);
+            dbg.location(131,18);
             if ( backtracking==0 ) {
               value =pc.xorexpression();
             }
@@ -5401,9 +5835,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 19, xorexpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 20, xorexpression_StartIndex); }
         }
-        dbg.location(129, 1);
+        dbg.location(132, 1);
 
         }
         finally {
@@ -5418,7 +5852,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start relationalExpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? ;
     public final String relationalExpression() throws RecognitionException {
         String value = null;
         int relationalExpression_StartIndex = input.index();
@@ -5437,18 +5871,18 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("relationalExpression");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(131, 1);
+        dbg.location(134, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 20) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:132:3: ( (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? )
+            if ( backtracking>0 && alreadyParsedRule(input, 21) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:135:3: ( (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
             {
-            dbg.location(133,3);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
-            int alt31=7;
+            dbg.location(136,3);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+            int alt31=8;
             try { dbg.enterSubRule(31);
             try { dbg.enterDecision(31);
 
@@ -5460,16 +5894,16 @@ public class gscriptParser extends DebugParser {
                 if ( (LA31_1==LPAREN) ) {
                     alt31=1;
                 }
-                else if ( (synpred73()) ) {
-                    alt31=5;
+                else if ( (synpred77()) ) {
+                    alt31=6;
                 }
                 else if ( (true) ) {
-                    alt31=7;
+                    alt31=8;
                 }
                 else {
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("133:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 31, 1, input);
+                        new NoViableAltException("136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 31, 1, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
@@ -5486,27 +5920,32 @@ public class gscriptParser extends DebugParser {
                 alt31=3;
                 }
                 break;
-            case NUMBER:
+            case MINUS:
                 {
                 alt31=4;
+                }
+                break;
+            case NUMBER:
+                {
+                alt31=5;
                 }
                 break;
             case LPAREN:
             case OIVAR:
             case GLOBALVAR:
                 {
-                alt31=5;
+                alt31=6;
                 }
                 break;
             case DECIMAL:
                 {
-                alt31=6;
+                alt31=7;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("133:3: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 31, 0, input);
+                    new NoViableAltException("136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 31, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
@@ -5518,14 +5957,14 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:4: f= function
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:4: f= function
                     {
-                    dbg.location(133,5);
-                    pushFollow(FOLLOW_function_in_relationalExpression970);
+                    dbg.location(136,5);
+                    pushFollow(FOLLOW_function_in_relationalExpression1001);
                     f=function();
                     _fsp--;
                     if (failed) return value;
-                    dbg.location(133,14);
+                    dbg.location(136,14);
                     if ( backtracking==0 ) {
                       value = f;
                     }
@@ -5535,14 +5974,14 @@ public class gscriptParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:35: h= HEXNUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:35: h= HEXNUMBER
                     {
-                    dbg.location(133,36);
+                    dbg.location(136,36);
                     h=(Token)input.LT(1);
-                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression975); if (failed) return value;
-                    dbg.location(133,46);
+                    match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1006); if (failed) return value;
+                    dbg.location(136,46);
                     if ( backtracking==0 ) {
-                      value = h.getText();
+                      value = "(new String(\""+h.getText()+"\"))";
                     }
 
                     }
@@ -5550,14 +5989,14 @@ public class gscriptParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:66: s= STRING
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:90: s= STRING
                     {
-                    dbg.location(133,67);
+                    dbg.location(136,91);
                     s=(Token)input.LT(1);
-                    match(input,STRING,FOLLOW_STRING_in_relationalExpression980); if (failed) return value;
-                    dbg.location(133,74);
+                    match(input,STRING,FOLLOW_STRING_in_relationalExpression1011); if (failed) return value;
+                    dbg.location(136,98);
                     if ( backtracking==0 ) {
-                      value = "(new String("+s.getText()+"))";
+                      value = "(new String(\""+s.getText().substring(1, s.getText().length()-1)+"\"))";
                     }
 
                     }
@@ -5565,12 +6004,14 @@ public class gscriptParser extends DebugParser {
                 case 4 :
                     dbg.enterAlt(4);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:114: n= NUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:175: '-' n= NUMBER
                     {
-                    dbg.location(133,115);
+                    dbg.location(136,175);
+                    match(input,MINUS,FOLLOW_MINUS_in_relationalExpression1014); if (failed) return value;
+                    dbg.location(136,180);
                     n=(Token)input.LT(1);
-                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression985); if (failed) return value;
-                    dbg.location(133,122);
+                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1018); if (failed) return value;
+                    dbg.location(136,187);
                     if ( backtracking==0 ) {
                       value = "(new Integer("+n.getText()+"))";
                     }
@@ -5580,16 +6021,14 @@ public class gscriptParser extends DebugParser {
                 case 5 :
                     dbg.enterAlt(5);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:163: v= variable
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:229: n= NUMBER
                     {
-                    dbg.location(133,164);
-                    pushFollow(FOLLOW_variable_in_relationalExpression990);
-                    v=variable();
-                    _fsp--;
-                    if (failed) return value;
-                    dbg.location(133,173);
+                    dbg.location(136,230);
+                    n=(Token)input.LT(1);
+                    match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1024); if (failed) return value;
+                    dbg.location(136,237);
                     if ( backtracking==0 ) {
-                      value = v.value;
+                      value = "(new Integer("+n.getText()+"))";
                     }
 
                     }
@@ -5597,14 +6036,16 @@ public class gscriptParser extends DebugParser {
                 case 6 :
                     dbg.enterAlt(6);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:194: d= DECIMAL
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: v= variable
                     {
-                    dbg.location(133,195);
-                    d=(Token)input.LT(1);
-                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression995); if (failed) return value;
-                    dbg.location(133,203);
+                    dbg.location(136,279);
+                    pushFollow(FOLLOW_variable_in_relationalExpression1029);
+                    v=variable();
+                    _fsp--;
+                    if (failed) return value;
+                    dbg.location(136,288);
                     if ( backtracking==0 ) {
-                      value = "(new Double("+d.getText()+"))";
+                      value = v.value;
                     }
 
                     }
@@ -5612,12 +6053,27 @@ public class gscriptParser extends DebugParser {
                 case 7 :
                     dbg.enterAlt(7);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:243: w= WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:309: d= DECIMAL
                     {
-                    dbg.location(133,244);
+                    dbg.location(136,310);
+                    d=(Token)input.LT(1);
+                    match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1034); if (failed) return value;
+                    dbg.location(136,318);
+                    if ( backtracking==0 ) {
+                      value = "(new Double("+d.getText()+"))";
+                    }
+
+                    }
+                    break;
+                case 8 :
+                    dbg.enterAlt(8);
+
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:358: w= WORD
+                    {
+                    dbg.location(136,359);
                     w=(Token)input.LT(1);
-                    match(input,WORD,FOLLOW_WORD_in_relationalExpression1000); if (failed) return value;
-                    dbg.location(133,249);
+                    match(input,WORD,FOLLOW_WORD_in_relationalExpression1039); if (failed) return value;
+                    dbg.location(136,364);
                     if ( backtracking==0 ) {
                       value = w.getText();
                     }
@@ -5628,8 +6084,8 @@ public class gscriptParser extends DebugParser {
             }
             } finally {dbg.exitSubRule(31);}
 
-            dbg.location(133,270);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:270: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
+            dbg.location(136,385);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:385: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
             int alt33=2;
             try { dbg.enterSubRule(33);
             try { dbg.enterDecision(33);
@@ -5641,29 +6097,29 @@ public class gscriptParser extends DebugParser {
                     case LPAREN:
                         {
                         switch ( input.LA(3) ) {
-                            case LPAREN:
+                            case NUMBER:
                                 {
-                                int LA33_56 = input.LA(4);
+                                int LA33_61 = input.LA(4);
 
-                                if ( (synpred89()) ) {
+                                if ( (synpred93()) ) {
                                     alt33=1;
                                 }
                                 }
                                 break;
                             case WORD:
                                 {
-                                int LA33_57 = input.LA(4);
+                                int LA33_62 = input.LA(4);
 
-                                if ( (synpred89()) ) {
+                                if ( (synpred93()) ) {
                                     alt33=1;
                                 }
                                 }
                                 break;
-                            case NUMBER:
+                            case LPAREN:
                                 {
-                                int LA33_60 = input.LA(4);
+                                int LA33_63 = input.LA(4);
 
-                                if ( (synpred89()) ) {
+                                if ( (synpred93()) ) {
                                     alt33=1;
                                 }
                                 }
@@ -5671,9 +6127,9 @@ public class gscriptParser extends DebugParser {
                             case OIVAR:
                             case GLOBALVAR:
                                 {
-                                int LA33_61 = input.LA(4);
+                                int LA33_64 = input.LA(4);
 
-                                if ( (synpred89()) ) {
+                                if ( (synpred93()) ) {
                                     alt33=1;
                                 }
                                 }
@@ -5684,36 +6140,36 @@ public class gscriptParser extends DebugParser {
                         break;
                     case WORD:
                         {
-                        int LA33_49 = input.LA(3);
+                        int LA33_53 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
                         break;
                     case HEXNUMBER:
                         {
-                        int LA33_50 = input.LA(3);
+                        int LA33_54 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
                         break;
                     case STRING:
                         {
-                        int LA33_51 = input.LA(3);
+                        int LA33_55 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
                         break;
                     case NUMBER:
                         {
-                        int LA33_52 = input.LA(3);
+                        int LA33_57 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
@@ -5721,18 +6177,18 @@ public class gscriptParser extends DebugParser {
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        int LA33_53 = input.LA(3);
+                        int LA33_58 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
                         break;
                     case DECIMAL:
                         {
-                        int LA33_54 = input.LA(3);
+                        int LA33_59 = input.LA(3);
 
-                        if ( (synpred89()) ) {
+                        if ( (synpred93()) ) {
                             alt33=1;
                         }
                         }
@@ -5740,7 +6196,7 @@ public class gscriptParser extends DebugParser {
                 }
 
             }
-            else if ( ((LA33_0>=EQUALS && LA33_0<=LTE)||LA33_0==66) ) {
+            else if ( ((LA33_0>=EQUALS && LA33_0<=LTE)||LA33_0==67) ) {
                 alt33=1;
             }
             } finally {dbg.exitDecision(33);}
@@ -5749,11 +6205,11 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:272: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
                     {
-                    dbg.location(133,274);
+                    dbg.location(136,389);
                     op=(Token)input.LT(1);
-                    if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==66 ) {
+                    if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==67 ) {
                         input.consume();
                         errorRecovery=false;failed=false;
                     }
@@ -5762,11 +6218,11 @@ public class gscriptParser extends DebugParser {
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
                         dbg.recognitionException(mse);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1008);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1047);    throw mse;
                     }
 
-                    dbg.location(133,326);
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:326: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+                    dbg.location(136,441);
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
                     int alt32=7;
                     try { dbg.enterSubRule(32);
                     try { dbg.enterDecision(32);
@@ -5779,7 +6235,7 @@ public class gscriptParser extends DebugParser {
                         if ( (LA32_1==LPAREN) ) {
                             alt32=1;
                         }
-                        else if ( (synpred87()) ) {
+                        else if ( (synpred91()) ) {
                             alt32=5;
                         }
                         else if ( (true) ) {
@@ -5788,7 +6244,7 @@ public class gscriptParser extends DebugParser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("133:326: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 1, input);
+                                new NoViableAltException("136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 1, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -5825,7 +6281,7 @@ public class gscriptParser extends DebugParser {
                     default:
                         if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("133:326: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 0, input);
+                            new NoViableAltException("136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 0, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
@@ -5837,14 +6293,14 @@ public class gscriptParser extends DebugParser {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:327: f= function
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:442: f= function
                             {
-                            dbg.location(133,328);
-                            pushFollow(FOLLOW_function_in_relationalExpression1031);
+                            dbg.location(136,443);
+                            pushFollow(FOLLOW_function_in_relationalExpression1070);
                             f=function();
                             _fsp--;
                             if (failed) return value;
-                            dbg.location(133,337);
+                            dbg.location(136,452);
                             if ( backtracking==0 ) {
                               a = f;
                             }
@@ -5854,12 +6310,12 @@ public class gscriptParser extends DebugParser {
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:353: h= HEXNUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:468: h= HEXNUMBER
                             {
-                            dbg.location(133,354);
+                            dbg.location(136,469);
                             h=(Token)input.LT(1);
-                            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1036); if (failed) return value;
-                            dbg.location(133,364);
+                            match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1075); if (failed) return value;
+                            dbg.location(136,479);
                             if ( backtracking==0 ) {
                               a = h.getText();
                             }
@@ -5869,12 +6325,12 @@ public class gscriptParser extends DebugParser {
                         case 3 :
                             dbg.enterAlt(3);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:379: s= STRING
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:494: s= STRING
                             {
-                            dbg.location(133,380);
+                            dbg.location(136,495);
                             s=(Token)input.LT(1);
-                            match(input,STRING,FOLLOW_STRING_in_relationalExpression1041); if (failed) return value;
-                            dbg.location(133,387);
+                            match(input,STRING,FOLLOW_STRING_in_relationalExpression1080); if (failed) return value;
+                            dbg.location(136,502);
                             if ( backtracking==0 ) {
                               a = "(new String("+s.getText()+"))";
                             }
@@ -5884,12 +6340,12 @@ public class gscriptParser extends DebugParser {
                         case 4 :
                             dbg.enterAlt(4);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:422: n= NUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:537: n= NUMBER
                             {
-                            dbg.location(133,423);
+                            dbg.location(136,538);
                             n=(Token)input.LT(1);
-                            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1046); if (failed) return value;
-                            dbg.location(133,430);
+                            match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1085); if (failed) return value;
+                            dbg.location(136,545);
                             if ( backtracking==0 ) {
                               a = "(new Integer("+n.getText()+"))";
                             }
@@ -5899,14 +6355,14 @@ public class gscriptParser extends DebugParser {
                         case 5 :
                             dbg.enterAlt(5);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:466: v= variable
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: v= variable
                             {
-                            dbg.location(133,467);
-                            pushFollow(FOLLOW_variable_in_relationalExpression1051);
+                            dbg.location(136,582);
+                            pushFollow(FOLLOW_variable_in_relationalExpression1090);
                             v=variable();
                             _fsp--;
                             if (failed) return value;
-                            dbg.location(133,476);
+                            dbg.location(136,591);
                             if ( backtracking==0 ) {
                               a = v.value;
                             }
@@ -5916,12 +6372,12 @@ public class gscriptParser extends DebugParser {
                         case 6 :
                             dbg.enterAlt(6);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:492: d= DECIMAL
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:607: d= DECIMAL
                             {
-                            dbg.location(133,493);
+                            dbg.location(136,608);
                             d=(Token)input.LT(1);
-                            match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1056); if (failed) return value;
-                            dbg.location(133,501);
+                            match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1095); if (failed) return value;
+                            dbg.location(136,616);
                             if ( backtracking==0 ) {
                               a = "(new Double("+d.getText()+"))";
                             }
@@ -5931,12 +6387,12 @@ public class gscriptParser extends DebugParser {
                         case 7 :
                             dbg.enterAlt(7);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:536: w= WORD
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:651: w= WORD
                             {
-                            dbg.location(133,537);
+                            dbg.location(136,652);
                             w=(Token)input.LT(1);
-                            match(input,WORD,FOLLOW_WORD_in_relationalExpression1061); if (failed) return value;
-                            dbg.location(133,542);
+                            match(input,WORD,FOLLOW_WORD_in_relationalExpression1100); if (failed) return value;
+                            dbg.location(136,657);
                             if ( backtracking==0 ) {
                               a = w.getText();
                             }
@@ -5947,7 +6403,7 @@ public class gscriptParser extends DebugParser {
                     }
                     } finally {dbg.exitSubRule(32);}
 
-                    dbg.location(133,558);
+                    dbg.location(136,673);
                     if ( backtracking==0 ) {
                       value =pc.relationalExpression(value,op.getText(),a);
                     }
@@ -5967,9 +6423,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 20, relationalExpression_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 21, relationalExpression_StartIndex); }
         }
-        dbg.location(134, 3);
+        dbg.location(137, 3);
 
         }
         finally {
@@ -5984,7 +6440,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start repeatstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:1: repeatstatement returns [String value] : 'repeat' (e= expression )? (s= statement ) ( ';' )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:139:1: repeatstatement returns [String value] : 'repeat' (e= expression )? (s= statement ) ( ';' )* ;
     public final String repeatstatement() throws RecognitionException {
         String value = null;
         int repeatstatement_StartIndex = input.index();
@@ -5996,53 +6452,76 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("repeatstatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(136, 1);
+        dbg.location(139, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 21) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:1: ( 'repeat' (e= expression )? (s= statement ) ( ';' )* )
+            if ( backtracking>0 && alreadyParsedRule(input, 22) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:1: ( 'repeat' (e= expression )? (s= statement ) ( ';' )* )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:3: 'repeat' (e= expression )? (s= statement ) ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:3: 'repeat' (e= expression )? (s= statement ) ( ';' )*
             {
-            dbg.location(137,3);
-            match(input,67,FOLLOW_67_in_repeatstatement1084); if (failed) return value;
-            dbg.location(137,12);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:12: (e= expression )?
+            dbg.location(140,3);
+            match(input,68,FOLLOW_68_in_repeatstatement1123); if (failed) return value;
+            dbg.location(140,12);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:12: (e= expression )?
             int alt34=2;
             try { dbg.enterSubRule(34);
             try { dbg.enterDecision(34);
 
             switch ( input.LA(1) ) {
+                case MINUS:
+                case NUMBER:
+                case HEXNUMBER:
+                case STRING:
+                case DECIMAL:
+                case 51:
+                case 52:
+                case 60:
+                    {
+                    alt34=1;
+                    }
+                    break;
                 case LPAREN:
                     {
                     switch ( input.LA(2) ) {
+                        case MINUS:
+                        case HEXNUMBER:
+                        case STRING:
+                        case DECIMAL:
+                        case 51:
+                        case 52:
+                        case 60:
+                            {
+                            alt34=1;
+                            }
+                            break;
                         case LPAREN:
                             {
                             switch ( input.LA(3) ) {
                                 case NUMBER:
                                     {
-                                    int LA34_110 = input.LA(4);
+                                    int LA34_121 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA34_111 = input.LA(4);
+                                    int LA34_122 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA34_112 = input.LA(4);
+                                    int LA34_123 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6050,18 +6529,20 @@ public class gscriptParser extends DebugParser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA34_113 = input.LA(4);
+                                    int LA34_124 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
+                                case MINUS:
                                 case HEXNUMBER:
                                 case STRING:
                                 case DECIMAL:
                                 case 51:
                                 case 52:
+                                case 60:
                                     {
                                     alt34=1;
                                     }
@@ -6075,99 +6556,18 @@ public class gscriptParser extends DebugParser {
                             switch ( input.LA(3) ) {
                                 case LPAREN:
                                     {
-                                    int LA34_118 = input.LA(4);
+                                    int LA34_131 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
-                                case 87:
-                                    {
-                                    int LA34_119 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case PLUS:
-                                case MINUS:
-                                case MULT:
-                                case DIV:
-                                case EQUALS:
-                                case EQUALS2:
-                                case NOT_EQUALS:
-                                case GT:
-                                case GTE:
-                                case LT:
-                                case LTE:
-                                case 52:
-                                case 53:
-                                case 54:
-                                case 55:
-                                case 56:
-                                case 57:
-                                case 58:
-                                case 59:
-                                case 60:
-                                case 61:
-                                case 62:
-                                case 63:
-                                case 64:
-                                case 65:
-                                case 66:
-                                    {
-                                    alt34=1;
-                                    }
-                                    break;
-                                case RPAREN:
-                                    {
-                                    int LA34_125 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case HEXNUMBER:
-                        case STRING:
-                        case DECIMAL:
-                        case 51:
-                        case 52:
-                            {
-                            alt34=1;
-                            }
-                            break;
-                        case NUMBER:
-                            {
-                            int LA34_28 = input.LA(3);
-
-                            if ( (LA34_28==RPAREN) ) {
-                                int LA34_126 = input.LA(4);
-
-                                if ( (synpred90()) ) {
-                                    alt34=1;
-                                }
-                            }
-                            else if ( ((LA34_28>=PLUS && LA34_28<=DIV)||(LA34_28>=EQUALS && LA34_28<=LTE)||(LA34_28>=52 && LA34_28<=66)) ) {
-                                alt34=1;
-                            }
-                            }
-                            break;
-                        case OIVAR:
-                        case GLOBALVAR:
-                            {
-                            switch ( input.LA(3) ) {
-                                case 87:
+                                case 88:
                                     {
                                     int LA34_132 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6191,13 +6591,13 @@ public class gscriptParser extends DebugParser {
                                 case 57:
                                 case 58:
                                 case 59:
-                                case 60:
                                 case 61:
                                 case 62:
                                 case 63:
                                 case 64:
                                 case 65:
                                 case 66:
+                                case 67:
                                     {
                                     alt34=1;
                                     }
@@ -6206,7 +6606,97 @@ public class gscriptParser extends DebugParser {
                                     {
                                     int LA34_138 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 87:
+                                    {
+                                    int LA34_139 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case NUMBER:
+                            {
+                            int LA34_33 = input.LA(3);
+
+                            if ( (LA34_33==RPAREN) ) {
+                                int LA34_140 = input.LA(4);
+
+                                if ( (synpred94()) ) {
+                                    alt34=1;
+                                }
+                            }
+                            else if ( ((LA34_33>=PLUS && LA34_33<=DIV)||(LA34_33>=EQUALS && LA34_33<=LTE)||(LA34_33>=52 && LA34_33<=59)||(LA34_33>=61 && LA34_33<=67)) ) {
+                                alt34=1;
+                            }
+                            }
+                            break;
+                        case OIVAR:
+                        case GLOBALVAR:
+                            {
+                            switch ( input.LA(3) ) {
+                                case 88:
+                                    {
+                                    int LA34_146 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 87:
+                                    {
+                                    int LA34_147 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case PLUS:
+                                case MINUS:
+                                case MULT:
+                                case DIV:
+                                case EQUALS:
+                                case EQUALS2:
+                                case NOT_EQUALS:
+                                case GT:
+                                case GTE:
+                                case LT:
+                                case LTE:
+                                case 52:
+                                case 53:
+                                case 54:
+                                case 55:
+                                case 56:
+                                case 57:
+                                case 58:
+                                case 59:
+                                case 61:
+                                case 62:
+                                case 63:
+                                case 64:
+                                case 65:
+                                case 66:
+                                case 67:
+                                    {
+                                    alt34=1;
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA34_153 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6222,213 +6712,59 @@ public class gscriptParser extends DebugParser {
                 case WORD:
                     {
                     switch ( input.LA(2) ) {
-                        case 87:
+                        case 88:
                             {
                             switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_139 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA34_140 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case HEXNUMBER:
-                                    {
-                                    int LA34_141 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case STRING:
-                                    {
-                                    int LA34_142 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case NUMBER:
-                                    {
-                                    int LA34_143 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case OIVAR:
-                                case GLOBALVAR:
-                                    {
-                                    int LA34_144 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case DECIMAL:
-                                    {
-                                    int LA34_145 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case 51:
-                                case 52:
-                                    {
-                                    int LA34_146 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case LPAREN:
-                            {
-                            switch ( input.LA(3) ) {
-                                case NUMBER:
-                                    {
-                                    int LA34_147 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA34_148 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case LPAREN:
-                                    {
-                                    int LA34_149 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case OIVAR:
-                                case GLOBALVAR:
-                                    {
-                                    int LA34_150 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case HEXNUMBER:
-                                    {
-                                    int LA34_151 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case STRING:
-                                    {
-                                    int LA34_152 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case DECIMAL:
-                                    {
-                                    int LA34_153 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case 51:
-                                case 52:
+                                case MINUS:
                                     {
                                     int LA34_154 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
-                                case RPAREN:
+                                case LPAREN:
                                     {
                                     int LA34_155 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case EQUALS:
-                        case 66:
-                            {
-                            switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_156 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA34_157 = input.LA(4);
+                                    int LA34_156 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA34_158 = input.LA(4);
+                                    int LA34_157 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
+                                    int LA34_158 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                    {
                                     int LA34_159 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6437,7 +6773,7 @@ public class gscriptParser extends DebugParser {
                                     {
                                     int LA34_160 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6447,7 +6783,7 @@ public class gscriptParser extends DebugParser {
                                     {
                                     int LA34_161 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6456,269 +6792,7 @@ public class gscriptParser extends DebugParser {
                                     {
                                     int LA34_162 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case PLUS:
-                        case MINUS:
-                        case MULT:
-                        case DIV:
-                        case LBRAC:
-                        case EQUALS2:
-                        case NOT_EQUALS:
-                        case GT:
-                        case GTE:
-                        case LT:
-                        case LTE:
-                        case 38:
-                        case 42:
-                        case 44:
-                        case 45:
-                        case 46:
-                        case 47:
-                        case 52:
-                        case 53:
-                        case 54:
-                        case 55:
-                        case 56:
-                        case 57:
-                        case 58:
-                        case 59:
-                        case 60:
-                        case 61:
-                        case 62:
-                        case 63:
-                        case 64:
-                        case 65:
-                        case 67:
-                        case 68:
-                        case 69:
-                        case 70:
-                        case 72:
-                        case 73:
-                        case 74:
-                        case 78:
-                            {
-                            alt34=1;
-                            }
-                            break;
-                        case WORD:
-                            {
-                            switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_164 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case 87:
-                                    {
-                                    int LA34_165 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case EQUALS:
-                                case 66:
-                                case 79:
-                                case 80:
-                                case 81:
-                                case 82:
-                                case 83:
-                                case 84:
-                                case 85:
-                                    {
-                                    int LA34_166 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA34_167 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case OIVAR:
-                                    {
-                                    int LA34_173 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case GLOBALVAR:
-                                    {
-                                    int LA34_186 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case OIVAR:
-                            {
-                            switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_199 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case 87:
-                                    {
-                                    int LA34_200 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case EQUALS:
-                                case 66:
-                                case 79:
-                                case 80:
-                                case 81:
-                                case 82:
-                                case 83:
-                                case 84:
-                                case 85:
-                                    {
-                                    int LA34_201 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                            }
-
-                            }
-                            break;
-                        case GLOBALVAR:
-                            {
-                            int LA34_57 = input.LA(3);
-
-                            if ( (LA34_57==87) ) {
-                                int LA34_234 = input.LA(4);
-
-                                if ( (synpred90()) ) {
-                                    alt34=1;
-                                }
-                            }
-                            else if ( (LA34_57==EQUALS||LA34_57==66||(LA34_57>=79 && LA34_57<=85)) ) {
-                                int LA34_235 = input.LA(4);
-
-                                if ( (synpred90()) ) {
-                                    alt34=1;
-                                }
-                            }
-                            }
-                            break;
-                    }
-
-                    }
-                    break;
-                case NUMBER:
-                case HEXNUMBER:
-                case STRING:
-                case DECIMAL:
-                case 51:
-                case 52:
-                    {
-                    alt34=1;
-                    }
-                    break;
-                case OIVAR:
-                    {
-                    switch ( input.LA(2) ) {
-                        case 87:
-                            {
-                            switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_269 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case WORD:
-                                    {
-                                    int LA34_270 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case HEXNUMBER:
-                                    {
-                                    int LA34_271 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case STRING:
-                                    {
-                                    int LA34_272 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case NUMBER:
-                                    {
-                                    int LA34_273 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case OIVAR:
-                                case GLOBALVAR:
-                                    {
-                                    int LA34_274 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
-                                case DECIMAL:
-                                    {
-                                    int LA34_275 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6726,9 +6800,9 @@ public class gscriptParser extends DebugParser {
                                 case 51:
                                 case 52:
                                     {
-                                    int LA34_276 = input.LA(4);
+                                    int LA34_163 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6742,27 +6816,27 @@ public class gscriptParser extends DebugParser {
                             switch ( input.LA(3) ) {
                                 case NUMBER:
                                     {
-                                    int LA34_277 = input.LA(4);
+                                    int LA34_164 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA34_278 = input.LA(4);
+                                    int LA34_165 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case LPAREN:
                                     {
-                                    int LA34_279 = input.LA(4);
+                                    int LA34_166 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6770,9 +6844,73 @@ public class gscriptParser extends DebugParser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA34_280 = input.LA(4);
+                                    int LA34_167 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case MINUS:
+                                    {
+                                    int LA34_168 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA34_169 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA34_170 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                    {
+                                    int LA34_171 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA34_172 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA34_173 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case RPAREN:
+                                    {
+                                    int LA34_174 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6781,51 +6919,55 @@ public class gscriptParser extends DebugParser {
 
                             }
                             break;
+                        case 87:
+                            {
+                            int LA34_39 = input.LA(3);
+
+                            if ( (LA34_39==WORD||(LA34_39>=OIVAR && LA34_39<=GLOBALVAR)) ) {
+                                int LA34_175 = input.LA(4);
+
+                                if ( (synpred94()) ) {
+                                    alt34=1;
+                                }
+                            }
+                            }
+                            break;
                         case EQUALS:
-                        case 66:
+                        case 67:
                             {
                             switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_286 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
                                 case WORD:
                                     {
-                                    int LA34_287 = input.LA(4);
+                                    int LA34_176 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA34_288 = input.LA(4);
+                                    int LA34_177 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA34_289 = input.LA(4);
+                                    int LA34_178 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA34_290 = input.LA(4);
+                                    int LA34_179 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6833,18 +6975,477 @@ public class gscriptParser extends DebugParser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA34_291 = input.LA(4);
+                                    int LA34_180 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_181 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA34_292 = input.LA(4);
+                                    int LA34_182 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case WORD:
+                            {
+                            switch ( input.LA(3) ) {
+                                case 88:
+                                    {
+                                    int LA34_186 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_187 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 87:
+                                    {
+                                    int LA34_188 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case 67:
+                                case 80:
+                                case 81:
+                                case 82:
+                                case 83:
+                                case 84:
+                                case 85:
+                                case 86:
+                                    {
+                                    int LA34_189 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA34_190 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                    {
+                                    int LA34_196 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case GLOBALVAR:
+                                    {
+                                    int LA34_209 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case PLUS:
+                        case MINUS:
+                        case MULT:
+                        case DIV:
+                        case LBRAC:
+                        case EQUALS2:
+                        case NOT_EQUALS:
+                        case GT:
+                        case GTE:
+                        case LT:
+                        case LTE:
+                        case 35:
+                        case 38:
+                        case 42:
+                        case 44:
+                        case 45:
+                        case 46:
+                        case 47:
+                        case 52:
+                        case 53:
+                        case 54:
+                        case 55:
+                        case 56:
+                        case 57:
+                        case 58:
+                        case 59:
+                        case 61:
+                        case 62:
+                        case 63:
+                        case 64:
+                        case 65:
+                        case 66:
+                        case 68:
+                        case 69:
+                        case 70:
+                        case 71:
+                        case 73:
+                        case 74:
+                        case 75:
+                        case 79:
+                            {
+                            alt34=1;
+                            }
+                            break;
+                        case OIVAR:
+                            {
+                            switch ( input.LA(3) ) {
+                                case 88:
+                                    {
+                                    int LA34_225 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_226 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 87:
+                                    {
+                                    int LA34_227 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case 67:
+                                case 80:
+                                case 81:
+                                case 82:
+                                case 83:
+                                case 84:
+                                case 85:
+                                case 86:
+                                    {
+                                    int LA34_228 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case GLOBALVAR:
+                            {
+                            switch ( input.LA(3) ) {
+                                case 88:
+                                    {
+                                    int LA34_264 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 87:
+                                    {
+                                    int LA34_265 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case EQUALS:
+                                case 67:
+                                case 80:
+                                case 81:
+                                case 82:
+                                case 83:
+                                case 84:
+                                case 85:
+                                case 86:
+                                    {
+                                    int LA34_266 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                    }
+
+                    }
+                    break;
+                case OIVAR:
+                    {
+                    switch ( input.LA(2) ) {
+                        case 88:
+                            {
+                            switch ( input.LA(3) ) {
+                                case MINUS:
+                                    {
+                                    int LA34_303 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_304 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA34_305 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA34_306 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA34_307 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                    {
+                                    int LA34_308 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA34_309 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA34_310 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA34_311 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 51:
+                                case 52:
+                                    {
+                                    int LA34_312 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case LPAREN:
+                            {
+                            switch ( input.LA(3) ) {
+                                case NUMBER:
+                                    {
+                                    int LA34_313 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case WORD:
+                                    {
+                                    int LA34_314 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_315 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA34_316 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                            }
+
+                            }
+                            break;
+                        case 87:
+                            {
+                            int LA34_67 = input.LA(3);
+
+                            if ( (LA34_67==WORD||(LA34_67>=OIVAR && LA34_67<=GLOBALVAR)) ) {
+                                int LA34_324 = input.LA(4);
+
+                                if ( (synpred94()) ) {
+                                    alt34=1;
+                                }
+                            }
+                            }
+                            break;
+                        case EQUALS:
+                        case 67:
+                            {
+                            switch ( input.LA(3) ) {
+                                case WORD:
+                                    {
+                                    int LA34_325 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case HEXNUMBER:
+                                    {
+                                    int LA34_326 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case STRING:
+                                    {
+                                    int LA34_327 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case NUMBER:
+                                    {
+                                    int LA34_328 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case OIVAR:
+                                case GLOBALVAR:
+                                    {
+                                    int LA34_329 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_330 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case DECIMAL:
+                                    {
+                                    int LA34_331 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6867,6 +7468,7 @@ public class gscriptParser extends DebugParser {
                         case WORD:
                         case OIVAR:
                         case GLOBALVAR:
+                        case 35:
                         case 38:
                         case 42:
                         case 44:
@@ -6881,20 +7483,20 @@ public class gscriptParser extends DebugParser {
                         case 57:
                         case 58:
                         case 59:
-                        case 60:
                         case 61:
                         case 62:
                         case 63:
                         case 64:
                         case 65:
-                        case 67:
+                        case 66:
                         case 68:
                         case 69:
                         case 70:
-                        case 72:
+                        case 71:
                         case 73:
                         case 74:
-                        case 78:
+                        case 75:
+                        case 79:
                             {
                             alt34=1;
                             }
@@ -6906,50 +7508,68 @@ public class gscriptParser extends DebugParser {
                 case GLOBALVAR:
                     {
                     switch ( input.LA(2) ) {
-                        case 87:
+                        case 88:
                             {
                             switch ( input.LA(3) ) {
+                                case MINUS:
+                                    {
+                                    int LA34_335 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
                                 case LPAREN:
                                     {
-                                    int LA34_294 = input.LA(4);
+                                    int LA34_336 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case WORD:
                                     {
-                                    int LA34_295 = input.LA(4);
+                                    int LA34_337 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA34_296 = input.LA(4);
+                                    int LA34_338 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA34_297 = input.LA(4);
+                                    int LA34_339 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case 60:
+                                    {
+                                    int LA34_340 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA34_298 = input.LA(4);
+                                    int LA34_341 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6957,18 +7577,18 @@ public class gscriptParser extends DebugParser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA34_299 = input.LA(4);
+                                    int LA34_342 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA34_300 = input.LA(4);
+                                    int LA34_343 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6976,9 +7596,9 @@ public class gscriptParser extends DebugParser {
                                 case 51:
                                 case 52:
                                     {
-                                    int LA34_301 = input.LA(4);
+                                    int LA34_344 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -6987,51 +7607,55 @@ public class gscriptParser extends DebugParser {
 
                             }
                             break;
+                        case 87:
+                            {
+                            int LA34_94 = input.LA(3);
+
+                            if ( (LA34_94==WORD||(LA34_94>=OIVAR && LA34_94<=GLOBALVAR)) ) {
+                                int LA34_345 = input.LA(4);
+
+                                if ( (synpred94()) ) {
+                                    alt34=1;
+                                }
+                            }
+                            }
+                            break;
                         case EQUALS:
-                        case 66:
+                        case 67:
                             {
                             switch ( input.LA(3) ) {
-                                case LPAREN:
-                                    {
-                                    int LA34_302 = input.LA(4);
-
-                                    if ( (synpred90()) ) {
-                                        alt34=1;
-                                    }
-                                    }
-                                    break;
                                 case WORD:
                                     {
-                                    int LA34_303 = input.LA(4);
+                                    int LA34_346 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case HEXNUMBER:
                                     {
-                                    int LA34_304 = input.LA(4);
+                                    int LA34_347 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case STRING:
                                     {
-                                    int LA34_305 = input.LA(4);
+                                    int LA34_348 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case NUMBER:
                                     {
-                                    int LA34_306 = input.LA(4);
+                                    int LA34_349 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -7039,18 +7663,27 @@ public class gscriptParser extends DebugParser {
                                 case OIVAR:
                                 case GLOBALVAR:
                                     {
-                                    int LA34_307 = input.LA(4);
+                                    int LA34_350 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
+                                        alt34=1;
+                                    }
+                                    }
+                                    break;
+                                case LPAREN:
+                                    {
+                                    int LA34_351 = input.LA(4);
+
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
                                     break;
                                 case DECIMAL:
                                     {
-                                    int LA34_308 = input.LA(4);
+                                    int LA34_352 = input.LA(4);
 
-                                    if ( (synpred90()) ) {
+                                    if ( (synpred94()) ) {
                                         alt34=1;
                                     }
                                     }
@@ -7074,6 +7707,7 @@ public class gscriptParser extends DebugParser {
                         case WORD:
                         case OIVAR:
                         case GLOBALVAR:
+                        case 35:
                         case 38:
                         case 42:
                         case 44:
@@ -7088,20 +7722,20 @@ public class gscriptParser extends DebugParser {
                         case 57:
                         case 58:
                         case 59:
-                        case 60:
                         case 61:
                         case 62:
                         case 63:
                         case 64:
                         case 65:
-                        case 67:
+                        case 66:
                         case 68:
                         case 69:
                         case 70:
-                        case 72:
+                        case 71:
                         case 73:
                         case 74:
-                        case 78:
+                        case 75:
+                        case 79:
                             {
                             alt34=1;
                             }
@@ -7118,10 +7752,10 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:13: e= expression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: e= expression
                     {
-                    dbg.location(137,14);
-                    pushFollow(FOLLOW_expression_in_repeatstatement1089);
+                    dbg.location(140,14);
+                    pushFollow(FOLLOW_expression_in_repeatstatement1128);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
@@ -7132,22 +7766,22 @@ public class gscriptParser extends DebugParser {
             }
             } finally {dbg.exitSubRule(34);}
 
-            dbg.location(137,28);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:28: (s= statement )
+            dbg.location(140,28);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:28: (s= statement )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:29: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:29: s= statement
             {
-            dbg.location(137,30);
-            pushFollow(FOLLOW_statement_in_repeatstatement1096);
+            dbg.location(140,30);
+            pushFollow(FOLLOW_statement_in_repeatstatement1135);
             s=statement();
             _fsp--;
             if (failed) return value;
 
             }
 
-            dbg.location(137,42);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:42: ( ';' )*
+            dbg.location(140,42);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:42: ( ';' )*
             try { dbg.enterSubRule(35);
 
             loop35:
@@ -7160,7 +7794,7 @@ public class gscriptParser extends DebugParser {
                 if ( (LA35_0==35) ) {
                     int LA35_1 = input.LA(2);
 
-                    if ( (synpred91()) ) {
+                    if ( (synpred95()) ) {
                         alt35=1;
                     }
 
@@ -7174,10 +7808,10 @@ public class gscriptParser extends DebugParser {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:43: ';'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ';'
             	    {
-            	    dbg.location(137,43);
-            	    match(input,35,FOLLOW_35_in_repeatstatement1100); if (failed) return value;
+            	    dbg.location(140,43);
+            	    match(input,35,FOLLOW_35_in_repeatstatement1139); if (failed) return value;
 
             	    }
             	    break;
@@ -7188,7 +7822,7 @@ public class gscriptParser extends DebugParser {
             } while (true);
             } finally {dbg.exitSubRule(35);}
 
-            dbg.location(137,50);
+            dbg.location(140,50);
             if ( backtracking==0 ) {
               value =pc.repeatstatement(e.value,s);
             }
@@ -7201,9 +7835,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 21, repeatstatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 22, repeatstatement_StartIndex); }
         }
-        dbg.location(138, 1);
+        dbg.location(141, 1);
 
         }
         finally {
@@ -7218,25 +7852,25 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start breakstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:1: breakstatement returns [String value] : 'break' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:143:1: breakstatement returns [String value] : 'break' ;
     public final String breakstatement() throws RecognitionException {
         String value = null;
         int breakstatement_StartIndex = input.index();
         try { dbg.enterRule("breakstatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(140, 1);
+        dbg.location(143, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 22) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:141:1: ( 'break' )
+            if ( backtracking>0 && alreadyParsedRule(input, 23) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:1: ( 'break' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:141:3: 'break'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'break'
             {
-            dbg.location(141,3);
-            match(input,68,FOLLOW_68_in_breakstatement1118); if (failed) return value;
-            dbg.location(141,12);
+            dbg.location(144,3);
+            match(input,69,FOLLOW_69_in_breakstatement1157); if (failed) return value;
+            dbg.location(144,12);
             if ( backtracking==0 ) {
               value =pc.breakstatement();
             }
@@ -7249,9 +7883,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 22, breakstatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 23, breakstatement_StartIndex); }
         }
-        dbg.location(142, 1);
+        dbg.location(145, 1);
 
         }
         finally {
@@ -7266,25 +7900,25 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start continuestatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:143:1: continuestatement returns [String value] : 'continue' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:146:1: continuestatement returns [String value] : 'continue' ;
     public final String continuestatement() throws RecognitionException {
         String value = null;
         int continuestatement_StartIndex = input.index();
         try { dbg.enterRule("continuestatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(143, 1);
+        dbg.location(146, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 23) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:1: ( 'continue' )
+            if ( backtracking>0 && alreadyParsedRule(input, 24) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:1: ( 'continue' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'continue'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:3: 'continue'
             {
-            dbg.location(144,3);
-            match(input,69,FOLLOW_69_in_continuestatement1133); if (failed) return value;
-            dbg.location(144,14);
+            dbg.location(147,3);
+            match(input,70,FOLLOW_70_in_continuestatement1172); if (failed) return value;
+            dbg.location(147,14);
             if ( backtracking==0 ) {
               value =pc.continuestatement();
             }
@@ -7297,9 +7931,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 23, continuestatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 24, continuestatement_StartIndex); }
         }
-        dbg.location(145, 1);
+        dbg.location(148, 1);
 
         }
         finally {
@@ -7314,7 +7948,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start dostatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:1: dostatement returns [String value] : 'do' s= statement 'until' e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:150:1: dostatement returns [String value] : 'do' s= statement 'until' e= expression ;
     public final String dostatement() throws RecognitionException {
         String value = null;
         int dostatement_StartIndex = input.index();
@@ -7326,30 +7960,30 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("dostatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(147, 1);
+        dbg.location(150, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 24) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:148:1: ( 'do' s= statement 'until' e= expression )
+            if ( backtracking>0 && alreadyParsedRule(input, 25) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:1: ( 'do' s= statement 'until' e= expression )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:148:3: 'do' s= statement 'until' e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:3: 'do' s= statement 'until' e= expression
             {
-            dbg.location(148,3);
-            match(input,70,FOLLOW_70_in_dostatement1148); if (failed) return value;
-            dbg.location(148,9);
-            pushFollow(FOLLOW_statement_in_dostatement1152);
+            dbg.location(151,3);
+            match(input,71,FOLLOW_71_in_dostatement1187); if (failed) return value;
+            dbg.location(151,9);
+            pushFollow(FOLLOW_statement_in_dostatement1191);
             s=statement();
             _fsp--;
             if (failed) return value;
-            dbg.location(148,20);
-            match(input,71,FOLLOW_71_in_dostatement1154); if (failed) return value;
-            dbg.location(148,29);
-            pushFollow(FOLLOW_expression_in_dostatement1158);
+            dbg.location(151,20);
+            match(input,72,FOLLOW_72_in_dostatement1193); if (failed) return value;
+            dbg.location(151,29);
+            pushFollow(FOLLOW_expression_in_dostatement1197);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(148,41);
+            dbg.location(151,41);
             if ( backtracking==0 ) {
               value =pc.dostatement(s,e.value);
             }
@@ -7362,9 +7996,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 24, dostatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 25, dostatement_StartIndex); }
         }
-        dbg.location(149, 1);
+        dbg.location(152, 1);
 
         }
         finally {
@@ -7379,7 +8013,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start whilestatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:1: whilestatement returns [String value] : 'while' e= expression (s= statement ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:154:1: whilestatement returns [String value] : 'while' e= expression (s= statement ) ;
     public final String whilestatement() throws RecognitionException {
         String value = null;
         int whilestatement_StartIndex = input.index();
@@ -7391,37 +8025,37 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("whilestatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(151, 1);
+        dbg.location(154, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 25) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:1: ( 'while' e= expression (s= statement ) )
+            if ( backtracking>0 && alreadyParsedRule(input, 26) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:1: ( 'while' e= expression (s= statement ) )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:3: 'while' e= expression (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:3: 'while' e= expression (s= statement )
             {
-            dbg.location(152,3);
-            match(input,72,FOLLOW_72_in_whilestatement1173); if (failed) return value;
-            dbg.location(152,12);
-            pushFollow(FOLLOW_expression_in_whilestatement1177);
+            dbg.location(155,3);
+            match(input,73,FOLLOW_73_in_whilestatement1212); if (failed) return value;
+            dbg.location(155,12);
+            pushFollow(FOLLOW_expression_in_whilestatement1216);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(152,24);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:24: (s= statement )
+            dbg.location(155,24);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:24: (s= statement )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:152:25: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:25: s= statement
             {
-            dbg.location(152,26);
-            pushFollow(FOLLOW_statement_in_whilestatement1182);
+            dbg.location(155,26);
+            pushFollow(FOLLOW_statement_in_whilestatement1221);
             s=statement();
             _fsp--;
             if (failed) return value;
 
             }
 
-            dbg.location(152,38);
+            dbg.location(155,38);
             if ( backtracking==0 ) {
               value =pc.whilestatement(e.value,s);
             }
@@ -7434,9 +8068,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 25, whilestatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 26, whilestatement_StartIndex); }
         }
-        dbg.location(153, 1);
+        dbg.location(156, 1);
 
         }
         finally {
@@ -7451,7 +8085,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start forstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:1: forstatement returns [String value] : 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:158:1: forstatement returns [String value] : 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement ;
     public final String forstatement() throws RecognitionException {
         String value = null;
         int forstatement_StartIndex = input.index();
@@ -7467,31 +8101,31 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("forstatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(155, 1);
+        dbg.location(158, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 26) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:156:1: ( 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement )
+            if ( backtracking>0 && alreadyParsedRule(input, 27) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:1: ( 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:156:3: 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:3: 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement
             {
-            dbg.location(156,3);
-            match(input,73,FOLLOW_73_in_forstatement1198); if (failed) return value;
-            dbg.location(156,9);
-            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1200); if (failed) return value;
-            dbg.location(156,15);
-            pushFollow(FOLLOW_statement_in_forstatement1204);
+            dbg.location(159,3);
+            match(input,74,FOLLOW_74_in_forstatement1237); if (failed) return value;
+            dbg.location(159,9);
+            match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1239); if (failed) return value;
+            dbg.location(159,15);
+            pushFollow(FOLLOW_statement_in_forstatement1243);
             s1=statement();
             _fsp--;
             if (failed) return value;
-            dbg.location(156,27);
-            pushFollow(FOLLOW_expression_in_forstatement1208);
+            dbg.location(159,27);
+            pushFollow(FOLLOW_expression_in_forstatement1247);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(156,39);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:156:39: ( ';' )?
+            dbg.location(159,39);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:39: ( ';' )?
             int alt36=2;
             try { dbg.enterSubRule(36);
             try { dbg.enterDecision(36);
@@ -7499,7 +8133,18 @@ public class gscriptParser extends DebugParser {
             int LA36_0 = input.LA(1);
 
             if ( (LA36_0==35) ) {
-                alt36=1;
+                int LA36_1 = input.LA(2);
+
+                if ( (LA36_1==LPAREN||LA36_1==LBRAC||LA36_1==WORD||(LA36_1>=OIVAR && LA36_1<=GLOBALVAR)||LA36_1==38||LA36_1==42||(LA36_1>=44 && LA36_1<=47)||(LA36_1>=68 && LA36_1<=71)||(LA36_1>=73 && LA36_1<=75)||LA36_1==79) ) {
+                    alt36=1;
+                }
+                else if ( (LA36_1==35) ) {
+                    int LA36_38 = input.LA(3);
+
+                    if ( (synpred96()) ) {
+                        alt36=1;
+                    }
+                }
             }
             } finally {dbg.exitDecision(36);}
 
@@ -7507,10 +8152,10 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:156:40: ';'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ';'
                     {
-                    dbg.location(156,40);
-                    match(input,35,FOLLOW_35_in_forstatement1211); if (failed) return value;
+                    dbg.location(159,40);
+                    match(input,35,FOLLOW_35_in_forstatement1250); if (failed) return value;
 
                     }
                     break;
@@ -7518,19 +8163,19 @@ public class gscriptParser extends DebugParser {
             }
             } finally {dbg.exitSubRule(36);}
 
-            dbg.location(156,48);
-            pushFollow(FOLLOW_statement_in_forstatement1217);
+            dbg.location(159,48);
+            pushFollow(FOLLOW_statement_in_forstatement1256);
             s2=statement();
             _fsp--;
             if (failed) return value;
-            dbg.location(156,59);
-            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1219); if (failed) return value;
-            dbg.location(156,64);
-            pushFollow(FOLLOW_statement_in_forstatement1223);
+            dbg.location(159,59);
+            match(input,RPAREN,FOLLOW_RPAREN_in_forstatement1258); if (failed) return value;
+            dbg.location(159,64);
+            pushFollow(FOLLOW_statement_in_forstatement1262);
             s=statement();
             _fsp--;
             if (failed) return value;
-            dbg.location(156,75);
+            dbg.location(159,75);
             if ( backtracking==0 ) {
               value =pc.forstatement(s1,e.value,s2,s);
             }
@@ -7543,9 +8188,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 26, forstatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 27, forstatement_StartIndex); }
         }
-        dbg.location(157, 1);
+        dbg.location(160, 1);
 
         }
         finally {
@@ -7560,110 +8205,146 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start switchstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:1: switchstatement returns [String value] : 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:162:1: switchstatement returns [String value] : 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' ;
     public final String switchstatement() throws RecognitionException {
         String value = null;
         int switchstatement_StartIndex = input.index();
         try { dbg.enterRule("switchstatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(159, 1);
+        dbg.location(162, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 27) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:1: ( 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}' )
+            if ( backtracking>0 && alreadyParsedRule(input, 28) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:1: ( 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:3: 'switch' ( expression ) '{' ( ( 'case' | 'default' ) expression ':' ( statement )* )* '}'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:3: 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}'
             {
-            dbg.location(160,3);
-            match(input,74,FOLLOW_74_in_switchstatement1238); if (failed) return value;
-            dbg.location(160,12);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:12: ( expression )
+            dbg.location(163,3);
+            match(input,75,FOLLOW_75_in_switchstatement1277); if (failed) return value;
+            dbg.location(163,12);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:12: ( expression )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:13: expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:13: expression
             {
-            dbg.location(160,13);
-            pushFollow(FOLLOW_expression_in_switchstatement1241);
+            dbg.location(163,13);
+            pushFollow(FOLLOW_expression_in_switchstatement1280);
             expression();
             _fsp--;
             if (failed) return value;
 
             }
 
-            dbg.location(160,25);
-            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1244); if (failed) return value;
-            dbg.location(160,29);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:29: ( ( 'case' | 'default' ) expression ':' ( statement )* )*
-            try { dbg.enterSubRule(38);
+            dbg.location(163,25);
+            match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1283); if (failed) return value;
+            dbg.location(163,29);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:29: ( ( 'case' expression | 'default' ) ':' ( statement )* )*
+            try { dbg.enterSubRule(39);
 
-            loop38:
+            loop39:
             do {
-                int alt38=2;
-                try { dbg.enterDecision(38);
+                int alt39=2;
+                try { dbg.enterDecision(39);
 
-                int LA38_0 = input.LA(1);
+                int LA39_0 = input.LA(1);
 
-                if ( ((LA38_0>=75 && LA38_0<=76)) ) {
-                    alt38=1;
+                if ( ((LA39_0>=76 && LA39_0<=77)) ) {
+                    alt39=1;
                 }
 
 
-                } finally {dbg.exitDecision(38);}
+                } finally {dbg.exitDecision(39);}
 
-                switch (alt38) {
+                switch (alt39) {
             	case 1 :
             	    dbg.enterAlt(1);
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:30: ( 'case' | 'default' ) expression ':' ( statement )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:30: ( 'case' expression | 'default' ) ':' ( statement )*
             	    {
-            	    dbg.location(160,30);
-            	    if ( (input.LA(1)>=75 && input.LA(1)<=76) ) {
-            	        input.consume();
-            	        errorRecovery=false;failed=false;
+            	    dbg.location(163,30);
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:30: ( 'case' expression | 'default' )
+            	    int alt37=2;
+            	    try { dbg.enterSubRule(37);
+            	    try { dbg.enterDecision(37);
+
+            	    int LA37_0 = input.LA(1);
+
+            	    if ( (LA37_0==76) ) {
+            	        alt37=1;
+            	    }
+            	    else if ( (LA37_0==77) ) {
+            	        alt37=2;
             	    }
             	    else {
             	        if (backtracking>0) {failed=true; return value;}
-            	        MismatchedSetException mse =
-            	            new MismatchedSetException(null,input);
-            	        dbg.recognitionException(mse);
-            	        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_switchstatement1247);    throw mse;
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("163:30: ( 'case' expression | 'default' )", 37, 0, input);
+
+            	        dbg.recognitionException(nvae);
+            	        throw nvae;
             	    }
+            	    } finally {dbg.exitDecision(37);}
 
-            	    dbg.location(160,49);
-            	    pushFollow(FOLLOW_expression_in_switchstatement1253);
-            	    expression();
-            	    _fsp--;
-            	    if (failed) return value;
-            	    dbg.location(160,60);
-            	    match(input,77,FOLLOW_77_in_switchstatement1255); if (failed) return value;
-            	    dbg.location(160,64);
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:64: ( statement )*
-            	    try { dbg.enterSubRule(37);
+            	    switch (alt37) {
+            	        case 1 :
+            	            dbg.enterAlt(1);
 
-            	    loop37:
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:31: 'case' expression
+            	            {
+            	            dbg.location(163,31);
+            	            match(input,76,FOLLOW_76_in_switchstatement1287); if (failed) return value;
+            	            dbg.location(163,38);
+            	            pushFollow(FOLLOW_expression_in_switchstatement1289);
+            	            expression();
+            	            _fsp--;
+            	            if (failed) return value;
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            dbg.enterAlt(2);
+
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:49: 'default'
+            	            {
+            	            dbg.location(163,49);
+            	            match(input,77,FOLLOW_77_in_switchstatement1291); if (failed) return value;
+
+            	            }
+            	            break;
+
+            	    }
+            	    } finally {dbg.exitSubRule(37);}
+
+            	    dbg.location(163,61);
+            	    match(input,78,FOLLOW_78_in_switchstatement1295); if (failed) return value;
+            	    dbg.location(163,65);
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:65: ( statement )*
+            	    try { dbg.enterSubRule(38);
+
+            	    loop38:
             	    do {
-            	        int alt37=2;
-            	        try { dbg.enterDecision(37);
+            	        int alt38=2;
+            	        try { dbg.enterDecision(38);
 
-            	        int LA37_0 = input.LA(1);
+            	        int LA38_0 = input.LA(1);
 
-            	        if ( (LA37_0==LPAREN||LA37_0==LBRAC||LA37_0==WORD||(LA37_0>=OIVAR && LA37_0<=GLOBALVAR)||LA37_0==38||LA37_0==42||(LA37_0>=44 && LA37_0<=47)||(LA37_0>=67 && LA37_0<=70)||(LA37_0>=72 && LA37_0<=74)||LA37_0==78) ) {
-            	            alt37=1;
+            	        if ( (LA38_0==LPAREN||LA38_0==LBRAC||LA38_0==WORD||(LA38_0>=OIVAR && LA38_0<=GLOBALVAR)||LA38_0==35||LA38_0==38||LA38_0==42||(LA38_0>=44 && LA38_0<=47)||(LA38_0>=68 && LA38_0<=71)||(LA38_0>=73 && LA38_0<=75)||LA38_0==79) ) {
+            	            alt38=1;
             	        }
 
 
-            	        } finally {dbg.exitDecision(37);}
+            	        } finally {dbg.exitDecision(38);}
 
-            	        switch (alt37) {
+            	        switch (alt38) {
             	    	case 1 :
             	    	    dbg.enterAlt(1);
 
-            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:160:65: statement
+            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:66: statement
             	    	    {
-            	    	    dbg.location(160,65);
-            	    	    pushFollow(FOLLOW_statement_in_switchstatement1258);
+            	    	    dbg.location(163,66);
+            	    	    pushFollow(FOLLOW_statement_in_switchstatement1298);
             	    	    statement();
             	    	    _fsp--;
             	    	    if (failed) return value;
@@ -7672,24 +8353,24 @@ public class gscriptParser extends DebugParser {
             	    	    break;
 
             	    	default :
-            	    	    break loop37;
+            	    	    break loop38;
             	        }
             	    } while (true);
-            	    } finally {dbg.exitSubRule(37);}
+            	    } finally {dbg.exitSubRule(38);}
 
 
             	    }
             	    break;
 
             	default :
-            	    break loop38;
+            	    break loop39;
                 }
             } while (true);
-            } finally {dbg.exitSubRule(38);}
+            } finally {dbg.exitSubRule(39);}
 
-            dbg.location(160,79);
-            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1264); if (failed) return value;
-            dbg.location(160,83);
+            dbg.location(163,80);
+            match(input,RBRAC,FOLLOW_RBRAC_in_switchstatement1304); if (failed) return value;
+            dbg.location(163,84);
             if ( backtracking==0 ) {
               value ="";
             }
@@ -7702,9 +8383,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 27, switchstatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 28, switchstatement_StartIndex); }
         }
-        dbg.location(161, 1);
+        dbg.location(164, 1);
 
         }
         finally {
@@ -7719,7 +8400,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start withstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:1: withstatement returns [String value] : 'with' e= expression s= statement ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:166:1: withstatement returns [String value] : 'with' e= expression s= statement ;
     public final String withstatement() throws RecognitionException {
         String value = null;
         int withstatement_StartIndex = input.index();
@@ -7731,28 +8412,28 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("withstatement");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(163, 1);
+        dbg.location(166, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 28) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:164:1: ( 'with' e= expression s= statement )
+            if ( backtracking>0 && alreadyParsedRule(input, 29) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:1: ( 'with' e= expression s= statement )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:164:3: 'with' e= expression s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:3: 'with' e= expression s= statement
             {
-            dbg.location(164,3);
-            match(input,78,FOLLOW_78_in_withstatement1280); if (failed) return value;
-            dbg.location(164,12);
-            pushFollow(FOLLOW_expression_in_withstatement1285);
+            dbg.location(167,3);
+            match(input,79,FOLLOW_79_in_withstatement1320); if (failed) return value;
+            dbg.location(167,12);
+            pushFollow(FOLLOW_expression_in_withstatement1325);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(164,26);
-            pushFollow(FOLLOW_statement_in_withstatement1290);
+            dbg.location(167,26);
+            pushFollow(FOLLOW_statement_in_withstatement1330);
             s=statement();
             _fsp--;
             if (failed) return value;
-            dbg.location(164,37);
+            dbg.location(167,37);
             if ( backtracking==0 ) {
               value =pc.withstatement(e.value,s);
             }
@@ -7765,9 +8446,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 28, withstatement_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 29, withstatement_StartIndex); }
         }
-        dbg.location(165, 1);
+        dbg.location(168, 1);
 
         }
         finally {
@@ -7782,7 +8463,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start assignment
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:1: assignment returns [String value] : valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:170:1: assignment returns [String value] : valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression ;
     public final String assignment() throws RecognitionException {
         String value = null;
         int assignment_StartIndex = input.index();
@@ -7795,23 +8476,23 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("assignment");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(167, 1);
+        dbg.location(170, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 29) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:168:1: (valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression )
+            if ( backtracking>0 && alreadyParsedRule(input, 30) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:1: (valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:168:4: valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:4: valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression
             {
-            dbg.location(168,10);
-            pushFollow(FOLLOW_variable_in_assignment1308);
+            dbg.location(171,10);
+            pushFollow(FOLLOW_variable_in_assignment1348);
             valuee=variable();
             _fsp--;
             if (failed) return value;
-            dbg.location(168,22);
+            dbg.location(171,22);
             op=(Token)input.LT(1);
-            if ( input.LA(1)==EQUALS||input.LA(1)==66||(input.LA(1)>=79 && input.LA(1)<=85) ) {
+            if ( input.LA(1)==EQUALS||input.LA(1)==67||(input.LA(1)>=80 && input.LA(1)<=86) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
             }
@@ -7820,15 +8501,15 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1312);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_assignment1352);    throw mse;
             }
 
-            dbg.location(168,71);
-            pushFollow(FOLLOW_expression_in_assignment1335);
+            dbg.location(171,71);
+            pushFollow(FOLLOW_expression_in_assignment1375);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(168,83);
+            dbg.location(171,83);
             if ( backtracking==0 ) {
               value = pc.assignmentstatement(input.toString(valuee.start,valuee.stop),op.getText(),e.value);
             }
@@ -7841,9 +8522,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 29, assignment_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 30, assignment_StartIndex); }
         }
-        dbg.location(169, 1);
+        dbg.location(172, 1);
 
         }
         finally {
@@ -7861,7 +8542,7 @@ public class gscriptParser extends DebugParser {
     };
 
     // $ANTLR start variable
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:1: variable returns [String value] : (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:174:1: variable returns [String value] : (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD | OIVAR | GLOBALVAR ) ) )* ;
     public final variable_return variable() throws RecognitionException {
         variable_return retval = new variable_return();
         retval.start = input.LT(1);
@@ -7873,66 +8554,66 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("variable");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(171, 1);
+        dbg.location(174, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 30) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:1: ( (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) )
+            if ( backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:1: ( (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD | OIVAR | GLOBALVAR ) ) )* )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD | OIVAR | GLOBALVAR ) ) )*
             {
-            dbg.location(172,4);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )
-            int alt40=3;
-            try { dbg.enterSubRule(40);
-            try { dbg.enterDecision(40);
+            dbg.location(175,4);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )
+            int alt41=3;
+            try { dbg.enterSubRule(41);
+            try { dbg.enterDecision(41);
 
-            int LA40_0 = input.LA(1);
+            int LA41_0 = input.LA(1);
 
-            if ( (LA40_0==WORD||(LA40_0>=OIVAR && LA40_0<=GLOBALVAR)) ) {
-                int LA40_1 = input.LA(2);
+            if ( (LA41_0==WORD||(LA41_0>=OIVAR && LA41_0<=GLOBALVAR)) ) {
+                int LA41_1 = input.LA(2);
 
-                if ( (LA40_1==87) ) {
-                    alt40=1;
+                if ( (LA41_1==88) ) {
+                    alt41=1;
                 }
-                else if ( (LA40_1==EOF||(LA40_1>=PLUS && LA40_1<=LTE)||(LA40_1>=WORD && LA40_1<=GLOBALVAR)||(LA40_1>=35 && LA40_1<=85)||LA40_1==88) ) {
-                    alt40=2;
+                else if ( (LA41_1==EOF||(LA41_1>=PLUS && LA41_1<=LTE)||(LA41_1>=WORD && LA41_1<=GLOBALVAR)||(LA41_1>=35 && LA41_1<=87)||LA41_1==89) ) {
+                    alt41=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("172:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 40, 1, input);
+                        new NoViableAltException("175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 41, 1, input);
 
                     dbg.recognitionException(nvae);
                     throw nvae;
                 }
             }
-            else if ( (LA40_0==LPAREN) ) {
-                alt40=3;
+            else if ( (LA41_0==LPAREN) ) {
+                alt41=3;
             }
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("172:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 40, 0, input);
+                    new NoViableAltException("175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 41, 0, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
             }
-            } finally {dbg.exitDecision(40);}
+            } finally {dbg.exitDecision(41);}
 
-            switch (alt40) {
+            switch (alt41) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:5: a= array
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:5: a= array
                     {
-                    dbg.location(172,6);
-                    pushFollow(FOLLOW_array_in_variable1354);
+                    dbg.location(175,6);
+                    pushFollow(FOLLOW_array_in_variable1394);
                     a=array();
                     _fsp--;
                     if (failed) return retval;
-                    dbg.location(172,12);
+                    dbg.location(175,12);
                     if ( backtracking==0 ) {
                       retval.value = a;
                     }
@@ -7942,9 +8623,9 @@ public class gscriptParser extends DebugParser {
                 case 2 :
                     dbg.enterAlt(2);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:33: valuee= ( WORD | OIVAR | GLOBALVAR )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:33: valuee= ( WORD | OIVAR | GLOBALVAR )
                     {
-                    dbg.location(172,39);
+                    dbg.location(175,39);
                     valuee=(Token)input.LT(1);
                     if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
                         input.consume();
@@ -7955,10 +8636,10 @@ public class gscriptParser extends DebugParser {
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
                         dbg.recognitionException(mse);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1359);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1399);    throw mse;
                     }
 
-                    dbg.location(172,62);
+                    dbg.location(175,63);
                     if ( backtracking==0 ) {
                       retval.value = pc.variable(valuee.getText());
                     }
@@ -7968,36 +8649,36 @@ public class gscriptParser extends DebugParser {
                 case 3 :
                     dbg.enterAlt(3);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:100: '(' ( NUMBER | variable | function ) ')' '.' WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:101: '(' ( NUMBER | variable | function ) ')' '.' WORD
                     {
-                    dbg.location(172,100);
-                    match(input,LPAREN,FOLLOW_LPAREN_in_variable1368); if (failed) return retval;
-                    dbg.location(172,104);
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:104: ( NUMBER | variable | function )
-                    int alt39=3;
-                    try { dbg.enterSubRule(39);
-                    try { dbg.enterDecision(39);
+                    dbg.location(175,101);
+                    match(input,LPAREN,FOLLOW_LPAREN_in_variable1409); if (failed) return retval;
+                    dbg.location(175,105);
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:105: ( NUMBER | variable | function )
+                    int alt40=3;
+                    try { dbg.enterSubRule(40);
+                    try { dbg.enterDecision(40);
 
                     switch ( input.LA(1) ) {
                     case NUMBER:
                         {
-                        alt39=1;
+                        alt40=1;
                         }
                         break;
                     case WORD:
                         {
-                        int LA39_2 = input.LA(2);
+                        int LA40_2 = input.LA(2);
 
-                        if ( (LA39_2==RPAREN||LA39_2==87) ) {
-                            alt39=2;
+                        if ( (LA40_2==LPAREN) ) {
+                            alt40=3;
                         }
-                        else if ( (LA39_2==LPAREN) ) {
-                            alt39=3;
+                        else if ( (LA40_2==RPAREN||(LA40_2>=87 && LA40_2<=88)) ) {
+                            alt40=2;
                         }
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("172:104: ( NUMBER | variable | function )", 39, 2, input);
+                                new NoViableAltException("175:105: ( NUMBER | variable | function )", 40, 2, input);
 
                             dbg.recognitionException(nvae);
                             throw nvae;
@@ -8008,38 +8689,38 @@ public class gscriptParser extends DebugParser {
                     case OIVAR:
                     case GLOBALVAR:
                         {
-                        alt39=2;
+                        alt40=2;
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("172:104: ( NUMBER | variable | function )", 39, 0, input);
+                            new NoViableAltException("175:105: ( NUMBER | variable | function )", 40, 0, input);
 
                         dbg.recognitionException(nvae);
                         throw nvae;
                     }
 
-                    } finally {dbg.exitDecision(39);}
+                    } finally {dbg.exitDecision(40);}
 
-                    switch (alt39) {
+                    switch (alt40) {
                         case 1 :
                             dbg.enterAlt(1);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:105: NUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:106: NUMBER
                             {
-                            dbg.location(172,105);
-                            match(input,NUMBER,FOLLOW_NUMBER_in_variable1371); if (failed) return retval;
+                            dbg.location(175,106);
+                            match(input,NUMBER,FOLLOW_NUMBER_in_variable1412); if (failed) return retval;
 
                             }
                             break;
                         case 2 :
                             dbg.enterAlt(2);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:112: variable
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:113: variable
                             {
-                            dbg.location(172,112);
-                            pushFollow(FOLLOW_variable_in_variable1373);
+                            dbg.location(175,113);
+                            pushFollow(FOLLOW_variable_in_variable1414);
                             variable();
                             _fsp--;
                             if (failed) return retval;
@@ -8049,10 +8730,10 @@ public class gscriptParser extends DebugParser {
                         case 3 :
                             dbg.enterAlt(3);
 
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:172:121: function
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:122: function
                             {
-                            dbg.location(172,121);
-                            pushFollow(FOLLOW_function_in_variable1375);
+                            dbg.location(175,122);
+                            pushFollow(FOLLOW_function_in_variable1416);
                             function();
                             _fsp--;
                             if (failed) return retval;
@@ -8061,20 +8742,131 @@ public class gscriptParser extends DebugParser {
                             break;
 
                     }
-                    } finally {dbg.exitSubRule(39);}
+                    } finally {dbg.exitSubRule(40);}
 
-                    dbg.location(172,131);
-                    match(input,RPAREN,FOLLOW_RPAREN_in_variable1378); if (failed) return retval;
-                    dbg.location(172,135);
-                    match(input,86,FOLLOW_86_in_variable1380); if (failed) return retval;
-                    dbg.location(172,139);
-                    match(input,WORD,FOLLOW_WORD_in_variable1382); if (failed) return retval;
+                    dbg.location(175,132);
+                    match(input,RPAREN,FOLLOW_RPAREN_in_variable1419); if (failed) return retval;
+                    dbg.location(175,136);
+                    match(input,87,FOLLOW_87_in_variable1421); if (failed) return retval;
+                    dbg.location(175,140);
+                    match(input,WORD,FOLLOW_WORD_in_variable1423); if (failed) return retval;
 
                     }
                     break;
 
             }
-            } finally {dbg.exitSubRule(40);}
+            } finally {dbg.exitSubRule(41);}
+
+            dbg.location(175,146);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:146: ( '.' ( array | ( WORD | OIVAR | GLOBALVAR ) ) )*
+            try { dbg.enterSubRule(43);
+
+            loop43:
+            do {
+                int alt43=2;
+                try { dbg.enterDecision(43);
+
+                int LA43_0 = input.LA(1);
+
+                if ( (LA43_0==87) ) {
+                    alt43=1;
+                }
+
+
+                } finally {dbg.exitDecision(43);}
+
+                switch (alt43) {
+            	case 1 :
+            	    dbg.enterAlt(1);
+
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:147: '.' ( array | ( WORD | OIVAR | GLOBALVAR ) )
+            	    {
+            	    dbg.location(175,147);
+            	    match(input,87,FOLLOW_87_in_variable1427); if (failed) return retval;
+            	    dbg.location(175,151);
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:151: ( array | ( WORD | OIVAR | GLOBALVAR ) )
+            	    int alt42=2;
+            	    try { dbg.enterSubRule(42);
+            	    try { dbg.enterDecision(42);
+
+            	    int LA42_0 = input.LA(1);
+
+            	    if ( (LA42_0==WORD||(LA42_0>=OIVAR && LA42_0<=GLOBALVAR)) ) {
+            	        int LA42_1 = input.LA(2);
+
+            	        if ( (LA42_1==88) ) {
+            	            alt42=1;
+            	        }
+            	        else if ( (LA42_1==EOF||(LA42_1>=PLUS && LA42_1<=LTE)||(LA42_1>=WORD && LA42_1<=GLOBALVAR)||(LA42_1>=35 && LA42_1<=87)||LA42_1==89) ) {
+            	            alt42=2;
+            	        }
+            	        else {
+            	            if (backtracking>0) {failed=true; return retval;}
+            	            NoViableAltException nvae =
+            	                new NoViableAltException("175:151: ( array | ( WORD | OIVAR | GLOBALVAR ) )", 42, 1, input);
+
+            	            dbg.recognitionException(nvae);
+            	            throw nvae;
+            	        }
+            	    }
+            	    else {
+            	        if (backtracking>0) {failed=true; return retval;}
+            	        NoViableAltException nvae =
+            	            new NoViableAltException("175:151: ( array | ( WORD | OIVAR | GLOBALVAR ) )", 42, 0, input);
+
+            	        dbg.recognitionException(nvae);
+            	        throw nvae;
+            	    }
+            	    } finally {dbg.exitDecision(42);}
+
+            	    switch (alt42) {
+            	        case 1 :
+            	            dbg.enterAlt(1);
+
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:152: array
+            	            {
+            	            dbg.location(175,152);
+            	            pushFollow(FOLLOW_array_in_variable1430);
+            	            array();
+            	            _fsp--;
+            	            if (failed) return retval;
+
+            	            }
+            	            break;
+            	        case 2 :
+            	            dbg.enterAlt(2);
+
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:158: ( WORD | OIVAR | GLOBALVAR )
+            	            {
+            	            dbg.location(175,158);
+            	            if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
+            	                input.consume();
+            	                errorRecovery=false;failed=false;
+            	            }
+            	            else {
+            	                if (backtracking>0) {failed=true; return retval;}
+            	                MismatchedSetException mse =
+            	                    new MismatchedSetException(null,input);
+            	                dbg.recognitionException(mse);
+            	                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_variable1432);    throw mse;
+            	            }
+
+
+            	            }
+            	            break;
+
+            	    }
+            	    } finally {dbg.exitSubRule(42);}
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop43;
+                }
+            } while (true);
+            } finally {dbg.exitSubRule(43);}
 
 
             }
@@ -8087,9 +8879,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 30, variable_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 31, variable_StartIndex); }
         }
-        dbg.location(173, 1);
+        dbg.location(176, 1);
 
         }
         finally {
@@ -8104,7 +8896,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start function
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:1: function returns [String value] : n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:178:1: function returns [String value] : n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
     public final String function() throws RecognitionException {
         String value = null;
         int function_StartIndex = input.index();
@@ -8115,201 +8907,29 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("function");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(175, 1);
-
-        try {
-            if ( backtracking>0 && alreadyParsedRule(input, 31) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:1: (n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
-            dbg.enterAlt(1);
-
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
-            {
-            dbg.location(176,4);
-            n=(Token)input.LT(1);
-            match(input,WORD,FOLLOW_WORD_in_function1399); if (failed) return value;
-            dbg.location(176,10);
-            match(input,LPAREN,FOLLOW_LPAREN_in_function1401); if (failed) return value;
-            dbg.location(176,14);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:14: (e= expression ( ( ',' ) (e= expression )? )* )?
-            int alt43=2;
-            try { dbg.enterSubRule(43);
-            try { dbg.enterDecision(43);
-
-            int LA43_0 = input.LA(1);
-
-            if ( (LA43_0==LPAREN||(LA43_0>=WORD && LA43_0<=GLOBALVAR)||(LA43_0>=51 && LA43_0<=52)) ) {
-                alt43=1;
-            }
-            } finally {dbg.exitDecision(43);}
-
-            switch (alt43) {
-                case 1 :
-                    dbg.enterAlt(1);
-
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:15: e= expression ( ( ',' ) (e= expression )? )*
-                    {
-                    dbg.location(176,16);
-                    pushFollow(FOLLOW_expression_in_function1406);
-                    e=expression();
-                    _fsp--;
-                    if (failed) return value;
-                    dbg.location(176,28);
-                    if ( backtracking==0 ) {
-                      value = input.toString(e.start,e.stop);
-                    }
-                    dbg.location(176,48);
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:48: ( ( ',' ) (e= expression )? )*
-                    try { dbg.enterSubRule(42);
-
-                    loop42:
-                    do {
-                        int alt42=2;
-                        try { dbg.enterDecision(42);
-
-                        int LA42_0 = input.LA(1);
-
-                        if ( (LA42_0==41) ) {
-                            alt42=1;
-                        }
-
-
-                        } finally {dbg.exitDecision(42);}
-
-                        switch (alt42) {
-                    	case 1 :
-                    	    dbg.enterAlt(1);
-
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:49: ( ',' ) (e= expression )?
-                    	    {
-                    	    dbg.location(176,49);
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:49: ( ',' )
-                    	    dbg.enterAlt(1);
-
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:50: ','
-                    	    {
-                    	    dbg.location(176,50);
-                    	    match(input,41,FOLLOW_41_in_function1412); if (failed) return value;
-
-                    	    }
-
-                    	    dbg.location(176,55);
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:55: (e= expression )?
-                    	    int alt41=2;
-                    	    try { dbg.enterSubRule(41);
-                    	    try { dbg.enterDecision(41);
-
-                    	    int LA41_0 = input.LA(1);
-
-                    	    if ( (LA41_0==LPAREN||(LA41_0>=WORD && LA41_0<=GLOBALVAR)||(LA41_0>=51 && LA41_0<=52)) ) {
-                    	        alt41=1;
-                    	    }
-                    	    } finally {dbg.exitDecision(41);}
-
-                    	    switch (alt41) {
-                    	        case 1 :
-                    	            dbg.enterAlt(1);
-
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:176:56: e= expression
-                    	            {
-                    	            dbg.location(176,57);
-                    	            pushFollow(FOLLOW_expression_in_function1418);
-                    	            e=expression();
-                    	            _fsp--;
-                    	            if (failed) return value;
-                    	            dbg.location(176,68);
-                    	            if ( backtracking==0 ) {
-                    	              value += ", "+input.toString(e.start,e.stop);
-                    	            }
-
-                    	            }
-                    	            break;
-
-                    	    }
-                    	    } finally {dbg.exitSubRule(41);}
-
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop42;
-                        }
-                    } while (true);
-                    } finally {dbg.exitSubRule(42);}
-
-
-                    }
-                    break;
-
-            }
-            } finally {dbg.exitSubRule(43);}
-
-            dbg.location(176,100);
-            match(input,RPAREN,FOLLOW_RPAREN_in_function1427); if (failed) return value;
-            dbg.location(176,104);
-            if ( backtracking==0 ) {
-              value =pc.functionstatement(n.getText(), value);
-            }
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-        finally {
-            if ( backtracking>0 ) { memoize(input, 31, function_StartIndex); }
-        }
-        dbg.location(177, 1);
-
-        }
-        finally {
-            dbg.exitRule("function");
-            ruleLevel--;
-            if ( ruleLevel==0 ) {dbg.terminate();}
-        }
-
-        return value;
-    }
-    // $ANTLR end function
-
-
-    // $ANTLR start function2
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:1: function2 returns [String value] : n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
-    public final String function2() throws RecognitionException {
-        String value = null;
-        int function2_StartIndex = input.index();
-        Token n=null;
-        expression_return e = null;
-
-
-        try { dbg.enterRule("function2");
-        if ( ruleLevel==0 ) {dbg.commence();}
-        ruleLevel++;
-        dbg.location(179, 1);
+        dbg.location(178, 1);
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 32) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:2: (n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:1: (n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
-            dbg.location(180,5);
+            dbg.location(179,4);
             n=(Token)input.LT(1);
-            match(input,OIVAR,FOLLOW_OIVAR_in_function21445); if (failed) return value;
-            dbg.location(180,12);
-            match(input,LPAREN,FOLLOW_LPAREN_in_function21447); if (failed) return value;
-            dbg.location(180,16);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:16: (e= expression ( ( ',' ) (e= expression )? )* )?
+            match(input,WORD,FOLLOW_WORD_in_function1457); if (failed) return value;
+            dbg.location(179,10);
+            match(input,LPAREN,FOLLOW_LPAREN_in_function1459); if (failed) return value;
+            dbg.location(179,14);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt46=2;
             try { dbg.enterSubRule(46);
             try { dbg.enterDecision(46);
 
             int LA46_0 = input.LA(1);
 
-            if ( (LA46_0==LPAREN||(LA46_0>=WORD && LA46_0<=GLOBALVAR)||(LA46_0>=51 && LA46_0<=52)) ) {
+            if ( (LA46_0==MINUS||LA46_0==LPAREN||(LA46_0>=WORD && LA46_0<=GLOBALVAR)||(LA46_0>=51 && LA46_0<=52)||LA46_0==60) ) {
                 alt46=1;
             }
             } finally {dbg.exitDecision(46);}
@@ -8318,19 +8938,19 @@ public class gscriptParser extends DebugParser {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:17: e= expression ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
-                    dbg.location(180,18);
-                    pushFollow(FOLLOW_expression_in_function21452);
+                    dbg.location(179,16);
+                    pushFollow(FOLLOW_expression_in_function1464);
                     e=expression();
                     _fsp--;
                     if (failed) return value;
-                    dbg.location(180,30);
+                    dbg.location(179,28);
                     if ( backtracking==0 ) {
                       value = input.toString(e.start,e.stop);
                     }
-                    dbg.location(180,49);
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:49: ( ( ',' ) (e= expression )? )*
+                    dbg.location(179,48);
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:48: ( ( ',' ) (e= expression )? )*
                     try { dbg.enterSubRule(45);
 
                     loop45:
@@ -8351,28 +8971,28 @@ public class gscriptParser extends DebugParser {
                     	case 1 :
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:50: ( ',' ) (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:49: ( ',' ) (e= expression )?
                     	    {
-                    	    dbg.location(180,50);
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:50: ( ',' )
+                    	    dbg.location(179,49);
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:49: ( ',' )
                     	    dbg.enterAlt(1);
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:51: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:50: ','
                     	    {
-                    	    dbg.location(180,51);
-                    	    match(input,41,FOLLOW_41_in_function21457); if (failed) return value;
+                    	    dbg.location(179,50);
+                    	    match(input,41,FOLLOW_41_in_function1470); if (failed) return value;
 
                     	    }
 
-                    	    dbg.location(180,56);
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:56: (e= expression )?
+                    	    dbg.location(179,55);
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:55: (e= expression )?
                     	    int alt44=2;
                     	    try { dbg.enterSubRule(44);
                     	    try { dbg.enterDecision(44);
 
                     	    int LA44_0 = input.LA(1);
 
-                    	    if ( (LA44_0==LPAREN||(LA44_0>=WORD && LA44_0<=GLOBALVAR)||(LA44_0>=51 && LA44_0<=52)) ) {
+                    	    if ( (LA44_0==MINUS||LA44_0==LPAREN||(LA44_0>=WORD && LA44_0<=GLOBALVAR)||(LA44_0>=51 && LA44_0<=52)||LA44_0==60) ) {
                     	        alt44=1;
                     	    }
                     	    } finally {dbg.exitDecision(44);}
@@ -8381,14 +9001,14 @@ public class gscriptParser extends DebugParser {
                     	        case 1 :
                     	            dbg.enterAlt(1);
 
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:180:57: e= expression
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:56: e= expression
                     	            {
-                    	            dbg.location(180,58);
-                    	            pushFollow(FOLLOW_expression_in_function21463);
+                    	            dbg.location(179,57);
+                    	            pushFollow(FOLLOW_expression_in_function1476);
                     	            e=expression();
                     	            _fsp--;
                     	            if (failed) return value;
-                    	            dbg.location(180,69);
+                    	            dbg.location(179,68);
                     	            if ( backtracking==0 ) {
                     	              value += ", "+input.toString(e.start,e.stop);
                     	            }
@@ -8416,9 +9036,181 @@ public class gscriptParser extends DebugParser {
             }
             } finally {dbg.exitSubRule(46);}
 
-            dbg.location(180,101);
-            match(input,RPAREN,FOLLOW_RPAREN_in_function21472); if (failed) return value;
-            dbg.location(180,105);
+            dbg.location(179,100);
+            match(input,RPAREN,FOLLOW_RPAREN_in_function1485); if (failed) return value;
+            dbg.location(179,104);
+            if ( backtracking==0 ) {
+              value =pc.functionstatement(n.getText(), value);
+            }
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+            if ( backtracking>0 ) { memoize(input, 32, function_StartIndex); }
+        }
+        dbg.location(180, 1);
+
+        }
+        finally {
+            dbg.exitRule("function");
+            ruleLevel--;
+            if ( ruleLevel==0 ) {dbg.terminate();}
+        }
+
+        return value;
+    }
+    // $ANTLR end function
+
+
+    // $ANTLR start function2
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:182:1: function2 returns [String value] : n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
+    public final String function2() throws RecognitionException {
+        String value = null;
+        int function2_StartIndex = input.index();
+        Token n=null;
+        expression_return e = null;
+
+
+        try { dbg.enterRule("function2");
+        if ( ruleLevel==0 ) {dbg.commence();}
+        ruleLevel++;
+        dbg.location(182, 1);
+
+        try {
+            if ( backtracking>0 && alreadyParsedRule(input, 33) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:2: (n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
+            dbg.enterAlt(1);
+
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
+            {
+            dbg.location(183,5);
+            n=(Token)input.LT(1);
+            match(input,OIVAR,FOLLOW_OIVAR_in_function21503); if (failed) return value;
+            dbg.location(183,12);
+            match(input,LPAREN,FOLLOW_LPAREN_in_function21505); if (failed) return value;
+            dbg.location(183,16);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:16: (e= expression ( ( ',' ) (e= expression )? )* )?
+            int alt49=2;
+            try { dbg.enterSubRule(49);
+            try { dbg.enterDecision(49);
+
+            int LA49_0 = input.LA(1);
+
+            if ( (LA49_0==MINUS||LA49_0==LPAREN||(LA49_0>=WORD && LA49_0<=GLOBALVAR)||(LA49_0>=51 && LA49_0<=52)||LA49_0==60) ) {
+                alt49=1;
+            }
+            } finally {dbg.exitDecision(49);}
+
+            switch (alt49) {
+                case 1 :
+                    dbg.enterAlt(1);
+
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:17: e= expression ( ( ',' ) (e= expression )? )*
+                    {
+                    dbg.location(183,18);
+                    pushFollow(FOLLOW_expression_in_function21510);
+                    e=expression();
+                    _fsp--;
+                    if (failed) return value;
+                    dbg.location(183,30);
+                    if ( backtracking==0 ) {
+                      value = input.toString(e.start,e.stop);
+                    }
+                    dbg.location(183,49);
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:49: ( ( ',' ) (e= expression )? )*
+                    try { dbg.enterSubRule(48);
+
+                    loop48:
+                    do {
+                        int alt48=2;
+                        try { dbg.enterDecision(48);
+
+                        int LA48_0 = input.LA(1);
+
+                        if ( (LA48_0==41) ) {
+                            alt48=1;
+                        }
+
+
+                        } finally {dbg.exitDecision(48);}
+
+                        switch (alt48) {
+                    	case 1 :
+                    	    dbg.enterAlt(1);
+
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' ) (e= expression )?
+                    	    {
+                    	    dbg.location(183,50);
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' )
+                    	    dbg.enterAlt(1);
+
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:51: ','
+                    	    {
+                    	    dbg.location(183,51);
+                    	    match(input,41,FOLLOW_41_in_function21515); if (failed) return value;
+
+                    	    }
+
+                    	    dbg.location(183,56);
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:56: (e= expression )?
+                    	    int alt47=2;
+                    	    try { dbg.enterSubRule(47);
+                    	    try { dbg.enterDecision(47);
+
+                    	    int LA47_0 = input.LA(1);
+
+                    	    if ( (LA47_0==MINUS||LA47_0==LPAREN||(LA47_0>=WORD && LA47_0<=GLOBALVAR)||(LA47_0>=51 && LA47_0<=52)||LA47_0==60) ) {
+                    	        alt47=1;
+                    	    }
+                    	    } finally {dbg.exitDecision(47);}
+
+                    	    switch (alt47) {
+                    	        case 1 :
+                    	            dbg.enterAlt(1);
+
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:57: e= expression
+                    	            {
+                    	            dbg.location(183,58);
+                    	            pushFollow(FOLLOW_expression_in_function21521);
+                    	            e=expression();
+                    	            _fsp--;
+                    	            if (failed) return value;
+                    	            dbg.location(183,69);
+                    	            if ( backtracking==0 ) {
+                    	              value += ", "+input.toString(e.start,e.stop);
+                    	            }
+
+                    	            }
+                    	            break;
+
+                    	    }
+                    	    } finally {dbg.exitSubRule(47);}
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop48;
+                        }
+                    } while (true);
+                    } finally {dbg.exitSubRule(48);}
+
+
+                    }
+                    break;
+
+            }
+            } finally {dbg.exitSubRule(49);}
+
+            dbg.location(183,101);
+            match(input,RPAREN,FOLLOW_RPAREN_in_function21530); if (failed) return value;
+            dbg.location(183,105);
             if ( backtracking==0 ) {
               value =pc.otherclassfunctionstatement(n.getText(), value);
             }
@@ -8431,9 +9223,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 32, function2_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 33, function2_StartIndex); }
         }
-        dbg.location(181, 2);
+        dbg.location(184, 2);
 
         }
         finally {
@@ -8448,7 +9240,7 @@ public class gscriptParser extends DebugParser {
 
 
     // $ANTLR start array
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:186:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' ;
     public final String array() throws RecognitionException {
         String value = null;
         int array_StartIndex = input.index();
@@ -8461,16 +9253,16 @@ public class gscriptParser extends DebugParser {
         try { dbg.enterRule("array");
         if ( ruleLevel==0 ) {dbg.commence();}
         ruleLevel++;
-        dbg.location(183, 1);
+        dbg.location(186, 1);
 
         try {
-            if ( backtracking>0 && alreadyParsedRule(input, 33) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:184:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' )
+            if ( backtracking>0 && alreadyParsedRule(input, 34) ) { return value; }
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' )
             dbg.enterAlt(1);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:184:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']'
             {
-            dbg.location(184,11);
+            dbg.location(187,11);
             valuee=(Token)input.LT(1);
             if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
                 input.consume();
@@ -8481,43 +9273,43 @@ public class gscriptParser extends DebugParser {
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
                 dbg.recognitionException(mse);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1492);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_array1550);    throw mse;
             }
 
-            dbg.location(184,35);
-            match(input,87,FOLLOW_87_in_array1500); if (failed) return value;
-            dbg.location(184,40);
-            pushFollow(FOLLOW_expression_in_array1504);
+            dbg.location(187,35);
+            match(input,88,FOLLOW_88_in_array1558); if (failed) return value;
+            dbg.location(187,40);
+            pushFollow(FOLLOW_expression_in_array1562);
             e=expression();
             _fsp--;
             if (failed) return value;
-            dbg.location(184,52);
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:184:52: ( ',' e1= expression )?
-            int alt47=2;
-            try { dbg.enterSubRule(47);
-            try { dbg.enterDecision(47);
+            dbg.location(187,52);
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:52: ( ',' e1= expression )?
+            int alt50=2;
+            try { dbg.enterSubRule(50);
+            try { dbg.enterDecision(50);
 
-            int LA47_0 = input.LA(1);
+            int LA50_0 = input.LA(1);
 
-            if ( (LA47_0==41) ) {
-                alt47=1;
+            if ( (LA50_0==41) ) {
+                alt50=1;
             }
-            } finally {dbg.exitDecision(47);}
+            } finally {dbg.exitDecision(50);}
 
-            switch (alt47) {
+            switch (alt50) {
                 case 1 :
                     dbg.enterAlt(1);
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:184:53: ',' e1= expression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:53: ',' e1= expression
                     {
-                    dbg.location(184,53);
-                    match(input,41,FOLLOW_41_in_array1507); if (failed) return value;
-                    dbg.location(184,59);
-                    pushFollow(FOLLOW_expression_in_array1511);
+                    dbg.location(187,53);
+                    match(input,41,FOLLOW_41_in_array1565); if (failed) return value;
+                    dbg.location(187,59);
+                    pushFollow(FOLLOW_expression_in_array1569);
                     e1=expression();
                     _fsp--;
                     if (failed) return value;
-                    dbg.location(184,70);
+                    dbg.location(187,70);
                     if ( backtracking==0 ) {
                       value = e.value + ","+e1.value;
                     }
@@ -8526,11 +9318,11 @@ public class gscriptParser extends DebugParser {
                     break;
 
             }
-            } finally {dbg.exitSubRule(47);}
+            } finally {dbg.exitSubRule(50);}
 
-            dbg.location(184,109);
-            match(input,88,FOLLOW_88_in_array1516); if (failed) return value;
-            dbg.location(184,113);
+            dbg.location(187,109);
+            match(input,89,FOLLOW_89_in_array1574); if (failed) return value;
+            dbg.location(187,113);
             if ( backtracking==0 ) {
               value = pc.array(valuee.getText(),input.toString(e.start,e.stop));
             }
@@ -8543,9 +9335,9 @@ public class gscriptParser extends DebugParser {
             recover(input,re);
         }
         finally {
-            if ( backtracking>0 ) { memoize(input, 33, array_StartIndex); }
+            if ( backtracking>0 ) { memoize(input, 34, array_StartIndex); }
         }
-        dbg.location(185, 1);
+        dbg.location(188, 1);
 
         }
         finally {
@@ -8594,20 +9386,37 @@ public class gscriptParser extends DebugParser {
 
     // $ANTLR start synpred20
     public final void synpred20_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:675: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:633: ( function )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:675: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:633: function
         {
-        dbg.location(61,675);
-        match(input,35,FOLLOW_35_in_synpred20335); if (failed) return ;
+        dbg.location(61,637);
+        pushFollow(FOLLOW_function_in_synpred20330);
+        function();
+        _fsp--;
+        if (failed) return ;
 
         }
     }
     // $ANTLR end synpred20
 
-    // $ANTLR start synpred23
-    public final void synpred23_fragment() throws RecognitionException {   
+    // $ANTLR start synpred21
+    public final void synpred21_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:679: ( ';' )
+        dbg.enterAlt(1);
+
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:679: ';'
+        {
+        dbg.location(61,679);
+        match(input,35,FOLLOW_35_in_synpred21337); if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred21
+
+    // $ANTLR start synpred24
+    public final void synpred24_fragment() throws RecognitionException {   
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:34: ( ( 'private' | 'var' ) )
         dbg.enterAlt(1);
 
@@ -8623,68 +9432,51 @@ public class gscriptParser extends DebugParser {
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
             dbg.recognitionException(mse);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred23358);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred24360);    throw mse;
         }
 
 
         }
     }
-    // $ANTLR end synpred23
+    // $ANTLR end synpred24
 
-    // $ANTLR start synpred24
-    public final void synpred24_fragment() throws RecognitionException {   
+    // $ANTLR start synpred25
+    public final void synpred25_fragment() throws RecognitionException {   
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: ( 'final' )
         dbg.enterAlt(1);
 
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: 'final'
         {
         dbg.location(65,77);
-        match(input,39,FOLLOW_39_in_synpred24369); if (failed) return ;
+        match(input,39,FOLLOW_39_in_synpred25371); if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred24
+    // $ANTLR end synpred25
 
-    // $ANTLR start synpred29
-    public final void synpred29_fragment() throws RecognitionException {   
+    // $ANTLR start synpred30
+    public final void synpred30_fragment() throws RecognitionException {   
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: ( 'final' )
         dbg.enterAlt(1);
 
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: 'final'
         {
         dbg.location(69,67);
-        match(input,39,FOLLOW_39_in_synpred29420); if (failed) return ;
+        match(input,39,FOLLOW_39_in_synpred30422); if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred29
+    // $ANTLR end synpred30
 
-    // $ANTLR start synpred40
-    public final void synpred40_fragment() throws RecognitionException {   
+    // $ANTLR start synpred41
+    public final void synpred41_fragment() throws RecognitionException {   
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: ( variable )
         dbg.enterAlt(1);
 
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: variable
         {
         dbg.location(78,40);
-        pushFollow(FOLLOW_variable_in_synpred40544);
-        variable();
-        _fsp--;
-        if (failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred40
-
-    // $ANTLR start synpred41
-    public final void synpred41_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:114: ( variable )
-        dbg.enterAlt(1);
-
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:114: variable
-        {
-        dbg.location(78,120);
-        pushFollow(FOLLOW_variable_in_synpred41561);
+        pushFollow(FOLLOW_variable_in_synpred41546);
         variable();
         _fsp--;
         if (failed) return ;
@@ -8693,50 +9485,50 @@ public class gscriptParser extends DebugParser {
     }
     // $ANTLR end synpred41
 
-    // $ANTLR start synpred44
-    public final void synpred44_fragment() throws RecognitionException {   
+    // $ANTLR start synpred42
+    public final void synpred42_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:114: ( variable )
+        dbg.enterAlt(1);
+
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:114: variable
+        {
+        dbg.location(78,120);
+        pushFollow(FOLLOW_variable_in_synpred42563);
+        variable();
+        _fsp--;
+        if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred42
+
+    // $ANTLR start synpred45
+    public final void synpred45_fragment() throws RecognitionException {   
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: ( elsestatement )
         dbg.enterAlt(1);
 
         // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: elsestatement
         {
         dbg.location(90,64);
-        pushFollow(FOLLOW_elsestatement_in_synpred44649);
+        pushFollow(FOLLOW_elsestatement_in_synpred45651);
         elsestatement();
         _fsp--;
         if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred44
-
-    // $ANTLR start synpred46
-    public final void synpred46_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: ( pexpression )
-        dbg.enterAlt(1);
-
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: pexpression
-        {
-        dbg.location(99,7);
-        pushFollow(FOLLOW_pexpression_in_synpred46715);
-        pexpression();
-        _fsp--;
-        if (failed) return ;
-
-        }
-    }
-    // $ANTLR end synpred46
+    // $ANTLR end synpred45
 
     // $ANTLR start synpred47
     public final void synpred47_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: ( relationalExpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: ( negate )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: relationalExpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: negate
         {
-        dbg.location(99,40);
-        pushFollow(FOLLOW_relationalExpression_in_synpred47720);
-        relationalExpression();
+        dbg.location(99,9);
+        pushFollow(FOLLOW_negate_in_synpred47717);
+        negate();
         _fsp--;
         if (failed) return ;
 
@@ -8746,14 +9538,14 @@ public class gscriptParser extends DebugParser {
 
     // $ANTLR start synpred48
     public final void synpred48_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:117: ( aexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: ( pexpression )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:117: aexpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: pexpression
         {
-        dbg.location(99,120);
-        pushFollow(FOLLOW_aexpression_in_synpred48732);
-        aexpression();
+        dbg.location(99,40);
+        pushFollow(FOLLOW_pexpression_in_synpred48722);
+        pexpression();
         _fsp--;
         if (failed) return ;
 
@@ -8761,57 +9553,91 @@ public class gscriptParser extends DebugParser {
     }
     // $ANTLR end synpred48
 
-    // $ANTLR start synpred51
-    public final void synpred51_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:162: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
+    // $ANTLR start synpred49
+    public final void synpred49_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: ( relationalExpression )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:162: ( andexpression | orexpression | xorexpression ) ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: relationalExpression
         {
-        dbg.location(99,162);
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:162: ( andexpression | orexpression | xorexpression )
-        int alt54=3;
-        try { dbg.enterSubRule(54);
-        try { dbg.enterDecision(54);
+        dbg.location(99,73);
+        pushFollow(FOLLOW_relationalExpression_in_synpred49727);
+        relationalExpression();
+        _fsp--;
+        if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred49
+
+    // $ANTLR start synpred50
+    public final void synpred50_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: ( aexpression )
+        dbg.enterAlt(1);
+
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: aexpression
+        {
+        dbg.location(99,153);
+        pushFollow(FOLLOW_aexpression_in_synpred50739);
+        aexpression();
+        _fsp--;
+        if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred50
+
+    // $ANTLR start synpred53
+    public final void synpred53_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
+        dbg.enterAlt(1);
+
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( andexpression | orexpression | xorexpression ) ( expression )
+        {
+        dbg.location(99,195);
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( andexpression | orexpression | xorexpression )
+        int alt57=3;
+        try { dbg.enterSubRule(57);
+        try { dbg.enterDecision(57);
 
         switch ( input.LA(1) ) {
-        case 60:
         case 61:
-            {
-            alt54=1;
-            }
-            break;
         case 62:
-        case 63:
             {
-            alt54=2;
+            alt57=1;
             }
             break;
+        case 63:
         case 64:
-        case 65:
             {
-            alt54=3;
+            alt57=2;
+            }
+            break;
+        case 65:
+        case 66:
+            {
+            alt57=3;
             }
             break;
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("99:162: ( andexpression | orexpression | xorexpression )", 54, 0, input);
+                new NoViableAltException("99:195: ( andexpression | orexpression | xorexpression )", 57, 0, input);
 
             dbg.recognitionException(nvae);
             throw nvae;
         }
 
-        } finally {dbg.exitDecision(54);}
+        } finally {dbg.exitDecision(57);}
 
-        switch (alt54) {
+        switch (alt57) {
             case 1 :
                 dbg.enterAlt(1);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:163: andexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:196: andexpression
                 {
-                dbg.location(99,166);
-                pushFollow(FOLLOW_andexpression_in_synpred51742);
+                dbg.location(99,199);
+                pushFollow(FOLLOW_andexpression_in_synpred53749);
                 andexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8821,10 +9647,10 @@ public class gscriptParser extends DebugParser {
             case 2 :
                 dbg.enterAlt(2);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:205: orexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:238: orexpression
                 {
-                dbg.location(99,209);
-                pushFollow(FOLLOW_orexpression_in_synpred51747);
+                dbg.location(99,242);
+                pushFollow(FOLLOW_orexpression_in_synpred53754);
                 orexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8834,10 +9660,10 @@ public class gscriptParser extends DebugParser {
             case 3 :
                 dbg.enterAlt(3);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:248: xorexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:281: xorexpression
                 {
-                dbg.location(99,250);
-                pushFollow(FOLLOW_xorexpression_in_synpred51752);
+                dbg.location(99,283);
+                pushFollow(FOLLOW_xorexpression_in_synpred53759);
                 xorexpression();
                 _fsp--;
                 if (failed) return ;
@@ -8846,16 +9672,16 @@ public class gscriptParser extends DebugParser {
                 break;
 
         }
-        } finally {dbg.exitSubRule(54);}
+        } finally {dbg.exitSubRule(57);}
 
-        dbg.location(99,289);
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:289: ( expression )
+        dbg.location(99,322);
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:322: ( expression )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:290: expression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:323: expression
         {
-        dbg.location(99,292);
-        pushFollow(FOLLOW_expression_in_synpred51759);
+        dbg.location(99,325);
+        pushFollow(FOLLOW_expression_in_synpred53766);
         expression();
         _fsp--;
         if (failed) return ;
@@ -8865,51 +9691,51 @@ public class gscriptParser extends DebugParser {
 
         }
     }
-    // $ANTLR end synpred51
+    // $ANTLR end synpred53
 
-    // $ANTLR start synpred73
-    public final void synpred73_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:163: ( variable )
+    // $ANTLR start synpred77
+    public final void synpred77_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: ( variable )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:163: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: variable
         {
-        dbg.location(133,165);
-        pushFollow(FOLLOW_variable_in_synpred73990);
+        dbg.location(136,280);
+        pushFollow(FOLLOW_variable_in_synpred771029);
         variable();
         _fsp--;
         if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred73
+    // $ANTLR end synpred77
 
-    // $ANTLR start synpred87
-    public final void synpred87_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:466: ( variable )
+    // $ANTLR start synpred91
+    public final void synpred91_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: ( variable )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:466: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: variable
         {
-        dbg.location(133,468);
-        pushFollow(FOLLOW_variable_in_synpred871051);
+        dbg.location(136,583);
+        pushFollow(FOLLOW_variable_in_synpred911090);
         variable();
         _fsp--;
         if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred87
+    // $ANTLR end synpred91
 
-    // $ANTLR start synpred89
-    public final void synpred89_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:272: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) )
+    // $ANTLR start synpred93
+    public final void synpred93_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:272: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
         {
-        dbg.location(133,275);
-        if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==66 ) {
+        dbg.location(136,390);
+        if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==67 ) {
             input.consume();
             errorRecovery=false;failed=false;
         }
@@ -8918,33 +9744,33 @@ public class gscriptParser extends DebugParser {
             MismatchedSetException mse =
                 new MismatchedSetException(null,input);
             dbg.recognitionException(mse);
-            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred891008);    throw mse;
+            recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred931047);    throw mse;
         }
 
-        dbg.location(133,326);
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:326: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
-        int alt55=7;
-        try { dbg.enterSubRule(55);
-        try { dbg.enterDecision(55);
+        dbg.location(136,441);
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
+        int alt58=7;
+        try { dbg.enterSubRule(58);
+        try { dbg.enterDecision(58);
 
         switch ( input.LA(1) ) {
         case WORD:
             {
-            int LA55_1 = input.LA(2);
+            int LA58_1 = input.LA(2);
 
-            if ( (LA55_1==LPAREN) ) {
-                alt55=1;
+            if ( (LA58_1==LPAREN) ) {
+                alt58=1;
             }
-            else if ( (synpred87()) ) {
-                alt55=5;
+            else if ( (synpred91()) ) {
+                alt58=5;
             }
             else if ( (true) ) {
-                alt55=7;
+                alt58=7;
             }
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("133:326: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 55, 1, input);
+                    new NoViableAltException("136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 58, 1, input);
 
                 dbg.recognitionException(nvae);
                 throw nvae;
@@ -8953,50 +9779,50 @@ public class gscriptParser extends DebugParser {
             break;
         case HEXNUMBER:
             {
-            alt55=2;
+            alt58=2;
             }
             break;
         case STRING:
             {
-            alt55=3;
+            alt58=3;
             }
             break;
         case NUMBER:
             {
-            alt55=4;
+            alt58=4;
             }
             break;
         case LPAREN:
         case OIVAR:
         case GLOBALVAR:
             {
-            alt55=5;
+            alt58=5;
             }
             break;
         case DECIMAL:
             {
-            alt55=6;
+            alt58=6;
             }
             break;
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("133:326: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 55, 0, input);
+                new NoViableAltException("136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 58, 0, input);
 
             dbg.recognitionException(nvae);
             throw nvae;
         }
 
-        } finally {dbg.exitDecision(55);}
+        } finally {dbg.exitDecision(58);}
 
-        switch (alt55) {
+        switch (alt58) {
             case 1 :
                 dbg.enterAlt(1);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:327: function
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:442: function
                 {
-                dbg.location(133,329);
-                pushFollow(FOLLOW_function_in_synpred891031);
+                dbg.location(136,444);
+                pushFollow(FOLLOW_function_in_synpred931070);
                 function();
                 _fsp--;
                 if (failed) return ;
@@ -9006,40 +9832,40 @@ public class gscriptParser extends DebugParser {
             case 2 :
                 dbg.enterAlt(2);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:353: HEXNUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:468: HEXNUMBER
                 {
-                dbg.location(133,355);
-                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred891036); if (failed) return ;
+                dbg.location(136,470);
+                match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred931075); if (failed) return ;
 
                 }
                 break;
             case 3 :
                 dbg.enterAlt(3);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:379: STRING
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:494: STRING
                 {
-                dbg.location(133,381);
-                match(input,STRING,FOLLOW_STRING_in_synpred891041); if (failed) return ;
+                dbg.location(136,496);
+                match(input,STRING,FOLLOW_STRING_in_synpred931080); if (failed) return ;
 
                 }
                 break;
             case 4 :
                 dbg.enterAlt(4);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:422: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:537: NUMBER
                 {
-                dbg.location(133,424);
-                match(input,NUMBER,FOLLOW_NUMBER_in_synpred891046); if (failed) return ;
+                dbg.location(136,539);
+                match(input,NUMBER,FOLLOW_NUMBER_in_synpred931085); if (failed) return ;
 
                 }
                 break;
             case 5 :
                 dbg.enterAlt(5);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:466: variable
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: variable
                 {
-                dbg.location(133,468);
-                pushFollow(FOLLOW_variable_in_synpred891051);
+                dbg.location(136,583);
+                pushFollow(FOLLOW_variable_in_synpred931090);
                 variable();
                 _fsp--;
                 if (failed) return ;
@@ -9049,69 +9875,83 @@ public class gscriptParser extends DebugParser {
             case 6 :
                 dbg.enterAlt(6);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:492: DECIMAL
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:607: DECIMAL
                 {
-                dbg.location(133,494);
-                match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred891056); if (failed) return ;
+                dbg.location(136,609);
+                match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred931095); if (failed) return ;
 
                 }
                 break;
             case 7 :
                 dbg.enterAlt(7);
 
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:133:536: WORD
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:651: WORD
                 {
-                dbg.location(133,538);
-                match(input,WORD,FOLLOW_WORD_in_synpred891061); if (failed) return ;
+                dbg.location(136,653);
+                match(input,WORD,FOLLOW_WORD_in_synpred931100); if (failed) return ;
 
                 }
                 break;
 
         }
-        } finally {dbg.exitSubRule(55);}
+        } finally {dbg.exitSubRule(58);}
 
 
         }
     }
-    // $ANTLR end synpred89
+    // $ANTLR end synpred93
 
-    // $ANTLR start synpred90
-    public final void synpred90_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:13: ( expression )
+    // $ANTLR start synpred94
+    public final void synpred94_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: ( expression )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:13: expression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: expression
         {
-        dbg.location(137,15);
-        pushFollow(FOLLOW_expression_in_synpred901089);
+        dbg.location(140,15);
+        pushFollow(FOLLOW_expression_in_synpred941128);
         expression();
         _fsp--;
         if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred90
+    // $ANTLR end synpred94
 
-    // $ANTLR start synpred91
-    public final void synpred91_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:43: ( ';' )
+    // $ANTLR start synpred95
+    public final void synpred95_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ( ';' )
         dbg.enterAlt(1);
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:137:43: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ';'
         {
-        dbg.location(137,43);
-        match(input,35,FOLLOW_35_in_synpred911100); if (failed) return ;
+        dbg.location(140,43);
+        match(input,35,FOLLOW_35_in_synpred951139); if (failed) return ;
 
         }
     }
-    // $ANTLR end synpred91
+    // $ANTLR end synpred95
 
-    public final boolean synpred44() {
+    // $ANTLR start synpred96
+    public final void synpred96_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ( ';' )
+        dbg.enterAlt(1);
+
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ';'
+        {
+        dbg.location(159,40);
+        match(input,35,FOLLOW_35_in_synpred961250); if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred96
+
+    public final boolean synpred96() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred44_fragment(); // can never throw exception
+            synpred96_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9122,12 +9962,44 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred46() {
+    public final boolean synpred94() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred46_fragment(); // can never throw exception
+            synpred94_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        dbg.endBacktrack(backtracking, success);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred95() {
+        backtracking++;
+        dbg.beginBacktrack(backtracking);
+        int start = input.mark();
+        try {
+            synpred95_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        dbg.endBacktrack(backtracking, success);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred45() {
+        backtracking++;
+        dbg.beginBacktrack(backtracking);
+        int start = input.mark();
+        try {
+            synpred45_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9154,12 +10026,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred47() {
+    public final boolean synpred93() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred47_fragment(); // can never throw exception
+            synpred93_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9170,12 +10042,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred90() {
+    public final boolean synpred47() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred90_fragment(); // can never throw exception
+            synpred47_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9202,12 +10074,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred73() {
+    public final boolean synpred49() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred73_fragment(); // can never throw exception
+            synpred49_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9218,28 +10090,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred29() {
+    public final boolean synpred53() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred29_fragment(); // can never throw exception
-        } catch (RecognitionException re) {
-            System.err.println("impossible: "+re);
-        }
-        boolean success = !failed;
-        input.rewind(start);
-        dbg.endBacktrack(backtracking, success);
-        backtracking--;
-        failed=false;
-        return success;
-    }
-    public final boolean synpred87() {
-        backtracking++;
-        dbg.beginBacktrack(backtracking);
-        int start = input.mark();
-        try {
-            synpred87_fragment(); // can never throw exception
+            synpred53_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9266,12 +10122,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred89() {
+    public final boolean synpred77() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred89_fragment(); // can never throw exception
+            synpred77_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9282,12 +10138,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred51() {
+    public final boolean synpred50() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred51_fragment(); // can never throw exception
+            synpred50_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9314,12 +10170,28 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred40() {
+    public final boolean synpred30() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred40_fragment(); // can never throw exception
+            synpred30_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        dbg.endBacktrack(backtracking, success);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred42() {
+        backtracking++;
+        dbg.beginBacktrack(backtracking);
+        int start = input.mark();
+        try {
+            synpred42_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9362,12 +10234,12 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
-    public final boolean synpred23() {
+    public final boolean synpred25() {
         backtracking++;
         dbg.beginBacktrack(backtracking);
         int start = input.mark();
         try {
-            synpred23_fragment(); // can never throw exception
+            synpred25_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -9394,6 +10266,22 @@ public class gscriptParser extends DebugParser {
         failed=false;
         return success;
     }
+    public final boolean synpred21() {
+        backtracking++;
+        dbg.beginBacktrack(backtracking);
+        int start = input.mark();
+        try {
+            synpred21_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        dbg.endBacktrack(backtracking, success);
+        backtracking--;
+        failed=false;
+        return success;
+    }
 
 
  
@@ -9401,7 +10289,7 @@ public class gscriptParser extends DebugParser {
     public static final BitSet FOLLOW_method_in_classes199 = new BitSet(new long[]{0x000011F800200002L});
     public static final BitSet FOLLOW_field_in_classes204 = new BitSet(new long[]{0x000011F800200002L});
     public static final BitSet FOLLOW_35_in_classes209 = new BitSet(new long[]{0x000011F800200002L});
-    public static final BitSet FOLLOW_statement_in_code230 = new BitSet(new long[]{0x0000F4400C200502L,0x0000000000004778L});
+    public static final BitSet FOLLOW_statement_in_code230 = new BitSet(new long[]{0x0000F4480C200502L,0x0000000000008EF0L});
     public static final BitSet FOLLOW_bstatement_in_statement255 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_varstatement_in_statement260 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_returnstatement_in_statement265 = new BitSet(new long[]{0x0000000800000002L});
@@ -9418,174 +10306,187 @@ public class gscriptParser extends DebugParser {
     public static final BitSet FOLLOW_function2_in_statement320 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_assignment_in_statement325 = new BitSet(new long[]{0x0000000800000002L});
     public static final BitSet FOLLOW_function_in_statement330 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_35_in_statement335 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_36_in_field354 = new BitSet(new long[]{0x000011C000200000L});
-    public static final BitSet FOLLOW_set_in_field358 = new BitSet(new long[]{0x000011C000200000L});
-    public static final BitSet FOLLOW_39_in_field369 = new BitSet(new long[]{0x000011C000200000L});
-    public static final BitSet FOLLOW_40_in_field375 = new BitSet(new long[]{0x000010C000200000L});
-    public static final BitSet FOLLOW_39_in_field381 = new BitSet(new long[]{0x0000104000200000L});
-    public static final BitSet FOLLOW_varstatement_in_field389 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_method411 = new BitSet(new long[]{0x0000018000200000L});
-    public static final BitSet FOLLOW_37_in_method414 = new BitSet(new long[]{0x0000018000200000L});
-    public static final BitSet FOLLOW_39_in_method420 = new BitSet(new long[]{0x0000018000200000L});
-    public static final BitSet FOLLOW_40_in_method426 = new BitSet(new long[]{0x0000008000200000L});
-    public static final BitSet FOLLOW_39_in_method432 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_method439 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_method441 = new BitSet(new long[]{0x0000000000200200L});
-    public static final BitSet FOLLOW_WORD_in_method446 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_41_in_method452 = new BitSet(new long[]{0x0000020000200200L});
-    public static final BitSet FOLLOW_WORD_in_method458 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_method467 = new BitSet(new long[]{0x0000040000000400L});
-    public static final BitSet FOLLOW_bstatement_in_method471 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_bstatement489 = new BitSet(new long[]{0x0000FC400C200D00L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_bstatement498 = new BitSet(new long[]{0x0000FC400C200D00L,0x0000000000004778L});
-    public static final BitSet FOLLOW_set_in_bstatement503 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_varstatement530 = new BitSet(new long[]{0x000000000C200100L});
-    public static final BitSet FOLLOW_WORD_in_varstatement534 = new BitSet(new long[]{0x000000000C200100L});
-    public static final BitSet FOLLOW_44_in_varstatement538 = new BitSet(new long[]{0x000000000C200100L});
-    public static final BitSet FOLLOW_variable_in_varstatement544 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_assignment_in_varstatement550 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_41_in_varstatement556 = new BitSet(new long[]{0x000000000C200100L});
-    public static final BitSet FOLLOW_variable_in_varstatement561 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_assignment_in_varstatement567 = new BitSet(new long[]{0x0000020000000002L});
-    public static final BitSet FOLLOW_45_in_returnstatement590 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_returnstatement595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_46_in_exitstatement611 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_ifstatement629 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_ifstatement633 = new BitSet(new long[]{0x0001F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_48_in_ifstatement636 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_ifstatement643 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_ifstatement649 = new BitSet(new long[]{0x0006000000000002L});
-    public static final BitSet FOLLOW_49_in_elsestatement671 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_50_in_elsestatement674 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_elsestatement678 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_elsestatement687 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pexpression_in_expression715 = new BitSet(new long[]{0xFFE00000000000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_relationalExpression_in_expression720 = new BitSet(new long[]{0xFFE00000000000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_notexpression_in_expression725 = new BitSet(new long[]{0xFFE00000000000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_aexpression_in_expression732 = new BitSet(new long[]{0xFFE00000000000F2L,0x0000000000000003L});
-    public static final BitSet FOLLOW_andexpression_in_expression742 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_orexpression_in_expression747 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_xorexpression_in_expression752 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_expression759 = new BitSet(new long[]{0xF000000000000002L,0x0000000000000003L});
-    public static final BitSet FOLLOW_set_in_notexpression778 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_notexpression786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_aexpression804 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_aexpression831 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_value851 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_value853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_value855 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_value857 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_pexpression874 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_pexpression878 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_pexpression880 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_andexpression897 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_orexpression918 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_xorexpression939 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_function_in_relationalExpression970 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression975 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression980 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression985 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression990 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression995 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1000 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000004L});
-    public static final BitSet FOLLOW_set_in_relationalExpression1008 = new BitSet(new long[]{0x000000000FE00100L});
-    public static final BitSet FOLLOW_function_in_relationalExpression1031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_relationalExpression1041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_relationalExpression1051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_relationalExpression1061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_repeatstatement1084 = new BitSet(new long[]{0x0018F4400FE00500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_expression_in_repeatstatement1089 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_repeatstatement1096 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_35_in_repeatstatement1100 = new BitSet(new long[]{0x0000000800000002L});
-    public static final BitSet FOLLOW_68_in_breakstatement1118 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_continuestatement1133 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_dostatement1148 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_dostatement1152 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000080L});
-    public static final BitSet FOLLOW_71_in_dostatement1154 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_dostatement1158 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_whilestatement1173 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_whilestatement1177 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_whilestatement1182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_forstatement1198 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_forstatement1200 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1204 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_forstatement1208 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_35_in_forstatement1211 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1217 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_forstatement1219 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_forstatement1223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_74_in_switchstatement1238 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1241 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LBRAC_in_switchstatement1244 = new BitSet(new long[]{0x0000000000000800L,0x0000000000001800L});
-    public static final BitSet FOLLOW_set_in_switchstatement1247 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_switchstatement1253 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_switchstatement1255 = new BitSet(new long[]{0x0000F4400C200D00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_statement_in_switchstatement1258 = new BitSet(new long[]{0x0000F4400C200D00L,0x0000000000005F78L});
-    public static final BitSet FOLLOW_RBRAC_in_switchstatement1264 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_78_in_withstatement1280 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_withstatement1285 = new BitSet(new long[]{0x0000F4400C200500L,0x0000000000004778L});
-    public static final BitSet FOLLOW_statement_in_withstatement1290 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_assignment1308 = new BitSet(new long[]{0x0000000000001000L,0x00000000003F8004L});
-    public static final BitSet FOLLOW_set_in_assignment1312 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_assignment1335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_array_in_variable1354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_variable1359 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LPAREN_in_variable1368 = new BitSet(new long[]{0x000000000C600100L});
-    public static final BitSet FOLLOW_NUMBER_in_variable1371 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_variable_in_variable1373 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_function_in_variable1375 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_variable1378 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_variable1380 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_WORD_in_variable1382 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_function1399 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function1401 = new BitSet(new long[]{0x001800000FE00300L});
-    public static final BitSet FOLLOW_expression_in_function1406 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_41_in_function1412 = new BitSet(new long[]{0x001802000FE00300L});
-    public static final BitSet FOLLOW_expression_in_function1418 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function1427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_OIVAR_in_function21445 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_LPAREN_in_function21447 = new BitSet(new long[]{0x001800000FE00300L});
-    public static final BitSet FOLLOW_expression_in_function21452 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_41_in_function21457 = new BitSet(new long[]{0x001802000FE00300L});
-    public static final BitSet FOLLOW_expression_in_function21463 = new BitSet(new long[]{0x0000020000000200L});
-    public static final BitSet FOLLOW_RPAREN_in_function21472 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_array1492 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_array1500 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_array1504 = new BitSet(new long[]{0x0000020000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_41_in_array1507 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_array1511 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
-    public static final BitSet FOLLOW_88_in_array1516 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_statement333 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_statement337 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_36_in_field356 = new BitSet(new long[]{0x000011C000200000L});
+    public static final BitSet FOLLOW_set_in_field360 = new BitSet(new long[]{0x000011C000200000L});
+    public static final BitSet FOLLOW_39_in_field371 = new BitSet(new long[]{0x000011C000200000L});
+    public static final BitSet FOLLOW_40_in_field377 = new BitSet(new long[]{0x000010C000200000L});
+    public static final BitSet FOLLOW_39_in_field383 = new BitSet(new long[]{0x0000104000200000L});
+    public static final BitSet FOLLOW_varstatement_in_field391 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_method413 = new BitSet(new long[]{0x0000018000200000L});
+    public static final BitSet FOLLOW_37_in_method416 = new BitSet(new long[]{0x0000018000200000L});
+    public static final BitSet FOLLOW_39_in_method422 = new BitSet(new long[]{0x0000018000200000L});
+    public static final BitSet FOLLOW_40_in_method428 = new BitSet(new long[]{0x0000008000200000L});
+    public static final BitSet FOLLOW_39_in_method434 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_method441 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_method443 = new BitSet(new long[]{0x0000000000200200L});
+    public static final BitSet FOLLOW_WORD_in_method448 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_41_in_method454 = new BitSet(new long[]{0x0000020000200200L});
+    public static final BitSet FOLLOW_WORD_in_method460 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_method469 = new BitSet(new long[]{0x0000040000000400L});
+    public static final BitSet FOLLOW_bstatement_in_method473 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_bstatement491 = new BitSet(new long[]{0x0000FC480C200D00L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_bstatement500 = new BitSet(new long[]{0x0000FC480C200D00L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_set_in_bstatement505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_varstatement532 = new BitSet(new long[]{0x000000000C200100L});
+    public static final BitSet FOLLOW_WORD_in_varstatement536 = new BitSet(new long[]{0x000000000C200100L});
+    public static final BitSet FOLLOW_44_in_varstatement540 = new BitSet(new long[]{0x000000000C200100L});
+    public static final BitSet FOLLOW_variable_in_varstatement546 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_assignment_in_varstatement552 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_41_in_varstatement558 = new BitSet(new long[]{0x000000000C200100L});
+    public static final BitSet FOLLOW_variable_in_varstatement563 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_assignment_in_varstatement569 = new BitSet(new long[]{0x0000020000000002L});
+    public static final BitSet FOLLOW_45_in_returnstatement592 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_returnstatement597 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_46_in_exitstatement613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_ifstatement631 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_ifstatement635 = new BitSet(new long[]{0x0001F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_48_in_ifstatement638 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_ifstatement645 = new BitSet(new long[]{0x0006000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_ifstatement651 = new BitSet(new long[]{0x0006000000000002L});
+    public static final BitSet FOLLOW_49_in_elsestatement673 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_50_in_elsestatement676 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_elsestatement680 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_elsestatement689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_negate_in_expression717 = new BitSet(new long[]{0xEFE00000000000F2L,0x0000000000000007L});
+    public static final BitSet FOLLOW_pexpression_in_expression722 = new BitSet(new long[]{0xEFE00000000000F2L,0x0000000000000007L});
+    public static final BitSet FOLLOW_relationalExpression_in_expression727 = new BitSet(new long[]{0xEFE00000000000F2L,0x0000000000000007L});
+    public static final BitSet FOLLOW_notexpression_in_expression732 = new BitSet(new long[]{0xEFE00000000000F2L,0x0000000000000007L});
+    public static final BitSet FOLLOW_aexpression_in_expression739 = new BitSet(new long[]{0xEFE00000000000F2L,0x0000000000000007L});
+    public static final BitSet FOLLOW_andexpression_in_expression749 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_orexpression_in_expression754 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_xorexpression_in_expression759 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_expression766 = new BitSet(new long[]{0xE000000000000002L,0x0000000000000007L});
+    public static final BitSet FOLLOW_set_in_notexpression785 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_notexpression793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_aexpression811 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_aexpression838 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_value858 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_value860 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_value862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_value864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_negate880 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_negate888 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LPAREN_in_pexpression905 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_pexpression909 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_pexpression911 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_andexpression928 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_orexpression949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_xorexpression970 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1001 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1006 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1011 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_MINUS_in_relationalExpression1014 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1018 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1024 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1029 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1034 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1039 = new BitSet(new long[]{0x001000000007F002L,0x0000000000000008L});
+    public static final BitSet FOLLOW_set_in_relationalExpression1047 = new BitSet(new long[]{0x000000000FE00100L});
+    public static final BitSet FOLLOW_function_in_relationalExpression1070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_relationalExpression1075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_relationalExpression1080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_relationalExpression1085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_relationalExpression1090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_relationalExpression1095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_relationalExpression1100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_repeatstatement1123 = new BitSet(new long[]{0x1018F4480FE00520L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_expression_in_repeatstatement1128 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_repeatstatement1135 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_35_in_repeatstatement1139 = new BitSet(new long[]{0x0000000800000002L});
+    public static final BitSet FOLLOW_69_in_breakstatement1157 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_continuestatement1172 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_71_in_dostatement1187 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_dostatement1191 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_dostatement1193 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_dostatement1197 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_73_in_whilestatement1212 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_whilestatement1216 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_whilestatement1221 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_74_in_forstatement1237 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_forstatement1239 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1243 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_forstatement1247 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_35_in_forstatement1250 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1256 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_forstatement1258 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_forstatement1262 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_75_in_switchstatement1277 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1280 = new BitSet(new long[]{0x0000000000000400L});
+    public static final BitSet FOLLOW_LBRAC_in_switchstatement1283 = new BitSet(new long[]{0x0000000000000800L,0x0000000000003000L});
+    public static final BitSet FOLLOW_76_in_switchstatement1287 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_switchstatement1289 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_77_in_switchstatement1291 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_switchstatement1295 = new BitSet(new long[]{0x0000F4480C200D00L,0x000000000000BEF0L});
+    public static final BitSet FOLLOW_statement_in_switchstatement1298 = new BitSet(new long[]{0x0000F4480C200D00L,0x000000000000BEF0L});
+    public static final BitSet FOLLOW_RBRAC_in_switchstatement1304 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_79_in_withstatement1320 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_withstatement1325 = new BitSet(new long[]{0x0000F4480C200500L,0x0000000000008EF0L});
+    public static final BitSet FOLLOW_statement_in_withstatement1330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_assignment1348 = new BitSet(new long[]{0x0000000000001000L,0x00000000007F0008L});
+    public static final BitSet FOLLOW_set_in_assignment1352 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_assignment1375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_array_in_variable1394 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_set_in_variable1399 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_LPAREN_in_variable1409 = new BitSet(new long[]{0x000000000C600100L});
+    public static final BitSet FOLLOW_NUMBER_in_variable1412 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_variable_in_variable1414 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_function_in_variable1416 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_variable1419 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_variable1421 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_WORD_in_variable1423 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_87_in_variable1427 = new BitSet(new long[]{0x000000000C200000L});
+    public static final BitSet FOLLOW_array_in_variable1430 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_set_in_variable1432 = new BitSet(new long[]{0x0000000000000002L,0x0000000000800000L});
+    public static final BitSet FOLLOW_WORD_in_function1457 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function1459 = new BitSet(new long[]{0x101800000FE00320L});
+    public static final BitSet FOLLOW_expression_in_function1464 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_41_in_function1470 = new BitSet(new long[]{0x101802000FE00320L});
+    public static final BitSet FOLLOW_expression_in_function1476 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function1485 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_OIVAR_in_function21503 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_LPAREN_in_function21505 = new BitSet(new long[]{0x101800000FE00320L});
+    public static final BitSet FOLLOW_expression_in_function21510 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_41_in_function21515 = new BitSet(new long[]{0x101802000FE00320L});
+    public static final BitSet FOLLOW_expression_in_function21521 = new BitSet(new long[]{0x0000020000000200L});
+    public static final BitSet FOLLOW_RPAREN_in_function21530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_array1550 = new BitSet(new long[]{0x0000000000000000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_88_in_array1558 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_array1562 = new BitSet(new long[]{0x0000020000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_41_in_array1565 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_array1569 = new BitSet(new long[]{0x0000000000000000L,0x0000000002000000L});
+    public static final BitSet FOLLOW_89_in_array1574 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_method_in_synpred1199 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_varstatement_in_synpred6260 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_synpred20335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred23358 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred24369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_synpred29420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred40544 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred41561 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_elsestatement_in_synpred44649 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_pexpression_in_synpred46715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_relationalExpression_in_synpred47720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_aexpression_in_synpred48732 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_andexpression_in_synpred51742 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_orexpression_in_synpred51747 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_xorexpression_in_synpred51752 = new BitSet(new long[]{0x001800000FE00100L});
-    public static final BitSet FOLLOW_expression_in_synpred51759 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred73990 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred871051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_synpred891008 = new BitSet(new long[]{0x000000000FE00100L});
-    public static final BitSet FOLLOW_function_in_synpred891031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_HEXNUMBER_in_synpred891036 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_synpred891041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_synpred891046 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_variable_in_synpred891051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DECIMAL_in_synpred891056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_synpred891061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_expression_in_synpred901089 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_synpred911100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_synpred20330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_synpred21337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred24360 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_synpred25371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_synpred30422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred41546 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred42563 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_elsestatement_in_synpred45651 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_negate_in_synpred47717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_pexpression_in_synpred48722 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_relationalExpression_in_synpred49727 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_aexpression_in_synpred50739 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_andexpression_in_synpred53749 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_orexpression_in_synpred53754 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_xorexpression_in_synpred53759 = new BitSet(new long[]{0x101800000FE00120L});
+    public static final BitSet FOLLOW_expression_in_synpred53766 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred771029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred911090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_synpred931047 = new BitSet(new long[]{0x000000000FE00100L});
+    public static final BitSet FOLLOW_function_in_synpred931070 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_HEXNUMBER_in_synpred931075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_synpred931080 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_synpred931085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_variable_in_synpred931090 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DECIMAL_in_synpred931095 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_synpred931100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_expression_in_synpred941128 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_synpred951139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_synpred961250 = new BitSet(new long[]{0x0000000000000002L});
 
 }
