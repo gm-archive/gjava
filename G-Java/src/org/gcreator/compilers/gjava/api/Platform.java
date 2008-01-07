@@ -15,28 +15,28 @@ public class Platform {
      * Open a webpage in the default webbrowser
      * @param url the website url
      */
-    public static void openURL(String url) {
-        String osName = System.getProperty("os.name");
+    public static void openURL(java.lang.String url) {
+        java.lang.String osName = System.getProperty("os.name");
         try {
             if (osName.startsWith("Mac OS")) {
                 Class fileMgr = Class.forName("com.apple.eio.FileManager");
-                Method openURL = fileMgr.getDeclaredMethod("openURL", new Class[]{String.class});
-                openURL.invoke(null, new Object[]{url});
+                Method openURL = fileMgr.getDeclaredMethod("openURL", new Class[]{java.lang.String.class});
+                openURL.invoke(null, new java.lang.Object[]{url});
             } else if (osName.startsWith("Windows")) {
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + url);
             } else {
                 // assume Unix or Linux
-                String[] browsers = {"firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape"};
-                String browser = null;
+                java.lang.String[] browsers = {"firefox", "opera", "konqueror", "epiphany", "mozilla", "netscape"};
+                java.lang.String browser = null;
                 for (int count = 0; count < browsers.length && browser == null; count++) {
-                    if (Runtime.getRuntime().exec(new String[]{"which", browsers[count]}).waitFor() == 0) {
+                    if (Runtime.getRuntime().exec(new java.lang.String[]{"which", browsers[count]}).waitFor() == 0) {
                         browser = browsers[count];
                     }
                 }
                 if (browser == null) {
                     throw new Exception("Could not find web browser");
                 } else {
-                    Runtime.getRuntime().exec(new String[]{browser, url});
+                    Runtime.getRuntime().exec(new java.lang.String[]{browser, url});
                 }
             }
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class Platform {
     }
 
 
-        public static String getOsName() {
+        public static java.lang.String getOsName() {
             return System.getProperty("os.name", "unknown");
         }
         
@@ -85,15 +85,15 @@ public class Platform {
             return isWindows() && getOsName().toLowerCase().indexOf("vista") > -1;
         }
         
-        public static String getOSVersion(){
+        public static java.lang.String getOSVersion(){
             return System.getProperty("os.version", "-1");
         }
         
-        public static void printCmd(String message){
+        public static void printCmd(java.lang.String message){
             System.out.println(message);
         }
         
-        public static void printError(String message){
+        public static void printError(java.lang.String message){
             System.err.println(message);
         }
     }

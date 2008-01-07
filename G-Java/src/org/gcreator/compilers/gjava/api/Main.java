@@ -59,18 +59,18 @@ public class Main {
          * The score caption
          * @since 2.0
          */
-        public static String score_caption = "score:";
+        public static String score_caption = new String("score:");
         /**
          * The lives caption
          * @since 2.0
          */
-        public static String lives_caption = "lives:";
+        public static String lives_caption = new String("lives:");
 
         /**
          * The health caption
          * @since 2.0
          */
-        public static String health_caption = "health:";
+        public static String health_caption = new String("health:");
         
         /**
          * Executes program prog with arguments arg. wait indicates whether to wait for finishing.
@@ -82,7 +82,7 @@ public class Main {
          */
         public static void execute_program(String prog, String arg, boolean wait) {
             try {
-                java.lang.Process proc = java.lang.Runtime.getRuntime().exec(prog + arg);
+                java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog + arg);
                 if (wait) {
                     try {
                         proc.waitFor();
@@ -103,7 +103,7 @@ public class Main {
          * @author TGMG
          */
         public static void execute_shell(String prog, String arg) {
-            execute_program("bash -i " + prog, arg, false);
+            execute_program(new String("bash -i " + prog), arg, false);
         }
         
         /**
@@ -134,7 +134,7 @@ public class Main {
         /**
          * The caption of the current room
          */
-        public static String room_caption = basicgame.Current.Caption;
+        public static String room_caption = new String(basicgame.Current.Caption);
 
         /**
          * @deprecated Used for compatibility with gm
@@ -285,44 +285,44 @@ public class Main {
          * @param name
          * @return
          */
-        public static String environment_get_variable(String name) {
-            try {
-                java.util.Properties envProps = new java.util.Properties();
-                java.lang.Runtime r = java.lang.Runtime.getRuntime();
-                java.lang.Process p = r.exec("cmd /c set>temp.env");
-                java.lang.Thread.sleep(500);
-                java.io.FileInputStream in = new java.io.FileInputStream("temp.env");
-                java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(in));
-                java.lang.String line = null;
-                while ((line = br.readLine()) != null) {
-                    int index = -1;
-                    if ((index = line.indexOf("=")) > -1) {
-                        java.lang.String key = line.substring(0, index).trim();
-                        java.lang.String value = line.substring(index + 1).trim();
-                        envProps.setProperty(key, value);
-                    } else {
-                        envProps.setProperty(line, "");
-                    }
-                }
-                in.close();
-                new java.io.File("temp.env").delete();
-
-                Enumeration names = envProps.propertyNames();
-                for (Enumeration e = names; e.hasMoreElements();) {
-                    String name2 = (String) e.nextElement();
-                    if (name2.equals(name)) {
-                        return envProps.getProperty(name);
-                    }
-                }
-                return "";
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-                return "";
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return "";
-            }
-        }
-
-    
+//        public static String environment_get_variable(String name) {
+//            try {
+//                java.util.Properties envProps = new java.util.Properties();
+//                java.lang.Runtime r = java.lang.Runtime.getRuntime();
+//                java.lang.Process p = r.exec("cmd /c set>temp.env");
+//                java.lang.Thread.sleep(500);
+//                java.io.FileInputStream in = new java.io.FileInputStream("temp.env");
+//                java.io.BufferedReader br = new java.io.BufferedReader(new java.io.InputStreamReader(in));
+//                java.lang.String line = null;
+//                while ((line = br.readLine()) != null) {
+//                    int index = -1;
+//                    if ((index = line.indexOf("=")) > -1) {
+//                        java.lang.String key = line.substring(0, index).trim();
+//                        java.lang.String value = line.substring(index + 1).trim();
+//                        envProps.setProperty(key, value);
+//                    } else {
+//                        envProps.setProperty(line, "");
+//                    }
+//                }
+//                in.close();
+//                new java.io.File("temp.env").delete();
+//
+//                Enumeration names = envProps.propertyNames();
+//                for (Enumeration e = names; e.hasMoreElements();) {
+//                    java.lang.String name2 = (java.lang.String) e.nextElement();
+//                    if (name2.equals(name)) {
+//                        return envProps.getProperty(name+"");
+//                    }
+//                }
+//                return "";
+//            } catch (InterruptedException ex) {
+//                ex.printStackTrace();
+//                return "";
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//                return "";
+//            }
+//        }
+//
+//    
 }

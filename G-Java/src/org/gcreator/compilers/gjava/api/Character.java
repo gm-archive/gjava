@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.gcreator.compilers.gjava.api.lang;
+package org.gcreator.compilers.gjava.api;
 
 /**
  * The Character class wraps a value of the primitive type char in an object.

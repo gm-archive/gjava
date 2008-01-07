@@ -21,7 +21,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param name
          */
         public static void Open(String name) {
-            ini = new INIFile(name);
+            ini = new INIFile(""+name);
         }
 
         /**
@@ -39,7 +39,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @return
          */
         public static String readString(String section, String key, String def) {
-            return ini.getStringProperty(section, key);
+            return new String(ini.getStringProperty(""+section, ""+key));
         }
 
         /**
@@ -50,7 +50,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @return
          */
         public static double readReal(String section, String key, double def) {
-            return ini.getDoubleProperty(section, key).doubleValue();
+            return ini.getDoubleProperty(""+section, ""+key).doubleValue();
         }
 
         /**
@@ -60,7 +60,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param value
          */
         public static void writeString(String section, String key, String value) {
-            ini.setStringProperty(section, key, value, "");
+            ini.setStringProperty(""+section, ""+key, ""+value, "");
         }
 
         /**
@@ -70,7 +70,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param value
          */
         public static void writeReal(String section, String key, double value) {
-            ini.setDoubleProperty(section, key, value, "");
+            ini.setDoubleProperty(""+section, ""+key, value, "");
         }
 
         /**
@@ -80,7 +80,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @return
          */
         public static boolean keyExists(String section, String key) {
-            String[] keys = ini.getPropertyNames(section);
+            java.lang.String[] keys = ini.getPropertyNames(""+section);
             for (int i = 0; i <= keys.length; i++) {
                 if (keys[i].equals(key)) {
                     return true;
@@ -95,7 +95,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @return
          */
         public static boolean sectionExists(String section) {
-            String[] sections = ini.getAllSectionNames();
+            java.lang.String[] sections = ini.getAllSectionNames();
             for (int i = 0; i <= ini.getTotalSections(); i++) {
                 if (sections[i].equals(section)) {
                     return true;
@@ -110,7 +110,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param key
          */
         public static void keyDelete(String section, String key) {
-            ini.removeProperty(section, key);
+            ini.removeProperty(""+section, ""+key);
         }
 
         /**
@@ -118,7 +118,7 @@ import org.gcreator.compilers.gjava.api.res.INIFile;
          * @param section
          */
         public static void sectionDelete(String section) {
-            ini.removeSection(section);
+            ini.removeSection(""+section);
         }
     }
 

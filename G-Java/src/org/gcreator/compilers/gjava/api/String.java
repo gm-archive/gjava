@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.gcreator.compilers.gjava.api.lang;
+package org.gcreator.compilers.gjava.api;
 
 import java.text.DecimalFormat;
 import org.gcreator.compilers.gjava.api.*;
@@ -17,15 +17,15 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
 
     java.lang.String s = "";
 
-    String(java.lang.String ss) {
+    public String(java.lang.String ss) {
         s = ss;
     }
     
-    String(byte[] b) {
+    public String(byte[] b) {
         s = new java.lang.String(b);
     }
     
-    String(char[] c) {
+    public String(char[] c) {
         s = new java.lang.String(c);
     }
 
@@ -37,7 +37,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
         return s;
     }
 
-    @Override
+    
     public java.lang.String toString() {
         return s;
     }

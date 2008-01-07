@@ -9,7 +9,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.api.lang.String;
+import org.gcreator.compilers.gjava.api.String;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JColorChooser;
@@ -27,7 +27,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param str
          */
         public static void show_message(String str) {
-            GScript.msgbox(str, 0);
+           // GScript.msgbox(str, 0);
         }
 
         /**
@@ -46,7 +46,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @return
          */
         public static String get_string(String str, String def) {
-            return JOptionPane.showInputDialog(null, str, def);
+            return new String(JOptionPane.showInputDialog(null, str.getString(), def));
         }
 
         /**
@@ -55,9 +55,9 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param def
          * @return
          */
-        public static double get_integer(String str, double def) {
-            return Double.parseDouble(JOptionPane.showInputDialog(null, str, "" + def));
-        }
+//        public static double get_integer(String str, double def) {
+//            return new String(Double.parseDouble(JOptionPane.showInputDialog(null, str.getString(), "" + def)));
+//        }
 
         /**
          * Asks the player for a color. defcol is the default color. If the user presses Cancel the value -1 is returned.
@@ -75,16 +75,16 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param fname
          * @return
          */
-        public static String get_open_filename(javax.swing.filechooser.FileFilter filter, String fname) {
-            JFileChooser jfc = new JFileChooser();
-            jfc.setSelectedFile(new File(fname));
-            jfc.setFileFilter(filter);
-            if (jfc.showOpenDialog(null) == (JFileChooser.APPROVE_OPTION)) {
-                return jfc.getName();
-            } else {
-                return "";
-            }
-        }
+//        public static String get_open_filename(javax.swing.filechooser.FileFilter filter, String fname) {
+//            JFileChooser jfc = new JFileChooser();
+//            jfc.setSelectedFile(new File(fname));
+//            jfc.setFileFilter(filter);
+//            if (jfc.showOpenDialog(null) == (JFileChooser.APPROVE_OPTION)) {
+//                return jfc.getName();
+//            } else {
+//                return "";
+//            }
+//        }
 
         /**
          * Asks for a filename to save with the given filter. If the user presses Cancel an empy string is returned.
@@ -92,32 +92,32 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param fname
          * @return
          */
-        public static String get_save_filename(javax.swing.filechooser.FileFilter filter, String fname) {
-            JFileChooser jfc = new JFileChooser();
-            jfc.setSelectedFile(new File(fname));
-            jfc.setFileFilter(filter);
-            if (jfc.showSaveDialog(null) == (JFileChooser.APPROVE_OPTION)) {
-                return jfc.getName();
-            } else {
-                return "";
-            }
-        }
+//        public static String get_save_filename(javax.swing.filechooser.FileFilter filter, String fname) {
+//            JFileChooser jfc = new JFileChooser();
+//            jfc.setSelectedFile(new File(fname));
+//            jfc.setFileFilter(filter);
+//            if (jfc.showSaveDialog(null) == (JFileChooser.APPROVE_OPTION)) {
+//                return jfc.getName();
+//            } else {
+//                return "";
+//            }
+//        }
 
         /**
          * Asks for a directory. dname is the default name. If the user presses Cancel an empy string is returned.
          * @param dname
          * @return
          */
-        public static String get_directory(String dname) {
-            JFileChooser jfc = new JFileChooser();
-            jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            jfc.setSelectedFile(new File(dname));
-            if (jfc.showOpenDialog(null) == (JFileChooser.APPROVE_OPTION)) {
-                return jfc.getName();
-            } else {
-                return "";
-            }
-        }
+//        public static String get_directory(String dname) {
+//            JFileChooser jfc = new JFileChooser();
+//            jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+//            jfc.setSelectedFile(new File(dname));
+//            if (jfc.showOpenDialog(null) == (JFileChooser.APPROVE_OPTION)) {
+//                return jfc.getName();
+//            } else {
+//                return "";
+//            }
+//        }
 
         /**
          * Displays a standard error message (and/or writes it to the log file). abort indicates whether the game should abort.
@@ -125,7 +125,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param abort
          */
         public static void show_error(String str, boolean abort) {
-            GScript.msgbox(str, 1);
+           // GScript.msgbox(str, 1);
             if (abort) {
                 System.exit(1);
             }

@@ -1,5 +1,5 @@
 
-package org.gcreator.compilers.gjava.api.lang;
+package org.gcreator.compilers.gjava.api;
 
 /**
  * The Long class wraps a value of the primitive type long  in an object.

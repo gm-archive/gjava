@@ -31,32 +31,32 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
         /**
          *  The current year.
          */
-        public static double current_year = Date.get_year(Date.currentDate());
+        public static double current_year = Date.getYear(Date.currentDate());
 
         /**
          *  The current month.
          */
-        public static double current_month = Date.get_month(Date.currentDate());
+        public static double current_month = Date.getMonth(Date.currentDate());
         /**
          * The current day.
          */
-        public static double current_day = Date.get_day(Date.currentDate());
+        public static double current_day = Date.getDay(Date.currentDate());
         /**
          * The current day of the week (1=sunday, ..., 7=saturday).
          */
-        public static double current_weekday = Date.get_weekday(Date.currentDate());
+        public static double current_weekday = Date.getWeekday(Date.currentDate());
         /**
          * The current hour.
          */
-        public static double current_hour = Date.get_hour(Date.currentTime());
+        public static double current_hour = Date.getHour(Date.currentTime());
         /**
          * The current minute.
          */
-        public static double current_minute = Date.get_minute(Date.currentTime());
+        public static double current_minute = Date.getMinute(Date.currentTime());
         /**
          * The current second.
          */
-        public static double current_second = Date.get_second(Date.currentTime());
+        public static double current_second = Date.getSecond(Date.currentTime());
 
         /**
          * Sleeps numb milliseconds.

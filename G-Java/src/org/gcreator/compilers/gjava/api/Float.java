@@ -1,5 +1,5 @@
 
-package org.gcreator.compilers.gjava.api.lang;
+package org.gcreator.compilers.gjava.api;
 
 /**
  * The Float class wraps a value of primitive type float in an object.

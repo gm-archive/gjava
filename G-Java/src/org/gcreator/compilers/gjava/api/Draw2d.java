@@ -49,7 +49,7 @@ public static Graphics g;
 
     public static void text( String str, double x, double y) {
         if (g != null) {
-            g.drawString(str, (int) x, (int) y);
+            g.drawString(str+"", (int) x, (int) y);
         }
     }
 

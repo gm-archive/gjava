@@ -38,7 +38,7 @@ public class Vector extends Object {
      * @param o element to be appended to this Vector
      * 
      */
-    public void add(Object o) {
+    public void addElement(Object o) {
         source.add(o);
     }
     
@@ -67,7 +67,7 @@ public class Vector extends Object {
     @Override
     public Object clone()
     {
-       return source.clone();
+       return (Object)source.clone();
     }
     
      /**
@@ -90,7 +90,7 @@ public class Vector extends Object {
      * @return     the first component of this vector
      */
     public Object firstElement() {
-        return source.firstElement();
+        return (Object)source.firstElement();
     }
     
     /**
@@ -102,7 +102,7 @@ public class Vector extends Object {
      *            ({@code index < 0 || index >= size()})
      */
     public  Object get(int index) {
-        return source.get(index);
+        return (Object)source.get(index);
     }
     
      /**
@@ -156,7 +156,7 @@ public class Vector extends Object {
      *          <code>size()&nbsp;-&nbsp;1</code>.
      */
     public Object lastElement() {
-        return source.lastElement();
+        return (Object)source.lastElement();
     }
     
     /**
@@ -220,7 +220,7 @@ public class Vector extends Object {
      * @since 1.2
      */
     public Object remove(int index) {
-        return source.remove(index);
+        return (Object)source.remove(index);
     }
 
     /**
@@ -241,7 +241,7 @@ public class Vector extends Object {
      *	       ({@code index < 0 || index >= size()})
      */
     public Object set(int index, Object element) {
-        return source.set(index, element);
+        return (Object)source.set(index, element);
     }
     
     /**

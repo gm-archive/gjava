@@ -21,7 +21,7 @@ package org.gcreator.compilers.gjava.api;
         /**
          * String indicating the last error message
          */
-        public static String error_last = "";
+        public static String error_last = new String("");
 
         /**
          * 

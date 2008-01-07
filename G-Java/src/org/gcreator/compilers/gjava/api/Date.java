@@ -636,7 +636,7 @@ public class Date {
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis(time + milis);
-        return nDate.toString();
+        return new String(nDate.toString());
     }
 
     /**
@@ -649,7 +649,7 @@ public class Date {
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis(time + milis);
-        return nDate.toString();
+        return new String(nDate.toString());
     }
 
     /**
@@ -662,7 +662,7 @@ public class Date {
         long time = then.getTime().getTime();
         Calendar nDate = Calendar.getInstance();
         nDate.setTimeInMillis(milis);
-        return nDate.toString();
+        return new String(nDate.toString());
     }
 
     /**

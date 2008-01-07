@@ -24,7 +24,7 @@ public class BinaryFile {
             try {
                 f = new FileStream();
                 
-                    f.open(fname, true);
+                    f.open(""+fname, true);
                 
                 //return f;
             } catch (IOException ex) {

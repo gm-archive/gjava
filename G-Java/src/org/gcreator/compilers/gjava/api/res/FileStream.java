@@ -42,6 +42,9 @@ public class FileStream
 	 */
 	public void open(String file,boolean write) throws IOException
 		{
+            File f = new File(file);
+            if (!f.exists())
+            f.createNewFile();
 		if (write)
 			this.write = true;
 		else
@@ -49,7 +52,7 @@ public class FileStream
 		if (write)
 			t = new RandomAccessFile(file,"rw");
 		else
-			f = new RandomAccessFile(file,"r");
+			t = new RandomAccessFile(file,"r");
                 
                 fname = file;
 		}

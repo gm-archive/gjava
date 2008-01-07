@@ -49,7 +49,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
         public static String getText() {
             Transferable clipboardContents = systemClipboard.getContents(null);
             if (clipboardContents == null) {
-                return "";
+                return new String("");
             } else {
                 try {
                     if (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
@@ -60,7 +60,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
                 } catch (IOException ioe) {
                 }
             }
-            return "";
+            return new String("");
         }
 
         /**
@@ -68,7 +68,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param s String to set clipboard to
          */
         public static void setText(String s) {
-            Transferable transferableText = new StringSelection(s);
+            Transferable transferableText = new StringSelection(""+s);
             systemClipboard.setContents(transferableText, null);
             
         }

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.api.lang;
+package org.gcreator.compilers.gjava.api;
 
 /**
  * The Short class is the standard wrapper for short values.

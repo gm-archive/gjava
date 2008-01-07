@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.gcreator.compilers;
 
-import java.awt.Image;
 import org.antlr.runtime.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,10 +14,10 @@ import java.io.IOException;
 import java.util.Enumeration;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
@@ -35,8 +31,6 @@ import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.*;
-import org.gcreator.plugins.platform.gscriptLexer;
-import org.gcreator.plugins.platform.gscriptParser;
 import org.gcreator.units.ActorInScene;
 import sun.awt.image.ToolkitImage;
 
@@ -237,7 +231,13 @@ public class GJava extends PlatformCore {
 //                    }
 //                });
 //                
-        
+        ToolbarButton btn = new ToolbarButton("Run program", "Run", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")));
+btn.setActionListener(new ActionListener() {
+   public void actionPerformed(ActionEvent evt) {
+      run(Aurwindow.getMainProject());
+   }
+});
+ToolbarManager.toolbuttons.add(btn);
         JMenuItem i = new JMenuItem("Compile with G-Java");
         i.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
