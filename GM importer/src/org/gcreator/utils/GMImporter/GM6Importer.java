@@ -10,6 +10,7 @@ package org.gcreator.utils.GMImporter;
 import java.io.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.core.*;
@@ -29,6 +30,22 @@ public class GM6Importer {
     public static final byte LOADBAR_NONE = 0;
     public static final byte LOADBAR_DEFAULT = 1;
     public static final byte LOADBAR_CUSTOM = 2;
+    
+    public static final byte EV_CREATE = 0;
+    public static final byte EV_DESTROY = 1;
+    public static final byte EV_ALARM = 2;
+    public static final byte EV_STEP = 3;
+    public static final byte EV_COLLISION = 4;
+    public static final byte EV_KEYBOARD = 5;
+    public static final byte EV_MOUSE = 6;
+    public static final byte EV_OTHER = 7;
+    public static final byte EV_DRAW = 8;
+    public static final byte EV_KEYPRESS = 9;
+    public static final byte EV_KEYRELEASE = 10;
+    
+    public static final byte EXEC_NONE = 0;
+    public static final byte EXEC_FUNCTION = 1;
+    public static final byte EXEC_CODE = 2;
 
     private GM6Importer() {
     }
@@ -42,6 +59,8 @@ public class GM6Importer {
             this.pro = pro;
             this.in = in;
         }
+        
+        Vector<org.gcreator.fileclass.File> sprites = new Vector<org.gcreator.fileclass.File>();
     }
 
     private static GmFormatException versionError(String error, String res, int ver) {
@@ -287,6 +306,7 @@ public class GM6Importer {
         Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("Sprites"));
         for (int i = 0; i < noSprites; i++) {
             if (!in.readBool()) {
+                c.sprites.add(null);
                 continue;
             }
             org.gcreator.fileclass.File spriteFile;
@@ -296,6 +316,7 @@ public class GM6Importer {
                 throw versionError("IN", "SPRITES", i, ver);
             } //$NON-NLS-1$ //$NON-NLS-2$
             spriteFile = new org.gcreator.fileclass.File(spriteFolder, name, "sprite", null);
+            c.sprites.add(spriteFile);
             Sprite val;
             spriteFile.value = val = new Sprite(name);
             val.width = in.read4();
@@ -602,17 +623,96 @@ public class GM6Importer {
             f.value = a = new Actor(f.name);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
-            in.read4(); //String temp
+            int temp = in.read4();
+            a.sprite = null;
+            if(temp<c.sprites.size()){
+                org.gcreator.fileclass.File spr = c.sprites.get(temp);
+                if(spr!=null)
+                    a.sprite = spr.name;
+            }
             a.solid = in.readBool();
             a.visible = in.readBool();
             a.depth = in.read4();
             a.persistant = in.readBool();
             in.read4(); //parent
-            in.read4(); //temp again
+            in.read4(); //temp again for mask
             in.skip(4);
             for (int j = 0; j < 11; j++){
-                
+                boolean done = false;
+                while(!done){
+                    int first = in.read4();
+                    int id = 0;
+                    if(first!=-1){
+                        if(j==EV_COLLISION)
+                            ; //ev.other = c.objids.get(first);
+                        else
+                            id = first; //ev.id = first;
+                        //ev.mainId = j;
+                        readActions(c, i, j*1000+id);
+                    }
+                    else
+                        done = true;
+                }
             }
         }
+    }
+    
+    private static void readActions(GmFileContext c, int format1, int format2)
+            throws IOException, GmFormatException{
+        GmStreamDecoder in = c.in;
+        int ver = in.read4();
+        if (ver != 400){
+            throw new GmFormatException("version error:" + ver);
+        }
+        int noacts = in.read4();
+        for(int i = 0; i < noacts; i++){
+            in.skip(4);
+            int libid = in.read4();
+            int actid = in.read4();
+            org.gcreator.actions.Action act = retrieveAction(libid, actid);
+            boolean unknownLib = act == null;
+            if (unknownLib){
+                in.read4(); //action kind
+                in.readBool(); //allow relative
+                in.readBool(); //question
+                in.readBool(); //can apply to
+                int exectype = in.read4();
+                if(exectype == EXEC_FUNCTION)
+                    in.readStr(); //Exec info
+                else
+                    in.skip(in.read4());
+                if(exectype == EXEC_CODE)
+                    in.readStr(); //Exec info
+                else
+                    in.skip(in.read4());
+            }
+            else{
+                in.skip(20);
+                in.skip(in.read4());
+                in.skip(in.read4());
+            }
+            int arglen = in.read4(); //argument count
+            int argkinds = in.read4();
+            for(int x = 0; x < argkinds; x++)
+                in.read4();
+            int appliesTo = in.read4();
+            in.readBool(); //relative
+            int actualnoargs = in.read4();
+            for (int l = 0; l < actualnoargs; l++)
+            {
+                if (l >= arglen){
+                    in.skip(in.read4());
+                    continue;
+                }
+                in.readStr(); //strval
+            }
+            in.readBool(); //Not
+        }
+    }
+    
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid){
+        org.gcreator.actions.Action act = null;
+        
+        return act;
     }
 }
