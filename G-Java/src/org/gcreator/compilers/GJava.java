@@ -219,6 +219,16 @@ public class GJava extends PlatformCore {
         init();
     }
 
+    public void onLoad(){
+        ToolbarButton btn = new ToolbarButton("Run program", "Run", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")));
+        btn.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                run(Aurwindow.getMainProject());
+            }
+        });
+        ToolbarManager.toolbuttons.add(btn);
+    }
+    
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         // add toolbar button
@@ -231,13 +241,6 @@ public class GJava extends PlatformCore {
 //                    }
 //                });
 //                
-        ToolbarButton btn = new ToolbarButton("Run program", "Run", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")));
-btn.setActionListener(new ActionListener() {
-   public void actionPerformed(ActionEvent evt) {
-      run(Aurwindow.getMainProject());
-   }
-});
-ToolbarManager.toolbuttons.add(btn);
         JMenuItem i = new JMenuItem("Compile with G-Java");
         i.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
