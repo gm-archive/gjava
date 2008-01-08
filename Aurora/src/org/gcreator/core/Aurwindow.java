@@ -1,11 +1,4 @@
-/*
- * window.java
- *
- * Created on 24/Ago/2007, 13:34:11
- *
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package org.gcreator.core;
 
 import java.awt.*;
@@ -38,6 +31,7 @@ import org.gcreator.units.*;
 /**
  *
  * @author LuÃƒÆ’Ã‚Â­s
+ * @author TGMG
  */
 public class Aurwindow extends JFrame {
 

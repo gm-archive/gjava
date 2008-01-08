@@ -1,77 +1,177 @@
-d3d_start()
-d3d_end()
-d3d_set_hidden(enable)
-d3d_set_perspective(enable)
-d3d_set_depth(depth)
-d3d_primitive_begin(kind)
-d3d_vertex(x,y,z)
-d3d_vertex_color(x,y,z,col,alpha)
-d3d_primitive_end()
-d3d_primitive_begin_texture(kind,texid)
-d3d_vertex_texture(x,y,z,xtex,ytex)
-d3d_vertex_texture_color(x,y,z,xtex,ytex,col,alpha)
-d3d_draw_block(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
-d3d_draw_cylinder(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,closed,steps)
-d3d_draw_cone(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,closed,steps)
-d3d_draw_ellipsoid(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat,steps)
-d3d_draw_wall(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
-d3d_draw_floor(x1,y1,z1,x2,y2,z2,texid,hrepeat,vrepeat)
-d3d_set_projection(xfrom,yfrom,zfrom,xto,yto,zto,xup,yup,zup)
-d3d_set_projection_ext(xfrom,yfrom,zfrom,xto,yto,zto,xup,yup,zup,angle,aspect,znear,zfar)
-d3d_set_projection_ortho(x,y,w,h,angle)
-d3d_set_projection_perspective(x,y,w,h,angle)
-d3d_transform_set_identity()
-d3d_transform_set_translation(xt,yt,zt)
-d3d_transform_set_scaling(xs,ys,zs)
-d3d_transform_set_rotation_x(angle)
-d3d_transform_set_rotation_y(angle)
-d3d_transform_set_rotation_z(angle)
-d3d_transform_set_rotation_axis(xa,ya,za,angle)
-d3d_transform_add_translation(xt,yt,zt)
-d3d_transform_add_scaling(xs,ys,zs)
-d3d_transform_add_rotation_x(angle)
-d3d_transform_add_rotation_y(angle)
-d3d_transform_add_rotation_z(angle)
-d3d_transform_add_rotation_axis(xa,ya,za,angle)
-d3d_transform_stack_clear()
-d3d_transform_stack_empty()
-d3d_transform_stack_push()
-d3d_transform_stack_pop()
-d3d_transform_stack_top()
-d3d_transform_stack_discard()
-d3d_set_fog(enable,color,start,end)
-d3d_set_lighting(enable)
-d3d_set_shading(smooth)
-d3d_set_culling(cull)
-d3d_light_define_direction(ind,dx,dy,dz,col)
-d3d_light_define_point(ind,x,y,z,range,col)
-d3d_light_enable(ind,enable)
-d3d_vertex_normal(x,y,z,nx,ny,nz)
-d3d_vertex_normal_color(x,y,z,nx,ny,nz,col,alpha)
-d3d_vertex_normal_texture(x,y,z,nx,ny,nz,xtex,ytex)
-d3d_vertex_normal_texture_color(x,y,z,nx,ny,nz,xtex,ytex,col,alpha)
+/**
+ * This script will test the basics of gml
+ */
+ 
+/**
+ * Assignments
+ */
+varname1= 3
+varname1 *= 3-4
+//show_message(string(varname1));
+varname1 -= 3-4
+//show_message(string(varname1));
+varname1 += 3-4
+//show_message(string(varname1));
+varname1 := 3-4
+//show_message(string(varname1));
+varname1 /= 3-4
+//show_message(string(varname1));
+varname1 |= 3-4
+//show_message(string(varname1));
+varname1 ^= 3-4
+//show_message(string(varname1));
 
-d3d_model_create()
-d3d_model_destroy(ind)
-d3d_model_clear(ind)
-d3d_model_save(ind,fname)
-d3d_model_load(ind,fname)
-d3d_model_draw(ind,x,y,z,texid)
+/**
+ * Test expressions and further test assignments
+ */
+ {
+  x = 23;
+  color = $FFAA00;
+  str = 'hello world';
+  str = "hello world";
+  y += 5;
+  x *= y;
+  x = y << 2;
+  x = y >> 2;
+  x = 23*((2+4) / sin(y));
+  str = 'hello' + " world";
+  b = (x < 5) && !(x==2 || x==4);
+  b = (x <= 5) && !(x>2 ^^ x>4);
+  b= (x != 3)
+  b= -show_message("");
+  b=true
+  b=false
+  b= 3&4
+  b=3^4
+  b=3|4
+  b=3+4*2 mod 2
+  b= -(b div 2)
+  b= ~(b /2)
+  
+}
 
-d3d_model_primitive_begin(ind,kind)
-d3d_model_vertex(ind,x,y,z)
-d3d_model_vertex_color(ind,x,y,z,col,alpha)
-d3d_model_vertex_texture(ind,x,y,z,xtex,ytex)
-d3d_model_vertex_texture_color(ind,x,y,z,xtex,ytex,col,alpha)
-d3d_model_vertex_normal(ind,x,y,z,nx,ny,nz)
-d3d_model_vertex_normal_color(ind,x,y,z,nx,ny,nz,col,alpha)
-d3d_model_vertex_normal_texture(ind,x,y,z,nx,ny,nz,xtex,ytex)
-d3d_model_vertex_normal_texture_color(ind,x,y,z,nx,ny,nz,xtex,ytex,col,alpha)
-d3d_model_primitive_end(ind)
+/**
+ * Test local and global variable creation
+ */
+globalvar varname1
+  var varname2
+  
+ /**
+ * Test other instance variables
+ */ 
+  ball.speed = 0;
+  other.sprite_index = sprite5;
+all.speed = 0;
+global.message = 'A good result';
+global.x = ball.x;
+(100032).speed = 0;
+{
+  nnn = instance_create(100,100,ball);
+  nnn.speed = 8;
+}
+{
+  obj[0] = ball;
+  obj[1] = flag;
+  obj[0].alarm[4] = 12;
+  obj[1].id.x = 12;
+}
 
-d3d_model_block(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)
-d3d_model_cylinder(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,closed,steps)
-d3d_model_cone(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,closed,steps)
-d3d_model_ellipsoid(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat,steps)
-d3d_model_wall(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)
-d3d_model_floor(ind,x1,y1,z1,x2,y2,z2,hrepeat,vrepeat)
+/**
+ * Test arrays
+ */ 
+{
+  a[0] = 1;
+  i = 1;
+  while (i < 10) { a[i] = 2*a[i-1]; i += 1;}
+  b[4,6] = 32;
+}
+
+/**
+ * Test if statements
+ */ 
+if (x<200) {x += 4} else {x -= 4};
+if x>200 ; else if x<10 x*=9
+
+/**
+ * Test repeat statements
+ */ 
+ repeat (5) instance_create(random(400),random(400),ball);
+repeat (-3) {}
+
+/**
+ * Test while statements
+ */ 
+ while (!place_free(x,y))
+  {
+    x = random(room_width);
+    y = random(room_height);
+  }
+  
+/**
+ * Test do statements
+ */ 
+ do
+  {
+    x = random(room_width);
+    y = random(room_height)
+  }
+  until (place_free(x,y))
+  
+/**
+ * Test for statements
+ */  
+for (i=0; i<=9; i+=1) list[i] = i+1;
+for (i=0; i<=9; i+=1) continue;
+
+/**
+ * Test case statements
+ */ 
+ switch (keyboard_key)
+{
+  case vk_left:
+  case vk_numpad4:
+    x -= 4; break;
+  case vk_right:
+  case vk_numpad6:
+    x += 4; break;
+  default:
+}
+
+/**
+ * Test function statement
+ */ 
+(instance_nearest(x,y,obj)).speed = 0
+
+/**
+ * Test with statements
+ */ 
+with (ball) y += 8;
+with (ball)
+{
+  x = random(room_width);
+  y = random(room_height);
+}
+with (ball)
+{
+  x = other.x;
+  y = other.y;
+}
+with (ball) instance_destroy();
+with (all)
+{
+  if (distance_to_object(other) < 50) instance_destroy();
+}
+
+
+
+/**
+ * Test return statement
+ */ 
+return (argument0*argument0);
+
+
+/**
+ * Test exit statement
+ */ 
+exit;
+

@@ -2,16 +2,18 @@ import java.io.*;
 import org.antlr.runtime.*;
 import org.antlr.runtime.debug.DebugEventSocketProxy;
 
+import org.gcreator.plugins.platform.*;
+
 
 public class __Test__ {
 
     public static void main(String args[]) throws Exception {
-        parsegmlfunctionlistLexer lex = new parsegmlfunctionlistLexer(new ANTLRFileStream("C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\__Test___input.txt"));
+        gscriptLexer lex = new gscriptLexer(new ANTLRFileStream("C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\__Test___input.txt"));
         CommonTokenStream tokens = new CommonTokenStream(lex);
 
-        parsegmlfunctionlistParser g = new parsegmlfunctionlistParser(tokens, 49174);
+        gscriptParser g = new gscriptParser(tokens, 49174);
         try {
-            g.start();
+            g.code();
         } catch (RecognitionException e) {
             e.printStackTrace();
         }

@@ -42,6 +42,12 @@ public class PlatformCore extends PluginCore {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof org.gcreator.fileclass.File) {
                     try {
+                        System.out.println(""+((org.gcreator.fileclass.File) childNode).type);
+                        
+                        if (((org.gcreator.fileclass.File) childNode).type.equals("settings")) {
+                            parseSettings((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
+                        }
+                        
                         if (((org.gcreator.fileclass.File) childNode).type.equals("sprite")) {
                             parseSprite((Sprite) ((org.gcreator.fileclass.File) childNode).value);
                         } else if (((org.gcreator.fileclass.File) childNode).type.equals("actor")) {
@@ -56,7 +62,9 @@ public class PlatformCore extends PluginCore {
                             parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
                         } else if (((org.gcreator.fileclass.File) childNode).type.equals("egml")) {
                             parseClass((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
- }
+                       } else if (((org.gcreator.fileclass.File) childNode).type.equals("settings")) {
+                            parseSettings((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
+                        }
                     } catch (Exception e) {
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
@@ -96,6 +104,8 @@ public class PlatformCore extends PluginCore {
     public void parseClass(String s,String name) throws IOException {
     System.out.println("called wrong method!");
     }
+    
+    
 
     /**
      * Varstatement called when a varstatement is parsed, returns the language code
@@ -107,7 +117,9 @@ public class PlatformCore extends PluginCore {
         //System.out.println("Var statement: " + type + vars);
         if (type.equals("var"))
             type = "Object";
-        return type + " "+vars;
+        else if (type.equals("globalvar"))
+            type = "Object";
+        return "/*var statement*/{"+vars+"}";//type + " "+vars;
     }
 
     public String fieldstatement(String m, String varstatement) {
@@ -140,7 +152,7 @@ public class PlatformCore extends PluginCore {
     }
     
     public String notexpression(String exp) {
-        return " !("+exp+")";
+        return " ("+exp+").not()";
     }
     
     public String pexpression(String exp) {
@@ -202,20 +214,23 @@ public class PlatformCore extends PluginCore {
         String instance="",value="";
         
         if(variable.contains("all."))
-            ;
+            instance="(new All())";
         else if(variable.contains("other."))
             instance="other";
         else if(variable.contains("noone."))
-            ;
+             instance="(new Object())";
         else if(variable.contains("self."))
             instance="self";
-        else if(variable.contains("."))
-            ;
+        else if(variable.contains("global."))
+            instance="Global";
         else if(variable.contains("("))
-            ;
+            instance="(new All"+variable.substring(0,variable.indexOf(".")-1)+"))";
+        else if(variable.contains("."))
+            instance="(new All("+variable.substring(0,variable.indexOf(".")-1)+"))";
+        
         else
             instance="self";
-        if (instance.equals("self")||instance.equals("other")||instance.equals("noone"))
+        variable = variable.substring(variable.indexOf(".")+1,variable.length());
            value = instance+".setVariable(\""+variable+"\"," ;
         
         if (operator.equals("="))
@@ -267,12 +282,16 @@ public class PlatformCore extends PluginCore {
             instance="(new Object())";
         else if(variable.contains("self."))
             instance="self";
+        else if(variable.contains("global."))
+            instance="Global";
         else if(variable.contains("."))
             instance="(new All(new "+variable+"()))";
         else if(variable.contains("("))
-            ;
+            instance="()";
         else
             instance="self";
+        
+        variable = variable.substring(variable.indexOf(".")+1,variable.length());
         
         value=instance+".getVariable(\""+variable+"\")";
         return value;
@@ -440,5 +459,10 @@ public class PlatformCore extends PluginCore {
         }
         in.close();
         out.close();
+    }
+
+    public void parseSettings(String string, String name) {
+        System.out.println(string+"got here");
+        
     }
 }
