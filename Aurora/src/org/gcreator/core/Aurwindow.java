@@ -376,11 +376,7 @@ public class Aurwindow extends JFrame {
         setIconImage(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")).getImage());
         super.setContentPane(new JPanel());
         istabs = true;
-        console = new JTextPane(){
-            public void paint(Graphics g){
-                super.paint(g);
-            }
-        };
+        console = new JTextPane();
         topContainer = new Container();
         bottomContainer = new Container();
         rightContainer = new Container();
@@ -986,6 +982,7 @@ public class Aurwindow extends JFrame {
         setVisible(true);
         statusbar.setStandardText("Done");
         statusbar.restoreText();
+        statusbar.getProgressBar().setVisible(false);
     }
     //</editor-fold>
 

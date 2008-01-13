@@ -37,6 +37,10 @@ public class Statusbar extends javax.swing.JPanel {
         return text;
     }
     
+    public ExtendedProgressBar getProgressBar(){
+        return extendedProgressBar1;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -47,7 +51,7 @@ public class Statusbar extends javax.swing.JPanel {
 
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        extendedProgressBar1 = new org.gcreator.components.ExtendedProgressBar();
 
         jLabel5.setText("jLabel5");
 
@@ -58,19 +62,14 @@ public class Statusbar extends javax.swing.JPanel {
 
         jLabel1.setText("Text");
         add(jLabel1, java.awt.BorderLayout.LINE_START);
-
-        jProgressBar1.setValue(10);
-        jProgressBar1.setIndeterminate(true);
-        jProgressBar1.setString("10%");
-        jProgressBar1.setStringPainted(true);
-        add(jProgressBar1, java.awt.BorderLayout.LINE_END);
+        add(extendedProgressBar1, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.gcreator.components.ExtendedProgressBar extendedProgressBar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JProgressBar jProgressBar1;
     // End of variables declaration//GEN-END:variables
     
 }
