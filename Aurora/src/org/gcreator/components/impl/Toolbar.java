@@ -7,6 +7,7 @@ package org.gcreator.components.impl;
 
 import java.util.*;
 import javax.swing.*;
+import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.PopupListener;
 import org.gcreator.core.*;
 
@@ -52,7 +53,7 @@ public class Toolbar {
                 toolbar.addSeparator();
             else{
                 ToolbarButton btn = (ToolbarButton) item;
-                JButton button = new JButton();
+                ExtendedToolButton button = new ExtendedToolButton();
                 if(btn.isTextVisible())
                     button.setText(btn.getText());
                 button.setToolTipText(btn.getText());

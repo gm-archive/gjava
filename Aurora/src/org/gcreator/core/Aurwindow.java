@@ -30,7 +30,7 @@ import org.gcreator.units.*;
 
 /**
  *
- * @author LuÃƒÆ’Ã‚Â­s
+ * @author Luís Reis
  * @author TGMG
  */
 public class Aurwindow extends JFrame {
@@ -68,9 +68,12 @@ public class Aurwindow extends JFrame {
     public static NewProject newproject;
     public static NewFileGroup newfilegroup;
     public static AboutPanel about;
-    public Container topContainer, bottomContainer, leftContainer, rightContainer;
+    public Container topContainer, bottomContainer,
+            leftContainer, rightContainer;
     
     private ChangeListener changed;
+    
+    public Statusbar statusbar;
     
     private boolean isWorkspaceLeft(){
         if(items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected())
@@ -391,6 +394,7 @@ public class Aurwindow extends JFrame {
         console.setEditable(false);
         console.setContentType("text/html");
         scroller.setViewportView(console);
+        statusbar = new Statusbar();
 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if(ver>=6){
@@ -889,20 +893,23 @@ public class Aurwindow extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));*/
-        Container panel = getContentPane();
+        Container cont = getContentPane();
+        Container panel = new Container();
         panel.setLayout(new BorderLayout());
         topContainer.setLayout(new GridLayout(0,1));
+        cont.setLayout(new BorderLayout());
+        cont.add(panel, BorderLayout.CENTER);
+        cont.add(statusbar, BorderLayout.SOUTH);
         bottomContainer.setLayout(new GridLayout(0,1));
         rightContainer.setLayout(new GridLayout(1,0));
         leftContainer.setLayout(new GridLayout(1,0));
         //Begin content manager
         //topContainer.add(tool);
-        panel.add(topContainer, BorderLayout.NORTH);
         panel.add(bottomContainer, BorderLayout.SOUTH);
+        panel.add(topContainer, BorderLayout.NORTH);
         panel.add(leftContainer, BorderLayout.WEST);
         panel.add(rightContainer, BorderLayout.EAST);
         panel.add(splitter1, BorderLayout.CENTER);
-        
 
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
@@ -977,6 +984,8 @@ public class Aurwindow extends JFrame {
         updateToDefaultNavigatorPanel(welcome);
         setMinimumSize(new Dimension(200, 200));
         setVisible(true);
+        statusbar.setStandardText("Done");
+        statusbar.restoreText();
     }
     //</editor-fold>
 
