@@ -1,5 +1,5 @@
 /*
- * GameProjectr.java
+ * GameProject.java
  * 
  * Created on 5/Set/2007, 14:52:05
  * 

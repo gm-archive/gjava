@@ -157,6 +157,12 @@ public class NewProject extends TabPanel {
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
+            else if (type == 1){
+                project = ModuleProject.balance();
+                project.name = jTextField1.getText();
+                project.location = "";
+                Aurwindow.setMainProject(project);
+            }
             /*else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
                 Aurwindow.setMainProject(project);

@@ -251,6 +251,8 @@ public class Portuguese extends Dictionary{
         entry[202] = "Área de transferência";
         entry[203] = "Sistema";
         entry[204] = "Adicionar linha de tempo";
+        entry[205] = "Novo Módulo";
+        entry[206] = "Modules";
         
         try{
             init();

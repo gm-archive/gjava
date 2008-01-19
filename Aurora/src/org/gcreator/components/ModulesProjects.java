@@ -14,31 +14,32 @@ import org.gcreator.managers.*;
  *
  * @author Luís
  */
-public class GameProjects extends JPanel{
+public class ModulesProjects extends JPanel{
     private ProjectTypes ptypes;
     public int tnum;
     private JButton jButton1;
     
     public int getSelectedProject(){
         if(jButton1.isSelected())
-            return 0;
+            return 1;
         return -1;
     }
     
-    public GameProjects(ProjectTypes ptypes) {
+    public ModulesProjects(ProjectTypes ptypes) {
         this.ptypes = ptypes;
         initComponents();
-        jButton1.setText(LangSupporter.activeLang.getEntry(58));
+        jButton1.setText(LangSupporter.activeLang.getEntry(205));
         ptypes.npro.ProjectButtons.add(jButton1);
     }
     
-    public BoxLayout layout;    
+    public BoxLayout layout;
+    
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/build.png"))); // NOI18N
-        jButton1.setText("Empty Game");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/modules.png"))); // NOI18N
+        jButton1.setText("Empty Modules");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -57,7 +58,7 @@ public class GameProjects extends JPanel{
     
     public void setButton(int sel){
         ptypes.npro.uncheckAll();
-        if(sel==1)
+        if(sel==2)
             jButton1.setSelected(true);
     }
     
@@ -66,7 +67,7 @@ public class GameProjects extends JPanel{
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        setButton(1);
+        setButton(2);
         String str = jButton1.getText()
                 .replaceAll("\\s", "_")
                 .replaceAll("[\\.:?^(){}]","")
