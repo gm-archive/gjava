@@ -92,6 +92,8 @@ public class GameProject extends Project{
                 return findFolder("Tilesets");
             else if(folder instanceof TimelineGroup)
                 return findFolder("Timelines");
+            else if(folder instanceof EGMLGroup)
+                return findFolder("Classes");
             return findFolder("Distribution");
         }
         catch(Exception e){

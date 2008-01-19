@@ -29,17 +29,34 @@ public class ModuleProject extends Project{
      
     public Enumeration getEnum(String key){
         Enumeration e = null;
+        if (key.equals("class")) {
+            e = node.getChildAt(0).children();
+        }
         return e;
     }
     
     public Folder magicAddition(String file)
     {
+        try{
+            if(file.equals("egml"))
+                return findFolder("Classes");
+        }
+        catch(Exception e){}
+        return null;
+    }
+    
+    public Folder magicAddition(Group g){
+        try{
+            if(g instanceof EGMLGroup)
+                return findFolder("Classes");
+        }
+        catch(Exception e){}
         return null;
     }
     
     private static Project balancedCreation(){
         Project project = new ModuleProject();
-        
+        project.add(new EGMLGroup(project, "Classes"));
         return project;
     }
     
