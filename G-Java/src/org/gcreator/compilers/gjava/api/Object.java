@@ -63,8 +63,23 @@ public class Object {
         return new Boolean(this == (obj));
     }
     
-    public boolean notequals(Object obj) {
-        return !(super.equals(obj));
+    public Boolean notequals(Object obj) {
+        return new Boolean(!(super.equals(obj)));
+    }
+    
+    public Object not()
+    {
+         return new Boolean(!this.getBoolean());  
+    }
+    
+    public Object negate()
+    {
+          return this;
+    }
+    
+    public Object bnegate()
+    {
+         return this;
     }
     
     public Boolean gt(Object obj) {
@@ -241,6 +256,11 @@ public class Object {
     }
     
     public double getDouble()
+    {
+        return 0;
+    }
+    
+    public float getFloat()
     {
         return 0;
     }

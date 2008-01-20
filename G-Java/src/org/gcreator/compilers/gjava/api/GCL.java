@@ -5,12 +5,14 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import javax.swing.JOptionPane;
+
 /**
  * This class is valid GCL, don't use java code here
  * This class will be converted to other languages via gcl
  * @author TGMG
  */
-public class GCL {
+public class GCL extends Object {
     
     
     /*
@@ -21,15 +23,27 @@ public class GCL {
     
 public static Object is_real(Object val)
 {
-return new Object();
+    if (val instanceof String)
+        return new Boolean(false);
+    else
+        return new Boolean(true);
 }
 public static Object is_string(Object val)
 {
-return new Object();
+if (val instanceof String)
+        return new Boolean(true);
+    else
+        return new Boolean(false);
 }
+/**
+ * 
+ * @param x
+ * @since 1.0
+ * @return
+ */
 public static Object random(Object x)
 {
-return new Object();
+return new Double(Math.random(x.getDouble()));
 }
 public static Object choose(Object x1, Object x2, Object x3)
 {
@@ -37,155 +51,155 @@ return new Object();
 }
 public static Object abs(Object x)
 {
-return new Object();
+return new Double(Math.abs(x.getDouble()));
 }
 public static Object round(Object x)
 {
-return new Object();
+return new Double(Math.round(x.getDouble()));
 }
 public static Object floor(Object x)
 {
-return new Object();
+return new Double(Math.floor(x.getDouble()));
 }
 
 public static Object ceil(Object x)
 {
-return new Object();
+return new Double(Math.ceil(x.getDouble()));
 }
 
 public static Object sign(Object x)
 {
-return new Object();
+return new Double(Math.sign(x.getDouble()));
 }
 
 public static Object frac(Object x)
 {
-return new Object();
+return new Double(Math.frac(x.getDouble()));
 }
 
 public static Object sqrt(Object x)
 {
-return new Object();
+return new Double(Math.sqrt(x.getDouble()));
 }
 
 public static Object sqr(Object x)
 {
-return new Object();
+return new Double(Math.sqr(x.getDouble()));
 }
 
 public static Object exp(Object x)
 {
-return new Object();
+return new Double(Math.exp(x.getDouble()));
 }
 
 public static Object ln(Object x)
 {
-return new Object();
+return new Double(Math.ln(x.getDouble()));
 }
 
 public static Object log2(Object x)
 {
-return new Object();
+return new Double(Math.log2(x.getDouble()));
 }
 
 public static Object log10(Object x)
 {
-return new Object();
+return new Double(Math.log10(x.getDouble()));
 }
 
 public static Object sin(Object x)
 {
-return new Object();
+return new Double(Math.sin(x.getDouble()));
 }
 
 public static Object cos(Object x)
 {
-return new Object();
+return new Double(Math.cos(x.getDouble()));
 }
 
 public static Object tan(Object x)
 {
-return new Object();
+return new Double(Math.tan(x.getDouble()));
 }
 
 public static Object arcsin(Object x)
 {
-return new Object();
+return new Double(Math.arcsin(x.getDouble()));
 }
 
 public static Object arccos(Object x)
 {
-return new Object();
+return new Double(Math.arccos(x.getDouble()));
 }
 
 public static Object arctan(Object x)
 {
-return new Object();
+return new Double(Math.arctan(x.getDouble()));
 }
 
 public static Object arctan2(Object y, Object x)
 {
-return new Object();
+return new Double(Math.arctan2(y.getDouble(),x.getDouble()));
 }
 
 public static Object degtorad(Object x)
 {
-return new Object();
+return new Double(Math.degtorad(x.getDouble()));
 }
 
 public static Object radtodeg(Object x)
 {
-return new Object();
+return new Double(Math.radtodeg(x.getDouble()));
 }
 
 public static Object power(Object x, Object n)
 {
-return new Object();
+return new Double(Math.power(x.getDouble(),n.getDouble()));
 }
 
 public static Object logn(Object n, Object x)
 {
-return new Object();
+return new Double(Math.power(n.getDouble(),x.getDouble()));
 }
 
-public static Object min(Object x1, Object x2, Object x3)
+public static Object min(Object x[])
 {
 return new Object();
 }
 
-public static Object max(Object x1, Object x2, Object x3)
+public static Object max(Object x[])
 {
 return new Object();
 }
 
-public static Object mean(Object x1, Object x2, Object x3)
+public static Object mean(Object x[])
 {
 return new Object();
 }
 
-public static Object median(Object x1, Object x2, Object x3)
+public static Object median(Object x[])
 {
 return new Object();
 }
 
 public static Object point_distance(Object x1, Object y1, Object x2, Object y2)
 {
-return new Object();
+return new Double(Math.pointDistance(x1.getDouble(),y1.getDouble(),x2.getDouble(),y2.getDouble()));
 }
 
 public static Object point_direction(Object x1, Object y1, Object x2, Object y2)
 {
-return new Object();
+return new Double(Math.pointDirection(x1.getDouble(),y1.getDouble(),x2.getDouble(),y2.getDouble()));
 }
 
 public static Object lengthdir_x(Object len, Object dir)
 {
-return new Object();
+return new Double(Math.lengthDirX(len.getDouble(),dir.getDouble()));
 }
 
 public static Object lengthdir_y(Object len, Object dir)
 {
-return new Object();
+return new Double(Math.lengthDirY(len.getDouble(),dir.getDouble()));
 }
 
 
@@ -198,42 +212,42 @@ return new Object();
  */
 public static Object real(Object str)
 {
-return new Object();
+return new Double(str.getDouble());
 }
 
 public static Object string(Object val)
 {
-return new Object();
+return val.getString();
 }
 
 public static Object string_format(Object val, Object total, Object dec)
 {
-return new Object();
+return new String(String.stringFormat(val.getDouble(), total.getDouble(), dec.getDouble()));
 }
 
 public static Object chr(Object val)
 {
-return new Object();
+return new String(String.chr(val.getDouble()));
 }
 
 public static Object ord(Object character)
 {
-return new Object();
+return new Double(String.ord(character+""));
 }
 
 public static Object string_length(Object str)
 {
-return new Object();
+return new Double(String.length(str+""));
 }
 
 public static Object string_pos(Object substr, Object str)
 {
-return new Object();
+return new Double(String.pos(substr+"",str+""));
 }
 
 public static Object string_copy(Object str, Object index, Object count)
 {
-return new Object();
+return new String("");//String.copy(str+"",index.getDouble(),count.getDouble()));
 }
 
 public static Object string_char_at(Object str, Object index)
@@ -298,17 +312,18 @@ return new Object();
 
 public static Object clipboard_has_text()
 {
-return new Object();
+return new Boolean(Clipboard.hasText());
 }
 
 public static Object clipboard_set_text(Object str)
 {
+    Clipboard.setText(str.getString());
 return new Object();
 }
 
 public static Object clipboard_get_text()
 {
-return new Object();
+return Clipboard.getText();
 }
 
 
@@ -2584,6 +2599,7 @@ return new Object();
  */
 public static Object show_message(Object str)
 {
+    JOptionPane.showMessageDialog(org.gcreator.compilers.gjava.Game.canvas, str.toString());
 return new Object();
 }
 

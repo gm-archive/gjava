@@ -1,10 +1,10 @@
 // tile.java
-package org.gcreator.compilers.gjava.api.components;
+package org.gcreator.compilers.gjava.api;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.Toolkit;
 
-public class tile implements Comparable {
+public class tile extends GCL implements Comparable {
 	/**
 	 * The depth of the tile
 	 */
@@ -67,7 +67,7 @@ public class tile implements Comparable {
 		Load_image();
 	}
 	
-      public int compareTo(Object o) {
+      public int compareTo(java.lang.Object o) {
     tile t = (tile)o;
     
     int  i = (int)depth - (int)t.depth;
@@ -122,4 +122,6 @@ Toolkit toolkit = Toolkit.getDefaultToolkit();
     Image image = toolkit.createImage(new FilteredImageSource(img.getSource(), new CropImageFilter(x, y, width, height)));
     return image;
 }
+
+    
 }

@@ -1,9 +1,8 @@
 package org.gcreator.compilers.gjava.api.components;
 
-import java.awt.*;
-import java.net.*;
-import javax.swing.*;
-import org.gcreator.compilers.gjava.Game;
+
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
 
 /**
  * Sprite object, may be replaced with another object in G-java 2.0
@@ -28,7 +27,17 @@ public class Sprite {
     public int BBRight;
     public int BBTop;
     public int BBBottom;
+    
+    public Animation a;
 
+    public Sprite() {
+        
+    }
+    
+    public Sprite(Image[] images){
+        a=new Animation(images,1);
+    }
+    
     /**
      * Create a new sprite object
      * @param sprite_name
@@ -47,8 +56,8 @@ public class Sprite {
      * @param OriginY
      * @param subimages
      */
-    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, String[] images) {
-
+    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, Image[] images) {
+        a=new Animation(images,1);
         this.sprite_width = Width;
         this.sprite_height = Height;
         this.BBBottom = BBBottom;
@@ -67,11 +76,11 @@ public class Sprite {
             if (images[i].equals("")) subimages--;
             else {
                 
-                try{
-                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
-                    
-            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
-                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
+//                try{
+//                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
+//                    
+//            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
+//                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
         } }
         //loadImage();
     }

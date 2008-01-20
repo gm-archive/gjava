@@ -29,13 +29,25 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
         s = new java.lang.String(c);
     }
 
+    @Override
+    public String getString() {
+        return this;
+    }
+
+    @Override
+    public Object add(Object o) {
+        return new String(this.toString()+o.toString());
+    }
+    
+    
+
     /**
      * Returns the value of this String object as a string primitive.
      * @return
      */
-    public java.lang.String getPrimitive() {
-        return s;
-    }
+//    public java.lang.String getString() {
+//        return s;
+//    }
 
     
     public java.lang.String toString() {

@@ -18,6 +18,18 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
    public Integer(int ii) {
         i = ii;
     }
+
+    @Override
+    public Object bnegate() {
+        return new Integer(~i);
+        
+    }
+
+    @Override
+    public Object negate() {
+        return new Integer(-i);
+    }
+   
    
     @Override
     public double getDouble() {
@@ -49,7 +61,10 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
     
      @Override
     public Object div(Object o) {
+         if (o.getDouble() != 0)
        return new Integer(i / (int) (o.getDouble()));
+         else 
+             return new Integer(0);
     }
      
       @Override

@@ -8,11 +8,13 @@ package org.gcreator.compilers.gjava.lwjgl;
 
 import java.awt.Frame;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import org.gcreator.compilers.gjava.api.Actor;
 import org.lwjgl.LWJGLException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.CanvasGameContainer;
@@ -167,18 +169,24 @@ public class Scene2D extends BasicGame {
     @Override
     public void init(GameContainer container) throws SlickException {
         this.container = container;
+        SortDepth();
         System.out.println("init");
     }
 
     @Override
     public void update(GameContainer arg0, int arg1) throws SlickException {
-        System.out.println("update");
+       // System.out.println("update");
     }
 
     public void render(GameContainer arg0, Graphics g) throws SlickException {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
-         System.out.println("render");
+        //System.out.println(""+instances.size());
+        for (int i = 0; i < instances.size(); i++) {
+            ((Actor)instances.elementAt(i)).Draw_event();
+        }
+
+        
     }
    
     

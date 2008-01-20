@@ -15,6 +15,7 @@ import java.util.Enumeration;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.ToolbarButton;
@@ -256,7 +257,7 @@ public class GJava extends PlatformCore {
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
-        print(game, "import org.gcreator.compilers.gjava.components.*;");
+        print(game, "import org.gcreator.compilers.gjava.api.components.*;");
         print(game, "import org.gcreator.compilers.gjava.lwjgl.*;");
         //import org.gcreator.compilers.gjava.components.Sprite;
         print(game, "//import org.gcreator.compilers.gjava.core.basicgame;");
@@ -302,6 +303,8 @@ public class GJava extends PlatformCore {
                 }
             }
         }
+        if (project == (null))
+            JOptionPane.showMessageDialog(null, "You have to select a main project first!");
         projectname = project.name;
         loadscene = "";
         loadSprites = "public static Sprite ";
@@ -319,6 +322,11 @@ public class GJava extends PlatformCore {
         }
 
         GJavaCompiler compiler = new GJavaCompiler();
+    }
+
+    @Override
+    public void parseSettings(String string, String name) {
+        System.out.println("got here!");
     }
     
      

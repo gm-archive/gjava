@@ -10,16 +10,7 @@ package org.gcreator.compilers.gjava.api;
 public class Boolean extends Object {
 private boolean b;
 
-/**
- * The Boolean object corresponding to the primitive value true.
- */
-public static Boolean TRUE = new Boolean(true);
-/**
- * The Boolean object corresponding to the primitive value false.
- */
-public static Boolean FALSE = new Boolean(false);
-
-Boolean(boolean bb)
+public Boolean(boolean bb)
 {
     b=bb;
 }
@@ -33,16 +24,21 @@ public boolean getBoolean()
     return b;
 }
 
-/**
- * Returns a Boolean with a value represented by the specified String. The Boolean returned represents the value true if the string argument is not null  and is equal, ignoring case, to the string "true".
- * @param s
- * @return
- */
-public boolean parseBoolean(java.lang.String s)
-{
-    return java.lang.Boolean.valueOf(s).booleanValue();
+    @Override
+    public java.lang.String toString() {
+        if (b==true)
+        return "True";
+        else
+           return "False";
+    }
+
+    @Override
+    public String getString() {
+        return new String(this.toString());
+    }
     
-}
+
+
 
 
 }

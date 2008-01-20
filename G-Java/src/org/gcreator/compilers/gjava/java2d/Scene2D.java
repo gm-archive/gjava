@@ -1,5 +1,7 @@
 package org.gcreator.compilers.gjava.java2d;
 
+import org.gcreator.compilers.gjava.api.tile;
+import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.components.*;
 import java.awt.*;
 

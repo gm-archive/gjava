@@ -29,9 +29,9 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
         
         static{
             // setup clipboard
-        if (basicgame.Runningas.equals("EApplet")) {
+       // if (!basicgame.Runningas.equals("EApplet")) {
             systemClipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        }
+       // }
         }
         /**
          * Returns whether there is any text on the clipboard.
@@ -53,7 +53,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
             } else {
                 try {
                     if (clipboardContents.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                        String returnText = (String) clipboardContents.getTransferData(DataFlavor.stringFlavor);
+                        String returnText = new String(""+ clipboardContents.getTransferData(DataFlavor.stringFlavor));
                         return returnText;
                     }
                 } catch (UnsupportedFlavorException ufe) {

@@ -25,7 +25,7 @@ import org.newdawn.slick.tests.GradientTest;
 
 /**
  *
- * @author Ali
+ * @author TGMG
  */
 public class Basicgame  {
 

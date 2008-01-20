@@ -23,6 +23,19 @@ public class Double extends Object {
     }
 
     @Override
+    public String getString() {
+        return new String(""+i);
+    }
+
+    @Override
+    public java.lang.String toString() {
+        return ""+i;
+    }
+    
+    
+    
+
+    @Override
     public Object sub(Object o) {
         i-= (int) (o.getDouble());
         return this;
