@@ -7,6 +7,7 @@
 package org.gcreator.plugins;
 
 import java.awt.Component;
+import java.net.URL;
 import javax.swing.*;
 
 import org.gcreator.actions.*;
@@ -129,5 +130,13 @@ public class PluginHelper {
     }
     public static void addToTree(Project p){
         ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.window.top);
+    }
+    
+    public static URL getResource(String value){
+        return PluginHelper.class.getResource(value);
+    }
+    
+    public static ImageIcon getImageResource(String value){
+        return new ImageIcon(getResource(value));
     }
 }
