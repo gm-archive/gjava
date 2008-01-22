@@ -173,7 +173,6 @@ float xx,yy;
      */
     
     public void Draw_event(){
-        
         sprite.a.draw(xx,yy);
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  

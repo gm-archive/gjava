@@ -35,6 +35,17 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
     }
 
     @Override
+    public boolean getBoolean() {
+        return super.getBoolean();
+    }
+
+    @Override
+    public double getDouble() {
+        return java.lang.Double.parseDouble(s);
+    }
+    
+
+    @Override
     public Object add(Object o) {
         return new String(this.toString()+o.toString());
     }
@@ -110,19 +121,24 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
          * @return
          */
         public static double pos(java.lang.String sub, java.lang.String s) {
-            return s.indexOf(sub) != -1 ? s.indexOf(sub) : 0;
+            return s.indexOf(sub) != -1 ? s.indexOf(sub)+1 : 0;
         }
         
         /**
-         * Returns a substring of str, starting at position index, and of length count.
+         * Returns a substring of str, starting at position index, and of length count. (Copy)
          * @param s
          * @param i
          * @param c
          * @return
          */
         public static java.lang.String substring(java.lang.String s, double i, double c) {
+            if (i==0) i=1;
+            i--;
             return s.substring((int) i, (int) (i + c));
         }
+        
+                
+        
         
         /**
          * Returns the character in str at position index.
@@ -131,6 +147,8 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
          * @return
          */
         public static java.lang.String charAt(java.lang.String s, double i) {
+            if (i==0) i=1;
+            i--;
             return "" + s.charAt((int) i);
         }
         
@@ -142,6 +160,8 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
          * @return
          */
         public static java.lang.String delete(java.lang.String s, double i, double c) {
+            if (i==0) i=1;
+            i--;
             return s.substring(0, (int) i) + s.substring((int) (i + c));
         }
         
@@ -153,7 +173,9 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
          * @return
          */
         public static java.lang.String insert(java.lang.String sub, java.lang.String s, double i) {
-            return s.substring(0, (int) i) + sub + s.substring((int) i + 1);
+            if (i==0) i=1;
+            i--;
+            return s.substring(0, (int) i) + sub + s.substring((int)i,s.length()-(int)i+1);
         }
         
         /**
@@ -229,12 +251,14 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
          * @return
          */
         public static java.lang.String letters(java.lang.String s) {
+          
             for (int i = 0; i < s.length(); i++) {
-                if (((int) s.charAt(i) >= 65 && (int) s.charAt(i) <= 90) || ((int) s.charAt(i) >= 97 && (int) s.charAt(i) <= 122)) {
+                if ((((int) s.charAt(i) >= 65) && ((int) s.charAt(i) <= 90)) || ((int) s.charAt(i) >= 97 && ((int) s.charAt(i) <= 122))) {
                 } else {
-                    s.replaceFirst(s.charAt(i) + "", "");
+                    s= s.replaceAll(s.charAt(i) + "", "");
                     i--;
                 }
+                
             }
             return s;
         }
@@ -248,7 +272,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
             for (int i = 0; i < s.length(); i++) {
                 if ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57) {
                 } else {
-                    s.replaceFirst(s.charAt(i) + "", "");
+                    s= s.replaceAll(s.charAt(i) + "", "");
                     i--;
                 }
             }
@@ -264,7 +288,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
             for (int i = 0; i < s.length(); i++) {
                 if (((int) s.charAt(i) >= 65 && (int) s.charAt(i) <= 90) || ((int) s.charAt(i) >= 97 && (int) s.charAt(i) <= 122) || ((int) s.charAt(i) >= 48 && (int) s.charAt(i) <= 57)) {
                 } else {
-                    s.replaceFirst(s.charAt(i) + "", "");
+                    s = s.replaceAll(s.charAt(i) + "", "");
                     i--;
                 }
             }

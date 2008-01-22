@@ -12,7 +12,8 @@ import javax.swing.JOptionPane;
  * This class will be converted to other languages via gcl
  * @author TGMG
  */
-public class GCL extends Object {
+public class GCL extends Constants {
+  
     
     
     /*
@@ -247,67 +248,67 @@ return new Double(String.pos(substr+"",str+""));
 
 public static Object string_copy(Object str, Object index, Object count)
 {
-return new String("");//String.copy(str+"",index.getDouble(),count.getDouble()));
+return new String(String.substring(str+"",index.getDouble(),count.getDouble()));
 }
 
 public static Object string_char_at(Object str, Object index)
 {
-return new Object();
+return new String(String.charAt(str+"", index.getDouble()));
 }
 
 public static Object string_delete(Object str, Object index, Object count)
 {
-return new Object();
+return new String(String.delete(str+"", index.getDouble(), count.getDouble()));
 }
 
 public static Object string_insert(Object substr, Object str, Object index)
 {
-return new Object();
+return new String(String.insert(substr+"", str+"", index.getDouble()));
 }
 
 public static Object string_lower(Object str)
 {
-return new Object();
+return new String(String.lower(""+str));
 }
 
 public static Object string_upper(Object str)
 {
-return new Object();
+return new String(String.upper(""+str));
 }
 
 public static Object string_repeat(Object str, Object count)
 {
-return new Object();
+return new String(String.repeat(str+"", count.getDouble()));
 }
 
 public static Object string_letters(Object str)
 {
-return new Object();
+return new String(String.letters(str+""));
 }
 
 public static Object string_digits(Object str)
 {
-return new Object();
+return new String(String.digits(str+""));
 }
 
 public static Object string_lettersdigits(Object str)
 {
-return new Object();
+return new String(String.lettersDigits(str+""));
 }
 
 public static Object string_replace(Object str, Object substr, Object newstr)
 {
-return new Object();
+return new String(String.replace(str+"", substr+"", newstr+""));
 }
 
 public static Object string_replace_all(Object str, Object substr, Object newstr)
 {
-return new Object();
+return new String(String.replaceAll(str+"", substr+"", newstr+""));
 }
 
 public static Object string_count(Object substr, Object str)
 {
-return new Object();
+return new Double(String.count(substr+"", str+""));
 }
 
 public static Object clipboard_has_text()
