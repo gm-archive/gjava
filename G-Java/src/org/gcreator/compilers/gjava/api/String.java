@@ -5,6 +5,7 @@
 package org.gcreator.compilers.gjava.api;
 
 import java.text.DecimalFormat;
+import java.text.FieldPosition;
 import org.gcreator.compilers.gjava.api.*;
 
 /**
@@ -95,6 +96,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
             for (int i = 0; i < (int) t; i++) {
                 form += "0";
             }
+            
             if (d > 0) {
                 form += ".";
                 for (int i = 0; i < (int) d; i++) {
@@ -102,7 +104,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
                 }
             }
             DecimalFormat df = new DecimalFormat(form);
-            return df.format(v, new java.lang.StringBuffer(), null).toString();
+            return df.format(v, new java.lang.StringBuffer(), new FieldPosition(0)).toString();
         }
         
         /**
@@ -209,7 +211,7 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
         public static double count(java.lang.String sub, java.lang.String str) {
             int c = 0;
             for (c = 0; str.indexOf(sub) != -1; c++) {
-                str.replaceFirst(sub, "");
+                str = str.replaceFirst(sub, "");
             }
             return c;
         }
