@@ -7,10 +7,12 @@
 package org.gcreator.editors;
 
 import javax.swing.GroupLayout;
-import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.impl.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
+
+import publicdomain.*;
 
 /**
  *
@@ -18,7 +20,7 @@ import org.gcreator.fileclass.res.Classes;
  */
 public class ScriptEditor extends TabPanel {
     
-    EGMLTextArea g;
+    SyntaxHighlighter g;
     org.gcreator.fileclass.File file;
     /** Creates new form ScriptEditor */
     public ScriptEditor(org.gcreator.fileclass.File file,Project project) {
@@ -26,7 +28,9 @@ public class ScriptEditor extends TabPanel {
         
         if(file.value==null)
             file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
-        g = new EGMLTextArea(((Classes)file.value).toString());
+        Scanner scanner = new GCLScanner(); //Replace with G-Script scanner eventually
+        g = new SyntaxHighlighter(100, 100, scanner);
+        g.setText(((Classes)file.value).toString());
         
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

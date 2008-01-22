@@ -6,24 +6,19 @@
 
 package org.gcreator.editors;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.logging.*;
 import javax.swing.text.BadLocationException;
-import org.gcreator.components.EGMLTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
 import java.awt.*;
 import java.beans.*;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListCellRenderer;
-import javax.swing.SwingUtilities;
+import javax.swing.*;
 import javax.swing.text.html.HTMLEditorKit;
-import org.gcreator.api.util.ApiClass;
-import org.gcreator.api.util.ApiFunction;
-import org.gcreator.api.util.CreateApiList;
+import org.gcreator.api.util.*;
 import org.gcreator.fileclass.res.Classes;
+import org.gcreator.components.impl.*;
+
+import publicdomain.*;
 
 /**
  *
@@ -32,7 +27,7 @@ import org.gcreator.fileclass.res.Classes;
 public class GCLEditor extends TabPanel {
     
     public boolean changed = true;
-    private EGMLTextArea g;
+    private SyntaxHighlighter g;
     public org.gcreator.fileclass.File file;
     
     public boolean Save(){
@@ -52,7 +47,9 @@ public class GCLEditor extends TabPanel {
         initComponents();
         if(file.value==null)
             file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
-        g = new EGMLTextArea(file.value.toString());
+        Scanner scanner = new GCLScanner();
+        g = new SyntaxHighlighter(100, 100, scanner);
+        g.setText(file.value.toString());
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

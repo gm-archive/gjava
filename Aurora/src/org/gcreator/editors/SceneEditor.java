@@ -12,11 +12,14 @@ import java.util.*;
 import javax.swing.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.*;
+import org.gcreator.components.impl.*;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
+
+import publicdomain.*;
 
 /**
  *
@@ -107,7 +110,7 @@ public class SceneEditor extends TabPanel {
         scene.updateUI();
     }
     
-    public EGMLTextArea egml;
+    public SyntaxHighlighter egml;
     public TileChooser tilechooser;
     
     public SceneEditor(org.gcreator.fileclass.File file,Project project) {
@@ -121,7 +124,9 @@ public class SceneEditor extends TabPanel {
         scene.setSize(500,500);
         jScrollPane1.setViewportView(scene);
         this.file = file;
-        egml = new EGMLTextArea(((Scene) file.value).code);
+        publicdomain.Scanner scanner = new GCLScanner();
+        egml = new SyntaxHighlighter(100, 100, scanner);
+        egml.setText(((Scene) file.value).code);
         tilechooser = new TileChooser(this);
         jList1.setSelectedIndex(0);
         setup();

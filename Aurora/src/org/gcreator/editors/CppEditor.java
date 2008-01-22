@@ -6,9 +6,10 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.CppTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.Project;
+
+import publicdomain.*;
 
 /**
  *
@@ -20,7 +21,8 @@ public class CppEditor extends TabPanel {
     public CppEditor(org.gcreator.fileclass.File file,Project project) {
         this.project = project;
         initComponents();
-        CppTextArea g = new CppTextArea("//Cpp");
+        Scanner scanner = new Scanner();
+        SyntaxHighlighter g = new SyntaxHighlighter(100, 100, scanner);
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel2Layout);

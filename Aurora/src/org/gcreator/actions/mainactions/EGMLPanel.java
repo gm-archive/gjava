@@ -6,8 +6,10 @@
 
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.components.EGMLTextArea;
+import org.gcreator.components.impl.*;
 import org.gcreator.components.*;
+
+import publicdomain.*;
 
 /**
  *
@@ -16,10 +18,12 @@ import org.gcreator.components.*;
 public class EGMLPanel extends javax.swing.JPanel {
     
     /** Creates new form CommentPanel */
-    EGMLTextArea text;
+    SyntaxHighlighter text;
     public EGMLPanel() {
         initComponents();
-        text = new EGMLTextArea("//some EGML code");
+        Scanner scanner = new GCLScanner();
+        text = new SyntaxHighlighter(100, 100, scanner);
+        text.setText("//some EGML code");
         this.add(text);
         /*org.jdesktop.layout.GroupLayout jPanelLayout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(jPanelLayout);

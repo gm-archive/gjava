@@ -9,10 +9,11 @@ package org.gcreator.editors;
 import java.awt.event.*;
 import javax.swing.*;
 
-import org.gcreator.components.JavaTextArea;
 import org.gcreator.components.TabPanel;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.fileclass.Project;
+
+import publicdomain.*;
 
 /**
  *
@@ -22,7 +23,7 @@ public class JavaEditor extends TabPanel {
     
     private org.gcreator.fileclass.File file;
     private boolean changed = false;
-    private JavaTextArea g;
+    private SyntaxHighlighter g;
     
     public void doSomething(){
         changed = true;
@@ -77,7 +78,8 @@ public class JavaEditor extends TabPanel {
         this.file = file;
         this.project = project;
         initComponents();
-        g = new JavaTextArea("//Java");
+        Scanner scanner = new JavaScanner();
+        g = new SyntaxHighlighter(100, 100, scanner);
         
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel2Layout);

@@ -9,13 +9,15 @@
 
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.components.EGMLTextArea;
+import org.gcreator.components.impl.*;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.components.*;
+
+import publicdomain.*;
 
 /**
  *
@@ -39,7 +41,9 @@ public class ExecuteCode extends ActionPattern{
     }
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action){
-        EGMLTextArea panel = new EGMLTextArea("//Some EGML Code");
+        Scanner scanner = new GCLScanner();
+        SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner);
+        panel.setText("//Some EGML Code");
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -57,13 +61,13 @@ public class ExecuteCode extends ActionPattern{
      
     public String getStandardText(JComponent panel){
         if(panel!=null)
-            return ((EGMLTextArea) panel).getText();
+            return ((SyntaxHighlighter) panel).getText();
         else
             return "Execute EGML Code";
     }
     
      
     public String generateGCL(JComponent panel){
-        return ((EGMLTextArea) panel).getText();
+        return ((SyntaxHighlighter) panel).getText();
     }
 }
