@@ -3,6 +3,12 @@
  * 
  * Created on 06-Sep-2007, 02:46:39
  * 
+ * Copyright (C) 2007-2008 TGMG
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
+ * 
  * This will be the class that all actions must extend
  */
 

@@ -1,7 +1,9 @@
 /*
- * Action.java
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * 
- * Created on 26/Set/2007, 15:58:46
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  * 
  * An ActionPattern owns NO VALUES.
  */

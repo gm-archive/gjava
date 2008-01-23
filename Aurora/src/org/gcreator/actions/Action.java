@@ -3,8 +3,11 @@
  * 
  * Created on 26/Set/2007, 16:23:37
  * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
 
 package org.gcreator.actions;
@@ -19,13 +22,18 @@ import java.util.Vector;
 import org.gcreator.editors.*;
 
 /**
- *
- * @author Luís
+ * Actions represent the GCL equivalent in the Actor Editor.
+ * Actions themselves contain little information. They are just storages.
+ * All the "content" is stored by ActionPattern.
+ * @author Luís Reis
  */
 public class Action implements Serializable {
     
     static final long serialVersionUID = 1L;
     
+    /**
+     * The ActionPattern of this action
+     */
     public ActionPattern pattern;
     private JComponent panel;
     
@@ -37,28 +45,53 @@ public class Action implements Serializable {
 //    }
 //    
     
+    /**
+     * Creates a new action with a given pattern
+     * 
+     * @param pattern The Action pattern
+     */
     public Action (ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
             panel = pattern.createNewPanel(this);
     }
         
+    /**
+     * Creates a new action with a given pattern and a given actor editor
+     * 
+     * @param editor The Actor editor
+     * @param pattern The action pattern
+     */
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
             panel = pattern.createNewPanel(this);
     }
     
+    /**
+     * Creates a new action with a given pattern and a given timeline editor
+     * 
+     * @param editor The Timeline editor
+     * @param pattern The action pattern
+     */
     public Action(TimelineEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         if(pattern!=null)
             panel = pattern.createNewPanel(this);
     }
     
+    /**
+     * Gets the action image
+     * @return The image
+     */
     public ImageIcon getImage(){
         return pattern.getStandardImage();
     }
     
+    /**
+     * Gets the action label
+     * @return The label
+     */
     public String getLabel(){
         return pattern.getStandardText(getPanel());
     }

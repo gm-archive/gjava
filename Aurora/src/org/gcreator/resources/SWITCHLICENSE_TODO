@@ -3,6 +3,3 @@ GPL Components:
 components
 CustomFileFilter
 SubimagePreview
-
-components.impl
-DocumentUndoManager
