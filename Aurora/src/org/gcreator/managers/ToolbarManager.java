@@ -68,7 +68,6 @@ public class ToolbarManager {
         o = o.replaceAll("\r", "");
         o = o.replaceAll(";.+?\n", "\n");
         o = o.replaceAll("\n\n", "\n");
-        System.out.println(o);
         String[] os = o.split("\n");
         boolean pfile = false;
         String v = null;
@@ -165,7 +164,6 @@ public class ToolbarManager {
                 }
             }
             else if(key.equals("TextVisible")){
-                System.out.println("TextVisible ->"+value+"<-");
                 if(value.equals("True"))
                     tvisible = true;
                 else if(value.equals("False"))
@@ -176,7 +174,6 @@ public class ToolbarManager {
                 }
             }
             else if(key.equals("ImageVisible")){
-                System.out.println("ImageVisible ->"+value+"<-");
                 if(value.equals("True"))
                     ivisible = true;
                 else if(value.equals("False"))
@@ -191,11 +188,8 @@ public class ToolbarManager {
                 buttonloop:
                 for(ToolbarButton btn : toolbuttons){
                     if(btn.getID().equals(value)){
-                        System.out.println("Identified");
                         btn.setTextVisible(tvisible);
-                        System.out.println("tvisible="+tvisible+";isTextVisible="+btn.isTextVisible());
                         btn.setImageVisible(ivisible);
-                        System.out.println("ivisible="+ivisible+";isImageVisible="+btn.isImageVisible());
                         t.items.add(btn);
                         found = true;
                         break buttonloop;

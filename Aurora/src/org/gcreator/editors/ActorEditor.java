@@ -51,7 +51,7 @@ public class ActorEditor extends TabPanel {
 
     public void updateNavigator(){
         System.out.println("Update navigator");
-        Component c = org.gcreator.core.gcreator.window.splitter3.getBottomComponent();
+        Component c = org.gcreator.core.gcreator.window.getNavigatorPanel();
         if(c instanceof JPanel){
             System.out.println("Update c JPanel");
             ((JPanel) c).updateUI();
