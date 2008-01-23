@@ -55,9 +55,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane3" alignment="0" pref="391" max="32767" attributes="0"/>
+                  <Component id="jScrollPane3" alignment="0" pref="388" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -66,7 +66,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" pref="199" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" pref="189" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -93,7 +93,7 @@
                 <Component class="javax.swing.JEditorPane" name="jEditorPane1">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
-                    <Property name="text" type="java.lang.String" value="    G-Creator - Multiple languages and platforms game development.&#xa;&#xa;    Copyright (C) 2007  Lu&#xed;s Reis&#xa;    Copyright (C) 2007  TGMG&#xa;&#xa;    This program is free software: you can redistribute it and/or modify&#xa;    it under the terms of the GNU General Public License as published by&#xa;    the Free Software Foundation, either version 3 of the License, or&#xa;    (at your option) any later version.&#xa;&#xa;    This program is distributed in the hope that it will be useful,&#xa;    but WITHOUT ANY WARRANTY; without even the implied warranty of&#xa;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xa;    GNU General Public License for more details.&#xa;&#xa;    You should have received a copy of the GNU General Public License&#xa;    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
+                    <Property name="text" type="java.lang.String" value="    G-Creator - Multiple languages and platforms game development.&#xa;&#xa;    Copyright (C) 2007-2008  Lu&#xed;s Reis&#xa;    Copyright (C) 2007-2008  TGMG&#xa;&#xa;    This program is free software: you can redistribute it and/or modify&#xa;    it under the terms of the GNU Lesser General Public License as published by&#xa;    the Free Software Foundation, either version 3 of the License, or&#xa;    (at your option) any later version.&#xa;&#xa;    This program is distributed in the hope that it will be useful,&#xa;    but WITHOUT ANY WARRANTY; without even the implied warranty of&#xa;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the&#xa;    GNU Lesser General Public License for more details.&#xa;&#xa;    You should have received a copy of the GNU Lesser General Public License&#xa;    along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;."/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -127,7 +127,7 @@
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" alignment="1" pref="391" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" pref="476" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -136,7 +136,7 @@
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jScrollPane2" pref="211" max="32767" attributes="0"/>
+                      <Component id="jScrollPane2" pref="198" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

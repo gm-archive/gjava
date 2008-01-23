@@ -48,7 +48,7 @@ public class AboutPanel extends TabPanel {
         jLabel2.setText("G-Creator 1.0 - Project \"Aurora\"");
 
         jEditorPane1.setEditable(false);
-        jEditorPane1.setText("    G-Creator - Multiple languages and platforms game development.\n\n    Copyright (C) 2007  Luís Reis\n    Copyright (C) 2007  TGMG\n\n    This program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU General Public License for more details.\n\n    You should have received a copy of the GNU General Public License\n    along with this program.  If not, see <http://www.gnu.org/licenses/>.");
+        jEditorPane1.setText("    G-Creator - Multiple languages and platforms game development.\n\n    Copyright (C) 2007-2008  Luís Reis\n    Copyright (C) 2007-2008  TGMG\n\n    This program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU Lesser General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU Lesser General Public License for more details.\n\n    You should have received a copy of the GNU Lesser General Public License\n    along with this program.  If not, see <http://www.gnu.org/licenses/>.");
         jScrollPane3.setViewportView(jEditorPane1);
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
@@ -58,8 +58,8 @@ public class AboutPanel extends TabPanel {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jLabel2)
-                .addContainerGap(120, Short.MAX_VALUE))
-            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+                .addContainerGap(108, Short.MAX_VALUE))
+            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -67,7 +67,7 @@ public class AboutPanel extends TabPanel {
                 .addContainerGap()
                 .add(jLabel2)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE))
+                .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Main", jPanel1);
@@ -110,7 +110,7 @@ public class AboutPanel extends TabPanel {
             .add(jPanel2Layout.createSequentialGroup()
                 .add(jLabel1)
                 .addContainerGap())
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -118,7 +118,7 @@ public class AboutPanel extends TabPanel {
                 .add(12, 12, 12)
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
+                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Translators", jPanel2);

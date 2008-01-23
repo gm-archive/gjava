@@ -6,19 +6,19 @@ G-Creator's License:
     Copyright (C) 2007,2008  TGMG
 
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Lesser General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNULesser  General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-You can find the full copy of GPL version 3 in LICENSE.txt
+You can find the full copy of LGPL version 3 in LICENSE.txt
 
 Contributions:
 
@@ -40,6 +40,6 @@ Contributions:
         Some action graphics
     Tree Image handling based on http://forum.java.sun.com/thread.jspa?threadID=755439&messageID=4316522
 
-Some code was retrieved from the LGM source code, which is licensed under the same license.
+Some code used to be from LGM. However, since we switched to LGPL, all LGM components were removed.
 
 For more detailed information about the languages check the language itself.

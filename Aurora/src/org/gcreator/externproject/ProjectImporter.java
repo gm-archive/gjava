@@ -184,6 +184,10 @@ public class ProjectImporter {
             if (file == null) {
                 return;
             }
+            if(!file.exists())
+                return;
+            if(file.isDirectory())
+                return;
             FileInputStream fin = new FileInputStream(file);
             ZipInputStream in = new ZipInputStream(fin);
             ZipEntry zipe;
