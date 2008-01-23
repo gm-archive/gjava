@@ -165,7 +165,7 @@ public class Aurwindow extends JFrame {
 //                foundloc = getCurrentProject().scenes.size() + 1;
 //            }
             addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
-        } else if (file.type.equals("egml")) {
+        } else if (file.type.equals("egml")||file.type.equals("gcl")) {
             addWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("struct")) {
             addWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
@@ -175,7 +175,7 @@ public class Aurwindow extends JFrame {
             addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
-        } else if (file.type.equals("wav") || file.type.equals("mid")){
+        } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")){
             addWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
             addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
@@ -1431,7 +1431,7 @@ public class Aurwindow extends JFrame {
                 while (a.findFromName("newClass" + i) != -1) {
                     i++;
                 }
-                addFile(getCurrentFolder(), "newClass" + i, "egml");
+                addFile(getCurrentFolder(), "newClass" + i, "gcl");
 
                 break;
             case 8:

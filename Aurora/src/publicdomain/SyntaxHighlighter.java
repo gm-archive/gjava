@@ -6,7 +6,9 @@ import javax.swing.text.*;
 import javax.swing.event.*;
 import java.io.*;
 
-// Public domain, no restrictions, Ian Holyer, University of Bristol.
+// Modified by Luís Reis. See G-Creator LICENSE for more details.
+// The original file contained:
+//// Public domain, no restrictions, Ian Holyer, University of Bristol.
 
 /**
  * Display text with syntax highlighting.  Highlighting is done with full
@@ -35,6 +37,7 @@ implements DocumentListener, TokenTypes
       Font font = new Font("Monospaced", Font.PLAIN, getFont().getSize());
       changeFont(font);
       initStyles();
+      setBackground(Color.WHITE);
    }
 
    /**
@@ -97,9 +100,9 @@ implements DocumentListener, TokenTypes
       changeStyle (STRING, Color.red);
       changeStyle (CHARACTER, Color.magenta);
       changeStyle (OPERATOR, Color.black, Font.BOLD);
-      changeStyle (BRACKET, Color.orange.darker());
+      changeStyle (BRACKET, Color.DARK_GRAY);
       changeStyle (SEPARATOR, Color.orange.darker());
-      changeStyle (URL, Color.blue.darker());
+      changeStyle (URL, Color.blue.darker(), true); //Underlined
 
       for (int i = 0; i < styles.length; i++)
       {
@@ -114,6 +117,17 @@ implements DocumentListener, TokenTypes
    {
       Style style = addStyle(typeNames[type], null);
       StyleConstants.setForeground(style, color);
+      styles[type] = style;
+   }
+   
+    /**
+    * Change the style of a particular type of token.
+    */
+   public void changeStyle (int type, Color color, boolean underlined)
+   {
+      Style style = addStyle(typeNames[type], null);
+      StyleConstants.setForeground(style, color);
+      StyleConstants.setUnderline(style, underlined);
       styles[type] = style;
    }
 
