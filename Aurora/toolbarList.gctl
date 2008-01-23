@@ -1,7 +1,7 @@
 ;Starting File
 [G-Creator Toolbar List]
 ;Property=Value
-Version=1.0.0
+Version=1.0.1
 
 [Toolbar]
 Name=untitled
@@ -10,8 +10,10 @@ Rollover=True
 Floatable=True
 TextVisible=True
 ImageVisible=True
+Bold=True
 Item=std_newProject
 TextVisible=False
+Bold=False
 Item=std_openProject
 Separator=Standard
 Item=std_save

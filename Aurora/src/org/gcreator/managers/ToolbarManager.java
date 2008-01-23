@@ -74,6 +74,8 @@ public class ToolbarManager {
         Toolbar t = null;
         boolean tvisible = false;
         boolean ivisible = false;
+        boolean bold = false;
+        int version = 100;
         for(String line : os){
             if(line.equals(""))
                 continue;
@@ -90,8 +92,14 @@ public class ToolbarManager {
             if(v==null){
                 if(line.matches("^Version=[0-9]+(\\.[0-9]+)*$")){
                     String ver = line.replaceAll("^Version=([0-9]+(\\.[0-9]+)*)$", "$1");
-                    if(ver.matches("1(\\.0)*"))
+                    if(ver.matches("1\\.0\\.0")){
+                        version = 100;
                         continue;
+                    }
+                    if(ver.matches("1\\.0\\.1")){
+                        version = 101;
+                        continue;
+                    }
                     else{
                         System.out.println("Unsupported version " + ver + "! Currently supported version is 1.0.0");
                         break;
@@ -105,6 +113,7 @@ public class ToolbarManager {
                     toolbars.add(t);
                     tvisible = false;
                     ivisible = false;
+                    bold = false;
                     continue;
                 }
                 else{
@@ -118,6 +127,7 @@ public class ToolbarManager {
                     toolbars.add(t);
                     tvisible = false;
                     ivisible = false;
+                    bold = false;
                     continue;
             }
             if(!line.matches("[a-zA-Z0-9_]+=[^;\\[\\]]+")){
@@ -183,6 +193,16 @@ public class ToolbarManager {
                     break;
                 }
             }
+            else if(key.equals("Bold")&&version>=101){
+                if(value.equals("True"))
+                    bold = true;
+                else if(value.equals("False"))
+                    bold = false;
+                else{
+                    System.out.println("Invalid boolean property: " + value);
+                    break;
+                }
+            }
             else if(key.equals("Item")){
                 boolean found = false;
                 buttonloop:
@@ -190,6 +210,7 @@ public class ToolbarManager {
                     if(btn.getID().equals(value)){
                         btn.setTextVisible(tvisible);
                         btn.setImageVisible(ivisible);
+                        btn.setBold(bold);
                         t.items.add(btn);
                         found = true;
                         break buttonloop;
@@ -215,7 +236,7 @@ public class ToolbarManager {
         writer.write(";Starting File\n");
         writer.write("[G-Creator Toolbar List]\n");
         writer.write(";Property=Value\n");
-        writer.write("Version=1.0.0\n");
+        writer.write("Version=1.0.1\n");
         writer.write("\n");
         for(Toolbar toolbar : toolbars){
             writer.write("[Toolbar]\n");
@@ -230,6 +251,7 @@ public class ToolbarManager {
                 continue;
             Boolean curtextvisible = null;
             Boolean curimgvisible = null;
+            Boolean curbold = null;
             for(ToolbarItem item : toolbar.items){
                 if(item instanceof ToolbarSeparator)
                     writer.write("Separator=Standard\n");
@@ -239,6 +261,8 @@ public class ToolbarManager {
                         writer.write("TextVisible=" + ((curtextvisible = btn.isTextVisible())? "True" : "False") + "\n");
                     if(curimgvisible==null||curimgvisible.booleanValue()!=btn.isImageVisible())
                         writer.write("ImageVisible=" + ((curimgvisible = btn.isImageVisible())? "True" : "False") + "\n");
+                    if(curbold==null||curbold.booleanValue()!=btn.isBold())
+                        writer.write("Bold=" + ((curbold = btn.isBold())? "True" : "False") + "\n");
                     writer.write("Item=" + btn.getID() + "\n");
                 }
             }

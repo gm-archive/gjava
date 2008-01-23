@@ -26,7 +26,7 @@ public class ToolButtonListCellRenderer extends JLabel implements ListCellRender
         }
         else if(value instanceof ToolbarButton){
             ToolbarButton btn = (ToolbarButton) value;
-            setText(btn.getText());
+            setText((btn.isBold() ? "<HTML><B>" : "") + btn.getText());
             setIcon(btn.getImage());
         }
         else{

@@ -26,4 +26,15 @@ public class ExtendedToolButton extends JButton implements MouseListener{
     public ExtendedToolButton(){
         addMouseListener(this);
     }
+    private boolean bold = false;
+    public boolean isBold(){
+        return bold;
+    }
+    public void setBold(boolean bold){
+        this.bold = bold;
+        updateUI();
+    }
+    public String getText(){
+        return (bold ? "<HTML><B>" : "") + super.getText();
+    }
 }

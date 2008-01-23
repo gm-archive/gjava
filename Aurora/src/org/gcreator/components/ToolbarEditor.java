@@ -63,6 +63,7 @@ public class ToolbarEditor extends javax.swing.JPanel {
         jList2 = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
+        jCheckBox5 = new javax.swing.JCheckBox();
 
         jLabel1.setText("Select toolbar to edit:");
 
@@ -169,6 +170,13 @@ public class ToolbarEditor extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
+        jCheckBox5.setText("Bold");
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,23 +200,24 @@ public class ToolbarEditor extends javax.swing.JPanel {
                                 .addComponent(jCheckBox2))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox1, 0, 306, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, 306, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 306, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, 306, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCheckBox3)
                                     .addComponent(jCheckBox4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                                 .addComponent(jButton2))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton7, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jCheckBox5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 186, Short.MAX_VALUE)
+                                .addComponent(jButton6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                                .addComponent(jButton7)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -240,16 +249,16 @@ public class ToolbarEditor extends javax.swing.JPanel {
                                 .addComponent(jCheckBox4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton3)
-                                    .addComponent(jButton6)))
+                                    .addComponent(jButton6)
+                                    .addComponent(jCheckBox5)))
                             .addComponent(jButton2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton7)
-                                .addGap(39, 39, 39))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton7)
+                            .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -376,6 +385,13 @@ public class ToolbarEditor extends javax.swing.JPanel {
             return;
         ((ToolbarButton) item).setImageVisible(jCheckBox4.isSelected());
     }//GEN-LAST:event_jCheckBox4ActionPerformed
+
+    private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
+        ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
+        if(item==null||item instanceof ToolbarSeparator)
+            return;
+        ((ToolbarButton) item).setBold(jCheckBox5.isSelected());
+    }//GEN-LAST:event_jCheckBox5ActionPerformed
     
     public void updateToolbar(){
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
@@ -422,12 +438,16 @@ public class ToolbarEditor extends javax.swing.JPanel {
             jCheckBox4.setSelected(false);
             jCheckBox3.setEnabled(false);
             jCheckBox4.setEnabled(false);
+            jCheckBox5.setEnabled(false);
+            jCheckBox5.setSelected(false);
             return;
         }
         jCheckBox3.setEnabled(true);
         jCheckBox4.setEnabled(true);
+        jCheckBox5.setEnabled(true);
         jCheckBox3.setSelected(((ToolbarButton) item).isTextVisible());
         jCheckBox4.setSelected(((ToolbarButton) item).isImageVisible());
+        jCheckBox5.setSelected(((ToolbarButton) item).isBold());
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -442,6 +462,7 @@ public class ToolbarEditor extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
+    private javax.swing.JCheckBox jCheckBox5;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;

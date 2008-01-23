@@ -24,7 +24,7 @@ public class Script extends Resource {
 
     @Override
     public Object clone() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Script(value);
     }
     
     public String toString(){

@@ -22,6 +22,7 @@ public class ToolbarButton extends ToolbarItem{
     private ActionListener actionlistener = null;
     private boolean showImage = false;
     private boolean showText = false;
+    private boolean bold = false;
     
     /**
      * Builds a new toolbar button with no text nor image
@@ -109,6 +110,14 @@ public class ToolbarButton extends ToolbarItem{
     }
     
     /**
+     * Sets whether the text should be bold or not
+     * @param visible True to bold, false to standard
+     */
+    public void setBold(boolean bold){
+        this.bold = bold;
+    }
+    
+    /**
      * Checks if the text is visible or not
      * @return True if the text is visible, false otherwise
      */
@@ -122,6 +131,14 @@ public class ToolbarButton extends ToolbarItem{
      */
     public boolean isImageVisible(){
         return showImage;
+    }
+    
+    /**
+     * Checks if the text should be bold or not
+     * @return True if the text is bold, false otherwise
+     */
+    public boolean isBold(){
+        return bold;
     }
     
     public void paint(Graphics g, int x, int height){

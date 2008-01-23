@@ -59,6 +59,8 @@ public class Toolbar {
                 button.setToolTipText(btn.getText());
                 if(btn.isImageVisible())
                     button.setIcon(btn.getImage());
+                if(btn.isBold())
+                    button.setBold(true);
                 button.addActionListener(btn.getActionListener());
                 toolbar.add(button);
             }
