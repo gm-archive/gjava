@@ -100,8 +100,10 @@ public class gcreator {
 		folder = folder.replaceAll("%20"," ");
 		folder = folder.substring(1);
 		folder = folder.replace("/","\\");
-                if(plugload)
+                if(plugload){
+                    Plugger.registerLoader();
                     plugins = Plugger.getPlugList(PluginsList.loadPluglist());
+                }
         }
         if(ver<=4)
             plugload = false;

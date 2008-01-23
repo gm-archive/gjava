@@ -45,14 +45,14 @@ public class ProjectImporter {
         boolean run2 = false;
         try {
             System.out.println(ptype);
-            project = (Project) ClassLoader.getSystemClassLoader().loadClass(ptype).newInstance();
+            project = (Project) ClassLoading.classLoader.loadClass(ptype).newInstance();
         } catch (Exception e) {
         System.out.println(e.toString());
         run2 = true;
         }
         if(run2)
         try {
-            project = (Project) Plugger.getPluginClassLoader().loadClass(ptype).newInstance();
+            project = (Project) ClassLoading.classLoader.loadClass(ptype).newInstance();
         } catch (Exception e) {
             System.out.println(e.toString());
         }
@@ -143,7 +143,7 @@ public class ProjectImporter {
             else{
                 boolean rung = false;
                 try{
-                    Group t = (Group) Class.forName(sss[0]).newInstance();
+                    Group t = (Group) ClassLoading.classLoader.loadClass(sss[0]).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
                     project.add(t);
@@ -154,7 +154,7 @@ public class ProjectImporter {
                 }
                 if(rung)
                 try{
-                    Group t = (Group) Class.forName(sss[0], true, Plugger.getPluginClassLoader()).newInstance();
+                    Group t = (Group) ClassLoading.classLoader.loadClass(sss[0]).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
                     project.add(t);
