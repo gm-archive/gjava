@@ -25,7 +25,6 @@ public class Actor extends tile {
 ,friction
 ,gravity
 ,gravity_direction
-,hspeed
 ,id
 ,image_alpha
 ,image_angle
@@ -47,7 +46,6 @@ public class Actor extends tile {
 ,path_speed
 ,persistent
 ,solid
-,speed
 ,sprite_height
 ,sprite_index
 ,sprite_width
@@ -57,9 +55,8 @@ public class Actor extends tile {
 ,timeline_position
 ,timeline_speed
 ,visible
-,vspeed
 ;
-protected double x,y,xprevious,xstart,yprevious,ystart;
+protected double x,y,xprevious,xstart,yprevious,ystart,hspeed,vspeed,speed;
     
    public Actor(){}
     /**
@@ -71,8 +68,7 @@ protected double x,y,xprevious,xstart,yprevious,ystart;
         this.id = instance_id;
         this.x = X.getFloat();
         this.y = Y.getFloat();
-        xx=(float) X.getDouble();
-        yy=(float)Y.getDouble();
+        self = this;
     }
     
     /**
@@ -157,15 +153,24 @@ protected double x,y,xprevious,xstart,yprevious,ystart;
     public void Collision_event() {
        
     }
+    
+    public void callEvents()
+    {
+        Move();
+    }
    
     /**
      * This will Move the object, should be called every step
      */
     public void Move() {
+        xprevious = x;
+        yprevious = y;
+        x = x + hspeed;
+	y = y + vspeed;
         
     }    
     
-float xx,yy;
+
     
     /**
      * Override with the Draw event of the actor but don't call this method!
@@ -173,7 +178,7 @@ float xx,yy;
      */
     
     public void Draw_event(){
-        sprite.a.draw(xx,yy);
+        sprite.a.draw((float)x,(float)y);
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     public Object getAlarm() {
@@ -237,9 +242,8 @@ float xx,yy;
     }
 
     public Object getHspeed() {
-        if (hspeed == null)
-            hspeed = new Integer(0);
-        return hspeed;
+        
+        return new Double(hspeed);
     }
 
     public Object getId() {
@@ -369,9 +373,8 @@ float xx,yy;
     }
 
     public Object getSpeed() {
-        if (speed == null)
-            speed = new Integer(0);
-        return speed;
+        
+        return new Double(speed);
     }
 
     public Object getSprite_height() {
@@ -429,9 +432,8 @@ float xx,yy;
     }
 
     public Object getVspeed() {
-        if (vspeed == null)
-            vspeed = new Integer(0);
-        return vspeed;
+        
+        return new Double(vspeed);
     }
 
     public Object getX() {
@@ -502,7 +504,7 @@ float xx,yy;
     }
 
     public void setHspeed(Object hspeed) {
-        this.hspeed = hspeed;
+        this.hspeed = hspeed.getDouble();
     }
 
     public void setId(Object id) {
@@ -586,7 +588,7 @@ float xx,yy;
     }
 
     public void setSpeed(Object speed) {
-        this.speed = speed;
+        this.speed = speed.getDouble();
     }
 
     public void setSprite_height(Object sprite_height) {
@@ -626,7 +628,7 @@ float xx,yy;
     }
 
     public void setVspeed(Object vspeed) {
-        this.vspeed = vspeed;
+        this.vspeed = vspeed.getDouble();
     }
 
     public void setX(Object x) {

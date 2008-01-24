@@ -576,11 +576,22 @@ return new Object();
 
 public static Object motion_set(Object dir, Object speed)
 {
+    System.out.println(""+speed.getDouble());
+    if (dir.equals(new Integer(90)).getBoolean())
+        self.hspeed = -(0);
+    self.hspeed = -(speed.getDouble());
+    self.vspeed = speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
+    self.speed = speed.getDouble();
+    self.direction = dir;
 return new Object();
 }
 
 public static Object motion_add(Object dir, Object speed)
 {
+    self.hspeed += -(speed.getDouble());
+    self.vspeed += speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
+    self.speed += speed.getDouble();
+    self.direction = new Double(self.direction.getDouble() + dir.getDouble());
 return new Object();
 }
 
@@ -601,6 +612,9 @@ return new Object();
 
 public static Object place_snapped(Object hsnap, Object vsnap)
 {
+    if ((self.x % hsnap.getDouble() ==0) && (self.y % vsnap.getDouble()==0) )
+        return new Boolean(true);
+
 return new Object();
 }
 
@@ -611,6 +625,9 @@ return new Object();
 
 public static Object move_snap(Object hsnap, Object vsnap)
 {
+    self.x = self.x/hsnap.getDouble()  * round(hsnap).getDouble();
+			self.y = self.y/vsnap.getDouble() * round(vsnap).getDouble();
+			
 return new Object();
 }
 
