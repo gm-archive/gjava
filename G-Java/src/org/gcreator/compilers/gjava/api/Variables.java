@@ -5,11 +5,13 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import org.gcreator.compilers.gjava.Game;
+
 /**
  *
  * @author Ali
  */
-public class Variables {
+public class Variables extends Constants {
 Object   argument
 ,  argument0
 ,  argument1
@@ -550,7 +552,7 @@ Object   argument
     }
 
     public void setGame_id(Object game_id) {
-        this.game_id = game_id;
+        //constant
     }
 
     public Object getHealth() {
@@ -562,11 +564,11 @@ Object   argument
     }
 
     public Object getInstance_count() {
-        return instance_count;
+        return new Integer(Game.Current.instances.size());
     }
 
     public void setInstance_count(Object instance_count) {
-        this.instance_count = instance_count;
+        //constant
     }
 
     public Object getInstance_id() {

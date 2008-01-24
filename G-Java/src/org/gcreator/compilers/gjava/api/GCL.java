@@ -5,6 +5,8 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
  * This class will be converted to other languages via gcl
  * @author TGMG
  */
-public class GCL extends Constants {
+public class GCL extends Variables {
   
     
     
@@ -950,7 +952,13 @@ return new Object();
  */
 public static Object sleep(Object millisec)
 {
-return new Object();
+        try {
+            Thread.sleep((int) millisec.getDouble());
+            
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Object();
 }
 
 /*
