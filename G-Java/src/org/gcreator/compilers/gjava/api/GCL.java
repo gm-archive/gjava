@@ -2051,22 +2051,22 @@ return new Object();
  */
 public static Object display_get_width()
 {
-return new Object();
+return new Double(Display.getWidth());
 }
 
 public static Object display_get_height()
 {
-return new Object();
+return new Double(Display.getHeight());
 }
 
 public static Object display_get_colordepth()
 {
-return new Object();
+return new Double(Display.getColordepth());
 }
 
 public static Object display_get_frequency()
 {
-return new Object();
+return new Double(Display.getFrequency());
 }
 
 public static Object display_set_size(Object w, Object h)
@@ -3991,11 +3991,13 @@ return new Object();
  */
 public static Object execute_program(Object prog, Object arg, Object wait)
 {
+    Main.execute_program(""+prog.getString(), ""+arg.getString(), wait.getBoolean());
 return new Object();
 }
 
 public static Object execute_shell(Object prog, Object arg)
 {
+    Main.execute_shell(""+prog, ""+arg);
 return new Object();
 }
 

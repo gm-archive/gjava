@@ -13,108 +13,109 @@ import org.gcreator.compilers.gjava.Game;
  * @author Ali
  */
 public class Variables extends Constants {
-Object   argument
-,  argument0
-,  argument1
-,  argument10
-,  argument11
-,  argument12
-,  argument13
-,  argument14
-,  argument15
-,  argument2
-,  argument3
-,  argument4
-,  argument5
-,  argument6
-,  argument7
-,  argument8
-,  argument9
-,  argument_relative
-,  background_alpha
-,  background_blend
-,  background_color
-,  background_foreground
-,  background_height
-,  background_hspeed
-,  background_htiled
-,  background_index
-,  background_showcolor
-,  background_visible
-,  background_vspeed
-,  background_vtiled
-,  background_width
-,  background_x
-,  background_xscale
-,  background_y
-,  background_yscale
-,  caption_health
-,  caption_lives
-,  caption_score
+public static Object   argument
+= new Boolean(false),  argument0
+= new Boolean(false),  argument1
+= new Boolean(false),  argument10
+= new Boolean(false),  argument11
+= new Boolean(false),  argument12
+= new Boolean(false),  argument13
+= new Boolean(false),  argument14
+= new Boolean(false),  argument15
+= new Boolean(false),  argument2
+= new Boolean(false),  argument3
+= new Boolean(false),  argument4
+= new Boolean(false),  argument5
+= new Boolean(false),  argument6
+= new Boolean(false),  argument7
+= new Boolean(false),  argument8
+= new Boolean(false),  argument9
+= new Boolean(false),  argument_relative
+= new Boolean(false),  background_alpha
+= new Boolean(false),  background_blend
+= new Boolean(false),  background_color
+= new Boolean(false),  background_foreground
+= new Boolean(false),  background_height
+= new Boolean(false),  background_hspeed
+= new Boolean(false),  background_htiled
+= new Boolean(false),  background_index
+= new Boolean(false),  background_showcolor
+= new Boolean(false),  background_visible
+= new Boolean(false),  background_vspeed
+= new Boolean(false),  background_vtiled
+= new Boolean(false),  background_width
+= new Boolean(false),  background_x
+= new Boolean(false),  background_xscale
+= new Boolean(false),  background_y
+= new Boolean(false),  background_yscale
+,  caption_health  = new String("health:")
+,  caption_lives = new String("lives:")
+,  caption_score  = new String("scroe:")
 ,  current_day
-,  current_hour
-,  current_minute
-,  current_month
-,  current_second
-,  current_time
-,  current_weekday
-,  current_year
-,  cursor_sprite
-,  error_last
-,  error_occurred
-,  event_action
-,  event_number
-,  event_object
-,  event_type
-,  fps
-,  game_id
-,  health
+= new Boolean(false),  current_hour
+= new Boolean(false),  current_minute
+= new Boolean(false),  current_month
+= new Boolean(false),  current_second
+= new Boolean(false),  current_time
+= new Boolean(false),  current_weekday
+= new Boolean(false),  current_year
+= new Boolean(false),  cursor_sprite
+= new Boolean(false),  error_last
+= new Boolean(false),  error_occurred
+= new Boolean(false),  event_action
+= new Boolean(false),  event_number
+= new Boolean(false),  event_object
+= new Boolean(false),  event_type
+= new Boolean(false),  fps
+= new Boolean(false),  game_id
+= new Boolean(false),  health = new Integer(100)
 ,  instance_count
-,  instance_id
-,  keyboard_key
-,  keyboard_lastchar
-,  keyboard_lastkey
-,  keyboard_string
-,  lives
+= new Boolean(false),  instance_id
+= new Boolean(false),  keyboard_key
+= new Boolean(false),  keyboard_lastchar
+= new Boolean(false),  keyboard_lastkey
+= new Boolean(false),  keyboard_string
+= new Boolean(false),  lives = new Integer(5)
 ,  mouse_button
-,  mouse_lastbutton
-,  mouse_x
-,  mouse_y
-,  program_directory
-,  room
-,  room_caption
-,  room_first
-,  room_height
-,  room_last
-,  room_persistent
-,  room_speed
-,  room_width
-,  score
-,  secure_mode
-,  show_health
-,  show_lives
-,  show_score
-,  temp_directory
-,  transition_kind
-,  transition_steps
-,  view_angle
-,  view_current
-,  view_enabled
-,  view_hborder
-,  view_hport
-,  view_hspeed
-,  view_hview
-,  view_object
-,  view_vborder
-,  view_visible
-,  view_vspeed
-,  view_wport
-,  view_wview
-,  view_xport
-,  view_xview
-,  view_yport
-,  view_yview
-,  working_directory;
+= new Boolean(false),  mouse_lastbutton
+= new Boolean(false),  mouse_x
+= new Boolean(false),  mouse_y
+= new Boolean(false),  program_directory
+= new Boolean(false),  room
+= new Boolean(false),  room_caption
+= new Boolean(false),  room_first
+= new Boolean(false),  room_height
+= new Boolean(false),  room_last
+= new Boolean(false),  room_persistent
+= new Boolean(false),  room_speed
+= new Boolean(false),  room_width
+= new Boolean(false),  score
+= new Boolean(false),  secure_mode
+= new Boolean(false),  show_health
+= new Boolean(false),  show_lives
+= new Boolean(false),  show_score
+= new Boolean(false),  temp_directory
+= new Boolean(false),  transition_kind
+= new Boolean(false),  transition_steps
+= new Boolean(false),  view_angle
+= new Boolean(false),  view_current
+= new Boolean(false),  view_enabled
+= new Boolean(false),  view_hborder
+= new Boolean(false),  view_hport
+= new Boolean(false),  view_hspeed
+= new Boolean(false),  view_hview
+= new Boolean(false),  view_object
+= new Boolean(false),  view_vborder
+= new Boolean(false),  view_visible
+= new Boolean(false),  view_vspeed
+= new Boolean(false),  view_wport
+= new Boolean(false),  view_wview
+= new Boolean(false),  view_xport
+= new Boolean(false),  view_xview
+= new Boolean(false),  view_yport
+= new Boolean(false),  view_yview
+= new Boolean(false),  working_directory
+        = new Boolean(false);
 
     public Object getArgument() {
         return argument;
@@ -393,7 +394,7 @@ Object   argument
     }
 
     public void setBackground_yscale(Object background_yscale) {
-        this.background_yscale = background_yscale;
+        Variables.background_yscale = background_yscale;
     }
 
     public Object getCaption_health() {
@@ -401,7 +402,8 @@ Object   argument
     }
 
     public void setCaption_health(Object caption_health) {
-        this.caption_health = caption_health;
+        Variables.caption_health = caption_health;
+        Game.Current.updateCaption();
     }
 
     public Object getCaption_lives() {
@@ -409,7 +411,8 @@ Object   argument
     }
 
     public void setCaption_lives(Object caption_lives) {
-        this.caption_lives = caption_lives;
+        Variables.caption_lives = caption_lives;
+        Game.Current.updateCaption();
     }
 
     public Object getCaption_score() {
@@ -417,7 +420,8 @@ Object   argument
     }
 
     public void setCaption_score(Object caption_score) {
-        this.caption_score = caption_score;
+        Variables.caption_score = caption_score;
+        Game.Current.updateCaption();
     }
 
     public Object getCurrent_day() {
@@ -574,6 +578,7 @@ Object   argument
 
     public void setHealth(Object health) {
         this.health = health;
+        Game.Current.updateCaption();
     }
 
     public Object getInstance_count() {
@@ -630,6 +635,7 @@ Object   argument
 
     public void setLives(Object lives) {
         this.lives = lives;
+        Game.Current.updateCaption();
     }
 
     public Object getMouse_button() {
@@ -742,6 +748,7 @@ Object   argument
 
     public void setScore(Object score) {
         this.score = score;
+        Game.Current.updateCaption();
     }
 
     public Object getSecure_mode() {
@@ -749,7 +756,7 @@ Object   argument
     }
 
     public void setSecure_mode(Object secure_mode) {
-        this.secure_mode = secure_mode;
+        //constant
     }
 
     public Object getShow_health() {
@@ -758,6 +765,7 @@ Object   argument
 
     public void setShow_health(Object show_health) {
         this.show_health = show_health;
+        Game.Current.updateCaption();
     }
 
     public Object getShow_lives() {
@@ -766,6 +774,7 @@ Object   argument
 
     public void setShow_lives(Object show_lives) {
         this.show_lives = show_lives;
+        Game.Current.updateCaption();
     }
 
     public Object getShow_score() {
@@ -774,6 +783,7 @@ Object   argument
 
     public void setShow_score(Object show_score) {
         this.show_score = show_score;
+        Game.Current.updateCaption();
     }
 
     public Object getTemp_directory() {

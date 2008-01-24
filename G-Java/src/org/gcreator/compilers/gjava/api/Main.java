@@ -16,62 +16,11 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**
  *
- * @author Ali1
+ * @author TGMG
  */
 public class Main {
-    private static String[] parameters;
-    private static int parameter_count;
-/**
-         *  The game score, Starts at 0
-         * @since 2.0
-         */
-        public static int score = 0;
+    
 
-        /**
-         * Whether to show the score in the window caption.
-         * @since 2.0
-         */
-        public static boolean show_score = true;
-        /**
-         * Whether to show the number of lives in the window caption.
-         * @since 2.0
-         */
-        public static boolean show_lives = false;
-        /**
-         * Whether to show the health in the window caption.
-         * @since 2.0
-         */
-        public static boolean show_health = false;
-
-        /**
-         * The Game lives, default 5
-         *  @since 2.0
-         */
-        public static int lives = 5;
-
-        /**
-         * The game health, starts at 100
-         *  @since 2.0
-         */
-        public static int health = 100;
-
-        /**
-         * The score caption
-         * @since 2.0
-         */
-        public static String score_caption = new String("score:");
-        /**
-         * The lives caption
-         * @since 2.0
-         */
-        public static String lives_caption = new String("lives:");
-
-        /**
-         * The health caption
-         * @since 2.0
-         */
-        public static String health_caption = new String("health:");
-        
         /**
          * Executes program prog with arguments arg. wait indicates whether to wait for finishing.
          * @param prog
@@ -80,9 +29,10 @@ public class Main {
          * @since 2.0
          * @author TGMG
          */
-        public static void execute_program(String prog, String arg, boolean wait) {
+        public static void execute_program(java.lang.String prog, java.lang.String arg, boolean wait) {
             try {
                 java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog + arg);
+                
                 if (wait) {
                     try {
                         proc.waitFor();
@@ -92,6 +42,7 @@ public class Main {
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
+                System.err.println("Execute program exception!");
             }
         }
 
@@ -102,45 +53,11 @@ public class Main {
          * @since 2.0
          * @author TGMG
          */
-        public static void execute_shell(String prog, String arg) {
-            execute_program(new String("bash -i " + prog), arg, false);
+        public static void execute_shell(java.lang.String prog, java.lang.String arg) {
+            execute_program("bash -i " + prog, arg, false);
         }
         
-        /**
-         * Index of the current room;
-         */
-        //public static int room = basicgame.Current.roomid;
-
-        /**
-         * Index of the first room in the game.
-         */
-        public static int room_first = basicgame.firstroom;
-
-        /**
-         * Index of the last room in the game.
-         */
-        public static int room_last = basicgame.lastroom;
-
-        /**
-         * The width of the current room
-         */
-        public static int room_width = basicgame.Current.width;
-
-        /**
-         * The height of the current room
-         */
-        public static int room_height = basicgame.Current.height;
-
-        /**
-         * The caption of the current room
-         */
-        public static String room_caption = new String(basicgame.Current.Caption);
-
-        /**
-         * @deprecated Used for compatibility with gm
-         */
-        public static boolean room_persistent = false;
-
+      
         /**
          * Goto the room with index roomid.
          * @param roomid
@@ -254,31 +171,8 @@ public class Main {
             // OutputStream os = new OutputStream();
             // RandomAccessFile((File)savefile,)
         }
-
-        /**
-         * Load game from file, only applications or signed applets
-         * @deprecated Not added yet! Does nothing
-         * @param savFilename The filename of the save file to load from
-         */
-        public static void game_load(String savFilename) {
-        }
         
-    /**
-         * Returns the number of command-line parameters (note that the name of the program itself is one of them)
-         * @return
-         */
-        public static int parameter_count() {
-            return parameter_count;
-        }
-        
-         /**
-         * Returns command-line parameters n. The first parameter has index 0. This is the name of the program.
-         * @param n
-         * @return
-         */
-        public static String parameter_string(int n) {
-            return parameters[n];
-        }
+      
         
         /**
          * Returns the value (a string) of the environment variable with the given name.
