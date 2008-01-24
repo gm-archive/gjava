@@ -5,6 +5,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import java.util.Calendar;
 import org.gcreator.compilers.gjava.Game;
 
 /**
@@ -420,67 +421,79 @@ Object   argument
     }
 
     public Object getCurrent_day() {
-        return current_day;
+        Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.DAY_OF_MONTH));
     }
 
     public void setCurrent_day(Object current_day) {
-        this.current_day = current_day;
+        //constant
     }
 
     public Object getCurrent_hour() {
-        return current_hour;
+        Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.HOUR_OF_DAY));
     }
 
     public void setCurrent_hour(Object current_hour) {
-        this.current_hour = current_hour;
+        //constant
     }
 
     public Object getCurrent_minute() {
-        return current_minute;
+        Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.MINUTE));
     }
 
     public void setCurrent_minute(Object current_minute) {
-        this.current_minute = current_minute;
+       //constant
     }
 
     public Object getCurrent_month() {
-        return current_month;
+         Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.MONTH)+1);
+        //return current_month;
     }
 
     public void setCurrent_month(Object current_month) {
-        this.current_month = current_month;
+        //constant
     }
 
     public Object getCurrent_second() {
-        return current_second;
+        Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.SECOND));
+        //return current_second;
     }
 
     public void setCurrent_second(Object current_second) {
-        this.current_second = current_second;
+        //constant
     }
 
     public Object getCurrent_time() {
-        return current_time;
+        Calendar toDay = Calendar.getInstance();
+        return new Double(toDay.get(Calendar.MILLISECOND));
+        
     }
 
     public void setCurrent_time(Object current_time) {
-        this.current_time = current_time;
+        //constant
     }
 
     public Object getCurrent_weekday() {
-        return current_weekday;
+        Calendar toDay = Calendar.getInstance();
+        return new Integer(toDay.get(Calendar.DAY_OF_WEEK));
     }
 
     public void setCurrent_weekday(Object current_weekday) {
-        this.current_weekday = current_weekday;
+        //constant
     }
 
     public Object getCurrent_year() {
-        return current_year;
+        Calendar toDay = Calendar.getInstance();
+        return new Double(toDay.get(Calendar.YEAR));
+        
     }
 
     public void setCurrent_year(Object current_year) {
-        this.current_year = current_year;
+        //constant
     }
 
     public Object getCursor_sprite() {
@@ -540,11 +553,11 @@ Object   argument
     }
 
     public Object getFps() {
-        return fps;
+        return new Integer(Game.Current.getFPS());
     }
 
     public void setFps(Object fps) {
-        this.fps = fps;
+        //constant
     }
 
     public Object getGame_id() {
@@ -708,11 +721,11 @@ Object   argument
     }
 
     public Object getRoom_speed() {
-        return room_speed;
+        return new Double(Game.Current.speed);
     }
 
     public void setRoom_speed(Object room_speed) {
-        this.room_speed = room_speed;
+        Game.Current.speed = room_speed.getDouble();
     }
 
     public Object getRoom_width() {

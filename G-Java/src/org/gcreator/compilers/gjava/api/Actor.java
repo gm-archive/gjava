@@ -157,6 +157,7 @@ protected double x,y,xprevious,xstart,yprevious,ystart,hspeed,vspeed,speed;
     public void callEvents()
     {
         Move();
+        
     }
    
     /**

@@ -337,12 +337,13 @@ return Clipboard.getText();
  */ 
 public static Object date_current_datetime()
 {
-return new Object();
+return new Double(Date.currentDatetime());
 }
 
 public static Object date_current_date()
 {
-return new Object();
+    
+return round(new Double(Date.currentDate()));
 }
 
 public static Object date_current_time()
@@ -417,7 +418,7 @@ return new Object();
 
 public static Object date_get_year(Object date)
 {
-return new Object();
+return new Double(Date.getYear(date.getDouble()));
 }
 
 public static Object date_get_month(Object date)
