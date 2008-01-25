@@ -168,6 +168,8 @@ public class Aurwindow extends JFrame {
             addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("egml")||file.type.equals("gcl")) {
             addWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
+        } else if (file.type.equals("gs")) {
+            addWindow(new org.gcreator.editors.ScriptEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("struct")) {
             addWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("java")) {
@@ -1505,6 +1507,20 @@ public class Aurwindow extends JFrame {
                     i++;
                 }
                 addFile(getCurrentFolder(), "newTimeline" + i, "timeline");
+                break;
+            case 13:
+                //add class
+                i = 1;
+                a = getCurrentFolder();
+                if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
+                    return;
+                }
+                while (a.findFromName("newScript" + i) != -1) {
+                    i++;
+                }
+                addFile(getCurrentFolder(), "newScript" + i, "gs");
+
                 break;
         }
     }

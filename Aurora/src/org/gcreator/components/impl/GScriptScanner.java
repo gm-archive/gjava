@@ -695,7 +695,7 @@ public class GScriptScanner extends Scanner
         lookup(KEYWORD, "repeat");
         lookup(KEYWORD, "do");
         lookup(KEYWORD, "until");
-        lookup(KEYWORD, "while");
+        lookup(KEYWORD, "for");
         lookup(KEYWORD, "switch");
         lookup(KEYWORD, "case");
         lookup(KEYWORD, "default");

@@ -67,7 +67,7 @@ public class GameProject extends Project{
                 return findFolder("Actors");
             else if(file.equals("scene"))
                 return findFolder("Scenes");
-            else if(file.equals("egml")||file.equals("gcl"))
+            else if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
                 return findFolder("Classes");
             else if(file.equals("timeline"))
                 return findFolder("Timelines");

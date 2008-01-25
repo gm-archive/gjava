@@ -157,8 +157,9 @@ public class gcreator {
         ToolbarButton addtml = new DefaultToolbarItem("std_addTimeline", null, 204);
         ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor01.png")), 45);
         ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
-        ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 52);
-
+        ToolbarButton addcls = new DefaultToolbarItem("std_addClass", null, 52);
+        ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
+        
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 window.onToolbarActionPerformed(1, evt);
@@ -225,6 +226,12 @@ public class gcreator {
             }
         });
         
+        addgs.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(13, evt);
+            }
+        });
+        
         addtml.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 window.onToolbarActionPerformed(12, evt);
@@ -243,6 +250,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addact);
         ToolbarManager.toolbuttons.add(addscn);
         ToolbarManager.toolbuttons.add(addcls);
+        ToolbarManager.toolbuttons.add(addgs);
         
         /*Toolbar tool = new Toolbar();
         tool.horizontal = true;

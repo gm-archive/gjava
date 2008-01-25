@@ -24,7 +24,7 @@ public class EGMLGroup extends Group{
     
      
     public boolean allowsFileType(String format){
-        if(format.equals("egml")||format.equals("struct")||format.equals("gcl"))
+        if(format.equals("egml")||format.equals("struct")||format.equals("gcl")||format.equals("gs"))
             return true;
         return false;
     }

@@ -38,7 +38,7 @@ public class ModuleProject extends Project{
     public Folder magicAddition(String file)
     {
         try{
-            if(file.equals("egml"))
+            if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
                 return findFolder("Classes");
         }
         catch(Exception e){}
