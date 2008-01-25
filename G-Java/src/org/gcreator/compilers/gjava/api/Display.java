@@ -50,11 +50,12 @@ import java.awt.Toolkit;
         public static int getColordepth() {
             // Get number of colors
             int bitDepth = dm.getBitDepth();
+            
             if (bitDepth == DisplayMode.BIT_DEPTH_MULTI) {
                 // Multiple bit depths are supported in this display mode
                 return 0;
             } else {
-                return (int) java.lang.Math.pow(2, bitDepth);
+                return bitDepth;
             }
         }
 
@@ -80,8 +81,9 @@ import java.awt.Toolkit;
             try {
                 gs.setDisplayMode(displayMode);
                 return true;
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 // Desired display mode is not supported; leave full-screen mode
+                System.out.println("Error not supported");
                 return false;
             }
         }

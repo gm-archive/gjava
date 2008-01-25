@@ -2071,7 +2071,7 @@ return new Double(Display.getFrequency());
 
 public static Object display_set_size(Object w, Object h)
 {
-return new Object();
+return new Boolean(Display.setSize((int)w.getDouble(),(int) h.getDouble()));
 }
 
 public static Object display_set_colordepth(Object coldepth)
