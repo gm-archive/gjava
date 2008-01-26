@@ -86,10 +86,10 @@ public class Aurwindow extends JFrame {
 
     public java.lang.Object getWindowListElementAt(int pos) {
         if (istabs) {
-            Component[] panels = tabs.getComponents();
             if (tabs == null) {
                 return null;
             }
+            Component[] panels = tabs.getComponents();
             if (panels[pos] instanceof TabPanel) {
                 return panels[pos];
             }

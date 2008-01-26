@@ -98,15 +98,15 @@ public class SceneEditor extends TabPanel {
     public void updateBgImage(){
         if(curbg.getCurrentObject()==null){
             jLabel23.setIcon(null);
-            ((Scene) file.value).bgimage = null;
+            //((Scene) file.value).bgimage = null;
             scene.updateUI();
             return;
         }
-        ((Scene) file.value).bgimage = (org.gcreator.fileclass.File) ((org.gcreator.fileclass.File) curbg.getCurrentObject().object);
-        ImageIcon b = ((Scene) file.value).getBackground();
-        if(b!=null){
-            jLabel23.setIcon(b);
-        }
+        //((Scene) file.value).bgimage = (org.gcreator.fileclass.File) ((org.gcreator.fileclass.File) curbg.getCurrentObject().object);
+        //ImageIcon b = ((Scene) file.value).getBackground();
+        //if(b!=null){
+        //    jLabel23.setIcon(b);
+        //}
         scene.updateUI();
     }
     
@@ -140,10 +140,10 @@ public class SceneEditor extends TabPanel {
             }
         });
         jPanel6.setLayout(new FlowLayout());
-        if(((org.gcreator.fileclass.res.Scene) file.value).bgimage!=null)
+        /*if(((org.gcreator.fileclass.res.Scene) file.value).bgimage!=null)
             jPanel6.add(curbg = new ResourceMenu("image",((org.gcreator.fileclass.res.Scene) file.value).bgimage.name,true,project));
-        else
-            jPanel6.add(curbg = new ResourceMenu("image", "<no image>",true,project));
+        else*/
+        jPanel6.add(curbg = new ResourceMenu("image", "<no image>",true,project));
         curbg.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 updateBgImage();
@@ -1409,12 +1409,12 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner11StateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        ((Scene) file.value).hmode = jComboBox1.getSelectedIndex();
+        //((Scene) file.value).hmode = jComboBox1.getSelectedIndex();
         scene.updateUI();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        ((Scene) file.value).vmode = jComboBox2.getSelectedIndex();
+        //((Scene) file.value).vmode = jComboBox2.getSelectedIndex();
         scene.updateUI();
     }//GEN-LAST:event_jComboBox2ActionPerformed
 

@@ -28,15 +28,10 @@ public boolean persistant,grid = true,isometric,drawbackcolor=true;
 public ViewsModel views;
 public Vector actors;
 public Vector tiles;
+public Vector backgrounds;
 public Color background = Color.lightGray;
-public org.gcreator.fileclass.File bgimage = null;
-public static final int MODE_SINGLE = 0;
-public static final int MODE_REPEAT = 1;
-public static final int MODE_STRETCH = 2;
-public int hmode = MODE_SINGLE;
-public int vmode = MODE_SINGLE;
 
-public ImageIcon getBackground(){
+/*public ImageIcon getBackground(){
     if(bgimage==null)
         return null;
     if(bgimage.value instanceof ImageIcon){
@@ -44,7 +39,7 @@ public ImageIcon getBackground(){
     }
     else
         return null;
-}
+}*/
 
 public Scene(String name)
 {
