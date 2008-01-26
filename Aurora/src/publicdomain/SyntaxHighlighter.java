@@ -91,18 +91,18 @@ implements DocumentListener, TokenTypes
       changeStyle (START_COMMENT, Color.green.darker());
       changeStyle (MID_COMMENT, Color.green.darker());
       changeStyle (END_COMMENT, Color.green.darker());
-      changeStyle (TAG, Color.blue, Font.BOLD);
-      changeStyle (END_TAG, Color.blue, Font.BOLD);
+      changeStyle (TAG, Color.blue);
+      changeStyle (END_TAG, Color.blue);
       changeStyle (KEYWORD, Color.blue);
       changeStyle (KEYWORD2, Color.blue);
       changeStyle (IDENTIFIER, Color.black);
       changeStyle (LITERAL, Color.blue);
       changeStyle (STRING, Color.red);
       changeStyle (CHARACTER, Color.magenta);
-      changeStyle (OPERATOR, Color.black, Font.BOLD);
+      changeStyle (OPERATOR, Color.black);
       changeStyle (BRACKET, Color.DARK_GRAY);
       changeStyle (SEPARATOR, Color.orange.darker());
-      changeStyle (URL, Color.blue.darker(), true); //Underlined
+      changeStyle (URL, Color.blue.darker()); //Underlined
 
       for (int i = 0; i < styles.length; i++)
       {

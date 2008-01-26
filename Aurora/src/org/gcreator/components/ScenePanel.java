@@ -260,7 +260,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void drawField(Graphics g){
         g.setColor(root.getMapBGColor());
         g.fillRect(0, 0, getWidth(), getHeight());
-        //drawBackgrounds(g);
+        try{
+            Scene scn = (Scene) root.file.value;
+            for(Object o : scn.backgrounds){
+                drawBackground(g, (BackgroundInScene) o);
+            }
+        }
+        catch(NullPointerException e){}
     }
     
     public void drawBackground(Graphics g, BackgroundInScene bg){

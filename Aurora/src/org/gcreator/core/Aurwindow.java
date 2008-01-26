@@ -172,10 +172,6 @@ public class Aurwindow extends JFrame {
             addWindow(new org.gcreator.editors.ScriptEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("struct")) {
             addWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
-        } else if (file.type.equals("java")) {
-            addWindow(new JavaEditor(file, this.getCurrentProject()), file.name);
-        } else if (file.type.equals("cpp") || file.type.equals("h")) {
-            addWindow(new CppEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")){
