@@ -17,21 +17,21 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class ViewsModel extends AbstractListModel implements Serializable{
+public class BackgroundsModel extends AbstractListModel implements Serializable{
     static final long serialVersionUID = 1L;
-    public Vector<ViewInScene> view;
+    public Vector<BackgroundInScene> view;
     
-    public ViewsModel(Vector<ViewInScene> view){
+    public BackgroundsModel(Vector<BackgroundInScene> view){
         this.view = view;
         if(view.size()==0){
-            view.add(new ViewInScene("View 0"));
-            view.add(new ViewInScene("View 1"));
-            view.add(new ViewInScene("View 2"));
-            view.add(new ViewInScene("View 3"));
-            view.add(new ViewInScene("View 4"));
-            view.add(new ViewInScene("View 5"));
-            view.add(new ViewInScene("View 6"));
-            view.add(new ViewInScene("View 7"));
+            view.add(new BackgroundInScene("Background 0"));
+            view.add(new BackgroundInScene("Background 1"));
+            view.add(new BackgroundInScene("Background 2"));
+            view.add(new BackgroundInScene("Background 3"));
+            view.add(new BackgroundInScene("Background 4"));
+            view.add(new BackgroundInScene("Background 5"));
+            view.add(new BackgroundInScene("Background 6"));
+            view.add(new BackgroundInScene("Background 7"));
         }
     }
     
@@ -45,13 +45,13 @@ public class ViewsModel extends AbstractListModel implements Serializable{
     
     public String writeXml(){
         String xml = "";
-        for(ViewInScene each : view) //TODO remove for each loop
-            xml += each.writeXml();
+        /*for(BackgroundInScene each : view) //TODO remove for each loop
+            xml += each.writeXml();*/
         return xml;
     }
     
     public int readXml(int init, String[] xml){
-        String line;
+        /*String line;
         int curview = 0;
         for(int i = init + 1; i < xml.length; i++){
             line = xml[i];
@@ -59,7 +59,7 @@ public class ViewsModel extends AbstractListModel implements Serializable{
                 return i;
             if(line.equals("<view>"))
                 i = view.get(curview++).readXml(i, xml);
-        }
+        }*/
         return init;
     }
 }

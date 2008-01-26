@@ -24,8 +24,13 @@ public class BackgroundInScene implements Serializable{
     public static final int MODE_STRETCH = 2;
     public int hmode = MODE_SINGLE;
     public int vmode = MODE_SINGLE;
+    public boolean visibleonstart = false;
     
     public BackgroundInScene(String name){
         this.name = name;
+    }
+    
+    public String toString(){
+        return visibleonstart ? "<HTML><b>"+name : name;
     }
 }

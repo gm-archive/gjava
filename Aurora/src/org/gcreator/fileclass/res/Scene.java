@@ -25,7 +25,7 @@ public String code = "//Do nothing";
  //name is already on the list
 public int width=640,height=480,speed=60,snapX=16,snapY=16;
 public boolean persistant,grid = true,isometric,drawbackcolor=true;
-public ViewsModel views;
+public Vector views;
 public Vector actors;
 public Vector tiles;
 public Vector backgrounds;
@@ -46,7 +46,8 @@ public Scene(String name)
     this.name = name;
     actors = new Vector();
     tiles = new Vector();
-    views = new ViewsModel();
+    views = new Vector();
+    backgrounds = new Vector();
 }
 
 public String writeXml()
@@ -71,7 +72,7 @@ public String writeXml()
     
       String xml = "<scene version=\"1.0\">\n";
       
-      xml += "<caption>";
+      /*xml += "<caption>";
       
       //The caption should be allowed to have
       if(caption!=null)
@@ -140,7 +141,7 @@ public String writeXml()
           if(a!=null && a instanceof ActorInScene)
               ((ActorInScene) a).writeXml();
       
-      xml += "</scene>";
+      xml += "</scene>";*/
       return xml;
 }
 
@@ -213,8 +214,8 @@ public String writeXml()
                     isometric = true;
                 continue;
             }
-            if(line.matches("<views>"))
-                i = views.readXml(i, str);
+            /*if(line.matches("<views>"))
+                i = views.readXml(i, str);*/
         }
     }
      

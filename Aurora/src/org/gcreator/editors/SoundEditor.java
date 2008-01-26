@@ -21,8 +21,8 @@ import org.gcreator.managers.*;
 import org.gcreator.components.impl.*;
 //import org.newdawn.slick.Sound;
 import org.gcreator.fileclass.res.Sound;
-import org.newdawn.slick.SlickException;
-import sun.applet.AppletAudioClip;
+//import org.newdawn.slick.SlickException;
+//import sun.applet.AppletAudioClip;
 
 /**
  *

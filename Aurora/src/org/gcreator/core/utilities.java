@@ -11,6 +11,8 @@ package org.gcreator.core;
 
 import org.gcreator.managers.*;
 import javax.crypto.*;
+import java.security.*;
+import sun.io.CharToByteCp950;
 
 /**
  *
@@ -65,8 +67,8 @@ public class utilities {
             catch(Exception e){}
         }
     
-        public static String encrypt(String str) {
-            try {
+        public static String encrypt(String str){
+            /*try {
                 // Encode the string into bytes using utf-8
                 byte[] utf8 = str.getBytes("UTF8");
     
@@ -76,22 +78,36 @@ public class utilities {
                 // Encode bytes to base64 to get a string
                 return new sun.misc.BASE64Encoder().encode(enc);
             } catch (Exception e) {
+                
             }
-            return null;
+            return null;*/
+            String output = "";
+            int seed = (int) Math.floor(Math.random()*100);
+            output += (char) seed;
+            char t;
+            for(int i = 0; i < str.length(); i++){
+                t = str.charAt(i);
+                int s = t;
+                s+=seed;
+                s %= Character.MAX_VALUE;
+                t = (char) s;
+                output += t; 
+            }
+            return output;
         }
     
         public static String decrypt(String str) {
-            try {
-                // Decode base64 to get bytes
-                byte[] dec = new sun.misc.BASE64Decoder().decodeBuffer(str);
-    
-                // Decrypt
-                byte[] utf8 = dcipher.doFinal(dec);
-    
-                // Decode using utf-8
-                return new String(utf8, "UTF8");
-            } catch (Exception e) {
+            String output = "";
+            int seed = str.charAt(0);
+            char t;
+            for(int i = 1; i < str.length(); i++){
+                t = str.charAt(i);
+                int s = t;
+                s += (Character.MAX_VALUE-seed);
+                s %= Character.MAX_VALUE;
+                t = (char) s;
+                output += t; 
             }
-            return null;
+            return output;
         }
 }

@@ -24,7 +24,6 @@ import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
 import org.gcreator.fileclass.res.*;
-import sun.awt.image.ToolkitImage;
 
 /**
  *
@@ -118,11 +117,18 @@ public class File extends Object implements Transferable {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             
             BufferedImage ii = null;
-            if (img.getImage() instanceof ToolkitImage) {System.out.println("Toolkit");
-            ii = ((ToolkitImage)img.getImage()).getBufferedImage();
+            try{
+                if (img.getImage() instanceof sun.awt.image.ToolkitImage) {
+                    System.out.println("Toolkit");
+                    ii = ((sun.awt.image.ToolkitImage)img.getImage()).getBufferedImage();
+                }
+                else
+                    ii =  (BufferedImage) ((Image)img.getImage());
             }
-            else
-            ii =  (BufferedImage) ((Image)img.getImage());
+            catch(Exception e){ //CLass not found?
+                System.out.println("Exception " + e.getMessage());
+                ii =  (BufferedImage) ((Image)img.getImage());
+            }
             
             ImageIO.write(ii, type, baos); 
             out.write(baos.toByteArray());
