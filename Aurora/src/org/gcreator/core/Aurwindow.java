@@ -975,7 +975,14 @@ public class Aurwindow extends JFrame {
         }
 
         //pack();
-        setSize(800, 600);
+        int w = 800;
+        int h = 600;
+        try{
+            w = Integer.parseInt(settings[6].replaceAll("([0-9]+), ([0-9]+)", "$1"));
+            h = Integer.parseInt(settings[6].replaceAll("([0-9]+), ([0-9]+)", "$2"));
+        }
+        catch(Exception e){}
+        setSize(w, h);
         splitter2.setDividerLocation(100);
         splitter1.setDividerSize(5);
         splitter2.setDividerSize(5);
@@ -986,6 +993,10 @@ public class Aurwindow extends JFrame {
         workspace.expandRow(0);
         updateToDefaultNavigatorPanel(welcome);
         setMinimumSize(new Dimension(200, 200));
+        if(settings[6].equals("True"))
+            setExtendedState(MAXIMIZED_BOTH);
+        else
+            setExtendedState(NORMAL);
         setVisible(true);
         statusbar.setStandardText("Done");
         statusbar.restoreText();

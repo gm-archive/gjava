@@ -9,6 +9,7 @@
 
 package org.gcreator.managers;
 
+import java.awt.*;
 import java.io.*;
 import org.gcreator.exceptions.*;
 import javax.swing.*;
@@ -120,6 +121,9 @@ public class SettingsIO {
                 out.write("Left");
             }
             out.write("</tree>");
+            out.write("<size>");
+            out.write(gcreator.window.getWidth() + ", " + gcreator.window.getHeight());
+            out.write("</size>");
             out.write("</settings>");
             out.close();
         } catch (IOException e) {
@@ -138,13 +142,14 @@ public class SettingsIO {
             catch(Exception e){}
             return null;
         }
-        String[] a = new String[6];
+        String[] a = new String[7];
         a[0] = null;
         a[1] = null;
         a[2] = null;
         a[3] = null;
         a[4] = null;
         a[5] = null;
+        a[6] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         Document doc;
@@ -175,6 +180,8 @@ public class SettingsIO {
                     id = 4;
                 else if(name.equals("tree"))
                     id = 5;
+                else if(name.equals("size"))
+                    id = 6;
                 if(id==-1){
                     addError(33);
                     addStringFormatedMessage(name, null, true);
@@ -184,7 +191,7 @@ public class SettingsIO {
                     addError(34);
                 a[id] = child.getTextContent(); //1.4 
             }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null){
+            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null){
                 addError(35);
             }
             return a;

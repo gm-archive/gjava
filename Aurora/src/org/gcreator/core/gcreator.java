@@ -116,13 +116,14 @@ public class gcreator {
         }
 
         if (settings == null) {
-            settings = new String[6];
+            settings = new String[7];
             settings[0] = "Native";
             settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
             settings[3] = "English";
             settings[4] = "Visible";
             settings[5] = "Left";
+            settings[6] = "800, 600";
         }
 
         if(ismdi||ver<6)
