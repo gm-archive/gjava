@@ -22,11 +22,9 @@ public class TileChooser extends JComponent{
     
     public Tileset getSourceTileset(){
         try{
-            System.out.println("Get tileset");
             return sceneeditor.getTileset();
         }
         catch(NullPointerException e){
-            System.out.println("Null pointer exception");
             return null;
         }
     }

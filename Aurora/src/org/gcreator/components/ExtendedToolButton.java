@@ -18,7 +18,10 @@ public class ExtendedToolButton extends JButton implements MouseListener{
         gcreator.window.statusbar.restoreText();
     }
     public void mouseEntered(MouseEvent evt){
-        gcreator.window.statusbar.setText(getToolTipText());
+        try{
+            gcreator.window.statusbar.setText(getToolTipText());
+        }
+        catch(NullPointerException e){}
     }
     public void mouseReleased(MouseEvent evt){}
     public void mousePressed(MouseEvent evt){}

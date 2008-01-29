@@ -54,7 +54,6 @@ public class SceneEditor extends TabPanel {
      * @return The current tileset
      */
     public Tileset getTileset(){
-        System.out.println("Get tileset");
         return (Tileset) ((org.gcreator.fileclass.File) curtileset.getCurrentObject().object).value;
     }
     
@@ -175,6 +174,7 @@ public class SceneEditor extends TabPanel {
                 tilechooser.updateUI();
             }
         });
+        jList2ValueChanged(null);
     }
 
      
@@ -197,7 +197,6 @@ public class SceneEditor extends TabPanel {
 
      
     public boolean Save() {
-        System.out.println("saved scene");
         Scene s = (Scene) file.value;
         s.caption = this.jEditorPane1.getText();
         s.width = Integer.parseInt(jTextField2.getText());
@@ -873,6 +872,12 @@ public class SceneEditor extends TabPanel {
         jScrollPane6.setViewportView(jLabel23);
 
         jList2.setModel(bgmodel);
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList2.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList2ValueChanged(evt);
+            }
+        });
         jScrollPane8.setViewportView(jList2);
 
         org.jdesktop.layout.GroupLayout jPanel5Layout = new org.jdesktop.layout.GroupLayout(jPanel5);
@@ -1431,6 +1436,20 @@ public class SceneEditor extends TabPanel {
         jButton3.setSelected(false);
         jButton8.setSelected(true);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        if(jList2.isSelectionEmpty()){
+            curbg.setEnabled(false);
+            jComboBox1.setEnabled(false);
+            jComboBox2.setEnabled(false);
+        }
+        else{
+            curbg.setEnabled(true);
+            jComboBox1.setEnabled(true);
+            jComboBox2.setEnabled(true);
+        }
+        updateBgImage();
+    }//GEN-LAST:event_jList2ValueChanged
     
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
@@ -1447,7 +1466,6 @@ public class SceneEditor extends TabPanel {
         tile.height = (Integer) jSpinner16.getValue();
         tile.tileset = (org.gcreator.fileclass.File) curtileset.getCurrentObject().object;
         tile.depth = (Integer) jSpinner17.getValue();
-        System.out.println("return tile");
         return tile;
     }
     

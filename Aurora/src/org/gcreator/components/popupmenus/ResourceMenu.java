@@ -10,21 +10,10 @@
 package org.gcreator.components.popupmenus;
 
 import org.gcreator.fileclass.Project;
-import java.awt.Dimension;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.Enumeration;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
+import javax.swing.*;
 import org.gcreator.units.ObjectNode;
 import org.gcreator.managers.*;
 
@@ -74,6 +63,19 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         populate();
     }
 
+    
+    boolean enabled = true;
+    
+    public void setEnabled(boolean enabled){
+        super.setEnabled(enabled);
+        button.setEnabled(enabled);
+        this.enabled = enabled;
+    }
+    
+    public void setText(String text){
+        label.setText(text);
+    }
+    
     public void updateUI() {
         super.updateUI();
         populate();
@@ -157,11 +159,13 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
     }
 
     public void mouseClicked(MouseEvent e) {
-        populate();
-        if (pm.getComponentCount() == 0) {
-            return;
+        if(enabled){
+            populate();
+            if (pm.getComponentCount() == 0) {
+                return;
+            }
+            pm.show(e.getComponent(), e.getX(), e.getY());
         }
-        pm.show(e.getComponent(), e.getX(), e.getY());
     }
 
     public void mousePressed(MouseEvent e) {
@@ -177,20 +181,18 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
     }
 
     public void actionPerformed(ActionEvent e) {
+        if(enabled){
         label.setText(e.getActionCommand());
         for (ActionListener listen : listeners) {
             if (listen != null) {
                 listen.actionPerformed(e);
             }
         }
+        }
     }
-    ActionListener[] listeners = new ActionListener[10];
+    Vector<ActionListener> listeners = new Vector<ActionListener>();
 
     public void addActionListener(ActionListener a) {
-        int i = 0;
-        while (listeners[i] != null) {
-            i++;
-        }
-        listeners[i] = a;
+        listeners.add(a);
     }
 }

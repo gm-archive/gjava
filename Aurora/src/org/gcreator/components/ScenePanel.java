@@ -183,18 +183,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
     
     public void drawActors(Graphics g){
-        System.out.println("drawActors");
         Scene scn = (Scene) root.file.value;
         if(scn.actors.isEmpty()&&scn.tiles.isEmpty())
             return;
-        System.out.println("Enumeration e");
         Enumeration e;
-        System.out.println("get Depths");
         int dep = getMaximumDepth();
         int mindep = getMinimumDepth();
-        System.out.println("min" + mindep + "; max=" + dep);
         while(dep>=mindep){
-            System.out.println("Current depth:" + dep);
             e = scn.actors.elements();//<ActorInScene>
             while(e.hasMoreElements()){
                 ActorInScene ascn = (ActorInScene) e.nextElement();
