@@ -12,7 +12,7 @@ package org.gcreator.core;
 import org.gcreator.managers.*;
 import javax.crypto.*;
 import java.security.*;
-import sun.io.CharToByteCp950;
+import java.io.*;
 
 /**
  *

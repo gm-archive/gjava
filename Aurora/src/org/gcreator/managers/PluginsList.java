@@ -21,9 +21,12 @@ import org.xml.sax.*;
  *
  * @author Luís
  */
+
+//Will be commented or removed soon.
+@Deprecated
 public class PluginsList {
     public static String[] loadPluglist() {
-        File target = new File("pluglist.xml");
+        File target = new File("./settings/pluglist.xml");
         if (!target.exists()) {
             return null;
         }
@@ -33,7 +36,7 @@ public class PluginsList {
         Document doc;
         try{
             builder = fact.newDocumentBuilder();
-            doc = builder.parse("pluglist.xml");
+            doc = builder.parse("./settings/pluglist.xml");
             Node node = doc.getDocumentElement();
             String root = node.getNodeName();
             if(!root.equals("pluglist")){
