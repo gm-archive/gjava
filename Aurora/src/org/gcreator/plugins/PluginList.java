@@ -11,7 +11,8 @@ package org.gcreator.plugins;
 
 import java.io.*;
 import java.util.*;
-import org.gcreator.core.ClassLoading;
+import javax.swing.*;
+import org.gcreator.core.*;
 
 /**
  * A list of multiple plugins
@@ -25,7 +26,7 @@ public class PluginList {
     public static final PluginList stdlist = new PluginList(PLUGLIST);
     private PluginList(){} //Don't create plugin lists this way
     
-    private Vector<Plugin> plugins = new Vector<Plugin>();
+    public Vector<Plugin> plugins = new Vector<Plugin>();
     public PluginList(String location){
         File pluglist = new File(location);
         FileInputStream reader;
@@ -106,6 +107,11 @@ public class PluginList {
             
             if(line.matches("^Version=.*$")){
                 curplugin.version = line.replaceAll("^Version=(.*)$", "$1");
+                continue mainloop;
+            }
+            
+            if(line.matches("^Image=.*$")){
+                curplugin.image = new ImageIcon("./plugins/" + line.replaceAll("^Image=(.*)$", "$1"));
                 continue mainloop;
             }
             

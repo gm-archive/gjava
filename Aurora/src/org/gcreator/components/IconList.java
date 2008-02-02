@@ -130,8 +130,8 @@ public class IconList extends JComponent{
         updateUI();
     }
     
-    public void addElement(String text, ImageIcon img){
-        elements.add(new IconListElement(text, img));
+    public void addElement(String text, ImageIcon img, Object plus){
+        elements.add(new IconListElement(text, img, plus));
     }
     
     public void removeElement(int i){
@@ -147,6 +147,28 @@ public class IconList extends JComponent{
     public void setColumns(int columns){
         this.columns = columns;
         updateUI();
+    }
+    
+    public Object getExtraContentAt(int i){
+        return getExtraContentAt(i, false);
+    }
+    
+    public Object getExtraContentAt(int i, boolean visibleonly){
+        if(i<0||i>=elements.size())
+            return null;
+        int x = i;
+        if(visibleonly){
+            x = 0;
+            Enumeration<IconListElement> e = elements.elements();
+            while(e.hasMoreElements()){
+                if(x==i)
+                    return e.nextElement().text;
+                if(e.nextElement().visible==true)
+                    x++;
+            }
+            return null;
+        }
+        return elements.get(x).plus;
     }
     
     public String getTextAt(int i){
@@ -207,6 +229,13 @@ public class IconList extends JComponent{
         if(i<0||i>=elements.size())
             return;
         elements.get(i).img = img;
+        updateUI();
+    }
+    
+    public void setElementExtraContent(int i, Object plus){
+        if(i<0||i>=elements.size())
+            return;
+        elements.get(i).plus = plus;
         updateUI();
     }
     
@@ -284,9 +313,11 @@ class IconListElement{
     public String text = "";
     public ImageIcon img = null;
     public boolean visible = true;
+    public Object plus = null;
     public IconListElement(){}
-    public IconListElement(String text, ImageIcon img){
+    public IconListElement(String text, ImageIcon img, Object plus){
         this.text = text;
         this.img = img;
+        this.plus = plus;
     }
 }

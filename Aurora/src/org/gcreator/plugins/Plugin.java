@@ -9,7 +9,8 @@
 
 package org.gcreator.plugins;
 
-import java.util.Vector;
+import java.util.*;
+import javax.swing.*;
 
 /**
  * @author Luís Reis
@@ -21,4 +22,5 @@ public class Plugin {
     public String licenseLocation = "";
     public Vector<String> files = new Vector<String>();
     public PluginCore value;
+    public ImageIcon image;
 }

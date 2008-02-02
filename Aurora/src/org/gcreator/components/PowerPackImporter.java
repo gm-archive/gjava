@@ -40,7 +40,7 @@ public class PowerPackImporter extends TabPanel {
         for (int i = 0; i < files.length; i++) {
             if (files[i] != null && files[i].isFile()) {
                 try {
-                    list.addElement(files[i].getName(), new ImageIcon(ImageIO.read(files[i])));
+                    list.addElement(files[i].getName(), new ImageIcon(ImageIO.read(files[i])), null);
                 } catch (Exception e) {
                 }
             }
