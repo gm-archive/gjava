@@ -11,6 +11,7 @@ package org.gcreator.plugins;
 
 import java.io.*;
 import java.util.*;
+import org.gcreator.core.ClassLoading;
 
 /**
  * A list of multiple plugins
@@ -21,8 +22,10 @@ public class PluginList {
     /**
      * The plugin list
      */
-    public static final PluginList list = new PluginList(PLUGLIST);
+    public static final PluginList stdlist = new PluginList(PLUGLIST);
     private PluginList(){} //Don't create plugin lists this way
+    
+    private Vector<Plugin> plugins = new Vector<Plugin>();
     public PluginList(String location){
         File pluglist = new File(location);
         FileInputStream reader;
@@ -39,6 +42,8 @@ public class PluginList {
                 int read = reader.read();
                 if(read==-1)
                     break;
+                if(read=='\r')
+                    continue;
                 if(read=='\n'){
                     lines.add(curstring);
                     curstring = "";
@@ -49,7 +54,72 @@ public class PluginList {
             }
         }
         catch(IOException e){}
+        curstring = null;
+        boolean starter = false;
         
+        Plugin curplugin = null;
+        
+        mainloop: 
+        for(String line : lines){
+            if(line.equals(""))
+                continue mainloop;
+            
+            if(!starter&&!line.equals("[G-Creator Plugin List]"))
+                break mainloop;
+            else if(!starter){
+                starter = true;
+                continue mainloop;
+            }
+            
+            if(curplugin==null&&!line.equals("[~Plugin~]"))
+                break mainloop;
+            else if(curplugin==null){
+                curplugin = new Plugin();
+                continue mainloop;
+            }
+            
+            if(line.equals("[~Plugin~]")){
+                plugins.add(curplugin);
+                curplugin = new Plugin();
+                continue mainloop;
+            }
+            
+            if(line.matches("^Author=.*$")){
+                curplugin.authors.add(line.replaceAll("^Author=(.*)$", "$1"));
+                continue mainloop;
+            }
+            
+            if(line.matches("^File=.*$")){
+                curplugin.files.add(line.replaceAll("^File=(.*)$", "$1"));
+                continue mainloop;
+            }
+            
+            if(line.matches("^License=.*$")){
+                curplugin.licenseLocation = line.replaceAll("^License=(.*)$", "$1");
+                continue mainloop;
+            }
+            
+            if(line.matches("^Name=.*$")){
+                curplugin.name = line.replaceAll("^Name=(.*)$", "$1");
+                continue mainloop;
+            }
+            
+            if(line.matches("^Version=.*$")){
+                curplugin.version = line.replaceAll("^Version=(.*)$", "$1");
+                continue mainloop;
+            }
+            
+            if(line.matches("^Core=.*$")){
+                String t = line.replaceAll("^Core=(.*)$", "$1");
+                try{
+                    curplugin.value = (PluginCore) ClassLoading.classLoader.loadClass(t).newInstance();
+                }
+                catch(Exception e){
+                    
+                }
+                continue mainloop;
+            }
+        }
     }
     
 }
