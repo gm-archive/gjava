@@ -1,0 +1,10 @@
+[G-Creator Plugin List]
+
+[~Plugin~]
+Author=TGMG
+Core=org.gcreator.compilers.GJava
+License=?
+Name=G-Java
+Version=2.0a1
+Image=
+

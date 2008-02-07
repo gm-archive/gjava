@@ -34,6 +34,7 @@ public class PluginList {
             reader = new FileInputStream(pluglist);
         }
         catch(IOException e){
+            System.out.println(e.toString());
             return;
         }
         Vector<String> lines = new Vector<String>();
@@ -60,8 +61,10 @@ public class PluginList {
         
         Plugin curplugin = null;
         
+        System.out.println("-----");
         mainloop: 
         for(String line : lines){
+            System.out.println(line);
             if(line.equals(""))
                 continue mainloop;
             
@@ -111,7 +114,11 @@ public class PluginList {
             }
             
             if(line.matches("^Image=.*$")){
-                curplugin.image = new ImageIcon("./plugins/" + line.replaceAll("^Image=(.*)$", "$1"));
+                String fname = "./plugins/" + line.replaceAll("^Image=(.*)$", "$1");
+                if((new File(fname)).exists())
+                    curplugin.image = new ImageIcon(fname);
+                else
+                    curplugin.image = null;
                 continue mainloop;
             }
             
@@ -126,6 +133,8 @@ public class PluginList {
                 continue mainloop;
             }
         }
+        if(curplugin!=null)
+            plugins.add(curplugin);
     }
     
 }

@@ -1245,7 +1245,8 @@ public class Aurwindow extends JFrame {
             Updater.update();
         }
         if (menu == 7 && item == 2) {
-            PluginsManager manager = new PluginsManager(this, true);
+            //PluginsManager manager = new PluginsManager(this, true);
+            PluginDialog manager = new PluginDialog(this, true);
             manager.setVisible(true);
         }
         if (menu == 7 && item == 3) {

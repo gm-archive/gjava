@@ -25,6 +25,7 @@ public class PluginDialog extends javax.swing.JDialog {
         list.setColumns(5);
         jScrollPane1.setViewportView(list);
         for(Plugin plugin : PluginList.stdlist.plugins){
+            System.out.println("Plugin: " + plugin.name);
             list.addElement(plugin.name, plugin.image, plugin);
         }
     }
