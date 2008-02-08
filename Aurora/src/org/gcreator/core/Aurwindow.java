@@ -1720,7 +1720,7 @@ public class Aurwindow extends JFrame {
 
     public void dispose() {
         if(!gcreator.applet&&gcreator.plugload)
-        Plugger.onMainWindowDispose(gcreator.plugins);
+        Plugger.onMainWindowDispose();
         saveSettings();
         if (istabs) {
             for (Component a : tabs.getComponents()) {

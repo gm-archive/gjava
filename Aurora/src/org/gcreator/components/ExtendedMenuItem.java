@@ -14,6 +14,8 @@ import org.gcreator.core.*;
  * @author Luís Reis
  */
 public class ExtendedMenuItem extends JMenuItem implements MouseListener{
+    public static final String uiClassId = "ExtendedMenuItemUI";
+    
     public void mouseExited(MouseEvent evt){
         gcreator.window.statusbar.restoreText();
     }
@@ -26,5 +28,8 @@ public class ExtendedMenuItem extends JMenuItem implements MouseListener{
     public ExtendedMenuItem(String text){
         super(text);
         addMouseListener(this);
+    }
+    public String getUIClassID(){
+        return uiClassId;
     }
 }

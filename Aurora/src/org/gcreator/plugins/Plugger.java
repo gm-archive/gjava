@@ -67,53 +67,43 @@ public class Plugger {
         return loader;
     }
 
-    public static void loadPlugins(PluginCore[] plugins) {
-        if (plugins != null) {
-            for (int i = 0; i < plugins.length; i++) {
-                if (plugins[i] != null) {
-                    plugins[i].onLoad();
+    public static void onLoad() {
+        for (Plugin plugin : PluginList.stdlist.plugins) {
+                if (plugin != null) {
+                    plugin.value.onLoad();
                 }
             }
-        }
     }
 
-    public static void onSplashStart(PluginCore[] plugins) {
-        if (plugins != null) {
-            for (int i = 0; i < plugins.length; i++) {
-                if (plugins[i] != null) {
-                    plugins[i].onSplashStart();
+    public static void onSplashStart() {
+            for (Plugin plugin : PluginList.stdlist.plugins) {
+                if (plugin != null) {
+                    plugin.value.onSplashStart();
                 }
             }
-        }
     }
 
-    public static void onMainWindowStart(PluginCore[] plugins) {
-        if (plugins != null) {
-            for (int i = 0; i < plugins.length; i++) {
-                if (plugins[i] != null) {
-                    plugins[i].onMainWindowStart();
+    public static void onMainWindowStart() {
+        for (Plugin plugin : PluginList.stdlist.plugins) {
+                if (plugin != null) {
+                    plugin.value.onMainWindowStart();
                 }
             }
-        }
     }
 
-    public static void onSplashDispose(PluginCore[] plugins) {
-        if (plugins != null) {
-            for (int i = 0; i < plugins.length; i++) {
-                if (plugins[i] != null) {
-                    plugins[i].onSplashDispose();
+    public static void onSplashDispose() {
+        for (Plugin plugin : PluginList.stdlist.plugins) {
+                if (plugin != null) {
+                    plugin.value.onSplashDispose();
                 }
             }
-        }
     }
 
-    public static void onMainWindowDispose(PluginCore[] plugins) {
-        if (plugins != null) {
-            for (int i = 0; i < plugins.length; i++) {
-                if (plugins[i] != null) {
-                    plugins[i].onMainWindowDispose();
+    public static void onMainWindowDispose() {
+        for (Plugin plugin : PluginList.stdlist.plugins) {
+                if (plugin != null) {
+                    plugin.value.onMainWindowDispose();
                 }
             }
-        }
     }
 }

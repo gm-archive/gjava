@@ -39,7 +39,6 @@ public class gcreator {
     public static Aurwindow window;
     public static String output = "";
     private static SplashScreen splash;
-    public static PluginCore[] plugins;
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
     private static String java_version = System.getProperty("java.version");
@@ -102,7 +101,7 @@ public class gcreator {
 		folder = folder.replace("/","\\");
                 if(plugload){
                     Plugger.registerLoader();
-                    plugins = Plugger.getPlugList(PluginsList.loadPluglist());
+                    //plugins = Plugger.getPlugList(PluginsList.loadPluglist());
                 }
         }
         if(ver<=4)
@@ -273,8 +272,8 @@ public class gcreator {
         ToolbarManager.toolbars.add(tool);*/
         
         if(!applet&&plugload){
-            Plugger.loadPlugins(plugins);
-            Plugger.onSplashStart(plugins);
+            Plugger.onLoad();
+            Plugger.onSplashStart();
         }
         splash = new SplashScreen(applet);
         
@@ -308,7 +307,7 @@ public class gcreator {
             
         } catch (Exception e) {}
         if(!applet&&plugload)
-            Plugger.onMainWindowStart(plugins);
+            Plugger.onMainWindowStart();
         //ActorEditor.setupActions();
         window = new Aurwindow(settings);
         window.console.setText(output);
@@ -321,7 +320,7 @@ public class gcreator {
         
         if(splash!=null){
             if(!applet&&plugload)
-                Plugger.onSplashDispose(gcreator.plugins);
+                Plugger.onSplashDispose();
             window.menubar.updateUI();
             splash.dispose();
         }

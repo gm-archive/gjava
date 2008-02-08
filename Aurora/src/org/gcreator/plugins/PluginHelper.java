@@ -97,6 +97,10 @@ public class PluginHelper {
             SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
         }
         SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+        SwingUtilities.updateComponentTreeUI(Aurwindow.newproject);
+        SwingUtilities.updateComponentTreeUI(Aurwindow.newfilegroup);
+        SwingUtilities.updateComponentTreeUI(Aurwindow.about);
+        SwingUtilities.updateComponentTreeUI(Aurwindow.globalsettings);
     }
     
     public static String encrypt(String str){
