@@ -21,6 +21,7 @@ public class ActionContainer {
     static {
         ActionCategory main = new ActionCategory();
         ActionCategory move = new ActionCategory();
+        ActionCategory scenes = new ActionCategory();
         ActionCategory draw2D = new ActionCategory();
         ActionCategory clipboard = new ActionCategory();
         ActionCategory platform = new ActionCategory();
@@ -34,6 +35,10 @@ public class ActionContainer {
         move.add(new org.gcreator.actions.mainactions.SetVSpeed());
         move.name = LangSupporter.activeLang.getEntry(200);
         move.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/hspeed.png"));
+        scenes.add(new org.gcreator.actions.mainactions.NextScene());
+        scenes.add(new org.gcreator.actions.mainactions.PreviousScene());
+        scenes.name = LangSupporter.activeLang.getEntry(208);
+        scenes.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/Scene.png"));
         draw2D.add(new org.gcreator.actions.mainactions.AddImageToSprite());
         draw2D.name = LangSupporter.activeLang.getEntry(201);
         draw2D.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/Draw2D.png"));
@@ -44,6 +49,7 @@ public class ActionContainer {
         platform.add(new org.gcreator.actions.platform.CmdAction());
         actionCats.add(main);
         actionCats.add(move);
+        actionCats.add(scenes);
         actionCats.add(draw2D);
         actionCats.add(clipboard);
         actionCats.add(platform);

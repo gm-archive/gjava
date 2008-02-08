@@ -34,7 +34,7 @@ public class EndOfABlock extends ActionPattern{
     
      
     public String generateGCL(JComponent panel){
-        return "}";
+        return "}\n";
     }
 
     public void setStandardImage(ImageIcon icon){

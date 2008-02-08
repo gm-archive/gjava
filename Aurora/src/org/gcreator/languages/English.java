@@ -254,6 +254,7 @@ public class English extends Dictionary{
         entry[205] = "Empty Module";
         entry[206] = "Modules";
         entry[207] = "Add script";
+        entry[208] = "Scenes";
         
         try{
             init();

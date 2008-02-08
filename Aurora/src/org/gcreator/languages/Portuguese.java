@@ -254,6 +254,7 @@ public class Portuguese extends Dictionary{
         entry[205] = "Novo Módulo";
         entry[206] = "Modules";
         entry[207] = "Add script";
+        entry[208] = "Cenas";
         
         try{
             init();

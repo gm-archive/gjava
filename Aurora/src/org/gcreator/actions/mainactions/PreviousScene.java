@@ -19,29 +19,29 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class StartOfABlock extends ActionPattern{
+public class PreviousScene extends ActionPattern{
     
-    private static ImageIcon icon = new ImageIcon(StartOfABlock.class.getResource("/org/gcreator/actions/images/Start_Block.png"));
-    public StartOfABlock(){
+    private static ImageIcon icon = new ImageIcon(PreviousScene.class.getResource("/org/gcreator/actions/images/Previous_Scene.png"));
+    public PreviousScene(){
         super();
     }
     
      
     public String getStandardText(JComponent panel){
-        return "Begin block\n";
+        return "Go to the previous scene";
     }
     public void setStandardImage(ImageIcon icon){
-        StartOfABlock.icon = icon;
+        PreviousScene.icon = icon;
     }
      
     public String generateGCL(JComponent panel){
-        return "{";
+        return "Common.Scene.gotoPrevious();\n";
     }
      public ImageIcon getStandardImage() {
         return icon;
     }
      
      public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
-         return true;
+         return false;
      }
 }
