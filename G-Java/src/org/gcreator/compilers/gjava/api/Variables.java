@@ -557,7 +557,7 @@ public static Object   argument
     }
 
     public Object getFps() {
-        return new Integer(Game.Current.getFPS());
+        return new Integer((int) Game.Current.getFPS());
     }
 
     public void setFps(Object fps) {
@@ -731,7 +731,7 @@ public static Object   argument
     }
 
     public void setRoom_speed(Object room_speed) {
-        Game.Current.speed = room_speed.getDouble();
+        Game.Current.speed = (long) room_speed.getDouble();
     }
 
     public Object getRoom_width() {

@@ -91,6 +91,20 @@ public class Scene2D extends BasicGame {
     }
     
     /**
+     * @todo
+     */
+    public void updateCaption(){
+        
+    }
+    
+    /**
+     * @todo
+     */
+    public long getFPS(){
+        return this.speed;
+    }
+    
+    /**
      * Creates a new RoomPanel object
      * @param R Jframe to add to
      * @param roomname The name of the room

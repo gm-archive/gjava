@@ -20,6 +20,12 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
  */
 public class Main {
     
+        public static java.lang.String score_caption = "";
+        public static long score = 0;
+        public static java.lang.String lives_caption = "";
+        public static long lives = 3;
+        public static java.lang.String health_caption = "";
+        public static long health = 100;
 
         /**
          * Executes program prog with arguments arg. wait indicates whether to wait for finishing.
