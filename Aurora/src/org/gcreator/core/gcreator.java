@@ -35,7 +35,7 @@ import org.lwjgl.util.applet.LWJGLInstaller;
  */
 public class gcreator {
     private static String[] arguments;
-    public static final String version = "1.0m1"; 
+    public static final String version = "1.0m2"; 
     public static Aurwindow window;
     public static String output = "";
     private static SplashScreen splash;
