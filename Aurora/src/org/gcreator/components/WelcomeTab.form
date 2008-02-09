@@ -30,7 +30,7 @@
                       <EmptySpace pref="23" max="32767" attributes="0"/>
                       <Component id="rSSReadPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="rSSBlogReadPanel2" alignment="1" pref="622" max="32767" attributes="0"/>
+                  <Component id="rSSBlogReadPanel2" alignment="1" pref="683" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>

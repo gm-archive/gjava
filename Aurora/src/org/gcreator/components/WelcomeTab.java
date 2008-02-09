@@ -8,6 +8,7 @@ package org.gcreator.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import org.gcreator.managers.*;
 
 /**
@@ -21,11 +22,21 @@ public class WelcomeTab extends TabPanel{
         initComponents();
         jLabel1.setText(LangSupporter.activeLang.getEntry(37));
         jLabel2.setText(LangSupporter.activeLang.getEntry(38));
+        //Graphics g = i.getImage().getGraphics();
+        //j = new ImageIcon(new BufferedImage(400, 400, BufferedImage.TYPE_4BYTE_ABGR));
+        
     }
+    
+    //private ImageIcon j = null;
+    private ImageIcon i = new ImageIcon(WelcomeTab.class.getResource("/org/gcreator/resources/initgrad.png"));
     
     public void paint(Graphics _g){
         Graphics2D g = (Graphics2D) _g;
-        DarkGradientPainter.paint(g, getWidth(), getHeight());
+        //DarkGradientPainter.paint(g, getWidth(), getHeight());
+        g.drawImage(i.getImage(),
+                0, 0, getWidth(), getHeight(),
+                100, 100, 380, 380,
+                i.getImageObserver());
         super.paintChildren(g);
     }
     
