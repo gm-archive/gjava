@@ -91,7 +91,10 @@ public class SceneEditor extends TabPanel {
     
     public void updateImage(){
         org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.File) curactor.getCurrentObject().object).value;
-        ObjectNode c = b.getSpriteFile().node;
+        org.gcreator.fileclass.File t = b.getSpriteFile();
+        if(t==null)
+            return;
+        ObjectNode c = t.node;
         if(c!=null){
             org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;

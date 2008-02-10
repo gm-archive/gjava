@@ -65,6 +65,8 @@ public class PluginList {
         mainloop: 
         for(String line : lines){
             System.out.println(line);
+            line = line.replace("#(.*)^", "");
+            
             if(line.equals(""))
                 continue mainloop;
             
@@ -115,10 +117,10 @@ public class PluginList {
             
             if(line.matches("^Image=.*$")){
                 String fname = "./plugins/" + line.replaceAll("^Image=(.*)$", "$1");
-                if((new File(fname)).exists())
+                if((new File(fname)).exists()&&!line.equals("Image="))
                     curplugin.image = new ImageIcon(fname);
                 else
-                    curplugin.image = null;
+                    curplugin.image = new ImageIcon(getClass().getResource("/org/gcreator/resources/plugin.png"));
                 continue mainloop;
             }
             

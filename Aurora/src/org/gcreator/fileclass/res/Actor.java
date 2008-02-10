@@ -34,7 +34,12 @@ static final long serialVersionUID = 1L;
     
     public org.gcreator.fileclass.File getSpriteFile()
     {
-      return  ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(sprite,"sprite",gcreator.window.getCurrentProject()).object);
+        try{
+            return  ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(sprite,"sprite",gcreator.window.getCurrentProject()).object);
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
     public String writeXml() {
