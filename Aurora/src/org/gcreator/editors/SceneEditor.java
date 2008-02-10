@@ -39,6 +39,10 @@ public class SceneEditor extends TabPanel {
     public ResourceMenu curtileset;
     double instanceids = 0;
     
+    /*private org.gcreator.fileclass.File getFile(){
+        return file;
+    }*/
+    
     public ActorInScene makeNewActor(int x, int y){
         org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) curactor.getCurrentObject().object;
         instanceids++;
@@ -113,7 +117,7 @@ public class SceneEditor extends TabPanel {
     public SyntaxHighlighter egml;
     public TileChooser tilechooser;
     
-    public SceneEditor(org.gcreator.fileclass.File file,Project project) {
+    public SceneEditor(final org.gcreator.fileclass.File file,Project project) {
         if(!(file.value instanceof Scene))
             file.value = new Scene(file.name);
         this.file = file;
@@ -147,6 +151,9 @@ public class SceneEditor extends TabPanel {
         jPanel6.add(curbg = new ResourceMenu("image", "<no image>",true,project));
         curbg.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
+                Scene s = (Scene) file.value;
+                BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
+                bg.image = (org.gcreator.fileclass.File) curbg.getCurrentObject().object;
                 updateBgImage();
             }
         });
@@ -1415,12 +1422,16 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner11StateChanged
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        //((Scene) file.value).hmode = jComboBox1.getSelectedIndex();
+        Scene s = (Scene) file.value;
+        BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
+        bg.hmode = jComboBox1.getSelectedIndex();
         scene.updateUI();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
-        //((Scene) file.value).vmode = jComboBox2.getSelectedIndex();
+        Scene s = (Scene) file.value;
+        BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
+        bg.vmode = jComboBox2.getSelectedIndex();
         scene.updateUI();
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
@@ -1449,6 +1460,16 @@ public class SceneEditor extends TabPanel {
             jComboBox1.setEnabled(true);
             jComboBox2.setEnabled(true);
         }
+        if(jList2.getSelectedIndex()<0)
+            return;
+        Scene s = (Scene) file.value;
+        BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
+        jComboBox1.setSelectedIndex(bg.hmode);
+        jComboBox2.setSelectedIndex(bg.vmode);
+        if(bg.image!=null)
+            curbg.setText(bg.image.name);
+        else
+            curbg.setText("<no image>");
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
     
