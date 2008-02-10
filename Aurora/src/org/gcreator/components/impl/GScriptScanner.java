@@ -7,7 +7,7 @@ import publicdomain.*;
  * see license for more details
  */
 
-public class GScriptScanner extends Scanner
+public class GScriptScanner extends SimpleScanner
 {
     private boolean debug = false;
 

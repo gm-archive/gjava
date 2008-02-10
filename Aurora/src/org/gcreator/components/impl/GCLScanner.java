@@ -7,7 +7,7 @@ import publicdomain.*;
  * see license for more details
  */
 
-public class GCLScanner extends Scanner
+public class GCLScanner extends SimpleScanner
 {
     private boolean debug = false;
 

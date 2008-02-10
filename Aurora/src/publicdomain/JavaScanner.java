@@ -6,7 +6,7 @@ package publicdomain;
  * <p>Provide a hand-written scanner for the Java language.
  */
 
-public class JavaScanner extends Scanner
+public class JavaScanner extends SimpleScanner
 {
     // The version of Java supported.
     private int version = 15;
