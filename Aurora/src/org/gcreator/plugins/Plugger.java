@@ -69,7 +69,7 @@ public class Plugger {
 
     public static void onLoad() {
         for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null) {
+                if (plugin != null && plugin.value!=null) {
                     plugin.value.onLoad();
                 }
             }
@@ -77,7 +77,7 @@ public class Plugger {
 
     public static void onSplashStart() {
             for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null) {
+                if (plugin != null && plugin.value!=null) {
                     plugin.value.onSplashStart();
                 }
             }
@@ -85,7 +85,7 @@ public class Plugger {
 
     public static void onMainWindowStart() {
         for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null) {
+                if (plugin != null && plugin.value!=null) {
                     plugin.value.onMainWindowStart();
                 }
             }
@@ -93,7 +93,7 @@ public class Plugger {
 
     public static void onSplashDispose() {
         for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null) {
+                if (plugin != null && plugin.value!=null) {
                     plugin.value.onSplashDispose();
                 }
             }
@@ -101,7 +101,7 @@ public class Plugger {
 
     public static void onMainWindowDispose() {
         for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null) {
+                if (plugin != null && plugin.value!=null) {
                     plugin.value.onMainWindowDispose();
                 }
             }

@@ -27,7 +27,7 @@ public class Spanish extends Dictionary{
         authors[1] = "Luís Reis"; //Small changes only
         authors[2] = "Luis Peregrina"; //Major Corrections
         //If you changed this language, add your name here.
-        entry = new String[200];
+        entry = new String[300];
         entry[0] = "Archivo";
         entry[1] = "Editar"; 
         entry[2] = "Ver";
