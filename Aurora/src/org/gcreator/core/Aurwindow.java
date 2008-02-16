@@ -624,7 +624,7 @@ public class Aurwindow extends JFrame {
                         onItemActionPerformed(0, 10, evt);
                     }
                 });
-        menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
+        /*menus[1] = MenuSupporter.MakeMenu(menubar, 1, "Undo/Redo and clipboard functions can be found here.");
         items[MenuSupporter.GenerateMenuItemId(1, 0)] = MenuSupporter.MakeMenuItem(menus[1], 76, "Find");
         items[MenuSupporter.GenerateMenuItemId(1, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/find.png")));
         items[MenuSupporter.GenerateMenuItemId(1, 0)].addActionListener(new ActionListener() {
@@ -646,7 +646,7 @@ public class Aurwindow extends JFrame {
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(1, 2, evt);
                     }
-                });
+                });*/
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
         menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
@@ -1045,10 +1045,10 @@ public class Aurwindow extends JFrame {
         if (menu == 0 && item == 10) {
             dispose();
         }
-        if (menu == 1 && item == 2) {
+        /*if (menu == 1 && item == 2) {
             gcreator.output = "";
             console.setText("");
-        }
+        }*/
         if (menu == 2 && item == 0) {
             Dimension a = this.getSize();
             int b = this.getExtendedState();

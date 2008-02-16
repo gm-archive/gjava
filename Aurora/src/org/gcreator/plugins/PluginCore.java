@@ -19,6 +19,7 @@ import org.gcreator.exceptions.*;
  */
 public abstract class PluginCore {
     public void onLoad(){}
+    public void onLAFDefined(){}
     public void onSplashStart(){}
     public void onMainWindowStart(){}
     public void onSplashDispose(){}
