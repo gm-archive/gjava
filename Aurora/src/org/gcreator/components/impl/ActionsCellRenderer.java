@@ -66,8 +66,8 @@ public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
                 }
              }
              else{
-                setBackground(act.getBackground());
-                setForeground(act.getForeground());
+                setBackground(act.getBackground(list));
+                setForeground(act.getForeground(list));
              }
              if(act.indents(indented, unindented, list, isSelected)){
                  indented.add(act);

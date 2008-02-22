@@ -114,20 +114,20 @@ public class Action implements Serializable {
         return pattern.generateGCL(getPanel());
     }
     
-    public Color getBackground(){
-        return pattern.getBackground();
+    public Color getBackground(JList list){
+        return pattern.getBackground(list);
     }
     
-    public Color getForeground(){
-        return pattern.getForeground();
+    public Color getForeground(JList list){
+        return pattern.getForeground(list);
     }
     
-    public Color getSelectedBackground(){
-        return pattern.getSelectedBackground();
+    public Color getSelectedBackground(JList list){
+        return pattern.getSelectedBackground(list);
     }
     
-    public Color getSelectedForeground(){
-        return pattern.getSelectedForeground();
+    public Color getSelectedForeground(JList list){
+        return pattern.getSelectedForeground(list);
     }
     
     public String writeXml(){

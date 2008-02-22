@@ -32,20 +32,20 @@ public class ActionListCellRenderer extends JLabel implements ListCellRenderer {
              icon = ((org.gcreator.actions.ActionPattern) value).getStandardImage();
              val = ((org.gcreator.actions.ActionPattern) value).getStandardText(null);
              if(isSelected){
-                setBackground(((org.gcreator.actions.ActionPattern) value).getSelectedBackground());
-                setForeground(((org.gcreator.actions.ActionPattern) value).getSelectedForeground());
+                setBackground(((org.gcreator.actions.ActionPattern) value).getSelectedBackground(list));
+                setForeground(((org.gcreator.actions.ActionPattern) value).getSelectedForeground(list));
              }
              else{
-                setBackground(((org.gcreator.actions.ActionPattern) value).getBackground());
-                setForeground(((org.gcreator.actions.ActionPattern) value).getForeground());
+                setBackground(((org.gcreator.actions.ActionPattern) value).getBackground(list));
+                setForeground(((org.gcreator.actions.ActionPattern) value).getForeground(list));
              }
          }
          else if(value instanceof org.gcreator.actions.ActionCategory){
              icon = ((org.gcreator.actions.ActionCategory) value).icon;
              val = ((org.gcreator.actions.ActionCategory) value).name;
              if(isSelected){
-                setBackground(((org.gcreator.actions.ActionCategory) value).selectedBackground);
-                setForeground(((org.gcreator.actions.ActionCategory) value).selectedForeground);
+                setBackground(((org.gcreator.actions.ActionCategory) value).getSelectedBackground(list));
+                setForeground(((org.gcreator.actions.ActionCategory) value).getSelectedForeground(list));
              }
              else{
                 setBackground(((org.gcreator.actions.ActionCategory) value).background);

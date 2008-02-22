@@ -20,12 +20,18 @@ public class ActionCategory {
     public Vector patterns = new Vector();
     public String name = "";
     public ImageIcon icon = null;
-    public Color selectedForeground = Color.WHITE;
     public Color foreground = Color.BLACK;
-    public Color selectedBackground = Color.BLUE;
     public Color background = Color.WHITE;
     
     public void add(ActionPattern pattern){
         patterns.add(pattern);
+    }
+    
+    public Color getSelectedBackground(JList list){
+        return list.getSelectionBackground();
+    }
+    
+    public Color getSelectedForeground(JList list){
+        return list.getSelectionForeground();
     }
 }

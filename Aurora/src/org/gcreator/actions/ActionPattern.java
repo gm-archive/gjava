@@ -49,20 +49,30 @@ public abstract class ActionPattern implements Serializable {
     
     public abstract String generateGCL(JComponent panel);
     
-    public Color getBackground(){
+    public Color getBackground(JList list){
         return Color.WHITE;
     }
     
-    public Color getSelectedBackground(){
-        return Color.BLUE;
+    public Color getSelectedBackground(JList list){
+        try{
+            return list.getSelectionBackground();
+        }
+        catch(Exception e){
+            return Color.BLUE;
+        }
     }
     
-    public Color getForeground(){
+    public Color getForeground(JList list){
         return Color.BLACK;
     }
     
-    public Color getSelectedForeground(){
-        return Color.WHITE;
+    public Color getSelectedForeground(JList list){
+        try{
+            return list.getSelectionForeground();
+        }
+        catch(Exception e){
+            return Color.WHITE;
+        }
     }
     
     public String writeXml(JComponent panel){
