@@ -27,4 +27,5 @@ public abstract class Scanner implements TokenTypes{
             return position;
     }
     abstract public Token getToken(int n);
+    public void callAutocomplete(int selectionStart, int selectionEnd){}
 }
