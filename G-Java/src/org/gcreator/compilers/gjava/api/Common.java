@@ -18,7 +18,7 @@ public class Common {
     public static class Scene {
 
         public static void gotoNext() {
-            Basicgame.nextScene();
+           // Basicgame.nextScene();
         }
 
         public static void gotoPrevious() {

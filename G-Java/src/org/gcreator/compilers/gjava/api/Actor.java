@@ -368,8 +368,7 @@ public class Actor extends tile {
     }
 
     public Object getSpeed() {
-
-        return new Double(speed);
+    return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
     public Object getSprite_height() {
@@ -491,9 +490,9 @@ public class Actor extends tile {
     }
 
     public void setDirection(Object direction) {
+        System.out.println("speed:"+getSpeed().getDouble());
         hspeed = getSpeed().getDouble() * cos(degtorad(direction)).getDouble();
         vspeed = -getSpeed().getDouble() * sin(degtorad(direction)).getDouble();
-
     }
 
     public void setFriction(Object friction) {
@@ -593,7 +592,9 @@ public class Actor extends tile {
     }
 
     public void setSpeed(Object speed) {
-        this.speed = speed.getDouble();
+        hspeed = speed.getDouble() * cos(degtorad(getDirection())).getDouble();
+        vspeed = -speed.getDouble() * sin(degtorad(getDirection())).getDouble();
+        //this.speed = speed.getDouble();
     }
 
     public void setSprite_height(Object sprite_height) {

@@ -623,6 +623,8 @@ return new Object();
 
 public static Object move_random(Object hsnap, Object vsnap)
 {
+    self.x=round(random(getRoom_width()).div(hsnap)).mult(hsnap).getDouble();
+    self.y=round(random(getRoom_height()).div(vsnap)).mult(vsnap).getDouble();
 return new Object();
 }
 
