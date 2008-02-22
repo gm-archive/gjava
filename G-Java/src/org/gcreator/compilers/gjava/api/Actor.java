@@ -594,8 +594,7 @@ public class Actor extends tile {
     public void setSpeed(Object speed) {
         hspeed = speed.getDouble() * cos(degtorad(getDirection())).getDouble();
         vspeed = -speed.getDouble() * sin(degtorad(getDirection())).getDouble();
-        //this.speed = speed.getDouble();
-    }
+        }
 
     public void setSprite_height(Object sprite_height) {
         this.sprite_height = sprite_height;
