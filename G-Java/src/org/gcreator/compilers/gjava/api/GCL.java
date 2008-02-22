@@ -8,6 +8,7 @@ package org.gcreator.compilers.gjava.api;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.gcreator.compilers.gjava.Game;
 
 /**
  * This class is valid GCL, don't use java code here
@@ -579,13 +580,8 @@ return new Object();
 
 public static Object motion_set(Object dir, Object speed)
 {
-    System.out.println("speed:"+speed.getDouble());
-    if (dir.equals(new Integer(90)).getBoolean())
-        self.hspeed = -(0);
-    self.hspeed = -(speed.getDouble());
-    self.vspeed = speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
-    self.speed = speed.getDouble();
-    self.direction = dir;
+    self.setDirection(dir);
+    self.setSpeed(speed);
 return new Object();
 }
 
@@ -699,7 +695,20 @@ public static Object distance_to_point(Object x, Object y)
 
 public static Object distance_to_object(Object obj)
 {
-return new Object();
+   // Game.Current.instances
+    double smalldist =-1 ;//= (Actor) Game.Current.instances.elementAt(0);
+       for (int i = 0; i < Game.Current.instances.size(); i++) {
+        Actor object = (Actor) Game.Current.instances.elementAt(i);
+        if (object.equals(obj.getClass())) {
+        double dist = (sqrt(new Double((object.x-self.x)*(object.x-self.x)+(object.y-self.y)*(object.y-self.y)))).getDouble();
+    if (i==0) 
+        smalldist = dist;
+    else if (dist < smalldist)
+        smalldist = dist;
+       }
+       }
+     
+return new Double(smalldist);
 }
 
 public static Object position_empty(Object x, Object y)

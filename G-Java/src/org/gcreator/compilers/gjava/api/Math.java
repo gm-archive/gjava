@@ -1071,21 +1071,10 @@ import java.util.Arrays;
          *  @since 1.0
          */
         public static double pointDirection(double x1, double y1, double x2, double y2) {
-            if (y1 < y2 && x1 == x2) {
-                return 90;
-            } else if (y1 > y2 && x1 == x2) {
-                return 270;
-            }
-            double basic = java.lang.Math.atan((y1 - y2) / (x1 - x2));
-            if (x1 < x2 && y1 > y2) {
-                return basic;
-            } else if (x1 > x2 && y1 > y2) {
-                return 90 + basic;
-            } else if (x1 > x2 && y1 < y2) {
-                return basic - 180;
-            } else {
-                return 360 + basic;
-            }
+            double basic = java.lang.Math.atan2((y2 - y1), (x2 - x1))/Math.PI;
+            if (y1 < y2)
+    return abs(180+180*(1-basic));
+    return abs(180*basic);
         }
 
         /**
