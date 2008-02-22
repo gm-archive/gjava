@@ -134,7 +134,7 @@ public class Actor extends tile {
         yprevious = y;
         x = x + hspeed;
         y = y + vspeed;
-
+        
     }
 
     /**

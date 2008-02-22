@@ -679,6 +679,16 @@ return new Object();
 
 public static Object move_wrap(Object hor, Object vert, Object margin)
 {
+    if(hor.getBoolean()==true){
+      if((self.x<-margin.getDouble()) || (self.x>getRoom_width().getDouble()+margin.getDouble())){
+         self.x=getRoom_width().getDouble()-self.x;
+      }
+   }
+   if(vert.getBoolean()==true){
+      if((self.y<-margin.getDouble())||(self.y>getRoom_height().getDouble()+margin.getDouble())){
+         self.y=getRoom_height().getDouble()-self.y;
+      }
+   }
 return new Object();
 }
 
