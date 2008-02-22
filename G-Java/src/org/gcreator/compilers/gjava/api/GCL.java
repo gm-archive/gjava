@@ -639,8 +639,11 @@ self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDoub
 return new Object();
 }
 
-public static Object move_towards_point(Object x, Object y, Object sp)
+public static Object move_towards_point(Object xto, Object yto, Object sp)
 {
+   double dist=sqrt(new Double((xto.getDouble()-self.x)*(xto.getDouble()-self.x)+(yto.getDouble()-self.y)*(yto.getDouble()-self.y))).getDouble();
+   self.hspeed=((xto.getDouble()-self.x)/dist)*sp.getDouble();
+   self.vspeed=((yto.getDouble()-self.y)/dist)*sp.getDouble();
 return new Object();
 }
 
