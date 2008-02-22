@@ -1834,7 +1834,7 @@ protected static Actor self;
     }
 
     public Object getVk_alt() {
-        return new Object(); //  vk_alt;
+        return new Integer(18);
     }
 
     public void setVk_alt(Object vk_alt) {
@@ -1850,7 +1850,7 @@ protected static Actor self;
     }
 
     public Object getVk_backspace() {
-        return new Object(); //  vk_backspace;
+        return new Integer(8);
     }
 
     public void setVk_backspace(Object vk_backspace) {
@@ -1858,7 +1858,7 @@ protected static Actor self;
     }
 
     public Object getVk_control() {
-        return new Object(); //  vk_control;
+        return new Integer(17);
     }
 
     public void setVk_control(Object vk_control) {
@@ -1874,7 +1874,7 @@ protected static Actor self;
     }
 
     public Object getVk_delete() {
-        return new Object(); //  vk_delete;
+        return new Integer(46);
     }
 
     public void setVk_delete(Object vk_delete) {
@@ -1898,7 +1898,7 @@ protected static Actor self;
     }
 
     public Object getVk_end() {
-        return new Object(); //  vk_end;
+        return new Integer(35);
     }
 
     public void setVk_end(Object vk_end) {
@@ -1906,7 +1906,7 @@ protected static Actor self;
     }
 
     public Object getVk_enter() {
-        return new Object(); //  vk_enter;
+        return new Integer(13);
     }
 
     public void setVk_enter(Object vk_enter) {
@@ -1914,7 +1914,7 @@ protected static Actor self;
     }
 
     public Object getVk_escape() {
-        return new Object(); //  vk_escape;
+        return new Integer(27);
     }
 
     public void setVk_escape(Object vk_escape) {
@@ -2018,7 +2018,7 @@ protected static Actor self;
     }
 
     public Object getVk_home() {
-        return new Object(); //  vk_home;
+        return new Integer(36);
     }
 
     public void setVk_home(Object vk_home) {
@@ -2026,7 +2026,7 @@ protected static Actor self;
     }
 
     public Object getVk_insert() {
-        return new Object(); //  vk_insert;
+        return new Integer(45);
     }
 
     public void setVk_insert(Object vk_insert) {
@@ -2234,7 +2234,7 @@ protected static Actor self;
     }
 
     public Object getVk_shift() {
-        return new Object(); //  vk_shift;
+        return new Integer(16);
     }
 
     public void setVk_shift(Object vk_shift) {
@@ -2242,7 +2242,7 @@ protected static Actor self;
     }
 
     public Object getVk_space() {
-        return new Object(); //  vk_space;
+       return new Integer(32);
     }
 
     public void setVk_space(Object vk_space) {
@@ -2258,7 +2258,7 @@ protected static Actor self;
     }
 
     public Object getVk_tab() {
-        return new Object(); //  vk_tab;
+        return new Integer(9);
     }
 
     public void setVk_tab(Object vk_tab) {

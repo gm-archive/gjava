@@ -1165,7 +1165,8 @@ import java.util.Arrays;
          *  @since 1.0
          */
         public static double lengthDirX(double len, double dir) {
-            return len * cos(dir);
+            System.out.println(""+len + "dir:"+dir+" cos(dir):"+(cos(java.lang.Math.toRadians(dir)))+" "+len*radtodeg(cos(degtorad(dir))));
+            return len * cos(java.lang.Math.toRadians(dir));
         }
 
         /**
@@ -1177,7 +1178,7 @@ import java.util.Arrays;
          *  @since 1.0
          */
         public static double lengthDirY(double len, double dir) {
-            return len * sin(dir);
+            return len * sin(degtorad(dir));
         }
     }
 
