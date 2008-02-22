@@ -579,7 +579,7 @@ return new Object();
 
 public static Object motion_set(Object dir, Object speed)
 {
-    System.out.println(""+speed.getDouble());
+    System.out.println("speed:"+speed.getDouble());
     if (dir.equals(new Integer(90)).getBoolean())
         self.hspeed = -(0);
     self.hspeed = -(speed.getDouble());
@@ -626,11 +626,14 @@ public static Object move_random(Object hsnap, Object vsnap)
 return new Object();
 }
 
+/*
+ * 
+ * @author hanson
+ */
 public static Object move_snap(Object hsnap, Object vsnap)
 {
-    self.x = self.x/hsnap.getDouble()  * round(hsnap).getDouble();
-			self.y = self.y/vsnap.getDouble() * round(vsnap).getDouble();
-			
+    self.x = round(new Double(self.x/hsnap.getDouble())).getDouble()  * hsnap.getDouble();
+self.y = round(new Double(self.y/vsnap.getDouble())).getDouble() * vsnap.getDouble();		
 return new Object();
 }
 
