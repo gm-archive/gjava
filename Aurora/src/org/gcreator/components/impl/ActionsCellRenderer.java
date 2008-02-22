@@ -52,8 +52,18 @@ public class ActionsCellRenderer extends JLabel implements ListCellRenderer {
              if(val.indexOf("\n")!=-1)
                  val = val.substring(0, val.indexOf("\n")) + "\n...";
              if(isSelected){
-                setBackground(act.getSelectedBackground());
-                setForeground(act.getSelectedForeground());
+                try{
+                    setBackground(list.getSelectionBackground());
+                }
+                catch(Exception e){
+                    setBackground(Color.BLUE);
+                }
+                try{
+                    setForeground(list.getSelectionForeground());
+                }
+                catch(Exception e){
+                    setForeground(Color.WHITE);
+                }
              }
              else{
                 setBackground(act.getBackground());

@@ -25,9 +25,19 @@ public class ToolbarCellRenderer extends JLabel implements ListCellRenderer{
         if(value instanceof Toolbar){
             Toolbar toolbar = (Toolbar) value;
             if(selected)
-                setForeground(Color.WHITE);
+                try{
+                    setBackground(list.getSelectionForeground());
+                }
+                catch(Exception e){
+                    setBackground(Color.WHITE);
+                }
             else
-                setForeground(Color.BLACK);
+                /*try{
+                    setBackground(list.getForeground());
+                }
+                catch(Exception e){*/
+                    setBackground(Color.BLACK);
+                //}
             if(toolbar.name==null)
                 setText("Untitled Toolbar");
             else
@@ -41,9 +51,19 @@ public class ToolbarCellRenderer extends JLabel implements ListCellRenderer{
             setText("Invalid");
         }
         if(selected)
-            setBackground(Color.BLUE);
+            try{
+                setBackground(list.getSelectionBackground());
+            }
+            catch(Exception e){
+                setBackground(Color.BLUE);
+            }
         else
-            setBackground(Color.WHITE);
+            /*try{
+                setBackground(list.getBackground());
+            }
+            catch(Exception e){*/
+                setBackground(Color.WHITE);
+            //}
         return this;
     }
 }
