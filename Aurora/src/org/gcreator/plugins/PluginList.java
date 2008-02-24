@@ -34,7 +34,6 @@ public class PluginList {
             reader = new FileInputStream(pluglist);
         }
         catch(IOException e){
-            System.out.println(e.toString());
             return;
         }
         Vector<String> lines = new Vector<String>();
@@ -61,10 +60,8 @@ public class PluginList {
         
         Plugin curplugin = null;
         
-        System.out.println("-----");
         mainloop: 
         for(String line : lines){
-            System.out.println(line);
             line = line.replace("#(.*)^", "");
             
             if(line.equals(""))
