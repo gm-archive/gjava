@@ -43,9 +43,6 @@ public class SyntaxHighlighter extends JTextPane
         setBackground(Color.WHITE);
         InputMap inputMap = getInputMap();
 
-        KeyStroke key = KeyStroke.getKeyStroke(KeyEvent.VK_SPACE,
-                Event.CTRL_MASK);
-        inputMap.put(key, "autocompletion");
         addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){}
             public void keyPressed(KeyEvent evt){}
@@ -62,7 +59,7 @@ public class SyntaxHighlighter extends JTextPane
 
     public void callAutocomplete(){
         AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this);
-        if(f!=null){
+        if(f!=null&&!f.requestDie()){
             f.setVisible(true);
             f.setLocation(this.getLocationOnScreen().x+50, this.getLocationOnScreen().y+50);
         }

@@ -34,4 +34,8 @@ public class KeywordSuggestion implements Suggestion{
     public String getText(){
         return text;
     }
+    
+    public String confirm(String context){
+        return text.substring(context.length());
+    }
 }

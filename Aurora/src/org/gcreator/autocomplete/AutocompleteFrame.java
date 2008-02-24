@@ -29,4 +29,8 @@ public class AutocompleteFrame extends JFrame{
         });
         setSize(200, 100);
     }
+    
+    public boolean requestDie(){
+        return false;
+    }
 }

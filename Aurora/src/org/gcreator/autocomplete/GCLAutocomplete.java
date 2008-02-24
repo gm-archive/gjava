@@ -29,6 +29,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
     String context;
     JList list;
     JScrollPane scroll;
+    boolean requestDie = false;
     
     public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor){
         super();
@@ -42,7 +43,6 @@ public class GCLAutocomplete extends AutocompleteFrame{
         add(BorderLayout.NORTH, label);
         context = getContext();
         setTitle("GCL Autocomplete...");
-        useContext(context);
         addKeyListener(new KeyListener(){
             public void keyPressed(KeyEvent evt){
                 if(evt.getKeyCode()==KeyEvent.VK_DOWN){
@@ -94,13 +94,26 @@ public class GCLAutocomplete extends AutocompleteFrame{
                 }
             }
             public void keyReleased(KeyEvent evt){}
-            public void keyTyped(KeyEvent evt){
-            }
+            public void keyTyped(KeyEvent evt){}
         });
+        useContext(context);
+    }
+    
+    public boolean requestDie(){
+        return requestDie;
     }
     
     private void confirm(){
-        
+        if(list.isSelectionEmpty()){
+            editor.insert(selstart, selend, "\n");
+        }
+        else{
+            String t = ((Suggestion) list.getSelectedValue()).confirm(context);
+            editor.insert(selstart, selend, t);
+            editor.setSelectionStart(selstart+t.length());
+            editor.setSelectionEnd(selstart+t.length());
+        }
+        dispose();
     }
     
     private void useContext(String context){
@@ -191,6 +204,16 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         list.setModel(new VectorListModel(v));
         list.setCellRenderer(new SuggestionCellRenderer());
+        
+        if(v.size()==1){
+            list.setSelectedIndex(0);
+            String t = ((Suggestion) list.getSelectedValue()).confirm(context);
+            editor.insert(selstart, selend, t);
+            editor.setSelectionStart(selstart+t.length());
+            editor.setSelectionEnd(selstart+t.length());
+            dispose();
+            requestDie = true;
+        }
     }
     
     private String getContext(){

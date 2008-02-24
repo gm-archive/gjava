@@ -41,4 +41,8 @@ public class ClassSuggestion implements Suggestion{
     public String getText(){
         return text;
     }
+    
+    public String confirm(String context){
+        return (this.context + text).substring(context.length());
+    }
 }

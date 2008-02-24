@@ -34,4 +34,13 @@ public class FunctionSuggestion implements Suggestion{
     public String getText(){
         return text;
     }
+    
+    public String confirm(String context){
+        try{
+            return text.substring(context.substring(context.lastIndexOf('.')+1).length()) + "(";
+        }
+        catch(Exception e){
+            return "";
+        }
+    }
 }
