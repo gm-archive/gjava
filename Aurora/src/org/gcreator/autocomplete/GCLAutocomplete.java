@@ -22,14 +22,16 @@ import publicdomain.*;
  * @author Luís Reis
  */
 public class GCLAutocomplete extends AutocompleteFrame{
-    int selection;
+    int selstart;
+    int selend;
     SyntaxHighlighter editor;
     String context;
     JList list;
     
-    public GCLAutocomplete(int selection, SyntaxHighlighter editor){
+    public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor){
         super();
-        this.selection = selection;
+        this.selstart = selstart;
+        this.selend = selend;
         this.editor = editor;
         setLayout(new BorderLayout());
         JLabel label = new JLabel("GCL Autocomplete...");
@@ -45,6 +47,16 @@ public class GCLAutocomplete extends AutocompleteFrame{
                     list.setSelectedIndex(list.getSelectedIndex()+1);
                 if(evt.getKeyCode()==KeyEvent.VK_UP)
                     list.setSelectedIndex(list.getSelectedIndex()-1);
+                if(evt.getKeyCode()==KeyEvent.VK_LEFT){
+                    editor.setSelectionStart(selstart-1);
+                    editor.setSelectionEnd(selstart-1);
+                    dispose();
+                }
+                if(evt.getKeyCode()==KeyEvent.VK_RIGHT){
+                    editor.setSelectionStart(selend+1);
+                    editor.setSelectionEnd(selend+1);
+                    dispose();
+                }
             }
             public void keyReleased(KeyEvent evt){}
             public void keyTyped(KeyEvent evt){
@@ -82,7 +94,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         int situation = NULL;
         String word = "";
         String x = editor.getText();
-        if(selection<0||selection>=x.length())
+        int selection = selend;
+        if(selection<0||selection>x.length())
             return null;
         for(int i = 0; i < selection; i++){
             try{
@@ -107,7 +120,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
                         situation = CHAR;
                         continue;
                     }
-                    if(x.charAt(i)==' '||x.charAt(i)=='\t'){
+                    if(x.charAt(i)==' '||x.charAt(i)=='\t'
+                            ||x.charAt(i)=='\n'){
                         word = "";
                         continue;
                     }

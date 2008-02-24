@@ -962,7 +962,7 @@ public class GCLScanner extends SimpleScanner
     }
 
     public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor){
-        GCLAutocomplete a = new GCLAutocomplete(selectionEnd, editor);
+        GCLAutocomplete a = new GCLAutocomplete(selectionStart, selectionEnd, editor);
         return a;
     }
 }
