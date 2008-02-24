@@ -91,6 +91,15 @@ public class TileChooser extends JComponent{
         if(img==null)
             return;
         g.drawImage(img.getImage(), 0, 0, img.getImageObserver());
+        int x = (Integer) sceneeditor.jSpinner13.getValue();
+        int y = (Integer) sceneeditor.jSpinner14.getValue();
+        int w = (Integer) sceneeditor.jSpinner15.getValue();
+        int h = (Integer) sceneeditor.jSpinner16.getValue();
+        g.setColor(Color.WHITE);
+        g.drawRect(x-2, y-2, w+4, h+4);
+        g.drawRect(x, y, w, h);
+        g.setColor(Color.BLACK);
+        g.drawRect(x-1, y-1, w+2, h+2);
         /*int imgw = img.getIconWidth();
         int imgh = img.getIconHeight();
         int di = 0;

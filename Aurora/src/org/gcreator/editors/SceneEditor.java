@@ -1072,18 +1072,38 @@ public class SceneEditor extends TabPanel {
         jLabel4.setText("X:");
 
         jSpinner13.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jSpinner13.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner13StateChanged(evt);
+            }
+        });
 
         jLabel26.setText("Y:");
 
         jSpinner14.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jSpinner14.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner14StateChanged(evt);
+            }
+        });
 
         jLabel27.setText("Width:");
 
         jSpinner15.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jSpinner15.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner15StateChanged(evt);
+            }
+        });
 
         jLabel28.setText("Height:");
 
         jSpinner16.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jSpinner16.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner16StateChanged(evt);
+            }
+        });
 
         jLabel29.setText("Depth:");
 
@@ -1478,6 +1498,26 @@ public class SceneEditor extends TabPanel {
             curbg.setText("<no image>");
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
+
+    private void jSpinner13StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner13StateChanged
+        tilechooser.updateUI();
+        jScrollPane7.updateUI();
+    }//GEN-LAST:event_jSpinner13StateChanged
+
+    private void jSpinner14StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner14StateChanged
+        tilechooser.updateUI();
+        jScrollPane7.updateUI();
+    }//GEN-LAST:event_jSpinner14StateChanged
+
+    private void jSpinner15StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner15StateChanged
+        tilechooser.updateUI();
+        jScrollPane7.updateUI();
+    }//GEN-LAST:event_jSpinner15StateChanged
+
+    private void jSpinner16StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner16StateChanged
+        tilechooser.updateUI();
+        jScrollPane7.updateUI();
+    }//GEN-LAST:event_jSpinner16StateChanged
     
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
@@ -1600,11 +1640,11 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JSpinner jSpinner10;
     private javax.swing.JSpinner jSpinner11;
     private javax.swing.JSpinner jSpinner12;
-    private javax.swing.JSpinner jSpinner13;
-    private javax.swing.JSpinner jSpinner14;
-    private javax.swing.JSpinner jSpinner15;
-    private javax.swing.JSpinner jSpinner16;
-    private javax.swing.JSpinner jSpinner17;
+    public javax.swing.JSpinner jSpinner13;
+    public javax.swing.JSpinner jSpinner14;
+    public javax.swing.JSpinner jSpinner15;
+    public javax.swing.JSpinner jSpinner16;
+    public javax.swing.JSpinner jSpinner17;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;
