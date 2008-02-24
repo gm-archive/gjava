@@ -7,7 +7,11 @@
  * See LICENSE for more details.
  */
 
-package publicdomain;
+package org.gcreator.components.impl;
+
+import publicdomain.*;
+import org.gcreator.components.SyntaxHighlighter;
+import org.gcreator.autocomplete.*;
 
 /**
  * @author Luís Reis
@@ -27,5 +31,7 @@ public abstract class Scanner implements TokenTypes{
             return position;
     }
     abstract public Token getToken(int n);
-    public void callAutocomplete(int selectionStart, int selectionEnd){}
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor){
+        return null;
+    }
 }

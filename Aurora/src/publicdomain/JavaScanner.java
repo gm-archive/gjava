@@ -2,6 +2,9 @@ package publicdomain;
 
 // Public domain, no restrictions, Ian Holyer, University of Bristol.
 
+import org.gcreator.components.impl.SimpleScanner;
+
+
 /**
  * <p>Provide a hand-written scanner for the Java language.
  */

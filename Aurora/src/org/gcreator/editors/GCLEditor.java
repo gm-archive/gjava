@@ -6,6 +6,8 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.components.impl.Scanner;
+import org.gcreator.components.SyntaxHighlighter;
 import java.util.logging.*;
 import javax.swing.text.BadLocationException;
 import org.gcreator.components.TabPanel;

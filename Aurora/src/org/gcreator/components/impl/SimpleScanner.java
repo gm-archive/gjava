@@ -1,5 +1,6 @@
-package publicdomain;
+package org.gcreator.components.impl;
 
+import publicdomain.*;
 import java.util.HashMap;
 
 // Public domain, no restrictions, Ian Holyer, University of Bristol.

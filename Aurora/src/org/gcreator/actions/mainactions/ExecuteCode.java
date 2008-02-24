@@ -9,6 +9,8 @@
 
 package org.gcreator.actions.mainactions;
 
+import org.gcreator.components.impl.Scanner;
+import org.gcreator.components.SyntaxHighlighter;
 import org.gcreator.components.impl.*;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;

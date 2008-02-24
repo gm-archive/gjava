@@ -1,5 +1,7 @@
 package org.gcreator.components.impl;
 
+import org.gcreator.autocomplete.*;
+import org.gcreator.components.*;
 import publicdomain.*;
 
 /*
@@ -959,4 +961,8 @@ public class GCLScanner extends SimpleScanner
                     "Unicode cat " + b + " hasn't been classified");
     }
 
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor){
+        GCLAutocomplete a = new GCLAutocomplete(selectionEnd, editor);
+        return a;
+    }
 }

@@ -7,7 +7,7 @@
  * See LICENSE for more details.
  */
 
-package org.gcreator.components.popupmenus;
+package org.gcreator.autocomplete;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,5 +20,13 @@ public class AutocompleteFrame extends JFrame{
     public AutocompleteFrame(){
         super();
         setUndecorated(true);
+        addFocusListener(new FocusListener(){
+            public void focusLost(FocusEvent evt){
+                dispose();
+            }
+            
+            public void focusGained(FocusEvent evt){}
+        });
+        setSize(200, 100);
     }
 }

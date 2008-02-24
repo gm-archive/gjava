@@ -1,11 +1,15 @@
-package publicdomain;
+package org.gcreator.components;
 
+import org.gcreator.components.impl.Token;
+import org.gcreator.components.impl.Scanner;
+import publicdomain.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.text.*;
 import javax.swing.event.*;
 import java.io.*;
+import org.gcreator.autocomplete.*;
 
 // Modified by Luís Reis. See G-Creator LICENSE for more details.
 // The original file contained:
@@ -57,7 +61,11 @@ public class SyntaxHighlighter extends JTextPane
     }
 
     protected void callAutocomplete(){
-        scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd());
+        AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this);
+        if(f!=null){
+            f.setVisible(true);
+            f.setLocation(this.getLocationOnScreen().x+50, this.getLocationOnScreen().y+50);
+        }
     }
     
     /**
@@ -81,7 +89,7 @@ public class SyntaxHighlighter extends JTextPane
      * <code>read</code> in <code>JTextComponent</code> in order to highlight
      * the new text.
      */
-    public void read(Reader in, Object desc) throws IOException {
+    public void read(java.io.Reader in, Object desc) throws IOException {
         int oldLength = getDocument().getLength();
         doc.removeDocumentListener(this);
         super.read(in, desc);

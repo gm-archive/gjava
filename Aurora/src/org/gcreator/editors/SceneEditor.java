@@ -6,6 +6,7 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.components.SyntaxHighlighter;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -132,7 +133,7 @@ public class SceneEditor extends TabPanel {
         scene.setSize(500,500);
         jScrollPane1.setViewportView(scene);
         this.file = file;
-        publicdomain.Scanner scanner = new GCLScanner();
+        org.gcreator.components.impl.Scanner scanner = new GCLScanner();
         egml = new SyntaxHighlighter(100, 100, scanner);
         egml.setText(((Scene) file.value).code);
         tilechooser = new TileChooser(this);
