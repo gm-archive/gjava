@@ -1,4 +1,4 @@
-package org.gcreator.components.impl;
+package org.gcreator.components.scanning;
 
 import org.gcreator.autocomplete.*;
 import org.gcreator.components.*;
@@ -21,7 +21,7 @@ public class GCLScanner extends SimpleScanner
         initUniKind();
     }
 
-    /** Override the read method from the Scanner class. */
+    /** Override the read method from the SimpleScanner class. */
     protected int read()
     {
         int type, saveStart = 0;
@@ -711,6 +711,8 @@ public class GCLScanner extends SimpleScanner
         lookup(KEYWORD, "long");
         lookup(KEYWORD, "short");
         lookup(KEYWORD, "object");
+        
+        lookup(KEYWORD, "new");
     }
 
     // *** Override lookup, but what about unicode escape translation?

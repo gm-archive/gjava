@@ -1,7 +1,7 @@
 package org.gcreator.components;
 
 import org.gcreator.components.impl.Token;
-import org.gcreator.components.impl.Scanner;
+import org.gcreator.components.scanning.Scanner;
 import publicdomain.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -60,7 +60,7 @@ public class SyntaxHighlighter extends JTextPane
 
     }
 
-    protected void callAutocomplete(){
+    public void callAutocomplete(){
         AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this);
         if(f!=null){
             f.setVisible(true);
@@ -242,5 +242,12 @@ public class SyntaxHighlighter extends JTextPane
         if (offset >= 0) {
             repaint(2);
         }
+    }
+    
+    public void insert(int selstart, int selend, String text){
+        String content = getText();
+        String before = content.substring(0, selstart);
+        String after = content.substring(selend);
+        setText(before + text + after);
     }
 }

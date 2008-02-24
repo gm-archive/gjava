@@ -34,5 +34,6 @@ ImageVisible=True
 Item=std_addActor
 Item=std_addScene
 Item=std_addScript
+TextVisible=True
 Item=std_addClass
 

@@ -2,7 +2,7 @@ package publicdomain;
 
 // Public domain, no restrictions, Ian Holyer, University of Bristol.
 
-import org.gcreator.components.impl.SimpleScanner;
+import org.gcreator.components.scanning.SimpleScanner;
 
 
 /**

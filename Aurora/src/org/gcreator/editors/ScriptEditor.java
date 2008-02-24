@@ -6,7 +6,8 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.impl.Scanner;
+import org.gcreator.components.scanning.GScriptScanner;
+import org.gcreator.components.scanning.Scanner;
 import org.gcreator.components.SyntaxHighlighter;
 import javax.swing.GroupLayout;
 import org.gcreator.components.TabPanel;

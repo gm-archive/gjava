@@ -7,8 +7,9 @@
  * See LICENSE for more details.
  */
 
-package org.gcreator.components.impl;
+package org.gcreator.components.scanning;
 
+import org.gcreator.components.impl.*;
 import publicdomain.*;
 import org.gcreator.components.SyntaxHighlighter;
 import org.gcreator.autocomplete.*;

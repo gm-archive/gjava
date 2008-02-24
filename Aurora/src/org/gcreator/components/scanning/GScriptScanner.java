@@ -1,4 +1,4 @@
-package org.gcreator.components.impl;
+package org.gcreator.components.scanning;
 
 import publicdomain.*;
 

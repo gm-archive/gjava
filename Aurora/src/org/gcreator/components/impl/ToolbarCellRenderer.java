@@ -33,10 +33,10 @@ public class ToolbarCellRenderer extends JLabel implements ListCellRenderer{
                 }
             else
                 /*try{
-                    setBackground(list.getForeground());
+                    setForeground(list.getForeground());
                 }
                 catch(Exception e){*/
-                    setBackground(Color.BLACK);
+                    setForeground(Color.BLACK);
                 //}
             if(toolbar.name==null)
                 setText("Untitled Toolbar");
