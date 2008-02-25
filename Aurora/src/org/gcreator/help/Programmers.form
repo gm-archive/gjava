@@ -48,7 +48,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lu&#xed;s Reis"/>
+        <Property name="text" type="java.lang.String" value="Luis Reis(with an acute accent above the i of Luis)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">

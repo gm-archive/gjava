@@ -30,7 +30,7 @@ public class Programmers extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setText("Luís Reis");
+        jLabel1.setText("Luis Reis(with an acute accent above the i of Luis)");
 
         jLabel2.setText("TGMG");
 

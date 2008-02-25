@@ -34,8 +34,11 @@ Contributions:
         Made the SVN work.
         Imported the graphics to Aurora
         Imported German dictionary to Aurora
+    Luis Peregrina
+        Remake of most images.
+        Major corrections to the Spanish translation.
     Jiiprah
-        Most graphics
+        Most (old) graphics
     DABAB
         Some action graphics
     Tree Image handling based on http://forum.java.sun.com/thread.jspa?threadID=755439&messageID=4316522
