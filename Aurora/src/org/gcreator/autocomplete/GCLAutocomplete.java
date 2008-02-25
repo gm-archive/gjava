@@ -12,12 +12,14 @@ package org.gcreator.autocomplete;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.*;
 import org.gcreator.autocomplete.impl.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.VectorListModel;
 import org.gcreator.fileclass.Project;
+import org.gcreator.units.ObjectNode;
 import publicdomain.*;
 
 /**
@@ -31,6 +33,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
     JList list;
     JScrollPane scroll;
     boolean requestDie = false;
+    Project p;
     //How to declare an actor?
     Vector<String> actorTypes = new Vector<String>();
     Vector<Suggestion> v = new Vector<Suggestion>();
@@ -40,6 +43,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         this.selstart = selstart;
         this.selend = selend;
         this.editor = editor;
+        this.p = p;
         setLayout(new BorderLayout());
         JLabel label = new JLabel("GCL Autocomplete...");
         label.setFocusable(false);
@@ -177,7 +181,12 @@ public class GCLAutocomplete extends AutocompleteFrame{
         }
         
         actorTypes.add("Actor");
-        
+        Enumeration e = p.getEnum("actor");
+        Object o;
+        while(e.hasMoreElements()){
+            o = e.nextElement();
+            actorTypes.add(((ObjectNode) o).object.name);
+        }
         
         applyClassVector(actorTypes);
         
