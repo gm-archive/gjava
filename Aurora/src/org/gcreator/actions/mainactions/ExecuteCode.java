@@ -9,6 +9,7 @@
 
 package org.gcreator.actions.mainactions;
 
+import org.gcreator.actions.components.EGMLPanel;
 import org.gcreator.components.scanning.GCLScanner;
 import org.gcreator.components.scanning.Scanner;
 import org.gcreator.components.SyntaxHighlighter;
@@ -20,6 +21,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.components.*;
 
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /**
@@ -43,9 +45,9 @@ public class ExecuteCode extends ActionPattern{
         return img;
     }
      
-    public  JComponent createNewPanel(org.gcreator.actions.Action action){
+    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         Scanner scanner = new GCLScanner();
-        SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner);
+        SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner, project);
         panel.setText("//Some EGML Code");
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){

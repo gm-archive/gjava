@@ -8,6 +8,7 @@ package org.gcreator.actions.mainactions;
 import org.gcreator.actions.*;
 import org.gcreator.actions.components.*;
 import javax.swing.*;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -27,7 +28,7 @@ public class IfClipboardHasContent extends ActionPattern{
         return img;
     }
     
-    public  JComponent createNewPanel(org.gcreator.actions.Action action){
+    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         YesOrNoIfPanel panel = new YesOrNoIfPanel();
         return panel;
     }

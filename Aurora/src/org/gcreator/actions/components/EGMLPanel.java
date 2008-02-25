@@ -4,7 +4,7 @@
  * Created on 26 de Setembro de 2007, 16:59
  */
 
-package org.gcreator.actions.mainactions;
+package org.gcreator.actions.components;
 
 import org.gcreator.components.scanning.GCLScanner;
 import org.gcreator.components.scanning.Scanner;
@@ -12,6 +12,7 @@ import org.gcreator.components.SyntaxHighlighter;
 import org.gcreator.components.impl.*;
 import org.gcreator.components.*;
 
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /**
@@ -22,10 +23,10 @@ public class EGMLPanel extends javax.swing.JPanel {
     
     /** Creates new form CommentPanel */
     SyntaxHighlighter text;
-    public EGMLPanel() {
+    public EGMLPanel(Project project) {
         initComponents();
         Scanner scanner = new GCLScanner();
-        text = new SyntaxHighlighter(100, 100, scanner);
+        text = new SyntaxHighlighter(100, 100, scanner, project);
         text.setText("//some EGML code");
         this.add(text);
         /*org.jdesktop.layout.GroupLayout jPanelLayout = new org.jdesktop.layout.GroupLayout(this);
@@ -60,6 +61,14 @@ public class EGMLPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
+    
+    public String getText(){
+        return text.getText();
+    }
+    
+    public void setText(String text){
+        this.text.setText(text);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables

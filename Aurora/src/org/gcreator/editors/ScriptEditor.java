@@ -32,7 +32,7 @@ public class ScriptEditor extends TabPanel {
         if(file.value==null)
             file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
         Scanner scanner = new GScriptScanner();
-        g = new SyntaxHighlighter(100, 100, scanner);
+        g = new SyntaxHighlighter(100, 100, scanner, project);
         g.setText(((Classes)file.value).toString());
         
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);

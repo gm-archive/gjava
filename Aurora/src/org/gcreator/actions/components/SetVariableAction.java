@@ -4,7 +4,7 @@
  * Created on 06 September 2007, 03:32
  */
 
-package org.gcreator.actions.mainactions;
+package org.gcreator.actions.components;
 
 import javax.swing.*;
 

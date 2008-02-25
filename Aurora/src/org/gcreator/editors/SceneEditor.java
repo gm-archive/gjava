@@ -135,7 +135,7 @@ public class SceneEditor extends TabPanel {
         jScrollPane1.setViewportView(scene);
         this.file = file;
         org.gcreator.components.scanning.Scanner scanner = new GCLScanner();
-        egml = new SyntaxHighlighter(100, 100, scanner);
+        egml = new SyntaxHighlighter(100, 100, scanner, project);
         egml.setText(((Scene) file.value).code);
         tilechooser = new TileChooser(this);
         jList1.setSelectedIndex(0);

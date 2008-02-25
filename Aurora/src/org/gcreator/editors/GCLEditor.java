@@ -52,7 +52,7 @@ public class GCLEditor extends TabPanel {
             file.value = new Classes("String examplefield = \"\"; \npublic void exampleFunction(){\n\t\n}");
         }
         Scanner scanner = new GCLScanner();
-        g = new SyntaxHighlighter(100, 100, scanner);
+        g = new SyntaxHighlighter(100, 100, scanner, project);
         g.setText(file.value.toString());
 
         setLayout(new BorderLayout());

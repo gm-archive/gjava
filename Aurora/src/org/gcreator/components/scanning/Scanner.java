@@ -13,6 +13,7 @@ import org.gcreator.components.impl.*;
 import publicdomain.*;
 import org.gcreator.components.SyntaxHighlighter;
 import org.gcreator.autocomplete.*;
+import org.gcreator.fileclass.Project;
 
 /**
  * @author Luís Reis
@@ -32,7 +33,7 @@ public abstract class Scanner implements TokenTypes{
             return position;
     }
     abstract public Token getToken(int n);
-    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor){
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor, Project project){
         return null;
     }
 }

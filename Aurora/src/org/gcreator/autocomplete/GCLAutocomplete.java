@@ -17,6 +17,7 @@ import javax.swing.*;
 import org.gcreator.autocomplete.impl.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.VectorListModel;
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /**
@@ -30,8 +31,11 @@ public class GCLAutocomplete extends AutocompleteFrame{
     JList list;
     JScrollPane scroll;
     boolean requestDie = false;
+    //How to declare an actor?
+    Vector<String> actorTypes = new Vector<String>();
+    Vector<Suggestion> v = new Vector<Suggestion>();
     
-    public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor){
+    public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
         super();
         this.selstart = selstart;
         this.selend = selend;
@@ -47,15 +51,19 @@ public class GCLAutocomplete extends AutocompleteFrame{
             public void keyPressed(KeyEvent evt){
                 if(evt.getKeyCode()==KeyEvent.VK_DOWN){
                     if(!list.isSelectionEmpty()){
+                        int sh = list.getCellRenderer().getListCellRendererComponent(
+                                list, list.getSelectedValue(), list.getSelectedIndex(), false, false).getPreferredSize().height;
                         JScrollBar bar = scroll.getVerticalScrollBar();
-                        bar.setValue(bar.getValue()+getFontMetrics(list.getFont()).getHeight());
+                        bar.setValue(bar.getValue()+sh);
                     }
                     list.setSelectedIndex(list.getSelectedIndex()+1);
                 }
                 else if(evt.getKeyCode()==KeyEvent.VK_UP){
                     if(!list.isSelectionEmpty()){
+                        int sh = list.getCellRenderer().getListCellRendererComponent(
+                                list, list.getSelectedValue(), list.getSelectedIndex(), false, false).getPreferredSize().height;
                         JScrollBar bar = scroll.getVerticalScrollBar();
-                        bar.setValue(bar.getValue()-getFontMetrics(list.getFont()).getHeight());
+                        bar.setValue(bar.getValue()-sh);
                     }
                     list.setSelectedIndex(list.getSelectedIndex()-1);
                 }
@@ -96,9 +104,10 @@ public class GCLAutocomplete extends AutocompleteFrame{
             public void keyReleased(KeyEvent evt){}
             public void keyTyped(KeyEvent evt){}
         });
-        useContext(context);
+        useContext();
     }
     
+    @Override
     public boolean requestDie(){
         return requestDie;
     }
@@ -116,7 +125,44 @@ public class GCLAutocomplete extends AutocompleteFrame{
         dispose();
     }
     
-    private void useContext(String context){
+    private void applyClass(String val){
+        String res = "";
+        for(int i = val.length()-1; i >= 0; i--){
+            if(i==val.length()-1){
+                res = "(" + val.charAt(i) + ")?";
+            }
+            else{
+                res = "(" + val.charAt(i) + res + ")?";
+            }
+        }
+        res = "^" + res + "$";
+        if(context.matches(res)){
+            v.add(new ClassSuggestion(val));
+        }
+    }
+    
+    private void applyClassVector(Vector<String> vals){
+        for(String s : vals)
+            applyClass(s);
+    }
+    
+    private void applyKeyword(String val){
+        String res = "";
+        for(int i = val.length()-1; i >= 0; i--){
+            if(i==val.length()-1){
+                res = "(" + val.charAt(i) + ")?";
+            }
+            else{
+                res = "(" + val.charAt(i) + res + ")?";
+            }
+        }
+        res = "^" + res + "$";
+        if(context.matches(res)){
+            v.add(new KeywordSuggestion(val));
+        }
+    }
+    
+    private void useContext(){
         scroll = new JScrollPane();
         scroll.setFocusable(false);
         scroll.setVisible(true);
@@ -129,27 +175,33 @@ public class GCLAutocomplete extends AutocompleteFrame{
             dispose();
             return;
         }
-        Vector v = new Vector();
-        if(context.matches("^(A(c(t(o(r)?)?)?)?)?$"))
-            v.add(new ClassSuggestion("Actor"));
         
-        if(context.matches("^(c(h(a(r)?)?)?)?$"))
-            v.add(new KeywordSuggestion("char"));
+        actorTypes.add("Actor");
         
-        if(context.matches("^(C(l(i(p(b(o(a(r(d)?)?)?)?)?)?)?)?)?$"))
-            v.add(new ClassSuggestion("Clipboard"));
         
-        if(context.matches("^(C(o(m(m(o(n)?)?)?)?)?)?$"))
-            v.add(new ClassSuggestion("Common"));
+        applyClassVector(actorTypes);
+        
+        applyKeyword("char");
+        
+        applyClass("Clipboard");
+        
+        applyClass("Common");
         
         if(context.matches("^Common\\.(S(c(e(n(e)?)?)?)?)?$"))
-            v.add(new ClassSuggestion("Common", "Scene"));
+            v.add(new ClassSuggestion("Scene"));
         
-        if(context.matches("^(g(e(t(t(e(r)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("getter"));
+        applyKeyword("do");
+        
+        applyKeyword("else");
+        
+        applyKeyword("for");
+        
+        applyKeyword("getter");
         
         if(context.matches("^Clipboard\\.(g(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("getText"));
+        
+        applyKeyword("if");
         
         if(context.matches("^(i(n(t)?)?)?$"))
             v.add(new KeywordSuggestion("int"));
@@ -201,6 +253,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         if(context.matches("^(v(o(i(d)?)?)?)?$"))
             v.add(new KeywordSuggestion("void"));
+        
+        applyKeyword("while");
         
         list.setModel(new VectorListModel(v));
         list.setCellRenderer(new SuggestionCellRenderer());

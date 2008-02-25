@@ -2,6 +2,7 @@ package org.gcreator.components.scanning;
 
 import org.gcreator.autocomplete.*;
 import org.gcreator.components.*;
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /*
@@ -713,6 +714,13 @@ public class GCLScanner extends SimpleScanner
         lookup(KEYWORD, "object");
         
         lookup(KEYWORD, "new");
+        
+        lookup(KEYWORD, "if");
+        lookup(KEYWORD, "else");
+        lookup(KEYWORD, "for");
+        lookup(KEYWORD, "while");
+        lookup(KEYWORD, "do");
+        lookup(KEYWORD, "foreach");
     }
 
     // *** Override lookup, but what about unicode escape translation?
@@ -963,8 +971,8 @@ public class GCLScanner extends SimpleScanner
                     "Unicode cat " + b + " hasn't been classified");
     }
 
-    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor){
-        GCLAutocomplete a = new GCLAutocomplete(selectionStart, selectionEnd, editor);
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor, Project project){
+        GCLAutocomplete a = new GCLAutocomplete(selectionStart, selectionEnd, editor, project);
         return a;
     }
 }

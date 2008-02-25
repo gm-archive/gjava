@@ -12,6 +12,7 @@ import java.io.*;
 import org.gcreator.autocomplete.*;
 
 // Modified by Luís Reis. See G-Creator LICENSE for more details.
+import org.gcreator.fileclass.Project;
 // The original file contained:
 //// Public domain, no restrictions, Ian Holyer, University of Bristol.
 /**
@@ -25,12 +26,13 @@ public class SyntaxHighlighter extends JTextPane
     private StyledDocument doc;
     private Scanner scanner;
     private int height,  width;
+    private Project project;
 
     /**
      * Create a graphics component which displays text with syntax highlighting.
      * Provide a width and height, in characters, and a language scanner.
      */
-    public SyntaxHighlighter(int height, int width, Scanner scanner) {
+    public SyntaxHighlighter(int height, int width, Scanner scanner, Project project) {
         super(new DefaultStyledDocument());
         doc = (StyledDocument) getDocument();
         this.height = height;
@@ -41,7 +43,7 @@ public class SyntaxHighlighter extends JTextPane
         changeFont(font);
         initStyles();
         setBackground(Color.WHITE);
-        InputMap inputMap = getInputMap();
+        this.project = project;
 
         addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){}
@@ -58,7 +60,7 @@ public class SyntaxHighlighter extends JTextPane
     }
 
     public void callAutocomplete(){
-        AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this);
+        AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
         if(f!=null&&!f.requestDie()){
             f.setVisible(true);
             f.setLocation(this.getLocationOnScreen().x+50, this.getLocationOnScreen().y+50);

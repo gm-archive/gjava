@@ -10,6 +10,7 @@ import org.gcreator.editors.*;
 import org.gcreator.actions.components.*;
 import javax.swing.*;
 import java.awt.event.*;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -30,7 +31,7 @@ public class AddImageToSprite extends ActionPattern{
         return img;
     }
     
-    public  JComponent createNewPanel(org.gcreator.actions.Action action){
+    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         AddImageToSpritePanel panel = new AddImageToSpritePanel();
         return panel;
     }

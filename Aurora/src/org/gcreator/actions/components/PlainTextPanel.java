@@ -4,7 +4,7 @@
  * Created on 26 de Setembro de 2007, 16:59
  */
 
-package org.gcreator.actions.mainactions;
+package org.gcreator.actions.components;
 
 import java.io.ObjectStreamField;
 import java.io.Serializable;

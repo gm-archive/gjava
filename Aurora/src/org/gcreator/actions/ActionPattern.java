@@ -17,6 +17,7 @@ import java.awt.*;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
 import java.util.Vector;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -35,7 +36,7 @@ public abstract class ActionPattern implements Serializable {
         //setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));
     }
     
-    public JComponent createNewPanel(Action action){
+    public JComponent createNewPanel(Action action, Project project){
         return new JPanel();
     }
     

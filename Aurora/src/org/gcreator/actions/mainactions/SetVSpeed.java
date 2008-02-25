@@ -9,6 +9,7 @@ import org.gcreator.actions.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.actions.components.VSpeedEditor;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -34,7 +35,7 @@ static final long serialVersionUID = 1L;
         icon = img;
     }
     
-    public JComponent createNewPanel(org.gcreator.actions.Action action) {
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
          return new VSpeedEditor();
     }
 

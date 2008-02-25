@@ -20,6 +20,7 @@ import java.io.Serializable;
 //import org.gcreator.editors.*;
 import java.util.Vector;
 import org.gcreator.editors.*;
+import org.gcreator.fileclass.Project;
 
 /**
  * Actions represent the GCL equivalent in the Actor Editor.
@@ -36,6 +37,7 @@ public class Action implements Serializable {
      */
     public ActionPattern pattern;
     private JComponent panel;
+    public Project project;
     
     private static final ObjectStreamField[] serialPersistentFields
                  = {new ObjectStreamField("pattern", ActionPattern.class)};
@@ -52,8 +54,9 @@ public class Action implements Serializable {
      */
     public Action (ActionPattern pattern){
         this.pattern = pattern;
+        this.project = null;
         if(pattern!=null)
-            panel = pattern.createNewPanel(this);
+            panel = pattern.createNewPanel(this, null);
     }
         
     /**
@@ -64,8 +67,9 @@ public class Action implements Serializable {
      */
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
+        this.project = editor.project;
         if(pattern!=null)
-            panel = pattern.createNewPanel(this);
+            panel = pattern.createNewPanel(this, project);
     }
     
     /**
@@ -76,8 +80,9 @@ public class Action implements Serializable {
      */
     public Action(TimelineEditor editor, ActionPattern pattern){
         this.pattern = pattern;
+        this.project = editor.project;
         if(pattern!=null)
-            panel = pattern.createNewPanel(this);
+            panel = pattern.createNewPanel(this, project);
     }
     
     /**
@@ -105,7 +110,7 @@ public class Action implements Serializable {
         if (panel == null)
         {
            
-           panel= pattern.createNewPanel(this);
+           panel= pattern.createNewPanel(this, project);
         }
         return panel;
     }

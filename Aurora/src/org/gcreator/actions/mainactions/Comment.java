@@ -8,9 +8,11 @@
  */
 package org.gcreator.actions.mainactions;
 
+import org.gcreator.actions.components.PlainTextPanel;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import java.awt.event.*;
+import org.gcreator.fileclass.Project;
 
 /**
  * The comment action
@@ -35,7 +37,7 @@ public class Comment extends ActionPattern {
         return img;
     }
     
-    public JComponent createNewPanel(org.gcreator.actions.Action action) {
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
         PlainTextPanel panel = new PlainTextPanel();
         panel.text.setText(text);
         return panel; // new PlainTextPanel();

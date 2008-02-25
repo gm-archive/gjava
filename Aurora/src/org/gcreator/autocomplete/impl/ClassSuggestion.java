@@ -17,16 +17,10 @@ import javax.swing.*;
  */
 public class ClassSuggestion implements Suggestion{
     private String text = "";
-    private String context = "";
     
     public ClassSuggestion(){}
     
     public ClassSuggestion(String text){
-        this.text = text;
-    }
-    
-    public ClassSuggestion(String context, String text){
-        this.context = context;
         this.text = text;
     }
     
@@ -43,6 +37,11 @@ public class ClassSuggestion implements Suggestion{
     }
     
     public String confirm(String context){
-        return (this.context + text).substring(context.length());
+        try{
+            return text.substring(context.substring(context.lastIndexOf('.')+1).length());
+        }
+        catch(Exception e){
+            return "";
+        }
     }
 }
