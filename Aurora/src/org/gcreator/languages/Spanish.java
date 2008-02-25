@@ -73,7 +73,7 @@ public class Spanish extends Dictionary{
 	entry[41] = "Guardar";
 	entry[42] = "Guardar Como...";
 	entry[43] = "Agregar Sprite";
-	entry[44] = "Agregar Clase";
+	entry[44] = "Agregar Sonido";
 	entry[45] = "Agregar Actor";
 	entry[46] = "Agregar Escena";
         //Language menu
