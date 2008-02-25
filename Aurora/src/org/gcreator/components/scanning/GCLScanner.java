@@ -703,6 +703,7 @@ public class GCLScanner extends SimpleScanner
         lookup(KEYWORD, "getter");
         lookup(KEYWORD, "static");
         lookup(KEYWORD, "native");
+        lookup(KEYWORD, "return");
         
         lookup(KEYWORD, "void");
         lookup(KEYWORD, "int");

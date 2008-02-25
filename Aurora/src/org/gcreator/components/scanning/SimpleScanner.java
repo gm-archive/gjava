@@ -484,4 +484,16 @@ public class SimpleScanner extends Scanner
         }
         System.out.println();
     }
+    
+    public String symbolCompletion(char s){
+        if(s=='(')
+            return ")";
+        else if(s=='{')
+            return "}";
+        else if(s=='"')
+            return "\"";
+        else if(s=='\'')
+            return "\'";
+        return "";
+    }
 }

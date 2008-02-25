@@ -19,5 +19,5 @@ public interface Suggestion {
     public String getText();
     public ImageIcon getImage();
     public Color getForeground();
-    public String confirm(String context);
+    public String confirm(String context, String prevWord);
 }

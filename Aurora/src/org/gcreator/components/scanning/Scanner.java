@@ -36,4 +36,11 @@ public abstract class Scanner implements TokenTypes{
     public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor, Project project){
         return null;
     }
+    public boolean completeString(){
+        //When " is pressed, should " be added after it?
+        return false;
+    }
+    public String symbolCompletion(char s){
+        return "";
+    }
 }

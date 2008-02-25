@@ -36,9 +36,10 @@ public class ClassSuggestion implements Suggestion{
         return text;
     }
     
-    public String confirm(String context){
+    public String confirm(String context, String prevWord){
         try{
-            return text.substring(context.substring(context.lastIndexOf('.')+1).length());
+            return (text + (prevWord.equals("new") ? "(" : ""))
+                    .substring(context.substring(context.lastIndexOf('.')+1).length());
         }
         catch(Exception e){
             return "";

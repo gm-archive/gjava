@@ -35,7 +35,7 @@ public class FunctionSuggestion implements Suggestion{
         return text;
     }
     
-    public String confirm(String context){
+    public String confirm(String context, String prevWord){
         try{
             return text.substring(context.substring(context.lastIndexOf('.')+1).length()) + "(";
         }

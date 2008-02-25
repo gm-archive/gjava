@@ -32,7 +32,7 @@ public class SyntaxHighlighter extends JTextPane
      * Create a graphics component which displays text with syntax highlighting.
      * Provide a width and height, in characters, and a language scanner.
      */
-    public SyntaxHighlighter(int height, int width, Scanner scanner, Project project) {
+    public SyntaxHighlighter(int height, int width, final Scanner scanner, Project project) {
         super(new DefaultStyledDocument());
         doc = (StyledDocument) getDocument();
         this.height = height;
@@ -45,13 +45,27 @@ public class SyntaxHighlighter extends JTextPane
         setBackground(Color.WHITE);
         this.project = project;
 
-        addKeyListener(new KeyListener(){
-            public void keyReleased(KeyEvent evt){}
-            public void keyPressed(KeyEvent evt){}
-            public void keyTyped(KeyEvent evt){
-                if(evt.getKeyChar()==' '){
-                    if(evt.isControlDown()){
+        addKeyListener(new KeyListener() {
+
+            public void keyReleased(KeyEvent evt) {
+            }
+
+            public void keyPressed(KeyEvent evt) {
+            }
+
+            public void keyTyped(KeyEvent evt) {
+                if (evt.getKeyChar() == ' ') {
+                    if (evt.isControlDown()) {
                         callAutocomplete();
+                    }
+                }
+                if (!evt.isControlDown()) {
+                    if(scanner!=null){
+                        int selstart = getSelectionStart();
+                        int selend = getSelectionEnd();
+                        insert(selstart, selend, scanner.symbolCompletion(evt.getKeyChar()));
+                        setSelectionStart(selstart);
+                        setSelectionEnd(selend);
                     }
                 }
             }
@@ -59,14 +73,14 @@ public class SyntaxHighlighter extends JTextPane
 
     }
 
-    public void callAutocomplete(){
+    public void callAutocomplete() {
         AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
-        if(f!=null&&!f.requestDie()){
+        if (f != null && !f.requestDie()) {
             f.setVisible(true);
-            f.setLocation(this.getLocationOnScreen().x+50, this.getLocationOnScreen().y+50);
+            f.setLocation(this.getLocationOnScreen().x + 50, this.getLocationOnScreen().y + 50);
         }
     }
-    
+
     /**
      * Change the component's font, and change the size of the component to
      * match.
@@ -242,8 +256,8 @@ public class SyntaxHighlighter extends JTextPane
             repaint(2);
         }
     }
-    
-    public void insert(int selstart, int selend, String text){
+
+    public void insert(int selstart, int selend, String text) {
         String content = getText();
         String before = content.substring(0, selstart);
         String after = content.substring(selend);

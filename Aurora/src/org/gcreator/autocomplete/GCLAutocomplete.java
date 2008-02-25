@@ -29,6 +29,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
     int selstart;
     int selend;
     SyntaxHighlighter editor;
+    String prevWord;
     String context;
     JList list;
     JScrollPane scroll;
@@ -101,8 +102,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
                         editor.insert(selstart, selend, "");
                     }
                     dispose();
-                        editor.callAutocomplete();
-                        editor.setSelectionEnd(selstart);
+                    editor.callAutocomplete();
+                    editor.setSelectionEnd(selstart);
                 }
             }
             public void keyReleased(KeyEvent evt){}
@@ -121,7 +122,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
             editor.insert(selstart, selend, "\n");
         }
         else{
-            String t = ((Suggestion) list.getSelectedValue()).confirm(context);
+            String t = ((Suggestion) list.getSelectedValue()).confirm(context, prevWord);
             editor.insert(selstart, selend, t);
             editor.setSelectionStart(selstart+t.length());
             editor.setSelectionEnd(selstart+t.length());
@@ -163,6 +164,22 @@ public class GCLAutocomplete extends AutocompleteFrame{
         res = "^" + res + "$";
         if(context.matches(res)){
             v.add(new KeywordSuggestion(val));
+        }
+    }
+    
+    private void applyNKeyword(String val){
+        String res = "";
+        for(int i = val.length()-1; i >= 0; i--){
+            if(i==val.length()-1){
+                res = "(" + val.charAt(i) + ")?";
+            }
+            else{
+                res = "(" + val.charAt(i) + res + ")?";
+            }
+        }
+        res = "^" + res + "$";
+        if(context.matches(res)){
+            v.add(new NKeywordSuggestion(val));
         }
     }
     
@@ -212,47 +229,37 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("if");
         
-        if(context.matches("^(i(n(t)?)?)?$"))
-            v.add(new KeywordSuggestion("int"));
+        applyKeyword("int");
         
-        if(context.matches("^(f(a(l(s(e)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("false"));
+        applyKeyword("false");
         
-        if(context.matches("^(f(l(o(a(t)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("float"));
+        applyKeyword("float");
         
         if(context.matches("^Clipboard\\.(s(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("hasText"));
         
-        if(context.matches("^(n(a(t(i(v(e)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("native"));
+        applyNKeyword("native");
         
-        if(context.matches("^(n(e(w)?)?)?$"))
-            v.add(new KeywordSuggestion("new"));
+        applyKeyword("new");
         
-        if(context.matches("^(n(u(l(l)?)?)?)?$"))
-            v.add(new KeywordSuggestion("null"));
+        applyKeyword("null");
         
-        if(context.matches("^(p(r(i(v(a(t(e)?)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("private"));
+        applyKeyword("private");
         
-        if(context.matches("^(p(r(o(t(e(c(t(e(d)?)?)?)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("protected"));
+        applyKeyword("protected");
         
-        if(context.matches("^(p(u(b(l(i(c)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("public"));
+        applyKeyword("public");
         
         if(context.matches("^Clipboard\\.(s(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("setText"));
         
-        if(context.matches("^(s(t(a(t(i(c)?)?)?)?)?)?$"))
-            v.add(new KeywordSuggestion("static"));
+        applyKeyword("return ");
         
-        if(context.matches("^(t(h(i(s)?)?)?)?$"))
-            v.add(new KeywordSuggestion("this"));
+        applyKeyword("static");
         
-        if(context.matches("^(t(r(u(e)?)?)?)?$"))
-            v.add(new KeywordSuggestion("true"));
+        applyKeyword("this");
+        
+        applyKeyword("true");
         
         if(context.matches("^Common\\.Scene\\.(g(o(t(o(N(e(x(t)?)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("gotoNext"));
@@ -260,8 +267,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         if(context.matches("^Common\\.Scene\\.(g(o(t(o(P(r(e(v(i(o(u(s)?)?)?)?)?)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("gotoNext"));
         
-        if(context.matches("^(v(o(i(d)?)?)?)?$"))
-            v.add(new KeywordSuggestion("void"));
+        applyKeyword("void");
         
         applyKeyword("while");
         
@@ -270,7 +276,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         if(v.size()==1){
             list.setSelectedIndex(0);
-            String t = ((Suggestion) list.getSelectedValue()).confirm(context);
+            String t = ((Suggestion) list.getSelectedValue()).confirm(context, prevWord);
             editor.insert(selstart, selend, t);
             editor.setSelectionStart(selstart+t.length());
             editor.setSelectionEnd(selstart+t.length());
@@ -291,27 +297,36 @@ public class GCLAutocomplete extends AutocompleteFrame{
         String word = "";
         String x = editor.getText();
         int selection = selend;
+        prevWord = "";
         if(selection<0||selection>x.length())
             return null;
         for(int i = 0; i < selection; i++){
             try{
                 if(situation==NULL){
                     if(x.charAt(i)=='/'&&x.charAt(i+1)=='/'){
+                        if(!word.equals(""))
+                            prevWord = word;
                         word = "";
                         situation = SCOMMENT;
                         continue;
                     }
                     if(x.charAt(i)=='/'&&x.charAt(i+1)=='*'){
+                        if(!word.equals(""))
+                            prevWord = word;
                         word = "";
                         situation = MCOMMENT;
                         continue;
                     }
                     if(x.charAt(i)=='"'){
+                        if(!word.equals(""))
+                            prevWord = word;
                         word = "";
                         situation = STRING;
                         continue;
                     }
                     if(x.charAt(i)=='\''){
+                        if(!word.equals(""))
+                            prevWord = word;
                         word = "";
                         situation = CHAR;
                         continue;
@@ -338,6 +353,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
                             ||x.charAt(i)=='='
                             ||x.charAt(i)=='?'
                             ||x.charAt(i)==':'){
+                        if(!word.equals(""))
+                            prevWord = word;
                         word = "";
                         continue;
                     }

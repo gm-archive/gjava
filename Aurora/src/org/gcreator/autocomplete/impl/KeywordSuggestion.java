@@ -16,7 +16,7 @@ import javax.swing.*;
  * @author Luís Reis
  */
 public class KeywordSuggestion implements Suggestion{
-    private String text = "";
+    protected String text = "";
     public KeywordSuggestion(){}
     
     public KeywordSuggestion(String text){
@@ -35,7 +35,7 @@ public class KeywordSuggestion implements Suggestion{
         return text;
     }
     
-    public String confirm(String context){
+    public String confirm(String context, String prevWord){
         return text.substring(context.length());
     }
 }
