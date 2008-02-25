@@ -1,6 +1,7 @@
 
 package org.gcreator.core;
 
+import org.gcreator.components.impl.TreeImageManager;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
@@ -1548,9 +1549,9 @@ public class Aurwindow extends JFrame {
                 return null;
         }
         org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
-        if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {
+        /*if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {
             file.treeimage = imgicon;
-        }
+        }*/
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());

@@ -38,7 +38,7 @@ public class File extends Object implements Transferable {
     public String type; //If file is "a.txt", leave only "txt" here
 
     public java.lang.Object value;
-    public ImageIcon treeimage;
+    //public ImageIcon treeimage;
     public String xml = ""; // the data xml used to load
 
     private static final ObjectStreamField[] serialPersistentFields = {/*new ObjectStreamField("root", Folder.class),*/ new ObjectStreamField("type", String.class), 

@@ -15,9 +15,15 @@ import javax.swing.*;
 /**
  * @author Luís Reis
  */
-public interface Suggestion {
-    public String getText();
-    public ImageIcon getImage();
-    public Color getForeground();
-    public String confirm(String context, String prevWord);
+public abstract class Suggestion implements Comparable<Suggestion>{
+    public abstract String getText();
+    public abstract ImageIcon getImage();
+    public abstract Color getForeground();
+    public abstract String confirm(String context, String prevWord);
+    public String toString(){
+        return getText();
+    }
+    public int compareTo(Suggestion s){
+        return getText().compareTo(s.getText());
+    }
 }

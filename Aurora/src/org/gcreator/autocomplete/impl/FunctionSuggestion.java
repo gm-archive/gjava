@@ -15,7 +15,7 @@ import javax.swing.*;
 /**
  * @author Luís Reis
  */
-public class FunctionSuggestion implements Suggestion{
+public class FunctionSuggestion extends Suggestion{
     private String text = "";
     public FunctionSuggestion(){}
     

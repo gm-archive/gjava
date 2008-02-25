@@ -15,7 +15,7 @@ import javax.swing.*;
 /**
  * @author Luís Reis
  */
-public class KeywordSuggestion implements Suggestion{
+public class KeywordSuggestion extends Suggestion{
     protected String text = "";
     public KeywordSuggestion(){}
     

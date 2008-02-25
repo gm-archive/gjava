@@ -7,7 +7,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.components;
+package org.gcreator.components.impl;
 
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.ExtensionProject;
@@ -31,13 +31,27 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public ImageIcon image;
     public ImageIcon java;
     public ImageIcon actor;
-
+    public ImageIcon tileset;
+    public ImageIcon sprite;
+    public ImageIcon GCL;
+    public ImageIcon script;
+    public ImageIcon timeline;
+    public ImageIcon scene;
+    public ImageIcon img;
+    
     public TreeImageManager() {
         workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
         text = new ImageIcon(getClass().getResource("/org/gcreator/resources/text.png"));
         image = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
         java = new ImageIcon(getClass().getResource("/org/gcreator/resources/java.png"));
         actor = new ImageIcon(getClass().getResource("/org/gcreator/resources/actor.png"));
+        tileset = new ImageIcon(getClass().getResource("/org/gcreator/resources/tile.png"));
+        sprite = new ImageIcon(getClass().getResource("/org/gcreator/resources/sprite.png"));
+        GCL = new ImageIcon(getClass().getResource("/org/gcreator/resources/class.png"));
+        script = new ImageIcon(getClass().getResource("/org/gcreator/resources/script.png"));
+        timeline = new ImageIcon(getClass().getResource("/org/gcreator/resources/timeline.png"));
+        scene = new ImageIcon(getClass().getResource("/org/gcreator/resources/scene.png"));
+        img = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {
@@ -93,15 +107,32 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                 if (((org.gcreator.fileclass.File) noder.object).type.equals("txt")) {
                     setIcon(text);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gif")) {
-                    setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
+                    //setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
+                    setIcon(img);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("jpg")) {
-                    setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    setIcon(img);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("png")) {
-                    setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    setIcon(img);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("java")) {
                     setIcon(java);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("actor")) {
                     setIcon(actor);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("tileset")) {
+                    setIcon(tileset);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("sprite")) {
+                    setIcon(sprite);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("egml")) {
+                    setIcon(GCL);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gcl")) {
+                    setIcon(GCL);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gs")) {
+                    setIcon(script);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("timeline")) {
+                    setIcon(timeline);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("scene")) {
+                    setIcon(scene);
                 } else if (UIManager.get("Tree.leafIcon") != null) {
                     setIcon((Icon) UIManager.get("Tree.leafIcon"));
                 } else {

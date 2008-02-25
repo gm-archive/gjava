@@ -219,10 +219,10 @@ public class ImageEditor extends TabPanel {
                         b[i] = reader.read(i);
                     }
                     file.value = new ImageIcon(b[0]);
-                    file.treeimage = File.getScaledIcon(new ImageIcon(b[1]));
+                    //file.treeimage = File.getScaledIcon(new ImageIcon(b[1]));
                 } else {
                     file.value = new ImageIcon(ImageIO.read(_file));
-                    file.treeimage = File.getScaledIcon((ImageIcon) file.value);
+                    //file.treeimage = File.getScaledIcon((ImageIcon) file.value);
                 }
                 org.gcreator.core.Aurwindow.workspace.updateUI();
                 jScrollPane1.updateUI();

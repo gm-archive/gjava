@@ -61,11 +61,11 @@ public class StdImport{
                     b[i] = reader.read(i);
                 }
                 file.value = new ImageIcon(b[0]);
-                file.treeimage = org.gcreator.fileclass.File.getScaledIcon(new ImageIcon(b[1]));
+                //file.treeimage = org.gcreator.fileclass.File.getScaledIcon(new ImageIcon(b[1]));
             } else {
                 System.out.println("Type:" + file.type.toLowerCase());
                 file.value = new ImageIcon(ImageIO.read(_file));
-                file.treeimage = org.gcreator.fileclass.File.getScaledIcon((ImageIcon) file.value);
+                //file.treeimage = org.gcreator.fileclass.File.getScaledIcon((ImageIcon) file.value);
             }
             System.out.println("will add");
             f.add(file);

@@ -12,6 +12,7 @@ package org.gcreator.autocomplete;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.*;
@@ -37,6 +38,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
     Project p;
     //How to declare an actor?
     Vector<String> actorTypes = new Vector<String>();
+    Vector<String> spriteTypes = new Vector<String>();
     Vector<Suggestion> v = new Vector<Suggestion>();
     
     public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
@@ -204,8 +206,15 @@ public class GCLAutocomplete extends AutocompleteFrame{
             o = e.nextElement();
             actorTypes.add(((ObjectNode) o).object.name);
         }
+        actorTypes.add("Sprite");
+        e = p.getEnum("sprite");
+        while(e.hasMoreElements()){
+            o = e.nextElement();
+            spriteTypes.add(((ObjectNode) o).object.name);
+        }
         
         applyClassVector(actorTypes);
+        applyClassVector(spriteTypes);
         
         applyKeyword("char");
         
@@ -270,6 +279,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         applyKeyword("void");
         
         applyKeyword("while");
+        
+        Collections.sort(v);
         
         list.setModel(new VectorListModel(v));
         list.setCellRenderer(new SuggestionCellRenderer());
