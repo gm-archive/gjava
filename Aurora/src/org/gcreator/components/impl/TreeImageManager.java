@@ -64,7 +64,6 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
 
     public Component getTreeCellRendererComponent(JTree tree, Object value, boolean bSelected, boolean bExpanded, boolean bLeaf, int iRow, boolean bHasFocus) {
 // Find out which node we are rendering and get its text
-
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         String labelText = (String) node.getUserObject();
         if (node instanceof ObjectNode) {
@@ -166,6 +165,14 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         } else {
             setText(labelText);
         }
+        if(bSelected){
+            setForeground(UIManager.getColor("Tree.selectionForeground"));
+            setBackground(UIManager.getColor("Tree.selectionBackground"));
+        }
+        else{
+            setForeground(UIManager.getColor("Tree.textForeground"));
+            setBackground(UIManager.getColor("Tree.textBackground"));
+        }
         return this;
     }
 
@@ -176,22 +183,10 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     
     public void paint(Graphics g) {
         if(!UIManager.getLookAndFeel().getClass().getName().equals("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")){
-        Color bColor;
-        Icon currentI = getIcon();
-
-// Set the correct background color
-        if (bSelected) {
-            bColor = Color.yellow;
-        } else if (isCurProject) {
-            bColor = Color.orange;
-        } else {
-            bColor = Color.white;
+            g.setColor(getBackground());
+            g.fillRect(0, 0, getWidth(), getHeight());
         }
-        g.setColor(bColor);
-
-// Draw a rectangle in the background of the cell
-        g.fillRect(0, 0, getWidth() - 1, getHeight() - 1);
-        }
+        g.setColor(getForeground());
         super.paint(g);
     }
 }
