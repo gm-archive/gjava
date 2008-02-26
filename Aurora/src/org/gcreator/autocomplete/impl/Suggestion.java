@@ -26,4 +26,7 @@ public abstract class Suggestion implements Comparable<Suggestion>{
     public int compareTo(Suggestion s){
         return getText().compareTo(s.getText());
     }
+    public int retreat(){
+        return 0;
+    }
 }

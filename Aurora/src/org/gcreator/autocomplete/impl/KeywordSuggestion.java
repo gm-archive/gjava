@@ -36,6 +36,6 @@ public class KeywordSuggestion extends Suggestion{
     }
     
     public String confirm(String context, String prevWord){
-        return text.substring(context.length());
+        return (text + " ").substring(context.length());
     }
 }

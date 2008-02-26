@@ -124,10 +124,11 @@ public class GCLAutocomplete extends AutocompleteFrame{
             editor.insert(selstart, selend, "\n");
         }
         else{
-            String t = ((Suggestion) list.getSelectedValue()).confirm(context, prevWord);
+            Suggestion s = (Suggestion) list.getSelectedValue();
+            String t = s.confirm(context, prevWord);
             editor.insert(selstart, selend, t);
-            editor.setSelectionStart(selstart+t.length());
-            editor.setSelectionEnd(selstart+t.length());
+            editor.setSelectionStart(selstart+t.length()-s.retreat());
+            editor.setSelectionEnd(selstart+t.length()-s.retreat());
         }
         dispose();
     }
@@ -166,6 +167,38 @@ public class GCLAutocomplete extends AutocompleteFrame{
         res = "^" + res + "$";
         if(context.matches(res)){
             v.add(new KeywordSuggestion(val));
+        }
+    }
+    
+    private void applyCKeyword(String val){
+        String res = "";
+        for(int i = val.length()-1; i >= 0; i--){
+            if(i==val.length()-1){
+                res = "(" + val.charAt(i) + ")?";
+            }
+            else{
+                res = "(" + val.charAt(i) + res + ")?";
+            }
+        }
+        res = "^" + res + "$";
+        if(context.matches(res)){
+            v.add(new CKeywordSuggestion(val));
+        }
+    }
+    
+    private void applyVKeyword(String val){
+        String res = "";
+        for(int i = val.length()-1; i >= 0; i--){
+            if(i==val.length()-1){
+                res = "(" + val.charAt(i) + ")?";
+            }
+            else{
+                res = "(" + val.charAt(i) + res + ")?";
+            }
+        }
+        res = "^" + res + "$";
+        if(context.matches(res)){
+            v.add(new VKeywordSuggestion(val));
         }
     }
     
@@ -229,18 +262,18 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("else");
         
-        applyKeyword("for");
+        applyCKeyword("for");
         
         applyKeyword("getter");
         
         if(context.matches("^Clipboard\\.(g(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("getText"));
         
-        applyKeyword("if");
+        applyCKeyword("if");
         
         applyKeyword("int");
         
-        applyKeyword("false");
+        applyVKeyword("false");
         
         applyKeyword("float");
         
@@ -251,7 +284,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("new");
         
-        applyKeyword("null");
+        applyVKeyword("null");
         
         applyKeyword("private");
         
@@ -266,9 +299,9 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("static");
         
-        applyKeyword("this");
+        applyVKeyword("this");
         
-        applyKeyword("true");
+        applyVKeyword("true");
         
         if(context.matches("^Common\\.Scene\\.(g(o(t(o(N(e(x(t)?)?)?)?)?)?)?)?$"))
             v.add(new FunctionSuggestion("gotoNext"));
@@ -278,7 +311,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("void");
         
-        applyKeyword("while");
+        applyCKeyword("while");
         
         Collections.sort(v);
         

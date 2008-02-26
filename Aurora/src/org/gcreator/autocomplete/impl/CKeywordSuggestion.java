@@ -12,18 +12,14 @@ package org.gcreator.autocomplete.impl;
 /**
  * @author Luís Reis
  */
-public class NKeywordSuggestion extends KeywordSuggestion{
-    public NKeywordSuggestion(){}
+public class CKeywordSuggestion extends KeywordSuggestion{
+    public CKeywordSuggestion(){}
     
-    public NKeywordSuggestion(String text){
+    public CKeywordSuggestion(String text){
         super(text);
     }
     
     public String confirm(String context, String prevWord){
-        return (text + "(\"\")").substring(context.length());
-    }
-    
-    public int retreat(){
-        return 2;
+        return (text + "(").substring(context.length());
     }
 }
