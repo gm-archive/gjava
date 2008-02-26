@@ -44,8 +44,18 @@ public class ToolButtonListCellRenderer extends JLabel implements ListCellRender
         }
         if(isSelected){
             if(!(value instanceof ToolbarSeparator))
-                setForeground(/*UIManager.getColor("List.selectionForeground")*/Color.WHITE);
-            setBackground(/*UIManager.getColor("List.selectionBackground")*/Color.BLUE);
+                try{
+                    setForeground(list.getSelectionForeground());
+                }
+                catch(Exception e){
+                    setForeground(Color.WHITE);
+                }
+            try{
+                    setBackground(list.getSelectionBackground());
+                }
+                catch(Exception e){
+                    setBackground(Color.BLUE);
+                }
         }
         else{
             if(!(value instanceof ToolbarSeparator))

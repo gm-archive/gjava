@@ -48,7 +48,7 @@ public class ExecuteCode extends ActionPattern{
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         Scanner scanner = new GCLScanner();
         SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner, project);
-        panel.setText("//Some EGML Code");
+        panel.setText("//Some GCL Code");
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -68,7 +68,7 @@ public class ExecuteCode extends ActionPattern{
         if(panel!=null)
             return ((SyntaxHighlighter) panel).getText();
         else
-            return "Execute EGML Code";
+            return "Execute GCL Code";
     }
     
      

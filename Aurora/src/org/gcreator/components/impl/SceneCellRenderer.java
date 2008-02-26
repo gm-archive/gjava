@@ -51,11 +51,14 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
         if (selected) {
             try {
                 setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
             } catch (Exception e) {
                 setBackground(Color.BLUE);
+                setForeground(Color.WHITE);
             }
         } else {
             setBackground(Color.WHITE);
+            setBackground(Color.BLACK);
         }
 
         setForeground(col);

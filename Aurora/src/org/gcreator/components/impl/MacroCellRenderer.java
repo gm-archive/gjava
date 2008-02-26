@@ -38,11 +38,21 @@ public class MacroCellRenderer extends JLabel implements ListCellRenderer {
          //JList.DropLocation dropLocation = list.getDropLocation();
          if(value instanceof Macro)
          if(isSelected){
-             foreground = Color.WHITE;
+             try{
+                 foreground = list.getSelectionForeground();
+             }
+             catch(Exception e){
+                 foreground = Color.WHITE;
+             }
              if(value==Macro.recordingMacro)
                  background = new Color(0, 200, 0);
              else
-                 background = Color.BLUE;
+                 try{
+                 background = list.getBackground();
+                 }
+                 catch(Exception e){
+                     background = Color.BLUE;
+                 }
          }
          else{
              foreground = Color.BLACK;

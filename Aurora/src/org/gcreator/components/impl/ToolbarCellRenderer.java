@@ -26,18 +26,22 @@ public class ToolbarCellRenderer extends JLabel implements ListCellRenderer{
             Toolbar toolbar = (Toolbar) value;
             if(selected)
                 try{
-                    setBackground(list.getSelectionForeground());
+                    setBackground(list.getSelectionBackground());
+                    setForeground(list.getSelectionForeground());
                 }
                 catch(Exception e){
-                    setBackground(Color.WHITE);
+                    setBackground(Color.BLUE);
+                    setForeground(Color.WHITE);
                 }
-            else
+            else{
                 /*try{
                     setForeground(list.getForeground());
                 }
                 catch(Exception e){*/
                     setForeground(Color.BLACK);
+                    setForeground(Color.WHITE);
                 //}
+            }
             if(toolbar.name==null)
                 setText("Untitled Toolbar");
             else

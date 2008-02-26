@@ -31,8 +31,14 @@ public class TimelineStepsCellRenderer extends JLabel implements ListCellRendere
             setText("Invalid resource");
         }
         if(selected){
-            setForeground(Color.WHITE);
-            setBackground(Color.BLUE);
+           try{
+                    setForeground(list.getSelectionForeground());
+                    setBackground(list.getSelectionBackground());
+                }
+                catch(Exception e){
+                    setForeground(Color.WHITE);
+                    setBackground(Color.BLACK);
+                }
         }
         else{
             setForeground(Color.BLACK);

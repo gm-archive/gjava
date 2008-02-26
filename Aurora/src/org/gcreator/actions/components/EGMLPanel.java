@@ -27,7 +27,7 @@ public class EGMLPanel extends javax.swing.JPanel {
         initComponents();
         Scanner scanner = new GCLScanner();
         text = new SyntaxHighlighter(100, 100, scanner, project);
-        text.setText("//some EGML code");
+        text.setText("//some GCL code");
         this.add(text);
         /*org.jdesktop.layout.GroupLayout jPanelLayout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(jPanelLayout);
