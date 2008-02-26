@@ -38,6 +38,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public ImageIcon timeline;
     public ImageIcon scene;
     public ImageIcon img;
+    public ImageIcon sound;
     
     public TreeImageManager() {
         workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
@@ -52,6 +53,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         timeline = new ImageIcon(getClass().getResource("/org/gcreator/resources/timeline.png"));
         scene = new ImageIcon(getClass().getResource("/org/gcreator/resources/scene.png"));
         img = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
+        sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/sound.png"));
     }
 
     public TreeImageManager(boolean logfileDeleted) {
@@ -133,6 +135,10 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
                     setIcon(timeline);
                 } else if (((org.gcreator.fileclass.File) noder.object).type.equals("scene")) {
                     setIcon(scene);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("wav"))  {
+                    setIcon(sound);
+                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("mid"))  {
+                    setIcon(sound);
                 } else if (UIManager.get("Tree.leafIcon") != null) {
                     setIcon((Icon) UIManager.get("Tree.leafIcon"));
                 } else {
