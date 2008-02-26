@@ -33,7 +33,7 @@ public class Designers extends javax.swing.JPanel {
 
         jEditorPane1.setBackground(java.awt.Color.white);
         jEditorPane1.setContentType("text/html");
-        jEditorPane1.setText("Luis Peregrina<br>\n&emsp;&emsp;New icons<br>\n<br>\nDADAB<br>\n&emsp;&emsp;Some action icons<br>");
+        jEditorPane1.setText("Luis Peregrina<br>\n&emsp;&emsp;New icon theme<br>");
         jEditorPane1.setMaximumSize(new java.awt.Dimension(2147483647, 800));
         jScrollPane1.setViewportView(jEditorPane1);
 

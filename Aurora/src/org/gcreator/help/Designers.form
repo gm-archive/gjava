@@ -38,7 +38,7 @@
               <Color blue="ff" green="ff" id="white" palette="1" red="ff" type="palette"/>
             </Property>
             <Property name="contentType" type="java.lang.String" value="text/html"/>
-            <Property name="text" type="java.lang.String" value="Luis Peregrina&lt;br&gt;&#xa;&amp;emsp;&amp;emsp;New icons&lt;br&gt;&#xa;&lt;br&gt;&#xa;DADAB&lt;br&gt;&#xa;&amp;emsp;&amp;emsp;Some action icons&lt;br&gt;"/>
+            <Property name="text" type="java.lang.String" value="Luis Peregrina&lt;br&gt;&#xa;&amp;emsp;&amp;emsp;New icon theme&lt;br&gt;"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[2147483647, 800]"/>
             </Property>
