@@ -1,7 +1,7 @@
 
 package org.gcreator.core;
 
-import org.gcreator.components.impl.TreeImageManager;
+import org.gcreator.components.impl.WorkspaceCellRenderer;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
@@ -62,7 +62,7 @@ public class Aurwindow extends JFrame {
     public ButtonGroup stylegroup, wtreepos;
     //public JComboBox winlist; //This will be the windows list
 
-    public TreeCellRenderer renderer;
+    public WorkspaceCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
 
@@ -85,6 +85,22 @@ public class Aurwindow extends JFrame {
     
     //</editor-fold>
 
+    public void popupTreeMenu(MouseEvent e){
+        JPopupMenu m = new JPopupMenu();
+        System.out.println(e.getModifiers());
+        /*int modifiers = e.getModifiersEx();
+        modifiers -= MouseEvent.BUTTON3_DOWN_MASK;
+        modifiers += MouseEvent.BUTTON1_DOWN_MASK;
+        MouseEvent evt = new MouseEvent(workspace, e.getID()+1, e.getWhen(), modifiers, e.getX(), e.getY(), e.getClickCount(), e.isPopupTrigger());
+        for(MouseListener l : workspace.getMouseListeners()){
+            l.mousePressed(e);
+        } //Not working*/
+        JMenuItem i = new JMenuItem(getCurrentObject().name);
+        i.setVisible(true);
+        m.add(i);
+        m.show(this, e.getXOnScreen(), e.getYOnScreen());
+    }
+    
     public java.lang.Object getWindowListElementAt(int pos) {
         if (istabs) {
             if (tabs == null) {
@@ -110,9 +126,11 @@ public class Aurwindow extends JFrame {
 
     public void treeDoubleClicked(MouseEvent e) {
 
+        if(e.getButton()==MouseEvent.BUTTON1){
         org.gcreator.fileclass.Object obj = getCurrentObject();
         if (obj instanceof org.gcreator.fileclass.File) {
             Open((org.gcreator.fileclass.File) obj);
+        }
         }
     }
 
@@ -541,7 +559,7 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        renderer = new TreeImageManager();
+        renderer = new WorkspaceCellRenderer();
         workspace.setCellRenderer(renderer);
         workspace.addMouseListener(new MouseListener() {
 
@@ -552,6 +570,9 @@ public class Aurwindow extends JFrame {
                     }
 
                     public void mousePressed(MouseEvent e) {
+                        if(e.isPopupTrigger()){
+                            popupTreeMenu(e);
+                        }
                     }
 
                     public void mouseReleased(MouseEvent e) {

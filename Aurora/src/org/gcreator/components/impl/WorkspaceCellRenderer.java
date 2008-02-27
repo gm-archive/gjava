@@ -21,7 +21,7 @@ import javax.swing.tree.*;
  *
  * @author Luís
  */
-public class TreeImageManager extends JLabel implements TreeCellRenderer {
+public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
 
     private boolean bSelected;
     private boolean isCurProject;
@@ -40,7 +40,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
     public ImageIcon img;
     public ImageIcon sound;
     
-    public TreeImageManager() {
+    public WorkspaceCellRenderer() {
         workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
         text = new ImageIcon(getClass().getResource("/org/gcreator/resources/text.png"));
         image = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
@@ -56,7 +56,7 @@ public class TreeImageManager extends JLabel implements TreeCellRenderer {
         sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/sound.png"));
     }
 
-    public TreeImageManager(boolean logfileDeleted) {
+    public WorkspaceCellRenderer(boolean logfileDeleted) {
         this.logfileDeleted = logfileDeleted;
     }
     boolean edition = false;
