@@ -17,6 +17,7 @@ import javax.swing.*;
  */
 public class FunctionSuggestion extends Suggestion{
     private String text = "";
+    private static ImageIcon img = new ImageIcon(ClassSuggestion.class.getResource("/org/gcreator/resources/i_function.png"));
     public FunctionSuggestion(){}
     
     public FunctionSuggestion(String text){
@@ -28,7 +29,7 @@ public class FunctionSuggestion extends Suggestion{
     }
     
     public ImageIcon getImage(){
-        return null;
+        return img;
     }
     
     public String getText(){
