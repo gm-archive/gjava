@@ -22,6 +22,7 @@ import java.awt.event.*;
 import org.gcreator.components.*;
 
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 import publicdomain.*;
 
 /**
@@ -65,10 +66,14 @@ public class ExecuteCode extends ActionPattern{
     
      
     public String getStandardText(JComponent panel){
-        if(panel!=null)
-            return ((SyntaxHighlighter) panel).getText();
+        if(panel!=null){
+            String text = ((SyntaxHighlighter) panel).getText();
+            if(text==null||!text.equals(""))
+                return LangSupporter.activeLang.getEntry(222);
+            return text;
+        }
         else
-            return "Execute GCL Code";
+            return LangSupporter.activeLang.getEntry(222);
     }
     
      

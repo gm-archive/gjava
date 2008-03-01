@@ -265,6 +265,10 @@ public class Portuguese extends Dictionary{
         entry[216] = "Classes";
         entry[217] = "Distribuição";
         entry[218] = "Opções";
+        entry[219] = "Abrir bloco";
+        entry[220] = "Fechar bloco";
+        entry[221] = "Comentário";
+        entry[222] = "Executar código";
         
         try{
             init();

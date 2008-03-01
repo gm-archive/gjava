@@ -14,6 +14,7 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -29,7 +30,7 @@ public class EndOfABlock extends ActionPattern{
     
      
     public String getStandardText(JComponent panel){
-        return "End block";
+        return LangSupporter.activeLang.getEntry(220);
     }
     
      

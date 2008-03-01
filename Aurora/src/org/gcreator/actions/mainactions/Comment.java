@@ -13,6 +13,7 @@ import org.gcreator.actions.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 
 /**
  * The comment action
@@ -47,9 +48,11 @@ public class Comment extends ActionPattern {
 
         if (panel != null) {
             text = ((PlainTextPanel) panel).text.getText();
-            return text;
+            if(text!=null&&!text.equals(""))
+                return text;
+            return LangSupporter.activeLang.getEntry(221);
         } else {
-            return "Comment";
+            return LangSupporter.activeLang.getEntry(221);
         }
     }
 

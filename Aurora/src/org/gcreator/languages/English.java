@@ -265,6 +265,10 @@ public class English extends Dictionary{
         entry[216] = "Classes";
         entry[217] = "Distribution";
         entry[218] = "Settings";
+        entry[219] = "Begin block";
+        entry[220] = "End block";
+        entry[221] = "Comment";
+        entry[222] = "Execute code";
         
         try{
             init();
