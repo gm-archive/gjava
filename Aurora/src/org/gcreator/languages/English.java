@@ -255,6 +255,16 @@ public class English extends Dictionary{
         entry[206] = "Modules";
         entry[207] = "Add script";
         entry[208] = "Scenes";
+        entry[209] = "Images";
+        entry[210] = "Sprites";
+        entry[211] = "Tilesets";
+        entry[212] = "Sounds";
+        entry[213] = "Timelines";
+        entry[214] = "Actors";
+        entry[215] = "Scenes";
+        entry[216] = "Classes";
+        entry[217] = "Distribution";
+        entry[218] = "Settings";
         
         try{
             init();

@@ -58,20 +58,20 @@ public class GameProject extends Project{
     {
         try{
             if(file.equals("png")||file.equals("gif")||file.equals("jpg"))
-                return findFolder("Images");
+                return findFolder("$209");
             else if(file.equals("sprite"))
-                return findFolder("Sprites");
+                return findFolder("$210");
             else if(file.equals("tileset"))
-                return findFolder("Tilesets");
+                return findFolder("$211");
             else if(file.equals("actor"))
-                return findFolder("Actors");
+                return findFolder("$214");
             else if(file.equals("scene"))
-                return findFolder("Scenes");
+                return findFolder("$215");
             else if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
-                return findFolder("Classes");
+                return findFolder("$216");
             else if(file.equals("timeline"))
-                return findFolder("Timelines");
-            return findFolder("Distribution");
+                return findFolder("$213");
+            return findFolder("$217");
         }
         catch(Exception e){
             return null;
@@ -81,19 +81,19 @@ public class GameProject extends Project{
     public Folder magicAddition(Group folder){
         try{
             if(folder instanceof ImageGroup)
-                return findFolder("Images");
+                return findFolder("$209");
             else if(folder instanceof SpriteGroup)
-                return findFolder("Sprites");
+                return findFolder("$210");
             else if(folder instanceof ActorGroup)
-                return findFolder("Actors");
+                return findFolder("$214");
             else if(folder instanceof SceneGroup)
-                return findFolder("Scenes");
+                return findFolder("$215");
             else if(folder instanceof TilesetGroup)
-                return findFolder("Tilesets");
+                return findFolder("$211");
             else if(folder instanceof TimelineGroup)
-                return findFolder("Timelines");
+                return findFolder("$213");
             else if(folder instanceof EGMLGroup)
-                return findFolder("Classes");
+                return findFolder("$216");
             return findFolder("Distribution");
         }
         catch(Exception e){
@@ -103,16 +103,16 @@ public class GameProject extends Project{
      
     private static Project balancedCreation(){
         Project project = new GameProject();
-        project.add(new ImageGroup(project, "Images"));
-        project.add(new SpriteGroup(project, "Sprites"));
-        project.add(new TilesetGroup(project, "Tilesets"));
-        project.add(new SoundGroup(project, "Sounds"));
-        project.add(new TimelineGroup(project, "Timelines"));
-        project.add(new ActorGroup(project, "Actors"));
-        project.add(new SceneGroup(project, "Scenes"));
-        project.add(new EGMLGroup(project, "Classes"));
-        project.add(new Group(project, "Distribution"));
-        org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "Settings", "settings", null);
+        project.add(new ImageGroup(project, "$209"));
+        project.add(new SpriteGroup(project, "$210"));
+        project.add(new TilesetGroup(project, "$211"));
+        project.add(new SoundGroup(project, "$212"));
+        project.add(new TimelineGroup(project, "$213"));
+        project.add(new ActorGroup(project, "$214"));
+        project.add(new SceneGroup(project, "$215"));
+        project.add(new EGMLGroup(project, "$216"));
+        project.add(new Group(project, "$217"));
+        org.gcreator.fileclass.File a = new org.gcreator.fileclass.File(project, "$218", "settings", null);
         a.editable = false;
         a.value = new org.gcreator.fileclass.res.SettingsValues();
         return project;

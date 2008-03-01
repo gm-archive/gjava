@@ -255,6 +255,16 @@ public class Portuguese extends Dictionary{
         entry[206] = "Modules";
         entry[207] = "Add script";
         entry[208] = "Cenas";
+        entry[209] = "Imagens";
+        entry[210] = "Sprites";
+        entry[211] = "Tilesets";
+        entry[212] = "Sons";
+        entry[213] = "Linhas de tempo";
+        entry[214] = "Actores";
+        entry[215] = "Cenas";
+        entry[216] = "Classes";
+        entry[217] = "Distribuição";
+        entry[218] = "Opções";
         
         try{
             init();

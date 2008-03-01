@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.tree.*;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -159,6 +160,14 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                 }
             }
         }
+        try{
+        if(labelText.startsWith("$"))
+            labelText = LangSupporter.activeLang.getEntry(Integer.parseInt(labelText.substring(1)));
+        }
+        catch(Exception e){
+            
+        }
+        
 // Add the text to the cell
         if (org.gcreator.core.Aurwindow.getMainProject() != null && node == org.gcreator.core.Aurwindow.getMainProject().node) {
             setText("<HTML><B>" + labelText);
