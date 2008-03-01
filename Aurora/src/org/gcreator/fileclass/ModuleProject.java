@@ -39,7 +39,7 @@ public class ModuleProject extends Project{
     {
         try{
             if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
-                return findFolder("Classes");
+                return findFolder("$216");
         }
         catch(Exception e){}
         return null;
@@ -48,7 +48,7 @@ public class ModuleProject extends Project{
     public Folder magicAddition(Group g){
         try{
             if(g instanceof EGMLGroup)
-                return findFolder("Classes");
+                return findFolder("$216");
         }
         catch(Exception e){}
         return null;
@@ -56,7 +56,7 @@ public class ModuleProject extends Project{
     
     private static Project balancedCreation(){
         Project project = new ModuleProject();
-        project.add(new EGMLGroup(project, "Classes"));
+        project.add(new EGMLGroup(project, "$216"));
         return project;
     }
     
