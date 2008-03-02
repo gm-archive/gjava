@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.actions.components.VSpeedEditor;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -42,15 +43,23 @@ static final long serialVersionUID = 1L;
     public String getStandardText(JComponent panel) {
         if(panel != null&& panel instanceof VSpeedEditor){
             VSpeedEditor editor = (VSpeedEditor) panel;
-            return "Set the vspeed of " + editor.of.getText() + " to " + editor.to.getText();
+            String who = editor.of.getText();
+            if(who==null)
+                who = "null";
+            String what = editor.to.getText();
+            if(what==null)
+                what = "null";
+            return LangSupporter.activeLang.getEntry(226).replaceAll("\\$who", who)
+                    .replaceAll("\\$what", what)
+                    .replaceAll("\\$\\$", "$");
         }
-        return "Set Vertical Speed";
+        return LangSupporter.activeLang.getEntry(225);
     }
 
     public String generateGCL(JComponent panel) {
         if(panel != null&& panel instanceof VSpeedEditor){
             VSpeedEditor editor = (VSpeedEditor) panel;
-            return editor.of.getText() + ".vspeed = " + editor.to.getText() + ";";
+            return "(" + editor.of.getText() + ").vspeed = (" + editor.to.getText() + ");";
         }
         return "";
     }

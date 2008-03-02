@@ -269,6 +269,13 @@ public class English extends Dictionary{
         entry[220] = "End block";
         entry[221] = "Comment";
         entry[222] = "Execute code";
+        entry[223] = "Set horizontal speed";
+        entry[224] = "Set $who's horizontal speed to $what";
+        entry[225] = "Set vertical speed";
+        entry[226] = "Set $who's vertical speed to $what";
+        entry[227] = "Go to the next scene";
+        entry[228] = "Go to the previous scene";
+        entry[229] = "Add image to sprite";
         
         try{
             init();

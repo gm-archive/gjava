@@ -14,6 +14,7 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -28,7 +29,7 @@ public class NextScene extends ActionPattern{
     
      
     public String getStandardText(JComponent panel){
-        return "Go to the next scene";
+        return LangSupporter.activeLang.getEntry(227);
     }
     public void setStandardImage(ImageIcon icon){
         NextScene.icon = icon;

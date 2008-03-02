@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.actions.components.HSpeedEditor;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -44,15 +45,23 @@ static final long serialVersionUID = 1L;
     public String getStandardText(JComponent panel) {
         if(panel != null&& panel instanceof HSpeedEditor){
             HSpeedEditor editor = (HSpeedEditor) panel;
-            return "Set the hspeed of " + editor.of.getText() + " to " + editor.to.getText();
+            String who = editor.of.getText();
+            if(who==null)
+                who = "null";
+            String what = editor.to.getText();
+            if(what==null)
+                what = "null";
+            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$who", who)
+                    .replaceAll("\\$what", what)
+                    .replaceAll("\\$\\$", "$");
         }
-        return "Set Horizontal Speed";
+        return LangSupporter.activeLang.getEntry(223);
     }
 
     public String generateGCL(JComponent panel) {
         if(panel != null&& panel instanceof HSpeedEditor){
             HSpeedEditor editor = (HSpeedEditor) panel;
-            return editor.of.getText() + ".hspeed = " + editor.to.getText() + ";";
+            return "(" + editor.of.getText() + ").hspeed = (" + editor.to.getText() + ");";
         }
         return "";
     }

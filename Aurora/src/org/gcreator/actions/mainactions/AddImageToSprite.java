@@ -11,6 +11,7 @@ import org.gcreator.actions.components.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -37,7 +38,7 @@ public class AddImageToSprite extends ActionPattern{
     }
     
     public String getStandardText(JComponent panel){
-        return "Add Image To Sprite";
+        return LangSupporter.activeLang.getEntry(229);
     }
     
     public String generateGCL(JComponent cmp){

@@ -269,6 +269,13 @@ public class Portuguese extends Dictionary{
         entry[220] = "Fechar bloco";
         entry[221] = "Comentário";
         entry[222] = "Executar código";
+        entry[223] = "Alterar velocidade horizontal";
+        entry[224] = "Alterar a velocidade horizontal de $who para $what";
+        entry[225] = "Alterar velocidade vertical";
+        entry[226] = "Alterar a velocidade vertical de $who para $what";
+        entry[227] = "Ir para a próxima cena";
+        entry[228] = "Ir para a cena anterior";
+        entry[229] = "Adicionar imagem ao sprite";
         
         try{
             init();
