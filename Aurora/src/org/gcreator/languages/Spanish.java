@@ -258,6 +258,20 @@ public class Spanish extends Dictionary{
         entry[206] = "Módulos";
         entry[207] = "Añadir script";
         entry[208] = "Escenas";
+        entry[209] = "Imágenes";
+        entry[210] = "Sprites";
+        entry[211] = "Sets de Azulejos";
+        entry[212] = "Sonidos";
+        entry[213] = "Lineas de Tiempo";
+        entry[214] = "Actores";
+        entry[215] = "Escenas";
+        entry[216] = "Clases";
+        entry[217] = "Distribución";
+        entry[218] = "Configuraciones";
+        entry[219] = "Empezar bloque";
+        entry[220] = "Terminar bloque";
+        entry[221] = "Comentario";
+        entry[222] = "Ejecutar código";
         
         
         try{
