@@ -9,6 +9,7 @@ import org.gcreator.actions.*;
 import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -35,8 +36,8 @@ public class IfClipboardHasContent extends ActionPattern{
     
     public String getStandardText(JComponent panel){
         if(panel==null||!(panel instanceof YesOrNoIfPanel)||!((YesOrNoIfPanel) panel).NotCheckbox.isSelected())
-            return "If Clipboard has Text";
-        return "If Clipboard is empty";
+            return LangSupporter.activeLang.getEntry(230);
+        return LangSupporter.activeLang.getEntry(231);
     }
     
     public String generateGCL(JComponent panel){

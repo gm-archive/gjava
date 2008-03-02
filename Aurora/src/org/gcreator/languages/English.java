@@ -276,6 +276,10 @@ public class English extends Dictionary{
         entry[227] = "Go to the next scene";
         entry[228] = "Go to the previous scene";
         entry[229] = "Add image to sprite";
+        entry[230] = "If Clipboard has text";
+        entry[231] = "If Clipboard is empty";
+        entry[232] = "Image URL";
+        entry[233] = "Warning: It is not recommended to load images from the Internet";
         
         try{
             init();
