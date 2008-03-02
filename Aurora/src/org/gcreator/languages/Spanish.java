@@ -272,6 +272,17 @@ public class Spanish extends Dictionary{
         entry[220] = "Terminar bloque";
         entry[221] = "Comentario";
         entry[222] = "Ejecutar código";
+        entry[223] = "Asignar la velocidad horizontal";
+        entry[224] = "Asignar la velocidad horizontal de $who a $what";
+        entry[225] = "Asignar la velocidad vertical";
+        entry[226] = "Asignar la velocidad vertical de $who a $what";
+        entry[227] = "Ir a la siguiente escena";
+        entry[228] = "Ir a la escena previa";
+        entry[229] = "Añadir imagen a sprite";
+        entry[230] = "Si el Portapapeles tiene texto";
+        entry[231] = "Si el Portapapeles está vacío";
+        entry[232] = "URL de la imagen";
+        entry[233] = "Cuidado: No es recomendado cargar imágenes del internet.";
         
         
         try{
