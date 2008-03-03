@@ -6,17 +6,26 @@
 
 package org.gcreator.actions.components;
 
+import javax.swing.*;
 import org.gcreator.managers.*;
 
 /**
  *
  * @author  Luís
  */
-public class AddImageToSpritePanel extends javax.swing.JPanel {
+public class AddImageToSpritePanel extends JPanel {
     
     /** Creates new form AddImageToSprite */
     public AddImageToSpritePanel() {
         initComponents();
+    }
+    
+    public String[] retrieveComboModel(){
+        return new String[]{
+            LangSupporter.activeLang.getEntry(237),
+            LangSupporter.activeLang.getEntry(238),
+            LangSupporter.activeLang.getEntry(239)
+        };
     }
     
     /** This method is called from within the constructor to
@@ -43,17 +52,17 @@ public class AddImageToSpritePanel extends javax.swing.JPanel {
 
         jLabel2.setText("(" + LangSupporter.activeLang.getEntry(233) + ")");
 
-        jLabel3.setText("Sprite");
+        jLabel3.setText(LangSupporter.activeLang.getEntry(234));
 
         jTextField2.setText("this.getSprite()");
 
-        jLabel4.setText("What to do if the loading fails:");
+        jLabel4.setText(LangSupporter.activeLang.getEntry(235));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ignore", "Abort", "Exit from event" }));
+        jComboBox1.setModel(new DefaultComboBoxModel(retrieveComboModel()));
 
-        jLabel5.setText("What to do if the image can't be added to the Sprite:");
+        jLabel5.setText(LangSupporter.activeLang.getEntry(236));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ignore", "Abort", "Exit from event" }));
+        jComboBox2.setModel(new DefaultComboBoxModel(retrieveComboModel()));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -67,16 +76,16 @@ public class AddImageToSpritePanel extends javax.swing.JPanel {
                             .add(jLabel1)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel5)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jComboBox2, 0, 160, Short.MAX_VALUE))
+                                .add(18, 18, 18)
+                                .add(jComboBox2, 0, 403, Short.MAX_VALUE))
                             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                                 .add(jLabel4)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jComboBox1, 0, 308, Short.MAX_VALUE))
+                                .add(jComboBox1, 0, 409, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
                                 .add(jLabel3)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)))
+                                .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)))
                         .addContainerGap())
                     .add(layout.createSequentialGroup()
                         .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)

@@ -270,9 +270,9 @@ public class English extends Dictionary{
         entry[221] = "Comment";
         entry[222] = "Execute code";
         entry[223] = "Set horizontal speed";
-        entry[224] = "Set $who's horizontal speed to $what";
+        entry[224] = "Set $apply's horizontal speed to $value";
         entry[225] = "Set vertical speed";
-        entry[226] = "Set $who's vertical speed to $what";
+        entry[226] = "Set $apply's vertical speed to $value";
         entry[227] = "Go to the next scene";
         entry[228] = "Go to the previous scene";
         entry[229] = "Add image to sprite";
@@ -280,6 +280,16 @@ public class English extends Dictionary{
         entry[231] = "If Clipboard is empty";
         entry[232] = "Image URL";
         entry[233] = "Warning: It is not recommended to load images from the Internet";
+        entry[234] = "Sprite";
+        entry[235] = "What to do if loading fails?";
+        entry[236] = "What to do if the image can't be added to the Sprite?";
+        entry[237] = "Ignore";
+        entry[237] = "Abort";
+        entry[239] = "Interrupt event";
+        entry[240] = "Set the horizontal speed";
+        entry[241] = "Of:";
+        entry[242] = "To:";
+        entry[243] = "NOT";
         
         try{
             init();

@@ -51,8 +51,8 @@ static final long serialVersionUID = 1L;
             String what = editor.to.getText();
             if(what==null)
                 what = "null";
-            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$who", who)
-                    .replaceAll("\\$what", what)
+            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$apply", who)
+                    .replaceAll("\\$value", what)
                     .replaceAll("\\$\\$", "$");
         }
         return LangSupporter.activeLang.getEntry(223);

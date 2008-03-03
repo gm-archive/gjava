@@ -6,6 +6,8 @@
 
 package org.gcreator.actions.components;
 
+import org.gcreator.managers.*;
+
 /**
  *
  * @author  Luís
@@ -31,13 +33,13 @@ public class HSpeedEditor extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         to = new javax.swing.JTextField();
 
-        jLabel1.setText("Set the horizontal speed");
+        jLabel1.setText(LangSupporter.activeLang.getEntry(240));
 
-        jLabel2.setText("Of:");
+        jLabel2.setText(LangSupporter.activeLang.getEntry(241));
 
         of.setText("this");
 
-        jLabel3.setText("To:");
+        jLabel3.setText(LangSupporter.activeLang.getEntry(241));
 
         to.setText("0");
 
@@ -52,11 +54,11 @@ public class HSpeedEditor extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(of, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                        .add(of, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(to, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
+                        .add(to, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

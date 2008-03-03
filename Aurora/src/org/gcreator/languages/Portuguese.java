@@ -270,9 +270,9 @@ public class Portuguese extends Dictionary{
         entry[221] = "Comentário";
         entry[222] = "Executar código";
         entry[223] = "Alterar velocidade horizontal";
-        entry[224] = "Alterar a velocidade horizontal de $who para $what";
+        entry[224] = "Alterar a velocidade horizontal de $apply para $value";
         entry[225] = "Alterar velocidade vertical";
-        entry[226] = "Alterar a velocidade vertical de $who para $what";
+        entry[226] = "Alterar a velocidade vertical de $apply para $value";
         entry[227] = "Ir para a próxima cena";
         entry[228] = "Ir para a cena anterior";
         entry[229] = "Adicionar imagem ao sprite";
@@ -280,6 +280,16 @@ public class Portuguese extends Dictionary{
         entry[231] = "Se a área de transferência estiver vazia";
         entry[232] = "Localização da imagem";
         entry[233] = "Aviso: Não é recomendável usar a Internet como fonte de imagens";
+        entry[234] = "Sprite";
+        entry[235] = "O que fazer se o carregamento falhar?";
+        entry[236] = "O que fazer se a imagem não puder ser adicionada ao sprite?";
+        entry[237] = "Ignorar";
+        entry[238] = "Abortar";
+        entry[239] = "Interromper evento";
+        entry[240] = "Alterar velocidade horizontal";
+        entry[241] = "De:";
+        entry[242] = "Para:";
+        entry[243] = "NÃO";
         
         try{
             init();

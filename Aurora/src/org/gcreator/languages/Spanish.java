@@ -273,9 +273,9 @@ public class Spanish extends Dictionary{
         entry[221] = "Comentario";
         entry[222] = "Ejecutar código";
         entry[223] = "Asignar la velocidad horizontal";
-        entry[224] = "Asignar la velocidad horizontal de $who a $what";
+        entry[224] = "Asignar la velocidad horizontal de $apply a $value";
         entry[225] = "Asignar la velocidad vertical";
-        entry[226] = "Asignar la velocidad vertical de $who a $what";
+        entry[226] = "Asignar la velocidad vertical de $apply a $value";
         entry[227] = "Ir a la siguiente escena";
         entry[228] = "Ir a la escena previa";
         entry[229] = "Añadir imagen a sprite";

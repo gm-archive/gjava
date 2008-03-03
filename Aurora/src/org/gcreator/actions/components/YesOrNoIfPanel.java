@@ -6,6 +6,8 @@
 
 package org.gcreator.actions.components;
 
+import org.gcreator.managers.*;
+
 /**
  *
  * @author  luis
@@ -27,7 +29,7 @@ public class YesOrNoIfPanel extends javax.swing.JPanel {
 
         NotCheckbox = new javax.swing.JCheckBox();
 
-        NotCheckbox.setText("NOT");
+        NotCheckbox.setText(LangSupporter.activeLang.getEntry(243));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
