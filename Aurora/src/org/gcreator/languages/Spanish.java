@@ -45,7 +45,7 @@ public class Spanish extends Dictionary{
         entry[14] = "Limpiar Consola";
         entry[15] = "Modo Visual";
         entry[16] = "Modo de Exhibición"; 
-        entry[17] = "Modo Visual Original"; // Or can be: "Modo origional (Origional look)"
+        entry[17] = "Modo Visual Nativo"; // Or can be: "Modo origional (Origional look)"
         entry[18] = "Modo Visual Multi-Plataforma"; 
         entry[19] = "Modo Motif";
         entry[20] = "Pestañas (Arriba)";
@@ -273,9 +273,9 @@ public class Spanish extends Dictionary{
         entry[221] = "Comentario";
         entry[222] = "Ejecutar código";
         entry[223] = "Asignar la velocidad horizontal";
-        entry[224] = "Asignar la velocidad horizontal de $apply a $value";
+        entry[224] = "Asignar la velocidad horizontal de $value a $apply";
         entry[225] = "Asignar la velocidad vertical";
-        entry[226] = "Asignar la velocidad vertical de $apply a $value";
+        entry[226] = "Asignar la velocidad vertical de $value a $apply";
         entry[227] = "Ir a la siguiente escena";
         entry[228] = "Ir a la escena previa";
         entry[229] = "Añadir imagen a sprite";
@@ -283,7 +283,16 @@ public class Spanish extends Dictionary{
         entry[231] = "Si el Portapapeles está vacío";
         entry[232] = "URL de la imagen";
         entry[233] = "Cuidado: No es recomendado cargar imágenes del internet.";
-        
+        entry[234] = "Sprite";
+        entry[235] = "¿Qué hacer si falla al cargarse?";
+        entry[236] = "¿Qué hacer si la imagen no se puede añadir al Sprite?";
+        entry[237] = "Ignorar";
+        entry[237] = "Abortar";
+        entry[239] = "Interrumpir evento";
+        entry[240] = "Asignar la velocidad horizontal";
+        entry[241] = "De:";
+        entry[242] = "A:";
+        entry[243] = "NO";
         
         try{
             init();
