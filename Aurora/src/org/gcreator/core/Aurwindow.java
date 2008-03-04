@@ -51,7 +51,7 @@ public class Aurwindow extends JFrame {
     public boolean istabs; //True - tabs; False - MDI
 
     public static boolean showToolbars;
-    public JDesktopPane mdi;
+    public MdiPane mdi;
     public JTextPane console;
     public JScrollPane scroller;
     public static JToolBar tool;
@@ -155,7 +155,7 @@ public class Aurwindow extends JFrame {
 //                getCurrentProject().sprites.add(new Sprite(file.name));
 //                foundloc = getCurrentProject().sprites.size() + 1;
 //            }
-            addWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("actor")) {
             //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
@@ -169,7 +169,7 @@ public class Aurwindow extends JFrame {
 //                foundloc = getCurrentProject().actors.size() + 1;
 //            }
             try {
-                addWindow(new ActorEditor(file, this.getCurrentProject()), file.name);
+                addEWindow(new ActorEditor(file, this.getCurrentProject()), file.name);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("scene")) {
@@ -184,28 +184,28 @@ public class Aurwindow extends JFrame {
 //                getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
 //                foundloc = getCurrentProject().scenes.size() + 1;
 //            }
-            addWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("egml")||file.type.equals("gcl")) {
-            addWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("gs")) {
-            addWindow(new org.gcreator.editors.ScriptEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new org.gcreator.editors.ScriptEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("struct")) {
-            addWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
-            addWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")){
-            addWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
         } else if (file.type.equals("settings")) {
-            addWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
+            addEWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
         } else if (file.type.equals("timeline")) {
             try{
-                addWindow(new TimelineEditor(file, this.getCurrentProject()), file.name);
+                addEWindow(new TimelineEditor(file, this.getCurrentProject()), file.name);
             }
             catch(WrongResourceException e){}
         } else if (file.type.equals("tileset")) {
-            addWindow(new TilesetEditor(file, this.getCurrentProject()), file.name);
+            addEWindow(new TilesetEditor(file, this.getCurrentProject()), file.name);
         } else {
-            addWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
+            addEWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
         }
         Macro.macroAction(new OpenFileAction(file));
     }
@@ -226,6 +226,19 @@ public class Aurwindow extends JFrame {
         addWindow(panel, LangSupporter.activeLang.getEntry(title));
     }
 
+    public void addEWindow(TabPanel panel, String title){
+        if(title.charAt(0)=='$'){
+            try{
+                addWindow(panel, Integer.parseInt(title.substring(1)));
+            }
+            catch(Exception e){
+                addWindow(panel, title);
+            }
+        }
+        else
+            addWindow(panel, title);
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="addWindow(panel,title)">
 
     public void addWindow(TabPanel panel, String title) {
@@ -436,7 +449,7 @@ public class Aurwindow extends JFrame {
         consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(console, consolepopup));
         tabs = new JTabbedPane();
-        mdi = new JDesktopPane();
+        mdi = new MdiPane();
         splitter1 = new JSplitPane();
         splitter2 = new JSplitPane();
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
