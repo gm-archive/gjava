@@ -3,7 +3,7 @@
  * Copyright (C) 2008 Luís Reis <luiscubal@gmail.com>
  *
  * This file is part of G-Java.
- * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * G-Java is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
 package org.gcreator.compilers.gjava.api;
