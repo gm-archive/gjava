@@ -33,10 +33,11 @@ public class WelcomeTab extends TabPanel{
     public void paint(Graphics _g){
         Graphics2D g = (Graphics2D) _g;
         //DarkGradientPainter.paint(g, getWidth(), getHeight());
-        g.drawImage(i.getImage(),
+        /*g.drawImage(i.getImage(),
                 0, 0, getWidth(), getHeight(),
                 100, 100, 380, 380,
-                i.getImageObserver());
+                i.getImageObserver());*/
+        g.drawImage(i.getImage(), 0, 0, getWidth(), getHeight(), i.getImageObserver());
         super.paintChildren(g);
     }
     
