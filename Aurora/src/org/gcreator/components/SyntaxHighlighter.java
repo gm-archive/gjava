@@ -77,7 +77,32 @@ public class SyntaxHighlighter extends JTextPane
         AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
         if (f != null && !f.requestDie()) {
             f.setVisible(true);
-            f.setLocation(this.getLocationOnScreen().x + 50, this.getLocationOnScreen().y + 50);
+            FontMetrics fm = getFontMetrics(getFont());
+            int x = 0;
+            int lh = fm.getHeight();
+            int y = lh;
+            int w = getWidth();
+            String d = getText();
+            for(int i = 0; i < getSelectionEnd(); i++){
+                char t = d.charAt(i);
+                if(t=='\r'||(t=='\n'&&(i==0||d.charAt(i-1)!='\r'))){
+                    x = 0;
+                    y += lh;
+                    continue;
+                }
+                int cw;
+                if(t!='\t')
+                    cw = fm.charWidth(t);
+                else
+                    cw = fm.charWidth(' ') * 10;
+                if(x + cw > w){
+                        x = cw;
+                        y += lh;
+                        continue;
+                }
+                x += cw;
+            }
+            f.setLocation(this.getLocationOnScreen().x + x, this.getLocationOnScreen().y + y);
         }
     }
 
