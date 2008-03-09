@@ -80,4 +80,8 @@ public class Project extends Folder {
         }
         throw new NoSuchFolderException("Project");
     }
+    
+    public Project getProject(){
+        return this;
+    }
 }

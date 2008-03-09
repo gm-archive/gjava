@@ -181,4 +181,8 @@ public class File extends Object implements Transferable {
     public String getPath() {
         return root.getPath() + "/" + super.getPath();
     }
+    
+    public Project getProject(){
+        return root.getProject();
+    }
 }

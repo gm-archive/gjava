@@ -9,6 +9,8 @@
 
 package org.gcreator.refactoring;
 
+import java.util.*;
+
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 
@@ -46,10 +48,11 @@ public class SpriteDropImageMethod implements RefactoringMethod{
         Sprite sprite = (Sprite) refactoring.value;
         if(sprite==null)
             return;
-        int len = sprite.countImages();
-        for(int i = 0; i < len; i++){
-            if(sprite.getAt(i)==deleted)
-                sprite.Simages.remove(i);
+        Vector img = (Vector) sprite.Simages.clone();
+        for(java.lang.Object o : img){
+            if(o==deleted)
+                while(sprite.Simages.contains(o))
+                    sprite.Simages.removeElement(o);
         }
         sprite.Simages.trimToSize();
     }

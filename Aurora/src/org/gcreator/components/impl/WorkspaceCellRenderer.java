@@ -67,7 +67,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
 // Find out which node we are rendering and get its text
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
         String labelText = (String) node.getUserObject();
-        if (node instanceof ObjectNode) {
+        if (node instanceof ObjectNode&&((ObjectNode) node).object!=null) {
             ObjectNode noder = (ObjectNode) node;
             /*if (!tree.isEditing()) {
                 tree.setEditable(noder.object.editable);

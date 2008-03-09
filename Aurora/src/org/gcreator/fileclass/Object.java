@@ -49,4 +49,8 @@ public class Object implements Serializable {
     public String getPath(){
         return name;
     }
+    
+    public Project getProject(){
+        return null;
+    }
 }

@@ -54,4 +54,8 @@ public class Group extends Folder implements Serializable{
     public String getPath(){
         return root.getPath() + "/" + super.getPath();
     }
+    
+    public Project getProject(){
+        return root.getProject();
+    }
 }

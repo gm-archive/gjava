@@ -29,6 +29,10 @@ public class Folder extends Object implements Serializable{
         childNodes = new Vector<Object>(); //Up to 100 childNodes
     }
     
+    public Vector getChildren(){
+        return childNodes;
+    }
+    
     public boolean add(Object node){
         int i = 0;
         return childNodes.add(node);
@@ -96,6 +100,10 @@ public class Folder extends Object implements Serializable{
     
     public boolean allowsDelete(Object o){
         return true;
+    }
+    
+    public void remove(Object o){
+        childNodes.remove(o);
     }
     
     public Group newGroup(String name){
