@@ -56,13 +56,12 @@ public class Aurwindow extends JFrame {
     public JScrollPane scroller;
     public static JToolBar tool;
     public static String lang;
-    public static JTree workspace;
+    public static WorkspaceTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
     public ButtonGroup stylegroup, wtreepos;
     //public JComboBox winlist; //This will be the windows list
 
-    public WorkspaceCellRenderer renderer;
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
 
@@ -85,20 +84,45 @@ public class Aurwindow extends JFrame {
     
     //</editor-fold>
 
+    private static boolean using = false;
+    
     public void popupTreeMenu(MouseEvent e){
+        if(!using)
+        try{
+        Robot robot = new Robot();
+        robot.mousePress(MouseEvent.BUTTON1_MASK);
+        robot.mouseRelease(MouseEvent.BUTTON1_MASK);
+        using = true;
+        robot.mousePress(MouseEvent.BUTTON3_MASK);
+        return;
+        }
+        catch(Exception ex){
+            
+        }
         JPopupMenu m = new JPopupMenu();
-        System.out.println(e.getModifiers());
-        /*int modifiers = e.getModifiersEx();
-        modifiers -= MouseEvent.BUTTON3_DOWN_MASK;
-        modifiers += MouseEvent.BUTTON1_DOWN_MASK;
-        MouseEvent evt = new MouseEvent(workspace, e.getID()+1, e.getWhen(), modifiers, e.getX(), e.getY(), e.getClickCount(), e.isPopupTrigger());
-        for(MouseListener l : workspace.getMouseListeners()){
-            l.mousePressed(e);
-        } //Not working*/
-        JMenuItem i = new JMenuItem(getCurrentObject().name);
+        //int modifiers = e.getModifiersEx();
+        //modifiers -= MouseEvent.BUTTON3_DOWN_MASK;
+        //modifiers += MouseEvent.BUTTON1_DOWN_MASK;
+        //MouseEvent evt = new MouseEvent(workspace, MouseEvent.BUTTON1_DOWN_MASK|MouseEvent.MOUSE_CLICKED, e.getWhen(), modifiers, e.getX(), e.getY(), e.getClickCount(), false);
+        org.gcreator.fileclass.Object o = getCurrentObject();
+        if(o==null)
+            return;
+        JMenuItem i = new JMenuItem("Delete");
+        i.setEnabled(false);
+        if(o instanceof org.gcreator.fileclass.File){
+            if(((org.gcreator.fileclass.File) o).root.allowsDelete(o)){
+                i.setEnabled(true);
+            }
+        }
+        if(o instanceof org.gcreator.fileclass.Group){
+            if(((org.gcreator.fileclass.Group) o).root.allowsDelete(o)){
+                i.setEnabled(true);
+            }
+        }
         i.setVisible(true);
         m.add(i);
         m.show(this, e.getXOnScreen(), e.getYOnScreen());
+        using = false;
     }
     
     public java.lang.Object getWindowListElementAt(int pos) {
@@ -490,90 +514,9 @@ public class Aurwindow extends JFrame {
         /*
          * Set up tree
          */
-        workspace = new JTree(top);
+        workspace = new WorkspaceTree(top);
         workspace.setVisible(true);
-        workspace.setScrollsOnExpand(true);
-        if (ver >= 6) {
-            workspace.setDragEnabled(true);
-            workspace.setDropMode(DropMode.ON_OR_INSERT);
-        }
-        workspace.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        try {
-            if (ver >= 6) {
-                // Tree drag and drop support
-
-                workspace.setDropMode(DropMode.ON_OR_INSERT);
-
-                workspace.setTransferHandler(new TransferHandler() {
-
-                            protected Transferable createTransferable(JComponent c) {
-                                ObjectNode f = (ObjectNode) workspace.getLastSelectedPathComponent();
-                                if (f.object instanceof org.gcreator.fileclass.File) {
-                                    System.out.println("" + ((org.gcreator.fileclass.File) f.object).name);
-                                    return ((org.gcreator.fileclass.File) f.object);
-                                } else {
-                                    return null;
-                                }
-                            }
-
-                            public int getSourceActions(JComponent c) {
-                                return MOVE;
-                            }
-
-                            public boolean canImport(TransferHandler.TransferSupport support) {
-                               // System.out.println(""+support);
-                                TreePath drop = ((JTree.DropLocation) support.getDropLocation()).getPath();
-                                if (drop == null) {
-                                    return false;
-                                }
-                                if (!(drop.getLastPathComponent() instanceof ObjectNode))
-                                {return false;}
-                                ObjectNode dropNode = (ObjectNode) drop.getLastPathComponent();
-                                ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
-                                //if (dragNode == dropNode) return false;
-		//if (dragNode.isNodeDescendant(dropNode)) return false;
-                                if (dropNode.object instanceof org.gcreator.fileclass.Group) {
-                                    if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.File) dragNode.object).type)) {
-                                        return true;
-                                    } else {
-                                        return false;
-                                    }
-
-                                }
-
-                                return false;
-                            }
-
-                            public boolean importData(TransferHandler.TransferSupport support) {
-                                if (!canImport(support)) {
-                                    return false;
-                                }
-                                JTree.DropLocation drop = (JTree.DropLocation) support.getDropLocation();
-                                int dropIndex = drop.getChildIndex();
-                                ObjectNode dropNode = (ObjectNode) drop.getPath().getLastPathComponent();
-                                ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
-                                if (dropIndex == -1) {
-                                    dropIndex = dropNode.getChildCount();
-                                }
-                                if (dropNode == dragNode.getParent() && dropIndex > dragNode.getParent().getIndex(dragNode)) {
-                                    dropIndex--;
-                                }
-                                dropNode.insert(dragNode, dropIndex);
-                                workspace.expandPath(new TreePath(dropNode.getPath()));
-                                workspace.updateUI();
-                                return true;
-
-                            }
-                        });
-            }
-            else{
-                System.out.println(ver);
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        renderer = new WorkspaceCellRenderer();
-        workspace.setCellRenderer(renderer);
+        
         workspace.addMouseListener(new MouseListener() {
 
                     public void mouseClicked(MouseEvent e) {
@@ -1025,7 +968,6 @@ public class Aurwindow extends JFrame {
         //</editor-fold>
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
-        workspace.expandRow(0);
         updateToDefaultNavigatorPanel(welcome);
         setMinimumSize(new Dimension(200, 200));
         if(settings[6].equals("True"))

@@ -18,15 +18,19 @@ public class Refactorer {
     private static Vector<RefactoringMethod> collection =
             new Vector<RefactoringMethod>();
     
+    static{
+        addRefactoringMethod(new SpriteDropImageMethod());
+    }
+    
     public static void addRefactoringMethod(RefactoringMethod method){
         collection.add(method);
     }
     
-    public static RefactoringMethod getRefactoringMethod(org.gcreator.fileclass.File file){
-        if(file==null)
+    public static RefactoringMethod getRefactoringMethod(RefactorContext context){
+        if(context==null)
             return null;
         for(RefactoringMethod m : collection){
-            if(m.accepts(file.type, file.value.getClass().getName()))
+            if(m.accepts(context))
                 return m;
         }
         return null;

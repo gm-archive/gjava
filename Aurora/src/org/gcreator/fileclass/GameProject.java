@@ -132,6 +132,10 @@ public class GameProject extends Project{
         return null;
     }
     
+    public boolean allowsDelete(Object o){
+        return false;
+    }
+    
     public String getObjectType(){
         return "GameProject";
     }

@@ -32,6 +32,9 @@ public class StaticGroup extends Group{
         return false;
     }
     
+    public boolean allowsDelete(Object o){
+        return false;
+    }
      
     public Group newGroup(String name){
         return null;

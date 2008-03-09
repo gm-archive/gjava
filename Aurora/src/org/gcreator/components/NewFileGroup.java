@@ -35,7 +35,7 @@ public class NewFileGroup extends TabPanel {
         DefaultTreeSelectionModel model = new DefaultTreeSelectionModel();
         model.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setSelectionModel(model);
-        tree.setCellRenderer(gcreator.window.renderer);
+        tree.setCellRenderer(gcreator.window.workspace.getCellRenderer());
         a1 = new Model() {
             String[] strings = {"Group", "Text file"};
             String[] truenames = {"/", "txt"};

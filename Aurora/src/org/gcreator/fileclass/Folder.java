@@ -94,6 +94,10 @@ public class Folder extends Object implements Serializable{
         return true;
     }
     
+    public boolean allowsDelete(Object o){
+        return true;
+    }
+    
     public Group newGroup(String name){
         Group group = new Group(this, name);
         add(group);

@@ -9,9 +9,12 @@
 
 package org.gcreator.refactoring;
 
+import org.gcreator.fileclass.*;
+
 /**
  * @author Luís Reis
  */
 public interface RefactoringMethod {
-    public boolean accepts(String format, String classname);
+    public boolean accepts(RefactorContext context);
+    public void refactor(RefactorContext context);
 }
