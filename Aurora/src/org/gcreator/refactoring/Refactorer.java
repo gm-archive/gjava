@@ -20,6 +20,7 @@ public class Refactorer {
     
     static{
         addRefactoringMethod(new SpriteDropImageMethod());
+        addRefactoringMethod(new TilesetDropImageMethod());
     }
     
     public static void addRefactoringMethod(RefactoringMethod method){
