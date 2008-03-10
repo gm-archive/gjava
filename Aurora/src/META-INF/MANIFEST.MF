@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 1.6.0_03 (Sun Microsystems Inc.)
+Main-Class: org.gcreator.core.gcreator
+Class-Path: lib/lwjgl.jar lib/lwjgl_util_applet.jar lib/natives.jar lib/slick.jar lib/swing-layout-1.0.3.jar
