@@ -2,12 +2,13 @@
 #define _GCPP_SUPPORT_RECTANGLE_
 
 #include "../compilers/declare.h"
+#include <SDL/SDL.h>
 
-org::gcreator::Support::Rectangle::Rectangle(int _x, int _y, int w, int h){
+org::gcreator::Support::Rectangle::Rectangle(int _x, int _y, int _w, int _h){
 	x = _x;
 	y = _y;
-	width = w;
-	height = h;
+	w = w;
+	h = h;
 }
 
 #endif
