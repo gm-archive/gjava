@@ -7,8 +7,8 @@ class org::gcreator::Support::Rectangle
 		Rectangle(int,int,int,int);
 		int x;
 		int y;
-		int width;
-		int height;
+		int w;
+		int h;
 };
 
 class org::gcreator::Support::Color
