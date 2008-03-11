@@ -8,6 +8,7 @@ package org.gcreator.core;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 /**
  *
@@ -26,7 +27,7 @@ public class SplashScreen extends JFrame {
         setResizable(false);
         setUndecorated(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen20tf0.jpg"))); // NOI18N
+        jLabel1.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen20tf0.jpg"))); // NOI18N
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -44,6 +45,19 @@ public class SplashScreen extends JFrame {
         setLocation(
                 (m.width - this.getWidth()) / 2,
                 (m.height - this.getHeight()) / 2);
+        this.addMouseListener(new MouseListener(){
+            public void mouseExited(MouseEvent evt){}
+            public void mouseEntered(MouseEvent evt){}
+            public void mouseClicked(MouseEvent evt){
+                setVisible(false);
+            }
+            public void mouseReleased(MouseEvent evt){
+                setVisible(false);
+            }
+            public void mousePressed(MouseEvent evt){
+                setVisible(false);
+            }
+        });
         setVisible(true);
     }
 

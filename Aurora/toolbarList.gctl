@@ -26,5 +26,4 @@ Item=std_addActor
 Item=std_addScene
 Item=std_addScript
 Item=std_addClass
-Item=Run program
 
