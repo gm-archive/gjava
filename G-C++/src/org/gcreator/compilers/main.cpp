@@ -1,14 +1,9 @@
 #include "declare.h"
 
 int main(int argc, char** argv){
-	allegro_init();
-	int depth = desktop_color_depth();
-	if (depth == 0) depth = 32;
-	set_color_depth(depth);
-	set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
-	install_keyboard();
-	install_mouse();
+	org::gcreator::Components::Application::game_Init(640,480,32,"Test");
+        org::gcreator::Components::Image::Image test("test.bmp");
+        org::gcreator::Components::Sprite::Sprite img;
+        img.(org::gcreator::Components::Image::setImageArray(test))
 	Game = new org::gcreator::Components::Application::Application(argc, argv);
 }
-
-END_OF_MAIN()

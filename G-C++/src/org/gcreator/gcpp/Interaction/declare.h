@@ -11,8 +11,8 @@ class org::gcreator::Interaction::Mouse
 class org::gcreator::Interaction::Keyboard
 {
 	public:
-		static String* getPressedKeys();
-                static boolean isKeyPressed(String);
+		static String* getKeyState();
+        static boolean isKeyPressed(String);
 };
 
 #endif

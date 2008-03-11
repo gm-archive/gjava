@@ -2,14 +2,26 @@
 #define _GCPP_INTERACTION_MOUSE_
 
 #include "../compilers/declare.h"
-#include <allegro.h>
+#include <SDL/SDL.h>
 
 int org::gcreator::Interaction::Mouse::getX(){
-    return mouse_x;
+    SDL_Event event;
+
+    if(SDL_PollEvent(&event)) {
+        if(event.type==SDL_MOUSEMOTION)
+        {
+            return event.motion.x
+        }
+    }
 }
 
 int org::gcreator::Interaction::Mouse::getY(){
-    return mouse_y;
+    if(SDL_PollEvent(&event)) {
+        if(event.type==SDL_MOUSEMOTION)
+        {
+            return event.motion.y
+        }
+    }
 }
 
 #endif

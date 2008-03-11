@@ -87,7 +87,7 @@ org::gcreator::Components::Image* org::gcreator::Components::Tileset::getTileAt(
 		return NULL;
 	if(tileh<0)
 		return NULL;
-	ALLEGRO_BITMAP* bitmap = create_bitmap(tilew,tileh);
+	SDL_surface* bitmap = create_bitmap(tilew,tileh);//NEEDS TO FIND A SDL VERSION
 	blit(image->img, bitmap, x * (tilew + sepw) + startx, y * (tileh + seph) + starty, 0, 0, tilew, tileh);
 	return new org::gcreator::Components::Image(bitmap);
 }

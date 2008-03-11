@@ -1,15 +1,14 @@
 #ifndef _GCPP_COMPONENTS_DECLARE_
 #define _GCPP_COMPONENTS_DECLARE_
 
-#define BITMAP ALLEGRO_BITMAP
-#include <allegro.h>
-#undef BITMAP
+#include <SDL/SDL.h>
 
 class org::gcreator::Components::Image
 {
 	private:
-		ALLEGRO_BITMAP* img;
-		Image(ALLEGRO_BITMAP*);
+		SDL_surface* img;
+		Image(SDL_surface*);
+                Image(String);
 	public:
 		Image();
 		virtual String getName();
@@ -160,6 +159,7 @@ class org::gcreator::Components::Application
 {
 	public:
 		Application(int argc, char** argv);
+                SDL_Surface gameInit(int,int,int,String)
 	private:
 		int argc;
 		char** argv;

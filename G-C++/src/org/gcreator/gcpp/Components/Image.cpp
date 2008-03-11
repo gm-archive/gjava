@@ -3,9 +3,18 @@
 
 #include "../compilers/declare.h"
 
-org::gcreator::Components::Image::Image(ALLEGRO_BITMAP* bitmap)
+org::gcreator::Components::Image::Image(SDL_surface* bitmap)
 {
 	img = bitmap;
+}
+
+org::gcreator::Components::Image::Image(String str){
+        SDL_Surface* optimize=NULL;
+        img=SDL_LoadBMP(str);
+        if(img!=NULL){
+            optimize=SDL_DisplayFormat(img);
+            SDL_FreeSurface(img)
+        }
 }
 
 org::gcreator::Components::Image::Image()
@@ -20,7 +29,7 @@ String org::gcreator::Components::Image::getName()
 
 boolean org::gcreator::Components::Image::free()
 {
-	destroy_bitmap(img);
+	SDL_FreeSurface(img);
 	if(img==NULL)
 		return true;
 	return false;

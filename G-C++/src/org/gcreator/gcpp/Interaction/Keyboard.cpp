@@ -2,153 +2,160 @@
 #define _GCPP_INTERACTION_KEYBOARD_
 
 #include "../compilers/declare.h"
-#include <allegro.h>
+#include <SDL/SDL.h>
 
-String* org::gcreator::Interaction::Keyboard::getPressedKeys(){
+
+String* org::gcreator::Interaction::Keyboard::getKeyState(){
     String* a = (String*) malloc(sizeof(String)*100);
     int b = 0;
-    if(key[KEY_A])
+    Uint8 *key=SDL_GetKeyStates(NULL);
+    if(key[SDLK_a])
         a[b++] = "A";
-    if(key[KEY_B])
+    if(key[SDLK_b])
         a[b++] = "B";
-    if(key[KEY_C])
+    if(key[SDLK_c])
         a[b++] = "C";
-    if(key[KEY_D])
+    if(key[SDLK_d])
         a[b++] = "D";
-    if(key[KEY_E])
+    if(key[SDLK_e])
         a[b++] = "E";
-    if(key[KEY_F])
+    if(key[SDLK_f])
         a[b++] = "F";
-    if(key[KEY_G])
+    if(key[SDLK_g])
         a[b++] = "G";
-    if(key[KEY_H])
+    if(key[SDLK_h])
         a[b++] = "H";
-    if(key[KEY_I])
+    if(key[SDLK_i])
         a[b++] = "I";
-    if(key[KEY_J])
+    if(key[SDLK_j])
         a[b++] = "J";
-    if(key[KEY_K])
+    if(key[SDLK_k])
         a[b++] = "K";
-    if(key[KEY_L])
+    if(key[SDLK_l])
         a[b++] = "L";
-    if(key[KEY_M])
+    if(key[SDLK_m])
         a[b++] = "M";
-    if(key[KEY_N])
+    if(key[SDLK_n])
         a[b++] = "N";
-    if(key[KEY_O])
+    if(key[SDLK_o])
         a[b++] = "O";
-    if(key[KEY_P])
+    if(key[SDLK_p])
         a[b++] = "P";
-    if(key[KEY_Q])
+    if(key[SDLK_q])
         a[b++] = "Q";
-    if(key[KEY_R])
+    if(key[SDLK_r])
         a[b++] = "R";
-    if(key[KEY_S])
+    if(key[SDLK_s])
         a[b++] = "S";
-    if(key[KEY_T])
+    if(key[SDLK_t])
         a[b++] = "T";
-    if(key[KEY_U])
+    if(key[SDLK_u])
         a[b++] = "U";
-    if(key[KEY_V])
+    if(key[SDLK_v])
         a[b++] = "V";
-    if(key[KEY_W])
+    if(key[SDLK_w])
         a[b++] = "W";
-    if(key[KEY_X])
+    if(key[SDLK_x])
         a[b++] = "X";
-    if(key[KEY_Y])
+    if(key[SDLK_y])
         a[b++] = "Y";
-    if(key[KEY_Z])
+    if(key[SDLK_z])
         a[b++] = "Z";
-    if(key[KEY_0]||key[KEY_0_PAD])
+    if(key[KEY_0]||key[SDL_KP0])
         a[b++] = "0";
-    if(key[KEY_1]||key[KEY_1_PAD])
+    if(key[KEY_1]||key[SDL_KP1])
         a[b++] = "1";
-    if(key[KEY_2]||key[KEY_2_PAD])
+    if(key[KEY_2]||key[SDL_KP2])
         a[b++] = "2";
-    if(key[KEY_3]||key[KEY_3_PAD])
+    if(key[KEY_3]||key[SDL_KP3])
         a[b++] = "3";
-    if(key[KEY_4]||key[KEY_4_PAD])
+    if(key[KEY_4]||key[SDL_KP4])
         a[b++] = "4";
-    if(key[KEY_5]||key[KEY_5_PAD])
+    if(key[KEY_5]||key[SDL_KP5])
         a[b++] = "5";
-    if(key[KEY_6]||key[KEY_6_PAD])
+    if(key[KEY_6]||key[SDL_KP6])
         a[b++] = "6";
-    if(key[KEY_7]||key[KEY_7_PAD])
+    if(key[KEY_7]||key[SDL_KP7])
         a[b++] = "7";
-    if(key[KEY_8]||key[KEY_8_PAD])
+    if(key[KEY_8]||key[SDL_KP8])
         a[b++] = "8";
-    if(key[KEY_9]||key[KEY_9_PAD])
+    if(key[KEY_9]||key[SDL_KP9])
         a[b++] = "9";
-    if(key[KEY_ESC])
+    if(key[SDLK_ESCAPE])
         a[b++] = "Esc";
-    if(key[KEY_TILDE])
-        a[b++] = "~";
-    if(key[KEY_MINUS])
+    //if(key[KEY_TILDE]) NO SDL SUPPORT
+    //    a[b++] = "~";
+    if(key[SDLK_MINUS])
         a[b++] = "-";
-    if(key[KEY_EQUALS])
+    if(key[SDLK_EQUALS])
         a[b++] = "=";
-    if(key[KEY_BACKSPACE])
+    if(key[SDLK_BACKSPACE])
         a[b++] = "Backspace";
-    if(key[KEY_TAB])
+    if(key[SDLK_TAB])
         a[b++] = "Tab";
-    if(key[KEY_ENTER])
+    if(key[SDLK_RETURN])
         a[b++] = "\n";
-    if(key[KEY_SPACE])
+    if(key[SDLK_SPACE])
         a[b++] = " ";
-    if(key[KEY_INSERT])
+    if(key[SDLK_INSERT])
         a[b++] = "Insert";
-    if(key[KEY_DEL])
+    if(key[SDLK_DELETE])
         a[b++] = "Delete";
-    if(key[KEY_ALT])
+    if(key[SDLK_ALT])
         a[b++] = "Alt";
-    if(key[KEY_LSHIFT]||key[KEY_RSHIFT])
+    if(key[SDLK_LSHIFT]||key[SDLK_RSHIFT])
         a[b++] = "Shift";
-    if(key[KEY_F1])
+    if(key[SDLK_F1])
         a[b++] = "F1";
-    if(key[KEY_F2])
+    if(key[SDLK_F2])
         a[b++] = "F2";
-    if(key[KEY_F3])
+    if(key[SDLK_F3])
         a[b++] = "F3";
-    if(key[KEY_F4])
+    if(key[SDLK_F4])
         a[b++] = "F4";
-    if(key[KEY_F5])
+    if(key[SDLK_F5])
         a[b++] = "F5";
-    if(key[KEY_F6])
+    if(key[SDLK_F6])
         a[b++] = "F6";
-    if(key[KEY_F7])
+    if(key[SDLK_F7])
         a[b++] = "F7";
-    if(key[KEY_F8])
+    if(key[SDLK_F8])
         a[b++] = "F8";
-    if(key[KEY_F9])
+    if(key[SDLK_F9])
         a[b++] = "F9";
-    if(key[KEY_F10])
+    if(key[SDLK_F10])
         a[b++] = "F10";
-    if(key[KEY_F11])
+    if(key[SDLK_F11])
         a[b++] = "F11";
-    if(key[KEY_F12])
+    if(key[SDLK_F12])
         a[b++] = "F12";
-    if(key[KEY_LEFT])
+    if(key[SDLK_LEFT])
         a[b++] = "Left";
-    if(key[KEY_RIGHT])
+    if(key[SDLK_RIGHT])
         a[b++] = "Right";
-    if(key[KEY_DOWN])
+    if(key[SDLK_DOWN])
         a[b++] = "Down";
-    if(key[KEY_UP])
+    if(key[SDLK_UP])
         a[b++] = "Up";
 }
 
 boolean org::gcreator::Interaction::Keyboard::isKeyPressed(String key){
     //First, let's do a fast checking
-    if(key == "Up")
-        return (key[KEY_UP]!=0);
-    if(key == "Down")
-        return (key[KEY_DOWN]!=0);
-    if(key == "Left")
-        return (key[KEY_LEFT]!=0);
-    if(key == "Right")
-        return (key[KEY_RIGHT]!=0);
+    /*SDL_Event event;
+
+    if(SDL_PollEvent(&event)) {
+        if(event.type==SDL_KEYDOWN) {
+            switch(event.key.keysym.sym) {
+                case SDLK_UP:if(key=="Up")return 1;break;
+                case SDLK_DOWN:if(key=="Down")return 1;break;
+                case SDLK_LEFT:if(key=="Left")return 1;break;
+                case SDLK_RIGHT:if(key=="Right")return 1;break;
+            }
+        }
+    }*/
+
     //This fast checking should be increased
-    String* a = getPressedKeys();
+    String* a = getGetState();
     for(int i = 0; i < sizeof(a)/sizeof(a[0]); i++){
         if(key==a[i])
             return true;

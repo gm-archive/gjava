@@ -2,6 +2,7 @@
 #define _GCPP_DECLARE_
 
 #include "types.h"
+#include <SDL/SDL.h>
 
 namespace org
 {
