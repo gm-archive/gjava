@@ -8,9 +8,9 @@ org::gcreator::Components::Image::Image(SDL_surface* bitmap)
 	img = bitmap;
 }
 
-org::gcreator::Components::Image::Image(String str){
+org::gcreator::Components::Image::Image(std::string str){
         SDL_Surface* optimize=NULL;
-        img=SDL_LoadBMP(str);
+        img=SDL_LoadBMP(str.c_str());
         if(img!=NULL){
             optimize=SDL_DisplayFormat(img);
             SDL_FreeSurface(img)

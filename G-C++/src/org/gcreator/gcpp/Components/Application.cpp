@@ -10,7 +10,7 @@ org::gcreator::Components::Application::Application(int _argc, char** _argv){
 		;
 }
 
-org::gcreator::Components::Application::gameInit(int W, int H, int BPP, String caption="Game"){
+org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string caption=""){
         SDL_Surface *screen
         if(SDL_Init(SDL_INIT_EVERYTHING)==-1){
             return 1;
@@ -19,7 +19,7 @@ org::gcreator::Components::Application::gameInit(int W, int H, int BPP, String c
         if(screen==NULL){
             return 1;
         }
-        SDL_WM_SetCaption(caption, NULL)
+        SDL_WM_SetCaption(caption.c_str(), NULL)
 }
 
 org::gcreator::Components::Application* Game;

@@ -81,14 +81,20 @@ void org::gcreator::Components::Tileset::setSeparatorWidth(int value)
 
 org::gcreator::Components::Image* org::gcreator::Components::Tileset::getTileAt(int x,int y)
 {
+        SDL_Rect t;
+        t.x=x*(tilew + sepw) + startx;
+        t.y=y*(tileh + seph) + starty;
+        
 	if(image==NULL)
 		return NULL;
 	if(tilew<0)
 		return NULL;
 	if(tileh<0)
 		return NULL;
-	SDL_surface* bitmap = create_bitmap(tilew,tileh);//NEEDS TO FIND A SDL VERSION
-	blit(image->img, bitmap, x * (tilew + sepw) + startx, y * (tileh + seph) + starty, 0, 0, tilew, tileh);
+	SDL_surface* bitmap = SDL_CreateRGBSurface(SDL_SRCALPHA, tilew, tileh, 0, 0xff000000, 0x00ff0000, 0x0000ff00, /*0x000000ff*/0);
+	//Commenting till it is confirmed it is correct
+        //SDL_BlitSurface(image->img, bitmap, x * (tilew + sepw) + startx, y * (tileh + seph) + starty, 0, 0, tilew, tileh);
+        SDL_BlitSurface(image->img, NULL, bitmap, t)
 	return new org::gcreator::Components::Image(bitmap);
 }
 
