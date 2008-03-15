@@ -319,10 +319,10 @@ public class gcreator {
         Aurwindow.unkresnav = new UnknownResourceNavigator();
         
         if(splash!=null){
+            splash.dispose();
             if(!applet&&plugload)
                 Plugger.onSplashDispose();
             window.menubar.updateUI();
-            splash.dispose();
         }
     }
 }
