@@ -62,19 +62,14 @@ public class GCppDialog extends javax.swing.JFrame implements Runnable{
             FileWriter main = new FileWriter(__main);
             System.out.println("Start writting");
             main.write("#include \"declare.h\"\n");
+            main.write("using namespace org::gcreator::Components::Application");
+            main.write("using namespace org::gcreator::Components::Sprite");
             main.write("\n");
             main.write("int main(int argc, char** argv){\n");
-            main.write("	allegro_init();\n");
-            main.write("	int depth = desktop_color_depth();\n");
-            main.write("	if (depth == 0) depth = 32;\n");
-            main.write("	set_color_depth(depth);");
-            main.write("	set_gfx_mode(GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);");
-            main.write("	install_keyboard();");
-            main.write("	install_mouse();");
-            main.write("	Game = new org::gcreator::Components::Application::Application(argc, argv);");
+            main.write("	gameInit(640,480,32,\"tes\");\n");
+            main.write("	Game = new Application(argc, argv);");
             main.write("}\n");
             main.write("\n");
-            main.write("END_OF_MAIN()\n");
             main.close();
             System.out.println("Closed");
             if(mode==0){

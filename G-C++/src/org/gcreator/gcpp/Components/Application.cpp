@@ -4,13 +4,15 @@
 #include "../compilers/declare.h"
 
 org::gcreator::Components::Application::Application(int _argc, char** _argv){
-	this->argc = argc;
+        this->argc = argc;
 	this->argv = argv;
 	while(!org::gcreator::Interaction::Keyboard::isKeyPressed(SDLK_ESCAPE))
-		;
+        {
+            ;
+        }
 }
 
-org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string caption=""){
+SDL_Surface org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string caption=""){
         SDL_Surface *screen
         if(SDL_Init(SDL_INIT_EVERYTHING)==-1){
             return 1;
@@ -20,6 +22,7 @@ org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::str
             return 1;
         }
         SDL_WM_SetCaption(caption.c_str(), NULL)
+        return screen;
 }
 
 org::gcreator::Components::Application* Game;
