@@ -1,5 +1,6 @@
 package org.gcreator.core;
 
+import org.gcreator.components.impl.CustomFileFilter;
 import org.gcreator.components.impl.WorkspaceCellRenderer;
 import java.awt.*;
 import java.awt.datatransfer.*;

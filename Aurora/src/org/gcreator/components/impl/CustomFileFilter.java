@@ -8,7 +8,7 @@
  * See LICENSE for more details.
  */
 
-package org.gcreator.components;
+package org.gcreator.components.impl;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -76,9 +76,7 @@ public class CustomFileFilter extends FileFilter implements FilenameFilter{
     public boolean accept(File file){
         if(file.isDirectory())
             return true;
-        System.out.println(file.getAbsolutePath() + "->" +format);
         if(file.getAbsolutePath().endsWith(format)){
-            System.out.println("MATCHED!!!");
             return true;
         }
         return false;

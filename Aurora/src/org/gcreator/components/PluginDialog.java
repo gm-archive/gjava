@@ -6,17 +6,22 @@
 
 package org.gcreator.components;
 
+import java.awt.*;
+import java.io.*;
+import java.util.zip.*;
+import javax.swing.*;
+import org.gcreator.components.impl.*;
 import org.gcreator.plugins.*;
 
 /**
  *
  * @author  Luís Reis
  */
-public class PluginDialog extends javax.swing.JDialog {
+public class PluginDialog extends JDialog {
     
     /** Creates new form PluginDialog */
     public IconList list;
-    public PluginDialog(java.awt.Frame parent, boolean modal) {
+    public PluginDialog(Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         list = new IconList();
@@ -78,10 +83,80 @@ public class PluginDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private static JFileChooser fc = new JFileChooser();
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        fc.setMultiSelectionEnabled(false);
+        fc.setDialogTitle("Choose the file");
+        fc.setApproveButtonText("OK");
+        fc.setFileFilter(new CustomFileFilter(".jar", "Plugin archives (*.jar)"));
+        fc.showOpenDialog(this);
+        File f = fc.getSelectedFile();
+        if(f==null)
+            return;
+        if(!f.exists())
+            return;
+        addPlugin(f);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public void addPlugin(File f){
+        FileInputStream istream = null;
+        ZipInputStream in = null;
+        File f2 = new File("./settings/pluglist");
+        FileOutputStream f2stream = null;
+        try{
+            if(!f2.exists()){
+                f2.createNewFile();
+                f2stream = new FileOutputStream(f2);
+                BufferedOutputStream s = new BufferedOutputStream(f2stream);
+                s.write("[G-Creator Plugin List]\n".getBytes());
+                s.close();
+                f2stream = null;
+            }
+        }
+        catch(Exception e){
+            
+        }
+        try{
+            f2stream = new FileOutputStream(f2, true);
+            istream = new FileInputStream(f);
+            in = new ZipInputStream(istream);
+        }
+        catch(Exception e){
+            return;
+        }
+        ZipEntry entry;
+        try{
+            while((entry = in.getNextEntry())!=null){
+                if(entry.getName().equals("PLUGIN")){
+                    int len;
+                    while ((len = in.read()) != -1) {
+                        f2stream.write(len);
+                    }
+                    f2stream.write('\n');
+                }
+                else{
+                    if(entry.isDirectory()){
+                        (new File("./plugins/"+entry.getName())).mkdirs();
+                    }
+                    else{
+                        File f3 = new File("./plugins/"+entry.getName());
+                        FileOutputStream ost = new FileOutputStream(f3);
+                        int len;
+                        while ((len = in.read()) != -1) {
+                            ost.write(len);
+                        }
+                        ost.close();
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;

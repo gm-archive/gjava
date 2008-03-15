@@ -8,6 +8,7 @@
  */
 package org.gcreator.externproject;
 
+import org.gcreator.components.impl.CustomFileFilter;
 import java.awt.*;
 import java.io.*;
 import java.util.*;
