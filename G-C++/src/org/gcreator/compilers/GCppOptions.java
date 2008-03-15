@@ -73,7 +73,7 @@ public class GCppOptions extends javax.swing.JPanel {
 
         jLabel4.setText("Game Engine mode");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Allegro [default]" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SDL [default]" }));
 
         jLabel5.setText("Output directory");
 
