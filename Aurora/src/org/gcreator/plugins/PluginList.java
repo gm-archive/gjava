@@ -114,6 +114,7 @@ public class PluginList {
             
             if(line.matches("^Image=.*$")){
                 String fname = "./plugins/" + line.replaceAll("^Image=(.*)$", "$1");
+                curplugin.img_loc = fname;
                 if((new File(fname)).exists()&&!line.equals("Image="))
                     curplugin.image = new ImageIcon(fname);
                 else

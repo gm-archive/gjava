@@ -48,6 +48,7 @@ public class PluginDialog extends JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Plugin Manager");
@@ -61,13 +62,22 @@ public class PluginDialog extends JDialog {
             }
         });
 
+        jButton2.setText("Uninstall plugin");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -75,7 +85,9 @@ public class PluginDialog extends JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(254, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.WEST);
@@ -100,11 +112,55 @@ public class PluginDialog extends JDialog {
         addPlugin(f);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Object o = list.getSelectedExtraContent();
+        if(o==null)
+            return;
+        if(o instanceof Plugin){
+            uninstall((Plugin) o);
+            list.removeElement(list.getSelectedIndex());
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    public void uninstall(Plugin plugin){
+        System.out.println("Uninstall " + plugin.name);
+        String s = "[G-Creator Plugin List]\n";
+        for(Plugin plug : PluginList.stdlist.plugins){
+            if(plug==plugin)
+                continue;
+            s += "[~Plugin~]\n";
+            for(String author : plug.authors)
+                s += "Author=" + author + "\n";
+            s += "Core=" + plug.value.getClass().getName() + "\n";
+            s += "License=" + plug.licenseLocation + "\n";
+            s += "Name" + plug.name + "\n";
+            s += "Version" + plug.version + "\n";
+            s += "Image" + plug.img_loc + "\n";
+            for(String file : plug.files)
+                s += "File=" + file + "\n";
+        }
+        File f = new File("./settings/pluglist");
+        FileOutputStream stream = null;
+        try{
+            if(f.exists()){
+                f.delete();
+            }
+            stream = new FileOutputStream(f);
+            BufferedOutputStream bstream = new BufferedOutputStream(stream);
+            bstream.write(s.getBytes());
+            bstream.close();
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+    
     public void addPlugin(File f){
         FileInputStream istream = null;
         ZipInputStream in = null;
         File f2 = new File("./settings/pluglist");
         FileOutputStream f2stream = null;
+        String files = "";
         try{
             if(!f2.exists()){
                 f2.createNewFile();
@@ -148,9 +204,12 @@ public class PluginDialog extends JDialog {
                             ost.write(len);
                         }
                         ost.close();
+                        files += "File=" + entry.getName() + "\n";
                     }
                 }
             }
+            f2stream.write(files.getBytes());
+            f2stream.close();
         }
         catch(Exception e){
             
@@ -159,6 +218,7 @@ public class PluginDialog extends JDialog {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

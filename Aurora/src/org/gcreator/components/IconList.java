@@ -112,6 +112,10 @@ public class IconList extends JComponent{
         return getTextAt(getSelectedIndex(), true);
     }
     
+    public Object getSelectedExtraContent(){
+        return getExtraContentAt(getSelectedIndex(), true);
+    }
+    
     public int getColumnWidth(){
         return columnWidth;
     }
@@ -135,7 +139,7 @@ public class IconList extends JComponent{
     }
     
     public void removeElement(int i){
-        elements.remove(i);
+        elements.removeElementAt(i);
         elements.trimToSize();
         updateUI();
     }
@@ -162,7 +166,7 @@ public class IconList extends JComponent{
             Enumeration<IconListElement> e = elements.elements();
             while(e.hasMoreElements()){
                 if(x==i)
-                    return e.nextElement().text;
+                    return e.nextElement().plus;
                 if(e.nextElement().visible==true)
                     x++;
             }
