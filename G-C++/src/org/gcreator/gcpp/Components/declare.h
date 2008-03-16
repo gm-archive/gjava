@@ -21,6 +21,7 @@ class org::gcreator::Components::Sprite
 {
 	private:
 		org::gcreator::Components::Image** images;
+                int frame;
 	public:
 		Sprite();
 		int getImageCount();
@@ -32,6 +33,9 @@ class org::gcreator::Components::Sprite
 		boolean setImageArray(org::gcreator::Components::Image**);
 		int getWidth();
 		int getHeight();
+                int blit(org::gcreator::Components::Sprite,int,int,int)
+                int getFrame();
+                void setFrame(int);
 };
 
 class org::gcreator::Components::Tileset
@@ -163,6 +167,25 @@ class org::gcreator::Components::Application
 	private:
 		int argc;
 		char** argv;
+};
+
+class org::gcreator::Components::Audio
+{
+        private:
+            Mix_Music sound
+        public:
+            Audio()
+            Audio(Mix_Music)
+            Audio(std::string)
+            Mix_Music loadFile(std::string)
+            void setAudio(Mix_Music)
+            Mix_Music getAudio()
+            boolean audioPlaying()
+            int playAudio(Mix_Music,int)
+            void pauseAudio()
+            void unpauseAudio()
+            boolean audioPaused()
+            void stopAudio()
 };
 
 #ifndef _GCPP_COMPONENTS_APPLICATION_

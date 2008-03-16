@@ -13,8 +13,19 @@ org::gcreator::Components::Image::Image(std::string str){
         img=SDL_LoadBMP(str.c_str());
         if(img!=NULL){
             optimize=SDL_DisplayFormat(img);
-            SDL_FreeSurface(img)
+            SDL_FreeSurface(img);
+            if (img==NULL)
+            {
+                img=optimize;
+                SDL_FreeSurface(optimize)
+                return true;
+            }
+            else
+            {
+                return false;
+            }            
         }
+    }
 }
 
 org::gcreator::Components::Image::Image()
