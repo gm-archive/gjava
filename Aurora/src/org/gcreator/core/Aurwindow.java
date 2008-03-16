@@ -68,6 +68,7 @@ public class Aurwindow extends JFrame {
     public Container topContainer,  bottomContainer,  leftContainer,  rightContainer;
     private ChangeListener changed;
     public Statusbar statusbar;
+    public JLayeredPane layer = new JLayeredPane();
 
     private boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -489,11 +490,8 @@ public class Aurwindow extends JFrame {
     }
 
     protected Aurwindow(String[] settings) {
-        JInternalFrame internal = new JInternalFrame();
-        internal.setVisible(true);
-        internal.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
-        internal.setLocation(50, 50);
-        internal.setSize(200, 200);
+        JInternalFrame internal = createPaletteFrame();
+        internal.setTitle("Palette");
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -946,24 +944,31 @@ public class Aurwindow extends JFrame {
         leftContainer.setLayout(new GridLayout(1, 0));
         //Begin content manager
         //topContainer.add(tool);
+        //layer = new JLayeredPane();
+        layer.setVisible(true);
         panel.add(bottomContainer, BorderLayout.SOUTH);
         panel.add(topContainer, BorderLayout.NORTH);
         panel.add(leftContainer, BorderLayout.WEST);
         panel.add(rightContainer, BorderLayout.EAST);
-        JLayeredPane p = new JLayeredPane();
-        p.setVisible(true);
-        panel.add(p, BorderLayout.CENTER);
+        panel.add(layer, BorderLayout.CENTER);
         splitter1.setVisible(true);
         splitter1.setLocation(0, 0);
-        splitter1.setSize(p.getSize());
-        p.add(splitter1, JLayeredPane.DEFAULT_LAYER);
-        p.add(internal, JLayeredPane.PALETTE_LAYER);
-        p.addComponentListener(new ComponentListener(){
+        splitter1.setSize(layer.getSize());
+        layer.add(splitter1, JLayeredPane.DEFAULT_LAYER);
+        //layer.add(internal, JLayeredPane.PALETTE_LAYER);
+        layer.addComponentListener(new ComponentListener(){
             public void componentHidden(ComponentEvent evt){}
             public void componentShown(ComponentEvent evt){}
             public void componentMoved(ComponentEvent evt){}
             public void componentResized(ComponentEvent evt){
-                splitter1.setSize(evt.getComponent().getSize());
+                //String thi = evt.paramString().replaceAll("COMPONENT_RESIZED [(][0-9]+,[0-9]+ (.*)[)]", "$1");
+                //String ws = thi.replaceAll("([0-9]+)x[0-9]+", "$1");
+                //String hs = thi.replaceAll("[0-9]+x([0-9]+)", "$1");
+                //int width = Integer.parseInt(ws);
+                //int height = Integer.parseInt(hs);
+                //splitter1.setSize(width, height);
+                splitter1.setSize(layer.getSize());
+                splitter1.updateUI();
             }
         });
 
@@ -1058,6 +1063,17 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
     int tabsi = 0;
 
+    public JInternalFrame createPaletteFrame(){
+        JInternalFrame f = new JInternalFrame();
+        f.setVisible(true);
+        f.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        f.setLocation(50, 50);
+        f.setSize(200, 200);
+        f.setClosable(true);
+        layer.add(f, JLayeredPane.PALETTE_LAYER);
+        return f;
+    }
+    
     private void tabsClicked(MouseEvent evt) {
     //Leave in blank... for now...
     }

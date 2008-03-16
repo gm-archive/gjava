@@ -143,4 +143,10 @@ public class PluginHelper {
     public static ImageIcon getImageResource(String value){
         return new ImageIcon(getResource(value));
     }
+    
+    public static JInternalFrame createPaletteFrame(String title){
+        JInternalFrame f = getWindow().createPaletteFrame();
+        f.setTitle(title);
+        return f;
+    }
 }
