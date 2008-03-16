@@ -51,10 +51,12 @@ public class Statusbar extends javax.swing.JPanel {
 
         jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         extendedProgressBar1 = new org.gcreator.components.ExtendedProgressBar();
 
         jLabel5.setText("jLabel5");
 
+        setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         setMaximumSize(new java.awt.Dimension(2147483647, 20));
         setMinimumSize(new java.awt.Dimension(50, 20));
         setPreferredSize(new java.awt.Dimension(175, 20));
@@ -62,7 +64,11 @@ public class Statusbar extends javax.swing.JPanel {
 
         jLabel1.setText("Text");
         add(jLabel1, java.awt.BorderLayout.LINE_START);
-        add(extendedProgressBar1, java.awt.BorderLayout.LINE_END);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(extendedProgressBar1, java.awt.BorderLayout.LINE_END);
+
+        add(jPanel1, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
     
     
@@ -70,6 +76,7 @@ public class Statusbar extends javax.swing.JPanel {
     private org.gcreator.components.ExtendedProgressBar extendedProgressBar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     
 }

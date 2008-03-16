@@ -453,6 +453,7 @@ public class Aurwindow extends JFrame {
             psl.panelSelected(panel);
         }
     }
+    private JPanel navroot = null;
     private JComponent nav = null;
 
     public JComponent getNavigatorPanel() {
@@ -462,9 +463,9 @@ public class Aurwindow extends JFrame {
     public void updateNavigatorPanel(JComponent panel) {
         //splitter3.setBottomComponent(panel);
         nav = panel;
-        navigatorTabs.removeAll();
-        navigatorTabs.add("Workspace", treescroll);
-        navigatorTabs.add("Navigator", panel);
+        navroot.removeAll();
+        if(nav!=null)
+            navroot.add(nav, BorderLayout.CENTER);
     }
     public static JPanel nofileselnavigator;
     public static JPanel unkresnav;
@@ -488,6 +489,11 @@ public class Aurwindow extends JFrame {
     }
 
     protected Aurwindow(String[] settings) {
+        JInternalFrame internal = new JInternalFrame();
+        internal.setVisible(true);
+        internal.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        internal.setLocation(50, 50);
+        internal.setSize(200, 200);
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -510,6 +516,8 @@ public class Aurwindow extends JFrame {
         scroller.setViewportView(console);
         statusbar = new Statusbar();
         navigatorTabs = new JTabbedPane();
+        navroot = new JPanel();
+        navroot.setLayout(new BorderLayout());
 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if (ver >= 6) {
@@ -918,6 +926,7 @@ public class Aurwindow extends JFrame {
             items[MenuSupporter.GenerateMenuItemId(15, 1)].setSelected(true);
         }
         navigatorTabs.add("Workspace", treescroll);
+        navigatorTabs.add("Navigator", navroot);
         splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
@@ -941,7 +950,22 @@ public class Aurwindow extends JFrame {
         panel.add(topContainer, BorderLayout.NORTH);
         panel.add(leftContainer, BorderLayout.WEST);
         panel.add(rightContainer, BorderLayout.EAST);
-        panel.add(splitter1, BorderLayout.CENTER);
+        JLayeredPane p = new JLayeredPane();
+        p.setVisible(true);
+        panel.add(p, BorderLayout.CENTER);
+        splitter1.setVisible(true);
+        splitter1.setLocation(0, 0);
+        splitter1.setSize(p.getSize());
+        p.add(splitter1, JLayeredPane.DEFAULT_LAYER);
+        p.add(internal, JLayeredPane.PALETTE_LAYER);
+        p.addComponentListener(new ComponentListener(){
+            public void componentHidden(ComponentEvent evt){}
+            public void componentShown(ComponentEvent evt){}
+            public void componentMoved(ComponentEvent evt){}
+            public void componentResized(ComponentEvent evt){
+                splitter1.setSize(evt.getComponent().getSize());
+            }
+        });
 
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
