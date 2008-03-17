@@ -69,6 +69,15 @@ public class Aurwindow extends JFrame {
     private ChangeListener changed;
     public Statusbar statusbar;
     public JLayeredPane layer = new JLayeredPane();
+    private static boolean using = false;
+    private Vector<FileOpenListener> listeners = new Vector<FileOpenListener>();
+    private JPanel navroot = null;
+    private JComponent nav = null;
+    private Vector<PanelSelectedListener> psel = new Vector<PanelSelectedListener>();
+    public static JPanel nofileselnavigator;
+    public static JPanel unkresnav;
+    private static boolean dragging = false;
+    //</editor-fold>
 
     private boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -76,8 +85,7 @@ public class Aurwindow extends JFrame {
         }
         return false;
     }
-    //</editor-fold>
-
+    
     public void deleteFile(org.gcreator.fileclass.File o) {
         System.out.println("Delete file");
         org.gcreator.fileclass.Folder root = o.root;
@@ -121,7 +129,6 @@ public class Aurwindow extends JFrame {
         }
     }
 
-    private static boolean using = false;
     public void popupTreeMenu(MouseEvent e) {
         if(!using)
             try {
@@ -412,7 +419,6 @@ public class Aurwindow extends JFrame {
     //winlist.updateUI();
     }
     //</editor-fold>
-    private Vector<FileOpenListener> listeners = new Vector<FileOpenListener>();
 
     public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
@@ -439,7 +445,6 @@ public class Aurwindow extends JFrame {
         }
         return null;
     }
-    private Vector<PanelSelectedListener> psel = new Vector<PanelSelectedListener>();
 
     public boolean addPanelSelectedListener(PanelSelectedListener psl) {
         return psel.add(psl);
@@ -454,8 +459,6 @@ public class Aurwindow extends JFrame {
             psl.panelSelected(panel);
         }
     }
-    private JPanel navroot = null;
-    private JComponent nav = null;
 
     public JComponent getNavigatorPanel() {
         return nav;
@@ -468,8 +471,6 @@ public class Aurwindow extends JFrame {
         if(nav!=null)
             navroot.add(nav, BorderLayout.CENTER);
     }
-    public static JPanel nofileselnavigator;
-    public static JPanel unkresnav;
 
     public void updateToDefaultNavigatorPanel(TabPanel panel) {
         if (panel == null || panel.project == null) {
@@ -490,8 +491,6 @@ public class Aurwindow extends JFrame {
     }
 
     protected Aurwindow(String[] settings) {
-        JInternalFrame internal = createPaletteFrame();
-        internal.setTitle("Palette");
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
@@ -925,6 +924,65 @@ public class Aurwindow extends JFrame {
         }
         navigatorTabs.add("Workspace", treescroll);
         navigatorTabs.add("Navigator", navroot);
+        navigatorTabs.addMouseListener(new MouseListener(){
+            public void mouseExited(MouseEvent evt){}
+            public void mouseEntered(MouseEvent evt){}
+            public void mouseReleased(MouseEvent evt){
+                if(evt.getButton()!=MouseEvent.BUTTON1)
+                    return;
+                dragging = false;
+            }
+            public void mousePressed(MouseEvent evt){
+                if(evt.getButton()!=MouseEvent.BUTTON1)
+                    return;
+                if(!dragging)
+                    dragging = true;
+            }
+            public void mouseClicked(MouseEvent evt){}
+        });
+        navigatorTabs.addMouseMotionListener(new MouseMotionListener(){
+            public void mouseMoved(MouseEvent evt){}
+            public void mouseDragged(MouseEvent evt){
+                if(!dragging)
+                    return;
+                int x = evt.getXOnScreen();
+                int y = evt.getYOnScreen();
+                Point p = navigatorTabs.getLocationOnScreen();
+                int nx = p.x;
+                int ny = p.y;
+                int w = navigatorTabs.getWidth();
+                int h = navigatorTabs.getHeight();
+                int index = navigatorTabs.getSelectedIndex();
+                if(index==-1)
+                    return;
+                Component c = navigatorTabs.getSelectedComponent();
+                String title = navigatorTabs.getTitleAt(index);
+                if(x<nx||y<ny||x>nx+w||y>ny+h){
+                    Robot r = null;
+                    try{
+                        r = new Robot();
+                    }
+                    catch(Exception e){
+                        
+                    }
+                    if(r!=null)
+                        r.mouseRelease(InputEvent.BUTTON1_MASK);
+                    JInternalFrame f = new JInternalFrame();
+                    createPaletteFrame(f);
+                    f.setTitle(title);
+                    f.setLayout(new BorderLayout());
+                    f.add(c, BorderLayout.CENTER);
+                    f.setResizable(true);
+                    f.setLocation(evt.getX()-20, evt.getY()-5);
+                    try{
+                        f.setSelected(true);
+                    }
+                    catch(Exception e){}
+                    if(r!=null)
+                        r.mousePress(InputEvent.BUTTON1_MASK);
+                }
+            }
+        });
         splitter2.setDividerLocation(100);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
@@ -1065,6 +1123,16 @@ public class Aurwindow extends JFrame {
 
     public JInternalFrame createPaletteFrame(){
         JInternalFrame f = new JInternalFrame();
+        f.setVisible(true);
+        f.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
+        f.setLocation(50, 50);
+        f.setSize(200, 200);
+        f.setClosable(true);
+        layer.add(f, JLayeredPane.PALETTE_LAYER);
+        return f;
+    }
+    
+    public JInternalFrame createPaletteFrame(JInternalFrame f){
         f.setVisible(true);
         f.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
         f.setLocation(50, 50);
