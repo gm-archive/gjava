@@ -39,7 +39,10 @@ public class WorkspaceTree extends JTree{
                 setTransferHandler(new TransferHandler() {
 
                             protected Transferable createTransferable(JComponent c) {
-                                ObjectNode f = (ObjectNode) getLastSelectedPathComponent();
+                                DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+                                if(!(node instanceof ObjectNode))
+                                    return null;
+                                ObjectNode f = (ObjectNode) node;
                                 if (f.object instanceof org.gcreator.fileclass.File) {
                                     System.out.println("" + ((org.gcreator.fileclass.File) f.object).name);
                                     return ((org.gcreator.fileclass.File) f.object);

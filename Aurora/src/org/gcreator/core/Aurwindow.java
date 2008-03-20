@@ -967,17 +967,21 @@ public class Aurwindow extends JFrame {
                     }
                     if(r!=null)
                         r.mouseRelease(InputEvent.BUTTON1_MASK);
-                    JInternalFrame f = new JInternalFrame();
-                    createPaletteFrame(f);
+                    JFrame f = new JFrame(){
+                        public void dispose(){
+                            navigatorTabs.addTab(getTitle(), getContentPane());
+                            super.dispose();
+                        }
+                    };
+                    f.setAlwaysOnTop(true);
+                    f.setVisible(true);
                     f.setTitle(title);
                     f.setLayout(new BorderLayout());
+                    f.setSize(c.getSize());
                     f.add(c, BorderLayout.CENTER);
+                    f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     f.setResizable(true);
-                    f.setLocation(evt.getX()-20, evt.getY()-5);
-                    try{
-                        f.setSelected(true);
-                    }
-                    catch(Exception e){}
+                    f.setLocation(evt.getXOnScreen()-30, evt.getYOnScreen()-5);
                     if(r!=null)
                         r.mousePress(InputEvent.BUTTON1_MASK);
                 }
@@ -1124,20 +1128,18 @@ public class Aurwindow extends JFrame {
     public JInternalFrame createPaletteFrame(){
         JInternalFrame f = new JInternalFrame();
         f.setVisible(true);
-        f.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
         f.setLocation(50, 50);
         f.setSize(200, 200);
-        f.setClosable(true);
+        f.setDefaultCloseOperation((JFrame.DISPOSE_ON_CLOSE));
         layer.add(f, JLayeredPane.PALETTE_LAYER);
         return f;
     }
     
     public JInternalFrame createPaletteFrame(JInternalFrame f){
         f.setVisible(true);
-        f.putClientProperty("JInternalFrame.isPalette", Boolean.TRUE);
         f.setLocation(50, 50);
         f.setSize(200, 200);
-        f.setClosable(true);
+        f.setDefaultCloseOperation((JFrame.DISPOSE_ON_CLOSE));
         layer.add(f, JLayeredPane.PALETTE_LAYER);
         return f;
     }
