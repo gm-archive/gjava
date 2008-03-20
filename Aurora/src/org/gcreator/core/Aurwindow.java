@@ -28,6 +28,7 @@ import org.gcreator.macro.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
+import org.newdawn.slick.command.MouseButtonControl;
 
 /**
  *
@@ -130,6 +131,7 @@ public class Aurwindow extends JFrame {
     }
 
     public void popupTreeMenu(MouseEvent e) {
+        System.out.println("popup menu");
         if(!using)
             try {
                 Robot robot = new Robot();
@@ -585,10 +587,12 @@ public class Aurwindow extends JFrame {
                 if (e.getClickCount() == 2) {
                     treeDoubleClicked(e);
                 }
+                
             }
 
             public void mousePressed(MouseEvent e) {
-                if (e.isPopupTrigger()) {
+                if (e.isPopupTrigger()||e.getButton()==MouseEvent.BUTTON3) {
+                    System.out.println("Got here");
                     popupTreeMenu(e);
                 }
             }
