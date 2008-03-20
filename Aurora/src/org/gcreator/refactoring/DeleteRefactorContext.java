@@ -15,18 +15,18 @@ import org.gcreator.fileclass.*;
  * @author Luís Reis
  */
 public class DeleteRefactorContext implements RefactorContext{
-    private File deleted, refactoring;
+    private GFile deleted, refactoring;
     
-    public DeleteRefactorContext(File deleted, File refactoring){
+    public DeleteRefactorContext(GFile deleted, GFile refactoring){
         this.deleted = deleted;
         this.refactoring = refactoring;
     }
     
-    public File getRefactoringFile(){
+    public GFile getRefactoringFile(){
         return refactoring;
     }
     
-    public File getModifiedFile(){
+    public GFile getModifiedFile(){
         return deleted;
     }
     

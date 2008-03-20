@@ -33,12 +33,12 @@ public class ProjectTree {
         }
         else
             froot = root;
-        org.gcreator.fileclass.Object childNode;
+        org.gcreator.fileclass.GObject childNode;
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){
                 DefaultMutableTreeNode node = new ObjectNode(childNode);
                 froot.add(node);
-                if(childNode instanceof File)
+                if(childNode instanceof GFile)
                     node.setAllowsChildren(false);
                 if(childNode instanceof Folder){
                     importFolderToTree((Folder) childNode, node, false);

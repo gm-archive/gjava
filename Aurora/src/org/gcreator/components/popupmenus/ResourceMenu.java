@@ -115,7 +115,7 @@ public class ResourceMenu extends JPanel implements MouseListener, ActionListene
         while (e.hasMoreElements()) {
             Object object = e.nextElement();
             ObjectNode node = (ObjectNode) object;
-            if (node.object instanceof org.gcreator.fileclass.File && name.equals(node.object.name)) {
+            if (node.object instanceof org.gcreator.fileclass.GFile && name.equals(node.object.name)) {
                 return node;
             }
             if (node.object instanceof org.gcreator.fileclass.Folder) {

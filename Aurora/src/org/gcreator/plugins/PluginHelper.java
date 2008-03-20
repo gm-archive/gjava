@@ -61,7 +61,7 @@ public class PluginHelper {
         return gcreator.window.getCurrentFolder();
     }
     
-    public static org.gcreator.fileclass.Object getCurrentObject(){ //Can be project or folder
+    public static org.gcreator.fileclass.GObject getCurrentObject(){ //Can be project or folder
         return gcreator.window.getCurrentObject();
     }
     

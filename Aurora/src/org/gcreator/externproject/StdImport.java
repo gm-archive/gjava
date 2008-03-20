@@ -43,7 +43,7 @@ public class StdImport{
             }
         }
         File _file = new File(path);
-        org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(f, _file.getName().substring(0, _file.getName().lastIndexOf(".")), "", null);
+        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(f, _file.getName().substring(0, _file.getName().lastIndexOf(".")), "", null);
             file.type = path.substring(path.lastIndexOf(".") + 1);
             System.out.println(path);
             if (file.type.toLowerCase().equals("gif")) {

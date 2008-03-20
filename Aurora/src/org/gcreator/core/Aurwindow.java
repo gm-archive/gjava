@@ -87,7 +87,7 @@ public class Aurwindow extends JFrame {
         return false;
     }
     
-    public void deleteFile(org.gcreator.fileclass.File o) {
+    public void deleteFile(org.gcreator.fileclass.GFile o) {
         System.out.println("Delete file");
         org.gcreator.fileclass.Folder root = o.root;
         ObjectNode node = o.node;
@@ -96,9 +96,9 @@ public class Aurwindow extends JFrame {
         node.removeFromParent();
         root.remove(o);
         Project p = o.getProject();
-        Vector<org.gcreator.fileclass.File> files = new Vector<org.gcreator.fileclass.File>();
+        Vector<org.gcreator.fileclass.GFile> files = new Vector<org.gcreator.fileclass.GFile>();
         getFilesFromTo(p.getChildren(), files);
-        for(org.gcreator.fileclass.File file : files){
+        for(org.gcreator.fileclass.GFile file : files){
             DeleteRefactorContext context = new DeleteRefactorContext(o, file);
             RefactoringMethod method = Refactorer.getRefactoringMethod(context);
             if(method!=null)
@@ -114,15 +114,15 @@ public class Aurwindow extends JFrame {
         node.removeFromParent();
         root.remove(o);
         Project p = o.getProject();
-        Vector<org.gcreator.fileclass.File> files = new Vector<org.gcreator.fileclass.File>();
+        Vector<org.gcreator.fileclass.GFile> files = new Vector<org.gcreator.fileclass.GFile>();
         getFilesFromTo(p.getChildren(), files);
         workspace.updateUI();
     }
     
-    public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.File> to){
+    public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to){
         for(java.lang.Object o : from){
-            if(o instanceof org.gcreator.fileclass.File){
-                to.add((org.gcreator.fileclass.File) o);
+            if(o instanceof org.gcreator.fileclass.GFile){
+                to.add((org.gcreator.fileclass.GFile) o);
             }
             if(o instanceof Folder){
                 getFilesFromTo(((Folder) o).getChildren(), to);
@@ -148,19 +148,19 @@ public class Aurwindow extends JFrame {
         //modifiers -= MouseEvent.BUTTON3_DOWN_MASK;
         //modifiers += MouseEvent.BUTTON1_DOWN_MASK;
         //MouseEvent evt = new MouseEvent(workspace, MouseEvent.BUTTON1_DOWN_MASK|MouseEvent.MOUSE_CLICKED, e.getWhen(), modifiers, e.getX(), e.getY(), e.getClickCount(), false);
-        final org.gcreator.fileclass.Object o = getCurrentObject();
+        final org.gcreator.fileclass.GObject o = getCurrentObject();
         if (o == null) {
             return;
         }
         JMenuItem i = new JMenuItem("Delete");
         i.setEnabled(false);
-        if (o instanceof org.gcreator.fileclass.File) {
-            if (((org.gcreator.fileclass.File) o).root.allowsDelete(o)) {
+        if (o instanceof org.gcreator.fileclass.GFile) {
+            if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
                 i.setEnabled(true);
                 i.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
-                        deleteFile((org.gcreator.fileclass.File) o);
+                        deleteFile((org.gcreator.fileclass.GFile) o);
                     }
                 });
             }
@@ -211,14 +211,14 @@ public class Aurwindow extends JFrame {
     public void treeDoubleClicked(MouseEvent e) {
 
         if (e.getButton() == MouseEvent.BUTTON1) {
-            org.gcreator.fileclass.Object obj = getCurrentObject();
-            if (obj instanceof org.gcreator.fileclass.File) {
-                Open((org.gcreator.fileclass.File) obj);
+            org.gcreator.fileclass.GObject obj = getCurrentObject();
+            if (obj instanceof org.gcreator.fileclass.GFile) {
+                Open((org.gcreator.fileclass.GFile) obj);
             }
         }
     }
 
-    public void Open(org.gcreator.fileclass.File file) {
+    public void Open(org.gcreator.fileclass.GFile file) {
         boolean found = false;
         int iii = 0;
         int foundloc = 0;
@@ -1468,13 +1468,13 @@ public class Aurwindow extends JFrame {
         if (getCurrentObject() instanceof Folder) {
             return (Folder) getCurrentObject();
         }
-        if (getCurrentObject() instanceof org.gcreator.fileclass.File) {
-            return ((org.gcreator.fileclass.File) getCurrentObject()).root;
+        if (getCurrentObject() instanceof org.gcreator.fileclass.GFile) {
+            return ((org.gcreator.fileclass.GFile) getCurrentObject()).root;
         }
         return null;
     }
 
-    public org.gcreator.fileclass.Object getCurrentObject() {
+    public org.gcreator.fileclass.GObject getCurrentObject() {
         //Currently selected object
         if (workspace.getSelectionCount() != 1) {
             return null;
@@ -1628,7 +1628,7 @@ public class Aurwindow extends JFrame {
                     i++;
                 }
 
-                org.gcreator.fileclass.File file = addFile(getCurrentFolder(), "newImage" + i, "png");
+                org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "newImage" + i, "png");
                 break;
             case 11:
                 i = 1;
@@ -1674,7 +1674,7 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
     public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
 
-    public org.gcreator.fileclass.File addFile(Folder folder, String name, String type) {
+    public org.gcreator.fileclass.GFile addFile(Folder folder, String name, String type) {
 
         if (folder == null) {
             return null;
@@ -1685,7 +1685,7 @@ public class Aurwindow extends JFrame {
                 return null;
             }
         }
-        org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(folder, name, type, null);
+        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(folder, name, type, null);
         /*if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {
         file.treeimage = imgicon;
         }*/

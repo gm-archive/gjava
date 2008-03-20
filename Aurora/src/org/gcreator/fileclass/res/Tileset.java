@@ -14,7 +14,7 @@ import org.gcreator.fileclass.*;
  */
 public class Tileset extends Resource{
     static final long serialVersionUID = 1L;
-    public File image;
+    public GFile image;
     public int startx = 0, starty = 0, bwidth = 0, bheight = 0;
     public int tilew = 20, tileh = 20;
     

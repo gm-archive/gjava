@@ -26,12 +26,12 @@ import org.gcreator.managers.*;
  */
 public class TimelineEditor extends TabPanel {
     
-    private org.gcreator.fileclass.File file;
+    private org.gcreator.fileclass.GFile file;
     private Timeline timeline;
     int from;
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     /** Creates new form TimelineEditor */
-    public TimelineEditor(org.gcreator.fileclass.File file, Project project) throws WrongResourceException {
+    public TimelineEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
         this.file = file;
         if (file.value == null) {

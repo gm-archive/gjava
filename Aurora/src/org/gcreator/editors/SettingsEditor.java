@@ -15,7 +15,7 @@ import javax.swing.border.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.components.popupmenus.*;
-import org.gcreator.fileclass.File;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
@@ -27,7 +27,7 @@ import org.gcreator.plugins.*;
 public class SettingsEditor extends TabPanel {
     
     /** Creates new form SettingsEditor */
-    org.gcreator.fileclass.File file;
+    org.gcreator.fileclass.GFile file;
     SettingsValues value;
     TabValues Graphics, Resolution, Other, SceneOrder;
     ResourceMenu scenes;
@@ -39,10 +39,10 @@ public class SettingsEditor extends TabPanel {
         managers.add(manager);
     }
     
-    private Vector<org.gcreator.fileclass.File> scenelist;
+    private Vector<org.gcreator.fileclass.GFile> scenelist;
     
-    public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.File file) {
-        scenelist = new Vector<org.gcreator.fileclass.File>();
+    public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.GFile file) {
+        scenelist = new Vector<org.gcreator.fileclass.GFile>();
         this.file = file;
         this.project = project;
         if(file.value==null||!(file.value instanceof SettingsValues)){
@@ -844,7 +844,7 @@ public class SettingsEditor extends TabPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(scenes.getCurrentObject()!=null)
-            addScene((org.gcreator.fileclass.File) scenes.getCurrentObject().object);
+            addScene((org.gcreator.fileclass.GFile) scenes.getCurrentObject().object);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -854,7 +854,7 @@ public class SettingsEditor extends TabPanel {
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
         int to  = jList1.locationToIndex(evt.getPoint());
      if (to == from) return;
-        File remove = scenelist.remove(from);
+        GFile remove = scenelist.remove(from);
       scenelist.add(to,remove);
       from = to;
     }//GEN-LAST:event_jList1MouseDragged
@@ -868,8 +868,8 @@ public class SettingsEditor extends TabPanel {
         int pos = jList1.getSelectedIndex();
         if(pos<=0) //0 or -1
             return; //Do nothing
-        org.gcreator.fileclass.File o = (org.gcreator.fileclass.File) scenelist.get(pos);
-        org.gcreator.fileclass.File p = (org.gcreator.fileclass.File) scenelist.get(pos-1);
+        org.gcreator.fileclass.GFile o = (org.gcreator.fileclass.GFile) scenelist.get(pos);
+        org.gcreator.fileclass.GFile p = (org.gcreator.fileclass.GFile) scenelist.get(pos-1);
         scenelist.set(pos-1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos-1);
@@ -880,8 +880,8 @@ public class SettingsEditor extends TabPanel {
         int pos = jList1.getSelectedIndex();
         if(pos<0||pos>=scenelist.size()-1) //-1
             return; //Do nothing
-        org.gcreator.fileclass.File o = (org.gcreator.fileclass.File) scenelist.get(pos);
-        org.gcreator.fileclass.File p = (org.gcreator.fileclass.File) scenelist.get(pos+1);
+        org.gcreator.fileclass.GFile o = (org.gcreator.fileclass.GFile) scenelist.get(pos);
+        org.gcreator.fileclass.GFile p = (org.gcreator.fileclass.GFile) scenelist.get(pos+1);
         scenelist.set(pos+1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos+1);
@@ -892,7 +892,7 @@ public class SettingsEditor extends TabPanel {
         Graphics.setVariable("borderless", jCheckBox5.isSelected());
     }//GEN-LAST:event_jCheckBox5ActionPerformed
     
-    public void addScene(org.gcreator.fileclass.File file){
+    public void addScene(org.gcreator.fileclass.GFile file){
         scenelist.add(file);
         jList1.updateUI();
     }

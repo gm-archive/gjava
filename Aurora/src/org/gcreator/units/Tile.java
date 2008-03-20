@@ -15,7 +15,7 @@ import org.gcreator.fileclass.res.*;
  * @author luis
  */
 public class Tile {
-    public File tileset = null;
+    public GFile tileset = null;
     public int sx = 0;
     public int sy = 0;
     public int width = 20;

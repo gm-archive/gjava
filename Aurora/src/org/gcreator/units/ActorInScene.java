@@ -24,7 +24,7 @@ public class ActorInScene implements Serializable {
     public int y;
     public double id;
     
-    public ActorInScene(org.gcreator.fileclass.File actor, int x, int y,double id){
+    public ActorInScene(org.gcreator.fileclass.GFile actor, int x, int y,double id){
         //this.actor = actor;
         Sactor = actor.name;
         this.x = x;

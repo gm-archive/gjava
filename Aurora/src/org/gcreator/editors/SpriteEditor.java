@@ -20,7 +20,7 @@ import javax.swing.*;
  */
 public class SpriteEditor extends TabPanel {
     
-    public org.gcreator.fileclass.File file = null;
+    public org.gcreator.fileclass.GFile file = null;
     public Sprite sprite;
     boolean changed;
     private SubimagePreview prev;
@@ -28,7 +28,7 @@ public class SpriteEditor extends TabPanel {
     ResourceMenu res;
     
     /** Creates new form SpriteEditor */
-    public SpriteEditor(org.gcreator.fileclass.File file,Project project) {
+    public SpriteEditor(org.gcreator.fileclass.GFile file,Project project) {
         this.project = project;
         this.file = file;
         //title = file.name + "(" + project.name+")";
@@ -595,7 +595,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) res.getCurrentObject().object;
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getCurrentObject().object;
         Object o = a.value;
         if (sprite.countImages()  == 0){
             sprite.width = ((ImageIcon) o).getIconWidth();
@@ -605,7 +605,7 @@ public class SpriteEditor extends TabPanel {
         }
         
         if ((sprite.width == ((ImageIcon) o).getIconWidth()) && sprite.height == ((ImageIcon) o).getIconHeight() )
-            sprite.addToList((org.gcreator.fileclass.File) res.getCurrentObject().object);
+            sprite.addToList((org.gcreator.fileclass.GFile) res.getCurrentObject().object);
         else
             System.out.println("Image not right size!");
         jLabel4.setText("Subimages:"+sprite.countImages());

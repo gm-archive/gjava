@@ -65,15 +65,15 @@ public class ProjectExporter {
     private static int a;
     
     public static void putFolder(Folder folder, String prefix, ZipOutputStream out){
-        org.gcreator.fileclass.Object childNode;
+        org.gcreator.fileclass.GObject childNode;
 
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
-                if (childNode instanceof org.gcreator.fileclass.File) {
+                if (childNode instanceof org.gcreator.fileclass.GFile) {
                     try{
-                        out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.File)childNode).type));
-                        ((org.gcreator.fileclass.File) childNode).writeToBuffer(out);
+                        out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.GFile)childNode).type));
+                        ((org.gcreator.fileclass.GFile) childNode).writeToBuffer(out);
                         out.closeEntry();
                     }
                     catch(IOException e){
@@ -99,12 +99,12 @@ public class ProjectExporter {
 
     public static String getContent(String prefix, Folder folder) {
         String content = "";
-        org.gcreator.fileclass.Object childNode;
+        org.gcreator.fileclass.GObject childNode;
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
                 content += "<file type=\"" + childNode.getClass().getName() + "\">" + prefix + childNode.name;
-                if (childNode instanceof org.gcreator.fileclass.File) {
-                    content += "." + ((org.gcreator.fileclass.File) childNode).type;
+                if (childNode instanceof org.gcreator.fileclass.GFile) {
+                    content += "." + ((org.gcreator.fileclass.GFile) childNode).type;
                 }
                 content += "</file>";
                 if (childNode instanceof Folder) {

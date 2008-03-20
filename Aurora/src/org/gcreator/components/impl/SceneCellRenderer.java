@@ -31,7 +31,7 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
             }
         }
 
-        if (!(value instanceof org.gcreator.fileclass.File)) {
+        if (!(value instanceof org.gcreator.fileclass.GFile)) {
             val = "Invalid scene";
             if (selected) {
                 col = Color.YELLOW;
@@ -39,12 +39,12 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
                 col = Color.RED;
             }
         } else {
-            Object o = ((org.gcreator.fileclass.File) value).value;
+            Object o = ((org.gcreator.fileclass.GFile) value).value;
             if (!(o instanceof Scene)) {
                 val = "Invalid scene";
                 col = Color.RED;
             } else {
-                val = ((Scene) ((org.gcreator.fileclass.File) value).value).name;
+                val = ((Scene) ((org.gcreator.fileclass.GFile) value).value).name;
             }
         }
 

@@ -29,7 +29,7 @@ import org.gcreator.fileclass.res.Sound;
  * @author  TGMG
  */
 public class SoundEditor extends TabPanel {
-    private org.gcreator.fileclass.File file;
+    private org.gcreator.fileclass.GFile file;
     static int number = 0;
     AudioSystem audio;
     private AudioTrack targetSound;
@@ -37,7 +37,7 @@ public class SoundEditor extends TabPanel {
      * @param file
      * @param project 
      */
-    public SoundEditor(org.gcreator.fileclass.File file,Project project) {
+    public SoundEditor(org.gcreator.fileclass.GFile file,Project project) {
         if(!(file.value instanceof Sound))
             file.value = new Sound(file.name);
         this.project = project;

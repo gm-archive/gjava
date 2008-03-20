@@ -79,7 +79,7 @@ public class ProjectImporter {
                         if (tname.indexOf("/") != -1) {
                             tname = tname.substring(tname.lastIndexOf("/") + 1);
                         }
-                        org.gcreator.fileclass.File file = new org.gcreator.fileclass.File(project.findFolder(dir), tname, ssss[1], null);
+                        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(project.findFolder(dir), tname, ssss[1], null);
                         //file.value = Stringfiles.elementAt(fileno);
                         file.value = objects.elementAt(fileno);
 //                        if (ssss[1].equals("settings")) {

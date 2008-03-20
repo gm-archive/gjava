@@ -18,7 +18,7 @@ public class BackgroundInScene implements Serializable{
     static final long serialVersionUID = 1L;
     
     public String name;
-    public org.gcreator.fileclass.File image;
+    public org.gcreator.fileclass.GFile image;
     public static final int MODE_SINGLE = 0;
     public static final int MODE_REPEAT = 1;
     public static final int MODE_STRETCH = 2;

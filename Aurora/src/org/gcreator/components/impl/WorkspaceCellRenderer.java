@@ -105,39 +105,39 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
             setIcon(workspace);
         } else {
             ObjectNode noder = (ObjectNode) node;
-            if (noder.object instanceof org.gcreator.fileclass.File) {
-                if (((org.gcreator.fileclass.File) noder.object).type.equals("txt")) {
+            if (noder.object instanceof org.gcreator.fileclass.GFile) {
+                if (((org.gcreator.fileclass.GFile) noder.object).type.equals("txt")) {
                     setIcon(text);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gif")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gif")) {
                     //setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
                     setIcon(img);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("jpg")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("jpg")) {
                     //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
                     setIcon(img);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("png")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("png")) {
                     //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
                     setIcon(img);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("java")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("java")) {
                     setIcon(java);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("actor")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("actor")) {
                     setIcon(actor);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("tileset")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("tileset")) {
                     setIcon(tileset);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("sprite")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("sprite")) {
                     setIcon(sprite);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("egml")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("egml")) {
                     setIcon(GCL);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gcl")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gcl")) {
                     setIcon(GCL);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("gs")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gs")) {
                     setIcon(script);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("timeline")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("timeline")) {
                     setIcon(timeline);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("scene")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("scene")) {
                     setIcon(scene);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("wav"))  {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("wav"))  {
                     setIcon(sound);
-                } else if (((org.gcreator.fileclass.File) noder.object).type.equals("mid"))  {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("mid"))  {
                     setIcon(sound);
                 } else if (UIManager.get("Tree.leafIcon") != null) {
                     setIcon((Icon) UIManager.get("Tree.leafIcon"));

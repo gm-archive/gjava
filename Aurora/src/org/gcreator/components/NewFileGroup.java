@@ -162,7 +162,7 @@ public class NewFileGroup extends TabPanel {
         return gcreator.window.getCurrentFolder();
     }
 
-    public org.gcreator.fileclass.Object getCurrentObject() {
+    public org.gcreator.fileclass.GObject getCurrentObject() {
         return gcreator.window.getCurrentObject();
     }
     

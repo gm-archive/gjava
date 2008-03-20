@@ -30,7 +30,7 @@ public class GCLEditor extends TabPanel {
 
     public boolean changed = true;
     private SyntaxHighlighter g;
-    public org.gcreator.fileclass.File file;
+    public org.gcreator.fileclass.GFile file;
 
     public boolean Save() {
         file.value = g.getText();
@@ -44,7 +44,7 @@ public class GCLEditor extends TabPanel {
      * Creates new form GCLEditor
      * @param file 
      */
-    public GCLEditor(org.gcreator.fileclass.File file, Project project) {
+    public GCLEditor(org.gcreator.fileclass.GFile file, Project project) {
         this.file = file;
         this.project = project;
         initComponents();

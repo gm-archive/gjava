@@ -18,27 +18,27 @@ import javax.swing.ImageIcon;
  *
  * @author Luís
  */
-public class Folder extends Object implements Serializable{
-    protected Vector<Object> childNodes;
+public class Folder extends GObject implements Serializable{
+    protected Vector<GObject> childNodes;
     static final long serialVersionUID = 1L;
     //used for serialize
     public Folder(){}
     
     public Folder(String name){
         super(name);
-        childNodes = new Vector<Object>(); //Up to 100 childNodes
+        childNodes = new Vector<GObject>(); //Up to 100 childNodes
     }
     
     public Vector getChildren(){
         return childNodes;
     }
     
-    public boolean add(Object node){
+    public boolean add(GObject node){
         int i = 0;
         return childNodes.add(node);
     }
     
-    public Folder magicAddition(File file)
+    public Folder magicAddition(GFile file)
     {
         return magicAddition(file.type);
     }
@@ -56,7 +56,7 @@ public class Folder extends Object implements Serializable{
         return null;
     }
     
-    public int find(Object search){
+    public int find(GObject search){
         if(childNodes==null)
             return -1;
         for(int i = 0; i < childNodes.size(); i++)
@@ -74,7 +74,7 @@ public class Folder extends Object implements Serializable{
         return -1;
     }
     
-    public Object childAt(int pos){
+    public GObject childAt(int pos){
         return childNodes.get(pos);
     }
     
@@ -98,11 +98,11 @@ public class Folder extends Object implements Serializable{
         return true;
     }
     
-    public boolean allowsDelete(Object o){
+    public boolean allowsDelete(GObject o){
         return true;
     }
     
-    public void remove(Object o){
+    public void remove(GObject o){
         childNodes.remove(o);
     }
     
@@ -129,7 +129,7 @@ public class Folder extends Object implements Serializable{
             if(!name.substring(name.indexOf("/")).equals(name))
                 throw new NoSuchFolderException();
         for(int i = 0; i < childNodes.size(); i++){
-            Object o = childNodes.get(i);
+            GObject o = childNodes.get(i);
             if(o != null && o instanceof Folder){
                 try{
                     Folder a = ((Folder) o).findFolder(name.substring(name.indexOf(name)));

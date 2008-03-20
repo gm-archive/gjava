@@ -16,8 +16,7 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
-import org.gcreator.fileclass.File;
-import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.*;
 
 /**
  *
@@ -26,14 +25,14 @@ import org.gcreator.fileclass.Project;
 public class ImageEditor extends TabPanel {
 
     /** Creates new form ImageEditor */
-    private org.gcreator.fileclass.File file;
+    private org.gcreator.fileclass.GFile file;
     private ImageDisplayer displayer;
 
     public Color getTransparencyColor(){
         return colorSelection1.getBackground();
     }
     
-    public ImageEditor(org.gcreator.fileclass.File file, Project project) {
+    public ImageEditor(org.gcreator.fileclass.GFile file, Project project) {
         this.project = project;
         this.file = file;
         displayer = new ImageDisplayer(this, file);

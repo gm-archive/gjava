@@ -13,17 +13,17 @@ package org.gcreator.managers;
  * @author Luís
  */
 public class FilesClipboard {
-    private static org.gcreator.fileclass.Object obj = null;
+    private static org.gcreator.fileclass.GObject obj = null;
     
-    public static void setClipboardObject(org.gcreator.fileclass.Object object){
+    public static void setClipboardObject(org.gcreator.fileclass.GObject object){
         obj = object;
     }
     
-    public static org.gcreator.fileclass.Object getCliboardObject(){
+    public static org.gcreator.fileclass.GObject getCliboardObject(){
         return obj;
     }
     
-    public static org.gcreator.fileclass.Object copyObject(){
+    public static org.gcreator.fileclass.GObject copyObject(){
         return obj.clone();
     }
 }

@@ -36,7 +36,7 @@ import org.gcreator.managers.LangSupporter;
 
 public class ActorEditor extends TabPanel {
 
-    public org.gcreator.fileclass.File file = null;
+    public org.gcreator.fileclass.GFile file = null;
     public boolean changed = false;
     public EventListModel elist;
     Actor actor;
@@ -75,12 +75,12 @@ public class ActorEditor extends TabPanel {
     }
     
     public void spriteChanged() {
-        ((Actor) file.value).sprite = ((org.gcreator.fileclass.File) spriteres.getObjectWithName(spriteres.label.getText()).object).name;
+        ((Actor) file.value).sprite = ((org.gcreator.fileclass.GFile) spriteres.getObjectWithName(spriteres.label.getText()).object).name;
         updateNavigator();
     }
 
     /** Creates new form ActorEditor2 */
-    public ActorEditor(org.gcreator.fileclass.File file, Project project) throws WrongResourceException {
+    public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
         if (file.value == null) {
             this.actor = new Actor(file.name);

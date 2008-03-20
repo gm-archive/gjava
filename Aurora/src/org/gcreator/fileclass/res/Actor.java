@@ -32,10 +32,10 @@ static final long serialVersionUID = 1L;
         events = new Vector(); //<Event>
     }
     
-    public org.gcreator.fileclass.File getSpriteFile()
+    public org.gcreator.fileclass.GFile getSpriteFile()
     {
         try{
-            return  ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(sprite,"sprite",gcreator.window.getCurrentProject()).object);
+            return  ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(sprite,"sprite",gcreator.window.getCurrentProject()).object);
         }
         catch(Exception e){
             return null;

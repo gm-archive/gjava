@@ -17,15 +17,15 @@ import org.gcreator.components.*;
  *
  * @author Luís
  */
-public class Object implements Serializable {
+public class GObject implements Serializable {
     static final long serialVersionUID = 1L;
     public String name;
     public ObjectNode node;
     
     //Used for serilization only
-    public Object(){}
+    public GObject(){}
     
-    public Object(String name){
+    public GObject(String name){
         this.name = name;
     }
     
@@ -40,8 +40,8 @@ public class Object implements Serializable {
     public boolean editable = true;
     
      
-    public Object clone(){
-        Object o = new Object(name);
+    public GObject clone(){
+        GObject o = new GObject(name);
         o.node = (ObjectNode) node.clone();
         return o;
     }

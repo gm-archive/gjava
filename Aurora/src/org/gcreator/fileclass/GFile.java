@@ -29,7 +29,7 @@ import org.gcreator.fileclass.res.*;
  *
  * @author Luís
  */
-public class File extends Object implements Transferable {
+public class GFile extends GObject implements Transferable {
 
     static final long serialVersionUID = 1L;
     public static final DataFlavor NODE_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, "Node");
@@ -44,7 +44,7 @@ public class File extends Object implements Transferable {
     private static final ObjectStreamField[] serialPersistentFields = {/*new ObjectStreamField("root", Folder.class),*/ new ObjectStreamField("type", String.class), 
     new ObjectStreamField("value", java.lang.Object.class)};
 
-    public File(Folder root, String name, String type, Object value) {
+    public GFile(Folder root, String name, String type, GObject value) {
         super(name);
         this.root = root;
         this.type = type;
@@ -52,7 +52,7 @@ public class File extends Object implements Transferable {
         root.add(this);
     }
 
-    private File(String name, String type) {
+    private GFile(String name, String type) {
         super(name);
         this.type = type;
     }
@@ -151,8 +151,8 @@ public class File extends Object implements Transferable {
         return null;
     }
 
-    public Object clone() {
-        File o = new File(name, type);
+    public GObject clone() {
+        GFile o = new GFile(name, type);
         if (value instanceof Resource) {
             o.value = ((Resource) value).clone();
         } else if (value instanceof ImageIcon) {
@@ -171,7 +171,7 @@ public class File extends Object implements Transferable {
         return flavor == NODE_FLAVOR;
     }
 
-    public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+    public GObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         if (flavor != NODE_FLAVOR) {
             throw new UnsupportedFlavorException(flavor);
         }

@@ -32,7 +32,7 @@ public class SceneEditor extends TabPanel {
     
     /** Creates new form SceneEditor */
     public ScenePanel scene;
-    public org.gcreator.fileclass.File file;
+    public org.gcreator.fileclass.GFile file;
     public ViewsModel model;
     public BackgroundsModel bgmodel;
     public boolean changed = false;
@@ -46,7 +46,7 @@ public class SceneEditor extends TabPanel {
     }*/
     
     public ActorInScene makeNewActor(int x, int y){
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) curactor.getCurrentObject().object;
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) curactor.getCurrentObject().object;
         instanceids++;
         return new ActorInScene(a, x, y, instanceids);
     }
@@ -60,7 +60,7 @@ public class SceneEditor extends TabPanel {
      * @return The current tileset
      */
     public Tileset getTileset(){
-        return (Tileset) ((org.gcreator.fileclass.File) curtileset.getCurrentObject().object).value;
+        return (Tileset) ((org.gcreator.fileclass.GFile) curtileset.getCurrentObject().object).value;
     }
     
     /**
@@ -74,8 +74,8 @@ public class SceneEditor extends TabPanel {
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            ObjectNode k = (((Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(ais.Sactor,"actor",gcreator.window.getCurrentProject()).object).value).getSpriteFile()).node;
-            Sprite j = (Sprite) ((org.gcreator.fileclass.File) k.object).value;
+            ObjectNode k = (((Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(ais.Sactor,"actor",gcreator.window.getCurrentProject()).object).value).getSpriteFile()).node;
+            Sprite j = (Sprite) ((org.gcreator.fileclass.GFile) k.object).value;
             ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
@@ -92,13 +92,13 @@ public class SceneEditor extends TabPanel {
     }
     
     public void updateImage(){
-        org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.File) curactor.getCurrentObject().object).value;
-        org.gcreator.fileclass.File t = b.getSpriteFile();
+        org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.GFile) curactor.getCurrentObject().object).value;
+        org.gcreator.fileclass.GFile t = b.getSpriteFile();
         if(t==null)
             return;
         ObjectNode c = t.node;
         if(c!=null){
-            org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
+            org.gcreator.fileclass.GFile d = (org.gcreator.fileclass.GFile) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
             ImageIcon h = f.getImageAt(0);
             jLabel18.setIcon(h);
@@ -122,7 +122,7 @@ public class SceneEditor extends TabPanel {
     public SyntaxHighlighter egml;
     public TileChooser tilechooser;
     
-    public SceneEditor(final org.gcreator.fileclass.File file,Project project) {
+    public SceneEditor(final org.gcreator.fileclass.GFile file,Project project) {
         if(!(file.value instanceof Scene))
             file.value = new Scene(file.name);
         this.file = file;
@@ -158,7 +158,7 @@ public class SceneEditor extends TabPanel {
             public void actionPerformed(ActionEvent evt){
                 Scene s = (Scene) file.value;
                 BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
-                bg.image = (org.gcreator.fileclass.File) curbg.getCurrentObject().object;
+                bg.image = (org.gcreator.fileclass.GFile) curbg.getCurrentObject().object;
                 updateBgImage();
             }
         });
@@ -1533,7 +1533,7 @@ public class SceneEditor extends TabPanel {
         tile.sy = (Integer) jSpinner14.getValue();
         tile.width = (Integer) jSpinner15.getValue();
         tile.height = (Integer) jSpinner16.getValue();
-        tile.tileset = (org.gcreator.fileclass.File) curtileset.getCurrentObject().object;
+        tile.tileset = (org.gcreator.fileclass.GFile) curtileset.getCurrentObject().object;
         tile.depth = (Integer) jSpinner17.getValue();
         return tile;
     }

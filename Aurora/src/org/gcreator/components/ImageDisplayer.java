@@ -16,11 +16,11 @@ import org.gcreator.editors.ImageEditor;
 public class ImageDisplayer extends javax.swing.JPanel {
 
     /** Creates new form ImageDisplayer */
-    private org.gcreator.fileclass.File file;
+    private org.gcreator.fileclass.GFile file;
     public double zoom = 1;
     public ImageEditor e;
 
-    public ImageDisplayer(ImageEditor e, org.gcreator.fileclass.File file) {
+    public ImageDisplayer(ImageEditor e, org.gcreator.fileclass.GFile file) {
         initComponents();
         this.file = file;
         this.e = e;

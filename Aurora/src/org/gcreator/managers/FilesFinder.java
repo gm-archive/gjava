@@ -19,12 +19,12 @@ public class FilesFinder {
     public static int getFileCountAt(Folder folder, String format){
         if(folder==null||format==null)
             return 0;
-        org.gcreator.fileclass.Object o;
+        org.gcreator.fileclass.GObject o;
         int a = folder.getChildNum();
         for(int i = 0; i < folder.getChildNum(); i++){
             o = folder.childAt(i);
-            if(o instanceof org.gcreator.fileclass.File){
-                org.gcreator.fileclass.File f = (org.gcreator.fileclass.File) o;
+            if(o instanceof org.gcreator.fileclass.GFile){
+                org.gcreator.fileclass.GFile f = (org.gcreator.fileclass.GFile) o;
                 if(!f.type.equals(format))
                     a--;
             }
@@ -40,17 +40,17 @@ public class FilesFinder {
     
     protected static int pos;
     
-    public static org.gcreator.fileclass.File[] getFilesAt(Folder folder, String format){
-        org.gcreator.fileclass.File[] files = new org.gcreator.fileclass.File[getFileCountAt(folder,format)];
+    public static org.gcreator.fileclass.GFile[] getFilesAt(Folder folder, String format){
+        org.gcreator.fileclass.GFile[] files = new org.gcreator.fileclass.GFile[getFileCountAt(folder,format)];
         pos = 0;
         return _getFilesAt(files, folder, format);
     }
     
-    private static org.gcreator.fileclass.File[] _getFilesAt(org.gcreator.fileclass.File[] files, Folder folder, String format){
+    private static org.gcreator.fileclass.GFile[] _getFilesAt(org.gcreator.fileclass.GFile[] files, Folder folder, String format){
         for(int i = 0; i < folder.getChildNum(); i++){
-            org.gcreator.fileclass.Object o = folder.childAt(i);
-            if(o instanceof org.gcreator.fileclass.File){
-                org.gcreator.fileclass.File f = (org.gcreator.fileclass.File) o;
+            org.gcreator.fileclass.GObject o = folder.childAt(i);
+            if(o instanceof org.gcreator.fileclass.GFile){
+                org.gcreator.fileclass.GFile f = (org.gcreator.fileclass.GFile) o;
                 if(f.type.equals(format)){
                     files[pos++] = f;
                 }

@@ -16,7 +16,7 @@ import org.gcreator.fileclass.*;
 public class StructureEditor extends TabPanel {
     
     /** Creates new form StructureEditor */
-    public StructureEditor(File file, Project project) {
+    public StructureEditor(GFile file, Project project) {
         initComponents();
     }
     

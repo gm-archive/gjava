@@ -43,9 +43,9 @@ public class WorkspaceTree extends JTree{
                                 if(!(node instanceof ObjectNode))
                                     return null;
                                 ObjectNode f = (ObjectNode) node;
-                                if (f.object instanceof org.gcreator.fileclass.File) {
-                                    System.out.println("" + ((org.gcreator.fileclass.File) f.object).name);
-                                    return ((org.gcreator.fileclass.File) f.object);
+                                if (f.object instanceof org.gcreator.fileclass.GFile) {
+                                    System.out.println("" + ((org.gcreator.fileclass.GFile) f.object).name);
+                                    return ((org.gcreator.fileclass.GFile) f.object);
                                 } else {
                                     return null;
                                 }
@@ -68,7 +68,7 @@ public class WorkspaceTree extends JTree{
                                 //if (dragNode == dropNode) return false;
 		//if (dragNode.isNodeDescendant(dropNode)) return false;
                                 if (dropNode.object instanceof org.gcreator.fileclass.Group) {
-                                    if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.File) dragNode.object).type)) {
+                                    if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.GFile) dragNode.object).type)) {
                                         return true;
                                     } else {
                                         return false;

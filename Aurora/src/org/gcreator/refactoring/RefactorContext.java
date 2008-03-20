@@ -13,7 +13,7 @@ package org.gcreator.refactoring;
  * @author Luís Reis
  */
 public interface RefactorContext {
-    public org.gcreator.fileclass.File getModifiedFile();
-    public org.gcreator.fileclass.File getRefactoringFile();
+    public org.gcreator.fileclass.GFile getModifiedFile();
+    public org.gcreator.fileclass.GFile getRefactoringFile();
     public String getRefactoringDescription();
 }

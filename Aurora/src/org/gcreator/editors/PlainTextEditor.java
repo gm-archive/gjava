@@ -19,10 +19,10 @@ public class PlainTextEditor extends TabPanel {
     
     /** Creates new form PlainTextEditor */
     
-    public org.gcreator.fileclass.File file;
+    public org.gcreator.fileclass.GFile file;
     public boolean changed = false;
     
-    public PlainTextEditor(org.gcreator.fileclass.File file,Project project) {
+    public PlainTextEditor(org.gcreator.fileclass.GFile file,Project project) {
         this.project = project;
         initComponents();
         jTextPane1.setText((String) file.value);

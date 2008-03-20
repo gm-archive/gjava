@@ -25,7 +25,7 @@ public class TilesetPreviewer extends JComponent{
             return null;
         if(editor.value==null)
             return null;
-        org.gcreator.fileclass.File imgFile = editor.value.image;
+        org.gcreator.fileclass.GFile imgFile = editor.value.image;
         if(imgFile==null)
             return null;
         if(imgFile.value instanceof ImageIcon)

@@ -35,35 +35,35 @@ public class PlatformCore extends PluginCore {
     Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
 
     public void putFolder(Folder folder) {
-        org.gcreator.fileclass.Object childNode;
+        org.gcreator.fileclass.GObject childNode;
 
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
-                if (childNode instanceof org.gcreator.fileclass.File) {
+                if (childNode instanceof org.gcreator.fileclass.GFile) {
                     try {
-                        System.out.println(""+((org.gcreator.fileclass.File) childNode).type);
+                        System.out.println(""+((org.gcreator.fileclass.GFile) childNode).type);
                         
-                        if (((org.gcreator.fileclass.File) childNode).type.equals("settings")) {
-                            parseSettings((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
+                        if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
+                            parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         }
                         
-                        if (((org.gcreator.fileclass.File) childNode).type.equals("sprite")) {
-                            parseSprite((Sprite) ((org.gcreator.fileclass.File) childNode).value);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("actor")) {
-                            parseActor((Actor) ((org.gcreator.fileclass.File) childNode).value);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("scene")) {
-                            parseScene((Scene) ((org.gcreator.fileclass.File) childNode).value);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("jpg")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("png")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("gif")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.File) childNode).value, (org.gcreator.fileclass.File) childNode);
-                        } else if (((org.gcreator.fileclass.File) childNode).type.equals("egml")) {
-                            parseClass((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
-                       } else if (((org.gcreator.fileclass.File) childNode).type.equals("settings")) {
-                            parseSettings((String) ((org.gcreator.fileclass.File) childNode).value,((org.gcreator.fileclass.File) childNode).name);
+                        if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
+                            parseSprite((Sprite) ((org.gcreator.fileclass.GFile) childNode).value);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("actor")) {
+                            parseActor((Actor) ((org.gcreator.fileclass.GFile) childNode).value);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
+                            parseScene((Scene) ((org.gcreator.fileclass.GFile) childNode).value);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("jpg")) {
+                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
+                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
+                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("egml")) {
+                            parseClass((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+                       } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
+                            parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         }
                     } catch (Exception e) {
                     }
@@ -91,7 +91,7 @@ public class PlatformCore extends PluginCore {
         System.out.println("" + s.name);
     }
 
-    public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
+    public void parseImage(ImageIcon i, org.gcreator.fileclass.GFile f) {
         System.out.println("called wrong method!");
     }
 

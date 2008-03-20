@@ -15,8 +15,8 @@ import javax.swing.*;
 public class ActorNavigator extends JPanel {
     
     /** Creates new form ActorNavigator */
-    private org.gcreator.fileclass.File actor;
-    public ActorNavigator(org.gcreator.fileclass.File actor) {
+    private org.gcreator.fileclass.GFile actor;
+    public ActorNavigator(org.gcreator.fileclass.GFile actor) {
         this.actor = actor;
         initComponents();
     }

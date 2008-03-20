@@ -23,7 +23,7 @@ import org.gcreator.managers.*;
  */
 public class TilesetEditor extends TabPanel {
     
-    public org.gcreator.fileclass.File file;
+    public org.gcreator.fileclass.GFile file;
     public Tileset value;
     public ResourceMenu res;
     
@@ -32,7 +32,7 @@ public class TilesetEditor extends TabPanel {
     }
     
     /** Creates new form TilesetEditor */
-    public TilesetEditor(org.gcreator.fileclass.File file,Project project) {
+    public TilesetEditor(org.gcreator.fileclass.GFile file,Project project) {
         this.project = project;
         this.file = file;
         if(file.value == null || !(file.value instanceof Tileset))
@@ -46,7 +46,7 @@ public class TilesetEditor extends TabPanel {
         jPanel2.add(res = new ResourceMenu("image",k,true,project));
         res.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                value.image = (org.gcreator.fileclass.File) res.getCurrentObject().object;
+                value.image = (org.gcreator.fileclass.GFile) res.getCurrentObject().object;
                 jScrollPane1.updateUI();
             }
         });

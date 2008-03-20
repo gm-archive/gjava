@@ -49,11 +49,11 @@ public class ExtensionProject extends Project {
         return group;
     }
     
-    public org.gcreator.fileclass.File[] getJavaFiles(){
+    public org.gcreator.fileclass.GFile[] getJavaFiles(){
         return org.gcreator.managers.FilesFinder.getFilesAt(this, "java");
     }
     
-    public org.gcreator.fileclass.File[] getCppFiles(){
+    public org.gcreator.fileclass.GFile[] getCppFiles(){
         return org.gcreator.managers.FilesFinder.getFilesAt(this, "cpp");
     }
     

@@ -34,7 +34,7 @@ public class Sprite extends Resource {
         if(pos>=Simages.size())
             return null;
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) Simages.elementAt(pos);
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
         if(a==null)
             return null;
         if(a.value instanceof ImageIcon)
@@ -42,11 +42,11 @@ public class Sprite extends Resource {
         return null;
     }
     
-    public org.gcreator.fileclass.File getAt(int pos){
+    public org.gcreator.fileclass.GFile getAt(int pos){
         if(pos>=Simages.size())
             return null;
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.File a = (org.gcreator.fileclass.File) Simages.elementAt(pos);
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
         return a;
     }
     
@@ -54,7 +54,7 @@ public class Sprite extends Resource {
         return Simages.size();
     }
     
-    public void addToList(org.gcreator.fileclass.File i){
+    public void addToList(org.gcreator.fileclass.GFile i){
         //images.add(i);
         Simages.add(i);
     }

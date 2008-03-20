@@ -41,8 +41,8 @@ public class TilesetDropImageMethod implements RefactoringMethod{
         if(!(context instanceof DeleteRefactorContext))
             return;
         DeleteRefactorContext delc = (DeleteRefactorContext) context;
-        File refactoring = delc.getRefactoringFile();
-        File deleted = delc.getModifiedFile();
+        GFile refactoring = delc.getRefactoringFile();
+        GFile deleted = delc.getModifiedFile();
         if(refactoring==null||deleted==null)
             return;
         Tileset tileset = (Tileset) refactoring.value;

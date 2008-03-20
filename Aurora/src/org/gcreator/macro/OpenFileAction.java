@@ -13,14 +13,14 @@ import org.gcreator.fileclass.*;
  * @author Luís
  */
 public class OpenFileAction implements MacroAction{
-    private File file;
-    public OpenFileAction(File file){
+    private GFile file;
+    public OpenFileAction(GFile file){
         this.file = file;
     }
-    public File getFile(){
+    public GFile getFile(){
         return file;
     }
-    public void setFile(File file){
+    public void setFile(GFile file){
         this.file = file;
     }
     public void play(){

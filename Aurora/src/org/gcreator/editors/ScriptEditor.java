@@ -24,9 +24,9 @@ import publicdomain.*;
 public class ScriptEditor extends TabPanel {
     
     SyntaxHighlighter g;
-    org.gcreator.fileclass.File file;
+    org.gcreator.fileclass.GFile file;
     /** Creates new form ScriptEditor */
-    public ScriptEditor(org.gcreator.fileclass.File file,Project project) {
+    public ScriptEditor(org.gcreator.fileclass.GFile file,Project project) {
         initComponents();
         
         if(file.value==null)
