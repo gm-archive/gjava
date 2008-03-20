@@ -1,12 +1,12 @@
 #ifndef _GCPP_COMPONENTS_SPRITE_
 #define _GCPP_COMPONENTS_SPRITE_
 
-#include "../compilers/declare.h"
+#include "../declare.h"
 
 org::gcreator::Components::Sprite::Sprite()
 {
 	images = NULL;
-        frame = 0
+	frame = 0;
 }
 
 int org::gcreator::Components::Sprite::getImageCount()
@@ -71,23 +71,23 @@ int org::gcreator::Components::Sprite::getFrame()
         return frame;
 }
 
-int org::gcreator::Components::Sprite::setFrame(int _frame)
+void org::gcreator::Components::Sprite::setFrame(int _frame)
 {
         frame=_frame;
 }
 
-int org::gcreator::Components::Sprite::blit(org::gcreator::Components::Sprite img, int x, int y, int _frame)
+int org::gcreator::Components::Sprite::blit(org::gcreator::Components::Sprite* img, int x, int y, int _frame)
 {
         SDL_Rect s;
         s.x=x;
         s.y=y;
         if(_frame==-1)
         {
-            SDL_BlitSurface((img.getImageArray)[0],NULL,screen,s);
+            SDL_BlitSurface((img->getImageArray()[0])->img,NULL, Application::getScreenSurface(), &s);
         }
         else
         {
-            SDL_BlitSurface((img.getImageArray)[frame],NULL,screen,s);
+            SDL_BlitSurface((img->getImageArray()[frame])->img,NULL, Application::getScreenSurface(), &s);
             setFrame(_frame++);
             if(getFrame()>getImageCount())
             {

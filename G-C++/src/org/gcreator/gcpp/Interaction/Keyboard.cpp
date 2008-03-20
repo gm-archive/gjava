@@ -1,14 +1,14 @@
 #ifndef _GCPP_INTERACTION_KEYBOARD_
 #define _GCPP_INTERACTION_KEYBOARD_
 
-#include "../compilers/declare.h"
+#include "../declare.h"
 #include <SDL/SDL.h>
 
 
 String* org::gcreator::Interaction::Keyboard::getKeyState(){
     String* a = (String*) malloc(sizeof(String)*100);
     int b = 0;
-    Uint8 *key=SDL_GetKeyStates(NULL);
+    Uint8 *key=SDL_GetKeyState(NULL);
     if(key[SDLK_a])
         a[b++] = "A";
     if(key[SDLK_b])
@@ -61,25 +61,25 @@ String* org::gcreator::Interaction::Keyboard::getKeyState(){
         a[b++] = "Y";
     if(key[SDLK_z])
         a[b++] = "Z";
-    if(key[KEY_0]||key[SDL_KP0])
+    if(key[SDLK_0]||key[SDLK_KP0])
         a[b++] = "0";
-    if(key[KEY_1]||key[SDL_KP1])
+    if(key[SDLK_1]||key[SDLK_KP1])
         a[b++] = "1";
-    if(key[KEY_2]||key[SDL_KP2])
+    if(key[SDLK_2]||key[SDLK_KP2])
         a[b++] = "2";
-    if(key[KEY_3]||key[SDL_KP3])
+    if(key[SDLK_3]||key[SDLK_KP3])
         a[b++] = "3";
-    if(key[KEY_4]||key[SDL_KP4])
+    if(key[SDLK_4]||key[SDLK_KP4])
         a[b++] = "4";
-    if(key[KEY_5]||key[SDL_KP5])
+    if(key[SDLK_5]||key[SDLK_KP5])
         a[b++] = "5";
-    if(key[KEY_6]||key[SDL_KP6])
+    if(key[SDLK_6]||key[SDLK_KP6])
         a[b++] = "6";
-    if(key[KEY_7]||key[SDL_KP7])
+    if(key[SDLK_7]||key[SDLK_KP7])
         a[b++] = "7";
-    if(key[KEY_8]||key[SDL_KP8])
+    if(key[SDLK_8]||key[SDLK_KP8])
         a[b++] = "8";
-    if(key[KEY_9]||key[SDL_KP9])
+    if(key[SDLK_9]||key[SDLK_KP9])
         a[b++] = "9";
     if(key[SDLK_ESCAPE])
         a[b++] = "Esc";
@@ -101,7 +101,7 @@ String* org::gcreator::Interaction::Keyboard::getKeyState(){
         a[b++] = "Insert";
     if(key[SDLK_DELETE])
         a[b++] = "Delete";
-    if(key[SDLK_ALT])
+    if(key[SDLK_RALT]||key[SDLK_LALT])
         a[b++] = "Alt";
     if(key[SDLK_LSHIFT]||key[SDLK_RSHIFT])
         a[b++] = "Shift";
@@ -137,9 +137,10 @@ String* org::gcreator::Interaction::Keyboard::getKeyState(){
         a[b++] = "Down";
     if(key[SDLK_UP])
         a[b++] = "Up";
+	a[b] = "";
 }
 
-boolean org::gcreator::Interaction::Keyboard::isKeyPressed(String key){
+boolean org::gcreator::Interaction::Keyboard::isKeyPressed(const String& key){
     //First, let's do a fast checking
     /*SDL_Event event;
 
@@ -155,11 +156,18 @@ boolean org::gcreator::Interaction::Keyboard::isKeyPressed(String key){
     }*/
 
     //This fast checking should be increased
-    String* a = getGetState();
+    /*String* a = getKeyState();
     for(int i = 0; i < sizeof(a)/sizeof(a[0]); i++){
         if(key==a[i])
             return true;
-    }
+    }*/
+	
+	String* t = getKeyState();
+	for(int i = 0; t[i] != ""; i++){
+		if(t[i]==key)
+			return true;
+	}
+	
     return false;
 }
 

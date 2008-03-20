@@ -1,7 +1,7 @@
 #ifndef _GCPP_INTERACTION_MOUSE_
 #define _GCPP_INTERACTION_MOUSE_
 
-#include "../compilers/declare.h"
+#include "../declare.h"
 #include <SDL/SDL.h>
 
 int org::gcreator::Interaction::Mouse::getX(){
@@ -10,16 +10,18 @@ int org::gcreator::Interaction::Mouse::getX(){
     if(SDL_PollEvent(&event)) {
         if(event.type==SDL_MOUSEMOTION)
         {
-            return event.motion.x
+            return event.motion.x;
         }
     }
 }
 
 int org::gcreator::Interaction::Mouse::getY(){
+	SDL_Event event;
+	
     if(SDL_PollEvent(&event)) {
         if(event.type==SDL_MOUSEMOTION)
         {
-            return event.motion.y
+            return event.motion.y;
         }
     }
 }

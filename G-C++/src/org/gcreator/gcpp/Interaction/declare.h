@@ -12,7 +12,7 @@ class org::gcreator::Interaction::Keyboard
 {
 	public:
 		static String* getKeyState();
-        static boolean isKeyPressed(String);
+        static boolean isKeyPressed(const String&);
 };
 
 #endif

@@ -1,14 +1,14 @@
 #ifndef _GCPP_COMPONENTS_IMAGE_
 #define _GCPP_COMPONENTS_IMAGE_
 
-#include "../compilers/declare.h"
+#include "../declare.h"
 
-org::gcreator::Components::Image::Image(SDL_surface* bitmap)
+org::gcreator::Components::Image::Image(SDL_Surface* bitmap)
 {
 	img = bitmap;
 }
 
-org::gcreator::Components::Image::Image(std::string str){
+org::gcreator::Components::Image::Image(String& str){
         SDL_Surface* optimize=NULL;
         img=SDL_LoadBMP(str.c_str());
         if(img!=NULL){
@@ -17,15 +17,10 @@ org::gcreator::Components::Image::Image(std::string str){
             if (img==NULL)
             {
                 img=optimize;
-                SDL_FreeSurface(optimize)
-                return true;
+                SDL_FreeSurface(optimize);
             }
-            else
-            {
-                return false;
-            }            
+			//There used to be some "return true" and "return false" here, but they were removed because constructors do not return booleans.
         }
-    }
 }
 
 org::gcreator::Components::Image::Image()

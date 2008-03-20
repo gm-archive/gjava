@@ -1,7 +1,7 @@
 #ifndef _GCPP_COMPONENTS_VIEW_
 #define _GCPP_COMPONENTS_VIEW_
 
-#include "../compilers/declare.h"
+#include "../declare.h"
 
 org::gcreator::Components::View::View()
 {

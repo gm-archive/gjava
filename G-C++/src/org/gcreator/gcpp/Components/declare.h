@@ -6,22 +6,22 @@
 class org::gcreator::Components::Image
 {
 	private:
-		SDL_surface* img;
-		Image(SDL_surface*);
-                Image(String);
+		SDL_Surface* img;
+		Image(SDL_Surface*);
+        Image(String&);
+		friend class org::gcreator::Components::Sprite;
+		friend class org::gcreator::Components::Tileset;
 	public:
 		Image();
 		virtual String getName();
 		boolean free();
-		friend class org::gcreator::Components::Sprite;
-		friend class org::gcreator::Components::Tileset;
 };
 
 class org::gcreator::Components::Sprite
 {
 	private:
 		org::gcreator::Components::Image** images;
-                int frame;
+        int frame;
 	public:
 		Sprite();
 		int getImageCount();
@@ -33,9 +33,9 @@ class org::gcreator::Components::Sprite
 		boolean setImageArray(org::gcreator::Components::Image**);
 		int getWidth();
 		int getHeight();
-                int blit(org::gcreator::Components::Sprite,int,int,int)
-                int getFrame();
-                void setFrame(int);
+        int blit(org::gcreator::Components::Sprite*,int,int,int);
+        int getFrame();
+        void setFrame(int);
 };
 
 class org::gcreator::Components::Tileset
@@ -163,29 +163,31 @@ class org::gcreator::Components::Application
 {
 	public:
 		Application(int argc, char** argv);
-                SDL_Surface gameInit(int,int,int,String)
+        SDL_Surface* gameInit(int,int,int,String&);
+		static SDL_Surface* getScreenSurface();
 	private:
 		int argc;
 		char** argv;
+		static SDL_Surface* screen;
 };
 
 class org::gcreator::Components::Audio
 {
         private:
-            Mix_Music sound
+            Mix_Chunk* sound;
         public:
-            Audio()
-            Audio(Mix_Music)
-            Audio(std::string)
-            Mix_Music loadFile(std::string)
-            void setAudio(Mix_Music)
-            Mix_Music getAudio()
-            boolean audioPlaying()
-            int playAudio(Mix_Music,int)
-            void pauseAudio()
-            void unpauseAudio()
-            boolean audioPaused()
-            void stopAudio()
+            Audio();
+            Audio(Mix_Chunk*);
+            Audio(std::string);
+            Mix_Chunk* loadFile(std::string);
+            void setAudio(Mix_Music);
+            Mix_Chunk* getAudio();
+            boolean audioPlaying();
+            static int playAudio(Mix_Chunk*,int);
+            void pauseAudio();
+            void unpauseAudio();
+            boolean audioPaused();
+            void stopAudio();
 };
 
 #ifndef _GCPP_COMPONENTS_APPLICATION_
