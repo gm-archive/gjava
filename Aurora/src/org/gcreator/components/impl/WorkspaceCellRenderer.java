@@ -57,6 +57,46 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/sound.png"));
     }
 
+    public ImageIcon getImageFor(ObjectNode noder){
+        if (((org.gcreator.fileclass.GFile) noder.object).type.equals("txt")) {
+                    return text;
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gif")) {
+                    //setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
+                    return(img);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("jpg")) {
+                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    return(img);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("png")) {
+                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    return(img);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("java")) {
+                    return(java);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("actor")) {
+                    return(actor);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("tileset")) {
+                    return(tileset);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("sprite")) {
+                    return(sprite);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("egml")) {
+                    return(GCL);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gcl")) {
+                    return(GCL);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gs")) {
+                    return(script);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("timeline")) {
+                    return(timeline);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("scene")) {
+                    return(scene);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("wav"))  {
+                    return(sound);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("mid"))  {
+                    return(sound);
+                } else if (UIManager.get("Tree.leafIcon") != null) {
+                    return((ImageIcon) UIManager.get("Tree.leafIcon"));
+                }
+        return null;
+    }
+    
     public WorkspaceCellRenderer(boolean logfileDeleted) {
         this.logfileDeleted = logfileDeleted;
     }
@@ -106,44 +146,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         } else {
             ObjectNode noder = (ObjectNode) node;
             if (noder.object instanceof org.gcreator.fileclass.GFile) {
-                if (((org.gcreator.fileclass.GFile) noder.object).type.equals("txt")) {
-                    setIcon(text);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gif")) {
-                    //setIcon((ImageIcon) ((org.gcreator.fileclass.File) noder.object).value);
-                    setIcon(img);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("jpg")) {
-                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
-                    setIcon(img);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("png")) {
-                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
-                    setIcon(img);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("java")) {
-                    setIcon(java);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("actor")) {
-                    setIcon(actor);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("tileset")) {
-                    setIcon(tileset);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("sprite")) {
-                    setIcon(sprite);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("egml")) {
-                    setIcon(GCL);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gcl")) {
-                    setIcon(GCL);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gs")) {
-                    setIcon(script);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("timeline")) {
-                    setIcon(timeline);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("scene")) {
-                    setIcon(scene);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("wav"))  {
-                    setIcon(sound);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("mid"))  {
-                    setIcon(sound);
-                } else if (UIManager.get("Tree.leafIcon") != null) {
-                    setIcon((Icon) UIManager.get("Tree.leafIcon"));
-                } else {
-                    setIcon(null);
-                }
+                setIcon(getImageFor(noder));
             } else {
                 if (noder.object instanceof org.gcreator.fileclass.Folder && ((org.gcreator.fileclass.Folder) noder.object).getImage()!=null) {
                     setIcon(((org.gcreator.fileclass.Folder) noder.object).getImage());
