@@ -13,7 +13,10 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
+import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.core.*;
+import org.gcreator.events.CreateEvent;
+import org.gcreator.events.DrawEvent;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.*;
@@ -666,19 +669,31 @@ public class GM6Importer {
             in.read4(); //parent
             in.read4(); //temp again for mask
             in.skip(4);
+            org.gcreator.events.Event e;
             for (int j = 0; j < 11; j++){
+                e = null;
                 System.out.println("Hello, j=" + j);
                 boolean done = false;
                 while(!done){
                     int first = in.read4();
                     int id = 0;
                     if(first!=-1){
-                        if(j==EV_COLLISION)
+                        if(j==EV_CREATE){
+                            e = new CreateEvent();
+                            a.events.add(e);
+                            id = first;
+                        }
+                        else if(j==EV_DRAW){
+                            e = new DrawEvent();
+                            a.events.add(e);
+                            id = first;
+                        }
+                        else if(j==EV_COLLISION)
                             ; //ev.other = c.objids.get(first);
                         else
                             id = first; //ev.id = first;
                         //ev.mainId = j;
-                        readActions(c, i, j*1000+id);
+                        readActions(c, i, j*1000+id, e);
                     }
                     else
                         done = true;
@@ -687,7 +702,8 @@ public class GM6Importer {
         }
     }
     
-    private static void readActions(GmFileContext c, int format1, int format2)
+    private static void readActions(GmFileContext c, int format1, int format2,
+            org.gcreator.events.Event e)
             throws IOException, GmFormatException{
         GmStreamDecoder in = c.in;
         int ver = in.read4();
@@ -738,12 +754,27 @@ public class GM6Importer {
                 in.readStr(); //strval
             }
             in.readBool(); //Not
+            if(act!=null)
+                e.actions.add(act);
         }
         System.out.println("Ended actions");
     }
     
     private static org.gcreator.actions.Action retrieveAction(int libid, int actid){
         org.gcreator.actions.Action act = null;
+        
+        if(libid==1){
+            if(actid==422){
+                act = new org.gcreator.actions.Action(new StartOfABlock());
+                return act;
+            }
+            if(actid==424){
+                act = new org.gcreator.actions.Action(new EndOfABlock());
+                return act;
+            }
+        }
+        
+        System.out.println("libid=" + libid + ", actid=" + actid);
         
         return act;
     }
