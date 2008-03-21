@@ -60,7 +60,7 @@ public class GM6Importer {
             this.in = in;
         }
         
-        Vector<org.gcreator.fileclass.File> sprites = new Vector<org.gcreator.fileclass.File>();
+        Vector<org.gcreator.fileclass.GFile> sprites = new Vector<org.gcreator.fileclass.GFile>();
     }
 
     private static GmFormatException versionError(String error, String res, int ver) {
@@ -78,7 +78,7 @@ public class GM6Importer {
         org.gcreator.fileclass.GameProject project = org.gcreator.fileclass.GameProject.balance();
         project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
         Aurwindow.setMainProject(project);
-        org.gcreator.fileclass.File settings = (org.gcreator.fileclass.File) project.childAt(project.findFromName("Settings"));
+        org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("Settings"));
         settings.editable = false;
         GmFileContext c = new GmFileContext(project, in);
         int identifier = in.read4();
@@ -106,7 +106,7 @@ public class GM6Importer {
         PluginHelper.getWindow().workspace.updateUI();
     }
 
-    private SettingsValues readSettings(org.gcreator.fileclass.File settings, GmFileContext c) throws IOException, GmFormatException,
+    private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
@@ -309,13 +309,13 @@ public class GM6Importer {
                 c.sprites.add(null);
                 continue;
             }
-            org.gcreator.fileclass.File spriteFile;
+            org.gcreator.fileclass.GFile spriteFile;
             String name = in.readStr();
             ver = in.read4();
             if (ver != 400 && ver != 542) {
                 throw versionError("IN", "SPRITES", i, ver);
             } //$NON-NLS-1$ //$NON-NLS-2$
-            spriteFile = new org.gcreator.fileclass.File(spriteFolder, name, "sprite", null);
+            spriteFile = new org.gcreator.fileclass.GFile(spriteFolder, name, "sprite", null);
             c.sprites.add(spriteFile);
             Sprite val;
             spriteFile.value = val = new Sprite(name);
@@ -344,11 +344,11 @@ public class GM6Importer {
                     continue;
                 }
                 BufferedImage img = in.readImage(val.width, val.height);
-                org.gcreator.fileclass.File imgF;
-                imgF = new org.gcreator.fileclass.File(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
+                org.gcreator.fileclass.GFile imgF;
+                imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
                 ImageIcon iico;
                 imgF.value = iico = new ImageIcon(img);
-                imgF.treeimage = org.gcreator.fileclass.File.getScaledIcon(iico);
+                //imgF.treeimage = org.gcreator.fileclass.GFile.getScaledIcon(iico);
                 val.addToList(imgF);
             }
         }
@@ -406,13 +406,13 @@ public class GM6Importer {
                 }
                 backgroundImage = in.readImage(width, height);
             }
-            org.gcreator.fileclass.File bkimg;
-            bkimg = new org.gcreator.fileclass.File(imageFolder, "bgimg_" + name, "bmp", null);
+            org.gcreator.fileclass.GFile bkimg;
+            bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             ImageIcon iicon = new ImageIcon(backgroundImage);
             bkimg.value = iicon;
             if (tileset) {
-                org.gcreator.fileclass.File tlimg;
-                tlimg = new org.gcreator.fileclass.File(tilesetFolder, name, "tileset", null);
+                org.gcreator.fileclass.GFile tlimg;
+                tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
                 Tileset t = new Tileset(tlimg.name);
                 tlimg.value = t;
                 t.startx = horizOffset;
@@ -476,8 +476,8 @@ public class GM6Importer {
             if (!in.readBool()) {
                 continue;
             }
-            org.gcreator.fileclass.File script;
-            script = new org.gcreator.fileclass.File(scriptsGroup, in.readStr(), "egml", null);
+            org.gcreator.fileclass.GFile script;
+            script = new org.gcreator.fileclass.GFile(scriptsGroup, in.readStr(), "egml", null);
             ver = in.read4();
             if (ver != 400) {
                 throw versionError("IN", "SCRIPTS", i, ver);
@@ -611,7 +611,7 @@ public class GM6Importer {
         if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
         
         Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("Actors"));
-        org.gcreator.fileclass.File f;
+        org.gcreator.fileclass.GFile f;
         Actor a;
         
         int noGmObjects = in.read4();
@@ -619,16 +619,16 @@ public class GM6Importer {
             if (!in.readBool()){
                 continue;
             }
-            f = new org.gcreator.fileclass.File(actorsGroup, in.readStr(), "actor", null);
+            f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
             f.value = a = new Actor(f.name);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
             int temp = in.read4();
             a.sprite = null;
             if(temp<c.sprites.size()){
-                org.gcreator.fileclass.File spr = c.sprites.get(temp);
+                org.gcreator.fileclass.GFile spr = c.sprites.get(temp);
                 if(spr!=null)
-                    a.sprite = spr.name;
+                    a.sprite = spr;
             }
             a.solid = in.readBool();
             a.visible = in.readBool();
