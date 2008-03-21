@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
+import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.core.*;
 import org.gcreator.events.CreateEvent;
