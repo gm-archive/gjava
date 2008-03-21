@@ -581,6 +581,39 @@ public class Aurwindow extends JFrame {
         workspace = new WorkspaceTree(top);
         workspace.setVisible(true);
 
+        workspace.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                
+                //Check wether 'Delete' was pressed
+                
+                if (e.getKeyCode() != e.VK_DELETE)
+                   return;
+                
+                final org.gcreator.fileclass.GObject o = getCurrentObject();
+                if (o == null) {
+                    return;
+                }
+                
+                if (o instanceof org.gcreator.fileclass.GFile) {
+                    if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
+                        if (getConfirmDelete("Are you sure you want to delete this resource?"))
+                            deleteFile((org.gcreator.fileclass.GFile) o);
+                    }
+                }
+               if (o instanceof org.gcreator.fileclass.Group) {
+                    if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
+                        if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
+                            if (getConfirmDelete("Are you sure you want to delete this group and all of its contents?"))
+                              deleteGroup((org.gcreator.fileclass.Group) o);
+                        }
+                    }
+               }
+            }
+            public boolean getConfirmDelete(String message) {
+                return (JOptionPane.showConfirmDialog(Aurwindow.this,message,"Confirmation",JOptionPane.YES_NO_OPTION) == 0);
+            }
+        });
+        
         workspace.addMouseListener(new MouseListener() {
 
             public void mouseClicked(MouseEvent e) {
