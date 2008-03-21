@@ -73,7 +73,7 @@ import org.gcreator.fileclass.*;
                     i.setVisible(true);
                     i.file = (Folder) g;
                     pop.add(i);
-                    folderToPopup(p, f, i);
+                    folderToPopup(p, (Folder) g, i);
                 }
             }
         }
