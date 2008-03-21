@@ -30,7 +30,7 @@ public class Programmers extends javax.swing.JPanel {
         jEditorPane1 = new javax.swing.JEditorPane();
 
         jEditorPane1.setEditable(false);
-        jEditorPane1.setText("Listed in alphabetic order:\n\tLuís Reis\n\tTGMG");
+        jEditorPane1.setText("Listed in alphabetic order:\n\tLuís Reis\n\tSerge Humphrey (BobSerge or Bobistaken)\n\tTGMG");
         jScrollPane1.setViewportView(jEditorPane1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

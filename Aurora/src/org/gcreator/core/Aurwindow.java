@@ -28,7 +28,6 @@ import org.gcreator.macro.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
-import org.newdawn.slick.command.MouseButtonControl;
 
 /**
  *
