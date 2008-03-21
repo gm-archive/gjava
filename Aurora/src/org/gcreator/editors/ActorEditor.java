@@ -71,7 +71,8 @@ public class ActorEditor extends TabPanel {
                 d.repaint();
         }
         else
-            c.repaint();
+            if(c!=null)
+                c.repaint();
     }
     
     public void spriteChanged() {

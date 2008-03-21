@@ -30,6 +30,7 @@ public class VSpeedEditor extends javax.swing.JPanel {
         of = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         to = new javax.swing.JTextField();
+        relative = new javax.swing.JCheckBox();
 
         jLabel1.setText("Set the vertical speed");
 
@@ -40,6 +41,8 @@ public class VSpeedEditor extends javax.swing.JPanel {
         jLabel3.setText("To:");
 
         to.setText("0");
+
+        relative.setText("Relative");
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -56,7 +59,8 @@ public class VSpeedEditor extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(to, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)))
+                        .add(to, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
+                    .add(relative))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -72,6 +76,8 @@ public class VSpeedEditor extends javax.swing.JPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
                     .add(to, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(relative)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -82,6 +88,7 @@ public class VSpeedEditor extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     public javax.swing.JTextField of;
+    public javax.swing.JCheckBox relative;
     public javax.swing.JTextField to;
     // End of variables declaration//GEN-END:variables
     
