@@ -21,6 +21,7 @@ import org.gcreator.fileclass.*;
     private GFile file = null;
     private Project p;
     private String key;
+    private Vector<ActionListener> a = new Vector<ActionListener>();
     
     public FileLabel(Project p, String key){
         this.p = p;
@@ -32,18 +33,22 @@ import org.gcreator.fileclass.*;
         Vector v = f.getChildren();
         for(Object o : v){
             GObject g = (GObject) o;
+            System.out.println("Object " + g.name);
             if(p.validOfType(g, key)){
+                System.out.println("Valid");
                 if(g instanceof GFile){
                     FileMenuItem i = new FileMenuItem(this);
                     i.setVisible(true);
                     i.file = (GFile) g;
+                    pop.add(i);
                 }
                 
                 if(g instanceof Folder){
                     FolderMenuItem i = new FolderMenuItem(this);
                     i.setVisible(true);
                     i.file = (Folder) g;
-                    folderToPopup(p, f, i);
+                    folderToPopup(p, (Folder) g, i);
+                    pop.add(i);
                 }
             }
         }
@@ -53,17 +58,21 @@ import org.gcreator.fileclass.*;
         Vector v = f.getChildren();
         for(Object o : v){
             GObject g = (GObject) o;
+            System.out.println("Object " + g.name);
             if(p.validOfType(g, key)){
+                System.out.println("Valid");
                 if(g instanceof GFile){
                     FileMenuItem i = new FileMenuItem(this);
                     i.setVisible(true);
                     i.file = (GFile) g;
+                    pop.add(i);
                 }
                 
                 if(g instanceof Folder){
                     FolderMenuItem i = new FolderMenuItem(this);
                     i.setVisible(true);
                     i.file = (Folder) g;
+                    pop.add(i);
                     folderToPopup(p, f, i);
                 }
             }
@@ -73,8 +82,15 @@ import org.gcreator.fileclass.*;
     public void mouseExited(MouseEvent evt){}
     public void mouseEntered(MouseEvent evt){}
     public void mousePressed(MouseEvent evt){
+        Folder f = p.getFolderFor(key);
+        if(f==null)
+            return;
         JPopupMenu pop = new JPopupMenu();
-        folderToPopup(p, p, pop);
+        FileMenuItem i = new FileMenuItem(this);
+        i.setVisible(true);
+        i.file = null;
+        pop.add(i);
+        folderToPopup(p, f, pop);
         pop.show(this, evt.getX(), evt.getY());
     }
     public void mouseReleased(MouseEvent evt){}
@@ -86,13 +102,19 @@ import org.gcreator.fileclass.*;
     
     public void setFile(GFile file, boolean trigger){
         this.file = file;
-        updateUI();
+        this.repaint();
         if(trigger)
-            ;
+            for(ActionListener al : a){
+                al.actionPerformed(null);
+            }
     }
     
     public GFile getFile(){
         return file;
+    }
+    
+    public void addActionListener(ActionListener a){
+        this.a.add(a);
     }
     
     public void paint(Graphics g){

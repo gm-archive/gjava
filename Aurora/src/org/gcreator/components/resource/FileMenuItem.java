@@ -25,7 +25,7 @@ import org.gcreator.fileclass.*;
     }
     
     public void actionPerformed(ActionEvent evt){
-        l.setFile(file);
+        l.setFile(file, true);
     }
     
     public String getText(){

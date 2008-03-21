@@ -64,6 +64,10 @@ public class Project extends Folder {
     public boolean validOfType(GObject obj, String key){
         return true;
     }
+    
+    public Folder getFolderFor(String key){
+        return null;
+    }
      
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)

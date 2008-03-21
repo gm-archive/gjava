@@ -12,6 +12,7 @@ package org.gcreator.fileclass;
 import java.util.Enumeration;
 import javax.swing.ImageIcon;
 import java.util.*;
+import org.gcreator.units.ObjectNode;
 
 /**
  *
@@ -53,6 +54,27 @@ public class GameProject extends Project{
             e = node.getChildAt(7).children();
         }
         return e;
+    }
+    
+    public Folder getFolderFor(String key){
+        if (key.equals("actor")) {
+            return (Folder) ((ObjectNode) node.getChildAt(5)).object;
+        } else if (key.equals("scene")) {
+            return (Folder) ((ObjectNode) node.getChildAt(6)).object;
+        } else if (key.equals("timeline")) {
+            return (Folder) ((ObjectNode) node.getChildAt(4)).object;
+        } else if (key.equals("image")) {
+            return (Folder) ((ObjectNode) node.getChildAt(0)).object;
+        } else if (key.equals("sprite")) {
+            return (Folder) ((ObjectNode) node.getChildAt(1)).object;
+        } else if (key.equals("tileset")) {
+            return (Folder) ((ObjectNode) node.getChildAt(2)).object;
+        } else if (key.equals("sound")) {
+            return (Folder) ((ObjectNode) node.getChildAt(3)).object;
+        } else if (key.equals("class")) {
+            return (Folder) ((ObjectNode) node.getChildAt(7)).object;
+        }
+        return null;
     }
     
     public boolean validOfType(GObject obj, String key){

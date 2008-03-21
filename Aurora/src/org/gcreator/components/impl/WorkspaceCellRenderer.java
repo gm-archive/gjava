@@ -16,6 +16,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.tree.*;
+import org.gcreator.fileclass.Group;
 import org.gcreator.managers.LangSupporter;
 
 /**
@@ -58,6 +59,8 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
     }
 
     public ImageIcon getImageFor(ObjectNode noder){
+        if(noder.object instanceof Group)
+            return (ImageIcon) UIManager.get("Tree.openIcon");
         if (((org.gcreator.fileclass.GFile) noder.object).type.equals("txt")) {
                     return text;
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gif")) {

@@ -6,8 +6,10 @@
 package org.gcreator.components.resource;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.fileclass.*;
+import org.gcreator.units.*;
 
 /**
  *
@@ -30,5 +32,20 @@ public class ResourceChooser extends JComponent{
     
     public GFile getFile(){
         return label.getFile();
+    }
+    
+    public void addActionListener(ActionListener a){
+        label.addActionListener(a);
+    }
+    
+    /**
+     * @obsolete use getFile instead
+     */
+    public ObjectNode getCurrentObject(){
+        return getFile().node;
+    }
+    
+    public Dimension getPreferredSize(){
+        return new Dimension(100, 20);
     }
 }
