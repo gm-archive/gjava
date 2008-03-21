@@ -72,42 +72,61 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
+        System.out.println("Line 75, fileName=" + fileName);
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
         org.gcreator.fileclass.GameProject project = org.gcreator.fileclass.GameProject.balance();
+        System.out.println("Line 80");
         project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
+        System.out.println("Line 82");
         Aurwindow.setMainProject(project);
-        org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("Settings"));
+        System.out.println("Line 84");
+        org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("$218"));
+        System.out.println("Line 86");
         settings.editable = false;
+        System.out.println("Line 88");
         GmFileContext c = new GmFileContext(project, in);
         int identifier = in.read4();
         if (identifier != 1234321) {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
+        System.out.println("Line 91");
         int ver = in.read4();
         if (ver != 600) {
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
+        System.out.println("Line 94");
         SettingsValues values = readSettings(settings, c);
+        System.out.println("Starting to read sounds");
         readSounds(c);
+        System.out.println("Starting to read sprites");
         readSprites(c);
+        System.out.println("Starting to read backgrounds");
         readBackgrounds(c);
+        System.out.println("Starting to read paths");
         readPaths(c);
+        System.out.println("Starting to read scripts");
         readScripts(c);
+        System.out.println("Starting to read fonts");
         readFonts(c);
+        System.out.println("Starting to read timelines");
         readTimelines(c);
+        System.out.println("Starting to read actors");
         readActors(c);
 
+        System.out.println("Line 105");
         in.close();
 
         ProjectTree.importFolderToTree(project, PluginHelper.getWindow().top);
         PluginHelper.getWindow().workspace.updateUI();
+        PluginHelper.getWindow().workspace.repaint();
     }
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
+        System.out.println("Line 114");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -115,6 +134,7 @@ public class GM6Importer {
         value.setVariable("Resolution", Resolution = new TabValues("Resolution"));
         value.setVariable("Other", Other = new TabValues("Other"));
 
+        System.out.println("Line 122");
         GmStreamDecoder in = c.in;
         in.read4(); //Game ID - unused
         in.skip(16); // unknown bytes following game id
@@ -139,6 +159,7 @@ public class GM6Importer {
             boolean alwaysOnTop = alwaysOnTop = in.readBool();
             in.read4(); //Color outside room
         }
+        System.out.println("Line 147");
         Resolution.setVariable("setrereadBackgrounds(c);s", in.readBool());
         if (ver == 530) {
             in.skip(8); //Color Depth, Exclusive Graphics
@@ -192,6 +213,7 @@ public class GM6Importer {
                 loadingImage = in.readImage();
             }
         }
+        System.out.println("Line 201");
         boolean imagePartiallyTransparent = in.readBool();
         int loadImageAlpha = in.read4();
         boolean scaleProgressBar = in.readBool();
@@ -200,6 +222,7 @@ public class GM6Importer {
         in.read(gameIconData, 0, length);
         BufferedImage gameIcon = null;
         try {
+            System.out.println("Try 1");
             ByteArrayInputStream bais = new ByteArrayInputStream(gameIconData);
             gameIcon = (BufferedImage) new ICOFile(bais).getDescriptor(0).getImageRGB();
         } catch (Exception e) {
@@ -246,6 +269,7 @@ public class GM6Importer {
             boolean overwriteExisting = in.readBool();
             boolean removeAtGameEnd = in.readBool();
         }
+        System.out.println("Line 257");
         return value;
     }
 
@@ -302,8 +326,8 @@ public class GM6Importer {
             throw versionError("BEFORE", "SPRITES", ver);
         }
         int noSprites = in.read4();
-        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
-        Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("Sprites"));
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$209"));
+        Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("$210"));
         for (int i = 0; i < noSprites; i++) {
             if (!in.readBool()) {
                 c.sprites.add(null);
@@ -362,8 +386,8 @@ public class GM6Importer {
             throw versionError("BEFORE", "BACKGROUNDS", ver);
         } //$NON-NLS-1$ //$NON-NLS-2$
         int noBackgrounds = in.read4();
-        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("Images"));
-        Group tilesetFolder = (Group) c.pro.childAt(c.pro.findFromName("Tilesets"));
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$209"));
+        Group tilesetFolder = (Group) c.pro.childAt(c.pro.findFromName("$211"));
         for (int i = 0; i < noBackgrounds; i++) {
             /*Must deal with backgrounds and tilesets separatelly*/
             if (!in.readBool()) {
@@ -471,7 +495,7 @@ public class GM6Importer {
 
         int noScripts = in.read4();
 
-        Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("Classes"));
+        Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("$216"));
         for (int i = 0; i < noScripts; i++) {
             if (!in.readBool()) {
                 continue;
@@ -610,26 +634,31 @@ public class GM6Importer {
         int ver = in.read4();
         if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
         
-        Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("Actors"));
+        Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("$214"));
+        System.out.println("Got group");
         org.gcreator.fileclass.GFile f;
         Actor a;
         
         int noGmObjects = in.read4();
         for(int i = 0; i < noGmObjects; i++){
+            System.out.println("Loooooooping!" + i);
             if (!in.readBool()){
                 continue;
             }
+            System.out.println("Nice boolean");
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
+            System.out.println("Let's see your value");
             f.value = a = new Actor(f.name);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
             int temp = in.read4();
             a.sprite = null;
-            if(temp<c.sprites.size()){
+            if(temp<c.sprites.size()&&temp>=0){
                 org.gcreator.fileclass.GFile spr = c.sprites.get(temp);
                 if(spr!=null)
                     a.sprite = spr;
             }
+            System.out.println("Are you solid?");
             a.solid = in.readBool();
             a.visible = in.readBool();
             a.depth = in.read4();
@@ -638,6 +667,7 @@ public class GM6Importer {
             in.read4(); //temp again for mask
             in.skip(4);
             for (int j = 0; j < 11; j++){
+                System.out.println("Hello, j=" + j);
                 boolean done = false;
                 while(!done){
                     int first = in.read4();
@@ -665,6 +695,7 @@ public class GM6Importer {
             throw new GmFormatException("version error:" + ver);
         }
         int noacts = in.read4();
+        System.out.println("Reached actions");
         for(int i = 0; i < noacts; i++){
             in.skip(4);
             int libid = in.read4();
@@ -708,6 +739,7 @@ public class GM6Importer {
             }
             in.readBool(); //Not
         }
+        System.out.println("Ended actions");
     }
     
     private static org.gcreator.actions.Action retrieveAction(int libid, int actid){

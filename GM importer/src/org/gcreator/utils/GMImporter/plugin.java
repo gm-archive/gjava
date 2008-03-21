@@ -18,8 +18,10 @@ import org.gcreator.plugins.*;
 public class plugin extends PluginCore{
     public plugin(){}
     public void onSplashDispose(){
+        System.out.println("onSplashDispose");
         JMenuItem GM = new JMenuItem();
         VarsRegistry.setVariable("GMImporter.GM", GM);
+        System.out.println("Registered");
         GM.setText("Game Maker Project");
         GM.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt)
@@ -35,6 +37,7 @@ public class plugin extends PluginCore{
     
     public void onGM()
     {
+        System.out.println("onGM");
         if(dialog==null){
             dialog = new FileDialog(PluginHelper.getWindow());
         }
@@ -54,12 +57,14 @@ public class plugin extends PluginCore{
     
     public void importFile(String fname, int mode)
     {
+        System.out.println("importFile");
         if(mode==MODE_GM6)
         {
             try{
+                System.out.println("GM6Importer");
                 GM6Importer imp = new GM6Importer(fname);
             }catch(Exception e){
-                System.out.println(e.toString());
+                System.out.println(">>" + e.toString());
             }
         }
     }

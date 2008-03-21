@@ -39,7 +39,9 @@ public abstract class AbstractBitmapIndexed extends AbstractBitmap
 		{
 		super(pDescriptor);
 
+                System.out.println("Begin");
 		pixels = new int[getWidth() * getHeight()];
+                System.out.println("End");
 		}
 
 	/**
@@ -162,11 +164,13 @@ public abstract class AbstractBitmapIndexed extends AbstractBitmap
 
 		for (int lColorNo = 0; lColorNo < lColorCount; lColorNo++)
 			{
+                    System.out.println("begin for");
 			final Color lColor = getColor(lColorNo);
 			lRed[lColorNo] = (byte) lColor.getRed();
 			lGreen[lColorNo] = (byte) lColor.getGreen();
 			lBlue[lColorNo] = (byte) lColor.getBlue();
 			lAlpha[lColorNo] = (byte) OPAQUE;
+                        System.out.println("end for");
 			}
 
 		final IndexColorModel lModel = new IndexColorModel(8,lColorCount,lRed,lGreen,lBlue,lAlpha);
