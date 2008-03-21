@@ -60,6 +60,10 @@ public class Project extends Folder {
     public Enumeration getEnum(String key){
         return null;
     }
+    
+    public boolean validOfType(GObject obj, String key){
+        return true;
+    }
      
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)

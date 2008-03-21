@@ -11,6 +11,7 @@ package org.gcreator.fileclass;
 
 import java.util.Enumeration;
 import javax.swing.ImageIcon;
+import java.util.*;
 
 /**
  *
@@ -52,6 +53,48 @@ public class GameProject extends Project{
             e = node.getChildAt(7).children();
         }
         return e;
+    }
+    
+    public boolean validOfType(GObject obj, String key){
+        Vector<GObject> v = childNodes;
+        if(key.equals("parent"))
+            return v.contains(obj);
+        else if(v.contains(obj))
+            return false;
+        //TODO: Find some way to exclude all distribution files and groups
+        //unless key is 'distro'
+        if(obj instanceof GFile){
+            GFile f = (GFile) obj;
+            if(f.type.equals("actor")||f.type.equals("scene")||f.type.equals("timeline")
+            ||f.type.equals("sprite")||f.type.equals("tileset")){
+                return key.equals(f.type);
+            }
+            if(key.equals("image"))
+                return f.type.equals("png")||f.type.equals("gif")||f.type.equals("jpg");
+            if(key.equals("class"))
+                return f.type.equals("egml")||f.type.equals("gcl")
+                        ||f.type.equals("struct")||f.type.equals("gs");
+            return false;
+        }
+        else if(obj instanceof Group){
+            if(key.equals("actor"))
+                return obj instanceof ActorGroup;
+            if(key.equals("scene"))
+                return obj instanceof SceneGroup;
+            if(key.equals("sprite"))
+                return obj instanceof SpriteGroup;
+            if(key.equals("timeline"))
+                return obj instanceof TimelineGroup;
+            if(key.equals("tileset"))
+                return obj instanceof TilesetGroup;
+            if(key.equals("image"))
+                return obj instanceof ImageGroup;
+            if(key.equals("class"))
+                return obj instanceof EGMLGroup;
+            if(key.equals("sound"))
+                return obj instanceof SoundGroup;
+        }
+        return false;
     }
     
     public Folder magicAddition(String file)

@@ -6,6 +6,8 @@
 package org.gcreator.components.resource;
 
 import java.awt.*;
+import java.awt.event.*;
+import java.util.*;
 import javax.swing.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
@@ -15,16 +17,82 @@ import org.gcreator.fileclass.*;
  *
  * @author Luís
  */
-/*internal*/ class FileLabel extends JComponent{
+/*internal*/ class FileLabel extends JComponent implements MouseListener{
     private GFile file = null;
+    private Project p;
+    private String key;
     
-    public FileLabel(){
-    
+    public FileLabel(Project p, String key){
+        this.p = p;
+        this.key = key;
+        this.addMouseListener(this);
     }
     
+    public void folderToPopup(Project p, Folder f, JPopupMenu pop){
+        Vector v = f.getChildren();
+        for(Object o : v){
+            GObject g = (GObject) o;
+            if(p.validOfType(g, key)){
+                if(g instanceof GFile){
+                    FileMenuItem i = new FileMenuItem(this);
+                    i.setVisible(true);
+                    i.file = (GFile) g;
+                }
+                
+                if(g instanceof Folder){
+                    FolderMenuItem i = new FolderMenuItem(this);
+                    i.setVisible(true);
+                    i.file = (Folder) g;
+                    folderToPopup(p, f, i);
+                }
+            }
+        }
+    }
+    
+    public void folderToPopup(Project p, Folder f, JMenuItem pop){
+        Vector v = f.getChildren();
+        for(Object o : v){
+            GObject g = (GObject) o;
+            if(p.validOfType(g, key)){
+                if(g instanceof GFile){
+                    FileMenuItem i = new FileMenuItem(this);
+                    i.setVisible(true);
+                    i.file = (GFile) g;
+                }
+                
+                if(g instanceof Folder){
+                    FolderMenuItem i = new FolderMenuItem(this);
+                    i.setVisible(true);
+                    i.file = (Folder) g;
+                    folderToPopup(p, f, i);
+                }
+            }
+        }
+    }
+    
+    public void mouseExited(MouseEvent evt){}
+    public void mouseEntered(MouseEvent evt){}
+    public void mousePressed(MouseEvent evt){
+        JPopupMenu pop = new JPopupMenu();
+        folderToPopup(p, p, pop);
+        pop.show(this, evt.getX(), evt.getY());
+    }
+    public void mouseReleased(MouseEvent evt){}
+    public void mouseClicked(MouseEvent evt){}
+    
     public void setFile(GFile file){
+        setFile(file, false);
+    }
+    
+    public void setFile(GFile file, boolean trigger){
         this.file = file;
         updateUI();
+        if(trigger)
+            ;
+    }
+    
+    public GFile getFile(){
+        return file;
     }
     
     public void paint(Graphics g){
