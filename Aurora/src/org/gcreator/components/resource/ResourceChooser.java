@@ -39,10 +39,13 @@ public class ResourceChooser extends JComponent{
     }
     
     /**
-     * @obsolete use getFile instead
+     * @deprecated use getFile instead
      */
     public ObjectNode getCurrentObject(){
-        return getFile().node;
+        GFile f = getFile();
+        if(f==null)
+            return null;
+        return f.node;
     }
     
     public Dimension getPreferredSize(){

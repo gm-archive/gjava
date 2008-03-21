@@ -15,8 +15,10 @@ import javax.swing.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
+import org.gcreator.components.resource.ResourceChooser;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
@@ -36,9 +38,9 @@ public class SceneEditor extends TabPanel {
     public ViewsModel model;
     public BackgroundsModel bgmodel;
     public boolean changed = false;
-    public ResourceMenu curactor;
-    public ResourceMenu curbg;
-    public ResourceMenu curtileset;
+    public ResourceChooser curactor;
+    public ResourceChooser curbg;
+    public ResourceChooser curtileset;
     double instanceids = 0;
     
     /*private org.gcreator.fileclass.File getFile(){
@@ -46,7 +48,7 @@ public class SceneEditor extends TabPanel {
     }*/
     
     public ActorInScene makeNewActor(int x, int y){
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) curactor.getCurrentObject().object;
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) curactor.getFile();
         instanceids++;
         return new ActorInScene(a, x, y, instanceids);
     }
@@ -74,8 +76,8 @@ public class SceneEditor extends TabPanel {
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            ObjectNode k = (((Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(ais.Sactor,"actor",gcreator.window.getCurrentProject()).object).value).getSpriteFile()).node;
-            Sprite j = (Sprite) ((org.gcreator.fileclass.GFile) k.object).value;
+            GFile k = curactor.getFile();
+            Sprite j = (Sprite) k.value;
             ImageIcon i = j.getImageAt(0);
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
@@ -93,7 +95,7 @@ public class SceneEditor extends TabPanel {
     
     public void updateImage(){
         org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.GFile) curactor.getCurrentObject().object).value;
-        org.gcreator.fileclass.GFile t = b.getSpriteFile();
+        org.gcreator.fileclass.GFile t = b.sprite;
         if(t==null)
             return;
         ObjectNode c = t.node;
@@ -143,7 +145,7 @@ public class SceneEditor extends TabPanel {
         jTextField1.setText(file.name);
         Load();
         jPanel11.setLayout(new FlowLayout());
-        jPanel11.add(curactor = new ResourceMenu("actor","<no actor>",true,project));
+        jPanel11.add(curactor = new ResourceChooser(project, "actor"));
         curactor.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 updateImage();
@@ -153,7 +155,7 @@ public class SceneEditor extends TabPanel {
         /*if(((org.gcreator.fileclass.res.Scene) file.value).bgimage!=null)
             jPanel6.add(curbg = new ResourceMenu("image",((org.gcreator.fileclass.res.Scene) file.value).bgimage.name,true,project));
         else*/
-        jPanel6.add(curbg = new ResourceMenu("image", "<no image>",true,project));
+        jPanel6.add(curbg = new ResourceChooser(project, "image"));
         curbg.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 Scene s = (Scene) file.value;
@@ -179,7 +181,7 @@ public class SceneEditor extends TabPanel {
         });
         jScrollPane7.setViewportView(tilechooser);
         jPanel13.setLayout(new FlowLayout());
-        jPanel13.add(curtileset = new ResourceMenu("tileset", "<no tileset>",true,project));
+        jPanel13.add(curtileset = new ResourceChooser(project, "tileset"));
         curtileset.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 jScrollPane7.updateUI();
@@ -1493,10 +1495,7 @@ public class SceneEditor extends TabPanel {
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         jComboBox1.setSelectedIndex(bg.hmode);
         jComboBox2.setSelectedIndex(bg.vmode);
-        if(bg.image!=null)
-            curbg.setText(bg.image.name);
-        else
-            curbg.setText("<no image>");
+        curbg.setFile(bg.image);
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
 

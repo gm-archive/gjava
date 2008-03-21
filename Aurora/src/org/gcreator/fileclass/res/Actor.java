@@ -10,9 +10,9 @@ package org.gcreator.fileclass.res;
 
 import java.util.Enumeration;
 import java.util.Vector;
-import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.core.gcreator;
 import org.gcreator.events.Event;
+import org.gcreator.fileclass.GFile;
 
 /**
  *
@@ -21,8 +21,8 @@ import org.gcreator.events.Event;
 public class Actor extends Resource {
 static final long serialVersionUID = 1L;
     public boolean visible,  solid,  persistant;
-    public String sprite;
-    public String extend,  mask;
+    public GFile sprite;
+    public GFile extend,  mask;
     public int index,  depth;
     public Vector events; //<Event>
     
@@ -30,16 +30,6 @@ static final long serialVersionUID = 1L;
     public Actor(String name) {
         this.name = name;
         events = new Vector(); //<Event>
-    }
-    
-    public org.gcreator.fileclass.GFile getSpriteFile()
-    {
-        try{
-            return  ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(sprite,"sprite",gcreator.window.getCurrentProject()).object);
-        }
-        catch(Exception e){
-            return null;
-        }
     }
 
     public String writeXml() {

@@ -6,7 +6,6 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.components.SubimagePreview;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.resource.*;

@@ -11,6 +11,7 @@ package org.gcreator.units;
 
 import java.awt.*;
 import java.io.Serializable;
+import org.gcreator.fileclass.GFile;
 
 /**
  *
@@ -19,14 +20,14 @@ import java.io.Serializable;
 public class ActorInScene implements Serializable {
     static final long serialVersionUID = 1L;
    // public org.gcreator.fileclass.File actor;
-    public String Sactor;
+    public GFile Sactor;
     public int x;
     public int y;
     public double id;
     
-    public ActorInScene(org.gcreator.fileclass.GFile actor, int x, int y,double id){
+    public ActorInScene(GFile actor, int x, int y,double id){
         //this.actor = actor;
-        Sactor = actor.name;
+        Sactor = actor;
         this.x = x;
         this.y = y;
         this.id = id;

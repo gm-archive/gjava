@@ -15,6 +15,7 @@ import javax.swing.border.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.components.popupmenus.*;
+import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
@@ -30,7 +31,7 @@ public class SettingsEditor extends TabPanel {
     org.gcreator.fileclass.GFile file;
     SettingsValues value;
     TabValues Graphics, Resolution, Other, SceneOrder;
-    ResourceMenu scenes;
+    ResourceChooser scenes;
     int from;
     private static Vector<SettingsManager> managers = new Vector<SettingsManager>();
     
@@ -157,7 +158,7 @@ public class SettingsEditor extends TabPanel {
         scenelist = (Vector/*<org.gcreator.fileclass.File>*/) scn;
         checkres();
         jPanel10.setLayout(new FlowLayout());
-        jPanel10.add(scenes = new ResourceMenu("scene","<no scene>",true,project));
+        jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer());
     }

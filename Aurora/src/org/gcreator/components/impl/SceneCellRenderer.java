@@ -22,33 +22,28 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
             boolean focus) {
         ImageIcon icon = null;
         String val = value.toString();
-        Color col = Color.BLACK;
-        if (selected) {
-            try {
-                setBackground(list.getSelectionForeground());
-            } catch (Exception e) {
-                setBackground(Color.WHITE);
-            }
-        }
 
+        boolean invalid = false;
         if (!(value instanceof org.gcreator.fileclass.GFile)) {
+            invalid = true;
             val = "Invalid scene";
             if (selected) {
-                col = Color.YELLOW;
+                setForeground(Color.YELLOW);
             } else {
-                col = Color.RED;
+                setForeground(Color.RED);
             }
         } else {
             Object o = ((org.gcreator.fileclass.GFile) value).value;
             if (!(o instanceof Scene)) {
+                invalid = true;
                 val = "Invalid scene";
-                col = Color.RED;
+                setForeground(Color.RED);
             } else {
                 val = ((Scene) ((org.gcreator.fileclass.GFile) value).value).name;
             }
         }
 
-        if (selected) {
+        if (selected&&!invalid) {
             try {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());
@@ -57,11 +52,15 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
                 setForeground(Color.WHITE);
             }
         } else {
-            setBackground(Color.WHITE);
-            setBackground(Color.BLACK);
+            try {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            } catch (Exception e) {
+                setBackground(Color.WHITE);
+                setForeground(Color.BLACK);
+            }
         }
 
-        setForeground(col);
         setText(val);
         setIcon(icon);
 

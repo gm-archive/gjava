@@ -12,10 +12,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.*;
+import org.gcreator.components.resource.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.ObjectNode;
 
 /**
  *
@@ -25,7 +27,7 @@ public class TilesetEditor extends TabPanel {
     
     public org.gcreator.fileclass.GFile file;
     public Tileset value;
-    public ResourceMenu res;
+    public ResourceChooser res;
     
     public String langPiece(int val){
         return LangSupporter.activeLang.getEntry(val);
@@ -43,10 +45,14 @@ public class TilesetEditor extends TabPanel {
         String k = "<new image>";
         if(value.image != null && value.image.value instanceof ImageIcon)
             k = value.image.name;
-        jPanel2.add(res = new ResourceMenu("image",k,true,project));
+        jPanel2.add(res = new ResourceChooser(project, "image"));
         res.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                value.image = (org.gcreator.fileclass.GFile) res.getCurrentObject().object;
+                ObjectNode n = res.getCurrentObject();
+                if(n!=null)
+                    value.image = (org.gcreator.fileclass.GFile) n.object;
+                else
+                    value.image = null;
                 jScrollPane1.updateUI();
             }
         });

@@ -10,7 +10,6 @@
 package org.gcreator.components;
 
 import org.gcreator.editors.SceneEditor;
-import org.gcreator.components.popupmenus.ResourceMenu;
 import javax.swing.*;
 import java.awt.*;
 
@@ -69,7 +68,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void addActorAt(int x, int y){
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) (((Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(act.Sactor,"actor",gcreator.window.getCurrentProject()).object).value)).getSpriteFile().value;
+            Sprite s = (Sprite) act.Sactor.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
@@ -117,7 +116,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth<result)
                 result = b.depth;
         }
@@ -136,7 +135,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth>result)
                 result = b.depth;
         }
@@ -155,7 +154,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth>result&&b.depth<Depth)
                 b.depth = result;
         }
@@ -193,10 +192,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             e = scn.actors.elements();//<ActorInScene>
             while(e.hasMoreElements()){
                 ActorInScene ascn = (ActorInScene) e.nextElement();
-                org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.GFile)ResourceMenu.getObjectWithName(ascn.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+                org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
                 if(b.depth==dep){
                     try{
-                    org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) b.getSpriteFile().value;
+                    org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) b.sprite.value;
                     ImageIcon h = f.getImageAt(0);
                     if(h!=null)
                         g.drawImage(

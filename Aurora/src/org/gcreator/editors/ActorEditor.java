@@ -14,13 +14,13 @@ import org.gcreator.components.popupmenus.EventListModel;
 import org.gcreator.components.impl.ActionListCellRenderer;
 import org.gcreator.components.impl.ActionsCellRenderer;
 import org.gcreator.components.popupmenus.ActionPopupMenu;
-import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.components.popupmenus.EventPopupMenu;
 import org.gcreator.components.impl.EventSelectListener;
 import org.gcreator.actions.ActionPattern;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
+import org.gcreator.components.resource.*;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
@@ -47,7 +47,7 @@ public class ActorEditor extends TabPanel {
     
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
     
-    ResourceMenu spriteres, extendres, maskres;
+    ResourceChooser spriteres, extendres, maskres;
 
     public void updateNavigator(){
         System.out.println("Update navigator");
@@ -75,7 +75,7 @@ public class ActorEditor extends TabPanel {
     }
     
     public void spriteChanged() {
-        ((Actor) file.value).sprite = ((org.gcreator.fileclass.GFile) spriteres.getObjectWithName(spriteres.label.getText()).object).name;
+        ((Actor) file.value).sprite = spriteres.getFile();
         updateNavigator();
     }
 
@@ -114,9 +114,9 @@ public class ActorEditor extends TabPanel {
 
         //setup resource menu's
         jPanel13.setLayout(new FlowLayout());
-        jPanel13.add(spriteres = new ResourceMenu("sprite", "<no sprite>", true, project));
+        jPanel13.add(spriteres = new ResourceChooser(project, "sprite"));
         if (actor.sprite != null) {
-            spriteres.label.setText(actor.getSpriteFile().name);
+            spriteres.setFile(actor.sprite);
         }
         spriteres.addActionListener(new ActionListener() {
 
@@ -125,9 +125,9 @@ public class ActorEditor extends TabPanel {
                     }
                 });
         jPanel11.setLayout(new FlowLayout());
-        jPanel11.add(extendres = new ResourceMenu("actor", "<no actor>", true, project));
+        jPanel11.add(extendres = new ResourceChooser(project, "actor"));
         jPanel12.setLayout(new FlowLayout());
-        jPanel12.add(maskres = new ResourceMenu("sprite", "<no mask>", true, project));
+        jPanel12.add(maskres = new ResourceChooser(project, "sprite"));
 
         //load variables
         Load();
