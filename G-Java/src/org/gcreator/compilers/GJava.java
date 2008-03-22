@@ -76,7 +76,7 @@ public class GJava extends PlatformCore {
     public void parseSprite(Sprite s) {
         super.parseSprite(s);
         loadSprites += s.name + ",";
-        createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new String[] {";
+        createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new java.lang.String[] {";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
             org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
@@ -103,7 +103,7 @@ public class GJava extends PlatformCore {
             if (a.sprite == null) {
                 print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");

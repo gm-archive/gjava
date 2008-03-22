@@ -84,6 +84,43 @@ public class Sprite {
         } }
         //loadImage();
     }
+    
+    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, java.lang.String[] images) {
+        Image[] im = new Image[images.length];
+        for(int i = 0; i < images.length; i++)
+            try{
+                im[i] = new Image(images[i]);
+            }
+            catch(Exception e){}
+        a = new Animation(im, 1);
+        this.sprite_width = Width;
+        this.sprite_height = Height;
+        this.BBBottom = BBBottom;
+        this.BBTop = BBTop;
+        this.BBRight = BBRight;
+        this.BBLeft = BBLeft;
+        this.sprite_xoffset = OriginX;
+        this.sprite_yoffset = OriginY;
+
+        this.subimages = images.length;
+        filename = sprite_name;
+        this.spritename = new Image[subimages-1];
+        
+        for (int i = 0; i < images.length; i++) {
+            
+            if (images[i].equals("")) subimages--;
+            else {
+                
+//                try{
+//                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
+//                    
+//            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
+//                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
+        } }
+        //loadImage();
+    }
+    
+    
 
     public Image imshow() {
         index++;
