@@ -13,7 +13,9 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
+import org.gcreator.actions.components.VSpeedEditor;
 import org.gcreator.actions.mainactions.EndOfABlock;
+import org.gcreator.actions.mainactions.SetVSpeed;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.core.*;
 import org.gcreator.events.CreateEvent;
@@ -740,22 +742,32 @@ public class GM6Importer {
                 in.skip(in.read4());
             }
             int arglen = in.read4(); //argument count
+            System.out.println("arglen=" + arglen);
             int argkinds = in.read4();
+            System.out.println("argkinds=" + argkinds);
             for(int x = 0; x < argkinds; x++)
-                in.read4();
+                System.out.println("value=" + in.read4());
             int appliesTo = in.read4();
-            in.readBool(); //relative
+            boolean relative = in.readBool(); //relative
             int actualnoargs = in.read4();
+            String[] args = null;
+            if(actualnoargs!=0)
+                args = new String[actualnoargs];
             for (int l = 0; l < actualnoargs; l++)
             {
                 if (l >= arglen){
                     in.skip(in.read4());
                     continue;
                 }
-                in.readStr(); //strval
+                args[l] = in.readStr(); //strval
             }
             in.readBool(); //Not
             if(act!=null)
+                act.project = c.pro;
+            if(act!=null)
+                parseAction(c, act, appliesTo, relative, args);
+            System.out.println("Got here");
+            if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
         }
         System.out.println("Ended actions");
@@ -773,10 +785,24 @@ public class GM6Importer {
                 act = new org.gcreator.actions.Action(new EndOfABlock());
                 return act;
             }
+            if(actid==104){
+                act = new org.gcreator.actions.Action(new SetVSpeed());
+                return act;
+            }
         }
         
         System.out.println("libid=" + libid + ", actid=" + actid);
         
         return act;
+    }
+    
+    private static void parseAction(GmFileContext c, org.gcreator.actions.Action action,
+            int appliesTo, boolean relative, String[] args){
+        if(action.pattern instanceof SetVSpeed){
+            ((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
+            ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
+            if(appliesTo==-1)
+                ((VSpeedEditor) action.getPanel()).of.setText("this");
+        }
     }
 }
