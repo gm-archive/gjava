@@ -490,9 +490,10 @@ public class Actor extends tile {
     }
 
     public void setDirection(Object direction) {
-        System.out.println("speed:"+getSpeed().getDouble());
-        hspeed = getSpeed().getDouble() * cos(degtorad(direction)).getDouble();
-        vspeed = -getSpeed().getDouble() * sin(degtorad(direction)).getDouble();
+        double sp = getSpeed().getDouble();
+        System.out.println("speed:"+sp);
+        hspeed = sp * cos(degtorad(direction)).getDouble();
+        vspeed = -sp * sin(degtorad(direction)).getDouble();
     }
 
     public void setFriction(Object friction) {
@@ -639,6 +640,10 @@ public class Actor extends tile {
     public void setX(Object x) {
         this.x = x.getFloat();
     }
+    
+    public void setX(double x){
+        setX(new Double(x));
+    }
 
     public void setXprevious(Object xprevious) {
         this.xprevious = xprevious.getFloat();
@@ -658,6 +663,10 @@ public class Actor extends tile {
 
     public void setY(Object y) {
         this.y = y.getFloat();
+    }
+    
+    public void setY(double y){
+        setY(new Double(y));
     }
 
     public void setYstart(Object ystart) {
