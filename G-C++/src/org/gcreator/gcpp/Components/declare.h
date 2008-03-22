@@ -177,13 +177,13 @@ class org::gcreator::Components::Audio
             Mix_Chunk* sound;
         public:
             Audio();
-            Audio(Mix_Chunk*);
+            Audio(Mix_Music*);
             Audio(std::string);
             bool loadFile(std::string);
             bool setAudio(Mix_Music*);
             Mix_Chunk* getAudio();
             boolean audioPlaying();
-            void playAudio(Mix_Chunk*,int);
+            void playAudio(int);
             void pauseAudio();
             void unpauseAudio();
             bool audioPaused();

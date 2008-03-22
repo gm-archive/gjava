@@ -8,7 +8,7 @@ org::gcreator::Components::Audio::Audio();
     sound=NULL;
 }
 
-org::gcreator::Components::Audio::Audio(Mix_Chunk* _s);
+org::gcreator::Components::Audio::Audio(Mix_Music* _s);
 {
     sound=_s;
 }
@@ -18,7 +18,7 @@ org::gcreator::Components::Audio::Audio(std::string file);
     sound=loadAudio(file);
 }
 
-org::gcreator::Components::Audio::bool loadAudio(std::string file);
+bool org::gcreator::Components::Audio::loadAudio(std::string file);
 {
     sound=Mix_LoadMUS(file);
     if (getAudio()==NULL)
@@ -31,7 +31,7 @@ org::gcreator::Components::Audio::bool loadAudio(std::string file);
     }
 }
 
-org::gcreator::Components::Audio::bool setAudio(Mix_Music* _s);
+bool org::gcreator::Components::Audio::setAudio(Mix_Music* _s);
 {
     sound=_s
     if (getAudio()==NULL)
@@ -44,37 +44,37 @@ org::gcreator::Components::Audio::bool setAudio(Mix_Music* _s);
     }
 }
 
-org::gcreator::Components::Audio::Mix_Chunk* getAudio();
+Mix_Music* org::gcreator::Components::Audio::getAudio();
 {
     return sound;
 }
 
-org::gcreator::Components::Audio::boolean audioPlaying();
+bool org::gcreator::Components::Audio::audioPlaying();
 {
     return (Mix_PlayingMusic());
 }
 
-void org::gcreator::Components::Audio::playAudio(Mix_Chunk* _s,int num);
+void org::gcreator::Components::Audio::playAudio(int num);
 {
-    Mix_PlayMusic(_s,num);
+    Mix_PlayMusic(sound,num);
 }
 
-org::gcreator::Components::Audio::void pauseAudio();
+void org::gcreator::Components::Audio::pauseAudio();
 {
     Mix_PauseMusic();
 }
 
-org::gcreator::Components::Audio::void unpauseAudio();
+void org::gcreator::Components::Audio::unpauseAudio();
 {
     Mix_ResumeMusic();
 }
 
-org::gcreator::Components::Audio::boolean audioPaused();
+bool org::gcreator::Components::Audio::audioPaused();
 {
     return (Mix_PausedMusic());
 }
 
-org::gcreator::Components::Audio::void stopAudio();
+void org::gcreator::Components::Audio::stopAudio();
 {
     Mix_HaltMusic();
 }
