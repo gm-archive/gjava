@@ -19,7 +19,6 @@ import javax.swing.JOptionPane;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.ToolbarButton;
-import org.gcreator.components.popupmenus.ResourceMenu;
 import org.gcreator.core.Aurwindow;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
@@ -49,7 +48,7 @@ public class GJava extends PlatformCore {
 
     }
 
-    public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
+    public void parseImage(ImageIcon i, org.gcreator.fileclass.GFile f) {
         
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -79,15 +78,11 @@ public class GJava extends PlatformCore {
         loadSprites += s.name + ",";
         createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new String[] {";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
-            String str = ""+e.nextElement();
-            System.out.println("Image:"+str);
-            System.out.println("got here");
             try {
-            org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)(ResourceMenu.getObjectWithName(str,"image",gcreator.window.getCurrentProject()).object);
+            org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
+            createSprites += "\"" + a.name + ".png" + "\",";
         //if(a!=null)
             } catch(Exception ee){System.out.println("exception"+ee.getLocalizedMessage());}
-            System.out.println("got here");
-            createSprites += "\"" + str + ".png" + "\",";
         }
 
         createSprites += "\"\"});";
