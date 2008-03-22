@@ -43,6 +43,15 @@ public class Actor extends tile {
         sprite = spr;
     //Create_event();
     }
+    
+    public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
+            boolean Visible, int Depth, boolean Persistent) {
+        solid = new Boolean(Solid);
+        visible = new Boolean(Visible);
+        depth = new Integer(Depth);
+        persistent = new Boolean(Persistent);
+        sprite = spr;
+    }
 
     /**
      * Override with actor create event

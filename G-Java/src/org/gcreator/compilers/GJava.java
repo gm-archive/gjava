@@ -93,7 +93,7 @@ public class GJava extends PlatformCore {
             FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
-            print(actor, "import org.gcreator.compilers.gjava.components.*;");
+            print(actor, "import org.gcreator.compilers.gjava.api.components.*;");
             print(actor, "import org.gcreator.compilers.gjava.api.*;");
             print(actor, "");
 
@@ -182,7 +182,7 @@ public class GJava extends PlatformCore {
         print(scene, "    private void setupScene() {");
         
         for(int i=0; i<s.actors.size(); i++)
-        print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + ","+((ActorInScene) s.actors.get(i)).id +"));");
+        print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor.name + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + ","+((ActorInScene) s.actors.get(i)).id +"));");
 
         print(scene, "    }");
         print(scene, "");
