@@ -54,7 +54,7 @@ org::gcreator::Components::Audio::boolean audioPlaying();
     return (Mix_PlayingMusic());
 }
 
-org::gcreator::Components::Audio::void playAudio(Mix_Chunk* _s,int num);
+void org::gcreator::Components::Audio::playAudio(Mix_Chunk* _s,int num);
 {
     Mix_PlayMusic(_s,num);
 }
