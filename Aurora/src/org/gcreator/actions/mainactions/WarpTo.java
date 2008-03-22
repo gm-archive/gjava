@@ -9,6 +9,7 @@ import org.gcreator.actions.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.actions.components.HSpeedEditor;
+import org.gcreator.actions.components.WarpToEditor;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 
@@ -16,16 +17,16 @@ import org.gcreator.managers.LangSupporter;
  *
  * @author Luís
  */
-public class SetHSpeed extends ActionPattern {
+public class WarpTo extends ActionPattern {
 static final long serialVersionUID = 1L;
     //public PlainTextPanel panel = new PlainTextPanel();
     public String text;
     
-    public static ImageIcon icon = new ImageIcon(SetHSpeed.class.getResource("/org/gcreator/actions/images/hspeed.png"));
+    public static ImageIcon icon = new ImageIcon(WarpTo.class.getResource("/org/gcreator/actions/images/warp.png"));
 
     //ActorEditor context;
 
-    public SetHSpeed() {
+    public WarpTo() {
         super();
         //this.context = context;
     }
@@ -39,29 +40,34 @@ static final long serialVersionUID = 1L;
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-         return new HSpeedEditor();
+         return new WarpToEditor();
     }
 
     public String getStandardText(JComponent panel) {
-        if(panel != null&& panel instanceof HSpeedEditor){
-            HSpeedEditor editor = (HSpeedEditor) panel;
+        if(panel != null&& panel instanceof WarpToEditor){
+            WarpToEditor editor = (WarpToEditor) panel;
             String who = editor.of.getText();
             if(who==null)
                 who = "null";
-            String what = editor.to.getText();
-            if(what==null)
-                what = "null";
-            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$apply", who)
-                    .replaceAll("\\$value", what)
-                    .replaceAll("\\$\\$", "$");
+            String x = editor.X.getText();
+            if(x==null)
+                x = "0";
+            String y = editor.Y.getText();
+            if(y==null)
+                y = "0";
+            return "Warp " + who + " to (" + x + ", " + y + ")";
         }
-        return LangSupporter.activeLang.getEntry(223);
+        return "Warp to";
     }
 
     public String generateGCL(JComponent panel) {
-        if(panel != null&& panel instanceof HSpeedEditor){
-            HSpeedEditor editor = (HSpeedEditor) panel;
-            return "(" + editor.of.getText() + ").setHspeed(" + editor.to.getText() + ");";
+        if(panel != null&& panel instanceof WarpToEditor){
+            WarpToEditor editor = (WarpToEditor) panel;
+            String s = "";
+            String who = editor.of.getText();
+            s += "(" + who + ").setX(" + editor.X.getText() + ");\n";
+            s += "(" + who + ").setY(" + editor.Y.getText() + ");\n";
+            return s;
         }
         return "";
     }

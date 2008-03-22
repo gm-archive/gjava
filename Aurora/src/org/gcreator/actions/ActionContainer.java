@@ -33,6 +33,7 @@ public class ActionContainer {
         main.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/Main.png"));
         move.add(new org.gcreator.actions.mainactions.SetHSpeed());
         move.add(new org.gcreator.actions.mainactions.SetVSpeed());
+        move.add(new org.gcreator.actions.mainactions.WarpTo());
         move.name = LangSupporter.activeLang.getEntry(200);
         move.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/hspeed.png"));
         scenes.add(new org.gcreator.actions.mainactions.NextScene());

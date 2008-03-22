@@ -59,7 +59,7 @@ static final long serialVersionUID = 1L;
     public String generateGCL(JComponent panel) {
         if(panel != null&& panel instanceof VSpeedEditor){
             VSpeedEditor editor = (VSpeedEditor) panel;
-            return "(" + editor.of.getText() + ").vspeed = (" + editor.to.getText() + ");";
+            return "(" + editor.of.getText() + ").setVspeed(" + editor.to.getText() + ");";
         }
         return "";
     }
