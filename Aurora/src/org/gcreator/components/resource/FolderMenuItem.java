@@ -14,12 +14,10 @@ import org.gcreator.fileclass.*;
  *
  * @author Luís
  */
-/*internal*/ class FolderMenuItem extends JMenu{
+public class FolderMenuItem extends JMenu{
     public Folder file = null;
-    private FileLabel l = null;
-    public FolderMenuItem(FileLabel l){
+    public FolderMenuItem(){
         super();
-        this.l = l;
     }
     
     public String getText(){

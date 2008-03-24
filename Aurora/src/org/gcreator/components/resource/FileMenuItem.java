@@ -8,6 +8,7 @@ package org.gcreator.components.resource;
 import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.components.impl.*;
+import org.gcreator.components.popupmenus.CollisionListPopup;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 
@@ -15,17 +16,27 @@ import org.gcreator.fileclass.*;
  *
  * @author Luís
  */
-/*internal*/ class FileMenuItem extends JMenuItem implements ActionListener{
+public class FileMenuItem extends JMenuItem implements ActionListener{
     public GFile file = null;
     private FileLabel l = null;
+    private CollisionListPopup p = null;
     public FileMenuItem(FileLabel l){
         super();
         this.l = l;
         this.addActionListener(this);
     }
     
+    public FileMenuItem(CollisionListPopup p){
+        super();
+        this.p = p;
+        this.addActionListener(this);
+    }
+    
     public void actionPerformed(ActionEvent evt){
-        l.setFile(file, true);
+        if(l!=null)
+            l.setFile(file, true);
+        if(p!=null)
+            p.done(file);
     }
     
     public String getText(){

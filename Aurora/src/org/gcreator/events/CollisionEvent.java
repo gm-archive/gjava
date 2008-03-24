@@ -6,6 +6,7 @@
 package org.gcreator.events;
 
 import javax.swing.ImageIcon;
+import org.gcreator.fileclass.GFile;
 
 /**
  *
@@ -13,20 +14,20 @@ import javax.swing.ImageIcon;
  */
 public class CollisionEvent extends Event {
   static ImageIcon icon;
-  String actor="";
+  public GFile other;
   static final long serialVersionUID = 1L;
   
     public CollisionEvent(){
             }
 
-    public CollisionEvent(String actionCommand) {
+    public CollisionEvent(GFile other) {
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/collision.png"));
-        actor = actionCommand;
+        this.other = other;
     }
     
      
     public String toString(){
-        return "Collision with " + actor;
+        return "Collision with " + other.name;
     }
     
      

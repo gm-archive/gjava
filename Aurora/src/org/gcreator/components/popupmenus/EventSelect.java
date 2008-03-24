@@ -101,9 +101,6 @@ public class EventSelect extends javax.swing.JDialog {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"))); // NOI18N
         jButton5.setText("Mouse");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton5MousePressed(evt);
-            }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jButton5MouseReleased(evt);
             }
@@ -147,8 +144,8 @@ public class EventSelect extends javax.swing.JDialog {
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/events/collision.png"))); // NOI18N
         jButton9.setText("Collision");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jButton9MousePressed(evt);
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jButton9MouseReleased(evt);
             }
         });
 
@@ -239,13 +236,9 @@ public class EventSelect extends javax.swing.JDialog {
         jButton3MousePressed(evt);
     }//GEN-LAST:event_jButton3MouseReleased
 
-    private void jButton5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MousePressed
-        MouseListPopup mouse = new MouseListPopup(this);
-        mouse.show(jButton5, evt.getX(), evt.getY());
-    }//GEN-LAST:event_jButton5MousePressed
-
     private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
-        jButton5MousePressed(evt);
+        MouseListPopup kb = new MouseListPopup(this);
+        kb.show(jButton5, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton5MouseReleased
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -267,11 +260,6 @@ public class EventSelect extends javax.swing.JDialog {
         kb.show(jButton8, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton8MouseReleased
 
-    private void jButton9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MousePressed
-       CollisionPopup col = new CollisionPopup(this);
-        col.show(jButton9, evt.getX(), evt.getY());
-    }//GEN-LAST:event_jButton9MousePressed
-
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -280,6 +268,11 @@ public class EventSelect extends javax.swing.JDialog {
         AlarmListPopup alarm = new AlarmListPopup(this);
         alarm.show(jButton10, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton10MouseReleased
+
+    private void jButton9MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseReleased
+        CollisionListPopup col = new CollisionListPopup(this, "actor");
+        col.show(jButton9, evt.getX(), evt.getY());
+    }//GEN-LAST:event_jButton9MouseReleased
     
     public void callEvent(int type){
         if(listener!=null)

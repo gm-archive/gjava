@@ -44,7 +44,7 @@ import org.gcreator.fileclass.*;
                 }
                 
                 if(g instanceof Folder){
-                    FolderMenuItem i = new FolderMenuItem(this);
+                    FolderMenuItem i = new FolderMenuItem();
                     i.setVisible(true);
                     i.file = (Folder) g;
                     folderToPopup(p, (Folder) g, i);
@@ -69,7 +69,7 @@ import org.gcreator.fileclass.*;
                 }
                 
                 if(g instanceof Folder){
-                    FolderMenuItem i = new FolderMenuItem(this);
+                    FolderMenuItem i = new FolderMenuItem();
                     i.setVisible(true);
                     i.file = (Folder) g;
                     pop.add(i);
