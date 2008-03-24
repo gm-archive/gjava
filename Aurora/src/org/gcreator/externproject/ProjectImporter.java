@@ -64,7 +64,7 @@ public class ProjectImporter {
         int fileno = 0;
         while (ii < ss.length) {
             String[] sss = ss[ii].replaceAll("</file>", "").split("\">"); //SpriteGroup">Sprites
-            if (sss[0].equals("org.gcreator.fileclass.File")) {
+            if (sss[0].equals("org.gcreator.fileclass.GFile")) {
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String[] ssss = sss[1].split("\\.");
                 String dir = sss[1];
