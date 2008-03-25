@@ -79,4 +79,10 @@ void org::gcreator::Components::Audio::stopAudio();
     Mix_HaltMusic();
 }
 
+void org::gcreator::Components::Audio::release();
+{
+    Mix_FreeMusic(sound);
+    sound=NULL;
+}
+
 #endif

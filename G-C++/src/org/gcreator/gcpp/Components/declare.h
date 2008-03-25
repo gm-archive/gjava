@@ -174,20 +174,36 @@ class org::gcreator::Components::Application
 class org::gcreator::Components::Audio
 {
         private:
-            Mix_Chunk* sound;
+            Mix_Music* sound;
         public:
             Audio();
             Audio(Mix_Music*);
             Audio(std::string);
             bool loadFile(std::string);
             bool setAudio(Mix_Music*);
-            Mix_Chunk* getAudio();
-            boolean audioPlaying();
+            Mix_Music* getAudio();
+            bool audioPlaying();
             void playAudio(int);
             void pauseAudio();
             void unpauseAudio();
             bool audioPaused();
             void stopAudio();
+            void release()
+};
+
+class org::gcreator::Components::SFX
+{
+        private:
+            Mix_Chunk* sound;
+        public:
+            SFX();
+            SFX(Mix_Chunk*)
+            SFX(std::string)
+            bool loadFile(std::string)
+            bool setSFX(Mix_Chunk*)
+            Mix_Chunk* getSFX();
+            void playSFX(int,int)
+            void release()
 };
 
 #ifndef _GCPP_COMPONENTS_APPLICATION_
