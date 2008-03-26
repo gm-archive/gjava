@@ -2,6 +2,7 @@
 #define _GCPP_COMPONENTS_DECLARE_
 
 #include <SDL/SDL.h>
+#include "SDL/SDL_image.h"
 
 class org::gcreator::Components::Image
 {

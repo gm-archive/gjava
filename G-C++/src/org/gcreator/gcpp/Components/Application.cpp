@@ -17,6 +17,7 @@ SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int 
             return NULL;
         }
         screen=SDL_SetVideoMode(W,H,BPP,SDL_SWSURFACE);
+        Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096)
         if(screen==NULL){
             return NULL;
         }
