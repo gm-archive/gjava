@@ -649,7 +649,7 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 0, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/newproject.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
         items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
 
@@ -657,9 +657,9 @@ public class Aurwindow extends JFrame {
                 onItemActionPerformed(0, 1, evt);
             }
         });
-        items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/newfile.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_new.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
-        items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/openproject.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_open.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -667,6 +667,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], 8, "Save project");
+        items[MenuSupporter.GenerateMenuItemId(0, 3)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 3)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -674,11 +675,13 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
+        items[MenuSupporter.GenerateMenuItemId(0, 4)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_saveas.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
+        items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_saveall.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
-        items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/save.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
-        items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/saveall.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_saveall.png")));
         menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
         menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
         items[MenuSupporter.GenerateMenuItemId(10, 0)] = MenuSupporter.MakeMenuItem(menus[10], 189, "Import Image");
@@ -693,7 +696,9 @@ public class Aurwindow extends JFrame {
         menus[13] = MenuSupporter.MakeSubMenu(menus[12], 185, "File");
         menus[14] = MenuSupporter.MakeSubMenu(menus[12], 186, "Project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 9)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_close.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 10)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_exit.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 10)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -766,6 +771,7 @@ public class Aurwindow extends JFrame {
 
         menus[7] = MenuSupporter.MakeMenu(menubar, 114, "Tools");
         items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
+        items[MenuSupporter.GenerateMenuItemId(7, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_language.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -773,7 +779,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
-        items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")));
+        items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_update.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -781,6 +787,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(7, 2)] = MenuSupporter.MakeMenuItem(menus[7], 109, "Extensions Manager");
+        items[MenuSupporter.GenerateMenuItemId(7, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_plug.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 2)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -789,6 +796,7 @@ public class Aurwindow extends JFrame {
         });
         menus[7].addSeparator();
         items[MenuSupporter.GenerateMenuItemId(7, 3)] = MenuSupporter.MakeMenuItem(menus[7], 130, "Global options");
+        items[MenuSupporter.GenerateMenuItemId(7, 3)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_global.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 3)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -798,6 +806,7 @@ public class Aurwindow extends JFrame {
         menus[7].addSeparator();
         menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
         items[MenuSupporter.GenerateMenuItemId(7, 4)] = MenuSupporter.MakeMenuItem(menus[7], 183, "PowerPack");
+        items[MenuSupporter.GenerateMenuItemId(7, 4)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_powerpack.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -805,6 +814,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(8, 0)] = MenuSupporter.MakeMenuItem(menus[8], 172, "Play macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro_play.png")));
         items[MenuSupporter.GenerateMenuItemId(8, 0)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -812,6 +822,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(8, 1)] = MenuSupporter.MakeMenuItem(menus[8], 173, "Edit macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro_edit.png")));
         items[MenuSupporter.GenerateMenuItemId(8, 1)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -819,6 +830,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(8, 2)] = MenuSupporter.MakeMenuItem(menus[8], 174, "Record new macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 2)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro_record.png")));
         items[MenuSupporter.GenerateMenuItemId(8, 2)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -826,6 +838,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(8, 3)] = MenuSupporter.MakeMenuItem(menus[8], 182, "Stop recording macro");
+        items[MenuSupporter.GenerateMenuItemId(8, 3)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro_stop.png")));
         items[MenuSupporter.GenerateMenuItemId(8, 3)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
