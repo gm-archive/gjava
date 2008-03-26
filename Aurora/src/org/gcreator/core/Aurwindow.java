@@ -847,6 +847,7 @@ public class Aurwindow extends JFrame {
         });
         menus[4] = MenuSupporter.MakeMenu(menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
+        items[MenuSupporter.GenerateMenuItemId(4, 0)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/help_about.png")));
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
@@ -854,6 +855,7 @@ public class Aurwindow extends JFrame {
             }
         });
         items[MenuSupporter.GenerateMenuItemId(4, 1)] = MenuSupporter.MakeMenuItem(menus[4], 25, "Aurora help");
+        items[MenuSupporter.GenerateMenuItemId(4, 1)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/help_help.png")));
         items[MenuSupporter.GenerateMenuItemId(4, 1)].addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {

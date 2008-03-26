@@ -41,6 +41,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
     public ImageIcon scene;
     public ImageIcon img;
     public ImageIcon sound;
+    public ImageIcon settings;
     
     public WorkspaceCellRenderer() {
         workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
@@ -56,6 +57,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         scene = new ImageIcon(getClass().getResource("/org/gcreator/resources/scene.png"));
         img = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
         sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/sound.png"));
+        settings = new ImageIcon(getClass().getResource("/org/gcreator/resources/settings.png"));
     }
 
     public ImageIcon getImageFor(ObjectNode noder){
@@ -94,6 +96,8 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                     return(sound);
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("mid"))  {
                     return(sound);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("settings"))  {
+                    return(settings);
                 } else if (UIManager.get("Tree.leafIcon") != null) {
                     return((ImageIcon) UIManager.get("Tree.leafIcon"));
                 }
