@@ -21,6 +21,8 @@ public class newScene1 extends org.gcreator.compilers.gjava.lwjgl.Scene2D {
       //  instances.add(new TestActor());
         System.out.println("setup scene");
 instances.add(new TestActor(new Integer(16),new Integer(90),new Double(1.0)));
+instances.add(new TestActor(new Integer(160),new Integer(290),new Double(1.0)));
+System.out.println("size"+instances.size());
 //instances.add(new TestActor(new Integer(16),new Integer(90),new Double(1.0)));
     }
 

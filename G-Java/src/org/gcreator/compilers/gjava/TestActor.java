@@ -10,6 +10,7 @@ import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.Object;
 import org.gcreator.compilers.gjava.api.String;
 import org.gcreator.compilers.gjava.api.Integer;
+import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.Boolean;
 import org.gcreator.compilers.gjava.api.components.Sprite;
 import org.newdawn.slick.Image;
@@ -26,6 +27,7 @@ public class TestActor extends Actor {
     }
 
     public TestActor(Object X, Object Y, Object instance_id) {
+        self=this;
         try {
             
         sprite = new Sprite(new Image[] {new Image("/close.jpg")});
@@ -37,7 +39,15 @@ public class TestActor extends Actor {
         this.id = instance_id;
         this.x = X.getFloat();
         this.y = Y.getFloat();
-        Create_event();
+      //  Create_event();
+       // motion_set(new Integer(90), new Integer(1));
+        System.out.println("Distance:"+distance_to_object(new TestActor()));
+        System.out.println(""+point_direction(new Integer(0),new Integer(0),new Integer(60),new Integer(60)));
+        setSpeed(new Integer(10));
+        System.out.println("Speed"+getSpeed());
+       setDirection(new Double(45));
+       System.out.println("Speed"+getSpeed());
+        
     }
 
     @Override
@@ -52,14 +62,23 @@ y2=new Integer(10),
 len=new Integer(5),
 dir = new Integer(0);
 
-show_message(string(point_direction(x1,y1,x2,y2))); //Returns the direction from point (x1,y1) toward point (x2,y2) in degrees.
+//show_message(string(point_direction(x1,y1,x2,y2))); //Returns the direction from point (x1,y1) toward point (x2,y2) in degrees.
+x= 17; 
+y=17;
+//motion_set(new Integer(90), new Integer(1));
+System.out.println("Snapped:"+place_snapped(new Integer(16),new Integer(16)).getBoolean()+"X:"+self.getX()+"Y"+self.getY());
+move_snap(new Integer(16),new Integer(16));
 
-show_message(string(clipboard_has_text()));// Returns whether there is any text on the clipboard.
-show_message(string(clipboard_get_text()));// Returns the current text on the clipboard.
-show_message(string(clipboard_set_text(new String("G-Creator"))));// Sets the string str on the clipboard.
+System.out.println("Snapped:"+place_snapped(new Integer(16),new Integer(16)).getBoolean()+"X:"+self.getX()+"Y"+self.getY());
+System.out.println(""+getInstance_count().getDouble()); 
+
+execute_shell(new String("file:\\\\C:\\\\run.bat"), new String(""));
+
+show_message(string(getVk_nokey()));
 
 
-        return null;
+//show_message(string(display_set_size(new Integer(1280),new Integer(80))));
+return null;
     }
     
    
