@@ -103,6 +103,8 @@ public class Aurwindow extends JFrame {
             if(method!=null)
                 method.refactor(context);
         }
+        if (o.tabPanel != null)
+           remove(o.tabPanel,o.tabPanel.frame);
         workspace.updateUI();
     }
     
@@ -226,6 +228,9 @@ public class Aurwindow extends JFrame {
         if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject());
         } else if (file.type.equals("sprite")) {
+            
+            System.out.println("Sprite created");
+            
             //            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
 //                if (((Sprite) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
@@ -237,7 +242,9 @@ public class Aurwindow extends JFrame {
 //                getCurrentProject().sprites.add(new Sprite(file.name));
 //                foundloc = getCurrentProject().sprites.size() + 1;
 //            }
-            addEWindow(new SpriteEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new SpriteEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("actor")) {
             //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
@@ -250,8 +257,11 @@ public class Aurwindow extends JFrame {
 //                getCurrentProject().actors.add(new Actor(file.name));
 //                foundloc = getCurrentProject().actors.size() + 1;
 //            }
+            
             try {
-                addEWindow(new ActorEditor(file, this.getCurrentProject()), file.name);
+                TabPanel tp = new ActorEditor(file, this.getCurrentProject());
+                file.tabPanel = tp;
+                addEWindow(tp,file.name);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("scene")) {
@@ -266,28 +276,49 @@ public class Aurwindow extends JFrame {
 //                getCurrentProject().scenes.add(getCurrentProject().scenes.size() + 1, new Scene(file.name));
 //                foundloc = getCurrentProject().scenes.size() + 1;
 //            }
-            addEWindow(new SceneEditor(file, this.getCurrentProject()), file.name);
+            
+            TabPanel tp = new SceneEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);        
         } else if (file.type.equals("egml") || file.type.equals("gcl")) {
-            addEWindow(new org.gcreator.editors.GCLEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new GCLEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("gs")) {
-            addEWindow(new org.gcreator.editors.ScriptEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new ScriptEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("struct")) {
-            addEWindow(new StructureEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new StructureEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
-            addEWindow(new ImageEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new ImageEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")) {
-            addEWindow(new SoundEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new SoundEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("settings")) {
-            addEWindow(new SettingsEditor(this.getCurrentProject(), file), file.name);
+            TabPanel tp = new SettingsEditor(this.getCurrentProject(),file);
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else if (file.type.equals("timeline")) {
             try {
-                addEWindow(new TimelineEditor(file, this.getCurrentProject()), file.name);
+                TabPanel tp = new TimelineEditor(file, this.getCurrentProject());
+                file.tabPanel = tp;
+                addEWindow(tp,file.name);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("tileset")) {
-            addEWindow(new TilesetEditor(file, this.getCurrentProject()), file.name);
+            TabPanel tp = new TilesetEditor(file,this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         } else {
-            addEWindow(new PlainTextEditor(file, this.getCurrentProject()), file.name); //All unmanaged file formats
+            TabPanel tp = new PlainTextEditor(file,this.getCurrentProject());//All unmanaged file formats
+            file.tabPanel = tp;
+            addEWindow(tp,file.name);
         }
         Macro.macroAction(new OpenFileAction(file));
     }
@@ -579,7 +610,7 @@ public class Aurwindow extends JFrame {
          */
         workspace = new WorkspaceTree(top);
         workspace.setVisible(true);
-
+               
         workspace.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 
@@ -1154,7 +1185,7 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
         }
         setSize(w, h);
-        splitter2.setDividerLocation(100);
+        splitter2.setDividerLocation(159);
         splitter1.setDividerSize(5);
         splitter2.setDividerSize(5);
         utilities.addMessage(29);

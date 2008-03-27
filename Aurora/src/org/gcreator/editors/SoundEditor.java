@@ -29,7 +29,6 @@ import org.gcreator.fileclass.res.Sound;
  * @author  TGMG
  */
 public class SoundEditor extends TabPanel {
-    private org.gcreator.fileclass.GFile file;
     static int number = 0;
     AudioSystem audio;
     private AudioTrack targetSound;

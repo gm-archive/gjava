@@ -36,7 +36,7 @@ public class GFile extends GObject implements Transferable {
     private static DataFlavor[] flavors = {NODE_FLAVOR};
     public Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
-
+    public org.gcreator.components.TabPanel tabPanel;//Used to kill any tabpanel when this is deleted. 
     public java.lang.Object value;
     //public ImageIcon treeimage;
     public String xml = ""; // the data xml used to load

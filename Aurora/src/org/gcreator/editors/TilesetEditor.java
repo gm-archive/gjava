@@ -25,7 +25,6 @@ import org.gcreator.units.ObjectNode;
  */
 public class TilesetEditor extends TabPanel {
     
-    public org.gcreator.fileclass.GFile file;
     public Tileset value;
     public ResourceChooser res;
     

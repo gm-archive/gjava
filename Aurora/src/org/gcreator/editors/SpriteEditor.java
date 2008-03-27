@@ -20,7 +20,6 @@ import javax.swing.*;
  */
 public class SpriteEditor extends TabPanel {
     
-    public org.gcreator.fileclass.GFile file = null;
     public Sprite sprite;
     boolean changed;
     private SubimagePreview prev;

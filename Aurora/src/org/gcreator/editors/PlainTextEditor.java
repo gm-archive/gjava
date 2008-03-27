@@ -19,7 +19,6 @@ public class PlainTextEditor extends TabPanel {
     
     /** Creates new form PlainTextEditor */
     
-    public org.gcreator.fileclass.GFile file;
     public boolean changed = false;
     
     public PlainTextEditor(org.gcreator.fileclass.GFile file,Project project) {

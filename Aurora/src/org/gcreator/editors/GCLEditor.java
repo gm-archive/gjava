@@ -30,7 +30,6 @@ public class GCLEditor extends TabPanel {
 
     public boolean changed = true;
     private SyntaxHighlighter g;
-    public org.gcreator.fileclass.GFile file;
 
     public boolean Save() {
         file.value = g.getText();

@@ -34,7 +34,6 @@ public class SceneEditor extends TabPanel {
     
     /** Creates new form SceneEditor */
     public ScenePanel scene;
-    public org.gcreator.fileclass.GFile file;
     public ViewsModel model;
     public BackgroundsModel bgmodel;
     public boolean changed = false;

@@ -22,11 +22,14 @@ public class TabPanel extends JPanel{
     public ExtendedFrame frame;
     public String title = "<none>";
     public Project project;
+    public org.gcreator.fileclass.GFile file = null;
     
     public void dispose(){
        
         if (!wasModified()) {
              parent.remove(this, frame);
+             if (file != null)
+                file.tabPanel = null;
         } else {
             java.lang.Object[] options = {"Yes",
                     "No",
@@ -43,10 +46,13 @@ public class TabPanel extends JPanel{
             if (n == JOptionPane.YES_OPTION) {
                 if (Save()) {
                      parent.remove(this, frame);
+                     file.tabPanel = null;
                 }
             }
             if (n == JOptionPane.NO_OPTION) {
                  parent.remove(this, frame);
+                 if (file != null)
+                    file.tabPanel = null;
             }
         }
     }

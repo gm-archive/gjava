@@ -36,7 +36,6 @@ import org.gcreator.managers.LangSupporter;
 
 public class ActorEditor extends TabPanel {
 
-    public org.gcreator.fileclass.GFile file = null;
     public boolean changed = false;
     public EventListModel elist;
     Actor actor;

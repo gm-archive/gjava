@@ -28,7 +28,6 @@ import org.gcreator.plugins.*;
 public class SettingsEditor extends TabPanel {
     
     /** Creates new form SettingsEditor */
-    org.gcreator.fileclass.GFile file;
     SettingsValues value;
     TabValues Graphics, Resolution, Other, SceneOrder;
     ResourceChooser scenes;

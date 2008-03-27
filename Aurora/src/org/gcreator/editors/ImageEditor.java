@@ -25,7 +25,6 @@ import org.gcreator.fileclass.*;
 public class ImageEditor extends TabPanel {
 
     /** Creates new form ImageEditor */
-    private org.gcreator.fileclass.GFile file;
     private ImageDisplayer displayer;
 
     public Color getTransparencyColor(){

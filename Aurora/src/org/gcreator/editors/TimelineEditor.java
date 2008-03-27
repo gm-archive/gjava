@@ -26,7 +26,6 @@ import org.gcreator.managers.*;
  */
 public class TimelineEditor extends TabPanel {
     
-    private org.gcreator.fileclass.GFile file;
     private Timeline timeline;
     int from;
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
