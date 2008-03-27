@@ -11,7 +11,7 @@ import java.awt.Image;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 
 public class Draw2d {
-public static Graphics g;
+ static Graphics g;
     /**
      * Clears the entire room in the given color (no alpha blending).
      * @param col Color to clear the room to
@@ -24,7 +24,7 @@ public static Graphics g;
     }
 
     /**
-     * Draws an ellipse to the current room.
+     * Draws an ellipse to the current scene.
      * @param x1 
      * @param y1 
      * @param x2 

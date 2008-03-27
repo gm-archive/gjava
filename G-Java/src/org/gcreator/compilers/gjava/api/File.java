@@ -44,7 +44,9 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          */
         public void open(String fname,int readwrite) {
             try {
+                if (readwrite == 0)
                 writer = new BufferedWriter(new java.io.FileWriter(fname+""));
+                else
                 reader = new BufferedReader(new java.io.FileReader(fname+""));
                 
             } catch (Exception ex) {
@@ -73,7 +75,9 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          */
         public void close() {
             try {
+                if (writer !=null)
                 writer.close();
+                else
                 reader.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
