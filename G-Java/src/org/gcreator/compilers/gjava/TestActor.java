@@ -48,6 +48,11 @@ public class TestActor extends Actor {
        setDirection(new Double(45));
        System.out.println("Speed"+getSpeed());
         
+       //test file functions
+       Object fileid = file_text_open_write(new String("C:\\testG-Java.txt"));
+file_text_write_string(fileid,new String("Test worked!"));
+file_text_close(fileid);
+       
     }
 
     @Override

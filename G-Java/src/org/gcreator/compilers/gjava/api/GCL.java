@@ -3713,7 +3713,9 @@ return new Object();
 
 public static Object file_text_open_write(Object fname)
 {
-return new Object();
+    File f = new File();
+    f.open(fname.getString(), 0);
+    return f;
 }
 
 public static Object file_text_open_append(Object fname)
@@ -3723,11 +3725,21 @@ return new Object();
 
 public static Object file_text_close(Object file)
 {
+    if (file instanceof File)
+    {
+        System.out.println("it is a file!");
+        ((File)file).close();
+    }
 return new Object();
 }
 
 public static Object file_text_write_string(Object file, Object str)
 {
+    if (file instanceof File)
+    {
+        System.out.println("it is a file!");
+        ((File)file).writeString(str.getString());
+    }
 return new Object();
 }
 

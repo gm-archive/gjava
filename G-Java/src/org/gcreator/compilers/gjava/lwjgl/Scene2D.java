@@ -8,13 +8,9 @@ package org.gcreator.compilers.gjava.lwjgl;
 
 import java.awt.Frame;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import org.gcreator.compilers.gjava.api.Actor;
+import org.gcreator.compilers.gjava.api.Variables;
 import org.lwjgl.LWJGLException;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.CanvasGameContainer;
@@ -22,7 +18,6 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.tests.GradientTest;
 
 /**
  *
@@ -63,7 +58,7 @@ public class Scene2D extends BasicGame {
     /**
      * The speed of the scene
      */
-    public long speed = 60;
+    public double speed = 60;
        
     
     /**
@@ -90,20 +85,7 @@ public class Scene2D extends BasicGame {
     super("");
     }
     
-    /**
-     * @todo
-     */
-    public void updateCaption(){
-        
-    }
-    
-    /**
-     * @todo
-     */
-    public long getFPS(){
-        return this.speed;
-    }
-    
+       
     /**
      * Creates a new RoomPanel object
      * @param R Jframe to add to
@@ -140,6 +122,25 @@ public class Scene2D extends BasicGame {
             Frame.setTitle(Caption);
             
         }
+    }
+    /**
+     * This will update the caption fo the room to show score etc
+     */
+    public void updateCaption()
+    {
+        String cap = "";
+        if (Variables.show_score.getBoolean())
+            cap += Variables.caption_score.getString().add (Variables.score.getString());
+        if (Variables.show_lives.getBoolean())
+            cap += Variables.caption_lives.getString().add (Variables.lives.getString());
+        if (Variables.show_health.getBoolean())
+            cap += Variables.caption_health.getString().add (Variables.health.getString());
+        Frame.setTitle(Caption+" "+ cap);
+    }
+    
+    public int getFPS()
+    {
+       return container.getFPS();
     }
     
     /**
@@ -189,7 +190,9 @@ public class Scene2D extends BasicGame {
 
     @Override
     public void update(GameContainer arg0, int arg1) throws SlickException {
-       // System.out.println("update");
+       for (int i = 0; i < instances.size(); i++) {
+            ((Actor)instances.elementAt(i)).callEvents();
+        }
     }
 
     public void render(GameContainer arg0, Graphics g) throws SlickException {

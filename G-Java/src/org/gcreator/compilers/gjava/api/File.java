@@ -19,7 +19,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
      * This class allows you to modify text files. It also contains general functions for manipulating files.
     * When a file is open it is open for both reading and writing.
      */
-    public class File {
+    public class File extends Object {
 
 
         /**
