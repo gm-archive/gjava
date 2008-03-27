@@ -43,7 +43,7 @@ public class GJava extends PlatformCore {
     public static String projectname,  FileFolder;
     public static int sprites = 0,  actors = 0,  scenes = 0,  fonts = 0;
     String loadscene = "", loadSprites = "public static Sprite ", createSprites = "public void loadSprites() { ";
-
+    double actorindex=0;
     public GJava() {
 
     }
@@ -101,9 +101,9 @@ public class GJava extends PlatformCore {
             print(actor, "");
             print(actor, "    " + a.name + "(int X,int Y,double instance_id) {");
             if (a.sprite == null) {
-                print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+", "+actorindex+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+", "+actorindex+");");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
@@ -137,7 +137,7 @@ public class GJava extends PlatformCore {
             actor.close();
         } catch (Exception e) {
         }
-
+actorindex++;
     }
     
     
