@@ -377,7 +377,10 @@ public class Actor extends tile {
     }
 
     public Object getSpeed() {
-    return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
+        double h = hspeed;
+     double v = vspeed;
+     return new Double( Math.sqrt((h*h) + (v*v)));
+    //return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
     public Object getSprite_height() {
@@ -602,6 +605,7 @@ public class Actor extends tile {
     }
 
     public void setSpeed(Object speed) {
+    
         hspeed = speed.getDouble() * cos(degtorad(getDirection())).getDouble();
         vspeed = -speed.getDouble() * sin(degtorad(getDirection())).getDouble();
         }
