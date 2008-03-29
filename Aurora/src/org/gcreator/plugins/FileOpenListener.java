@@ -4,6 +4,7 @@
 
 package org.gcreator.plugins;
 
+import javax.swing.*;
 import org.gcreator.fileclass.*;
 
 /**
@@ -12,6 +13,6 @@ import org.gcreator.fileclass.*;
  */
 public interface FileOpenListener {
     public String[] getFileFormats();
-    public boolean openNewFile(org.gcreator.fileclass.GFile file, Project project);
+    public boolean openNewFile(org.gcreator.fileclass.GFile file, Project project, ImageIcon img);
     public java.lang.Object generateResource(org.gcreator.fileclass.GFile file, String value);
 }

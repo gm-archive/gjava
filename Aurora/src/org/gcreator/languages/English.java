@@ -290,6 +290,7 @@ public class English extends Dictionary{
         entry[241] = "Of:";
         entry[242] = "To:";
         entry[243] = "NOT";
+        entry[244] = "About";
         
         try{
             init();

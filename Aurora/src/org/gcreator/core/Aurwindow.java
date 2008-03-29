@@ -1,7 +1,7 @@
 package org.gcreator.core;
 
+//<editor-fold defaultstate="collapsed" desc="import">
 import org.gcreator.components.impl.CustomFileFilter;
-import org.gcreator.components.impl.WorkspaceCellRenderer;
 import java.awt.*;
 import java.awt.datatransfer.*;
 import java.awt.event.*;
@@ -14,6 +14,7 @@ import javax.swing.tree.*;
 import javax.swing.event.*;
 import net.iharder.dnd.*;
 import org.gcreator.components.*;
+import org.gcreator.components.impl.WorkspaceCellRenderer;
 import org.gcreator.components.navigator.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.editors.*;
@@ -28,6 +29,7 @@ import org.gcreator.macro.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
+//</editor-fold>
 
 /**
  *
@@ -220,13 +222,15 @@ public class Aurwindow extends JFrame {
     }
 
     public void Open(org.gcreator.fileclass.GFile file) {
+        System.out.println("Open: " + file.name + "." + file.type);
         boolean found = false;
         int iii = 0;
         int foundloc = 0;
         file.type = file.type.toLowerCase();
         FileOpenListener listener = getFileEditor(file.type);
+        ImageIcon img = ((WorkspaceCellRenderer) workspace.getCellRenderer()).getImageFor(file.node);
         if (listener != null) {
-            listener.openNewFile(file, this.getCurrentProject());
+            listener.openNewFile(file, this.getCurrentProject(), img);
         } else if (file.type.equals("sprite")) {
             
             System.out.println("Sprite created");
@@ -244,7 +248,7 @@ public class Aurwindow extends JFrame {
 //            }
             TabPanel tp = new SpriteEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("actor")) {
             //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
@@ -261,7 +265,7 @@ public class Aurwindow extends JFrame {
             try {
                 TabPanel tp = new ActorEditor(file, this.getCurrentProject());
                 file.tabPanel = tp;
-                addEWindow(tp,file.name);
+                addEWindow(tp,file.name, img);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("scene")) {
@@ -279,46 +283,46 @@ public class Aurwindow extends JFrame {
             
             TabPanel tp = new SceneEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);        
+            addEWindow(tp,file.name, img);        
         } else if (file.type.equals("egml") || file.type.equals("gcl")) {
             TabPanel tp = new GCLEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("gs")) {
             TabPanel tp = new ScriptEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("struct")) {
             TabPanel tp = new StructureEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
             TabPanel tp = new ImageEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")) {
             TabPanel tp = new SoundEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("settings")) {
             TabPanel tp = new SettingsEditor(this.getCurrentProject(),file);
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else if (file.type.equals("timeline")) {
             try {
                 TabPanel tp = new TimelineEditor(file, this.getCurrentProject());
                 file.tabPanel = tp;
-                addEWindow(tp,file.name);
+                addEWindow(tp,file.name, img);
             } catch (WrongResourceException e) {
             }
         } else if (file.type.equals("tileset")) {
             TabPanel tp = new TilesetEditor(file,this.getCurrentProject());
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         } else {
             TabPanel tp = new PlainTextEditor(file,this.getCurrentProject());//All unmanaged file formats
             file.tabPanel = tp;
-            addEWindow(tp,file.name);
+            addEWindow(tp,file.name, img);
         }
         Macro.macroAction(new OpenFileAction(file));
     }
@@ -336,23 +340,39 @@ public class Aurwindow extends JFrame {
     }
 
     public void addWindow(TabPanel panel, int title) {
-        addWindow(panel, LangSupporter.activeLang.getEntry(title));
+        addWindow(panel, LangSupporter.activeLang.getEntry(title), null);
     }
-
+    
+    public void addWindow(TabPanel panel, int title, ImageIcon img) {
+        addWindow(panel, LangSupporter.activeLang.getEntry(title), img);
+    }
+    
     public void addEWindow(TabPanel panel, String title) {
         if (title.charAt(0) == '$') {
             try {
                 addWindow(panel, Integer.parseInt(title.substring(1)));
             } catch (Exception e) {
-                addWindow(panel, title);
+                addWindow(panel, title, null);
             }
         } else {
-            addWindow(panel, title);
+            addWindow(panel, title, null);
+        }
+    }
+    
+    public void addEWindow(TabPanel panel, String title, ImageIcon img) {
+        if (title.charAt(0) == '$') {
+            try {
+                addWindow(panel, Integer.parseInt(title.substring(1)));
+            } catch (Exception e) {
+                addWindow(panel, title, img);
+            }
+        } else {
+            addWindow(panel, title, img);
         }
     }
 
     //<editor-fold defaultstate="collapsed" desc="addWindow(panel,title)">
-    public void addWindow(TabPanel panel, String title) {
+    public void addWindow(TabPanel panel, String title, ImageIcon img) {
         try {
             panel.parent = this;
             panel.title = title;
@@ -368,8 +388,9 @@ public class Aurwindow extends JFrame {
                         return;
                     }
                 }
-                tabs.addTab(panel.title, panel);
-                tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+                tabs.addTab(panel.title, img, panel, "");
+                int index = tabs.indexOfComponent(panel);
+                tabs.setTabComponentAt(index, new ButtonTabComponent(tabs));
                 tabs.setSelectedComponent(panel);
                 tabs.addMouseListener(new MouseAdapter() {
 
@@ -406,6 +427,7 @@ public class Aurwindow extends JFrame {
             frame.setResizable(true);
             frame.setVisible(true);
             frame.setTitle(panel.title);
+            frame.setFrameIcon(img);
             frame.addInternalFrameListener(new InternalFrameListener() {
 
                 public void internalFrameDeactivated(InternalFrameEvent evt) {
@@ -714,6 +736,7 @@ public class Aurwindow extends JFrame {
         items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
         items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_saveall.png")));
         menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
+        menus[9].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/import.png")));
         menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
         items[MenuSupporter.GenerateMenuItemId(10, 0)] = MenuSupporter.MakeMenuItem(menus[10], 189, "Import Image");
         items[MenuSupporter.GenerateMenuItemId(10, 0)].addActionListener(new ActionListener() {
@@ -724,6 +747,7 @@ public class Aurwindow extends JFrame {
         });
         menus[11] = MenuSupporter.MakeSubMenu(menus[9], 186, "Project");
         menus[12] = MenuSupporter.MakeSubMenu(menus[0], 11, "Export...");
+        menus[12].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/export.png")));
         menus[13] = MenuSupporter.MakeSubMenu(menus[12], 185, "File");
         menus[14] = MenuSupporter.MakeSubMenu(menus[12], 186, "Project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
@@ -1235,7 +1259,6 @@ public class Aurwindow extends JFrame {
         callAllPanelSelectedListeners(tabpanel);
     }
 
-    //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     public void updateUI() {
         ((JPanel) this.getContentPane()).updateUI();
     }
@@ -1248,12 +1271,13 @@ public class Aurwindow extends JFrame {
         chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
 
+    //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
-            addWindow(newproject, 55);
+            addWindow(newproject, 55, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 0 && item == 1) {
-            addWindow(newfilegroup, 96);
+            addWindow(newfilegroup, 96, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 0 && item == 2) {
             ProjectImporter.OpenProject(this);
@@ -1305,7 +1329,7 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 4 && item == 1) {
             HelpPanel help = new HelpPanel();
-            addWindow(help, 27);
+            addWindow(help, 244);
         }
         try {
             if (menu == 5 && item == 0) {
@@ -1453,7 +1477,7 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
-            addWindow(lang, 28);
+            addWindow(lang, 28, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 1) {
             utilities.addStringMessage("Update");
@@ -1465,10 +1489,11 @@ public class Aurwindow extends JFrame {
             manager.setVisible(true);
         }
         if (menu == 7 && item == 3) {
-            addWindow(globalsettings, 131);
+            addWindow(globalsettings, 131, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 4) {
-            addWindow(new PowerPackImporter(), 184);
+            addWindow(new PowerPackImporter(), 184,
+                    (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 8 && item == 0) {
             PlayMacroDialog dialog = new PlayMacroDialog(this, true);

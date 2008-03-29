@@ -49,7 +49,7 @@ public class Portuguese extends Dictionary{
         entry[21] = "MDI";
         entry[22] = "Mostrar consola";
         entry[23] = "Seleccionar idioma";
-        entry[24] = "Sobre";
+        entry[24] = "Acerca";
         entry[25] = "Ajuda"; //The menu item, not the menu itself
         entry[26] = "Bem-vindo!"; //Tab name
         entry[27] = "Ajuda!"; //Tab name
@@ -290,6 +290,7 @@ public class Portuguese extends Dictionary{
         entry[241] = "De:";
         entry[242] = "Para:";
         entry[243] = "NÃO";
+        entry[244] = "Acerca";
         
         try{
             init();
