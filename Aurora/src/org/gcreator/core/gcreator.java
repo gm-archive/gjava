@@ -159,6 +159,7 @@ public class gcreator {
         ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
         ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addclass.png")), 52);
         ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
+        ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", null, 245);
         
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -238,6 +239,12 @@ public class gcreator {
             }
         });
         
+        addgr.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(14, evt);
+            }
+        });
+        
         ToolbarManager.toolbuttons.add(newp);
         ToolbarManager.toolbuttons.add(opn);
         ToolbarManager.toolbuttons.add(save);
@@ -251,6 +258,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addscn);
         ToolbarManager.toolbuttons.add(addcls);
         ToolbarManager.toolbuttons.add(addgs);
+        ToolbarManager.toolbuttons.add(addgr);
         
         /*Toolbar tool = new Toolbar();
         tool.horizontal = true;

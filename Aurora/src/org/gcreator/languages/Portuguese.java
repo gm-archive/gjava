@@ -291,6 +291,7 @@ public class Portuguese extends Dictionary{
         entry[242] = "Para:";
         entry[243] = "NÃO";
         entry[244] = "Acerca";
+        entry[245] = "Adicionar grupo";
         
         try{
             init();

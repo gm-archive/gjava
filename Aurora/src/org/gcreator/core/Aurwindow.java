@@ -42,7 +42,6 @@ import org.gcreator.units.*;
 public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Variables">
-
     public DefaultMutableTreeNode top;
     public JMenuBar menubar = new JMenuBar();
     public JMenu[] menus = new JMenu[MenuSupporter.MENULIMIT];
@@ -88,6 +87,7 @@ public class Aurwindow extends JFrame {
     private static boolean dragging = false;
     private int tabsi = 0;
     public static JFileChooser chooseImage = new JFileChooser();
+    //public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
@@ -456,12 +456,6 @@ public class Aurwindow extends JFrame {
                 int index = tabs.indexOfComponent(panel);
                 tabs.setTabComponentAt(index, new ButtonTabComponent(tabs));
                 tabs.setSelectedComponent(panel);
-                tabs.addMouseListener(new MouseAdapter() {
-
-                            public void mouseClicked(MouseEvent evt) {
-                                tabsClicked(evt);
-                            }
-                        });
             }
             for (int i = 0; i < mdi.getComponentCount(); i++) {
                 try {
@@ -1358,10 +1352,6 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 
-    private void tabsClicked(MouseEvent evt) {
-    //Leave in blank... for now...
-    }
-
     private void selectedDocumentChanged(TabPanel tabpanel) {
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
@@ -1371,15 +1361,16 @@ public class Aurwindow extends JFrame {
         ((JPanel) this.getContentPane()).updateUI();
     }
     
+    //<editor-fold defaultstate="collapsed" desc="static">
     static {
         chooseImage.setDialogTitle("Select Image");
         chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
         chooseImage.setApproveButtonText("OK");
         chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
-
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
             addWindow(newproject, 55, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
@@ -1534,12 +1525,6 @@ public class Aurwindow extends JFrame {
                         if (ver >= 6) {
                             tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
                         }
-                        tabs.addMouseListener(new MouseAdapter() {
-
-                                    public void mouseClicked(MouseEvent evt) {
-                                        tabsClicked(evt);
-                                    }
-                                });
                     } catch (ClassCastException e) {
                     }
                 }
@@ -1661,6 +1646,7 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
     //Tree accessing functions
 
+    //<editor-fold defaultstate="collapsed" desc="getCurrentProject">
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
         if (curfol == null) {
@@ -1674,7 +1660,9 @@ public class Aurwindow extends JFrame {
         }
         return null;
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="getCurrentFolder">
     public Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
             return null; //null for none
@@ -1687,7 +1675,9 @@ public class Aurwindow extends JFrame {
         }
         return null;
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="getCurrentObject">
     public org.gcreator.fileclass.GObject getCurrentObject() {
         //Currently selected object
         if (workspace.getSelectionCount() != 1) {
@@ -1700,9 +1690,9 @@ public class Aurwindow extends JFrame {
         ObjectNode node = (ObjectNode) selection.getLastPathComponent();
         return node.object;
     }
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
-
     public void onToolbarActionPerformed(int item, ActionEvent evt) {
         int i;
         Folder a;
@@ -1883,12 +1873,23 @@ public class Aurwindow extends JFrame {
                 addFile(getCurrentFolder(), "newScript" + i, "gs");
 
                 break;
+            case 14:
+                Folder f = getCurrentFolder();
+                int in = 1;
+                for(Object o : f.getChildren()){
+                    if(((GObject) o).name.equals("subgroup"+in)){
+                        in++;
+                        continue;
+                    }
+                }
+                
+                addGroup(f, f.newGroup("subgroup" + in));
+                
+                break;
         }
     }
 
     //</editor-fold>
-
-    public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
 
     //<editor-fold defaultstate="collapsed" desc="addFile">
     public org.gcreator.fileclass.GFile addFile(Folder folder, String name, String type) {
@@ -1916,6 +1917,7 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="addGroup">
     public boolean addGroup(Folder folder, Group group) {
         if (folder == null) {
             return false;
@@ -1928,18 +1930,7 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
         return true;
     }
-
-    public void paint(Graphics g) {
-        super.paint(g);
-    }
-
-    public void paintAll(Graphics g) {
-        super.paintAll(g);
-    }
-
-    public void paintComponents(Graphics g) {
-        super.paintComponents(g);
-    }
+    //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject()">
     public void SaveProject() {
