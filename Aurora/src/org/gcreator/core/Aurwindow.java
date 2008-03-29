@@ -1305,9 +1305,7 @@ public class Aurwindow extends JFrame {
             }
             //if (option == JOptionPane.NO_OPTION){
             //}
-            org.gcreator.core.utilities.addStringMessage("close current project");
-            top.remove(getCurrentProject().froot);
-            workspace.updateUI();
+            CloseProject(getCurrentProject());
         }
         if (menu == 0 && item == 10) {
             dispose();
@@ -1855,6 +1853,11 @@ public class Aurwindow extends JFrame {
         if (getCurrentProject() != null) {
             ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
         }
+    }
+    public void CloseProject(Project p) {
+            org.gcreator.core.utilities.addStringMessage("close project");
+            top.remove(getCurrentProject().froot);
+            workspace.updateUI();
     }
 
     //</editor-fold>
