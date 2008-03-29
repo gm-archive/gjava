@@ -1069,7 +1069,7 @@ public class Aurwindow extends JFrame {
                 }
             }
         });
-        splitter2.setDividerLocation(100);
+        splitter2.setDividerLocation(149);
 
         //<editor-fold defaultstate="collapsed" desc="Layout Manager">
         /*org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
