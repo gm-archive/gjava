@@ -44,20 +44,20 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
     public ImageIcon settings;
     
     public WorkspaceCellRenderer() {
-        workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/workspace.png"));
-        text = new ImageIcon(getClass().getResource("/org/gcreator/resources/text.png"));
-        image = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
-        java = new ImageIcon(getClass().getResource("/org/gcreator/resources/java.png"));
-        actor = new ImageIcon(getClass().getResource("/org/gcreator/resources/actor.png"));
-        tileset = new ImageIcon(getClass().getResource("/org/gcreator/resources/tile.png"));
-        sprite = new ImageIcon(getClass().getResource("/org/gcreator/resources/sprite.png"));
-        GCL = new ImageIcon(getClass().getResource("/org/gcreator/resources/class.png"));
-        script = new ImageIcon(getClass().getResource("/org/gcreator/resources/script.png"));
-        timeline = new ImageIcon(getClass().getResource("/org/gcreator/resources/timeline.png"));
-        scene = new ImageIcon(getClass().getResource("/org/gcreator/resources/scene.png"));
-        img = new ImageIcon(getClass().getResource("/org/gcreator/resources/img.png"));
-        sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/sound.png"));
-        settings = new ImageIcon(getClass().getResource("/org/gcreator/resources/settings.png"));
+        workspace = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/workspace.png"));
+        text = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/text.png"));
+        image = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/img.png"));
+        java = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/java.png"));
+        actor = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/actor.png"));
+        tileset = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/tile.png"));
+        sprite = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/sprite.png"));
+        GCL = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/class.png"));
+        script = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/script.png"));
+        timeline = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/timeline.png"));
+        scene = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/scene.png"));
+        img = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/img.png"));
+        sound = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/sound.png"));
+        settings = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/settings.png"));
     }
 
     public ImageIcon getImageFor(ObjectNode noder){

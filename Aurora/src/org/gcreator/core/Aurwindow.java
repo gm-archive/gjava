@@ -937,6 +937,7 @@ public class Aurwindow extends JFrame {
                 });
         menus[7].addSeparator();
         menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
+        menus[8].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)] = MenuSupporter.MakeMenuItem(menus[7], 183, "PowerPack");
         items[MenuSupporter.GenerateMenuItemId(7, 4)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_powerpack.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)].addActionListener(new ActionListener() {

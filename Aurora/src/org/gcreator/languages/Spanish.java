@@ -32,7 +32,7 @@ public class Spanish extends Dictionary{
         entry[1] = "Editar"; 
         entry[2] = "Ver";
         entry[3] = "Construir y Ejecutar";
-        entry[4] = "Ayudar";
+        entry[4] = "Ayuda";
         entry[5] = "Proyecto Nuevo";
         entry[6] = "Archivo/Grupo Nuevo";
         entry[7] = "Abrir Proyecto";
@@ -293,6 +293,8 @@ public class Spanish extends Dictionary{
         entry[241] = "De:";
         entry[242] = "A:";
         entry[243] = "NO";
+        entry[244] = "Acerca";
+        entry[245] = "Agregar Grupo";
         
         try{
             init();

@@ -39,7 +39,7 @@ import com.jme.scene.batch.TriangleBatch;
  * <code>GeometryBatchCreator</code> is a container class for
  * <code>GeometryInstances</code>.
  *
- * @author Patrik Lindegrén
+ * @author Patrik LindegrÃ©n
  */
 public class GeometryBatchCreator {
     protected ArrayList<GeometryInstance> instances;
