@@ -156,7 +156,9 @@ public class Aurwindow extends JFrame {
             return;
         }
         JMenuItem i = new JMenuItem("Delete");
+        JMenuItem j = new JMenuItem("Close Project");
         i.setEnabled(false);
+        j.setVisible(false);
         if (o instanceof org.gcreator.fileclass.GFile) {
             if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
                 i.setEnabled(true);
@@ -182,8 +184,17 @@ public class Aurwindow extends JFrame {
                 }
             }
         }
+        if (o instanceof Project) {
+            j.setVisible(true);
+            j.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent e){
+                    CloseProject((Project)o,true);
+                }
+            });
+        }
         i.setVisible(true);
             m.add(i);
+            m.add(j);
             m.show(this, e.getXOnScreen(), e.getYOnScreen());
             using = false;
     }
@@ -1292,20 +1303,7 @@ public class Aurwindow extends JFrame {
             SaveProject();
         }
         if (menu == 0 && item == 9) {
-            if (getCurrentProject() == null) {
-                JOptionPane.showMessageDialog(this,"Please select a project.");
-                return;
-            }
-            int option = JOptionPane.showConfirmDialog(this,"Do you want to save your project first?");
-            if (option == JOptionPane.CANCEL_OPTION){
-                return;
-            }
-            if (option == JOptionPane.YES_OPTION){
-               SaveProject();
-            }
-            //if (option == JOptionPane.NO_OPTION){
-            //}
-            CloseProject(getCurrentProject());
+            CloseProject();
         }
         if (menu == 0 && item == 10) {
             dispose();
@@ -1854,10 +1852,46 @@ public class Aurwindow extends JFrame {
             ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
         }
     }
+    public void SaveProject(Project p) {
+        if (p != null) {
+            ProjectExporter.export(p, p.name + ".gcp");
+        }
+    }
     public void CloseProject(Project p) {
             org.gcreator.core.utilities.addStringMessage("close project");
             top.remove(getCurrentProject().froot);
             workspace.updateUI();
+    }
+    public void CloseProject(Project p,boolean askForConfirmation){
+        if (askForConfirmation == false) {
+            CloseProject(p);
+            return;
+        }
+        if (p == null) {
+            return;
+        }
+        int option = JOptionPane.showConfirmDialog(this,"Do you want to save your project first?");
+        if (option == JOptionPane.CANCEL_OPTION){
+            return;
+        }
+        if (option == JOptionPane.YES_OPTION){
+           SaveProject(p);
+        }
+        CloseProject(p);
+    }
+    public void CloseProject(){
+        if (getCurrentProject() == null) {
+            JOptionPane.showMessageDialog(this,"Please select a project.");
+            return;
+        }
+        int option = JOptionPane.showConfirmDialog(this,"Do you want to save your project first?");
+        if (option == JOptionPane.CANCEL_OPTION){
+            return;
+        }
+        if (option == JOptionPane.YES_OPTION){
+           SaveProject();
+        }
+        CloseProject(getCurrentProject());
     }
 
     //</editor-fold>
