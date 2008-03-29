@@ -752,6 +752,12 @@ public class Aurwindow extends JFrame {
         menus[14] = MenuSupporter.MakeSubMenu(menus[12], 186, "Project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_close.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 9)].addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                onItemActionPerformed(0, 9, evt);
+            }
+        });
         items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
         items[MenuSupporter.GenerateMenuItemId(0, 10)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/file_exit.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 10)].addActionListener(new ActionListener() {
@@ -1284,6 +1290,24 @@ public class Aurwindow extends JFrame {
         }
         if (menu == 0 && item == 3) {
             SaveProject();
+        }
+        if (menu == 0 && item == 9) {
+            if (getCurrentProject() == null) {
+                JOptionPane.showMessageDialog(this,"Please select a project.");
+                return;
+            }
+            int option = JOptionPane.showConfirmDialog(this,"Do you want to save your project first?");
+            if (option == JOptionPane.CANCEL_OPTION){
+                return;
+            }
+            if (option == JOptionPane.YES_OPTION){
+               SaveProject();
+            }
+            //if (option == JOptionPane.NO_OPTION){
+            //}
+            org.gcreator.core.utilities.addStringMessage("close current project");
+            top.remove(getCurrentProject().froot);
+            workspace.updateUI();
         }
         if (menu == 0 && item == 10) {
             dispose();

@@ -33,6 +33,10 @@ public class ProjectTree {
         }
         else
             froot = root;
+        if (folder instanceof Project) {
+            ((Project)folder).froot = froot;
+        }
+        
         org.gcreator.fileclass.GObject childNode;
         for(int i = 0; i < folder.getChildArrayNum(); i++){
             if((childNode = folder.childAt(i))!=null){

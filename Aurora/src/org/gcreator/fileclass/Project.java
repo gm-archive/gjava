@@ -28,7 +28,7 @@ import javax.swing.ImageIcon;
 public class Project extends Folder {
      
     public String location = "";
-    
+    public javax.swing.tree.DefaultMutableTreeNode froot;
     //The following vectors are for saving, getting resouces etc
     /*public Vector<Actor> actors = new Vector<Actor>();
     public Vector<Sprite> sprites = new Vector<Sprite>(); 
