@@ -696,7 +696,7 @@ public static Object distance_to_point(Object x, Object y)
 public static Object distance_to_object(Object obj)
 {
    // Game.Current.instances
-    double smalldist =-1 ;//= (Actor) Game.Current.instances.elementAt(0);
+    /*double smalldist =-1 ;//= (Actor) Game.Current.instances.elementAt(0);
        for (int i = 0; i < Game.Current.instances.size(); i++) {
         Actor object = (Actor) Game.Current.instances.elementAt(i);
         if (object.equals(obj.getClass())) {
@@ -705,11 +705,14 @@ public static Object distance_to_object(Object obj)
         smalldist = dist;
     else if (dist < smalldist)
         smalldist = dist;
-       }
+       }*/
+    return distance_to_point(
+            ((Actor) obj).getX(),
+            ((Actor) obj).getY());
        }
      
-return new Double(smalldist);
-}
+/*return new Double(smalldist);
+}*/
 
 public static Object position_empty(Object x, Object y)
 {

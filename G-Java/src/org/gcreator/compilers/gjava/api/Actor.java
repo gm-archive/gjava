@@ -151,7 +151,8 @@ public class Actor extends tile {
      * @param g 
      */
     public void Draw_event() {
-        sprite.a.draw((float) x, (float) y);
+        if(sprite!=null)
+            sprite.a.draw((float) x, (float) y);
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     public Object getAlarm() {
@@ -651,7 +652,7 @@ public class Actor extends tile {
     }
 
     public void setX(Object x) {
-        this.x = x.getFloat();
+        this.x = x.getDouble();
     }
     
     public void setX(double x){
@@ -659,15 +660,15 @@ public class Actor extends tile {
     }
 
     public void setXprevious(Object xprevious) {
-        this.xprevious = xprevious.getFloat();
+        this.xprevious = xprevious.getDouble();
     }
 
     public void setXstart(Object xstart) {
-        this.xstart = xstart.getFloat();
+        this.xstart = xstart.getDouble();
     }
 
     public void setYprevious(Object yprevious) {
-        this.yprevious = yprevious.getFloat();
+        this.yprevious = yprevious.getDouble();
     }
 
     public void setMask_index(Object mask_index) {
