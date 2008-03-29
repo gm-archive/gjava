@@ -37,11 +37,13 @@ public class TestActor extends Actor {
          this.xstart =  X.getFloat();
         this.ystart = Y.getFloat();
         this.id = instance_id;
-        this.x = X.getFloat();
-        this.y = Y.getFloat();
+        setX(X);
+        setY(Y);
       //  Create_event();
        // motion_set(new Integer(90), new Integer(1));
-        System.out.println("Distance:"+distance_to_object(new TestActor()));
+        TestActor a = new TestActor();
+        a.x = 10;
+        System.out.println("Distance:"+distance_to_object(a)+" from " + x + ", " + y);
         System.out.println(""+point_direction(new Integer(0),new Integer(0),new Integer(60),new Integer(60)));
         setSpeed(new Integer(10));
         System.out.println("Speed"+getSpeed());

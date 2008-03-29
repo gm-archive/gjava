@@ -15,7 +15,8 @@ public class Actor extends tile {
     protected Sprite sprite;
 //local variables
     protected org.gcreator.compilers.gjava.api.Object alarm,  bbox_bottom,  bbox_left,  bbox_right,  bbox_top,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_index,  image_number,  image_single,  image_speed,  image_xscale,  image_yscale,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  sprite_height,  sprite_index,  sprite_width,  sprite_xoffset,  sprite_yoffset,  timeline_index,  timeline_position,  timeline_speed,  visible;
-    protected double x,  y,  xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
+    //protected double x,  y, -- We already have this in the super classes.
+    protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
 
     public Actor() {
     }
@@ -676,7 +677,7 @@ public class Actor extends tile {
     }
 
     public void setY(Object y) {
-        this.y = y.getFloat();
+        this.y = y.getDouble();
     }
     
     public void setY(double y){

@@ -690,7 +690,9 @@ return new Object();
 
 public static Object distance_to_point(Object x, Object y)
 {
-    return (sqrt(new Double((x.getDouble()-self.x)*(x.getDouble()-self.x)+(y.getDouble()-self.y)*(y.getDouble()-self.y))));
+    double xd = x.getDouble()-self.x;
+    double yd = y.getDouble()-self.y;
+    return sqrt(new Double((xd)*(xd)+(yd)*(yd)));
 }
 
 public static Object distance_to_object(Object obj)
