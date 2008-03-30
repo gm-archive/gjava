@@ -205,6 +205,7 @@ public class SceneEditor extends TabPanel {
         else{
             jTextField3.setText(""+((Scene) file.value).height);
         }
+        jCheckBox1.setSelected(((Scene) file.value).drawbackcolor);
         return true;
     }
 
@@ -1329,6 +1330,7 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        ((Scene) file.value).drawbackcolor = jCheckBox1.isSelected();
         updateScroll();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
