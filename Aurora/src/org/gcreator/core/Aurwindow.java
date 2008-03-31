@@ -141,7 +141,27 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
     }
     //</editor-fold>
-
+private void closeAllTabs(DefaultMutableTreeNode node) {
+    for (int i = 0; i < node.getChildCount(); i++) {
+            ObjectNode on = (ObjectNode)node.getChildAt(i);
+            GObject go = on.object;
+            
+            if (!(go instanceof GFile)) {
+                if (go instanceof Folder) {
+                    closeAllTabs(on);
+                    continue;
+                }
+                else {
+                    continue;
+                }
+            }
+            GFile o = (GFile)go;
+            if (o.tabPanel != null) {
+                remove(o.tabPanel, o.tabPanel.frame);
+            }
+        }
+    }
+        
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
 
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
@@ -1971,6 +1991,9 @@ public class Aurwindow extends JFrame {
     //<editor-fold defaultstate="collapsed" desc="CloseProject(Project)">
     public void CloseProject(Project p) {
         org.gcreator.core.utilities.addStringMessage("close project");
+        //Close all tabs
+        closeAllTabs(p.froot);
+        
         top.remove(getCurrentProject().froot);
         workspace.updateUI();
     }

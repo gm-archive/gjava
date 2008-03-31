@@ -40,6 +40,7 @@ public class GObject implements Serializable {
     public boolean editable = true;
     
      
+    @Override
     public GObject clone(){
         GObject o = new GObject(name);
         o.node = (ObjectNode) node.clone();

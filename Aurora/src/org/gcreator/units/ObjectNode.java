@@ -21,6 +21,7 @@ import org.gcreator.fileclass.*;
 public class ObjectNode extends DefaultMutableTreeNode implements Serializable {
     static final long serialVersionUID = 1L;
     public org.gcreator.fileclass.GObject object;
+    
     public ObjectNode(org.gcreator.fileclass.GObject object){
         super(object.name);
         this.object = object;
