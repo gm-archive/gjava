@@ -27,4 +27,5 @@ Item=std_addScene
 Item=std_addScript
 Item=std_addClass
 Item=std_addGroup
+Item=Run program
 
