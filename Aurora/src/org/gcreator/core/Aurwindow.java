@@ -183,8 +183,10 @@ public class Aurwindow extends JFrame {
         }
         JMenuItem i = new JMenuItem("Delete");
         JMenuItem j = new JMenuItem("Close Project");
+        JMenuItem k = new JMenuItem();
         i.setEnabled(false);
         j.setVisible(false);
+        k.setVisible(false);
         if (o instanceof org.gcreator.fileclass.GFile) {
             if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
                 i.setEnabled(true);
@@ -209,6 +211,22 @@ public class Aurwindow extends JFrame {
                             });
                 }
             }
+            k.setText(LangSupporter.activeLang.getEntry(245));
+            k.setVisible(true);
+            k.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    Folder f = getCurrentFolder();
+                    int in = 1;
+                    for(Object o : f.getChildren()){
+                        if(((GObject) o).name.equals("subgroup"+in)){
+                            in++;
+                            continue;
+                        }
+                    }
+                
+                    addGroup(f, f.newGroup("subgroup" + in));
+                }
+            });
         }
         if (o instanceof Project) {
             j.setVisible(true);
@@ -222,6 +240,7 @@ public class Aurwindow extends JFrame {
         i.setVisible(true);
         m.add(i);
         m.add(j);
+        m.add(k);
         m.show(this, e.getXOnScreen(), e.getYOnScreen());
         using = false;
     }
