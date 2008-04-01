@@ -70,7 +70,10 @@ public class ProjectTypes extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
 
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(56), jScrollPane1);
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(206), jScrollPane2);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

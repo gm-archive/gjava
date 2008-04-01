@@ -76,13 +76,6 @@ public class DiscMenu extends JFrame {
                 });
     }
 
-    public static void main(String[] args) {
-        JFrame f = new DiscMenu();
-        f.setTitle("Hello world");
-        f.setVisible(true);
-        f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-
     private void motion(MouseEvent evt) {
         int os = selection;
         int x = evt.getX();

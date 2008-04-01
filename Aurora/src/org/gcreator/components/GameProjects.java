@@ -26,15 +26,23 @@ public class GameProjects extends JPanel{
     }
     
     public GameProjects(ProjectTypes ptypes) {
+        super();
         this.ptypes = ptypes;
         initComponents();
         jButton1.setText(LangSupporter.activeLang.getEntry(58));
         ptypes.npro.ProjectButtons.add(jButton1);
     }
     
-    public BoxLayout layout;    
+    public void add(JComponent c){
+        GridLayout g = (GridLayout) getLayout();
+        
+        if(getComponentCount()>5)
+            g.setRows(g.getRows()+1);
+        super.add(c);
+    }
+    
+    //public GridBagLayout layout;    
     private void initComponents() {
-
         jButton1 = new javax.swing.JButton();
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game.png"))); // NOI18N
@@ -44,9 +52,12 @@ public class GameProjects extends JPanel{
                 jButton1ActionPerformed(evt);
             }
         });
-        layout = new BoxLayout(this, BoxLayout.Y_AXIS);
-        setLayout(layout);
+        //layout = new GridBagLayout();
+        setLayout(new GridLayout(5, 1));
         add(jButton1);
+        //gbg = new GridBagConstraints(0, 0, 0, 0, 0, 0,
+        //        GridBagConstraints.NORTHWEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0);
+        //layout.setConstraints(this, gbg);
         /*    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
         ;
         layout.setVerticalGroup(

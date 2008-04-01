@@ -32,7 +32,13 @@ public class ModulesProjects extends JPanel{
         ptypes.npro.ProjectButtons.add(jButton1);
     }
     
-    public BoxLayout layout;
+    public void add(JComponent c){
+        GridLayout g = (GridLayout) getLayout();
+        
+        if(getComponentCount()>5)
+            g.setRows(g.getRows()+1);
+        super.add(c);
+    }
     
     private void initComponents() {
 
@@ -45,8 +51,7 @@ public class ModulesProjects extends JPanel{
                 jButton1ActionPerformed(evt);
             }
         });
-        layout = new BoxLayout(this, BoxLayout.Y_AXIS);
-        setLayout(layout);
+        setLayout(new GridLayout(5, 1));
         add(jButton1);
         /*    .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
         ;
