@@ -33,9 +33,10 @@ public class SubimagePreview extends JLabel{
         return editor.getCurrentImage();
     }
     
+    @Override
     public Dimension getPreferredSize(){
         ImageIcon img = getCurrentImage();
-        if(img==null)
+        if(img == null)
             return new Dimension(0, 0);
         return new Dimension(img.getIconWidth(), img.getIconHeight());
     }
@@ -43,21 +44,26 @@ public class SubimagePreview extends JLabel{
     public void paint(Graphics g){
         ImageIcon img = getCurrentImage();
         drawBackground(g);
-        if(img!=null)
+        if(img != null)
             g.drawImage(img.getImage(), 0, 0, img.getImageObserver());
     }
     
-    public void drawBackground(Graphics g){
+    public void drawBackground(Graphics g) {
         Dimension d = getPreferredSize();
-        boolean white = true;
+        boolean white = false;
+        boolean row = true;
         g.setColor(Color.WHITE);
-        for(int i = 0; i < d.width/10; i++)
+        for(int i = 0; i < d.width/10; i++) {
+            row = !row;
+            white = row;
+            g.setColor(((white) ?Color.WHITE : Color.DARK_GRAY));
             for(int j = 0; j < d.height/10; j++){
                 g.fillRect(i*10, j*10, 10, 10);
-                if(white=!white)
+                if (white = !white)
                     g.setColor(Color.WHITE);
                 else
                     g.setColor(Color.DARK_GRAY);
             }
+        }
     }
 }
