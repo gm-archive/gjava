@@ -261,7 +261,7 @@ public class Aurwindow extends JFrame {
         m.add(i);
         m.add(j);
         m.add(k);
-        m.show(this, e.getXOnScreen(), e.getYOnScreen());
+        m.show(this, e.getX()+getLocationOnScreen().x, e.getY()+getLocationOnScreen().y);
         using = false;
     }
     //</editor-fold>
@@ -1184,8 +1184,8 @@ public class Aurwindow extends JFrame {
                         if (!dragging) {
                             return;
                         }
-                        int x = evt.getXOnScreen();
-                        int y = evt.getYOnScreen();
+                        int x = evt.getX()+getLocationOnScreen().x;
+                        int y = evt.getY()+getLocationOnScreen().y;
                         Point p = navigatorTabs.getLocationOnScreen();
                         int nx = p.x;
                         int ny = p.y;
@@ -1223,7 +1223,7 @@ public class Aurwindow extends JFrame {
                             f.add(c, BorderLayout.CENTER);
                             f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                             f.setResizable(true);
-                            f.setLocation(evt.getXOnScreen() - 30, evt.getYOnScreen() - 5);
+                            f.setLocation(evt.getX() + getLocationOnScreen().x - 30, evt.getY() + getLocationOnScreen().y - 5);
                             if (r != null) {
                                 r.mousePress(InputEvent.BUTTON1_MASK);
                             }

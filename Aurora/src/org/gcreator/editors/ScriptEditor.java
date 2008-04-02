@@ -9,7 +9,7 @@ package org.gcreator.editors;
 import org.gcreator.components.scanning.GScriptScanner;
 import org.gcreator.components.scanning.Scanner;
 import org.gcreator.components.SyntaxHighlighter;
-import javax.swing.GroupLayout;
+import org.jdesktop.layout.GroupLayout;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
 import org.gcreator.fileclass.Project;
@@ -74,15 +74,15 @@ public class ScriptEditor extends TabPanel {
 
         jSplitPane1.setRightComponent(jScrollPane1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 398, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(0, 203, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
