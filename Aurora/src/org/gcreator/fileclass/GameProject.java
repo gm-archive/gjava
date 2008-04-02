@@ -134,6 +134,9 @@ public class GameProject extends Project{
                 return findFolder("$215");
             else if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
                 return findFolder("$216");
+            else if(file.equals("mp3")||file.equals("ogg")||file.equals("wav")||file.equals("mid")
+                    ||file.equals("midi"))
+                return findFolder("$212");
             else if(file.equals("timeline"))
                 return findFolder("$213");
             return findFolder("$217");
@@ -155,6 +158,8 @@ public class GameProject extends Project{
                 return findFolder("$215");
             else if(folder instanceof TilesetGroup)
                 return findFolder("$211");
+            else if(folder instanceof SoundGroup)
+                return findFolder("$212");
             else if(folder instanceof TimelineGroup)
                 return findFolder("$213");
             else if(folder instanceof EGMLGroup)
