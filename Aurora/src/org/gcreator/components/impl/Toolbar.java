@@ -30,6 +30,10 @@ public class Toolbar {
         while(e.hasMoreElements()){
             JToolBar t = e.nextElement();
             t.setVisible(false);
+                        
+            //Hide any possible toolbar window.
+            ((javax.swing.plaf.basic.BasicToolBarUI)t.getUI()).setFloating(false,null);
+            t.updateUI();
         }
     }
     
