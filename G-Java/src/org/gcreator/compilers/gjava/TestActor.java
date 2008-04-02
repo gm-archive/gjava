@@ -42,7 +42,8 @@ public class TestActor extends Actor {
       //  Create_event();
        // motion_set(new Integer(90), new Integer(1));
         TestActor a = new TestActor();
-        a.x = 10;
+        a.x = 3;
+        a.y = 4;
         System.out.println("Distance:"+distance_to_object(a)+" from " + x + ", " + y);
         System.out.println(""+point_direction(new Integer(0),new Integer(0),new Integer(60),new Integer(60)));
         setSpeed(new Integer(10));

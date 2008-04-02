@@ -174,7 +174,7 @@ actorindex++;
         if (s.drawbackcolor) {
             print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", new Color(" + s.background.getRed() + "," + s.background.getGreen() + "," + s.background.getBlue() + "));");
         } else {
-            print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.BLACK);");
+            print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", Color.black);");
         }
         print(scene, "    setupScene();");
         print(scene, "    SortDepth();");

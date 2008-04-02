@@ -123,6 +123,13 @@ public class Scene2D extends BasicGame {
             
         }
     }
+    
+    public Scene2D(Frame R, String Caption, long fps,int RoomW,int RoomH, java.awt.Color backcolor) {
+        this(R, Caption, fps, RoomW, RoomH,
+                new Color(backcolor.getRed(), backcolor.getGreen(),
+                backcolor.getBlue(), backcolor.getAlpha()));
+    }
+    
     /**
      * This will update the caption fo the room to show score etc
      */

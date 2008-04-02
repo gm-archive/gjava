@@ -275,6 +275,8 @@ public class IconList extends JComponent{
         int imgw = columnWidth-4;
         int imgh = columnHeight-22;
         ImageIcon img = element.img;
+        if(img==null)
+            return;
         int iconh = img.getIconHeight();
         int iconw = img.getIconWidth();
         if(iconw>=imgw&&iconh>=imgh){
