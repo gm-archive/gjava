@@ -18,7 +18,7 @@ import java.awt.*;
 public class Colorfeel {
     public static Color GridDarkColor = Color.BLACK;
     public static Color GridLightColor = Color.WHITE;
-    public static Color ConsoleBGColor = Color.LIGHT_GRAY;
+    public static Color ConsoleBGColor = Color.WHITE;//LIGHT_GRAY light gray is unbearably ugly
     public static Color ConsoleFGColor = Color.BLACK;
     public static Color GoWindow = new Color(0, 0, 255);
 }

@@ -141,8 +141,8 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
     }
     //</editor-fold>
-private void closeAllTabs(DefaultMutableTreeNode node) {
-    for (int i = 0; i < node.getChildCount(); i++) {
+    private void closeAllTabs(DefaultMutableTreeNode node) {
+        for (int i = 0; i < node.getChildCount(); i++) {
             ObjectNode on = (ObjectNode)node.getChildAt(i);
             GObject go = on.object;
             
@@ -645,6 +645,7 @@ private void closeAllTabs(DefaultMutableTreeNode node) {
     //</editor-fold>
 
     /**@deprecated*/
+    @Override
     public void setContentPane(Container c) {}
 
     //<editor-fold defaultstate="collapsed" desc="addWindow">
@@ -740,6 +741,7 @@ private void closeAllTabs(DefaultMutableTreeNode node) {
 
         workspace.addKeyListener(new KeyAdapter() {
 
+            @Override
                     public void keyReleased(KeyEvent e) {
 
                         //Check wether 'Delete' was pressed
@@ -1207,6 +1209,7 @@ private void closeAllTabs(DefaultMutableTreeNode node) {
                             }
                             JFrame f = new JFrame() {
 
+                        @Override
                                         public void dispose() {
                                             navigatorTabs.addTab(getTitle(), getContentPane());
                                             super.dispose();
@@ -1467,11 +1470,11 @@ private void closeAllTabs(DefaultMutableTreeNode node) {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
-            addWindow(about, 27);
+            addWindow(about, 24);
         }
         if (menu == 4 && item == 1) {
             HelpPanel help = new HelpPanel();
-            addWindow(help, 244);
+            addWindow(help, 27);
         }
         try {
             if (menu == 5 && item == 0) {
@@ -2044,6 +2047,7 @@ private void closeAllTabs(DefaultMutableTreeNode node) {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="dispose">
+    @Override
     public void dispose() {
         if (!gcreator.applet && gcreator.plugload) {
             Plugger.onMainWindowDispose();
