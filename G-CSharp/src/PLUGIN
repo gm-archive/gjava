@@ -1,0 +1,7 @@
+[~Plugin~]
+Author=Luís Reis
+Core=org.gcreator.compilers.GCS.plugin.GCSharp
+License=LGPL
+Name=G-C#
+Version=1.0a2
+Image=

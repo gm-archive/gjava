@@ -19,7 +19,7 @@ class Actor1 : Actor
 	}
 	/*public override void Draw()
 	{
-		SDL.DrawToSurface(img, SDL.Game.game.master, new Rectangle(0,0,30,30));
+		//SDL.DrawToSurface(getSprite().getImageArray()[0], SDL.Game.game.master, new Rectangle(0,0,30,30));
 	}*/
 }
 

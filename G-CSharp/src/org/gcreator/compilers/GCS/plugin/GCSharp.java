@@ -8,7 +8,7 @@ import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import javax.swing.*;
 import java.awt.event.*;
-import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 import java.io.*;
 import java.awt.image.*;
@@ -28,7 +28,7 @@ public class GCSharp extends PlatformCore {
     public static String projectname,  FileFolder;
     public static Vector<String> files = new Vector<String>(),  scenelist = new Vector<String>();
 
-    public void parseImage(ImageIcon i, org.gcreator.fileclass.File f) {
+    public void parseImage(ImageIcon i, GFile f) {
 
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -202,15 +202,15 @@ public class GCSharp extends PlatformCore {
         print(game, "\t{");
         int i = p.findFromName("Settings");
         if (i > 0) {
-            org.gcreator.fileclass.Object ff = p.childAt(i);
-            if (ff != null && ff instanceof org.gcreator.fileclass.File) {
-                org.gcreator.fileclass.File f = (org.gcreator.fileclass.File) ff;
+            GObject ff = p.childAt(i);
+            if (ff != null && ff instanceof GFile) {
+                GFile f = (GFile) ff;
                 if (f.value != null && f.value instanceof org.gcreator.fileclass.res.SettingsValues) {
                     org.gcreator.fileclass.res.SettingsValues s = (org.gcreator.fileclass.res.SettingsValues) f.value;
                     org.gcreator.fileclass.res.TabValues Scenes = s.getValue("Scene Order");
                     Vector v = (Vector) Scenes.getValue("Scenes");
                     for (Enumeration t = v.elements(); t.hasMoreElements();) {
-                        org.gcreator.fileclass.File o = (org.gcreator.fileclass.File) t.nextElement();
+                        GFile o = (GFile) t.nextElement();
                         print(game, "new " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
                     }
                 }
