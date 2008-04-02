@@ -13,4 +13,5 @@ import javax.swing.*;
  */
 public interface Argument {
     public JComponent generateComponent(int index);
+    public Object getValue(JComponent c);
 }
