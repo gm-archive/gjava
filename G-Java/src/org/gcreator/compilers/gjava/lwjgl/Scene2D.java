@@ -205,6 +205,7 @@ public class Scene2D extends BasicGame {
     public void render(GameContainer arg0, Graphics g) throws SlickException {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
+       
         //System.out.println(""+instances.size());
         for (int i = 0; i < instances.size(); i++) {
             ((Actor)instances.elementAt(i)).Draw_event();

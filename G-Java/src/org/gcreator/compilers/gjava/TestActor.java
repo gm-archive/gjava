@@ -52,9 +52,27 @@ public class TestActor extends Actor {
        System.out.println("Speed"+getSpeed());
         
        //test file functions
-       Object fileid = file_text_open_write(new String("C:\\testG-Java.txt"));
-file_text_write_string(fileid,new String("Test worked!"));
+       Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
+Object str = file_text_read_string(fileid);
+System.out.println("Test:"+str.getString());
 file_text_close(fileid);
+
+//test stack
+Object sid = ds_stack_create() ;
+ds_stack_push(sid,new Integer(99)) ;
+ds_stack_push(sid,new Integer(12)) ;
+
+show_message(string(ds_stack_size(sid)));//2
+ 
+show_message(string(ds_stack_pop(sid)));//12
+show_message(string(ds_stack_top(sid)));//99
+
+//ds_stack_write(sid)
+//ds_stack_read(sid,str)
+
+ds_stack_clear(sid);
+show_message(string(ds_stack_empty(sid)));//1/true
+ds_stack_destroy(sid);
        
     }
 
@@ -87,6 +105,11 @@ show_message(string(getVk_nokey()));
 
 //show_message(string(display_set_size(new Integer(1280),new Integer(80))));
 return null;
+    }
+
+    @Override
+    public void Draw_event() {
+        draw_ellipse(new Integer(1),new Integer(1),new Integer(10),new Integer(10),new Boolean(true));
     }
     
    

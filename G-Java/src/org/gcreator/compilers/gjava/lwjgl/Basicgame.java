@@ -8,16 +8,10 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JApplet;
-import javax.swing.JFrame;
 import org.gcreator.compilers.gjava.api.components.GameFrame;
 import org.gcreator.compilers.gjava.core.GameSettings;
-import org.lwjgl.LWJGLException;
 import org.lwjgl.util.applet.LWJGLInstaller;
-import org.newdawn.slick.CanvasGameContainer;
-import org.newdawn.slick.tests.GradientTest;
 
 /**
  *

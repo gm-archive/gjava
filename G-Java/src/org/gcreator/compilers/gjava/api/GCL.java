@@ -4076,41 +4076,69 @@ return new Object();
  */
 public static Object ds_stack_create()
 {
-return new Object();
+return new Stack();
 }
 
 public static Object ds_stack_destroy(Object id)
 {
+    if (id instanceof Stack)
+    {
+      ((Stack)id).destroy();
+    }
 return new Object();
 }
 
 public static Object ds_stack_clear(Object id)
 {
+    if (id instanceof Stack)
+    {
+      ((Stack)id).clear();
+    }
 return new Object();
 }
 
 public static Object ds_stack_size(Object id)
 {
+     if (id instanceof Stack)
+    {
+     return new Integer(((Stack)id).size());
+    }
 return new Object();
 }
 
 public static Object ds_stack_empty(Object id)
 {
+    if (id instanceof Stack)
+    {
+     return new Boolean(((Stack)id).empty());
+    }
 return new Object();
 }
 
 public static Object ds_stack_push(Object id, Object value)
 {
+    if (id instanceof Stack)
+    {
+     ((Stack)id).push(value);
+    }
 return new Object();
 }
 
 public static Object ds_stack_pop(Object id)
 {
+    if (id instanceof Stack)
+    {
+     return ((Stack)id).pop();
+    }
 return new Object();
 }
 
 public static Object ds_stack_top(Object id)
 {
+     if (id instanceof Stack)
+    {
+     return ((Stack)id).top();
+    }
 return new Object();
 }
 
