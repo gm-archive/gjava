@@ -38,6 +38,16 @@ public class ButtonTabComponent extends JPanel {
                 }
                 return null;
             }
+            public Icon getIcon(){
+                int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
+                if (ver >= 6) {
+                    int i = pane.indexOfTabComponent(ButtonTabComponent.this); //possible error as removed Tab from inside method name (1.5)
+                    if (i != -1) {
+                        return pane.getIconAt(i);
+                    }
+                }
+                return null;
+            }
         };
         
         add(label);
