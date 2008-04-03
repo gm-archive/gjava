@@ -13,6 +13,8 @@ import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -57,8 +59,25 @@ public class SpriteEditor extends TabPanel {
         jScrollPane1.setViewportView(prev = new SubimagePreview(this));
 
         jPanel13.add(res = new ResourceChooser(project, "image"));
+        
+        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
+            public void changedUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void insertUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void removeUpdate(DocumentEvent evt){
+                updateName();
+            }
+        });
     }
-
+    
+    public void updateName(){
+        file.name = jTextField1.getText();
+        sprite.name = file.name;
+        org.gcreator.core.Aurwindow.workspace.updateUI();
+    }
      
     public boolean Save() {
         sprite.BBBottom=(Integer)jSpinner6.getValue();
@@ -149,11 +168,6 @@ public class SpriteEditor extends TabPanel {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
             }
         });
 
@@ -508,11 +522,6 @@ public class SpriteEditor extends TabPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        file.name = jTextField1.getText();
-        org.gcreator.core.Aurwindow.workspace.updateUI();
-    }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();

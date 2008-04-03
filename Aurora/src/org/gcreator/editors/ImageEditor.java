@@ -16,6 +16,8 @@ import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.gcreator.fileclass.*;
 
 /**
@@ -40,7 +42,18 @@ public class ImageEditor extends TabPanel {
         jScrollPane1.setViewportView(displayer);
 
         jTextField1.setText(file.name);
-
+        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
+            public void changedUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void insertUpdate(DocumentEvent evt){
+                updateName();
+            }
+            public void removeUpdate(DocumentEvent evt){
+                updateName();
+            }
+        });
+        
         int w = 0;
         int h = 0;
         if (file.value != null) {
@@ -65,7 +78,11 @@ public class ImageEditor extends TabPanel {
     public boolean Save() {
         return true;
     }
-
+    
+    public void updateName(){
+        file.name = jTextField1.getText();
+        org.gcreator.core.Aurwindow.workspace.updateUI();
+    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -98,11 +115,6 @@ public class ImageEditor extends TabPanel {
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
             }
         });
 
@@ -144,7 +156,7 @@ public class ImageEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
@@ -161,7 +173,7 @@ public class ImageEditor extends TabPanel {
                                 .add(widthLabel)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                                 .add(heightLabel)))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addContainerGap(61, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -244,11 +256,6 @@ public class ImageEditor extends TabPanel {
         widthLabel.setText("Width: " + w);
         heightLabel.setText("Height: " + h);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        file.name = jTextField1.getText();
-        org.gcreator.core.Aurwindow.workspace.updateUI();
-    }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
