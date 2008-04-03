@@ -108,6 +108,18 @@ class org::gcreator::Components::Actor
 		void setDepth(int);
 		boolean isSolid();
 		void setSolid(boolean);
+                void onCreate();
+                void onDestroy();
+                void onTimer();
+                void onBeginStep();
+                void onStep();
+                void onEndStep();
+                void onCollision(org::gcreator::Components::Actor);
+                void onKeyboard(std::string);
+                void onMouse(std::string);
+                void onKeyPress(std::string);
+                void onKeyRelease(std::string);
+                void onDraw();
 };
 
 class org::gcreator::Components::View

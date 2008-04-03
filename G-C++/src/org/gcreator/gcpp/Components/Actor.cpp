@@ -139,4 +139,64 @@ void org::gcreator::Components::Actor::setSolid(boolean _solid)
 	solid = _solid;
 }
 
+void org::gcreator::Components::Actor::onCreate()
+{
+    
+}
+
+void org::gcreator::Components::Actor::onDestroy()
+{
+    
+}
+
+void org::gcreator::Components::Actor::onTimer(int Timer)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onBeginStep()
+{
+    
+}
+
+void org::gcreator::Components::Actor::onStep()
+{
+    
+}
+
+void org::gcreator::Components::Actor::onEndStep()
+{
+    
+}
+
+void org::gcreator::Components::Actor::onCollision(org::gcreator::Components::Actor who)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onKeyboard(std::string key)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onMouse(std::string button)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onKeyPress(std::string key)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onKeyRelease(std::string key)
+{
+    
+}
+
+void org::gcreator::Components::Actor::onDraw()
+{
+    
+}
+
 #endif
