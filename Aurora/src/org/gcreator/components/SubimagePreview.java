@@ -18,7 +18,7 @@ import org.gcreator.editors.*;
  * Previews a sprite subimage
  * @author Luís Reis
  */
-public class SubimagePreview extends JLabel{
+public class SubimagePreview extends JLabel {
     private SpriteEditor editor;
     
     /**
@@ -41,11 +41,13 @@ public class SubimagePreview extends JLabel{
         return new Dimension(img.getIconWidth(), img.getIconHeight());
     }
     
+    @Override
     public void paint(Graphics g){
         ImageIcon img = getCurrentImage();
         drawBackground(g);
-        if(img != null)
+        if (img != null) {
             g.drawImage(img.getImage(), 0, 0, img.getImageObserver());
+        }
     }
     
     public void drawBackground(Graphics g) {
@@ -56,7 +58,7 @@ public class SubimagePreview extends JLabel{
         for(int i = 0; i < d.width/10; i++) {
             row = !row;
             white = row;
-            g.setColor(((white) ?Color.WHITE : Color.DARK_GRAY));
+            g.setColor(((white) ? Color.WHITE : Color.DARK_GRAY));
             for(int j = 0; j < d.height/10; j++){
                 g.fillRect(i*10, j*10, 10, 10);
                 if (white = !white)

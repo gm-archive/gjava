@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class ExtendedFrame extends JInternalFrame{
+public class ExtendedFrame extends JInternalFrame {
     private TabPanel pane = null;
             
     public void setPanel(TabPanel pane){
@@ -27,8 +27,9 @@ public class ExtendedFrame extends JInternalFrame{
     }
     
      
+    @Override
     public void dispose(){
-        if(pane!=null)
+        if (pane != null)
             pane.dispose();
     }
 }

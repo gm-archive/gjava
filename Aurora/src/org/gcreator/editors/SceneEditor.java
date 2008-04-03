@@ -191,6 +191,7 @@ public class SceneEditor extends TabPanel {
     }
 
      
+    @Override
     public boolean Load() {
         jEditorPane1.setText(((Scene) file.value).caption);
         if(((Scene) file.value).width==0){
@@ -210,6 +211,7 @@ public class SceneEditor extends TabPanel {
     }
 
      
+    @Override
     public boolean Save() {
         Scene s = (Scene) file.value;
         s.caption = this.jEditorPane1.getText();
@@ -226,6 +228,7 @@ public class SceneEditor extends TabPanel {
     }
 
      
+    @Override
     public boolean wasModified() {
         return changed;
     }

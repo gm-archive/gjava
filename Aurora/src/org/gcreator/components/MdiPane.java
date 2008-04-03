@@ -31,8 +31,8 @@ public class MdiPane extends JPanel{
         minimize.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 JInternalFrame f = p.getSelectedFrame();
-                if(f!=null)
-                    try{
+                if (f != null)
+                    try {
                         f.setIcon(true);
                     }
                     catch(Exception e){}

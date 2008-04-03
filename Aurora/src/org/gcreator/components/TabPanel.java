@@ -17,14 +17,14 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class TabPanel extends JPanel{
+public class TabPanel extends JPanel {
     public Aurwindow parent;
     public ExtendedFrame frame;
     public String title = "<none>";
     public Project project;
     public org.gcreator.fileclass.GFile file = null;
     
-    public void dispose(){
+    public void dispose() {
        
         if (!wasModified()) {
              parent.remove(this, frame);
@@ -95,6 +95,7 @@ public class TabPanel extends JPanel{
         return false; //Could not replace
     }
     
+    @Override
     public String toString(){
         return title;
     }
