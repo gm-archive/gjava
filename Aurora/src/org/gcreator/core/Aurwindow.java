@@ -141,6 +141,7 @@ public class Aurwindow extends JFrame {
         workspace.updateUI();
     }
     //</editor-fold>
+    
     private void closeAllTabs(DefaultMutableTreeNode node) {
         for (int i = 0; i < node.getChildCount(); i++) {
             ObjectNode on = (ObjectNode)node.getChildAt(i);
@@ -261,7 +262,7 @@ public class Aurwindow extends JFrame {
         m.add(i);
         m.add(j);
         m.add(k);
-        m.show(this, e.getX()+getLocationOnScreen().x, e.getY()+getLocationOnScreen().y);
+        m.show(this, e.getX()+getLocationOnScreen().x+workspace.getLocationOnScreen().x, e.getY()+getLocationOnScreen().y+workspace.getLocationOnScreen().y);
         using = false;
     }
     //</editor-fold>
