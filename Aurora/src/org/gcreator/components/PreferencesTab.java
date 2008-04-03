@@ -3,20 +3,61 @@
  *
  * Created on 3 de Abril de 2008, 20:34
  */
-
 package org.gcreator.components;
+
+import javax.swing.*;
+import org.gcreator.core.*;
+import org.gcreator.managers.*;
 
 /**
  *
  * @author  Luís
  */
 public class PreferencesTab extends OptionPanel {
-    
+
     /** Creates new form PreferencesTab */
-    public PreferencesTab() {
+    public PreferencesTab(String[] settings) {
         initComponents();
+        
+        jComboBox1.setSelectedIndex(0);
+        try {
+            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
+                gcreator.window.look = 0;
+            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
+                jComboBox1.setSelectedIndex(1);
+                gcreator.window.look = 1;
+            } else if (settings[0].equals("Motif")) {
+                jComboBox1.setSelectedIndex(2);
+                gcreator.window.look = 2;
+            } else if (settings[0].equals("Metal")) {
+                jComboBox1.setSelectedIndex(3);
+                gcreator.window.look = 3;
+            } else {
+                jComboBox1.setSelectedIndex(1);
+                gcreator.window.look = 1;
+            }
+        } catch (Exception e) {
+            jComboBox1.setSelectedIndex(1);
+            gcreator.window.look = 1;
+        }
     }
-    
+    public DefaultComboBoxModel lafmodel = new DefaultComboBoxModel() {
+
+                public String[] vals = new String[]{getLang(17), getLang(18), getLang(19), getLang(132)};
+
+                public Object getElementAt(int pos) {
+                    return vals[pos];
+                }
+
+                public int getSize() {
+                    return vals.length;
+                }
+            };
+
+    public String getLang(int lang) {
+        return LangSupporter.activeLang.getEntry(lang);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -25,20 +66,102 @@ public class PreferencesTab extends OptionPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+
+        jLabel1.setText(getLang(15));
+
+        jComboBox1.setModel(lafmodel);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jLabel1)
+                .add(18, 18, 18)
+                .add(jComboBox1, 0, 296, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 300, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel1)
+                    .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        int sel = jComboBox1.getSelectedIndex();
+
+        try {
+            switch (sel) {
+                case 0:
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    SwingUtilities.updateComponentTreeUI(gcreator.window);
+                    if (gcreator.window.istabs) {
+                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+                    } else {
+                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                    }
+                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+                    gcreator.window.look = 0;
+                    Aurwindow.workspace.updateUI();
+                    break;
+                case 1:
+                    javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
+                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                    SwingUtilities.updateComponentTreeUI(gcreator.window);
+                    if (gcreator.window.istabs) {
+                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+                    } else {
+                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                    }
+                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+                    gcreator.window.look = 1;
+                    Aurwindow.workspace.updateUI();
+                    break;
+                case 2:
+                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+                    SwingUtilities.updateComponentTreeUI(gcreator.window);
+                    if (gcreator.window.istabs) {
+                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+                    } else {
+                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                    }
+                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+                    gcreator.window.look = 2;
+                    Aurwindow.workspace.updateUI();
+                    break;
+                case 3:
+                    javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
+                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+                    SwingUtilities.updateComponentTreeUI(gcreator.window);
+                    if (gcreator.window.istabs) {
+                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+                    } else {
+                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                    }
+                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+                    gcreator.window.look = 3;
+                    Aurwindow.workspace.updateUI();
+                    break;
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-    
+
 }

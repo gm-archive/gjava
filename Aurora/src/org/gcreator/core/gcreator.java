@@ -319,7 +319,7 @@ public class gcreator {
         //ActorEditor.setupActions();
         window = new Aurwindow(settings);
         window.console.setText(output);
-        Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings();
+        Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings(settings);
         Aurwindow.newfilegroup = new NewFileGroup();
         Aurwindow.newproject = new NewProject();
         Aurwindow.about = new AboutPanel();

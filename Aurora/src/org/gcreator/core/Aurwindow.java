@@ -64,7 +64,7 @@ public class Aurwindow extends JFrame {
     public static WorkspaceTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
-    public ButtonGroup stylegroup,  wtreepos;
+    public ButtonGroup wtreepos;
     //public JComboBox winlist; //This will be the windows list
 
     public ToolbarPopupMenu toolpopup;
@@ -101,7 +101,6 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="deleteFile">
-
     public void deleteFile(org.gcreator.fileclass.GFile o) {
         System.out.println("Delete file");
         org.gcreator.fileclass.Folder root = o.root;
@@ -128,7 +127,6 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="deleteGroup">
-
     public void deleteGroup(org.gcreator.fileclass.Group o) {
         org.gcreator.fileclass.Folder root = o.root;
         ObjectNode node = o.node;
@@ -142,6 +140,7 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
     private void closeAllTabs(DefaultMutableTreeNode node) {
         for (int i = 0; i < node.getChildCount(); i++) {
             ObjectNode on = (ObjectNode)node.getChildAt(i);
@@ -162,9 +161,9 @@ public class Aurwindow extends JFrame {
             }
         }
     }
+    //</editor-fold>
         
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
-
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
         for (java.lang.Object o : from) {
             if (o instanceof org.gcreator.fileclass.GFile) {
@@ -178,7 +177,6 @@ public class Aurwindow extends JFrame {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="popupTreeMenu">
-
     public void popupTreeMenu(MouseEvent e) {
         System.out.println("popup menu");
         if (!using) {
@@ -649,7 +647,7 @@ public class Aurwindow extends JFrame {
     @Override
     public void setContentPane(Container c) {}
 
-    //<editor-fold defaultstate="collapsed" desc="addWindow">
+    //<editor-fold defaultstate="collapsed" desc="Aurwindow [new]">
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -900,7 +898,7 @@ public class Aurwindow extends JFrame {
         }
         });*/
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
-        menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
+        //menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
         menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
         menus[15] = MenuSupporter.MakeSubMenu(menus[2], 193, "Display mode");
         items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
@@ -1035,43 +1033,6 @@ public class Aurwindow extends JFrame {
 
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(4, 1, evt);
-                    }
-                });
-        stylegroup = new ButtonGroup();
-        items[MenuSupporter.GenerateMenuItemId(5, 0)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 17, "Native look");
-        items[MenuSupporter.GenerateMenuItemId(5, 0)].addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        onItemActionPerformed(5, 0, evt);
-                    }
-                });
-        if (look == 0) {
-            items[MenuSupporter.GenerateMenuItemId(5, 0)].setSelected(true);
-        }
-
-        items[MenuSupporter.GenerateMenuItemId(5, 1)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 18, "Cross-platform look");
-        items[MenuSupporter.GenerateMenuItemId(5, 1)].addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        onItemActionPerformed(5, 1, evt);
-                    }
-                });
-        if (look == 1) {
-            items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
-        }
-        MenuSupporter.MakeSeparator(menus[5]);
-        items[MenuSupporter.GenerateMenuItemId(5, 2)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 19, "Linux look");
-        items[MenuSupporter.GenerateMenuItemId(5, 2)].addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        onItemActionPerformed(5, 2, evt);
-                    }
-                });
-        items[MenuSupporter.GenerateMenuItemId(5, 3)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 132, "Metal theme");
-        items[MenuSupporter.GenerateMenuItemId(5, 3)].addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        onItemActionPerformed(5, 3, evt);
                     }
                 });
         /*items[MenuSupporter.GenerateMenuItemId(5, 4)] = MenuSupporter.MakeRadioMenuItem(stylegroup, menus[5], 1, "GTK");
@@ -1292,7 +1253,7 @@ public class Aurwindow extends JFrame {
             splitter1.setDividerLocation(0.66);
         }
 
-        try {
+        /*try {
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 look = 0;
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
@@ -1311,7 +1272,7 @@ public class Aurwindow extends JFrame {
         } catch (Exception e) {
             items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
             look = 1;
-        }
+        }*/
 
         if (settings[1].equals("MDI")) {
             items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
@@ -1476,73 +1437,6 @@ public class Aurwindow extends JFrame {
         if (menu == 4 && item == 1) {
             HelpPanel help = new HelpPanel();
             addWindow(help, 27);
-        }
-        try {
-            if (menu == 5 && item == 0) {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                SwingUtilities.updateComponentTreeUI(this);
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                SwingUtilities.updateComponentTreeUI(consolepopup);
-                look = 0;
-                workspace.updateUI();
-
-            }
-            if (menu == 5 && item == 1) {
-                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                SwingUtilities.updateComponentTreeUI(this);
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                SwingUtilities.updateComponentTreeUI(consolepopup);
-                look = 1;
-                workspace.updateUI();
-            }
-            if (menu == 5 && item == 2) {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-                SwingUtilities.updateComponentTreeUI(this);
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                SwingUtilities.updateComponentTreeUI(consolepopup);
-                look = 2;
-                workspace.updateUI();
-            }
-            if (menu == 5 && item == 3) {
-                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                SwingUtilities.updateComponentTreeUI(this);
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                SwingUtilities.updateComponentTreeUI(consolepopup);
-                look = 3;
-                workspace.updateUI();
-            }
-            if (menu == 5 && item == 4) {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
-                SwingUtilities.updateComponentTreeUI(this);
-                if (istabs) {
-                    SwingUtilities.updateComponentTreeUI(mdi);
-                } else {
-                    SwingUtilities.updateComponentTreeUI(tabs);
-                }
-                SwingUtilities.updateComponentTreeUI(consolepopup);
-                look = 3;
-                workspace.updateUI();
-            }
-        } catch (Exception e) {
-            SwingUtilities.updateComponentTreeUI(this);
         }
         if (menu == 6 && (item < 4)) {
             if (!istabs) {
