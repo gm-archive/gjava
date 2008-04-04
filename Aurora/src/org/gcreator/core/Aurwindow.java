@@ -92,7 +92,7 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
 
-    private boolean isWorkspaceLeft() {
+    public boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
             return true;
         }
@@ -899,7 +899,7 @@ public class Aurwindow extends JFrame {
         });*/
         menus[2] = MenuSupporter.MakeMenu(menubar, 2, "Layout and design options are defined here.");
         //menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
-        menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
+        //menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
         menus[15] = MenuSupporter.MakeSubMenu(menus[2], 193, "Display mode");
         items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
         items[MenuSupporter.GenerateMenuItemId(2, 0)].addActionListener(new ActionListener() {
@@ -1041,7 +1041,7 @@ public class Aurwindow extends JFrame {
         onItemActionPerformed(5, 4, evt);
         }
         });*/
-        ButtonGroup agroup = new ButtonGroup();
+        /*ButtonGroup agroup = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(6, 0)] = MenuSupporter.MakeRadioMenuItem(agroup, menus[6], 20, "Tabs Top");
         items[MenuSupporter.GenerateMenuItemId(6, 0)].addActionListener(new ActionListener() {
 
@@ -1078,7 +1078,7 @@ public class Aurwindow extends JFrame {
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(6, 4, evt);
                     }
-                });
+                });*/
         wtreepos = new ButtonGroup();
         items[MenuSupporter.GenerateMenuItemId(15, 0)] = MenuSupporter.MakeRadioMenuItem(wtreepos, menus[15], 194, "Tree Left");
         items[MenuSupporter.GenerateMenuItemId(15, 0)].addActionListener(new ActionListener() {
@@ -1274,23 +1274,6 @@ public class Aurwindow extends JFrame {
             look = 1;
         }*/
 
-        if (settings[1].equals("MDI")) {
-            items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
-            onItemActionPerformed(6, 4, null);
-        }
-        if (settings[1].equals("Tabs (Left)")) {
-            items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
-            onItemActionPerformed(6, 1, null);
-        }
-        if (settings[1].equals("Tabs (Bottom)")) {
-            items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
-            onItemActionPerformed(6, 2, null);
-        }
-        if (settings[1].equals("Tabs (Right)")) {
-            items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
-            onItemActionPerformed(6, 3, null);
-        }
-
         if (settings[4].equals("Visible")) {
             showToolbars = true;
             //tool.setVisible(true);
@@ -1438,7 +1421,7 @@ public class Aurwindow extends JFrame {
             HelpPanel help = new HelpPanel();
             addWindow(help, 27);
         }
-        if (menu == 6 && (item < 4)) {
+        /*if (menu == 6 && (item < 4)) {
             if (!istabs) {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(true);
@@ -1508,7 +1491,7 @@ public class Aurwindow extends JFrame {
                     }
                 }
             }
-        }
+        }*/
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
             addWindow(lang, 28, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());

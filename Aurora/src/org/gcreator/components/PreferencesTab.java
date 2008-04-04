@@ -5,6 +5,7 @@
  */
 package org.gcreator.components;
 
+import java.awt.Component;
 import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
@@ -18,7 +19,7 @@ public class PreferencesTab extends OptionPanel {
     /** Creates new form PreferencesTab */
     public PreferencesTab(String[] settings) {
         initComponents();
-        
+
         jComboBox1.setSelectedIndex(0);
         try {
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
@@ -40,10 +41,48 @@ public class PreferencesTab extends OptionPanel {
             jComboBox1.setSelectedIndex(1);
             gcreator.window.look = 1;
         }
+        
+        jComboBox2.setSelectedIndex(0);
+        
+         if (settings[1].equals("MDI")) {
+             jComboBox2.setSelectedIndex(4);
+            //items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
+            //onItemActionPerformed(6, 4, null);
+        }
+        if (settings[1].equals("Tabs (Left)")) {
+            jComboBox2.setSelectedIndex(4);
+            //items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
+            //onItemActionPerformed(6, 1, null);
+        }
+        if (settings[1].equals("Tabs (Bottom)")) {
+            jComboBox2.setSelectedIndex(4);
+            //items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
+            //onItemActionPerformed(6, 2, null);
+        }
+        if (settings[1].equals("Tabs (Right)")) {
+            jComboBox2.setSelectedIndex(4);
+            //items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
+            //onItemActionPerformed(6, 3, null);
+        }
+        
+        jComboBox2ActionPerformed(null);
     }
     public DefaultComboBoxModel lafmodel = new DefaultComboBoxModel() {
 
                 public String[] vals = new String[]{getLang(17), getLang(18), getLang(19), getLang(132)};
+
+                public Object getElementAt(int pos) {
+                    return vals[pos];
+                }
+
+                public int getSize() {
+                    return vals.length;
+                }
+            };
+    public DefaultComboBoxModel displaymodes = new DefaultComboBoxModel() {
+
+                public String[] vals = new String[]{getLang(20), getLang(90), getLang(91), getLang(92),
+                        getLang(21)};
 
                 public Object getElementAt(int pos) {
                     return vals[pos];
@@ -68,6 +107,8 @@ public class PreferencesTab extends OptionPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
 
         jLabel1.setText(getLang(15));
 
@@ -78,15 +119,28 @@ public class PreferencesTab extends OptionPanel {
             }
         });
 
+        jLabel2.setText(getLang(16));
+
+        jComboBox2.setModel(displaymodes);
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jLabel1)
-                .add(18, 18, 18)
-                .add(jComboBox1, 0, 296, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel1)
+                    .add(jLabel2))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jComboBox2, 0, 310, Short.MAX_VALUE)
+                    .add(jComboBox1, 0, 310, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,7 +150,11 @@ public class PreferencesTab extends OptionPanel {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel2)
+                    .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(243, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -159,9 +217,97 @@ public class PreferencesTab extends OptionPanel {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        int sel = jComboBox2.getSelectedIndex();
+
+        if (sel < 4) {
+            if (!gcreator.window.istabs) {
+                int k = gcreator.window.splitter2.getDividerLocation();
+                gcreator.window.tabs.setVisible(true);
+                gcreator.window.mdi.setVisible(false);
+                if (gcreator.window.isWorkspaceLeft()) {
+                    gcreator.window.splitter2.setRightComponent(gcreator.window.tabs);
+                    if (gcreator.window.splitter2.getRightComponent().isVisible()) {
+                        gcreator.window.splitter2.setDividerLocation(k);
+                    }
+                } else {
+                    gcreator.window.splitter2.setLeftComponent(gcreator.window.tabs);
+                    if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
+                        gcreator.window.splitter2.setDividerLocation(k);
+                    }
+                }
+                gcreator.window.istabs = true;
+                for (int i = 0; i < gcreator.window.mdi.getComponents().length; i++) {
+                    if (!(gcreator.window.mdi.getComponent(i) instanceof ExtendedFrame)) {
+                        continue;
+                    }
+                    try {
+                        TabPanel panel = ((ExtendedFrame) gcreator.window.mdi.getComponent(i)).getPanel();
+                        gcreator.window.tabs.addTab(panel.title, panel);
+                        int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
+                        if (ver >= 6) {
+                            gcreator.window.tabs.setTabComponentAt(gcreator.window.tabs.indexOfComponent(panel), new ButtonTabComponent(gcreator.window.tabs));
+                        }
+                    } catch (ClassCastException e) {
+                    }
+                }
+            }
+        }
+
+        try {
+            switch (sel) {
+                case 0:
+                    gcreator.window.tabs.setTabPlacement(JTabbedPane.TOP);
+                    break;
+                case 1:
+                    gcreator.window.tabs.setTabPlacement(JTabbedPane.LEFT);
+                    break;
+                case 2:
+                    gcreator.window.tabs.setTabPlacement(JTabbedPane.BOTTOM);
+                    break;
+                case 3:
+                    gcreator.window.tabs.setTabPlacement(JTabbedPane.RIGHT);
+                    break;
+            }
+        } catch (Exception e) {
+        }
+
+        if(sel==4)
+        if (gcreator.window.istabs) {
+            int k = gcreator.window.splitter2.getDividerLocation();
+            gcreator.window.tabs.setVisible(false);
+            gcreator.window.mdi.setVisible(true);
+            if (gcreator.window.isWorkspaceLeft()) {
+                gcreator.window.splitter2.setRightComponent(gcreator.window.mdi);
+                if (gcreator.window.splitter2.getRightComponent().isVisible()) {
+                    gcreator.window.splitter2.setDividerLocation(k);
+                }
+            } else {
+                gcreator.window.splitter2.setLeftComponent(gcreator.window.mdi);
+                if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
+                    gcreator.window.splitter2.setDividerLocation(k);
+                }
+            }
+
+            gcreator.window.istabs = false;
+            Component[] panels = gcreator.window.tabs.getComponents();
+            for (int i = 0; i < panels.length; i++) {
+                if (panels[i] instanceof TabPanel) {
+                    TabPanel panel = (TabPanel) panels[i];
+                    org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
+                    jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                    jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                }
+            }
+        }
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 
 }
