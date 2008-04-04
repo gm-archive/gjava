@@ -58,21 +58,20 @@ System.out.println("Test:"+str.getString());
 file_text_close(fileid);
 
 //test stack
-Object sid = ds_stack_create() ;
-ds_stack_push(sid,new Integer(99)) ;
-ds_stack_push(sid,new Integer(12)) ;
+Object sid = sid = ds_queue_create() ;
+ds_queue_enqueue(sid,new Integer(99)) ;
+ds_queue_enqueue(sid,new Integer(12)) ;
+ds_queue_enqueue(sid,new Integer(24)) ;
 
-show_message(string(ds_stack_size(sid)));//2
+show_message(string(ds_queue_size(sid)));//3
  
-show_message(string(ds_stack_pop(sid)));//12
-show_message(string(ds_stack_top(sid)));//99
+show_message(string(ds_queue_dequeue(sid)));//99
+show_message(string(ds_queue_head(sid)));//12
+show_message(string(ds_queue_tail(sid)));//24
 
-//ds_stack_write(sid)
-//ds_stack_read(sid,str)
-
-ds_stack_clear(sid);
-show_message(string(ds_stack_empty(sid)));//1/true
-ds_stack_destroy(sid);
+ds_queue_clear(sid);
+show_message(string(ds_queue_empty(sid)));//1/true
+ds_queue_destroy(sid);
        
     }
 

@@ -4149,46 +4149,79 @@ return new Object();
  */
 public static Object ds_queue_create()
 {
-return new Object();
+    
+return new Queue();
 }
 
 public static Object ds_queue_destroy(Object id)
 {
+     if (id instanceof Queue)
+    {
+     ((Queue)id).destroy();
+    }
 return new Object();
 }
 
 public static Object ds_queue_clear(Object id)
 {
+    if (id instanceof Queue)
+    {
+     ((Queue)id).clear();
+    }
 return new Object();
 }
 
 public static Object ds_queue_size(Object id)
 {
+    if (id instanceof Queue)
+    {
+    return new Integer(((Queue)id).size());
+    }
 return new Object();
 }
 
 public static Object ds_queue_empty(Object id)
 {
+    if (id instanceof Queue)
+    {
+    return new Boolean(((Queue)id).empty());
+    }
 return new Object();
 }
 
 public static Object ds_queue_enqueue(Object id, Object value)
 {
+    if (id instanceof Queue)
+    {
+    ((Queue)id).enqueue(value);
+    }
 return new Object();
 }
 
 public static Object ds_queue_dequeue(Object id)
 {
+    if (id instanceof Queue)
+    {
+    return ((Queue)id).dequeue();
+    }
 return new Object();
 }
 
 public static Object ds_queue_head(Object id)
 {
+    if (id instanceof Queue)
+    {
+    return ((Queue)id).head();
+    }
 return new Object();
 }
 
 public static Object ds_queue_tail(Object id)
 {
+    if (id instanceof Queue)
+    {
+    return ((Queue)id).tail();
+    }
 return new Object();
 }
 
