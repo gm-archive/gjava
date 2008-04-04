@@ -80,6 +80,7 @@ public class SpriteEditor extends TabPanel {
         org.gcreator.core.Aurwindow.workspace.updateUI();
     }
      
+    @Override
     public boolean Save() {
         sprite.BBBottom=(Integer)jSpinner6.getValue();
         sprite.BBRight=(Integer)jSpinner5.getValue();
@@ -94,6 +95,7 @@ public class SpriteEditor extends TabPanel {
     }
 
      
+    @Override
     public boolean wasModified() {
         return changed;
     }
@@ -118,6 +120,11 @@ public class SpriteEditor extends TabPanel {
         jLabel2.setText("Width:"+sprite.width);
         jLabel3.setText("Height:"+sprite.height);
         jLabel4.setText("Subimages:"+sprite.countImages());
+        
+        jButton3.setText("");
+        jButton3.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageright.png")));
+        jButton4.setText("");
+        jButton4.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageleft.png")));
     }
     
     /** This method is called from within the constructor to
@@ -204,7 +211,6 @@ public class SpriteEditor extends TabPanel {
 
         jLabel4.setText("Subimages:");
 
-        jButton3.setText("<");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -213,7 +219,6 @@ public class SpriteEditor extends TabPanel {
 
         jLabel5.setText("Show:");
 
-        jButton4.setText(">");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -245,18 +250,19 @@ public class SpriteEditor extends TabPanel {
                 .add(2, 2, 2)
                 .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
+            .add(jPanel4Layout.createSequentialGroup()
+                .add(81, 81, 81)
+                .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .add(2, 2, 2))
             .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(jPanel4Layout.createSequentialGroup()
                     .add(2, 2, 2)
                     .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                         .add(jLabel5)
                         .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                        .add(jPanel4Layout.createSequentialGroup()
-                            .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 67, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)))
+                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(2, 2, 2)))
         );
         jPanel4Layout.setVerticalGroup(
@@ -271,16 +277,17 @@ public class SpriteEditor extends TabPanel {
                     .add(jLabel3))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel4)
-                .addContainerGap(216, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 145, Short.MAX_VALUE)
+                .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(51, 51, 51))
             .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                 .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
                     .addContainerGap(216, Short.MAX_VALUE)
                     .add(jLabel5)
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                        .add(jButton3)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(jButton4))
+                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                     .add(jButton1)
                     .add(21, 21, 21)))
@@ -612,6 +619,7 @@ public class SpriteEditor extends TabPanel {
             sprite.height = ((ImageIcon) o).getIconHeight();
             jLabel2.setText("Width:"+sprite.width);
             jLabel3.setText("Height:"+sprite.height);
+            jButton9ActionPerformed(evt);
         }
         
         if ((sprite.width == ((ImageIcon) o).getIconWidth()) && sprite.height == ((ImageIcon) o).getIconHeight() )
