@@ -26,6 +26,7 @@ public class SpriteEditor extends TabPanel {
     boolean changed;
     private SubimagePreview prev;
     private ResourceChooser res;
+    private boolean dragging = false;
     
     /** Creates new form SpriteEditor */
     public SpriteEditor(org.gcreator.fileclass.GFile file,Project project) {
@@ -172,6 +173,19 @@ public class SpriteEditor extends TabPanel {
         });
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jScrollPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jScrollPane1MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseReleased(evt);
+            }
+        });
+        jScrollPane1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jScrollPane1MouseDragged(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
 
@@ -584,10 +598,10 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        jSpinner3.setValue(0);
-        jSpinner4.setValue(0);
-        jSpinner5.setValue(0);
-        jSpinner6.setValue(0);
+        jSpinner3.setValue(sprite.width-1);//left
+        jSpinner4.setValue(0);//top
+        jSpinner5.setValue(0);//right
+        jSpinner6.setValue(sprite.height-1);//bottom
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -630,6 +644,30 @@ public class SpriteEditor extends TabPanel {
             id = Math.max(0, sprite.countImages()-1);
         setViewedId(id);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jScrollPane1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseDragged
+        if (!dragging)
+            return;
+        int x,y;
+        x = evt.getX()-2;
+        y = evt.getY()-2;
+        sprite.originX = x;
+        sprite.originY = y;
+        jSpinner1.setValue(x);
+        jSpinner2.setValue(y);
+        prev.repaint();
+    }//GEN-LAST:event_jScrollPane1MouseDragged
+
+    private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
+        if (evt.getX() > sprite.width || evt.getY() > sprite.height)
+            return;
+        dragging = true;
+        jScrollPane1MouseDragged(evt);
+    }//GEN-LAST:event_jScrollPane1MousePressed
+
+    private void jScrollPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseReleased
+        dragging = false;
+    }//GEN-LAST:event_jScrollPane1MouseReleased
     
     public int getViewedId(){
         try{

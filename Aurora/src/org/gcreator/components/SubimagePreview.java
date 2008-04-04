@@ -47,6 +47,34 @@ public class SubimagePreview extends JLabel {
         drawBackground(g);
         if (img != null) {
             g.drawImage(img.getImage(), 0, 0, img.getImageObserver());
+            
+            /*
+             * Draw the sprite origin
+            */
+            g.setColor(Color.WHITE);
+            g.setXORMode(Color.BLACK);//Invert everything
+            org.gcreator.fileclass.res.Sprite s = editor.sprite;
+            byte width = 32;
+            //horizontal
+            if (s.originX-width < s.width && s.originY < s.height)
+                g.drawLine(s.originX-width,s.originY,Math.min(s.originX+width,s.width),s.originY);
+            //Vertical
+            if (s.originY-width < s.height && s.originX < s.width)
+                g.drawLine(s.originX,s.originY-width,s.originX,Math.min(s.originY+width,s.height));
+            /*
+             * Draw the bounding box
+             * I can't just use drawRect becasue the BBox 
+             * shouldn't be drawn outside the image.
+            */
+            //g.drawRect(s.BBRight,s.BBTop,s.BBleft-s.BBRight,s.BBBottom-s.BBTop);
+            //left
+            g.drawLine(s.BBleft,s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.BBleft,s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1));
+            //right
+            g.drawLine(s.BBRight,s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.BBRight,s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1));
+            //top
+            g.drawLine(s.BBleft,s.BBTop,s.BBRight,s.BBTop);
+            //bottom
+            g.drawLine(s.BBleft,s.BBBottom,s.BBRight,s.BBBottom);
         }
     }
     
