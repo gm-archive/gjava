@@ -57,10 +57,10 @@ public class SubimagePreview extends JLabel {
             byte width = 32;
             //horizontal
             if (s.originX-width < s.width && s.originY < s.height)
-                g.drawLine(s.originX-width,s.originY,Math.min(s.originX+width,s.width),s.originY);
+                g.drawLine(s.originX-width,s.originY,Math.min(s.originX+width,s.width-1),s.originY);
             //Vertical
             if (s.originY-width < s.height && s.originX < s.width)
-                g.drawLine(s.originX,s.originY-width,s.originX,Math.min(s.originY+width,s.height));
+                g.drawLine(s.originX,s.originY-width,s.originX,Math.min(s.originY+width,s.height-1));
             /*
              * Draw the bounding box
              * I can't just use drawRect becasue the BBox 
@@ -68,13 +68,17 @@ public class SubimagePreview extends JLabel {
             */
             //g.drawRect(s.BBRight,s.BBTop,s.BBleft-s.BBRight,s.BBBottom-s.BBTop);
             //left
-            g.drawLine(s.BBleft,s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.BBleft,s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1));
+            if (s.BBleft < s.width)
+                g.drawLine(s.BBleft,Math.min(s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1),s.BBleft,Math.min(s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1));
             //right
-            g.drawLine(s.BBRight,s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.BBRight,s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1));
+            if (s.BBRight < s.width)
+                g.drawLine(s.BBRight,Math.min(s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1),s.BBRight,Math.min(s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1));
             //top
-            g.drawLine(s.BBleft,s.BBTop,s.BBRight,s.BBTop);
+            if (s.BBTop < s.height)
+                g.drawLine(Math.min(s.BBleft,s.width-1),s.BBTop,Math.min(s.BBRight,s.width-1),s.BBTop);
             //bottom
-            g.drawLine(s.BBleft,s.BBBottom,s.BBRight,s.BBBottom);
+            if (s.BBBottom < s.height)
+                g.drawLine(Math.min(s.BBleft,s.width-1),s.BBBottom,Math.min(s.BBRight,s.width-1),s.BBBottom);
         }
     }
     
