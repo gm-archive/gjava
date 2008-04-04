@@ -83,12 +83,12 @@ public class SubimagePreview extends JLabel {
         boolean white = false;
         boolean row = true;
         g.setColor(Color.WHITE);
-        for(int i = 0; i < d.width/10; i++) {
+        for(int i = 0; i <= d.width/10; i++) {
             row = !row;
             white = row;
             g.setColor(((white) ? Color.WHITE : Color.DARK_GRAY));
-            for(int j = 0; j < d.height/10; j++){
-                g.fillRect(i*10, j*10, 10, 10);
+            for(int j = 0; j <= d.height/10; j++){
+                g.fillRect(i*10, j*10,Math.min(10,d.width-i*10),Math.min(10,d.height-j*10));
                 if (white = !white)
                     g.setColor(Color.WHITE);
                 else
