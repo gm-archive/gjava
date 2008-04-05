@@ -238,12 +238,12 @@ public class PreferencesTab extends OptionPanel {
                     }
                 }
                 gcreator.window.istabs = true;
-                for (int i = 0; i < gcreator.window.mdi.getComponents().length; i++) {
-                    if (!(gcreator.window.mdi.getComponent(i) instanceof ExtendedFrame)) {
+                for (int i = 0; i < gcreator.window.mdi.getDesktop().getComponents().length; i++) {
+                    if (!(gcreator.window.mdi.getDesktop().getComponent(i) instanceof ExtendedFrame)) {
                         continue;
                     }
                     try {
-                        TabPanel panel = ((ExtendedFrame) gcreator.window.mdi.getComponent(i)).getPanel();
+                        TabPanel panel = ((ExtendedFrame) gcreator.window.mdi.getDesktop().getComponent(i)).getPanel();
                         gcreator.window.tabs.addTab(panel.title, panel);
                         int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
                         if (ver >= 6) {

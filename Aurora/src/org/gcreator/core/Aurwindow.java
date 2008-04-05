@@ -507,6 +507,12 @@ public class Aurwindow extends JFrame {
                 tabs.setTabComponentAt(index, new ButtonTabComponent(tabs));
                 tabs.setSelectedComponent(panel);
             }
+            /*
+             * This does not work
+             * 
+             * USELESS
+             * 
+             * 
             for (int i = 0; i < mdi.getComponentCount(); i++) {
                 try {
                     if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
@@ -526,9 +532,14 @@ public class Aurwindow extends JFrame {
                 } catch (ClassCastException e) {
                 }
             }
+             */
             ExtendedFrame frame = new ExtendedFrame();
             panel.frame = frame;
             frame.setPanel(panel);
+            frame.setSize(new Dimension(Math.max(panel.getPreferredSize().width,300),
+                                Math.max(panel.getPreferredSize().height,300)) );
+            frame.setMinimumSize(panel.getPreferredSize());
+            frame.updateUI();
             frame.setClosable(true);
             frame.setIconifiable(true);
             frame.setMaximizable(true);
@@ -572,7 +583,7 @@ public class Aurwindow extends JFrame {
                 jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
                 jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
             }
-            frame.setBounds(0, 0, 300, 300);
+            //frame.setBounds(0, 0, 300, 300);
             mdi.add(frame, javax.swing.JLayeredPane.DEFAULT_LAYER);
             frame.setSelected(true);
         } catch (Exception ex) {
@@ -1475,7 +1486,7 @@ public class Aurwindow extends JFrame {
         if (menu == 6 && item == 3) {
             tabs.setTabPlacement(JTabbedPane.RIGHT);
         }
-        if (menu == 6 && item == 4) {
+        if (menu == 6 && item == 4) {//MDI
             if (istabs) {
                 int k = splitter2.getDividerLocation();
                 tabs.setVisible(false);

@@ -112,4 +112,8 @@ public class MdiPane extends JPanel{
     public void add(JInternalFrame frame, Integer layer){
         p.add(frame, layer);
     }
+    
+    public JDesktopPane getDesktop() {
+        return p;
+    }
 }
