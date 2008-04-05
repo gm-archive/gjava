@@ -17,6 +17,7 @@ public class DiscMenuItem {
     public ImageIcon image = null;
     public String label = null;
     private Vector<ActionListener> action = new Vector<ActionListener>();
+    private boolean enabled = true;
     
     public DiscMenuItem(String label, ImageIcon image){
         this.image = image;
@@ -34,5 +35,13 @@ public class DiscMenuItem {
     protected void actionPerformed(ActionEvent evt, boolean back){
         for(ActionListener l : action)
             l.actionPerformed(evt);
+    }
+    
+    public void setEnabled(boolean enabled){
+        this.enabled = enabled;
+    }
+    
+    public boolean isEnabled(){
+        return enabled;
     }
 }

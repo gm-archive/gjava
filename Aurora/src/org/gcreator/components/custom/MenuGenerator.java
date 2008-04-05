@@ -51,32 +51,44 @@ public class MenuGenerator {
     }
     
     public Object addMenuItem(Object parent, int entry, ImageIcon img){
+        return addMenuItem(parent, entry, img, true);
+    }
+    
+    public Object addMenuItem(int entry, ImageIcon img){
+        return addMenuItem(entry, img, true);
+    }
+    
+    public Object addMenuItem(Object parent, int entry, ImageIcon img, boolean enabled){
         String lang = LangSupporter.activeLang.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenuItem i = new JMenuItem(lang, img);
             i.setVisible(true);
+            i.setEnabled(enabled);
             ((JMenu) parent).add(i);
             return i;
         }
         else{
             DiscMenuItem i = new DiscMenuItem(lang, img);
+            i.setEnabled(enabled);
             ((DiscMenuContainer) parent).add(i);
             return i;
         }
     }
     
-    public Object addMenuItem(int entry, ImageIcon img){ //root
+    public Object addMenuItem(int entry, ImageIcon img, boolean enabled){ //root
         String lang = LangSupporter.activeLang.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenuItem i = new JMenuItem(lang, img);
             i.setVisible(true);
+            i.setEnabled(enabled);
             ((JPopupMenu) parent).add(i);
             return i;
         }
         else{
             DiscMenuItem i = new DiscMenuItem(lang, img);
+            i.setEnabled(enabled);
             ((DiscMenuContainer) parent).add(i);
             return i;
         }

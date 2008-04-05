@@ -165,42 +165,42 @@ public class DiscMenu extends JFrame {
         Color t1 = SystemColor.menu;
         Color t2 = SystemColor.activeCaption;
 
-        if (selection == index * 6&&index * 6 < curcontainer.count()) {
+        if (selection == index * 6&&index * 6 < curcontainer.count()&&curcontainer.elementAt(index * 6).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
         g.fillRect(0, 42, 33, 33);
 
-        if (selection == index * 6 + 1&&index * 6 + 1 < curcontainer.count()) {
+        if (selection == index * 6 + 1&&index * 6 + 1 < curcontainer.count()&&curcontainer.elementAt(index * 6 + 1).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
         g.fillRect(6, 6, 33, 33);
 
-        if (selection == index * 6 + 2&&index * 6 + 2 < curcontainer.count()) {
+        if (selection == index * 6 + 2&&index * 6 + 2 < curcontainer.count()&&curcontainer.elementAt(index * 6 + 2).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
         g.fillRect(42, 0, 33, 33);
         
-        if (selection == index * 6 + 3&&index * 6 + 3 < curcontainer.count()) {
+        if (selection == index * 6 + 3&&index * 6 + 3 < curcontainer.count()&&curcontainer.elementAt(index * 6 + 3).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
         g.fillRect(78, 6, 33, 33);
 
-        if (selection == index * 6 + 4&&index * 6 + 4 < curcontainer.count()) {
+        if (selection == index * 6 + 4&&index * 6 + 4 < curcontainer.count()&&curcontainer.elementAt(index * 6 + 4).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
         g.fillRect(84, 42, 33, 33);
         
-        if (selection == index * 6 + 5&&index * 6 + 5 < curcontainer.count()) {
+        if (selection == index * 6 + 5&&index * 6 + 5 < curcontainer.count()&&curcontainer.elementAt(index * 6 + 5).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);

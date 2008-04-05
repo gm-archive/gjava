@@ -218,6 +218,10 @@ public class Aurwindow extends JFrame {
                             }
                         });
             }
+            else{
+                Object i = m.addMenuItem(
+                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")));
+            }
         }
         if (o instanceof org.gcreator.fileclass.Group) {
             if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
@@ -231,6 +235,10 @@ public class Aurwindow extends JFrame {
                                 }
                             });
                 }
+            }
+            else{
+                Object i = m.addMenuItem(
+                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")), false);
             }
             Object k = m.addMenuItem(
                 245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
