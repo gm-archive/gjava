@@ -12,7 +12,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class DiscMenu extends JFrame {
+public class DiscMenu extends JDialog {
 
     TransparentBackground t;
     private int index = 0;
