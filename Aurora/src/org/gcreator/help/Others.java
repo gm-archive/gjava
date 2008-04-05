@@ -33,7 +33,7 @@ public class Others extends javax.swing.JPanel {
 
         jEditorPane1.setContentType("text/html");
         jEditorPane1.setEditable(false);
-        jEditorPane1.setText("<html>\n  <head>\n\n  </head>\n  <body>\n<h1>Lateral Game Maker Developers</h1>\nWe used some LGM components in G-Creator(not the core, though) and if LGM wasn't open-source, we would have a hard time implementing them. (Listed in alphabetic order)\n<ul>\n<li>Clam</li>\n<li>IsmAvatar</li>\n<li>Quadduc</li>\n<li>TGMG</li>\n\n<h1>G-Java Community Members</h1>\nHaving a community really helps a product moving forward, thank you for any suggestions and/or other contributions.\n  </body>\n</html>\n");
+        jEditorPane1.setText("<html>\n  <head>\n\n  </head>\n  <body>\n<h1>G-Java Community Members</h1>\nHaving a community really helps a product moving forward, thank you for any suggestions and/or other contributions.\n  </body>\n</html>\n");
         jScrollPane1.setViewportView(jEditorPane1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);

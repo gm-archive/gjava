@@ -54,7 +54,7 @@
           <Properties>
             <Property name="contentType" type="java.lang.String" value="text/html"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;  &lt;head&gt;&#xa;&#xa;  &lt;/head&gt;&#xa;  &lt;body&gt;&#xa;&lt;h1&gt;Lateral Game Maker Developers&lt;/h1&gt;&#xa;We used some LGM components in G-Creator(not the core, though) and if LGM wasn&apos;t open-source, we would have a hard time implementing them. (Listed in alphabetic order)&#xa;&lt;ul&gt;&#xa;&lt;li&gt;Clam&lt;/li&gt;&#xa;&lt;li&gt;IsmAvatar&lt;/li&gt;&#xa;&lt;li&gt;Quadduc&lt;/li&gt;&#xa;&lt;li&gt;TGMG&lt;/li&gt;&#xa;&#xa;&lt;h1&gt;G-Java Community Members&lt;/h1&gt;&#xa;Having a community really helps a product moving forward, thank you for any suggestions and/or other contributions.&#xa;  &lt;/body&gt;&#xa;&lt;/html&gt;&#xa;"/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;  &lt;head&gt;&#xa;&#xa;  &lt;/head&gt;&#xa;  &lt;body&gt;&#xa;&lt;h1&gt;G-Java Community Members&lt;/h1&gt;&#xa;Having a community really helps a product moving forward, thank you for any suggestions and/or other contributions.&#xa;  &lt;/body&gt;&#xa;&lt;/html&gt;&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>
