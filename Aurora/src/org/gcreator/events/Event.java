@@ -25,6 +25,7 @@ public class Event implements Serializable {
     
     
     public Vector<org.gcreator.actions.Action> actions;
+    public EventCategory cat = null;
     public Event(){
         actions = new Vector<org.gcreator.actions.Action>();
     }
