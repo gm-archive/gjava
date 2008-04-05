@@ -293,6 +293,10 @@ public class English extends Dictionary{
         entry[244] = "About";
         entry[245] = "Add Group";
         entry[246] = "Delete";
+        entry[247] = "Minimize";
+        entry[248] = "Restore";
+        entry[249] = "Maximize";
+        entry[250] = "Cascade";
         
         try{
             init();

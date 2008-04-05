@@ -12,6 +12,8 @@ package org.gcreator.components;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import org.gcreator.managers.*;
+import org.gcreator.units.*;
 
 /**
  * @author Luís Reis
@@ -26,7 +28,8 @@ public class MdiPane extends JPanel{
         p.setVisible(true);
         this.add(p, BorderLayout.CENTER);
         t = new JToolBar();
-        JButton minimize = new JButton("Minimize");
+        Dictionary d = LangSupporter.activeLang;
+        JButton minimize = new JButton(d.getEntry(247));
         minimize.setVisible(true);
         minimize.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -39,7 +42,7 @@ public class MdiPane extends JPanel{
             }
         });
         t.add(minimize);
-        JButton restore = new JButton("Restore");
+        JButton restore = new JButton(d.getEntry(248));
         restore.setVisible(true);
         restore.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -53,7 +56,7 @@ public class MdiPane extends JPanel{
             }
         });
         t.add(restore);
-        JButton maximize = new JButton("Maximize");
+        JButton maximize = new JButton(d.getEntry(249));
         maximize.setVisible(true);
         maximize.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -67,7 +70,7 @@ public class MdiPane extends JPanel{
             }
         });
         t.add(maximize);
-        JButton cascade = new JButton("Cascade");
+        JButton cascade = new JButton(d.getEntry(250));
         cascade.setVisible(true);
         cascade.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
