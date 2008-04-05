@@ -109,6 +109,8 @@ public class DiscMenu extends JFrame {
     private void call(DiscMenuItem item, boolean back){
         ActionEvent evt = new ActionEvent(this, -1, "call");
         item.actionPerformed(evt, back);
+        if(!(item instanceof DiscMenuContainer))
+            this.dispose();
     }
     
     private void press(MouseEvent evt){

@@ -292,6 +292,7 @@ public class English extends Dictionary{
         entry[243] = "NOT";
         entry[244] = "About";
         entry[245] = "Add Group";
+        entry[246] = "Delete";
         
         try{
             init();

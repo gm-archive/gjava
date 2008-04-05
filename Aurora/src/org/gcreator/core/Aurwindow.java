@@ -1,7 +1,6 @@
 package org.gcreator.core;
 
 //<editor-fold defaultstate="collapsed" desc="import">
-
 import org.gcreator.components.impl.CustomFileFilter;
 import java.awt.*;
 import java.awt.datatransfer.*;
@@ -30,6 +29,7 @@ import org.gcreator.macro.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
+import org.gcreator.components.custom.*;
 //</editor-fold>
 
 /**
@@ -191,7 +191,7 @@ public class Aurwindow extends JFrame {
 
             }
         }
-        JPopupMenu m = new JPopupMenu();
+        MenuGenerator m = new MenuGenerator();
         //int modifiers = e.getModifiersEx();
         //modifiers -= MouseEvent.BUTTON3_DOWN_MASK;
         //modifiers += MouseEvent.BUTTON1_DOWN_MASK;
@@ -200,16 +200,18 @@ public class Aurwindow extends JFrame {
         if (o == null) {
             return;
         }
-        JMenuItem i = new JMenuItem("Delete");
+        /*JMenuItem i = new JMenuItem("Delete");
         JMenuItem j = new JMenuItem("Close Project");
         JMenuItem k = new JMenuItem();
         i.setEnabled(false);
         j.setVisible(false);
-        k.setVisible(false);
+        k.setVisible(false);*/
+        
         if (o instanceof org.gcreator.fileclass.GFile) {
             if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
-                i.setEnabled(true);
-                i.addActionListener(new ActionListener() {
+                Object i = m.addMenuItem(
+                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+                m.addActionListener(i, new ActionListener() {
 
                             public void actionPerformed(ActionEvent evt) {
                                 deleteFile((org.gcreator.fileclass.GFile) o);
@@ -219,10 +221,10 @@ public class Aurwindow extends JFrame {
         }
         if (o instanceof org.gcreator.fileclass.Group) {
             if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                i.setEnabled(true);
+                Object i = m.addMenuItem(
+                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
                 if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                    i.setEnabled(true);
-                    i.addActionListener(new ActionListener() {
+                    m.addActionListener(i, new ActionListener() {
 
                                 public void actionPerformed(ActionEvent evt) {
                                     deleteGroup((org.gcreator.fileclass.Group) o);
@@ -230,9 +232,10 @@ public class Aurwindow extends JFrame {
                             });
                 }
             }
-            k.setText(LangSupporter.activeLang.getEntry(245));
-            k.setVisible(true);
-            k.addActionListener(new ActionListener() {
+            Object k = m.addMenuItem(
+                245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
+            //k.setVisible(true);
+            m.addActionListener(k, new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Folder f = getCurrentFolder();
                     int in = 1;
@@ -248,19 +251,20 @@ public class Aurwindow extends JFrame {
             });
         }
         if (o instanceof Project) {
-            j.setVisible(true);
-            j.addActionListener(new ActionListener() {
+            Object j = m.addMenuItem(
+                245, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
+            m.addActionListener(j, new ActionListener() {
 
                         public void actionPerformed(ActionEvent e) {
                             CloseProject((Project) o, true);
                         }
                     });
         }
-        i.setVisible(true);
-        m.add(i);
-        m.add(j);
-        m.add(k);
-        m.show(this, e.getX()+getLocationOnScreen().x+workspace.getLocationOnScreen().x, e.getY()+getLocationOnScreen().y+workspace.getLocationOnScreen().y);
+        //i.setVisible(true);
+        //m.add(i);
+        //m.add(j);
+        //m.add(k);
+        m.show(this, e.getX()+/*getLocationOnScreen().x+*/workspace.getLocationOnScreen().x, e.getY()+/*getLocationOnScreen().y+*/workspace.getLocationOnScreen().y);
         using = false;
     }
     //</editor-fold>
