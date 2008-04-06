@@ -21,7 +21,7 @@ public class ModulesProjects extends JPanel{
     
     public int getSelectedProject(){
         if(jButton1.isSelected())
-            return 1;
+            return 4;
         return -1;
     }
     
@@ -63,7 +63,7 @@ public class ModulesProjects extends JPanel{
     
     public void setButton(int sel){
         ptypes.npro.uncheckAll();
-        if(sel==2)
+        if(sel==4)
             jButton1.setSelected(true);
     }
     
@@ -72,7 +72,7 @@ public class ModulesProjects extends JPanel{
     }
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-        setButton(2);
+        setButton(4);
         String str = jButton1.getText()
                 .replaceAll("\\s", "_")
                 .replaceAll("[\\.:?^(){}]","")
