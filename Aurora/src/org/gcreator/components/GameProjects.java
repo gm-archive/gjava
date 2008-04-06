@@ -114,7 +114,7 @@ public class GameProjects extends JPanel{
         else if(sel==3)
             jButton3.setSelected(true);
         else if(sel==4)
-            jButton3.setSelected(true);
+            jButton4.setSelected(true);
     }
     
     public void turnOff(){

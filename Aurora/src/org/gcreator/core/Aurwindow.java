@@ -1131,8 +1131,8 @@ public class Aurwindow extends JFrame {
             splitter2.setLeftComponent(tabs);
             items[MenuSupporter.GenerateMenuItemId(15, 1)].setSelected(true);
         }
-        navigatorTabs.add("Workspace", treescroll);
-        navigatorTabs.add("Navigator", navroot);
+        navigatorTabs.add(LangSupporter.activeLang.getEntry(51), treescroll);
+        navigatorTabs.add(LangSupporter.activeLang.getEntry(251), navroot);
         navigatorTabs.addMouseListener(new MouseListener() {
 
                     public void mouseExited(MouseEvent evt) {

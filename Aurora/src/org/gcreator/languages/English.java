@@ -297,6 +297,7 @@ public class English extends Dictionary{
         entry[248] = "Restore";
         entry[249] = "Maximize";
         entry[250] = "Cascade";
+        entry[251] = "Navigator";
         
         try{
             init();

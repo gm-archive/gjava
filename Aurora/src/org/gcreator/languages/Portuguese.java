@@ -297,6 +297,7 @@ public class Portuguese extends Dictionary{
         entry[248] = "Restaurar";
         entry[249] = "Maximizar";
         entry[250] = "Cascata";
+        entry[251] = "Navegador";
         
         try{
             init();
