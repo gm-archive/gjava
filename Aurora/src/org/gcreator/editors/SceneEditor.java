@@ -48,9 +48,34 @@ public class SceneEditor extends TabPanel {
         return file;
     }*/
     
+    public boolean snapToGrid(){
+        return jToggleButton3.isSelected();
+    }
+    
     public ActorInScene makeNewActor(int x, int y){
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) curactor.getFile();
         instanceids++;
+        if(jToggleButton3.isSelected()){
+            Scene s = (Scene) file.value;
+            if(x%s.snapX>s.snapX/2){
+                x /= s.snapX;
+                x++;
+                x *= s.snapX;
+            }
+            else{
+                x /= s.snapX;
+                x *= s.snapX;
+            }
+            if(y%s.snapY>s.snapY/2){
+                y /= s.snapY;
+                y++;
+                y *= s.snapY;
+            }
+            else{
+                y /= s.snapY;
+                y *= s.snapY;
+            }
+        }
         return new ActorInScene(a, x, y, instanceids);
     }
     
@@ -1572,6 +1597,8 @@ public class SceneEditor extends TabPanel {
             jSpinner1.setValue(5);
         else if(((Integer) jSpinner1.getValue()) < -5)
             jSpinner1.setValue(-5);
+        ((Scene) file.value).snapX = (Integer) jSpinner2.getValue();
+        ((Scene) file.value).snapY = (Integer) jSpinner3.getValue();
         scene.updateUI();
         jScrollPane1.updateUI();
     }

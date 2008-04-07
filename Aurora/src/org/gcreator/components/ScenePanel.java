@@ -71,6 +71,27 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             Sprite s = (Sprite) act.Sactor.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
         }
+        if(root.snapToGrid()){
+            Scene s = (Scene) root.file.value;
+            if(x%s.snapX>s.snapX/2){
+                x /= s.snapX;
+                x++;
+                x *= s.snapX;
+            }
+            else{
+                x /= s.snapX;
+                x *= s.snapX;
+            }
+            if(y%s.snapY>s.snapY/2){
+                y /= s.snapY;
+                y++;
+                y *= s.snapY;
+            }
+            else{
+                y /= s.snapY;
+                y *= s.snapY;
+            }
+        }
         ((Scene) root.file.value).actors.add(act);
     }
     
