@@ -253,7 +253,7 @@ public class Portuguese extends Dictionary{
         entry[204] = "Adicionar linha de tempo";
         entry[205] = "Novo Módulo";
         entry[206] = "Modules";
-        entry[207] = "Add script";
+        entry[207] = "Adicionar script";
         entry[208] = "Cenas";
         entry[209] = "Imagens";
         entry[210] = "Sprites";

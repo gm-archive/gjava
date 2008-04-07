@@ -4,7 +4,7 @@
 Version=1.0.1
 
 [Toolbar]
-Name=untitled
+Name=MyToolbar
 Position=Top
 Rollover=True
 Floatable=True
@@ -15,7 +15,6 @@ Item=std_newProject
 Item=std_openProject
 Separator=Standard
 Item=std_save
-Item=std_saveAll
 Separator=Standard
 Item=std_addImage
 Item=std_addSprite
@@ -24,7 +23,8 @@ Item=std_addSound
 Item=std_addTimeline
 Item=std_addActor
 Item=std_addScene
-Item=std_addScript
 Item=std_addClass
+Item=std_addScript
 Item=std_addGroup
+Item=Run program
 

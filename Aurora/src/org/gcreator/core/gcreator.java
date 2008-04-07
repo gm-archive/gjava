@@ -286,7 +286,7 @@ public class gcreator {
         splash = new SplashScreen(applet);
         
         try{
-            ToolbarManager.parseToolbarFile("toolbarList.gctl");
+            ToolbarManager.parseToolbarFile("settings/toolbarList.gctl");
         }
         catch(Exception e){}
         

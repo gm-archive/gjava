@@ -6,6 +6,7 @@
 
 package org.gcreator.components;
 
+import java.awt.Color;
 import java.util.*;
 import javax.swing.*;
 import org.gcreator.components.impl.*;
@@ -22,6 +23,7 @@ public class ToolbarEditor extends javax.swing.JPanel {
         initComponents();
         jComboBox1.setModel(new VectorComboBoxModel(ToolbarManager.toolbars));
         jComboBox1.setRenderer(new ToolbarCellRenderer());
+        jComboBox1.setBackground(Color.WHITE);
         if(ToolbarManager.toolbars.size()>0)
             jComboBox1.setSelectedIndex(0);
         else

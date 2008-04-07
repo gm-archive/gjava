@@ -1642,7 +1642,8 @@ public class Aurwindow extends JFrame {
         Folder a;
         switch (item) {
             case 1:
-                addWindow(newproject, 55);
+                if(newproject!=null)
+                    addWindow(newproject, 55);
                 break;
             case 2:
                 ProjectImporter.OpenProject(this);
@@ -1976,7 +1977,7 @@ public class Aurwindow extends JFrame {
     public void saveSettings() {
         SettingsIO.saveSettings(look, istabs, scroller.isVisible());
         try {
-            ToolbarManager.writeToolbarFile("toolbarList.gctl");
+            ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");
         } catch (IOException e) {
         }
     }
