@@ -6,6 +6,7 @@ package org.gcreator.components.uiplus;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Vector;
 import javax.swing.*;
 
 /**
@@ -27,9 +28,20 @@ public class DiscMenu extends JDialog {
     private static ImageIcon nextnot =
             new ImageIcon(DiscMenu.class.getResource("/org/gcreator/resources/uiplus/nextnot.png"));
 
+    private static Vector<DiscMenu> menus = new Vector<DiscMenu>();
+    
     public DiscMenu() {
+        try{
+        for(DiscMenu menu : menus){
+            menu.dispose();
+        }
+        }
+        catch(Exception e){
+            //ConcurrentModification
+        }
+        menus.add(this);
         setLayout(new BorderLayout());
-        add(t = new TransparentBackground(), BorderLayout.CENTER);
+        //add(t = new TransparentBackground(), BorderLayout.CENTER);
         addFocusListener(new FocusListener() {
 
                     public void focusLost(FocusEvent evt) {
@@ -162,8 +174,14 @@ public class DiscMenu extends JDialog {
     public void paint(Graphics g) {
         super.paint(g);
 
-        Color t1 = SystemColor.menu;
-        Color t2 = SystemColor.activeCaption;
+        Color t1 = Color.WHITE;
+        Color t2 = Color.BLUE;
+        
+        try{
+        t1 = SystemColor.menu;
+        t2 = SystemColor.activeCaption;
+        }
+        catch(Exception e){}
 
         if (selection == index * 6&&index * 6 < curcontainer.count()&&curcontainer.elementAt(index * 6).isEnabled()) {
             g.setColor(t2);
@@ -286,5 +304,10 @@ public class DiscMenu extends JDialog {
                     45,
                     43, i.getImageObserver());
         }
+    }
+    
+    public void dispose(){
+        menus.remove(this);
+        super.dispose();
     }
 }
