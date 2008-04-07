@@ -5,7 +5,7 @@
 
 package org.gcreator.components.custom;
 
-import java.awt.Component;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.components.uiplus.*;
@@ -22,7 +22,7 @@ public class MenuGenerator {
     public static final int TYPE_STD = 1;
     public static final int TYPE_DISC = 2;
     
-    public static int type = TYPE_DISC;
+    public static int type = TYPE_STD;
     
     private int ltype;
     private Object parent;
@@ -129,10 +129,11 @@ public class MenuGenerator {
     }
     
     public void show(Component invoker, int x, int y){
+        Point p = invoker.getLocationOnScreen();
         if(ltype==TYPE_STD)
             std.show(invoker, x, y);
         else{
-            disc.setLocation(x, y);
+            disc.setLocation(x+p.x, y+p.y);
             disc.setVisible(true);
         }
     }

@@ -26,8 +26,9 @@ public class TransparentBackground extends JComponent {
             Dimension dim = tk.getScreenSize();
             background = rbt.createScreenCapture(new Rectangle(0, 0, (int) dim.getWidth(),
                     (int) dim.getHeight()));
-        } catch (Exception ex) {
+        } catch (Throwable ex) {
             ex.printStackTrace();
+            System.gc();
         }
     }
 

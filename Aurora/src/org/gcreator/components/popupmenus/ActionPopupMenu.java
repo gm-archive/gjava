@@ -14,12 +14,13 @@ import org.gcreator.events.*;
 import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.TimelineStep;
 import org.gcreator.managers.ActorEditorClipboard;
+import org.gcreator.components.custom.*;
 
 /**
  *
  * @author luis
  */
-public class ActionPopupMenu extends JPopupMenu{
+public class ActionPopupMenu extends MenuGenerator{
     
     private ActorEditor aedit = null;
     private TimelineEditor tedit = null;
@@ -27,81 +28,62 @@ public class ActionPopupMenu extends JPopupMenu{
     private JMenuItem delete,cut,copy,paste,editaction;
     
     public ActionPopupMenu(ActorEditor edit){
+        super();
         this.aedit = edit;
-        delete = new JMenuItem("Delete");
-        cut = new JMenuItem("Cut");
-        copy = new JMenuItem("Copy");
-        paste = new JMenuItem("Paste");
-       editaction = new JMenuItem("Edit");
-        delete.addActionListener(new ActionListener(){
+        init();
+    }
+    
+    private void init(){
+        Object cut = addMenuItem(252, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/cut.png")));
+        Object copy = addMenuItem(253, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/copy.png")));
+        Object paste = addMenuItem(254, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/paste.png")));
+        Object delete = addMenuItem(255, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
+        
+        //delete = new JMenuItem("Delete");
+        //delete.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
+        //cut = new JMenuItem("Cut");
+        //cut.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/cut.png")));
+        //copy = new JMenuItem("Copy");
+        //copy.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/copy.png")));
+        //paste = new JMenuItem("Paste");
+        //paste.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/paste.png")));
+       //editaction = new JMenuItem("Edit");
+        addActionListener(delete, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onDelete();
             }
         });
-        cut.addActionListener(new ActionListener(){
+        addActionListener(cut, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onCut();
             }
         });
-        copy.addActionListener(new ActionListener(){
+        addActionListener(copy, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onCopy();
             }
         });
-        paste.addActionListener(new ActionListener(){
+        addActionListener(paste, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onPaste();
             }
         });
-        editaction.addActionListener(new ActionListener(){
+        addActionListener(editaction, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onEdit();
             }
         });
         //this.add(editaction);
-        this.add(cut);
-        this.add(copy);
-        this.add(paste);
-        this.add(delete);
+        //this.add(cut);
+        //this.add(copy);
+        //this.add(paste);
+        //this.add(delete);
     }
     
     public ActionPopupMenu(TimelineEditor edit){
+        super();
         this.tedit = edit;
-        delete = new JMenuItem("Delete");
-        cut = new JMenuItem("Cut");
-        copy = new JMenuItem("Copy");
-        paste = new JMenuItem("Paste");
-       editaction = new JMenuItem("Edit");
-        delete.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                onDelete();
-            }
-        });
-        cut.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                onCut();
-            }
-        });
-        copy.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                onCopy();
-            }
-        });
-        paste.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                onPaste();
-            }
-        });
-        editaction.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
-                onEdit();
-            }
-        });
-        //this.add(editaction);
-        this.add(cut);
-        this.add(copy);
-        this.add(paste);
-        this.add(delete);
+        init();
     }
     
     public void onEdit(){

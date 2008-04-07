@@ -81,6 +81,11 @@ public class ActorEditor extends TabPanel {
         updateNavigator();
     }
 
+    //You may think this is a stupid function, but I needed it.
+    protected ActorEditor getThis(){
+        return this;
+    }
+    
     /** Creates new form ActorEditor2 */
     public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
@@ -97,10 +102,22 @@ public class ActorEditor extends TabPanel {
         this.file = file;
         elist = new EventListModel(file);
         initComponents();
-        PopupListener a = new PopupListener(jList2, new ActionPopupMenu(this));
+        //PopupListener a = new PopupListener(jList2, new ActionPopupMenu(this));
+        jList2.addMouseListener(new MouseListener(){
+            public void mousePressed(java.awt.event.MouseEvent evt){}
+            public void mouseReleased(java.awt.event.MouseEvent evt){
+                if(evt.isPopupTrigger()){
+                ActionPopupMenu p = new ActionPopupMenu(getThis());
+                p.show(jList2, evt.getX(), evt.getY());
+                }
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt){}
+            public void mouseExited(java.awt.event.MouseEvent evt){}
+            public void mouseEntered(java.awt.event.MouseEvent evt){}
+        });
         jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
-        a.update = true;
-        jList2.addMouseListener(a);
+        //a.update = true;
+        //jList2.addMouseListener(a);
         jComboBox2.setModel(new DefaultComboBoxModel(ActionContainer.actionCats));
         jComboBox2.setRenderer(new ActionListCellRenderer());
         try {

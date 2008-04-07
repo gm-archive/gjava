@@ -28,6 +28,7 @@ public class EventPopupMenu extends JPopupMenu{
         this.array = edit.elist.getEvents();
         this.edit = edit;
         delete = new JMenuItem("Delete");
+        delete.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
         delete.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onDelete();

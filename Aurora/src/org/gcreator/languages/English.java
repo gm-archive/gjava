@@ -298,6 +298,10 @@ public class English extends Dictionary{
         entry[249] = "Maximize";
         entry[250] = "Cascade";
         entry[251] = "Navigator";
+        entry[252] = "Cut";
+        entry[253] = "Copy";
+        entry[254] = "Paste";
+        entry[255] = "Delete";
         
         try{
             init();
