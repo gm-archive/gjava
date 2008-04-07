@@ -17,7 +17,7 @@ namespace org.gcreator.Support
         public int x, y, width, height;
     }
 
-    public class Color
+    /*public class Color
     {
 		public static Color Red()
 		{
@@ -93,5 +93,5 @@ namespace org.gcreator.Support
 			return new Color((c1.getRed()+c2.getRed())/2,(c1.getGreen()+c2.getGreen())/2,(c1.getBlue()+c2.getBlue())/2);
 		}
 		
-    }
+    }*/
 }

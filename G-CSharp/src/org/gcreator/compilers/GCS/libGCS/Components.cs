@@ -288,7 +288,18 @@ namespace org.gcreator.Components
     public class Scene
     {
 		private ArrayList actors = new ArrayList();
-		private int width, height;
+		private int width = 640, height = 480;
+        private System.Drawing.Color background = System.Drawing.Color.Black;
+
+        public System.Drawing.Color getBackground()
+        {
+            return background;
+        }
+
+        public void setBackground(System.Drawing.Color background)
+        {
+            this.background = background;
+        }
 
 		private int getMinimumDepth()
 		{
@@ -380,6 +391,7 @@ namespace org.gcreator.Components
 				}
 			}
 			Surface t = new Surface(getWidth(), getHeight());
+            t.Fill(background);
 			Native.SDL.Game.game.cursurface = t;
 			int a = getMaximumDepth();
 			while(a >= getMinimumDepth()){

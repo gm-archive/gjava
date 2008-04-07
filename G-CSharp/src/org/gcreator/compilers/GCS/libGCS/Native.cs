@@ -9,15 +9,15 @@ namespace org.gcreator.Native
 {
 	public class CSharp
 	{
-		public static org.gcreator.Support.Color ToSupportColor(System.Drawing.Color c)
+		/*public static org.gcreator.Support.Color ToSupportColor(System.Drawing.Color c)
 		{
 			return new org.gcreator.Support.Color(c.R, c.G, c.B);
-		}
+		}*/
 		
-		public static System.Drawing.Color ToDrawingColor(org.gcreator.Support.Color c)
+		/*public static System.Drawing.Color ToDrawingColor(org.gcreator.Support.Color c)
 		{
 			return System.Drawing.Color.FromArgb(c.getRed(), c.getGreen(), c.getBlue());
-		}
+		}*/
 		
 		public static System.Drawing.Rectangle ToDrawingRectangle(org.gcreator.Support.Rectangle r)
 		{
@@ -91,23 +91,21 @@ namespace org.gcreator.Native
 			public Surface screen, master;
 			
 			private bool fullscreen, resizable;
-			private int width, height; //Initial
 			public Surface cursurface;
 			
-            public Game(Scene[] scenelist, bool fullscreen, bool resizable, int width, int height, string title)
+            public Game(Scene[] scenelist, bool fullscreen, bool resizable, string title)
             {
 				game = this;
 				this.fullscreen = fullscreen;
 				this.resizable = resizable;
-				this.width = width;
-				this.height = height;
                 scenes = scenelist;
 				if(scenelist!=null&&scenelist.Length>0){
 					currentScene = scenelist[0];
 					currentScene.Create();
 				}
-                screen = Video.SetVideoMode(width, height, resizable, false, fullscreen);
-				master = new Surface(width, height);
+                screen = Video.SetVideoMode(
+                    currentScene.getWidth(), currentScene.getHeight(), resizable, false, fullscreen);
+                master = new Surface(currentScene.getWidth(), currentScene.getHeight());
                 Video.WindowCaption = title;
                 Events.Quit += new EventHandler<QuitEventArgs>(this.Quit);
 				Events.VideoResize += new EventHandler<VideoResizeEventArgs>(this.Resize);
@@ -137,7 +135,7 @@ namespace org.gcreator.Native
 			
 			internal void UpdateVideoMode()
 			{
-				UpdateVideoMode(width, height);
+                UpdateVideoMode(currentScene.getWidth(), currentScene.getHeight());
 			}
 
             private void Quit(object sender, QuitEventArgs e)
