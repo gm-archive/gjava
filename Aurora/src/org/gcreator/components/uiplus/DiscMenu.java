@@ -15,7 +15,7 @@ import javax.swing.*;
  */
 public class DiscMenu extends JDialog {
 
-    TransparentBackground t;
+    //TransparentBackground t;
     private int index = 0;
     private int selection = -1;
     public DiscMenuContainer curcontainer = null;
