@@ -12,13 +12,13 @@ import javax.swing.*;
 import org.gcreator.components.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.gcreator.fileclass.*;
+import org.gcreator.fileclass.res.GImage;
 
 /**
  *
@@ -28,17 +28,31 @@ public class ImageEditor extends TabPanel {
 
     /** Creates new form ImageEditor */
     private ImageDisplayer displayer;
-
-    public Color getTransparencyColor(){
+    public GImage image;
+    public Color getTransparencyColor() {
         return colorSelection1.getBackground();
     }
     
-    public ImageEditor(org.gcreator.fileclass.GFile file, Project project) {
+    public boolean getTransparent() {
+        return jCheckBox1.isSelected();
+    }
+    
+    public ImageEditor(org.gcreator.fileclass.GFile file, Project project){
         this.project = project;
         this.file = file;
         displayer = new ImageDisplayer(this, file);
         initComponents();
-
+        
+        this.project = project;
+        if (file.value == null) {
+            this.image = new GImage(file.name);
+            image.readXml(file.xml);
+            file.value = image;
+        } else if (file.value instanceof GImage) {
+            this.image = (GImage) file.value;
+        }
+        this.file = file;
+        
         jScrollPane1.setViewportView(displayer);
 
         jTextField1.setText(file.name);
@@ -56,25 +70,42 @@ public class ImageEditor extends TabPanel {
         
         int w = 0;
         int h = 0;
-        if (file.value != null) {
-            w = ((ImageIcon) file.value).getIconWidth();
-            h = ((ImageIcon) file.value).getIconHeight();
+        try {
+            ImageIcon img = ((GImage)file.value).image;
+            w = img.getIconWidth();
+            h = img.getIconHeight();
+        } catch (NullPointerException exc) {
         }
         widthLabel.setText("Width: " + w);
         heightLabel.setText("Height: " + h);
+        load();
+    }
+    
+    public void load()
+    {
+        if (image == null)
+        {
+            this.image = new GImage(file.name);
+            return;
+        }
+        colorSelection1.setBackground(image.transparentColor);
+        jCheckBox1.setSelected(image.transparent);
     }
 
      
+    @Override
     public boolean wasModified() {
         return false;
     }
 
      
+    @Override
     public boolean canSave() {
         return false; //Not needed
     }
 
      
+    @Override
     public boolean Save() {
         return true;
     }
@@ -93,42 +124,21 @@ public class ImageEditor extends TabPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        widthLabel = new javax.swing.JLabel();
-        heightLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         colorSelection1 = new org.gcreator.components.ColorSelection();
-
-        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jPanel2 = new javax.swing.JPanel();
+        jSpinner1 = new javax.swing.JSpinner();
+        heightLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        widthLabel = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
-
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
-        widthLabel.setText("0");
-
-        heightLabel.setText("0");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Transparency"));
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         colorSelection1.setToolTipText("Transparent Colour");
@@ -142,11 +152,102 @@ public class ImageEditor extends TabPanel {
         colorSelection1.setLayout(colorSelection1Layout);
         colorSelection1Layout.setHorizontalGroup(
             colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 37, Short.MAX_VALUE)
+            .add(0, 36, Short.MAX_VALUE)
         );
         colorSelection1Layout.setVerticalGroup(
             colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 26, Short.MAX_VALUE)
+            .add(0, 34, Short.MAX_VALUE)
+        );
+
+        jCheckBox1.setText("Transparent");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(18, 18, 18)
+                .add(jCheckBox1)
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel1Layout.createSequentialGroup()
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(colorSelection1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
+
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        heightLabel.setText("height");
+
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
+
+        widthLabel.setText("width");
+
+        jTextField1.setText("jTextField1");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(10, 10, 10)
+                        .add(widthLabel)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(heightLabel))
+                    .add(jPanel2Layout.createSequentialGroup()
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jLabel1)
+                        .add(10, 10, 10)
+                        .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jButton1)
+                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jLabel1)
+                    .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, Short.MAX_VALUE)
+                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(widthLabel)
+                    .add(heightLabel)))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -156,43 +257,22 @@ public class ImageEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(jButton1)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jLabel1)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .add(6, 6, 6)
-                                .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                                .add(widthLabel)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                                .add(heightLabel)))
-                        .addContainerGap(61, Short.MAX_VALUE))))
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jButton1)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel1)
-                            .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(widthLabel)
-                            .add(heightLabel)))
-                    .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -228,11 +308,11 @@ public class ImageEditor extends TabPanel {
                     for (int i = 0; i < reader.getNumImages(true); i++) {
                         b[i] = reader.read(i);
                     }
-                    file.value = new ImageIcon(b[0]);
-                    //file.treeimage = File.getScaledIcon(new ImageIcon(b[1]));
+                    ((GImage)file.value).image = new ImageIcon(b[0]);
+                    //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
                 } else {
-                    file.value = new ImageIcon(ImageIO.read(_file));
-                    //file.treeimage = File.getScaledIcon((ImageIcon) file.value);
+                    ((GImage)file.value).image = new ImageIcon(ImageIO.read(_file));
+                    //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
                 }
                 org.gcreator.core.Aurwindow.workspace.updateUI();
                 jScrollPane1.updateUI();
@@ -249,8 +329,8 @@ public class ImageEditor extends TabPanel {
 //                h = (new ImageIcon(b[0])).getIconHeight();
 //            } else {
 
-                w = ((ImageIcon) file.value).getIconWidth();
-                h = ((ImageIcon) file.value).getIconHeight();
+                w = ((GImage) file.value).image.getIconWidth();
+                h = ((GImage) file.value).image.getIconHeight();
 //            }
         }
         widthLabel.setText("Width: " + w);
@@ -268,7 +348,12 @@ public class ImageEditor extends TabPanel {
 
     private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
         displayer.updateUI();
+        image.transparentColor = colorSelection1.getBackground();
     }//GEN-LAST:event_colorSelection1MouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        image.transparent = jCheckBox1.isSelected();
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     public void updateScroll() {
         System.out.println("Update");
@@ -314,7 +399,10 @@ public class ImageEditor extends TabPanel {
     private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JLabel heightLabel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;

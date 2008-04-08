@@ -397,7 +397,7 @@ public class Aurwindow extends JFrame {
             TabPanel tp = new StructureEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
-        } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png")) {
+        } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png") || file.type.equals("img")) {
             TabPanel tp = new ImageEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
@@ -1642,8 +1642,8 @@ public class Aurwindow extends JFrame {
         Folder a;
         switch (item) {
             case 1:
-                if(newproject!=null)
-                    addWindow(newproject, 55);
+                if(newproject != null)
+                    addWindow(newproject, 55,new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
                 break;
             case 2:
                 ProjectImporter.OpenProject(this);

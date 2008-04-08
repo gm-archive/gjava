@@ -35,11 +35,9 @@ public class Sprite extends Resource {
             return null;
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
-        if(a==null)
+        if(a == null)
             return null;
-        if(a.value instanceof ImageIcon)
-            return (ImageIcon) a.value;
-        return null;
+        return  ((org.gcreator.fileclass.res.GImage)(a.value)).image;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){

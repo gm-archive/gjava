@@ -27,27 +27,33 @@ public class ImageDisplayer extends javax.swing.JPanel {
     }
 
      
+    @Override
     public int getWidth() {
         if (file.value == null) {
             return 0;
         }
-        return (int) (((ImageIcon) file.value).getIconWidth() * zoom);
+        ImageIcon img = (ImageIcon) ((org.gcreator.fileclass.res.GImage)file.value).image;
+        return (int) ((int) img.getIconWidth() * zoom);
     }
 
      
+    @Override
     public int getHeight() {
         if (file.value == null) {
             return 0;
         }
-        return (int) (((ImageIcon) file.value).getIconHeight() * zoom);
+        ImageIcon img = (ImageIcon) ((org.gcreator.fileclass.res.GImage)file.value).image;
+        return (int) (img.getIconHeight() * zoom);
     }
 
      
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(getWidth(), getHeight());
     }
 
      
+    @Override
     public void paint(Graphics g) {
 
         //super.paint(g);
@@ -87,10 +93,10 @@ public class ImageDisplayer extends javax.swing.JPanel {
 //            for(int i = 0; i * 20 < getHeight(); i++)
 //                g.drawLine(0, i * 20, getWidth(), i * 20);
 //        }
-        g.setColor(e.getTransparencyColor());
-        g.fillRect(0, 0, getWidth(), getHeight());
+//        g.setColor(e.getTransparencyColor());
+//        g.fillRect(0, 0, getWidth(), getHeight());
         if (file.value != null) {
-            g.drawImage(((ImageIcon) file.value).getImage(), 0, 0, getWidth(), getHeight(), ((ImageIcon) file.value).getImageObserver());
+            g.drawImage(((org.gcreator.fileclass.res.GImage) file.value).image.getImage(), 0, 0, getWidth(), getHeight(),e.getTransparencyColor(),(((org.gcreator.fileclass.res.GImage) file.value).image).getImageObserver());
         }
     }
 

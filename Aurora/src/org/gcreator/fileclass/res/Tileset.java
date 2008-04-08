@@ -25,10 +25,7 @@ public class Tileset extends Resource{
     public ImageIcon getImage(){
         if(image==null)
             return null;
-        java.lang.Object o = image.value;
-        if(!(o instanceof ImageIcon))
-            return null;
-        return (ImageIcon) o;
+        return ((org.gcreator.fileclass.res.GImage)(image.value)).image;
     }
     
     public Tileset(String name){

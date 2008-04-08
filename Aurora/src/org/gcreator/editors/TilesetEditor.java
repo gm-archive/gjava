@@ -14,6 +14,7 @@ import org.gcreator.components.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.resource.*;
 import org.gcreator.core.*;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
@@ -47,9 +48,9 @@ public class TilesetEditor extends TabPanel {
         jPanel2.add(res = new ResourceChooser(project, "image"));
         res.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
-                ObjectNode n = res.getCurrentObject();
-                if(n!=null)
-                    value.image = (org.gcreator.fileclass.GFile) n.object;
+                GFile n = res.getFile();
+                if(n != null)
+                    value.image = n;
                 else
                     value.image = null;
                 jScrollPane1.updateUI();
@@ -185,7 +186,7 @@ public class TilesetEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 222, Short.MAX_VALUE)
+            .add(0, 225, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -204,7 +205,7 @@ public class TilesetEditor extends TabPanel {
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel9)
@@ -225,11 +226,11 @@ public class TilesetEditor extends TabPanel {
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel3)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(jLabel4)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(jLabel11)
                     .add(jLabel2))
                 .addContainerGap())
@@ -250,8 +251,8 @@ public class TilesetEditor extends TabPanel {
                 .add(8, 8, 8)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
-                    .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel4)
+                    .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel5)
@@ -271,7 +272,7 @@ public class TilesetEditor extends TabPanel {
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel10)
                     .add(jSpinner6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
@@ -289,21 +290,25 @@ public class TilesetEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        jSpinner1.setValue(Math.min(((Integer) jSpinner1.getValue()).intValue(),(((Integer) jSpinner3.getValue()).intValue())));
         value.startx = ((Integer) jSpinner1.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        jSpinner2.setValue(Math.min(((Integer) jSpinner2.getValue()).intValue(),(((Integer) jSpinner4.getValue()).intValue())));
         value.starty = ((Integer) jSpinner2.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+        jSpinner1.setValue(Math.min(((Integer) jSpinner1.getValue()).intValue(),(((Integer) jSpinner3.getValue()).intValue())));
         value.tilew = ((Integer) jSpinner3.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner3StateChanged
 
     private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
+        jSpinner2.setValue(Math.min(((Integer) jSpinner2.getValue()).intValue(),(((Integer) jSpinner4.getValue()).intValue())));
         value.tileh = ((Integer) jSpinner4.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner4StateChanged

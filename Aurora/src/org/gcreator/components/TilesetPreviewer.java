@@ -23,14 +23,12 @@ public class TilesetPreviewer extends JComponent{
     private ImageIcon getSourceImage(){
         if(editor==null)
             return null;
-        if(editor.value==null)
+        if(editor.value.image==null)
             return null;
         org.gcreator.fileclass.GFile imgFile = editor.value.image;
         if(imgFile==null)
             return null;
-        if(imgFile.value instanceof ImageIcon)
-            return (ImageIcon) imgFile.value;
-        return null;
+        return ((org.gcreator.fileclass.res.GImage)(imgFile.value)).image;
     }
     
     public int getPreferredWidth(){
@@ -79,17 +77,32 @@ public class TilesetPreviewer extends JComponent{
             return;
         int imgw = img.getIconWidth();
         int imgh = img.getIconHeight();
-        int di = 0;
-        int dj = 0;
-        for(int i = editor.value.startx; i < imgw; i+=editor.value.tilew+editor.value.bwidth){
-            dj = 0;
-            for(int j = editor.value.starty; j < imgh; j+=editor.value.tileh+editor.value.bheight){
-                g.drawImage(img.getImage(), di, dj, di+editor.value.tilew, dj+editor.value.tileh, i, j, i+editor.value.tilew, j+editor.value.tileh,img.getImageObserver());
-                dj += 2;
-                dj += editor.value.tileh;
-            }
-            di += 2;
-            di += editor.value.tilew;
+        int bw =  editor.value.bwidth;
+        int bh =  editor.value.bheight;
+        //int di = 0;
+        //int dj = 0;
+        //for(int i = editor.value.startx; i < imgw; i+=editor.value.tilew+editor.value.bwidth){
+        //    dj = 0;
+        //    for(int j = editor.value.starty; j < imgh; j+=editor.value.tileh+editor.value.bheight){
+        //        g.drawImage(img.getImage(), di, dj, di+editor.value.tilew, dj+editor.value.tileh, i, j, i+editor.value.tilew, j+editor.value.tileh,img.getImageObserver());
+        //        dj += 2;
+        //        dj += editor.value.tileh;
+        //    }
+        //    di += 2;
+        //    di += editor.value.tilew;
+        //}
+        g.drawImage(img.getImage(),0,0,((org.gcreator.fileclass.res.GImage)(editor.value.image.value)).transparentColor,img.getImageObserver());
+        g.setColor(Color.WHITE);
+        g.setXORMode(Color.BLACK);
+        for (int i = editor.value.startx,times = 0; i+bh*times < imgw-1; i+= editor.value.tilew, times++) {
+            g.drawLine(i+bh*times,0,i+bh*times,imgh-1);
+            if (bh > 0 && i+bh*(times+1) < imgw-1)
+                g.drawLine(i+bh*(times+1),0,i+bh*(times+1),imgh-1);
+        }
+        for (int i = editor.value.starty,times = 0; i+bw*times < imgh-1; i+= editor.value.tileh, times++) {
+            g.drawLine(0,i+bw*times,imgw-1,i+bw*times);
+            if (bw > 0 && i+bw*(times+1) < imgh-1)
+                g.drawLine(0,i+bw*(times+1),imgw-1,i+bw*(times+1));
         }
     }
 }

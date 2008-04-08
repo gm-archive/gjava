@@ -99,13 +99,11 @@ public class ProjectImporter {
 //                            Scene a = new Scene(file.name);
 //                            a.readXml((String) file.value);
 //                            file.value = a;
-                        /*} else*/
-                        
-                        if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) 
-                            file.value = new ImageIcon(Bytefiles.elementAt(fileno));
-                        
-                        
-//                         else {
+//                        } else if (ssss[1].equals("jpg") || ssss[1].equals("png") || ssss[1].equals("gif")) {
+//                           GImage a = new GImage(file.name);
+//                           a.readXml((String) file.value);
+//                           file.value = a;
+//                        } else {
 //                            FileOpenListener l = gcreator.window.getFileEditor(ssss[1]);
 //                            if (l != null) {
 //                                file.value = l.generateResource(file, (String) file.value);

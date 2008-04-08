@@ -12,6 +12,7 @@ import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -53,7 +54,7 @@ public class SpriteEditor extends TabPanel {
 //        {
 //            this.sprite = new Sprite(file.name);
 //        }
-        try{
+        try {
             jTextField1.setText(file.name);
         }
         catch(NullPointerException e){}
@@ -72,9 +73,14 @@ public class SpriteEditor extends TabPanel {
                 updateName();
             }
         });
+        
+        jButton3.setText("");
+        jButton3.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageright.png")));
+        jButton4.setText("");
+        jButton4.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageleft.png")));
     }
     
-    public void updateName(){
+    public void updateName() {
         file.name = jTextField1.getText();
         sprite.name = file.name;
         org.gcreator.core.Aurwindow.workspace.updateUI();
@@ -102,7 +108,7 @@ public class SpriteEditor extends TabPanel {
     
     public void load()
     {
-        if (sprite==null)
+        if (sprite == null)
         {
             this.sprite = new Sprite(file.name);
             return;
@@ -117,14 +123,9 @@ public class SpriteEditor extends TabPanel {
         jSpinner3.setValue(sprite.BBleft);
         
         jCheckBox1.setSelected(sprite.precise);
-        jLabel2.setText("Width:"+sprite.width);
-        jLabel3.setText("Height:"+sprite.height);
-        jLabel4.setText("Subimages:"+sprite.countImages());
-        
-        jButton3.setText("");
-        jButton3.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageright.png")));
-        jButton4.setText("");
-        jButton4.setIcon(new ImageIcon(this.getClass().getResource("/org/gcreator/resources/subimageleft.png")));
+        jLabel2.setText("Width: "+sprite.width);
+        jLabel3.setText("Height: "+sprite.height);
+        jLabel4.setText("Subimages: "+sprite.countImages());
     }
     
     /** This method is called from within the constructor to
@@ -226,6 +227,7 @@ public class SpriteEditor extends TabPanel {
         });
 
         jTextField2.setEditable(false);
+        jTextField2.setHorizontalAlignment(JTextField.CENTER);
         jTextField2.setText("0");
 
         jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(135));
@@ -330,6 +332,11 @@ public class SpriteEditor extends TabPanel {
         });
 
         jButton8.setText("Automatic");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Full Image");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -612,17 +619,17 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getCurrentObject().object;
+        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getFile();
         Object o = a.value;
         if (sprite.countImages()  == 0){
-            sprite.width = ((ImageIcon) o).getIconWidth();
-            sprite.height = ((ImageIcon) o).getIconHeight();
+            sprite.width = ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth();
+            sprite.height = ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight();
             jLabel2.setText("Width:"+sprite.width);
             jLabel3.setText("Height:"+sprite.height);
             jButton9ActionPerformed(evt);
         }
         
-        if ((sprite.width == ((ImageIcon) o).getIconWidth()) && sprite.height == ((ImageIcon) o).getIconHeight() )
+        if ((sprite.width == ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth()) && sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() )
             sprite.addToList(res.getFile());
         else
             System.out.println("Image not right size!");
@@ -663,7 +670,7 @@ public class SpriteEditor extends TabPanel {
         sprite.originY = y;
         jSpinner1.setValue(x);
         jSpinner2.setValue(y);
-        prev.repaint();
+        prev.repaint();     
     }//GEN-LAST:event_jScrollPane1MouseDragged
 
     private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
@@ -676,6 +683,10 @@ public class SpriteEditor extends TabPanel {
     private void jScrollPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseReleased
         dragging = false;
     }//GEN-LAST:event_jScrollPane1MouseReleased
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+            setAutomaticBounds();//GEN-LAST:event_jButton8ActionPerformed
+    }                                        
     
     public int getViewedId(){
         try{
@@ -701,6 +712,31 @@ public class SpriteEditor extends TabPanel {
         return getImageAt(getViewedId());
     }
     
+    private void setAutomaticBounds() {
+        //
+        // Not yet finished
+        //
+        //Image img;
+        //try {
+        //    img = sprite.getImageAt(0).getImage();
+        //} catch (NullPointerException e) {
+        //    System.out.println("NullPointerException!");
+        //    return;
+        //}
+        //BufferedImage bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);
+        //Graphics g = bufImg.createGraphics();
+        //g.setPaintMode();
+        //g.drawImage(img,0,0,this);
+       /* 
+        for (int i = 0; i < sprite.width; i++)
+            for (int j = 0; j < sprite.height; j++) {
+                int RGBA = bufImg.getRGB(i, j);
+                Color col = new Color(RGBA,true);
+            }
+        */
+    } 
+    
+    // <editor-fold defaultstate="collapsed" desc="Gnerated Variables"> 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -738,5 +774,5 @@ public class SpriteEditor extends TabPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-    
+   // </editor-fold>
 }
