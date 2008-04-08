@@ -314,12 +314,12 @@ public class TilesetEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
-        value.bwidth = ((Integer) jSpinner5.getValue()).intValue();
+        value.bheight = ((Integer) jSpinner5.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner5StateChanged
 
     private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
-        value.bheight = ((Integer) jSpinner6.getValue()).intValue();
+        value.bwidth = ((Integer) jSpinner6.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner6StateChanged
 

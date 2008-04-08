@@ -1393,7 +1393,11 @@ public class Aurwindow extends JFrame {
             ProjectImporter.OpenProject(this);
         }
         if (menu == 0 && item == 3) {
-            SaveProject();
+            //SaveProject();
+            onToolbarActionPerformed(3, null);
+        }
+        if (menu == 0 && item == 4) {
+            onToolbarActionPerformed(3, null);
         }
         if (menu == 0 && item == 9) {
             CloseProject();

@@ -209,12 +209,7 @@ public class ProjectImporter {
                         
                     
                     ///
-                        if (zipe.getName().endsWith(".jpg") || zipe.getName().endsWith(".gif") || zipe.getName().endsWith(".png")) {
-                            Bytefiles.add(stream.toByteArray());
-                            Stringfiles.add("");
-                            objects.add("");
-                        }
-                        else if(zipe.getName().endsWith(".txt")||zipe.getName().endsWith(".egml")){
+                        if(zipe.getName().endsWith(".txt")||zipe.getName().endsWith(".egml")){
                             Bytefiles.add(stream.toByteArray());
                             Stringfiles.add(new String(stream.toByteArray()));
                             objects.add(new String(stream.toByteArray()));
