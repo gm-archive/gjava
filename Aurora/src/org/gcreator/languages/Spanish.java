@@ -295,6 +295,16 @@ public class Spanish extends Dictionary{
         entry[243] = "NO";
         entry[244] = "Acerca";
         entry[245] = "Agregar Grupo";
+        entry[246] = "Eliminar";
+        entry[247] = "Minimizar";
+        entry[248] = "Restaurar";
+        entry[249] = "Maximizar";
+        entry[250] = "Cascada";
+        entry[251] = "Navegador";
+        entry[252] = "Cortar";
+        entry[253] = "Copiar";
+        entry[254] = "Pegar";
+        entry[255] = "Borrar";
         
         try{
             init();
