@@ -210,7 +210,7 @@ public class GameProject extends Project{
         return "GameProject";
     }
     
-    private ImageIcon project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/game.png"));
+    private ImageIcon project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
     
     public ImageIcon getImage(){
         return project_game;
