@@ -152,31 +152,32 @@ public class NewProject extends TabPanel {
             org.gcreator.core.utilities.addStringMessage("create new project");
             Project project = null;
             int type = getProjectType();
-            if (type == 0){
+            if (type == 0){//Empty game
                 project = GameProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 1){
+            else if (type == 1){//RPG game
                 project = GameProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 2){
+            else if (type == 2){//platform game
                 project = GameProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 3){
+            else if (type == 3){//Air battle
+                System.out.println("Game type 3");
                 project = GameProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 4){
+            else if (type == 4){//Empty Module
                 project = ModuleProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";

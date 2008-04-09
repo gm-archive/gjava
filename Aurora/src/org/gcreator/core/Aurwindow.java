@@ -670,7 +670,7 @@ public class Aurwindow extends JFrame {
     @Override
     public void setContentPane(Container c) {}
 
-    //<editor-fold defaultstate="collapsed" desc="Aurwindow [new]">
+    //<editor-fold defaultstate="collapsed" desc="Aurwindow">
     protected Aurwindow(String[] settings) {
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -863,6 +863,12 @@ public class Aurwindow extends JFrame {
                 });
         items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 4)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_saveas.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 4)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 4, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
         items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_saveall.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
@@ -1393,11 +1399,10 @@ public class Aurwindow extends JFrame {
             ProjectImporter.OpenProject(this);
         }
         if (menu == 0 && item == 3) {
-            //SaveProject();
-            onToolbarActionPerformed(3, null);
+            SaveMainProject(false);
         }
         if (menu == 0 && item == 4) {
-            onToolbarActionPerformed(3, null);
+            SaveMainProject(true);
         }
         if (menu == 0 && item == 9) {
             CloseProject();
@@ -1653,38 +1658,7 @@ public class Aurwindow extends JFrame {
                 ProjectImporter.OpenProject(this);
                 break;
             case 3:
-                //only save for main project
-                System.out.println("Saving...");
-                if (istabs) {
-                    for (int ii = 0; ii < tabs.getTabCount(); ii++) {
-                        if (((TabPanel) tabs.getComponentAt(ii)).project == null) {
-                        } else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
-                            ((TabPanel) tabs.getComponentAt(ii)).Save();
-                        }
-                    }
-                } else {
-                    for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
-                        if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
-                        } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
-                            ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
-                        }
-                    }
-                }
-                //save to gcp file
-                if (mainProject.location == null || mainProject.location.equals("")) {
-                    JFileChooser fc = new JFileChooser();
-                    fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
-                    fc.showSaveDialog(gcreator.window);
-                    java.io.File file = fc.getSelectedFile();
-                    if (file == null) {
-                        return;
-                    }
-                    mainProject.location = file.getPath();
-                    if (!mainProject.location.contains(".")) {
-                        mainProject.location += ".gcp";
-                    }
-                }
-                ProjectExporter.export(mainProject, mainProject.location);
+                SaveMainProject(false);
                 break;
             case 4:
                 //save all projects
@@ -1704,123 +1678,117 @@ public class Aurwindow extends JFrame {
                 }
                 break;
             case 5:
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 //add sprite
-                i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                while (a.findFromName("newSprite" + i) != -1) {
-                    i++;
-                }
-                addFile(getCurrentFolder(), "newSprite" + i, "sprite");
+                addFile(getCurrentFolder(), "newSprite" + ((GameProject)getCurrentProject()).sprites++, "sprite");
 
                 break;
             case 6:
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 //add sound
-                i = 1;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                while (a.findFromName("newSound" + i) != -1) {
-                    i++;
-                }
-                addFile(getCurrentFolder(), "newSound" + i, "wav");
+                addFile(getCurrentFolder(), "newSound" + ((GameProject)getCurrentProject()).sounds++, "wav");
 
                 break;
             case 7:
                 //add class
-                i = 1;
+                if (getCurrentProject() instanceof GameProject)
+                    i = ((GameProject)getCurrentProject()).classes;
+                else if (getCurrentProject() instanceof ModuleProject)
+                    i = ((ModuleProject)getCurrentProject()).classes;
+                else return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
-                }
-                while (a.findFromName("newClass" + i) != -1) {
-                    i++;
                 }
                 addFile(getCurrentFolder(), "newClass" + i, "gcl");
-
+                if (getCurrentProject() instanceof GameProject)
+                    ((GameProject)getCurrentProject()).classes++;
+                else if (getCurrentProject() instanceof ModuleProject)
+                    ((ModuleProject)getCurrentProject()).classes++;
                 break;
             case 8:
-                i = 1;
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
-                }
-                while (a.findFromName("newActor" + i) != -1) {
-                    i++;
                 }
                 //getCurrentProject().actors.add(new Actor("newActor" + i));
-                addFile(getCurrentFolder(), "newActor" + i, "actor");
+                addFile(getCurrentFolder(), "newActor" + ((GameProject)getCurrentProject()).actors++, "actor");
                 break;
             case 9:
-                i = 1;
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
-                }
-                while (a.findFromName("newScene" + i) != -1) {
-                    i++;
                 }
                 //getCurrentProject().scenes.add(new Scene("newScene" + i));
-                addFile(getCurrentFolder(), "newScene" + i, "scene");
+                addFile(getCurrentFolder(), "newScene" + ((GameProject)getCurrentProject()).scenes++, "scene");
                 break;
             case 10:
-                i = 1;
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
-                }
-                while (a.findFromName("newImage" + i) != -1) {
-                    i++;
                 }
 
-                org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "newImage" + i, "png");
+                org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "newImage" + ((GameProject)getCurrentProject()).images++, "png");
                 break;
             case 11:
-                i = 1;
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                while (a.findFromName("newTileset" + i) != -1) {
-                    i++;
-                }
-                addFile(getCurrentFolder(), "newTileset" + i, "tileset");
+                addFile(getCurrentFolder(), "newTileset" + ((GameProject)getCurrentProject()).tilesets++, "tileset");
                 break;
             case 12:
-                i = 1;
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                while (a.findFromName("newTimeline" + i) != -1) {
-                    i++;
-                }
-                addFile(getCurrentFolder(), "newTimeline" + i, "timeline");
+                addFile(getCurrentFolder(), "newTimeline" + ((GameProject)getCurrentProject()).timelines++, "timeline");
                 break;
             case 13:
                 //add class
-                i = 1;
+                if (getCurrentProject() instanceof GameProject)
+                    i = ((GameProject)getCurrentProject()).scripts;
+                else if (getCurrentProject() instanceof ModuleProject)
+                    i = ((ModuleProject)getCurrentProject()).scripts;
+                else return;
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                while (a.findFromName("newScript" + i) != -1) {
-                    i++;
-                }
                 addFile(getCurrentFolder(), "newScript" + i, "gs");
-
+                if (getCurrentProject() instanceof GameProject)
+                    ((GameProject)getCurrentProject()).scripts++;
+                else if (getCurrentProject() instanceof ModuleProject)
+                    ((ModuleProject)getCurrentProject()).scripts++;
                 break;
             case 14:
                 Folder f = getCurrentFolder();
@@ -1997,4 +1965,40 @@ public class Aurwindow extends JFrame {
     }
     //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="SaveProject(boolean)">
+    public void SaveMainProject(boolean saveAs) {
+        //only save for main project
+        System.out.println("Saving...");
+        if (istabs) {
+            for (int ii = 0; ii < tabs.getTabCount(); ii++) {
+                if (((TabPanel) tabs.getComponentAt(ii)).project == null) {
+                } else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
+                    ((TabPanel) tabs.getComponentAt(ii)).Save();
+                }
+            }
+        } else {
+           for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+               if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
+                } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                    ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
+                }
+            }
+        }
+        //save to gcp file
+        if (mainProject.location == null || mainProject.location.equals("") || saveAs) {
+          JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
+            fc.showSaveDialog(gcreator.window);
+            java.io.File file = fc.getSelectedFile();
+            if (file == null) {
+              return;
+            }
+            mainProject.location = file.getPath();
+            if (!mainProject.location.contains(".")) {
+                mainProject.location += ".gcp";
+            }
+        }
+        ProjectExporter.export(mainProject, mainProject.location);
+    }
+    //</editor-fold>
 }

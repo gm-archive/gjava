@@ -13,6 +13,10 @@ import javax.swing.*;
  * @author Luís Reis
  */
 public class ModuleProject extends Project{
+    
+    public int classes = 1;
+    public int scripts = 1;
+    
     public ModuleProject(String name, String location){
         super(name, location);
     }

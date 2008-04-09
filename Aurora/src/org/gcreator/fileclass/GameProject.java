@@ -19,6 +19,17 @@ import org.gcreator.units.ObjectNode;
  * @author Luís
  */
 public class GameProject extends Project{
+    
+    public int images = 1;
+    public int sprites = 1;
+    public int tilesets = 1;
+    public int sounds = 1;
+    public int timelines = 1;
+    public int actors = 1;
+    public int scenes = 1;
+    public int classes = 1;
+    public int scripts = 1;
+    
     public GameProject(String name, String location){
         super(name, location);
     }
