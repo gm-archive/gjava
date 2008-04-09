@@ -102,7 +102,7 @@ public class GCSharp extends PlatformCore {
             print(actor, "{");
             print(actor, "\tpublic " + a.name + "(int x, int y) : base(x,y," + a.depth + ")");
             print(actor, "\t{");
-            print(actor, "\t\tsetSprite(new " + a.sprite + "());");
+            print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
             print(actor, "\t}");
             print(actor, "");
             //events
@@ -159,7 +159,7 @@ public class GCSharp extends PlatformCore {
         print(scene, "\t\tbase.setHeight(" + s.height + ");");
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
             ActorInScene ais = e.nextElement();
-            print(scene, "\t\taddActor(new " + ais.Sactor + "(" + ais.x + ", " + ais.y + "));");
+            print(scene, "\t\taddActor(new " + ais.Sactor.name + "(" + ais.x + ", " + ais.y + "));");
         }
         print(scene, "\t}");
         print(scene, "}");
@@ -169,13 +169,30 @@ public class GCSharp extends PlatformCore {
     public void createFolders() {
         try {
             FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString() + File.separator + "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
-            File f1 = new File(FileFolder);
             FileFolder += "/";
+            FileFolder = FileFolder.replaceAll("%20", " ");
             FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
+            File f1 = new File(FileFolder);
             if (f1.exists()) {
                 f1.delete();
             }
-            copyDirectory(new File(getClass().getProtectionDomain().getCodeSource().getLocation().toString().replaceAll("\\./", "").replaceAll("//+", "/").replaceAll("file:", "") + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "GCS" + File.separator + "require"), new File(FileFolder));
+            
+            String t = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+            t = t.replaceAll("\\./", "");
+            try{
+            t = t.replaceAll("/+", File.separator);
+            }
+            catch(Exception e){}
+            t = t.replaceAll("%20", " ");
+            t = t.replaceAll("\\\\", File.separator);
+            t = t.replaceAll("file:/*", "") + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "GCS" + File.separator + "require";
+            java.lang.String osName = System.getProperty("os.name");
+            if (osName.startsWith("Windows")) {
+                if(t.startsWith("/")||t.startsWith("\\"))
+                    t = t.substring(1);
+            }
+            PluginHelper.println(t);
+            copyDirectory(new File(t), new File(FileFolder));
             f1.mkdirs();
         } catch (IOException ex) {
             System.out.println("" + ex.getLocalizedMessage());
@@ -220,7 +237,7 @@ public class GCSharp extends PlatformCore {
         print(game, "");
         print(game, "\tpublic static void Main(string[] args)");
         print(game, "\t{");
-        print(game, "\t\tSDL.Game game = new SDL.Game(scenelist, false, true, 800, 600, \"G-C# Application\");");
+        print(game, "\t\tSDL.Game game = new SDL.Game(scenelist, false, true, \"G-C# Application\");");
         print(game, "\t\tgame.Run();");
         print(game, "\t}");
         print(game, "}");

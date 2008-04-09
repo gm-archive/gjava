@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import org.gcreator.core.gcreator;
+import org.gcreator.plugins.PluginHelper;
 
 public class GCSCompiler extends JFrame implements Runnable,ActionListener
 	{
@@ -86,7 +88,22 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
 
         public int compile(String res)
         {
-            String command = "gmcs";
+            File x = new File(".gcs");
+            String g = "";
+            try
+        {
+            FileReader r = new FileReader(x);
+            r.read();
+            int b;
+            while((b = r.read())!=-1)
+                g += (char) b;
+        }
+        catch(Exception e){}
+            String command = g + "gmcs";
+            java.lang.String osName = System.getProperty("os.name");
+            if (osName.startsWith("Windows")) {
+                command += ".exe";
+            }
             command += " -r:System.Drawing";
             command += " -r:SdlDotNet.dll";
             command += " -r:Tao.Sdl.dll";
@@ -96,6 +113,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
             Enumeration<String> e = GCSharp.files.elements();
             while(e.hasMoreElements())
                 command += " " + e.nextElement();
+            PluginHelper.println(command);
             try{
                 Process p = Runtime.getRuntime().exec(command, new String[]{}, new File(res));
                 InputStream stderr = p.getErrorStream();
