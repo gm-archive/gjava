@@ -64,6 +64,8 @@ public class GJava extends PlatformCore {
 //
 //            ff.mkdirs();
             File ff = new File(FileFolder + "components"+ File.separator + f.name + "." + f.type);
+            if(!ff.exists())
+                ff.createNewFile();
             FileOutputStream fos = new FileOutputStream(ff);
 
             fos.write(baos.toByteArray());
@@ -103,7 +105,7 @@ public class GJava extends PlatformCore {
             if (a.sprite == null) {
                 print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+", "+actorindex+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite + ","+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+", "+actorindex+");");
+                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+", "/*+actorindex*/+"0);");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
