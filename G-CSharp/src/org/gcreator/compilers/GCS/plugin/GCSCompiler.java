@@ -99,11 +99,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
                 g += (char) b;
         }
         catch(Exception e){}
-            String command = g + "gmcs";
-            java.lang.String osName = System.getProperty("os.name");
-            if (osName.startsWith("Windows")) {
-                command += ".exe";
-            }
+            String command = "gmcs";
             command += " -r:System.Drawing";
             command += " -r:SdlDotNet.dll";
             command += " -r:Tao.Sdl.dll";
@@ -112,10 +108,10 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
             command += " -out:Game.exe";
             Enumeration<String> e = GCSharp.files.elements();
             while(e.hasMoreElements())
-                command += " " + e.nextElement();
+                command += " \"" + /*GCSharp.FileFolder +*/ e.nextElement() + "\"";
             PluginHelper.println(command);
             try{
-                Process p = Runtime.getRuntime().exec(command, new String[]{}, new File(res));
+                Process p = Runtime.getRuntime().exec(command, new String[]{"PATH="+g}, new File(GCSharp.FileFolder));
                 InputStream stderr = p.getErrorStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);

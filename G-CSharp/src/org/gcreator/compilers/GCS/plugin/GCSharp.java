@@ -147,6 +147,7 @@ public class GCSharp extends PlatformCore {
     public void parseScene(Scene s) throws IOException {
         files.add(s.name + ".cs");
         FileWriter sceneFW = new FileWriter(FileFolder + s.name + ".cs");
+        PluginHelper.println(FileFolder + s.name + ".cs");
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "using org.gcreator.Components;");
         print(scene, "using org.gcreator.Support;");
@@ -168,14 +169,23 @@ public class GCSharp extends PlatformCore {
     
     public void createFolders() {
         try {
-            FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString() + File.separator + "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
+            FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
             FileFolder += "/";
             FileFolder = FileFolder.replaceAll("%20", " ");
             FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
+            FileFolder = FileFolder.replaceAll("/\\\\", "/");
+            FileFolder = FileFolder.replaceAll("\\\\/", "/");
+            FileFolder = FileFolder.replaceAll("//", "/");
+            java.lang.String osName = System.getProperty("os.name");
+            if(osName.startsWith("Windows")){
+                FileFolder = FileFolder.substring(1, 2) + ":" + File.separator;
+            }
+            FileFolder += "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
             File f1 = new File(FileFolder);
             if (f1.exists()) {
                 f1.delete();
             }
+            f1.mkdirs();
             
             String t = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
             t = t.replaceAll("\\./", "");
@@ -186,7 +196,6 @@ public class GCSharp extends PlatformCore {
             t = t.replaceAll("%20", " ");
             t = t.replaceAll("\\\\", File.separator);
             t = t.replaceAll("file:/*", "") + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "GCS" + File.separator + "require";
-            java.lang.String osName = System.getProperty("os.name");
             if (osName.startsWith("Windows")) {
                 if(t.startsWith("/")||t.startsWith("\\"))
                     t = t.substring(1);
@@ -217,7 +226,7 @@ public class GCSharp extends PlatformCore {
         print(game, "{");
         print(game, "\tprivate static Scene[] scenelist = new Scene[]");
         print(game, "\t{");
-        int i = p.findFromName("Settings");
+        int i = p.findFromName("$218");
         if (i > 0) {
             GObject ff = p.childAt(i);
             if (ff != null && ff instanceof GFile) {
