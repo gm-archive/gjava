@@ -120,7 +120,7 @@ public class SceneEditor extends TabPanel {
     }
     
     public void updateImage(){
-        org.gcreator.fileclass.res.Actor b = (Actor) ((org.gcreator.fileclass.GFile) curactor.getCurrentObject().object).value;
+        org.gcreator.fileclass.res.Actor b = (Actor) curactor.getFile().value;
         org.gcreator.fileclass.GFile t = b.sprite;
         if(t==null)
             return;

@@ -65,6 +65,8 @@ public class PlatformCore extends PluginCore {
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
                             parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         }
+                       else
+                           PluginHelper.println("Invalid type");
                     } catch (Exception e) {
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
