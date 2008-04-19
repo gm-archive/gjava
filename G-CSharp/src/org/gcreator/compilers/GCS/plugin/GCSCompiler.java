@@ -99,7 +99,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
                 g += (char) b;
         }
         catch(Exception e){}
-            String command = "gmcs";
+            String command = "gmcs.bat";
             command += " -r:System.Drawing";
             command += " -r:SdlDotNet.dll";
             command += " -r:Tao.Sdl.dll";
@@ -111,7 +111,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
                 command += " \"" + /*GCSharp.FileFolder +*/ e.nextElement() + "\"";
             PluginHelper.println(command);
             try{
-                Process p = Runtime.getRuntime().exec(command, new String[]{"PATH="+g}, new File(GCSharp.FileFolder));
+                Process p = Runtime.getRuntime().exec(command, new String[]{}, new File(GCSharp.FileFolder));
                 InputStream stderr = p.getErrorStream();
                 InputStreamReader isr = new InputStreamReader(stderr);
                 BufferedReader br = new BufferedReader(isr);

@@ -19,6 +19,7 @@ import org.antlr.runtime.CommonTokenStream;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.GImage;
 import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.plugins.platform.gscriptLexer;
@@ -55,11 +56,12 @@ public class PlatformCore extends PluginCore {
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             parseScene((Scene) ((org.gcreator.fileclass.GFile) childNode).value);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("jpg")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            System.out.println("Output image");
+                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
-                            parseImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("egml")) {
                             parseClass((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
@@ -68,6 +70,7 @@ public class PlatformCore extends PluginCore {
                        else
                            PluginHelper.println("Invalid type");
                     } catch (Exception e) {
+                        System.out.println(e.getMessage());
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode);
@@ -95,6 +98,10 @@ public class PlatformCore extends PluginCore {
 
     public void parseImage(ImageIcon i, org.gcreator.fileclass.GFile f) {
         System.out.println("called wrong method!");
+    }
+    
+    public void parseImage(GImage i, org.gcreator.fileclass.GFile f){
+        parseImage(i.getImage(), f);
     }
 
     public void parseActor(Actor a) throws IOException {

@@ -29,9 +29,15 @@ public class GCSharp extends PlatformCore {
     public static Vector<String> files = new Vector<String>(),  scenelist = new Vector<String>();
 
     public void parseImage(ImageIcon i, GFile f) {
-
+        System.out.println("Got here");
+        PluginHelper.println("Parse image " + f.name);
         try {
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            File tff = new File(FileFolder + "graphics");
+            //
+            PluginHelper.println("ttf="+tff+"; exits="+tff.exists());
+            tff.mkdirs();
+            File ff = new File(FileFolder + "graphics" + File.separator + f.name + "." + f.type);
+            
             BufferedImage ii;
             if ((i.getImage()) instanceof ToolkitImage) {
                 System.out.println("Toolkit");
@@ -39,18 +45,9 @@ public class GCSharp extends PlatformCore {
             } else {
                 ii = (BufferedImage) i.getImage();
             }
-            ImageIO.write(ii, f.type, baos);
-
-            File tff = new File(FileFolder + "graphics");
-            //
-            tff.mkdirs();
-            File ff = new File(FileFolder + "graphics" + File.separator + f.name + "." + f.type);
-            FileOutputStream fos = new FileOutputStream(ff);
-
-            fos.write(baos.toByteArray());
-            fos.close();
+            ImageIO.write(ii, f.type, ff);
         } catch (Exception e) {
-            System.out.println("Exception parsing image" + e.getMessage());
+            PluginHelper.println("Exception parsing image" + e.getMessage());
         }
     }
 
@@ -158,6 +155,11 @@ public class GCSharp extends PlatformCore {
         print(scene, "\t{");
         print(scene, "\t\tbase.setWidth(" + s.width + ");");
         print(scene, "\t\tbase.setHeight(" + s.height + ");");
+        if(s.drawbackcolor){
+            print(scene, "\t\tbase.setBackground(System.Drawing.Color.FromArgb("
+                    + s.background.getRed() + ", " + s.background.getGreen() + ", "
+                    + s.background.getBlue() + "));");
+        }
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
             ActorInScene ais = e.nextElement();
             print(scene, "\t\taddActor(new " + ais.Sactor.name + "(" + ais.x + ", " + ais.y + "));");
