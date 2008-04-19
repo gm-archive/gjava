@@ -283,6 +283,7 @@ namespace org.gcreator.Components
 				new Rectangle(x - sprite.getOriginX(), y - sprite.getOriginY(), sprite.getWidth(), sprite.getHeight()));
 		}
 		public virtual void CollisionCheck(){} //TODO: Check collisions/solid
+		public virtual void Create(){}
     }
 
     public class Scene
@@ -399,7 +400,7 @@ namespace org.gcreator.Components
 				{
 					if(o is Actor)
 					{
-						if((o as Actor).getDepth()==a)
+						if((o as Actor).getDepth()==a&&(o as Actor).isVisible())
 							(o as Actor).Draw();
 					}
 				}

@@ -99,12 +99,16 @@ public class GCSharp extends PlatformCore {
             print(actor, "{");
             print(actor, "\tpublic " + a.name + "(int x, int y) : base(x,y," + a.depth + ")");
             print(actor, "\t{");
+            print(actor, "\t\tsetVisible(" + a.visible + ");");
             print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
             print(actor, "\t}");
             print(actor, "");
             //events
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
                     org.gcreator.events.Event evt = (org.gcreator.events.Event) e.nextElement();
+                    if(evt instanceof org.gcreator.events.CreateEvent){
+                        print(actor, "\tpublic override void Create()");
+                    }
                     if(evt instanceof org.gcreator.events.BeginStepEvent){
                         print(actor, "\tpublic override void BeginStep()");
                     }
@@ -118,12 +122,19 @@ public class GCSharp extends PlatformCore {
                         print(actor, "\tpublic override void Draw()");
                     }
                     print(actor, "\t{");
+                    String gcl = "";
+                    for(org.gcreator.actions.Action act : evt.actions){
+                        gcl += act.getEGML();
+                    }
+                    String res = super.parseGCL(gcl, this);
+                    print(actor, res);
                     print(actor, "\t}");
                     print(actor, "");
             }
             print(actor, "}");
             actor.close();
         } catch (Exception e) {
+            PluginHelper.println(e.getMessage());
         }
 
     }
@@ -151,8 +162,8 @@ public class GCSharp extends PlatformCore {
         print(scene, "");
         print(scene, "public class " + s.name + " : Scene");
         print(scene, "{");
-        print(scene, "\tpublic " + s.name + "()");
-        print(scene, "\t{");
+        print(scene, "\tpublic " + s.name + "(){}");
+        print(scene, "\tpublic override void Create(){");
         print(scene, "\t\tbase.setWidth(" + s.width + ");");
         print(scene, "\t\tbase.setHeight(" + s.height + ");");
         if(s.drawbackcolor){
@@ -160,9 +171,11 @@ public class GCSharp extends PlatformCore {
                     + s.background.getRed() + ", " + s.background.getGreen() + ", "
                     + s.background.getBlue() + "));");
         }
+        print(scene, "\t\tActor c;");
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
             ActorInScene ais = e.nextElement();
-            print(scene, "\t\taddActor(new " + ais.Sactor.name + "(" + ais.x + ", " + ais.y + "));");
+            print(scene, "\t\taddActor(c = new " + ais.Sactor.name + "(" + ais.x + ", " + ais.y + "));");
+            print(scene, "\t\tc.Create();");
         }
         print(scene, "\t}");
         print(scene, "}");
