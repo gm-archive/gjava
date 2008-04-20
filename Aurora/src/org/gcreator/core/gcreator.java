@@ -314,6 +314,10 @@ public class gcreator {
             }
             
         } catch (Exception e) {}
+        
+        if(splash!=null)
+            SwingUtilities.updateComponentTreeUI(splash);
+        
         if(!applet&&plugload)
             Plugger.onMainWindowStart();
         //ActorEditor.setupActions();

@@ -16,10 +16,12 @@ import java.awt.event.*;
  */
 public class SplashScreen extends JFrame {
     
+    ImageIcon i;
     /** Creates new form SplashScreen */
     public SplashScreen(boolean applet) {
-        jLabel1 = new javax.swing.JLabel();
+        jProgress1 = new JProgressBar();
 
+       
         setTitle("Loading... Please Wait");
         if(!applet){
             setAlwaysOnTop(true);
@@ -27,20 +29,28 @@ public class SplashScreen extends JFrame {
         setResizable(false);
         setUndecorated(true);
 
-        jLabel1.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen20tf0.jpg"))); // NOI18N
+        i = new ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen20tf0.jpg")); // NOI18N
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jLabel1)
-        );
-
-        pack();
+        JPanel p = new JPanel(){
+            public void paint(Graphics g){
+                g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
+        
+                setOpaque(false);
+                super.paint(g);
+            }
+        };
+        p.setVisible(true);
+        setContentPane(p);
+        
+        setLayout(null);
+        //add(jLabel1);
+        
+        setSize(i.getIconWidth(), i.getIconHeight());
+        add(jProgress1);
+        jProgress1.setSize(getWidth(), 20);
+        jProgress1.setLocation(0, 220);
+        jProgress1.setVisible(true);
+        jProgress1.setIndeterminate(true);
         Dimension m = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(
                 (m.width - this.getWidth()) / 2,
@@ -66,7 +76,7 @@ public class SplashScreen extends JFrame {
     }
     
     // Variables declaration - do not modify
-    private javax.swing.JLabel jLabel1;
+    private JProgressBar jProgress1;
     // End of variables declaration
     
 }
