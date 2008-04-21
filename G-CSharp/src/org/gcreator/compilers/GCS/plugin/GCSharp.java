@@ -104,8 +104,15 @@ public class GCSharp extends PlatformCore {
             print(actor, "\t}");
             print(actor, "");
             //events
+            PluginHelper.println("Before loop");
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
-                    org.gcreator.events.Event evt = (org.gcreator.events.Event) e.nextElement();
+                Object m_evt = e.nextElement();
+                PluginHelper.println("Loop");
+                if(!(m_evt instanceof org.gcreator.events.Event)){
+                    PluginHelper.println("Invalid convertion");
+                    continue;
+                }
+                    org.gcreator.events.Event evt = (org.gcreator.events.Event) m_evt;
                     if(evt instanceof org.gcreator.events.CreateEvent){
                         print(actor, "\tpublic override void Create()");
                     }
@@ -122,12 +129,11 @@ public class GCSharp extends PlatformCore {
                         print(actor, "\tpublic override void Draw()");
                     }
                     print(actor, "\t{");
-                    String gcl = "";
+                    PluginHelper.println("Got here");
                     for(org.gcreator.actions.Action act : evt.actions){
-                        gcl += act.getEGML();
+                        print(actor, parseGCL(act.getEGML(), this));
                     }
-                    String res = super.parseGCL(gcl, this);
-                    print(actor, res);
+                    PluginHelper.println("And here too");
                     print(actor, "\t}");
                     print(actor, "");
             }
