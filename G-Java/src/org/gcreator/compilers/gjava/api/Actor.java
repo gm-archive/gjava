@@ -157,9 +157,18 @@ public class Actor extends tile {
      * Override with the Draw event of the actor but don't call this method!
      * @param g 
      */
-    public void Draw_event() {
+    public void Draw_event(Graphics2D g) {
         if(sprite!=null)
-            sprite.a.draw((float) x, (float) y);
+        {
+            g.drawImage(sprite.imshow(), null, 100, 100);
+            
+        }
+        else
+        {
+            //System.out.println("sprite is null");
+            
+        }
+        
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     public Object getAlarm() {

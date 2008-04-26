@@ -1,8 +1,9 @@
 package org.gcreator.compilers.gjava.api.components;
 
+import java.awt.image.BufferedImage;
 
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
+
+
 
 /**
  * Sprite object, may be replaced with another object in G-java 2.0
@@ -12,7 +13,7 @@ import org.newdawn.slick.Image;
 public class Sprite {
 
     String filename;
-    Image[] spritename;
+    BufferedImage[] spritename;
     public int Transparent;
     public int sprite_width;
     public int sprite_height;
@@ -28,14 +29,13 @@ public class Sprite {
     public int BBTop;
     public int BBBottom;
     
-    public Animation a;
-
+    
     public Sprite() {
         
     }
     
-    public Sprite(Image[] images){
-        a=new Animation(images,1);
+    public Sprite(BufferedImage[] images){
+        //a=new Animation(images,1);
     }
     
     /**
@@ -56,8 +56,8 @@ public class Sprite {
      * @param OriginY
      * @param subimages
      */
-    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, Image[] images) {
-        a=new Animation(images,1);
+    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, BufferedImage[] images) {
+        //a=new Animation(images,1);
         this.sprite_width = Width;
         this.sprite_height = Height;
         this.BBBottom = BBBottom;
@@ -68,61 +68,62 @@ public class Sprite {
         this.sprite_yoffset = OriginY;
 
         this.subimages = images.length;
+        System.out.println("subimages"+subimages);
         filename = sprite_name;
-        this.spritename = new Image[subimages-1];
+        this.spritename = images;//new BufferedImage[subimages-1];
         
-        for (int i = 0; i < images.length; i++) {
-            
-            if (images[i].equals("")) subimages--;
-            else {
-                
-//                try{
-//                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
-//                    
-//            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
-//                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
-        } }
+//        for (int i = 0; i < images.length; i++) {
+//            
+//            if (images[i].equals("")) subimages--;
+//            else {
+//                
+////                try{
+////                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
+////                    
+////            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
+////                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
+//        } }
         //loadImage();
     }
     
-    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, java.lang.String[] images) {
-        Image[] im = new Image[images.length];
-        for(int i = 0; i < images.length; i++)
-            try{
-                im[i] = new Image(images[i]);
-            }
-            catch(Exception e){}
-        a = new Animation(im, 1);
-        this.sprite_width = Width;
-        this.sprite_height = Height;
-        this.BBBottom = BBBottom;
-        this.BBTop = BBTop;
-        this.BBRight = BBRight;
-        this.BBLeft = BBLeft;
-        this.sprite_xoffset = OriginX;
-        this.sprite_yoffset = OriginY;
-
-        this.subimages = images.length;
-        filename = sprite_name;
-        this.spritename = new Image[subimages-1];
-        
-        for (int i = 0; i < images.length; i++) {
-            
-            if (images[i].equals("")) subimages--;
-            else {
-                
-//                try{
-//                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
-//                    
-//            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
-//                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
-        } }
-        //loadImage();
-    }
+//    public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, java.lang.String[] images) {
+//        BufferedImage[] im = new BufferedImage[images.length];
+//        for(int i = 0; i < images.length; i++)
+//            try{
+//                im[i] = new BufferedImage(images[i]);
+//            }
+//            catch(Exception e){}
+//        a = new Animation(im, 1);
+//        this.sprite_width = Width;
+//        this.sprite_height = Height;
+//        this.BBBottom = BBBottom;
+//        this.BBTop = BBTop;
+//        this.BBRight = BBRight;
+//        this.BBLeft = BBLeft;
+//        this.sprite_xoffset = OriginX;
+//        this.sprite_yoffset = OriginY;
+//
+//        this.subimages = images.length;
+//        filename = sprite_name;
+//        this.spritename = new Image[subimages-1];
+//        
+//        for (int i = 0; i < images.length; i++) {
+//            
+//            if (images[i].equals("")) subimages--;
+//            else {
+//                
+////                try{
+////                    ImageIcon ic = new ImageIcon(getClass().getResource(images[i]));
+////                    
+////            spritename[i] = new ImageIcon(getClass().getResource(images[i])).getImage();
+////                } catch (Exception e){System.out.println("Load image error:"+images[i]+e.getMessage());}
+//        } }
+//        //loadImage();
+//    }
+//    
     
-    
 
-    public Image imshow() {
+    public BufferedImage imshow() {
         index++;
         //System.out.println(""+index);
         if (index >= subimages) index = 0;
@@ -136,7 +137,7 @@ public class Sprite {
      * @param subimage The sub image number
      * @return the Image object of the sprite
      */
-    public Image imshow(int subimage) {
+    public BufferedImage imshow(int subimage) {
 
 //        while (subimage >= this.subimages) {
 //            subimage = subimage - subimages;
@@ -154,7 +155,7 @@ public class Sprite {
     }
     // Crop sprite to bounding box
 
-    private void cropSprite(Image img) {
+    private void cropSprite(BufferedImage img) {
         // Crop all 8x8 blocks
         // PixelGrabber pg=new PixelGrabber(img,0,0,64*8,32*8,false);
         // try { pg.grabPixels(); } catch (InterruptedException ex) { };

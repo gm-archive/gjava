@@ -13,7 +13,7 @@ import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.Boolean;
 import org.gcreator.compilers.gjava.api.components.Sprite;
-import org.newdawn.slick.Image;
+//import org.newdawn.slick.Image;
 
 /**
  *
@@ -30,7 +30,8 @@ public class TestActor extends Actor {
         self=this;
         try {
             
-        sprite = new Sprite(new Image[] {new Image("/close.jpg")});
+        sprite = Game.sprite1;
+        System.out.println("set sprite");
         } catch(Exception e ){
         System.out.println(""+e.getMessage());}
         // super(new String("newActor1"), new Object(), new Boolean(false), new Boolean(false), new Integer(0), new Boolean(false));
@@ -106,10 +107,10 @@ show_message(string(getVk_nokey()));
 return null;
     }
 
-    @Override
-    public void Draw_event() {
-        draw_ellipse(new Integer(1),new Integer(1),new Integer(10),new Integer(10),new Boolean(true));
-    }
+//    @Override
+//    public void Draw_event() {
+//        draw_ellipse(new Integer(1),new Integer(1),new Integer(10),new Integer(10),new Boolean(true));
+//    }
     
    
 }

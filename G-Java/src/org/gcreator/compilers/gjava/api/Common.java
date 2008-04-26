@@ -22,7 +22,7 @@ public class Common {
         }
 
         public static void gotoPrevious() {
-            Basicgame.prevScene();
+            //Basicgame.prevScene();
         }
     }
 }
