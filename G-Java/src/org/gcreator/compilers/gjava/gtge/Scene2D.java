@@ -197,6 +197,7 @@ public class Scene2D {
        
         //System.out.println(""+instances.size());
         for (int i = 0; i < instances.size(); i++) {
+            if (((Actor)instances.elementAt(i)).visible)
             ((Actor)instances.elementAt(i)).Draw_event(g);
         }
 

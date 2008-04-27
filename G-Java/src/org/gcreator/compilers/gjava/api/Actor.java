@@ -14,10 +14,10 @@ public class Actor extends tile {
 
     protected Sprite sprite;
 //local variables
-    protected org.gcreator.compilers.gjava.api.Object alarm,  bbox_bottom,  bbox_left,  bbox_right,  bbox_top,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_index,  image_number,  image_single,  image_speed,  image_xscale,  image_yscale,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  sprite_height,  sprite_index,  sprite_width,  sprite_xoffset,  sprite_yoffset,  timeline_index,  timeline_position,  timeline_speed,  visible;
+    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_index,  image_number,  image_single,  image_speed,  image_xscale,  image_yscale,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  sprite_xoffset,  sprite_yoffset,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
-
+    public boolean visible=true;
     public Actor() {
     }
 
@@ -38,7 +38,7 @@ public class Actor extends tile {
      */
     public Actor(Object Object_name, Sprite spr, Object Solid, Object Visible, Object Depth, Object Persistent) {
         solid = Solid;
-        visible = Visible;
+        visible = Visible.getBoolean();
         depth = Depth;
         persistent = Persistent;
         sprite = spr;
@@ -48,7 +48,7 @@ public class Actor extends tile {
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, int Depth, boolean Persistent) {
         solid = new Boolean(Solid);
-        visible = new Boolean(Visible);
+        visible = Visible;
         depth = new Integer(Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
@@ -179,31 +179,31 @@ public class Actor extends tile {
     }
 
     public Object getBbox_bottom() {
-        if (bbox_bottom == null) {
-            bbox_bottom = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return bbox_bottom;
+        return new Integer(sprite.BBBottom);
     }
 
     public Object getBbox_left() {
-        if (bbox_bottom == null) {
-            bbox_bottom = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return bbox_left;
+        return new Integer(sprite.BBLeft);
     }
 
     public Object getBbox_right() {
-        if (bbox_bottom == null) {
-            bbox_bottom = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return bbox_right;
+        return new Integer(sprite.BBRight);
     }
 
     public Object getBbox_top() {
-        if (bbox_top == null) {
-            bbox_top = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return bbox_top;
+        return new Integer(sprite.BBTop);
     }
 
     public Object getDepth() {
@@ -401,24 +401,24 @@ public class Actor extends tile {
     }
 
     public Object getSprite_height() {
-        if (sprite_height == null) {
-            sprite_height = new Integer(0);
+        if (sprite == null) {
+            return new Integer(-1);
         }
-        return sprite_height;
+        return new Integer(sprite.sprite_height);
     }
 
     public Object getSprite_index() {
-        if (sprite_index == null) {
-            sprite_index = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return sprite_index;
+        return sprite;
     }
 
     public Object getSprite_width() {
-        if (sprite_width == null) {
-            sprite_width = new Integer(0);
+        if (sprite == null) {
+            return new Integer(-1);
         }
-        return sprite_width;
+        return new Integer(sprite.sprite_width);
     }
 
     public Object getSprite_xoffset() {
@@ -457,10 +457,8 @@ public class Actor extends tile {
     }
 
     public Object getVisible() {
-        if (visible == null) {
-            visible = new Integer(0);
-        }
-        return visible;
+        
+        return new Boolean(visible);
     }
 
     public Object getVspeed() {
@@ -499,19 +497,31 @@ public class Actor extends tile {
     }
 
     public void setBbox_bottom(Object bbox_bottom) {
-        this.bbox_bottom = bbox_bottom;
+        if (sprite == null) {
+            return;
+        }
+        sprite.BBBottom = (int) bbox_bottom.getDouble();
     }
 
     public void setBbox_left(Object bbox_left) {
-        this.bbox_left = bbox_left;
+        if (sprite == null) {
+            return;
+        }
+        sprite.BBLeft = (int) bbox_left.getDouble();
     }
 
     public void setBbox_right(Object bbox_right) {
-        this.bbox_right = bbox_right;
+        if (sprite == null) {
+            return;
+        }
+        sprite.BBRight = (int) bbox_right.getDouble();
     }
 
     public void setBbox_top(Object bbox_top) {
-        this.bbox_top = bbox_top;
+        if (sprite == null) {
+            return;
+        }
+        sprite.BBTop = (int) bbox_top.getDouble();
     }
 
     public void setDepth(Object depth) {
@@ -628,15 +638,17 @@ public class Actor extends tile {
         }
 
     public void setSprite_height(Object sprite_height) {
-        this.sprite_height = sprite_height;
+        //constant
     }
 
     public void setSprite_index(Object sprite_index) {
-        this.sprite_index = sprite_index;
+        if (sprite_index != null)
+        if (sprite_index instanceof Sprite)
+            sprite = (Sprite)sprite_index;
     }
 
     public void setSprite_width(Object sprite_width) {
-        this.sprite_width = sprite_width;
+        //constant
     }
 
     public void setSprite_xoffset(Object sprite_xoffset) {
@@ -660,7 +672,7 @@ public class Actor extends tile {
     }
 
     public void setVisible(Object visible) {
-        this.visible = visible;
+        this.visible = visible.getBoolean();
     }
 
     public void setVspeed(Object vspeed) {

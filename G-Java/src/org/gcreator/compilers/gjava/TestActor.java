@@ -32,8 +32,9 @@ public class TestActor extends Actor {
    
         try {
             
-        sprite = Game.sprite1;
-        System.out.println("set sprite");
+        //sprite = Game.sprite1;
+        setSprite_index(Game.sprite1);
+            System.out.println("set sprite");
         } catch(Exception e ){
         System.out.println(""+e.getMessage());}
         // super(new String("newActor1"), new Object(), new Boolean(false), new Boolean(false), new Integer(0), new Boolean(false));
@@ -59,6 +60,17 @@ public class TestActor extends Actor {
 Object str = file_text_read_string(fileid);
 System.out.println("Test:"+str.getString());
 file_text_close(fileid);
+
+//test sprite func
+setVisible(new Boolean(true));
+setBbox_top(new Integer(1));
+setBbox_bottom(new Integer(2));
+setBbox_right(new Integer(3));
+setBbox_left(new Integer(4));
+System.out.println("bbtop:"+getBbox_top());
+System.out.println("bbbot:"+getBbox_bottom());
+System.out.println("bbright:"+getBbox_right());
+System.out.println("bbleft:"+getBbox_left());
 
 //test stack
 //Object sid = sid = ds_queue_create() ;

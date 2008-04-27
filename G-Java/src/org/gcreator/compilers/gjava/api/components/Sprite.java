@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
  * @author G-Java development team
  * @version 1.0
  */
-public class Sprite {
+public class Sprite extends org.gcreator.compilers.gjava.api.Object {
 
     String filename;
     BufferedImage[] spritename;
