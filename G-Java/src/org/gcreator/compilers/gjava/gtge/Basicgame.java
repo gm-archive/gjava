@@ -107,7 +107,7 @@ public class Basicgame extends Game {
         loadSprites();
         loadScenes();
         nextScene();
-        setFPS(900);
+        setFPS(1);
         
     }
 

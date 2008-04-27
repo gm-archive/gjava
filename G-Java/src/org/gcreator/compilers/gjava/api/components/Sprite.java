@@ -1,5 +1,6 @@
 package org.gcreator.compilers.gjava.api.components;
 
+import com.golden.gamedev.util.ImageUtil;
 import java.awt.image.BufferedImage;
 
 
@@ -17,10 +18,10 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
     public int Transparent;
     public int sprite_width;
     public int sprite_height;
-    public int sprite_xoffset;
-    public int sprite_yoffset;
-    public int index;
-    public int image_speed;
+    public int sprite_xoffset=0;
+    public int sprite_yoffset=0;
+    public double index=0;
+    public double image_speed=1;
     public int subimages;
     public int image_count;
     public int currentimage;
@@ -28,6 +29,7 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
     public int BBRight;
     public int BBTop;
     public int BBBottom;
+    public double image_xscale=1,image_yscale=1,image_angle=0;
     
     
     public Sprite() {
@@ -58,8 +60,8 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
      */
     public Sprite(String sprite_name, int Height, int Width, int BBLeft, int BBRight, int BBBottom, int BBTop, int OriginX, int OriginY, BufferedImage[] images) {
         //a=new Animation(images,1);
-        this.sprite_width = Width;
-        this.sprite_height = Height;
+        this.sprite_width = images[0].getWidth();//Width;
+        this.sprite_height = images[0].getHeight();//Height;
         this.BBBottom = BBBottom;
         this.BBTop = BBTop;
         this.BBRight = BBRight;
@@ -124,11 +126,12 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
     
 
     public BufferedImage imshow() {
-        index++;
+        index += image_speed;
+        //index++;
         //System.out.println(""+index);
-        if (index >= subimages) index = 0;
+        while (index >= subimages) index -= subimages;//index = 0;
         
-        return imshow(index);
+        return imshow((int)index);
         //return spritename[0];
     }
 
@@ -153,8 +156,41 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
 
         return spritename[subimage];
     }
+    
+    /*
+     * Xscale all the images
+     */
+    public void xscale(double xscale)
+    {
+        for (int i=0; i<subimages; i++)
+        spritename[i] = ImageUtil.resize(spritename[i], (int)(this.sprite_width * xscale), this.sprite_height);
+        sprite_width = (int)(sprite_width *xscale);
+        this.BBLeft = (int)(this.BBLeft*xscale);
+        this.BBRight = (int)(this.BBRight*xscale);
+        this.image_xscale = xscale;
+    }
+    
+    /*
+     * Yscale all the images
+     */
+    public void yscale(double yscale)
+    {
+        for (int i=0; i<subimages; i++)
+        spritename[i] = ImageUtil.resize(spritename[i], (this.sprite_width), (int)(this.sprite_height * yscale));
+        sprite_height = (int)(sprite_height*yscale);
+        this.BBTop = (int)(this.BBTop*yscale);
+        this.BBBottom = (int)(this.BBBottom*yscale);
+        this.image_yscale = yscale;
+    }
+    
+    public void angle(int angle){
+        for (int i=0; i<subimages; i++)
+        spritename[i] = ImageUtil.rotate(spritename[i], angle);
+        image_angle = angle;
+    }
+    
+    
     // Crop sprite to bounding box
-
     private void cropSprite(BufferedImage img) {
         // Crop all 8x8 blocks
         // PixelGrabber pg=new PixelGrabber(img,0,0,64*8,32*8,false);

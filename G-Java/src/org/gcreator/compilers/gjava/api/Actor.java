@@ -4,6 +4,7 @@ import org.gcreator.compilers.gjava.api.components.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import org.gcreator.compilers.gjava.Game;
 
 /**
  * The Actor object
@@ -14,7 +15,7 @@ public class Actor extends tile {
 
     protected Sprite sprite;
 //local variables
-    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_index,  image_number,  image_single,  image_speed,  image_xscale,  image_yscale,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  sprite_xoffset,  sprite_yoffset,  timeline_index,  timeline_position,  timeline_speed;
+    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single, mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
     public boolean visible=true;
@@ -139,7 +140,8 @@ public class Actor extends tile {
 
     public void callEvents() {
         Move();
-
+//        setImage_xscale(getImage_xscale().add(new Double(0.1)));
+//setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }
 
     /**
@@ -160,7 +162,7 @@ public class Actor extends tile {
     public void Draw_event(Graphics2D g) {
         if(sprite!=null)
         {
-            g.drawImage(sprite.imshow(), null, 100, 100);
+            g.drawImage(sprite.imshow(), null, (int)x-sprite.sprite_xoffset, (int)y-sprite.sprite_yoffset);
             
         }
         else
@@ -261,10 +263,10 @@ public class Actor extends tile {
     }
 
     public Object getImage_angle() {
-        if (image_angle == null) {
-            image_angle = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return image_angle;
+        return new Double(sprite.image_angle);
     }
 
     public Object getImage_blend() {
@@ -275,17 +277,17 @@ public class Actor extends tile {
     }
 
     public Object getImage_index() {
-        if (image_index == null) {
-            image_index = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return image_index;
+        return new Double(sprite.index);
     }
 
     public Object getImage_number() {
-        if (image_number == null) {
-            image_number = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return image_number;
+        return new Integer(sprite.subimages);
     }
 
     public Object getImage_single() {
@@ -296,24 +298,24 @@ public class Actor extends tile {
     }
 
     public Object getImage_speed() {
-        if (image_speed == null) {
-            image_speed = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return image_speed;
+        return new Double(sprite.image_speed);
     }
 
     public Object getImage_xscale() {
-        if (image_xscale == null) {
-            image_xscale = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return image_xscale;
+        return new Double(sprite.image_xscale);
     }
 
     public Object getImage_yscale() {
-        if (image_yscale == null) {
-            image_yscale = new Integer(0);
+         if (sprite == null) {
+            return new Integer(0);
         }
-        return image_yscale;
+        return new Double(sprite.image_yscale);
     }
 
     public Object getMask_index() {
@@ -422,17 +424,17 @@ public class Actor extends tile {
     }
 
     public Object getSprite_xoffset() {
-        if (sprite_xoffset == null) {
-            sprite_xoffset = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return sprite_xoffset;
+        return new Integer(sprite.sprite_xoffset);
     }
 
     public Object getSprite_yoffset() {
-        if (sprite_yoffset == null) {
-            sprite_yoffset = new Integer(0);
+        if (sprite == null) {
+            return new Integer(0);
         }
-        return sprite_yoffset;
+        return new Integer(sprite.sprite_yoffset);
     }
 
     public Object getTimeline_index() {
@@ -526,6 +528,7 @@ public class Actor extends tile {
 
     public void setDepth(Object depth) {
         this.depth = depth;
+        Game.Current.SortDepth();
     }
 
     public void setDirection(Object direction) {
@@ -560,7 +563,8 @@ public class Actor extends tile {
     }
 
     public void setImage_angle(Object image_angle) {
-        this.image_angle = image_angle;
+        if (sprite !=null)
+        sprite.angle((int)image_angle.getDouble());
     }
 
     public void setImage_blend(Object image_blend) {
@@ -568,11 +572,12 @@ public class Actor extends tile {
     }
 
     public void setImage_index(Object image_index) {
-        this.image_index = image_index;
+        if (sprite !=null)
+        sprite.index = (int)image_index.getDouble();
     }
 
     public void setImage_number(Object image_number) {
-        this.image_number = image_number;
+        //constant
     }
 
     public void setImage_single(Object image_single) {
@@ -580,15 +585,15 @@ public class Actor extends tile {
     }
 
     public void setImage_speed(Object image_speed) {
-        this.image_speed = image_speed;
+        sprite.image_speed = image_speed.getDouble();
     }
 
     public void setImage_xscale(Object image_xscale) {
-        this.image_xscale = image_xscale;
+        sprite.xscale(image_xscale.getDouble());
     }
 
     public void setImage_yscale(Object image_yscale) {
-        this.image_yscale = image_yscale;
+        sprite.yscale(image_yscale.getDouble());
     }
 
     public void setObject_index(Object object_index) {
@@ -652,11 +657,11 @@ public class Actor extends tile {
     }
 
     public void setSprite_xoffset(Object sprite_xoffset) {
-        this.sprite_xoffset = sprite_xoffset;
+        sprite.sprite_xoffset = (int)sprite_xoffset.getDouble();
     }
 
     public void setSprite_yoffset(Object sprite_yoffset) {
-        this.sprite_yoffset = sprite_yoffset;
+        sprite.sprite_yoffset = (int)sprite_yoffset.getDouble();
     }
 
     public void setTimeline_index(Object timeline_index) {

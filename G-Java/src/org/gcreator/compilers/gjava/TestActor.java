@@ -45,15 +45,15 @@ public class TestActor extends Actor {
         setY(Y);
       //  Create_event();
        // motion_set(new Integer(90), new Integer(1));
-        TestActor a = new TestActor();
-        a.x = 3;
-        a.y = 4;
-        System.out.println("Distance:"+distance_to_object(a)+" from " + x + ", " + y);
-        System.out.println(""+point_direction(new Integer(0),new Integer(0),new Integer(60),new Integer(60)));
-        setSpeed(new Integer(10));
-        System.out.println("Speed"+getSpeed());
-       setDirection(new Double(45));
-       System.out.println("Speed"+getSpeed());
+//        TestActor a = new TestActor();
+//        a.x = 3;
+//        a.y = 4;
+//        System.out.println("Distance:"+distance_to_object(a)+" from " + x + ", " + y);
+//        System.out.println(""+point_direction(new Integer(0),new Integer(0),new Integer(60),new Integer(60)));
+//        setSpeed(new Integer(10));
+//        System.out.println("Speed"+getSpeed());
+//       setDirection(new Double(45));
+//       System.out.println("Speed"+getSpeed());
         
        //test file functions
        Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
@@ -62,16 +62,13 @@ System.out.println("Test:"+str.getString());
 file_text_close(fileid);
 
 //test sprite func
-setVisible(new Boolean(true));
-setBbox_top(new Integer(1));
-setBbox_bottom(new Integer(2));
-setBbox_right(new Integer(3));
-setBbox_left(new Integer(4));
-System.out.println("bbtop:"+getBbox_top());
-System.out.println("bbbot:"+getBbox_bottom());
-System.out.println("bbright:"+getBbox_right());
-System.out.println("bbleft:"+getBbox_left());
+//setVisible(new Boolean(true));
+System.out.println("Image_angle:"+getImage_angle());
+setImage_angle(new Double(90));
+System.out.println("Image_angle:"+getImage_angle());
 
+x=0;
+y=0;
 //test stack
 //Object sid = sid = ds_queue_create() ;
 //ds_queue_enqueue(sid,new Integer(99)) ;
