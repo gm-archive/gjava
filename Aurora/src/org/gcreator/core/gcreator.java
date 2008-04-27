@@ -81,7 +81,7 @@ public class gcreator {
                 ismdi = true;
             else if(args[i].matches("^-(-?)help$")){
                 System.out.println("G-Creator version: " + version);
-                System.out.println("Licensed under GPL v3. More information in README.txt and 'About'.");
+                System.out.println("Licensed under LGPL v3. More information in README.txt and 'About'.");
                 System.out.println("-safe\t\tStarts G-Creator in safe mode. (No plugins)");
                 System.out.println("-jemul:version\tPretends the user is running G-Creator with version 'version'");
                 System.out.println("-mdi\t\tStarts G-Creator in MDI mode");
@@ -157,7 +157,7 @@ public class gcreator {
         ToolbarButton addtml = new DefaultToolbarItem("std_addTimeline", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtimeline.png")), 204);
         ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor.png")), 45);
         ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), 46);
-        ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addclass.png")), 52);
+        //ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addclass.png")), 52);
         ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
         ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), 245);
         
@@ -221,11 +221,11 @@ public class gcreator {
             }
         });
         
-        addcls.setActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(7, evt);
-            }
-        });
+//        addcls.setActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent evt) {
+//                window.onToolbarActionPerformed(7, evt);
+//            }
+//        });
         
         addgs.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -256,7 +256,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addtml);
         ToolbarManager.toolbuttons.add(addact);
         ToolbarManager.toolbuttons.add(addscn);
-        ToolbarManager.toolbuttons.add(addcls);
+//        ToolbarManager.toolbuttons.add(addcls);
         ToolbarManager.toolbuttons.add(addgs);
         ToolbarManager.toolbuttons.add(addgr);
         

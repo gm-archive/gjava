@@ -29,7 +29,7 @@ public class ScriptEditor extends TabPanel {
         initComponents();
         
         if(file.value==null)
-            file.value = new Classes("String examplefield = \"\"; \n public void exampleFunction() { \n \n }");
+            file.value = new Classes("show_message(\"test\") \n \n }");
         Scanner scanner = new GScriptScanner();
         g = new SyntaxHighlighter(100, 100, scanner, project);
         g.setText(((Classes)file.value).toString());
@@ -62,14 +62,23 @@ public class ScriptEditor extends TabPanel {
 
         setLayout(new java.awt.BorderLayout());
 
-        jSplitPane1.setDividerLocation(204);
+        jSplitPane1.setDividerLocation(244);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane1.setResizeWeight(1.0);
+        jSplitPane1.setLastDividerLocation(354);
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setToolTipText("GCL function list");
+        jList1.setMaximumSize(new java.awt.Dimension(33, 100));
+        jList1.setMinimumSize(new java.awt.Dimension(33, 10));
+        jList1.setPreferredSize(new java.awt.Dimension(33, 50));
+        jList1.setValueIsAdjusting(true);
+        jList1.setVisibleRowCount(3);
         jScrollPane1.setViewportView(jList1);
 
         jSplitPane1.setRightComponent(jScrollPane1);
@@ -82,7 +91,7 @@ public class ScriptEditor extends TabPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 203, Short.MAX_VALUE)
+            .add(0, 243, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(jPanel1);

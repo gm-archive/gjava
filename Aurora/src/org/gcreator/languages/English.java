@@ -262,7 +262,7 @@ public class English extends Dictionary{
         entry[213] = "Timelines";
         entry[214] = "Actors";
         entry[215] = "Scenes";
-        entry[216] = "Classes";
+        entry[216] = "Scripts";
         entry[217] = "Distribution";
         entry[218] = "Settings";
         entry[219] = "Begin block";
