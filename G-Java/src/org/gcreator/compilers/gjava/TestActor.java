@@ -28,6 +28,8 @@ public class TestActor extends Actor {
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self=this;
+        
+   
         try {
             
         sprite = Game.sprite1;
@@ -59,20 +61,20 @@ System.out.println("Test:"+str.getString());
 file_text_close(fileid);
 
 //test stack
-Object sid = sid = ds_queue_create() ;
-ds_queue_enqueue(sid,new Integer(99)) ;
-ds_queue_enqueue(sid,new Integer(12)) ;
-ds_queue_enqueue(sid,new Integer(24)) ;
+//Object sid = sid = ds_queue_create() ;
+//ds_queue_enqueue(sid,new Integer(99)) ;
+//ds_queue_enqueue(sid,new Integer(12)) ;
+//ds_queue_enqueue(sid,new Integer(24)) ;
+//
+//show_message(string(ds_queue_size(sid)));//3
+// 
+//show_message(string(ds_queue_dequeue(sid)));//99
+//show_message(string(ds_queue_head(sid)));//12
+//show_message(string(ds_queue_tail(sid)));//24
 
-show_message(string(ds_queue_size(sid)));//3
- 
-show_message(string(ds_queue_dequeue(sid)));//99
-show_message(string(ds_queue_head(sid)));//12
-show_message(string(ds_queue_tail(sid)));//24
-
-ds_queue_clear(sid);
-show_message(string(ds_queue_empty(sid)));//1/true
-ds_queue_destroy(sid);
+//ds_queue_clear(sid);
+//show_message(new String("Ip: ").add(string(mplay_ipaddress())));//1/true
+//ds_queue_destroy(sid);
        
     }
 

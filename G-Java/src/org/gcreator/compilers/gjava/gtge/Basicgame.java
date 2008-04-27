@@ -108,6 +108,7 @@ public class Basicgame extends Game {
         loadScenes();
         nextScene();
         setFPS(900);
+        
     }
 
     @Override

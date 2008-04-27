@@ -5070,6 +5070,12 @@ return new Object();
 
 public static Object mplay_ipaddress()
 {
+    try{
+        java.net.InetAddress i = java.net.InetAddress.getLocalHost();
+        
+   return new String(i.getHostAddress()); // IP address only
+        } catch(Exception e){
+        System.out.println(""+e.getMessage());}
 return new Object();
 }
 
