@@ -16,7 +16,7 @@ import javax.swing.*;
 /**
  * @author Luís Reis
  */
-public class AutocompleteFrame extends JFrame{
+public class AutocompleteFrame extends JDialog{
     public AutocompleteFrame(){
         super();
         setUndecorated(true);

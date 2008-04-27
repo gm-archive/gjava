@@ -6,6 +6,10 @@
 
 package org.gcreator.editors;
 
+import java.awt.BorderLayout;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.SwingUtilities;
 import org.gcreator.components.scanning.GScriptScanner;
 import org.gcreator.components.scanning.Scanner;
 import org.gcreator.components.SyntaxHighlighter;
@@ -23,7 +27,17 @@ import publicdomain.*;
  */
 public class ScriptEditor extends TabPanel {
     
+    public boolean changed = true;
     SyntaxHighlighter g;
+    
+    public boolean Save() {
+        file.value = g.getText();
+        if (file.value == null) {
+            file.value = "";
+        }
+        return true;
+    }
+    
     /** Creates new form ScriptEditor */
     public ScriptEditor(org.gcreator.fileclass.GFile file,Project project) {
         initComponents();
@@ -35,15 +49,30 @@ public class ScriptEditor extends TabPanel {
         g.setText(((Classes)file.value).toString());
         
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
+        //jPanel1.setLayout(jPanel1Layout);
+        /*jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-        );
+        );*/
+        setLayout(new BorderLayout());
+        add(BorderLayout.CENTER, jScrollPane1);
+        jScrollPane1.setViewportView(g);
+        
+        g.addPropertyChangeListener(new PropertyChangeListener() {
+            public void propertyChange(PropertyChangeEvent evt) {
+                changed = true;
+            }
+        });
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                g.requestFocusInWindow();
+            }
+        });
         
     }
     

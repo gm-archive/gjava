@@ -1,5 +1,9 @@
 package org.gcreator.components.scanning;
 
+import org.gcreator.autocomplete.AutocompleteFrame;
+import org.gcreator.autocomplete.GSAutocomplete;
+import org.gcreator.components.SyntaxHighlighter;
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /*
@@ -967,4 +971,8 @@ public class GScriptScanner extends SimpleScanner
                     "Unicode cat " + b + " hasn't been classified");
     }
 
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, SyntaxHighlighter editor, Project project){
+        GSAutocomplete a = new GSAutocomplete(selectionStart, selectionEnd, editor, project);
+        return a;
+    }
 }
