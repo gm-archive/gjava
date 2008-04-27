@@ -6,13 +6,14 @@
 
 package org.gcreator.editors;
 
-import com.jmex.audio.AudioSystem;
-import com.jmex.audio.AudioTrack;
+//import com.jmex.audio.AudioSystem;
+//import com.jmex.audio.AudioTrack;
 import java.applet.*;
 import java.io.*;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import org.gcreator.components.*;
 import org.gcreator.core.*;
@@ -30,8 +31,8 @@ import org.gcreator.fileclass.res.Sound;
  */
 public class SoundEditor extends TabPanel {
     static int number = 0;
-    AudioSystem audio;
-    private AudioTrack targetSound;
+//    AudioSystem audio;
+  //  private AudioTrack targetSound;
     /** Creates new form SoundEditor
      * @param file
      * @param project 
@@ -43,7 +44,7 @@ public class SoundEditor extends TabPanel {
         this.file = file;
         initComponents();
         jTextField1.setText(file.name);
-        audio = AudioSystem.getSystem();
+//        audio = AudioSystem.getSystem();
     }
     
     
@@ -245,13 +246,13 @@ public class SoundEditor extends TabPanel {
                 f.close();
                 
                 ff= new File("Sound/play"+number+((Sound)file.value).extension );
-               if (this.jCheckBox1.isSelected())
-             targetSound = audio.createAudioTrack(ff.toURI().toURL() , true); 
-                else
-                   targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);  
+          //     if (this.jCheckBox1.isSelected())
+//             targetSound = audio.createAudioTrack(ff.toURI().toURL() , true); 
+            //    else
+  //                 targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);  
              
-             targetSound.setVolume(1.0f);
-             targetSound.play();
+           //  targetSound.setVolume(1.0f);
+            // targetSound.play();
              //    fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
            // fx.play();
             
@@ -265,20 +266,20 @@ public class SoundEditor extends TabPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //stop sound
-        if (targetSound != null) {
-            targetSound.setLooping(false);
-            targetSound.stop();
-        }
+//        if (targetSound != null) {
+//            targetSound.setLooping(false);
+//            targetSound.stop();
+//        }
        //fx.stop(); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //loop sound
        // fx.loop();
-        if (targetSound != null) {
-            targetSound.setLooping(true);
-            targetSound.play();
-        }
+//        if (targetSound != null) {
+//            targetSound.setLooping(true);
+//            targetSound.play();
+//        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate

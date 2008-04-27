@@ -1,10 +1,11 @@
+
 /**
- * This script will test the basics of gml
- */
- 
+* This script will test the basics of gml
+*/
+
 /**
- * Assignments
- */
+* Assignments
+*/
 varname1= 3
 varname1 *= 3-4
 //show_message(string(varname1));
@@ -22,156 +23,155 @@ varname1 ^= 3-4
 //show_message(string(varname1));
 
 /**
- * Test expressions and further test assignments
- */
- {
-  x = 23;
-  color = $FFAA00;
-  str = 'hello world';
-  str = "hello world";
-  y += 5;
-  x *= y;
-  x = y << 2;
-  x = y >> 2;
-  x = 23*((2+4) / sin(y));
-  str = 'hello' + " world";
-  b = (x < 5) && !(x==2 || x==4);
-  b = (x <= 5) && !(x>2 ^^ x>4);
-  b= (x != 3)
-  b= -show_message("");
-  b=true
-  b=false
-  b= 3&4
-  b=3^4
-  b=3|4
-  b=3+4*2 mod 2
-  b= -(b div 2)
-  b= ~(b /2)
-  
+* Test expressions and further test assignments
+*/
+{
+x = 23;
+color = $FFAA00;
+str = 'hello world';
+str = "hello world";
+y += 5;
+x *= y;
+x = y << 2;
+x = y >> 2;
+x = 23*((2+4) / sin(y));
+str = 'hello' + " world";
+b = (x < 5) && !(x==2 || x==4);
+b = (x <= 5) && !(x>2 ^^ x>4);
+b= (x != 3)
+b= -show_message("");
+b=true
+b=false
+b= 3&4
+b=3^4
+b=3|4
+b=3+4*2 mod 2
+b= -(b div 2)
+b= ~(b /2)
+
 }
 
 /**
- * Test local and global variable creation
- */
+* Test local and global variable creation
+*/
 globalvar varname1
-  var varname2
-  
- /**
- * Test other instance variables
- */ 
-  ball.speed = 0;
-  other.sprite_index = sprite5;
+var varname2
+
+/**
+* Test other instance variables
+*/
+ball.speed = 0;
+other.sprite_index = sprite5;
 all.speed = 0;
 global.message = 'A good result';
 global.x = ball.x;
 (100032).speed = 0;
 {
-  nnn = instance_create(100,100,ball);
-  nnn.speed = 8;
+nnn = instance_create(100,100,ball);
+nnn.speed = 8;
 }
 {
-  obj[0] = ball;
-  obj[1] = flag;
-  obj[0].alarm[4] = 12;
-  obj[1].id.x = 12;
+obj[0] = ball;
+obj[1] = flag;
+obj[0].alarm[4] = 12;
+obj[1].id.x = 12;
 }
 
 /**
- * Test arrays
- */ 
+* Test arrays
+*/
 {
-  a[0] = 1;
-  i = 1;
-  while (i < 10) { a[i] = 2*a[i-1]; i += 1;}
-  b[4,6] = 32;
+a[0] = 1;
+i = 1;
+while (i < 10) { a[i] = 2*a[i-1]; i += 1;}
+b[4,6] = 32;
 }
 
 /**
- * Test if statements
- */ 
+* Test if statements
+*/
 if (x<200) {x += 4} else {x -= 4};
 if x>200 ; else if x<10 x*=9
 
 /**
- * Test repeat statements
- */ 
- repeat (5) instance_create(random(400),random(400),ball);
+* Test repeat statements
+*/
+repeat (5) instance_create(random(400),random(400),ball);
 repeat (-3) {}
 
 /**
- * Test while statements
- */ 
- while (!place_free(x,y))
-  {
-    x = random(room_width);
-    y = random(room_height);
-  }
-  
+* Test while statements
+*/
+while (!place_free(x,y))
+{
+x = random(room_width);
+y = random(room_height);
+}
+
 /**
- * Test do statements
- */ 
- do
-  {
-    x = random(room_width);
-    y = random(room_height)
-  }
-  until (place_free(x,y))
-  
+* Test do statements
+*/
+do
+{
+x = random(room_width);
+y = random(room_height)
+}
+until (place_free(x,y))
+
 /**
- * Test for statements
- */  
+* Test for statements
+*/
 for (i=0; i<=9; i+=1) list[i] = i+1;
 for (i=0; i<=9; i+=1) continue;
 
 /**
- * Test case statements
- */ 
- switch (keyboard_key)
+* Test case statements
+*/
+switch (keyboard_key)
 {
-  case vk_left:
-  case vk_numpad4:
-    x -= 4; break;
-  case vk_right:
-  case vk_numpad6:
-    x += 4; break;
-  default:
+case vk_left:
+case vk_numpad4:
+x -= 4; break;
+case vk_right:
+case vk_numpad6:
+x += 4; break;
+default:
 }
 
 /**
- * Test function statement
- */ 
+* Test function statement
+*/
 (instance_nearest(x,y,obj)).speed = 0
 
 /**
- * Test with statements
- */ 
+* Test with statements
+*/
 with (ball) y += 8;
 with (ball)
 {
-  x = random(room_width);
-  y = random(room_height);
+x = random(room_width);
+y = random(room_height);
 }
 with (ball)
 {
-  x = other.x;
-  y = other.y;
+x = other.x;
+y = other.y;
 }
 with (ball) instance_destroy();
 with (all)
 {
-  if (distance_to_object(other) < 50) instance_destroy();
+if (distance_to_object(other) < 50) instance_destroy();
 }
 
 
 
 /**
- * Test return statement
- */ 
+* Test return statement
+*/
 return (argument0*argument0);
 
 
 /**
- * Test exit statement
- */ 
+* Test exit statement
+*/
 exit;
-

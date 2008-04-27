@@ -29,7 +29,7 @@ import publicdomain.*;
 
 /**
  *
- * @author  Ali1 (TGMG)
+ * @author  TGMG
  */
 
 public class SceneEditor extends TabPanel {

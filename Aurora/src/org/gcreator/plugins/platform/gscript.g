@@ -79,7 +79,7 @@ varstatement returns [String value] @init {String s = "";}
 ;
 
 returnstatement returns [String value]
-: 'return' (e=expression{$value=$e.text;}) {$value =pc.returnstatement($value);}
+: 'return' (e=expression{$value=$e.value;}) {$value =pc.returnstatement($value);}
 ;
 
 exitstatement returns [String value]
@@ -172,7 +172,7 @@ assignment returns [String value]
 ;
 
 variable returns [String value]
-:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) ('.' (array|(WORD|OIVAR|GLOBALVAR)) )*
+:  (a=array{$value = pc.variable($a.value);}|valuee=(WORD|OIVAR|GLOBALVAR) {$value = pc.variable($valuee.text);}|'(' (NUMBER|variable|function) ')' '.' WORD) ('.' (array|(WORD)) )*
 ;
 
 function returns [String value]

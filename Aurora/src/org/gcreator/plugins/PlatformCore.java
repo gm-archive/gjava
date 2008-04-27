@@ -35,6 +35,8 @@ public class PlatformCore extends PluginCore {
     int usingwith = 0;
     Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
 
+    String actorlocal = "alarm,bbox_bottom,bbox_left,bbox_right,bbox_top,depth,direction,friction,gravity,gravity_direction,hspeed,id,image_alpha,image_angle,image_blend,image_index,image_number,image_single,image_speed,image_xscale,image_yscale,mask_index,object_index,path_endaction,path_index,path_orientation,path_position,path_positionprevious,path_scale,path_speed,persistent,solid,speed,sprite_height,sprite_index,sprite_width,sprite_xoffset,sprite_yoffset,timeline_index,timeline_position,timeline_speed,visible,vspeed,x,xprevious,xstart,y,yprevious,ystart";
+    
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.GObject childNode;
 
@@ -221,6 +223,7 @@ public class PlatformCore extends PluginCore {
         //System.out.println("assignment:"+expression);
         
         String instance="",value="";
+        String tempvar=variable;
         
         if(variable.contains("all."))
             instance="(new All())";
@@ -234,11 +237,39 @@ public class PlatformCore extends PluginCore {
             instance="Global";
         else if(variable.contains("("))
             instance="(new All"+variable.substring(0,variable.indexOf(".")-1)+"))";
-        else if(variable.contains("."))
+        else if(variable.contains(".")){
             instance="(new All("+variable.substring(0,variable.indexOf(".")-1)+"))";
-        
+            tempvar = variable.substring(0,variable.indexOf(".")-1);
+        }
         else
             instance="self";
+        
+        if (actorlocal.contains(","+tempvar+",")){
+            String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
+       
+            value=instance+".set"+var+"(";
+
+            if (operator.equals("="))
+            value+=expression;
+        else if (operator.equals(":="))
+            value+=expression;
+        else if (operator.equals("+="))
+            value += instance+".get"+var+"().setadd("+expression+")";
+        else if (operator.equals("*="))
+            value += instance+".get"+var+"().setmult("+expression+")";
+        else if (operator.equals("-="))
+            value += instance+".get"+var+"().setsub("+expression+")";
+        else if (operator.equals("/="))
+            value += instance+".get"+var+"().setdiv("+expression+")";
+        else if (operator.equals("&="))
+            value += instance+".get"+var+"().setband("+expression+")";
+        else if (operator.equals("|="))
+            value += instance+".get"+var+"().setbor("+expression+")";
+        else if (operator.equals("^="))
+            value += instance+".get"+var+"().setbxor("+expression+")";
+        return value+")";
+        }
+        
         variable = variable.substring(variable.indexOf(".")+1,variable.length());
            value = instance+".setVariable(\""+variable+"\"," ;
         
@@ -264,6 +295,8 @@ public class PlatformCore extends PluginCore {
     }
     
     public String functionstatement(String name, String parameters) {
+        if (parameters == null)
+            parameters="";
         return name+ "("+parameters+")";
     }
     
@@ -283,6 +316,16 @@ public class PlatformCore extends PluginCore {
     {
         String instance="",value="";
         
+        ///////////////////////////////////////////
+        /// Constants
+        ///////////////////////////////////////////
+        if (variable.equals("true"))
+            return "(new Boolean(true))";
+        else if (variable.equals("false"))
+            return "(new Boolean(false))";
+        else if (variable.equals("pi"))
+            return "(new Double(false))";
+        
         if(variable.contains("all."))
             instance="(new All())";
         else if(variable.contains("other."))
@@ -300,6 +343,8 @@ public class PlatformCore extends PluginCore {
         else
             instance="self";
         
+        if (actorlocal.contains(","+variable+","))
+        return instance+".get"+(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length())+"()";
         variable = variable.substring(variable.indexOf(".")+1,variable.length());
         
         value=instance+".getVariable(\""+variable+"\")";
