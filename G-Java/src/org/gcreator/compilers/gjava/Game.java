@@ -4,6 +4,7 @@ import com.golden.gamedev.OpenGLGameLoader;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Graphics2D;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
@@ -16,7 +17,9 @@ import org.gcreator.compilers.gjava.lwjgl.*;
 
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 public static Sprite G_Creator_NULL_SPRITE, sprite1;
-    Game(){        
+//public static Graphics2D g2d;
+    Game(){   
+        ;
     }
     
    public void loadScenes(){
@@ -27,6 +30,7 @@ public void loadSprites() {
     BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};
 sprite1 = new Sprite("sprite1", 32, 34, 1, 2, 3, 4, 0, 0, b);
 System.out.println("load sprites");
+
 }
 
    public static void main(java.lang.String[] args){

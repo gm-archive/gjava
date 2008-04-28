@@ -30,7 +30,12 @@ public class TestActor extends Actor {
     public TestActor(Object X, Object Y, Object instance_id) {
         self=this;
         
-   
+       // sid = surface_create(new Integer(300),new Integer(300));
+//   surface_set_target( sid) ;
+//draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(200),new Boolean(false));
+
+//surface_reset_target();
+
         try {
             
         //sprite = Game.sprite1;
@@ -87,9 +92,10 @@ y=0;
 //ds_queue_destroy(sid);
        
     }
-
+//Object sid;
     @Override
     public Object Create_event() {
+        
        // show_message(new String("Test worked :)"+java.lang.Math.PI));
         x=1;
 Object n=new Integer(1),
@@ -123,11 +129,15 @@ return null;
     public void Draw_event(Graphics2D g) {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
     //draw_clear(getC_black());
-        draw_set_color(make_color_hsv(new Integer(16),new Integer(100),new Integer(100)));
-        System.out.println("red:"+color_get_red(draw_get_color()));
-        System.out.println("green:"+color_get_green(draw_get_color()));
-        System.out.println("blue:"+color_get_blue(draw_get_color()));
-        draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(200),new Boolean(false));
+        draw_set_color(getC_aqua());
+//        
+        draw_text(new Integer(0),new Integer(10),new String("Hello world!"));
+            Game.Current.g2d.drawString("test", 100, 100);
+        //test surface
+        
+
+//draw_surface(sid,new Integer(100),new Integer(100)); 
+    System.out.println("paint");
     }
 
 //    @Override

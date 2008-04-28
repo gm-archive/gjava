@@ -73,7 +73,7 @@ public class Scene2D {
        
      public Vector<Background> backgrounds = new Vector();
      
-     public Graphics2D g2d;
+     public Graphics2D g2d=null;
      
     /**
      * The background color for this room
@@ -197,7 +197,8 @@ public class Scene2D {
     }
 
     public void render(Graphics2D g)  {
-        g2d = g;
+        if (g2d == null)
+            g2d = g;
         if (showcolor) {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );

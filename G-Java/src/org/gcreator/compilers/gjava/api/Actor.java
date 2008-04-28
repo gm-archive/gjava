@@ -140,6 +140,7 @@ public class Actor extends tile {
 
     public void callEvents() {
         Move();
+        System.out.println("move");
 //        setImage_xscale(getImage_xscale().add(new Double(0.1)));
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }

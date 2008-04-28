@@ -23,6 +23,7 @@ public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
 
 instances.add(new TestActor(new Integer(0),new Integer(0),new Double(1.0)));
 System.out.println("instances size:"+instances.size());
+
 //instances.add(new TestActor(new Integer(16),new Integer(90),new Double(1.0)));
     }
 

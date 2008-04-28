@@ -1658,6 +1658,7 @@ return new Object();
 
 public static Object draw_text(Object x, Object y, Object string)
 {
+    Game.Current.g2d.drawString(""+string, x.getInt(), y.getInt());
 return new Object();
 }
 
@@ -1853,46 +1854,57 @@ return new Object();
  */
 public static Object surface_create(Object w, Object h)
 {
-return new Object();
+    System.out.println("surface");
+return new Surface(w.getInt(),h.getInt());
 }
 
 public static Object surface_free(Object id)
 {
+    //not needed
 return new Object();
 }
 
 public static Object surface_exists(Object id)
 {
+    //not needed
 return new Object();
 }
 
 public static Object surface_get_width(Object id)
 {
-return new Object();
+return new Integer(((Surface)id).width);
 }
 
 public static Object surface_get_height(Object id)
 {
-return new Object();
+return new Integer(((Surface)id).height);
 }
 
 public static Object surface_get_texture(Object id)
 {
+    //not needed
 return new Object();
 }
 
 public static Object surface_set_target(Object id)
 {
+    //Game.g2d = Game.Current.g2d;
+    //Game.Current.g2d = ((Surface)id).b.createGraphics();
+    System.out.println("surface");
 return new Object();
 }
 
 public static Object surface_reset_target()
 {
+   // Game.Current.g2d = Game.g2d;
+    System.out.println("surface");
 return new Object();
 }
 
 public static Object draw_surface(Object id, Object x, Object y)
 {
+    Game.Current.g2d.drawImage(((Surface)id).b, null, x.getInt(), y.getInt());
+    System.out.println("surface");
 return new Object();
 }
 
