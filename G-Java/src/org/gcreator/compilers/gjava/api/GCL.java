@@ -1465,31 +1465,66 @@ return new Object();
 
 public static Object draw_point(Object x, Object y)
 {
+    Game.Current.g2d.fillRect((int)x.getDouble(), (int)y.getDouble(), 1, 1);
 return new Object();
 }
 
 public static Object draw_line(Object x1, Object y1, Object x2, Object y2)
 {
+    Game.Current.g2d.drawLine((int)x1.getDouble(), (int)y1.getDouble(), (int)x2.getDouble(), (int)y2.getDouble());
 return new Object();
 }
 
 public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
-return new Object();
+    if (x1.getDouble() > x2.getDouble()) {
+    Object temp = x1;
+    x1 = x2;
+    x2=temp;
+    }
+    if (y1.getDouble() > y2.getDouble()) {
+    Object temp = y1;
+    y1 = y2;
+    y2=temp;
+    }
+    if (outline.getBoolean())
+    Game.Current.g2d.drawRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()));
+    else
+        Game.Current.g2d.fillRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()));
+    
+    return new Object();
 }
 
 public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
+     if (x1.getDouble() > x2.getDouble()) {
+    Object temp = x1;
+    x1 = x2;
+    x2=temp;
+    }
+    if (y1.getDouble() > y2.getDouble()) {
+    Object temp = y1;
+    y1 = y2;
+    y2=temp;
+    }
+    if (outline.getBoolean())
+    Game.Current.g2d.drawRoundRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()),10,10);
+    else
+        Game.Current.g2d.fillRoundRect((int)x1.getDouble(), (int)y1.getDouble(), (int)(x2.getDouble()-x1.getDouble()), (int)(y2.getDouble()-y1.getDouble()),10,10);
+    
 return new Object();
 }
 
 public static Object draw_triangle(Object x1, Object y1, Object x2, Object y2, Object x3, Object y3, Object outline)
 {
+   // int[] xpoints = {(int)x1.getDouble(),(int)x2.getDouble(),(int)x3.getDouble()};
+   // Game.Current.g2d.drawPolygon(xPoints, yPoints, nPoints);
 return new Object();
 }
 
 public static Object draw_circle(Object x, Object y, Object r, Object outline)
 {
+    //Game.Current.g2d.drawArc(x, y, width, height, startAngle, arcAngle);
 return new Object();
 }
 
@@ -1526,6 +1561,7 @@ return new Object();
 
 public static Object draw_set_color(Object col)
 {
+   Game.Current.g2d.setColor(((Color)col).c); 
 return new Object();
 }
 
@@ -1536,7 +1572,7 @@ return new Object();
 
 public static Object draw_get_color()
 {
-return new Object();
+  return  new Color(Game.Current.g2d.getColor()); 
 }
 
 public static Object draw_get_alpha()
@@ -1546,27 +1582,28 @@ return new Object();
 
 public static Object make_color_rgb(Object red, Object green, Object blue)
 {
-return new Object();
+return new Color((int)red.getDouble(),(int)green.getDouble(),(int)blue.getDouble());
 }
 
-public static Object make_color_hsv(Object hue, Object saturation, Object value)
+public static Object make_color_hsv(Object hue, Object s, Object value)
 {
-return new Object();
+    return new Color(java.awt.Color.getHSBColor(hue.getInt(), s.getInt(), value.getInt()));
+
 }
 
 public static Object color_get_red(Object col)
 {
-return new Object();
+return new Integer(((Color)col).c.getRed());
 }
 
 public static Object color_get_green(Object col)
 {
-return new Object();
+return new Integer(((Color)col).c.getGreen());
 }
 
 public static Object color_get_blue(Object col)
 {
-return new Object();
+return new Integer(((Color)col).c.getBlue());
 }
 
 public static Object color_get_hue(Object col)

@@ -260,6 +260,11 @@ public class Object {
         return 0;
     }
     
+    public int getInt()
+    {
+        return (int)getDouble();
+    }
+    
     public float getFloat()
     {
         return 0;
