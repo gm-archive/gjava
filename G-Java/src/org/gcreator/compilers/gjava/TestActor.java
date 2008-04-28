@@ -30,12 +30,13 @@ public class TestActor extends Actor {
     public TestActor(Object X, Object Y, Object instance_id) {
         self=this;
         
-       // sid = surface_create(new Integer(300),new Integer(300));
-//   surface_set_target( sid) ;
-//draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(200),new Boolean(false));
+        sid = surface_create(new Integer(300),new Integer(300));
+   surface_set_target( sid) ;
+draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(200),new Boolean(false));
 
-//surface_reset_target();
-
+surface_reset_target();
+//System.out.println(""+color_get_red(surface_getpixel(sid,new Integer(220),new Integer(220))));
+show_error(new String("Test error"),new Boolean(true));
         try {
             
         //sprite = Game.sprite1;
@@ -92,7 +93,7 @@ y=0;
 //ds_queue_destroy(sid);
        
     }
-//Object sid;
+Object sid;
     @Override
     public Object Create_event() {
         
@@ -136,7 +137,7 @@ return null;
         //test surface
         
 
-//draw_surface(sid,new Integer(100),new Integer(100)); 
+draw_surface(sid,new Integer(100),new Integer(100)); 
     System.out.println("paint");
     }
 

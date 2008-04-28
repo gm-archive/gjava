@@ -12,6 +12,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.Collections;
 import java.util.Vector;
+import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.Variables;
 import org.gcreator.compilers.gjava.api.components.Background;
@@ -73,7 +74,7 @@ public class Scene2D {
        
      public Vector<Background> backgrounds = new Vector();
      
-     public Graphics2D g2d=null;
+     public Graphics2D g2d=null,bg2d=null;
      
     /**
      * The background color for this room
@@ -197,8 +198,10 @@ public class Scene2D {
     }
 
     public void render(Graphics2D g)  {
-        if (g2d == null)
+        if (Game.graphics == null)
             g2d = g;
+        else
+            bg2d=g;
         if (showcolor) {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );

@@ -6,8 +6,10 @@
 package org.gcreator.compilers.gjava.api;
 
 import com.golden.gamedev.util.ImageUtil;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.components.Sprite;
@@ -1033,6 +1035,7 @@ return new Object();
 
 public static Object game_end()
 {
+    System.exit(0);
 return new Object();
 }
 
@@ -1854,7 +1857,6 @@ return new Object();
  */
 public static Object surface_create(Object w, Object h)
 {
-    System.out.println("surface");
 return new Surface(w.getInt(),h.getInt());
 }
 
@@ -1888,15 +1890,15 @@ return new Object();
 
 public static Object surface_set_target(Object id)
 {
-    //Game.g2d = Game.Current.g2d;
-    //Game.Current.g2d = ((Surface)id).b.createGraphics();
-    System.out.println("surface");
+    Game.graphics = Game.Current.g2d;
+    Game.Current.g2d = ((Surface)id).b.createGraphics();
+    
 return new Object();
 }
 
 public static Object surface_reset_target()
 {
-   // Game.Current.g2d = Game.g2d;
+    Game.graphics =null;
     System.out.println("surface");
 return new Object();
 }
@@ -1904,7 +1906,7 @@ return new Object();
 public static Object draw_surface(Object id, Object x, Object y)
 {
     Game.Current.g2d.drawImage(((Surface)id).b, null, x.getInt(), y.getInt());
-    System.out.println("surface");
+    
 return new Object();
 }
 
@@ -1950,12 +1952,20 @@ return new Object();
 
 public static Object surface_getpixel(Object id, Object x, Object y)
 {
+    new Color(new java.awt.Color(((Surface) id).b.getRGB(x.getInt(), y.getInt())));
 return new Object();
 }
 
 public static Object surface_save(Object id, Object fname)
 {
-return new Object();
+        try {
+
+            ImageIO.write(((Surface) id).b, "png", new java.io.File("" + fname+".png"));
+            return new Object();
+        } catch (IOException ex) {
+            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Object();
 }
 
 public static Object surface_save_part(Object id, Object fname, Object x, Object y, Object w, Object h)
@@ -2831,7 +2841,11 @@ return new Object();
 
 public static Object show_error(Object str, Object abort)
 {
-return new Object();
+    JOptionPane.showMessageDialog(org.gcreator.compilers.gjava.Game.canvas, str.toString(),"Error!",JOptionPane.ERROR_MESSAGE );
+    if (abort.getBoolean())
+        System.exit(1);
+    
+    return new Object();
 }
 
 /*

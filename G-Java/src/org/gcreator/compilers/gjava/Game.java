@@ -17,7 +17,7 @@ import org.gcreator.compilers.gjava.lwjgl.*;
 
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 public static Sprite G_Creator_NULL_SPRITE, sprite1;
-//public static Graphics2D g2d;
+public static Graphics2D graphics=null;
     Game(){   
         ;
     }
