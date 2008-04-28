@@ -1587,8 +1587,7 @@ return new Color((int)red.getDouble(),(int)green.getDouble(),(int)blue.getDouble
 
 public static Object make_color_hsv(Object hue, Object s, Object value)
 {
-    return new Color(java.awt.Color.getHSBColor(hue.getInt(), s.getInt(), value.getInt()));
-
+    return new Color(java.awt.Color.getHSBColor((int)hue.getDouble(), (int)s.getDouble(), (int)value.getDouble()));
 }
 
 public static Object color_get_red(Object col)

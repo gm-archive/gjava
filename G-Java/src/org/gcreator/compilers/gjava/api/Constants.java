@@ -130,7 +130,7 @@ protected static Actor self;
     }
 
     public Object getC_aqua() {
-        return new Color(new java.awt.Color(0,0,0)); //  c_aqua;
+        return new Color(new java.awt.Color(0,255,255)); //  c_aqua;
     }
 
     public void setC_aqua(Object c_aqua) {
@@ -154,7 +154,7 @@ protected static Actor self;
     }
 
     public Object getC_dkgray() {
-        return new Object(); //  c_dkgray;
+        return  new Color(java.awt.Color.DARK_GRAY); //  c_dkgray;
     }
 
     public void setC_dkgray(Object c_dkgray) {
@@ -162,7 +162,7 @@ protected static Actor self;
     }
 
     public Object getC_fuchsia() {
-        return new Object(); //  c_fuchsia;
+        return new Color(new java.awt.Color(255,0,255)); //  c_fuchsia;
     }
 
     public void setC_fuchsia(Object c_fuchsia) {
@@ -170,7 +170,7 @@ protected static Actor self;
     }
 
     public Object getC_gray() {
-        return new Object(); //  c_gray;
+        return  new Color(java.awt.Color.GRAY); //  c_gray;
     }
 
     public void setC_gray(Object c_gray) {
@@ -178,7 +178,7 @@ protected static Actor self;
     }
 
     public Object getC_green() {
-        return new Object(); //  c_green;
+        return  new Color(java.awt.Color.GREEN); //  c_green;
     }
 
     public void setC_green(Object c_green) {
@@ -186,7 +186,7 @@ protected static Actor self;
     }
 
     public Object getC_lime() {
-        return new Object(); //  c_lime;
+        return  new Color(new java.awt.Color(0,255,0)); //  c_lime;
     }
 
     public void setC_lime(Object c_lime) {
@@ -194,7 +194,7 @@ protected static Actor self;
     }
 
     public Object getC_ltgray() {
-        return new Object(); //  c_ltgray;
+        return  new Color(java.awt.Color.LIGHT_GRAY); //  c_ltgray;
     }
 
     public void setC_ltgray(Object c_ltgray) {
@@ -202,7 +202,7 @@ protected static Actor self;
     }
 
     public Object getC_maroon() {
-        return new Object(); //  c_maroon;
+        return  new Color(new java.awt.Color(128,0,0)); //  c_maroon;
     }
 
     public void setC_maroon(Object c_maroon) {
@@ -210,7 +210,7 @@ protected static Actor self;
     }
 
     public Object getC_navy() {
-        return new Object(); //  c_navy;
+        return  new Color(new java.awt.Color(0,0,128)); //  c_navy;
     }
 
     public void setC_navy(Object c_navy) {
@@ -218,7 +218,7 @@ protected static Actor self;
     }
 
     public Object getC_olive() {
-        return new Object(); //  c_olive;
+        return  new Color(new java.awt.Color(128,128,0)); //  c_olive;
     }
 
     public void setC_olive(Object c_olive) {
@@ -226,7 +226,7 @@ protected static Actor self;
     }
 
     public Object getC_orange() {
-        return new Object(); //  c_orange;
+        return  new Color(java.awt.Color.orange); //  c_orange;
     }
 
     public void setC_orange(Object c_orange) {
@@ -234,7 +234,7 @@ protected static Actor self;
     }
 
     public Object getC_purple() {
-        return new Object(); //  c_purple;
+        return  new Color(new java.awt.Color(128,0,128)); //  c_purple;
     }
 
     public void setC_purple(Object c_purple) {
@@ -242,7 +242,7 @@ protected static Actor self;
     }
 
     public Object getC_red() {
-        return new Object(); //  c_red;
+        return  new Color(java.awt.Color.red); //  c_red;
     }
 
     public void setC_red(Object c_red) {
@@ -250,7 +250,7 @@ protected static Actor self;
     }
 
     public Object getC_silver() {
-        return new Object(); //  c_silver;
+        return  new Color(new java.awt.Color(192,192,192)); //  c_silver;
     }
 
     public void setC_silver(Object c_silver) {
@@ -258,7 +258,7 @@ protected static Actor self;
     }
 
     public Object getC_teal() {
-        return new Object(); //  c_teal;
+        return  new Color(new java.awt.Color(0,128,128)); //  c_teal;
     }
 
     public void setC_teal(Object c_teal) {
@@ -266,7 +266,7 @@ protected static Actor self;
     }
 
     public Object getC_white() {
-        return new Object(); //  c_white;
+        return  new Color(java.awt.Color.WHITE); //  c_white;
     }
 
     public void setC_white(Object c_white) {
@@ -274,7 +274,7 @@ protected static Actor self;
     }
 
     public Object getC_yellow() {
-        return new Object(); //  c_yellow;
+        return  new Color(java.awt.Color.yellow); //  c_yellow;
     }
 
     public void setC_yellow(Object c_yellow) {

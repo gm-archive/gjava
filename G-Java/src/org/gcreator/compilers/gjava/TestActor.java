@@ -123,7 +123,7 @@ return null;
     public void Draw_event(Graphics2D g) {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
     //draw_clear(getC_black());
-        draw_set_color(make_color_rgb(new Integer(2),new Integer(6),new Integer(50)));
+        draw_set_color(make_color_hsv(new Integer(16),new Integer(100),new Integer(100)));
         System.out.println("red:"+color_get_red(draw_get_color()));
         System.out.println("green:"+color_get_green(draw_get_color()));
         System.out.println("blue:"+color_get_blue(draw_get_color()));
