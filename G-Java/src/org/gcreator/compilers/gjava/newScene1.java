@@ -6,6 +6,7 @@ import org.gcreator.compilers.gjava.api.*;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.Object;
+import org.gcreator.compilers.gjava.api.components.Background;
 
 
 public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
@@ -18,9 +19,10 @@ public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
     
     private void setupScene() {
       System.out.println("setup scene");
-        System.out.println("setup scene");
+        backgrounds.add(new Background(true,0,0,0,0,0,0,0,0,0,0,0,0,0,Game.sprite1.imshow()));
+
 instances.add(new TestActor(new Integer(0),new Integer(0),new Double(1.0)));
-System.out.println("size"+instances.size());
+System.out.println("instances size:"+instances.size());
 //instances.add(new TestActor(new Integer(16),new Integer(90),new Double(1.0)));
     }
 

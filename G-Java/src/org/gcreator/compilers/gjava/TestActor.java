@@ -5,6 +5,7 @@
 
 package org.gcreator.compilers.gjava;
 
+import java.awt.Graphics2D;
 import java.io.File;
 import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.Object;
@@ -63,9 +64,9 @@ file_text_close(fileid);
 
 //test sprite func
 //setVisible(new Boolean(true));
-System.out.println("Image_angle:"+getImage_angle());
-setImage_angle(new Double(90));
-System.out.println("Image_angle:"+getImage_angle());
+System.out.println("getBackground_xscale(0):"+getBackground_xscale(0));
+setBackground_xscale(0,new Double(9));
+System.out.println("getBackground_xscale(0):"+getBackground_xscale(0));
 
 x=0;
 y=0;
@@ -116,6 +117,12 @@ show_message(string(getVk_nokey()));
 
 //show_message(string(display_set_size(new Integer(1280),new Integer(80))));
 return null;
+    }
+
+    @Override
+    public void Draw_event(Graphics2D g) {
+        draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
+    draw_clear(getC_black());
     }
 
 //    @Override

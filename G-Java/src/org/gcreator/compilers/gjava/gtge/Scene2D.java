@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Vector;
 import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.Variables;
+import org.gcreator.compilers.gjava.api.components.Background;
 
 
 /**
@@ -68,8 +69,12 @@ public class Scene2D {
      */
     public int width;
     
+     public boolean showcolor=true;  
        
-       
+     public Vector<Background> backgrounds = new Vector();
+     
+     public Graphics2D g2d;
+     
     /**
      * The background color for this room
      */
@@ -192,10 +197,23 @@ public class Scene2D {
     }
 
     public void render(Graphics2D g)  {
+        g2d = g;
+        if (showcolor) {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );
-       
-        //System.out.println(""+instances.size());
+        }
+        
+        //Draw background
+        for (int i = 0; i < backgrounds.size(); i++) {
+            
+            Background object = backgrounds.elementAt(i);
+            if (object.background_visible)
+            g.drawImage(object.background_image, null, object.background_x, object.background_y);
+            object.update();
+        }
+
+        
+        //Draw instances
         for (int i = 0; i < instances.size(); i++) {
             if (((Actor)instances.elementAt(i)).visible)
             ((Actor)instances.elementAt(i)).Draw_event(g);

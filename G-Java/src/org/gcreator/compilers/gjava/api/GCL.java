@@ -5,10 +5,12 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import com.golden.gamedev.util.ImageUtil;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.gcreator.compilers.gjava.Game;
+import org.gcreator.compilers.gjava.api.components.Sprite;
 
 /**
  * This class is valid GCL, don't use java code here
@@ -1352,6 +1354,8 @@ return new Object();
 
 public static Object draw_sprite(Object sprite, Object subimg, Object x, Object y)
 {
+    
+    Game.Current.g2d.drawImage(((Sprite)sprite).imshow((int)subimg.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
 return new Object();
 }
 
@@ -1362,6 +1366,8 @@ return new Object();
 
 public static Object draw_sprite_stretched(Object sprite, Object subimg, Object x, Object y, Object w, Object h)
 {
+    Game.Current.g2d.drawImage(ImageUtil.resize(((Sprite)sprite).imshow((int)subimg.getDouble()),(int)w.getDouble(),(int)y.getDouble()), null, (int)x.getDouble(), (int)y.getDouble());
+//((Sprite)sprite).imshow((int)subimg.getDouble()).
 return new Object();
 }
 
@@ -1447,6 +1453,8 @@ return new Object();
  */
 public static Object draw_clear(Object col)
 {
+    Game.Current.g2d.setColor( ((Color)col).c );
+        Game.Current.g2d.fillRect( 0, 0, Game.Current.width, Game.Current.height );
 return new Object();
 }
 

@@ -259,140 +259,142 @@ public static Object   argument
         Variables.argument_relative = argument_relative;
     }
 
-    public static Object getBackground_alpha() {
+    public static Object getBackground_alpha(int back) {
         return background_alpha;
     }
 
-    public static void setBackground_alpha(Object background_alpha) {
+    public static void setBackground_alpha(int back,Object background_alpha) {
         Variables.background_alpha = background_alpha;
     }
 
-    public static Object getBackground_blend() {
+    public static Object getBackground_blend(int back) {
         return background_blend;
     }
 
-    public static void setBackground_blend(Object background_blend) {
+    public static void setBackground_blend(int back,Object background_blend) {
         Variables.background_blend = background_blend;
     }
 
     public static Object getBackground_color() {
-        return background_color;
+        return new Color(Game.Current.backcolor);
     }
 
     public static void setBackground_color(Object background_color) {
-        Variables.background_color = background_color;
-    }
-
-    public static Object getBackground_foreground() {
-        return background_foreground;
-    }
-
-    public static void setBackground_foreground(Object background_foreground) {
-        Variables.background_foreground = background_foreground;
-    }
-
-    public static Object getBackground_height() {
-        return background_height;
-    }
-
-    public static void setBackground_height(Object background_height) {
-        Variables.background_height = background_height;
-    }
-
-    public static Object getBackground_hspeed() {
-        return background_hspeed;
-    }
-
-    public static void setBackground_hspeed(Object background_hspeed) {
-        Variables.background_hspeed = background_hspeed;
-    }
-
-    public static Object getBackground_htiled() {
-        return background_htiled;
-    }
-
-    public static void setBackground_htiled(Object background_htiled) {
-        Variables.background_htiled = background_htiled;
-    }
-
-    public static Object getBackground_index() {
-        return background_index;
-    }
-
-    public static void setBackground_index(Object background_index) {
-        Variables.background_index = background_index;
+        Game.Current.backcolor = ((Color)background_color).c;
     }
 
     public static Object getBackground_showcolor() {
-        return background_showcolor;
+        return new Boolean(Game.Current.showcolor);
     }
 
     public static void setBackground_showcolor(Object background_showcolor) {
-        Variables.background_showcolor = background_showcolor;
+        Game.Current.showcolor = background_showcolor.getBoolean();
     }
 
-    public static Object getBackground_visible() {
-        return background_visible;
+    public static Object getBackground_foreground(int back) {
+        return background_foreground;
     }
 
-    public static void setBackground_visible(Object background_visible) {
-        Variables.background_visible = background_visible;
+    public static void setBackground_foreground(int back,Object background_foreground) {
+        Variables.background_foreground = background_foreground;
     }
 
-    public static Object getBackground_vspeed() {
-        return background_vspeed;
+    public static Object getBackground_height(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_image.getHeight());
     }
 
-    public static void setBackground_vspeed(Object background_vspeed) {
-        Variables.background_vspeed = background_vspeed;
+    public static void setBackground_height(int back,Object background_height) {
+        //constant
     }
 
-    public static Object getBackground_vtiled() {
+    public static Object getBackground_hspeed(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_hspeed);
+    }
+
+    public static void setBackground_hspeed(int back,Object background_hspeed) {
+        Game.Current.backgrounds.elementAt(back).background_hspeed = (int)background_hspeed.getDouble();
+    }
+
+    public static Object getBackground_htiled(int back) {
+        return background_htiled;
+    }
+
+    public static void setBackground_htiled(int back,Object background_htiled) {
+        Variables.background_htiled = background_htiled;
+    }
+
+    public static Object getBackground_index(int back) {
+        return background_index;
+    }
+
+    public static void setBackground_index(int back,Object background_index) {
+        Variables.background_index = background_index;
+    }
+
+   public static Object getBackground_visible(int back) {
+       return new Boolean(Game.Current.backgrounds.elementAt(back).background_visible);
+    }
+
+    public static void setBackground_visible(int back,Object background_visible) {
+        Game.Current.backgrounds.elementAt(back).background_visible = background_visible.getBoolean();
+    }
+
+    public static Object getBackground_vspeed(int back) {
+         return new Double(Game.Current.backgrounds.elementAt(back).background_vspeed);
+    }
+
+    public static void setBackground_vspeed(int back,Object background_vspeed) {
+        Game.Current.backgrounds.elementAt(back).background_vspeed = (int)background_vspeed.getDouble();
+    }
+
+    public static Object getBackground_vtiled(int back) {
         return background_vtiled;
     }
 
-    public static void setBackground_vtiled(Object background_vtiled) {
+    public static void setBackground_vtiled(int back,Object background_vtiled) {
         Variables.background_vtiled = background_vtiled;
     }
 
-    public static Object getBackground_width() {
-        return background_width;
+    public static Object getBackground_width(int back) {
+         return new Double(Game.Current.backgrounds.elementAt(back).background_image.getWidth());
     }
 
-    public static void setBackground_width(Object background_width) {
-        Variables.background_width = background_width;
+    public static void setBackground_width(int back,Object background_width) {
+        //constant
     }
 
-    public static Object getBackground_x() {
-        return background_x;
+    public static Object getBackground_x(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_x);
     }
 
-    public static void setBackground_x(Object background_x) {
-        Variables.background_x = background_x;
+    public static void setBackground_x(int back,Object background_x) {
+        Game.Current.backgrounds.elementAt(back).background_x = (int)background_x.getDouble();
     }
 
-    public static Object getBackground_xscale() {
-        return background_xscale;
+    public static Object getBackground_xscale(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_xscale);
     }
 
-    public static void setBackground_xscale(Object background_xscale) {
-        Variables.background_xscale = background_xscale;
+    public static void setBackground_xscale(int back,Object background_xscale) {
+        Game.Current.backgrounds.elementAt(back).background_xscale = (int)background_xscale.getDouble();
+    Game.Current.backgrounds.elementAt(back).xscale();
     }
 
-    public static Object getBackground_y() {
-        return background_y;
+    public static Object getBackground_y(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_y);
     }
 
-    public static void setBackground_y(Object background_y) {
-        Variables.background_y = background_y;
+    public static void setBackground_y(int back,Object background_y) {
+        Game.Current.backgrounds.elementAt(back).background_y = (int)background_y.getDouble();
     }
 
-    public static Object getBackground_yscale() {
-        return background_yscale;
+    public static Object getBackground_yscale(int back) {
+        return new Double(Game.Current.backgrounds.elementAt(back).background_yscale);
     }
 
-    public static void setBackground_yscale(Object background_yscale) {
-        Variables.background_yscale = background_yscale;
+    public static void setBackground_yscale(int back,Object background_yscale) {
+        Game.Current.backgrounds.elementAt(back).background_yscale = (int)background_yscale.getDouble();
+    Game.Current.backgrounds.elementAt(back).yscale();
     }
 
     public static Object getCaption_health() {

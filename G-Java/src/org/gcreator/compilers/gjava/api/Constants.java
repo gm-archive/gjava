@@ -130,7 +130,7 @@ protected static Actor self;
     }
 
     public Object getC_aqua() {
-        return new Object(); //  c_aqua;
+        return new Color(new java.awt.Color(0,0,0)); //  c_aqua;
     }
 
     public void setC_aqua(Object c_aqua) {
@@ -138,7 +138,7 @@ protected static Actor self;
     }
 
     public Object getC_black() {
-        return new Object(); //  c_black;
+        return  new Color(java.awt.Color.black); //  c_black;
     }
 
     public void setC_black(Object c_black) {
@@ -146,7 +146,7 @@ protected static Actor self;
     }
 
     public Object getC_blue() {
-        return new Object(); //  c_blue;
+        return  new Color(java.awt.Color.blue); //  c_blue;
     }
 
     public void setC_blue(Object c_blue) {
