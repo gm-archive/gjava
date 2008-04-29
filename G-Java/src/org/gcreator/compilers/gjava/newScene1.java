@@ -5,7 +5,6 @@ import org.gcreator.compilers.gjava.core.*;
 import org.gcreator.compilers.gjava.api.*;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
-import org.gcreator.compilers.gjava.api.Object;
 import org.gcreator.compilers.gjava.api.components.Background;
 
 

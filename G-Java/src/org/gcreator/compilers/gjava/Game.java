@@ -1,30 +1,24 @@
 package org.gcreator.compilers.gjava;
 import com.golden.gamedev.GameLoader;
-import com.golden.gamedev.OpenGLGameLoader;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.Frame;
-import java.awt.Graphics2D;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import org.gcreator.compilers.gjava.api.*;
-import org.gcreator.compilers.gjava.api.BinaryFile;
 import org.gcreator.compilers.gjava.api.components.*;
 import org.gcreator.compilers.gjava.gtge.Scene2D;
-import org.gcreator.compilers.gjava.lwjgl.*;
+//import org.gcreator.compilers.gjava.lwjgl.*;
 //import org.gcreator.compilers.gjava.core.basicgame;
 
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 public static Sprite G_Creator_NULL_SPRITE, sprite1;
-public static Graphics2D graphics=null;
+
     Game(){   
         ;
     }
     
    public void loadScenes(){
-  scenes = new Scene2D[1]; 
-    scenes[0] = new newScene1();
+  //scenes = new Scene2D[1]; 
+ //   scenes[0] = new newScene1();
+       scenes = new Scene2D[]{new newScene1(),new newScene1()};
     }
 public void loadSprites() {
     BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};

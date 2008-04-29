@@ -12,6 +12,7 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -25,6 +26,8 @@ import org.gcreator.core.utilities;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.Event;
 import org.gcreator.events.MouseEvent;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.GObject;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Scene;
@@ -163,14 +166,20 @@ actorindex++;
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
         print(scene, "");
-        //print(scene, "import org.gcreator.compilers.gjava.components.Scene;");
+        
+
+
+
+
+
+        print(scene, "import java.awt.Color;");
         print(scene, "import org.gcreator.compilers.gjava.core.*;");
         print(scene, "import org.gcreator.compilers.gjava.api.*;");
-        //print(scene, "import java.awt.Color;");
-        print(scene, "import org.newdawn.slick.Color;");
-        print(scene, "");
-        // can do a opengl scene for now, in future pure java2d will be added here
-        print(scene, "public class " + s.name + " extends org.gcreator.compilers.gjava.lwjgl.Scene2D {");
+        print(scene, "import org.gcreator.compilers.gjava.api.Integer;");
+        print(scene, "import org.gcreator.compilers.gjava.api.Double;");
+        print(scene, "import org.gcreator.compilers.gjava.api.components.Background;");
+        
+        print(scene, "public class " + s.name + " extends org.gcreator.compilers.gjava.gtge.Scene2D {");
         print(scene, "");
         print(scene, "    " + s.name + "() {");
         if (s.drawbackcolor) {
@@ -186,6 +195,9 @@ actorindex++;
         for(int i=0; i<s.actors.size(); i++)
         print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor.name + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + ","+((ActorInScene) s.actors.get(i)).id +"));");
 
+        
+        //write backgrounds
+        print(scene,"backgrounds.add(new Background(false,0,0,0,0,0,0,0,0,0,0,0,0,0,null));");
         print(scene, "    }");
         print(scene, "");
         print(scene, "}");
@@ -254,11 +266,14 @@ actorindex++;
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
-        print(game, "import org.gcreator.compilers.gjava.api.components.*;");
-        print(game, "import org.gcreator.compilers.gjava.lwjgl.*;");
-        //import org.gcreator.compilers.gjava.components.Sprite;
-        print(game, "//import org.gcreator.compilers.gjava.core.basicgame;");
-        print(game, "public class Game extends org.gcreator.compilers.gjava.lwjgl.Basicgame {");
+        print(game, "import com.golden.gamedev.GameLoader;");
+        print(game, "import java.awt.*;");
+        print(game, "import org.gcreator.compilers.gjava.api.*;");
+print(game, "import org.gcreator.compilers.gjava.api.components.*;");
+print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
+
+        print(game, "import java.awt.image.BufferedImage;");
+        print(game, "public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {");
         print(game, loadSprites + "G_Creator_NULL_SPRITE;");
         print(game, "    Game(){");
         print(game, "//loading image code will go here");
@@ -266,18 +281,61 @@ actorindex++;
         print(game, "        loadScenes();");
         print(game, "        nextScene();");
         print(game, "    }");
+        
+        //scenes
+        
         print(game, "   public void loadScenes(){");
-        print(game, "  scenes = new Scene2D[" + scenes + "]; ");
-        print(game, "" + loadscene);
+        //print(game, "  scenes = new Scene2D[" + scenes + "]; ");
+        //print(game, "" + loadscene);
+        print(game, "scenes = new Scene2D[]{");
+        int i = gcreator.window.getMainProject().findFromName("$218");
+        System.out.println("get scenes");
+        boolean hasscenes=false;
+        if (i > 0) {
+            GObject ff = gcreator.window.getMainProject().childAt(i);
+            System.out.println("1");
+            if (ff != null && ff instanceof GFile) {
+                System.out.println("2");
+                GFile f = (GFile) ff;
+                if (f.value != null && f.value instanceof org.gcreator.fileclass.res.SettingsValues) {
+                    System.out.println("3");
+                    org.gcreator.fileclass.res.SettingsValues s = (org.gcreator.fileclass.res.SettingsValues) f.value;
+                    System.out.println("s done"+s);
+                    
+                    org.gcreator.fileclass.res.TabValues Scenes = s.getValue("Scene Order");
+                    
+                    System.out.println("scenes:"+Scenes);
+                    if(Scenes==null)
+                    {
+                        JOptionPane.showMessageDialog(null, "Error you haven't set the scene order, set it in the game settings first!","G-Java",JOptionPane.ERROR_MESSAGE);
+                        System.out.println("null scenes");
+                    }
+                    Vector v = (Vector) Scenes.getValue("Scenes");
+                    //System.out.println("Size:"+v.size());
+                    for (Enumeration t = v.elements(); t.hasMoreElements();) {
+                        
+                        System.out.println("has scenes");
+                        GFile o = (GFile) t.nextElement();
+                        hasscenes=true;
+                        print(game, "new " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
+                    }
+                }
+            }
+        }
+        if (hasscenes == false)
+        {
+            System.out.println("No scene order!");
+            JOptionPane.showMessageDialog(null, "Error you haven't set the scene order, set it in the game settings first!","G-Java",JOptionPane.ERROR_MESSAGE);
+        }
+        print(game, "    };");
         print(game, "    }");
         //Load sprites method
         print(game, createSprites + "}");
-        print(game, "   public static void main(String[] args){");
+        print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
-        print(game, "       canvas=frame;");
-        
-        print(game, "       new Game();");
-        print(game, "       frame.setVisible(true);");
+        print(game, "       GameLoader game = new GameLoader();");
+        print(game, "       game.setup(new Game(), new Dimension(640,480), false);");
+        print(game, "       game.start();");
         print(game, "   }");
         print(game, "}");
         game.close();
