@@ -27,7 +27,7 @@ public class AutocompleteFrame extends JDialog{
             
             public void focusGained(FocusEvent evt){}
         });
-        setSize(200, 100);
+        setSize(230, 120);
     }
     
     public boolean requestDie(){

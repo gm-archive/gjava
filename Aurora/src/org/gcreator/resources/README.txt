@@ -34,6 +34,8 @@ Contributions:
         Made the SVN work.
         Imported the graphics to Aurora
         Imported German dictionary to Aurora
+    Serge Humphrey (BobSerge or Bobistaken)
+        Fixed a few bugs.
     Luis Peregrina
         Remake of most images.
         Major corrections to the Spanish translation.
