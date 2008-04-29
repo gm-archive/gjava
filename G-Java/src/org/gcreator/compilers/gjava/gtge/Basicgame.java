@@ -6,6 +6,7 @@ package org.gcreator.compilers.gjava.gtge;
 
 
 import com.golden.gamedev.Game;
+import com.golden.gamedev.GameLoader;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
@@ -32,6 +33,9 @@ public class Basicgame extends Game {
     public static int firstroom,  lastroom,  currentscene = -1;
     public static Container canvas;
     public static Scene2D scenes[];
+public static Graphics2D graphics=null;
+public static GameLoader game;
+public static boolean fullscreen=false;
 
     public Basicgame() {
         

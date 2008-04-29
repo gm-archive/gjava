@@ -333,7 +333,7 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, createSprites + "}");
         print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
-        print(game, "       GameLoader game = new GameLoader();");
+        print(game, "       //GameLoader game = new GameLoader();");
         print(game, "       game.setup(new Game(), new Dimension(640,480), false);");
         print(game, "       game.start();");
         print(game, "   }");

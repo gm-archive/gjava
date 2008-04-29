@@ -29,6 +29,8 @@ public class TestActor extends Actor {
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self=this;
+        window_set_caption(new String("Caption!"));
+        System.out.println("window_get_caption():"+window_get_caption());
         
         sid = surface_create(new Integer(300),new Integer(300));
    surface_set_target( sid) ;
@@ -36,7 +38,7 @@ draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(20
 
 surface_reset_target();
 //System.out.println(""+color_get_red(surface_getpixel(sid,new Integer(220),new Integer(220))));
-show_error(new String("Test error"),new Boolean(true));
+//show_error(new String("Test error"),new Boolean(true));
         try {
             
         //sprite = Game.sprite1;

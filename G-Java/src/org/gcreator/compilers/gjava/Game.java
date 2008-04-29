@@ -10,6 +10,7 @@ import org.gcreator.compilers.gjava.gtge.Scene2D;
 
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 public static Sprite G_Creator_NULL_SPRITE, sprite1;
+//public static GameLoader game;
 
     Game(){   
         ;
@@ -32,8 +33,8 @@ System.out.println("load sprites");
        //canvas=frame;
        //new Game();
        //frame.setVisible(true);
-       GameLoader game = new GameLoader();
-        game.setup(new Game(), new Dimension(640,480), false);
+       game = new GameLoader();
+        game.setup(new Game(), new Dimension(64,48), false);
         game.start();
 //       OpenGLGameLoader g = new OpenGLGameLoader();
 //       g.setupLWJGL(new Game(), new Dimension(640,480), false);

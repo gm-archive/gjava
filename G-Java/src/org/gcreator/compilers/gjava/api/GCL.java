@@ -5,12 +5,22 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import com.golden.gamedev.engine.graphics.FullScreenMode;
+import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
+import java.awt.DisplayMode;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.components.Sprite;
 
@@ -2220,37 +2230,66 @@ return new Object();
  */
 public static Object window_set_visible(Object visible)
 {
+    if (Game.game.getGame().bsGraphics instanceof WindowedMode)
+        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(visible.getBoolean());
+    
 return new Object();
 }
 
 public static Object window_get_visible()
 {
+    if (Game.game.getGame().bsGraphics instanceof WindowedMode)
+        return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isVisible());
 return new Object();
 }
 
 public static Object window_set_fullscreen(Object full)
 {
+    Game.fullscreen = full.getBoolean();
+    GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice[] devices = env.getScreenDevices();
+    GraphicsDevice device = devices[0];
+    if (full.getBoolean()) {
+		// Full-screen mode
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(true);
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(false);
+			device.setFullScreenWindow(((WindowedMode)Game.game.getGame().bsGraphics).getFrame()); // comment this line if you want only undecorated frame
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
+		} else {
+		// Windowed mode
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(false);
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(true);
+			device.setFullScreenWindow(null); // comment this line if you want only undecorated frame
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
+		}
 return new Object();
 }
 
 public static Object window_get_fullscreen()
 {
-return new Object();
+return new Boolean(Game.fullscreen);
 }
 
 public static Object window_set_showborder(Object show)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().dispose();
+			((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setUndecorated(show.getBoolean()? false:true);
+                        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setVisible(true);
 return new Object();
 }
 
 public static Object window_get_showborder()
 {
-return new Object();
+    
+return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isUndecorated() ? false:true );
 }
 
 public static Object window_set_showicons(Object show)
 {
-return new Object();
+    //((JFrame)((WindowedMode)Game.game.getGame().bsGraphics).getFrame()).getc.setWindowDecorationStyle(JRootPane.NONE);
+            return new Object();
 }
 
 public static Object window_get_showicons()
@@ -2270,22 +2309,24 @@ return new Object();
 
 public static Object window_set_sizeable(Object sizeable)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setResizable(sizeable.getBoolean());
 return new Object();
 }
 
 public static Object window_get_sizeable()
 {
-return new Object();
+return new Boolean(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().isResizable());
 }
 
 public static Object window_set_caption(Object caption)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setTitle(""+caption);
 return new Object();
 }
 
 public static Object window_get_caption()
 {
-return new Object();
+return new String(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getTitle());
 }
 
 public static Object window_set_cursor(Object curs)
