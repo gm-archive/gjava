@@ -367,7 +367,16 @@ public class GSAutocomplete extends AutocompleteFrame{
         applyFunction("ds_queue_dequeue");
         applyFunction("ds_queue_head");
         applyFunction("ds_queue_tail");
-        //TODO: since stacks
+        applyFunction("window_set_visible");
+        applyFunction("window_get_visible");
+        applyFunction("window_set_fullscreen");
+        applyFunction("window_get_fullscreen");
+        applyFunction("window_set_showborder");
+        applyFunction("window_get_showborder");
+        applyFunction("window_set_sizeable");
+        applyFunction("window_get_sizeable");
+        applyFunction("window_set_caption");
+        applyFunction("window_get_caption");
         
         Collections.sort(v);
         
