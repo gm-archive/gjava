@@ -34,7 +34,7 @@ System.out.println("load sprites");
        //new Game();
        //frame.setVisible(true);
        game = new GameLoader();
-        game.setup(new Game(), new Dimension(64,48), false);
+        game.setup(new Game(), new Dimension(640,480), false);
         game.start();
 //       OpenGLGameLoader g = new OpenGLGameLoader();
 //       g.setupLWJGL(new Game(), new Dimension(640,480), false);

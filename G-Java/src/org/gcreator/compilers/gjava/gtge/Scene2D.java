@@ -202,6 +202,7 @@ public class Scene2D {
             g2d = g;
         else
             bg2d=g;
+        
         if (showcolor) {
         g.setColor( backcolor );
         g.fillRect( 0, 0, width, height );

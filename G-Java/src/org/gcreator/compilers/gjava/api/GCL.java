@@ -5,22 +5,18 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import com.golden.gamedev.engine.graphics.FullScreenMode;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
-import java.awt.DisplayMode;
+import java.awt.AWTException;
+import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JRootPane;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.components.Sprite;
 
@@ -2331,12 +2327,14 @@ return new String(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getT
 
 public static Object window_set_cursor(Object curs)
 {
+    if(curs instanceof Cursor)
+        ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setCursor(((Cursor)curs).c);
 return new Object();
 }
 
 public static Object window_get_cursor()
 {
-return new Object();
+return new Cursor(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getCursor());
 }
 
 public static Object window_set_color(Object color)
@@ -2361,47 +2359,58 @@ return new Object();
 
 public static Object window_set_position(Object x, Object y)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
 return new Object();
 }
 
 public static Object window_set_size(Object w, Object h)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
 return new Object();
 }
 
 public static Object window_set_rectangle(Object x, Object y, Object w, Object h)
 {
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(w.getInt(), h.getInt());
+((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation(x.getInt(), y.getInt());
 return new Object();
 }
 
 public static Object window_center()
 {
+    Dimension dim = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getToolkit().getScreenSize();
+  Rectangle abounds = ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBounds();
+  ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setLocation((dim.width - abounds.width) / 2,
+      (dim.height - abounds.height) / 2);
 return new Object();
 }
 
 public static Object window_default()
 {
+    //sets to room hight/width
+    ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setSize(Game.Current.width, Game.Current.height);
+    window_center();
 return new Object();
 }
 
 public static Object window_get_x()
 {
-return new Object();
+return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getX());
 }
 
 public static Object window_get_y()
 {
-return new Object();
+return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getY());
 }
 
 public static Object window_get_width()
 {
-return new Object();
+return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getWidth());
 }
 
 public static Object window_get_height()
 {
-return new Object();
+return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getHeight());
 }
 
 public static Object window_mouse_get_x()
@@ -2416,6 +2425,11 @@ return new Object();
 
 public static Object window_mouse_set(Object x, Object y)
 {
+    try {
+        java.awt.Robot r = new java.awt.Robot();
+        r.mouseMove(x.getInt(), y.getInt());
+    } catch (AWTException aWTException) {
+    }
 return new Object();
 }
 
@@ -2476,6 +2490,16 @@ return new Object();
  */
 public static Object screen_redraw()
 {
+    /*if (Game.Current.g2d != null)*/ {
+    if (Game.graphics == null)
+             //Game.Current.render(Game.Current.g2d);
+        Game.Current.render(Game.game.getGame().bsGraphics.getBackBuffer());
+        else
+            //Game.Current.render(Game.Current.bg2d);
+            Game.Current.render(Game.game.getGame().bsGraphics.getBackBuffer());
+        Game.game.getGame().bsGraphics.flip();
+       // Game.game.getGame().bsGraphics.getBackBuffer()
+    }
 return new Object();
 }
 
@@ -2491,6 +2515,7 @@ return new Object();
 
 public static Object set_automatic_draw(Object value)
 {
+    Game.auto_redraw = value.getBoolean();
 return new Object();
 }
 
@@ -4343,46 +4368,78 @@ return new Object();
  */
 public static Object ds_list_create()
 {
-return new Object();
+return new List();
 }
 
 public static Object ds_list_destroy(Object id)
 {
+    if (id instanceof List)
+    {
+     ((List)id).destroy();
+    }
 return new Object();
 }
 
 public static Object ds_list_clear(Object id)
 {
+    if (id instanceof List)
+    {
+     ((List)id).clear();
+    }
 return new Object();
 }
 
 public static Object ds_list_size(Object id)
 {
+     if (id instanceof List)
+    {
+    return new Integer(((List)id).size());
+    }
 return new Object();
 }
 
 public static Object ds_list_empty(Object id)
 {
+    if (id instanceof List)
+    {
+    return new Boolean(((List)id).empty());
+    }
 return new Object();
 }
 
 public static Object ds_list_add(Object id, Object value)
 {
+    if (id instanceof List)
+    {
+    ((List)id).addel(value);
+    }
 return new Object();
 }
 
 public static Object ds_list_insert(Object id, Object pos, Object value)
 {
+    if (id instanceof List)
+    {
+    ((List)id).insert(pos,value);
+    }
 return new Object();
 }
 
 public static Object ds_list_replace(Object id, Object pos, Object value)
 {
+    if (id instanceof List)
+    {
+    ((List)id).replace(pos,value);
+    }
 return new Object();
 }
 
 public static Object ds_list_delete(Object id, Object pos)
 {
+    if (id instanceof List)
+    {
+    ((List)id).delete(pos);
+    }
 return new Object();
 }
 
@@ -4393,6 +4450,10 @@ return new Object();
 
 public static Object ds_list_find_value(Object id, Object pos)
 {
+    if (id instanceof List)
+    {
+    return ((List)id).find_value(pos);
+    }
 return new Object();
 }
 
@@ -4408,51 +4469,87 @@ return new Object();
  */
 public static Object ds_map_create()
 {
-return new Object();
+return new Map();
 }
 
 public static Object ds_map_destroy(Object id)
 {
+     if (id instanceof Map)
+    {
+     ((Map)id).destroy();
+    }
 return new Object();
 }
 
 public static Object ds_map_clear(Object id)
 {
+    if (id instanceof Map)
+    {
+     ((Map)id).clear();
+    }
 return new Object();
 }
 
 public static Object ds_map_size(Object id)
 {
+    if (id instanceof Map)
+    {
+    return new Integer(((Map)id).size());
+    }
 return new Object();
 }
 
 public static Object ds_map_empty(Object id)
 {
+    if (id instanceof Map)
+    {
+    return new Boolean(((Map)id).empty());
+    }
 return new Object();
 }
 
 public static Object ds_map_add(Object id, Object key, Object value)
 {
+    if (id instanceof Map)
+    {
+    ((Map)id).add(key,value);
+    }
 return new Object();
 }
 
 public static Object ds_map_replace(Object id, Object key, Object value)
 {
+    if (id instanceof Map)
+    {
+    ((Map)id).add(key,value);
+    }
 return new Object();
 }
 
 public static Object ds_map_delete(Object id, Object key)
 {
+    if (id instanceof Map)
+    {
+    ((Map)id).delete(key);
+    }
 return new Object();
 }
 
 public static Object ds_map_exists(Object id, Object key)
 {
+    if (id instanceof Map)
+    {
+    return new Boolean(((Map)id).exists(key));
+    }
 return new Object();
 }
 
 public static Object ds_map_find_value(Object id, Object key)
 {
+    if (id instanceof Map)
+    {
+    return (((Map)id).find(key));
+    }
 return new Object();
 }
 

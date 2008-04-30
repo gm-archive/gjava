@@ -2,19 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.compilers.gjava;
 
 import java.awt.Graphics2D;
-import java.io.File;
 import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.Object;
 import org.gcreator.compilers.gjava.api.String;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.Boolean;
-import org.gcreator.compilers.gjava.api.components.Sprite;
-//import org.newdawn.slick.Image;
 
 /**
  *
@@ -22,38 +18,42 @@ import org.gcreator.compilers.gjava.api.components.Sprite;
  */
 public class TestActor extends Actor {
 
-   public TestActor()
-    {
+    public TestActor() {
         super();
     }
 
     public TestActor(Object X, Object Y, Object instance_id) {
-        self=this;
-        window_set_caption(new String("Caption!"));
-        System.out.println("window_get_caption():"+window_get_caption());
+        self = this;
+        //window_set_rectangle(new Integer(0), new Integer(00),new Integer(50), new Integer(50));
+        //window_default();
+        //set_automatic_draw(new Boolean(false));
+        //window_mouse_set(new Integer(0), new Integer(00));
+        System.out.println("window_get_x:" + window_get_x());
         
-        sid = surface_create(new Integer(300),new Integer(300));
-   surface_set_target( sid) ;
-draw_roundrect(new Integer(300),new Integer(300),new Integer(200),new Integer(200),new Boolean(false));
 
-surface_reset_target();
+        sid = surface_create(new Integer(300), new Integer(300));
+        surface_set_target(sid);
+        draw_roundrect(new Integer(300), new Integer(300), new Integer(200), new Integer(200), new Boolean(false));
+
+        surface_reset_target();
 //System.out.println(""+color_get_red(surface_getpixel(sid,new Integer(220),new Integer(220))));
 //show_error(new String("Test error"),new Boolean(true));
         try {
-            
-        //sprite = Game.sprite1;
-        setSprite_index(Game.sprite1);
+
+            //sprite = Game.sprite1;
+            setSprite_index(Game.sprite1);
             System.out.println("set sprite");
-        } catch(Exception e ){
-        System.out.println(""+e.getMessage());}
+        } catch (Exception e) {
+            System.out.println("" + e.getMessage());
+        }
         // super(new String("newActor1"), new Object(), new Boolean(false), new Boolean(false), new Integer(0), new Boolean(false));
-         this.xstart =  X.getFloat();
+        this.xstart = X.getFloat();
         this.ystart = Y.getFloat();
         this.id = instance_id;
         setX(X);
         setY(Y);
-      //  Create_event();
-       // motion_set(new Integer(90), new Integer(1));
+        //  Create_event();
+        // motion_set(new Integer(90), new Integer(1));
 //        TestActor a = new TestActor();
 //        a.x = 3;
 //        a.y = 4;
@@ -63,21 +63,21 @@ surface_reset_target();
 //        System.out.println("Speed"+getSpeed());
 //       setDirection(new Double(45));
 //       System.out.println("Speed"+getSpeed());
-        
-       //test file functions
-       Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
-Object str = file_text_read_string(fileid);
-System.out.println("Test:"+str.getString());
-file_text_close(fileid);
+
+        //test file functions
+        Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
+        Object str = file_text_read_string(fileid);
+        System.out.println("Test:" + str.getString());
+        file_text_close(fileid);
 
 //test sprite func
 //setVisible(new Boolean(true));
-System.out.println("getBackground_xscale(0):"+getBackground_xscale(0));
-setBackground_xscale(0,new Double(9));
-System.out.println("getBackground_xscale(0):"+getBackground_xscale(0));
+        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
+        setBackground_xscale(0, new Double(9));
+        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
 
-x=0;
-y=0;
+        x = 0;
+        y = 0;
 //test stack
 //Object sid = sid = ds_queue_create() ;
 //ds_queue_enqueue(sid,new Integer(99)) ;
@@ -93,60 +93,73 @@ y=0;
 //ds_queue_clear(sid);
 //show_message(new String("Ip: ").add(string(mplay_ipaddress())));//1/true
 //ds_queue_destroy(sid);
-       
+
     }
-Object sid;
+    Object sid;
+    
+    @Override
+    public void Step(){
+        //screen_redraw();
+        //return new Object();
+    }
+
+    @Override
+    public void callEvents() {
+        super.callEvents();
+        Step();
+    }
+
+    
+    
     @Override
     public Object Create_event() {
-        
-       // show_message(new String("Test worked :)"+java.lang.Math.PI));
-        x=1;
-Object n=new Integer(1),
-x1=new Integer(0),
-y1=new Integer(0),
-x2=new Integer(10),
-y2=new Integer(10),
-len=new Integer(5),
-dir = new Integer(0);
+
+        // show_message(new String("Test worked :)"+java.lang.Math.PI));
+        x = 1;
+        Object n = new Integer(1),
+                x1 = new Integer(0),
+                y1 = new Integer(0),
+                x2 = new Integer(10),
+                y2 = new Integer(10),
+                len = new Integer(5),
+                dir = new Integer(0);
 
 //show_message(string(point_direction(x1,y1,x2,y2))); //Returns the direction from point (x1,y1) toward point (x2,y2) in degrees.
-x= 17; 
-y=17;
+        x = 17;
+        y = 17;
 //motion_set(new Integer(90), new Integer(1));
-System.out.println("Snapped:"+place_snapped(new Integer(16),new Integer(16)).getBoolean()+"X:"+self.getX()+"Y"+self.getY());
-move_snap(new Integer(16),new Integer(16));
+        System.out.println("Snapped:" + place_snapped(new Integer(16), new Integer(16)).getBoolean() + "X:" + self.getX() + "Y" + self.getY());
+        move_snap(new Integer(16), new Integer(16));
 
-System.out.println("Snapped:"+place_snapped(new Integer(16),new Integer(16)).getBoolean()+"X:"+self.getX()+"Y"+self.getY());
-System.out.println(""+getInstance_count().getDouble()); 
+        System.out.println("Snapped:" + place_snapped(new Integer(16), new Integer(16)).getBoolean() + "X:" + self.getX() + "Y" + self.getY());
+        System.out.println("" + getInstance_count().getDouble());
 
-execute_shell(new String("file:\\\\C:\\\\run.bat"), new String(""));
+        execute_shell(new String("file:\\\\C:\\\\run.bat"), new String(""));
 
-show_message(string(getVk_nokey()));
+        show_message(string(getVk_nokey()));
 
 
 //show_message(string(display_set_size(new Integer(1280),new Integer(80))));
-return null;
+        return null;
     }
 
     @Override
     public void Draw_event(Graphics2D g) {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
-    //draw_clear(getC_black());
+        //draw_clear(getC_black());
         draw_set_color(getC_aqua());
 //        
-        draw_text(new Integer(0),new Integer(10),new String("Hello world!"));
-            Game.Current.g2d.drawString("test", 100, 100);
+        draw_text(new Integer(0), new Integer(10), new String("Hello world!"));
+        Game.Current.g2d.drawString("test", 100, 100);
         //test surface
-        
 
-draw_surface(sid,new Integer(100),new Integer(100)); 
-    System.out.println("paint");
+
+        draw_surface(sid, new Integer(100), new Integer(100));
+        System.out.println("paint");
     }
 
 //    @Override
 //    public void Draw_event() {
 //        draw_ellipse(new Integer(1),new Integer(1),new Integer(10),new Integer(10),new Boolean(true));
 //    }
-    
-   
 }

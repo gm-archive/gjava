@@ -35,7 +35,7 @@ public class Basicgame extends Game {
     public static Scene2D scenes[];
 public static Graphics2D graphics=null;
 public static GameLoader game;
-public static boolean fullscreen=false;
+public static boolean fullscreen=false,auto_redraw=true;
 
     public Basicgame() {
         
@@ -120,8 +120,9 @@ public static boolean fullscreen=false;
         Current.update();
     }
 
-    @Override
-    public void render(Graphics2D arg0) {
-        Current.render(arg0);
+    
+    public void render(Graphics2D g) {
+        if (auto_redraw)
+        Current.render(g);
     }
 }

@@ -1,6 +1,11 @@
 
 package org.gcreator.compilers.gjava.api;
 
+import java.awt.AWTException;
+import java.awt.HeadlessException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author TGMG
@@ -282,7 +287,7 @@ protected static Actor self;
     }
 
     public Object getCr_appstart() {
-        return new Object(); //  cr_appstart;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_appstart;
     }
 
     public void setCr_appstart(Object cr_appstart) {
@@ -290,15 +295,15 @@ protected static Actor self;
     }
 
     public Object getCr_arrow() {
-        return new Object(); //  cr_arrow;
-    }
+            return new Cursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); //  cr_arrow;
+   }
 
     public void setCr_arrow(Object cr_arrow) {
         // Constant: this.cr_arrow = cr_arrow;
     }
 
     public Object getCr_arrrow() {
-        return new Object(); //  cr_arrrow;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_arrrow;
     }
 
     public void setCr_arrrow(Object cr_arrrow) {
@@ -306,7 +311,7 @@ protected static Actor self;
     }
 
     public Object getCr_beam() {
-        return new Object(); //  cr_beam;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_beam;
     }
 
     public void setCr_beam(Object cr_beam) {
@@ -314,7 +319,7 @@ protected static Actor self;
     }
 
     public Object getCr_cross() {
-        return new Object(); //  cr_cross;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
     }
 
     public void setCr_cross(Object cr_cross) {
@@ -322,7 +327,7 @@ protected static Actor self;
     }
 
     public Object getCr_default() {
-        return new Object(); //  cr_default;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_default;
     }
 
     public void setCr_default(Object cr_default) {
@@ -330,7 +335,7 @@ protected static Actor self;
     }
 
     public Object getCr_drag() {
-        return new Object(); //  cr_drag;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_drag;
     }
 
     public void setCr_drag(Object cr_drag) {
@@ -338,7 +343,7 @@ protected static Actor self;
     }
 
     public Object getCr_handpoint() {
-        return new Object(); //  cr_handpoint;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR)); //  cr_handpoint;
     }
 
     public void setCr_handpoint(Object cr_handpoint) {
@@ -346,7 +351,7 @@ protected static Actor self;
     }
 
     public Object getCr_help() {
-        return new Object(); //  cr_help;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_help;
     }
 
     public void setCr_help(Object cr_help) {
@@ -354,7 +359,7 @@ protected static Actor self;
     }
 
     public Object getCr_hourglass() {
-        return new Object(); //  cr_hourglass;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR)); //  cr_hourglass;
     }
 
     public void setCr_hourglass(Object cr_hourglass) {
@@ -362,7 +367,7 @@ protected static Actor self;
     }
 
     public Object getCr_hsplit() {
-        return new Object(); //  cr_hsplit;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_hsplit;
     }
 
     public void setCr_hsplit(Object cr_hsplit) {
@@ -370,7 +375,7 @@ protected static Actor self;
     }
 
     public Object getCr_multidrag() {
-        return new Object(); //  cr_multidrag;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_multidrag;
     }
 
     public void setCr_multidrag(Object cr_multidrag) {
@@ -378,7 +383,7 @@ protected static Actor self;
     }
 
     public Object getCr_no() {
-        return new Object(); //  cr_no;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_no;
     }
 
     public void setCr_no(Object cr_no) {
@@ -386,7 +391,7 @@ protected static Actor self;
     }
 
     public Object getCr_nodrop() {
-        return new Object(); //  cr_nodrop;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_nodrop;
     }
 
     public void setCr_nodrop(Object cr_nodrop) {
@@ -394,7 +399,7 @@ protected static Actor self;
     }
 
     public Object getCr_none() {
-        return new Object(); //  cr_none;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_none;
     }
 
     public void setCr_none(Object cr_none) {
@@ -402,7 +407,7 @@ protected static Actor self;
     }
 
     public Object getCr_size_all() {
-        return new Object(); //  cr_size_all;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_size_all;
     }
 
     public void setCr_size_all(Object cr_size_all) {
@@ -410,7 +415,7 @@ protected static Actor self;
     }
 
     public Object getCr_size_nesw() {
-        return new Object(); //  cr_size_nesw;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.SW_RESIZE_CURSOR)); //  cr_size_nesw;
     }
 
     public void setCr_size_nesw(Object cr_size_nesw) {
@@ -418,7 +423,7 @@ protected static Actor self;
     }
 
     public Object getCr_size_ns() {
-        return new Object(); //  cr_size_ns;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_size_ns;
     }
 
     public void setCr_size_ns(Object cr_size_ns) {
@@ -426,7 +431,7 @@ protected static Actor self;
     }
 
     public Object getCr_size_nwse() {
-        return new Object(); //  cr_size_nwse;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.NW_RESIZE_CURSOR)); //  cr_size_nwse;
     }
 
     public void setCr_size_nwse(Object cr_size_nwse) {
@@ -434,7 +439,7 @@ protected static Actor self;
     }
 
     public Object getCr_size_we() {
-        return new Object(); //  cr_size_we;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_size_we;
     }
 
     public void setCr_size_we(Object cr_size_we) {
@@ -442,7 +447,7 @@ protected static Actor self;
     }
 
     public Object getCr_sqlwait() {
-        return new Object(); //  cr_sqlwait;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_sqlwait;
     }
 
     public void setCr_sqlwait(Object cr_sqlwait) {
@@ -450,7 +455,7 @@ protected static Actor self;
     }
 
     public Object getCr_uparrow() {
-        return new Object(); //  cr_uparrow;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_uparrow;
     }
 
     public void setCr_uparrow(Object cr_uparrow) {
@@ -458,7 +463,7 @@ protected static Actor self;
     }
 
     public Object getCr_vsplit() {
-        return new Object(); //  cr_vsplit;
+        return new Cursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR)); //  cr_vsplit;
     }
 
     public void setCr_vsplit(Object cr_vsplit) {
