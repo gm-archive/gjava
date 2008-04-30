@@ -414,22 +414,26 @@ public class PlatformCore extends PluginCore {
         gscriptLexer lex = null;
 
         //code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
-
+        System.out.println("CODE:"+code);
         FileWriter ftempcode = new FileWriter("tempcode.gcl");
         BufferedWriter tempcode = new BufferedWriter(ftempcode);
         tempcode.write(code);
         tempcode.close();
-        System.out.println("test");
+        //System.out.println("test");
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
-
+        System.out.println("test");
         parser = new gscriptParser(tokens);
+        //parser.DEFAULT_TOKEN_CHANNEL=80;
+        
         parser.setPlatform(p);
+        System.out.println("test");
         try {
             parser.code();
+            
             System.out.println("Finished! Code output:"+returncode);
         } catch (Exception e) {
-            System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
+            System.out.println("Error with parser:"+e + e.getLocalizedMessage() + " " + e.getMessage());
         }
         return returncode;
     }
