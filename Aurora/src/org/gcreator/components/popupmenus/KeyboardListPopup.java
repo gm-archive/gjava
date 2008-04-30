@@ -44,9 +44,16 @@ public class KeyboardListPopup extends JPopupMenu{
         add(keypad);
         add(others);
         
+        add(letters,new JMenuItem("A"),65);
+        
         this.selector = selector;
         this.updateUI();
     }
+    public void add(JMenu j,JMenuItem m, int i){
+        j.add(m);
+        m.addActionListener(new KeyboardActionListener(this, i));
+    }
+    
     public void cause(int num){
         selector.callEvent(EventSelectListener.Keyboard+num);
         selector.dispose();

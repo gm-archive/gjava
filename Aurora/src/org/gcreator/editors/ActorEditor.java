@@ -655,6 +655,15 @@ public class ActorEditor extends TabPanel {
         } else if (type >= EventSelectListener.ALARM && type <= EventSelectListener.ALARM + 11){
             elist.add(new org.gcreator.events.AlarmEvent(type-EventSelectListener.ALARM));
         }
+        else if (type >= EventSelectListener.Keyboard && type <= EventSelectListener.Keyboard + 999){
+            elist.add(new org.gcreator.events.KeyboardEvent(type-EventSelectListener.Keyboard));
+        }
+        else if (type >= EventSelectListener.Keypress && type <= EventSelectListener.Keypress + 999){
+            elist.add(new org.gcreator.events.KeyPress(type-EventSelectListener.Keypress));
+        }
+        else if (type >= EventSelectListener.Keyrelease && type <= EventSelectListener.Keyrelease + 999){
+            elist.add(new org.gcreator.events.KeyReleased(type-EventSelectListener.Keyrelease));
+        }
         jScrollPane1.updateUI();
         jList1.updateUI();
         updateActionList();

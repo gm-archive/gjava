@@ -18,7 +18,7 @@ import javax.swing.*;
 public class MouseEvent extends Event{
     static final long serialVersionUID = 1L;
     public int type;
-    public static ImageIcon icon;
+    public static ImageIcon icon ;
     public MouseEvent(int type){
         this.type = type;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));

@@ -37,6 +37,8 @@ public interface EventSelectListener {
     public static int ALARM = 5020;
     public static int Keyboard = 6000;
     public static int Collision = 7000;
-    
+    public static int Keypress = 8000;
+    public static int Keyrelease = 9000;
+    public static int Other = 10000;
     public void eventSelected(int type);
 }

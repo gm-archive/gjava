@@ -11,19 +11,11 @@ import javax.swing.ImageIcon;
  *
  * @author TGMG
  */
-public class KeyboardEvent extends Event {
+public class KeyPress extends KeyboardEvent {
 static final long serialVersionUID = 1L;
-public int type; //keycode
-public static ImageIcon icon ;
 
-KeyboardEvent(){
-    
-}
-
-public KeyboardEvent(int type){
+public KeyPress(int type){
         this.type = type;
-        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/keyboard.png"));
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_press.png"));
     }
-
-
 }
