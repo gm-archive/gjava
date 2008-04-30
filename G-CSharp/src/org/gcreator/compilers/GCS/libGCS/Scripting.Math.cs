@@ -1,6 +1,6 @@
 namespace org.gcreator.Scripting
 {
-	public class Math
+	public partial class GCL
 	{
 		public static readonly double PI = 3.14159265358979324;
 		public static readonly double E = 2.71828182845904523;

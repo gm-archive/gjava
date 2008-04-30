@@ -105,7 +105,7 @@ namespace org.gcreator.Components
     {
     }
 
-    public class Actor
+    public class Actor : org.gcreator.Scripting.GCL
     {
         private int x, y, z, spritepos, spritemovdelay, spritet, spritett = 0;
         //spritet-current position(only on -1 mode)

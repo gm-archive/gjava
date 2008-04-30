@@ -111,8 +111,35 @@ namespace org.gcreator.Native
 				Events.VideoResize += new EventHandler<VideoResizeEventArgs>(this.Resize);
 				Events.Tick += new EventHandler<TickEventArgs>(this.Tick);
             }
-			
-			private void Tick(object o, TickEventArgs t)
+
+            public int SceneGetCurrentIndex()
+            {
+                for (int i = 0; i < scenes.Length; i++)
+                {
+                    if (currentScene == scenes[i])
+                        return i;
+                }
+                return -1;
+            }
+
+            public void SceneGoto(int i)
+            {
+                Console.WriteLine("Going to " + i);
+                currentScene.Destroy();
+                currentScene = scenes[i];
+                currentScene.Create();
+            }
+
+            public void SceneGotoNext()
+            {
+                int i = SceneGetCurrentIndex() + 1;
+                if (i >= scenes.Length)
+                    SceneGoto(0);
+                else
+                    SceneGoto(i);
+            }
+
+            private void Tick(object o, TickEventArgs t)
 			{
 				Draw();
 			}

@@ -1,31 +1,41 @@
 namespace org.gcreator.Scripting
 {
-	[System.Obsolete("Game Maker 4 compatibility")]
-	public class GM4
+	public partial class GCL
 	{
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static int min3(int a, int b, int c)
 		{
-			return Math.min(a,b,c);
+			return min(a,b,c);
 		}
+
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static int max3(int a, int b, int c)
 		{
-			return Math.max(a,b,c);
+			return max(a,b,c);
 		}
+
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static double min3(double a, double b, double c)
 		{
-			return Math.min(a,b,c);
+			return min(a,b,c);
 		}
+
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static double max3(double a, double b, double c)
 		{
-			return Math.max(a,b,c);
+			return max(a,b,c);
 		}
+
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static float min3(float a, float b, float c)
 		{
-			return Math.min(a,b,c);
+			return min(a,b,c);
 		}
+
+        [System.Obsolete("Game Maker 4 compatibility")]
 		public static float max3(float a, float b, float c)
 		{
-			return Math.max(a,b,c);
+			return max(a,b,c);
 		}
 	}
 }
