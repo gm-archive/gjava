@@ -7,14 +7,10 @@
 package org.gcreator.editors;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.*;
-import javax.swing.*;
 import javax.swing.border.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
-import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.res.*;
@@ -32,7 +28,11 @@ public class SettingsEditor extends TabPanel {
     TabValues Graphics, Resolution, Other, SceneOrder;
     ResourceChooser scenes;
     int from;
-    private static Vector<SettingsManager> managers = new Vector<SettingsManager>();
+    private static Vector<SettingsManager> managers;// = new Vector<SettingsManager>();
+    
+    static{
+        managers = new Vector<SettingsManager>();
+    }
     
     public static void addManager(SettingsManager manager)
     {

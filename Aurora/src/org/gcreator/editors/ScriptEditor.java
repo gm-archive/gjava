@@ -43,7 +43,7 @@ public class ScriptEditor extends TabPanel {
         initComponents();
         
         if(file.value==null)
-            file.value = new Classes("show_message(\"test\") \n \n }");
+            file.value = new Classes("// Press CTRL + SPACE for code completion \n show_message(\"test\")\n");
         Scanner scanner = new GScriptScanner();
         g = new SyntaxHighlighter(100, 100, scanner, project);
         g.setText(((Classes)file.value).toString());
@@ -56,7 +56,7 @@ public class ScriptEditor extends TabPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
         );*/
         setLayout(new BorderLayout());
         add(BorderLayout.CENTER, jScrollPane1);
