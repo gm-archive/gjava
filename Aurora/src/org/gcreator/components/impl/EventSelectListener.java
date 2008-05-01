@@ -41,4 +41,5 @@ public interface EventSelectListener {
     public static int Keyrelease = 9000;
     public static int Other = 10000;
     public void eventSelected(int type);
+    public void eventSelected(int type,String name);
 }

@@ -246,17 +246,17 @@ public class EventSelect extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton6MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseReleased
-        KeyboardListPopup kb = new KeyboardListPopup(this);
+        KeyboardListPopup kb = new KeyboardListPopup(this,EventSelectListener.Keyboard);
         kb.show(jButton6, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton6MouseReleased
 
     private void jButton7MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseReleased
-        KeyboardListPopup kb = new KeyboardListPopup(this);
+        KeyboardListPopup kb = new KeyboardListPopup(this,EventSelectListener.Keypress);
         kb.show(jButton7, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton7MouseReleased
 
     private void jButton8MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseReleased
-        KeyboardListPopup kb = new KeyboardListPopup(this);
+        KeyboardListPopup kb = new KeyboardListPopup(this,EventSelectListener.Keyrelease);
         kb.show(jButton8, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton8MouseReleased
 
@@ -276,7 +276,12 @@ public class EventSelect extends javax.swing.JDialog {
     
     public void callEvent(int type){
         if(listener!=null)
-            listener.eventSelected(type);
+            listener.eventSelected(type,"");
+    }
+    
+    public void callEvent(int type,String name){
+        if(listener!=null)
+            listener.eventSelected(type,name);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

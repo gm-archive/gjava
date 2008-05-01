@@ -636,8 +636,8 @@ public class ActorEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void event(int type) {
-
+    public void event(int type,String name) {
+        System.out.println("Actor editor:event:type"+type);
         if (type == EventSelectListener.CREATE) {
             elist.add(new CreateEvent());
         } else if (type == EventSelectListener.DESTROY) {
@@ -656,13 +656,13 @@ public class ActorEditor extends TabPanel {
             elist.add(new org.gcreator.events.AlarmEvent(type-EventSelectListener.ALARM));
         }
         else if (type >= EventSelectListener.Keyboard && type <= EventSelectListener.Keyboard + 999){
-            elist.add(new org.gcreator.events.KeyboardEvent(type-EventSelectListener.Keyboard));
+            elist.add(new org.gcreator.events.KeyboardEvent(type-EventSelectListener.Keyboard,name));
         }
         else if (type >= EventSelectListener.Keypress && type <= EventSelectListener.Keypress + 999){
-            elist.add(new org.gcreator.events.KeyPress(type-EventSelectListener.Keypress));
+            elist.add(new org.gcreator.events.KeyPress(type-EventSelectListener.Keypress,name));
         }
         else if (type >= EventSelectListener.Keyrelease && type <= EventSelectListener.Keyrelease + 999){
-            elist.add(new org.gcreator.events.KeyReleased(type-EventSelectListener.Keyrelease));
+            elist.add(new org.gcreator.events.KeyReleased(type-EventSelectListener.Keyrelease,name));
         }
         jScrollPane1.updateUI();
         jList1.updateUI();
@@ -683,8 +683,12 @@ public class ActorEditor extends TabPanel {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         EventSelectListener listener = new EventSelectListener() {
 
+                    public void eventSelected(int type,String name) {
+                        event(type,name);
+                    }
+                    
                     public void eventSelected(int type) {
-                        event(type);
+                        event(type,"");
                     }
                 };
         EventSelect selector = new EventSelect(this,gcreator.window, true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()

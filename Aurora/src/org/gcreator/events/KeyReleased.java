@@ -6,6 +6,7 @@
 package org.gcreator.events;
 
 import javax.swing.ImageIcon;
+import org.gcreator.components.impl.EventSelectListener;
 
 /**
  *
@@ -13,8 +14,16 @@ import javax.swing.ImageIcon;
  */
 public class KeyReleased extends KeyboardEvent {
 static final long serialVersionUID = 1L;
-public KeyReleased(int type){
+public KeyReleased(int type,String name){
+    this.name=name;
+    text=" Released";
         this.type = type;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"));
+    }
+
+public ImageIcon getImage(){
+        if (icon==null)
+            icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"));
+        return icon;
     }
 }

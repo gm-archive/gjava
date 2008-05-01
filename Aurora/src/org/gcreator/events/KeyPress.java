@@ -6,6 +6,7 @@
 package org.gcreator.events;
 
 import javax.swing.ImageIcon;
+import org.gcreator.components.impl.EventSelectListener;
 
 /**
  *
@@ -14,8 +15,16 @@ import javax.swing.ImageIcon;
 public class KeyPress extends KeyboardEvent {
 static final long serialVersionUID = 1L;
 
-public KeyPress(int type){
+public KeyPress(int type,String name){
+    this.name=name;
         this.type = type;
+        text=" Pressed";
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_press.png"));
+    }
+
+public ImageIcon getImage(){
+        if (icon==null)
+            icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_press.png"));
+        return icon;
     }
 }
