@@ -133,9 +133,9 @@ public class PluginDialog extends JDialog {
                 s += "Author=" + author + "\n";
             s += "Core=" + plug.value.getClass().getName() + "\n";
             s += "License=" + plug.licenseLocation + "\n";
-            s += "Name" + plug.name + "\n";
-            s += "Version" + plug.version + "\n";
-            s += "Image" + plug.img_loc + "\n";
+            s += "Name=" + plug.name + "\n";
+            s += "Version=" + plug.version + "\n";
+            s += "Image=" + plug.img_loc + "\n";
             for(String file : plug.files)
                 s += "File=" + file + "\n";
         }

@@ -36,7 +36,7 @@ public class PreviousScene extends ActionPattern{
     }
      
     public String generateGCL(JComponent panel){
-        return "Common.Scene.gotoPrevious();\n";
+        return "room_goto_previous();\n";
     }
      public ImageIcon getStandardImage() {
         return icon;

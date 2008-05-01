@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.Collections;
 using org.gcreator.Support;
@@ -304,7 +303,7 @@ namespace org.gcreator.Components
 
 		private int getMinimumDepth()
 		{
-			int result = Int32.MaxValue;
+            int result = System.Int32.MaxValue;
 			foreach(object o in actors)
 			{
 				if(o is Actor)
@@ -319,7 +318,7 @@ namespace org.gcreator.Components
 
 		private int getMaximumDepth()
 		{
-			int result = Int32.MinValue;
+            int result = System.Int32.MinValue;
 			foreach(object o in actors)
 			{
 				if(o is Actor)
@@ -333,7 +332,7 @@ namespace org.gcreator.Components
 		}
 		private int getNextDepth(int Depth)
 		{
-			int result = Int32.MinValue;
+            int result = System.Int32.MinValue;
 			foreach(object o in actors)
 			{
 				if(o is Actor)
@@ -380,7 +379,10 @@ namespace org.gcreator.Components
 		}
 		public void Destroy()
 		{
-		
+		    foreach(Actor a in actors){
+                //Destroy a if isn't persistent
+            }
+            actors.Clear();
 		}
 		public void Loop()
 		{

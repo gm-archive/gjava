@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using org.gcreator.Components;
 using SdlDotNet.Core;
@@ -107,16 +106,16 @@ namespace org.gcreator.Native
                     currentScene.getWidth(), currentScene.getHeight(), resizable, false, fullscreen);
                 master = new Surface(currentScene.getWidth(), currentScene.getHeight());
                 Video.WindowCaption = title;
-                Events.Quit += new EventHandler<QuitEventArgs>(this.Quit);
-				Events.VideoResize += new EventHandler<VideoResizeEventArgs>(this.Resize);
-				Events.Tick += new EventHandler<TickEventArgs>(this.Tick);
+                Events.Quit += new System.EventHandler<QuitEventArgs>(this.Quit);
+                Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
+                Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
             }
 
             public int SceneGetCurrentIndex()
             {
                 for (int i = 0; i < scenes.Length; i++)
                 {
-                    if (currentScene == scenes[i])
+                    if (currentScene.GetType() == scenes[i].GetType())
                         return i;
                 }
                 return -1;
@@ -124,7 +123,7 @@ namespace org.gcreator.Native
 
             public void SceneGoto(int i)
             {
-                Console.WriteLine("Going to " + i);
+                System.Console.WriteLine("Going to " + i);
                 currentScene.Destroy();
                 currentScene = scenes[i];
                 currentScene.Create();
@@ -135,6 +134,15 @@ namespace org.gcreator.Native
                 int i = SceneGetCurrentIndex() + 1;
                 if (i >= scenes.Length)
                     SceneGoto(0);
+                else
+                    SceneGoto(i);
+            }
+
+            public void SceneGotoPrevious()
+            {
+                int i = SceneGetCurrentIndex() - 1;
+                if (i <= 0)
+                    SceneGoto(scenes.Length-1);
                 else
                     SceneGoto(i);
             }

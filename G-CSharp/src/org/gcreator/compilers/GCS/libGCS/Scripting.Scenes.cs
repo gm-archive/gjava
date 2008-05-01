@@ -12,5 +12,20 @@ namespace org.gcreator.Scripting
         {
             SDL.Game.game.SceneGotoNext();
         }
+
+        public static void room_goto_previous()
+        {
+            SDL.Game.game.SceneGotoPrevious();
+        }
+
+        public static void scene_goto_next()
+        {
+            SDL.Game.game.SceneGotoNext();
+        }
+
+        public static void scene_goto_previous()
+        {
+            SDL.Game.game.SceneGotoPrevious();
+        }
     }
 }
