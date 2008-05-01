@@ -41,74 +41,74 @@ namespace org.gcreator.Scripting
 			return new Double(System.Math.Sqrt(value.getDouble()));
 		}
 
-        public static double cbrt(Object value)
+        public static Object cbrt(Object value)
 		{
-            return System.Math.Pow(value.getDouble(), 1.0 / 3.0);
+            return new Double(System.Math.Pow(value.getDouble(), 1.0 / 3.0));
 		}
 
-		public static double ceil(Object value)
+		public static Object ceil(Object value)
 		{
-            return System.Math.Ceiling(value.getDouble());
+            return new Double(System.Math.Ceiling(value.getDouble()));
 		}
 
-		public static double floor(Object value)
+		public static Object floor(Object value)
 		{
-            return System.Math.Floor(value.getDouble());
+            return new Double(System.Math.Floor(value.getDouble()));
 		}
 
-		public static double round(Object value)
+		public static Object round(Object value)
 		{
-            return System.Math.Round(value.getDouble());
+            return new Double(System.Math.Round(value.getDouble()));
 		}
 
-		public static double cos(Object value)
+		public static Object cos(Object value)
 		{
-            return System.Math.Cos(value.getDouble());
+            return new Double(System.Math.Cos(value.getDouble()));
 		}
 
-		public static double cosh(Object value)
+		public static Object cosh(Object value)
 		{
-            return System.Math.Cosh(value.getDouble());
+            return new Double(System.Math.Cosh(value.getDouble()));
 		}
 
-		public static bool is_real(Object a)
+		public static Object is_real(Object a)
 		{
-			return a is Number;
+			return new Boolean(a is Number);
 		}
 		
-		public static bool is_string(Object a)
+		public static Object is_string(Object a)
 		{
-			return a is String;
+			return new Boolean(a is String);
 		}
 
-        public static double degtorad(Object deg)
+        public static Object degtorad(Object deg)
 		{
-			return (deg.getDouble()*PI.getDouble())/180;
+			return new Double((deg.getDouble()*PI.getDouble())/180);
 		}
 
-        public static double radtodeg(Object rad)
+        public static Object radtodeg(Object rad)
 		{
-            return (rad.getDouble() * 180) / PI.getDouble();
+            return new Double((rad.getDouble() * 180) / PI.getDouble());
 		}
 		
-		public static double exp(Object x)
+		public static Object exp(Object x)
 		{
-			return System.Math.Pow(E.getDouble(),x.getDouble());
+			return new Double(System.Math.Pow(E.getDouble(),x.getDouble()));
 		}
 
-		public static double expm1(Object x)
+		public static Object expm1(Object x)
 		{
-			return (E.getDouble()*x.getDouble()) - 1;
+			return new Double((E.getDouble()*x.getDouble()) - 1);
 		}
 
-		public static int sign(Object _x)
+		public static Object sign(Object _x)
 		{
             double x = _x.getDouble();
 			if(x<0)
-				return -1;
+				return new Double(-1);
 			if(x==0)
-				return 0;
-			return 1;
+				return new Double(0);
+			return new Double(1);
 		}
 
         public static Object min(Object a)

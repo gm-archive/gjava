@@ -258,13 +258,14 @@ public class GCSharp extends PlatformCore {
                     Vector v = (Vector) Scenes.getValue("Scenes");
                     for (Enumeration t = v.elements(); t.hasMoreElements();) {
                         GFile o = (GFile) t.nextElement();
-                        print(game, "new " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
+                        print(game, "\t\tnew " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
                     }
                 }
             }
         }
         print(game, "\t};");
         print(game, "");
+        print(game, "\t[System.STAThread]");
         print(game, "\tpublic static void Main(string[] args)");
         print(game, "\t{");
         print(game, "\t\tSDL.Game game = new SDL.Game(scenelist, false, true, \"G-C# Application\");");

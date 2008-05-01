@@ -101,6 +101,7 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
         catch(Exception e){}
             String command = "gmcs.bat";
             command += " -r:System.Drawing";
+            command += " -r:System.Windows.Forms";
             command += " -r:SdlDotNet.dll";
             command += " -r:Tao.Sdl.dll";
             command += " -r:libGCS.dll";
