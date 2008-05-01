@@ -1,7 +1,7 @@
 
 package org.gcreator.compilers;
 
-import org.antlr.runtime.*;
+//import org.antlr.runtime.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -25,6 +25,7 @@ import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.Event;
+import org.gcreator.events.KeyboardEvent;
 import org.gcreator.events.MouseEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GObject;
@@ -99,16 +100,16 @@ public class GJava extends PlatformCore {
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
             print(actor, "import org.gcreator.compilers.gjava.api.components.*;");
-            print(actor, "import org.gcreator.compilers.gjava.api.*;");
+            print(actor, "import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import org.gcreator.compilers.gjava.api.Actor;import org.gcreator.compilers.gjava.api.Object;import org.gcreator.compilers.gjava.api.String;import org.gcreator.compilers.gjava.api.Integer;import org.gcreator.compilers.gjava.api.Double;import org.gcreator.compilers.gjava.api.Boolean;");
             print(actor, "");
 
             print(actor, "public class " + a.name + " extends Actor {");
             print(actor, "");
             print(actor, "    " + a.name + "(int X,int Y,double instance_id) {");
             if (a.sprite == null) {
-                print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+", "+actorindex+");");
+                print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+", "/*+actorindex*/+"0);");
+                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+");");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
@@ -116,27 +117,70 @@ public class GJava extends PlatformCore {
             print(actor, "        y = Y;");
             print(actor, "        this.instance_id = instance_id;");
             print(actor, "    }");
+            
+            String callevents="public void callEvents() { ", endcall=" Move(); }";
+            
             //events
             for (Enumeration e = a.events.elements(); e.hasMoreElements();)
             {
             Event ev = (Event)e.nextElement();
-            if (ev instanceof CreateEvent) {
-            print(actor, "  public void Create_event()  {");
+            
+            if (ev instanceof CreateEvent) 
+            print(actor, "  public void Create()");
+            else if (ev instanceof org.gcreator.events.DestroyEvent) 
+            print(actor, "  public void Destroy()");
+            else if (ev instanceof org.gcreator.events.BeginStepEvent) 
+            print(actor, "  public void BeginStep()");
+            else if (ev instanceof org.gcreator.events.StepEvent) 
+            print(actor, "  public void Step()");
+            else if (ev instanceof org.gcreator.events.EndStepEvent) 
+            print(actor, "  public void EndStep()");
+            else if (ev instanceof org.gcreator.events.DrawEvent) 
+            print(actor, "  public void Draw_event(Graphics2D g)");
+            else if (ev instanceof org.gcreator.events.CollisionEvent) 
+            print(actor, "  public void Collision()");
+            else if (ev instanceof org.gcreator.events.MouseEvent) 
+            print(actor, "  public void Mouse()");
+            else if (ev instanceof org.gcreator.events.KeyPress) 
+            {
+                callevents+="Keypress"+((org.gcreator.events.KeyPress)ev).type+"(); ";
+                print(actor, "  public void Keypress"+((org.gcreator.events.KeyPress)ev).type+"(){");
+                print(actor, "if (Game.game.getGame().keyPressed("+((org.gcreator.events.KeyPress)ev).type+"))");
+            }
+            else if (ev instanceof org.gcreator.events.KeyReleased) 
+            {
+                callevents+="Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(); ";
+                print(actor, "  public void Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(){");
+                print(actor, "if (Game.game.getGame().keyDown("+((org.gcreator.events.KeyReleased)ev).type+"))");
+            }
+            else if (ev instanceof org.gcreator.events.KeyboardEvent) {
+                callevents+="Keyboard"+((KeyboardEvent)ev).type+"(); ";
+                print(actor, "  public void Keyboard"+((KeyboardEvent)ev).type+"() {");
+                print(actor, "if (Game.game.getGame().keyDown("+((KeyboardEvent)ev).type+"))");
+            }
+            
+            //Parse actions
+            print(actor, "    {");
             for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();)
             {
               org.gcreator.actions.Action G_Java_aa =  (org.gcreator.actions.Action)ee.nextElement();
-              
+                System.out.println("about to parse actions");
               print(actor,parseGCL(G_Java_aa.getEGML(),this));
-              System.out.println("action parse!");
+              System.out.println("action parsed:"+G_Java_aa.getEGML());
               //parseGCL(";;; {}",this);
             }
+             print(actor, "    }");
+             
+             
+            if (ev instanceof org.gcreator.events.KeyboardEvent)
             print(actor, "    }");
-            }
-            else if (ev instanceof MouseEvent) {
+            
+            //else if (ev instanceof MouseEvent) {
             System.out.println("Mouse!");
             
+            //}
             }
-            }
+            print(actor, callevents+endcall);
             print(actor, "");
             print(actor, "}");
             actor.close();
@@ -333,7 +377,7 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, createSprites + "}");
         print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
-        print(game, "       //GameLoader game = new GameLoader();");
+        print(game, "       game = new GameLoader();");
         print(game, "       game.setup(new Game(), new Dimension(640,480), false);");
         print(game, "       game.start();");
         print(game, "   }");

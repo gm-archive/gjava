@@ -365,11 +365,11 @@ public class Scene2D extends JPanel implements Runnable,KeyListener,MouseListene
             //				{
             //				o.Outside();
             //				}
-            o.Keyboard_event();
+            //o.Keyboard_event();
             o.Move();
-            o.Collision_event();
+            //o.Collision_event();
             // o.Draw_event(g);
-            o.End_Step_event();
+            //o.End_Step_event();
             dd++;
         }
         dd = 0;

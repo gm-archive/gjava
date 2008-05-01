@@ -43,7 +43,7 @@ public class Actor extends tile {
         depth = Depth;
         persistent = Persistent;
         sprite = spr;
-    //Create_event();
+    Create();
     }
     
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
@@ -53,6 +53,7 @@ public class Actor extends tile {
         depth = new Integer(Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
+        Create();
     }
     
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
@@ -64,21 +65,21 @@ public class Actor extends tile {
     /**
      * Override with actor create event
      */
-    public Object Create_event() {
-        return null;
+    public void Create() {
+        //return null;
     }
 
     /**
      * Override with actor create event
      */
-    public Object Destroy_event() {
-        return null;
+    public void Destroy() {
+        //return null;
     }
 
     /**
      * Override with actor Begin Step event
      */
-    public void Begin_Step_event() {
+    public void BeginStep() {
     }
 
     /**
@@ -96,14 +97,14 @@ public class Actor extends tile {
     /**
      * Override with actor End Step event
      */
-    public void End_Step_event() {
+    public void EndStep() {
     }
 
     /**
      * Override with actor Key Pressed event
      * @param keycode 
      */
-    public void Key_Pressed(int keycode) {
+    public void KeyPressed(int keycode) {
 
     }
 
@@ -111,20 +112,20 @@ public class Actor extends tile {
      * Override with actor Key Released event
      * @param keycode 
      */
-    public void Key_Released(int keycode) {
+    public void KeyReleased(int keycode) {
 
     }
 
     /**
      * Override with actor Keyboard event
      */
-    public void Keyboard_event() {
+    public void Keyboard() {
     }
 
     /**
      * Override with actor mouse event
      */
-    public void Mouse_event() {
+    public void Mouse() {
     }
 
     public void mouse_Pressed(int keycode, int xx, int yy) {
@@ -134,13 +135,16 @@ public class Actor extends tile {
     /**
      * Override with actor Collision event
      */
-    public void Collision_event() {
+    public void Collision() {
 
     }
 
     public void callEvents() {
+        BeginStep();
+        Step();
         Move();
-        System.out.println("move");
+        EndStep();
+        //System.out.println("move");
 //        setImage_xscale(getImage_xscale().add(new Double(0.1)));
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }

@@ -60,7 +60,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          */
         public static void destroy(Actor instance) {
             // run the destory event
-            instance.Destroy_event();
+            instance.Destroy();
            // basicgame.Current.instances.remove(instance.id);
         }
         

@@ -111,7 +111,7 @@ public static boolean fullscreen=false,auto_redraw=true;
         loadSprites();
         loadScenes();
         nextScene();
-        setFPS(1);
+        //setFPS(1);
         
     }
 
@@ -125,4 +125,7 @@ public static boolean fullscreen=false,auto_redraw=true;
         if (auto_redraw)
         Current.render(g);
     }
+
+        
+    
 }

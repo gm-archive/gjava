@@ -106,13 +106,15 @@ public class TestActor extends Actor {
     @Override
     public void callEvents() {
         super.callEvents();
+        BeginStep();
         Step();
+        EndStep();
     }
 
     
     
     @Override
-    public Object Create_event() {
+    public void Create() {
 
         // show_message(new String("Test worked :)"+java.lang.Math.PI));
         x = 1;
@@ -140,7 +142,7 @@ public class TestActor extends Actor {
 
 
 //show_message(string(display_set_size(new Integer(1280),new Integer(80))));
-        return null;
+//        return null;
     }
 
     @Override
