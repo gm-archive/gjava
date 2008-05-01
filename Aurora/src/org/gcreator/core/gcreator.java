@@ -38,7 +38,7 @@ public class gcreator {
     public static final String version = "1.0m2"; 
     public static Aurwindow window;
     public static String output = "";
-    private static SplashScreen splash;
+    static SplashScreen splash;
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
     private static String java_version = System.getProperty("java.version");
@@ -67,6 +67,12 @@ public class gcreator {
     }
     
     public static void __main(String[] args){
+        try{
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        }
+        catch(Exception e){
+            
+        }
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;

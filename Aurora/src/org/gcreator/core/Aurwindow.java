@@ -672,11 +672,15 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Aurwindow">
     protected Aurwindow(String[] settings) {
+        SplashScreen.message = "Initiating window....";
+        gcreator.splash.repaint();
         setTitle("G-Creator");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setJMenuBar(menubar);
         setIconImage(new ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png")).getImage());
         super.setContentPane(new JPanel());
+        SplashScreen.message = "Starting user interface...";
+        gcreator.splash.repaint();
         istabs = true;
         console = new JTextPane();
         topContainer = new Container();
@@ -1227,6 +1231,8 @@ public class Aurwindow extends JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(tool, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE))));
         layout.setVerticalGroup(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(layout.createSequentialGroup().add(tool, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 40, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE).addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED).add(splitter1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 500, Short.MAX_VALUE)));*/
+        SplashScreen.message = "Creating toolbars";
+        gcreator.splash.repaint();
         Container cont = getContentPane();
         Container panel = new Container();
         panel.setLayout(new BorderLayout());
@@ -1339,10 +1345,12 @@ public class Aurwindow extends JFrame {
         } else {
             setExtendedState(NORMAL);
         }
-        setVisible(true);
         statusbar.setStandardText("Done");
         statusbar.restoreText();
         statusbar.getProgressBar().setVisible(false);
+        SplashScreen.message = "Displaying application";
+        gcreator.splash.repaint();
+        setVisible(true);
     }
     //</editor-fold>
 

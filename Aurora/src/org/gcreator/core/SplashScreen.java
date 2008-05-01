@@ -16,6 +16,8 @@ import java.awt.event.*;
  */
 public class SplashScreen extends JFrame {
     
+    public static String message = "Loading...";
+    
     ImageIcon i;
     /** Creates new form SplashScreen */
     public SplashScreen(boolean applet) {
@@ -35,6 +37,9 @@ public class SplashScreen extends JFrame {
             public void paint(Graphics g){
                 g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
         
+                g.setColor(Color.GRAY);
+                g.drawString(message, 5, 260);
+                
                 setOpaque(false);
                 super.paint(g);
             }
