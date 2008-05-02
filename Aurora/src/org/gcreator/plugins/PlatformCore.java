@@ -17,6 +17,7 @@ import java.util.Vector;
 import javax.swing.ImageIcon;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
+import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
@@ -32,6 +33,7 @@ import org.gcreator.plugins.platform.gscriptParser;
  */
 public class PlatformCore extends PluginCore {
 
+    public Progress p;// = new Progress(gcreator.window,false);
     public static String returncode = "";
     int usingwith = 0;
     Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
@@ -40,7 +42,6 @@ public class PlatformCore extends PluginCore {
     
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.GObject childNode;
-
 
         for (int i = 0; i < folder.getChildArrayNum(); i++) {
             if ((childNode = folder.childAt(i)) != null) {
@@ -53,25 +54,41 @@ public class PlatformCore extends PluginCore {
                         }
                         
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
+                            p.jProgressBar1.setValue(20);
+                            p.jLabel2.setText("Task: Converting sprite:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.repaint();
                             parseSprite((Sprite) ((org.gcreator.fileclass.GFile) childNode).value);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("actor")) {
                             parseActor((Actor) ((org.gcreator.fileclass.GFile) childNode).value);
+                            p.jProgressBar1.setValue(50);
+                            p.jLabel2.setText("Task: Converting actor:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
+                            p.jProgressBar1.setValue(80);
+                            p.jLabel2.setText("Task: Converting scene:"+((org.gcreator.fileclass.GFile) childNode).name);
                             parseScene((Scene) ((org.gcreator.fileclass.GFile) childNode).value);
+                            p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("jpg")) {
+                            p.jProgressBar1.setValue(10);
+                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
-                            System.out.println("Output image");
+                            p.jProgressBar1.setValue(10);
+                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
-                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("egml")) {
+                            p.jProgressBar1.setValue(10);
+                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gs")) {
+                            p.jProgressBar1.setValue(40);
+                            p.jLabel2.setText("Task: Converting scripts:"+((org.gcreator.fileclass.GFile) childNode).name);
                             parseClass((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
                             parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         }
                        else
-                           PluginHelper.println("Invalid type");
+                           PluginHelper.println("Invalid type:"+((org.gcreator.fileclass.GFile) childNode).type);
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -80,6 +97,7 @@ public class PlatformCore extends PluginCore {
                 }
             }
         }
+//p.setVisible(false);
     }
     
     public static void recursivelyDeleteDirectory(File dir) throws IOException {	       
@@ -472,10 +490,19 @@ public class PlatformCore extends PluginCore {
         }
         return "";
     }
+    
+    public void startprogress()
+    { 
+        p = new Progress(gcreator.window,false, this);
+        p.setVisible(true);
+    }
 
     public void run(Project project) {
+        
         if (project != null) {
+           // p.setVisible(true);
             putFolder(project);
+            //p.setVisible(false);
         }
     }
 
