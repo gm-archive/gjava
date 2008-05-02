@@ -61,6 +61,16 @@ namespace org.gcreator.Scripting
             return new Double(System.Math.Round(value.getDouble()));
 		}
 
+        public static Object sin(Object value)
+        {
+            return new Double(System.Math.Sin(value.getDouble()));
+        }
+
+        public static Object sinh(Object value)
+        {
+            return new Double(System.Math.Sinh(value.getDouble()));
+        }
+
 		public static Object cos(Object value)
 		{
             return new Double(System.Math.Cos(value.getDouble()));
@@ -70,6 +80,16 @@ namespace org.gcreator.Scripting
 		{
             return new Double(System.Math.Cosh(value.getDouble()));
 		}
+
+        public static Object tan(Object value)
+        {
+            return new Double(System.Math.Tan(value.getDouble()));
+        }
+
+        public static Object tanh(Object value)
+        {
+            return new Double(System.Math.Tanh(value.getDouble()));
+        }
 
 		public static Object is_real(Object a)
 		{
@@ -111,164 +131,37 @@ namespace org.gcreator.Scripting
 			return new Double(1);
 		}
 
-        public static Object min(Object a)
-        {
-            return a;
+        public static Object min(params Object[] args){
+            double min = 0;
+            bool mindef = false;
+            for (int i = 0; i < args.Length; i++)
+            {
+                Object o = args[i];
+                double d = o.getDouble();
+                if (d <= min || !mindef)
+                {
+                    mindef = true;
+                    min = d;
+                }
+            }
+            return new Double(min);
         }
 
-		public static Object min(Object a, Object b)
-		{
-            return a.getDouble() < b.getDouble() ? a : b;
-		}
-		
-		public static Object min(Object a, Object b, Object c)
-		{
-            return a.getDouble() < b.getDouble() ? min(a, c) : min(b, c);
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d)
-		{
-			return min(min(a,b),min(c,d));
-		}
-
-        public static Object min(Object a, Object b, Object c, Object d, Object e)
-		{
-			return min(min(a,b),min(c,d,e));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f)
-		{
-			return min(min(a,b),min(c,d), min(e,f));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g)
-		{
-			return min(min(a,b,g),min(c,d), min(e,f));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), j);
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), min(j,k));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), min(j,k,l));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), min(j,k,l), m);
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), min(j,k,l), min(m,n));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n, Object o)
-		{
-			return min(min(a,b,g),min(c,d,h), min(e,f,i), min(j,k,l), min(m,n,o));
-		}
-		
-		public static Object min(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n, Object o, Object p)
-		{
-			return min(min(a,b,g,p),min(c,d,h), min(e,f,i), min(j,k,l), min(m,n,o));
-		}
-
-        public static Object max(Object a)
+        public static Object max(params Object[] args)
         {
-            return a;
+            double max = 0;
+            bool maxdef = false;
+            for (int i = 0; i < args.Length; i++)
+            {
+                Object o = args[i];
+                double d = o.getDouble();
+                if (d <= max || !maxdef)
+                {
+                    maxdef = true;
+                    max = d;
+                }
+            }
+            return new Double(max);
         }
-
-		public static Object max(Object a, Object b)
-		{
-            return a.getDouble() > b.getDouble() ? a : b;
-		}
-		
-		public static Object max(Object a, Object b, Object c)
-		{
-            return a.getDouble() > b.getDouble() ? max(a, c) : max(b, c);
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d)
-		{
-			return max(max(a,b),max(c,d));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e)
-		{
-			return max(max(a,b),max(c,d,e));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f)
-		{
-			return max(max(a,b),max(c,d), max(e,f));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g)
-		{
-			return max(max(a,b,g),max(c,d), max(e,f));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), j);
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), max(j,k));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), max(j,k,l));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), max(j,k,l), m);
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), max(j,k,l), max(m,n));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n, Object o)
-		{
-			return max(max(a,b,g),max(c,d,h), max(e,f,i), max(j,k,l), max(m,n,o));
-		}
-		
-		public static Object max(Object a, Object b, Object c, Object d, Object e, Object f, Object g, Object h, Object i, Object j, Object k, Object l, Object m, Object n, Object o, Object p)
-		{
-			return max(max(a,b,g,p),max(c,d,h), max(e,f,i), max(j,k,l), max(m,n,o));
-		}
 	}
 }
