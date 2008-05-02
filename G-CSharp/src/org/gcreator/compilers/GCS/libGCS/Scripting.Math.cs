@@ -163,5 +163,18 @@ namespace org.gcreator.Scripting
             }
             return new Double(max);
         }
+
+        public static Object random(Object x)
+        {
+            int max = (int) x.getDouble();
+            System.Random r = new System.Random();
+            return new Double(r.Next(max));
+        }
+
+        public static Object choose(params Object[] args)
+        {
+            Object index = random(new Double((double) args.Length));
+            return args[(int)index.getDouble()];
+        }
 	}
 }
