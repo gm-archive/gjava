@@ -11,7 +11,7 @@ import org.gcreator.compilers.gjava.api.components.Background;
 public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
 
     newScene1() {
-        super(Game.frame,"",60,640,480, new Color(155,51,51));
+        super(Game.frame,"newScene1",60,640,480, new Color(155,51,51));
     setupScene();
     SortDepth();
     }

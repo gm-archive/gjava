@@ -59,8 +59,15 @@ public static Object random(Object x)
 {
 return new Double(Math.random(x.getDouble()));
 }
-public static Object choose(Object x1, Object x2, Object x3)
+public static Object choose(Object... x)
 {
+    int ran = (int)Math.random(x.length);
+    int i=0;
+    for (Object n : x) {
+              if (i == ran)
+                  return n;
+              i++;
+          }
 return new Object();
 }
 public static Object abs(Object x)

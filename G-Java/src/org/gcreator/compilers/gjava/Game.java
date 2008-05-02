@@ -1,5 +1,6 @@
 package org.gcreator.compilers.gjava;
 import com.golden.gamedev.GameLoader;
+import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import org.gcreator.compilers.gjava.api.*;
@@ -35,7 +36,9 @@ System.out.println("load sprites");
        //frame.setVisible(true);
        game = new GameLoader();
         game.setup(new Game(), new Dimension(640,480), false);
+        frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
         game.start();
+        
 //       OpenGLGameLoader g = new OpenGLGameLoader();
 //       g.setupLWJGL(new Game(), new Dimension(640,480), false);
 //       g.start();

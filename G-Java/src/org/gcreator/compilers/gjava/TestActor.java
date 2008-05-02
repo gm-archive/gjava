@@ -24,6 +24,7 @@ public class TestActor extends Actor {
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self = this;
+        System.out.println("choose"+choose(new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5)));
         //window_set_rectangle(new Integer(0), new Integer(00),new Integer(50), new Integer(50));
         //window_default();
         //set_automatic_draw(new Boolean(false));

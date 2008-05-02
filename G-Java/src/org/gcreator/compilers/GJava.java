@@ -384,6 +384,12 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, "}");
         game.close();
     }
+    
+    public void convertVariables(String filename){
+        String search="";
+        String replace="";
+        Patch.main(new String[] {search,replace,filename});
+    }
 
     public void run(Project project) {
         System.out.println("Saving...");
