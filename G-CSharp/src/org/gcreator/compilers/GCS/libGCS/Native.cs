@@ -49,7 +49,8 @@ namespace org.gcreator.Native
 		
 		public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle destination)
 		{
-			DrawToSurface(image.texture, screen, CSharp.ToDrawingRectangle(destination));
+            if(image!=null)
+			    DrawToSurface(image.texture, screen, CSharp.ToDrawingRectangle(destination));
 		}
 		
 		public static void DrawToSurface(Image image, Surface screen, System.Drawing.Rectangle destination)
@@ -91,9 +92,13 @@ namespace org.gcreator.Native
 			
 			private bool fullscreen, resizable;
 			public Surface cursurface;
-			
+
+            internal bool stop = false;
+
             public Game(Scene[] scenelist, bool fullscreen, bool resizable, string title)
             {
+                if (stop)
+                    return;
 				game = this;
 				this.fullscreen = fullscreen;
 				this.resizable = resizable;
@@ -173,7 +178,7 @@ namespace org.gcreator.Native
                 UpdateVideoMode(currentScene.getWidth(), currentScene.getHeight());
 			}
 
-            private void Quit(object sender, QuitEventArgs e)
+            internal void Quit(object sender, QuitEventArgs e)
             {
                 Events.QuitApplication();
             }

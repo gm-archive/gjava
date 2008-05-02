@@ -3,11 +3,12 @@ using System.Text;
 using System.Collections;
 using org.gcreator.Support;
 using SdlDotNet.Graphics;
+using org.gcreator.Types;
 
 namespace org.gcreator.Components
 {
 
-    public class Image
+    public class Image : Object
     {
         internal Surface texture;
 
@@ -22,11 +23,11 @@ namespace org.gcreator.Components
         }
     }
 
-    public class Sprite
+    public class Sprite : Object
     {
         private ArrayList images = new ArrayList();
-        private int originX, originY;
-        private Rectangle bounds;
+        private int originX = 0, originY = 0;
+        private Rectangle bounds = new Rectangle(0, 0, 0, 0);
 
         public int getOriginX()
         {
@@ -56,6 +57,8 @@ namespace org.gcreator.Components
 
         public Image getImage(int pos)
         {
+            if (images == null || pos >= images.Count)
+                return null;
             return (Image) images[pos];
         }
 
@@ -259,7 +262,7 @@ namespace org.gcreator.Components
 			{
 				spritett = 0;
 				spritet++;
-				if(spritet>=sprite.getImageCount())
+				if(sprite!=null&&spritet>=sprite.getImageCount())
 				{
 					spritet = 0;
 				}
