@@ -2002,7 +2002,8 @@ public class Aurwindow extends JFrame {
               return;
             }
             mainProject.location = file.getPath();
-            if (!mainProject.location.contains(".")) {
+            if (!mainProject.location.contains(".gcp")) 
+            {
                 mainProject.location += ".gcp";
             }
         }
