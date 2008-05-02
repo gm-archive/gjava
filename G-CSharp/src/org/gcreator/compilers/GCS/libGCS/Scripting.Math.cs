@@ -176,5 +176,35 @@ namespace org.gcreator.Scripting
             Object index = random(new Double((double) args.Length));
             return args[(int)index.getDouble()];
         }
+
+        public static Object log10(Object x)
+        {
+            return new Double(System.Math.Log10(x.getDouble()));
+        }
+
+        public static Object log2(Object x)
+        {
+            return new Double(System.Math.Log(x.getDouble(), 2));
+        }
+
+        public static Object logn(Object n, Object x)
+        {
+            return new Double(System.Math.Log(x.getDouble(), n.getDouble()));
+        }
+
+        public static Object ln(Object x)
+        {
+            return new Double(System.Math.Log(x.getDouble()));
+        }
+
+        public static Object power(Object x, Object n)
+        {
+            return new Double(System.Math.Pow(x.getDouble(), n.getDouble()));
+        }
+
+        public static Object frac(Object x)
+        {
+            return new Double(x.getDouble() - floor(x).getDouble());
+        }
 	}
 }
