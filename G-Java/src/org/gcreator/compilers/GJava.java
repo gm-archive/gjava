@@ -304,12 +304,15 @@ actorindex++;
         i.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
                 run(Aurwindow.getMainProject());
+              // startprogress();
             }
         });
         
         PluginHelper.addMenuItem(3, i);
         //Aurwindow.tool.add(run);
     }
+    
+    
 
     public void createJavaFiles() throws IOException {
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
@@ -424,14 +427,17 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         }
         utilities.addStringMessage("Building/running using G-Java");
         utilities.addStringMessage("Creating java files...");
+       // this.p.jLabel1.setText("Converting to java with G-java");
+        
         createFolders();
         super.run(project);
         try {
             createJavaFiles();
         } catch (Exception e) {
         }
-
+        p.dispose();
         GJavaCompiler compiler = new GJavaCompiler();
+        p.setVisible(false);
     }
 
     @Override

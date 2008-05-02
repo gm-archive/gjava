@@ -25,7 +25,7 @@ public class TestActor extends Actor {
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self = this;
-        draw_set_color(self.getC_aqua());
+        //draw_set_color(self.getC_aqua());
         
         
         double start = System.currentTimeMillis();
@@ -36,7 +36,7 @@ public class TestActor extends Actor {
         
         start = System.currentTimeMillis();
         for(int i=0;i<=9999;i++)
-        getVariable(("argument0"));
+        self.getArgument0();//getVariable(("argument0"));
         end = System.currentTimeMillis();
         System.out.println("time to get var without reflec:"+(end-start));
         
