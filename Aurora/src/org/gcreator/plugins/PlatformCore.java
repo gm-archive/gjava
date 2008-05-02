@@ -494,7 +494,9 @@ public class PlatformCore extends PluginCore {
     public void startprogress()
     { 
         p = new Progress(gcreator.window,false, this);
-        p.setVisible(true);
+        p.repaint();
+        p.run(this);
+        //p.setVisible(true);
     }
 
     public void run(Project project) {

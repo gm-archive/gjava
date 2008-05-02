@@ -21,11 +21,17 @@ public class Progress extends javax.swing.JDialog {
     /** Creates new form Progress */
     public Progress(java.awt.Frame parent, boolean modal,PlatformCore c) {
         super(parent, modal);
-        final PlatformCore cc =c;
+        
         initComponents();
         c.p = this;
         this.jLabel1.setText("Converting to java..");
         this.setVisible(true);
+        
+        //this.dispose();
+    }
+    
+    public void run(PlatformCore c){
+        final PlatformCore cc =c;
         System.out.println("run");
         new Thread(){
 
@@ -36,7 +42,6 @@ public class Progress extends javax.swing.JDialog {
             
        // c.run(gcreator.window.getMainProject());
         }.run();
-        //this.dispose();
     }
 
     /** This method is called from within the constructor to
