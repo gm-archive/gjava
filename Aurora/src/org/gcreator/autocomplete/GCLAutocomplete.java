@@ -32,8 +32,6 @@ public class GCLAutocomplete extends AutocompleteFrame{
     SyntaxHighlighter editor;
     String prevWord;
     String context;
-    JList list;
-    JScrollPane scroll;
     boolean requestDie = false;
     Project p;
     //How to declare an actor?
@@ -42,18 +40,12 @@ public class GCLAutocomplete extends AutocompleteFrame{
     Vector<Suggestion> v = new Vector<Suggestion>();
     
     public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
-        super();
+        super("GCL Autocomplete...");
         this.selstart = selstart;
         this.selend = selend;
         this.editor = editor;
         this.p = p;
-        setLayout(new BorderLayout());
-        JLabel label = new JLabel("GCL Autocomplete...");
-        label.setFocusable(false);
-        label.setVisible(true);
-        add(BorderLayout.NORTH, label);
         context = getContext();
-        setTitle("GCL Autocomplete...");
         addKeyListener(new KeyListener(){
             public void keyPressed(KeyEvent evt){
                 if(evt.getKeyCode()==KeyEvent.VK_DOWN){

@@ -32,26 +32,18 @@ public class GSAutocomplete extends AutocompleteFrame{
     SyntaxHighlighter editor;
     String prevWord;
     String context;
-    JList list;
-    JScrollPane scroll;
     boolean requestDie = false;
     Project p;
     //How to declare an actor?
     Vector<Suggestion> v = new Vector<Suggestion>();
     
     public GSAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
-        super();
+        super("GS Autocomplete...");
         this.selstart = selstart;
         this.selend = selend;
         this.editor = editor;
         this.p = p;
-        setLayout(new BorderLayout());
-        JLabel label = new JLabel("GS Autocomplete...");
-        label.setFocusable(false);
-        label.setVisible(true);
-        add(BorderLayout.NORTH, label);
         context = getContext();
-        setTitle("GS Autocomplete...");
         addKeyListener(new KeyListener(){
             public void keyPressed(KeyEvent evt){
                 if(evt.getKeyCode()==KeyEvent.VK_DOWN){
@@ -233,14 +225,6 @@ public class GSAutocomplete extends AutocompleteFrame{
     }
     
     private void useContext(){
-        scroll = new JScrollPane();
-        scroll.setFocusable(false);
-        scroll.setVisible(true);
-        list = new JList();
-        list.setFocusable(false);
-        list.setVisible(true);
-        scroll.setViewportView(list);
-        add(BorderLayout.CENTER, scroll);
         if(context==null){
             dispose();
             return;
@@ -255,7 +239,9 @@ public class GSAutocomplete extends AutocompleteFrame{
         applyKeyword("var");
         
         applyFunction("room_goto_next");
-        applyFunction("show_message");
+        applyFunction("room_goto_previous");
+        applyFunction("scene_goto_next");
+        applyFunction("scene_goto_previous");
         applyFunction("random");
         applyFunction("abs");
         applyFunction("sign");
