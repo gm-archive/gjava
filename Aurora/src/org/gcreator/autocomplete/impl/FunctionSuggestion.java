@@ -16,12 +16,16 @@ import javax.swing.*;
  * @author Luís Reis
  */
 public class FunctionSuggestion extends Suggestion{
-    private String text = "";
+    private String name = "";
+    private String args;
+    //private String[] args;
     private static ImageIcon img = new ImageIcon(ClassSuggestion.class.getResource("/org/gcreator/resources/i_function.png"));
     public FunctionSuggestion(){}
     
-    public FunctionSuggestion(String text){
-        this.text = text;
+    public FunctionSuggestion(String name, String args){
+        this.name = name;
+        //this.args = args.split("\\s*,\\s*");
+        this.args = args;
     }
     
     public Color getForeground(){
@@ -33,12 +37,19 @@ public class FunctionSuggestion extends Suggestion{
     }
     
     public String getText(){
-        return text;
+        //String a = "";
+        /*for(int i = 0; i < args.length; i++){
+            if(i!=0)
+                a += ", ";
+            a += args[i];
+        }*/
+        //return name + "(" + a + ")";
+        return name + "(" + args + ")";
     }
     
     public String confirm(String context, String prevWord){
         try{
-            return text.substring(context.substring(context.lastIndexOf('.')+1).length()) + "(";
+            return name.substring(context.substring(context.lastIndexOf('.')+1).length()) + "(";
         }
         catch(Exception e){
             return "";

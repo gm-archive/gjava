@@ -259,7 +259,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         applyKeyword("getter");
         
         if(context.matches("^Clipboard\\.(g(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
-            v.add(new FunctionSuggestion("getText"));
+            v.add(new FunctionSuggestion("getText", ""));
         
         applyCKeyword("if");
         
@@ -269,8 +269,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         
         applyKeyword("float");
         
-        if(context.matches("^Clipboard\\.(s(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
-            v.add(new FunctionSuggestion("hasText"));
+        if(context.matches("^Clipboard\\.(h(a(s(T(e(x(t)?)?)?)?)?)?)?$"))
+            v.add(new FunctionSuggestion("hasText", ""));
         
         applyNKeyword("native");
         
@@ -285,7 +285,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
         applyKeyword("public");
         
         if(context.matches("^Clipboard\\.(s(e(t(T(e(x(t)?)?)?)?)?)?)?$"))
-            v.add(new FunctionSuggestion("setText"));
+            v.add(new FunctionSuggestion("setText", "text"));
         
         applyKeyword("return ");
         
@@ -296,10 +296,10 @@ public class GCLAutocomplete extends AutocompleteFrame{
         applyVKeyword("true");
         
         if(context.matches("^Common\\.Scene\\.(g(o(t(o(N(e(x(t)?)?)?)?)?)?)?)?$"))
-            v.add(new FunctionSuggestion("gotoNext"));
+            v.add(new FunctionSuggestion("gotoNext", ""));
         
         if(context.matches("^Common\\.Scene\\.(g(o(t(o(P(r(e(v(i(o(u(s)?)?)?)?)?)?)?)?)?)?)?)?$"))
-            v.add(new FunctionSuggestion("gotoNext"));
+            v.add(new FunctionSuggestion("gotoNext", ""));
         
         applyKeyword("void");
         
