@@ -3,7 +3,11 @@
 package org.gcreator.compilers.gjava.api;
 //import org.gcreator.compilers.gjava.api.lang.*;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Hashtable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -20,18 +24,57 @@ public class Object {
     
     public void setVariable(String name, Object value)
     {
-        variables.put(name.toString(), value);
+        try {
+            java.lang.String nm= ""+name;
+            Method m = Variables.class.getDeclaredMethod("set"+name.charAt(nm, 0).toUpperCase()+nm.substring(1) + "", new Class[]{Object.class});
+            try {
+                
+                    m.invoke(Variables.class.newInstance(), value);
+               
+                System.out.println("method invoked!");
+            } catch (Exception ex) {
+                System.out.println("no method"+ex);
+            variables.put(name.toString(), value);
+            } 
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no method"+ex);
+            variables.put(name.toString(), value);
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            variables.put(name.toString(), value);
+        }
+        
         
     }
     
     public void setVariable(java.lang.String name, Object value)
     {
+        
         variables.put(name, value);
         
     }
     
     public Object getVariable(String name)
     {
+        try {
+            java.lang.String nm= ""+name;
+            Method m = Variables.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
+            try {                
+                  return  (Object) m.invoke(Variables.class.newInstance(), null);
+               
+               // System.out.println("method invoked!");
+            } catch (Exception ex) {
+                System.out.println("no method"+ex);
+            variables.get(name.toString());
+            } 
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no method"+ex);
+            variables.get(name.toString());
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            variables.get(name.toString());
+        }
+        
         Object o = (Object)variables.get(name.toString());
          if (o == null) return new Integer(0);
         return o;

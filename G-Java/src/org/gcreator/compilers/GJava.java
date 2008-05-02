@@ -11,12 +11,16 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Vector;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+
+import org.gcreator.compilers.gjava.api.Constants;
+import org.gcreator.compilers.gjava.api.Variables;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.ToolbarButton;
@@ -30,6 +34,7 @@ import org.gcreator.events.MouseEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GObject;
 import org.gcreator.fileclass.Project;
+
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
@@ -452,6 +457,37 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
     
     public String getID(){
         return "G-Java";
+    }
+
+    @Override
+    public boolean checkvariable(String name) {
+        //return super.checkvariable(name);
+       // System.out.println("check variable");
+        java.lang.String nm= name;
+         try {
+            
+            Method m = org.gcreator.compilers.gjava.api.Actor.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
+            return true;
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no method"+ex);
+            try{
+            Method m = Variables.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
+            return true;
+            }catch(Exception e){
+            System.out.println("no method"+e);
+            try{
+            Method m = Constants.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
+            return true;
+            }catch(Exception ee){
+            System.out.println("no method"+ee);
+            }
+            }
+           
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            
+        }
+         return false;
     }
 
 //    public String varstatement(String type, String vars) {

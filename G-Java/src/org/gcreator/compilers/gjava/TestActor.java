@@ -11,6 +11,7 @@ import org.gcreator.compilers.gjava.api.String;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.Boolean;
+import org.gcreator.compilers.gjava.api.Color;
 
 /**
  *
@@ -24,7 +25,24 @@ public class TestActor extends Actor {
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self = this;
-        System.out.println("choose"+choose(new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5)));
+        draw_set_color(self.getC_aqua());
+        
+        
+        double start = System.currentTimeMillis();
+        for(int i=0;i<=9999;i++)
+        getVariable(new String("argument0"));
+        double end = System.currentTimeMillis();
+        System.out.println("Time to get var with reflec:"+(end-start));
+        
+        start = System.currentTimeMillis();
+        for(int i=0;i<=9999;i++)
+        getVariable(("argument0"));
+        end = System.currentTimeMillis();
+        System.out.println("time to get var without reflec:"+(end-start));
+        
+        setVariable(new String("argument0"),new Integer(10));
+        System.out.println("2;"+getVariable(new String("argument0")));
+        //System.out.println("choose"+choose(new Integer(1),new Integer(2),new Integer(3),new Integer(4),new Integer(5)));
         //window_set_rectangle(new Integer(0), new Integer(00),new Integer(50), new Integer(50));
         //window_default();
         //set_automatic_draw(new Boolean(false));
@@ -158,7 +176,7 @@ public class TestActor extends Actor {
 
 
         draw_surface(sid, new Integer(100), new Integer(100));
-        System.out.println("paint");
+        //System.out.println("paint");
     }
 
 //    @Override
