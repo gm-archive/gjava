@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-05-02 14:21:28
+// $ANTLR 3.0.1 C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g 2008-05-03 11:50:33
 
 package org.gcreator.plugins.platform;
 import org.gcreator.plugins.*;
@@ -64,11 +64,15 @@ public class gscriptParser extends Parser {
     pc = p;
     }
     
+    public void emitErrorMessage(String msg) {
+            pc.showError(msg);
+    	}
+    
 
 
 
     // $ANTLR start classes
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:52:1: classes : ( (f= method | m= field ) ( ';' )* )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:1: classes : ( (f= method | m= field ) ( ';' )* )* ;
     public final void classes() throws RecognitionException {
         int classes_StartIndex = input.index();
         String f = null;
@@ -78,13 +82,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 1) ) { return ; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:1: ( ( (f= method | m= field ) ( ';' )* )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:3: ( (f= method | m= field ) ( ';' )* )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:1: ( ( (f= method | m= field ) ( ';' )* )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:3: ( (f= method | m= field ) ( ';' )* )*
             {
             if ( backtracking==0 ) {
               pc.returncode ="";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:24: ( (f= method | m= field ) ( ';' )* )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:24: ( (f= method | m= field ) ( ';' )* )*
             loop3:
             do {
                 int alt3=2;
@@ -97,9 +101,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:25: (f= method | m= field ) ( ';' )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:25: (f= method | m= field ) ( ';' )*
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:25: (f= method | m= field )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:25: (f= method | m= field )
             	    int alt1=2;
             	    switch ( input.LA(1) ) {
             	    case 36:
@@ -121,7 +125,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 29, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 29, input);
 
             	                    throw nvae;
             	                }
@@ -140,7 +144,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 30, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 30, input);
 
             	                    throw nvae;
             	                }
@@ -159,7 +163,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 31, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 31, input);
 
             	                    throw nvae;
             	                }
@@ -174,7 +178,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 8, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 8, input);
 
             	                throw nvae;
             	            }
@@ -197,7 +201,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 34, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 34, input);
 
             	                    throw nvae;
             	                }
@@ -222,7 +226,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 36, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 36, input);
 
             	                    throw nvae;
             	                }
@@ -231,7 +235,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 9, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 9, input);
 
             	                throw nvae;
             	            }
@@ -254,7 +258,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 38, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 38, input);
 
             	                    throw nvae;
             	                }
@@ -265,7 +269,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 10, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 10, input);
 
             	                throw nvae;
             	            }
@@ -280,7 +284,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= method | m= field )", 1, 1, input);
+            	                new NoViableAltException("57:25: (f= method | m= field )", 1, 1, input);
 
             	            throw nvae;
             	        }
@@ -306,7 +310,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 40, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 40, input);
 
             	                    throw nvae;
             	                }
@@ -325,7 +329,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 41, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 41, input);
 
             	                    throw nvae;
             	                }
@@ -344,7 +348,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 42, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 42, input);
 
             	                    throw nvae;
             	                }
@@ -359,7 +363,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 13, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 13, input);
 
             	                throw nvae;
             	            }
@@ -382,7 +386,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 45, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 45, input);
 
             	                    throw nvae;
             	                }
@@ -407,7 +411,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 47, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 47, input);
 
             	                    throw nvae;
             	                }
@@ -416,7 +420,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 14, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 14, input);
 
             	                throw nvae;
             	            }
@@ -445,7 +449,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 49, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 49, input);
 
             	                    throw nvae;
             	                }
@@ -456,7 +460,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 16, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 16, input);
 
             	                throw nvae;
             	            }
@@ -465,7 +469,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= method | m= field )", 1, 2, input);
+            	                new NoViableAltException("57:25: (f= method | m= field )", 1, 2, input);
 
             	            throw nvae;
             	        }
@@ -491,7 +495,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 51, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 51, input);
 
             	                    throw nvae;
             	                }
@@ -516,7 +520,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 53, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 53, input);
 
             	                    throw nvae;
             	                }
@@ -525,7 +529,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 18, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 18, input);
 
             	                throw nvae;
             	            }
@@ -548,7 +552,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 55, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 55, input);
 
             	                    throw nvae;
             	                }
@@ -559,7 +563,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 19, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 19, input);
 
             	                throw nvae;
             	            }
@@ -581,7 +585,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 58, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 58, input);
 
             	                    throw nvae;
             	                }
@@ -592,7 +596,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 20, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 20, input);
 
             	                throw nvae;
             	            }
@@ -607,7 +611,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= method | m= field )", 1, 3, input);
+            	                new NoViableAltException("57:25: (f= method | m= field )", 1, 3, input);
 
             	            throw nvae;
             	        }
@@ -633,7 +637,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 60, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 60, input);
 
             	                    throw nvae;
             	                }
@@ -644,7 +648,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 23, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 23, input);
 
             	                throw nvae;
             	            }
@@ -672,7 +676,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 63, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 63, input);
 
             	                    throw nvae;
             	                }
@@ -683,7 +687,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 25, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 25, input);
 
             	                throw nvae;
             	            }
@@ -692,7 +696,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= method | m= field )", 1, 4, input);
+            	                new NoViableAltException("57:25: (f= method | m= field )", 1, 4, input);
 
             	            throw nvae;
             	        }
@@ -718,7 +722,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return ;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("53:25: (f= method | m= field )", 1, 65, input);
+            	                        new NoViableAltException("57:25: (f= method | m= field )", 1, 65, input);
 
             	                    throw nvae;
             	                }
@@ -740,7 +744,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return ;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("53:25: (f= method | m= field )", 1, 27, input);
+            	                    new NoViableAltException("57:25: (f= method | m= field )", 1, 27, input);
 
             	                throw nvae;
             	            }
@@ -752,7 +756,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return ;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("53:25: (f= method | m= field )", 1, 5, input);
+            	                new NoViableAltException("57:25: (f= method | m= field )", 1, 5, input);
 
             	            throw nvae;
             	        }
@@ -767,14 +771,14 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return ;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("53:25: (f= method | m= field )", 1, 0, input);
+            	            new NoViableAltException("57:25: (f= method | m= field )", 1, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt1) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: f= method
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:26: f= method
             	            {
             	            pushFollow(FOLLOW_method_in_classes199);
             	            f=method();
@@ -787,7 +791,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:71: m= field
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:71: m= field
             	            {
             	            pushFollow(FOLLOW_field_in_classes204);
             	            m=field();
@@ -802,7 +806,7 @@ public class gscriptParser extends Parser {
 
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:116: ( ';' )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:116: ( ';' )*
             	    loop2:
             	    do {
             	        int alt2=2;
@@ -815,7 +819,7 @@ public class gscriptParser extends Parser {
 
             	        switch (alt2) {
             	    	case 1 :
-            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:117: ';'
+            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:117: ';'
             	    	    {
             	    	    match(input,35,FOLLOW_35_in_classes209); if (failed) return ;
             	    	    if ( backtracking==0 ) {
@@ -856,7 +860,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start code
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:56:1: code : ( (s= statement )* ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:1: code : ( (s= statement )* ) ;
     public final void code() throws RecognitionException {
         int code_StartIndex = input.index();
         String s = null;
@@ -864,16 +868,16 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 2) ) { return ; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:1: ( ( (s= statement )* ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:3: ( (s= statement )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:1: ( ( (s= statement )* ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:3: ( (s= statement )* )
             {
             if ( backtracking==0 ) {
                pc.returncode ="";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:25: ( (s= statement )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:26: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:25: ( (s= statement )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:26: (s= statement )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:26: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:26: (s= statement )*
             loop4:
             do {
                 int alt4=2;
@@ -886,7 +890,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:27: s= statement
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:27: s= statement
             	    {
             	    pushFollow(FOLLOW_statement_in_code230);
             	    s=statement();
@@ -927,7 +931,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start statement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:60:1: statement returns [String value] : (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:1: statement returns [String value] : (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* ;
     public final String statement() throws RecognitionException {
         String value = null;
         int statement_StartIndex = input.index();
@@ -966,13 +970,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 3) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:1: ( (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:3: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:1: ( (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:3: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' ) ( ';' )*
             {
             if ( backtracking==0 ) {
               value = "";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )
             int alt5=17;
             switch ( input.LA(1) ) {
             case LBRAC:
@@ -1021,7 +1025,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 29, input);
+                                new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 29, input);
 
                             throw nvae;
                         }
@@ -1040,7 +1044,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 30, input);
+                                new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 30, input);
 
                             throw nvae;
                         }
@@ -1059,7 +1063,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 31, input);
+                                new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 31, input);
 
                             throw nvae;
                         }
@@ -1079,7 +1083,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 32, input);
+                                new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 32, input);
 
                             throw nvae;
                         }
@@ -1100,7 +1104,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 21, input);
+                            new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 21, input);
 
                         throw nvae;
                     }
@@ -1117,7 +1121,7 @@ public class gscriptParser extends Parser {
                 default:
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 3, input);
+                        new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 3, input);
 
                     throw nvae;
                 }
@@ -1192,7 +1196,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 16, input);
+                        new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 16, input);
 
                     throw nvae;
                 }
@@ -1212,14 +1216,14 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("61:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 0, input);
+                    new NoViableAltException("65:19: (b= bstatement | v= varstatement | r= returnstatement | e= exitstatement | ifs= ifstatement | rep= repeatstatement | dos= dostatement | wh= whilestatement | con= continuestatement | br= breakstatement | fors= forstatement | sw= switchstatement | wit= withstatement | fun2= function2 | ass= assignment | fun= function | ';' )", 5, 0, input);
 
                 throw nvae;
             }
 
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:20: b= bstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:20: b= bstatement
                     {
                     pushFollow(FOLLOW_bstatement_in_statement255);
                     b=bstatement();
@@ -1232,7 +1236,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:54: v= varstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:54: v= varstatement
                     {
                     pushFollow(FOLLOW_varstatement_in_statement260);
                     v=varstatement();
@@ -1245,7 +1249,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:94: r= returnstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:94: r= returnstatement
                     {
                     pushFollow(FOLLOW_returnstatement_in_statement265);
                     r=returnstatement();
@@ -1258,7 +1262,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:133: e= exitstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:133: e= exitstatement
                     {
                     pushFollow(FOLLOW_exitstatement_in_statement270);
                     e=exitstatement();
@@ -1271,7 +1275,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:170: ifs= ifstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:170: ifs= ifstatement
                     {
                     pushFollow(FOLLOW_ifstatement_in_statement275);
                     ifs=ifstatement();
@@ -1284,7 +1288,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:209: rep= repeatstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:209: rep= repeatstatement
                     {
                     pushFollow(FOLLOW_repeatstatement_in_statement280);
                     rep=repeatstatement();
@@ -1297,7 +1301,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:252: dos= dostatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:252: dos= dostatement
                     {
                     pushFollow(FOLLOW_dostatement_in_statement285);
                     dos=dostatement();
@@ -1310,7 +1314,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:291: wh= whilestatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:291: wh= whilestatement
                     {
                     pushFollow(FOLLOW_whilestatement_in_statement290);
                     wh=whilestatement();
@@ -1323,7 +1327,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:331: con= continuestatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:331: con= continuestatement
                     {
                     pushFollow(FOLLOW_continuestatement_in_statement295);
                     con=continuestatement();
@@ -1336,7 +1340,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 10 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:380: br= breakstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:380: br= breakstatement
                     {
                     pushFollow(FOLLOW_breakstatement_in_statement300);
                     br=breakstatement();
@@ -1349,7 +1353,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 11 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:424: fors= forstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:424: fors= forstatement
                     {
                     pushFollow(FOLLOW_forstatement_in_statement305);
                     fors=forstatement();
@@ -1362,7 +1366,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 12 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:466: sw= switchstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:466: sw= switchstatement
                     {
                     pushFollow(FOLLOW_switchstatement_in_statement310);
                     sw=switchstatement();
@@ -1375,7 +1379,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 13 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:507: wit= withstatement
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:507: wit= withstatement
                     {
                     pushFollow(FOLLOW_withstatement_in_statement315);
                     wit=withstatement();
@@ -1388,7 +1392,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 14 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:548: fun2= function2
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:548: fun2= function2
                     {
                     pushFollow(FOLLOW_function2_in_statement320);
                     fun2=function2();
@@ -1401,7 +1405,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 15 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:591: ass= assignment
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:591: ass= assignment
                     {
                     pushFollow(FOLLOW_assignment_in_statement325);
                     ass=assignment();
@@ -1414,7 +1418,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 16 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:633: fun= function
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:633: fun= function
                     {
                     pushFollow(FOLLOW_function_in_statement330);
                     fun=function();
@@ -1427,7 +1431,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 17 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:673: ';'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:673: ';'
                     {
                     match(input,35,FOLLOW_35_in_statement333); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1439,7 +1443,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:693: ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:693: ( ';' )*
             loop6:
             do {
                 int alt6=2;
@@ -1458,7 +1462,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:694: ';'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:694: ';'
             	    {
             	    match(input,35,FOLLOW_35_in_statement338); if (failed) return value;
 
@@ -1487,7 +1491,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start field
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:64:1: field returns [String value] : ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:1: field returns [String value] : ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement ) ;
     public final String field() throws RecognitionException {
         String value = null;
         int field_StartIndex = input.index();
@@ -1496,10 +1500,10 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 4) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:1: ( ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:3: ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:1: ( ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:3: ( 'public' | ( 'private' | 'var' ) )? ( 'final' )? ( 'static' )? ( 'final' )? (v= varstatement )
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:3: ( 'public' | ( 'private' | 'var' ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:3: ( 'public' | ( 'private' | 'var' ) )?
             int alt7=3;
             switch ( input.LA(1) ) {
                 case 36:
@@ -1539,7 +1543,7 @@ public class gscriptParser extends Parser {
 
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:4: 'public'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:4: 'public'
                     {
                     match(input,36,FOLLOW_36_in_field357); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1549,7 +1553,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:34: ( 'private' | 'var' )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:34: ( 'private' | 'var' )
                     {
                     if ( (input.LA(1)>=37 && input.LA(1)<=38) ) {
                         input.consume();
@@ -1571,7 +1575,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:76: ( 'final' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:76: ( 'final' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -1584,7 +1588,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: 'final'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:77: 'final'
                     {
                     match(input,39,FOLLOW_39_in_field372); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1596,7 +1600,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:108: ( 'static' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:108: ( 'static' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1605,7 +1609,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:109: 'static'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:109: 'static'
                     {
                     match(input,40,FOLLOW_40_in_field378); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1617,7 +1621,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:142: ( 'final' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:142: ( 'final' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -1626,7 +1630,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt10) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:143: 'final'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:143: 'final'
                     {
                     match(input,39,FOLLOW_39_in_field384); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1638,8 +1642,8 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:174: (v= varstatement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:175: v= varstatement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:174: (v= varstatement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:175: v= varstatement
             {
             pushFollow(FOLLOW_varstatement_in_field392);
             v=varstatement();
@@ -1668,7 +1672,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start method
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:68:1: method returns [String value] : ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:72:1: method returns [String value] : ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement ;
     public final String method() throws RecognitionException {
         String value = null;
         int method_StartIndex = input.index();
@@ -1680,10 +1684,10 @@ public class gscriptParser extends Parser {
         String s = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 5) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:1: ( ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:3: ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:1: ( ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:3: ( 'public' | 'private' )? ( 'final' )? ( 'static' )? ( 'final' )? name= WORD '(' (e= WORD ( ( ',' ) (e= WORD )? )* )? ')' b= bstatement
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:3: ( 'public' | 'private' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:3: ( 'public' | 'private' )?
             int alt11=3;
             int LA11_0 = input.LA(1);
 
@@ -1695,7 +1699,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt11) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:4: 'public'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:4: 'public'
                     {
                     match(input,36,FOLLOW_36_in_method414); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1705,7 +1709,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:33: 'private'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:33: 'private'
                     {
                     match(input,37,FOLLOW_37_in_method417); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1717,7 +1721,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:66: ( 'final' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:66: ( 'final' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -1730,7 +1734,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: 'final'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:67: 'final'
                     {
                     match(input,39,FOLLOW_39_in_method423); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1742,7 +1746,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:98: ( 'static' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:98: ( 'static' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1751,7 +1755,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt13) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:99: 'static'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:99: 'static'
                     {
                     match(input,40,FOLLOW_40_in_method429); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1763,7 +1767,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:132: ( 'final' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:132: ( 'final' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1772,7 +1776,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt14) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:133: 'final'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:133: 'final'
                     {
                     match(input,39,FOLLOW_39_in_method435); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -1787,7 +1791,7 @@ public class gscriptParser extends Parser {
             name=(Token)input.LT(1);
             match(input,WORD,FOLLOW_WORD_in_method442); if (failed) return value;
             match(input,LPAREN,FOLLOW_LPAREN_in_method444); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:178: (e= WORD ( ( ',' ) (e= WORD )? )* )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:178: (e= WORD ( ( ',' ) (e= WORD )? )* )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -1796,14 +1800,14 @@ public class gscriptParser extends Parser {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:179: e= WORD ( ( ',' ) (e= WORD )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:179: e= WORD ( ( ',' ) (e= WORD )? )*
                     {
                     e=(Token)input.LT(1);
                     match(input,WORD,FOLLOW_WORD_in_method449); if (failed) return value;
                     if ( backtracking==0 ) {
                       s = e.getText();
                     }
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:201: ( ( ',' ) (e= WORD )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:201: ( ( ',' ) (e= WORD )? )*
                     loop16:
                     do {
                         int alt16=2;
@@ -1816,16 +1820,16 @@ public class gscriptParser extends Parser {
 
                         switch (alt16) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:202: ( ',' ) (e= WORD )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:202: ( ',' ) (e= WORD )?
                     	    {
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:202: ( ',' )
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:203: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:202: ( ',' )
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:203: ','
                     	    {
                     	    match(input,41,FOLLOW_41_in_method455); if (failed) return value;
 
                     	    }
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:208: (e= WORD )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:208: (e= WORD )?
                     	    int alt15=2;
                     	    int LA15_0 = input.LA(1);
 
@@ -1834,7 +1838,7 @@ public class gscriptParser extends Parser {
                     	    }
                     	    switch (alt15) {
                     	        case 1 :
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:209: e= WORD
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:209: e= WORD
                     	            {
                     	            e=(Token)input.LT(1);
                     	            match(input,WORD,FOLLOW_WORD_in_method461); if (failed) return value;
@@ -1887,7 +1891,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start bstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:1: bstatement returns [String value] : ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:77:1: bstatement returns [String value] : ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' ) ;
     public final String bstatement() throws RecognitionException {
         String value = null;
         int bstatement_StartIndex = input.index();
@@ -1896,8 +1900,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 6) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:1: ( ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:3: ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:1: ( ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:3: ( LBRAC | 'begin' ) (s= statement )* ( RBRAC | 'end' )
             {
             if ( backtracking==0 ) {
               value = "";
@@ -1913,7 +1917,7 @@ public class gscriptParser extends Parser {
                 recoverFromMismatchedSet(input,mse,FOLLOW_set_in_bstatement492);    throw mse;
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:34: (s= statement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:34: (s= statement )*
             loop18:
             do {
                 int alt18=2;
@@ -1926,7 +1930,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt18) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:74:35: s= statement
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: s= statement
             	    {
             	    pushFollow(FOLLOW_statement_in_bstatement501);
             	    s=statement();
@@ -1978,7 +1982,7 @@ public class gscriptParser extends Parser {
     };
 
     // $ANTLR start varstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:77:1: varstatement returns [String value] : (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:1: varstatement returns [String value] : (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )* ;
     public final varstatement_return varstatement() throws RecognitionException {
         varstatement_return retval = new varstatement_return();
         retval.start = input.LT(1);
@@ -1994,10 +1998,10 @@ public class gscriptParser extends Parser {
         String s = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 7) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:1: ( (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:3: (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:1: ( (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:3: (w= 'var' | w= WORD | w= 'globalvar' ) (vari= variable | ass= assignment ) ( ',' (varii= variable | ass= assignment ) )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:3: (w= 'var' | w= WORD | w= 'globalvar' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:3: (w= 'var' | w= WORD | w= 'globalvar' )
             int alt19=3;
             switch ( input.LA(1) ) {
             case 38:
@@ -2018,14 +2022,14 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("78:3: (w= 'var' | w= WORD | w= 'globalvar' )", 19, 0, input);
+                    new NoViableAltException("82:3: (w= 'var' | w= WORD | w= 'globalvar' )", 19, 0, input);
 
                 throw nvae;
             }
 
             switch (alt19) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:4: w= 'var'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:4: w= 'var'
                     {
                     w=(Token)input.LT(1);
                     match(input,38,FOLLOW_38_in_varstatement533); if (failed) return retval;
@@ -2033,7 +2037,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:12: w= WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:12: w= WORD
                     {
                     w=(Token)input.LT(1);
                     match(input,WORD,FOLLOW_WORD_in_varstatement537); if (failed) return retval;
@@ -2041,7 +2045,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:19: w= 'globalvar'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:19: w= 'globalvar'
                     {
                     w=(Token)input.LT(1);
                     match(input,44,FOLLOW_44_in_varstatement541); if (failed) return retval;
@@ -2051,7 +2055,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:34: (vari= variable | ass= assignment )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:34: (vari= variable | ass= assignment )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -2073,7 +2077,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 50, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 50, input);
 
                             throw nvae;
                         }
@@ -2092,7 +2096,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 51, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 51, input);
 
                             throw nvae;
                         }
@@ -2111,7 +2115,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 52, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 52, input);
 
                             throw nvae;
                         }
@@ -2130,7 +2134,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 53, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 53, input);
 
                             throw nvae;
                         }
@@ -2149,7 +2153,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 54, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 54, input);
 
                             throw nvae;
                         }
@@ -2168,7 +2172,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 55, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 55, input);
 
                             throw nvae;
                         }
@@ -2187,7 +2191,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 56, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 56, input);
 
                             throw nvae;
                         }
@@ -2207,7 +2211,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 57, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 57, input);
 
                             throw nvae;
                         }
@@ -2226,7 +2230,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 58, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 58, input);
 
                             throw nvae;
                         }
@@ -2246,7 +2250,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 59, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 59, input);
 
                             throw nvae;
                         }
@@ -2255,7 +2259,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 3, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 3, input);
 
                         throw nvae;
                     }
@@ -2278,7 +2282,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 60, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 60, input);
 
                             throw nvae;
                         }
@@ -2295,7 +2299,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 61, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 61, input);
 
                             throw nvae;
                         }
@@ -2303,7 +2307,7 @@ public class gscriptParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 4, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 4, input);
 
                         throw nvae;
                     }
@@ -2371,7 +2375,7 @@ public class gscriptParser extends Parser {
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 1, input);
+                        new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 1, input);
 
                     throw nvae;
                 }
@@ -2395,7 +2399,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 62, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 62, input);
 
                             throw nvae;
                         }
@@ -2403,7 +2407,7 @@ public class gscriptParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 46, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 46, input);
 
                         throw nvae;
                     }
@@ -2425,7 +2429,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 63, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 63, input);
 
                             throw nvae;
                         }
@@ -2444,7 +2448,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 64, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 64, input);
 
                             throw nvae;
                         }
@@ -2463,7 +2467,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 65, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 65, input);
 
                             throw nvae;
                         }
@@ -2482,7 +2486,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 66, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 66, input);
 
                             throw nvae;
                         }
@@ -2491,7 +2495,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 47, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 47, input);
 
                         throw nvae;
                     }
@@ -2514,7 +2518,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 67, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 67, input);
 
                             throw nvae;
                         }
@@ -2533,7 +2537,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 68, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 68, input);
 
                             throw nvae;
                         }
@@ -2552,7 +2556,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 69, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 69, input);
 
                             throw nvae;
                         }
@@ -2572,7 +2576,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 70, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 70, input);
 
                             throw nvae;
                         }
@@ -2581,7 +2585,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 48, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 48, input);
 
                         throw nvae;
                     }
@@ -2605,7 +2609,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 71, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 71, input);
 
                             throw nvae;
                         }
@@ -2624,7 +2628,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 72, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 72, input);
 
                             throw nvae;
                         }
@@ -2643,7 +2647,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 73, input);
+                                new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 73, input);
 
                             throw nvae;
                         }
@@ -2652,7 +2656,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 49, input);
+                            new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 49, input);
 
                         throw nvae;
                     }
@@ -2662,7 +2666,7 @@ public class gscriptParser extends Parser {
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 2, input);
+                        new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 2, input);
 
                     throw nvae;
                 }
@@ -2671,13 +2675,13 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("78:34: (vari= variable | ass= assignment )", 20, 0, input);
+                    new NoViableAltException("82:34: (vari= variable | ass= assignment )", 20, 0, input);
 
                 throw nvae;
             }
             switch (alt20) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: vari= variable
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:35: vari= variable
                     {
                     pushFollow(FOLLOW_variable_in_varstatement547);
                     vari=variable();
@@ -2690,7 +2694,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:75: ass= assignment
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:75: ass= assignment
                     {
                     pushFollow(FOLLOW_assignment_in_varstatement553);
                     ass=assignment();
@@ -2705,7 +2709,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:112: ( ',' (varii= variable | ass= assignment ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:112: ( ',' (varii= variable | ass= assignment ) )*
             loop22:
             do {
                 int alt22=2;
@@ -2718,10 +2722,10 @@ public class gscriptParser extends Parser {
 
                 switch (alt22) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:113: ',' (varii= variable | ass= assignment )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:113: ',' (varii= variable | ass= assignment )
             	    {
             	    match(input,41,FOLLOW_41_in_varstatement559); if (failed) return retval;
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:117: (varii= variable | ass= assignment )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:117: (varii= variable | ass= assignment )
             	    int alt21=2;
             	    int LA21_0 = input.LA(1);
 
@@ -2743,7 +2747,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 50, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 50, input);
 
             	                    throw nvae;
             	                }
@@ -2762,7 +2766,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 51, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 51, input);
 
             	                    throw nvae;
             	                }
@@ -2781,7 +2785,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 52, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 52, input);
 
             	                    throw nvae;
             	                }
@@ -2800,7 +2804,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 53, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 53, input);
 
             	                    throw nvae;
             	                }
@@ -2819,7 +2823,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 54, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 54, input);
 
             	                    throw nvae;
             	                }
@@ -2838,7 +2842,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 55, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 55, input);
 
             	                    throw nvae;
             	                }
@@ -2857,7 +2861,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 56, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 56, input);
 
             	                    throw nvae;
             	                }
@@ -2877,7 +2881,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 57, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 57, input);
 
             	                    throw nvae;
             	                }
@@ -2896,7 +2900,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 58, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 58, input);
 
             	                    throw nvae;
             	                }
@@ -2916,7 +2920,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 59, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 59, input);
 
             	                    throw nvae;
             	                }
@@ -2925,7 +2929,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 3, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 3, input);
 
             	                throw nvae;
             	            }
@@ -2948,7 +2952,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 60, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 60, input);
 
             	                    throw nvae;
             	                }
@@ -2965,7 +2969,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 61, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 61, input);
 
             	                    throw nvae;
             	                }
@@ -2973,7 +2977,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 4, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 4, input);
 
             	                throw nvae;
             	            }
@@ -3041,7 +3045,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return retval;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 1, input);
+            	                new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 1, input);
 
             	            throw nvae;
             	        }
@@ -3065,7 +3069,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 62, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 62, input);
 
             	                    throw nvae;
             	                }
@@ -3073,7 +3077,7 @@ public class gscriptParser extends Parser {
             	            else {
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 46, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 46, input);
 
             	                throw nvae;
             	            }
@@ -3095,7 +3099,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 63, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 63, input);
 
             	                    throw nvae;
             	                }
@@ -3114,7 +3118,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 64, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 64, input);
 
             	                    throw nvae;
             	                }
@@ -3133,7 +3137,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 65, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 65, input);
 
             	                    throw nvae;
             	                }
@@ -3152,7 +3156,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 66, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 66, input);
 
             	                    throw nvae;
             	                }
@@ -3161,7 +3165,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 47, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 47, input);
 
             	                throw nvae;
             	            }
@@ -3184,7 +3188,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 67, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 67, input);
 
             	                    throw nvae;
             	                }
@@ -3203,7 +3207,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 68, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 68, input);
 
             	                    throw nvae;
             	                }
@@ -3222,7 +3226,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 69, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 69, input);
 
             	                    throw nvae;
             	                }
@@ -3242,7 +3246,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 70, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 70, input);
 
             	                    throw nvae;
             	                }
@@ -3251,7 +3255,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 48, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 48, input);
 
             	                throw nvae;
             	            }
@@ -3275,7 +3279,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 71, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 71, input);
 
             	                    throw nvae;
             	                }
@@ -3294,7 +3298,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 72, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 72, input);
 
             	                    throw nvae;
             	                }
@@ -3313,7 +3317,7 @@ public class gscriptParser extends Parser {
             	                else {
             	                    if (backtracking>0) {failed=true; return retval;}
             	                    NoViableAltException nvae =
-            	                        new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 73, input);
+            	                        new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 73, input);
 
             	                    throw nvae;
             	                }
@@ -3322,7 +3326,7 @@ public class gscriptParser extends Parser {
             	            default:
             	                if (backtracking>0) {failed=true; return retval;}
             	                NoViableAltException nvae =
-            	                    new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 49, input);
+            	                    new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 49, input);
 
             	                throw nvae;
             	            }
@@ -3332,7 +3336,7 @@ public class gscriptParser extends Parser {
             	        default:
             	            if (backtracking>0) {failed=true; return retval;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 2, input);
+            	                new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 2, input);
 
             	            throw nvae;
             	        }
@@ -3341,13 +3345,13 @@ public class gscriptParser extends Parser {
             	    else {
             	        if (backtracking>0) {failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("78:117: (varii= variable | ass= assignment )", 21, 0, input);
+            	            new NoViableAltException("82:117: (varii= variable | ass= assignment )", 21, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt21) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:118: varii= variable
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:118: varii= variable
             	            {
             	            pushFollow(FOLLOW_variable_in_varstatement564);
             	            varii=variable();
@@ -3360,7 +3364,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:163: ass= assignment
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:163: ass= assignment
             	            {
             	            pushFollow(FOLLOW_assignment_in_varstatement570);
             	            ass=assignment();
@@ -3406,7 +3410,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start returnstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:81:1: returnstatement returns [String value] : 'return' (e= expression ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:1: returnstatement returns [String value] : 'return' (e= expression ) ;
     public final String returnstatement() throws RecognitionException {
         String value = null;
         int returnstatement_StartIndex = input.index();
@@ -3415,12 +3419,12 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 8) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:1: ( 'return' (e= expression ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:3: 'return' (e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:1: ( 'return' (e= expression ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:3: 'return' (e= expression )
             {
             match(input,45,FOLLOW_45_in_returnstatement593); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:12: (e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:13: e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:12: (e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:13: e= expression
             {
             pushFollow(FOLLOW_expression_in_returnstatement598);
             e=expression();
@@ -3452,14 +3456,14 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start exitstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:85:1: exitstatement returns [String value] : 'exit' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:89:1: exitstatement returns [String value] : 'exit' ;
     public final String exitstatement() throws RecognitionException {
         String value = null;
         int exitstatement_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 9) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:1: ( 'exit' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:86:2: 'exit'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:1: ( 'exit' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:2: 'exit'
             {
             match(input,46,FOLLOW_46_in_exitstatement614); if (failed) return value;
             if ( backtracking==0 ) {
@@ -3482,7 +3486,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start ifstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:89:1: ifstatement returns [String value] : 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:1: ifstatement returns [String value] : 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )* ;
     public final String ifstatement() throws RecognitionException {
         String value = null;
         int ifstatement_StartIndex = input.index();
@@ -3495,8 +3499,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 10) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:1: ( 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:4: 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:1: ( 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:4: 'if' e= expression ( 'then' )? (s= statement ) (el= elsestatement )*
             {
             if ( backtracking==0 ) {
               value = "";
@@ -3506,7 +3510,7 @@ public class gscriptParser extends Parser {
             e=expression();
             _fsp--;
             if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:36: ( 'then' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:36: ( 'then' )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -3515,7 +3519,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:37: 'then'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:37: 'then'
                     {
                     match(input,48,FOLLOW_48_in_ifstatement639); if (failed) return value;
 
@@ -3524,8 +3528,8 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:46: (s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:47: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:46: (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:47: s= statement
             {
             pushFollow(FOLLOW_statement_in_ifstatement646);
             s=statement();
@@ -3534,7 +3538,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:60: (el= elsestatement )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:60: (el= elsestatement )*
             loop24:
             do {
                 int alt24=2;
@@ -3562,7 +3566,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt24) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: el= elsestatement
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:61: el= elsestatement
             	    {
             	    pushFollow(FOLLOW_elsestatement_in_ifstatement652);
             	    el=elsestatement();
@@ -3600,7 +3604,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start elsestatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:93:1: elsestatement returns [String value] : ( 'else' | ( 'elsif' e= expression ) ) (s= statement ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:97:1: elsestatement returns [String value] : ( 'else' | ( 'elsif' e= expression ) ) (s= statement ) ;
     public final String elsestatement() throws RecognitionException {
         String value = null;
         int elsestatement_StartIndex = input.index();
@@ -3611,13 +3615,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 11) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:1: ( ( 'else' | ( 'elsif' e= expression ) ) (s= statement ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:3: ( 'else' | ( 'elsif' e= expression ) ) (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:1: ( ( 'else' | ( 'elsif' e= expression ) ) (s= statement ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:3: ( 'else' | ( 'elsif' e= expression ) ) (s= statement )
             {
             if ( backtracking==0 ) {
               value ="";
             }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:17: ( 'else' | ( 'elsif' e= expression ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:17: ( 'else' | ( 'elsif' e= expression ) )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
@@ -3630,23 +3634,23 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("94:17: ( 'else' | ( 'elsif' e= expression ) )", 25, 0, input);
+                    new NoViableAltException("98:17: ( 'else' | ( 'elsif' e= expression ) )", 25, 0, input);
 
                 throw nvae;
             }
             switch (alt25) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:18: 'else'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:18: 'else'
                     {
                     match(input,49,FOLLOW_49_in_elsestatement674); if (failed) return value;
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:25: ( 'elsif' e= expression )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:25: ( 'elsif' e= expression )
                     {
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:25: ( 'elsif' e= expression )
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:26: 'elsif' e= expression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:25: ( 'elsif' e= expression )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:26: 'elsif' e= expression
                     {
                     match(input,50,FOLLOW_50_in_elsestatement677); if (failed) return value;
                     pushFollow(FOLLOW_expression_in_elsestatement681);
@@ -3665,8 +3669,8 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:75: (s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:76: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:75: (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:76: s= statement
             {
             pushFollow(FOLLOW_statement_in_elsestatement690);
             s=statement();
@@ -3701,7 +3705,7 @@ public class gscriptParser extends Parser {
     };
 
     // $ANTLR start expression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:98:1: expression returns [String value] : (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:1: expression returns [String value] : (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* ;
     public final expression_return expression() throws RecognitionException {
         expression_return retval = new expression_return();
         retval.start = input.LT(1);
@@ -3728,10 +3732,10 @@ public class gscriptParser extends Parser {
         String a = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 12) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:1: ( (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:1: ( (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression ) (aa= aexpression )* ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )
             int alt26=4;
             switch ( input.LA(1) ) {
             case MINUS:
@@ -3750,7 +3754,7 @@ public class gscriptParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 11, input);
+                            new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 11, input);
 
                         throw nvae;
                     }
@@ -3761,7 +3765,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 1, input);
+                        new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 1, input);
 
                     throw nvae;
                 }
@@ -3802,7 +3806,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 81, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 81, input);
 
                             throw nvae;
                         }
@@ -3821,7 +3825,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 82, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 82, input);
 
                             throw nvae;
                         }
@@ -3840,7 +3844,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 83, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 83, input);
 
                             throw nvae;
                         }
@@ -3860,7 +3864,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 84, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 84, input);
 
                             throw nvae;
                         }
@@ -3880,7 +3884,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 23, input);
+                            new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 23, input);
 
                         throw nvae;
                     }
@@ -3903,7 +3907,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 91, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 91, input);
 
                             throw nvae;
                         }
@@ -3922,7 +3926,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 92, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 92, input);
 
                             throw nvae;
                         }
@@ -3941,7 +3945,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 93, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 93, input);
 
                             throw nvae;
                         }
@@ -3990,7 +3994,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 99, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 99, input);
 
                             throw nvae;
                         }
@@ -3999,7 +4003,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 24, input);
+                            new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 24, input);
 
                         throw nvae;
                     }
@@ -4022,7 +4026,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 100, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 100, input);
 
                             throw nvae;
                         }
@@ -4033,7 +4037,7 @@ public class gscriptParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 27, input);
+                            new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 27, input);
 
                         throw nvae;
                     }
@@ -4056,7 +4060,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 106, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 106, input);
 
                             throw nvae;
                         }
@@ -4075,7 +4079,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 107, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 107, input);
 
                             throw nvae;
                         }
@@ -4124,7 +4128,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 113, input);
+                                new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 113, input);
 
                             throw nvae;
                         }
@@ -4133,7 +4137,7 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 28, input);
+                            new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 28, input);
 
                         throw nvae;
                     }
@@ -4143,7 +4147,7 @@ public class gscriptParser extends Parser {
                 default:
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 3, input);
+                        new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 3, input);
 
                     throw nvae;
                 }
@@ -4170,14 +4174,14 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("99:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 0, input);
+                    new NoViableAltException("103:4: (neg= negate | p= pexpression | r= relationalExpression | n= notexpression )", 26, 0, input);
 
                 throw nvae;
             }
 
             switch (alt26) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: neg= negate
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:5: neg= negate
                     {
                     pushFollow(FOLLOW_negate_in_expression718);
                     neg=negate();
@@ -4190,7 +4194,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: p= pexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:38: p= pexpression
                     {
                     pushFollow(FOLLOW_pexpression_in_expression723);
                     p=pexpression();
@@ -4203,7 +4207,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: r= relationalExpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:71: r= relationalExpression
                     {
                     pushFollow(FOLLOW_relationalExpression_in_expression728);
                     r=relationalExpression();
@@ -4216,7 +4220,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:113: n= notexpression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:113: n= notexpression
                     {
                     pushFollow(FOLLOW_notexpression_in_expression733);
                     n=notexpression();
@@ -4231,7 +4235,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:149: (aa= aexpression )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:149: (aa= aexpression )*
             loop27:
             do {
                 int alt27=2;
@@ -4259,7 +4263,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt27) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: aa= aexpression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:150: aa= aexpression
             	    {
             	    pushFollow(FOLLOW_aexpression_in_expression740);
             	    aa=aexpression();
@@ -4277,7 +4281,7 @@ public class gscriptParser extends Parser {
                 }
             } while (true);
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:194: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:194: ( (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression ) )*
             loop29:
             do {
                 int alt29=2;
@@ -4323,9 +4327,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt29) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:195: (an= andexpression | orr= orexpression | x= xorexpression ) (e= expression )
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: (an= andexpression | orr= orexpression | x= xorexpression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:195: (an= andexpression | orr= orexpression | x= xorexpression )
             	    int alt28=3;
             	    switch ( input.LA(1) ) {
             	    case 61:
@@ -4349,14 +4353,14 @@ public class gscriptParser extends Parser {
             	    default:
             	        if (backtracking>0) {failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("99:195: (an= andexpression | orr= orexpression | x= xorexpression )", 28, 0, input);
+            	            new NoViableAltException("103:195: (an= andexpression | orr= orexpression | x= xorexpression )", 28, 0, input);
 
             	        throw nvae;
             	    }
 
             	    switch (alt28) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:196: an= andexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:196: an= andexpression
             	            {
             	            pushFollow(FOLLOW_andexpression_in_expression750);
             	            an=andexpression();
@@ -4369,7 +4373,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:238: orr= orexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:238: orr= orexpression
             	            {
             	            pushFollow(FOLLOW_orexpression_in_expression755);
             	            orr=orexpression();
@@ -4382,7 +4386,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 3 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:281: x= xorexpression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:281: x= xorexpression
             	            {
             	            pushFollow(FOLLOW_xorexpression_in_expression760);
             	            x=xorexpression();
@@ -4397,8 +4401,8 @@ public class gscriptParser extends Parser {
 
             	    }
 
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:322: (e= expression )
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:323: e= expression
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:322: (e= expression )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:323: e= expression
             	    {
             	    pushFollow(FOLLOW_expression_in_expression767);
             	    e=expression();
@@ -4441,7 +4445,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start notexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:102:1: notexpression returns [String value] : ( 'not' | '!' ) e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:106:1: notexpression returns [String value] : ( 'not' | '!' ) e= expression ;
     public final String notexpression() throws RecognitionException {
         String value = null;
         int notexpression_StartIndex = input.index();
@@ -4450,8 +4454,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 13) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:1: ( ( 'not' | '!' ) e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:3: ( 'not' | '!' ) e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:107:1: ( ( 'not' | '!' ) e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:107:3: ( 'not' | '!' ) e= expression
             {
             if ( (input.LA(1)>=51 && input.LA(1)<=52) ) {
                 input.consume();
@@ -4488,7 +4492,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start aexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:107:1: aexpression returns [String value] : a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:1: aexpression returns [String value] : a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression ) ;
     public final String aexpression() throws RecognitionException {
         String value = null;
         int aexpression_StartIndex = input.index();
@@ -4498,8 +4502,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 14) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:1: (a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:3: a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:1: (a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:3: a= ( '+' | '-' | '*' | '/' | '|' | '&' | '^' | '<<' | '>>' | 'div' | 'mod' ) (e= expression )
             {
             a=(Token)input.LT(1);
             if ( (input.LA(1)>=PLUS && input.LA(1)<=DIV)||(input.LA(1)>=53 && input.LA(1)<=59) ) {
@@ -4513,8 +4517,8 @@ public class gscriptParser extends Parser {
                 recoverFromMismatchedSet(input,mse,FOLLOW_set_in_aexpression812);    throw mse;
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:57: (e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:108:58: e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:57: (e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:112:58: e= expression
             {
             pushFollow(FOLLOW_expression_in_aexpression839);
             e=expression();
@@ -4543,7 +4547,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start value
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:1: value returns [String value] : a= ( NUMBER | HEXNUMBER | STRING | variable ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:1: value returns [String value] : a= ( NUMBER | HEXNUMBER | STRING | variable ) ;
     public final String value() throws RecognitionException {
         String value = null;
         int value_StartIndex = input.index();
@@ -4551,10 +4555,10 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 15) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:30: (a= ( NUMBER | HEXNUMBER | STRING | variable ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:32: a= ( NUMBER | HEXNUMBER | STRING | variable )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:30: (a= ( NUMBER | HEXNUMBER | STRING | variable ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:32: a= ( NUMBER | HEXNUMBER | STRING | variable )
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:34: ( NUMBER | HEXNUMBER | STRING | variable )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:34: ( NUMBER | HEXNUMBER | STRING | variable )
             int alt30=4;
             switch ( input.LA(1) ) {
             case NUMBER:
@@ -4583,35 +4587,35 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("111:34: ( NUMBER | HEXNUMBER | STRING | variable )", 30, 0, input);
+                    new NoViableAltException("115:34: ( NUMBER | HEXNUMBER | STRING | variable )", 30, 0, input);
 
                 throw nvae;
             }
 
             switch (alt30) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:35: NUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:35: NUMBER
                     {
                     match(input,NUMBER,FOLLOW_NUMBER_in_value859); if (failed) return value;
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:42: HEXNUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:42: HEXNUMBER
                     {
                     match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_value861); if (failed) return value;
 
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:52: STRING
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:52: STRING
                     {
                     match(input,STRING,FOLLOW_STRING_in_value863); if (failed) return value;
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:111:59: variable
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:115:59: variable
                     {
                     pushFollow(FOLLOW_variable_in_value865);
                     variable();
@@ -4643,7 +4647,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start negate
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:1: negate returns [String value] : ( '-' | '~' ) e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:1: negate returns [String value] : ( '-' | '~' ) e= expression ;
     public final String negate() throws RecognitionException {
         String value = null;
         int negate_StartIndex = input.index();
@@ -4652,10 +4656,10 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 16) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:31: ( ( '-' | '~' ) e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:33: ( '-' | '~' ) e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:31: ( ( '-' | '~' ) e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:33: ( '-' | '~' ) e= expression
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:33: ( '-' | '~' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:33: ( '-' | '~' )
             int alt31=2;
             int LA31_0 = input.LA(1);
 
@@ -4668,13 +4672,13 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("114:33: ( '-' | '~' )", 31, 0, input);
+                    new NoViableAltException("118:33: ( '-' | '~' )", 31, 0, input);
 
                 throw nvae;
             }
             switch (alt31) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:34: '-'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:34: '-'
                     {
                     match(input,MINUS,FOLLOW_MINUS_in_negate882); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -4684,7 +4688,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:114:59: '~'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:59: '~'
                     {
                     match(input,60,FOLLOW_60_in_negate885); if (failed) return value;
                     if ( backtracking==0 ) {
@@ -4720,7 +4724,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start pexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:118:1: pexpression returns [String value] : LPAREN e= expression RPAREN ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:122:1: pexpression returns [String value] : LPAREN e= expression RPAREN ;
     public final String pexpression() throws RecognitionException {
         String value = null;
         int pexpression_StartIndex = input.index();
@@ -4729,8 +4733,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 17) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:1: ( LPAREN e= expression RPAREN )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:119:3: LPAREN e= expression RPAREN
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:1: ( LPAREN e= expression RPAREN )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:3: LPAREN e= expression RPAREN
             {
             match(input,LPAREN,FOLLOW_LPAREN_in_pexpression908); if (failed) return value;
             pushFollow(FOLLOW_expression_in_pexpression912);
@@ -4758,7 +4762,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start andexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:122:1: andexpression returns [String value] : a= ( '&&' | 'and' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:126:1: andexpression returns [String value] : a= ( '&&' | 'and' ) ;
     public final String andexpression() throws RecognitionException {
         String value = null;
         int andexpression_StartIndex = input.index();
@@ -4766,8 +4770,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 18) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:1: (a= ( '&&' | 'and' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:123:3: a= ( '&&' | 'and' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:1: (a= ( '&&' | 'and' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:3: a= ( '&&' | 'and' )
             {
             a=(Token)input.LT(1);
             if ( (input.LA(1)>=61 && input.LA(1)<=62) ) {
@@ -4801,7 +4805,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start orexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:126:1: orexpression returns [String value] : o= ( '||' | 'or' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:130:1: orexpression returns [String value] : o= ( '||' | 'or' ) ;
     public final String orexpression() throws RecognitionException {
         String value = null;
         int orexpression_StartIndex = input.index();
@@ -4809,8 +4813,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 19) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:1: (o= ( '||' | 'or' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:127:3: o= ( '||' | 'or' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:1: (o= ( '||' | 'or' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:3: o= ( '||' | 'or' )
             {
             o=(Token)input.LT(1);
             if ( (input.LA(1)>=63 && input.LA(1)<=64) ) {
@@ -4844,7 +4848,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start xorexpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:130:1: xorexpression returns [String value] : x= ( '^^' | 'xor' ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:1: xorexpression returns [String value] : x= ( '^^' | 'xor' ) ;
     public final String xorexpression() throws RecognitionException {
         String value = null;
         int xorexpression_StartIndex = input.index();
@@ -4852,8 +4856,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 20) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:1: (x= ( '^^' | 'xor' ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:131:3: x= ( '^^' | 'xor' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:135:1: (x= ( '^^' | 'xor' ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:135:3: x= ( '^^' | 'xor' )
             {
             x=(Token)input.LT(1);
             if ( (input.LA(1)>=65 && input.LA(1)<=66) ) {
@@ -4887,7 +4891,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start relationalExpression
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:134:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:138:1: relationalExpression returns [String value] : (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? ;
     public final String relationalExpression() throws RecognitionException {
         String value = null;
         int relationalExpression_StartIndex = input.index();
@@ -4905,17 +4909,17 @@ public class gscriptParser extends Parser {
         String a = "";
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 21) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:135:3: ( (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:139:3: ( (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )? )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
             int alt32=8;
             switch ( input.LA(1) ) {
             case WORD:
                 {
                 int LA32_1 = input.LA(2);
 
-                if ( (LA32_1==LPAREN) ) {
+                if ( (synpred72()) ) {
                     alt32=1;
                 }
                 else if ( (synpred77()) ) {
@@ -4927,7 +4931,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return value;}
                     NoViableAltException nvae =
-                        new NoViableAltException("136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 1, input);
+                        new NoViableAltException("140:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 1, input);
 
                     throw nvae;
                 }
@@ -4968,14 +4972,14 @@ public class gscriptParser extends Parser {
             default:
                 if (backtracking>0) {failed=true; return value;}
                 NoViableAltException nvae =
-                    new NoViableAltException("136:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 0, input);
+                    new NoViableAltException("140:3: (f= function | h= HEXNUMBER | s= STRING | '-' n= NUMBER | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 32, 0, input);
 
                 throw nvae;
             }
 
             switch (alt32) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:4: f= function
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:4: f= function
                     {
                     pushFollow(FOLLOW_function_in_relationalExpression1004);
                     f=function();
@@ -4988,7 +4992,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:35: h= HEXNUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:35: h= HEXNUMBER
                     {
                     h=(Token)input.LT(1);
                     match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1009); if (failed) return value;
@@ -4999,7 +5003,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:90: s= STRING
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:90: s= STRING
                     {
                     s=(Token)input.LT(1);
                     match(input,STRING,FOLLOW_STRING_in_relationalExpression1014); if (failed) return value;
@@ -5010,7 +5014,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:175: '-' n= NUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:175: '-' n= NUMBER
                     {
                     match(input,MINUS,FOLLOW_MINUS_in_relationalExpression1017); if (failed) return value;
                     n=(Token)input.LT(1);
@@ -5022,7 +5026,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:229: n= NUMBER
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:229: n= NUMBER
                     {
                     n=(Token)input.LT(1);
                     match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1027); if (failed) return value;
@@ -5033,7 +5037,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: v= variable
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:278: v= variable
                     {
                     pushFollow(FOLLOW_variable_in_relationalExpression1032);
                     v=variable();
@@ -5046,7 +5050,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:309: d= DECIMAL
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:309: d= DECIMAL
                     {
                     d=(Token)input.LT(1);
                     match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1037); if (failed) return value;
@@ -5057,7 +5061,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 8 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:358: w= WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:358: w= WORD
                     {
                     w=(Token)input.LT(1);
                     match(input,WORD,FOLLOW_WORD_in_relationalExpression1042); if (failed) return value;
@@ -5070,7 +5074,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:385: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:385: (op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD ) )?
             int alt34=2;
             int LA34_0 = input.LA(1);
 
@@ -5183,7 +5187,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt34) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:387: op= ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
                     {
                     op=(Token)input.LT(1);
                     if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==67 ) {
@@ -5197,7 +5201,7 @@ public class gscriptParser extends Parser {
                         recoverFromMismatchedSet(input,mse,FOLLOW_set_in_relationalExpression1050);    throw mse;
                     }
 
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )
                     int alt33=7;
                     switch ( input.LA(1) ) {
                     case WORD:
@@ -5216,7 +5220,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return value;}
                             NoViableAltException nvae =
-                                new NoViableAltException("136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 33, 1, input);
+                                new NoViableAltException("140:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 33, 1, input);
 
                             throw nvae;
                         }
@@ -5252,14 +5256,14 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return value;}
                         NoViableAltException nvae =
-                            new NoViableAltException("136:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 33, 0, input);
+                            new NoViableAltException("140:441: (f= function | h= HEXNUMBER | s= STRING | n= NUMBER | v= variable | d= DECIMAL | w= WORD )", 33, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt33) {
                         case 1 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:442: f= function
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:442: f= function
                             {
                             pushFollow(FOLLOW_function_in_relationalExpression1073);
                             f=function();
@@ -5272,7 +5276,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:468: h= HEXNUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:468: h= HEXNUMBER
                             {
                             h=(Token)input.LT(1);
                             match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_relationalExpression1078); if (failed) return value;
@@ -5283,7 +5287,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:494: s= STRING
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:494: s= STRING
                             {
                             s=(Token)input.LT(1);
                             match(input,STRING,FOLLOW_STRING_in_relationalExpression1083); if (failed) return value;
@@ -5294,7 +5298,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:537: n= NUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:537: n= NUMBER
                             {
                             n=(Token)input.LT(1);
                             match(input,NUMBER,FOLLOW_NUMBER_in_relationalExpression1088); if (failed) return value;
@@ -5305,7 +5309,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: v= variable
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:581: v= variable
                             {
                             pushFollow(FOLLOW_variable_in_relationalExpression1093);
                             v=variable();
@@ -5318,7 +5322,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:607: d= DECIMAL
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:607: d= DECIMAL
                             {
                             d=(Token)input.LT(1);
                             match(input,DECIMAL,FOLLOW_DECIMAL_in_relationalExpression1098); if (failed) return value;
@@ -5329,7 +5333,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 7 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:651: w= WORD
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:651: w= WORD
                             {
                             w=(Token)input.LT(1);
                             match(input,WORD,FOLLOW_WORD_in_relationalExpression1103); if (failed) return value;
@@ -5368,7 +5372,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start repeatstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:139:1: repeatstatement returns [String value] : 'repeat' (e= expression )? (s= statement ) ( ';' )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:143:1: repeatstatement returns [String value] : 'repeat' (e= expression )? (s= statement ) ( ';' )* ;
     public final String repeatstatement() throws RecognitionException {
         String value = null;
         int repeatstatement_StartIndex = input.index();
@@ -5379,11 +5383,11 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 22) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:1: ( 'repeat' (e= expression )? (s= statement ) ( ';' )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:3: 'repeat' (e= expression )? (s= statement ) ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:1: ( 'repeat' (e= expression )? (s= statement ) ( ';' )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'repeat' (e= expression )? (s= statement ) ( ';' )*
             {
             match(input,68,FOLLOW_68_in_repeatstatement1126); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:12: (e= expression )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:12: (e= expression )?
             int alt35=2;
             switch ( input.LA(1) ) {
                 case MINUS:
@@ -6685,7 +6689,7 @@ public class gscriptParser extends Parser {
 
             switch (alt35) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: e= expression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:13: e= expression
                     {
                     pushFollow(FOLLOW_expression_in_repeatstatement1131);
                     e=expression();
@@ -6697,8 +6701,8 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:28: (s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:29: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:28: (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:29: s= statement
             {
             pushFollow(FOLLOW_statement_in_repeatstatement1138);
             s=statement();
@@ -6707,7 +6711,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:42: ( ';' )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:42: ( ';' )*
             loop36:
             do {
                 int alt36=2;
@@ -6726,7 +6730,7 @@ public class gscriptParser extends Parser {
 
                 switch (alt36) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ';'
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:43: ';'
             	    {
             	    match(input,35,FOLLOW_35_in_repeatstatement1142); if (failed) return value;
 
@@ -6758,14 +6762,14 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start breakstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:143:1: breakstatement returns [String value] : 'break' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:1: breakstatement returns [String value] : 'break' ;
     public final String breakstatement() throws RecognitionException {
         String value = null;
         int breakstatement_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 23) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:1: ( 'break' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:3: 'break'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:148:1: ( 'break' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:148:3: 'break'
             {
             match(input,69,FOLLOW_69_in_breakstatement1160); if (failed) return value;
             if ( backtracking==0 ) {
@@ -6788,14 +6792,14 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start continuestatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:146:1: continuestatement returns [String value] : 'continue' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:150:1: continuestatement returns [String value] : 'continue' ;
     public final String continuestatement() throws RecognitionException {
         String value = null;
         int continuestatement_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 24) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:1: ( 'continue' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:147:3: 'continue'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:1: ( 'continue' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:3: 'continue'
             {
             match(input,70,FOLLOW_70_in_continuestatement1175); if (failed) return value;
             if ( backtracking==0 ) {
@@ -6818,7 +6822,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start dostatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:150:1: dostatement returns [String value] : 'do' s= statement 'until' e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:154:1: dostatement returns [String value] : 'do' s= statement 'until' e= expression ;
     public final String dostatement() throws RecognitionException {
         String value = null;
         int dostatement_StartIndex = input.index();
@@ -6829,8 +6833,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 25) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:1: ( 'do' s= statement 'until' e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:151:3: 'do' s= statement 'until' e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:1: ( 'do' s= statement 'until' e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:3: 'do' s= statement 'until' e= expression
             {
             match(input,71,FOLLOW_71_in_dostatement1190); if (failed) return value;
             pushFollow(FOLLOW_statement_in_dostatement1194);
@@ -6862,7 +6866,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start whilestatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:154:1: whilestatement returns [String value] : 'while' e= expression (s= statement ) ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:158:1: whilestatement returns [String value] : 'while' e= expression (s= statement ) ;
     public final String whilestatement() throws RecognitionException {
         String value = null;
         int whilestatement_StartIndex = input.index();
@@ -6873,16 +6877,16 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 26) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:1: ( 'while' e= expression (s= statement ) )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:3: 'while' e= expression (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:1: ( 'while' e= expression (s= statement ) )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:3: 'while' e= expression (s= statement )
             {
             match(input,73,FOLLOW_73_in_whilestatement1215); if (failed) return value;
             pushFollow(FOLLOW_expression_in_whilestatement1219);
             e=expression();
             _fsp--;
             if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:24: (s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:155:25: s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:24: (s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:25: s= statement
             {
             pushFollow(FOLLOW_statement_in_whilestatement1224);
             s=statement();
@@ -6911,7 +6915,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start forstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:158:1: forstatement returns [String value] : 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:162:1: forstatement returns [String value] : 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement ;
     public final String forstatement() throws RecognitionException {
         String value = null;
         int forstatement_StartIndex = input.index();
@@ -6926,8 +6930,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 27) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:1: ( 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:3: 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:1: ( 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:3: 'for' '(' s1= statement e= expression ( ';' )? s2= statement ')' s= statement
             {
             match(input,74,FOLLOW_74_in_forstatement1240); if (failed) return value;
             match(input,LPAREN,FOLLOW_LPAREN_in_forstatement1242); if (failed) return value;
@@ -6939,7 +6943,7 @@ public class gscriptParser extends Parser {
             e=expression();
             _fsp--;
             if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:39: ( ';' )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:39: ( ';' )?
             int alt37=2;
             int LA37_0 = input.LA(1);
 
@@ -6959,7 +6963,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt37) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ';'
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:40: ';'
                     {
                     match(input,35,FOLLOW_35_in_forstatement1253); if (failed) return value;
 
@@ -6997,18 +7001,18 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start switchstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:162:1: switchstatement returns [String value] : 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:166:1: switchstatement returns [String value] : 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' ;
     public final String switchstatement() throws RecognitionException {
         String value = null;
         int switchstatement_StartIndex = input.index();
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 28) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:1: ( 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:3: 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:1: ( 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:3: 'switch' ( expression ) '{' ( ( 'case' expression | 'default' ) ':' ( statement )* )* '}'
             {
             match(input,75,FOLLOW_75_in_switchstatement1280); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:12: ( expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:13: expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:12: ( expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:13: expression
             {
             pushFollow(FOLLOW_expression_in_switchstatement1283);
             expression();
@@ -7018,7 +7022,7 @@ public class gscriptParser extends Parser {
             }
 
             match(input,LBRAC,FOLLOW_LBRAC_in_switchstatement1286); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:29: ( ( 'case' expression | 'default' ) ':' ( statement )* )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:29: ( ( 'case' expression | 'default' ) ':' ( statement )* )*
             loop40:
             do {
                 int alt40=2;
@@ -7031,9 +7035,9 @@ public class gscriptParser extends Parser {
 
                 switch (alt40) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:30: ( 'case' expression | 'default' ) ':' ( statement )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:30: ( 'case' expression | 'default' ) ':' ( statement )*
             	    {
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:30: ( 'case' expression | 'default' )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:30: ( 'case' expression | 'default' )
             	    int alt38=2;
             	    int LA38_0 = input.LA(1);
 
@@ -7046,13 +7050,13 @@ public class gscriptParser extends Parser {
             	    else {
             	        if (backtracking>0) {failed=true; return value;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("163:30: ( 'case' expression | 'default' )", 38, 0, input);
+            	            new NoViableAltException("167:30: ( 'case' expression | 'default' )", 38, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt38) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:31: 'case' expression
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:31: 'case' expression
             	            {
             	            match(input,76,FOLLOW_76_in_switchstatement1290); if (failed) return value;
             	            pushFollow(FOLLOW_expression_in_switchstatement1292);
@@ -7063,7 +7067,7 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:49: 'default'
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:49: 'default'
             	            {
             	            match(input,77,FOLLOW_77_in_switchstatement1294); if (failed) return value;
 
@@ -7073,7 +7077,7 @@ public class gscriptParser extends Parser {
             	    }
 
             	    match(input,78,FOLLOW_78_in_switchstatement1298); if (failed) return value;
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:65: ( statement )*
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:65: ( statement )*
             	    loop39:
             	    do {
             	        int alt39=2;
@@ -7086,7 +7090,7 @@ public class gscriptParser extends Parser {
 
             	        switch (alt39) {
             	    	case 1 :
-            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:66: statement
+            	    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:66: statement
             	    	    {
             	    	    pushFollow(FOLLOW_statement_in_switchstatement1301);
             	    	    statement();
@@ -7131,7 +7135,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start withstatement
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:166:1: withstatement returns [String value] : 'with' e= expression s= statement ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:170:1: withstatement returns [String value] : 'with' e= expression s= statement ;
     public final String withstatement() throws RecognitionException {
         String value = null;
         int withstatement_StartIndex = input.index();
@@ -7142,8 +7146,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 29) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:1: ( 'with' e= expression s= statement )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:167:3: 'with' e= expression s= statement
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:1: ( 'with' e= expression s= statement )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:3: 'with' e= expression s= statement
             {
             match(input,79,FOLLOW_79_in_withstatement1323); if (failed) return value;
             pushFollow(FOLLOW_expression_in_withstatement1328);
@@ -7174,7 +7178,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start assignment
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:170:1: assignment returns [String value] : valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:174:1: assignment returns [String value] : valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression ;
     public final String assignment() throws RecognitionException {
         String value = null;
         int assignment_StartIndex = input.index();
@@ -7186,8 +7190,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 30) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:1: (valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:171:4: valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:1: (valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:4: valuee= variable op= ( '=' | ':=' | '+=' | '-=' | '*=' | '/=' | '|=' | '&=' | '^=' ) e= expression
             {
             pushFollow(FOLLOW_variable_in_assignment1351);
             valuee=variable();
@@ -7232,7 +7236,7 @@ public class gscriptParser extends Parser {
     };
 
     // $ANTLR start variable
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:174:1: variable returns [String value] : (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )* ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:178:1: variable returns [String value] : (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )* ;
     public final variable_return variable() throws RecognitionException {
         variable_return retval = new variable_return();
         retval.start = input.LT(1);
@@ -7243,10 +7247,10 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 31) ) { return retval; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:1: ( (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )* )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:1: ( (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )* )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD ) ( '.' ( array | ( WORD ) ) )*
             {
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )
             int alt42=3;
             int LA42_0 = input.LA(1);
 
@@ -7262,7 +7266,7 @@ public class gscriptParser extends Parser {
                 else {
                     if (backtracking>0) {failed=true; return retval;}
                     NoViableAltException nvae =
-                        new NoViableAltException("175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 42, 1, input);
+                        new NoViableAltException("179:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 42, 1, input);
 
                     throw nvae;
                 }
@@ -7273,13 +7277,13 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return retval;}
                 NoViableAltException nvae =
-                    new NoViableAltException("175:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 42, 0, input);
+                    new NoViableAltException("179:4: (a= array | valuee= ( WORD | OIVAR | GLOBALVAR ) | '(' ( NUMBER | variable | function ) ')' '.' WORD )", 42, 0, input);
 
                 throw nvae;
             }
             switch (alt42) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:5: a= array
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:5: a= array
                     {
                     pushFollow(FOLLOW_array_in_variable1397);
                     a=array();
@@ -7292,7 +7296,7 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:46: valuee= ( WORD | OIVAR | GLOBALVAR )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:46: valuee= ( WORD | OIVAR | GLOBALVAR )
                     {
                     valuee=(Token)input.LT(1);
                     if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
@@ -7313,10 +7317,10 @@ public class gscriptParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:114: '(' ( NUMBER | variable | function ) ')' '.' WORD
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:114: '(' ( NUMBER | variable | function ) ')' '.' WORD
                     {
                     match(input,LPAREN,FOLLOW_LPAREN_in_variable1412); if (failed) return retval;
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:118: ( NUMBER | variable | function )
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:118: ( NUMBER | variable | function )
                     int alt41=3;
                     switch ( input.LA(1) ) {
                     case NUMBER:
@@ -7337,7 +7341,7 @@ public class gscriptParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return retval;}
                             NoViableAltException nvae =
-                                new NoViableAltException("175:118: ( NUMBER | variable | function )", 41, 2, input);
+                                new NoViableAltException("179:118: ( NUMBER | variable | function )", 41, 2, input);
 
                             throw nvae;
                         }
@@ -7353,21 +7357,21 @@ public class gscriptParser extends Parser {
                     default:
                         if (backtracking>0) {failed=true; return retval;}
                         NoViableAltException nvae =
-                            new NoViableAltException("175:118: ( NUMBER | variable | function )", 41, 0, input);
+                            new NoViableAltException("179:118: ( NUMBER | variable | function )", 41, 0, input);
 
                         throw nvae;
                     }
 
                     switch (alt41) {
                         case 1 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:119: NUMBER
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:119: NUMBER
                             {
                             match(input,NUMBER,FOLLOW_NUMBER_in_variable1415); if (failed) return retval;
 
                             }
                             break;
                         case 2 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:126: variable
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:126: variable
                             {
                             pushFollow(FOLLOW_variable_in_variable1417);
                             variable();
@@ -7377,7 +7381,7 @@ public class gscriptParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:135: function
+                            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:135: function
                             {
                             pushFollow(FOLLOW_function_in_variable1419);
                             function();
@@ -7398,7 +7402,7 @@ public class gscriptParser extends Parser {
 
             }
 
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:159: ( '.' ( array | ( WORD ) ) )*
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:159: ( '.' ( array | ( WORD ) ) )*
             loop44:
             do {
                 int alt44=2;
@@ -7411,10 +7415,10 @@ public class gscriptParser extends Parser {
 
                 switch (alt44) {
             	case 1 :
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:160: '.' ( array | ( WORD ) )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:160: '.' ( array | ( WORD ) )
             	    {
             	    match(input,87,FOLLOW_87_in_variable1430); if (failed) return retval;
-            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:164: ( array | ( WORD ) )
+            	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:164: ( array | ( WORD ) )
             	    int alt43=2;
             	    int LA43_0 = input.LA(1);
 
@@ -7430,7 +7434,7 @@ public class gscriptParser extends Parser {
             	        else {
             	            if (backtracking>0) {failed=true; return retval;}
             	            NoViableAltException nvae =
-            	                new NoViableAltException("175:164: ( array | ( WORD ) )", 43, 1, input);
+            	                new NoViableAltException("179:164: ( array | ( WORD ) )", 43, 1, input);
 
             	            throw nvae;
             	        }
@@ -7441,13 +7445,13 @@ public class gscriptParser extends Parser {
             	    else {
             	        if (backtracking>0) {failed=true; return retval;}
             	        NoViableAltException nvae =
-            	            new NoViableAltException("175:164: ( array | ( WORD ) )", 43, 0, input);
+            	            new NoViableAltException("179:164: ( array | ( WORD ) )", 43, 0, input);
 
             	        throw nvae;
             	    }
             	    switch (alt43) {
             	        case 1 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:165: array
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:165: array
             	            {
             	            pushFollow(FOLLOW_array_in_variable1433);
             	            array();
@@ -7457,10 +7461,10 @@ public class gscriptParser extends Parser {
             	            }
             	            break;
             	        case 2 :
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:171: ( WORD )
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:171: ( WORD )
             	            {
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:171: ( WORD )
-            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:175:172: WORD
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:171: ( WORD )
+            	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:172: WORD
             	            {
             	            match(input,WORD,FOLLOW_WORD_in_variable1436); if (failed) return retval;
 
@@ -7500,7 +7504,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start function
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:178:1: function returns [String value] : n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:182:1: function returns [String value] : n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
     public final String function() throws RecognitionException {
         String value = null;
         int function_StartIndex = input.index();
@@ -7510,13 +7514,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 32) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:1: (n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:1: (n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:3: n= WORD '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
             match(input,WORD,FOLLOW_WORD_in_function1456); if (failed) return value;
             match(input,LPAREN,FOLLOW_LPAREN_in_function1458); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:14: (e= expression ( ( ',' ) (e= expression )? )* )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:14: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt47=2;
             int LA47_0 = input.LA(1);
 
@@ -7525,7 +7529,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt47) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:15: e= expression ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:15: e= expression ( ( ',' ) (e= expression )? )*
                     {
                     pushFollow(FOLLOW_expression_in_function1463);
                     e=expression();
@@ -7534,7 +7538,7 @@ public class gscriptParser extends Parser {
                     if ( backtracking==0 ) {
                       value = e.value;
                     }
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:49: ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:49: ( ( ',' ) (e= expression )? )*
                     loop46:
                     do {
                         int alt46=2;
@@ -7547,16 +7551,16 @@ public class gscriptParser extends Parser {
 
                         switch (alt46) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:50: ( ',' ) (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' ) (e= expression )?
                     	    {
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:50: ( ',' )
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:51: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' )
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:51: ','
                     	    {
                     	    match(input,41,FOLLOW_41_in_function1469); if (failed) return value;
 
                     	    }
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:56: (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:56: (e= expression )?
                     	    int alt45=2;
                     	    int LA45_0 = input.LA(1);
 
@@ -7565,7 +7569,7 @@ public class gscriptParser extends Parser {
                     	    }
                     	    switch (alt45) {
                     	        case 1 :
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:179:57: e= expression
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:57: e= expression
                     	            {
                     	            pushFollow(FOLLOW_expression_in_function1475);
                     	            e=expression();
@@ -7616,7 +7620,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start function2
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:182:1: function2 returns [String value] : n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:186:1: function2 returns [String value] : n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' ;
     public final String function2() throws RecognitionException {
         String value = null;
         int function2_StartIndex = input.index();
@@ -7626,13 +7630,13 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 33) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:2: (n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:2: (n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:4: n= OIVAR '(' (e= expression ( ( ',' ) (e= expression )? )* )? ')'
             {
             n=(Token)input.LT(1);
             match(input,OIVAR,FOLLOW_OIVAR_in_function21502); if (failed) return value;
             match(input,LPAREN,FOLLOW_LPAREN_in_function21504); if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:16: (e= expression ( ( ',' ) (e= expression )? )* )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:16: (e= expression ( ( ',' ) (e= expression )? )* )?
             int alt50=2;
             int LA50_0 = input.LA(1);
 
@@ -7641,7 +7645,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt50) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:17: e= expression ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:17: e= expression ( ( ',' ) (e= expression )? )*
                     {
                     pushFollow(FOLLOW_expression_in_function21509);
                     e=expression();
@@ -7650,7 +7654,7 @@ public class gscriptParser extends Parser {
                     if ( backtracking==0 ) {
                       value = input.toString(e.start,e.stop);
                     }
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:49: ( ( ',' ) (e= expression )? )*
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:49: ( ( ',' ) (e= expression )? )*
                     loop49:
                     do {
                         int alt49=2;
@@ -7663,16 +7667,16 @@ public class gscriptParser extends Parser {
 
                         switch (alt49) {
                     	case 1 :
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' ) (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:50: ( ',' ) (e= expression )?
                     	    {
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:50: ( ',' )
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:51: ','
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:50: ( ',' )
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:51: ','
                     	    {
                     	    match(input,41,FOLLOW_41_in_function21514); if (failed) return value;
 
                     	    }
 
-                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:56: (e= expression )?
+                    	    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:56: (e= expression )?
                     	    int alt48=2;
                     	    int LA48_0 = input.LA(1);
 
@@ -7681,7 +7685,7 @@ public class gscriptParser extends Parser {
                     	    }
                     	    switch (alt48) {
                     	        case 1 :
-                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:183:57: e= expression
+                    	            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:57: e= expression
                     	            {
                     	            pushFollow(FOLLOW_expression_in_function21520);
                     	            e=expression();
@@ -7732,7 +7736,7 @@ public class gscriptParser extends Parser {
 
 
     // $ANTLR start array
-    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:186:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' ;
+    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:190:1: array returns [String value] : valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' ;
     public final String array() throws RecognitionException {
         String value = null;
         int array_StartIndex = input.index();
@@ -7744,8 +7748,8 @@ public class gscriptParser extends Parser {
 
         try {
             if ( backtracking>0 && alreadyParsedRule(input, 34) ) { return value; }
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' )
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']'
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:191:3: (valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']' )
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:191:5: valuee= ( WORD | OIVAR | GLOBALVAR ) '[' e= expression ( ',' e1= expression )? ']'
             {
             valuee=(Token)input.LT(1);
             if ( input.LA(1)==WORD||(input.LA(1)>=OIVAR && input.LA(1)<=GLOBALVAR) ) {
@@ -7764,7 +7768,7 @@ public class gscriptParser extends Parser {
             e=expression();
             _fsp--;
             if (failed) return value;
-            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:52: ( ',' e1= expression )?
+            // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:191:52: ( ',' e1= expression )?
             int alt51=2;
             int LA51_0 = input.LA(1);
 
@@ -7773,7 +7777,7 @@ public class gscriptParser extends Parser {
             }
             switch (alt51) {
                 case 1 :
-                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:187:53: ',' e1= expression
+                    // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:191:53: ',' e1= expression
                     {
                     match(input,41,FOLLOW_41_in_array1564); if (failed) return value;
                     pushFollow(FOLLOW_expression_in_array1568);
@@ -7810,8 +7814,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred1
     public final void synpred1_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: ( method )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:53:26: method
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:26: ( method )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:57:26: method
         {
         pushFollow(FOLLOW_method_in_synpred1199);
         method();
@@ -7824,8 +7828,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred6
     public final void synpred6_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:54: ( varstatement )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:54: varstatement
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:54: ( varstatement )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:54: varstatement
         {
         pushFollow(FOLLOW_varstatement_in_synpred6260);
         varstatement();
@@ -7838,8 +7842,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred20
     public final void synpred20_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:633: ( function )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:633: function
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:633: ( function )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:633: function
         {
         pushFollow(FOLLOW_function_in_synpred20330);
         function();
@@ -7852,8 +7856,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred21
     public final void synpred21_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:694: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:61:694: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:694: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:694: ';'
         {
         match(input,35,FOLLOW_35_in_synpred21338); if (failed) return ;
 
@@ -7863,8 +7867,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred24
     public final void synpred24_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:34: ( ( 'private' | 'var' ) )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:34: ( 'private' | 'var' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:34: ( ( 'private' | 'var' ) )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:34: ( 'private' | 'var' )
         {
         if ( (input.LA(1)>=37 && input.LA(1)<=38) ) {
             input.consume();
@@ -7884,8 +7888,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred25
     public final void synpred25_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: ( 'final' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:65:77: 'final'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:77: ( 'final' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:77: 'final'
         {
         match(input,39,FOLLOW_39_in_synpred25372); if (failed) return ;
 
@@ -7895,8 +7899,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred30
     public final void synpred30_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: ( 'final' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:69:67: 'final'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:67: ( 'final' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:73:67: 'final'
         {
         match(input,39,FOLLOW_39_in_synpred30423); if (failed) return ;
 
@@ -7906,8 +7910,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred41
     public final void synpred41_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:35: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:35: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:35: variable
         {
         pushFollow(FOLLOW_variable_in_synpred41547);
         variable();
@@ -7920,8 +7924,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred42
     public final void synpred42_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:118: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:78:118: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:118: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:82:118: variable
         {
         pushFollow(FOLLOW_variable_in_synpred42564);
         variable();
@@ -7934,8 +7938,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred45
     public final void synpred45_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: ( elsestatement )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:90:61: elsestatement
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:61: ( elsestatement )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:94:61: elsestatement
         {
         pushFollow(FOLLOW_elsestatement_in_synpred45652);
         elsestatement();
@@ -7948,8 +7952,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred47
     public final void synpred47_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: ( negate )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:5: negate
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:5: ( negate )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:5: negate
         {
         pushFollow(FOLLOW_negate_in_synpred47718);
         negate();
@@ -7962,8 +7966,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred48
     public final void synpred48_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: ( pexpression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:38: pexpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:38: ( pexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:38: pexpression
         {
         pushFollow(FOLLOW_pexpression_in_synpred48723);
         pexpression();
@@ -7976,8 +7980,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred49
     public final void synpred49_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: ( relationalExpression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:71: relationalExpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:71: ( relationalExpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:71: relationalExpression
         {
         pushFollow(FOLLOW_relationalExpression_in_synpred49728);
         relationalExpression();
@@ -7990,8 +7994,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred50
     public final void synpred50_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: ( aexpression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:150: aexpression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:150: ( aexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:150: aexpression
         {
         pushFollow(FOLLOW_aexpression_in_synpred50740);
         aexpression();
@@ -8004,10 +8008,10 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred53
     public final void synpred53_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( andexpression | orexpression | xorexpression ) ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:195: ( ( andexpression | orexpression | xorexpression ) ( expression ) )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:195: ( andexpression | orexpression | xorexpression ) ( expression )
         {
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:195: ( andexpression | orexpression | xorexpression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:195: ( andexpression | orexpression | xorexpression )
         int alt58=3;
         switch ( input.LA(1) ) {
         case 61:
@@ -8031,14 +8035,14 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("99:195: ( andexpression | orexpression | xorexpression )", 58, 0, input);
+                new NoViableAltException("103:195: ( andexpression | orexpression | xorexpression )", 58, 0, input);
 
             throw nvae;
         }
 
         switch (alt58) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:196: andexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:196: andexpression
                 {
                 pushFollow(FOLLOW_andexpression_in_synpred53750);
                 andexpression();
@@ -8048,7 +8052,7 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:238: orexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:238: orexpression
                 {
                 pushFollow(FOLLOW_orexpression_in_synpred53755);
                 orexpression();
@@ -8058,7 +8062,7 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:281: xorexpression
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:281: xorexpression
                 {
                 pushFollow(FOLLOW_xorexpression_in_synpred53760);
                 xorexpression();
@@ -8070,8 +8074,8 @@ public class gscriptParser extends Parser {
 
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:322: ( expression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:99:323: expression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:322: ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:103:323: expression
         {
         pushFollow(FOLLOW_expression_in_synpred53767);
         expression();
@@ -8085,10 +8089,24 @@ public class gscriptParser extends Parser {
     }
     // $ANTLR end synpred53
 
+    // $ANTLR start synpred72
+    public final void synpred72_fragment() throws RecognitionException {   
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:4: ( function )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:4: function
+        {
+        pushFollow(FOLLOW_function_in_synpred721004);
+        function();
+        _fsp--;
+        if (failed) return ;
+
+        }
+    }
+    // $ANTLR end synpred72
+
     // $ANTLR start synpred77
     public final void synpred77_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:278: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:278: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:278: variable
         {
         pushFollow(FOLLOW_variable_in_synpred771032);
         variable();
@@ -8101,8 +8119,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred91
     public final void synpred91_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: ( variable )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: variable
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:581: ( variable )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:581: variable
         {
         pushFollow(FOLLOW_variable_in_synpred911093);
         variable();
@@ -8115,8 +8133,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred93
     public final void synpred93_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:387: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:387: ( ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD ) )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:387: ( '!' | EQUALS | EQUALS2 | ':=' | NOT_EQUALS | GT | GTE | LT | LTE ) ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
         {
         if ( (input.LA(1)>=EQUALS && input.LA(1)<=LTE)||input.LA(1)==52||input.LA(1)==67 ) {
             input.consume();
@@ -8129,7 +8147,7 @@ public class gscriptParser extends Parser {
             recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred931050);    throw mse;
         }
 
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )
         int alt59=7;
         switch ( input.LA(1) ) {
         case WORD:
@@ -8148,7 +8166,7 @@ public class gscriptParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 59, 1, input);
+                    new NoViableAltException("140:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 59, 1, input);
 
                 throw nvae;
             }
@@ -8184,14 +8202,14 @@ public class gscriptParser extends Parser {
         default:
             if (backtracking>0) {failed=true; return ;}
             NoViableAltException nvae =
-                new NoViableAltException("136:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 59, 0, input);
+                new NoViableAltException("140:441: ( function | HEXNUMBER | STRING | NUMBER | variable | DECIMAL | WORD )", 59, 0, input);
 
             throw nvae;
         }
 
         switch (alt59) {
             case 1 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:442: function
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:442: function
                 {
                 pushFollow(FOLLOW_function_in_synpred931073);
                 function();
@@ -8201,28 +8219,28 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 2 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:468: HEXNUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:468: HEXNUMBER
                 {
                 match(input,HEXNUMBER,FOLLOW_HEXNUMBER_in_synpred931078); if (failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:494: STRING
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:494: STRING
                 {
                 match(input,STRING,FOLLOW_STRING_in_synpred931083); if (failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:537: NUMBER
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:537: NUMBER
                 {
                 match(input,NUMBER,FOLLOW_NUMBER_in_synpred931088); if (failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:581: variable
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:581: variable
                 {
                 pushFollow(FOLLOW_variable_in_synpred931093);
                 variable();
@@ -8232,14 +8250,14 @@ public class gscriptParser extends Parser {
                 }
                 break;
             case 6 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:607: DECIMAL
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:607: DECIMAL
                 {
                 match(input,DECIMAL,FOLLOW_DECIMAL_in_synpred931098); if (failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:136:651: WORD
+                // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:651: WORD
                 {
                 match(input,WORD,FOLLOW_WORD_in_synpred931103); if (failed) return ;
 
@@ -8255,8 +8273,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred94
     public final void synpred94_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: ( expression )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:13: expression
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:13: ( expression )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:13: expression
         {
         pushFollow(FOLLOW_expression_in_synpred941131);
         expression();
@@ -8269,8 +8287,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred95
     public final void synpred95_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:140:43: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:43: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:144:43: ';'
         {
         match(input,35,FOLLOW_35_in_synpred951142); if (failed) return ;
 
@@ -8280,8 +8298,8 @@ public class gscriptParser extends Parser {
 
     // $ANTLR start synpred96
     public final void synpred96_fragment() throws RecognitionException {   
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ( ';' )
-        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:159:40: ';'
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:40: ( ';' )
+        // C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\gscript.g:163:40: ';'
         {
         match(input,35,FOLLOW_35_in_synpred961253); if (failed) return ;
 
@@ -8378,6 +8396,20 @@ public class gscriptParser extends Parser {
         int start = input.mark();
         try {
             synpred47_fragment(); // can never throw exception
+        } catch (RecognitionException re) {
+            System.err.println("impossible: "+re);
+        }
+        boolean success = !failed;
+        input.rewind(start);
+        backtracking--;
+        failed=false;
+        return success;
+    }
+    public final boolean synpred72() {
+        backtracking++;
+        int start = input.mark();
+        try {
+            synpred72_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -8777,6 +8809,7 @@ public class gscriptParser extends Parser {
     public static final BitSet FOLLOW_orexpression_in_synpred53755 = new BitSet(new long[]{0x101800000FE00120L});
     public static final BitSet FOLLOW_xorexpression_in_synpred53760 = new BitSet(new long[]{0x101800000FE00120L});
     public static final BitSet FOLLOW_expression_in_synpred53767 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_function_in_synpred721004 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred771032 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_variable_in_synpred911093 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_synpred931050 = new BitSet(new long[]{0x000000000FE00100L});

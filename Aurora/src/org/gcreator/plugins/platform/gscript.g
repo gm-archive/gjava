@@ -33,6 +33,10 @@ public void setPlatform(PlatformCore p)
 pc = p;
 }
 
+public void emitErrorMessage(String msg) {
+        pc.showError(msg);
+	}
+
 }
 
 @header {

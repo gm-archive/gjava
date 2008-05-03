@@ -15,6 +15,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Vector;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.gcreator.core.gcreator;
@@ -434,6 +435,11 @@ public class PlatformCore extends PluginCore {
         else 
             return name;
     }
+    
+    public void showError(String msg)
+    {
+        JOptionPane.showMessageDialog(null, msg+"");
+    }
 
     public String parseGCL(String code, PlatformCore p) throws IOException {
         //change code simply for testing
@@ -449,13 +455,13 @@ public class PlatformCore extends PluginCore {
         //System.out.println("test");
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
-        System.out.println("test");
+        try {
         parser = new gscriptParser(tokens);
         //parser.DEFAULT_TOKEN_CHANNEL=80;
         
         parser.setPlatform(p);
-        System.out.println("test");
-        try {
+        
+        
             parser.code();
             
             System.out.println("Finished! Code output:"+returncode);
