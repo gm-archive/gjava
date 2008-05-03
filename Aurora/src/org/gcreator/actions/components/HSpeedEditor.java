@@ -40,7 +40,7 @@ public class HSpeedEditor extends javax.swing.JPanel {
 
         of.setText("this");
 
-        jLabel3.setText(LangSupporter.activeLang.getEntry(241));
+        jLabel3.setText(LangSupporter.activeLang.getEntry(242));
 
         to.setText("0");
 
