@@ -23,7 +23,7 @@ import org.gcreator.fileclass.Project;
  *
  * @author Luís
  */
-public abstract class ActionPattern implements Serializable {
+public abstract class ActionPattern implements Serializable, Cloneable {
     static final long serialVersionUID = 1L;
    
     private static final ObjectStreamField[] serialPersistentFields
@@ -85,9 +85,20 @@ public abstract class ActionPattern implements Serializable {
         
     }
     
-    public Action clone(JComponent panel){
-        return null;
-    }
+//    public ActionPattern clone(){
+//        
+//        return null;
+//    }
+    
+    @Override
+    public Object clone() {
+            try {
+                return super.clone();
+            }
+            catch (CloneNotSupportedException e) {
+                throw new InternalError(e.toString());
+            }
+        }
     
     public boolean indents(JComponent panel, Vector<Action> indented, Vector<Action> unindented,JList list, boolean selected){
         return false;

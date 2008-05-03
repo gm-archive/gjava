@@ -715,13 +715,14 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jList1ValueChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                    if (jList1.getSelectedValue() == null) {
+        //add button            
+        if (jList1.getSelectedValue() == null) {
                 return;
             }
             if (jList3.getSelectedValue() == null) {
                 return;
             }
-            ActionPattern ap = (org.gcreator.actions.ActionPattern) jList3.getSelectedValue();
+            ActionPattern ap = (org.gcreator.actions.ActionPattern)((org.gcreator.actions.ActionPattern) jList3.getSelectedValue()).clone();
             
             org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
             ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
