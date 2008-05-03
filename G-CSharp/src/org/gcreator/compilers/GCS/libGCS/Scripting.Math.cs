@@ -239,5 +239,24 @@ namespace org.gcreator.Scripting
         {
             return new Double(len.getDouble() * -sin(degtorad(dir)).getDouble());
         }
+
+        public static Object mean(params Object[] args)
+        {
+            if (args.Length == 0)
+                return new Double(0);
+            double total = 0;
+            foreach (Object x in args)
+                total += x.getDouble();
+            return new Double(total / args.Length);
+        }
+
+        public static Object median(params Object[] args)
+        {
+            if (args.Length == 0)
+                return new Double(0);
+            if (args.Length % 2 == 1)
+                return args[args.Length / 2];
+            return mean(args[args.Length / 2], args[(args.Length / 2) - 1]);
+        }
 	}
 }
