@@ -57,7 +57,7 @@ public class Action implements Serializable {
         this.project = null;
         if(pattern!=null) {
             panel = pattern.createNewPanel(this, null);
-            pattern.load(panel);
+//            pattern.load(panel);
         }
     }
         
@@ -72,7 +72,7 @@ public class Action implements Serializable {
         this.project = editor.project;
         if(pattern!=null){
             panel = pattern.createNewPanel(this, project);
-        pattern.load(panel);
+//        pattern.load(panel);
         }
     }
     
@@ -87,7 +87,7 @@ public class Action implements Serializable {
         this.project = editor.project;
         if(pattern!=null)
             panel = pattern.createNewPanel(this, project);
-        pattern.load(panel);
+//        pattern.load(panel);
     }
     
     /**
