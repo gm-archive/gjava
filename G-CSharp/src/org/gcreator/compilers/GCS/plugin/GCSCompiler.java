@@ -40,9 +40,10 @@ public class GCSCompiler extends JFrame implements Runnable,ActionListener
 	
 	public static JButton runapplet;
 
-	GCSCompiler()
+	GCSCompiler(GCSharp sharp)
 		{
 		super("G-C# compiler");
+                
 		getContentPane().setLayout(new FlowLayout());
 		JLabel t;
 		t = new JLabel(

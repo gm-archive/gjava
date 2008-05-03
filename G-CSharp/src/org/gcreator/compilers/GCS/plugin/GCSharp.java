@@ -275,7 +275,7 @@ public class GCSharp extends PlatformCore {
         game.close();
     }
 
-    public void run(Project p) {
+    public void run(Project proj) {
         System.out.println("Saving...");
         if (gcreator.window.istabs) {
             for (int ii = 0; ii < gcreator.window.tabs.getTabCount(); ii++) {
@@ -292,17 +292,19 @@ public class GCSharp extends PlatformCore {
                 }
             }
         }
-        projectname = p.name;
+        projectname = proj.name;
         PluginHelper.println("Building/running using G-C#");
         createFolders();
         files.clear();
-        super.run(p);
+        super.run(proj);
         try {
-            createSharpFiles(p);
+            createSharpFiles(proj);
         } catch (Exception e) {
         }
-
-        GCSCompiler compiler = new GCSCompiler();
+      
+        p.dispose();
+        GCSCompiler compiler = new GCSCompiler(this);
+        p.setVisible(false);
     }
 
     @Override
@@ -320,7 +322,8 @@ public class GCSharp extends PlatformCore {
         i.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
-                        run(Aurwindow.getMainProject());
+                        //run(Aurwindow.getMainProject());
+                        startprogress();
                     }
                 });
 
