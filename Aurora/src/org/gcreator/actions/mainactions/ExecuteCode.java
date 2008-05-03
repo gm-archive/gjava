@@ -47,6 +47,16 @@ public class ExecuteCode extends ActionPattern{
     public ImageIcon getStandardImage(){
         return img;
     }
+    
+    @Override
+    public void save(JComponent panel){
+        code = ((SyntaxHighlighter) panel).getText();
+    }
+    
+    @Override
+    public void load(JComponent panel){
+        ((SyntaxHighlighter) panel).setText(code);
+    }
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         Scanner scanner = new GCLScanner();
@@ -69,6 +79,7 @@ public class ExecuteCode extends ActionPattern{
      
     public String getStandardText(JComponent panel){
         if(panel!=null){
+            save(panel);
             code = ((SyntaxHighlighter) panel).getText();
             if(code==null||!code.equals(""))
                 return LangSupporter.activeLang.getEntry(222);
@@ -80,6 +91,7 @@ public class ExecuteCode extends ActionPattern{
     
      
     public String generateGCL(JComponent panel){
+        save(panel);
         code = ((SyntaxHighlighter) panel).getText();
         return code;
     }

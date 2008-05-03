@@ -22,7 +22,7 @@ public class Comment extends ActionPattern {
 
     static final long serialVersionUID = 1L;
     
-    public String text;
+    public String text = "";
     public static ImageIcon img = new ImageIcon(Comment.class.getResource("/org/gcreator/actions/images/comment.png"));
 
     public Comment() {
@@ -38,6 +38,16 @@ public class Comment extends ActionPattern {
         return img;
     }
     
+    @Override
+    public void save(JComponent panel){
+        text = ((PlainTextPanel) panel).text.getText();
+    }
+    
+    @Override
+    public void load(JComponent panel){
+        ((PlainTextPanel) panel).text.setText(text);
+    }
+    
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
         PlainTextPanel panel = new PlainTextPanel();
         panel.text.setText(text);
@@ -47,6 +57,7 @@ public class Comment extends ActionPattern {
     public String getStandardText(JComponent panel) {
 
         if (panel != null) {
+            save(panel);
             text = ((PlainTextPanel) panel).text.getText();
             if(text!=null&&!text.equals(""))
                 return text;
@@ -57,6 +68,7 @@ public class Comment extends ActionPattern {
     }
 
     public String generateGCL(JComponent panel) {
+        save(panel);
         return ""; //It could generate a comment, but why should it?
     }
 }
