@@ -206,5 +206,38 @@ namespace org.gcreator.Scripting
         {
             return new Double(x.getDouble() - floor(x).getDouble());
         }
+
+        public static Object sqr(Object x)
+        {
+            double d = x.getDouble();
+            return new Double(d * d);
+        }
+
+        public static Object point_distance(Object x1, Object y1, Object x2, Object y2)
+        {
+            Double xd = new Double(x2.getDouble() - x1.getDouble());
+            Double yd = new Double(y2.getDouble() - y1.getDouble());
+            return sqrt(new Double(sqr(xd).getDouble() + sqr(yd).getDouble()));
+        }
+
+        public static Object point_direction(Object x1, Object y1, Object x2, Object y2)
+        {
+            double basic =
+                arctan2(new Double(y2.getDouble() - y1.getDouble()),
+                    new Double(x2.getDouble() - x1.getDouble())).getDouble() / PI.getDouble();
+            if (y1.getDouble() < y2.getDouble())
+                return abs(new Double(180 + 180 * (1 - basic)));
+            return abs(new Double(180 * basic));
+        }
+
+        public static Object lengthdir_x(Object len, Object dir)
+        {
+            return new Double(len.getDouble() * cos(degtorad(dir)).getDouble());
+        }
+
+        public static Object lengthdir_y(Object len, Object dir)
+        {
+            return new Double(len.getDouble() * -sin(degtorad(dir)).getDouble());
+        }
 	}
 }
