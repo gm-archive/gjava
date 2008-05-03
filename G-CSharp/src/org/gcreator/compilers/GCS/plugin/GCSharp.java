@@ -131,7 +131,7 @@ public class GCSharp extends PlatformCore {
                     print(actor, "\t{");
                     PluginHelper.println("Got here");
                     for(org.gcreator.actions.Action act : evt.actions){
-                        print(actor, parseGCL(act.getEGML(), this));
+                        print(actor, parseGCL(act.getGCL(), this));
                     }
                     PluginHelper.println("And here too");
                     print(actor, "\t}");
