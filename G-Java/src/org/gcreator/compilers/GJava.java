@@ -1,7 +1,6 @@
 
 package org.gcreator.compilers;
 
-//import org.antlr.runtime.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -14,6 +13,8 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
@@ -30,7 +31,6 @@ import org.gcreator.core.utilities;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.Event;
 import org.gcreator.events.KeyboardEvent;
-import org.gcreator.events.MouseEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GObject;
 import org.gcreator.fileclass.Project;
@@ -51,7 +51,7 @@ public class GJava extends PlatformCore {
 
     public static String projectname,  FileFolder;
     public static int sprites = 0,  actors = 0,  scenes = 0,  fonts = 0;
-    String loadscene = "", loadSprites = "public static Sprite ", createSprites = "public void loadSprites() { ";
+    String loadscene = "", loadSprites = "public static Sprite ", createSprites = "public void loadSprites() { ",script="";
     double actorindex=0;
     public GJava() {
 
@@ -129,39 +129,58 @@ public class GJava extends PlatformCore {
             for (Enumeration e = a.events.elements(); e.hasMoreElements();)
             {
             Event ev = (Event)e.nextElement();
-            
-            if (ev instanceof CreateEvent) 
+            event = ev+"";
+            if (ev instanceof CreateEvent) {
             print(actor, "  public void Create()");
-            else if (ev instanceof org.gcreator.events.DestroyEvent) 
+            //event="Create";
+            }
+            else if (ev instanceof org.gcreator.events.DestroyEvent) {
             print(actor, "  public void Destroy()");
-            else if (ev instanceof org.gcreator.events.BeginStepEvent) 
+            //event="Destroy";
+            }
+            else if (ev instanceof org.gcreator.events.BeginStepEvent) {
             print(actor, "  public void BeginStep()");
-            else if (ev instanceof org.gcreator.events.StepEvent) 
+            event="Begin Step";
+            }
+            else if (ev instanceof org.gcreator.events.StepEvent) {
             print(actor, "  public void Step()");
-            else if (ev instanceof org.gcreator.events.EndStepEvent) 
+            event="Step";
+            }
+            else if (ev instanceof org.gcreator.events.EndStepEvent) {
             print(actor, "  public void EndStep()");
-            else if (ev instanceof org.gcreator.events.DrawEvent) 
+            event="End Step";
+            }
+            else if (ev instanceof org.gcreator.events.DrawEvent) {
             print(actor, "  public void Draw_event(Graphics2D g)");
-            else if (ev instanceof org.gcreator.events.CollisionEvent) 
+            event="Draw";
+            }
+            else if (ev instanceof org.gcreator.events.CollisionEvent) {
             print(actor, "  public void Collision()");
-            else if (ev instanceof org.gcreator.events.MouseEvent) 
+            event="Collision";
+            }
+            else if (ev instanceof org.gcreator.events.MouseEvent) {
             print(actor, "  public void Mouse()");
+            event="Mouse";
+            }
             else if (ev instanceof org.gcreator.events.KeyPress) 
             {
                 callevents+="Keypress"+((org.gcreator.events.KeyPress)ev).type+"(); ";
                 print(actor, "  public void Keypress"+((org.gcreator.events.KeyPress)ev).type+"(){");
                 print(actor, "if (Game.game.getGame().keyPressed("+((org.gcreator.events.KeyPress)ev).type+"))");
+            event="Keypress "+((org.gcreator.events.KeyPress)ev).name;
             }
             else if (ev instanceof org.gcreator.events.KeyReleased) 
             {
                 callevents+="Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(); ";
                 print(actor, "  public void Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(){");
                 print(actor, "if (Game.game.getGame().keyDown("+((org.gcreator.events.KeyReleased)ev).type+"))");
+            event="Keyrelease "+((org.gcreator.events.KeyReleased)ev).name;
             }
             else if (ev instanceof org.gcreator.events.KeyboardEvent) {
                 callevents+="Keyboard"+((KeyboardEvent)ev).type+"(); ";
                 print(actor, "  public void Keyboard"+((KeyboardEvent)ev).type+"() {");
                 print(actor, "if (Game.game.getGame().keyDown("+((KeyboardEvent)ev).type+"))");
+            event="Keyrelease "+((org.gcreator.events.KeyboardEvent)ev).name;
             }
             
             //Parse actions
@@ -170,8 +189,8 @@ public class GJava extends PlatformCore {
             {
               org.gcreator.actions.Action G_Java_aa =  (org.gcreator.actions.Action)ee.nextElement();
                 System.out.println("about to parse actions");
-              print(actor,parseGCL(G_Java_aa.getEGML(),this));
-              System.out.println("action parsed:"+G_Java_aa.getEGML());
+              print(actor,parseGCL(G_Java_aa.getGCL(),this));
+              System.out.println("action parsed:"+G_Java_aa.getGCL());
               //parseGCL(";;; {}",this);
             }
              print(actor, "    }");
@@ -180,10 +199,7 @@ public class GJava extends PlatformCore {
             if (ev instanceof org.gcreator.events.KeyboardEvent)
             print(actor, "    }");
             
-            //else if (ev instanceof MouseEvent) {
-            System.out.println("Mouse!");
             
-            //}
             }
             print(actor, callevents+endcall);
             print(actor, "");
@@ -194,6 +210,15 @@ public class GJava extends PlatformCore {
 actorindex++;
     }
     
+    @Override
+    public void parseScript(String code,String name)
+    {
+        try {
+           script+= this.parseGCL(code, this);
+        } catch (IOException ex) {
+            Logger.getLogger(GJava.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 
     public void parseClass(String s,String name) throws IOException {
@@ -290,6 +315,10 @@ actorindex++;
     
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
+        compilername = "GJava";
+        version=0.1;
+        updateURL="http://g-creator.org/update/G-Java/update.xml";
+        update();
         // add toolbar button
 //        JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
 //
@@ -299,7 +328,7 @@ actorindex++;
 //                        run(Aurwindow.getMainProject());
 //                    }
 //                });
-//                
+                
         JMenuItem i = new JMenuItem("Compile with G-Java");
         i.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
@@ -487,6 +516,31 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
             }catch(Exception ee){
             System.out.println("no method"+ee);
             }
+            }
+           
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            
+        }
+         return false;
+    }
+    
+    public boolean checkfunction(String name) {
+        //return super.checkvariable(name);
+       System.out.println("Check function:"+name);
+        java.lang.String nm= name;
+         try {
+            
+            Method m = org.gcreator.compilers.gjava.api.GCL.class.getDeclaredMethod(name, new Class[]{});
+            return true;
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no function:"+ex);
+            try{
+            Method m = Actor.class.getDeclaredMethod(name, new Class[]{});
+            return true;
+            }catch(Exception e){
+            System.out.println("no function: "+e);
+            
             }
            
         } catch (SecurityException ex) {
