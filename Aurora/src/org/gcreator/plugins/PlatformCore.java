@@ -4,6 +4,8 @@
 
 package org.gcreator.plugins;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,9 +13,16 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Enumeration;
 import java.util.Vector;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import org.antlr.runtime.ANTLRFileStream;
@@ -38,9 +47,138 @@ public class PlatformCore extends PluginCore {
     public static String returncode = "";
     int usingwith = 0;
     Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
-
-    //String actorlocal = "alarm,bbox_bottom,bbox_left,bbox_right,bbox_top,depth,direction,friction,gravity,gravity_direction,hspeed,id,image_alpha,image_angle,image_blend,image_index,image_number,image_single,image_speed,image_xscale,image_yscale,mask_index,object_index,path_endaction,path_index,path_orientation,path_position,path_positionprevious,path_scale,path_speed,persistent,solid,speed,sprite_height,sprite_index,sprite_width,sprite_xoffset,sprite_yoffset,timeline_index,timeline_position,timeline_speed,visible,vspeed,x,xprevious,xstart,y,yprevious,ystart";
+    public String current="",event="";
+    public String updateURL="",compilername="";
+    public double version = 1.0;
     
+    public void update(){
+        String nextLine;
+       URL url = null;
+       URLConnection urlConn = null;
+       InputStreamReader  inStream = null;
+       BufferedReader buff = null;
+       try{
+          // Create the URL obect that points
+          // at the default file index.html
+          url  = new URL(updateURL );
+          urlConn = url.openConnection();
+         inStream = new InputStreamReader( 
+                           urlConn.getInputStream());
+           buff= new BufferedReader(inStream);
+        
+       // Read and print the lines from index.html
+        while (true){
+            nextLine =buff.readLine();  
+            if (nextLine !=null){
+                String v="";
+                if (nextLine.contains("<version>"))
+                {
+                    v = nextLine.replaceAll("<version>", "").replaceAll("</version>", "");
+                    double d = Double.parseDouble(v);
+                    //check if it is a new version
+                if (d>version) {
+                //JOptionPane.showMessageDialog(gcreator.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
+                int update = JOptionPane.showConfirmDialog(null, compilername+" update is available. Are you sure you want to update "+compilername);
+        if (update == JOptionPane.NO_OPTION || update == JOptionPane.CANCEL_OPTION)
+            return;
+                }
+                else
+                    return;
+                }
+                if (nextLine.contains("<zip>")){
+                    //download and unzip the zip
+                    v = nextLine.replaceAll("<zip>", "").replaceAll("</zip>", "");
+                    download(v,"plugins" + File.separator +compilername+".zip");
+                    unzip("plugins" + File.separator +compilername+".zip");
+                    System.out.println("unzipped");
+                    JOptionPane.showMessageDialog(gcreator.window, "Finished updating "+compilername); //will make multilingual when message finalized
+
+                }
+                org.gcreator.core.utilities.addStringMessage(nextLine);
+               // System.out.println(nextLine); 
+            }
+            else{
+               break;
+            } 
+        }
+     } catch(MalformedURLException e){
+       System.out.println("Please check the URL:" + 
+                                           e.toString() );
+     } catch(IOException  e1){
+      System.out.println("Can't read  from the Internet: "+ 
+                                          e1.toString() ); 
+  }
+    }
+    
+    public void unzip(String zipfile)
+    {
+        try {
+            ZipFile zipFile = new ZipFile(zipfile);
+            for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+                if (entry.isDirectory()) {
+                    //System.out.println("Folder:" + entry.getName());
+                    (new File("plugins"+File.separator+entry.getName())).mkdirs();
+                } else {
+                    //System.out.println("File:" + entry.getName());
+                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream("plugins"+File.separator+entry.getName())));
+                }
+            }
+            zipFile.close();
+        } catch (IOException ioe) {
+        
+            ioe.printStackTrace();
+
+        }
+    }
+    
+    public static final void copyInputStream(InputStream in, OutputStream out)
+            throws IOException {
+        byte buffer[] = new byte[1024];
+        int len;
+        while ((len = in.read(buffer)) >= 0) {
+            out.write(buffer, 0, len);
+        }
+        in.close();
+        out.close();
+    }
+    
+       public void download(String address, String localFileName) {
+        try {
+            OutputStream out = null;
+            InputStream in = null;
+            URLConnection conn = null;
+
+            URL url = new URL(address);
+            out = new BufferedOutputStream(new FileOutputStream(localFileName));
+            conn = url.openConnection();
+            in = conn.getInputStream();
+            byte[] buffer = new byte[1024];
+            int numRead;
+            int numWritten;
+            for (numWritten = 0; (numRead = in.read(buffer)) != -1; numWritten += numRead) {
+                out.write(buffer, 0, numRead);
+            }
+            
+            
+            //System.out.println((new StringBuilder()).append(localFileName).append(" loaded...(").append(numWritten).append(" bytes)").toString());
+            System.out.println("Downloaded zip");
+            {
+                if (in != null) {
+                    in.close();
+                }
+                if (out != null) {
+                    out.close();
+                }
+            }
+        } catch (Exception ex) {
+            
+            System.out.println("" + ex.getLocalizedMessage());
+        }
+
+    }
+
+       
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.GObject childNode;
 
@@ -57,16 +195,20 @@ public class PlatformCore extends PluginCore {
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
                             p.jProgressBar1.setValue(20);
                             p.jLabel2.setText("Task: Converting sprite:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            current="Sprite: "+((org.gcreator.fileclass.GFile) childNode).name;
                             p.repaint();
                             parseSprite((Sprite) ((org.gcreator.fileclass.GFile) childNode).value);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("actor")) {
+                            current="Actor: "+((org.gcreator.fileclass.GFile) childNode).name;
                             parseActor((Actor) ((org.gcreator.fileclass.GFile) childNode).value);
-                            p.jProgressBar1.setValue(50);
+                            //p.jProgressBar1.setValue(50);
                             p.jLabel2.setText("Task: Converting actor:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            
                             p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             p.jProgressBar1.setValue(80);
                             p.jLabel2.setText("Task: Converting scene:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            current="Scene: "+((org.gcreator.fileclass.GFile) childNode).name;
                             parseScene((Scene) ((org.gcreator.fileclass.GFile) childNode).value);
                             p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("jpg")) {
@@ -82,6 +224,7 @@ public class PlatformCore extends PluginCore {
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gs")) {
+                            current="Script: "+((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
                             p.jLabel2.setText("Task: Converting scripts:"+((org.gcreator.fileclass.GFile) childNode).name);
                             parseClass((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
@@ -438,7 +581,8 @@ public class PlatformCore extends PluginCore {
     
     public void showError(String msg)
     {
-        JOptionPane.showMessageDialog(null, msg+"");
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+" :\n"+msg+"");
+        
     }
 
     public String parseGCL(String code, PlatformCore p) throws IOException {

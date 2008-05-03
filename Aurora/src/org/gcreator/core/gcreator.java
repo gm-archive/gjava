@@ -31,11 +31,11 @@ import org.gcreator.help.AboutPanel;
 
 /**
  *
- * @author Luís
+ * @author Luís, TGMG
  */
 public class gcreator {
     private static String[] arguments;
-    public static final String version = "1.0m2"; 
+    public static final String version = "1.01"; //only use numbers as it is parsed to double for updating!
     public static Aurwindow window;
     public static String output = "";
     static SplashScreen splash;
