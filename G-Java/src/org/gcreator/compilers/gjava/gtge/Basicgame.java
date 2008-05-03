@@ -25,7 +25,7 @@ public class Basicgame extends Game {
 
 //The Game Settings
     GameSettings gs = new GameSettings();
-    public static Frame frame;// = new GameFrame(100, 200, Color.BLACK);
+    public static Frame frame= new Frame();// = new GameFrame(100, 200, Color.BLACK);
     public static URL u;
     public static String Runningas = "Applet";
     public static Scene2D Current;

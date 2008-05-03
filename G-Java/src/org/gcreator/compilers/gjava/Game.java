@@ -2,8 +2,17 @@ package org.gcreator.compilers.gjava;
 import com.golden.gamedev.GameLoader;
 import com.golden.gamedev.engine.graphics.WindowedMode;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.image.BufferedImage;
-import org.gcreator.compilers.gjava.api.*;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.gcreator.compilers.gjava.api.Clipboard;
 import org.gcreator.compilers.gjava.api.components.*;
 import org.gcreator.compilers.gjava.gtge.Scene2D;
 //import org.gcreator.compilers.gjava.lwjgl.*;
@@ -34,10 +43,21 @@ System.out.println("load sprites");
        //canvas=frame;
        //new Game();
        //frame.setVisible(true);
+       try{
        game = new GameLoader();
         game.setup(new Game(), new Dimension(640,480), false);
         frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
         game.start();
+       }catch(Exception e)
+       {
+           final Writer result = new StringWriter();
+    final PrintWriter printWriter = new PrintWriter(result);
+    e.printStackTrace(printWriter);
+    Clipboard.setText( new org.gcreator.compilers.gjava.api.String(""+result.toString()+Clipboard.getText()));
+    JOptionPane.showMessageDialog(null, "Error: "+e+", "+e.getMessage()+". \n Stack trace:"+result.toString() +"\n \n The Error has been added to clipboard, just before the previous contents of the clipboard. \n Please contact the G-Java development team for help. http://forums.g-java.com");
+            System.exit(1);
+            
+       }
         
 //       OpenGLGameLoader g = new OpenGLGameLoader();
 //       g.setupLWJGL(new Game(), new Dimension(640,480), false);

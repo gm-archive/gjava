@@ -53,6 +53,7 @@ public class Actor extends tile {
         depth = new Integer(Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
+        self = this;
         Create();
     }
     

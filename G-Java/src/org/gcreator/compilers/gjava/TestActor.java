@@ -169,6 +169,7 @@ public class TestActor extends Actor {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
         //draw_clear(getC_black());
         draw_set_color(getC_aqua());
+        draw_set_color(self.getC_aqua());
 //        
         draw_text(new Integer(0), new Integer(10), new String("Hello world!"));
         Game.Current.g2d.drawString("test", 100, 100);

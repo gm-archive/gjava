@@ -107,6 +107,14 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 			GJava.print(html,"</body>");
 			GJava.print(html,"</html>");
 			html.close();
+                        
+                        
+                        FileWriter batFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + "run_windows.bat");
+			BufferedWriter bat = new BufferedWriter(batFW);
+			GJava.print(bat,"java -jar *.jar");
+			GJava.print(bat,"pause");
+			bat.close();
+                        
 			}
 		catch (IOException e1)
 			{

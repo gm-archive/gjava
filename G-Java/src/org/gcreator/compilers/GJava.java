@@ -303,8 +303,8 @@ actorindex++;
         JMenuItem i = new JMenuItem("Compile with G-Java");
         i.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
-                run(Aurwindow.getMainProject());
-              // startprogress();
+               // run(Aurwindow.getMainProject());
+               startprogress();
             }
         });
         
@@ -318,7 +318,7 @@ actorindex++;
         FileWriter gameFW = new FileWriter(FileFolder + File.separator + "Game.java");
         BufferedWriter game = new BufferedWriter(gameFW);
         print(game, "package org.gcreator.compilers.gjava;");
-        print(game, "import com.golden.gamedev.GameLoader;");
+        print(game, "import com.golden.gamedev.GameLoader; import com.golden.gamedev.engine.graphics.WindowedMode;");
         print(game, "import java.awt.*;");
         print(game, "import org.gcreator.compilers.gjava.api.*;");
 print(game, "import org.gcreator.compilers.gjava.api.components.*;");
@@ -386,7 +386,7 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
         print(game, "       game = new GameLoader();");
-        print(game, "       game.setup(new Game(), new Dimension(640,480), false);");
+        print(game, "       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();");
         print(game, "       game.start();");
         print(game, "   }");
         print(game, "}");
