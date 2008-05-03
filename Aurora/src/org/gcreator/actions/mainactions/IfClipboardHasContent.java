@@ -16,9 +16,25 @@ import org.gcreator.managers.LangSupporter;
  * @author luis
  */
 public class IfClipboardHasContent extends ActionPattern{
+    
+    static final long serialVersionUID = 1L;
+    
+    public boolean not = false;
+    
     public static ImageIcon img = null;
+    
     public IfClipboardHasContent(){
         super();
+    }
+    
+    @Override
+    public void save(JComponent panel){
+        not = ((YesOrNoIfPanel) panel).NotCheckbox.isSelected();
+    }
+    
+    @Override
+    public void load(JComponent panel){
+        ((YesOrNoIfPanel) panel).NotCheckbox.setSelected(not);
     }
     
     public void setStandardImage(ImageIcon img){
@@ -35,14 +51,17 @@ public class IfClipboardHasContent extends ActionPattern{
     }
     
     public String getStandardText(JComponent panel){
+        if(panel!=null)
+            save(panel);
         if(panel==null||!(panel instanceof YesOrNoIfPanel)||!((YesOrNoIfPanel) panel).NotCheckbox.isSelected())
             return LangSupporter.activeLang.getEntry(230);
         return LangSupporter.activeLang.getEntry(231);
     }
     
     public String generateGCL(JComponent panel){
+        save(panel);
         if(panel==null||!(panel instanceof YesOrNoIfPanel)||!((YesOrNoIfPanel) panel).NotCheckbox.isSelected())
-            return "if(Clipboard.hasText())\n";
-        return "if(!Clipboard.hasText())\n";
+            return "if(clipboard_has_text())\n";
+        return "if(!clipboard_has_text())\n";
     }
 }
