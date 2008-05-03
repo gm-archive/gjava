@@ -104,4 +104,14 @@ public abstract class ActionPattern implements Serializable {
     public boolean unindentsNext(JComponent panel, Vector<Action> indented, Vector<Action> unindented, JList list, boolean selected){
         return false;
     }
+    
+    public void save(JComponent panel)
+    {
+        
+    }
+    
+    public void load(JComponent panel)
+    {
+        
+    }
 }

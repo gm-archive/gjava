@@ -261,6 +261,11 @@ public class PlatformCore extends PluginCore {
         return false;
        
     }
+    
+    public boolean checkfunction(String name)
+    {
+        return true;
+    }
 
 
     public void parseSprite(Sprite s) {
@@ -467,6 +472,10 @@ public class PlatformCore extends PluginCore {
     public String functionstatement(String name, String parameters) {
         if (parameters == null)
             parameters="";
+        if (!checkfunction(name)){
+            this.showError("No function named: "+name+"("+parameters+")");
+            return name+ "("+parameters+")";
+        }
         return name+ "("+parameters+")";
     }
     

@@ -11,6 +11,7 @@ import org.gcreator.managers.*;
 /**
  *
  * @author  Luís
+ * @author TGMG
  */
 public class HSpeedEditor extends javax.swing.JPanel {
     

@@ -5,18 +5,6 @@
  */
 package org.gcreator.editors;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.gcreator.components.impl.EventCellRenderer;
-import org.gcreator.components.popupmenus.EventSelect;
-import org.gcreator.components.popupmenus.PopupListener;
-import org.gcreator.components.popupmenus.EventListModel;
-import org.gcreator.components.impl.ActionListCellRenderer;
-import org.gcreator.components.impl.ActionsCellRenderer;
-import org.gcreator.components.popupmenus.ActionPopupMenu;
-import org.gcreator.components.popupmenus.EventPopupMenu;
-import org.gcreator.components.impl.EventSelectListener;
-import org.gcreator.actions.ActionPattern;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
@@ -33,7 +21,6 @@ import javax.swing.event.DocumentListener;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
 import org.gcreator.actions.*;
-import org.gcreator.actions.platform.CmdAction;
 import org.gcreator.managers.LangSupporter;
 
 public class ActorEditor extends TabPanel {

@@ -4,7 +4,7 @@
  * Created on 26/Set/2007, 16:23:37
  * 
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
- * 
+ * Copyright (C) 2007-2008 TGMG
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
@@ -55,8 +55,10 @@ public class Action implements Serializable {
     public Action (ActionPattern pattern){
         this.pattern = pattern;
         this.project = null;
-        if(pattern!=null)
+        if(pattern!=null) {
             panel = pattern.createNewPanel(this, null);
+            pattern.load(panel);
+        }
     }
         
     /**
@@ -68,8 +70,10 @@ public class Action implements Serializable {
     public Action(ActorEditor editor, ActionPattern pattern){
         this.pattern = pattern;
         this.project = editor.project;
-        if(pattern!=null)
+        if(pattern!=null){
             panel = pattern.createNewPanel(this, project);
+        pattern.load(panel);
+        }
     }
     
     /**
@@ -83,6 +87,7 @@ public class Action implements Serializable {
         this.project = editor.project;
         if(pattern!=null)
             panel = pattern.createNewPanel(this, project);
+        pattern.load(panel);
     }
     
     /**
@@ -111,11 +116,12 @@ public class Action implements Serializable {
         {
            
            panel= pattern.createNewPanel(this, project);
+           pattern.load(panel);
         }
         return panel;
     }
     
-    public String getEGML(){
+    public String getGCL(){
         return pattern.generateGCL(getPanel());
     }
     

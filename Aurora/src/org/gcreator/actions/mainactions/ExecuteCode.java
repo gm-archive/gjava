@@ -30,7 +30,9 @@ import publicdomain.*;
  * @author Luís
  */
 public class ExecuteCode extends ActionPattern{
+    static final long serialVersionUID = 1L;
     //ActorEditor context;
+    public String code="//Some GCL Code";
     public static ImageIcon img = new ImageIcon(ExecuteCode.class.getResource("/org/gcreator/actions/images/Execute_Code.png"));
     
     public ExecuteCode(){
@@ -49,7 +51,7 @@ public class ExecuteCode extends ActionPattern{
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         Scanner scanner = new GCLScanner();
         SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner, project);
-        panel.setText("//Some GCL Code");
+        panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
                 context.jList2.updateUI();
@@ -67,10 +69,10 @@ public class ExecuteCode extends ActionPattern{
      
     public String getStandardText(JComponent panel){
         if(panel!=null){
-            String text = ((SyntaxHighlighter) panel).getText();
-            if(text==null||!text.equals(""))
+            code = ((SyntaxHighlighter) panel).getText();
+            if(code==null||!code.equals(""))
                 return LangSupporter.activeLang.getEntry(222);
-            return text;
+            return code;
         }
         else
             return LangSupporter.activeLang.getEntry(222);
@@ -78,6 +80,7 @@ public class ExecuteCode extends ActionPattern{
     
      
     public String generateGCL(JComponent panel){
-        return ((SyntaxHighlighter) panel).getText();
+        code = ((SyntaxHighlighter) panel).getText();
+        return code;
     }
 }
