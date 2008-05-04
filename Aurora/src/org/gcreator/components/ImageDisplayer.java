@@ -33,6 +33,8 @@ public class ImageDisplayer extends javax.swing.JPanel {
             return 0;
         }
         ImageIcon img = (ImageIcon) ((org.gcreator.fileclass.res.GImage)file.value).image;
+        if(img==null)
+            return 0;
         return (int) ((int) img.getIconWidth() * zoom);
     }
 
@@ -43,6 +45,8 @@ public class ImageDisplayer extends javax.swing.JPanel {
             return 0;
         }
         ImageIcon img = (ImageIcon) ((org.gcreator.fileclass.res.GImage)file.value).image;
+        if(img==null)
+            return 0;
         return (int) (img.getIconHeight() * zoom);
     }
 

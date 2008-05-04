@@ -355,7 +355,8 @@ public class GM6Importer {
                 org.gcreator.fileclass.GFile imgF;
                 imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
                 ImageIcon iico;
-                imgF.value = iico = new ImageIcon(img);
+                imgF.value = new GImage("sprimg_" + name + "_" + j);
+                ((GImage) imgF.value).image = iico = new ImageIcon(img);
                 //imgF.treeimage = org.gcreator.fileclass.GFile.getScaledIcon(iico);
                 val.addToList(imgF);
             }

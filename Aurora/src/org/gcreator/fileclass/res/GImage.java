@@ -27,7 +27,7 @@ public class GImage extends Resource {
     
     public GImage(String name) {
         this.name = name;
-        image = new ImageIcon();
+        image = null;
     }
         
     public ImageIcon getImage() {
