@@ -18,7 +18,7 @@ public class Actor extends tile {
     protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single, mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
-    public boolean visible=true;
+    public boolean visible=true,mouseover=false;
     public Actor() {
     }
 
@@ -47,10 +47,10 @@ public class Actor extends tile {
     }
     
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
-            boolean Visible, int Depth, boolean Persistent) {
+            boolean Visible, double Depth, boolean Persistent) {
         solid = new Boolean(Solid);
         visible = Visible;
-        depth = new Integer(Depth);
+        depth = new Integer((int)Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
         self = this;

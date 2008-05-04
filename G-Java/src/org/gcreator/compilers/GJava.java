@@ -31,6 +31,7 @@ import org.gcreator.core.utilities;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.Event;
 import org.gcreator.events.KeyboardEvent;
+import org.gcreator.events.MouseEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GObject;
 import org.gcreator.fileclass.Project;
@@ -72,7 +73,7 @@ public class GJava extends PlatformCore {
 //            File ff = new File(FileFolder + File.separator + "images");
 //
 //            ff.mkdirs();
-            File ff = new File(FileFolder + "components"+ File.separator + f.name + "." + f.type);
+            File ff = new File(FileFolder + f.name + "." + f.type);
             if(!ff.exists())
                 ff.createNewFile();
             FileOutputStream fos = new FileOutputStream(ff);
@@ -86,21 +87,23 @@ public class GJava extends PlatformCore {
 
     public void parseSprite(Sprite s) {
         super.parseSprite(s);
+        
         loadSprites += s.name + ",";
-        createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new java.lang.String[] {";
+        createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
             org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
-            createSprites += "\"" + a.name + ".png" + "\",";
+            createSprites += "getImage(\"" + a.name + "."+ a.type + "\"),";
         //if(a!=null)
             } catch(Exception ee){System.out.println("exception"+ee.getLocalizedMessage());}
         }
 
-        createSprites += "\"\"});";
+        createSprites = createSprites.substring(0, createSprites.length()-1)+"});";
     }
 
     public void parseActor(Actor a) {
         try {
+            String keypress="public void KeyPressed(int keycode) {",keyrelease="public void KeyReleased(int keycode) {";
             FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
@@ -159,21 +162,45 @@ public class GJava extends PlatformCore {
             event="Collision";
             }
             else if (ev instanceof org.gcreator.events.MouseEvent) {
-            print(actor, "  public void Mouse()");
+                callevents+="Mouse"+((MouseEvent)ev).type+"(); ";
+            print(actor, "  public void Mouse"+((org.gcreator.events.MouseEvent)ev).type+"() {");
             event="Mouse";
+            int type=((MouseEvent)ev).type;
+            
+            print(actor, "System.out.println(\"left:\"+(int)(sprite.BBRight+x-sprite.sprite_xoffset)); ");
+        print(actor, "System.out.println(\"Top:\"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); ");
+        print(actor, "System.out.println(\"right:\"+(int)(x-sprite.sprite_xoffset+sprite.BBLeft));"); 
+        print(actor, "System.out.println(\"bottom:\"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); ");
+            
+            if (type == 5006) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))");//return "Left Button Clicked";
+            if (type == 5007) ;//return "Left Button Pressed";
+            if (type == 5008) ;//return "Left Button Released";
+            if (type == 5009) print(actor, "if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))");//return "Global Left Button Clicked";
+            if (type == 5010) ;//return "Global Left Button Pressed";
+            if (type == 5011) ;//return "Global Left Button Released";
+            if (type == 5012) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))");//return "Right Button Clicked";
+            if (type == 5013) ;//return "Right Button Pressed";
+            if (type == 5014) ;//return "Right Button Released";
+            if (type == 5015) print(actor, "if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))");//return "Global Right Button Clicked";
+            if (type == 5016) ;//return "Global Right Button Pressed";
+            if (type == 5017) ;//return "Global Right Button Released";
+            if (type == 5018) ;//return "Mouse Entered (Over)";
+            if (type == 5019) ;//return "Mouse Exited (Out)";
+            //default: ;//return "Invalid Mouse Event";
+        
             }
             else if (ev instanceof org.gcreator.events.KeyPress) 
             {
-                callevents+="Keypress"+((org.gcreator.events.KeyPress)ev).type+"(); ";
-                print(actor, "  public void Keypress"+((org.gcreator.events.KeyPress)ev).type+"(){");
-                print(actor, "if (Game.game.getGame().keyPressed("+((org.gcreator.events.KeyPress)ev).type+"))");
+                keypress+="Keypress"+((org.gcreator.events.KeyPress)ev).type+"(keycode); ";
+                print(actor, "  public void Keypress"+((org.gcreator.events.KeyPress)ev).type+"(int keycode){");
+                print(actor, "if (keycode == ("+((org.gcreator.events.KeyPress)ev).type+"))");
             event="Keypress "+((org.gcreator.events.KeyPress)ev).name;
             }
             else if (ev instanceof org.gcreator.events.KeyReleased) 
             {
-                callevents+="Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(); ";
-                print(actor, "  public void Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(){");
-                print(actor, "if (Game.game.getGame().keyDown("+((org.gcreator.events.KeyReleased)ev).type+"))");
+                keyrelease+="Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(keycode); ";
+                print(actor, "  public void Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(int keycode){");
+                print(actor, "if (keycode == ("+((org.gcreator.events.KeyReleased)ev).type+"))");
             event="Keyrelease "+((org.gcreator.events.KeyReleased)ev).name;
             }
             else if (ev instanceof org.gcreator.events.KeyboardEvent) {
@@ -196,12 +223,13 @@ public class GJava extends PlatformCore {
              print(actor, "    }");
              
              
-            if (ev instanceof org.gcreator.events.KeyboardEvent)
+            if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent)
             print(actor, "    }");
             
             
             }
             print(actor, callevents+endcall);
+            print(actor, keypress+"} "+keyrelease+"}");
             print(actor, "");
             print(actor, "}");
             actor.close();
@@ -316,7 +344,7 @@ actorindex++;
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         compilername = "GJava";
-        version=0.1;
+        version=0.2;
         updateURL="http://g-creator.org/update/G-Java/update.xml";
         update();
         // add toolbar button
@@ -358,9 +386,9 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, loadSprites + "G_Creator_NULL_SPRITE;");
         print(game, "    Game(){");
         print(game, "//loading image code will go here");
-        print(game, "loadSprites();");
-        print(game, "        loadScenes();");
-        print(game, "        nextScene();");
+        print(game, "//loadSprites();");
+        print(game, "  //      loadScenes();");
+        print(game, "    //    nextScene();");
         print(game, "    }");
         
         //scenes
@@ -527,27 +555,27 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
     
     public boolean checkfunction(String name) {
         //return super.checkvariable(name);
-       System.out.println("Check function:"+name);
-        java.lang.String nm= name;
-         try {
-            
-            Method m = org.gcreator.compilers.gjava.api.GCL.class.getDeclaredMethod(name, new Class[]{});
-            return true;
-        } catch (NoSuchMethodException ex) {
-            System.out.println("no function:"+ex);
-            try{
-            Method m = Actor.class.getDeclaredMethod(name, new Class[]{});
-            return true;
-            }catch(Exception e){
-            System.out.println("no function: "+e);
-            
-            }
-           
-        } catch (SecurityException ex) {
-            System.out.println("security:"+ex);
-            
-        }
-         return false;
+//       System.out.println("Check function:"+name);
+//        java.lang.String nm= name;
+//         try {
+//            
+//            Method m = org.gcreator.compilers.gjava.api.GCL.class.getDeclaredMethod(name, new Class[]{});
+//            return true;
+//        } catch (NoSuchMethodException ex) {
+//            System.out.println("no function:"+ex);
+//            try{
+//            Method m = Actor.class.getDeclaredMethod(name, new Class[]{});
+//            return true;
+//            }catch(Exception e){
+//            System.out.println("no function: "+e);
+//            
+//            }
+//           
+//        } catch (SecurityException ex) {
+//            System.out.println("security:"+ex);
+//            
+//        }
+         return true;
     }
 
 //    public String varstatement(String type, String vars) {

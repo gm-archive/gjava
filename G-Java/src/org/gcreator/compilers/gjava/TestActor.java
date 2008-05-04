@@ -22,6 +22,24 @@ public class TestActor extends Actor {
     public TestActor() {
         super();
     }
+    
+    public void KeyPressed(int keycode) {Keypress39(keycode); } public void KeyReleased(int keycode) {Keyrelease37(keycode); }
+
+    public void Keypress39(int keycode){
+        System.out.println("keycode:"+keycode);
+if (keycode == (39))
+    {
+
+ show_message((new String("left release")));
+    }
+    }
+  public void Keyrelease37(int keycode){
+if (keycode == (37))
+    {
+
+ show_message((new String("left release")));
+    }
+    }
 
     public TestActor(Object X, Object Y, Object instance_id) {
         self = this;
@@ -120,11 +138,30 @@ public class TestActor extends Actor {
     public void Step(){
         //screen_redraw();
         //return new Object();
+        sprite.BBLeft=94;
+        sprite.BBTop=116;
+        sprite.BBRight=509;
+        sprite.BBBottom=221;
+        x=0;
+        y=0;
+        
+//        System.out.println("left:"+(int)(sprite.BBLeft+x-sprite.sprite_xoffset)); 
+//        System.out.println("Top:"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); 
+//        System.out.println("right:"+(int)(x-sprite.sprite_xoffset+sprite.BBRight)); 
+//        System.out.println("bottom:"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); 
+        
+        
+       if (Game.game.getGame().checkPosMouse((int)(sprite.BBLeft+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBRight), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))
+//        if (Game.game.getGame().checkPosMouse(94,221,509,116)) //&& Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))
+       
+       // if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))
+        System.out.println("Mouse over!");
+            ;
     }
 
     @Override
     public void callEvents() {
-        super.callEvents();
+        //super.callEvents();
         BeginStep();
         Step();
         EndStep();
@@ -174,9 +211,9 @@ public class TestActor extends Actor {
         draw_text(new Integer(0), new Integer(10), new String("Hello world!"));
         Game.Current.g2d.drawString("test", 100, 100);
         //test surface
+        draw_rectangle(new Integer(509),new Integer(116),new Integer(94),new Integer(221), new Boolean(true));
 
-
-        draw_surface(sid, new Integer(100), new Integer(100));
+        //draw_surface(sid, new Integer(100), new Integer(100));
         //System.out.println("paint");
     }
 
