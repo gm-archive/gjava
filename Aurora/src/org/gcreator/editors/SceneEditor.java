@@ -1395,6 +1395,12 @@ public class SceneEditor extends TabPanel {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         changed = true;
+        try{
+            ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
+        }
+        catch(Exception e){
+            ((Scene) file.value).width = 0;
+        }
         jScrollPane1.updateUI();
         scene.updateUI();
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -1409,12 +1415,24 @@ public class SceneEditor extends TabPanel {
 
     private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
         changed = true;
+        try{
+            ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
+        }
+        catch(Exception e){
+            ((Scene) file.value).width = 0;
+        }
         jScrollPane1.updateUI();
         scene.updateUI();
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
         changed = true;
+        try{
+            ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
+        }
+        catch(Exception e){
+            ((Scene) file.value).height = 0;
+        }
         jScrollPane1.updateUI();
         scene.updateUI();
     }//GEN-LAST:event_jTextField3KeyTyped

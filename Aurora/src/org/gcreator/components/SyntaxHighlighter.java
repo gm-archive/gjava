@@ -283,9 +283,14 @@ public class SyntaxHighlighter extends JTextPane
     }
 
     public void insert(int selstart, int selend, String text) {
+        try{
         String content = getText();
         String before = content.substring(0, selstart);
         String after = content.substring(selend);
         setText(before + text + after);
+        }
+        catch(Exception e){ //StringIndexOutOfBoundsException
+            
+        }
     }
 }
