@@ -86,7 +86,7 @@ public class Aurwindow extends JFrame {
     public static JPanel unkresnav;
     private static boolean dragging = false;
     private int tabsi = 0;
-    public static JFileChooser chooseImage = new JFileChooser();
+    public static JFileChooser chooseImage;// = new JFileChooser();
     //public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
     //</editor-fold>
 
@@ -672,6 +672,7 @@ public class Aurwindow extends JFrame {
 
     //<editor-fold defaultstate="collapsed" desc="Aurwindow">
     protected Aurwindow(String[] settings) {
+       
         SplashScreen.message = "Initiating window....";
         gcreator.splash.repaint();
         setTitle("G-Creator");
@@ -681,12 +682,14 @@ public class Aurwindow extends JFrame {
         super.setContentPane(new JPanel());
         SplashScreen.message = "Starting user interface...";
         gcreator.splash.repaint();
+        
         istabs = true;
         console = new JTextPane();
         topContainer = new Container();
         bottomContainer = new Container();
         rightContainer = new Container();
         leftContainer = new Container();
+        
         console.setEditable(false);
         console.setBackground(Colorfeel.ConsoleBGColor);
         console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
@@ -694,13 +697,15 @@ public class Aurwindow extends JFrame {
         //winlist = new JComboBox();
         //winlist.setModel(new MyModel());
         console.setEditable(false);
+        
         console.setContentType("text/html");
         scroller.setViewportView(console);
         statusbar = new Statusbar();
         navigatorTabs = new JTabbedPane();
+        System.out.println("window2");
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
-
+        System.out.println("window"); 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if (ver >= 6) {
             new FileDrop(this, new FileDrop.Listener() {
@@ -1388,10 +1393,15 @@ public class Aurwindow extends JFrame {
     
     //<editor-fold defaultstate="collapsed" desc="static">
     static {
+        try{
+        chooseImage = new JFileChooser();
         chooseImage.setDialogTitle("Select Image");
         chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
         chooseImage.setApproveButtonText("OK");
         chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        }catch(Exception e){
+            System.out.println("JfileChooser error in static Aurwindow!");
+        }
     }
     //</editor-fold>
 
