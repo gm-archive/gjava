@@ -1696,10 +1696,12 @@ public class Aurwindow extends JFrame {
                 }
                 break;
             case 5:
-                if (!(getCurrentProject() instanceof GameProject))
+                if (!(getCurrentProject() instanceof GameProject)){
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 //add sprite
-                a = getCurrentFolder();
+                a = this.getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
@@ -1709,7 +1711,10 @@ public class Aurwindow extends JFrame {
                 break;
             case 6:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 //add sound
                 a = getCurrentFolder();
                 if (a == null) {
@@ -1725,7 +1730,11 @@ public class Aurwindow extends JFrame {
                     i = ((GameProject)getCurrentProject()).classes;
                 else if (getCurrentProject() instanceof ModuleProject)
                     i = ((ModuleProject)getCurrentProject()).classes;
-                else return;
+                else {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
+                    return;
+                }
+                
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
@@ -1739,29 +1748,38 @@ public class Aurwindow extends JFrame {
                 break;
             case 8:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 //getCurrentProject().actors.add(new Actor("newActor" + i));
-                addFile(getCurrentFolder(), "newActor" + ((GameProject)getCurrentProject()).actors++, "actor");
+                addFile(getCurrentFolder(), "act_" + ((GameProject)getCurrentProject()).actors++, "actor");
                 break;
             case 9:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 //getCurrentProject().scenes.add(new Scene("newScene" + i));
-                addFile(getCurrentFolder(), "newScene" + ((GameProject)getCurrentProject()).scenes++, "scene");
+                addFile(getCurrentFolder(), "sc_" + ((GameProject)getCurrentProject()).scenes++, "scene");
                 break;
             case 10:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
@@ -1772,23 +1790,29 @@ public class Aurwindow extends JFrame {
                 break;
             case 11:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newTileset" + ((GameProject)getCurrentProject()).tilesets++, "tileset");
+                addFile(getCurrentFolder(), "tset_" + ((GameProject)getCurrentProject()).tilesets++, "tileset");
                 break;
             case 12:
                 if (!(getCurrentProject() instanceof GameProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newTimeline" + ((GameProject)getCurrentProject()).timelines++, "timeline");
+                addFile(getCurrentFolder(), "tl_" + ((GameProject)getCurrentProject()).timelines++, "timeline");
                 break;
             case 13:
                 //add class
@@ -1796,13 +1820,16 @@ public class Aurwindow extends JFrame {
                     i = ((GameProject)getCurrentProject()).scripts;
                 else if (getCurrentProject() instanceof ModuleProject)
                     i = ((ModuleProject)getCurrentProject()).scripts;
-                else return;
+                else {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
+                    return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newScript" + i, "gs");
+                addFile(getCurrentFolder(), "script_" + i, "gs");
                 if (getCurrentProject() instanceof GameProject)
                     ((GameProject)getCurrentProject()).scripts++;
                 else if (getCurrentProject() instanceof ModuleProject)
