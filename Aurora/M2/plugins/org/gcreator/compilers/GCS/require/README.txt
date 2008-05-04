@@ -1,0 +1,1 @@
+--This folder already includes a pre-compiled version of libGCS. You should override it once you've changed it--

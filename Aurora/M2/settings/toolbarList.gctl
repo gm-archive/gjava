@@ -1,0 +1,28 @@
+;Starting File
+[G-Creator Toolbar List]
+;Property=Value
+Version=1.0.1
+
+[Toolbar]
+Name=Default
+Position=Top
+Rollover=True
+Floatable=True
+TextVisible=False
+ImageVisible=True
+Bold=False
+Item=std_newProject
+Item=std_openProject
+Separator=Standard
+Item=std_save
+Separator=Standard
+Item=std_addImage
+Item=std_addSprite
+Item=std_addTileset
+Item=std_addSound
+Item=std_addTimeline
+Item=std_addActor
+Item=std_addScene
+Item=std_addScript
+Item=std_addGroup
+
