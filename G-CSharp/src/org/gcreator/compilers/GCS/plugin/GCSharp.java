@@ -190,16 +190,19 @@ public class GCSharp extends PlatformCore {
     
     public void createFolders() {
         try {
-            FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
-            FileFolder += "/";
-            FileFolder = FileFolder.replaceAll("%20", " ");
-            FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
-            FileFolder = FileFolder.replaceAll("/\\\\", "/");
-            FileFolder = FileFolder.replaceAll("\\\\/", "/");
-            FileFolder = FileFolder.replaceAll("//", "/");
             java.lang.String osName = System.getProperty("os.name");
             if(osName.startsWith("Windows")){
+                FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+                FileFolder += "/";
+                FileFolder = FileFolder.replaceAll("%20", " ");
+                FileFolder = FileFolder.replaceAll("file:", "").replaceAll("\\./plugins/", "").replaceAll("//+", "/");
+                FileFolder = FileFolder.replaceAll("/\\\\", "/");
+                FileFolder = FileFolder.replaceAll("\\\\/", "/");
+                FileFolder = FileFolder.replaceAll("//", "/");
                 FileFolder = FileFolder.substring(1, 2) + ":" + File.separator;
+            }
+            else{
+                FileFolder = "/tmp/";
             }
             FileFolder += "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
             File f1 = new File(FileFolder);
@@ -220,6 +223,10 @@ public class GCSharp extends PlatformCore {
             if (osName.startsWith("Windows")) {
                 if(t.startsWith("/")||t.startsWith("\\"))
                     t = t.substring(1);
+            }
+            else{
+                if(!t.startsWith("/")&&!t.startsWith("~"))
+                    t = "/" + t;
             }
             PluginHelper.println(t);
             copyDirectory(new File(t), new File(FileFolder));

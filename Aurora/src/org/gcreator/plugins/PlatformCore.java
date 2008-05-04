@@ -682,11 +682,18 @@ public class PlatformCore extends PluginCore {
     public static void openbrowser(String location) {
         if (System.getProperty("os.name").indexOf("Windows") == 0) {
             try {
-                Runtime.getRuntime().exec("explorer.exe " + location);
+                Runtime.getRuntime().exec("explorer.exe \"" + location + "\"");
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
+            try{
+                System.out.println("nautilus \"" + location + "\"");
+                Runtime.getRuntime().exec("nautilus \"" + location + "\""); //GNOME
+            }
+            catch(Exception e){
+                
+            }
             // Unsupported OS for opening the browser
         }
     }
