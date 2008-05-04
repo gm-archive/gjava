@@ -321,7 +321,9 @@ actorindex++;
             f1.mkdirs();
             f2=new File("lib"+ File.separator);
             copyDirectory(f2, f1);
-            
+            f1=new File("Projects" + File.separator + projectname + File.separator + "Java" + File.separator+"com"+ File.separator);
+            f2=new File("plugins"+ File.separator+"com"+ File.separator);
+            copyDirectory(f2, f1);
         } catch (IOException ex) {
             System.out.println("" + ex.getLocalizedMessage());
         }

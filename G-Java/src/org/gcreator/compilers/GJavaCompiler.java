@@ -91,7 +91,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 			GJava.print(manifest,"Manifest-Version: 1.0");
 			GJava.print(manifest,"Main-Class: org.gcreator.compilers.gjava.Game");
 			GJava.print(manifest,"Created-By: 1.2 (Sun Microsystems Inc.)");
-                        GJava.print(manifest,"Class-Path: lib/GTGE.jar");
+                        //GJava.print(manifest,"Class-Path: org");
 			manifest.close();
 			htmlFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + GJava.projectname +"_applet.html");
 			BufferedWriter html = new BufferedWriter(htmlFW);
@@ -226,7 +226,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 				// create a jar
 				args = new String[] { "cfm","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator  + GJava.projectname + ".jar",
 						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + "manifest.txt","-C","Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator,
-						"org"};//,"-C","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator ,"org" };
+						"com","Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator+"org"};//,"-C","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator ,"org" };
 
 				sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + GJava.projectname
 						+ ".jar manifest.txt *.class org com");
