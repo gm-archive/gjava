@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.components.*;
 
+import org.gcreator.components.scanning.GScriptScanner;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 import publicdomain.*;
@@ -59,7 +60,7 @@ public class ExecuteCode extends ActionPattern{
     }
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        Scanner scanner = new GCLScanner();
+        Scanner scanner = new GScriptScanner();
         SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner, project);
         panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){

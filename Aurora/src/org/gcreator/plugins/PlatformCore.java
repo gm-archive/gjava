@@ -227,7 +227,8 @@ public class PlatformCore extends PluginCore {
                             current="Script: "+((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
                             p.jLabel2.setText("Task: Converting scripts:"+((org.gcreator.fileclass.GFile) childNode).name);
-                            parseClass((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+                            System.out.println("parsing script!");
+                            parseScript((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
                             parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         }
@@ -479,6 +480,11 @@ public class PlatformCore extends PluginCore {
         return name+ "("+parameters+")";
     }
     
+     public void parseScript(String code,String name)
+    {
+     //parses scripts   
+    }
+    
     public String otherclassfunctionstatement(String name, String parameters) {
         return name+ "("+parameters+")";
     }
@@ -590,7 +596,7 @@ public class PlatformCore extends PluginCore {
     
     public void showError(String msg)
     {
-        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+" :\n"+msg+"");
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
         
     }
 

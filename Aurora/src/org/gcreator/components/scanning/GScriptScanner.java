@@ -694,6 +694,7 @@ public class GScriptScanner extends SimpleScanner
     protected void initSymbolTable()
     {
         lookup(KEYWORD, "if");
+        
         lookup(KEYWORD, "else");
         lookup(KEYWORD, "while");
         lookup(KEYWORD, "repeat");
