@@ -768,7 +768,7 @@ public class GM6Importer {
     private static void parseAction(GmFileContext c, org.gcreator.actions.Action action,
             int appliesTo, boolean relative, String[] args){
         if(action.pattern instanceof SetVSpeed){
-            ((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
+            //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
             ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
             if(appliesTo==-1)
                 ((VSpeedEditor) action.getPanel()).of.setText("this");
