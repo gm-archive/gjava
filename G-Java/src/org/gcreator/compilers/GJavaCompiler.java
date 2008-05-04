@@ -229,7 +229,7 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 						"org"};//,"-C","Projects" + File.separator + GJava.projectname + File.separator + "Java" + File.separator ,"org" };
 
 				sun.tools.jar.Main jar = new sun.tools.jar.Main(printStream,printStream,"cfm " + GJava.projectname
-						+ ".jar manifest.txt *.class org");
+						+ ".jar manifest.txt *.class org com");
 				jar.run(args);
 
 				FileInputStream fstream = new FileInputStream(file);
