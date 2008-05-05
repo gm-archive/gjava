@@ -1355,7 +1355,7 @@ public class Aurwindow extends JFrame {
         statusbar.getProgressBar().setVisible(false);
         SplashScreen.message = "Displaying application";
         gcreator.splash.repaint();
-        setVisible(true);
+        //setVisible(true);
     }
     //</editor-fold>
 

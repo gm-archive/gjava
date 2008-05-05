@@ -335,6 +335,7 @@ public class gcreator {
         Aurwindow.about = new AboutPanel();
         Aurwindow.nofileselnavigator = new NoFileSelectedNavigator();
         Aurwindow.unkresnav = new UnknownResourceNavigator();
+        window.setVisible(true);
         
         if(splash!=null){
             splash.dispose();

@@ -118,6 +118,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         else{
             Suggestion s = (Suggestion) list.getSelectedValue();
             String t = s.confirm(context, prevWord);
+            if(selstart!=selend)
+                t = editor.getText().substring(selstart, selend) + t;
             editor.insert(selstart, selend, t);
             editor.setSelectionStart(selstart+t.length()-s.retreat());
             editor.setSelectionEnd(selstart+t.length()-s.retreat());
@@ -313,6 +315,8 @@ public class GCLAutocomplete extends AutocompleteFrame{
         if(v.size()==1){
             list.setSelectedIndex(0);
             String t = ((Suggestion) list.getSelectedValue()).confirm(context, prevWord);
+            if(selstart!=selend)
+                t = editor.getText().substring(selstart, selend) + t;
             editor.insert(selstart, selend, t);
             editor.setSelectionStart(selstart+t.length());
             editor.setSelectionEnd(selstart+t.length());
