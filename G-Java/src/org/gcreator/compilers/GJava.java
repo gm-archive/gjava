@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
@@ -481,10 +482,11 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
                 }
             }
         } else {
-            for (int ii = 0; ii < gcreator.window.mdi.getComponentCount(); ii++) {
-                if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project == null) {
-                } else if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().wasModified()) {
-                    ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().Save();
+            JDesktopPane mdi = gcreator.window.mdi.getDesktop();
+            for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
+                } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                    ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
                 }
             }
         }
