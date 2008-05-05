@@ -1,31 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using org.gcreator.Native;
+using org.gcreator.Types;
 
 namespace org.gcreator.Scripting
 {
-    public partial class GCL
+    public partial class GCL : Object
     {
-        public static void room_goto_next()
+        public static Object room_goto_next()
         {
             SDL.Game.game.SceneGotoNext();
+            return new Object();
         }
 
-        public static void room_goto_previous()
+        public static Object room_goto_previous()
         {
             SDL.Game.game.SceneGotoPrevious();
+            return new Object();
         }
 
-        public static void scene_goto_next()
+        public static Object scene_goto_next()
         {
             SDL.Game.game.SceneGotoNext();
+            return new Object();
         }
 
-        public static void scene_goto_previous()
+        public static Object scene_goto_previous()
         {
             SDL.Game.game.SceneGotoPrevious();
+            return new Object();
         }
     }
 }

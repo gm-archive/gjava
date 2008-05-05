@@ -81,7 +81,55 @@ namespace org.gcreator.Native
 			i.texture = tex;
 			return i;
 		}
-	
+
+        public class GameControl : SdlDotNet.Windows.SurfaceControl
+        {
+
+            delegate void BlitSurfaceCallback(Surface s);
+            delegate void UpdateCallback();
+
+            public GameControl(Scene[] scenelist)
+            {
+                Game g = new Game(scenelist, false, true, "", false);
+                g.c = this;
+                System.Threading.Thread thread =
+                    new System.Threading.Thread(new System.Threading.ThreadStart(SdlDotNet.Core.Events.Run));
+                thread.IsBackground = true;
+                thread.Name = "SDL.NET";
+                thread.Priority = System.Threading.ThreadPriority.Normal;
+                thread.Start();
+            }
+
+            public void SafeBlit(Surface c)
+            {
+                if (this.InvokeRequired)
+                {
+                    BlitSurfaceCallback d = new BlitSurfaceCallback(SafeBlit);
+                    this.Invoke(d, new object[] { c });
+                }
+                else
+                {
+                    //Surface s = new Surface(c.Width, c.Height);
+                    //s.Blit(c, Location);
+                    //this.s.Blit(s);
+                    this.Blit(c);
+                }
+            }
+
+            public void SafeUpdate()
+            {
+                if (this.InvokeRequired)
+                {
+                    UpdateCallback d = new UpdateCallback(SafeUpdate);
+                    this.Invoke(d, new object[] {});
+                }
+                else
+                {
+                    this.Update();
+                }
+            }
+        }
+
         public class Game
         {
             internal Scene currentScene = null;
@@ -94,11 +142,18 @@ namespace org.gcreator.Native
 			public Surface cursurface;
 
             internal bool stop = false;
+            internal bool titled = false;
+            internal bool standalone;
+            internal GameControl c;
 
             public Game(Scene[] scenelist, bool fullscreen, bool resizable, string title)
+                : this(scenelist, fullscreen, resizable, title, true) { }
+
+            public Game(Scene[] scenelist, bool fullscreen, bool resizable, string title, bool standalone)
             {
                 if (stop)
                     return;
+                this.standalone = standalone;
 				game = this;
 				this.fullscreen = fullscreen;
 				this.resizable = resizable;
@@ -107,13 +162,18 @@ namespace org.gcreator.Native
 					currentScene = scenelist[0];
 					currentScene.Create();
 				}
-                screen = Video.SetVideoMode(
-                    currentScene.getWidth(), currentScene.getHeight(), resizable, false, fullscreen);
                 master = new Surface(currentScene.getWidth(), currentScene.getHeight());
-                Video.WindowCaption = title;
-                Events.Quit += new System.EventHandler<QuitEventArgs>(this.Quit);
-                Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
+                if (standalone)
+                {
+                    screen = Video.SetVideoMode(
+                        currentScene.getWidth(), currentScene.getHeight(), resizable, false, fullscreen);
+                    if (!titled)
+                        Video.WindowCaption = title;
+                    Events.Quit += new System.EventHandler<QuitEventArgs>(this.Quit);
+                    Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
+                }
                 Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
+                SdlDotNet.Core.Events.Fps = 60;
             }
 
             public int SceneGetCurrentIndex()
@@ -163,8 +223,16 @@ namespace org.gcreator.Native
 				if(currentScene!=null)
 					currentScene.Loop();
 				master.Update();
-				screen.Blit(master);
-				screen.Update();
+                if (standalone)
+                {
+                    screen.Blit(master);
+                    screen.Update();
+                }
+                else
+                {
+                    c.SafeBlit(master);
+                    c.SafeUpdate();
+                }
             }
 			
 			internal void UpdateVideoMode(int Width, int Height)

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using org.gcreator.Types;
@@ -23,9 +23,10 @@ namespace org.gcreator.Scripting
             return new String((string) iData.GetData(DataFormats.Text));
         }
 
-        public static void clipboard_set_text(Object str)
+        public static Object clipboard_set_text(Object str)
         {
             Clipboard.SetDataObject(str.getString().ToString(), true);
+            return new Object();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace org.gcreator.Scripting
 {
     public partial class GCL
     {
-        public static void draw_sprite(Object sprite, Object subimg, Object x, Object y)
+        public static Object draw_sprite(Object sprite, Object subimg, Object x, Object y)
         {
             Sprite s = sprite as Sprite;
             int index = (int) subimg.getDouble();
@@ -21,9 +21,10 @@ namespace org.gcreator.Scripting
 
             SDL.DrawToSurface(s.getImage(index), SDL.Game.game.cursurface,
                 s.getBounds(), r);
+            return new Object();
         }
 
-        public static void draw_sprite_stretched
+        public static Object draw_sprite_stretched
             (Object sprite, Object subimg, Object x, Object y, Object w, Object h)
         {
             Sprite s = sprite as Sprite;
@@ -38,9 +39,10 @@ namespace org.gcreator.Scripting
 
             SDL.DrawToSurface(s.getImage(index),
                 SDL.Game.game.cursurface, s.getBounds(), r);
+            return new Object();
         }
 
-        public static void draw_sprite_part(Object sprite, Object subimg,
+        public static Object draw_sprite_part(Object sprite, Object subimg,
             Object left, Object top, Object width, Object height, Object x, Object y)
         {
             Sprite s = sprite as Sprite;
@@ -64,6 +66,8 @@ namespace org.gcreator.Scripting
 
             SDL.DrawToSurface(s.getImage(index), SDL.Game.game.cursurface,
                 src, r);
+
+            return new Object();
         }
     }
 }
