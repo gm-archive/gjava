@@ -86,11 +86,11 @@ public class GJava extends PlatformCore {
         }
     }
 
-    public void parseSprite(Sprite s) {
-        super.parseSprite(s);
+    public void parseSprite(Sprite s, GFile f) {
+        //super.parseSprite(s);
         
-        loadSprites += s.name + ",";
-        createSprites += s.name + " = new Sprite(\"" + s.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
+        loadSprites += f.name + ",";
+        createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
             org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
@@ -102,24 +102,24 @@ public class GJava extends PlatformCore {
         createSprites = createSprites.substring(0, createSprites.length()-1)+"});";
     }
 
-    public void parseActor(Actor a) {
+    public void parseActor(Actor a, GFile f) {
         try {
             String keypress="public void KeyPressed(int keycode) {",keyrelease="public void KeyReleased(int keycode) {";
             String callevents="public void callEvents() { ", endcall=" Move(); }";
-            FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
+            FileWriter actorFW = new FileWriter(FileFolder + File.separator + f.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
             print(actor, "import org.gcreator.compilers.gjava.api.components.*;");
             print(actor, "import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import org.gcreator.compilers.gjava.api.Actor;import org.gcreator.compilers.gjava.api.Object;import org.gcreator.compilers.gjava.api.String;import org.gcreator.compilers.gjava.api.Integer;import org.gcreator.compilers.gjava.api.Double;import org.gcreator.compilers.gjava.api.Boolean;");
             print(actor, "");
 
-            print(actor, "public class " + a.name + " extends Actor {");
+            print(actor, "public class " + f.name + " extends Actor {");
             print(actor, "");
-            print(actor, "    " + a.name + "(int X,int Y,double instance_id) {");
+            print(actor, "    " + f.name + "(int X,int Y,double instance_id) {");
             if (a.sprite == null) {
-                print(actor, "        super(\"" + a.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + f.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
             } else {
-                print(actor, "        super(\"" + a.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+");");
+                print(actor, "        super(\"" + f.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+");");
             }
             print(actor, "        xstart = X;");
             print(actor, "        ystart = Y;");
@@ -275,10 +275,10 @@ actorindex++;
         classs.close();
     }
 
-    public void parseScene(Scene s) throws IOException {
-        loadscene += "    scenes[" + scenes + "] = new " + s.name + "();";
+    public void parseScene(Scene s, GFile f) throws IOException {
+        loadscene += "    scenes[" + scenes + "] = new " + f.name + "();";
         scenes++;
-        FileWriter sceneFW = new FileWriter(FileFolder + File.separator + s.name + ".java");
+        FileWriter sceneFW = new FileWriter(FileFolder + File.separator + f.name + ".java");
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
         print(scene, "");
@@ -295,9 +295,9 @@ actorindex++;
         print(scene, "import org.gcreator.compilers.gjava.api.Double;");
         print(scene, "import org.gcreator.compilers.gjava.api.components.Background;");
         
-        print(scene, "public class " + s.name + " extends org.gcreator.compilers.gjava.gtge.Scene2D {");
+        print(scene, "public class " + f.name + " extends org.gcreator.compilers.gjava.gtge.Scene2D {");
         print(scene, "");
-        print(scene, "    " + s.name + "() {");
+        print(scene, "    " + f.name + "() {");
         if (s.drawbackcolor) {
             print(scene, "        super(Game.frame,\"" + s.caption + "\"," + s.speed + "," + s.width + "," + s.height + ", new Color(" + s.background.getRed() + "," + s.background.getGreen() + "," + s.background.getBlue() + "));");
         } else {
