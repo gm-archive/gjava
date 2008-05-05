@@ -196,29 +196,29 @@ public class PlatformCore extends PluginCore {
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
                             p.jProgressBar1.setValue(20);
                             p.jLabel2.setText("Task: Converting sprite:"+((org.gcreator.fileclass.GFile) childNode).name);
-                            current="Sprite: "+((org.gcreator.fileclass.GFile) childNode).name;
+                            current="Sprite: "+((GFile) childNode).name;
                             p.repaint();
-                            parseSprite((Sprite) ((org.gcreator.fileclass.GFile) childNode).value);
-                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("actor")) {
-                            current="Actor: "+((org.gcreator.fileclass.GFile) childNode).name;
-                            parseActor((Actor) ((org.gcreator.fileclass.GFile) childNode).value);
+                            parseSprite((Sprite) ((GFile) childNode).value, (GFile) childNode);
+                        } else if (((GFile) childNode).type.equals("actor")) {
+                            current="Actor: "+((GFile) childNode).name;
+                            parseActor((Actor) ((GFile) childNode).value, (GFile) childNode);
                             //p.jProgressBar1.setValue(50);
-                            p.jLabel2.setText("Task: Converting actor:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting actor:"+((GFile) childNode).name);
                             
                             p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             p.jProgressBar1.setValue(80);
-                            p.jLabel2.setText("Task: Converting scene:"+((org.gcreator.fileclass.GFile) childNode).name);
-                            current="Scene: "+((org.gcreator.fileclass.GFile) childNode).name;
-                            parseScene((Scene) ((org.gcreator.fileclass.GFile) childNode).value);
+                            p.jLabel2.setText("Task: Converting scene:"+((GFile) childNode).name);
+                            current="Scene: "+((GFile) childNode).name;
+                            parseScene((Scene) ((GFile) childNode).value, (GFile) childNode);
                             p.repaint();
-                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("jpg")) {
+                        } else if (((GFile) childNode).type.equals("jpg")) {
                             p.jProgressBar1.setValue(10);
-                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
                             p.jProgressBar1.setValue(10);
-                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
                             parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
@@ -288,10 +288,20 @@ public class PlatformCore extends PluginCore {
         parseImage(i.getImage(), f);
     }
 
+    /**@deprecated*/
     public void parseActor(Actor a) throws IOException {
     }
+    
+    public void parseActor(Actor a, GFile f) throws IOException {
+        parseActor(a);
+    }
 
+    /**@deprecated*/
     public void parseScene(Scene s) throws IOException {
+    }
+    
+    public void parseScene(Scene s, GFile f) throws IOException {
+        parseScene(s);
     }
 
     public void parseClass(String s,String name) throws IOException {
