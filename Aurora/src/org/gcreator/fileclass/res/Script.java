@@ -17,10 +17,10 @@ public class Script extends Resource {
         this.value = value;
     }
 
-    @Override
+    /*@Override
     public String exportToHtml(boolean xhtml) {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
+    }*/
 
     @Override
     public Object clone() {

@@ -19,11 +19,15 @@ static final long serialVersionUID = 1L;
     public byte[] sound;
     public String extension="";
 
+    /**@deprecated*/
     public Sound(String name) {
-        this.name = name;
+        //this.name = name;
+        this();
     }
     
-
+    public Sound(){
+        
+    }
      
     public String exportToHtml(boolean xhtml){
         return "";

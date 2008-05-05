@@ -39,7 +39,7 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
                 val = "Invalid scene";
                 setForeground(Color.RED);
             } else {
-                val = ((Scene) ((org.gcreator.fileclass.GFile) value).value).name;
+                val = ((org.gcreator.fileclass.GFile) value).name;
             }
         }
 

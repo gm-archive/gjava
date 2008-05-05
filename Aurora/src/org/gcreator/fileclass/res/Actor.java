@@ -27,8 +27,15 @@ static final long serialVersionUID = 1L;
     public Vector events; //<Event>
     
 
+    /**
+     * @deprecated Use plain constructor instead
+     */
     public Actor(String name) {
-        this.name = name;
+        this();
+    }
+    
+    public Actor() {
+        //this.name = name;
         events = new Vector(); //<Event>
     }
 
@@ -81,7 +88,7 @@ static final long serialVersionUID = 1L;
 //    }
 
      
-    public String exportToHtml(boolean xhtml) {
+/*    public String exportToHtml(boolean xhtml) {
         String html = "";
         if (xhtml) {
             html += "<!DOCTYPE html\nPUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
@@ -186,11 +193,11 @@ static final long serialVersionUID = 1L;
         html += "</html>";
 
         return html;
-    }
+    }*/
 
     //SuppressWarnings("unchecked")
     public Object clone() {
-        Actor a = new Actor(name);
+        Actor a = new Actor(/*name*/);
         a.depth = depth;
         Object o = events.clone();
         if (o != null && o instanceof Vector) { //<?>

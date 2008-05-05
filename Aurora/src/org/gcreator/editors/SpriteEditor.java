@@ -82,7 +82,7 @@ public class SpriteEditor extends TabPanel {
     
     public void updateName() {
         file.name = jTextField1.getText();
-        sprite.name = file.name;
+        //sprite.name = file.name;
         org.gcreator.core.Aurwindow.workspace.updateUI();
     }
      

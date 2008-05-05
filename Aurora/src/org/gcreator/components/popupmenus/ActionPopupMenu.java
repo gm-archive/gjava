@@ -12,7 +12,7 @@ import javax.swing.*;
 
 import org.gcreator.events.*;
 import org.gcreator.editors.*;
-import org.gcreator.fileclass.res.TimelineStep;
+import org.gcreator.units.TimelineStep;
 import org.gcreator.managers.ActorEditorClipboard;
 import org.gcreator.components.custom.*;
 

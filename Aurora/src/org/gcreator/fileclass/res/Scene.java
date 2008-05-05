@@ -6,7 +6,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.fileclass.res;
 
 import java.awt.Color;
@@ -19,218 +18,215 @@ import javax.swing.*;
  * @author Ali1
  */
 public class Scene extends Resource {
-    static final long serialVersionUID = 1L;
-public String caption = "";
-public String code = "//Do nothing";
- //name is already on the list
-public int width=640,height=480,speed=60,snapX=16,snapY=16;
-public boolean persistant,grid = true,isometric,drawbackcolor=true;
-public Vector views;
-public Vector actors;
-public Vector tiles;
-public Vector backgrounds;
-public Color background = Color.lightGray;
 
-/*public ImageIcon getBackground(){
+    static final long serialVersionUID = 1L;
+    public String caption = "";
+    public String code = "//Do nothing";
+    //name is already on the list
+    public int width = 640,  height = 480,  speed = 60,  snapX = 16,  snapY = 16;
+    public boolean persistant,  grid = true,  isometric,  drawbackcolor = true;
+    public Vector views;
+    public Vector actors;
+    public Vector tiles;
+    public Vector backgrounds;
+    public Color background = Color.lightGray;
+
+    /*public ImageIcon getBackground(){
     if(bgimage==null)
-        return null;
+    return null;
     if(bgimage.value instanceof ImageIcon){
-        return (ImageIcon) bgimage.value;
+    return (ImageIcon) bgimage.value;
     }
     else
-        return null;
-}*/
-
-public Scene(String name)
-{
-    this.name = name;
-    actors = new Vector();
-    tiles = new Vector();
-    views = new Vector();
-    backgrounds = new Vector();
-}
-
-public String writeXml()
-  {
-    /*
-     
-     Current format:
-     
-     <scene>
-     <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
-     <code>//Do nothing</code>
-     <dimensions>width, height</dimensions>
-     <bgcolor>r, g, b</bgcolor>
-     <fps>FPS</fps>
-     <snap>snapX, snapY</snap>
-     <grid>Visible Isometric</grid>
-     <views>
-     </views>
-     </scene>
-     
-     */
+    return null;
+    }*/
     
-      String xml = "<scene version=\"1.0\">\n";
-      
-      /*xml += "<caption>";
-      
-      //The caption should be allowed to have
-      if(caption!=null)
+    /**@deprecated*/
+    public Scene(String name) {
+        this();
+    }
+
+    public Scene(/*String name*/) {
+        //this.name = name;
+        actors = new Vector();
+        tiles = new Vector();
+        views = new Vector();
+        backgrounds = new Vector();
+    }
+
+    public String writeXml() {
+        /*
+        
+        Current format:
+        
+        <scene>
+        <caption>if(1 &lt; 2 &amp;&amp; 3 &gt; 2){&LINEBREAK;THIS IS A CAPTION</caption>
+        <code>//Do nothing</code>
+        <dimensions>width, height</dimensions>
+        <bgcolor>r, g, b</bgcolor>
+        <fps>FPS</fps>
+        <snap>snapX, snapY</snap>
+        <grid>Visible Isometric</grid>
+        <views>
+        </views>
+        </scene>
+        
+         */
+
+        String xml = "<scene version=\"1.0\">\n";
+
+        /*xml += "<caption>";
+        
+        //The caption should be allowed to have
+        if(caption!=null)
         xml += caption
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll("\"", "&quot;")
-              .replaceAll("'", "&apos;")
-              .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
-      
-      xml += "</caption>\n";
-      
-      xml += "<code>";
-      
-      //The code should be allowed to have
-      if(code!=null)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&apos;")
+        .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
+        
+        xml += "</caption>\n";
+        
+        xml += "<code>";
+        
+        //The code should be allowed to have
+        if(code!=null)
         xml += code
-              .replaceAll("&", "&amp;")
-              .replaceAll("<", "&lt;")
-              .replaceAll(">", "&gt;")
-              .replaceAll("\"", "&quot;")
-              .replaceAll("'", "&apos;")
-              .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
-      
-      xml += "</code>\n";
-      
-      
-      xml += "<dimensions>";
-      xml += width;
-      xml += ", ";
-      xml += height;
-      xml += "</dimensions>\n";
-      
-      xml += "<bgcolor>";
-      if(drawbackcolor)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&apos;")
+        .replaceAll("\r?\n", "&LINEBREAK;"); //This last one is just to make parsing easier.
+        
+        xml += "</code>\n";
+        
+        
+        xml += "<dimensions>";
+        xml += width;
+        xml += ", ";
+        xml += height;
+        xml += "</dimensions>\n";
+        
+        xml += "<bgcolor>";
+        if(drawbackcolor)
         xml += background.getRed() + ", " + background.getGreen() + ", " + background.getBlue();
-      else
+        else
         xml += "-";
-      xml += "</bgcolor>\n";
-      
-      xml += "<fps>";
-      xml += speed;
-      xml += "</fps>\n";
-      
-      
-      xml += "<snap>";
-      xml += snapX;
-      xml += ", ";
-      xml += snapY;
-      xml += "</snap>\n";
-      xml += "<grid>";
-      xml += grid ? "Visible" : "Hidden";
-      xml += " ";
-      xml += isometric ? "Isometric" : "Standard";
-      xml += "</grid>\n";
+        xml += "</bgcolor>\n";
+        
+        xml += "<fps>";
+        xml += speed;
+        xml += "</fps>\n";
+        
+        
+        xml += "<snap>";
+        xml += snapX;
+        xml += ", ";
+        xml += snapY;
+        xml += "</snap>\n";
+        xml += "<grid>";
+        xml += grid ? "Visible" : "Hidden";
+        xml += " ";
+        xml += isometric ? "Isometric" : "Standard";
+        xml += "</grid>\n";
+        
+        
+        xml += "<views>\n";
+        
+        xml += views.writeXml();
+        
+        xml += "</views>\n";
+        Object[] o = actors.toArray();
+        for(Object a : o) //TODO remove for each loop
+        if(a!=null && a instanceof ActorInScene)
+        ((ActorInScene) a).writeXml();
+        
+        xml += "</scene>";*/
+        return xml;
+    }
 
-      
-      xml += "<views>\n";
-      
-      xml += views.writeXml();
-      
-      xml += "</views>\n";
-      Object[] o = actors.toArray();
-      for(Object a : o) //TODO remove for each loop
-          if(a!=null && a instanceof ActorInScene)
-              ((ActorInScene) a).writeXml();
-      
-      xml += "</scene>";*/
-      return xml;
-}
-
-     
     public void readXml(String xml) {
         String[] str = xml.split("\n");
-        if(str[0]==null||!str[0].equals("<scene version=\"1.0\">"))
+        if (str[0] == null || !str[0].equals("<scene version=\"1.0\">")) {
             return; //Fails if erroneous scene
+
+        }
         String line;
-        for(int i = 1; i < str.length; i++){
+        for (int i = 1; i < str.length; i++) {
             line = str[i];
             System.out.println("line: " + line);
-            if(line==null||line.equals(""))
-                continue;
-            if(line.matches("<caption>.*</caption>")){
-                caption = line.replaceAll("<caption>(.*)</caption>", "$1")
-                        .replaceAll("&lt;", "<")
-                        .replaceAll("&gt;", ">")
-                        .replaceAll("&quot;", "\"")
-                        .replaceAll("&apos;", "'")
-                        .replaceAll("&LINEBREAK;", "\n")
-                        .replaceAll("&amp;","&");
+            if (line == null || line.equals("")) {
                 continue;
             }
-            if(line.matches("<code>.*</code>")){
-                code = line.replaceAll("<code>(.*)</code>", "$1")
-                        .replaceAll("&lt;", "<")
-                        .replaceAll("&gt;", ">")
-                        .replaceAll("&quot;", "\"")
-                        .replaceAll("&apos;", "'")
-                        .replaceAll("&LINEBREAK;", "\n")
-                        .replaceAll("&amp;","&");
+            if (line.matches("<caption>.*</caption>")) {
+                caption = line.replaceAll("<caption>(.*)</caption>", "$1").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&LINEBREAK;", "\n").replaceAll("&amp;", "&");
                 continue;
             }
-            if(line.matches("<dimensions>[0-9]+, [0-9]+</dimensions>")){
+            if (line.matches("<code>.*</code>")) {
+                code = line.replaceAll("<code>(.*)</code>", "$1").replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll("&quot;", "\"").replaceAll("&apos;", "'").replaceAll("&LINEBREAK;", "\n").replaceAll("&amp;", "&");
+                continue;
+            }
+            if (line.matches("<dimensions>[0-9]+, [0-9]+</dimensions>")) {
                 width = Integer.parseInt(line.replaceAll("<dimensions>([0-9]+), [0-9]+</dimensions>", "$1"));
                 height = Integer.parseInt(line.replaceAll("<dimensions>[0-9]+, ([0-9]+)</dimensions>", "$1"));
                 continue;
             }
-            if(line.matches("<bgcolor>[0-9]+, [0-9]+, [0-9]+</bgcolor>")){
+            if (line.matches("<bgcolor>[0-9]+, [0-9]+, [0-9]+</bgcolor>")) {
                 drawbackcolor = true;
                 int r = Integer.parseInt(line.replaceAll("<bgcolor>([0-9]+), [0-9]+, [0-9]+</bgcolor>", "$1"));
                 int g = Integer.parseInt(line.replaceAll("<bgcolor>[0-9]+, ([0-9]+), [0-9]+</bgcolor>", "$1"));
                 int b = Integer.parseInt(line.replaceAll("<bgcolor>[0-9]+, [0-9]+, ([0-9]+)</bgcolor>", "$1"));
-                background = new Color(r,g,b);
+                background = new Color(r, g, b);
                 continue;
             }
-            if(line.matches("<bgcolor>-</bgcolor>")){
+            if (line.matches("<bgcolor>-</bgcolor>")) {
                 drawbackcolor = false;
             }
-            if(line.matches("<fps>[0-9]+</fps>")){
+            if (line.matches("<fps>[0-9]+</fps>")) {
                 speed = Integer.parseInt(line.replaceAll("<fps>([0-9]+)</fps>", "$1"));
                 continue;
             }
-            if(line.matches("<snap>[0-9]+, [0-9]+</snap>")){
+            if (line.matches("<snap>[0-9]+, [0-9]+</snap>")) {
                 snapX = Integer.parseInt(line.replaceAll("<snap>([0-9]+), [0-9]+</snap>", "$1"));
                 snapY = Integer.parseInt(line.replaceAll("<snap>[0-9]+, ([0-9]+)</snap>", "$1"));
                 continue;
             }
-            if(line.matches("<grid>(Visible|Hidden) (Standard|Isometric)</grid>")){
+            if (line.matches("<grid>(Visible|Hidden) (Standard|Isometric)</grid>")) {
                 String x = line.replaceAll("<grid>(Visible|Hidden) (Standard|Isometric)</grid>", "$1");
                 String y = line.replaceAll("<grid>(Visible|Hidden) (Standard|Isometric)</grid>", "$2");
-                if(x.equals("Visible"))
+                if (x.equals("Visible")) {
                     grid = true;
-                else
+                } else {
                     grid = false;
-                if(y.equals("Standard"))
+                }
+                if (y.equals("Standard")) {
                     isometric = false;
-                else
+                } else {
                     isometric = true;
+                }
                 continue;
             }
-            /*if(line.matches("<views>"))
-                i = views.readXml(i, str);*/
+        /*if(line.matches("<views>"))
+        i = views.readXml(i, str);*/
         }
     }
-     
-    public String exportToHtml(boolean xhtml){
+
+    public String exportToHtml(boolean xhtml) {
         return "";
     }
-    
+
     //SuppressWarnings("unchecked")
-    public Object clone(){
-        Scene a = new Scene(name);
+    public Object clone() {
+        Scene a = new Scene(/*name*/);
         Object obj = actors.clone();
-        if(obj == null)
+        if (obj == null) {
             a.actors = null;
-        else
+        } else {
             a.actors = (Vector) obj;
+        }
         a.caption = caption;
         a.code = code;
         a.grid = grid;

@@ -18,18 +18,19 @@ public class Tileset extends Resource{
     public int startx = 0, starty = 0, bwidth = 0, bheight = 0;
     public int tilew = 20, tileh = 20;
     
-    private Tileset(){
-        image = null;
-    }
-    
     public ImageIcon getImage(){
         if(image==null)
             return null;
         return ((org.gcreator.fileclass.res.GImage)(image.value)).image;
     }
     
+    /**@deprecated*/
     public Tileset(String name){
-        this.name = name;
+        this();
+    }
+    
+    public Tileset(/*String name*/){
+        //this.name = name;
         image = null;
     }
     

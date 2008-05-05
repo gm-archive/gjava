@@ -23,9 +23,14 @@ public class Sprite extends Resource {
     public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
-    public Sprite(String name)
+    /**@deprecated*/
+    public Sprite(String name){
+        this();
+    }
+    
+    public Sprite(/*String name*/)
     {
-        this.name = name;
+        //this.name = name;
        // images = new Vector<org.gcreator.fileclass.File>();
         Simages = new Vector();
     }
@@ -120,7 +125,7 @@ public class Sprite extends Resource {
     
     //SuppressWarnings("unchecked")
     public Object clone(){
-        Sprite a = new Sprite(name);
+        Sprite a = new Sprite(/*name*/);
         a.BBBottom = BBBottom;
         a.BBRight = BBRight;
         a.BBTop = BBTop;

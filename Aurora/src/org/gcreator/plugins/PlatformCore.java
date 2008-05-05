@@ -29,6 +29,7 @@ import org.antlr.runtime.ANTLRFileStream;
 import org.antlr.runtime.CommonTokenStream;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.GImage;
@@ -269,15 +270,21 @@ public class PlatformCore extends PluginCore {
     }
 
 
-    public void parseSprite(Sprite s) {
-        System.out.println("" + s.name);
+    public void parseSprite(Sprite s, GFile f) {
+        //System.out.println("" + s.name);
+        parseSprite(s);
+    }
+    
+    /**@deprecated*/
+    public void parseSprite(Sprite s){
+        
     }
 
-    public void parseImage(ImageIcon i, org.gcreator.fileclass.GFile f) {
+    public void parseImage(ImageIcon i, GFile f) {
         System.out.println("called wrong method!");
     }
     
-    public void parseImage(GImage i, org.gcreator.fileclass.GFile f){
+    public void parseImage(GImage i, GFile f){
         parseImage(i.getImage(), f);
     }
 

@@ -177,7 +177,7 @@ public class ActorEditor extends TabPanel {
     
     public void updateName() {
         file.name = jTextField1.getText();
-        actor.name = file.name;
+        //actor.name = file.name;
         org.gcreator.core.Aurwindow.workspace.updateUI();
     }
     
@@ -686,7 +686,7 @@ public class ActorEditor extends TabPanel {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
-        actor.name = file.name;
+        //actor.name = file.name;
         org.gcreator.core.Aurwindow.workspace.updateUI();
         updateNavigator();
     }//GEN-LAST:event_jTextField1ActionPerformed

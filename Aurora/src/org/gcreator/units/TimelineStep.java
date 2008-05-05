@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.fileclass.res;
+package org.gcreator.units;
 
 import java.util.*;
 import org.gcreator.actions.*;

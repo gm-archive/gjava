@@ -25,8 +25,15 @@ public class GImage extends Resource {
     public boolean transparent;
     public Color transparentColor;  
     
-    public GImage(String name) {
-        this.name = name;
+    /**
+     * @deprecated Use plain constructor instead
+     */
+    public GImage(String name){
+        this();
+    }
+    
+    public GImage(/*String name*/) {
+        //this.name = name;
         image = null;
     }
         
@@ -87,7 +94,7 @@ public class GImage extends Resource {
     }
     
     public Object clone() {
-        GImage a = new GImage(name);
+        GImage a = new GImage(/*name*/);
         a.height = height;
         a.width = width;
         a.transparent = transparent;

@@ -5,6 +5,7 @@
 
 package org.gcreator.fileclass.res;
 
+import org.gcreator.units.TimelineStep;
 import java.util.*;
 
 /**
@@ -14,12 +15,19 @@ import java.util.*;
 public class Timeline extends Resource{
     static final long serialVersionUID = 1L;
     public Vector<TimelineStep> steps = new Vector<TimelineStep>();
+    
+    /**@deprecated*/
     public Timeline(String name){
-        this.name = name;
+        //this.name = name;
+        this();
+    }
+    
+    public Timeline(){
+        
     }
     
     public Object clone(){
-        Timeline a = new Timeline(name);
+        Timeline a = new Timeline(/*name*/);
         return a;
     }
     

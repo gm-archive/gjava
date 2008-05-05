@@ -88,7 +88,7 @@ public class SettingsValues extends Resource{
     public Object clone(){
         SettingsValues a = new SettingsValues();
         //a.keys = keys.clone();
-        a.name = name;
+        //a.name = name;
         //a.tabs = tabs.clone();
         return a;
     }

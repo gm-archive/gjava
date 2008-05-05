@@ -5,6 +5,7 @@
 
 package org.gcreator.components.impl;
 
+import org.gcreator.units.TimelineStep;
 import java.awt.*;
 import javax.swing.*;
 import org.gcreator.fileclass.res.*;

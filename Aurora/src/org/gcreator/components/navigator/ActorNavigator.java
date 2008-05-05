@@ -15,15 +15,15 @@ import javax.swing.*;
 public class ActorNavigator extends JPanel {
     
     /** Creates new form ActorNavigator */
-    private org.gcreator.fileclass.GFile actor;
+    private org.gcreator.fileclass.GFile file;
     public ActorNavigator(org.gcreator.fileclass.GFile actor) {
-        this.actor = actor;
+        this.file = actor;
         initComponents();
     }
     public org.gcreator.fileclass.res.Actor getActor(){
-        if(actor==null)
+        if(file==null)
             return null;
-        Object o = actor.value;
+        Object o = file.value;
         if(o!=null&&o instanceof org.gcreator.fileclass.res.Actor)
             return (org.gcreator.fileclass.res.Actor) o;
         return null;
@@ -36,7 +36,8 @@ public class ActorNavigator extends JPanel {
             return "<b><font color='red'>Invalid Actor</font></b>";
         }
         String result = "<b>Name:</b> ";
-        result += actor.name;
+        //result += actor.name;
+        result += file.name;
         result += "<br/><b>Extends:</b> ";
         result += actor.extend;
         result += "<br/><b>Sprite:</b> ";

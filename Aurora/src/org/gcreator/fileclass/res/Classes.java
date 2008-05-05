@@ -16,7 +16,7 @@ package org.gcreator.fileclass.res;
 public class Classes extends Resource {
     static final long serialVersionUID = 1L;
     public String value = "";
-     
+    
     public Classes(String value){
         this.value = value;
     }
@@ -37,7 +37,7 @@ public class Classes extends Resource {
     
     public Object clone(){
         Classes a = new Classes(value);
-        a.name = name;
+        //a.name = name;
         return a;
     }
     

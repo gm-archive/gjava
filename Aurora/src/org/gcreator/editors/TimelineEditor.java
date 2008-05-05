@@ -6,6 +6,7 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.units.TimelineStep;
 import java.util.Vector;
 import java.util.logging.*;
 import javax.swing.*;
@@ -69,7 +70,7 @@ public class TimelineEditor extends TabPanel {
     
     public void updateName(){
         file.name = jTextField1.getText();
-        timeline.name = file.name;
+        //timeline.name = file.name;
         Aurwindow.workspace.updateUI();
     }
     
