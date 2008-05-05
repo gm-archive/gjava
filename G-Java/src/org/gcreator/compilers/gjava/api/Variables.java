@@ -655,19 +655,19 @@ public static Object   argument
     }
 
     public static Object getMouse_x() {
-        return mouse_x;
+        return new Integer(Game.game.getGame().getMouseX());
     }
 
     public static void setMouse_x(Object mouse_x) {
-        Variables.mouse_x = mouse_x;
+       //constant
     }
 
     public static Object getMouse_y() {
-        return mouse_y;
+        return new Integer(Game.game.getGame().getMouseY());
     }
 
     public static void setMouse_y(Object mouse_y) {
-        Variables.mouse_y = mouse_y;
+        //constant
     }
 
     public static Object getProgram_directory() {

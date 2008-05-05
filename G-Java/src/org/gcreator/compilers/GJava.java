@@ -104,6 +104,7 @@ public class GJava extends PlatformCore {
     public void parseActor(Actor a) {
         try {
             String keypress="public void KeyPressed(int keycode) {",keyrelease="public void KeyReleased(int keycode) {";
+            String callevents="public void callEvents() { ", endcall=" Move(); }";
             FileWriter actorFW = new FileWriter(FileFolder + File.separator + a.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
@@ -126,7 +127,7 @@ public class GJava extends PlatformCore {
             print(actor, "        this.instance_id = instance_id;");
             print(actor, "    }");
             
-            String callevents="public void callEvents() { ", endcall=" Move(); }";
+            
             
             //events
             for (Enumeration e = a.events.elements(); e.hasMoreElements();)
@@ -144,14 +145,26 @@ public class GJava extends PlatformCore {
             else if (ev instanceof org.gcreator.events.BeginStepEvent) {
             print(actor, "  public void BeginStep()");
             event="Begin Step";
+                //System.out.println("callevents:"+callevents);
+                try{
+            callevents= callevents.replaceAll("\\{", "\\{ BeginStep();");
+                }catch(Exception ex){
+                //System.out.println("Begin step exception:"+ex);
+                }
+            //System.out.println("callevents:"+callevents);
             }
             else if (ev instanceof org.gcreator.events.StepEvent) {
             print(actor, "  public void Step()");
             event="Step";
+            callevents+="Step();";
             }
             else if (ev instanceof org.gcreator.events.EndStepEvent) {
+                System.out.println("endstep");
             print(actor, "  public void EndStep()");
             event="End Step";
+               // System.out.println("endcall:"+endcall);
+            endcall= "EndStep();" + endcall;
+            //System.out.println("endcall:"+endcall);
             }
             else if (ev instanceof org.gcreator.events.DrawEvent) {
             print(actor, "  public void Draw_event(Graphics2D g)");
@@ -167,23 +180,23 @@ public class GJava extends PlatformCore {
             event="Mouse";
             int type=((MouseEvent)ev).type;
             
-            print(actor, "System.out.println(\"left:\"+(int)(sprite.BBRight+x-sprite.sprite_xoffset)); ");
-        print(actor, "System.out.println(\"Top:\"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); ");
-        print(actor, "System.out.println(\"right:\"+(int)(x-sprite.sprite_xoffset+sprite.BBLeft));"); 
-        print(actor, "System.out.println(\"bottom:\"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); ");
+//            print(actor, "System.out.println(\"x1:\"+(int)(sprite.BBRight+x-sprite.sprite_xoffset)); ");
+//        print(actor, "System.out.println(\"x2:\"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); ");
+//        print(actor, "System.out.println(\"right:\"+(int)(x-sprite.sprite_xoffset+sprite.BBLeft));"); 
+//        print(actor, "System.out.println(\"bottom:\"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); ");
             
             if (type == 5006) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))");//return "Left Button Clicked";
-            if (type == 5007) ;//return "Left Button Pressed";
-            if (type == 5008) ;//return "Left Button Released";
+            if (type == 5007) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON1))");//return "Left Button Pressed";
+            if (type == 5008) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseReleased(java.awt.event.MouseEvent.BUTTON1))");//return "Left Button Released";
             if (type == 5009) print(actor, "if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))");//return "Global Left Button Clicked";
-            if (type == 5010) ;//return "Global Left Button Pressed";
-            if (type == 5011) ;//return "Global Left Button Released";
+            if (type == 5010) print(actor, "if (Game.game.getGame().bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON1))");//return "Global Left Button Pressed";
+            if (type == 5011) print(actor, "if (Game.game.getGame().bsInput.isMouseReleased(java.awt.event.MouseEvent.BUTTON1))");//return "Global Left Button Released";
             if (type == 5012) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))");//return "Right Button Clicked";
-            if (type == 5013) ;//return "Right Button Pressed";
-            if (type == 5014) ;//return "Right Button Released";
+            if (type == 5013) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON3))");//return "Right Button Pressed";
+            if (type == 5014) print(actor, "if (Game.game.getGame().checkPosMouse((int)(sprite.BBRight+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBLeft), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseReleased(java.awt.event.MouseEvent.BUTTON3))");//return "Right Button Released";
             if (type == 5015) print(actor, "if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))");//return "Global Right Button Clicked";
-            if (type == 5016) ;//return "Global Right Button Pressed";
-            if (type == 5017) ;//return "Global Right Button Released";
+            if (type == 5016) print(actor, "if (Game.game.getGame().bsInput.isMousePressed(java.awt.event.MouseEvent.BUTTON3))");//return "Global Right Button Pressed";
+            if (type == 5017) print(actor, "if (Game.game.getGame().bsInput.isMouseReleased(java.awt.event.MouseEvent.BUTTON3))");//return "Global Right Button Released";
             if (type == 5018) ;//return "Mouse Entered (Over)";
             if (type == 5019) ;//return "Mouse Exited (Out)";
             //default: ;//return "Invalid Mouse Event";
@@ -346,7 +359,7 @@ actorindex++;
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         compilername = "GJava";
-        version=0.2;
+        version=0.3;
         updateURL="http://g-creator.org/update/G-Java/update.xml";
         update();
         // add toolbar button

@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -149,13 +149,14 @@ if (keycode == (37))
 //        System.out.println("Top:"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); 
 //        System.out.println("right:"+(int)(x-sprite.sprite_xoffset+sprite.BBRight)); 
 //        System.out.println("bottom:"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); 
-        
-        
-       if (Game.game.getGame().checkPosMouse((int)(sprite.BBLeft+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBRight), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON3))
+        System.out.println("x:"+getMouse_x());
+                System.out.println("y:"+getMouse_y());
+
+      // if (Game.game.getGame().checkPosMouse((int)(sprite.BBLeft+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBRight), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseReleased(background);.isMousePressed(background);.isMouseDown(java.awt.event.MouseEvent.BUTTON3))
 //        if (Game.game.getGame().checkPosMouse(94,221,509,116)) //&& Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))
        
        // if (Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))
-        System.out.println("Mouse over!");
+      //  System.out.println("Mouse over!");
             ;
     }
 
