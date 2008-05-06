@@ -330,7 +330,11 @@ public class Aurwindow extends JFrame {
         int foundloc = 0;
         file.type = file.type.toLowerCase();
         FileOpenListener listener = getFileEditor(file.type);
-        ImageIcon img = ((WorkspaceCellRenderer) workspace.getCellRenderer()).getImageFor(file.node);
+        ImageIcon img = null;
+        try {
+            img = (ImageIcon) ((WorkspaceCellRenderer) workspace.getCellRenderer()).getImageFor(file.node);
+        } catch (ClassCastException e) {}
+        
         if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject(), img);
         } else if (file.type.equals("sprite")) {

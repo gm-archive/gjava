@@ -8,6 +8,7 @@ package org.gcreator.components;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import org.gcreator.fileclass.GameProject;
 import org.gcreator.managers.*;
 
 /**
@@ -24,13 +25,13 @@ public class GameProjects extends JPanel{
     
     public int getSelectedProject(){
         if(jButton1.isSelected())
-            return 0;
+            return ProjectTypes.EMPTY_GAME;
         if(jButton2.isSelected())
-            return 1;
+            return ProjectTypes.RPG_GAME;
         if(jButton3.isSelected())
-            return 2;
+            return ProjectTypes.PLATFORM_GAME;
         if(jButton4.isSelected())
-            return 3;
+            return ProjectTypes.AIR_BATTLE;
         return -1;
     }
     

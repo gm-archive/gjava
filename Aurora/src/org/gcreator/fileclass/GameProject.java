@@ -12,6 +12,7 @@ package org.gcreator.fileclass;
 import java.util.Enumeration;
 import javax.swing.ImageIcon;
 import java.util.*;
+import org.gcreator.components.ProjectTypes;
 import org.gcreator.units.ObjectNode;
 
 /**
@@ -30,21 +31,32 @@ public class GameProject extends Project{
     public int scenes = 1;
     public int classes = 1;
     public int scripts = 1;
-    
+     
     public GameProject(String name, String location){
         super(name, location);
+        project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
     }
     
-    public GameProject(){}
+    public GameProject(){
+        project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
+    }
     
+    public GameProject(String name, String location, ImageIcon img){
+        super(name, location);
+        project_game = img;
+    }
+    
+    public GameProject(ImageIcon img){
+        project_game = img;
+    }
      
     @Override
     public String getType(){
         return "Game";
     }
     
-    public static GameProject balance(){
-        return (GameProject) balancedCreation();
+    public static GameProject balance(int projectType){
+        return (GameProject) balancedCreation(projectType);
     }
     
     @Override
@@ -199,8 +211,20 @@ public class GameProject extends Project{
         }
     }
      
-    private static Project balancedCreation(){
-        Project project = new GameProject();
+    private static Project balancedCreation(int projectType){
+        GameProject project;
+        if (projectType == ProjectTypes.RPG_GAME)
+            project = new GameProject(new ImageIcon(GameProject.class.getResource(
+                    "/org/gcreator/resources/toolbar/new_rpg_sm.png")));
+        else if (projectType == ProjectTypes.PLATFORM_GAME)
+            project = new GameProject(new ImageIcon(GameProject.class.getResource(
+                    "/org/gcreator/resources/toolbar/new_platform_sm.png")));
+        else if (projectType == ProjectTypes.AIR_BATTLE)
+            project = new GameProject(new ImageIcon(GameProject.class.getResource(
+                    "/org/gcreator/resources/toolbar/new_airbattle_sm.png")));
+        else
+            project = new GameProject();
+        
         project.add(new ImageGroup(project, "$209"));
         project.add(new SpriteGroup(project, "$210"));
         project.add(new TilesetGroup(project, "$211"));
@@ -244,7 +268,7 @@ public class GameProject extends Project{
         return "GameProject";
     }
     
-    private ImageIcon project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
+    private final ImageIcon project_game;
     
     @Override
     public ImageIcon getImage(){

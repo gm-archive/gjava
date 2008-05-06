@@ -6,7 +6,9 @@
  */
 
 
-//I had to made this a normal class because NetBeans designer didn't allow me to do what I wanted to.
+/* I had to made this a normal class because NetBeans 
+ * designer didn't allow me to do what I wanted to.
+ */
 package org.gcreator.components;
 
 import java.awt.event.*;
@@ -152,32 +154,31 @@ public class NewProject extends TabPanel {
             org.gcreator.core.utilities.addStringMessage("create new project");
             Project project = null;
             int type = getProjectType();
-            if (type == 0){//Empty game
-                project = GameProject.balance();
+            if (type == ProjectTypes.EMPTY_GAME){
+                project = GameProject.balance(ProjectTypes.EMPTY_GAME);
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 1){//RPG game
-                project = GameProject.balance();
+            else if (type == ProjectTypes.RPG_GAME){
+                project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 2){//platform game
-                project = GameProject.balance();
+            else if (type == ProjectTypes.PLATFORM_GAME){
+                project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 3){//Air battle
-                System.out.println("Game type 3");
-                project = GameProject.balance();
+            else if (type == ProjectTypes.AIR_BATTLE){
+                project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 Aurwindow.setMainProject(project);
             }
-            else if (type == 4){//Empty Module
+            else if (type == 4){
                 project = ModuleProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";

@@ -15,6 +15,12 @@ import javax.swing.*;
  */
 public class ProjectTypes extends JPanel {
     
+    public static final int EMPTY_GAME = 0;
+    public static final int RPG_GAME = 1;
+    public static final int PLATFORM_GAME = 2;
+    public static final int AIR_BATTLE = 3;
+    public static final int EMPTY_MODULE = 4;
+    
     /** Creates new form ProjectTypes */
     
     public GameProjects gmpro;

@@ -73,17 +73,7 @@ public class SettingsIO {
             out.write("<?xml version = \"1.0\"?>\n");
             out.write("<settings>");
             out.write("<style>");
-            if (look == 0) {
-                out.write("Native");
-            } else if (look == 1) {
-                out.write("Cross-platform");
-            } else if (look == 2) {
-                out.write("Motif");
-            } else if (look == 3) {
-                out.write("Metal"); 
-            } else {
-                out.write("Unknown");
-            }
+            out.write(UIManager.getInstalledLookAndFeels()[look].getName());
             out.write("</style>");
             out.write("<desktop>");
             if (istabs) {

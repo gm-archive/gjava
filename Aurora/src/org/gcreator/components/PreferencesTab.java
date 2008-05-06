@@ -7,6 +7,7 @@ package org.gcreator.components;
 
 import java.awt.Component;
 import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
 
@@ -22,6 +23,17 @@ public class PreferencesTab extends OptionPanel {
 
         jComboBox1.setSelectedIndex(0);
         try {
+            if (settings[0] == null)
+                throw new Exception();//Lazy way of going to the catch statement below.
+            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+            int i;
+            for (i = 0; i < info.length; i++) {
+                if (info[i].getName().equals(settings[0]))
+                    break;
+            }
+            jComboBox1.setSelectedIndex(i);
+            gcreator.window.look = i;
+            /*
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 gcreator.window.look = 0;
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
@@ -36,10 +48,20 @@ public class PreferencesTab extends OptionPanel {
             } else {
                 jComboBox1.setSelectedIndex(1);
                 gcreator.window.look = 1;
-            }
+            }*/
+            
         } catch (Exception e) {
+            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+            int i;
+            for (i = 0; i < info.length; i++) {
+                if (info[i].getClassName().equals(UIManager.getCrossPlatformLookAndFeelClassName()))
+                    break;
+            }
+            jComboBox1.setSelectedIndex(i);
+            gcreator.window.look = i;
+            /*
             jComboBox1.setSelectedIndex(1);
-            gcreator.window.look = 1;
+            gcreator.window.look = 1;*/
         }
         
         jComboBox2.setSelectedIndex(0);
@@ -68,18 +90,27 @@ public class PreferencesTab extends OptionPanel {
         jCheckBox1.setSelected(Boolean.parseBoolean(settings[7]));
         jComboBox2ActionPerformed(null);
     }
+    
     public DefaultComboBoxModel lafmodel = new DefaultComboBoxModel() {
+        
+        public String[] vals = new String[UIManager.getInstalledLookAndFeels().length];
+        //public String[] vals = new String[]{getLang(17), getLang(18), getLang(19), getLang(132)};
+        {
+            int i = 0;
+            for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                vals[i++] = info.getName();
+            }
+        }
+        @Override
+        public Object getElementAt(int pos) {
+            return vals[pos];
+        }
 
-                public String[] vals = new String[]{getLang(17), getLang(18), getLang(19), getLang(132)};
-
-                public Object getElementAt(int pos) {
-                    return vals[pos];
-                }
-
-                public int getSize() {
-                    return vals.length;
-                }
-            };
+        @Override
+        public int getSize() {
+            return vals.length;
+        }
+    };
     public DefaultComboBoxModel displaymodes = new DefaultComboBoxModel() {
 
                 public String[] vals = new String[]{getLang(20), getLang(90), getLang(91), getLang(92),
@@ -214,9 +245,10 @@ public class PreferencesTab extends OptionPanel {
         int sel = jComboBox1.getSelectedIndex();
 
         try {
-            switch (sel) {
+            /*switch (sel) {
                 case 0:
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel].getClassName());
                     SwingUtilities.updateComponentTreeUI(gcreator.window);
                     if (gcreator.window.istabs) {
                         SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
@@ -224,7 +256,7 @@ public class PreferencesTab extends OptionPanel {
                         SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
                     }
                     SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = 0;
+                    gcreator.window.look = sel;
                     Aurwindow.workspace.updateUI();
                     break;
                 case 1:
@@ -265,7 +297,17 @@ public class PreferencesTab extends OptionPanel {
                     gcreator.window.look = 3;
                     Aurwindow.workspace.updateUI();
                     break;
-            }
+            }*/
+            UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel].getClassName());
+                    SwingUtilities.updateComponentTreeUI(gcreator.window);
+                    if (gcreator.window.istabs) {
+                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+                    } else {
+                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                    }
+                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+                    gcreator.window.look = sel;
+                    Aurwindow.workspace.updateUI();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed

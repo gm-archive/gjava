@@ -9,17 +9,8 @@
 
 package org.gcreator.fileclass;
 
-import java.io.Serializable;
 import java.util.Enumeration;
 import org.gcreator.exceptions.NoSuchFolderException;
-import org.gcreator.fileclass.res.Actor;
-import org.gcreator.fileclass.res.Classes;
-//import fileclass.res.Image;
-import org.gcreator.fileclass.res.Scene;
-import org.gcreator.fileclass.res.Sound;
-import org.gcreator.fileclass.res.Sprite;
-import java.util.Vector;
-import javax.swing.ImageIcon;
 
 /**
  *

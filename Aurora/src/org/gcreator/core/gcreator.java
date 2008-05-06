@@ -11,20 +11,18 @@ package org.gcreator.core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import org.gcreator.editors.ActorEditor;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
 
 import javax.swing.*;
+import javax.swing.UIManager.LookAndFeelInfo;
 import org.gcreator.api.util.CreateApiList;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
 import org.gcreator.components.impl.DefaultToolbarItem;
-import org.gcreator.components.impl.Toolbar;
 import org.gcreator.components.impl.ToolbarButton;
-import org.gcreator.components.impl.ToolbarSeparator;
 import org.gcreator.components.navigator.*;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
@@ -122,7 +120,7 @@ public class gcreator {
 
         if (settings == null) {
             settings = new String[8];
-            settings[0] = "Native";
+            settings[0] = "Metal";
             settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
             settings[3] = "English";
@@ -315,7 +313,7 @@ public class gcreator {
  System.out.println(""+le.getLocalizedMessage());
 }
 
-        try {
+        try {/*
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
@@ -326,8 +324,15 @@ public class gcreator {
             } else if (settings[0].equals("Metal")) {
                 javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            }*/
+            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+            int i;
+            for (i = 0; i < info.length; i++) {
+                if (info[i].getName().equals(settings[0])) {
+                     UIManager.setLookAndFeel(info[i].getClassName());
+                    break;
+                }
             }
-            
         } catch (Exception e) {}
         
         if(splash!=null)

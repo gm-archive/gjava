@@ -10,11 +10,9 @@
 package org.gcreator.components.impl;
 
 import org.gcreator.core.gcreator;
-import org.gcreator.fileclass.ExtensionProject;
 import org.gcreator.units.ObjectNode;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.tree.*;
 import org.gcreator.fileclass.Group;
 import org.gcreator.managers.LangSupporter;
@@ -60,9 +58,13 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         settings = new ImageIcon(getClass().getResource("/org/gcreator/resources/tree/settings.png"));
     }
 
-    public ImageIcon getImageFor(ObjectNode noder){
-        if(noder.object instanceof Group)
-            return (ImageIcon) UIManager.get("Tree.openIcon");
+    public /*Image*/Icon getImageFor(ObjectNode noder){
+        if(noder.object instanceof Group) {
+            Icon ico = (Icon) UIManager.get("Tree.openIcon");
+            if (ico != null)
+                return ico;
+            return new ImageIcon(getClass().getResource("/org/gcreator/resources/defaultfoldericon.png"));
+        }
         if (((org.gcreator.fileclass.GFile) noder.object).type.equals("txt")) {
                     return text;
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gif")) {
@@ -99,9 +101,9 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("settings"))  {
                     return settings;
                 } else if (UIManager.get("Tree.leafIcon") != null) {
-                    return((ImageIcon) UIManager.get("Tree.leafIcon"));
+                    return((Icon) UIManager.get("Tree.leafIcon"));
                 }
-        return null;
+            return null;
     }
     
     public WorkspaceCellRenderer(boolean logfileDeleted) {
@@ -161,12 +163,12 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                     if (UIManager.get("Tree.openIcon") != null) {
                         setIcon((Icon) UIManager.get("Tree.openIcon"));
                     } else {
-                        setIcon(null);
+                        setIcon(getImageFor(new ObjectNode(new Group())));
                     }
                 } else if (UIManager.get("Tree.closedIcon") != null) {
                     setIcon((Icon) UIManager.get("Tree.closedIcon"));
                 } else {
-                    setIcon(null);
+                    setIcon(getImageFor(new ObjectNode(new Group())));
                 }
             }
         }

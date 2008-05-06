@@ -136,8 +136,9 @@ import org.gcreator.fileclass.*;
         
         try{
             WorkspaceCellRenderer r = (WorkspaceCellRenderer) Aurwindow.workspace.getCellRenderer();
-            ImageIcon i = r.getImageFor(file.node);
-            g.drawImage(i.getImage(), x, 1, i.getImageObserver());
+            Icon i = r.getImageFor(file.node);
+            i.paintIcon(this, g, x, 1);
+            //g.drawImage(i.getImage(), x, 1, i.getImageObserver());
             x += i.getIconWidth() + 1;
         }
         catch(Exception e){}
