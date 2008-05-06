@@ -19,7 +19,8 @@ import org.gcreator.units.PathNode;
  */
     public class Path extends Resource {
     static final long serialVersionUID = 1L;
-    public boolean smoothCurves,  closedCurves;
+    public boolean smoothCurves,  closedCurves, showGrid;
+    //showGrid is for EDITION purposes ONLY!
     public Vector<PathNode> nodes;
 
     public Path(Vector<PathNode> nodes) {

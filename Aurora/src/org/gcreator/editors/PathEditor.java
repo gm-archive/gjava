@@ -3,7 +3,6 @@
  *
  * Created on 30 December 2007, 02:53
  */
-
 package org.gcreator.editors;
 
 import java.util.Vector;
@@ -23,18 +22,19 @@ import org.gcreator.managers.LangSupporter;
  * @author Serge Humphrey
  */
 public class PathEditor extends TabPanel {
-    
-   // public DefaultListModel nodes = new DefaultListModel();
+
+    // public DefaultListModel nodes = new DefaultListModel();
     public PathCanvas pathCanvas;
     public Vector<PathNode> nodes = new Vector<PathNode>(20);
     public final boolean java6 = Integer.parseInt(System.getProperty("java.version").replaceAll("1\\.([0-9])\\..*", "$1")) >= 6;
     public boolean smoothCurves = false;
     public boolean closedCurves = false;
     public Path path;
+
     /** Creates new form PathEditor */
-    public PathEditor(org.gcreator.fileclass.GFile file,Project project) throws WrongResourceException {
+    public PathEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
-         
+
         if (file.value == null) {
             this.path = new Path(nodes);
             path.readXml(file.xml);
@@ -49,33 +49,36 @@ public class PathEditor extends TabPanel {
             throw new WrongResourceException();
         }
         this.file = file;
-        
+
         initComponents();
-        
+
         if (!java6) {
             jRadioButton2.setEnabled(false);//Path2D came out in java 6
+
             jRadioButton2.setToolTipText(org.gcreator.managers.LangSupporter.activeLang.getEntry(260));
         }
         jTextField1.setText(file.name);
         pathCanvas = new PathCanvas(this, true);
         jPanel2.add(pathCanvas);
+        jToggleButton1.setSelected(path.showGrid);
     }
-    
+
     public javax.swing.JList getList() {
         return jList1;
     }
-    
+
     public javax.swing.JSpinner getXSpinner() {
         return jSpinner1;
     }
-    
+
     public javax.swing.JSpinner getYSpinner() {
         return jSpinner2;
     }
-    
+
     public javax.swing.JSpinner getSpeedSpinner() {
         return jSpinner3;
-    }   
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -104,6 +107,7 @@ public class PathEditor extends TabPanel {
         jRadioButton2 = new javax.swing.JRadioButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         jLabel1.setText("Name:");
         jLabel1.setText(LangSupporter.activeLang.getEntry(136));
@@ -293,6 +297,13 @@ public class PathEditor extends TabPanel {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel2.setLayout(new java.awt.BorderLayout());
 
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/showgrid.png"))); // NOI18N
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -300,7 +311,9 @@ public class PathEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jToggleButton1)
+                    .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -308,58 +321,63 @@ public class PathEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 484, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jToggleButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       PathNode addedNode = null;
-       try {
-           nodes.add(addedNode = new PathNode(nodes.get(nodes.size()-1)));
-       } catch (IndexOutOfBoundsException exc) {
-           nodes.add(addedNode = new PathNode(pathCanvas.getWidth()/2, pathCanvas.getHeight()/2));
-       }
-       pathCanvas.setSelectedNode(addedNode);
-       getXSpinner().setValue(new Integer(addedNode.x));
-       getYSpinner().setValue(new Integer(addedNode.y));
-       getSpeedSpinner().setValue(new Double(addedNode.getSpeed()));
-       
-       pathCanvas.repaint();
+        PathNode addedNode = null;
+        try {
+            nodes.add(addedNode = new PathNode(nodes.get(nodes.size() - 1)));
+        } catch (IndexOutOfBoundsException exc) {
+            nodes.add(addedNode = new PathNode(pathCanvas.getWidth() / 2, pathCanvas.getHeight() / 2));
+        }
+        pathCanvas.setSelectedNode(addedNode);
+        getXSpinner().setValue(new Integer(addedNode.x));
+        getYSpinner().setValue(new Integer(addedNode.y));
+        getSpeedSpinner().setValue(new Double(addedNode.getSpeed()));
+
+        pathCanvas.repaint();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        if (pathCanvas.getSelectedNode() == null)
+        if (pathCanvas.getSelectedNode() == null) {
             return;
-        pathCanvas.getSelectedNode().x = ((Integer)jSpinner1.getValue()).intValue();
+        }
+        pathCanvas.getSelectedNode().x = ((Integer) jSpinner1.getValue()).intValue();
         pathCanvas.repaint();
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
-        if (pathCanvas.getSelectedNode() == null)
+        if (pathCanvas.getSelectedNode() == null) {
             return;
-        pathCanvas.getSelectedNode().y = ((Integer)jSpinner2.getValue()).intValue();
+        }
+        pathCanvas.getSelectedNode().y = ((Integer) jSpinner2.getValue()).intValue();
         pathCanvas.repaint();
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       int index = getList().getSelectedIndex();
-       PathNode addedNode;
-       try {
-            nodes.insertElementAt(addedNode = new PathNode(nodes.get(index-1)), index);
-       } catch (IndexOutOfBoundsException exc) {
-           nodes.insertElementAt(addedNode = new PathNode(pathCanvas.getWidth()/2, pathCanvas.getHeight()/2), index);
-       }
-       pathCanvas.setSelectedNode(addedNode);
-       this.pathCanvas.repaint();
+        int index = getList().getSelectedIndex();
+        PathNode addedNode;
+        try {
+            nodes.insertElementAt(addedNode = new PathNode(nodes.get(index - 1)), index);
+        } catch (IndexOutOfBoundsException exc) {
+            nodes.insertElementAt(addedNode = new PathNode(pathCanvas.getWidth() / 2, pathCanvas.getHeight() / 2), index);
+        }
+        pathCanvas.setSelectedNode(addedNode);
+        this.pathCanvas.repaint();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        if (this.pathCanvas.getSelectedNode() == getList().getSelectedValue())
+        if (this.pathCanvas.getSelectedNode() == getList().getSelectedValue()) {
             return;
-        PathNode node = (PathNode)getList().getSelectedValue();
+        }
+        PathNode node = (PathNode) getList().getSelectedValue();
         this.pathCanvas.setSelectedNode(node);
         this.pathCanvas.repaint();
     }//GEN-LAST:event_jList1ValueChanged
@@ -384,19 +402,23 @@ public class PathEditor extends TabPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int index = getList().getSelectedIndex();
-        if (index < 0) return;
+        if (index < 0) {
+            return;
+        }
         nodes.remove(index);
         getList().updateUI();
-        if (index > 1)
-            this.pathCanvas.setSelectedNode(nodes.get(index-1));
-        else 
+        if (index > 1) {
+            this.pathCanvas.setSelectedNode(nodes.get(index - 1));
+        } else {
             this.pathCanvas.setSelectedNode(null);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
-        if (pathCanvas.getSelectedNode() == null)
+        if (pathCanvas.getSelectedNode() == null) {
             return;
-        ((PathNode)getList().getSelectedValue()).setSpeed(((Double)jSpinner3.getValue()).doubleValue());
+        }
+        ((PathNode) getList().getSelectedValue()).setSpeed(((Double) jSpinner3.getValue()).doubleValue());
         getList().updateUI();
     }//GEN-LAST:event_jSpinner3StateChanged
 
@@ -404,7 +426,11 @@ public class PathEditor extends TabPanel {
         file.name = jTextField1.getText();
         Aurwindow.workspace.updateUI();
     }//GEN-LAST:event_jTextField1CaretUpdate
-    
+
+private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    path.showGrid = jToggleButton1.isSelected();
+    pathCanvas.repaint();
+}//GEN-LAST:event_jToggleButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -426,6 +452,6 @@ public class PathEditor extends TabPanel {
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
-    
 }

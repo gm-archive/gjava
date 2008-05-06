@@ -70,9 +70,16 @@ public class PathCanvas extends JPanel {
             @Override
             public void mouseDragged(MouseEvent e) {
                 if (dragging) {
-                    draggingNode.setLocation(e.getPoint());
-                    editor.getXSpinner().setValue(new Integer(draggingNode.x));
-                    editor.getYSpinner().setValue(new Integer(draggingNode.y));
+                    int x = e.getX();
+                    int y = e.getY();
+                    if(x<0)
+                        x = 0;
+                    if(y<0)
+                        y = 0;
+                    draggingNode.setLocation(x, y);
+                    editor.getXSpinner().setValue(new Integer(x));
+                    editor.getYSpinner().setValue(new Integer(y));
+                    editor.getList().repaint();
                     repaint();
                 }
             }
@@ -88,6 +95,8 @@ public class PathCanvas extends JPanel {
         g.setColor(Color.WHITE);
         g.fillRect(0,0, getWidth(), getHeight());
         drawPath(g);
+        if(editor.path.showGrid)
+            paintGrid(g);
         Graphics2D g2 = (Graphics2D)g;
         setAntialiasing(g2, Aurwindow.antialiasing);
         for (int i = 0; i < nodes.size(); i++) {
@@ -106,6 +115,16 @@ public class PathCanvas extends JPanel {
             g2.fillOval(p.x-d/2, p.y-d/2, d,d);
             g2.setColor(new Color(0,0,0,0.5F));
             g2.drawOval(p.x-d/2, p.y-d/2, d,d);
+        }
+    }
+    
+    public void paintGrid(Graphics g){
+        g.setColor(Color.BLACK);
+        for(int i = 0; i < getWidth(); i+=20){
+            g.drawLine(i, 0, i, getHeight());
+        }
+        for(int i = 0; i < getHeight(); i+=20){
+            g.drawLine(0, i, getWidth(), i);
         }
     }
     
