@@ -721,25 +721,27 @@ public class GM6Importer {
             throw new GmFormatException("version error:" + ver);
         }
         int noacts = in.read4();
+        //System.out.println("No of actions:"+noacts);
         for(int i = 0; i < noacts; i++){
             String code="",function="";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
-            System.out.println("retrive actions");
-            org.gcreator.actions.Action act = retrieveAction(libid, actid);
-            boolean unknownLib = (act == null);
-            if (!unknownLib){
+            //System.out.println("retrive actions");
+            
+            //boolean unknownLib = (act == null); //this should always be false
+            if (true){
                 in.read4(); //action kind
                 in.readBool(); //allow relative
-                in.readBool(); //question
-                in.readBool(); //can apply to
+                System.out.println("question:"+in.readBool()); //question
+                System.out.println("applyto"+in.readBool()); //can apply to
                 int exectype = in.read4();
                 System.out.println("etype:"+exectype);
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
-                else
-                    in.skip(in.read4());
+                else {
+                    in.skip(in.read4());}
+                
                 if(exectype == EXEC_CODE){
                     code=in.readStr(); //Exec info
                 System.out.println("read code:"+code);
@@ -751,7 +753,7 @@ public class GM6Importer {
                 
             }
             else{
-                System.out.println("not unknownlib");
+                System.out.println("error: not unknownlib");
                 in.skip(20);
                 in.skip(in.read4());
                 in.skip(in.read4());
@@ -761,7 +763,7 @@ public class GM6Importer {
             System.out.println("arg count");
             int argkinds = in.read4();
             for(int x = 0; x < argkinds; x++)
-                ;
+                in.read4();
             int appliesTo = in.read4();
             boolean relative = in.readBool(); //relative
             int actualnoargs = in.read4();
@@ -777,18 +779,21 @@ public class GM6Importer {
                 args[l] = in.readStr(); //strval
             }
             in.readBool(); //Not
-            if(act!=null)
-                act.project = c.pro;
-            if(act!=null)
-                parseAction(code,c, act, appliesTo, relative, args);
-            System.out.println("Got here");
+            
+            //org.gcreator.actions.Action act = retrieveAction(libid, actid,code);
+            //if(act!=null)
+                
+            //if(act!=null)
+            org.gcreator.actions.Action act =    parseAction(code,c, null, appliesTo, relative, args);
+            act.project = c.pro;
+           // System.out.println("Got here");
             if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
         }
         System.out.println("Ended actions");
     }
     
-    private static org.gcreator.actions.Action retrieveAction(int libid, int actid){
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code){
         org.gcreator.actions.Action act = null;
        
         if(libid==1){
@@ -805,7 +810,7 @@ public class GM6Importer {
 //                return act;
             }
         
-             act = new org.gcreator.actions.Action(new ExecuteCode());
+             act = new org.gcreator.actions.Action(new ExecuteCode(code));
                 return act;
 //        
 //        System.out.println("libid=" + libid + ", actid=" + actid);
@@ -813,16 +818,27 @@ public class GM6Importer {
 //        return act;
     }
     
-    private static void parseAction(String code,GmFileContext c, org.gcreator.actions.Action action,
-            int appliesTo, boolean relative, String[] args){
-        if(action.pattern instanceof ExecuteCode){
-            ((ExecuteCode)action.pattern).code = code;
-        }
-        if(action.pattern instanceof SetVSpeed){
-            //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
-            ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
-            if(appliesTo==-1)
-                ((VSpeedEditor) action.getPanel()).of.setText("this");
-        }
+    private static org.gcreator.actions.Action parseAction(String code, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args) {
+        //if(action.pattern instanceof ExecuteCode){
+            for (int i=0; i< args.length; i++)
+            {
+            code+=args[i];
+            }
+            System.out.println("Code:"+code);
+            org.gcreator.actions.Action act = retrieveAction(0, 0,code);
+            ((ExecuteCode)act.pattern).code = code;
+//            if (action.getPanel() == null){
+//                System.out.println("null panel");
+//            }
+            
+       // }
+        
+        return act;
+//        if(action.pattern instanceof SetVSpeed){
+//            //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
+//            ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
+//            if(appliesTo==-1)
+//                ((VSpeedEditor) action.getPanel()).of.setText("this");
+//        }
     }
 }
