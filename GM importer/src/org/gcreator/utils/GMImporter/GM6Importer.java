@@ -277,7 +277,7 @@ public class GM6Importer {
             if (!in.readBool()) {
                 continue;
             }
-            in.readStr(); //Name
+            String name = in.readStr(); //Name
             ver = in.read4();
             if (ver != 440 && ver != 600) {
                 throw versionError("IN", "SOUNDS", i, ver);
@@ -289,7 +289,16 @@ public class GM6Importer {
             else /*snd.kind = (byte) */ {
                 in.read4();
             } //normal, background, etc
-            in.readStr(); //fileType
+            String type = in.readStr(); //fileType
+            if (type.equals("") || type == null) type ="wav";
+            org.gcreator.fileclass.GFile soundFile;
+            Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$212"));
+            soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
+            Sound val;
+            soundFile.value = val = new Sound(name);
+            soundFile.type= type.replaceFirst(".", "");
+            System.out.println("type:"+soundFile.type);
+            //val.width = in.read4();
             if (ver == 440) {
                 //-1 = no sound
 		/*if (kind53 != -1) snd.data = in.decompress(*/                in.read4()/*)*/;
@@ -298,7 +307,7 @@ public class GM6Importer {
             } else {
                 /*snd.fileName = */                in.readStr();
                 if (in.readBool()) /*snd.data =*/ {
-                    in.decompress(in.read4());
+                    val.sound = in.decompress(in.read4());
                 }
                 int effects = in.read4();
                 //snd.setEffects(effects);
@@ -496,12 +505,13 @@ public class GM6Importer {
                 continue;
             }
             org.gcreator.fileclass.GFile script;
-            script = new org.gcreator.fileclass.GFile(scriptsGroup, in.readStr(), "egml", null);
+            script = new org.gcreator.fileclass.GFile(scriptsGroup, in.readStr(), "gs", null);
             ver = in.read4();
             if (ver != 400) {
                 throw versionError("IN", "SCRIPTS", i, ver);
             }
-            script.value = parseGML(in.readStr());
+            script.value = new Classes(parseGML(in.readStr()));
+            
         }
     }
 
