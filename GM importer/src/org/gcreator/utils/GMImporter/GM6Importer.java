@@ -15,6 +15,7 @@ import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.actions.components.VSpeedEditor;
 import org.gcreator.actions.mainactions.EndOfABlock;
+import org.gcreator.actions.mainactions.ExecuteCode;
 import org.gcreator.actions.mainactions.SetVSpeed;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.core.*;
@@ -74,6 +75,7 @@ public class GM6Importer {
     }
 
     private static GmFormatException versionError(String error, String res, int i, int ver) {
+        JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
         return new GmFormatException("Unsupported"); //$NON-NLS-1$
     }
 
@@ -93,11 +95,16 @@ public class GM6Importer {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
-        if (ver != 600) {
+        System.out.println("version:"+ver);
+        if (ver < 600) {
+            System.out.println("unsupported");
+                    JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
+        System.out.println("read settings");
         SettingsValues values = readSettings(settings, c);
+        
         readSounds(c);
         readSprites(c);
         readBackgrounds(c);
@@ -304,6 +311,7 @@ public class GM6Importer {
 
     private void readSprites(GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
+        System.out.println("readSprites");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) {
@@ -615,6 +623,7 @@ public class GM6Importer {
     }
     
     private static void readActors(GmFileContext c) throws IOException,GmFormatException{
+                System.out.println("readActors");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
@@ -688,6 +697,7 @@ public class GM6Importer {
         }
         int noacts = in.read4();
         for(int i = 0; i < noacts; i++){
+            String code="";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
@@ -700,11 +710,11 @@ public class GM6Importer {
                 in.readBool(); //can apply to
                 int exectype = in.read4();
                 if(exectype == EXEC_FUNCTION)
-                    in.readStr(); //Exec info
+                    code=in.readStr(); //Exec info
                 else
                     in.skip(in.read4());
                 if(exectype == EXEC_CODE)
-                    in.readStr(); //Exec info
+                    code=in.readStr(); //Exec info
                 else
                     in.skip(in.read4());
             }
@@ -735,7 +745,7 @@ public class GM6Importer {
             if(act!=null)
                 act.project = c.pro;
             if(act!=null)
-                parseAction(c, act, appliesTo, relative, args);
+                parseAction(code,c, act, appliesTo, relative, args);
             System.out.println("Got here");
             if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
@@ -745,7 +755,7 @@ public class GM6Importer {
     
     private static org.gcreator.actions.Action retrieveAction(int libid, int actid){
         org.gcreator.actions.Action act = null;
-        
+       
         if(libid==1){
             if(actid==422){
                 act = new org.gcreator.actions.Action(new StartOfABlock());
@@ -755,19 +765,24 @@ public class GM6Importer {
                 act = new org.gcreator.actions.Action(new EndOfABlock());
                 return act;
             }
-            if(actid==104){
-                act = new org.gcreator.actions.Action(new SetVSpeed());
-                return act;
+//            if(actid==104){
+//                act = new org.gcreator.actions.Action(new SetVSpeed());
+//                return act;
             }
-        }
         
-        System.out.println("libid=" + libid + ", actid=" + actid);
-        
-        return act;
+             act = new org.gcreator.actions.Action(new ExecuteCode());
+                return act;
+//        
+//        System.out.println("libid=" + libid + ", actid=" + actid);
+//        
+//        return act;
     }
     
-    private static void parseAction(GmFileContext c, org.gcreator.actions.Action action,
+    private static void parseAction(String code,GmFileContext c, org.gcreator.actions.Action action,
             int appliesTo, boolean relative, String[] args){
+        if(action.pattern instanceof ExecuteCode){
+            ((ExecuteCode)action.pattern).code = code;
+        }
         if(action.pattern instanceof SetVSpeed){
             //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
             ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
