@@ -19,8 +19,8 @@ import org.gcreator.units.PathNode;
  */
     public class Path extends Resource {
     static final long serialVersionUID = 1L;
-    public boolean smoothCurves,  closedCurves, showGrid;
-    //showGrid is for EDITION purposes ONLY!
+    public boolean smoothCurves,  closedCurves, showGrid, snapGrid;
+    //show/snapGrid are for EDITOR purposes ONLY!
     public Vector<PathNode> nodes;
 
     public Path(Vector<PathNode> nodes) {
@@ -34,6 +34,8 @@ import org.gcreator.units.PathNode;
         
         xml += "<smooth>" + smoothCurves + "</smooth>\n";
         xml += "<closed>" + closedCurves + "</closed>\n";
+        xml += "<showgrid>" + showGrid + "</showgrid>\n";
+        xml += "<snapgrid>" + showGrid + "</snapgrid>\n";
         xml += "<nodes>\n";
         for (PathNode e : nodes) {
             xml += "<node ";
@@ -71,6 +73,12 @@ import org.gcreator.units.PathNode;
             } else if (line.matches("<closed>(true|false)</closed>")) {
                 String closed = line.replaceAll("<closed>(true|false)</closed>", "$1");
                 closedCurves = Boolean.parseBoolean(closed);
+            } else if (line.matches("<showgrid>(true|false)</showgrid>")) {
+                String closed = line.replaceAll("<showgrid>(true|false)</showgrid>", "$1");
+                showGrid = Boolean.parseBoolean(closed);
+            } else if (line.matches("<snapgrid>(true|false)</snapgrid>")) {
+                String closed = line.replaceAll("<snapgrid>(true|false)</snapgrid>", "$1");
+                snapGrid = Boolean.parseBoolean(closed);
             } else if (line.matches("<nodes>")) {
                 while (!lines[++i].matches("</nodes>")) {
                     nodes.add(new PathNode(lines[i]));
@@ -90,6 +98,8 @@ import org.gcreator.units.PathNode;
         Path a = new Path((Vector<PathNode>)nodes.clone());
         a.smoothCurves = smoothCurves;
         a.closedCurves = closedCurves;
+        a.showGrid = showGrid;
+        a.snapGrid = snapGrid;
         return a;
     }
 }

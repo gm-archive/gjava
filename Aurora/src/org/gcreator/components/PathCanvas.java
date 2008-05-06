@@ -76,6 +76,16 @@ public class PathCanvas extends JPanel {
                         x = 0;
                     if(y<0)
                         y = 0;
+                    if(editor.path.snapGrid){
+                        if(x%20<10)
+                            x = (x/20)*20;
+                        else
+                            x = (x/20+1)*20;
+                        if(y%20<10)
+                            y = (y/20)*20;
+                        else
+                            y = (y/20+1)*20;
+                    }
                     draggingNode.setLocation(x, y);
                     editor.getXSpinner().setValue(new Integer(x));
                     editor.getYSpinner().setValue(new Integer(y));
