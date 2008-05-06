@@ -102,11 +102,12 @@ public class PathCanvas extends JPanel {
   
     @Override
     public void paint(Graphics g) {
+        
         g.setColor(Color.WHITE);
         g.fillRect(0,0, getWidth(), getHeight());
-        drawPath(g);
         if(editor.path.showGrid)
             paintGrid(g);
+        drawPath(g);
         Graphics2D g2 = (Graphics2D)g;
         setAntialiasing(g2, Aurwindow.antialiasing);
         for (int i = 0; i < nodes.size(); i++) {
@@ -129,7 +130,9 @@ public class PathCanvas extends JPanel {
     }
     
     public void paintGrid(Graphics g){
-        g.setColor(Color.BLACK);
+        g = g.create();
+        g.setColor(Color.WHITE);
+        g.setXORMode(Color.BLACK);
         for(int i = 0; i < getWidth(); i+=editor.path.gridx){
             g.drawLine(i, 0, i, getHeight());
         }
