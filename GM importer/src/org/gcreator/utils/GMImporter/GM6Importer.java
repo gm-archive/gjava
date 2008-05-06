@@ -426,7 +426,9 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             ImageIcon iicon = new ImageIcon(backgroundImage);
-            bkimg.value = iicon;
+            bkimg.value = new GImage("bgimg_" + name);
+            //bkimg.value = iicon;
+            ((GImage) bkimg.value).image = iicon;
             if (tileset) {
                 org.gcreator.fileclass.GFile tlimg;
                 tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
