@@ -121,7 +121,7 @@ public class gcreator {
         }
 
         if (settings == null) {
-            settings = new String[7];
+            settings = new String[8];
             settings[0] = "Native";
             settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
@@ -129,6 +129,7 @@ public class gcreator {
             settings[4] = "Visible";
             settings[5] = "Left";
             settings[6] = "800, 600";
+            settings[7] = "true";
         }
 
         if(ismdi||ver<6)
@@ -151,7 +152,7 @@ public class gcreator {
                 utilities.addError(36);
             }
         }
-        
+        Aurwindow.antialiasing = Boolean.parseBoolean(settings[7]);
         ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
         ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
         ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), 41);
@@ -159,6 +160,7 @@ public class gcreator {
         ToolbarButton addimg = new DefaultToolbarItem("std_addImage", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addimage.png")), 198);
         ToolbarButton addspr = new DefaultToolbarItem("std_addSprite", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsprite.png")), 43);
         ToolbarButton addtls = new DefaultToolbarItem("std_addTileset", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtileset.png")), 190);
+        ToolbarButton addpth = new DefaultToolbarItem("std_addPath", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addpath.png")), 258);
         ToolbarButton addsnd = new DefaultToolbarItem("std_addSound", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsound.png")), 44);
         ToolbarButton addtml = new DefaultToolbarItem("std_addTimeline", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtimeline.png")), 204);
         ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor.png")), 45);
@@ -206,6 +208,12 @@ public class gcreator {
         addtls.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
                 window.onToolbarActionPerformed(11, evt);
+            }
+        });
+        
+        addpth.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                window.onToolbarActionPerformed(15, evt);
             }
         });
         
@@ -258,6 +266,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addimg);
         ToolbarManager.toolbuttons.add(addspr);
         ToolbarManager.toolbuttons.add(addtls);
+        ToolbarManager.toolbuttons.add(addpth);
         ToolbarManager.toolbuttons.add(addsnd);
         ToolbarManager.toolbuttons.add(addtml);
         ToolbarManager.toolbuttons.add(addact);

@@ -151,6 +151,7 @@ public class GFile extends GObject implements Transferable {
         return null;
     }
 
+    @Override
     public GObject clone() {
         GFile o = new GFile(name, type);
         if (value instanceof Resource) {
@@ -178,11 +179,19 @@ public class GFile extends GObject implements Transferable {
         return this;
     }
 
+    @Override
     public String getPath() {
         return root.getPath() + "/" + super.getPath();
     }
     
+    @Override
     public Project getProject(){
         return root.getProject();
+    }
+    
+    @Override
+    public String toString() {
+        return ""+this.getClass()+"@"+this.hashCode()+"\t Folder: "+this.root+"\tType: "
+                        +this.type+"\t Value: "+this.value;
     }
 }

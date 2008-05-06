@@ -302,6 +302,20 @@ public class English extends Dictionary{
         entry[253] = "Copy";
         entry[254] = "Paste";
         entry[255] = "Delete";
+        entry[256] = "Paths";
+        entry[257] = "Path";
+        entry[258] = "Add Path";
+        entry[259] = "Antialiasing";
+        entry[260] = "<html>In order to access this feature, you must be running version 6 or<br/>"+
+                "later of the Java Runtime Envrionment (JRE). To obtain the latest<br/>version of "+
+                "the JRE, please visit <a href=\"http://www.java.com\">www.java.com</a></html>";
+        entry[261] = "Insert";
+        entry[262] = "Curves";
+        entry[263] = "Striaght";//Straight Curves
+        entry[264] = "Smooth";//Smooth Curves
+        entry[265] = "Closed";//Closed Curves
+        entry[266] = "Display Options";
+        
         
         try{
             init();

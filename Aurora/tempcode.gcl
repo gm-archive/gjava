@@ -1,1 +1,2 @@
-this.vspeed = 1;
+//Some GCL Code
+show_message("HI");

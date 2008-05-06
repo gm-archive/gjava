@@ -61,6 +61,7 @@ public class Aurwindow extends JFrame {
     public JScrollPane scroller;
     public static JToolBar tool;
     public static String lang;
+    public static boolean antialiasing;
     public static WorkspaceTree workspace;
     public static JScrollPane treescroll;
     private static Project mainProject;
@@ -420,6 +421,14 @@ public class Aurwindow extends JFrame {
             TabPanel tp = new TilesetEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
+        } else if (file.type.equals("path")) {
+            try {
+                TabPanel tp = new PathEditor(file, this.getCurrentProject());
+                file.tabPanel = tp;
+                addEWindow(tp, file.name, img);
+            } catch (WrongResourceException ex) {
+                Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             TabPanel tp = new PlainTextEditor(file, this.getCurrentProject());//All unmanaged file formats
             file.tabPanel = tp;
@@ -1847,7 +1856,18 @@ public class Aurwindow extends JFrame {
                 
                 addGroup(f, f.newGroup("subgroup" + in));
                 
-                break;
+                break;               
+             case 15:
+                 //add path
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
+                a = getCurrentFolder();
+                if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
+                    return;
+                }
+                addFile(getCurrentFolder(), "newPath" + ((GameProject)getCurrentProject()).paths++, "path");
+                break;  
         }
     }
 

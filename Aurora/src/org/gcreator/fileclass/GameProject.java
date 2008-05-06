@@ -23,6 +23,7 @@ public class GameProject extends Project{
     public int images = 1;
     public int sprites = 1;
     public int tilesets = 1;
+    public int paths = 1;
     public int sounds = 1;
     public int timelines = 1;
     public int actors = 1;
@@ -37,6 +38,7 @@ public class GameProject extends Project{
     public GameProject(){}
     
      
+    @Override
     public String getType(){
         return "Game";
     }
@@ -45,14 +47,15 @@ public class GameProject extends Project{
         return (GameProject) balancedCreation();
     }
     
+    @Override
     public Enumeration getEnum(String key){
         Enumeration e = null;
         if (key.equals("actor")) {
-            e = node.getChildAt(5).children();
-        } else if (key.equals("scene")) {
             e = node.getChildAt(6).children();
+        } else if (key.equals("scene")) {
+            e = node.getChildAt(7).children();
         } else if (key.equals("timeline")) {
-            e = node.getChildAt(4).children();
+            e = node.getChildAt(5).children();
         } else if (key.equals("image")) {
             e = node.getChildAt(0).children();
         } else if (key.equals("sprite")) {
@@ -60,20 +63,23 @@ public class GameProject extends Project{
         } else if (key.equals("tileset")) {
             e = node.getChildAt(2).children();
         } else if (key.equals("sound")) {
-            e = node.getChildAt(3).children();
+            e = node.getChildAt(4).children();
         } else if (key.equals("class")) {
-            e = node.getChildAt(7).children();
+            e = node.getChildAt(8).children();
+        } else if (key.equals("path")) {
+            e = node.getChildAt(3).children();
         }
         return e;
     }
     
+    @Override
     public Folder getFolderFor(String key){
         if (key.equals("actor")) {
-            return (Folder) ((ObjectNode) node.getChildAt(5)).object;
-        } else if (key.equals("scene")) {
             return (Folder) ((ObjectNode) node.getChildAt(6)).object;
+        } else if (key.equals("scene")) {
+            return (Folder) ((ObjectNode) node.getChildAt(7)).object;
         } else if (key.equals("timeline")) {
-            return (Folder) ((ObjectNode) node.getChildAt(4)).object;
+            return (Folder) ((ObjectNode) node.getChildAt(5)).object;
         } else if (key.equals("image")) {
             return (Folder) ((ObjectNode) node.getChildAt(0)).object;
         } else if (key.equals("sprite")) {
@@ -81,13 +87,16 @@ public class GameProject extends Project{
         } else if (key.equals("tileset")) {
             return (Folder) ((ObjectNode) node.getChildAt(2)).object;
         } else if (key.equals("sound")) {
-            return (Folder) ((ObjectNode) node.getChildAt(3)).object;
+            return (Folder) ((ObjectNode) node.getChildAt(4)).object;
         } else if (key.equals("class")) {
-            return (Folder) ((ObjectNode) node.getChildAt(7)).object;
+            return (Folder) ((ObjectNode) node.getChildAt(8)).object;
+        } else if (key.equals("path")) {
+            return (Folder) ((ObjectNode) node.getChildAt(3)).object;
         }
         return null;
     }
     
+    @Override
     public boolean validOfType(GObject obj, String key){
         Vector<GObject> v = childNodes;
         if(key.equals("parent"))
@@ -126,10 +135,13 @@ public class GameProject extends Project{
                 return obj instanceof EGMLGroup;
             if(key.equals("sound"))
                 return obj instanceof SoundGroup;
+            if(key.equals("path"))
+                return obj instanceof PathGroup;
         }
         return false;
     }
     
+    @Override
     public Folder magicAddition(String file)
     {
         try{
@@ -150,6 +162,8 @@ public class GameProject extends Project{
                 return findFolder("$212");
             else if(file.equals("timeline"))
                 return findFolder("$213");
+            else if(file.equals("path"))
+                return findFolder("$256");
             return findFolder("$217");
         }
         catch(Exception e){
@@ -157,6 +171,7 @@ public class GameProject extends Project{
         }
     }
     
+    @Override
     public Folder magicAddition(Group folder){
         try{
             if(folder instanceof ImageGroup)
@@ -173,6 +188,8 @@ public class GameProject extends Project{
                 return findFolder("$212");
             else if(folder instanceof TimelineGroup)
                 return findFolder("$213");
+            else if(folder instanceof PathGroup)
+                return findFolder("$256");
             else if(folder instanceof EGMLGroup)
                 return findFolder("$216");
             return findFolder("Distribution");
@@ -187,6 +204,7 @@ public class GameProject extends Project{
         project.add(new ImageGroup(project, "$209"));
         project.add(new SpriteGroup(project, "$210"));
         project.add(new TilesetGroup(project, "$211"));
+        project.add(new PathGroup(project, "$256"));
         project.add(new SoundGroup(project, "$212"));
         project.add(new TimelineGroup(project, "$213"));
         project.add(new ActorGroup(project, "$214"));
@@ -199,30 +217,36 @@ public class GameProject extends Project{
         return project;
     }
     
+    @Override
     public boolean allowsFileType(String format){
         return false;
     }
     
      
+    @Override
     public boolean allowsGroup(Group group){
         return false;
     }
     
      
+    @Override
     public Group newGroup(String name){
         return null;
     }
     
+    @Override
     public boolean allowsDelete(GObject o){
         return false;
     }
     
+    @Override
     public String getObjectType(){
         return "GameProject";
     }
     
     private ImageIcon project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
     
+    @Override
     public ImageIcon getImage(){
         return project_game;
     }
