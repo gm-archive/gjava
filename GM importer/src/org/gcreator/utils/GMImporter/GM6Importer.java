@@ -20,7 +20,9 @@ import org.gcreator.actions.mainactions.SetVSpeed;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.core.*;
 import org.gcreator.events.CreateEvent;
+import org.gcreator.events.DestroyEvent;
 import org.gcreator.events.DrawEvent;
+import org.gcreator.events.StepEvent;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.*;
@@ -675,8 +677,19 @@ public class GM6Importer {
                     int first = in.read4();
                     int id = 0;
                     if(first!=-1){
+                        System.out.println("event:"+j+" first:"+first);
                         if(j==EV_CREATE){
                             e = new CreateEvent();
+                            a.events.add(e);
+                            id = first;
+                        }
+                        else if(j==EV_DESTROY){
+                            e = new DestroyEvent();
+                            a.events.add(e);
+                            id = first;
+                        }
+                        else if(j==EV_STEP){
+                            e = new StepEvent();
                             a.events.add(e);
                             id = first;
                         }
@@ -684,7 +697,7 @@ public class GM6Importer {
                             e = new DrawEvent();
                             a.events.add(e);
                             id = first;
-                        }
+                        } 
                         else if(j==EV_COLLISION)
                             ; //ev.other = c.objids.get(first);
                         else
@@ -709,33 +722,43 @@ public class GM6Importer {
         }
         int noacts = in.read4();
         for(int i = 0; i < noacts; i++){
-            String code="";
+            String code="",function="";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
+            System.out.println("retrive actions");
             org.gcreator.actions.Action act = retrieveAction(libid, actid);
-            boolean unknownLib = act == null;
-            if (unknownLib){
+            boolean unknownLib = (act == null);
+            if (!unknownLib){
                 in.read4(); //action kind
                 in.readBool(); //allow relative
                 in.readBool(); //question
                 in.readBool(); //can apply to
                 int exectype = in.read4();
+                System.out.println("etype:"+exectype);
                 if(exectype == EXEC_FUNCTION)
-                    code=in.readStr(); //Exec info
+                    function=in.readStr(); //Exec info
                 else
                     in.skip(in.read4());
-                if(exectype == EXEC_CODE)
+                if(exectype == EXEC_CODE){
                     code=in.readStr(); //Exec info
-                else
+                System.out.println("read code:"+code);
+                }
+                else {
                     in.skip(in.read4());
+                    System.out.println("not code");
+                }
+                
             }
             else{
+                System.out.println("not unknownlib");
                 in.skip(20);
                 in.skip(in.read4());
                 in.skip(in.read4());
             }
+            System.out.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
+            System.out.println("arg count");
             int argkinds = in.read4();
             for(int x = 0; x < argkinds; x++)
                 ;
