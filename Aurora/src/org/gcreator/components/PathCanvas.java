@@ -77,14 +77,14 @@ public class PathCanvas extends JPanel {
                     if(y<0)
                         y = 0;
                     if(editor.path.snapGrid){
-                        if(x%20<10)
-                            x = (x/20)*20;
+                        if(x%editor.path.gridx<(editor.path.gridx/2))
+                            x = (x/editor.path.gridx)*editor.path.gridx;
                         else
-                            x = (x/20+1)*20;
-                        if(y%20<10)
-                            y = (y/20)*20;
+                            x = (x/editor.path.gridx+1)*editor.path.gridx;
+                        if(y%editor.path.gridy<(editor.path.gridy)/2)
+                            y = (y/editor.path.gridy)*editor.path.gridy;
                         else
-                            y = (y/20+1)*20;
+                            y = (y/editor.path.gridy+1)*editor.path.gridy;
                     }
                     draggingNode.setLocation(x, y);
                     editor.getXSpinner().setValue(new Integer(x));
@@ -130,10 +130,10 @@ public class PathCanvas extends JPanel {
     
     public void paintGrid(Graphics g){
         g.setColor(Color.BLACK);
-        for(int i = 0; i < getWidth(); i+=20){
+        for(int i = 0; i < getWidth(); i+=editor.path.gridx){
             g.drawLine(i, 0, i, getHeight());
         }
-        for(int i = 0; i < getHeight(); i+=20){
+        for(int i = 0; i < getHeight(); i+=editor.path.gridy){
             g.drawLine(0, i, getWidth(), i);
         }
     }

@@ -20,7 +20,8 @@ import org.gcreator.units.PathNode;
     public class Path extends Resource {
     static final long serialVersionUID = 1L;
     public boolean smoothCurves,  closedCurves, showGrid, snapGrid;
-    //show/snapGrid are for EDITOR purposes ONLY!
+    public int gridx = 20, gridy = 20;
+    //grid properties are for EDITOR purposes ONLY!
     public Vector<PathNode> nodes;
 
     public Path(Vector<PathNode> nodes) {
@@ -36,6 +37,8 @@ import org.gcreator.units.PathNode;
         xml += "<closed>" + closedCurves + "</closed>\n";
         xml += "<showgrid>" + showGrid + "</showgrid>\n";
         xml += "<snapgrid>" + showGrid + "</snapgrid>\n";
+        xml += "<gridx>" + gridx + "</gridx>\n";
+        xml += "<gridy>" + gridy + "</gridy>\n";
         xml += "<nodes>\n";
         for (PathNode e : nodes) {
             xml += "<node ";
@@ -74,11 +77,17 @@ import org.gcreator.units.PathNode;
                 String closed = line.replaceAll("<closed>(true|false)</closed>", "$1");
                 closedCurves = Boolean.parseBoolean(closed);
             } else if (line.matches("<showgrid>(true|false)</showgrid>")) {
-                String closed = line.replaceAll("<showgrid>(true|false)</showgrid>", "$1");
-                showGrid = Boolean.parseBoolean(closed);
+                String grided = line.replaceAll("<showgrid>(true|false)</showgrid>", "$1");
+                showGrid = Boolean.parseBoolean(grided);
             } else if (line.matches("<snapgrid>(true|false)</snapgrid>")) {
-                String closed = line.replaceAll("<snapgrid>(true|false)</snapgrid>", "$1");
-                snapGrid = Boolean.parseBoolean(closed);
+                String snaped = line.replaceAll("<snapgrid>(true|false)</snapgrid>", "$1");
+                snapGrid = Boolean.parseBoolean(snaped);
+            } else if (line.matches("<gridx>[0-9]+</gridx>")){
+                String grid = line.replaceAll("<gridx>[0-9]+</gridx>", "$1");
+                gridx = Integer.parseInt(grid);
+            } else if (line.matches("<gridy>[0-9]+</gridy>")){
+                String grid = line.replaceAll("<gridy>[0-9]+</gridy>", "$1");
+                gridy = Integer.parseInt(grid);
             } else if (line.matches("<nodes>")) {
                 while (!lines[++i].matches("</nodes>")) {
                     nodes.add(new PathNode(lines[i]));
@@ -100,6 +109,8 @@ import org.gcreator.units.PathNode;
         a.closedCurves = closedCurves;
         a.showGrid = showGrid;
         a.snapGrid = snapGrid;
+        a.gridx = gridx;
+        a.gridy = gridy;
         return a;
     }
 }
