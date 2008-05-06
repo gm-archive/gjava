@@ -74,6 +74,7 @@ public class GJava extends PlatformCore {
 //            File ff = new File(FileFolder + File.separator + "images");
 //
 //            ff.mkdirs();
+            System.out.println("Parse Image:"+f.name+f.type);
             File ff = new File(FileFolder + f.name + "." + f.type);
             if(!ff.exists())
                 ff.createNewFile();
@@ -95,6 +96,7 @@ public class GJava extends PlatformCore {
             try {
             org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
             createSprites += "getImage(\"" + a.name + "."+ a.type + "\"),";
+                System.out.println("Write sprite:"+a.name+a.type);
         //if(a!=null)
             } catch(Exception ee){System.out.println("exception"+ee.getLocalizedMessage());}
         }
@@ -105,7 +107,8 @@ public class GJava extends PlatformCore {
     public void parseActor(Actor a, GFile f) {
         try {
             String keypress="public void KeyPressed(int keycode) {",keyrelease="public void KeyReleased(int keycode) {";
-            String callevents="public void callEvents() { ", endcall=" Move(); }";
+            String callevents="public void callEvents() { ", endcall=" checkCollision(); Move(); }";
+            String collision = "public void checkCollision() { for (int i = 0; i < Game.Current.instances.size(); i++){Actor G_Java_a = ((Actor)Game.Current.instances.elementAt(i)); if (G_Java_a == this) return;";
             FileWriter actorFW = new FileWriter(FileFolder + File.separator + f.name + ".java");
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "package org.gcreator.compilers.gjava;");
@@ -121,7 +124,7 @@ public class GJava extends PlatformCore {
             } else {
                 print(actor, "        super(\"" + f.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+");");
             }
-            print(actor, "        xstart = X;");
+            print(actor, "        xstart = X;xprevious=X;yprevious=Y;");
             print(actor, "        ystart = Y;");
             print(actor, "        x = X;");
             print(actor, "        y = Y;");
@@ -172,8 +175,10 @@ public class GJava extends PlatformCore {
             event="Draw";
             }
             else if (ev instanceof org.gcreator.events.CollisionEvent) {
-            print(actor, "  public void Collision()");
-            event="Collision";
+            print(actor, "  public void CollisionWith"+((org.gcreator.events.CollisionEvent)ev).other.name+"(Actor other){ if (other.getBounds().intersects(getBounds()) && other instanceof "+((org.gcreator.events.CollisionEvent)ev).other.name+"){  if (other.getSolid().getBoolean()){x=xprevious;y=yprevious;}");
+            event="Collision With"+((org.gcreator.events.CollisionEvent)ev).other.name;
+            collision+="CollisionWith"+((org.gcreator.events.CollisionEvent)ev).other.name+"(G_Java_a); ";
+            //callevents+="checkCollision();";
             }
             else if (ev instanceof org.gcreator.events.MouseEvent) {
                 callevents+="Mouse"+((MouseEvent)ev).type+"(); ";
@@ -239,9 +244,11 @@ public class GJava extends PlatformCore {
              
             if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent)
             print(actor, "    }");
-            
+            if (ev instanceof org.gcreator.events.CollisionEvent)
+            {print(actor, "    }");print(actor, "    }");}
             
             }
+            print(actor, collision+"}}");
             print(actor, callevents+endcall);
             print(actor, keypress+"} "+keyrelease+"}");
             print(actor, "");
@@ -360,9 +367,15 @@ actorindex++;
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         compilername = "GJava";
-        version=0.3;
+        version=0.4;
         updateURL="http://g-creator.org/update/G-Java/update.xml";
         update();
+        
+        //Reset important variables
+        loadscene = "";
+        loadSprites = "public static Sprite ";
+        createSprites = "public void loadSprites() { ";
+        script="";
         // add toolbar button
 //        JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
 //

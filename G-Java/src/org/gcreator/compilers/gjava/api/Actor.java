@@ -136,8 +136,20 @@ public class Actor extends tile {
     /**
      * Override with actor Collision event
      */
-    public void Collision() {
+    public void checkCollision() {
 
+    }
+    
+    /**
+     * This is used for collision detection
+     * @return
+     */
+           
+    public Rectangle getBounds(){
+        if (sprite!=null)
+        return new Rectangle((int)(sprite.BBRight+x-sprite.sprite_xoffset),(int)(sprite.BBTop+y-sprite.sprite_yoffset),(int)(sprite.BBLeft+x-sprite.sprite_xoffset),(int)(sprite.BBBottom+y-sprite.sprite_yoffset));
+        else
+            return new Rectangle(0,0,0,0);
     }
 
     public void callEvents() {
@@ -154,6 +166,17 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
+        //use friction
+        
+        if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() >0){
+        setSpeed(getSpeed().sub(getFriction()));
+        }
+        else if (getSpeed().getDouble() < getFriction().getDouble() && getSpeed().getDouble() <0) { 
+            setSpeed(getSpeed().add(getFriction()));
+        }
+        else {
+            setSpeed(new Integer(0));
+        }
         xprevious = x;
         yprevious = y;
         x = x + hspeed;

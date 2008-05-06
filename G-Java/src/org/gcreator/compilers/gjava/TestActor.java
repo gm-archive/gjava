@@ -100,18 +100,21 @@ if (keycode == (37))
 //        System.out.println("Speed"+getSpeed());
 //       setDirection(new Double(45));
 //       System.out.println("Speed"+getSpeed());
-
+       setSpeed(new Integer(-2));
+        System.out.println("Init speed:"+getSpeed());
+        setFriction(new Double(0.01));
+        
         //test file functions
-        Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
-        Object str = file_text_read_string(fileid);
-        System.out.println("Test:" + str.getString());
-        file_text_close(fileid);
+//        Object fileid = file_text_open_read(new String("C:\\testG-Java.txt"));
+//        Object str = file_text_read_string(fileid);
+//        System.out.println("Test:" + str.getString());
+//        file_text_close(fileid);
 
 //test sprite func
 //setVisible(new Boolean(true));
-        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
-        setBackground_xscale(0, new Double(9));
-        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
+//        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
+//        setBackground_xscale(0, new Double(9));
+//        System.out.println("getBackground_xscale(0):" + getBackground_xscale(0));
 
         x = 0;
         y = 0;
@@ -145,12 +148,15 @@ if (keycode == (37))
         x=0;
         y=0;
         
+        System.out.println("Speed:"+getSpeed());
+        
+        checkCollision();
 //        System.out.println("left:"+(int)(sprite.BBLeft+x-sprite.sprite_xoffset)); 
 //        System.out.println("Top:"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); 
 //        System.out.println("right:"+(int)(x-sprite.sprite_xoffset+sprite.BBRight)); 
 //        System.out.println("bottom:"+(int)(y-sprite.sprite_yoffset+sprite.BBBottom)); 
-        System.out.println("x:"+getMouse_x());
-                System.out.println("y:"+getMouse_y());
+        
+               // Game.game.getGame().bsInput.
 
       // if (Game.game.getGame().checkPosMouse((int)(sprite.BBLeft+x-sprite.sprite_xoffset), (int)(sprite.BBTop+y-sprite.sprite_yoffset), (int)(x-sprite.sprite_xoffset+sprite.BBRight), (int)(y-sprite.sprite_yoffset+sprite.BBBottom)) && Game.game.getGame().bsInput.isMouseReleased(background);.isMousePressed(background);.isMouseDown(java.awt.event.MouseEvent.BUTTON3))
 //        if (Game.game.getGame().checkPosMouse(94,221,509,116)) //&& Game.game.getGame().bsInput.isMouseDown(java.awt.event.MouseEvent.BUTTON1))
@@ -161,11 +167,31 @@ if (keycode == (37))
     }
 
     @Override
+    public void checkCollision() {
+        double start = System.currentTimeMillis();
+        for (int i = 0; i < Game.Current.instances.size(); i++)
+        {
+        Actor G_Java_a = ((Actor)Game.Current.instances.elementAt(i));
+        if (G_Java_a == this) return;
+        if (G_Java_a.getBounds().intersects(getBounds()) && G_Java_a instanceof TestActor){
+            if (G_Java_a.getSolid().getBoolean()){x=xprevious;y=yprevious;}
+                System.out.println("Collided");
+            
+        }
+        }
+        double end = System.currentTimeMillis();
+        System.out.println("Time taken:"+(end-start));
+    }
+
+    
+    
+    @Override
     public void callEvents() {
         //super.callEvents();
         BeginStep();
         Step();
         EndStep();
+        Move();
     }
 
     
@@ -209,7 +235,7 @@ if (keycode == (37))
         draw_set_color(getC_aqua());
         draw_set_color(self.getC_aqua());
 //        
-        draw_text(new Integer(0), new Integer(10), new String("Hello world!"));
+        draw_text(new Integer(0), new Integer(10), new String("FPS:"+getFps()));
         Game.Current.g2d.drawString("test", 100, 100);
         //test surface
         draw_rectangle(new Integer(509),new Integer(116),new Integer(94),new Integer(221), new Boolean(true));

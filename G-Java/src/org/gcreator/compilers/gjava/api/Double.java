@@ -37,13 +37,13 @@ public class Double extends Object {
 
     @Override
     public Object sub(Object o) {
-        i-= (int) (o.getDouble());
+        i-= o.getDouble();
         return this;
     }
 
     @Override
     public Object add(Object o) {
-        i+= (int) (o.getDouble());
+        i+= o.getDouble();
         return this;
     }
 
@@ -73,13 +73,13 @@ public class Double extends Object {
 
     @Override
     public Object div(Object o) {
-        i /= (int) (o.getDouble());
+        i /= (o.getDouble());
         return this;
     }
 
     @Override
     public Object mult(Object o) {
-        i *= (int) (o.getDouble());
+        i *=  (o.getDouble());
         return this;
     }
 

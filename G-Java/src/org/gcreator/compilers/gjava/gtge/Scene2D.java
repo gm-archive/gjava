@@ -104,6 +104,7 @@ public class Scene2D {
         //super(Caption);
         Basicgame.Current = this;
         this.speed = fps;
+        Game.game.getGame().setFPS((int)fps-1);
         this.Frame = R;
         this.height = RoomH;
         this.width = RoomW;
@@ -150,8 +151,8 @@ public class Scene2D {
     
     public int getFPS()
     {
-       return 0;//container.getFPS();
-    }
+       return Game.game.getGame().getCurrentFPS();//container.getFPS();
+    }   
     
     /**
      * This will sort the depth vector by depth

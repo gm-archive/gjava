@@ -557,7 +557,7 @@ public static Object   argument
     }
 
     public static Object getFps() {
-        return new Integer((int) Game.Current.getFPS());
+        return new Integer(Game.game.getGame().getCurrentFPS());
     }
 
     public static void setFps(Object fps) {
