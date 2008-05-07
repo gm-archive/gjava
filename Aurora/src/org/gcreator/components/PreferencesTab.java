@@ -23,84 +23,90 @@ public class PreferencesTab extends OptionPanel {
 
         jComboBox1.setSelectedIndex(0);
         try {
-            if (settings[0] == null)
+            if (settings[0] == null) {
                 throw new Exception();//Lazy way of going to the catch statement below.
+            }
             LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
             int i;
             for (i = 0; i < info.length; i++) {
-                if (info[i].getName().equals(settings[0]))
+                if (info[i].getName().equals(settings[0])) {
                     break;
+                }
             }
             jComboBox1.setSelectedIndex(i);
-            gcreator.window.look = i;
+        //gcreator.window.look = i;
             /*
-            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
-                gcreator.window.look = 0;
-            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-                jComboBox1.setSelectedIndex(1);
-                gcreator.window.look = 1;
-            } else if (settings[0].equals("Motif")) {
-                jComboBox1.setSelectedIndex(2);
-                gcreator.window.look = 2;
-            } else if (settings[0].equals("Metal")) {
-                jComboBox1.setSelectedIndex(3);
-                gcreator.window.look = 3;
-            } else {
-                jComboBox1.setSelectedIndex(1);
-                gcreator.window.look = 1;
-            }*/
-            
+        if (settings != null && settings[0] != null && settings[0].equals("Native")) {
+        gcreator.window.look = 0;
+        } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
+        jComboBox1.setSelectedIndex(1);
+        gcreator.window.look = 1;
+        } else if (settings[0].equals("Motif")) {
+        jComboBox1.setSelectedIndex(2);
+        gcreator.window.look = 2;
+        } else if (settings[0].equals("Metal")) {
+        jComboBox1.setSelectedIndex(3);
+        gcreator.window.look = 3;
+        } else {
+        jComboBox1.setSelectedIndex(1);
+        gcreator.window.look = 1;
+        }*/
+
         } catch (Exception e) {
             LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
             int i;
             for (i = 0; i < info.length; i++) {
-                if (info[i].getClassName().equals(UIManager.getCrossPlatformLookAndFeelClassName()))
+                if (info[i].getClassName().equals(UIManager.getSystemLookAndFeelClassName())) {
                     break;
+                }
             }
             jComboBox1.setSelectedIndex(i);
-            gcreator.window.look = i;
+        //gcreator.window.look = i;
             /*
-            jComboBox1.setSelectedIndex(1);
-            gcreator.window.look = 1;*/
+        jComboBox1.setSelectedIndex(1);
+        gcreator.window.look = 1;*/
         }
-        
+
         jComboBox2.setSelectedIndex(0);
-        
-         if (settings[1].equals("MDI")) {
-             jComboBox2.setSelectedIndex(4);
-            //items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
-            //onItemActionPerformed(6, 4, null);
+
+        if (settings[1].equals("MDI")) {
+            jComboBox2.setSelectedIndex(4);
+        //items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
+        //onItemActionPerformed(6, 4, null);
         }
         if (settings[1].equals("Tabs (Left)")) {
             jComboBox2.setSelectedIndex(4);
-            //items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
-            //onItemActionPerformed(6, 1, null);
+        //items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
+        //onItemActionPerformed(6, 1, null);
         }
         if (settings[1].equals("Tabs (Bottom)")) {
             jComboBox2.setSelectedIndex(4);
-            //items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
-            //onItemActionPerformed(6, 2, null);
+        //items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
+        //onItemActionPerformed(6, 2, null);
         }
         if (settings[1].equals("Tabs (Right)")) {
             jComboBox2.setSelectedIndex(4);
-            //items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
-            //onItemActionPerformed(6, 3, null);
+        //items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
+        //onItemActionPerformed(6, 3, null);
         }
-        
+
         jCheckBox1.setSelected(Boolean.parseBoolean(settings[7]));
         jComboBox2ActionPerformed(null);
     }
-    
     public DefaultComboBoxModel lafmodel = new DefaultComboBoxModel() {
-        
-        public String[] vals = new String[UIManager.getInstalledLookAndFeels().length];
+
+        public String[] vals = new String[UIManager.getInstalledLookAndFeels().length + 1];
         //public String[] vals = new String[]{getLang(17), getLang(18), getLang(19), getLang(132)};
+        
+
         {
-            int i = 0;
+            vals[0] = "<Native>";
+            int i = 1;
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 vals[i++] = info.getName();
             }
         }
+
         @Override
         public Object getElementAt(int pos) {
             return vals[pos];
@@ -113,17 +119,18 @@ public class PreferencesTab extends OptionPanel {
     };
     public DefaultComboBoxModel displaymodes = new DefaultComboBoxModel() {
 
-                public String[] vals = new String[]{getLang(20), getLang(90), getLang(91), getLang(92),
-                        getLang(21)};
+        public String[] vals = new String[]{getLang(20), getLang(90), getLang(91), getLang(92),
+            getLang(21)
+        };
 
-                public Object getElementAt(int pos) {
-                    return vals[pos];
-                }
+        public Object getElementAt(int pos) {
+            return vals[pos];
+        }
 
-                public int getSize() {
-                    return vals.length;
-                }
-            };
+        public int getSize() {
+            return vals.length;
+        }
+    };
 
     public String getLang(int lang) {
         return LangSupporter.activeLang.getEntry(lang);
@@ -246,68 +253,72 @@ public class PreferencesTab extends OptionPanel {
 
         try {
             /*switch (sel) {
-                case 0:
-                    //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel].getClassName());
-                    SwingUtilities.updateComponentTreeUI(gcreator.window);
-                    if (gcreator.window.istabs) {
-                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-                    } else {
-                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-                    }
-                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = sel;
-                    Aurwindow.workspace.updateUI();
-                    break;
-                case 1:
-                    javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
-                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                    SwingUtilities.updateComponentTreeUI(gcreator.window);
-                    if (gcreator.window.istabs) {
-                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-                    } else {
-                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-                    }
-                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = 1;
-                    Aurwindow.workspace.updateUI();
-                    break;
-                case 2:
-                    UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-                    SwingUtilities.updateComponentTreeUI(gcreator.window);
-                    if (gcreator.window.istabs) {
-                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-                    } else {
-                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-                    }
-                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = 2;
-                    Aurwindow.workspace.updateUI();
-                    break;
-                case 3:
-                    javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
-                    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                    SwingUtilities.updateComponentTreeUI(gcreator.window);
-                    if (gcreator.window.istabs) {
-                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-                    } else {
-                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-                    }
-                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = 3;
-                    Aurwindow.workspace.updateUI();
-                    break;
-            }*/
+            case 0:
+            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel].getClassName());
-                    SwingUtilities.updateComponentTreeUI(gcreator.window);
-                    if (gcreator.window.istabs) {
-                        SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-                    } else {
-                        SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-                    }
-                    SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-                    gcreator.window.look = sel;
-                    Aurwindow.workspace.updateUI();
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            if (gcreator.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            } else {
+            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            gcreator.window.look = sel;
+            Aurwindow.workspace.updateUI();
+            break;
+            case 1:
+            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            if (gcreator.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            } else {
+            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            gcreator.window.look = 1;
+            Aurwindow.workspace.updateUI();
+            break;
+            case 2:
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            if (gcreator.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            } else {
+            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            gcreator.window.look = 2;
+            Aurwindow.workspace.updateUI();
+            break;
+            case 3:
+            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            if (gcreator.window.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            } else {
+            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            gcreator.window.look = 3;
+            Aurwindow.workspace.updateUI();
+            break;
+            }*/
+            if (sel == 0) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } else {
+                UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName());
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            if (gcreator.window.istabs) {
+                SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            } else {
+                SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            //gcreator.window.look = sel;
+            Aurwindow.workspace.updateUI();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -367,31 +378,32 @@ public class PreferencesTab extends OptionPanel {
         } catch (Exception e) {
         }
 
-        if(sel==4)
-        if (gcreator.window.istabs) {
-            int k = gcreator.window.splitter2.getDividerLocation();
-            gcreator.window.tabs.setVisible(false);
-            gcreator.window.mdi.setVisible(true);
-            if (gcreator.window.isWorkspaceLeft()) {
-                gcreator.window.splitter2.setRightComponent(gcreator.window.mdi);
-                if (gcreator.window.splitter2.getRightComponent().isVisible()) {
-                    gcreator.window.splitter2.setDividerLocation(k);
+        if (sel == 4) {
+            if (gcreator.window.istabs) {
+                int k = gcreator.window.splitter2.getDividerLocation();
+                gcreator.window.tabs.setVisible(false);
+                gcreator.window.mdi.setVisible(true);
+                if (gcreator.window.isWorkspaceLeft()) {
+                    gcreator.window.splitter2.setRightComponent(gcreator.window.mdi);
+                    if (gcreator.window.splitter2.getRightComponent().isVisible()) {
+                        gcreator.window.splitter2.setDividerLocation(k);
+                    }
+                } else {
+                    gcreator.window.splitter2.setLeftComponent(gcreator.window.mdi);
+                    if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
+                        gcreator.window.splitter2.setDividerLocation(k);
+                    }
                 }
-            } else {
-                gcreator.window.splitter2.setLeftComponent(gcreator.window.mdi);
-                if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
-                    gcreator.window.splitter2.setDividerLocation(k);
-                }
-            }
 
-            gcreator.window.istabs = false;
-            Component[] panels = gcreator.window.tabs.getComponents();
-            for (int i = 0; i < panels.length; i++) {
-                if (panels[i] instanceof TabPanel) {
-                    TabPanel panel = (TabPanel) panels[i];
-                    org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
-                    jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                    jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                gcreator.window.istabs = false;
+                Component[] panels = gcreator.window.tabs.getComponents();
+                for (int i = 0; i < panels.length; i++) {
+                    if (panels[i] instanceof TabPanel) {
+                        TabPanel panel = (TabPanel) panels[i];
+                        org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
+                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+                    }
                 }
             }
         }
@@ -411,5 +423,4 @@ public class PreferencesTab extends OptionPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-
 }

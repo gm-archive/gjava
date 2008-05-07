@@ -52,7 +52,7 @@ public class Aurwindow extends JFrame {
 
     public JTabbedPane navigatorTabs;
     public static JTabbedPane tabs;
-    public int look;
+    //public int look;
     public boolean istabs; //True - tabs; False - MDI
 
     public static boolean showToolbars;
@@ -2016,7 +2016,7 @@ public class Aurwindow extends JFrame {
     
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
-        SettingsIO.saveSettings(look, istabs, scroller.isVisible());
+        SettingsIO.saveSettings(istabs, scroller.isVisible());
         try {
             ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");
         } catch (IOException e) {

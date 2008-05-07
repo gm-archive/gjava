@@ -58,8 +58,8 @@ public class SettingsIO {
             console.setText(gcreator.output);
     }
 
-    public static void saveSettings(int look, boolean istabs, boolean scrollvisible) {
-        File a = new File("settings.xml");
+    public static void saveSettings(boolean istabs, boolean scrollvisible) {
+        File a = new File("settings/settings.xml");
         if (!a.exists()) {
             try {
                 a.createNewFile();
@@ -68,12 +68,13 @@ public class SettingsIO {
             }
         }
         try {
-            FileWriter b = new FileWriter("settings.xml");
+            FileWriter b = new FileWriter("settings/settings.xml");
             BufferedWriter out = new BufferedWriter(b);
             out.write("<?xml version = \"1.0\"?>\n");
             out.write("<settings>");
             out.write("<style>");
-            out.write(UIManager.getInstalledLookAndFeels()[look].getName());
+            //out.write(UIManager.getInstalledLookAndFeels()[look].getName());
+            out.write(UIManager.getLookAndFeel().getClass().getName());
             out.write("</style>");
             out.write("<desktop>");
             if (istabs) {
@@ -126,7 +127,7 @@ public class SettingsIO {
     }
 
     public static String[] loadSettings() {
-        File target = new File("./settings.xml");
+        File target = new File("settings/settings.xml");
         if (!target.exists()) {
             addStringFormatedMessage(target.getAbsolutePath() + " does not exist", null, false);
             try{
@@ -145,11 +146,12 @@ public class SettingsIO {
         a[6] = null;
         a[7] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
+        //SAXParserFactory fact = SAXParserFactory.newInstance();
         DocumentBuilder builder;
         Document doc;
         try{
             builder = fact.newDocumentBuilder();
-            doc = builder.parse("settings.xml");
+            doc = builder.parse("settings/settings.xml");
             Node node = doc.getDocumentElement();
             String root = node.getNodeName();
             if(!root.equals("settings")){

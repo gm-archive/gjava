@@ -120,7 +120,8 @@ public class gcreator {
 
         if (settings == null) {
             settings = new String[8];
-            settings[0] = "Metal";
+            //settings[0] = "Metal";
+            settings[0] = UIManager.getSystemLookAndFeelClassName();
             settings[1] = "Tabs (Top)";
             settings[2] = "Visible";
             settings[3] = "English";
@@ -296,6 +297,7 @@ public class gcreator {
             Plugger.onLoad();
             Plugger.onSplashStart();
         }
+        
         splash = new SplashScreen(applet);
         
         try{
