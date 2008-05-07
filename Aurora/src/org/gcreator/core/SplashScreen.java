@@ -38,7 +38,7 @@ public class SplashScreen extends JFrame {
                 g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
         
                 g.setColor(Color.GRAY);
-                g.drawString(message, 5, 260);
+                g.drawString("G-Creator " + gcreator.version + ": " + message, 5, 260);
                 
                 setOpaque(false);
                 super.paint(g);

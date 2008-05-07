@@ -33,7 +33,7 @@ import org.gcreator.help.AboutPanel;
  */
 public class gcreator {
     private static String[] arguments;
-    public static final String version = "1.01"; //only use numbers as it is parsed to double for updating!
+    public static final String version = "0.83"; //only use numbers as it is parsed to double for updating!
     public static Aurwindow window;
     public static String output = "";
     static SplashScreen splash;
