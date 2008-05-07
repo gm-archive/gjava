@@ -16,10 +16,12 @@ import javax.swing.border.*;
  */
 public class RSSReadPanel extends JPanel {
     
+    public static String url = "http://forums.g-java.com/index.php?act=rssout&id=1";
+    
     /** Creates new form BeanForm */
     public RSSReadPanel() {
         initComponents();
-        jScrollPane1.setViewportView(new RSSReader(""));
+        jScrollPane1.setViewportView(new RSSReader(url));
     }
     
     //http://forums.g-java.com/index.php?act=rssout&id=1

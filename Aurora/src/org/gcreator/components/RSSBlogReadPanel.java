@@ -19,7 +19,7 @@ public class RSSBlogReadPanel extends JPanel {
     /** Creates new form BeanForm */
     public RSSBlogReadPanel() {
         initComponents();
-        jScrollPane1.setViewportView(new RSSReader(""));
+        jScrollPane1.setViewportView(new RSSReader("http://forums.g-java.com/index.php?automodule=blog&req=syndicate"));
     }
     
     //http://forums.g-java.com/index.php?automodule=blog&req=syndicate
