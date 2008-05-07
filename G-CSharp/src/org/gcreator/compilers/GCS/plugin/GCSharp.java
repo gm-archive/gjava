@@ -97,7 +97,8 @@ public class GCSharp extends PlatformCore {
             print(actor, "");
             print(actor, "public class " + f.name + " : Actor");
             print(actor, "{");
-            print(actor, "\tpublic " + f.name + "(int x, int y) : base(x,y," + a.depth + ")");
+            print(actor, "\tpublic " + f.name + "(Object x, Object y)" +
+                    ": base(x,y, new Integer(" + a.depth + "))");
             print(actor, "\t{");
             print(actor, "\t\tsetVisible(" + a.visible + ");");
             print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
@@ -180,7 +181,8 @@ public class GCSharp extends PlatformCore {
         print(scene, "\t\tActor c;");
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
             ActorInScene ais = e.nextElement();
-            print(scene, "\t\taddActor(c = new " + ais.Sactor.name + "(" + ais.x + ", " + ais.y + "));");
+            print(scene, "\t\taddActor(c = new " + ais.Sactor.name +
+                    "(new Integer(" + ais.x + "), new Integer(" + ais.y + ")));");
             print(scene, "\t\tc.Create();");
         }
         print(scene, "\t}");
