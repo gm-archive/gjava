@@ -29,7 +29,8 @@ public class PreferencesTab extends OptionPanel {
             LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
             int i;
             for (i = 0; i < info.length; i++) {
-                if (info[i].getName().equals(settings[0])) {
+                if (info[i].getClassName().equals(settings[0])) {
+                    i++;
                     break;
                 }
             }
@@ -53,14 +54,7 @@ public class PreferencesTab extends OptionPanel {
         }*/
 
         } catch (Exception e) {
-            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
-            int i;
-            for (i = 0; i < info.length; i++) {
-                if (info[i].getClassName().equals(UIManager.getSystemLookAndFeelClassName())) {
-                    break;
-                }
-            }
-            jComboBox1.setSelectedIndex(i);
+            jComboBox1.setSelectedIndex(0); 
         //gcreator.window.look = i;
             /*
         jComboBox1.setSelectedIndex(1);
