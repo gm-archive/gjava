@@ -18,11 +18,13 @@ import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
 import org.gcreator.actions.mainactions.SetVSpeed;
 import org.gcreator.actions.mainactions.StartOfABlock;
+import org.gcreator.components.ProjectTypes;
 import org.gcreator.core.*;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.DestroyEvent;
 import org.gcreator.events.DrawEvent;
 import org.gcreator.events.StepEvent;
+import org.gcreator.fileclass.GameProject;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.*;
@@ -86,7 +88,7 @@ public class GM6Importer {
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
-        org.gcreator.fileclass.GameProject project = org.gcreator.fileclass.GameProject.balance();
+        GameProject project = GameProject.balance(ProjectTypes.EMPTY_GAME);
         project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
         Aurwindow.setMainProject(project);
         org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("$218"));
@@ -809,9 +811,10 @@ public class GM6Importer {
 //                act = new org.gcreator.actions.Action(new SetVSpeed());
 //                return act;
             }
-        
-             act = new org.gcreator.actions.Action(new ExecuteCode(code));
-                return act;
+            ExecuteCode tt = new ExecuteCode();
+            tt.code = code;
+            act = new org.gcreator.actions.Action(tt);
+            return act;
 //        
 //        System.out.println("libid=" + libid + ", actid=" + actid);
 //        

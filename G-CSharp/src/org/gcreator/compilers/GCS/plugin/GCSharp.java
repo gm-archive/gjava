@@ -335,6 +335,9 @@ public class GCSharp extends PlatformCore {
                 });
 
         PluginHelper.addMenuItem(3, i);
+        version=0.1;
+        updateURL="http://g-creator.org/update/G-CSharp/update.xml";
+        update();
         //Aurwindow.tool.add(run);
     }
 
