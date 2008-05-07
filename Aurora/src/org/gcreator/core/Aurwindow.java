@@ -2021,6 +2021,7 @@ public class Aurwindow extends JFrame {
             ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");
         } catch (IOException e) {
         }
+        ScriptThemeManager.save();
     }
     //</editor-fold>
     

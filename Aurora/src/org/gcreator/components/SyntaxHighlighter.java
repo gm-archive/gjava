@@ -10,9 +10,10 @@ import javax.swing.text.*;
 import javax.swing.event.*;
 import java.io.*;
 import org.gcreator.autocomplete.*;
+import org.gcreator.fileclass.Project;
 
 // Modified by Luís Reis. See G-Creator LICENSE for more details.
-import org.gcreator.fileclass.Project;
+import org.gcreator.managers.ScriptThemeManager;
 // The original file contained:
 //// Public domain, no restrictions, Ian Holyer, University of Bristol.
 /**
@@ -150,16 +151,34 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(NUMBER, Color.orange.darker());
         changeStyle(PUNCTUATION, Color.orange.darker());
         changeStyle(COMMENT, Color.green.darker());
-        changeStyle(START_COMMENT, Color.green.darker());
-        changeStyle(MID_COMMENT, Color.green.darker());
-        changeStyle(END_COMMENT, Color.green.darker());
+        Color c = null;
+        try{
+        c = ScriptThemeManager.colors.get("comment");
+        }
+        catch(Exception e){}
+        if(c==null) c = Color.BLUE;
+        changeStyle(START_COMMENT, c);
+        changeStyle(MID_COMMENT, c);
+        changeStyle(END_COMMENT, c);
         changeStyle(TAG, Color.blue);
         changeStyle(END_TAG, Color.blue);
-        changeStyle(KEYWORD, Color.blue);
-        changeStyle(KEYWORD2, Color.blue);
+        c = null;
+        try{
+        c = ScriptThemeManager.colors.get("keyword");
+        }
+        catch(Exception e){}
+        if(c==null) c = Color.BLUE;
+        changeStyle(KEYWORD, c);
+        changeStyle(KEYWORD2, c);
         changeStyle(IDENTIFIER, Color.black);
         changeStyle(LITERAL, Color.blue);
-        changeStyle(STRING, Color.red);
+        c = null;
+        try{
+        c = ScriptThemeManager.colors.get("string");
+        }
+        catch(Exception e){}
+        if(c==null) c = Color.RED;
+        changeStyle(STRING, c);
         changeStyle(CHARACTER, Color.magenta);
         changeStyle(OPERATOR, Color.black);
         changeStyle(BRACKET, Color.DARK_GRAY);

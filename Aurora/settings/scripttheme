@@ -1,0 +1,6 @@
+<?xml version = "1.0"?>
+<theme>
+<color id="keyword">6711680</color>
+<color id="string">16711680</color>
+<color id="comment">65280</color>
+</theme>

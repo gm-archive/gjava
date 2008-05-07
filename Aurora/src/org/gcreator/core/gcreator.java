@@ -293,6 +293,8 @@ public class gcreator {
         tool.items.add(addcls);
         ToolbarManager.toolbars.add(tool);*/
         
+        ScriptThemeManager.load();
+        
         if(!applet&&plugload){
             Plugger.onLoad();
             Plugger.onSplashStart();
