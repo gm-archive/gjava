@@ -245,8 +245,11 @@ public class Spanish extends Dictionary{
         entry[194] = "Izquierdo";
         entry[195] = "Derecho";
         entry[196] = "PELIGRO:";
-        entry[197] = "<HTML>Si usas un recurso PowerPack, tu juego<br/>" +
-                "<b>DEBE</b> estar bajo la licencia GPL v3";
+        entry[197] = "<html>Si usas un recurso <br/>"+
+                           "PowerPack, tu juego<br/>" +
+                   "<strong>debe"+
+                      "</strong> estar bajo la<br/>"+
+                          "licencia GPL v3</html>";
         entry[198] = "Añadir Imagen";
         entry[199] = "Principal";
         entry[200] = "Mover";

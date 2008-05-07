@@ -242,8 +242,10 @@ public class English extends Dictionary{
         entry[194] = "Left";
         entry[195] = "Right";
         entry[196] = "WARNING:";
-        entry[197] = "<HTML>If you use a PowerPack resource, your game<br/>" +
-                "<b>MUST</b> be licensed under GPL v3";
+        entry[197] = "<html>If you use a PowerPack<br/>"+
+                           "resource, your game " +
+                                      "<strong>must</strong><br/>"+
+                           "be licensed under GPL v3</html>";
         entry[198] = "Add Image";
         entry[199] = "Main";
         entry[200] = "Move";

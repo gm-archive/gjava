@@ -241,9 +241,12 @@ public class Portuguese extends Dictionary{
         entry[194] = "Esquerda";
         entry[195] = "Direita";
         entry[196] = "ATENÇÃO!";
-        entry[197] = "<HTML>Se usar recursos do Powerpack, o seu jogo<br/>" +
-                "<b>TEM</b> de estar obrigatóriamente licenciado<br/>" +
-                "em GPL v3";
+        entry[197] = "<html>Se usar recursos do Powerpack,<br/>"+
+                            "o seu jogo " +
+                               "<strong>tem" +
+                                 "</strong> de estar<br/>"+
+                            "obrigatóriamente licenciado<br/>"+
+                            " em GPL v3</html>";
         entry[198] = "Adicionar imagem";
         entry[199] = "Principal";
         entry[200] = "Movimento";

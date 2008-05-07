@@ -29,13 +29,11 @@ public class IconList extends JComponent{
         addMouseListener(new MouseListener(){
             public void mouseEntered(MouseEvent evt){}
             public void mouseExited(MouseEvent evt){}
-            public void mousePressed(MouseEvent evt){}
-            public void mouseReleased(MouseEvent evt){
+            public void mousePressed(MouseEvent evt){
                 mouseAction(evt);
             }
-            public void mouseClicked(MouseEvent evt){
-                mouseAction(evt);
-            }
+            public void mouseReleased(MouseEvent evt){}
+            public void mouseClicked(MouseEvent evt){}
         });
     }
     

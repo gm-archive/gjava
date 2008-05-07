@@ -21,13 +21,13 @@ public class SplashScreen extends JFrame {
     ImageIcon i;
     /** Creates new form SplashScreen */
     public SplashScreen(boolean applet) {
-        jProgress1 = new JProgressBar();
+        progressBar = new JProgressBar();
 
        
         setTitle("Loading... Please Wait");
-        if(!applet){
+      /*  if(!applet){
             setAlwaysOnTop(true);
-        }
+        }*/
         setResizable(false);
         setUndecorated(true);
 
@@ -51,11 +51,12 @@ public class SplashScreen extends JFrame {
         //add(jLabel1);
         
         setSize(i.getIconWidth(), i.getIconHeight());
-        add(jProgress1);
-        jProgress1.setSize(getWidth(), 20);
-        jProgress1.setLocation(0, 220);
-        jProgress1.setVisible(true);
-        jProgress1.setIndeterminate(true);
+        add(progressBar);
+        progressBar.setSize(getWidth(), 20);
+        progressBar.setLocation(0, 220);
+        progressBar.setVisible(true);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisible(false);
         Dimension m = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(
                 (m.width - this.getWidth()) / 2,
@@ -81,7 +82,7 @@ public class SplashScreen extends JFrame {
     }
     
     // Variables declaration - do not modify
-    private JProgressBar jProgress1;
+    public JProgressBar progressBar;
     // End of variables declaration
     
 }
