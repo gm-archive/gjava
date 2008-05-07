@@ -7,7 +7,6 @@ package org.gcreator.actions.mainactions;
 
 import org.gcreator.actions.*;
 import javax.swing.*;
-import org.gcreator.actions.components.HSpeedEditor;
 import org.gcreator.actions.components.WarpToEditor;
 import org.gcreator.fileclass.Project;
 

@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 Created-By: 1.6.0_03 (Sun Microsystems Inc.)
 Main-Class: org.gcreator.core.gcreator
-Class-Path: lib/lwjgl.jar lib/swing-layout-1.0.3.jar lib/sun-javac.jar
+Class-Path: lib/lwjgl.jar lib/swing-layout-1.0.3.jar lib/sun-javac.jar lib/l2fprod-common-all.jar lib/l2fprod-common-sandbox.jar lib/l2fprod-common-shared.jar lib/l2fprod-common-sheet.jar lib/l2fprod-common-springrcp.jar lib/l2fprod-common-tasks.jar lib/l2fprod-common-totd.jar 
