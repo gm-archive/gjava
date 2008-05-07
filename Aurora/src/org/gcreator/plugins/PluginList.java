@@ -108,7 +108,8 @@ public class PluginList {
             }
             
             if(line.matches("^Version=.*$")){
-                curplugin.version = line.replaceAll("^Version=(.*)$", "$1");
+                //!OBSOLETE
+                //curplugin.version = line.replaceAll("^Version=(.*)$", "$1");
                 continue mainloop;
             }
             

@@ -366,7 +366,7 @@ actorindex++;
     
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
-        compilername = "GJava";
+        //compilername = "GJava";
         version=0.4;
         updateURL="http://g-creator.org/update/G-Java/update.xml";
         update();

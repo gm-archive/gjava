@@ -17,7 +17,7 @@ import javax.swing.*;
  */
 public class Plugin {
     public String name = "";
-    public String version = "";
+    //public String version = "";
     public String img_loc = "";
     public Vector<String> authors = new Vector<String>();
     public String licenseLocation = "";

@@ -33,4 +33,22 @@ public abstract class PluginCore {
     public String getID(){
         return null;
     }
+    
+    /**
+     * Gets the plugin that owns this PluginCore
+     */
+    public Plugin getPlugin(){
+        for(Plugin p : PluginList.stdlist.plugins){
+            if(p.value==this)
+                return p;
+        }
+        return null;
+    }
+    
+    public String getPluginName(){
+        Plugin p = getPlugin();
+        if(p==null)
+            return null;
+        return p.name;
+    }
 }

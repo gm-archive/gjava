@@ -49,7 +49,7 @@ public class PlatformCore extends PluginCore {
     int usingwith = 0;
     Vector localVariables = new Vector(1),fieldVariables= new Vector(1),globalVariables= new Vector(1),with = new Vector(1);
     public String current="",event="";
-    public String updateURL="",compilername="";
+    public String updateURL="";//,compilername="";
     public double version = 1.0;
     
     public void update(){
@@ -79,7 +79,7 @@ public class PlatformCore extends PluginCore {
                     //check if it is a new version
                 if (d>version) {
                 //JOptionPane.showMessageDialog(gcreator.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
-                int update = JOptionPane.showConfirmDialog(null, compilername+" update is available. Are you sure you want to update "+compilername);
+                int update = JOptionPane.showConfirmDialog(null, getPluginName()+" update is available. Are you sure you want to update "+ getPluginName());
         if (update == JOptionPane.NO_OPTION || update == JOptionPane.CANCEL_OPTION)
             return;
                 }
@@ -89,10 +89,10 @@ public class PlatformCore extends PluginCore {
                 if (nextLine.contains("<zip>")){
                     //download and unzip the zip
                     v = nextLine.replaceAll("<zip>", "").replaceAll("</zip>", "");
-                    download(v,"plugins" + File.separator +compilername+".zip");
-                    unzip("plugins" + File.separator +compilername+".zip");
+                    download(v,"plugins" + File.separator + getPluginName() +".zip");
+                    unzip("plugins" + File.separator + getPluginName() +".zip");
                     System.out.println("unzipped");
-                    JOptionPane.showMessageDialog(gcreator.window, "Finished updating "+compilername); //will make multilingual when message finalized
+                    JOptionPane.showMessageDialog(gcreator.window, "Finished updating "+ getPluginName()); //will make multilingual when message finalized
 
                 }
                 org.gcreator.core.utilities.addStringMessage(nextLine);
