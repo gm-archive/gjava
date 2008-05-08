@@ -7,8 +7,6 @@ package org.gcreator.actions.mainactions;
 
 import org.gcreator.actions.*;
 import javax.swing.*;
-import java.awt.event.*;
-import java.io.ObjectStreamField;
 import com.l2fprod.common.propertysheet.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
