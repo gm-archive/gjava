@@ -20,7 +20,7 @@ public class EventSelect extends javax.swing.JDialog {
         this.ae = ae;
         this.listener = listener;
         initComponents();
-        this.setLocation(x,y);
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
     

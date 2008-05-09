@@ -153,7 +153,7 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(COMMENT, Color.green.darker());
         Color c = null;
         try{
-        c = ScriptThemeManager.colors.get("comment");
+        c = ScriptThemeManager.getColors().get("Comment");
         }
         catch(Exception e){}
         if(c==null) c = Color.BLUE;
@@ -164,7 +164,7 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(END_TAG, Color.blue);
         c = null;
         try{
-        c = ScriptThemeManager.colors.get("keyword");
+        c = ScriptThemeManager.getColors().get("Keyword");
         }
         catch(Exception e){}
         if(c==null) c = Color.BLUE;
@@ -174,7 +174,7 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(LITERAL, Color.blue);
         c = null;
         try{
-        c = ScriptThemeManager.colors.get("string");
+        c = ScriptThemeManager.getColors().get("String");
         }
         catch(Exception e){}
         if(c==null) c = Color.RED;

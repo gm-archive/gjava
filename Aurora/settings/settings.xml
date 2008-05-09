@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<settings><style>com.sun.java.swing.plaf.gtk.GTKLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Hidden</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1033, 716</size><antialiasing>true</antialiasing></settings>
+<settings><style>com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Hidden</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1024, 712</size><antialiasing>true</antialiasing></settings>
