@@ -4,6 +4,7 @@ G-Creator's License:
 
     Copyright (C) 2007,2008  Luís Reis
     Copyright (C) 2007,2008  TGMG
+    Copyright (C) 2008 BobSerge or Bobistaken
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
