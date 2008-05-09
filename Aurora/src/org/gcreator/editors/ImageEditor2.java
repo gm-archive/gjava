@@ -40,14 +40,17 @@ public class ImageEditor2 extends TabPanel {
         } else {
             BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
                     ((GImage) f.value).image.getIconHeight(),
-                    ((BufferedImage) ((GImage) f.value).image.getImage()).getType());
+                    BufferedImage.TYPE_INT_ARGB);
+                    //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
             img.getGraphics().drawImage(((GImage) f.value).image.getImage(), 0, 0,
                     ((GImage) f.value).image.getImageObserver());
             i.readXml(file.xml);
             i.image = new ImageIcon(img);
+            i.transparentColor = ((GImage) f.value).transparentColor;
         }
 
         initComponents();
+        colorSelection1.setBackground(i.transparentColor);
         
         pane = new ImagePane(this);
         jScrollPane1.setViewportView(pane);
@@ -307,8 +310,8 @@ private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jSpinner1StateChanged
 
 private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
-        updateScroll();
-        i.transparentColor = colorSelection1.getBackground();
+    i.transparentColor = colorSelection1.getBackground();
+    updateScroll();
 }//GEN-LAST:event_colorSelection1MouseClicked
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
