@@ -18,11 +18,11 @@ import com.l2fprod.common.propertysheet.*;
 public class SetVSpeed extends ActionPattern {
 static final long serialVersionUID = 1L;
     
-    public Double to = 0.0;
+    public String to = "0.0";
     public String with ="this";
     public Boolean relative = false;
     
-    public static ImageIcon icon = new ImageIcon(SetVSpeed.class.getResource("/org/gcreator/actions/images/hspeed.png"));
+    public static ImageIcon icon = new ImageIcon(SetVSpeed.class.getResource("/org/gcreator/actions/images/vspeed.png"));
 
 //    private static final ObjectStreamField[] serialPersistentFields
 //                 = {new ObjectStreamField(
@@ -53,7 +53,7 @@ static final long serialVersionUID = 1L;
         for(int i = 0; i < plist.length; i++){
             Property p = plist[i];
             if(p.getName().equals("to"))
-                to = (Double) p.getValue();
+                to = (String) p.getValue();
             else if(p.getName().equals("with"))
                 with = (String) p.getValue();
             else if(p.getName().equals("relative"))
@@ -92,8 +92,8 @@ static final long serialVersionUID = 1L;
         p.setName("to");
         p.setDisplayName("Speed");
         p.setEditable(true);
-        p.setType(Double.class);
-        p.setValue(0.0);
+        p.setType(String.class);
+        p.setValue("0.0");
         p.setShortDescription("The new vertical speed");
         propertySheetPanel1.addProperty(p);
         
@@ -115,10 +115,10 @@ static final long serialVersionUID = 1L;
             save(panel);
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             String who = with;
-            Double what = to;
+            String what = to;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
             return LangSupporter.activeLang.getEntry(226).replaceAll("\\$apply", who)
-                    .replaceAll("\\$value", what.toString())
+                    .replaceAll("\\$value", what)
                     .replaceAll("\\$\\$", "$");
         }
         return LangSupporter.activeLang.getEntry(225);
@@ -129,9 +129,9 @@ static final long serialVersionUID = 1L;
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             save(panel);
             if(relative)
-                return "(" + with + ").vspeed += " + to.toString() + ";";
+                return "(" + with + ").vspeed += (" + to + ");";
             else
-                return "(" + with + ").vspeed = " + to.toString() + ";";
+                return "(" + with + ").vspeed = (" + to + ");";
         }
         return "";
     }
