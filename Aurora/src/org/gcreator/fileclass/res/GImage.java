@@ -10,6 +10,7 @@
 package org.gcreator.fileclass.res;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 import java.util.*;
 import javax.swing.*;
 
@@ -23,7 +24,8 @@ public class GImage extends Resource {
     public ImageIcon image;
     public int width,height;
     public boolean transparent;
-    public Color transparentColor;  
+    public Color transparentColor; 
+    public int zoom;
     
     /**
      * @deprecated Use plain constructor instead
@@ -47,6 +49,7 @@ public class GImage extends Resource {
       xml += "<gimage>\n";
       xml += "<transparent>"+transparent+"</transparent>\n";
       xml += "<color>"+transparentColor.getRed()+", "+transparentColor.getGreen()+", "+transparentColor.getBlue()+"</color>\n";
+      xml += "<zoom>"+zoom+"</zoom>";
       xml += "</gimage>\n";
       return xml;
     }
@@ -70,19 +73,22 @@ public class GImage extends Resource {
             if(line.equals("</gimage>")){
                 break;
             }
-            
             if (line.matches("<transparent>(true|false)</transparent>")) {
                 String trans = line.replaceAll("<transparent>(true|false)</transparent>", "$1");
                 transparent = Boolean.parseBoolean(trans);
             }
-            else if (line.matches("<color>[0-9]*, [0-9]*, [0-9]</color>")) {
-                String sred = line.replaceAll("<color>([0-9]*), [0-9]*, [0-9]*</color>", "$1");
-                String sgreen = line.replaceAll("<color>[0-9]*, ([0-9]*), [0-9]*</color>", "$1");
-                String sblue = line.replaceAll("<color>[0-9]*, [0-9]*, ([0-9]*)</color>", "$1");
+            else if (line.matches("<color>[0-9]+, [0-9]+, [0-9]+</color>")) {
+                String sred = line.replaceAll("<color>([0-9]+), [0-9]+, [0-9]+</color>", "$1");
+                String sgreen = line.replaceAll("<color>[0-9]+, ([0-9]+), [0-9]+</color>", "$1");
+                String sblue = line.replaceAll("<color>[0-9]+, [0-9]+, ([0-9]+)</color>", "$1");
                 int red = Integer.parseInt(sred);
                 int green = Integer.parseInt(sgreen);
                 int blue = Integer.parseInt(sblue);
                 transparentColor = new Color(red, green, blue);
+            }
+            else if (line.matches("<zoom>[0-9]+</zoom>")) {
+                String szoom = line.replaceAll("<zoom>([0-9]+)</zoom>", "$1");
+                zoom = Integer.parseInt(szoom);
             }
             i++;
         }

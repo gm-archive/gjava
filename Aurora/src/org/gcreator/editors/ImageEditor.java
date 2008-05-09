@@ -45,7 +45,7 @@ public class ImageEditor extends TabPanel {
         
         this.project = project;
         if (file.value == null) {
-            this.image = new GImage(file.name);
+            this.image = new GImage();
             image.readXml(file.xml);
             file.value = image;
         } else if (file.value instanceof GImage) {

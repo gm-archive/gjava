@@ -403,7 +403,7 @@ public class Aurwindow extends JFrame {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png") || file.type.equals("img")) {
-            TabPanel tp = new ImageEditor(file, this.getCurrentProject());
+            TabPanel tp = new ImageEditor2(this.getCurrentProject(), file);
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")) {
@@ -1354,6 +1354,8 @@ public class Aurwindow extends JFrame {
         splitter1.setDividerSize(5);
         splitter2.setDividerSize(5);
         utilities.addMessage(29);
+        SplashScreen.message = "Starting welcome window";
+        gcreator.splash.repaint();
         WelcomeTab welcome = new WelcomeTab();
         addWindow(welcome, 26);
         updateToDefaultNavigatorPanel(welcome);
