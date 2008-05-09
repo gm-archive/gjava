@@ -58,6 +58,7 @@ public class ImagePane extends JPanel {
                     g.drawLine((int) (px / getZoom()), (int) (py / getZoom()), (int) (evt.getX() / getZoom()), (int) (evt.getY() / getZoom()));
                     drawing = false;
                     repaint();
+                    editor.changed = true;
                 }
                 if(editor.jToggleButton3.isSelected()&&drawing){
                     Graphics g = editor.i.getImage().getImage().getGraphics();
@@ -74,6 +75,7 @@ public class ImagePane extends JPanel {
                             (int) (x1 / getZoom()), (int) (y1 / getZoom()), (int) ((x2-x1) / getZoom()), (int) ((y2-y1) / getZoom()));
                     drawing = false;
                     repaint();
+                    editor.changed = true;
                 }
                 if(editor.jToggleButton4.isSelected()&&drawing){
                     Graphics g = editor.i.getImage().getImage().getGraphics();
@@ -90,6 +92,7 @@ public class ImagePane extends JPanel {
                             (int) (x1 / getZoom()), (int) (y1 / getZoom()), (int) ((x2-x1) / getZoom()), (int) ((y2-y1) / getZoom()));
                     drawing = false;
                     repaint();
+                    editor.changed = true;
                 }
             }
             
@@ -98,9 +101,11 @@ public class ImagePane extends JPanel {
                     px = (int) (evt.getX() / getZoom());
                     py = (int) (evt.getY() / getZoom());
                     resizing = true;
+                    editor.changed = true;
                 }
                 else if(editor.jToggleButton1.isSelected()){
                     drawPixelIn(evt.getX(), evt.getY(), false);
+                    editor.changed = true;
                 }
                 else if(editor.jToggleButton2.isSelected()){
                     px = evt.getX();
@@ -153,6 +158,7 @@ public class ImagePane extends JPanel {
             public void mouseDragged(MouseEvent evt){
                 if(editor.jToggleButton1.isSelected()){
                     drawPixelIn(evt.getX(), evt.getY(), true);
+                    editor.changed = true;
                 }
                 if(editor.jToggleButton2.isSelected()||editor.jToggleButton3.isSelected()
                         ||editor.jToggleButton4.isSelected()){

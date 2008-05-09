@@ -21,8 +21,6 @@ import org.gcreator.fileclass.res.*;
  */
 public class ImageEditor2 extends TabPanel {
 
-    public Project p;
-    public GFile f;
     public GImage i;
     public boolean changed;
     public ImagePane pane;
@@ -32,8 +30,8 @@ public class ImageEditor2 extends TabPanel {
 
     /** Creates new form ImageEditor2 */
     public ImageEditor2(Project p, GFile f) {
-        this.p = p;
-        this.f = f;
+        this.project = p;
+        this.file = f;
         
         i = new GImage();
         if (f.value == null || ((GImage) f.value).image == null) {
@@ -53,6 +51,23 @@ public class ImageEditor2 extends TabPanel {
         
         pane = new ImagePane(this);
         jScrollPane1.setViewportView(pane);
+    }
+    
+    @Override
+    public boolean canSave(){
+        return !changed;
+    }
+    
+    @Override
+    public boolean wasModified(){
+        return changed;
+    }
+    
+    @Override
+    public boolean Save(){
+        changed = false;
+        file.value = i;
+        return true;
     }
 
     /** This method is called from within the constructor to
