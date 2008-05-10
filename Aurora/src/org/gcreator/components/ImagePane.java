@@ -8,6 +8,7 @@ package org.gcreator.components;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import org.gcreator.editors.*;
 
@@ -48,6 +49,23 @@ public class ImagePane extends JPanel {
             }
             
             public void mouseReleased(MouseEvent evt){
+                if(resizing){
+                    int x = (int) (evt.getX() / getZoom());
+                    int y = (int) (evt.getY() / getZoom());
+                    
+                    if(x<1||y<1){
+                        resizing = false;
+                        return;
+                    }
+                    
+                    BufferedImage b = new BufferedImage(x, y, BufferedImage.TYPE_INT_ARGB);
+                    Graphics g = b.getGraphics();
+                    g.drawImage(editor.i.getImage().getImage(), 0, 0, editor.i.getImage().getImageObserver());
+                    editor.i.image = new ImageIcon(b);
+                    repaint();
+                    updateUI();
+                    resizing = false;
+                }
                 if(editor.jToggleButton2.isSelected()&&drawing){
                     Graphics g = editor.i.getImage().getImage().getGraphics();
                     Color c = editor.colorSelection2.getBackground();

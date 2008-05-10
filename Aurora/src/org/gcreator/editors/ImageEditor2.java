@@ -37,6 +37,7 @@ public class ImageEditor2 extends TabPanel {
         if (f.value == null || ((GImage) f.value).image == null) {
             i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
             changed = true;
+            i.transparentColor = Color.white;
         } else {
             BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
                     ((GImage) f.value).image.getIconHeight(),
