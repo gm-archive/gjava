@@ -9,19 +9,11 @@
 
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.actions.components.EGMLPanel;
-import org.gcreator.components.scanning.GCLScanner;
-import org.gcreator.components.scanning.Scanner;
-import org.gcreator.components.SyntaxHighlighter;
-import org.gcreator.components.impl.*;
-import org.gcreator.editors.ActorEditor;
+import org.gcreator.components.JEditTextArea;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import javax.swing.*;
-import java.awt.event.*;
-import org.gcreator.components.*;
 
-import org.gcreator.components.scanning.GScriptScanner;
+import org.gcreator.components.scanning.GScriptTokenMarker;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 import publicdomain.*;
@@ -51,17 +43,18 @@ public class ExecuteCode extends ActionPattern{
     
     @Override
     public void save(JComponent panel){
-        code = ((SyntaxHighlighter) panel).getText();
+        code = ((JEditTextArea) panel).getText();
     }
     
     @Override
     public void load(JComponent panel){
-        ((SyntaxHighlighter) panel).setText(code);
+        ((JEditTextArea) panel).setText(code);
     }
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        Scanner scanner = new GScriptScanner();
-        SyntaxHighlighter panel = new SyntaxHighlighter(100, 100, scanner, project);
+        TokenMarker scanner = new GScriptTokenMarker();
+        JEditTextArea panel = new JEditTextArea(); //100, 100, scanner, project);
+        panel.setTokenMarker(scanner);
         panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
@@ -81,7 +74,7 @@ public class ExecuteCode extends ActionPattern{
     public String getStandardText(JComponent panel){
         if(panel!=null){
             save(panel);
-            code = ((SyntaxHighlighter) panel).getText();
+            code = ((JEditTextArea) panel).getText();
             if(code==null||!code.equals(""))
                 return LangSupporter.activeLang.getEntry(222);
             return code;
@@ -93,7 +86,7 @@ public class ExecuteCode extends ActionPattern{
      
     public String generateGCL(JComponent panel){
         save(panel);
-        code = ((SyntaxHighlighter) panel).getText();
+        code = ((JEditTextArea) panel).getText();
         return code;
     }
 }

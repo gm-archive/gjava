@@ -6,12 +6,11 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.components.JEditTextArea;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.SwingUtilities;
-import org.gcreator.components.scanning.GScriptScanner;
-import org.gcreator.components.scanning.Scanner;
-import org.gcreator.components.SyntaxHighlighter;
+import org.gcreator.components.scanning.*;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
 import org.gcreator.core.Aurwindow;
@@ -28,7 +27,7 @@ import publicdomain.*;
 public class ScriptEditor extends TabPanel {
     
     public boolean changed = true;
-    SyntaxHighlighter g;
+    JEditTextArea g;
     
     public boolean Save() {
         file.value = g.getText();
@@ -45,8 +44,10 @@ public class ScriptEditor extends TabPanel {
         jTextField1.setText(file.name);
         if(file.value==null)
             file.value = new Classes("// Press CTRL + SPACE for code completion \n show_message(\"test\")\n");
-        Scanner scanner = new GScriptScanner();
-        g = new SyntaxHighlighter(100, 100, scanner, project);
+        TokenMarker scanner = new GScriptTokenMarker();
+        //g = new SyntaxHighlighter(100, 100, scanner, project);
+        g = new JEditTextArea();
+        g.setTokenMarker(scanner);
         g.setText(((Classes)file.value).toString());
         
        // org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);

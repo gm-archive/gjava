@@ -13,8 +13,9 @@ import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
 import org.gcreator.components.impl.VectorListModel;
-import org.gcreator.components.scanning.GScriptScanner;
+import org.gcreator.components.scanning.*;
 import org.gcreator.managers.ScriptThemeManager;
+import publicdomain.*;
 
 /**
  *
@@ -22,8 +23,9 @@ import org.gcreator.managers.ScriptThemeManager;
  */
 public class StyleThemePreferences extends javax.swing.JPanel {
     
-    public GScriptScanner scanner = new GScriptScanner();
-    public SyntaxHighlighter g = new SyntaxHighlighter(100, 100, scanner, null);
+    public GScriptTokenMarker scanner = new GScriptTokenMarker();
+    //public SyntaxHighlighter g = new SyntaxHighlighter(100, 100, scanner, null);
+    public JEditTextArea g = new JEditTextArea();
     
     /** Creates new form StyleThemePreferences */
     public StyleThemePreferences() {
@@ -39,6 +41,7 @@ public class StyleThemePreferences extends javax.swing.JPanel {
         jList1.setModel(new VectorListModel(v));
         jList1.setSelectedIndex(0);
         
+        g.setTokenMarker(scanner);
         g.setText("{\n    var in,key,mode,out;\n    in = argument0;\n    "+
                 "key = argument1;\n    mode = argument2;\n    out = \"\";\n    "+
                 "var inLen,keyLen,pos,inChar,keyChar,outChar;\n    var inVal,"+

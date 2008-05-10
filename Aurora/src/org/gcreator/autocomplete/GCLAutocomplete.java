@@ -9,6 +9,7 @@
 
 package org.gcreator.autocomplete;
 
+import org.gcreator.components.JEditTextArea;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -29,7 +30,7 @@ import publicdomain.*;
 public class GCLAutocomplete extends AutocompleteFrame{
     int selstart;
     int selend;
-    SyntaxHighlighter editor;
+    JEditTextArea editor;
     String prevWord;
     String context;
     boolean requestDie = false;
@@ -39,7 +40,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
     Vector<String> spriteTypes = new Vector<String>();
     Vector<Suggestion> v = new Vector<Suggestion>();
     
-    public GCLAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
+    public GCLAutocomplete(final int selstart, final int selend, final JEditTextArea editor, Project p){
         super("GCL Autocomplete...");
         this.selstart = selstart;
         this.selend = selend;

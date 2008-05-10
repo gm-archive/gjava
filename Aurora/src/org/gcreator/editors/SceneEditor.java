@@ -6,17 +6,15 @@
 
 package org.gcreator.editors;
 
-import org.gcreator.components.scanning.GCLScanner;
-import org.gcreator.components.SyntaxHighlighter;
+import org.gcreator.components.JEditTextArea;
+import org.gcreator.components.scanning.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import org.gcreator.components.popupmenus.*;
 import org.gcreator.components.*;
-import org.gcreator.components.impl.*;
 import org.gcreator.components.resource.ResourceChooser;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
@@ -133,7 +131,7 @@ public class SceneEditor extends TabPanel {
         }
     }
     public void updateBgImage(){
-        if(curbg.getCurrentObject()==null){
+        if(curbg.getFile()==null){
             jLabel23.setIcon(null);
             //((Scene) file.value).bgimage = null;
             scene.updateUI();
@@ -147,7 +145,7 @@ public class SceneEditor extends TabPanel {
         scene.updateUI();
     }
     
-    public SyntaxHighlighter egml;
+    public JEditTextArea egml;
     public TileChooser tilechooser;
     
     public SceneEditor(final org.gcreator.fileclass.GFile file,Project project) {
@@ -162,8 +160,9 @@ public class SceneEditor extends TabPanel {
         scene.setSize(500,500);
         jScrollPane1.setViewportView(scene);
         this.file = file;
-        org.gcreator.components.scanning.Scanner scanner = new GCLScanner();
-        egml = new SyntaxHighlighter(100, 100, scanner, project);
+        GScriptTokenMarker scanner = new GScriptTokenMarker();
+        egml = new JEditTextArea();
+        egml.setTokenMarker(scanner);
         egml.setText(((Scene) file.value).code);
         tilechooser = new TileChooser(this);
         jList1.setSelectedIndex(0);

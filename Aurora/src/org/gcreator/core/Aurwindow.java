@@ -391,9 +391,9 @@ public class Aurwindow extends JFrame {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("egml") || file.type.equals("gcl")) {
-            TabPanel tp = new GCLEditor(file, this.getCurrentProject());
-            file.tabPanel = tp;
-            addEWindow(tp, file.name, img);
+            //TabPanel tp = new GCLEditor(file, this.getCurrentProject());
+            //file.tabPanel = tp;
+            //addEWindow(tp, file.name, img);
         } else if (file.type.equals("gs")) {
             TabPanel tp = new ScriptEditor(file, this.getCurrentProject());
             file.tabPanel = tp;

@@ -29,7 +29,7 @@ import publicdomain.*;
 public class GSAutocomplete extends AutocompleteFrame{
     int selstart;
     int selend;
-    SyntaxHighlighter editor;
+    JEditTextArea editor;
     String prevWord;
     String context;
     boolean requestDie = false;
@@ -37,7 +37,7 @@ public class GSAutocomplete extends AutocompleteFrame{
     //How to declare an actor?
     Vector<Suggestion> v = new Vector<Suggestion>();
     
-    public GSAutocomplete(final int selstart, final int selend, final SyntaxHighlighter editor, Project p){
+    public GSAutocomplete(final int selstart, final int selend, final JEditTextArea editor, Project p){
         super("GS Autocomplete...");
         this.selstart = selstart;
         this.selend = selend;
