@@ -1,6 +1,6 @@
 <?xml version = "1.0"?>
 <theme>
-<color id="keyword">6711680</color>
-<color id="string">16711680</color>
-<color id="comment">65280</color>
+<element id="Keywords"><color>255, 0, 255</color><font size="12" style="0">Monospaced</font></element>
+<element id="Strings"><color>255, 0, 0</color><font size="12" style="0">Monospaced</font></element>
+<element id="Comments"><color>0, 178, 0</color><font size="12" style="0">Monospaced</font></element>
 </theme>

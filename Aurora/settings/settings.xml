@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<settings><style>com.sun.java.swing.plaf.gtk.GTKLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1288, 948</size><antialiasing>true</antialiasing></settings>
+<settings><style>com.sun.java.swing.plaf.windows.WindowsLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Hidden</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1288, 972</size><antialiasing>true</antialiasing></settings>

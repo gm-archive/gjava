@@ -2018,6 +2018,7 @@ public class Aurwindow extends JFrame {
     
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
+        System.out.println("Save settings");
         SettingsIO.saveSettings(istabs, scroller.isVisible());
         try {
             ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");

@@ -55,6 +55,7 @@ public class SyntaxHighlighter extends JTextPane
             }
 
             public void keyTyped(KeyEvent evt) {
+                if(isEditable()){
                 if (evt.getKeyChar() == ' ') {
                     if (evt.isControlDown()) {
                         callAutocomplete();
@@ -69,12 +70,15 @@ public class SyntaxHighlighter extends JTextPane
                         setSelectionEnd(selend);
                     }
                 }
+                }
             }
         });
 
     }
 
     public void callAutocomplete() {
+        if(!isEditable())
+            return;
         AutocompleteFrame f = scanner.callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
         if (f != null && !f.requestDie()) {
             f.setVisible(true);
@@ -152,8 +156,10 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(PUNCTUATION, Color.orange.darker());
         changeStyle(COMMENT, Color.green.darker());
         Color c = null;
+        if(ScriptThemeManager.getColors()==null)
+            ScriptThemeManager.load();
         try{
-        c = ScriptThemeManager.getColors().get("Comment");
+        c = ScriptThemeManager.getColors().get("Comments");
         }
         catch(Exception e){}
         if(c==null) c = Color.BLUE;
@@ -164,7 +170,7 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(END_TAG, Color.blue);
         c = null;
         try{
-        c = ScriptThemeManager.getColors().get("Keyword");
+        c = ScriptThemeManager.getColors().get("Keywords");
         }
         catch(Exception e){}
         if(c==null) c = Color.BLUE;
@@ -174,9 +180,13 @@ public class SyntaxHighlighter extends JTextPane
         changeStyle(LITERAL, Color.blue);
         c = null;
         try{
-        c = ScriptThemeManager.getColors().get("String");
+        c = ScriptThemeManager.getColors().get("Strings");
+        System.out.println("Got here");
+        System.out.println("STRING: " + c.getRed());
         }
-        catch(Exception e){}
+        catch(Exception e){
+            System.out.println("PROBLEM: " + e.toString());
+        }
         if(c==null) c = Color.RED;
         changeStyle(STRING, c);
         changeStyle(CHARACTER, Color.magenta);

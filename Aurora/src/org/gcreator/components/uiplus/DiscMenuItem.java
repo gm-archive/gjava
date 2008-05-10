@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class DiscMenuItem {
+/*public class DiscMenuItem {
     public ImageIcon image = null;
     public String label = null;
     private Vector<ActionListener> action = new Vector<ActionListener>();
@@ -44,4 +44,4 @@ public class DiscMenuItem {
     public boolean isEnabled(){
         return enabled;
     }
-}
+}*/

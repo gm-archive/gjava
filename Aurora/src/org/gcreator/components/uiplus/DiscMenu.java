@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class DiscMenu extends JDialog {
+/*public class DiscMenu extends JDialog {
 
     //TransparentBackground t;
     private int index = 0;
@@ -310,4 +310,4 @@ public class DiscMenu extends JDialog {
         menus.remove(this);
         super.dispose();
     }
-}
+}*/

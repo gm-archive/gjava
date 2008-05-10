@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-public class DiscMenuContainer extends DiscMenuItem{
+/*public class DiscMenuContainer extends DiscMenuItem{
     private Vector<DiscMenuItem> items;
     public DiscMenuContainer prevcontainer = null;
     public DiscMenuContainer(String label, ImageIcon image){
@@ -45,4 +45,4 @@ public class DiscMenuContainer extends DiscMenuItem{
             ((DiscMenu) o).repaint();
         }
     }
-}
+}*/

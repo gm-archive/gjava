@@ -21,7 +21,7 @@ public class PreferencesTab extends OptionPanel {
     public PreferencesTab(String[] settings) {
         initComponents();
 
-        jComboBox1.setSelectedIndex(0);
+        //jComboBox1.setSelectedIndex(0);
         try {
             if (settings[0] == null) {
                 throw new Exception();//Lazy way of going to the catch statement below.

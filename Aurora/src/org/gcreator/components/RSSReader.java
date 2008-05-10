@@ -65,7 +65,6 @@ public class RSSReader extends javax.swing.JPanel {
             DocumentBuilder builder;
             Document doc;
             
-            System.out.println("Here");
             builder = fact.newDocumentBuilder();
             doc = builder.parse(new StringInputStream(s));
             Node node = doc.getDocumentElement();
@@ -73,18 +72,15 @@ public class RSSReader extends javax.swing.JPanel {
             if(!root.equals("rss")){
                 throw new Exception("Invalid root " + root);
             }
-            System.out.println("Here 2");
             NodeList childs = node.getChildNodes();
             Node child;
             if(childs.getLength()!=1)
                 throw new Exception("Invalid number of channels");
             child = childs.item(0);
             String name = child.getNodeName();
-            System.out.println("Here 3");
             if(!name.equals("channel"))
                 throw new Exception("Invalid");
             childs = child.getChildNodes();
-            System.out.println("Here 4");
             System.out.println(childs.getLength());
             for(int j = 0; i < childs.getLength(); j++){
                 child = childs.item(j);
@@ -92,14 +88,11 @@ public class RSSReader extends javax.swing.JPanel {
                     name = child.getNodeName();
                     if(!name.equals("item"))
                         continue;
-                    System.out.println("Here 5");
                     parseItem(child);
-                    System.out.println("Here 6");
                 }
                 else
                     break;
             }
-            System.out.println("Here 7");
             
             failed = false;
         }
@@ -111,14 +104,11 @@ public class RSSReader extends javax.swing.JPanel {
     public void parseItem(Node child){
         if(child==null)
             return;
-        System.out.println("Here T");
         NodeList childs = child.getChildNodes();
         for(int i = 0; i < childs.getLength(); i++){
             Node c = childs.item(i);
-            System.out.println(c.getTextContent() + ": " + c.getTextContent());
         }
         items.put(childs.item(1).getTextContent(), childs.item(0).getTextContent());
-        System.out.println("Here V");
     }
     
     public void paint(Graphics g){

@@ -33,28 +33,29 @@ public class ScriptThemeManager {
                     throw new Exception("Invalid xml type");
                 while(true){
                     s = in.readLine();
+                    System.out.println(s);
                     // ';', '#', '//', "'", and '--' can be used for a comment
                     if(s.equals("") || s.matches("\\W*;.*") || s.matches("\\W*#.*") || s.matches("\\W*//.+")
                         || s.matches("\\W*'.*") || s.matches("\\W*\\-\\-.*") || s.matches("\\W*REM.*"))
                         continue;
                     if(s.equals("</theme>"))
                         break;
+                    System.out.println("Unbroken");
                     if (s.matches("\\W*<element.+")) {
                         String id = s.replaceAll("<element id=\"(\\w+)\">"+
-                            "<color>[0-9]+</color><font size=\"[0-9]+\" "+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"[0-3]\">.+</font></element>","$1");
                         System.out.println("id="+id);
-                        int rgb = Integer.parseInt(s.replaceAll(
-"<element id=\"\\w+\"><color>([0-9]+)</color><font size=\"[0-9]+\" style=\"[0-3]\">.+</font></element>", "$1"));
-                        colors.put(id, new Color(rgb));
+                        colors.put(id, getColor(s.replaceAll(
+"<element id=\"\\w+\"><color>([0-9]+, [0-9]+, [0-9]+)</color><font size=\"[0-9]+\" style=\"[0-3]\">.+</font></element>", "$1")));
                         fonts.put(id, new Font(s.replaceAll("<element id=\"\\w+\">"+
-                            "<color>[0-9]+</color><font size=\"[0-9]+\" "+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"[0-3]\">(\\w+)</font></element>", "$1"),
                             Integer.parseInt(s.replaceAll("<element id=\"\\w+\">"+
-                            "<color>[0-9]+</color><font size=\"[0-9]+\" "+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"([0-3])\">.+</font></element>", "$1")),
                             Integer.parseInt(s.replaceAll("<element id=\"\\w+\">"+
-                            "<color>[0-9]+</color><font size=\"([0-9]+)\" "+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"([0-9]+)\" "+
                             "style=\"[0-3]\">.+</font></element>", "$1"))));
                     }
                 }
@@ -75,6 +76,19 @@ public class ScriptThemeManager {
             fonts.put("Strings", new Font(Font.MONOSPACED, Font.PLAIN, 12));
         }
     }
+    
+    public static Color getColor(String rgb){
+        try{
+            int red = Integer.parseInt(rgb.replaceAll("([0-9]+), [0-9]+, [0-9]+", "$1"));
+            int blue = Integer.parseInt(rgb.replaceAll("[0-9]+, ([0-9]+), [0-9]+", "$1"));
+            int green = Integer.parseInt(rgb.replaceAll("[0-9]+, [0-9]+, ([0-9]+)", "$1"));
+            return new Color(red, blue, green);
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+            return new Color(0, 0, 0);
+        }
+    }
 
     public static void save() {
         System.out.println("Save Script Settings");
@@ -91,14 +105,9 @@ public class ScriptThemeManager {
             Enumeration<String> e = colors.keys();
             while (e.hasMoreElements()) {
                 String s = e.nextElement();
-                int i = 0;
-                i = colors.get(s).getRed();
-                i *= 256;
-                i += colors.get(s).getGreen();
-                i *= 256;
-                i += colors.get(s).getBlue();
+                Color c = colors.get(s);
                 Font font = fonts.get(s);
-                out.write("<element id=\"" + s + "\"><color>"+i+"</color><font size=\""+
+                out.write("<element id=\"" + s + "\"><color>"+c.getRed()+", " +c.getGreen()+", " + c.getBlue()+ "</color><font size=\""+
                                 font.getSize()+"\" style=\""+font.getStyle()+"\">"+font.getName()+"</font>");
                 out.write("</element>\n");
             }
@@ -106,6 +115,12 @@ public class ScriptThemeManager {
             out.close(); 
         } catch (IOException e) {
         }
+    }
+    
+    public static void reload(){
+        colors.clear();
+        fonts.clear();
+        load();
     }
     
     public static Hashtable<String, Color> getColors(){
