@@ -19,6 +19,8 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.Enumeration;
 import java.util.Vector;
+import org.gcreator.autocomplete.AutocompleteFrame;
+import org.gcreator.fileclass.Project;
 
 /**
  * jEdit's text area component. It is more suited for editing program
@@ -62,18 +64,51 @@ public class JEditTextArea extends JComponent {
     /**
      * Creates a new JEditTextArea with the default settings.
      */
-    public JEditTextArea() {
-        this(TextAreaDefaults.getDefaults());
+    public JEditTextArea(Project p) {
+        this(TextAreaDefaults.getDefaults(), p);
     }
 
     public void callAutocomplete() {
+        if(!isEditable())
+            return;
+        AutocompleteFrame f = document.getTokenMarker().callAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
+        if (f != null && !f.requestDie()) {
+            f.setVisible(true);
+            FontMetrics fm = getFontMetrics(getFont());
+            int x = 0;
+            int lh = fm.getHeight();
+            int y = lh;
+            int w = getWidth();
+            String d = getText();
+            for(int i = 0; i < getSelectionEnd(); i++){
+                char t = d.charAt(i);
+                if(t=='\r'||(t=='\n'&&(i==0||d.charAt(i-1)!='\r'))){
+                    x = 0;
+                    y += lh;
+                    continue;
+                }
+                int cw;
+                if(t!='\t')
+                    cw = fm.charWidth(t);
+                else
+                    cw = fm.charWidth(' ') * 10;
+                if(x + cw > w){
+                        x = cw;
+                        y += lh;
+                        continue;
+                }
+                x += cw;
+            }
+            f.setLocation(painter.getLocationOnScreen().x + x + 10, painter.getLocationOnScreen().y + y + 10);
+        }
+
     }
 
     public void insert(int start, int end, String text) {
         String doc = getText();
         String n = doc.substring(0, start);
         n += text;
-        n += doc.substring(end + 1, doc.length());
+        n += doc.substring(end, doc.length());
         setText(n);
     }
 
@@ -81,14 +116,15 @@ public class JEditTextArea extends JComponent {
      * Creates a new JEditTextArea with the specified settings.
      * @param defaults The default settings
      */
-    public JEditTextArea(TextAreaDefaults defaults) {
+    public JEditTextArea(TextAreaDefaults defaults, Project p) {
+        project = p;
         caretTimer = new Timer(500, new CaretBlinker());
         caretTimer.setInitialDelay(500);
         caretTimer.start();
-        
+
         // Enable the necessary events
         enableEvents(AWTEvent.KEY_EVENT_MASK);
-        
+
         // Initialize some misc. stuff
         painter = new TextAreaPainter(this, defaults);
         documentHandler = new DocumentHandler();
@@ -126,6 +162,34 @@ public class JEditTextArea extends JComponent {
         // We don't seem to get the initial focus event?
         focusedComponent = this;
 
+        addKeyListener(new KeyListener() {
+
+            public void keyPressed(KeyEvent evt) {
+                procKeyEvent(evt);
+            }
+
+            public void keyReleased(KeyEvent evt) {
+                procKeyEvent(evt);
+            }
+
+            public void keyTyped(KeyEvent evt) {
+                System.out.println("Got here");
+                if (evt.isControlDown() || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+                    System.out.println("Got here too with \"" + ((int) evt.getKeyChar()) + "\"");
+                    if (evt.getKeyChar() == 24) {
+                        cut();
+                    }
+                    if (evt.getKeyChar() == 3) {
+                        copy();
+                    }
+                    if (evt.getKeyChar() == 22) {
+                        paste();
+                    }
+                }
+                else
+                    procKeyEvent(evt);
+            }
+        });
     }
 
     /**
@@ -947,7 +1011,7 @@ public class JEditTextArea extends JComponent {
      * @param end The end offset
      */
     public void select(int start, int end) {
-        int newStart,  newEnd;
+        int newStart, newEnd;
         boolean newBias;
         if (start <= end) {
             newStart = start;
@@ -1291,6 +1355,7 @@ public class JEditTextArea extends JComponent {
      * into the clipboard.
      */
     public void cut() {
+        System.out.println("cut");
         if (editable) {
             copy();
             setSelectedText("");
@@ -1301,6 +1366,7 @@ public class JEditTextArea extends JComponent {
      * Places the selected text into the clipboard.
      */
     public void copy() {
+        System.out.println("copy");
         if (selectionStart != selectionEnd) {
             Clipboard clipboard = getToolkit().getSystemClipboard();
 
@@ -1319,6 +1385,7 @@ public class JEditTextArea extends JComponent {
      * Inserts the clipboard contents into the text.
      */
     public void paste() {
+        System.out.println("paste");
         if (editable) {
             Clipboard clipboard = getToolkit().getSystemClipboard();
             try {
@@ -1357,7 +1424,13 @@ public class JEditTextArea extends JComponent {
      * This is slightly faster than using a KeyListener
      * because some Swing overhead is avoided.
      */
-    public void processKeyEvent(KeyEvent evt) {
+    public void procKeyEvent(KeyEvent evt) {
+        if (evt.getKeyChar() == ' ') {
+            if (evt.isControlDown() || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
+                callAutocomplete();
+            }
+        }
+
         if (inputHandler == null) {
             return;
         }
@@ -1366,10 +1439,14 @@ public class JEditTextArea extends JComponent {
                 inputHandler.keyTyped(evt);
                 break;
             case KeyEvent.KEY_PRESSED:
-                inputHandler.keyPressed(evt);
+                if (!evt.isControlDown()) {
+                    inputHandler.keyPressed(evt);
+                }
                 break;
             case KeyEvent.KEY_RELEASED:
-                inputHandler.keyReleased(evt);
+                if (!evt.isControlDown()) {
+                    inputHandler.keyReleased(evt);
+                }
                 break;
         }
     }
@@ -1409,6 +1486,7 @@ public class JEditTextArea extends JComponent {
     protected int magicCaret;
     protected boolean overwrite;
     protected boolean rectSelect;
+    private Project project;
 
     protected void fireCaretEvent() {
         Object[] listeners = listenerList.getListenerList();

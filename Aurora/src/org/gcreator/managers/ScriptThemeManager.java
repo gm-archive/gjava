@@ -66,12 +66,14 @@ public class ScriptThemeManager {
         }
         if(colors.isEmpty()){
             colors.put("Keywords", Color.blue);
+            colors.put("Constants", Color.blue.darker());
             colors.put("Comments", Color.green.darker());
             colors.put("Strings", Color.red);
         }
         
         if(fonts.isEmpty()){
             fonts.put("Keywords", new Font(Font.MONOSPACED, Font.PLAIN, 12));
+            fonts.put("Constants", new Font(Font.MONOSPACED, Font.PLAIN, 12));
             fonts.put("Comments", new Font(Font.MONOSPACED, Font.PLAIN, 12));
             fonts.put("Strings", new Font(Font.MONOSPACED, Font.PLAIN, 12));
         }

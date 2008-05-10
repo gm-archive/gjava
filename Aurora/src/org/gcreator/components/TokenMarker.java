@@ -7,10 +7,13 @@
  * remains intact in all source distributions of this package.
  */
 
-package publicdomain;
+package org.gcreator.components;
 
+import publicdomain.*;
 import javax.swing.text.Segment;
 import java.util.*;
+import org.gcreator.autocomplete.AutocompleteFrame;
+import org.gcreator.fileclass.Project;
 
 /**
  * A token marker that splits lines of text into tokens. Each token carries
@@ -29,6 +32,11 @@ import java.util.*;
  */
 public abstract class TokenMarker
 {
+    
+    public AutocompleteFrame callAutocomplete(int selstart, int selend, JEditTextArea editor, Project p){
+        return null;
+    }
+    
 	/**
 	 * A wrapper for the lower-level <code>markTokensImpl</code> method
 	 * that is called to split a line up into tokens.

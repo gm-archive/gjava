@@ -9,6 +9,7 @@
 
 package publicdomain;
 
+import org.gcreator.components.TokenMarker;
 import javax.swing.text.Segment;
 
 /**

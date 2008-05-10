@@ -25,7 +25,7 @@ public class StyleThemePreferences extends javax.swing.JPanel {
     
     public GScriptTokenMarker scanner = new GScriptTokenMarker();
     //public SyntaxHighlighter g = new SyntaxHighlighter(100, 100, scanner, null);
-    public JEditTextArea g = new JEditTextArea();
+    public JEditTextArea g = new JEditTextArea(null);
     
     /** Creates new form StyleThemePreferences */
     public StyleThemePreferences() {
@@ -42,16 +42,16 @@ public class StyleThemePreferences extends javax.swing.JPanel {
         jList1.setSelectedIndex(0);
         
         g.setTokenMarker(scanner);
-        g.setText("{\n    var in,key,mode,out;\n    in = argument0;\n    "+
-                "key = argument1;\n    mode = argument2;\n    out = \"\";\n    "+
-                "var inLen,keyLen,pos,inChar,keyChar,outChar;\n    var inVal,"+
-                "keyVal,outVal;\n    inLen = string_length(in);\n    keyLen = st"+
-                "ring_length(key);\n    for (pos=0;pos<inLen;pos+=1) {\n\tinChar"+
-                " = string_char_at(in,pos+1);\n\tkeyChar = string_char_at(key,(p"+
-                "os mod keyLen)+1);\n\tinVal = ord(inChar);\n\tkeyVal = ord(keyCh"+
-                "ar);\n\tif (mode) {\n\t    outVal = (inVal + keyVal) mod 256;\n\t"+
-                "}else{\n\t    outVal = (256 + inVal - keyVal) mod 256;\n\t}\n\t"+
-                "outChar = chr(outVal);\n\tout = out + outChar;\n    }\n    return out;\n}");
+        g.setText("{\n" +
+                "\tvar x, y, z;\n" +
+                "\tx = true;\n" +
+                "\ty = 1.0;\n" +
+                "\tz = \"Hello World\";\n" +
+                "\tif(clipboard_has_text())\n" +
+                "\t\treturn clipboard_get_text();\n" +
+                "\telse\n" +
+                "\t\treturn null;\n" +
+                "}");
         g.setEditable(false);// - doesn't work
         g.setBorder(BorderFactory.createLineBorder(Color.darkGray));
         this.jScrollPane2.setViewportView(g);

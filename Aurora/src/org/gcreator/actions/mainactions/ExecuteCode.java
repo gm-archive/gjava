@@ -9,6 +9,7 @@
 
 package org.gcreator.actions.mainactions;
 
+import org.gcreator.components.TokenMarker;
 import org.gcreator.components.JEditTextArea;
 import org.gcreator.actions.*;
 import javax.swing.*;
@@ -53,7 +54,7 @@ public class ExecuteCode extends ActionPattern{
      
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         TokenMarker scanner = new GScriptTokenMarker();
-        JEditTextArea panel = new JEditTextArea(); //100, 100, scanner, project);
+        JEditTextArea panel = new JEditTextArea(project); //100, 100, scanner, project);
         panel.setTokenMarker(scanner);
         panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){

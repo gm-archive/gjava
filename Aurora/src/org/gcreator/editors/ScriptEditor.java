@@ -6,6 +6,7 @@
 
 package org.gcreator.editors;
 
+import org.gcreator.components.TokenMarker;
 import org.gcreator.components.JEditTextArea;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -46,7 +47,7 @@ public class ScriptEditor extends TabPanel {
             file.value = new Classes("// Press CTRL + SPACE for code completion \n show_message(\"test\")\n");
         TokenMarker scanner = new GScriptTokenMarker();
         //g = new SyntaxHighlighter(100, 100, scanner, project);
-        g = new JEditTextArea();
+        g = new JEditTextArea(project);
         g.setTokenMarker(scanner);
         g.setText(((Classes)file.value).toString());
         

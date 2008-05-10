@@ -8,6 +8,10 @@
  */
 package org.gcreator.components.scanning;
 
+import org.gcreator.autocomplete.AutocompleteFrame;
+import org.gcreator.autocomplete.GSAutocomplete;
+import org.gcreator.components.JEditTextArea;
+import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /**
@@ -18,6 +22,12 @@ import publicdomain.*;
  */
 public class GScriptTokenMarker extends CTokenMarker {
 
+    public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, JEditTextArea editor, Project project){
+        GSAutocomplete a = new GSAutocomplete(selectionStart, selectionEnd, editor, project);
+        return a;
+    }
+
+    
     public GScriptTokenMarker() {
         super(false, getKeywords());
     }
@@ -44,9 +54,10 @@ public class GScriptTokenMarker extends CTokenMarker {
             lookup(Token.KEYWORD1, "global");
             lookup(Token.KEYWORD1, "return");
 
-            lookup(Token.LITERAL1, "true");
-            lookup(Token.LITERAL1, "false");
-            lookup(Token.LITERAL1, "pi");
+            lookup(Token.LITERAL2, "true");
+            lookup(Token.LITERAL2, "false");
+            lookup(Token.LITERAL2, "pi");
+            lookup(Token.LITERAL2, "null");
 
             lookup(Token.KEYWORD2, "score");
             lookup(Token.KEYWORD2, "lives");

@@ -161,7 +161,7 @@ public class SceneEditor extends TabPanel {
         jScrollPane1.setViewportView(scene);
         this.file = file;
         GScriptTokenMarker scanner = new GScriptTokenMarker();
-        egml = new JEditTextArea();
+        egml = new JEditTextArea(project);
         egml.setTokenMarker(scanner);
         egml.setText(((Scene) file.value).code);
         tilechooser = new TileChooser(this);
