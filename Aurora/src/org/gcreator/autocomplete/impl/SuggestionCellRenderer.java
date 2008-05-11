@@ -26,11 +26,13 @@ public class SuggestionCellRenderer extends JLabel implements ListCellRenderer{
             setText(sel.getText());
             setForeground(sel.getForeground());
             setIcon(sel.getImage());
+            setFont(sel.getFont());
         }
         else{
             setText(selection.toString());
             setForeground(Color.RED);
             setIcon(null);
+            setFont(list.getFont());
         }
         if(selected)
             try{
@@ -43,7 +45,6 @@ public class SuggestionCellRenderer extends JLabel implements ListCellRenderer{
             }
         else
             setBackground(Color.WHITE);
-        setFont(list.getFont());
         return this;
     }
 }

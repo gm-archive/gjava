@@ -19,6 +19,9 @@ public abstract class Suggestion implements Comparable<Suggestion>{
     public abstract String getText();
     public abstract ImageIcon getImage();
     public abstract Color getForeground();
+    public Font getFont(){
+        return new Font(Font.MONOSPACED, Font.PLAIN, 12);
+    }
     public abstract String confirm(String context, String prevWord);
     public String toString(){
         return getText();

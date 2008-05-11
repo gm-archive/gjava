@@ -43,7 +43,7 @@ public class StyleThemePreferences extends javax.swing.JPanel {
         
         g.setTokenMarker(scanner);
         g.setText("{\n" +
-                "\tvar x, y, z;\n" +
+                "\tvar x, y, z; //Variable declaration\n" +
                 "\tx = true;\n" +
                 "\ty = 1.0;\n" +
                 "\tz = \"Hello World\";\n" +

@@ -11,6 +11,7 @@ package org.gcreator.autocomplete.impl;
 
 import java.awt.*;
 import javax.swing.*;
+import org.gcreator.managers.ScriptThemeManager;
 
 /**
  * @author Luís Reis
@@ -24,7 +25,11 @@ public class KeywordSuggestion extends Suggestion{
     }
     
     public Color getForeground(){
-        return Color.BLUE;
+        return ScriptThemeManager.getColors().get("Keywords");
+    }
+    
+    public Font getFont(){
+        return ScriptThemeManager.getFonts().get("Keywords");
     }
     
     public ImageIcon getImage(){

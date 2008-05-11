@@ -109,6 +109,7 @@ public class RSSReader extends javax.swing.JPanel {
                 }
                 loaded = true;
                 repaint();
+                updateUI();
             }
         };
         t.start();

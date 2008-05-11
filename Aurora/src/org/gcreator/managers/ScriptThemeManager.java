@@ -18,11 +18,9 @@ public class ScriptThemeManager {
     private static Hashtable<String, Font> fonts = new Hashtable<String, Font>();
     
     public static void load() {
-        System.out.println("Load Script Settings");
         File f = new File("settings/scripttheme");
         if (f.exists()) {
             try {
-                System.out.println("Reading");
                 FileReader r = new FileReader(f);
                 BufferedReader in = new BufferedReader(r);
                 String s = in.readLine();
@@ -33,7 +31,7 @@ public class ScriptThemeManager {
                     throw new Exception("Invalid xml type");
                 while(true){
                     s = in.readLine();
-                    System.out.println(s);
+                    System.out.println("LINE: " + s);
                     // ';', '#', '//', "'", and '--' can be used for a comment
                     if(s.equals("") || s.matches("\\W*;.*") || s.matches("\\W*#.*") || s.matches("\\W*//.+")
                         || s.matches("\\W*'.*") || s.matches("\\W*\\-\\-.*") || s.matches("\\W*REM.*"))
@@ -46,22 +44,30 @@ public class ScriptThemeManager {
                             "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"[0-3]\">.+</font></element>","$1");
                         System.out.println("id="+id);
+
                         colors.put(id, getColor(s.replaceAll(
 "<element id=\"\\w+\"><color>([0-9]+, [0-9]+, [0-9]+)</color><font size=\"[0-9]+\" style=\"[0-3]\">.+</font></element>", "$1")));
+                        String q1 = s.replaceAll("<element id=\"\\w+\">"+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
+                            "style=\"([0-3])\">.+</font></element>", "$1");
+                        String q2 = s.replaceAll("<element id=\"\\w+\">"+
+                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"([0-9]+)\" "+
+                            "style=\"[0-3]\">.+</font></element>", "$1");
+                        System.out.println("---");
+                        System.out.println(q1);
+                        System.out.println("---");
+                        int i1 = Integer.parseInt(q1);
+                        int i2 = Integer.parseInt(q2);
                         fonts.put(id, new Font(s.replaceAll("<element id=\"\\w+\">"+
                             "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"[0-3]\">(\\w+)</font></element>", "$1"),
-                            Integer.parseInt(s.replaceAll("<element id=\"\\w+\">"+
-                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
-                            "style=\"([0-3])\">.+</font></element>", "$1")),
-                            Integer.parseInt(s.replaceAll("<element id=\"\\w+\">"+
-                            "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"([0-9]+)\" "+
-                            "style=\"[0-3]\">.+</font></element>", "$1"))));
+                            i1,
+                            i2));
                     }
                 }
             } catch (Exception e) {
                 System.out.println("Exception caught: "+e.toString());
-                e.printStackTrace();
+                //e.printStackTrace();
             }
         }
         if(colors.isEmpty()){
@@ -69,6 +75,7 @@ public class ScriptThemeManager {
             colors.put("Constants", Color.blue.darker());
             colors.put("Comments", Color.green.darker());
             colors.put("Strings", Color.red);
+            colors.put("Plain", Color.black);
         }
         
         if(fonts.isEmpty()){
@@ -76,6 +83,7 @@ public class ScriptThemeManager {
             fonts.put("Constants", new Font(Font.MONOSPACED, Font.PLAIN, 12));
             fonts.put("Comments", new Font(Font.MONOSPACED, Font.PLAIN, 12));
             fonts.put("Strings", new Font(Font.MONOSPACED, Font.PLAIN, 12));
+            fonts.put("Plain", new Font(Font.MONOSPACED, Font.PLAIN, 12));
         }
     }
     
@@ -107,8 +115,14 @@ public class ScriptThemeManager {
             Enumeration<String> e = colors.keys();
             while (e.hasMoreElements()) {
                 String s = e.nextElement();
+                if(s==null)
+                    s = "null";
                 Color c = colors.get(s);
                 Font font = fonts.get(s);
+                if(c==null)
+                    c = Color.BLACK;
+                if(font==null)
+                    font = new Font(Font.MONOSPACED, Font.PLAIN, 12);
                 out.write("<element id=\"" + s + "\"><color>"+c.getRed()+", " +c.getGreen()+", " + c.getBlue()+ "</color><font size=\""+
                                 font.getSize()+"\" style=\""+font.getStyle()+"\">"+font.getName()+"</font>");
                 out.write("</element>\n");
@@ -116,6 +130,7 @@ public class ScriptThemeManager {
             out.write("</theme>\n");
             out.close(); 
         } catch (IOException e) {
+            System.out.println(e.toString());
         }
     }
     

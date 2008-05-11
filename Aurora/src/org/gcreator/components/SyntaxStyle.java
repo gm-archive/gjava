@@ -7,10 +7,9 @@
  * remains intact in all source distributions of this package.
  */
 
-package publicdomain;
+package org.gcreator.components;
 
 import java.awt.*;
-import java.util.StringTokenizer;
 
 /**
  * A simple text style class. It can specify the color, italic flag,
@@ -26,12 +25,16 @@ public class SyntaxStyle
 	 * @param italic True if the text should be italics
 	 * @param bold True if the text should be bold
 	 */
-	public SyntaxStyle(Color color, boolean italic, boolean bold)
+	public SyntaxStyle(Color color, Font f)
 	{
 		this.color = color;
-		this.italic = italic;
-		this.bold = bold;
+		this.f = f;
 	}
+        
+        public SyntaxStyle(Color color, boolean italic, boolean bold){
+            this.color = color;
+            f = new Font(Font.MONOSPACED, (italic? Font.ITALIC : 0) | (bold? Font.BOLD : 0), 12);
+        }
 
 	/**
 	 * Returns the color specified in this style.
@@ -46,7 +49,7 @@ public class SyntaxStyle
 	 */
 	public boolean isPlain()
 	{
-		return !(bold || italic);
+		return !(isBold() || isItalic());
 	}
 
 	/**
@@ -54,7 +57,7 @@ public class SyntaxStyle
 	 */
 	public boolean isItalic()
 	{
-		return italic;
+		return f.isItalic();
 	}
 
 	/**
@@ -62,7 +65,7 @@ public class SyntaxStyle
 	 */
 	public boolean isBold()
 	{
-		return bold;
+		return f.isBold();
 	}
 
 	/**
@@ -71,16 +74,18 @@ public class SyntaxStyle
 	 */
 	public Font getStyledFont(Font font)
 	{
-		if(font == null)
+		/*if(font == null)
 			throw new NullPointerException("font param must not"
-				+ " be null");
-		if(font.equals(lastFont))
+				+ " be null");*/
+            if(f==null)
+                f = new Font(Font.MONOSPACED, Font.PLAIN, 12);
+		if(f.equals(lastFont))
 			return lastStyledFont;
-		lastFont = font;
-		lastStyledFont = new Font(font.getFamily(),
-			(bold ? Font.BOLD : 0)
-			| (italic ? Font.ITALIC : 0),
-			font.getSize());
+		lastFont = f;
+		lastStyledFont = new Font(f.getFamily(),
+			(f.isBold() ? Font.BOLD : 0)
+			| (f.isItalic() ? Font.ITALIC : 0),
+			f.getSize());
 		return lastStyledFont;
 	}
 
@@ -92,15 +97,15 @@ public class SyntaxStyle
 		if(font == null)
 			throw new NullPointerException("font param must not"
 				+ " be null");
-		if(font.equals(lastFont) && fontMetrics != null)
+		if(f.equals(lastFont) && fontMetrics != null)
 			return fontMetrics;
-		lastFont = font;
-		lastStyledFont = new Font(font.getFamily(),
-			(bold ? Font.BOLD : 0)
-			| (italic ? Font.ITALIC : 0),
-			font.getSize());
-		fontMetrics = Toolkit.getDefaultToolkit().getFontMetrics(
-			lastStyledFont);
+		//lastFont = font;
+                lastFont = f;
+		lastStyledFont = new Font(f.getFamily(),
+			(f.isBold() ? Font.BOLD : 0)
+			| (f.isItalic() ? Font.ITALIC : 0),
+			f.getSize());
+		fontMetrics = Toolkit.getDefaultToolkit().getFontMetrics(lastStyledFont);
 		return fontMetrics;
 	}
 
@@ -123,14 +128,13 @@ public class SyntaxStyle
 	public String toString()
 	{
 		return getClass().getName() + "[color=" + color +
-			(italic ? ",italic" : "") +
-			(bold ? ",bold" : "") + "]";
+			(f.isItalic() ? ",italic" : "") +
+			(f.isBold() ? ",bold" : "") + "]";
 	}
 
 	// private members
 	private Color color;
-	private boolean italic;
-	private boolean bold;
+	private Font f;
 	private Font lastFont;
 	private Font lastStyledFont;
 	private FontMetrics fontMetrics;

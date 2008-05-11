@@ -93,16 +93,23 @@ public class SyntaxUtilities
 	{
 		SyntaxStyle[] styles = new SyntaxStyle[Token.ID_COUNT];
 
-		styles[Token.COMMENT1] = new SyntaxStyle(ScriptThemeManager.getColors().get("Comments"),false,false);
-		styles[Token.COMMENT2] = new SyntaxStyle(ScriptThemeManager.getColors().get("Comments"),false,false);
-		styles[Token.KEYWORD1] = new SyntaxStyle(ScriptThemeManager.getColors().get("Keywords"),false,false);
+		styles[Token.COMMENT1] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Comments"),ScriptThemeManager.getFonts().get("Comments"));
+		styles[Token.COMMENT2] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Comments"),ScriptThemeManager.getFonts().get("Comments"));
+		styles[Token.KEYWORD1] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Keywords"),ScriptThemeManager.getFonts().get("Keywords"));
 		styles[Token.KEYWORD2] = new SyntaxStyle(Color.black,false,true);
 		styles[Token.KEYWORD3] = new SyntaxStyle(new Color(0x009600),false,false);
-		styles[Token.LITERAL1] = new SyntaxStyle(ScriptThemeManager.getColors().get("Strings"),false,true);
-		styles[Token.LITERAL2] = new SyntaxStyle(ScriptThemeManager.getColors().get("Constants"),false,true);
+		styles[Token.LITERAL1] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Strings"), ScriptThemeManager.getFonts().get("Strings"));
+		styles[Token.LITERAL2] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Constants"), ScriptThemeManager.getFonts().get("Constants"));
 		styles[Token.LABEL] = new SyntaxStyle(new Color(0x990033),false,true);
 		styles[Token.OPERATOR] = new SyntaxStyle(Color.black,false,true);
 		styles[Token.INVALID] = new SyntaxStyle(Color.red,false,true);
+                styles[Token.NULL] = new SyntaxStyle(
+                        ScriptThemeManager.getColors().get("Plain Text"),ScriptThemeManager.getFonts().get("Plain Text"));
 
 		return styles;
 	}
