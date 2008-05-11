@@ -25,14 +25,13 @@ public class ImageEditor2 extends TabPanel {
     public boolean changed;
     public ImagePane pane;
     public String type;
-    
     public static JFileChooser jFileChooser1 = null;
 
     /** Creates new form ImageEditor2 */
     public ImageEditor2(Project p, GFile f) {
         this.project = p;
         this.file = f;
-        
+
         i = new GImage();
         if (f.value == null || ((GImage) f.value).image == null) {
             i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
@@ -42,7 +41,7 @@ public class ImageEditor2 extends TabPanel {
             BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
                     ((GImage) f.value).image.getIconHeight(),
                     BufferedImage.TYPE_INT_ARGB);
-                    //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
+            //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
             img.getGraphics().drawImage(((GImage) f.value).image.getImage(), 0, 0,
                     ((GImage) f.value).image.getImageObserver());
             i.readXml(file.xml);
@@ -52,23 +51,23 @@ public class ImageEditor2 extends TabPanel {
 
         initComponents();
         colorSelection1.setBackground(i.transparentColor);
-        
+
         pane = new ImagePane(this);
         jScrollPane1.setViewportView(pane);
     }
-    
+
     @Override
-    public boolean canSave(){
+    public boolean canSave() {
         return !changed;
     }
-    
+
     @Override
-    public boolean wasModified(){
+    public boolean wasModified() {
         return changed;
     }
-    
+
     @Override
-    public boolean Save(){
+    public boolean Save() {
         changed = false;
         file.value = i;
         return true;
@@ -101,8 +100,10 @@ public class ImageEditor2 extends TabPanel {
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
         jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
+        jPanel1.setFocusable(false);
 
         jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,6 +147,7 @@ public class ImageEditor2 extends TabPanel {
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Transparency"));
+        jPanel2.setFocusable(false);
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         colorSelection1.setToolTipText("Transparent Colour");
@@ -163,7 +165,7 @@ public class ImageEditor2 extends TabPanel {
         );
         colorSelection1Layout.setVerticalGroup(
             colorSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+            .addGap(0, 41, Short.MAX_VALUE)
         );
 
         jCheckBox1.setText("Transparent");
@@ -176,7 +178,7 @@ public class ImageEditor2 extends TabPanel {
                 .addComponent(colorSelection1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,6 +192,7 @@ public class ImageEditor2 extends TabPanel {
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Edit"));
+        jPanel3.setFocusable(false);
 
         colorSelection2.setBackground(new java.awt.Color(1, 1, 1));
 
@@ -201,7 +204,7 @@ public class ImageEditor2 extends TabPanel {
         );
         colorSelection2Layout.setVerticalGroup(
             colorSelection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 54, Short.MAX_VALUE)
         );
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(255, 0, 255, 10));
@@ -211,14 +214,15 @@ public class ImageEditor2 extends TabPanel {
         buttonGroup1.add(jToggleButton1);
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Draw_Base.png"))); // NOI18N
         jToggleButton1.setSelected(true);
-        jToggleButton1.setBorder(null);
-        jToggleButton1.setBorderPainted(false);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jToggleButton2);
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Draw_Line.png"))); // NOI18N
         jToggleButton2.setSelected(true);
-        jToggleButton2.setBorder(null);
-        jToggleButton2.setBorderPainted(false);
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton2ActionPerformed(evt);
@@ -228,8 +232,6 @@ public class ImageEditor2 extends TabPanel {
         buttonGroup1.add(jToggleButton3);
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/actions/images/Draw2D.png"))); // NOI18N
         jToggleButton3.setSelected(true);
-        jToggleButton3.setBorder(null);
-        jToggleButton3.setBorderPainted(false);
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton3ActionPerformed(evt);
@@ -239,11 +241,18 @@ public class ImageEditor2 extends TabPanel {
         buttonGroup1.add(jToggleButton4);
         jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/actions/images/Draw2D.png"))); // NOI18N
         jToggleButton4.setSelected(true);
-        jToggleButton4.setBorder(null);
-        jToggleButton4.setBorderPainted(false);
         jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton4ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton5);
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/actions/images/Draw2D.png"))); // NOI18N
+        jToggleButton5.setSelected(true);
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
             }
         });
 
@@ -266,7 +275,9 @@ public class ImageEditor2 extends TabPanel {
                 .addComponent(jToggleButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton4)
-                .addContainerGap(355, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton5)
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,6 +292,9 @@ public class ImageEditor2 extends TabPanel {
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                 .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jToggleButton5)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -292,7 +306,7 @@ public class ImageEditor2 extends TabPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +317,7 @@ public class ImageEditor2 extends TabPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -319,59 +333,84 @@ private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     if (jFileChooser1 == null) {
-            jFileChooser1 = new JFileChooser();
-        }
+        jFileChooser1 = new JFileChooser();
+    }
 
-        try {
-            jFileChooser1.resetChoosableFileFilters();
-            JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
-            jFileChooser1.addChoosableFileFilter(filter);
-            JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
-            jFileChooser1.addChoosableFileFilter(filter2);
-            jFileChooser1.setFileFilter(filter);
-            jFileChooser1.showDialog(this, "OK");
-            if (jFileChooser1.getSelectedFile() != null) {
-                java.io.File _file = jFileChooser1.getSelectedFile();
-                type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
-                if (type.toLowerCase().equals("gif")) {
-                    System.out.println("GIF!");
-                    //                    boolean animated = false;
-                    ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
-                    //                    if (reader.getNumImages(true) > 1) {
+    try {
+        jFileChooser1.resetChoosableFileFilters();
+        JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
+        jFileChooser1.addChoosableFileFilter(filter);
+        JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
+        jFileChooser1.addChoosableFileFilter(filter2);
+        jFileChooser1.setFileFilter(filter);
+        jFileChooser1.showDialog(this, "OK");
+        if (jFileChooser1.getSelectedFile() != null) {
+            java.io.File _file = jFileChooser1.getSelectedFile();
+            type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
+            if (type.toLowerCase().equals("gif")) {
+                System.out.println("GIF!");
+                //                    boolean animated = false;
+                ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
+                //                    if (reader.getNumImages(true) > 1) {
 //                        animated = true;
 //                    }
-                    reader.setInput(new FileImageInputStream(_file));
-                    System.out.println("No: "+reader.getNumImages(true));
-                    BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
-                    
-                    for (int i = 0; i < reader.getNumImages(true); i++) {
-                        b[i] = reader.read(i);
-                    }
-                    i.image = new ImageIcon(b[0]);
-                    //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
-                } else {
-                    i.image = new ImageIcon(ImageIO.read(_file));
-                    //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
+                reader.setInput(new FileImageInputStream(_file));
+                System.out.println("No: " + reader.getNumImages(true));
+                BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
+
+                for (int i = 0; i < reader.getNumImages(true); i++) {
+                    b[i] = reader.read(i);
                 }
-                org.gcreator.core.Aurwindow.workspace.updateUI();
-                jScrollPane1.updateUI();
+                i.image = new ImageIcon(b[0]);
+            //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
+            } else {
+                i.image = new ImageIcon(ImageIO.read(_file));
+            //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
             }
-        } catch (Exception e) {
+            org.gcreator.core.Aurwindow.workspace.updateUI();
+            jScrollPane1.updateUI();
         }
-        updateScroll();
+    } catch (Exception e) {
+    }
+    updateScroll();
 }//GEN-LAST:event_jButton1ActionPerformed
+    public boolean sel5 = false;
 
 private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
-// TODO add your handling code here:
+    if (sel5) {
+        deactivate5();
+    }
 }//GEN-LAST:event_jToggleButton2ActionPerformed
 
 private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-// TODO add your handling code here:
+    if (sel5) {
+        deactivate5();
+    }
 }//GEN-LAST:event_jToggleButton3ActionPerformed
 
 private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
-// TODO add your handling code here:
+    if (sel5) {
+        deactivate5();
+    }
 }//GEN-LAST:event_jToggleButton4ActionPerformed
+
+private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+    if (sel5) {
+        deactivate5(); //First deactivate, then reactivate
+    }
+    sel5 = true;
+}//GEN-LAST:event_jToggleButton5ActionPerformed
+
+private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    if (sel5) {
+        deactivate5();
+    }
+}//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    public void deactivate5() {
+        sel5 = false;
+        pane.mergeSelection();
+    }
 
     public void updateScroll() {
         changed = true;
@@ -399,5 +438,6 @@ private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GE
     public javax.swing.JToggleButton jToggleButton2;
     public javax.swing.JToggleButton jToggleButton3;
     public javax.swing.JToggleButton jToggleButton4;
+    public javax.swing.JToggleButton jToggleButton5;
     // End of variables declaration//GEN-END:variables
 }

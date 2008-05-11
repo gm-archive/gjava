@@ -31,19 +31,16 @@ public class ScriptThemeManager {
                     throw new Exception("Invalid xml type");
                 while(true){
                     s = in.readLine();
-                    System.out.println("LINE: " + s);
                     // ';', '#', '//', "'", and '--' can be used for a comment
                     if(s.equals("") || s.matches("\\W*;.*") || s.matches("\\W*#.*") || s.matches("\\W*//.+")
                         || s.matches("\\W*'.*") || s.matches("\\W*\\-\\-.*") || s.matches("\\W*REM.*"))
                         continue;
                     if(s.equals("</theme>"))
                         break;
-                    System.out.println("Unbroken");
                     if (s.matches("\\W*<element.+")) {
                         String id = s.replaceAll("<element id=\"(\\w+)\">"+
                             "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"[0-9]+\" "+
                             "style=\"[0-3]\">.+</font></element>","$1");
-                        System.out.println("id="+id);
 
                         colors.put(id, getColor(s.replaceAll(
 "<element id=\"\\w+\"><color>([0-9]+, [0-9]+, [0-9]+)</color><font size=\"[0-9]+\" style=\"[0-3]\">.+</font></element>", "$1")));
@@ -53,9 +50,6 @@ public class ScriptThemeManager {
                         String q2 = s.replaceAll("<element id=\"\\w+\">"+
                             "<color>[0-9]+, [0-9]+, [0-9]+</color><font size=\"([0-9]+)\" "+
                             "style=\"[0-3]\">.+</font></element>", "$1");
-                        System.out.println("---");
-                        System.out.println(q1);
-                        System.out.println("---");
                         int i1 = Integer.parseInt(q1);
                         int i2 = Integer.parseInt(q2);
                         fonts.put(id, new Font(s.replaceAll("<element id=\"\\w+\">"+
@@ -101,7 +95,6 @@ public class ScriptThemeManager {
     }
 
     public static void save() {
-        System.out.println("Save Script Settings");
         File f = new File("settings/scripttheme");
         BufferedWriter out;
         try {
