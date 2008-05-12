@@ -31,6 +31,7 @@ public class DiscMenu extends DialogPlus {
     private static Vector<DiscMenu> menus = new Vector<DiscMenu>();
     
     public DiscMenu() {
+        super();
         try{
         for(DiscMenu menu : menus){
             menu.dispose();
@@ -87,6 +88,7 @@ public class DiscMenu extends DialogPlus {
                     }
                 });
         setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask.png")));
+        setDoubleBuffered(true);
     }
 
     private void motion(MouseEvent evt) {
@@ -111,6 +113,7 @@ public class DiscMenu extends DialogPlus {
         }
 
         if (os != selection) {
+            invalidate();
             repaint();
         }
     }
@@ -170,6 +173,10 @@ public class DiscMenu extends DialogPlus {
             repaint();
         }
         
+    }
+    
+    public void update(Graphics g){
+        paint(g);
     }
 
     public void paint(Graphics g) {
