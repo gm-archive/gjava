@@ -13,7 +13,7 @@ import javax.swing.*;
  *
  * @author Luís
  */
-/*public class DiscMenu extends JDialog {
+public class DiscMenu extends DialogPlus {
 
     //TransparentBackground t;
     private int index = 0;
@@ -86,6 +86,7 @@ import javax.swing.*;
                         motion(evt);
                     }
                 });
+        setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask.png")));
     }
 
     private void motion(MouseEvent evt) {
@@ -172,8 +173,6 @@ import javax.swing.*;
     }
 
     public void paint(Graphics g) {
-        super.paint(g);
-
         Color t1 = Color.WHITE;
         Color t2 = Color.BLUE;
         
@@ -298,11 +297,15 @@ import javax.swing.*;
         } //Out of bounds? NullPointer?
         
         if(curcontainer.prevcontainer!=null&&curcontainer.image!=null){
+            setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask2.png")));
             ImageIcon i = curcontainer.image;
             g.drawImage(
                     i.getImage(),
-                    45,
-                    43, i.getImageObserver());
+                    42,
+                    42, i.getImageObserver());
+        }
+        else{
+            setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask.png")));
         }
     }
     
@@ -310,4 +313,4 @@ import javax.swing.*;
         menus.remove(this);
         super.dispose();
     }
-}*/
+}

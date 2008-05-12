@@ -8,7 +8,7 @@ package org.gcreator.components.custom;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-//import org.gcreator.components.uiplus.*;
+import org.gcreator.components.uiplus.*;
 import org.gcreator.managers.*;
 
 /**
@@ -17,12 +17,12 @@ import org.gcreator.managers.*;
  */
 public class MenuGenerator {
     private JPopupMenu std = null;
-    //private DiscMenu disc = null;
+    private DiscMenu disc = null;
     
     public static final int TYPE_STD = 1;
     public static final int TYPE_DISC = 2;
     
-    public static int type = TYPE_STD;
+    public static int type = TYPE_DISC;
     
     private int ltype;
     private Object parent;
@@ -36,8 +36,8 @@ public class MenuGenerator {
     public static void addActionListener(Object o, ActionListener a){
         if(o instanceof JMenuItem)
             ((JMenuItem) o).addActionListener(a);
-        //if(o instanceof DiscMenuItem)
-            //((DiscMenuItem) o).addActionListener(a);
+        if(o instanceof DiscMenuItem)
+            ((DiscMenuItem) o).addActionListener(a);
     }
     
     private void initMenu(){
@@ -45,8 +45,8 @@ public class MenuGenerator {
             parent = std = new JPopupMenu();
         }
         else{
-            //disc = new DiscMenu();
-            //parent = disc.curcontainer = new DiscMenuContainer(null, null);
+            disc = new DiscMenu();
+            parent = disc.curcontainer = new DiscMenuContainer(null, null);
         }
     }
     
@@ -69,11 +69,11 @@ public class MenuGenerator {
             return i;
         }
         else{
-            //DiscMenuItem i = new DiscMenuItem(lang, img);
-            //i.setEnabled(enabled);
-            //((DiscMenuContainer) parent).add(i);
-            //return i;
-            return null;
+            DiscMenuItem i = new DiscMenuItem(lang, img);
+            i.setEnabled(enabled);
+            ((DiscMenuContainer) parent).add(i);
+            return i;
+            //return null;
         }
     }
     
@@ -88,11 +88,11 @@ public class MenuGenerator {
             return i;
         }
         else{
-            //DiscMenuItem i = new DiscMenuItem(lang, img);
-            //i.setEnabled(enabled);
-            //((DiscMenuContainer) parent).add(i);
-            //return i;
-            return null;
+            DiscMenuItem i = new DiscMenuItem(lang, img);
+            i.setEnabled(enabled);
+            ((DiscMenuContainer) parent).add(i);
+            return i;
+            //return null;
         }
     }
     
@@ -107,10 +107,10 @@ public class MenuGenerator {
             return i;
         }
         else{
-            //DiscMenuItem i = new DiscMenuItem(lang, img);
-            //((DiscMenuContainer) parent).add(i);
-            //return i;
-            return null;
+            DiscMenuItem i = new DiscMenuItem(lang, img);
+            ((DiscMenuContainer) parent).add(i);
+            return i;
+            //return null;
         }
     }
     
@@ -125,10 +125,10 @@ public class MenuGenerator {
             return i;
         }
         else{
-            //DiscMenuContainer i = new DiscMenuContainer(lang, img);
-            //((DiscMenuContainer) parent).add(i);
-            //return i;
-            return null;
+            DiscMenuContainer i = new DiscMenuContainer(lang, img);
+            ((DiscMenuContainer) parent).add(i);
+            return i;
+            //return null;
         }
     }
     
@@ -137,8 +137,8 @@ public class MenuGenerator {
         if(ltype==TYPE_STD)
             std.show(invoker, x, y);
         else{
-            //disc.setLocation(x+p.x, y+p.y);
-            //disc.setVisible(true);
+            disc.setLocation(x+p.x, y+p.y);
+            disc.setVisible(true);
         }
     }
 }
