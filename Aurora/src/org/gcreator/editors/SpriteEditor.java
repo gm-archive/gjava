@@ -46,7 +46,26 @@ public class SpriteEditor extends TabPanel {
                 this.sprite = (Sprite) file.value;
         }
         else
-            this.sprite = (Sprite) (file.value = new Sprite(file.name));
+            this.sprite = (Sprite) (file.value = new Sprite());
+        Component c = org.gcreator.core.gcreator.window.getNavigatorPanel();
+        if(c instanceof JPanel){
+            System.out.println("Update c JPanel");
+            ((JPanel) c).updateUI();
+        }
+        else if(c instanceof JScrollPane){
+            ((JScrollPane) c).updateUI();
+            Component d = ((JScrollPane) c).getViewport().getView();
+            if(d instanceof JPanel){
+                System.out.println("Update d JPanel");
+                ((JPanel) d).updateUI();
+            }
+            else if(d instanceof JEditorPane){
+                System.out.println("Update d editor pane");
+                ((JEditorPane) d).updateUI();
+            }
+            else
+                d.repaint();
+        }
         initComponents();
         load();
        // }

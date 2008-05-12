@@ -675,6 +675,10 @@ public class Aurwindow extends JFrame {
             updateNavigatorPanel(new ActorNavigator(((ActorEditor) panel).file));
             return;
         }
+        if (panel instanceof SpriteEditor) {
+            updateNavigatorPanel(new SpriteNavigator(((SpriteEditor) panel).file));
+            return;
+        }
         updateNavigatorPanel(unkresnav);
     }
     //</editor-fold>
