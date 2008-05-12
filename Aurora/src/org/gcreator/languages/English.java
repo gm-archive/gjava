@@ -286,7 +286,7 @@ public class English extends Dictionary{
         entry[235] = "What to do if loading fails?";
         entry[236] = "What to do if the image can't be added to the Sprite?";
         entry[237] = "Ignore";
-        entry[237] = "Abort";
+        entry[238] = "Abort";
         entry[239] = "Interrupt event";
         entry[240] = "Set the horizontal speed";
         entry[241] = "Of:";

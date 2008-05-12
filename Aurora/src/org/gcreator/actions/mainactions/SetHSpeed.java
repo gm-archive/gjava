@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.actions.mainactions;
 
+import com.l2fprod.common.beans.editor.StringPropertyEditor;
+import java.beans.PropertyEditor;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import com.l2fprod.common.propertysheet.*;
@@ -16,71 +17,78 @@ import org.gcreator.managers.LangSupporter;
  * @author Luís, TGMG
  */
 public class SetHSpeed extends ActionPattern {
-static final long serialVersionUID = 1L;
-    
+
+    static final long serialVersionUID = 1L;
     public String to = "0.0";
-    public String with ="this";
+    public String with = "this";
     public Boolean relative = false;
-    
     public static ImageIcon icon = new ImageIcon(SetHSpeed.class.getResource("/org/gcreator/actions/images/hspeed.png"));
 
 //    private static final ObjectStreamField[] serialPersistentFields
 //                 = {new ObjectStreamField(
 //      "text", String.class)};
-
     public SetHSpeed() {
-        super();  
+        super();
     }
 
     @Override
     public void load(JComponent panel) {
         Property[] plist = ((PropertySheetPanel) panel).getProperties();
-        for(int i = 0; i < plist.length; i++){
+        for (int i = 0; i < plist.length; i++) {
             Property p = plist[i];
-            if(p.getName().equals("to"))
+            if (p.getName().equals("to")) {
                 p.setValue(to);
-            else if(p.getName().equals("with"))
+            } else if (p.getName().equals("with")) {
                 p.setValue(with);
-            else if(p.getName().equals("relative"))
+            } else if (p.getName().equals("relative")) {
                 p.setValue(relative);
+            }
         }
-        //((HSpeedEditor) panel).to.setText(to);
-        //((HSpeedEditor) panel).of.setText(with);
-        //System.out.println("TEXT LOADED AS:"+to);
+    //((HSpeedEditor) panel).to.setText(to);
+    //((HSpeedEditor) panel).of.setText(with);
+    //System.out.println("TEXT LOADED AS:"+to);
     }
 
     @Override
     public void save(JComponent panel) {
         Property[] plist = ((PropertySheetPanel) panel).getProperties();
-        for(int i = 0; i < plist.length; i++){
+        for (int i = 0; i < plist.length; i++) {
             Property p = plist[i];
-            if(p.getName().equals("to"))
+            if (p.getName().equals("to")) {
                 to = (String) p.getValue();
-            else if(p.getName().equals("with"))
+            } else if (p.getName().equals("with")) {
                 with = (String) p.getValue();
-            else if(p.getName().equals("relative"))
+            } else if (p.getName().equals("relative")) {
                 relative = (Boolean) p.getValue();
+            }
         }
-        //to = ((HSpeedEditor) panel).to.getText();
-        //with = ((HSpeedEditor) panel).of.getText();
-        //System.out.println("text saved as:"+text);
+    //to = ((HSpeedEditor) panel).to.getText();
+    //with = ((HSpeedEditor) panel).of.getText();
+    //System.out.println("text saved as:"+text);
     }
-    
-    
-    
-    public ImageIcon getStandardImage(){
+
+    public ImageIcon getStandardImage() {
         return icon;
     }
-    
-    public void setStandardImage(ImageIcon img){
+
+    public void setStandardImage(ImageIcon img) {
         icon = img;
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-         PropertySheetPanel propertySheetPanel1 = new PropertySheetPanel();
-         propertySheetPanel1.setDescriptionVisible(true);
-         propertySheetPanel1.setMode(PropertySheetPanel.VIEW_AS_CATEGORIES);
-         
+        PropertySheetPanel propertySheetPanel1 = new PropertySheetPanel();
+        /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
+        propertySheetPanel1.setEditorFactory(new PropertyEditorFactory() {
+
+            public PropertyEditor createPropertyEditor(Property arg0) {
+                if(arg0.getType()==org.gcreator.actions.components.FailureBehavior.class)
+                    return new org.gcreator.actions.components.FailureBehaviorEditor();
+                return f.createPropertyEditor(arg0);
+            }
+        });*/
+        propertySheetPanel1.setDescriptionVisible(true);
+        propertySheetPanel1.setMode(PropertySheetPanel.VIEW_AS_CATEGORIES);
+
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("with");
@@ -90,7 +98,7 @@ static final long serialVersionUID = 1L;
         p.setValue("this");
         p.setShortDescription("The actor that will modify its horizontal speed.");
         propertySheetPanel1.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("to");
@@ -100,7 +108,7 @@ static final long serialVersionUID = 1L;
         p.setValue("0.0");
         p.setShortDescription("The new horizontal speed");
         propertySheetPanel1.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("relative");
@@ -110,32 +118,42 @@ static final long serialVersionUID = 1L;
         p.setValue(false);
         p.setShortDescription("Is the new value absolute or relative to the old one.");
         propertySheetPanel1.addProperty(p);
-         
+        
+        //p = new DefaultProperty();
+        //p.setCategory("<html><b>Useless");
+        //p.setName("test");
+        //p.setDisplayName("test");
+        //p.setEditable(true);
+        //p.setType(org.gcreator.actions.components.FailureBehavior.class);
+        //org.gcreator.actions.components.FailureBehavior f2 = new org.gcreator.actions.components.FailureBehavior(1);
+        //p.setValue(f2);
+        //p.setShortDescription("Is the new value absolute or relative to the old one.");
+        //propertySheetPanel1.addProperty(p);
+
         return propertySheetPanel1;
     }
 
     public String getStandardText(JComponent panel) {
-        if(panel != null&& panel instanceof PropertySheetPanel){
+        if (panel != null && panel instanceof PropertySheetPanel) {
             save(panel);
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             String who = with;
             String what = to;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
-            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$apply", who)
-                    .replaceAll("\\$value", what)
-                    .replaceAll("\\$\\$", "$");
+            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$apply", who).replaceAll("\\$value", what).replaceAll("\\$\\$", "$");
         }
         return LangSupporter.activeLang.getEntry(223);
     }
 
     public String generateGCL(JComponent panel) {
-        if(panel != null&& panel instanceof PropertySheetPanel){
+        if (panel != null && panel instanceof PropertySheetPanel) {
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             save(panel);
-            if(relative)
+            if (relative) {
                 return "(" + with + ").hspeed += (" + to + ");";
-            else
+            } else {
                 return "(" + with + ").hspeed = (" + to + ");";
+            }
         }
         return "";
     }
