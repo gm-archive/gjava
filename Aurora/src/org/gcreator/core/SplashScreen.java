@@ -9,12 +9,13 @@ package org.gcreator.core;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import org.gcreator.components.uiplus.DialogPlus;
 
 /**
  *
  * @author  Luís
  */
-public class SplashScreen extends JFrame {
+public class SplashScreen extends DialogPlus {
     
     public static String message = "Loading...";
     
@@ -46,6 +47,7 @@ public class SplashScreen extends JFrame {
         };
         p.setVisible(true);
         setContentPane(p);
+        setAlwaysOnTop(true);
         
         setLayout(null);
         //add(jLabel1);
@@ -65,13 +67,13 @@ public class SplashScreen extends JFrame {
             public void mouseExited(MouseEvent evt){}
             public void mouseEntered(MouseEvent evt){}
             public void mouseClicked(MouseEvent evt){
-                setVisible(false);
+                fadeOut();
             }
             public void mouseReleased(MouseEvent evt){
-                setVisible(false);
+                fadeOut();
             }
             public void mousePressed(MouseEvent evt){
-                setVisible(false);
+                fadeOut();
             }
         });
         setVisible(true);

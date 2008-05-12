@@ -360,7 +360,7 @@ public class gcreator {
         window.setVisible(true);
         
         if(splash!=null){
-            splash.dispose();
+            splash.fadeOut();
             if(!applet&&plugload)
                 Plugger.onSplashDispose();
             window.menubar.updateUI();
