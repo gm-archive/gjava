@@ -15,6 +15,7 @@ import javax.swing.JPanel;
  * @author luis
  */
 public class DialogPlus extends JDialog{
+    private float alpha = 1.0f;
     public DialogPlus(){
         setContentPane(new JPanel());
     }
@@ -29,5 +30,42 @@ public class DialogPlus extends JDialog{
         catch(Exception e){
             System.out.println(e.toString());
         }
+    }
+    
+    public void setWindowAlpha(float alpha){
+        com.sun.jna.examples.WindowUtils.setWindowAlpha(this, alpha);
+        this.alpha = alpha;
+    }
+    
+    public float getWindowAlpha(){
+        return alpha;
+    }
+    
+    public void fadeOut(){
+        Thread t = new Thread(){
+            public void run(){
+                if(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported()){
+                    while(alpha>=0.01){
+                        System.out.println("B"+alpha);
+                        alpha-=0.01;
+                        System.out.println("A"+alpha);
+                        setWindowAlpha(alpha);
+                        try{
+                            System.out.println("before sleep");
+                            sleep(5);
+                            System.out.println("after sleep");
+                        }
+                        catch(Exception e){
+                            System.out.println(e.toString());
+                        }
+                    }
+                    dispose();
+                }
+                else{
+                    dispose();
+                }
+            }
+        };
+        t.start();
     }
 }

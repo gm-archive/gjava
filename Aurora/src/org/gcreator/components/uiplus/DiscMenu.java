@@ -27,6 +27,7 @@ public class DiscMenu extends DialogPlus {
             new ImageIcon(DiscMenu.class.getResource("/org/gcreator/resources/uiplus/next.png"));
     private static ImageIcon nextnot =
             new ImageIcon(DiscMenu.class.getResource("/org/gcreator/resources/uiplus/nextnot.png"));
+    private boolean useless = false;
 
     private static Vector<DiscMenu> menus = new Vector<DiscMenu>();
     
@@ -46,7 +47,11 @@ public class DiscMenu extends DialogPlus {
         addFocusListener(new FocusListener() {
 
                     public void focusLost(FocusEvent evt) {
-                        dispose();
+                        //dispose();
+                        selection = -1;
+                        repaint();
+                        useless = true;
+                        fadeOut();
                     }
 
                     public void focusGained(FocusEvent evt) {
@@ -60,15 +65,18 @@ public class DiscMenu extends DialogPlus {
         addMouseListener(new MouseListener() {
 
                     public void mouseExited(MouseEvent evt) {
-                        motion(evt);
+                        if(!useless)
+                            motion(evt);
                     }
 
                     public void mouseEntered(MouseEvent evt) {
-                        motion(evt);
+                        if(!useless)
+                            motion(evt);
                     }
 
                     public void mouseReleased(MouseEvent evt) {
-                        press(evt);
+                        if(!useless)
+                            press(evt);
                     }
 
                     public void mousePressed(MouseEvent evt) {
@@ -80,15 +88,18 @@ public class DiscMenu extends DialogPlus {
         addMouseMotionListener(new MouseMotionListener() {
 
                     public void mouseMoved(MouseEvent evt) {
-                        motion(evt);
+                        if(!useless)
+                            motion(evt);
                     }
 
                     public void mouseDragged(MouseEvent evt) {
-                        motion(evt);
+                        if(!useless)
+                            motion(evt);
                     }
                 });
         setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask.png")));
         setDoubleBuffered(true);
+        setAlwaysOnTop(true);
     }
 
     private void motion(MouseEvent evt) {
