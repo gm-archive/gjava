@@ -7,16 +7,16 @@ package org.gcreator.components.uiplus;
 
 import java.awt.Container;
 import javax.swing.Icon;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
  *
  * @author luis
  */
-public class DialogPlus extends JDialog{
+public class FramePlus extends JFrame{
     private float alpha = 1.0f;
-    public DialogPlus(){
+    public FramePlus(){
         setContentPane(new JPanel());
     }
     public void setWindowMask(Icon mask){
