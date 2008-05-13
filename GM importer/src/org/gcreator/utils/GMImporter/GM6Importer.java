@@ -13,7 +13,6 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
-import org.gcreator.actions.components.VSpeedEditor;
 import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
 import org.gcreator.actions.mainactions.SetVSpeed;
@@ -347,7 +346,7 @@ public class GM6Importer {
             spriteFile = new org.gcreator.fileclass.GFile(spriteFolder, name, "sprite", null);
             c.sprites.add(spriteFile);
             Sprite val;
-            spriteFile.value = val = new Sprite(name);
+            spriteFile.value = val = new Sprite();
             val.width = in.read4();
             val.height = in.read4();
             val.BBleft = in.read4();
@@ -376,7 +375,7 @@ public class GM6Importer {
                 org.gcreator.fileclass.GFile imgF;
                 imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
                 ImageIcon iico;
-                imgF.value = new GImage("sprimg_" + name + "_" + j);
+                imgF.value = new GImage();
                 ((GImage) imgF.value).image = iico = new ImageIcon(img);
                 //imgF.treeimage = org.gcreator.fileclass.GFile.getScaledIcon(iico);
                 val.addToList(imgF);
