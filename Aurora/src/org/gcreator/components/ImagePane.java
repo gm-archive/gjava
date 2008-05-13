@@ -165,15 +165,15 @@ public class ImagePane extends JPanel {
                     cy = py;
                     drawing = true;
                 } else if (editor.jToggleButton5.isSelected()) {
-                    int mx =(int) (evt.getX() * getZoom());
-                    int my =(int) (evt.getY() * getZoom());
-                    if(mx>=sx&&my>=sy&&mx<=sx+sw&&my<=sy+sh){
-                        if(i==null){
+                    int mx = (int) (evt.getX() * getZoom());
+                    int my = (int) (evt.getY() * getZoom());
+                    if (mx >= sx && my >= sy && mx <= sx + sw && my <= sy + sh) {
+                        if (i == null) {
                             i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
                             Graphics g = i.getGraphics();
                             g.drawImage(
-                                editor.i.getImage().getImage(),
-                                -sx, -sy, editor.i.getImage().getImageObserver());
+                                    editor.i.getImage().getImage(),
+                                    -sx, -sy, editor.i.getImage().getImageObserver());
                             Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
                             Composite c = g2.getComposite();
                             g2.setComposite(AlphaComposite.Src);
@@ -184,14 +184,14 @@ public class ImagePane extends JPanel {
                         px = (int) (evt.getX() / getZoom() - sx);
                         py = (int) (evt.getX() / getZoom() - sy);
                         dragging = true;
-                    }
-                    else{
+                    } else {
                         mergeSelection();
                         sx = (int) (evt.getX() / getZoom());
                         sy = (int) (evt.getY() / getZoom());
                         sw = 0;
                         sh = 0;
                         repaint();
+                        requestFocus();
                     }
                 }
             }
@@ -204,19 +204,17 @@ public class ImagePane extends JPanel {
         addMouseMotionListener(new MouseMotionListener() {
 
             public void mouseMoved(MouseEvent evt) {
-                if(editor.jToggleButton5.isSelected()){
-                    int mx =(int) (evt.getX() * getZoom());
-                    int my =(int) (evt.getY() * getZoom());
-                    if(mx>=sx&&my>=sy&&mx<=sx+sw&&my<=sy+sh){
-                        if(!kstate){
-                            System.out.println("Got here");
+                if (editor.jToggleButton5.isSelected()) {
+                    int mx = (int) (evt.getX() * getZoom());
+                    int my = (int) (evt.getY() * getZoom());
+                    if (mx >= sx && my >= sy && mx <= sx + sw && my <= sy + sh) {
+                        if (!kstate) {
                             c2 = getCursor();
                             setCursor(new Cursor(Cursor.MOVE_CURSOR));
                             kstate = true;
                         }
-                    }
-                    else{
-                        if(kstate){
+                    } else {
+                        if (kstate) {
                             setCursor(c2);
                             kstate = false;
                         }
@@ -248,14 +246,13 @@ public class ImagePane extends JPanel {
                     repaint();
                 }
                 if (editor.jToggleButton5.isSelected()) {
-                    if(!dragging){
+                    if (!dragging) {
                         sw = (int) (evt.getX() / getZoom());
                         sh = (int) (evt.getY() / getZoom());
                         sw -= sx;
                         sh -= sy;
                         repaint();
-                    }
-                    else{
+                    } else {
                         sx = (int) (evt.getX() / getZoom()) - px;
                         sy = (int) (evt.getY() / getZoom()) - py;
                         repaint();
@@ -272,37 +269,69 @@ public class ImagePane extends JPanel {
 
                     if (evt.getKeyChar() == 22) {
 
-                        System.out.println("Got here");
-                        
                         mergeSelection();
                         editor.jToggleButton5.setSelected(true);
                         editor.sel5 = true;
-                        
-                        System.out.println("Got here");
-
                         Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
 
-                        System.out.println("Got here");
-                        
                         try {
-                            System.out.println("Got here ");
                             if (t != null && t.isDataFlavorSupported(DataFlavor.imageFlavor)) {
-                                System.out.println("Got here 2");
                                 Image img = (Image) t.getTransferData(DataFlavor.imageFlavor);
-                                System.out.println("Got here 3");
                                 i = img;
                                 sx = 0;
                                 sy = 0;
                                 sw = i.getWidth(null);
                                 sh = i.getHeight(null);
-                                System.out.println("Got here");
                                 repaint();
                             }
                         } catch (Exception e) {
                             System.out.println(e.toString());
                         }
                     }
+                    if (evt.getKeyChar() == 3&&editor.jToggleButton5.isSelected()) {
 
+                        if(i==null){
+                            i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
+                            Graphics g = i.getGraphics();
+                            g.drawImage(
+                                    editor.i.getImage().getImage(),
+                                    -sx, -sy, editor.i.getImage().getImageObserver());
+                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
+                            Composite c = g2.getComposite();
+                            g2.setComposite(AlphaComposite.Src);
+                            g2.setColor(new Color(255, 255, 255, 0));
+                            g2.fillRect(sx, sy, sw, sh);
+                            g2.setComposite(c);
+                        }
+                        
+                        ImageSelection imgSel = new ImageSelection(i);
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(imgSel, null);
+
+                    }
+                    
+                    if (evt.getKeyChar() == 24&&editor.jToggleButton5.isSelected()) {
+
+                        if(i==null){
+                            i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
+                            Graphics g = i.getGraphics();
+                            g.drawImage(
+                                    editor.i.getImage().getImage(),
+                                    -sx, -sy, editor.i.getImage().getImageObserver());
+                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
+                            Composite c = g2.getComposite();
+                            g2.setComposite(AlphaComposite.Src);
+                            g2.setColor(new Color(255, 255, 255, 0));
+                            g2.fillRect(sx, sy, sw, sh);
+                            g2.setComposite(c);
+                        }
+                        
+                        ImageSelection imgSel = new ImageSelection(i);
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(imgSel, null);
+
+                        i = null;
+                        repaint();
+                        
+                    }
                 }
             }
 
@@ -414,7 +443,7 @@ public class ImagePane extends JPanel {
         int ph = sh > 0 ? sh : -sh;
 
         if (i != null) {
-                g.drawImage(i, p1, p2, null);
+            g.drawImage(i, p1, p2, null);
         }
         g.setColor(Color.darkGray);
         ((Graphics2D) g).setStroke(
@@ -451,6 +480,33 @@ public class ImagePane extends JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public static class ImageSelection implements Transferable {
+
+        private Image image;
+
+        public ImageSelection(Image image) {
+            this.image = image;
+        }
+
+        // Returns supported flavors
+        public DataFlavor[] getTransferDataFlavors() {
+            return new DataFlavor[]{DataFlavor.imageFlavor};
+        }
+
+        // Returns true if flavor is supported
+        public boolean isDataFlavorSupported(DataFlavor flavor) {
+            return DataFlavor.imageFlavor.equals(flavor);
+        }
+
+        // Returns image
+        public Object getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
+            if (!DataFlavor.imageFlavor.equals(flavor)) {
+                throw new UnsupportedFlavorException(flavor);
+            }
+            return image;
+        }
+    }
 
     public void mergeSelection() {
         if (i != null) {
