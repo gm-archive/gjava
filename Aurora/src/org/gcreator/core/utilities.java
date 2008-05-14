@@ -53,8 +53,8 @@ public class utilities {
         out += "<br/>";
         
         gcreator.output += out;
-        if(gcreator.window!=null&&gcreator.window.console!=null)
-            gcreator.window.console.setText(gcreator.output);
+        if(gcreator.panel!=null&&gcreator.panel.console!=null)
+            gcreator.panel.console.setText(gcreator.output);
     }
     
     static Cipher ecipher;

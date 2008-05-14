@@ -326,7 +326,7 @@ public class TilesetEditor extends TabPanel {
     public void updateName(){
         file.name = jTextField1.getText();
         //value.name = file.name;
-        Aurwindow.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

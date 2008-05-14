@@ -164,10 +164,10 @@ public class ProjectImporter {
             ii++;
         }
         if (project != null) {
-            ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+            ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.panel.top);
         }
-        Aurwindow.setMainProject(project);
-        Aurwindow.workspace.updateUI();
+        GPanel.setMainProject(project);
+        gcreator.panel.workspace.updateUI();
     }
     private static JFileChooser fc = new JFileChooser();
     static {

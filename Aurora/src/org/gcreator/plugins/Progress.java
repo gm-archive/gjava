@@ -37,7 +37,7 @@ public class Progress extends javax.swing.JDialog {
 
             @Override
             public void run() {
-                cc.run(gcreator.window.getMainProject());
+                cc.run(gcreator.panel.getMainProject());
             }
             
        // c.run(gcreator.window.getMainProject());

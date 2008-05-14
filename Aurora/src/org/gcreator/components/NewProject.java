@@ -158,31 +158,31 @@ public class NewProject extends TabPanel {
                 project = GameProject.balance(ProjectTypes.EMPTY_GAME);
                 project.name = jTextField1.getText();
                 project.location = "";
-                Aurwindow.setMainProject(project);
+                GPanel.setMainProject(project);
             }
             else if (type == ProjectTypes.RPG_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
-                Aurwindow.setMainProject(project);
+                GPanel.setMainProject(project);
             }
             else if (type == ProjectTypes.PLATFORM_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
-                Aurwindow.setMainProject(project);
+                GPanel.setMainProject(project);
             }
             else if (type == ProjectTypes.AIR_BATTLE){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
-                Aurwindow.setMainProject(project);
+                GPanel.setMainProject(project);
             }
             else if (type == 4){
                 project = ModuleProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
-                Aurwindow.setMainProject(project);
+                GPanel.setMainProject(project);
             }
             /*else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
@@ -215,11 +215,11 @@ public class NewProject extends TabPanel {
             }*/
             if(type!=-1){
                 if(project!=null){
-                    ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+                    ProjectTree.importFolderToTree(project, gcreator.panel.top);
                     Macro.macroAction(new NewProjectAction(project.name));
                 }
                 try{
-                Aurwindow.workspace.updateUI();
+                gcreator.panel.workspace.updateUI();
                 }
                 catch(Exception e){}
             }

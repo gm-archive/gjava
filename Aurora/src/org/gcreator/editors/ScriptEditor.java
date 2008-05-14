@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 import org.gcreator.components.scanning.*;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
-import org.gcreator.core.Aurwindow;
+import org.gcreator.core.GPanel;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
 
@@ -216,7 +216,7 @@ public class ScriptEditor extends TabPanel {
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
         file.name = jTextField1.getText();
-        Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1CaretUpdate
     
     

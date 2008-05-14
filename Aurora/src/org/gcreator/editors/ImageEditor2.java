@@ -367,7 +367,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 i.image = new ImageIcon(ImageIO.read(_file));
             //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
             }
-            org.gcreator.core.Aurwindow.workspace.updateUI();
+            org.gcreator.core.gcreator.panel.workspace.updateUI();
             jScrollPane1.updateUI();
         }
     } catch (Exception e) {

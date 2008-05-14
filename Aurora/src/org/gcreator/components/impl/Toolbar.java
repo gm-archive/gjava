@@ -45,7 +45,7 @@ public class Toolbar {
         }
     }
     
-    public void make(Aurwindow window){
+    public void make(GPanel panel){
         JToolBar toolbar = new JToolBar();
         toolbars.add(toolbar);
         if(name!=null){
@@ -74,17 +74,17 @@ public class Toolbar {
         if(horizontal){
             toolbar.setOrientation(JToolBar.HORIZONTAL);
             if(first)
-                window.topContainer.add(toolbar);
+                panel.topContainer.add(toolbar);
             else
-                window.bottomContainer.add(toolbar);
+                panel.bottomContainer.add(toolbar);
         }
         else{
             toolbar.setOrientation(JToolBar.VERTICAL);
             if(first)
-                window.leftContainer.add(toolbar);
+                panel.leftContainer.add(toolbar);
             else
-                window.rightContainer.add(toolbar);
+                panel.rightContainer.add(toolbar);
         }
-        toolbar.addMouseListener(new PopupListener(toolbar, window.toolpopup));
+        toolbar.addMouseListener(new PopupListener(toolbar, panel.toolpopup));
     }
 }

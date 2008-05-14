@@ -23,6 +23,7 @@ import org.gcreator.managers.*;
 public class PluginHelper {
     /**
      * Allows the plugin to fetch the main window
+     * @deprecated
      * @return The main window
      */
     public static Aurwindow getWindow(){
@@ -30,11 +31,19 @@ public class PluginHelper {
     }
     
     /**
+     * Allows the plugin to fetch the main panel
+     * @return The main panel
+     */
+    public static GPanel getPanel(){
+        return gcreator.panel;
+    }
+    
+    /**
      * Allows the plugin to fetch the workspace tree
      * @return The workspace tree
      */
     public static JTree getWorkspace(){
-        return Aurwindow.workspace;
+        return gcreator.panel.workspace;
     }
     
     /**
@@ -54,31 +63,31 @@ public class PluginHelper {
     }
     
     public static Project getCurrentProject(){
-        return gcreator.window.getCurrentProject();
+        return gcreator.panel.getCurrentProject();
     }
     
     public static Folder getCurrentFolder(){ //Can be project
-        return gcreator.window.getCurrentFolder();
+        return gcreator.panel.getCurrentFolder();
     }
     
     public static org.gcreator.fileclass.GObject getCurrentObject(){ //Can be project or folder
-        return gcreator.window.getCurrentObject();
+        return gcreator.panel.getCurrentObject();
     }
     
     public static void addMenu(JMenu menu){
-        gcreator.window.menubar.add(menu);
+        gcreator.panel.menubar.add(menu);
     }
     
     public static void addMenuItem(int menu, JMenuItem item){
-        gcreator.window.menus[menu].add(item);
+        gcreator.panel.menus[menu].add(item);
     }
     
     public static void addMenuSeparator(int menu){
-        gcreator.window.menus[menu].addSeparator();
+        gcreator.panel.menus[menu].addSeparator();
     }
     
     public static void addSubMenu(int menu, JMenu submenu){
-        gcreator.window.menus[menu].add(submenu);
+        gcreator.panel.menus[menu].add(submenu);
     }
     
     public static String getClipboardContent(){
@@ -91,16 +100,16 @@ public class PluginHelper {
     
     public static void updateStyle(){
         SwingUtilities.updateComponentTreeUI(gcreator.window);
-        if (gcreator.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+        if (gcreator.panel.istabs) {
+            SwingUtilities.updateComponentTreeUI(gcreator.panel.mdi);
         } else {
-            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+            SwingUtilities.updateComponentTreeUI(gcreator.panel.tabs);
         }
-        SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-        SwingUtilities.updateComponentTreeUI(Aurwindow.newproject);
-        SwingUtilities.updateComponentTreeUI(Aurwindow.newfilegroup);
-        SwingUtilities.updateComponentTreeUI(Aurwindow.about);
-        SwingUtilities.updateComponentTreeUI(Aurwindow.globalsettings);
+        SwingUtilities.updateComponentTreeUI(gcreator.panel.consolepopup);
+        SwingUtilities.updateComponentTreeUI(gcreator.panel.newproject);
+        SwingUtilities.updateComponentTreeUI(gcreator.panel.newfilegroup);
+        SwingUtilities.updateComponentTreeUI(gcreator.panel.about);
+        SwingUtilities.updateComponentTreeUI(gcreator.panel.globalsettings);
     }
     
     public static String encrypt(String str){
@@ -112,7 +121,7 @@ public class PluginHelper {
     }
     
     public static Component addGlobalTab(String name, JComponent comp){
-        return Aurwindow.globalsettings.jTabbedPane1.add(name, comp);
+        return gcreator.panel.globalsettings.jTabbedPane1.add(name, comp);
     }
     
     public static void addNewActionPattern(ActionPattern pattern){
@@ -127,13 +136,13 @@ public class PluginHelper {
         ActionContainer.actionCats.add(category);
     }
     public static void setMainProject(Project p){
-        Aurwindow.setMainProject(p);
+        GPanel.setMainProject(p);
     }
     public static Project getMainProject(){
-        return Aurwindow.getMainProject();
+        return GPanel.getMainProject();
     }
     public static void addToTree(Project p){
-        ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.window.top);
+        ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.panel.top);
     }
     
     public static URL getResource(String value){
@@ -145,7 +154,7 @@ public class PluginHelper {
     }
     
     public static JInternalFrame createPaletteFrame(String title){
-        JInternalFrame f = getWindow().createPaletteFrame();
+        JInternalFrame f = gcreator.panel.createPaletteFrame();
         f.setTitle(title);
         return f;
     }

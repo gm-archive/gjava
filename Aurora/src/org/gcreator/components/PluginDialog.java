@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.components.impl.*;
+import org.gcreator.core.*;
 import org.gcreator.plugins.*;
 
 /**
@@ -21,8 +22,9 @@ public class PluginDialog extends JDialog {
     
     /** Creates new form PluginDialog */
     public IconList list;
-    public PluginDialog(Frame parent, boolean modal) {
-        super(parent, modal);
+    public PluginDialog(GPanel parent, boolean modal) {
+        super(parent.getICore().getParentWindow());
+        setModal(modal);
         initComponents();
         list = new IconList();
         list.setColumnWidth(100);

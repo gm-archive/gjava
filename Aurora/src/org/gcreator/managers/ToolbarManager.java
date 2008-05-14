@@ -20,10 +20,10 @@ public class ToolbarManager {
     
     public static void destroyToolbars(){
         hideAll();
-        gcreator.window.topContainer.removeAll();
-        gcreator.window.bottomContainer.removeAll();
-        gcreator.window.leftContainer.removeAll();
-        gcreator.window.rightContainer.removeAll();
+        gcreator.panel.topContainer.removeAll();
+        gcreator.panel.bottomContainer.removeAll();
+        gcreator.panel.leftContainer.removeAll();
+        gcreator.panel.rightContainer.removeAll();
     }
     
     public static void hideAll(){
@@ -42,13 +42,13 @@ public class ToolbarManager {
         }
     }
     
-    public static void makeToolbars(Aurwindow window){
+    public static void makeToolbars(GPanel window){
         for(Toolbar toolbar : toolbars){
             toolbar.make(window);
         }
     }
     public static void makeToolbars(){
-        makeToolbars(gcreator.window);
+        makeToolbars(gcreator.panel);
     }
     public static void remakeToolbars(){
         destroyToolbars();

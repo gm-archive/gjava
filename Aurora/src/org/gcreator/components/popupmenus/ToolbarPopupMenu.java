@@ -32,7 +32,7 @@ public class ToolbarPopupMenu extends JPopupMenu{
         this.updateUI();
     }
     private void _hide(){
-        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
-        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 1)].getActionListeners()[0].actionPerformed(null);
+        gcreator.panel.items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
+        gcreator.panel.items[MenuSupporter.GenerateMenuItemId(2, 1)].getActionListeners()[0].actionPerformed(null);
     }
 }

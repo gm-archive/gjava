@@ -342,7 +342,7 @@ public class SceneEditor extends TabPanel {
     public void updateName() {
         file.name = jTextField1.getText();
         scene.setName(file.name);
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -1389,7 +1389,7 @@ public class SceneEditor extends TabPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
         //((Scene) file.value).name = file.name;
-        Aurwindow.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

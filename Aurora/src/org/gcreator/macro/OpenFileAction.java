@@ -24,6 +24,6 @@ public class OpenFileAction implements MacroAction{
         this.file = file;
     }
     public void play(){
-        gcreator.window.Open(file);
+        gcreator.panel.Open(file);
     }
 }

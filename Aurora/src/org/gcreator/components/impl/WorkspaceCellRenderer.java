@@ -136,16 +136,16 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
 
         edition = tree.isEditing();
         try{
-        if (gcreator.window != null) {
-            if (gcreator.window.getCurrentObject() != null) {
-                val = gcreator.window.getCurrentObject().node.getUserObject().toString();
+        if (gcreator.panel != null) {
+            if (gcreator.panel.getCurrentObject() != null) {
+                val = gcreator.panel.getCurrentObject().node.getUserObject().toString();
             }
         }
         }
         catch(NullPointerException e){}
         this.bSelected = bSelected;
         try {
-            this.isCurProject = (node == org.gcreator.core.gcreator.window.getCurrentProject().node);
+            this.isCurProject = (node == org.gcreator.core.gcreator.panel.getCurrentProject().node);
         } catch (NullPointerException e) {
             this.isCurProject = false;
         }
@@ -181,7 +181,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         }
         
 // Add the text to the cell
-        if (org.gcreator.core.Aurwindow.getMainProject() != null && node == org.gcreator.core.Aurwindow.getMainProject().node) {
+        if (org.gcreator.core.GPanel.getMainProject() != null && node == org.gcreator.core.GPanel.getMainProject().node) {
             setText("<HTML><B>" + labelText);
         } else {
             setText(labelText);

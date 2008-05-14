@@ -14,7 +14,7 @@ import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
 import javax.swing.ImageIcon;
-import org.gcreator.core.Aurwindow;
+import org.gcreator.core.GPanel;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.units.ObjectNode;
 
@@ -33,7 +33,7 @@ public class StdImport{
         importImage(folder, path.getPath() + path.getQuery());
     }
     public static void importImage(Folder folder, String path) throws IOException{
-        org.gcreator.fileclass.Folder f = org.gcreator.core.gcreator.window.getCurrentFolder();
+        org.gcreator.fileclass.Folder f = org.gcreator.core.gcreator.panel.getCurrentFolder();
         String t = path.replaceAll(".*\\.", "");
         if (!f.allowsFileType(t)) {
             System.out.println(t);
@@ -71,6 +71,6 @@ public class StdImport{
             f.add(file);
             ObjectNode node = new ObjectNode(file);
             f.node.add(node);
-            Aurwindow.workspace.updateUI();
+            org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
 }

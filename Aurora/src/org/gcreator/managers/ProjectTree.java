@@ -51,7 +51,7 @@ public class ProjectTree {
             }
         }
         try{
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
         }
         catch(Exception e){}
         return froot;

@@ -112,7 +112,7 @@ public class ImageEditor extends TabPanel {
     
     public void updateName(){
         file.name = jTextField1.getText();
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
     
     /** This method is called from within the constructor to
@@ -315,7 +315,7 @@ public class ImageEditor extends TabPanel {
                     ((GImage)file.value).image = new ImageIcon(ImageIO.read(_file));
                     //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
                 }
-                org.gcreator.core.Aurwindow.workspace.updateUI();
+                org.gcreator.core.gcreator.panel.workspace.updateUI();
                 jScrollPane1.updateUI();
                 System.out.println(file.name + "." + file.type);
             }
@@ -340,7 +340,7 @@ public class ImageEditor extends TabPanel {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged

@@ -28,11 +28,11 @@ public class NewProjectAction implements MacroAction{
         Project project = GameProject.balance();
         project.name = name;
         project.location = "";
-        Aurwindow.setMainProject(project);
+        GPanel.setMainProject(project);
         if(project!=null)
-            ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.window.top);
+            ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.panel.top);
         try{
-                Aurwindow.workspace.updateUI();
+                gcreator.panel.workspace.updateUI();
         }
          catch(Exception e){}
     }

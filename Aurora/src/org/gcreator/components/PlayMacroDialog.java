@@ -7,8 +7,8 @@
 package org.gcreator.components;
 
 import javax.swing.*;
-import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
+import org.gcreator.core.GPanel;
 import org.gcreator.managers.*;
 import org.gcreator.macro.*;
 
@@ -19,8 +19,9 @@ import org.gcreator.macro.*;
 public class PlayMacroDialog extends JDialog {
     
     /** Creates new form PlayMacroDialog */
-    public PlayMacroDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public PlayMacroDialog(GPanel parent, boolean modal) {
+        super(parent.getICore().getParentWindow());
+        setModal(modal);
         initComponents();
         jList1.setModel(new AbstractListModel(){
             public Object getElementAt(int pos){

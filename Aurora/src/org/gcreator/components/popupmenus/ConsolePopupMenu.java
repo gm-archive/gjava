@@ -51,7 +51,7 @@ public class ConsolePopupMenu extends JPopupMenu{
     }
     
     private void copymessage(){
-        String content = gcreator.window.console.getText();
+        String content = gcreator.panel.console.getText();
         content = content.replaceAll("\n", "");
         content = content.replaceAll("<(b[^r]|[^b]).*?/?>", "");
         content = content.replaceAll("\\s+", " ");
@@ -61,12 +61,12 @@ public class ConsolePopupMenu extends JPopupMenu{
     }
     
     private void clear(){
-        gcreator.window.console.setText("");
+        gcreator.panel.console.setText("");
         gcreator.output = "";
     }
     
     private void _hide(){
-        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(false);
-        gcreator.window.items[MenuSupporter.GenerateMenuItemId(2, 0)].getActionListeners()[0].actionPerformed(null);
+        gcreator.panel.items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(false);
+        gcreator.panel.items[MenuSupporter.GenerateMenuItemId(2, 0)].getActionListeners()[0].actionPerformed(null);
     }
 }

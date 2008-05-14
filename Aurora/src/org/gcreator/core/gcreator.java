@@ -35,6 +35,7 @@ public class gcreator {
     private static String[] arguments;
     public static final String version = "0.83"; //only use numbers as it is parsed to double for updating!
     public static Aurwindow window;
+    public static GPanel panel;
     public static String output = "";
     static SplashScreen splash;
     public static ClipboardManager clipboard = new ClipboardManager();
@@ -151,7 +152,6 @@ public class gcreator {
                 utilities.addError(36);
             }
         }
-        Aurwindow.antialiasing = Boolean.parseBoolean(settings[7]);
         ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
         ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
         ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), 41);
@@ -170,67 +170,67 @@ public class gcreator {
         
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(1, evt);
+                panel.onToolbarActionPerformed(1, evt);
             }
         });
 
         opn.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(2, evt);
+                panel.onToolbarActionPerformed(2, evt);
             }
         });
         
         save.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(3, evt);
+                panel.onToolbarActionPerformed(3, evt);
             }
         });
         
         saveall.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(4, evt);
+                panel.onToolbarActionPerformed(4, evt);
             }
         });
         
         addimg.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(10, evt);
+                panel.onToolbarActionPerformed(10, evt);
             }
         });
         
         addspr.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(5, evt);
+                panel.onToolbarActionPerformed(5, evt);
             }
         });
         
         addtls.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(11, evt);
+                panel.onToolbarActionPerformed(11, evt);
             }
         });
         
         addpth.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(15, evt);
+                panel.onToolbarActionPerformed(15, evt);
             }
         });
         
         addsnd.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(6, evt);
+                panel.onToolbarActionPerformed(6, evt);
             }
         });
         
         addact.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(8, evt);
+                panel.onToolbarActionPerformed(8, evt);
             }
         });
         
         addscn.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(9, evt);
+                panel.onToolbarActionPerformed(9, evt);
             }
         });
         
@@ -242,19 +242,19 @@ public class gcreator {
         
         addgs.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(13, evt);
+                panel.onToolbarActionPerformed(13, evt);
             }
         });
         
         addtml.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(12, evt);
+                panel.onToolbarActionPerformed(12, evt);
             }
         });
         
         addgr.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                window.onToolbarActionPerformed(14, evt);
+                panel.onToolbarActionPerformed(14, evt);
             }
         });
         
@@ -350,20 +350,21 @@ public class gcreator {
             Plugger.onMainWindowStart();
         //ActorEditor.setupActions();
         window = new Aurwindow(settings);
-        window.console.setText(output);
-        Aurwindow.globalsettings = new org.gcreator.components.GlobalSettings(settings);
-        Aurwindow.newfilegroup = new NewFileGroup();
-        Aurwindow.newproject = new NewProject();
-        Aurwindow.about = new AboutPanel();
-        Aurwindow.nofileselnavigator = new NoFileSelectedNavigator();
-        Aurwindow.unkresnav = new UnknownResourceNavigator();
+        gcreator.panel.antialiasing = Boolean.parseBoolean(settings[7]);
+        panel.console.setText(output);
+        gcreator.panel.globalsettings = new org.gcreator.components.GlobalSettings(settings);
+        gcreator.panel.newfilegroup = new NewFileGroup();
+        gcreator.panel.newproject = new NewProject();
+        gcreator.panel.about = new AboutPanel();
+        gcreator.panel.nofileselnavigator = new NoFileSelectedNavigator();
+        gcreator.panel.unkresnav = new UnknownResourceNavigator();
         window.setVisible(true);
         
         if(splash!=null){
             splash.fadeOut();
             if(!applet&&plugload)
                 Plugger.onSplashDispose();
-            window.menubar.updateUI();
+            panel.menubar.updateUI();
         }
     }
 }

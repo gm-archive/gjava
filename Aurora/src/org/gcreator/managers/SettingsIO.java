@@ -79,11 +79,11 @@ public class SettingsIO {
             out.write("<desktop>");
             if (istabs) {
                 out.write("Tabs ");
-                if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.TOP)
+                if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.TOP)
                     out.write("(Top)");
-                else if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.LEFT)
+                else if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.LEFT)
                     out.write("(Left)");
-                else if(Aurwindow.tabs.getTabPlacement()==JTabbedPane.BOTTOM)
+                else if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.BOTTOM)
                     out.write("(Bottom)");
                 else
                     out.write("(Right)");
@@ -95,16 +95,16 @@ public class SettingsIO {
             out.write(scrollvisible ? "Visible" : "Hidden");
             out.write("</console>");
             out.write("<language>");
-            out.write(Aurwindow.lang);
+            out.write(gcreator.panel.lang);
             out.write("</language>");
             out.write("<toolbar>");
-            out.write(Aurwindow.showToolbars ? "Visible" : "Hidden");
+            out.write(gcreator.panel.showToolbars ? "Visible" : "Hidden");
             out.write("</toolbar>");
             out.write("<tree>");
-            if(gcreator.window.splitter2.getLeftComponent()==Aurwindow.treescroll){
+            if(gcreator.panel.splitter2.getLeftComponent()==gcreator.panel.treescroll){
                 out.write("Left");
             }
-            else if(gcreator.window.splitter2.getRightComponent()==Aurwindow.treescroll){
+            else if(gcreator.panel.splitter2.getRightComponent()==gcreator.panel.treescroll){
                 out.write("Right");
             }
             else{
@@ -116,7 +116,7 @@ public class SettingsIO {
             out.write(gcreator.window.getWidth() + ", " + gcreator.window.getHeight());
             out.write("</size>");
             out.write("<antialiasing>");
-            out.write(""+Aurwindow.antialiasing);
+            out.write(""+gcreator.panel.antialiasing);
             out.write("</antialiasing>");
             out.write("</settings>");
             out.close();

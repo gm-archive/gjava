@@ -19,7 +19,8 @@ import java.awt.geom.Path2D;
 import java.util.Iterator;
 import java.util.Vector;
 import javax.swing.JPanel;
-import org.gcreator.core.Aurwindow;
+import org.gcreator.core.GPanel;
+import org.gcreator.core.gcreator;
 import org.gcreator.editors.PathEditor;
 import org.gcreator.units.PathNode;
 
@@ -109,7 +110,7 @@ public class PathCanvas extends JPanel {
             paintGrid(g);
         drawPath(g);
         Graphics2D g2 = (Graphics2D)g;
-        setAntialiasing(g2, Aurwindow.antialiasing);
+        setAntialiasing(g2, gcreator.panel.antialiasing);
         for (int i = 0; i < nodes.size(); i++) {
             PathNode p = nodes.get(i);
             if (p == selectedNode)
@@ -175,7 +176,7 @@ public class PathCanvas extends JPanel {
 
     private void drawPath(java.awt.Graphics g) {
         Graphics2D g2 = (Graphics2D)g.create();
-        setAntialiasing(g2, Aurwindow.antialiasing);
+        setAntialiasing(g2, gcreator.panel.antialiasing);
         boolean smooth = editor.smoothCurves;
         int size = nodes.size();
         

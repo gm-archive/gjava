@@ -71,7 +71,7 @@ public class TimelineEditor extends TabPanel {
     public void updateName(){
         file.name = jTextField1.getText();
         //timeline.name = file.name;
-        Aurwindow.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
     }
     
     public void updateActionList() {

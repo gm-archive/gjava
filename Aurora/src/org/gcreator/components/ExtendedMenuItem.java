@@ -17,10 +17,10 @@ public class ExtendedMenuItem extends JMenuItem implements MouseListener{
     public static final String uiClassId = "MenuItemUI";
     
     public void mouseExited(MouseEvent evt){
-        gcreator.window.statusbar.restoreText();
+        gcreator.panel.statusbar.restoreText();
     }
     public void mouseEntered(MouseEvent evt){
-        gcreator.window.statusbar.setText(getToolTipText());
+        gcreator.panel.statusbar.setText(getToolTipText());
     }
     public void mouseReleased(MouseEvent evt){}
     public void mousePressed(MouseEvent evt){}

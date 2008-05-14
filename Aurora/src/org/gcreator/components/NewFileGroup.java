@@ -30,12 +30,12 @@ public class NewFileGroup extends TabPanel {
     
     public NewFileGroup() {
         initComponents();
-        tree = new JTree(gcreator.window.top);
+        tree = new JTree(gcreator.panel.top);
         //jScrollPane1.setViewportView(tree);
         DefaultTreeSelectionModel model = new DefaultTreeSelectionModel();
         model.setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.setSelectionModel(model);
-        tree.setCellRenderer(gcreator.window.workspace.getCellRenderer());
+        tree.setCellRenderer(gcreator.panel.workspace.getCellRenderer());
         a1 = new Model() {
             String[] strings = {"Group", "Text file"};
             String[] truenames = {"/", "txt"};
@@ -145,7 +145,7 @@ public class NewFileGroup extends TabPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String val = ((Model) jList2.getModel()).getTrueName(jList2.getSelectedIndex());
-        if(gcreator.window.getCurrentFolder()!=null)
+        if(gcreator.panel.getCurrentFolder()!=null)
             add(val);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -159,11 +159,11 @@ public class NewFileGroup extends TabPanel {
     }//GEN-LAST:event_jList1ValueChanged
     
     public org.gcreator.fileclass.Folder getCurrentFolder() {
-        return gcreator.window.getCurrentFolder();
+        return gcreator.panel.getCurrentFolder();
     }
 
     public org.gcreator.fileclass.GObject getCurrentObject() {
-        return gcreator.window.getCurrentObject();
+        return gcreator.panel.getCurrentObject();
     }
     
     public void add(String val){
@@ -171,10 +171,10 @@ public class NewFileGroup extends TabPanel {
         if(name.equals(""))
             name = "new";
         if(val.equals("/"))
-            gcreator.window.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
+            gcreator.panel.addGroup(getCurrentFolder(), getCurrentFolder().newGroup(name));
         else
-            gcreator.window.addFile(getCurrentFolder(), name, val);
-        Aurwindow.workspace.updateUI();
+            gcreator.panel.addFile(getCurrentFolder(), name, val);
+        gcreator.panel.workspace.updateUI();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

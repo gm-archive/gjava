@@ -284,7 +284,7 @@ public class SoundEditor extends TabPanel {
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
         file.name = jTextField1.getText();
-        Aurwindow.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1CaretUpdate
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed

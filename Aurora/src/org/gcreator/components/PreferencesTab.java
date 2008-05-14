@@ -305,14 +305,14 @@ public class PreferencesTab extends OptionPanel {
                 UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName());
             }
             SwingUtilities.updateComponentTreeUI(gcreator.window);
-            if (gcreator.window.istabs) {
-                SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
+            if (gcreator.panel.istabs) {
+                SwingUtilities.updateComponentTreeUI(gcreator.panel.mdi);
             } else {
-                SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
+                SwingUtilities.updateComponentTreeUI(gcreator.panel.tabs);
             }
-            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
+            SwingUtilities.updateComponentTreeUI(gcreator.panel.consolepopup);
             //gcreator.window.look = sel;
-            Aurwindow.workspace.updateUI();
+            gcreator.panel.workspace.updateUI();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
@@ -321,32 +321,32 @@ public class PreferencesTab extends OptionPanel {
         int sel = jComboBox2.getSelectedIndex();
 
         if (sel < 4) {
-            if (!gcreator.window.istabs) {
-                int k = gcreator.window.splitter2.getDividerLocation();
-                gcreator.window.tabs.setVisible(true);
-                gcreator.window.mdi.setVisible(false);
-                if (gcreator.window.isWorkspaceLeft()) {
-                    gcreator.window.splitter2.setRightComponent(gcreator.window.tabs);
-                    if (gcreator.window.splitter2.getRightComponent().isVisible()) {
-                        gcreator.window.splitter2.setDividerLocation(k);
+            if (!gcreator.panel.istabs) {
+                int k = gcreator.panel.splitter2.getDividerLocation();
+                gcreator.panel.tabs.setVisible(true);
+                gcreator.panel.mdi.setVisible(false);
+                if (gcreator.panel.isWorkspaceLeft()) {
+                    gcreator.panel.splitter2.setRightComponent(gcreator.panel.tabs);
+                    if (gcreator.panel.splitter2.getRightComponent().isVisible()) {
+                        gcreator.panel.splitter2.setDividerLocation(k);
                     }
                 } else {
-                    gcreator.window.splitter2.setLeftComponent(gcreator.window.tabs);
-                    if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
-                        gcreator.window.splitter2.setDividerLocation(k);
+                    gcreator.panel.splitter2.setLeftComponent(gcreator.panel.tabs);
+                    if (gcreator.panel.splitter2.getLeftComponent().isVisible()) {
+                        gcreator.panel.splitter2.setDividerLocation(k);
                     }
                 }
-                gcreator.window.istabs = true;
-                for (int i = 0; i < gcreator.window.mdi.getDesktop().getComponents().length; i++) {
-                    if (!(gcreator.window.mdi.getDesktop().getComponent(i) instanceof ExtendedFrame)) {
+                gcreator.panel.istabs = true;
+                for (int i = 0; i < gcreator.panel.mdi.getDesktop().getComponents().length; i++) {
+                    if (!(gcreator.panel.mdi.getDesktop().getComponent(i) instanceof ExtendedFrame)) {
                         continue;
                     }
                     try {
-                        TabPanel panel = ((ExtendedFrame) gcreator.window.mdi.getDesktop().getComponent(i)).getPanel();
-                        gcreator.window.tabs.addTab(panel.title, panel);
+                        TabPanel panel = ((ExtendedFrame) gcreator.panel.mdi.getDesktop().getComponent(i)).getPanel();
+                        gcreator.panel.tabs.addTab(panel.title, panel);
                         int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
                         if (ver >= 6) {
-                            gcreator.window.tabs.setTabComponentAt(gcreator.window.tabs.indexOfComponent(panel), new ButtonTabComponent(gcreator.window.tabs));
+                            gcreator.panel.tabs.setTabComponentAt(gcreator.panel.tabs.indexOfComponent(panel), new ButtonTabComponent(gcreator.panel.tabs));
                         }
                     } catch (ClassCastException e) {
                     }
@@ -357,40 +357,40 @@ public class PreferencesTab extends OptionPanel {
         try {
             switch (sel) {
                 case 0:
-                    gcreator.window.tabs.setTabPlacement(JTabbedPane.TOP);
+                    gcreator.panel.tabs.setTabPlacement(JTabbedPane.TOP);
                     break;
                 case 1:
-                    gcreator.window.tabs.setTabPlacement(JTabbedPane.LEFT);
+                    gcreator.panel.tabs.setTabPlacement(JTabbedPane.LEFT);
                     break;
                 case 2:
-                    gcreator.window.tabs.setTabPlacement(JTabbedPane.BOTTOM);
+                    gcreator.panel.tabs.setTabPlacement(JTabbedPane.BOTTOM);
                     break;
                 case 3:
-                    gcreator.window.tabs.setTabPlacement(JTabbedPane.RIGHT);
+                    gcreator.panel.tabs.setTabPlacement(JTabbedPane.RIGHT);
                     break;
             }
         } catch (Exception e) {
         }
 
         if (sel == 4) {
-            if (gcreator.window.istabs) {
-                int k = gcreator.window.splitter2.getDividerLocation();
-                gcreator.window.tabs.setVisible(false);
-                gcreator.window.mdi.setVisible(true);
-                if (gcreator.window.isWorkspaceLeft()) {
-                    gcreator.window.splitter2.setRightComponent(gcreator.window.mdi);
-                    if (gcreator.window.splitter2.getRightComponent().isVisible()) {
-                        gcreator.window.splitter2.setDividerLocation(k);
+            if (gcreator.panel.istabs) {
+                int k = gcreator.panel.splitter2.getDividerLocation();
+                gcreator.panel.tabs.setVisible(false);
+                gcreator.panel.mdi.setVisible(true);
+                if (gcreator.panel.isWorkspaceLeft()) {
+                    gcreator.panel.splitter2.setRightComponent(gcreator.panel.mdi);
+                    if (gcreator.panel.splitter2.getRightComponent().isVisible()) {
+                        gcreator.panel.splitter2.setDividerLocation(k);
                     }
                 } else {
-                    gcreator.window.splitter2.setLeftComponent(gcreator.window.mdi);
-                    if (gcreator.window.splitter2.getLeftComponent().isVisible()) {
-                        gcreator.window.splitter2.setDividerLocation(k);
+                    gcreator.panel.splitter2.setLeftComponent(gcreator.panel.mdi);
+                    if (gcreator.panel.splitter2.getLeftComponent().isVisible()) {
+                        gcreator.panel.splitter2.setDividerLocation(k);
                     }
                 }
 
-                gcreator.window.istabs = false;
-                Component[] panels = gcreator.window.tabs.getComponents();
+                gcreator.panel.istabs = false;
+                Component[] panels = gcreator.panel.tabs.getComponents();
                 for (int i = 0; i < panels.length; i++) {
                     if (panels[i] instanceof TabPanel) {
                         TabPanel panel = (TabPanel) panels[i];
@@ -404,7 +404,7 @@ public class PreferencesTab extends OptionPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        Aurwindow.antialiasing = jCheckBox1.isSelected();
+        gcreator.panel.antialiasing = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -47,7 +47,7 @@ public class SpriteEditor extends TabPanel {
         }
         else
             this.sprite = (Sprite) (file.value = new Sprite());
-        Component c = org.gcreator.core.gcreator.window.getNavigatorPanel();
+        Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
         if(c instanceof JPanel){
             System.out.println("Update c JPanel");
             ((JPanel) c).updateUI();
@@ -102,7 +102,7 @@ public class SpriteEditor extends TabPanel {
     public void updateName() {
         file.name = jTextField1.getText();
         //sprite.name = file.name;
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
      
     @Override
@@ -566,7 +566,7 @@ public class SpriteEditor extends TabPanel {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked

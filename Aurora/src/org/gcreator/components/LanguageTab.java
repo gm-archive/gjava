@@ -21,20 +21,20 @@ public class LanguageTab extends TabPanel {
     public LanguageTab() {
         initComponents();
         try{
-        if(LangSupporter.activeLang.getLanguage().equals(Aurwindow.lang))
+        if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang))
             jLabel4.setVisible(false);
         }
         catch(Exception e){}
         int l = 0;
-        if(Aurwindow.lang.equals("German"))
+        if(gcreator.panel.lang.equals("German"))
             l = 1;
-        if(Aurwindow.lang.equals("German (Old)"))
+        if(gcreator.panel.lang.equals("German (Old)"))
             l = 2;
-        if(Aurwindow.lang.equals("Portuguese (European)"))
+        if(gcreator.panel.lang.equals("Portuguese (European)"))
             l = 3;
-        if(Aurwindow.lang.equals("Russian"))
+        if(gcreator.panel.lang.equals("Russian"))
             l = 4;
-        if(Aurwindow.lang.equals("Spanish"))
+        if(gcreator.panel.lang.equals("Spanish"))
             l = 5;
         jComboBox1.setSelectedIndex(l);
         updateLanguage();
@@ -144,9 +144,9 @@ public class LanguageTab extends TabPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Aurwindow.lang = (String) jComboBox1.getSelectedItem();
+        gcreator.panel.lang = (String) jComboBox1.getSelectedItem();
         try{
-            jLabel4.setVisible(!LangSupporter.activeLang.getLanguage().equals(Aurwindow.lang));
+            jLabel4.setVisible(!LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang));
         }
         catch(Exception e){
             

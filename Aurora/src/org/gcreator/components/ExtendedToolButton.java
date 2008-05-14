@@ -15,11 +15,11 @@ import org.gcreator.core.*;
  */
 public class ExtendedToolButton extends JButton implements MouseListener{
     public void mouseExited(MouseEvent evt){
-        gcreator.window.statusbar.restoreText();
+        gcreator.panel.statusbar.restoreText();
     }
     public void mouseEntered(MouseEvent evt){
         try{
-            gcreator.window.statusbar.setText(getToolTipText());
+            gcreator.panel.statusbar.setText(getToolTipText());
         }
         catch(NullPointerException e){}
     }

@@ -39,7 +39,7 @@ public class ActorEditor extends TabPanel {
 
     public void updateNavigator(){
         System.out.println("Update navigator");
-        Component c = org.gcreator.core.gcreator.window.getNavigatorPanel();
+        Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
         if(c instanceof JPanel){
             System.out.println("Update c JPanel");
             ((JPanel) c).updateUI();
@@ -178,7 +178,7 @@ public class ActorEditor extends TabPanel {
     public void updateName() {
         file.name = jTextField1.getText();
         //actor.name = file.name;
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
     
     public static void setupActions() {
@@ -687,7 +687,7 @@ public class ActorEditor extends TabPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
         //actor.name = file.name;
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
         updateNavigator();
     }//GEN-LAST:event_jTextField1ActionPerformed
 

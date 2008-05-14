@@ -48,6 +48,6 @@ public class FileMenuItem extends JMenuItem implements ActionListener{
     public Icon getIcon(){
         if(file==null)
             return null;
-        return ((WorkspaceCellRenderer) Aurwindow.workspace.getCellRenderer()).getImageFor(file.node);
+        return ((WorkspaceCellRenderer) gcreator.panel.workspace.getCellRenderer()).getImageFor(file.node);
     }
 }

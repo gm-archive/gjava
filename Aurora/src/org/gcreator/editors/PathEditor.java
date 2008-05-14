@@ -8,7 +8,8 @@ package org.gcreator.editors;
 import java.util.Vector;
 import org.gcreator.components.PathCanvas;
 import org.gcreator.components.TabPanel;
-import org.gcreator.core.Aurwindow;
+import org.gcreator.core.GPanel;
+import org.gcreator.core.gcreator;
 import org.gcreator.exceptions.WrongResourceException;
 import org.gcreator.units.PathNode;
 import org.gcreator.fileclass.Project;
@@ -471,7 +472,7 @@ public class PathEditor extends TabPanel {
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
         file.name = jTextField1.getText();
-        Aurwindow.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1CaretUpdate
 
 private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed

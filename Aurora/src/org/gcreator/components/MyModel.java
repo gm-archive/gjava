@@ -23,12 +23,12 @@ public class MyModel extends DefaultComboBoxModel{
     }
     public Object getElementAt(int pos){
         if(gcreator.window!=null)
-            return gcreator.window.getWindowListElementAt(pos);
+            return gcreator.panel.getWindowListElementAt(pos);
         return null;
     }
     public int getSize(){
         if(gcreator.window!=null)
-            return gcreator.window.getWindowListSize();
+            return gcreator.panel.getWindowListSize();
         return 0;
     }
 }

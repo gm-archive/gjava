@@ -9,7 +9,7 @@
 
 package org.gcreator.components;
 
-import org.gcreator.core.Aurwindow;
+import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import javax.swing.*;
 
@@ -18,7 +18,7 @@ import javax.swing.*;
  * @author Luís
  */
 public class TabPanel extends JPanel {
-    public Aurwindow parent;
+    public GPanel parent;
     public ExtendedFrame frame;
     public String title = "<none>";
     public Project project;

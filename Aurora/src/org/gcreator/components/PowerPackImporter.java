@@ -136,12 +136,12 @@ public class PowerPackImporter extends TabPanel {
         }
         sel = "." + File.separator + "powerpack" + File.separator + sel;
         try {
-            StdImport.importImage(org.gcreator.core.gcreator.window.getCurrentFolder(), sel);
+            StdImport.importImage(org.gcreator.core.gcreator.panel.getCurrentFolder(), sel);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         System.out.println("will update");
-        org.gcreator.core.Aurwindow.workspace.updateUI();
+        org.gcreator.core.gcreator.panel.workspace.updateUI();
         
     }//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
