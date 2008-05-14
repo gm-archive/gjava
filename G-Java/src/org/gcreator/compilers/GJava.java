@@ -27,6 +27,7 @@ import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.core.Aurwindow;
+import org.gcreator.core.GPanel;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
 import org.gcreator.events.CreateEvent;
@@ -358,7 +359,7 @@ actorindex++;
         ToolbarButton btn = new ToolbarButton("Run program", "Run", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")));
         btn.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                run(Aurwindow.getMainProject());
+                run(GPanel.getMainProject());
             }
         });
         ToolbarManager.toolbuttons.add(btn);
@@ -426,11 +427,11 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         //print(game, "  scenes = new Scene2D[" + scenes + "]; ");
         //print(game, "" + loadscene);
         print(game, "scenes = new Scene2D[]{");
-        int i = gcreator.window.getMainProject().findFromName("$218");
+        int i = gcreator.panel.getMainProject().findFromName("$218");
         System.out.println("get scenes");
         boolean hasscenes=false;
         if (i > 0) {
-            GObject ff = gcreator.window.getMainProject().childAt(i);
+            GObject ff = gcreator.panel.getMainProject().childAt(i);
             System.out.println("1");
             if (ff != null && ff instanceof GFile) {
                 System.out.println("2");
@@ -487,18 +488,18 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
 
     public void run(Project project) {
         System.out.println("Saving...");
-        if (gcreator.window.istabs) {
-            for (int ii = 0; ii < gcreator.window.tabs.getTabCount(); ii++) {
-                if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project == null) {
-                } else if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).wasModified()) {
-                    ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).Save();
+        if (gcreator.panel.istabs) {
+            for (int ii = 0; ii < gcreator.panel.tabs.getTabCount(); ii++) {
+                if (((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).project == null) {
+                } else if (((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).project.equals(GPanel.getMainProject()) && ((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).wasModified()) {
+                    ((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).Save();
                 }
             }
         } else {
-            JDesktopPane mdi = gcreator.window.mdi.getDesktop();
+            JDesktopPane mdi = gcreator.panel.mdi.getDesktop();
             for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
                 if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
-                } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(GPanel.getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
                     ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
                 }
             }
