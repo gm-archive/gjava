@@ -89,7 +89,7 @@ public class GM6Importer {
         in = new GmStreamDecoder(fileName);
         GameProject project = GameProject.balance(ProjectTypes.EMPTY_GAME);
         project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
-        Aurwindow.setMainProject(project);
+        GPanel.setMainProject(project);
         org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("$218"));
         settings.editable = false;
         GmFileContext c = new GmFileContext(project, in);
@@ -119,9 +119,9 @@ public class GM6Importer {
 
         in.close();
 
-        ProjectTree.importFolderToTree(project, PluginHelper.getWindow().top);
-        PluginHelper.getWindow().workspace.updateUI();
-        PluginHelper.getWindow().workspace.repaint();
+        ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
+        PluginHelper.getPanel().workspace.updateUI();
+        PluginHelper.getPanel().workspace.repaint();
     }
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
