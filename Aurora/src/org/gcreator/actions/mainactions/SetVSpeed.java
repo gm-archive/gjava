@@ -10,6 +10,7 @@ import javax.swing.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 import com.l2fprod.common.propertysheet.*;
+import org.gcreator.components.PropertyManager;
 
 /**
  *
@@ -73,9 +74,7 @@ static final long serialVersionUID = 1L;
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-         PropertySheetPanel propertySheetPanel1 = new PropertySheetPanel();
-         propertySheetPanel1.setDescriptionVisible(true);
-         propertySheetPanel1.setMode(PropertySheetPanel.VIEW_AS_CATEGORIES);
+        PropertyManager propertySheetPanel1 = new PropertyManager();
          
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");

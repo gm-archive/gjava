@@ -5,6 +5,7 @@
 
 package org.gcreator.components.popupmenus;
 
+import java.awt.BorderLayout;
 import org.gcreator.editors.ActorEditor;
 import java.util.*;
 import java.awt.event.*;
@@ -88,9 +89,10 @@ public class ActionPopupMenu extends MenuGenerator{
     
     public void onEdit(){
             if(aedit!=null)
-                aedit.jScrollPane3.setViewportView(((org.gcreator.actions.Action) aedit.jList2.getSelectedValue()).getPanel());
+                aedit.jPanel7.removeAll();
+                aedit.jPanel7.add(((org.gcreator.actions.Action) aedit.jList2.getSelectedValue()).getPanel(), BorderLayout.CENTER);
             if(tedit!=null)
-                aedit.jScrollPane3.setViewportView(((org.gcreator.actions.Action) tedit.jList1.getSelectedValue()).getPanel());
+                tedit.jScrollPane3.setViewportView(((org.gcreator.actions.Action) tedit.jList1.getSelectedValue()).getPanel());
     }
     
     public void onCut() {

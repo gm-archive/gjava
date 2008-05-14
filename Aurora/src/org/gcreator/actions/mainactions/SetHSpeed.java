@@ -9,6 +9,7 @@ import java.beans.PropertyEditor;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import com.l2fprod.common.propertysheet.*;
+import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 
@@ -76,7 +77,7 @@ public class SetHSpeed extends ActionPattern {
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertySheetPanel propertySheetPanel1 = new PropertySheetPanel();
+        PropertyManager propertySheetPanel1 = new PropertyManager();
         /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
         propertySheetPanel1.setEditorFactory(new PropertyEditorFactory() {
 
@@ -86,8 +87,6 @@ public class SetHSpeed extends ActionPattern {
                 return f.createPropertyEditor(arg0);
             }
         });*/
-        propertySheetPanel1.setDescriptionVisible(true);
-        propertySheetPanel1.setMode(PropertySheetPanel.VIEW_AS_CATEGORIES);
 
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");

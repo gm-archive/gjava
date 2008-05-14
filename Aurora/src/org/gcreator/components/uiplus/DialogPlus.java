@@ -33,8 +33,8 @@ public class DialogPlus extends JDialog{
     }
     
     public void setWindowAlpha(float alpha){
-        com.sun.jna.examples.WindowUtils.setWindowAlpha(this, alpha);
-        this.alpha = alpha;
+            com.sun.jna.examples.WindowUtils.setWindowAlpha(this, alpha);
+            this.alpha = alpha;
     }
     
     public float getWindowAlpha(){
