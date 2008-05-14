@@ -286,18 +286,18 @@ public class GCSharp extends PlatformCore {
 
     public void run(Project proj) {
         System.out.println("Saving...");
-        if (gcreator.window.istabs) {
-            for (int ii = 0; ii < gcreator.window.tabs.getTabCount(); ii++) {
-                if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project == null) {
-                } else if (((TabPanel) gcreator.window.tabs.getComponentAt(ii)).project.equals(Aurwindow.getMainProject()) && ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).wasModified()) {
-                    ((TabPanel) gcreator.window.tabs.getComponentAt(ii)).Save();
+        if (gcreator.panel.istabs) {
+            for (int ii = 0; ii < gcreator.panel.tabs.getTabCount(); ii++) {
+                if (((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).project == null) {
+                } else if (((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).project.equals(GPanel.getMainProject()) && ((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).wasModified()) {
+                    ((TabPanel) gcreator.panel.tabs.getComponentAt(ii)).Save();
                 }
             }
         } else {
-            for (int ii = 0; ii < gcreator.window.mdi.getComponentCount(); ii++) {
-                if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project == null) {
-                } else if (((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().project.equals(Aurwindow.getMainProject()) && ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().wasModified()) {
-                    ((ExtendedFrame) gcreator.window.mdi.getComponent(ii)).getPanel().Save();
+            for (int ii = 0; ii < gcreator.panel.mdi.getComponentCount(); ii++) {
+                if (((ExtendedFrame) gcreator.panel.mdi.getComponent(ii)).getPanel().project == null) {
+                } else if (((ExtendedFrame) gcreator.panel.mdi.getComponent(ii)).getPanel().project.equals(GPanel.getMainProject()) && ((ExtendedFrame) gcreator.panel.mdi.getComponent(ii)).getPanel().wasModified()) {
+                    ((ExtendedFrame) gcreator.panel.mdi.getComponent(ii)).getPanel().Save();
                 }
             }
         }
