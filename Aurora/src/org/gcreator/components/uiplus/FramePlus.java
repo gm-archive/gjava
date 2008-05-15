@@ -45,13 +45,20 @@ public class FramePlus extends JFrame{
         fadeOut(5);
     }
     
+    public void setVisible(boolean b){
+        super.setVisible(b);
+        if(b)
+            setWindowAlpha(alpha);
+    }
+    
     public void fadeOut(final long delay){
         Thread t = new Thread(){
             public void run(){
                 if(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported()){
                     while(alpha>=0.01){
                         alpha-=0.01;
-                        setWindowAlpha(alpha);
+                        if(isVisible())
+                            setWindowAlpha(alpha);
                         try{
                             sleep(delay);
                         }

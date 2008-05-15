@@ -100,6 +100,16 @@ public class DiscMenu extends DialogPlus {
         setWindowMask(new ImageIcon(getClass().getResource("/org/gcreator/resources/mask.png")));
         setDoubleBuffered(true);
         setAlwaysOnTop(true);
+        JPanel p = new JPanel(){
+            public void paintComponent(Graphics g){
+                super.paintComponent(g);
+                DiscMenu.this.paintComponent(g);
+            }
+        };
+        p.setFocusable(false);
+        setLayout(new BorderLayout());
+        p.setVisible(true);
+        this.add(p, BorderLayout.CENTER);
     }
 
     private void motion(MouseEvent evt) {
@@ -190,7 +200,7 @@ public class DiscMenu extends DialogPlus {
         paint(g);
     }
 
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
         Color t1 = Color.WHITE;
         Color t2 = Color.BLUE;
         

@@ -51,7 +51,8 @@ public class DialogPlus extends JDialog{
                 if(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported()){
                     while(alpha>=0.01){
                         alpha-=0.01;
-                        setWindowAlpha(alpha);
+                        if(isVisible())
+                            setWindowAlpha(alpha);
                         try{
                             sleep(delay);
                         }

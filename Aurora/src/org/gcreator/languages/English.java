@@ -10,8 +10,6 @@
 package org.gcreator.languages;
 
 import org.gcreator.units.Dictionary;
-import org.gcreator.components.*;
-import org.gcreator.exceptions.*;
 
 /**
  *
