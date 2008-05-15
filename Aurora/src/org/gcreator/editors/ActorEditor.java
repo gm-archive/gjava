@@ -77,7 +77,7 @@ public class ActorEditor extends TabPanel {
     public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
         if (file.value == null) {
-            this.actor = new Actor(file.name);
+            this.actor = new Actor(/*file.name*/);
             actor.readXml(file.xml);
             file.value = actor;
             actor.events = new Vector<org.gcreator.events.Event>();
@@ -665,7 +665,8 @@ public class ActorEditor extends TabPanel {
         if (jList1.getSelectedValue() == null) {
             return;
         }
-        Vector<org.gcreator.actions.Action> actions = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
+        Vector<org.gcreator.actions.Action> actions = 
+                ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
         for (int i = 0; i < actions.size(); i++) {
             actmodel.addElement(actions.get(i));
         }
@@ -733,16 +734,17 @@ public class ActorEditor extends TabPanel {
             if (jList3.getSelectedValue() == null) {
                 return;
             }
-            ActionPattern ap = (org.gcreator.actions.ActionPattern)((org.gcreator.actions.ActionPattern) jList3.getSelectedValue()).clone();
+            ActionPattern ap = (org.gcreator.actions.ActionPattern)
+                    ((org.gcreator.actions.ActionPattern) jList3.getSelectedValue()).clone();
             
             org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
             ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
             
             updateActionList();
-;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
+        jPanel7.removeAll();
         a = (org.gcreator.actions.Action) jList2.getSelectedValue();
         
         if (a == null) {
@@ -867,7 +869,8 @@ public class ActorEditor extends TabPanel {
             setOpaque(true);
         }
         
-        public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus)
+        public Component getListCellRendererComponent(JList list, Object value, 
+                        int index, boolean isSelected, boolean cellHasFocus)
         {
             Value val = (Value)value;
             setText(val.value);
