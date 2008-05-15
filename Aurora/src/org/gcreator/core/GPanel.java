@@ -907,20 +907,21 @@ public class GPanel extends JPanel{
         k.setVisible(false);*/
         
         if (o instanceof org.gcreator.fileclass.GFile) {
-            if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
+            //if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
                 Object i = m.addMenuItem(
                 246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+                m.setEnabled(i, ((org.gcreator.fileclass.GFile) o).root.allowsDelete(o));
                 m.addActionListener(i, new ActionListener() {
 
                             public void actionPerformed(ActionEvent evt) {
                                 deleteFile((org.gcreator.fileclass.GFile) o);
                             }
                         });
-            }
-            else{
-                Object i = m.addMenuItem(
-                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")));
-            }
+            //}
+            //else{
+            //    Object i = m.addMenuItem(
+            //    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")));
+            //}
         }
         if (o instanceof org.gcreator.fileclass.Group) {
             if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {

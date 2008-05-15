@@ -132,6 +132,15 @@ public class MenuGenerator {
         }
     }
     
+    public void setEnabled(Object o, boolean enabled){
+        if(o instanceof DiscMenuItem){
+            ((DiscMenuItem) o).setEnabled(enabled);
+        }
+        if(o instanceof JMenuItem){
+            ((JMenuItem) o).setEnabled(enabled);
+        }
+    }
+    
     public void show(Component invoker, int x, int y){
         Point p = invoker.getLocationOnScreen();
         if(ltype==TYPE_STD)
