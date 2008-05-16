@@ -34,7 +34,8 @@ public class ProjectTree {
         else
             froot = root;
         if (folder instanceof Project) {
-            ((Project)folder).froot = froot;
+            //((Project)folder).froot = froot;
+            //((Project)folder).node.setParent(froot);
         }
         
         org.gcreator.fileclass.GObject childNode;

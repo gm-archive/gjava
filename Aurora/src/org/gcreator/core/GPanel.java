@@ -1971,9 +1971,9 @@ public class GPanel extends JPanel{
     public void CloseProject(Project p) {
         org.gcreator.core.utilities.addStringMessage("close project");
         //Close all tabs
-        closeAllTabs(p.froot);
+        closeAllTabs((DefaultMutableTreeNode) p.node.getParent());
         
-        top.remove(getCurrentProject().froot);
+        top.remove((DefaultMutableTreeNode) getCurrentProject().node.getParent());
         workspace.updateUI();
     }
     //</editor-fold>
