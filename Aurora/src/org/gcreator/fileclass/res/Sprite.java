@@ -16,7 +16,7 @@ import javax.swing.*;
  *
  * @author Ali1
  */
-public class Sprite extends Resource {
+public class Sprite implements Resource {
     static final long serialVersionUID = 1L;
     //public Vector<org.gcreator.fileclass.File> images;
     public Vector Simages;

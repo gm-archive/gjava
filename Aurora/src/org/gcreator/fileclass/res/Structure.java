@@ -12,7 +12,7 @@ import org.gcreator.units.*;
  *
  * @author luis
  */
-public class Structure extends Resource{
+public class Structure implements Resource{
     static final long serialVersionUID = 1L;
     public Vector<StructureField> structures = new Vector<StructureField>();
     

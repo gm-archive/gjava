@@ -13,7 +13,7 @@ package org.gcreator.fileclass.res;
  *
  * @author TGMG
  */
-public class Classes extends Resource {
+public class Classes implements Resource {
     static final long serialVersionUID = 1L;
     public String value = "";
     

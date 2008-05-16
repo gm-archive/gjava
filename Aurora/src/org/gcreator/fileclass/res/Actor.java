@@ -18,7 +18,7 @@ import org.gcreator.fileclass.GFile;
  *
  * @author Ali1
  */
-public class Actor extends Resource {
+public class Actor implements Resource {
 static final long serialVersionUID = 1L;
     public boolean visible,  solid,  persistant;
     public GFile sprite;

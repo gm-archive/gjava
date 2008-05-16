@@ -18,7 +18,7 @@ import javax.swing.*;
  * 
  * @author Serge Humphrey
  */
-public class GImage extends Resource {
+public class GImage implements Resource {
 
     static final long serialVersionUID = 1L;
     public ImageIcon image;

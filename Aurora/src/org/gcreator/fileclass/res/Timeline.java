@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author luis
  */
-public class Timeline extends Resource{
+public class Timeline implements Resource{
     static final long serialVersionUID = 1L;
     public Vector<TimelineStep> steps = new Vector<TimelineStep>();
     

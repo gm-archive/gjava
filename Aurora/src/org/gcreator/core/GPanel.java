@@ -924,7 +924,6 @@ public class GPanel extends JPanel{
             //}
         }
         if (o instanceof org.gcreator.fileclass.Group) {
-            if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
                 Object i = m.addMenuItem(
                 246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
                 if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
@@ -935,11 +934,9 @@ public class GPanel extends JPanel{
                                 }
                             });
                 }
-            }
-            else{
-                Object i = m.addMenuItem(
-                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")), false);
-            }
+                else{
+                    m.setEnabled(i, false);
+                }
             Object k = m.addMenuItem(
                 245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
             //k.setVisible(true);

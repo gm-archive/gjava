@@ -9,7 +9,7 @@ package org.gcreator.fileclass.res;
  *
  * @author TGMG
  */
-public class Script extends Resource {
+public class Script implements Resource {
     static final long serialVersionUID = 1L;
     public String value = "";
     

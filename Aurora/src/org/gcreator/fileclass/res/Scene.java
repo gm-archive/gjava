@@ -17,7 +17,7 @@ import javax.swing.*;
  *
  * @author Ali1
  */
-public class Scene extends Resource {
+public class Scene implements Resource {
 
     static final long serialVersionUID = 1L;
     public String caption = "";

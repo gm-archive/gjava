@@ -17,7 +17,7 @@ import org.gcreator.units.PathNode;
  *
  * @author Serge Humphrey
  */
-    public class Path extends Resource {
+public class Path implements Resource {
     static final long serialVersionUID = 1L;
     public boolean smoothCurves,  closedCurves, showGrid, snapGrid;
     public int gridx = 20, gridy = 20;
