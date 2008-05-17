@@ -281,8 +281,8 @@ public class English extends Dictionary{
         entry[232] = "Image URL";
         entry[233] = "Warning: It is not recommended to load images from the Internet";
         entry[234] = "Sprite";
-        entry[235] = "What to do if loading fails?";
-        entry[236] = "What to do if the image can't be added to the Sprite?";
+        entry[235] = "If loading fails";
+        entry[236] = "If image can't be added to Sprite";
         entry[237] = "Ignore";
         entry[238] = "Abort";
         entry[239] = "Interrupt event";
