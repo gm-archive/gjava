@@ -5,9 +5,12 @@
 
 package org.gcreator.actions.mainactions;
 
+import com.l2fprod.common.propertysheet.DefaultProperty;
+import com.l2fprod.common.propertysheet.Property;
 import org.gcreator.actions.*;
 import org.gcreator.actions.components.*;
 import javax.swing.*;
+import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 
@@ -29,12 +32,20 @@ public class IfClipboardHasContent extends ActionPattern{
     
     @Override
     public void save(JComponent panel){
-        not = ((YesOrNoIfPanel) panel).NotCheckbox.isSelected();
+        Property[] ps = ((PropertyManager) panel).getProperties();
+        for(Property p : ps){
+            if(p.getName().equals("not"))
+                not = (Boolean) p.getValue();
+        }
     }
     
     @Override
     public void load(JComponent panel){
-        ((YesOrNoIfPanel) panel).NotCheckbox.setSelected(not);
+        Property[] ps = ((PropertyManager) panel).getProperties();
+        for(Property p : ps){
+            if(p.getName().equals("not"))
+                p.setValue(not);
+        }
     }
     
     public void setStandardImage(ImageIcon img){
@@ -46,21 +57,31 @@ public class IfClipboardHasContent extends ActionPattern{
     }
     
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        YesOrNoIfPanel panel = new YesOrNoIfPanel();
+        PropertyManager panel = new PropertyManager();
+        
+        DefaultProperty p = new DefaultProperty();
+        p.setValue(false);
+        p.setType(Boolean.TYPE);
+        p.setCategory("<html><b>Main");
+        p.setName("not");
+        p.setDisplayName("NOT");
+        p.setShortDescription("If clipboard has text(false) / If clipboard has <b>no</b> text(true)");
+        panel.addProperty(p);
+        
         return panel;
     }
     
     public String getStandardText(JComponent panel){
         if(panel!=null)
             save(panel);
-        if(panel==null||!(panel instanceof YesOrNoIfPanel)||!((YesOrNoIfPanel) panel).NotCheckbox.isSelected())
+        if(not)
             return LangSupporter.activeLang.getEntry(230);
         return LangSupporter.activeLang.getEntry(231);
     }
     
     public String generateGCL(JComponent panel){
         save(panel);
-        if(panel==null||!(panel instanceof YesOrNoIfPanel)||!((YesOrNoIfPanel) panel).NotCheckbox.isSelected())
+        if(!not)
             return "if(clipboard_has_text())\n";
         return "if(!clipboard_has_text())\n";
     }

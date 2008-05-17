@@ -279,8 +279,8 @@ public class Portuguese extends Dictionary{
         entry[227] = "Ir para a próxima cena";
         entry[228] = "Ir para a cena anterior";
         entry[229] = "Adicionar imagem ao sprite";
-        entry[230] = "Se a área de transferência tiver conteúdo";
-        entry[231] = "Se a área de transferência estiver vazia";
+        entry[230] = "Se a área de transferência tiver texto";
+        entry[231] = "Se a área de transferência não tiver texto";
         entry[232] = "Localização da imagem";
         entry[233] = "Aviso: Não é recomendável usar a Internet como fonte de imagens";
         entry[234] = "Sprite";
