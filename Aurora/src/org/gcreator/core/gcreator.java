@@ -167,6 +167,7 @@ public class gcreator {
         //ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addclass.png")), 52);
         ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
         ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), 245);
+        ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), 269);
         
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -258,6 +259,12 @@ public class gcreator {
             }
         });
         
+        addaction.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                panel.onToolbarActionPerformed(16, evt);
+            }
+        });
+        
         ToolbarManager.toolbuttons.add(newp);
         ToolbarManager.toolbuttons.add(opn);
         ToolbarManager.toolbuttons.add(save);
@@ -270,6 +277,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addtml);
         ToolbarManager.toolbuttons.add(addact);
         ToolbarManager.toolbuttons.add(addscn);
+        ToolbarManager.toolbuttons.add(addaction);
 //        ToolbarManager.toolbuttons.add(addcls);
         ToolbarManager.toolbuttons.add(addgs);
         ToolbarManager.toolbuttons.add(addgr);

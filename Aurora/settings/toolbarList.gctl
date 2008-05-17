@@ -25,5 +25,8 @@ Item=std_addTimeline
 Item=std_addActor
 Item=std_addScene
 Item=std_addScript
+Item=std_addAction
 Item=std_addGroup
+Separator=Standard
+Item=Run program
 

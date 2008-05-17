@@ -1205,7 +1205,7 @@ public class GPanel extends JPanel{
             }
         }
         if(icore!=null)
-            icore.dispose();
+            icore.disposeIt();
     }
     
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
@@ -1915,7 +1915,20 @@ public class GPanel extends JPanel{
                     return;
                 }
                 addFile(getCurrentFolder(), "newPath" + ((GameProject)getCurrentProject()).paths++, "path");
-                break;  
+                break;
+            case 16:
+                if (!(getCurrentProject() instanceof ModuleProject))
+                    {
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
+                    return;
+                }
+                a = getCurrentFolder();
+                if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
+                    return;
+                }
+                addFile(getCurrentFolder(), "action_" + ((ModuleProject)getCurrentProject()).actions++, "action");
+                break;
         }
     }
 
@@ -2080,4 +2093,5 @@ public class GPanel extends JPanel{
         ProjectExporter.export(mainProject, mainProject.location);
     }
     //</editor-fold>
+    
 }

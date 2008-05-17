@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author luis
  */
 public interface ICore {
-    public void dispose();
+    public void disposeIt();
     public int getExtendedState();
     public void setExtendedState(int state);
     public void setTitle(String title);

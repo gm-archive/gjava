@@ -316,6 +316,8 @@ public class English extends Dictionary{
         entry[265] = "Closed";//Closed Curves
         entry[266] = "Display Options";
         entry[267] = "Show welcome screen";
+        entry[268] = "Actions";
+        entry[269] = "Add action";
         
         
         try{

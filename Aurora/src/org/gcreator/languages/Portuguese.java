@@ -319,6 +319,8 @@ public class Portuguese extends Dictionary{
         entry[265] = "Fechado";//Closed Curves
         entry[266] = "Opções de exibição";
         entry[267] = "Mostrar ecrã de boas vindas";
+        entry[268] = "Acções";
+        entry[269] = "Adicionar acção";
         
         try{
             init();

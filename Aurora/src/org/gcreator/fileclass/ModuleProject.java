@@ -16,6 +16,7 @@ public class ModuleProject extends Project{
     
     public int classes = 1;
     public int scripts = 1;
+    public int actions = 1;
     
     public ModuleProject(String name, String location){
         super(name, location);
@@ -36,6 +37,9 @@ public class ModuleProject extends Project{
         if (key.equals("class")) {
             e = node.getChildAt(0).children();
         }
+        if (key.equals("action")) {
+            e = node.getChildAt(1).children();
+        }
         return e;
     }
     
@@ -44,6 +48,8 @@ public class ModuleProject extends Project{
         try{
             if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
                 return findFolder("$216");
+            if(file.equals("action"))
+                return findFolder("$268");
         }
         catch(Exception e){}
         return null;
@@ -53,6 +59,8 @@ public class ModuleProject extends Project{
         try{
             if(g instanceof EGMLGroup)
                 return findFolder("$216");
+            if(g instanceof ActionGroup)
+                return findFolder("$268");
         }
         catch(Exception e){}
         return null;
@@ -61,6 +69,7 @@ public class ModuleProject extends Project{
     private static Project balancedCreation(){
         Project project = new ModuleProject();
         project.add(new EGMLGroup(project, "$216"));
+        project.add(new ActionGroup(project, "$268"));
         return project;
     }
     

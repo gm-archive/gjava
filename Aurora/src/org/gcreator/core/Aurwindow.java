@@ -20,6 +20,7 @@ public class Aurwindow extends JFrame implements ICore{
        gcreator.panel.setVisible(true);
        setLayout(new BorderLayout());
        add(gcreator.panel, BorderLayout.CENTER);
+       setDefaultCloseOperation(DISPOSE_ON_CLOSE);
        //setContentPane(gcreator.panel);
     }
     //</editor-fold>
@@ -28,9 +29,13 @@ public class Aurwindow extends JFrame implements ICore{
         ((JPanel) this.getContentPane()).updateUI();
     }
     
+    public void dispose(){
+        gcreator.panel.dispose();
+    }
+    
     //<editor-fold defaultstate="collapsed" desc="dispose">
     @Override
-    public void dispose() {
+    public void disposeIt() {
         System.exit(0);
         super.dispose();
     }
