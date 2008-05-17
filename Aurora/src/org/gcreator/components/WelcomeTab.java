@@ -9,6 +9,7 @@ package org.gcreator.components;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import org.gcreator.managers.*;
 
 /**
@@ -24,6 +25,7 @@ public class WelcomeTab extends TabPanel{
         jLabel2.setText(LangSupporter.activeLang.getEntry(38));
         //Graphics g = i.getImage().getGraphics();
         //j = new ImageIcon(new BufferedImage(400, 400, BufferedImage.TYPE_4BYTE_ABGR));
+        jToggleButton1.setSelected(!new File("settings/disable_welcome").exists());
         
     }
     
@@ -54,12 +56,20 @@ public class WelcomeTab extends TabPanel{
         jLabel2 = new javax.swing.JLabel();
         rSSReadPanel1 = new org.gcreator.components.RSSReadPanel();
         rSSBlogReadPanel2 = new org.gcreator.components.RSSBlogReadPanel();
+        jToggleButton1 = new javax.swing.JToggleButton();
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome to Aurora,");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("The Next Generation of G-Creator");
+
+        jToggleButton1.setText("Show welcome screen on start.");
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -68,12 +78,13 @@ public class WelcomeTab extends TabPanel{
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel1)
-                            .add(jLabel2))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 71, Short.MAX_VALUE)
+                            .add(jLabel2)
+                            .add(jToggleButton1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 72, Short.MAX_VALUE)
                         .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -85,18 +96,33 @@ public class WelcomeTab extends TabPanel{
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel2))
+                        .add(jLabel2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 228, Short.MAX_VALUE)
+                        .add(jToggleButton1))
                     .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 195, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+try{
+    if(jToggleButton1.isSelected()){
+        new File("settings/disable_welcome").delete();
+    }
+    else{
+        new File("settings/disable_welcome").createNewFile();
+    }
+}
+catch(Exception e){}
+}//GEN-LAST:event_jToggleButton1ActionPerformed
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JToggleButton jToggleButton1;
     private org.gcreator.components.RSSBlogReadPanel rSSBlogReadPanel1;
     private org.gcreator.components.RSSBlogReadPanel rSSBlogReadPanel2;
     private org.gcreator.components.RSSReadPanel rSSReadPanel1;

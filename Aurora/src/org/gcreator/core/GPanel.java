@@ -771,9 +771,9 @@ public class GPanel extends JPanel{
         splitter1.setDividerSize(5);
         splitter2.setDividerSize(5);
         utilities.addMessage(29);
-        SplashScreen.message = "Starting welcome window";
-        gcreator.splash.repaint();
         if(!(new File("settings/disable_welcome")).exists()){
+            SplashScreen.message = "Starting welcome window";
+        gcreator.splash.repaint();
             WelcomeTab welcome = new WelcomeTab();
             addWindow(welcome, 26);
             updateToDefaultNavigatorPanel(welcome);
