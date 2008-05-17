@@ -14,6 +14,7 @@ import javax.swing.*;
 import javax.swing.tree.*;
 
 import org.gcreator.components.*;
+import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.*;
 
 /**
@@ -22,10 +23,10 @@ import org.gcreator.fileclass.*;
  */
 public class ProjectTree {
     public static DefaultMutableTreeNode importFolderToTree(Folder folder, DefaultMutableTreeNode root){
-        return importFolderToTree(folder, root, true);
+        return importFolderToTree(folder, root, true, true);
     }
     
-    public static DefaultMutableTreeNode importFolderToTree(Folder folder, DefaultMutableTreeNode root, boolean decnew){
+    public static DefaultMutableTreeNode importFolderToTree(Folder folder, DefaultMutableTreeNode root, boolean decnew, boolean expand){
         DefaultMutableTreeNode froot;
         if(decnew){
             froot = new ObjectNode(folder);
@@ -33,10 +34,11 @@ public class ProjectTree {
         }
         else
             froot = root;
-        if (folder instanceof Project) {
+        //if (folder instanceof Project) {
             //((Project)folder).froot = froot;
             //((Project)folder).node.setParent(froot);
-        }
+        //}
+        
         
         org.gcreator.fileclass.GObject childNode;
         for(int i = 0; i < folder.getChildArrayNum(); i++){
@@ -46,13 +48,19 @@ public class ProjectTree {
                 if(childNode instanceof GFile)
                     node.setAllowsChildren(false);
                 if(childNode instanceof Folder){
-                    importFolderToTree((Folder) childNode, node, false);
+                    importFolderToTree((Folder) childNode, node, false, true);
                     node.setAllowsChildren(true);
+                    if(expand){
+                        gcreator.panel.workspace.expandPath(new TreePath(node.getPath()));
+                    }
                 }
             }
         }
+        if(expand){
+                    gcreator.panel.workspace.expandPath(new TreePath(froot.getPath()));
+            }
         try{
-        org.gcreator.core.gcreator.panel.workspace.updateUI();
+        gcreator.panel.workspace.updateUI();
         }
         catch(Exception e){}
         return froot;
