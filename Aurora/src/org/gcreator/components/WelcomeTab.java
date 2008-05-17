@@ -3,21 +3,26 @@
  *
  * Created on 24 de Agosto de 2007, 17:23
  */
-
 package org.gcreator.components;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import org.gcreator.core.GPanel;
+import org.gcreator.core.gcreator;
+import org.gcreator.fileclass.GameProject;
+import org.gcreator.fileclass.Project;
+import org.gcreator.macro.Macro;
+import org.gcreator.macro.NewProjectAction;
 import org.gcreator.managers.*;
 
 /**
  *
  * @author  Luís
  */
-public class WelcomeTab extends TabPanel{
-    
+public class WelcomeTab extends TabPanel {
+
     /** Creates new form WelcomeTab */
     public WelcomeTab() {
         initComponents();
@@ -26,23 +31,22 @@ public class WelcomeTab extends TabPanel{
         //Graphics g = i.getImage().getGraphics();
         //j = new ImageIcon(new BufferedImage(400, 400, BufferedImage.TYPE_4BYTE_ABGR));
         jToggleButton1.setSelected(!new File("settings/disable_welcome").exists());
-        
+
     }
-    
     //private ImageIcon j = null;
     private ImageIcon i = new ImageIcon(WelcomeTab.class.getResource("/org/gcreator/resources/initgrad.png"));
-    
-    public void paint(Graphics _g){
+
+    public void paint(Graphics _g) {
         Graphics2D g = (Graphics2D) _g;
         //DarkGradientPainter.paint(g, getWidth(), getHeight());
         /*g.drawImage(i.getImage(),
-                0, 0, getWidth(), getHeight(),
-                100, 100, 380, 380,
-                i.getImageObserver());*/
+        0, 0, getWidth(), getHeight(),
+        100, 100, 380, 380,
+        i.getImageObserver());*/
         g.drawImage(i.getImage(), 0, 0, getWidth(), getHeight(), i.getImageObserver());
         super.paintChildren(g);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -57,6 +61,7 @@ public class WelcomeTab extends TabPanel{
         rSSReadPanel1 = new org.gcreator.components.RSSReadPanel();
         rSSBlogReadPanel2 = new org.gcreator.components.RSSBlogReadPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome to Aurora,");
@@ -68,6 +73,14 @@ public class WelcomeTab extends TabPanel{
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game.png"))); // NOI18N
+        jButton1.setText("Create new Empty Game");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -83,8 +96,9 @@ public class WelcomeTab extends TabPanel{
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel1)
                             .add(jLabel2)
-                            .add(jToggleButton1))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 72, Short.MAX_VALUE)
+                            .add(jToggleButton1)
+                            .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -97,7 +111,9 @@ public class WelcomeTab extends TabPanel{
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 228, Short.MAX_VALUE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 178, Short.MAX_VALUE)
                         .add(jToggleButton1))
                     .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -107,19 +123,31 @@ public class WelcomeTab extends TabPanel{
     }// </editor-fold>//GEN-END:initComponents
 
 private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-try{
-    if(jToggleButton1.isSelected()){
-        new File("settings/disable_welcome").delete();
+    try {
+        if (jToggleButton1.isSelected()) {
+            new File("settings/disable_welcome").delete();
+        } else {
+            new File("settings/disable_welcome").createNewFile();
+        }
+    } catch (Exception e) {
     }
-    else{
-        new File("settings/disable_welcome").createNewFile();
-    }
-}
-catch(Exception e){}
 }//GEN-LAST:event_jToggleButton1ActionPerformed
-    
-    
+
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    Project project = null;
+    project = GameProject.balance(ProjectTypes.EMPTY_GAME);
+    project.name = "NewGame";
+    project.location = "";
+    GPanel.setMainProject(project);
+    ProjectTree.importFolderToTree(project, gcreator.panel.top);
+    Macro.macroAction(new NewProjectAction(project.name));
+    try {
+        gcreator.panel.workspace.updateUI();
+    } catch (Exception e) {
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
@@ -127,5 +155,4 @@ catch(Exception e){}
     private org.gcreator.components.RSSBlogReadPanel rSSBlogReadPanel2;
     private org.gcreator.components.RSSReadPanel rSSReadPanel1;
     // End of variables declaration//GEN-END:variables
-    
 }
