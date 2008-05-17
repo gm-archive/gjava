@@ -305,6 +305,20 @@ public class Portuguese extends Dictionary{
         entry[253] = "Copiar";
         entry[254] = "Colar";
         entry[255] = "Apagar";
+        entry[256] = "Caminhos";
+        entry[257] = "Caminho";
+        entry[258] = "Adicionar caminho";
+        entry[259] = "Antialiasing";
+        entry[260] = "<html>Para aceder a esta ferramenta, precisa de estar a usar a versão 6 ou<br/>"+
+                "superior do Java Runtime Envrionment (JRE). Para obter a última<br/>versão do "+
+                "JRE, visite <a href=\"http://www.java.com\">www.java.com</a></html>";
+        entry[261] = "Inserir";
+        entry[262] = "Curvas";
+        entry[263] = "Direito";//Straight Curves
+        entry[264] = "Suave";//Smooth Curves
+        entry[265] = "Fechado";//Closed Curves
+        entry[266] = "Opções de exibição";
+        entry[267] = "Mostrar ecrã de boas vindas";
         
         try{
             init();

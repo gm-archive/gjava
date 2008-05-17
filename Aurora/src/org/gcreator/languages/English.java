@@ -315,6 +315,7 @@ public class English extends Dictionary{
         entry[264] = "Smooth";//Smooth Curves
         entry[265] = "Closed";//Closed Curves
         entry[266] = "Display Options";
+        entry[267] = "Show welcome screen";
         
         
         try{

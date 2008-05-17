@@ -443,6 +443,13 @@ public class GPanel extends JPanel{
                         onItemActionPerformed(7, 3, evt);
                     }
                 });
+        items[MenuSupporter.GenerateMenuItemId(7, 5)] = MenuSupporter.MakeMenuItem(menus[7], 267, "Welcome screen");
+        items[MenuSupporter.GenerateMenuItemId(7, 5)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(7, 5, evt);
+                    }
+                });
         menus[7].addSeparator();
         menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
         menus[8].setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/tools_macro.png")));
@@ -773,7 +780,7 @@ public class GPanel extends JPanel{
         utilities.addMessage(29);
         if(!(new File("settings/disable_welcome")).exists()){
             SplashScreen.message = "Starting welcome window";
-        gcreator.splash.repaint();
+            gcreator.splash.repaint();
             WelcomeTab welcome = new WelcomeTab();
             addWindow(welcome, 26);
             updateToDefaultNavigatorPanel(welcome);
@@ -1652,6 +1659,11 @@ public class GPanel extends JPanel{
         if (menu == 7 && item == 4) {
             addWindow(new PowerPackImporter(), 184,
                     (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+        }
+        if (menu == 7 && item == 5){
+            WelcomeTab welcome = new WelcomeTab();
+            addWindow(welcome, 26);
+            updateToDefaultNavigatorPanel(welcome);
         }
         if (menu == 8 && item == 0) {
             PlayMacroDialog dialog = new PlayMacroDialog(this, true);
