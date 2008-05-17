@@ -773,9 +773,11 @@ public class GPanel extends JPanel{
         utilities.addMessage(29);
         SplashScreen.message = "Starting welcome window";
         gcreator.splash.repaint();
-        WelcomeTab welcome = new WelcomeTab();
-        addWindow(welcome, 26);
-        updateToDefaultNavigatorPanel(welcome);
+        if(!(new File("settings/disable_welcome")).exists()){
+            WelcomeTab welcome = new WelcomeTab();
+            addWindow(welcome, 26);
+            updateToDefaultNavigatorPanel(welcome);
+        }
         setMinimumSize(new Dimension(200, 200));
         if (settings[6].equals("True")) {
             icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
