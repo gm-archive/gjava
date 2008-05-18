@@ -58,7 +58,7 @@ public class ImageEditor2 extends TabPanel {
 
     @Override
     public boolean canSave() {
-        return !changed;
+        return changed;
     }
 
     @Override

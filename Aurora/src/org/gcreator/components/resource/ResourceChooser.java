@@ -49,6 +49,6 @@ public class ResourceChooser extends JComponent{
     }
     
     public Dimension getPreferredSize(){
-        return new Dimension(100, 20);
+        return new Dimension(120, 30);
     }
 }

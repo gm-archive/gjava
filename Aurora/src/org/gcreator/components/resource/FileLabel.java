@@ -82,6 +82,7 @@ import org.gcreator.fileclass.*;
     public void mouseExited(MouseEvent evt){}
     public void mouseEntered(MouseEvent evt){}
     public void mousePressed(MouseEvent evt){
+        System.out.println("got here");
         Folder f = p.getFolderFor(key);
         if(f==null)
             return;

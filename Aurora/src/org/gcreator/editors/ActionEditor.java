@@ -6,7 +6,16 @@
 
 package org.gcreator.editors;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.event.*;
+import org.gcreator.fileclass.res.Action;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.resource.ResourceChooser;
+import org.gcreator.core.gcreator;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -14,9 +23,66 @@ import org.gcreator.components.TabPanel;
  */
 public class ActionEditor extends TabPanel {
     
+    public boolean changed = false;
+    public Action action = null;
+    private ResourceChooser image = null;
+    
     /** Creates new form ActionEditor */
-    public ActionEditor() {
+    public ActionEditor(GFile file, Project project) {
+        this.file = file;
+        image = new ResourceChooser(project, "image");
+        image.setVisible(true);
+        if(file.value==null){
+            changed = true;
+            action = new Action();
+        }
+        else{
+            action = (Action) file.value;
+        }
+        image.setFile(action.image);
         initComponents();
+        jTextField1.setText(file.name);
+        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
+            public void changedUpdate(DocumentEvent e){
+                jTextField1DocumentEvent(e);
+            }
+            public void removeUpdate(DocumentEvent e){
+                jTextField1DocumentEvent(e);
+            }
+            public void insertUpdate(DocumentEvent e){
+                jTextField1DocumentEvent(e);
+            }
+        });
+        jPanel1.setLayout(new BorderLayout());
+        jPanel1.add(image, BorderLayout.CENTER);
+        image.addActionListener(new ActionListener(){
+             public void actionPerformed(ActionEvent evt){
+                 GFile img = image.getFile();
+                 if(action.image!=img){
+                     action.image = img;
+                     changed = true;
+                 }
+             }
+        });
+    }
+    
+    public boolean canSave(){
+        return changed;
+    }
+    
+    public boolean wasModified(){
+        return changed;
+    }
+    
+    public boolean Save(){
+        changed = false;
+        file.value = action;
+        return true;
+    }
+    
+    public void jTextField1DocumentEvent(DocumentEvent e){
+        file.name = jTextField1.getText();
+        gcreator.panel.workspace.updateUI();
     }
     
     /** This method is called from within the constructor to
@@ -29,68 +95,24 @@ public class ActionEditor extends TabPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
 
-        jLabel1.setText("Name:");
+        jLabel1.setText("Name");
 
         jTextField1.setText("jTextField1");
 
-        jLabel2.setText("Category:");
-
-        jTextField2.setText("jTextField2");
-
-        jLabel3.setText("Image:");
-
-        jTextField3.setText("jTextField3");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Arguments"));
-
-        jTextField4.setText("Name");
-
-        jTextField5.setText("Initial Value");
-
-        jButton1.setText("Add");
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Image:"));
 
         org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1Layout.createSequentialGroup()
-                        .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 109, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton1))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE))
-                .addContainerGap())
+            .add(0, 184, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jTextField4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jTextField5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jButton1))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE))
+            .add(0, 85, Short.MAX_VALUE)
         );
-
-        jLabel4.setText("Code:");
-
-        jScrollPane2.setViewportView(jTextPane1);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -99,23 +121,11 @@ public class ActionEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel1)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 120, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(layout.createSequentialGroup()
-                                .add(jLabel3)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jTextField3)))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 99, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jLabel4))
+                        .add(jLabel1)
+                        .add(18, 18, 18)
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,39 +134,18 @@ public class ActionEditor extends TabPanel {
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel2)
-                    .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel3)
-                    .add(jTextField3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jLabel4)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(253, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextPane jTextPane1;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -5,6 +5,7 @@
 
 package org.gcreator.core;
 
+//<editor-fold defaultstate="collapsed" desc="Import statements">
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -29,6 +30,7 @@ import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
+//</editor-fold>
 
 /**
  *
@@ -86,6 +88,7 @@ public class GPanel extends JPanel{
     //public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
     //</editor-fold>
     
+    //<editor-fold defaultstate="Collapsed" desc="Constructor">
     public GPanel(ICore icore, String[] settings){
         this.icore = icore;
         
@@ -798,6 +801,7 @@ public class GPanel extends JPanel{
         gcreator.splash.repaint();
         //setVisible(true);
     }
+    //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
     public boolean isWorkspaceLeft() {
@@ -1042,6 +1046,10 @@ public class GPanel extends JPanel{
         
         if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject(), img);
+        } else if(file.type.equals("action")){
+            TabPanel tp = new ActionEditor(file, this.getCurrentProject());
+            file.tabPanel = tp;
+            addEWindow(tp, file.name, img);
         } else if (file.type.equals("sprite")) {
 
             System.out.println("Sprite created");
@@ -1181,11 +1189,13 @@ public class GPanel extends JPanel{
     }
     //</editor-fold>
 
-    
+    //<editor-fold defaultstate="collapsed" desc="getICore">
     public ICore getICore(){
         return icore;
     }
+    //</editor-fold>
     
+    //<editor-fold defaultstate="collapsed" desc="dispose">
     public void dispose(){
         if (!gcreator.applet && gcreator.plugload) {
             Plugger.onMainWindowDispose();
@@ -1207,6 +1217,7 @@ public class GPanel extends JPanel{
         if(icore!=null)
             icore.disposeIt();
     }
+    //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
@@ -1464,6 +1475,7 @@ public class GPanel extends JPanel{
         return nav;
     }
 
+    //<editor-fold defaultstate="collapsed" desc="updateNavigatorPanel">
     public void updateNavigatorPanel(JComponent panel) {
         //splitter3.setBottomComponent(panel);
         nav = panel;
@@ -1472,6 +1484,7 @@ public class GPanel extends JPanel{
             navroot.add(nav, BorderLayout.CENTER);
         }
     }
+    //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="createPaletteFrame()">
     public JInternalFrame createPaletteFrame() {
@@ -1500,8 +1513,6 @@ public class GPanel extends JPanel{
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
     }
-    
-    
 
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     private void onItemActionPerformed(int menu, int item, ActionEvent evt) {

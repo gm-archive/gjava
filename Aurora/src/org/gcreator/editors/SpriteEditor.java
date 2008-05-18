@@ -635,7 +635,7 @@ public class SpriteEditor extends TabPanel {
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getFile();
         Object o = a.value;
         if (sprite.countImages()  == 0){
-            if(((org.gcreator.fileclass.res.GImage) o).image!=null){
+            if(o!=null&&((org.gcreator.fileclass.res.GImage) o).image!=null){
             sprite.width = ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth();
             sprite.height = ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight();
             jLabel2.setText("Width:"+sprite.width);

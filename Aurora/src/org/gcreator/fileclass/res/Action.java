@@ -5,6 +5,8 @@
 
 package org.gcreator.fileclass.res;
 
+import org.gcreator.fileclass.GFile;
+
 /**
  *
  * @author luis
@@ -16,6 +18,8 @@ public class Action implements Resource{
     public static final int TYPE_PROPERTIES = 3;
     
     public int type = 0;
+    public GFile image = null;
+    
     public Action(){
         
     }
@@ -23,6 +27,8 @@ public class Action implements Resource{
     public Resource clone(){
         Action act = new Action();
         act.type = type;
+        act.image = image;
+        
         return act;
     }
 }

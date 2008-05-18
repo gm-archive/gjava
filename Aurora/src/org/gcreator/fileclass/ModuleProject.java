@@ -7,6 +7,7 @@ package org.gcreator.fileclass;
 
 import java.util.*;
 import javax.swing.*;
+import org.gcreator.units.ObjectNode;
 
 /**
  *
@@ -45,6 +46,17 @@ public class ModuleProject extends Project{
             e = node.getChildAt(2).children();
         }
         return e;
+    }
+    
+    public Folder getFolderFor(String key){
+        if (key.equals("image")) {
+            return (Folder) ((ObjectNode) node.getChildAt(0)).object;
+        } else if (key.equals("class")) {
+            return (Folder) ((ObjectNode) node.getChildAt(1)).object;
+        } else if (key.equals("action")){
+            return (Folder) ((ObjectNode) node.getChildAt(2)).object;
+        }
+        return null;
     }
     
     public Folder magicAddition(String file)
@@ -94,7 +106,7 @@ public class ModuleProject extends Project{
         return null;
     }
     
-    public boolean allowsDelete(Object o){
+    public boolean allowsDelete(GObject o){
         return false;
     }
     
