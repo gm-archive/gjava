@@ -33,7 +33,7 @@ public class Aurwindow extends JFrame implements ICore{
         gcreator.panel.dispose();
     }
     
-    //<editor-fold defaultstate="collapsed" desc="dispose">
+    //<editor-fold defaultstate="collapsed" desc="disposeIt">
     @Override
     public void disposeIt() {
         System.exit(0);

@@ -11,6 +11,7 @@ package org.gcreator.core;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
@@ -41,6 +42,7 @@ public class gcreator {
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
     private static String java_version = System.getProperty("java.version");
+    public static String settingsLocation = "." + File.separator + "settings" + File.separator;
     
     public static String[] getargs(){
         return arguments;

@@ -325,7 +325,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/org/gcreator/actions/images/Draw2D.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/imageeditor/Draw_Rect.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
@@ -342,7 +342,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/org/gcreator/actions/images/Draw2D.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/imageeditor/Fill_Rect.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>
@@ -359,7 +359,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/org/gcreator/actions/images/Draw2D.png"/>
+              <Image iconType="3" name="/org/gcreator/resources/imageeditor/Select_Linear.png"/>
             </Property>
             <Property name="selected" type="boolean" value="true"/>
           </Properties>

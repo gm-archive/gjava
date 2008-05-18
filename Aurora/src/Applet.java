@@ -1,3 +1,9 @@
+
+import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Window;
+import javax.swing.JApplet;
+
 /*
  * Applet.java
  *
@@ -7,28 +13,75 @@
  * and can NOT access the plugin system.
  * 
  * <applet code="Applet.class"
-	archive="Aurora.jar"
-	width="300"
-	height="120">
-   </applet>
+archive="Aurora.jar"
+width="300"
+height="120">
+</applet>
  * 
  */
-
-
+import javax.swing.UIManager;
+import org.gcreator.core.GPanel;
+import org.gcreator.core.ICore;
+import org.gcreator.core.gcreator;
 
 /**
  *
  * @author  Luís
  */
-public class Applet extends java.applet.Applet {
-    
+public class Applet extends JApplet implements ICore {
+
     /** Initializes the applet Applet */
-    
     public void init() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception e) {
+        }
         initComponents();
         org.gcreator.core.gcreator.__main(null, false, true);
+
+        String[] settings = new String[8];
+        //settings[0] = "Metal";
+        settings[0] = UIManager.getSystemLookAndFeelClassName();
+        settings[1] = "Tabs (Top)";
+        settings[2] = "Visible";
+        settings[3] = "English";
+        settings[4] = "Visible";
+        settings[5] = "Left";
+        settings[6] = "800, 600";
+        settings[7] = "true";
+
+        gcreator.settingsLocation = "http://g-creator.org/applet/";
+        gcreator.panel = new GPanel(this, settings);
+        add(gcreator.panel, BorderLayout.CENTER);
     }
-    
+
+    public Window getParentWindow() {
+        return null;
+    }
+
+    public void pack() {
+    }
+
+    public void setIconImage(Image i) {
+    }
+
+    public void setDefaultCloseOperation(int operation) {
+    }
+
+    public void setTitle(String title) {
+    }
+
+    public void setExtendedState(int state) {
+    }
+
+    public int getExtendedState() {
+        return 0;
+    }
+
+    public void disposeIt() {
+        System.exit(0);
+    }
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -36,18 +89,7 @@ public class Applet extends java.applet.Applet {
      */
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
-        jLabel1 = new javax.swing.JLabel();
-
-        setLayout(new java.awt.BorderLayout());
-
-        jLabel1.setText("G-Creator should now popup");
-        add(jLabel1, java.awt.BorderLayout.WEST);
     }// </editor-fold>//GEN-END:initComponents
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
-    
 }
