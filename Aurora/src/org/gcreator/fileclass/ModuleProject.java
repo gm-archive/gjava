@@ -14,6 +14,7 @@ import javax.swing.*;
  */
 public class ModuleProject extends Project{
     
+    public int images = 1;
     public int classes = 1;
     public int scripts = 1;
     public int actions = 1;
@@ -34,11 +35,14 @@ public class ModuleProject extends Project{
      
     public Enumeration getEnum(String key){
         Enumeration e = null;
-        if (key.equals("class")) {
+        if (key.equals("image")) {
             e = node.getChildAt(0).children();
         }
-        if (key.equals("action")) {
+        if (key.equals("class")) {
             e = node.getChildAt(1).children();
+        }
+        if (key.equals("action")) {
+            e = node.getChildAt(2).children();
         }
         return e;
     }
@@ -46,6 +50,8 @@ public class ModuleProject extends Project{
     public Folder magicAddition(String file)
     {
         try{
+            if(file.equals("png")||file.equals("gif")||file.equals("jpg"))
+                return findFolder("$209");
             if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
                 return findFolder("$216");
             if(file.equals("action"))
@@ -57,6 +63,8 @@ public class ModuleProject extends Project{
     
     public Folder magicAddition(Group g){
         try{
+            if(g instanceof ImageGroup)
+                return findFolder("$209");
             if(g instanceof EGMLGroup)
                 return findFolder("$216");
             if(g instanceof ActionGroup)
@@ -68,6 +76,7 @@ public class ModuleProject extends Project{
     
     private static Project balancedCreation(){
         Project project = new ModuleProject();
+        project.add(new ImageGroup(project, "$209"));
         project.add(new EGMLGroup(project, "$216"));
         project.add(new ActionGroup(project, "$268"));
         return project;

@@ -1832,18 +1832,24 @@ public class GPanel extends JPanel{
                 addFile(getCurrentFolder(), "sc_" + ((GameProject)getCurrentProject()).scenes++, "scene");
                 break;
             case 10:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
-                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
-                    return;
-                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
+                if (getCurrentProject() instanceof GameProject)
+                    {
+                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((GameProject)getCurrentProject()).images++, "png");
+                    return;
+                }
+                else if(getCurrentProject() instanceof ModuleProject){
+                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((ModuleProject)getCurrentProject()).images++, "png");
+                    return;
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
+                }
 
-                org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "newImage" + ((GameProject)getCurrentProject()).images++, "png");
                 break;
             case 11:
                 if (!(getCurrentProject() instanceof GameProject))
