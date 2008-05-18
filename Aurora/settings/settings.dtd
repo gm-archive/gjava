@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/settings.dtd
+
+--><!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE settings SYSTEM "settings.dtd">
+
+    <settings>
+    ...
+    </settings>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT settings (antialiasing|size|tree|toolbar|language|console|desktop|style)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT style (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT desktop (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT console (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT language (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT toolbar (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT tree (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT size (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT antialiasing (#PCDATA)>

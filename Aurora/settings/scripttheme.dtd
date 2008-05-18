@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!--
+    TODO define vocabulary identification
+    PUBLIC ID: -//vendor//vocabulary//EN
+    SYSTEM ID: http://server/path/scripttheme.dtd
+
+--><!--
+    An example how to use this DTD from your XML document:
+
+    <?xml version="1.0"?>
+
+    <!DOCTYPE theme SYSTEM "scripttheme.dtd">
+
+    <theme>
+    ...
+    </theme>
+-->
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT theme (element)*>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT element (font|color)*>
+<!ATTLIST element
+    id CDATA #IMPLIED
+  >
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT color (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT font (#PCDATA)>
+<!ATTLIST font
+    style CDATA #IMPLIED
+    size CDATA #IMPLIED
+  >

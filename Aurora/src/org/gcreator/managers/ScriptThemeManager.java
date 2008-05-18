@@ -18,7 +18,7 @@ public class ScriptThemeManager {
     private static Hashtable<String, Font> fonts = new Hashtable<String, Font>();
     
     public static void load() {
-        File f = new File("settings/scripttheme");
+        File f = new File("settings/scripttheme.xml");
         if (f.exists()) {
             try {
                 FileReader r = new FileReader(f);
@@ -95,7 +95,7 @@ public class ScriptThemeManager {
     }
 
     public static void save() {
-        File f = new File("settings/scripttheme");
+        File f = new File("settings/scripttheme.xml");
         BufferedWriter out;
         try {
             if (!f.exists()) {
