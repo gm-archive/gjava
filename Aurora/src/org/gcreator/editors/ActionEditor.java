@@ -3,7 +3,6 @@
  *
  * Created on 15 October 2007, 21:36
  */
-
 package org.gcreator.editors;
 
 import java.awt.BorderLayout;
@@ -22,69 +21,78 @@ import org.gcreator.fileclass.Project;
  * @author  Ali1
  */
 public class ActionEditor extends TabPanel {
-    
+
     public boolean changed = false;
     public Action action = null;
     private ResourceChooser image = null;
-    
+
     /** Creates new form ActionEditor */
     public ActionEditor(GFile file, Project project) {
         this.file = file;
         image = new ResourceChooser(project, "image");
         image.setVisible(true);
-        if(file.value==null){
+        if (file.value == null) {
             changed = true;
             action = new Action();
-        }
-        else{
+        } else {
             action = (Action) file.value;
         }
         image.setFile(action.image);
         initComponents();
         jTextField1.setText(file.name);
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent e){
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void changedUpdate(DocumentEvent e) {
                 jTextField1DocumentEvent(e);
             }
-            public void removeUpdate(DocumentEvent e){
+
+            public void removeUpdate(DocumentEvent e) {
                 jTextField1DocumentEvent(e);
             }
-            public void insertUpdate(DocumentEvent e){
+
+            public void insertUpdate(DocumentEvent e) {
                 jTextField1DocumentEvent(e);
             }
         });
         jPanel1.setLayout(new BorderLayout());
         jPanel1.add(image, BorderLayout.CENTER);
-        image.addActionListener(new ActionListener(){
-             public void actionPerformed(ActionEvent evt){
-                 GFile img = image.getFile();
-                 if(action.image!=img){
-                     action.image = img;
-                     changed = true;
-                 }
-             }
+        image.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
+                GFile img = image.getFile();
+                if (action.image != img) {
+                    action.image = img;
+                    changed = true;
+                }
+            }
         });
+        jComboBox1.setSelectedIndex(action.type);
+        if (action.type == Action.TYPE_IDE) {
+        } else {
+            jLabel3.setEnabled(false);
+            jComboBox2.setEnabled(false);
+        }
     }
-    
-    public boolean canSave(){
+
+    public boolean canSave() {
         return changed;
     }
-    
-    public boolean wasModified(){
+
+    public boolean wasModified() {
         return changed;
     }
-    
-    public boolean Save(){
+
+    public boolean Save() {
         changed = false;
         file.value = action;
         return true;
     }
-    
-    public void jTextField1DocumentEvent(DocumentEvent e){
+
+    public void jTextField1DocumentEvent(DocumentEvent e) {
         file.name = jTextField1.getText();
         gcreator.panel.workspace.updateUI();
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -96,6 +104,10 @@ public class ActionEditor extends TabPanel {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox();
 
         jLabel1.setText("Name");
 
@@ -111,8 +123,21 @@ public class ActionEditor extends TabPanel {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 85, Short.MAX_VALUE)
+            .add(0, 89, Short.MAX_VALUE)
         );
+
+        jLabel2.setText("Type:");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Void", "Text", "Code", "Properties" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Language: ");
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "G-Script" }));
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -121,7 +146,18 @@ public class ActionEditor extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel2)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jComboBox1, 0, 228, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(jLabel3)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jComboBox2, 0, 191, Short.MAX_VALUE))))
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .add(18, 18, 18)
@@ -136,16 +172,41 @@ public class ActionEditor extends TabPanel {
                     .add(jLabel1)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(layout.createSequentialGroup()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel2)
+                            .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel3)
+                            .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    int index = jComboBox1.getSelectedIndex();
+    if (action.type != index) {
+        action.type = index;
+        changed = true;
+    }
+    if (action.type == Action.TYPE_IDE) {
+        jLabel3.setEnabled(true);
+        jComboBox2.setEnabled(true);
+    } else {
+        jLabel3.setEnabled(false);
+        jComboBox2.setEnabled(false);
+    }
+}//GEN-LAST:event_jComboBox1ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-    
 }

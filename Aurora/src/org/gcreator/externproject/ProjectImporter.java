@@ -15,12 +15,9 @@ import java.util.*;
 import java.util.logging.*;
 import java.util.zip.*;
 import javax.swing.*;
-import org.gcreator.components.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
-import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
-import org.gcreator.plugins.Plugger;
 
 /**
  *
@@ -67,19 +64,32 @@ public class ProjectImporter {
             if (sss[0].equals("org.gcreator.fileclass.GFile")) {
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String[] ssss = sss[1].split("\\.");
-                String dir = sss[1];
-                if (dir.indexOf("/") != -1) {
-                    dir = dir.substring(0, dir.lastIndexOf("/"));
-                } else {
-                    dir = "/";
+                String[] g = sss[1].split("/");
+                Folder fol = project;
+                try{
+                    for(int i = 0; i < g.length-1; i++){
+                        if(g[i].equals("")) continue;
+                        
+                        fol = fol.findFolder(g[i]);
+                    }
                 }
+                catch(Exception e){
+                    System.err.println(e.toString());
+                    fol = project;
+                }
+                //if (dir.indexOf("/") != -1) {
+                //    dir = dir.substring(0, dir.lastIndexOf("/"));
+                //} else {
+                //    dir = "/";
+                //}
                 if (ssss.length > 0) {
                     try {
                         String tname = ssss[0];
                         if (tname.indexOf("/") != -1) {
                             tname = tname.substring(tname.lastIndexOf("/") + 1);
                         }
-                        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(project.findFolder(dir), tname, ssss[1], null);
+                        //org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(project.findFolder(dir), tname, ssss[1], null);
+                        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(fol, tname, ssss[1], null);
                         //file.value = Stringfiles.elementAt(fileno);
                         file.value = objects.elementAt(fileno);
 //                        if (ssss[1].equals("settings")) {
@@ -145,7 +155,14 @@ public class ProjectImporter {
                     Group t = (Group) ClassLoading.classLoader.loadClass(sss[0]).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
-                    project.add(t);
+                    String[] g = sss[1].split("/");
+                    Folder fol = project;
+                    for(int i = 0; i < g.length-1; i++){
+                        if(g[i].equals("")) continue;
+                        
+                        fol = fol.findFolder(g[i]);
+                    }
+                    fol.add(t);
                 }
                 catch(Exception e)
                 {
@@ -156,7 +173,14 @@ public class ProjectImporter {
                     Group t = (Group) ClassLoading.classLoader.loadClass(sss[0]).newInstance();
                     t.root = project;
                     t.name = sss[1].substring(sss[1].lastIndexOf("/") + 1);
-                    project.add(t);
+                    String[] g = sss[1].split("/");
+                    Folder fol = project;
+                    for(int i = 0; i < g.length-1; i++){
+                        if(g[i].equals("")) continue;
+                        
+                        fol = fol.findFolder(g[i]);
+                    }
+                    fol.add(t);
                 }
                 catch(Exception e){}
             }
