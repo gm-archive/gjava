@@ -305,6 +305,7 @@ public class PreferencesTab extends OptionPanel {
                 UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName());
             }
             SwingUtilities.updateComponentTreeUI(gcreator.window);
+            SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
             if (gcreator.panel.istabs) {
                 SwingUtilities.updateComponentTreeUI(gcreator.panel.mdi);
             } else {

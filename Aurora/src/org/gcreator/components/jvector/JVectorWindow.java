@@ -674,6 +674,7 @@ public class JVectorWindow extends javax.swing.JFrame {
         selectedShape = (JVectorable) shapeList.getSelectedValue();
         selectedShape.callSelected(true);
         generalSettings.setShape(selectedShape);
+        layerEditor.setShape(selectedShape);
 }//GEN-LAST:event_shapeListValueChanged
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
@@ -786,6 +787,9 @@ public class JVectorWindow extends javax.swing.JFrame {
            s.paint(g);
         }
         editor.i.image = new ImageIcon(bufImg);
+        editor.i.width = bufImg.getWidth();
+        editor.i.height = bufImg.getHeight();
+        editor.pane.updateUI();
         editor.pane.repaint();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

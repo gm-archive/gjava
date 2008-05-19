@@ -48,13 +48,13 @@ public class SpriteNavigator extends JScrollPane{
                             continue;
                         }
                         else{
-                            System.out.println("There are " + s.Simages.size());
+                           // System.out.println("There are " + s.Simages.size());
                             if(i >= s.Simages.size())
                                 i = 0;
                             p.i = ((GImage) (((GFile) s.Simages.get(i)).value)).image;
                             updateUI();
                             repaint();
-                            System.out.println("Updating to " + i);
+                          //  System.out.println("Updating to " + i);
                             sleep(100);
                             i++;
                             continue;

@@ -12,6 +12,8 @@ package org.gcreator.core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
@@ -22,11 +24,14 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import org.gcreator.api.util.CreateApiList;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
+import org.gcreator.components.SystemOutputReader;
 import org.gcreator.components.impl.DefaultToolbarItem;
 import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.navigator.*;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
+import org.gcreator.units.SystemErrStream;
+import org.gcreator.units.SystemOutStream;
 
 /**
  *
@@ -44,6 +49,14 @@ public class gcreator {
     private static String java_version = System.getProperty("java.version");
     public static String settingsLocation = "." + File.separator + "settings" + File.separator;
     
+    static {
+        new SystemOutputReader();
+        SystemOutStream.instance = new SystemOutStream(System.out);
+        System.setOut(SystemOutStream.instance);
+        SystemErrStream.instance = new SystemErrStream(System.err);
+        System.setErr(SystemErrStream.instance);
+    }
+    
     public static String[] getargs(){
         return arguments;
     }
@@ -54,7 +67,7 @@ public class gcreator {
     
     protected static boolean applet;
     
-    public static void main(String[] args){
+    public static void main(String[] args) {
         applet = false;
         __main(args);
     }
@@ -351,7 +364,7 @@ public class gcreator {
             System.out.println("[gcreator]Exception Caught: "+e.getMessage());
             e.printStackTrace();
         }
-        
+        //SystemOutputReader.instance.
         if(splash!=null)
             SwingUtilities.updateComponentTreeUI(splash);
         splash.progressBar.setVisible(true);

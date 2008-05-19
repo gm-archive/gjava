@@ -386,7 +386,13 @@ public class GPanel extends JPanel{
                         onItemActionPerformed(2, 1, evt);
                     }
                 });
+        items[MenuSupporter.GenerateMenuItemId(2, 2)] = MenuSupporter.MakeMenuItem(menus[2], 270, "View Console Output");
+        items[MenuSupporter.GenerateMenuItemId(2, 2)].addActionListener(new ActionListener() {
 
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(2, 2, evt);
+                    }
+                });
         menus[3] = MenuSupporter.MakeMenu(menubar, 3, "Compile and test your games.");
         items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
         items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
@@ -1570,6 +1576,9 @@ public class GPanel extends JPanel{
             updateUI();
 
         }
+        if (menu == 2 && item == 2) {
+            SystemOutputReader.showDialog();
+        }
         if (menu == 3 && item == 0) {
             setMainProject(getCurrentProject());
         }
@@ -2014,7 +2023,7 @@ public class GPanel extends JPanel{
         //Close all tabs
         closeAllTabs((DefaultMutableTreeNode) p.node.getParent());
         
-        top.remove((DefaultMutableTreeNode) getCurrentProject().node.getParent());
+        top.remove((DefaultMutableTreeNode) getCurrentProject().node/*.getParent()*/);
         workspace.updateUI();
     }
     //</editor-fold>

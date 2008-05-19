@@ -99,6 +99,17 @@ public class JVectorLayerEditor extends javax.swing.JPanel {
                 jButton3.setEnabled(false);
             else
                 jButton3.setEnabled(true);
+            jList1.updateUI();
+            if (jComboBox1.getSelectedIndex() == jComboBox1.getItemCount()-1) {
+            jButton1.setVisible(true);
+            ((PaintInfo)jComboBox1.getSelectedItem()).setPaint(
+                    getCurrentLayer().paint);
+            ((SimpleMutableIcon)(jButton1.getIcon())).paint = 
+                    getCurrentLayer().paint;
+        } else {
+            jButton1.setVisible(false);
+        }
+         jComboBox1.setSelectedItem(getCurrentLayer().paint);
         }
     }
     
