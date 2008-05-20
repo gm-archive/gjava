@@ -20,6 +20,13 @@ public class Action implements Resource{
     public int type = 0;
     public GFile image = null;
     
+    public boolean indentself = false;
+    public boolean indentnext = false;
+    public boolean unindentself = false;
+    public boolean unindentnext = false;
+    
+    public String output = "";
+    
     public Action(){
         
     }
@@ -28,6 +35,11 @@ public class Action implements Resource{
         Action act = new Action();
         act.type = type;
         act.image = image;
+        act.indentself = indentself;
+        act.indentnext = indentnext;
+        act.unindentself = unindentself;
+        act.unindentnext = unindentnext;
+        act.output = output;
         
         return act;
     }
