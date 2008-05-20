@@ -253,7 +253,7 @@ public class GPanel extends JPanel{
 
                     public void mousePressed(MouseEvent e) {
                         if (e.isPopupTrigger() || e.getButton() == MouseEvent.BUTTON3) {
-                            System.out.println("Got here");
+                    //        System.out.println("Got here");
                             popupTreeMenu(e);
                         }
                     }
@@ -1945,7 +1945,7 @@ public class GPanel extends JPanel{
             case 16:
                 if (!(getCurrentProject() instanceof ModuleProject))
                     {
-                    JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
+                    JOptionPane.showMessageDialog(null, "<html>You have not selected a <em>module</> to add to!</>");
                     return;
                 }
                 a = getCurrentFolder();

@@ -21,10 +21,16 @@ import publicdomain.*;
  * @version $Id: JavaScriptTokenMarker.java,v 1.3 1999/12/13 03:40:29 sp Exp $
  */
 public class GScriptTokenMarker extends CTokenMarker {
-
+    public GSAutocomplete autoFrame;
+    
+    @Override
     public AutocompleteFrame callAutocomplete(int selectionStart, int selectionEnd, JEditTextArea editor, Project project){
-        GSAutocomplete a = new GSAutocomplete(selectionStart, selectionEnd, editor, project);
-        return a;
+        if (autoFrame == null)
+            autoFrame = new GSAutocomplete(selectionStart, selectionEnd, editor, project);
+        else {
+            autoFrame.resetAutocomplete(selectionStart, selectionEnd, editor, project);
+        }
+        return autoFrame;
     }
 
     

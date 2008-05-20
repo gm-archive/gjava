@@ -20,6 +20,7 @@ import java.awt.*;
 import java.util.Enumeration;
 import java.util.Vector;
 import org.gcreator.autocomplete.AutocompleteFrame;
+import org.gcreator.components.scanning.GScriptTokenMarker;
 import org.gcreator.fileclass.Project;
 
 /**
@@ -106,9 +107,9 @@ public class JEditTextArea extends JComponent {
 
     public void insert(int start, int end, String text) {
         String doc = getText();
-        String n = doc.substring(0, start);
+        String n = doc.substring(0, Math.min(doc.length(),start));
         n += text;
-        n += doc.substring(end, doc.length());
+        n += doc.substring(Math.min(Math.max(0, end),doc.length()), doc.length());
         setText(n);
     }
 
@@ -176,9 +177,9 @@ public class JEditTextArea extends JComponent {
             }
 
             public void keyTyped(KeyEvent evt) {
-                System.out.println("Got here");
+             //   System.out.println("Got here");
                 if (evt.isControlDown() || evt.getKeyCode() == KeyEvent.VK_CONTROL) {
-                    System.out.println("Got here too with \"" + ((int) evt.getKeyChar()) + "\"");
+               //     System.out.println("Got here too with \"" + ((int) evt.getKeyChar()) + "\"");
                     if (evt.getKeyChar() == 24) {
                         cut();
                     }

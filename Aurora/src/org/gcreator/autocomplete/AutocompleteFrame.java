@@ -21,6 +21,7 @@ public class AutocompleteFrame extends DialogPlus{
     protected JList list;
     protected JScrollPane scroll;
     protected JEditorPane doc;
+    
     public AutocompleteFrame(String text){
         super();
         setUndecorated(true);
@@ -47,7 +48,6 @@ public class AutocompleteFrame extends DialogPlus{
         list.setVisible(true);
         scroll.setViewportView(list);
         add(BorderLayout.CENTER, scroll);
-        
         doc = new JEditorPane();
         doc.setFocusable(false);
         doc.setVisible(true);

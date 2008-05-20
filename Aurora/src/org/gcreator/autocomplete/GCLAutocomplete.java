@@ -82,7 +82,7 @@ public class GCLAutocomplete extends AutocompleteFrame{
                 }
                 else if(evt.getKeyChar()!=65535
                         &&evt.getKeyChar()!=8){
-                    System.out.println((int) evt.getKeyChar());
+              //      System.out.println((int) evt.getKeyChar());
                     editor.insert(selstart, selend, "" + evt.getKeyChar());
                     editor.setSelectionStart(selstart+1);
                     editor.setSelectionEnd(selstart+1);

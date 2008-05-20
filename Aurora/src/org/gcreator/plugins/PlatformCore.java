@@ -747,7 +747,7 @@ public class PlatformCore extends PluginCore {
     }
 
     public void parseSettings(String string, String name) {
-        System.out.println(string+"got here");
+  //      System.out.println(string+"got here");
         
     }
 }

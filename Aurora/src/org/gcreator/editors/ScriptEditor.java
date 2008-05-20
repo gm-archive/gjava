@@ -6,6 +6,8 @@
 
 package org.gcreator.editors;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import org.gcreator.components.TokenMarker;
 import org.gcreator.components.JEditTextArea;
 import java.beans.PropertyChangeEvent;
@@ -14,7 +16,6 @@ import javax.swing.SwingUtilities;
 import org.gcreator.components.scanning.*;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.*;
-import org.gcreator.core.GPanel;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
 
@@ -30,12 +31,18 @@ public class ScriptEditor extends TabPanel {
     public boolean changed = true;
     JEditTextArea g;
     
+    @Override
     public boolean Save() {
         file.value = g.getText();
         if (file.value == null) {
             file.value = "";
         }
         return true;
+    }
+    
+    @Override
+    public boolean wasModified() {
+        return changed;
     }
     
     /** Creates new form ScriptEditor */
@@ -49,7 +56,10 @@ public class ScriptEditor extends TabPanel {
         //g = new SyntaxHighlighter(100, 100, scanner, project);
         g = new JEditTextArea(project);
         g.setTokenMarker(scanner);
-        g.setText(((Classes)file.value).toString());
+        if (file.value instanceof Classes)
+            g.setText(((Classes)file.value).toString());
+        else
+            g.setText(file.value.toString());
         
        // org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
         //jPanel1.setLayout(jPanel1Layout);
@@ -64,7 +74,15 @@ public class ScriptEditor extends TabPanel {
      //   setLayout(new BorderLayout());
       //  add(BorderLayout.CENTER, jScrollPane1);
         jScrollPane1.setViewportView(g);
-        
+        jScrollPane1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (g.getDocument().getTokenMarker() instanceof GScriptTokenMarker) {
+                    ((GScriptTokenMarker)g.getDocument().getTokenMarker()).autoFrame.dispose();
+                    ((GScriptTokenMarker)g.getDocument().getTokenMarker()).autoFrame = null;
+                }
+            }
+        });
         g.addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent evt) {
                 changed = true;
@@ -98,6 +116,7 @@ public class ScriptEditor extends TabPanel {
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
 
         jScrollPane1.setDoubleBuffered(true);
 
@@ -143,7 +162,7 @@ public class ScriptEditor extends TabPanel {
                     .add(jRadioButton4)
                     .add(jRadioButton3)
                     .add(jRadioButton2))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Title"));
@@ -174,7 +193,7 @@ public class ScriptEditor extends TabPanel {
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -186,7 +205,7 @@ public class ScriptEditor extends TabPanel {
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -202,15 +221,18 @@ public class ScriptEditor extends TabPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
             .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 90, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -232,6 +254,7 @@ public class ScriptEditor extends TabPanel {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
+    private org.gcreator.components.SaveResourcePanel saveResourcePanel1;
     // End of variables declaration//GEN-END:variables
 
 //    private void setLayout(GroupLayout layout) {

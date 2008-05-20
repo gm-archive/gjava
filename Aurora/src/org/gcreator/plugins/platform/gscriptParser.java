@@ -912,7 +912,7 @@ public class gscriptParser extends Parser {
             }
 
             if ( backtracking==0 ) {
-              System.out.println(""+pc.returncode);
+          //    System.out.println(""+pc.returncode);
             }
 
             }

@@ -12,15 +12,15 @@ package org.gcreator.autocomplete;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Collections;
-import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.*;
 import org.gcreator.autocomplete.impl.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.VectorListModel;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.ObjectNode;
 import publicdomain.*;
 
 /**
@@ -37,14 +37,20 @@ public class GSAutocomplete extends AutocompleteFrame{
     //How to declare an actor?
     Vector<Suggestion> v = new Vector<Suggestion>();
     
-    public GSAutocomplete(final int selstart, final int selend, final JEditTextArea editor, Project p){
-        super("GS Autocomplete...");
-        this.selstart = selstart;
-        this.selend = selend;
-        this.editor = editor;
-        this.p = p;
-        context = getContext();
-        addKeyListener(new KeyListener(){
+    {
+        list.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() > 1) {
+                    confirm();
+                }
+            }
+        });
+    }
+    
+    //I put this here to avoid the evil 'final' declairations.
+    private KeyListener listener = new KeyListener(){
             public void keyPressed(KeyEvent evt){
                 if(evt.getKeyCode()==KeyEvent.VK_DOWN){
                     if(!list.isSelectionEmpty()){
@@ -79,32 +85,40 @@ public class GSAutocomplete extends AutocompleteFrame{
                 }
                 else if(evt.getKeyChar()!=65535
                         &&evt.getKeyChar()!=8){
-                    System.out.println((int) evt.getKeyChar());
-                    editor.insert(selstart, selend, "" + evt.getKeyChar());
-                    editor.setSelectionStart(selstart+1);
-                    editor.setSelectionEnd(selstart+1);
+                  //  System.out.println((int) evt.getKeyChar());
+                    editor.insert(/*selstart*/editor.getCaretPosition(), editor.getCaretPosition() /*selend*/, "" + evt.getKeyChar());
+                    //editor.setSelectionStart(selstart+1);
+                    //editor.setSelectionEnd(selstart+1);
+                 //   editor.setSelectionStart(editor.getCaretPosition()+1);
+                 //   editor.setSelectionEnd(editor.getCaretPosition()+1);
+                    editor.setCaretPosition(editor.getDocumentLength());
                     //dispose();
-                    //editor.callAutocomplete();
+                    editor.callAutocomplete();
                     //editor.setSelectionEnd(selstart);
-                    GSAutocomplete.this.selstart = editor.getSelectionStart();
-                    GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    //GSAutocomplete.this.selstart = editor.getSelectionStart();
+                   // GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    GSAutocomplete.this.selstart = findSelectionStart(
+                            Math.min(editor.getDocumentLength(), editor.getCaretPosition()+1));
+                    GSAutocomplete.this.selend = Math.min(editor.getDocumentLength(), editor.getCaretPosition()+1);
                     context = getContext();
                     useContext();
                     list.repaint();
                     scroll.updateUI();
                 }
-                else if(evt.getKeyChar()==8){
-                    if(selstart==selend){
-                        editor.insert(selstart-1, selstart, "");
+                else if(evt.getKeyChar()==8){// backspace
+                    fixSel();
+                    if(selstart == selend){
+                        editor.insert(Math.max(--selstart,0), selend--, "");
                     }
                     else{
                         editor.insert(selstart, selend, "");
                     }
                     //dispose();
-                    //editor.callAutocomplete();
-                    editor.setSelectionEnd(selstart);
-                    GSAutocomplete.this.selstart = editor.getSelectionStart();
-                    GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    editor.callAutocomplete();
+                    //editor.setSelectionEnd(selstart);
+                    //GSAutocomplete.this.selstart = editor.getSelectionStart();
+                    //GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    //fixSel();
                     context = getContext();
                     useContext();
                     list.repaint();
@@ -113,9 +127,33 @@ public class GSAutocomplete extends AutocompleteFrame{
             }
             public void keyReleased(KeyEvent evt){}
             public void keyTyped(KeyEvent evt){}
-        });
+        };
+    
+    public GSAutocomplete(int selstart, int selend, JEditTextArea editor, Project p){
+        super("GS Autocomplete...");
+        this.setAlwaysOnTop(true);
+        editor.requestFocusInWindow();
+        this.selstart = selstart;
+        this.selend = selend;
+        this.editor = editor;
+        this.p = p;
+        context = getContext();
+        addKeyListener(listener);
         useContext();
+        findSelectionStart();
     }
+    
+    public void resetAutocomplete(final int selstart, final int selend, final JEditTextArea editor, Project p) {
+        this.selstart = selstart;
+        this.selend = selend;
+        this.editor = editor;
+        this.p = p;
+        context = getContext();
+    //    useContext();
+        this.list.updateUI();
+        this.editor.updateUI();
+        findSelectionStart();
+     }
     
     @Override
     public boolean requestDie(){
@@ -123,8 +161,10 @@ public class GSAutocomplete extends AutocompleteFrame{
     }
     
     private void confirm(){
-        if(list.isSelectionEmpty()){
+        fixSel();
+        if(list.isSelectionEmpty()){//enter
             editor.insert(selstart, selend, "\n");
+            editor.callAutocomplete();
         }
         else{
             Suggestion s = (Suggestion) list.getSelectedValue();
@@ -135,8 +175,7 @@ public class GSAutocomplete extends AutocompleteFrame{
             selstart = selstart+t.length()-s.retreat();
             selend = selstart+t.length()-s.retreat();
             editor.setSelectionStart(selstart);
-            editor.setSelectionEnd(selend);
-            
+            editor.setSelectionEnd(Math.min(selend, editor.getDocumentLength()));
         }
         dispose();
     }
@@ -248,7 +287,7 @@ public class GSAutocomplete extends AutocompleteFrame{
             return;
         }
         v.clear();
-        
+        //<editor-fold desc="Keywords" defaultstate="collapsed">
         applyCKeyword("if");
         applyCKeyword("while");
         applyCKeyword("for");
@@ -386,6 +425,7 @@ public class GSAutocomplete extends AutocompleteFrame{
         applyFunction("window_get_sizeable", "");
         applyFunction("window_set_caption", "caption");
         applyFunction("window_get_caption", "");
+        //</editor-fold>
         //Repainting the screen
         
         Collections.sort(v);
@@ -536,4 +576,38 @@ public class GSAutocomplete extends AutocompleteFrame{
         return null;
     }
     
+    @Override
+    public void dispose() {
+        //JOptionPane.showMessageDialog(this, "Disposed!");
+        super.dispose();
+        editor.requestFocus();
+    }
+    
+    private int findSelectionStart() {
+        return findSelectionStart(editor.getCaretPosition());
+    }
+    private int findSelectionStart(int endpoint) {
+        int start = editor.getSelectionStart();
+        if (editor.getText(endpoint, 1).matches("\\W+|\n+|\\+|\\-|\\*|/|\\%|\\&|\\|" +
+                "|\\(|\\)|\\{|\\}|\\!|\\^|\\,|\\;|\\<|\\>|\\=|\\?|\\:"))
+            return start;
+        for (int i = endpoint; i >= 0; i--) {
+           if (editor.getText(i, 1).matches("\\W+|\n+")) {
+              // System.out.println("i: "+i+"\ttext: '"+editor.getText(i, 1)+"'");
+               start = i;
+               break;
+           }
+        }
+        return start;
+    }
+    
+    private void fixSel() {
+        selend = Math.min(editor.getSelectionEnd(),  editor.getCaretPosition());
+        selstart = Math.min(editor.getSelectionStart(),  editor.getCaretPosition());
+        if (selend != editor.getCaretPosition() && selstart != editor.getCaretPosition()) {
+            System.out.println("[scripteditor gsautocomplete]: OK, fixing...");
+            selstart = editor.getCaretPosition();
+            selend = editor.getCaretPosition();
+        }
+    }
 }
