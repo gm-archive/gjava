@@ -12,7 +12,6 @@ import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -38,15 +37,17 @@ public class SpriteEditor extends TabPanel {
         //{
         if(file.value != null){
             if(file.value instanceof String){
-                Sprite spr = new Sprite(file.name);
+                Sprite spr = new Sprite();
                 spr.readXml((String) file.value);
                 file.value = spr;
             }
             else
-                this.sprite = (Sprite) file.value;
+                this.sprite = (Sprite) ((Sprite) file.value).clone();
         }
-        else
-            this.sprite = (Sprite) (file.value = new Sprite());
+        else{
+            this.sprite = (Sprite) new Sprite();
+            changed = true;
+        }
         Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
         if(c instanceof JPanel){
             System.out.println("Update c JPanel");
@@ -102,6 +103,7 @@ public class SpriteEditor extends TabPanel {
      
     @Override
     public boolean Save() {
+        changed = false;
         sprite.BBBottom=(Integer)jSpinner6.getValue();
         sprite.BBRight=(Integer)jSpinner5.getValue();
         sprite.BBTop=(Integer)jSpinner4.getValue();
@@ -111,6 +113,9 @@ public class SpriteEditor extends TabPanel {
         sprite.originY=(Integer)jSpinner2.getValue();
         
         sprite.precise = jCheckBox1.isSelected();
+        
+        file.value = sprite;
+        
         return true;
     }
 
@@ -577,56 +582,73 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner2MouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        changed=true;
         sprite.precise = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCheckBox1PropertyChange
+        changed=true;
         sprite.precise = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1PropertyChange
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+        changed=true;
         sprite.originX = (Integer) jSpinner1.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
+        changed=true;
         sprite.originY = (Integer) jSpinner2.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
+        changed=true;
         sprite.BBTop = (Integer) jSpinner4.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
+        changed=true;
         sprite.BBBottom = (Integer) jSpinner6.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner6StateChanged
 
     private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
+        changed=true;
         sprite.BBRight = (Integer) jSpinner5.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner5StateChanged
 
     private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
+        changed=true;
         sprite.BBleft = (Integer) jSpinner3.getValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner3StateChanged
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        changed=true;
         jSpinner1.setValue(sprite.width / 2);
         jSpinner2.setValue(sprite.height / 2);
+        sprite.originX = (Integer) jSpinner1.getValue();
+        sprite.originY = (Integer) jSpinner2.getValue();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        changed=true;
         jSpinner3.setValue(sprite.width-1);//left
         jSpinner4.setValue(0);//top
         jSpinner5.setValue(0);//right
         jSpinner6.setValue(sprite.height-1);//bottom
+        sprite.BBleft = (Integer) jSpinner3.getValue();
+        sprite.BBTop = (Integer) jSpinner4.getValue();
+        sprite.BBRight = (Integer) jSpinner5.getValue();
+        sprite.BBBottom = (Integer) jSpinner6.getValue();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        changed = true;
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getFile();
         Object o = a.value;
         if (sprite.countImages()  == 0){
@@ -652,6 +674,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        changed = true;
         int id = getViewedId();
         sprite.Simages.remove(id);
         if(id >= sprite.countImages())
@@ -675,6 +698,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jScrollPane1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseDragged
+        changed = true;
         if (!dragging)
             return;
         int x,y;
@@ -688,6 +712,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jScrollPane1MouseDragged
 
     private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
+        changed = true;
         if (evt.getX() > sprite.width || evt.getY() > sprite.height)
             return;
         dragging = true;
@@ -695,6 +720,7 @@ public class SpriteEditor extends TabPanel {
     }//GEN-LAST:event_jScrollPane1MousePressed
 
     private void jScrollPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseReleased
+        changed = true;
         dragging = false;
     }//GEN-LAST:event_jScrollPane1MouseReleased
 
@@ -727,6 +753,7 @@ public class SpriteEditor extends TabPanel {
     }
     
     private void setAutomaticBounds() {
+        changed = true;
         //
         // Not yet finished
         //
