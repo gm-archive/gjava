@@ -19,6 +19,7 @@ public class DestroyEvent extends Event{
     static final long serialVersionUID = 1L;
     static ImageIcon icon;
     public DestroyEvent(){
+        PRIORITY = 999;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/destroy.png"));
     }
     

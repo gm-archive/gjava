@@ -19,6 +19,7 @@ public class CreateEvent extends Event{
     static final long serialVersionUID = 1L;
    static ImageIcon icon;
     public CreateEvent(){
+        PRIORITY = 1000;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/create.png"));
     }
     

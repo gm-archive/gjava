@@ -23,6 +23,7 @@ KeyboardEvent(){
 }
 
 public KeyboardEvent(int type,String name){
+    PRIORITY = 700;
     this.name=name;
         this.type = type;
         keycode = type;//-EventSelectListener.Keyboard;

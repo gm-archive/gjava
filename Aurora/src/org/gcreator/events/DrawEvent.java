@@ -19,6 +19,7 @@ public class DrawEvent extends Event{
     static final long serialVersionUID = 1L;
     static ImageIcon icon;
     public DrawEvent(){
+        PRIORITY = 100;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/draw.png"));
     }
     

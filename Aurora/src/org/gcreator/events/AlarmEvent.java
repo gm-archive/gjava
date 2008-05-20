@@ -16,6 +16,7 @@ public class AlarmEvent extends Event{
     public int number;
     public static ImageIcon icon;
     public AlarmEvent(int number){
+        PRIORITY = 912 - number;
         this.number = number;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/alarm.png"));
     }

@@ -19,11 +19,11 @@ import java.util.*;
  *
  * @author Luís
  */
-public class Event implements Serializable {
+public class Event implements Serializable, Comparable<Event>{
     
     static final long serialVersionUID = 1L;
     
-    
+    protected int PRIORITY = 0;
     public Vector<org.gcreator.actions.Action> actions;
     public EventCategory cat = null;
     public Event(){
@@ -64,5 +64,9 @@ public class Event implements Serializable {
     }
     public int readXml(String[] input, int initialpos){
         return initialpos;
+    }
+    
+    public int compareTo(Event e){
+        return e.PRIORITY - PRIORITY;
     }
 }

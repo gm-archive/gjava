@@ -20,6 +20,7 @@ public class MouseEvent extends Event{
     public int type;
     public static ImageIcon icon ;
     public MouseEvent(int type){
+        PRIORITY = 400;
         this.type = type;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));
     }

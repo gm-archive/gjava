@@ -35,6 +35,7 @@ public class EventListModel extends AbstractListModel{
     public void add(Event event){
         if (!contains(event))
         val.events.add(event);
+        Collections.sort(val.events);
     }
     public boolean contains(Event e)
     {
@@ -51,6 +52,7 @@ public class EventListModel extends AbstractListModel{
         val.events.remove(event);
     }
     public Vector getEvents(){
+        Collections.sort(val.events);
         return val.events;
     }
 }
