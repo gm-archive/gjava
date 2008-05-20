@@ -101,6 +101,10 @@ public class ActionEditor extends TabPanel {
         });
         jPanel2.setLayout(new BorderLayout());
         jPanel2.add(textarea, BorderLayout.CENTER);
+        if (action.type == Action.TYPE_PROPERTIES) {
+        } else {
+            propertyManager1.setEnabled(false);
+        }
     }
 
     public boolean canSave() {
@@ -142,6 +146,7 @@ public class ActionEditor extends TabPanel {
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
+        propertyManager1 = new org.gcreator.components.PropertyManager();
 
         jLabel1.setText("Name");
 
@@ -211,7 +216,7 @@ public class ActionEditor extends TabPanel {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 258, Short.MAX_VALUE)
+            .add(0, 353, Short.MAX_VALUE)
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
@@ -227,14 +232,15 @@ public class ActionEditor extends TabPanel {
                             .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(propertyManager1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel2)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jComboBox1, 0, 204, Short.MAX_VALUE))
+                                .add(jComboBox1, 0, 213, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
                                 .add(jLabel3)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jComboBox2, 0, 167, Short.MAX_VALUE))
+                                .add(jComboBox2, 0, 176, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
                                 .add(jCheckBox1)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -246,7 +252,7 @@ public class ActionEditor extends TabPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .add(18, 18, 18)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -273,7 +279,9 @@ public class ActionEditor extends TabPanel {
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jCheckBox3)
-                            .add(jCheckBox4)))
+                            .add(jCheckBox4))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(propertyManager1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -294,6 +302,11 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     } else {
         jLabel3.setEnabled(false);
         jComboBox2.setEnabled(false);
+    }
+    if (action.type == Action.TYPE_PROPERTIES){
+        propertyManager1.setEnabled(true);
+    } else{
+        propertyManager1.setEnabled(false);
     }
 }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -330,5 +343,6 @@ private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
+    private org.gcreator.components.PropertyManager propertyManager1;
     // End of variables declaration//GEN-END:variables
 }

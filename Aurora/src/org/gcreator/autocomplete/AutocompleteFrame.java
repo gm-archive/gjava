@@ -12,11 +12,12 @@ package org.gcreator.autocomplete;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import org.gcreator.components.uiplus.DialogPlus;
 
 /**
  * @author Luís Reis
  */
-public class AutocompleteFrame extends JDialog{
+public class AutocompleteFrame extends DialogPlus{
     protected JList list;
     protected JScrollPane scroll;
     protected JEditorPane doc;

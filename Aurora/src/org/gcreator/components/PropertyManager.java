@@ -40,4 +40,10 @@ public class PropertyManager extends PropertySheetPanel{
             }
         });
     }
+    
+    public void setEnabled(boolean enabled){
+        super.setEnabled(enabled);
+        
+        super.getTable().setEnabled(enabled);
+    }
 }

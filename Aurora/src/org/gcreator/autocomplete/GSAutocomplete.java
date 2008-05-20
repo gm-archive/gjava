@@ -83,8 +83,15 @@ public class GSAutocomplete extends AutocompleteFrame{
                     editor.insert(selstart, selend, "" + evt.getKeyChar());
                     editor.setSelectionStart(selstart+1);
                     editor.setSelectionEnd(selstart+1);
-                    dispose();
-                    editor.callAutocomplete();
+                    //dispose();
+                    //editor.callAutocomplete();
+                    //editor.setSelectionEnd(selstart);
+                    GSAutocomplete.this.selstart = editor.getSelectionStart();
+                    GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    context = getContext();
+                    useContext();
+                    list.repaint();
+                    scroll.updateUI();
                 }
                 else if(evt.getKeyChar()==8){
                     if(selstart==selend){
@@ -93,9 +100,15 @@ public class GSAutocomplete extends AutocompleteFrame{
                     else{
                         editor.insert(selstart, selend, "");
                     }
-                    dispose();
-                    editor.callAutocomplete();
+                    //dispose();
+                    //editor.callAutocomplete();
                     editor.setSelectionEnd(selstart);
+                    GSAutocomplete.this.selstart = editor.getSelectionStart();
+                    GSAutocomplete.this.selend = editor.getSelectionEnd();
+                    context = getContext();
+                    useContext();
+                    list.repaint();
+                    scroll.updateUI();
                 }
             }
             public void keyReleased(KeyEvent evt){}
@@ -119,8 +132,11 @@ public class GSAutocomplete extends AutocompleteFrame{
             if(selstart!=selend)
                 t = editor.getText().substring(selstart, selend) + t;
             editor.insert(selstart, selend, t);
-            editor.setSelectionStart(selstart+t.length()-s.retreat());
-            editor.setSelectionEnd(selstart+t.length()-s.retreat());
+            selstart = selstart+t.length()-s.retreat();
+            selend = selstart+t.length()-s.retreat();
+            editor.setSelectionStart(selstart);
+            editor.setSelectionEnd(selend);
+            
         }
         dispose();
     }
@@ -231,6 +247,7 @@ public class GSAutocomplete extends AutocompleteFrame{
             dispose();
             return;
         }
+        v.clear();
         
         applyCKeyword("if");
         applyCKeyword("while");
@@ -375,6 +392,8 @@ public class GSAutocomplete extends AutocompleteFrame{
         
         list.setModel(new VectorListModel(v));
         list.setCellRenderer(new SuggestionCellRenderer());
+        list.repaint();
+        list.updateUI();
         
         if(v.size()==1){
             list.setSelectedIndex(0);
