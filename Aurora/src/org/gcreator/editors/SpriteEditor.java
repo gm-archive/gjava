@@ -643,7 +643,7 @@ public class SpriteEditor extends TabPanel {
             jButton9ActionPerformed(evt);
         }
         
-        if ((sprite.width == ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth()) && sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() )
+        if (((org.gcreator.fileclass.res.GImage) o)!=null&&(sprite.width == ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth()) && sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() )
             sprite.addToList(res.getFile());
         else
             System.out.println("Image not right size!");
