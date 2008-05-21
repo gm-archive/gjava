@@ -114,14 +114,15 @@ public class Folder extends GObject implements Serializable{
     
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)
-            throw new NoSuchFolderException();
+            throw new NoSuchFolderException("null folder name");
         if(name.equals("")||name.equals("/"))
             return this;
         if(name.charAt(0)=='/')
             name = name.substring(1);
         if(name.indexOf("/")==-1){
             if(!name.equals(this.name))
-                throw new NoSuchFolderException();
+                throw new NoSuchFolderException("Obtained name is " + name +
+                        " but expected name was " + this.name);
             else
                 return this;
         }
@@ -139,6 +140,14 @@ public class Folder extends GObject implements Serializable{
             }
         }
         throw new NoSuchFolderException("Folder");
+    }
+    
+    public Folder findChildFolder(String name) throws NoSuchFolderException{
+        for(GObject o : childNodes){
+            if(o instanceof Folder&&((Folder) o).name.equals(name))
+                return (Folder) o;
+        }
+        throw new NoSuchFolderException("No folder with given name");
     }
     
      

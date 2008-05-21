@@ -21,4 +21,8 @@ public class NoSuchFolderException extends Exception{
     public NoSuchFolderException(String msg){
         super(msg);
     }
+    
+    public String toString(){
+        return "NoSuchFolderException: " + getMessage();
+    }
 }

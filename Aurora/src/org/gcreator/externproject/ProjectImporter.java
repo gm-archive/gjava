@@ -55,13 +55,25 @@ public class ProjectImporter {
             System.out.println(e.toString());
         }
         project.name = name;
+        System.out.println("NAME: " + name);
+        s = s.replaceAll("<project>.*?<content>", "");
         s = s.replaceAll("</content>", "");
+        try{
+        s = s.replaceAll("<?\\?xml version=\"1\\.0\"\\?>", "");
+        }
+        catch(IndexOutOfBoundsException e){
+            
+        }
+        System.out.println("Splitting s, which is: " + s);
         String[] ss = s.split("<file type=\"");
-        int ii = 0;
+        int ii = 1;
         int fileno = 0;
         while (ii < ss.length) {
             String[] sss = ss[ii].replaceAll("</file>", "").split("\">"); //SpriteGroup">Sprites
+            System.out.println("Being ss[ii]="+ss[ii]);
+            System.out.println("In this position, sss[0] was equal to " + sss[0]);
             if (sss[0].equals("org.gcreator.fileclass.GFile")) {
+                System.out.println("START FILE");
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String[] ssss = sss[1].split("\\.");
                 String[] g = sss[1].split("/");
@@ -69,8 +81,9 @@ public class ProjectImporter {
                 try{
                     for(int i = 0; i < g.length-1; i++){
                         if(g[i].equals("")) continue;
-                        
-                        fol = fol.findFolder(g[i]);
+                        System.out.println("trying to find " + g[i]);
+                        fol = fol.findChildFolder(g[i]);
+                        System.out.println("findFolder " + fol.name);
                     }
                 }
                 catch(Exception e){
@@ -121,7 +134,8 @@ public class ProjectImporter {
 //                        }
                         fileno++;
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.err.println("In 1: sss="+sss);
+                        System.err.println(e.getMessage());
                     }
                 }
             }/* else if (sss[0].equals("ActorGroup")) {
@@ -160,12 +174,13 @@ public class ProjectImporter {
                     for(int i = 0; i < g.length-1; i++){
                         if(g[i].equals("")) continue;
                         
-                        fol = fol.findFolder(g[i]);
+                        fol = fol.findChildFolder(g[i]);
                     }
                     fol.add(t);
                 }
                 catch(Exception e)
                 {
+                    System.out.println("In 2: " + e);
                     rung = true;
                 }
                 if(rung)
@@ -178,11 +193,18 @@ public class ProjectImporter {
                     for(int i = 0; i < g.length-1; i++){
                         if(g[i].equals("")) continue;
                         
-                        fol = fol.findFolder(g[i]);
+                        fol = fol.findChildFolder(g[i]);
                     }
                     fol.add(t);
                 }
-                catch(Exception e){}
+                catch(Exception e){
+                    if(sss.length<2){
+                        System.err.println("ERROR: sss has a length of " + sss.length);
+                        System.out.println("ss[ii]="+ss[ii]);
+                    }
+                    System.out.println("In 3: sss[1]=" + sss[1]);
+                    System.err.println(e.toString());
+                }
             }
 
             ii++;
