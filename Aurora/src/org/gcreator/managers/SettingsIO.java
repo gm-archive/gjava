@@ -16,6 +16,7 @@ import javax.swing.*;
 import org.gcreator.core.*;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
+import org.gcreator.components.PreferencesTab;
 import org.xml.sax.*;
 
 /**
@@ -74,7 +75,10 @@ public class SettingsIO {
             out.write("<settings>");
             out.write("<style>");
             //out.write(UIManager.getInstalledLookAndFeels()[look].getName());
-            out.write(UIManager.getLookAndFeel().getClass().getName());
+            if (UIManager.getLookAndFeel().getClass().getName().equals(UIManager.getSystemLookAndFeelClassName()))
+                out.write("Native");
+            else
+                out.write(UIManager.getLookAndFeel().getClass().getName());
             out.write("</style>");
             out.write("<desktop>");
             if (istabs) {

@@ -352,12 +352,16 @@ public class gcreator {
                 javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
                 UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             }*/
-            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
-            int i;
-            for (i = 0; i < info.length; i++) {
-                if (info[i].getClassName().equals(settings[0])) {
-                     UIManager.setLookAndFeel(info[i].getClassName());
-                    break;
+            if (settings[0].equalsIgnoreCase("Native")) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } else {
+                LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+                int i;
+                for (i = 0; i < info.length; i++) {
+                    if (info[i].getClassName().equals(settings[0])) {
+                        UIManager.setLookAndFeel(info[i].getClassName());
+                        break;
+                    }
                 }
             }
         } catch (Exception e) {
