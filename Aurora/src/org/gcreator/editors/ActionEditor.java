@@ -103,7 +103,7 @@ public class ActionEditor extends TabPanel {
         jPanel2.add(textarea, BorderLayout.CENTER);
         if (action.type == Action.TYPE_PROPERTIES) {
         } else {
-            propertyManager1.setEnabled(false);
+            jList1.setEnabled(false);
         }
     }
 
@@ -146,7 +146,8 @@ public class ActionEditor extends TabPanel {
         jCheckBox3 = new javax.swing.JCheckBox();
         jCheckBox4 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
-        propertyManager1 = new org.gcreator.components.PropertyManager();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
 
         jLabel1.setText("Name");
 
@@ -219,6 +220,13 @@ public class ActionEditor extends TabPanel {
             .add(0, 353, Short.MAX_VALUE)
         );
 
+        jList1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane1.setViewportView(jList1);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,7 +240,7 @@ public class ActionEditor extends TabPanel {
                             .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(propertyManager1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .add(layout.createSequentialGroup()
                                 .add(jLabel2)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -281,7 +289,7 @@ public class ActionEditor extends TabPanel {
                             .add(jCheckBox3)
                             .add(jCheckBox4))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(propertyManager1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -304,9 +312,9 @@ private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         jComboBox2.setEnabled(false);
     }
     if (action.type == Action.TYPE_PROPERTIES){
-        propertyManager1.setEnabled(true);
+        jList1.setEnabled(true);
     } else{
-        propertyManager1.setEnabled(false);
+        jList1.setEnabled(false);
     }
 }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -340,9 +348,10 @@ private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
-    private org.gcreator.components.PropertyManager propertyManager1;
     // End of variables declaration//GEN-END:variables
 }
