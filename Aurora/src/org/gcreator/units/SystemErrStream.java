@@ -7,6 +7,7 @@ package org.gcreator.units;
 
 import java.io.OutputStream;
 import org.gcreator.components.SystemOutputReader;
+import org.gcreator.core.utilities;
 
 /**
  *
@@ -22,6 +23,7 @@ public class SystemErrStream extends PrintStreamCensor {
         if (dialog == null)
             return;
         dialog.addErrLine(o.toString());
+        utilities.addStringFormatedMessage(o.toString(), "red", false);
     }
     protected void alertln() {
         if (dialog == null)

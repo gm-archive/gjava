@@ -128,16 +128,15 @@ public class GPanel extends JPanel{
         scroller = new JScrollPane();
         //winlist = new JComboBox();
         //winlist.setModel(new MyModel());
-        console.setEditable(false);
         
         console.setContentType("text/html");
         scroller.setViewportView(console);
         statusbar = new Statusbar();
         navigatorTabs = new JTabbedPane();
-        System.out.println("window2");
+       // System.out.println("window2");
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
-        System.out.println("window"); 
+       // System.out.println("window"); 
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         if (ver >= 6) {
             new FileDrop(this, new FileDrop.Listener() {
