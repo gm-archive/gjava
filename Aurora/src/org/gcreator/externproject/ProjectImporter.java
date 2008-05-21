@@ -42,7 +42,7 @@ public class ProjectImporter {
         String ptype = s.split(">")[3].split("<")[0];
         boolean run2 = false;
         try {
-            System.out.println(ptype);
+      //      System.out.println(ptype);
             project = (Project) ClassLoading.classLoader.loadClass(ptype).newInstance();
         } catch (Exception e) {
         System.out.println(e.toString());
@@ -55,7 +55,7 @@ public class ProjectImporter {
             System.out.println(e.toString());
         }
         project.name = name;
-        System.out.println("NAME: " + name);
+//        System.out.println("NAME: " + name);
         s = s.replaceAll("<project>.*?<content>", "");
         s = s.replaceAll("</content>", "");
         try{
@@ -64,16 +64,16 @@ public class ProjectImporter {
         catch(IndexOutOfBoundsException e){
             
         }
-        System.out.println("Splitting s, which is: " + s);
+   //     System.out.println("Splitting s, which is: " + s);
         String[] ss = s.split("<file type=\"");
         int ii = 1;
         int fileno = 0;
         while (ii < ss.length) {
             String[] sss = ss[ii].replaceAll("</file>", "").split("\">"); //SpriteGroup">Sprites
-            System.out.println("Being ss[ii]="+ss[ii]);
-            System.out.println("In this position, sss[0] was equal to " + sss[0]);
+    //        System.out.println("Being ss[ii]="+ss[ii]);
+    //        System.out.println("In this position, sss[0] was equal to " + sss[0]);
             if (sss[0].equals("org.gcreator.fileclass.GFile")) {
-                System.out.println("START FILE");
+       //         System.out.println("START FILE");
                 sss[1] = sss[1].replaceAll("</project>", "");
                 String[] ssss = sss[1].split("\\.");
                 String[] g = sss[1].split("/");
@@ -81,9 +81,9 @@ public class ProjectImporter {
                 try{
                     for(int i = 0; i < g.length-1; i++){
                         if(g[i].equals("")) continue;
-                        System.out.println("trying to find " + g[i]);
+                   //     System.out.println("trying to find " + g[i]);
                         fol = fol.findChildFolder(g[i]);
-                        System.out.println("findFolder " + fol.name);
+                  //      System.out.println("findFolder " + fol.name);
                     }
                 }
                 catch(Exception e){
@@ -239,14 +239,14 @@ public class ProjectImporter {
             byte[] b = new byte[1024];
             fname = file.getName().replaceAll("^(.*)\\.(.*)$", "$1");
             while ((zipe = in.getNextEntry()) != null) {
-                System.out.println("" + zipe.getName());
+      //          System.out.println("" + zipe.getName());
                 if (!zipe.isDirectory()) {
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
                     int len;
                     while ((len = in.read(b)) > 0) {
                         stream.write(b, 0, len);
                     }
-                    System.out.println("after write");
+         //           System.out.println("after write");
 
 
                     if (zipe.getName().equals("config")) {
