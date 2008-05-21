@@ -15,6 +15,9 @@ import javax.swing.tree.*;
 
 import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
+import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Group;
 import org.gcreator.units.*;
 
 /**
@@ -93,6 +96,13 @@ public class WorkspaceTree extends JTree{
                                 if (dropNode == dragNode.getParent() && dropIndex > dragNode.getParent().getIndex(dragNode)) {
                                     dropIndex--;
                                 }
+                                if(dragNode.object instanceof GFile){
+                                    ((GFile) dragNode.object).root.remove(dragNode.object);
+                                }
+                                else if(dragNode.object instanceof Group){
+                                    ((Group) dragNode.object).root.remove(dragNode.object);
+                                }
+                                ((Folder) dropNode.object).add(dragNode.object);
                                 dropNode.insert(dragNode, dropIndex);
                                 expandPath(new TreePath(dropNode.getPath()));
                                 updateUI();
