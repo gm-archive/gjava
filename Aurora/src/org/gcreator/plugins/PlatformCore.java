@@ -20,6 +20,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 import java.util.Vector;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -696,6 +699,20 @@ public class PlatformCore extends PluginCore {
         file.newLine();
     }
 
+    public static String[] environmentVars() {
+        Map variables = System.getenv();
+        Set variableNames = variables.keySet();
+        Iterator nameIterator = variableNames.iterator();
+
+        String[] v = new String[variableNames.size()];
+        for (int index = 0; index < variableNames.size(); index++) {
+            String name = (String) nameIterator.next();
+            String value = (String) variables.get(name);
+            v[index] = name + "=" + value;
+        }
+        return v;
+    }
+    
     public static void openbrowser(String location) {
         if (System.getProperty("os.name").indexOf("Windows") == 0) {
             try {
@@ -705,11 +722,10 @@ public class PlatformCore extends PluginCore {
             }
         } else {
             try{
-                System.out.println("nautilus \"" + location + "\"");
-                Runtime.getRuntime().exec("nautilus \"" + location + "\""); //GNOME
+                System.out.println("nautilus"  + location);
+                Runtime.getRuntime().exec("nautilus " + location, environmentVars(), null); //GNOME
             }
             catch(Exception e){
-                
             }
             // Unsupported OS for opening the browser
         }

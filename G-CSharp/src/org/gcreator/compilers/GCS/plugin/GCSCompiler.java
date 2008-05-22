@@ -113,7 +113,8 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         }
         PluginHelper.println(command);
         try {
-            Process p = Runtime.getRuntime().exec(command, new String[]{}, new File(GCSharp.FileFolder));
+            System.out.println("command=" + command);
+            Process p = Runtime.getRuntime().exec(command, GCSharp.environmentVars(), new File(GCSharp.FileFolder));
             InputStream stderr = p.getErrorStream();
             InputStreamReader isr = new InputStreamReader(stderr);
             BufferedReader br = new BufferedReader(isr);
@@ -256,27 +257,13 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         }
     }
 
-    public String[] environmentVars() {
-        Map variables = System.getenv();
-        Set variableNames = variables.keySet();
-        Iterator nameIterator = variableNames.iterator();
-
-        String[] v = new String[variableNames.size()];
-        for (int index = 0; index < variableNames.size(); index++) {
-            String name = (String) nameIterator.next();
-            String value = (String) variables.get(name);
-            v[index] = name + "=" + value;
-        }
-        return v;
-    }
-
     public void actionPerformed(ActionEvent e) {
         String c = e.getActionCommand();
         if (c.equals("testapp")) {
             Process p;
             try {
                 p = Runtime.getRuntime().exec(
-                        "mono Game.exe", environmentVars(), new File(GCSharp.FileFolder));
+                        "mono Game.exe", GCSharp.environmentVars(), new File(GCSharp.FileFolder));
                 p.waitFor();
                 BufferedReader b = new BufferedReader(new InputStreamReader(p.getErrorStream()));
                 String line = null;
@@ -292,12 +279,7 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
 
         if (c.equals("open")) {
             System.out.println(GCSharp.FileFolder);
-            try {
-                GCSharp.openbrowser(GCSharp.FileFolder);
-            } catch (Exception e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            GCSharp.openbrowser(GCSharp.FileFolder);
         }
 
     }

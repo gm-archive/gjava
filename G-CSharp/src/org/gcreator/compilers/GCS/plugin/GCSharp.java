@@ -94,6 +94,7 @@ public class GCSharp extends PlatformCore {
             BufferedWriter actor = new BufferedWriter(actorFW);
             print(actor, "using org.gcreator.Components;");
             print(actor, "using org.gcreator.Support;");
+            print(actor, "using org.gcreator.Types;");
             print(actor, "");
             print(actor, "public class " + f.name + " : Actor");
             print(actor, "{");
@@ -166,6 +167,7 @@ public class GCSharp extends PlatformCore {
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "using org.gcreator.Components;");
         print(scene, "using org.gcreator.Support;");
+        print(scene, "using org.gcreator.Types;");
         print(scene, "");
         print(scene, "public class " + f.name + " : Scene");
         print(scene, "{");
@@ -337,7 +339,7 @@ public class GCSharp extends PlatformCore {
                 });
 
         PluginHelper.addMenuItem(3, i);
-        version=0.1;
+        version=0.2;
         updateURL="http://g-creator.org/update/G-CSharp/update.xml";
         update();
         //Aurwindow.tool.add(run);
