@@ -66,19 +66,19 @@ public class SubimagePreview extends JLabel {
              * I can't just use drawRect becasue the BBox 
              * shouldn't be drawn outside the image.
             */
-            //g.drawRect(s.BBRight,s.BBTop,s.BBleft-s.BBRight,s.BBBottom-s.BBTop);
+            //g.drawRect(s.BBRight,s.BBTop,s.BBLeft-s.BBRight,s.BBBottom-s.BBTop);
             //left
-            if (s.BBleft < s.width)
-                g.drawLine(s.BBleft,Math.min(s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1),s.BBleft,Math.min(s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1));
+            if (s.BBLeft < s.width)
+                g.drawLine(s.BBLeft,Math.min(s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1),s.BBLeft,Math.min(s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1));
             //right
             if (s.BBRight < s.width)
                 g.drawLine(s.BBRight,Math.min(s.BBTop+((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1),s.BBRight,Math.min(s.BBBottom-((s.BBTop < s.BBBottom) ? +1 : -1),s.height-1));
             //top
             if (s.BBTop < s.height)
-                g.drawLine(Math.min(s.BBleft,s.width-1),s.BBTop,Math.min(s.BBRight,s.width-1),s.BBTop);
+                g.drawLine(Math.min(s.BBLeft,s.width-1),s.BBTop,Math.min(s.BBRight,s.width-1),s.BBTop);
             //bottom
             if (s.BBBottom < s.height)
-                g.drawLine(Math.min(s.BBleft,s.width-1),s.BBBottom,Math.min(s.BBRight,s.width-1),s.BBBottom);
+                g.drawLine(Math.min(s.BBLeft,s.width-1),s.BBBottom,Math.min(s.BBRight,s.width-1),s.BBBottom);
         }
     }
     

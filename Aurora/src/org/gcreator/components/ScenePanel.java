@@ -69,7 +69,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         ActorInScene act = root.makeNewActor(x,y);
         if(root.eraseActorsBelow()){
             Sprite s = (Sprite) act.Sactor.value;
-            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).getIconWidth(), s.getImageAt(0).getIconHeight()));
+            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).width, s.getImageAt(0).height));
         }
         if(root.snapToGrid()){
             Scene s = (Scene) root.file.value;
@@ -217,7 +217,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 if(b.depth==dep){
                     try{
                     org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) b.sprite.value;
-                    ImageIcon h = f.getImageAt(0);
+                    ImageIcon h = f.getImageAt(0).image;
                     if(h!=null)
                         g.drawImage(
                                 h.getImage(),

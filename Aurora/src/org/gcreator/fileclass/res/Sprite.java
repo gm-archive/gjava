@@ -11,6 +11,7 @@ package org.gcreator.fileclass.res;
 
 import java.util.*;
 import javax.swing.*;
+import org.gcreator.fileclass.GFile;
 
 /**
  *
@@ -19,8 +20,8 @@ import javax.swing.*;
 public class Sprite implements Resource {
     static final long serialVersionUID = 1L;
     //public Vector<org.gcreator.fileclass.File> images;
-    public Vector Simages;
-    public int width,height,originX,originY,BBleft,BBRight,BBTop,BBBottom;
+    public Vector<GFile> Simages;
+    public int width,height,originX,originY,BBLeft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
     /**@deprecated*/
@@ -32,17 +33,17 @@ public class Sprite implements Resource {
     {
         //this.name = name;
        // images = new Vector<org.gcreator.fileclass.File>();
-        Simages = new Vector();
+        Simages = new Vector<GFile>();
     }
 
-    public ImageIcon getImageAt(int pos){
+    public GImage getImageAt(int pos){
         if(pos>=Simages.size())
             return null;
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
         if(a == null)
             return null;
-        return  ((org.gcreator.fileclass.res.GImage)(a.value)).image;
+        return  ((org.gcreator.fileclass.res.GImage)(a.value))/*.image*/;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){
@@ -68,7 +69,7 @@ public class Sprite implements Resource {
       xml += "<?xml version=\"1.0\"?>\n";
       xml += "<sprite>\n";
       xml += "<origin>" + originX + ", " + originY + "</origin>\n";
-      xml += "<BB>" + BBleft + ", " + BBRight + ", " + BBTop + ", " + BBBottom + "</BB>\n";
+      xml += "<BB>" + BBLeft + ", " + BBRight + ", " + BBTop + ", " + BBBottom + "</BB>\n";
 //      Enumeration<org.gcreator.fileclass.File> e = images.elements();
 //      org.gcreator.fileclass.File f;
 //      while(e.hasMoreElements()){
@@ -109,7 +110,7 @@ public class Sprite implements Resource {
                 String or2 = line.replaceAll("<BB>[0-9]*, ([0-9]*), [0-9]*, [0-9]*</BB>", "$1");
                 String or3 = line.replaceAll("<BB>[0-9]*, [0-9]*, ([0-9]*), [0-9]*</BB>", "$1");
                 String or4 = line.replaceAll("<BB>[0-9]*, [0-9]*, [0-9]*, ([0-9]*)</BB>", "$1");
-                BBleft = Integer.parseInt(or1);
+                BBLeft = Integer.parseInt(or1);
                 BBRight = Integer.parseInt(or2);
                 BBTop = Integer.parseInt(or3);
                 BBBottom = Integer.parseInt(or4);
@@ -129,7 +130,7 @@ public class Sprite implements Resource {
         a.BBBottom = BBBottom;
         a.BBRight = BBRight;
         a.BBTop = BBTop;
-        a.BBleft = BBleft;
+        a.BBLeft = BBLeft;
         a.height = height;
         a.Simages = (Vector) Simages.clone();
         a.originX = originX;

@@ -102,7 +102,7 @@ public class SceneEditor extends TabPanel {
             aisy = ais.y;
             GFile k = curactor.getFile();
             Sprite j = (Sprite) k.value;
-            ImageIcon i = j.getImageAt(0);
+            ImageIcon i = j.getImageAt(0).image;
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
             if(aisx<=r.x+r.width)
@@ -126,7 +126,7 @@ public class SceneEditor extends TabPanel {
         if(c!=null){
             org.gcreator.fileclass.GFile d = (org.gcreator.fileclass.GFile) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
-            ImageIcon h = f.getImageAt(0);
+            ImageIcon h = f.getImageAt(0).image;
             jLabel18.setIcon(h);
         }
     }

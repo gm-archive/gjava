@@ -51,6 +51,8 @@ public class ImageEditor2 extends TabPanel {
         }
 
         initComponents();
+        if (file.value != null)
+            jCheckBox1.setSelected(((GImage)(file.value)).transparent);
         colorSelection1.setBackground(i.transparentColor);
         jTextField1.setText(file.name);
         
@@ -184,7 +186,13 @@ public class ImageEditor2 extends TabPanel {
             .addGap(0, 31, Short.MAX_VALUE)
         );
 
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Transparent");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -355,7 +363,7 @@ public class ImageEditor2 extends TabPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addGap(6, 6, 6)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -460,6 +468,10 @@ private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIR
     file.name = jTextField1.getText();
     org.gcreator.core.gcreator.panel.workspace.updateUI();
 }//GEN-LAST:event_jTextField1CaretUpdate
+
+private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    ((GImage)file.value).transparent = jCheckBox1.isSelected();
+}//GEN-LAST:event_jCheckBox1ActionPerformed
 
     public void deactivate5() {
         sel5 = false;

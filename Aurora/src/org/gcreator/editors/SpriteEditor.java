@@ -12,9 +12,13 @@ import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Sprite;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.gcreator.components.GetValueDialog;
+import org.gcreator.core.gcreator;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -27,6 +31,8 @@ public class SpriteEditor extends TabPanel {
     private SubimagePreview prev;
     private ResourceChooser res;
     private boolean dragging = false;
+    private enum Bounds{FULL, AUTO_STRICT, AUTO_STANDARD, AUTO_CUSTOM, CUSTOM};
+    private Bounds bounds;
     
     /** Creates new form SpriteEditor */
     public SpriteEditor(org.gcreator.fileclass.GFile file,Project project) {
@@ -122,7 +128,7 @@ public class SpriteEditor extends TabPanel {
         sprite.BBBottom=(Integer)jSpinner6.getValue();
         sprite.BBRight=(Integer)jSpinner5.getValue();
         sprite.BBTop=(Integer)jSpinner4.getValue();
-        sprite.BBleft=(Integer)jSpinner3.getValue();
+        sprite.BBLeft=(Integer)jSpinner3.getValue();
         
         sprite.originX=(Integer)jSpinner1.getValue();
         sprite.originY=(Integer)jSpinner2.getValue();
@@ -155,7 +161,7 @@ public class SpriteEditor extends TabPanel {
         jSpinner6.setValue(sprite.BBBottom);
         jSpinner5.setValue(sprite.BBRight);
         jSpinner4.setValue(sprite.BBTop);
-        jSpinner3.setValue(sprite.BBleft);
+        jSpinner3.setValue(sprite.BBLeft);
         
         jCheckBox1.setSelected(sprite.precise);
         jLabel2.setText("Width: "+sprite.width);
@@ -280,10 +286,10 @@ public class SpriteEditor extends TabPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+            .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+            .add(jButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 84, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -299,12 +305,12 @@ public class SpriteEditor extends TabPanel {
                 .add(2, 2, 2)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
+                        .add(jButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                         .add(2, 2, 2))
                     .add(jPanel4Layout.createSequentialGroup()
                         .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jLabel5)
-                            .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE))
+                            .add(jLabel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         jPanel4Layout.setVerticalGroup(
@@ -319,7 +325,7 @@ public class SpriteEditor extends TabPanel {
                     .add(jLabel2))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel4)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 136, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 123, Short.MAX_VALUE)
                 .add(jLabel5)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -368,6 +374,11 @@ public class SpriteEditor extends TabPanel {
         });
 
         jButton8.setText("Automatic (Strict)");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Full Image");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -377,8 +388,18 @@ public class SpriteEditor extends TabPanel {
         });
 
         jButton5.setText("Automatic (Standard)");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Automatic (Custom)");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -457,7 +478,7 @@ public class SpriteEditor extends TabPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 44, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 31, Short.MAX_VALUE)
                 .add(jCheckBox1)
                 .addContainerGap())
         );
@@ -519,7 +540,7 @@ public class SpriteEditor extends TabPanel {
                         .add(12, 12, 12)
                         .add(jLabel7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
+                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -548,7 +569,7 @@ public class SpriteEditor extends TabPanel {
             .add(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Other", jPanel6);
@@ -580,9 +601,9 @@ public class SpriteEditor extends TabPanel {
                         .add(12, 12, 12)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)))
+                        .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -594,65 +615,69 @@ public class SpriteEditor extends TabPanel {
 
     private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
       changed=true;
-      System.out.println("1");
+     // System.out.println("1");
     }//GEN-LAST:event_jSpinner1MouseClicked
 
     private void jSpinner1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner1KeyTyped
         changed=true;
-        System.out.println("2");
+      //  System.out.println("2");
     }//GEN-LAST:event_jSpinner1KeyTyped
 
     private void jSpinner2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner2MouseClicked
         changed=true;
-        System.out.println("3");
+      //  System.out.println("3");
     }//GEN-LAST:event_jSpinner2MouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         changed=true;
         sprite.precise = jCheckBox1.isSelected();
-        System.out.println("4");
+    //    System.out.println("4");
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         changed=true;
         sprite.originX = (Integer) jSpinner1.getValue();
         jScrollPane1.updateUI();
-        System.out.println("6");
+     //   System.out.println("6");
     }//GEN-LAST:event_jSpinner1StateChanged
 
     private void jSpinner2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner2StateChanged
         changed=true;
         sprite.originY = (Integer) jSpinner2.getValue();
         jScrollPane1.updateUI();
-        System.out.println("7");
+     //   System.out.println("7");
     }//GEN-LAST:event_jSpinner2StateChanged
 
     private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
         changed=true;
+        bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBTop = (Integer) jSpinner4.getValue();
         jScrollPane1.updateUI();
-        System.out.println("8");
+        //System.out.println("8");
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
         changed=true;
+        bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBBottom = (Integer) jSpinner6.getValue();
         jScrollPane1.updateUI();
-        System.out.println("9");
+       // System.out.println("9");
     }//GEN-LAST:event_jSpinner6StateChanged
 
     private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
         changed=true;
+        bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBRight = (Integer) jSpinner5.getValue();
         jScrollPane1.updateUI();
-        System.out.println("10");
+       // System.out.println("10");
     }//GEN-LAST:event_jSpinner5StateChanged
 
     private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
         changed=true;
-        sprite.BBleft = (Integer) jSpinner3.getValue();
+        bounds = SpriteEditor.Bounds.CUSTOM;
+        sprite.BBLeft = (Integer) jSpinner3.getValue();
         jScrollPane1.updateUI();
-        System.out.println("11");
+      //  System.out.println("11");
     }//GEN-LAST:event_jSpinner3StateChanged
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -661,25 +686,21 @@ public class SpriteEditor extends TabPanel {
         jSpinner2.setValue(sprite.height / 2);
         sprite.originX = (Integer) jSpinner1.getValue();
         sprite.originY = (Integer) jSpinner2.getValue();
-        System.out.println("12");
+     //   System.out.println("12");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         changed=true;
-        jSpinner3.setValue(sprite.width-1);//left
-        jSpinner4.setValue(0);//top
-        jSpinner5.setValue(0);//right
-        jSpinner6.setValue(sprite.height-1);//bottom
-        sprite.BBleft = (Integer) jSpinner3.getValue();
-        sprite.BBTop = (Integer) jSpinner4.getValue();
-        sprite.BBRight = (Integer) jSpinner5.getValue();
-        sprite.BBBottom = (Integer) jSpinner6.getValue();
-        System.out.println("13");
+        bounds = SpriteEditor.Bounds.FULL;
+        setAutomaticBounds();
+      //  System.out.println("13");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        changed = true;
         org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getFile();
+        if (a == null || a.value == null)
+            return;
+        changed = true;
         Object o = a.value;
         if (sprite.countImages()  == 0){
             if(o!=null&&((org.gcreator.fileclass.res.GImage) o).image != null){
@@ -701,7 +722,7 @@ public class SpriteEditor extends TabPanel {
             System.out.println("Image not right size!");
         jLabel4.setText("Subimages:"+sprite.countImages());
         jScrollPane1.updateUI();
-        System.out.println("14");
+    //    System.out.println("14");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -712,7 +733,7 @@ public class SpriteEditor extends TabPanel {
             id = 0;
         jLabel4.setText("Subimages: " + sprite.countImages());
         setViewedId(id);
-        System.out.println("15");
+    //    System.out.println("15");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -741,7 +762,7 @@ public class SpriteEditor extends TabPanel {
         jSpinner1.setValue(x);
         jSpinner2.setValue(y);
         prev.repaint();     
-        System.out.println("16");
+     //   System.out.println("16");
     }//GEN-LAST:event_jScrollPane1MouseDragged
 
     private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
@@ -750,18 +771,30 @@ public class SpriteEditor extends TabPanel {
             return;
         dragging = true;
         jScrollPane1MouseDragged(evt);
-        System.out.println("17");
+     //   System.out.println("17");
     }//GEN-LAST:event_jScrollPane1MousePressed
 
     private void jScrollPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseReleased
         changed = true;
         dragging = false;
-        System.out.println("18");
+    //    System.out.println("18");
     }//GEN-LAST:event_jScrollPane1MouseReleased
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-            setAutomaticBounds();//GEN-LAST:event_jButton8ActionPerformed
-    }                                        
+        bounds = SpriteEditor.Bounds.AUTO_STRICT;
+        setAutomaticBounds();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        bounds = SpriteEditor.Bounds.AUTO_STANDARD;
+        setAutomaticBounds();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        bounds = SpriteEditor.Bounds.AUTO_CUSTOM;
+        setAutomaticBounds();
+    }//GEN-LAST:event_jButton7ActionPerformed
+    
     
     public int getViewedId(){
         try{
@@ -780,7 +813,11 @@ public class SpriteEditor extends TabPanel {
     public ImageIcon getImageAt(int id){
         //if(id<sprite.countImages())
         //    return null;
-        return sprite.getImageAt(id);
+        try {
+            return sprite.getImageAt(id).image;
+        } catch (NullPointerException exc) {
+            return null;
+        }
     }
     
     public ImageIcon getCurrentImage(){
@@ -788,29 +825,110 @@ public class SpriteEditor extends TabPanel {
     }
     
     private void setAutomaticBounds() {
+        if (sprite.countImages() <= 0)
+            return;
         changed = true;
-        //
-        // Not yet finished
-        //
-        //Image img;
-        //try {
-        //    img = sprite.getImageAt(0).getImage();
-        //} catch (NullPointerException e) {
-        //    System.out.println("NullPointerException!");
-        //    return;
-        //}
-        //BufferedImage bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);
-        //Graphics g = bufImg.createGraphics();
-        //g.setPaintMode();
-        //g.drawImage(img,0,0,this);
-       /* 
-        for (int i = 0; i < sprite.width; i++)
-            for (int j = 0; j < sprite.height; j++) {
-                int RGBA = bufImg.getRGB(i, j);
-                Color col = new Color(RGBA,true);
+        final int MIN_ALPHA;
+        if (bounds == Bounds.FULL) {
+            jSpinner3.setValue(sprite.width-1);//left
+            jSpinner4.setValue(0);//top
+            jSpinner5.setValue(0);//right
+            jSpinner6.setValue(sprite.height-1);//bottom
+            sprite.BBLeft = (Integer) jSpinner3.getValue();
+            sprite.BBTop = (Integer) jSpinner4.getValue();
+            sprite.BBRight = (Integer) jSpinner5.getValue();
+            sprite.BBBottom = (Integer) jSpinner6.getValue();
+            return;
+        } else {
+            if (bounds == Bounds.AUTO_STANDARD)
+                MIN_ALPHA = (int) (0.5 * 256);
+            else if (bounds == Bounds.AUTO_STRICT)
+                MIN_ALPHA = (int) (0.8 * 256);
+            else {// Bounds.AUTO_CUSTOM
+                GetValueDialog d = new GetValueDialog(gcreator.window, 0, 256, 128,
+                        LangSupporter.activeLang.getEntry(272));
+                MIN_ALPHA = d.getValue().intValue();
+                d.dispose();
+            }
         }
-        */
-        System.out.println("19");
+        
+        BufferedImage bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);
+        Graphics2D g = bufImg.createGraphics();
+        for (int n = 0; n < sprite.countImages(); n++) {
+            Image img;
+            try {
+                img = sprite.getImageAt(n).getImage().getImage();
+            } catch (NullPointerException e) {
+                System.out.println("[SpriteEditor@FixAutomaticBounds:862]NullPointerException!");
+                return;
+            }
+
+            g.drawImage(img,0,0,this);
+            Color transparentColor = Color.BLACK;//TODO replace this with the transparent color of th image.
+            //left
+            boolean setl = false, setr = false, sett = false, setb = false;
+            for (int i = 0; i < sprite.width; i++)
+                for (int j = 0; j < sprite.height; j++) {
+                    int RGBA = bufImg.getRGB(i, j);
+                    Color col = new Color(RGBA, true);
+                    if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
+                        if (!setl) {
+                           sprite.BBLeft = i;
+                           setl = true;
+                        } else
+                            sprite.BBLeft = Math.min(sprite.BBLeft, i);
+                        break;
+                    }
+            }
+            //right
+            for (int i = sprite.width-1; i >= 0; i--)
+                for (int j = 0; j < sprite.height; j++) {
+                    int RGBA = bufImg.getRGB(i, j);
+                    Color col = new Color(RGBA, true);
+                    if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
+                        if (!setr) {
+                           sprite.BBRight = i;
+                           setr = true;
+                        } else
+                            sprite.BBRight = Math.max(sprite.BBRight, i);
+                        break;
+                    }
+            }
+            //top
+            for (int i = 0; i < sprite.height; i++)
+                for (int j = 0; j < sprite.width; j++) {
+                    int RGBA = bufImg.getRGB(j, i);
+                    Color col = new Color(RGBA, true);
+                    if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
+                        if (!sett) {
+                           sprite.BBTop = i;
+                           sett = true;
+                        } else
+                            sprite.BBTop = Math.min(sprite.BBTop, i);
+                        break;
+                    }
+            }
+            //bottom
+            for (int i = sprite.height-1; i >= 0; i--)
+                for (int j = 0; j < sprite.width; j++) {
+                    int RGBA = bufImg.getRGB(j, i);
+                    Color col = new Color(RGBA, true);
+                    if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
+                        if (!setb) {
+                           sprite.BBBottom = i;
+                           setb = true;
+                        } else
+                            sprite.BBBottom = Math.max(sprite.BBBottom, i);
+                        break;
+                    }
+            }
+            if (n+1 < sprite.countImages()) {
+                bufImg.flush();// I think this works - not really tested.
+            }
+        }
+        load();
+        prev.repaint();
+      //  System.out.println("19");
         
     } 
     

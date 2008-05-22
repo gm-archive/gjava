@@ -320,6 +320,8 @@ public class English extends Dictionary{
         entry[269] = "Add action";
         entry[270] = "View Console Output";
         entry[271] = "Rename";
+        entry[272] = "Choose the minimum transparency value for BoundBox detection.\n" +
+                " 0 is completely transparent where as 256 is fully transparent.";
         
         try{
             init();
