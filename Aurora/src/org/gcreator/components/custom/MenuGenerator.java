@@ -142,11 +142,11 @@ public class MenuGenerator {
     }
     
     public void show(Component invoker, int x, int y){
-        Point p = invoker.getLocationOnScreen();
+        Point p = invoker.getLocation/*OnScreen*/();
         if(ltype==TYPE_STD)
             std.show(invoker, x, y);
         else{
-            disc.setLocation(x+p.x, y+p.y);
+            disc.setLocation(x+p.x-disc.getWidth()/2, y+p.y-disc.getHeight()/2);
             disc.setVisible(true);
         }
     }

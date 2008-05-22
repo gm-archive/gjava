@@ -43,12 +43,15 @@ public class WorkspaceTree extends JTree{
 
                             protected Transferable createTransferable(JComponent c) {
                                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
-                                if(!(node instanceof ObjectNode))
-                                    return null;
+                                if(!(node instanceof ObjectNode)) {
+                                        return null;
+                                }
                                 ObjectNode f = (ObjectNode) node;
                                 if (f.object instanceof org.gcreator.fileclass.GFile) {
-                                    System.out.println("" + ((org.gcreator.fileclass.GFile) f.object).name);
+                                  //  System.out.println("" + ((org.gcreator.fileclass.GFile) f.object).name);
                                     return ((org.gcreator.fileclass.GFile) f.object);
+                                } else if (f.object instanceof org.gcreator.fileclass.Group) {
+                                    return ((org.gcreator.fileclass.Group) f.object);
                                 } else {
                                     return null;
                                 }
@@ -70,12 +73,22 @@ public class WorkspaceTree extends JTree{
                                 ObjectNode dragNode = (ObjectNode) ((JTree) support.getComponent()).getLastSelectedPathComponent();
                                 //if (dragNode == dropNode) return false;
 		//if (dragNode.isNodeDescendant(dropNode)) return false;
+                                
                                 if (dropNode.object instanceof org.gcreator.fileclass.Group) {
-                                    if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.GFile) dragNode.object).type)) {
-                                        return true;
-                                    } else {
+                                    if (dragNode.object instanceof GFile) {
+                                        if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.GFile) dragNode.object).type)) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    } else if (dragNode.object instanceof Group) {
+                                        if (((org.gcreator.fileclass.Group) dropNode.object).allowsGroup((org.gcreator.fileclass.Group) dragNode.object)) {
+                                            return true;
+                                        } else {
+                                            return false;
+                                        }
+                                    } else
                                         return false;
-                                    }
 
                                 }
 

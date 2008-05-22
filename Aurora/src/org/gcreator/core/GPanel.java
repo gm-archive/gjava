@@ -940,12 +940,25 @@ public class GPanel extends JPanel{
             //    Object i = m.addMenuItem(
             //    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")));
             //}
+            if (o.editable) {
+                i = m.addMenuItem(271, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
+                MenuGenerator.addActionListener(i, new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for "+o.name+".", o.name);
+                        if (s != null && !s.trim().equals("")) {
+                            o.name = s;
+                            workspace.updateUI();
+                        }
+                    }
+                });
+            }
         }
         if (o instanceof org.gcreator.fileclass.Group) {
                 Object i = m.addMenuItem(
                 246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
                 if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                    m.addActionListener(i, new ActionListener() {
+                    MenuGenerator.addActionListener(i, new ActionListener() {
 
                                 public void actionPerformed(ActionEvent evt) {
                                     deleteGroup((org.gcreator.fileclass.Group) o);
@@ -958,7 +971,7 @@ public class GPanel extends JPanel{
             Object k = m.addMenuItem(
                 245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
             //k.setVisible(true);
-            m.addActionListener(k, new ActionListener() {
+            MenuGenerator.addActionListener(k, new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     Folder f = getCurrentFolder();
                     int in = 1;
@@ -972,6 +985,19 @@ public class GPanel extends JPanel{
                     addGroup(f, f.newGroup("subgroup" + in));
                 }
             });
+            if (o.editable) {
+                k = m.addMenuItem(271, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
+                MenuGenerator.addActionListener(k, new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for "+o.name+".", o.name);
+                        if (s != null && !s.trim().equals("")) {
+                            o.name = s;
+                            workspace.updateUI();
+                        }
+                    }
+                });
+            }
         }
         if (o instanceof Project) {
             Object j = m.addMenuItem(

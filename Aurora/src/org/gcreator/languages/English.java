@@ -319,6 +319,7 @@ public class English extends Dictionary{
         entry[268] = "Actions";
         entry[269] = "Add action";
         entry[270] = "View Console Output";
+        entry[271] = "Rename";
         
         try{
             init();

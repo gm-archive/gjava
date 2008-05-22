@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 import java.util.Vector;
 import javax.swing.*;
+import org.gcreator.core.GPanel;
 
 /**
  *
@@ -52,7 +53,7 @@ public class DiscMenu extends DialogPlus {
                 selection = -1;
                 repaint();
                 useless = true;
-                fadeOut();
+                fadeOut(1);
             }
 
             public void focusGained(FocusEvent evt) {
@@ -210,7 +211,7 @@ public class DiscMenu extends DialogPlus {
         paint(g);
     }
 
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics gg) {
         Color t1 = Color.WHITE;
         Color t2 = Color.BLUE;
 
@@ -218,57 +219,62 @@ public class DiscMenu extends DialogPlus {
             t1 = SystemColor.menu;
             t2 = SystemColor.activeCaption;
         } catch (Exception e) {
+            System.err.println("Exception while trying to retrieve System Colors.");
         }
-
+        int r = 8;
+        
+        Graphics2D g = (Graphics2D) gg;
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, (org.gcreator.core.gcreator.panel.antialiasing)
+                ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
         if (selection == index * 6 && index * 6 < curcontainer.count() && curcontainer.elementAt(index * 6).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(0, 42, 33, 33);
+        g.fillRoundRect(0, 42, 33, 33, r, r);
 
         if (selection == index * 6 + 1 && index * 6 + 1 < curcontainer.count() && curcontainer.elementAt(index * 6 + 1).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(6, 6, 33, 33);
+        g.fillRoundRect(6, 6, 33, 33, r, r);
 
         if (selection == index * 6 + 2 && index * 6 + 2 < curcontainer.count() && curcontainer.elementAt(index * 6 + 2).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(42, 0, 33, 33);
+        g.fillRoundRect(42, 0, 33, 33, r, r);
 
         if (selection == index * 6 + 3 && index * 6 + 3 < curcontainer.count() && curcontainer.elementAt(index * 6 + 3).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(78, 6, 33, 33);
+        g.fillRoundRect(78, 6, 33, 33, r, r);
 
         if (selection == index * 6 + 4 && index * 6 + 4 < curcontainer.count() && curcontainer.elementAt(index * 6 + 4).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(84, 42, 33, 33);
+        g.fillRoundRect(84, 42, 33, 33, r, r);
 
         if (selection == index * 6 + 5 && index * 6 + 5 < curcontainer.count() && curcontainer.elementAt(index * 6 + 5).isEnabled()) {
             g.setColor(t2);
         } else {
             g.setColor(t1);
         }
-        g.fillRect(42, 80, 33, 33);
+        g.fillRoundRect(42, 80, 33, 33, r, r);
 
         g.setColor(Color.BLACK);
-        g.drawRect(42, 0, 33, 33);
-        g.drawRect(6, 6, 33, 33);
-        g.drawRect(78, 6, 33, 33);
-        g.drawRect(0, 42, 33, 33);
-        g.drawRect(84, 42, 33, 33);
-        g.drawRect(42, 80, 33, 33);
+        g.drawRoundRect(42, 0, 33, 33, r, r);
+        g.drawRoundRect(6, 6, 33, 33, r, r);
+        g.drawRoundRect(78, 6, 33, 33, r, r);
+        g.drawRoundRect(0, 42, 33, 33, r, r);
+        g.drawRoundRect(84, 42, 33, 33, r, r);
+        g.drawRoundRect(42, 80, 33, 33, r, r);
 
         int size = 0;
         if (curcontainer != null) {

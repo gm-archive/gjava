@@ -37,8 +37,8 @@ public class DialogPlus extends JDialog{
             com.sun.jna.examples.WindowUtils.setWindowAlpha(this, alpha);
             this.alpha = alpha;
         } catch (Exception exc) {
-            System.err.println("Exception Caught. Message: "+exc+"\nStack Trace:");
-            exc.printStackTrace();
+            System.err.println("Exception Caught. Message: "+exc/*+"\nStack Trace:"*/);
+        //    exc.printStackTrace();
         }
     }
     
