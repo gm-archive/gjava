@@ -470,7 +470,7 @@ private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIR
 
 private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
     changed = true;
-    ((GImage)file.value).transparent = jCheckBox1.isSelected();
+    i.transparent = jCheckBox1.isSelected();
 }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     public void deactivate5() {
