@@ -18,6 +18,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.gcreator.components.GetValueDialog;
 import org.gcreator.core.gcreator;
+import org.gcreator.fileclass.res.GImage;
 import org.gcreator.managers.LangSupporter;
 
 /**
@@ -856,15 +857,18 @@ public class SpriteEditor extends TabPanel {
         Graphics2D g = bufImg.createGraphics();
         for (int n = 0; n < sprite.countImages(); n++) {
             Image img;
+            Color transparentColor = null;
             try {
-                img = sprite.getImageAt(n).getImage().getImage();
+                GImage gimg = sprite.getImageAt(n);
+                img = gimg.getImage().getImage();
+                if (gimg.transparent)
+                    transparentColor = gimg.transparentColor;
             } catch (NullPointerException e) {
                 System.out.println("[SpriteEditor@FixAutomaticBounds:862]NullPointerException!");
                 return;
             }
 
             g.drawImage(img,0,0,this);
-            Color transparentColor = Color.BLACK;//TODO replace this with the transparent color of th image.
             //left
             boolean setl = false, setr = false, sett = false, setb = false;
             for (int i = 0; i < sprite.width; i++)
