@@ -32,12 +32,14 @@ public class ImageEditor2 extends TabPanel {
     public ImageEditor2(Project p, GFile f) {
         this.project = p;
         this.file = f;
-
+        initComponents(); 
         i = new GImage();
         if (f.value == null || ((GImage) f.value).image == null) {
             i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
             changed = true;
             i.transparentColor = Color.white;
+            i.transparent = true;
+            jCheckBox1.setSelected(true);
         } else {
             BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
                     ((GImage) f.value).image.getIconHeight(),
@@ -48,11 +50,8 @@ public class ImageEditor2 extends TabPanel {
             i.readXml(file.xml);
             i.image = new ImageIcon(img);
             i.transparentColor = ((GImage) f.value).transparentColor;
+            jCheckBox1.setSelected(i.transparent);
         }
-
-        initComponents();
-        if (file.value != null)
-            jCheckBox1.setSelected(((GImage)(file.value)).transparent);
         colorSelection1.setBackground(i.transparentColor);
         jTextField1.setText(file.name);
         
@@ -470,6 +469,7 @@ private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jTextField1CaretUpdate
 
 private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    changed = true;
     ((GImage)file.value).transparent = jCheckBox1.isSelected();
 }//GEN-LAST:event_jCheckBox1ActionPerformed
 

@@ -28,7 +28,7 @@ import org.gcreator.managers.LangSupporter;
 public class SpriteEditor extends TabPanel {
     
     public Sprite sprite;
-    boolean changed;
+    public boolean changed;
     private SubimagePreview prev;
     private ResourceChooser res;
     private boolean dragging = false;

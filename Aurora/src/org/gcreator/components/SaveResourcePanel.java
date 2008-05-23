@@ -6,6 +6,12 @@
 
 package org.gcreator.components;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.gcreator.editors.ImageEditor2;
+import org.gcreator.editors.SceneEditor;
+import org.gcreator.editors.SpriteEditor;
+
 /**
  *
  * @author  bob
@@ -15,6 +21,8 @@ public class SaveResourcePanel extends javax.swing.JPanel {
     
     /** Creates new form SaveResourcePanel 
      *  
+     * This constructor exists so it is possible to instantate it with the 'Use Bean' option
+     * in the form editor.
      * @deprecated Use constructor SaveResourcePanel(org.gcreator.components.TabPanel t) instead.
      */
     public SaveResourcePanel() {
@@ -85,7 +93,6 @@ public class SaveResourcePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
         panel.Save();
         panel.frame.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -104,6 +111,17 @@ public class SaveResourcePanel extends javax.swing.JPanel {
             return;
         }
         panel.Save();
+        try {    
+            panel.getClass().getField("changed").setBoolean(panel, false);
+        } catch (IllegalArgumentException ex) {
+            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
+        } catch (NoSuchFieldException ex) {
+            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
+        } catch (SecurityException ex) {
+            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
     
     

@@ -39,8 +39,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void mouseExited(MouseEvent evt){}
     public void mouseEntered(MouseEvent evt){}
     public void mouseReleased(MouseEvent evt){}
-    public void mousePressed(MouseEvent evt){}
-    public void mouseClicked(MouseEvent evt){
+    public void mousePressed(MouseEvent evt){
         if(evt.getButton()==MouseEvent.BUTTON1){
             int a = root.mode();
             if(a==SceneEditor.INVALID)
@@ -56,6 +55,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             root.updateScroll();
         }
     }
+    public void mouseClicked(MouseEvent evt){}
     
     public void eraseActorsAt(int x, int y){
         root.eraseActorsAt(x, y);
@@ -66,12 +66,20 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
     
     public void addActorAt(int x, int y){
+        // if there is no actor selected in the list to add, don't add it.
+        if (root.curactor.getFile() == null)
+            return;
         ActorInScene act = root.makeNewActor(x,y);
+        if (act == null) {
+            System.err.println("Error while adding actor at "+x+", "+y+" Actor returned from root is null.");
+        }
         if(root.eraseActorsBelow()){
             Sprite s = (Sprite) act.Sactor.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).width, s.getImageAt(0).height));
         }
-        if(root.snapToGrid()){
+        /*
+         * already done in root.makeNewActor()
+         if(root.snapToGrid()){
             Scene s = (Scene) root.file.value;
             if(x%s.snapX>s.snapX/2){
                 x /= s.snapX;
@@ -91,7 +99,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 y /= s.snapY;
                 y *= s.snapY;
             }
-        }
+        }*/
         ((Scene) root.file.value).actors.add(act);
     }
     
@@ -137,6 +145,14 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
+            if (a == null) {
+                System.out.println("[MinDepth]a is null!");
+                return result;
+            }
+            if (a.Sactor == null) {
+                System.out.println("[MinDepth]a.Sactor is null!");
+                return Integer.MAX_VALUE;
+            }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth<result)
                 result = b.depth;
@@ -156,6 +172,15 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
+            if (a == null) {
+                System.out.println("[MaxDepth]a is null!");
+                return result;
+            }
+                
+            if (a.Sactor == null) {
+                System.out.println("[MaxDepth]a.Sactor is null!");
+                return result;
+            }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth>result)
                 result = b.depth;
@@ -175,6 +200,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
+            if (a.Sactor == null) {
+                System.out.println("[NextDepth]a.Sactor is null!");
+                return Integer.MIN_VALUE;
+            }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             if(b.depth>result&&b.depth<Depth)
                 b.depth = result;
@@ -188,12 +217,14 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         return result;
     }
      
+    @Override
     public void update(Graphics g){
         super.update(g);
         super.setSize(getWidth(), getHeight());
     }
     
      
+    @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         drawField(g);
@@ -202,9 +233,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             drawGrid(g);
     }
     
-    public void drawActors(Graphics g){
+    public void drawActors(Graphics g) {
         Scene scn = (Scene) root.file.value;
-        if(scn.actors.isEmpty()&&scn.tiles.isEmpty())
+        if(scn.actors.isEmpty() && scn.tiles.isEmpty())
             return;
         Enumeration e;
         int dep = getMaximumDepth();
@@ -213,6 +244,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             e = scn.actors.elements();//<ActorInScene>
             while(e.hasMoreElements()){
                 ActorInScene ascn = (ActorInScene) e.nextElement();
+                if (ascn.Sactor == null) {
+                    System.out.println("[drawActors]ascn.Sactor is null!");
+                    return;
+                }
                 org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
                 if(b.depth==dep){
                     try{
@@ -228,7 +263,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                                 h.getImageObserver()
                         );
                     }
-                    catch(NullPointerException ex){}
+                    catch(NullPointerException ex){
+                        System.out.println("Exception at addactors: "+ex);
+                    }
                 }
             }
             e = scn.tiles.elements();//<ActorInScene>
@@ -325,7 +362,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         }
     }
     
-    public void drawGrid(Graphics g){
+    public void drawGrid(Graphics gg){
+        /*
         Color c = root.getMapBGColor();
         int k = c.getRed() + c.getBlue() + c.getGreen();
         k /= 3;
@@ -333,6 +371,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             g.setColor(Colorfeel.GridDarkColor);
         else
             g.setColor(Colorfeel.GridLightColor);
+         */
+        Graphics g = gg.create();
+        g.setColor(Color.BLACK);
+        g.setXORMode(Color.white);
         int truew = root.getMapWidth();
         int trueh = root.getMapHeight();
         int snapx = root.getSnapX();

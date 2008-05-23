@@ -27,6 +27,8 @@ public class ActorInScene implements Serializable {
     
     public ActorInScene(GFile actor, int x, int y,double id){
         //this.actor = actor;
+        if (actor == null)
+            throw new NullPointerException("actor may not be null.");
         Sactor = actor;
         this.x = x;
         this.y = y;
