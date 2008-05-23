@@ -51,4 +51,8 @@ public class MouseEvent extends Event{
             icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/mouse.png"));
         return icon;
     }
+    
+    public Event clone(){
+        return new MouseEvent(type);
+    }
 }

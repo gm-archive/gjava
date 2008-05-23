@@ -39,9 +39,13 @@ public String toString(){
 //        }
     return name+text;
 }
-public ImageIcon getImage(){
+    public ImageIcon getImage(){
         if (icon==null)
             icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/keyboard.png"));
         return icon;
+    }
+    
+    public Event clone(){
+        return new KeyboardEvent(type, name);
     }
 }

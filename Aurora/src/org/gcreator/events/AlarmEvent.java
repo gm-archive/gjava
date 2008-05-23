@@ -28,4 +28,8 @@ public class AlarmEvent extends Event{
             icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/alarm.png"));
         return icon;
     }
+    
+    public Event clone(){
+        return new AlarmEvent(number);
+    }
 }

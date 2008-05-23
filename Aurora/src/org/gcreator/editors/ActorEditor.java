@@ -64,7 +64,7 @@ public class ActorEditor extends TabPanel {
     }
     
     public void spriteChanged() {
-        ((Actor) file.value).sprite = spriteres.getFile();
+        actor.sprite = spriteres.getFile();
         updateNavigator();
     }
 
@@ -79,15 +79,16 @@ public class ActorEditor extends TabPanel {
         if (file.value == null) {
             this.actor = new Actor(/*file.name*/);
             actor.readXml(file.xml);
-            file.value = actor;
+            //file.value = actor;
             actor.events = new Vector<org.gcreator.events.Event>();
+            changed = true;
         } else if (file.value instanceof Actor) {
-            this.actor = (Actor) file.value;
+            this.actor = (Actor) ((Actor) file.value).clone();
         } else {
             throw new WrongResourceException();
         }
         this.file = file;
-        elist = new EventListModel(file);
+        elist = new EventListModel(file, actor);
         initComponents();
         //PopupListener a = new PopupListener(jList2, new ActionPopupMenu(this));
         jList2.addMouseListener(new MouseListener(){
@@ -157,6 +158,10 @@ public class ActorEditor extends TabPanel {
     public boolean wasModified() {
         return changed;
     }
+    
+    public boolean canSave(){
+        return changed;
+    }
 
     public boolean Load() {
         jCheckBox1.setSelected(actor.visible);
@@ -171,6 +176,7 @@ public class ActorEditor extends TabPanel {
         actor.solid = jCheckBox2.isSelected();
         actor.persistant = jCheckBox3.isSelected();
         file.value = actor;
+        changed = false;
 
         return true;
     }
@@ -677,14 +683,15 @@ public class ActorEditor extends TabPanel {
 
                     public void eventSelected(int type,String name) {
                         event(type,name);
+                        changed = true;
                     }
                     
                     public void eventSelected(int type) {
                         event(type,"");
+                        changed = true;
                     }
                 };
         EventSelect selector = new EventSelect(this,gcreator.window, true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()
-        changed = true;
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -739,6 +746,7 @@ public class ActorEditor extends TabPanel {
             
             org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
             ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
+            changed = true;
             
             updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -809,6 +817,7 @@ public class ActorEditor extends TabPanel {
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         actor.depth = ((Integer) jSpinner1.getValue()).intValue();
+        changed = true;
         updateNavigator();
     }//GEN-LAST:event_jSpinner1StateChanged
 

@@ -13,8 +13,8 @@ import org.gcreator.components.impl.EventSelectListener;
  * @author TGMG
  */
 public class KeyReleased extends KeyboardEvent {
-static final long serialVersionUID = 1L;
-public KeyReleased(int type,String name){
+    static final long serialVersionUID = 1L;
+    public KeyReleased(int type,String name){
     PRIORITY = 500;
     this.name=name;
     text=" Released";
@@ -22,9 +22,13 @@ public KeyReleased(int type,String name){
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"));
     }
 
-public ImageIcon getImage(){
+    public ImageIcon getImage(){
         if (icon==null)
             icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/key_release.png"));
         return icon;
+    }
+
+    public Event clone(){
+        return new KeyReleased(type, name);
     }
 }

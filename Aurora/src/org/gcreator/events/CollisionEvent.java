@@ -37,4 +37,8 @@ public class CollisionEvent extends Event {
         }
         return icon;
     }
+    
+    public Event clone(){
+        return new CollisionEvent(other);
+    }
 }

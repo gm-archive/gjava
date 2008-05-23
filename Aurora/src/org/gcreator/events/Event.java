@@ -69,4 +69,13 @@ public class Event implements Serializable, Comparable<Event>{
     public int compareTo(Event e){
         return e.PRIORITY - PRIORITY;
     }
+    
+    public Event clone(){
+        try{
+            return getClass().newInstance();
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
 }

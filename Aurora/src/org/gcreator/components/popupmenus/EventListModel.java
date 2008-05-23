@@ -20,8 +20,8 @@ import org.gcreator.fileclass.res.Actor;
  */
 public class EventListModel extends AbstractListModel{
     org.gcreator.fileclass.res.Actor val;
-    public EventListModel(org.gcreator.fileclass.GFile file){
-        val = (org.gcreator.fileclass.res.Actor) file.value;
+    public EventListModel(org.gcreator.fileclass.GFile file, Actor actor){
+        val = actor;
     }
     public Object getElementAt(int pos){
         return val.events.get(pos);

@@ -199,12 +199,13 @@ static final long serialVersionUID = 1L;
     public Object clone() {
         Actor a = new Actor(/*name*/);
         a.depth = depth;
-        Object o = events.clone();
-        if (o != null && o instanceof Vector) { //<?>
-            a.events = (Vector) o; //<Event>
-        } else {
-            a = null;
+        Vector ev = new Vector();
+        for(Object o : events){
+            Event e = ((Event) o).clone();
+            ev.add(e);
+            e.actions = (Vector<org.gcreator.actions.Action>) ((Event) o).actions.clone();
         }
+        a.events = ev;
         a.extend = extend;
         a.index = index;
         a.mask = mask;
