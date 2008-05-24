@@ -78,7 +78,7 @@ public class GCSharp extends PlatformCore {
                 }
             }
             print(w, "\t\t});");
-            print(w, "\t\tsetBounds(new Rectangle(" + s.BBleft + ", " + s.BBTop + ", " + (s.BBRight - s.width) + ", " + (s.BBBottom - s.height) + "));");
+            print(w, "\t\tsetBounds(new Rectangle(" + s.BBLeft + ", " + s.BBTop + ", " + (s.BBRight - s.width) + ", " + (s.BBBottom - s.height) + "));");
             print(w, "\t}");
             print(w, "}");
             w.close();
@@ -304,7 +304,7 @@ public class GCSharp extends PlatformCore {
             }
         }
         projectname = proj.name;
-        PluginHelper.println("Building/running using G-C#");
+        PluginHelper.println("Building/running using StarFish (C#)");
         createFolders();
         files.clear();
         super.run(proj);
@@ -320,8 +320,8 @@ public class GCSharp extends PlatformCore {
 
     @Override
     public void onSplashDispose() {
-        PluginHelper.println("Installed G-C#");
-        PluginHelper.addGlobalTab("G-C#", settings);
+        PluginHelper.println("Installed StarFish (C#)");
+        PluginHelper.addGlobalTab("StarFish (C#)", settings);
         //JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
         /*run.addActionListener(new ActionListener() {
 
@@ -329,7 +329,7 @@ public class GCSharp extends PlatformCore {
                         run(Aurwindow.getMainProject());
                     }
                 });*/
-        JMenuItem i = new JMenuItem("Compile with G-C#");
+        JMenuItem i = new JMenuItem("Compile with StarFish (C#)");
         i.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {

@@ -20,6 +20,7 @@ import java.awt.event.*;
 import org.gcreator.units.*;
 import java.util.*;
 import org.gcreator.components.popupmenus.*;
+import org.gcreator.fileclass.GFile;
 
 /**
  *
@@ -28,12 +29,14 @@ import org.gcreator.components.popupmenus.*;
 public class ScenePanel extends JPanel implements MouseListener, MouseMotionListener{
     SceneEditor root;
     ScenePopupMenu popup;
+    ImageIcon unknown;
     public ScenePanel(SceneEditor root){
         this.root = root;
         this.addMouseListener(this);
         popup = new ScenePopupMenu(root);
         this.addMouseListener(new PopupListener(this, popup));
         this.addMouseMotionListener(this);
+        unknown = new ImageIcon(getClass().getResource("/org/gcreator/resources/Unknown.png"));
     }
     
     public void mouseExited(MouseEvent evt){}
@@ -154,8 +157,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 return Integer.MAX_VALUE;
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
-            if(b.depth<result)
-                result = b.depth;
+            int d;
+            if(b==null)
+                d = 0;
+            else
+                d = b.depth;
+            if(d<result)
+                result = d;
         }
         e = scn.tiles.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
@@ -182,8 +190,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 return result;
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
-            if(b.depth>result)
-                result = b.depth;
+            int d;
+            if(b!=null)
+                d = b.depth;
+            else
+                d = 0;
+            if(d>result)
+                result = d;
         }
         e = scn.tiles.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
@@ -250,10 +263,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 }
                 org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
                 if(b.depth==dep){
-                    try{
-                    org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) b.sprite.value;
-                    ImageIcon h = f.getImageAt(0).image;
-                    if(h!=null)
+                    //try{
+                        GFile sf = b.sprite;
+                    org.gcreator.fileclass.res.Sprite f = null;
+                    if(sf!=null&&sf.value!=null)
+                        f = (org.gcreator.fileclass.res.Sprite) sf.value;
+                    if(f!=null&&f.getImageAt(0).image!=null){
+                        ImageIcon h = f.getImageAt(0).image;
                         g.drawImage(
                                 h.getImage(),
                                 (int) ((ascn.x - f.originX) / root.getZoom()),
@@ -263,9 +279,18 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                                 h.getImageObserver()
                         );
                     }
-                    catch(NullPointerException ex){
-                        System.out.println("Exception at addactors: "+ex);
-                    }
+                    else
+                        g.drawImage(
+                                unknown.getImage(),
+                                (int) (ascn.x / root.getZoom()),
+                                (int) (ascn.y / root.getZoom()),
+                                (int) (32 / root.getZoom()),
+                                (int) (32 / root.getZoom()),
+                                unknown.getImageObserver());
+                    //}
+                    //catch(NullPointerException ex){
+                    //    System.out.println("Exception at addactors: "+ex);
+                    //}
                 }
             }
             e = scn.tiles.elements();//<ActorInScene>

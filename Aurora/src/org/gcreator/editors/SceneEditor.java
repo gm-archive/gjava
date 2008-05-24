@@ -126,6 +126,8 @@ public class SceneEditor extends TabPanel {
         if (curactor.getFile() == null)
             return;
         org.gcreator.fileclass.res.Actor b = (Actor) curactor.getFile().value;
+        if(b == null)
+            return;
         org.gcreator.fileclass.GFile t = b.sprite;
         if(t==null)
             return;
