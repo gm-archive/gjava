@@ -10,6 +10,8 @@ import org.gcreator.core.*;
 import org.gcreator.managers.*;
 
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 /**
  *
@@ -17,13 +19,25 @@ import java.awt.*;
  */
 public class GlobalSettings extends TabPanel {
     
+    boolean b = false;
+    
     /** Creates new form GlobalSettings */
-    public GlobalSettings(String[] settings) {
+    public GlobalSettings(final String[] settings) {
         initComponents();
         jTabbedPane1.add("Language", new LanguageTab());
         jTabbedPane1.add("Toolbars", new ToolbarEditor());
         jTabbedPane1.add("Script Editor", new StyleThemePreferences());
-        jTabbedPane1.add("User interface", new PreferencesTab(settings));
+        this.addComponentListener(new ComponentListener(){
+            public void componentHidden(ComponentEvent evt){}
+            public void componentShown(ComponentEvent evt){
+                if(!b){
+                    jTabbedPane1.add("User interface", new PreferencesTab(settings));
+                    b = true;
+                }
+            }
+            public void componentMoved(ComponentEvent evt){}
+            public void componentResized(ComponentEvent evt){}
+        });
     }
     
     /** This method is called from within the constructor to
