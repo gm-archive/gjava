@@ -8,14 +8,16 @@ class org::gcreator::Components::Image
 {
 	private:
 		SDL_Surface* img;
-		Image(SDL_Surface*);
-        Image(String&);
+		
 		friend class org::gcreator::Components::Sprite;
 		friend class org::gcreator::Components::Tileset;
 	public:
 		Image();
+		Image(SDL_Surface*);
+                Image(String);
 		virtual String getName();
-		boolean free();
+                SDL_Surface* getImage();
+		boolean freeImage();
 };
 
 class org::gcreator::Components::Sprite
@@ -27,14 +29,13 @@ class org::gcreator::Components::Sprite
 		Sprite();
 		int getImageCount();
 		org::gcreator::Components::Image* getImage(int);
-		boolean setImage(int, org::gcreator::Components::Image*);
 		boolean freeImage(int);
 		boolean freeSprite();
 		org::gcreator::Components::Image** getImageArray();
 		boolean setImageArray(org::gcreator::Components::Image**);
 		int getWidth();
 		int getHeight();
-        int blit(org::gcreator::Components::Sprite*,int,int,int);
+        int blit(int,int,int,org::gcreator::Components::Application);
         int getFrame();
         void setFrame(int);
 };
@@ -77,6 +78,7 @@ class org::gcreator::Components::Actor
 		int x;
 		int y;
 		int depth;
+		int direction;
 		int spritepos;
 		int curspritepos;
 		int spritedelay;
@@ -103,14 +105,16 @@ class org::gcreator::Components::Actor
 		int getX();
 		int getY();
 		int getDepth();
+		int getDirection();
 		void setX(int);
 		void setY(int);
 		void setDepth(int);
+		void setDirection(int);
 		boolean isSolid();
 		void setSolid(boolean);
                 void onCreate();
                 void onDestroy();
-                void onTimer();
+                void onTimer(int);
                 void onBeginStep();
                 void onStep();
                 void onEndStep();
@@ -177,11 +181,18 @@ class org::gcreator::Components::Application
 	public:
 		Application(int argc, char** argv);
         SDL_Surface* gameInit(int,int,int,String&);
-		static SDL_Surface* getScreenSurface();
+		SDL_Surface* getScreenSurface();
+        org::gcreator::Interaction::Keyboard* getKeyboard();
+        org::gcreator::Interaction::Mouse* getMouse();
+        boolean gameEnd();
+        boolean stopped();
 	private:
 		int argc;
 		char** argv;
-		static SDL_Surface* screen;
+        boolean done;
+		SDL_Surface* screen;
+        org::gcreator::Interaction::Keyboard* keyboard;
+        org::gcreator::Interaction::Mouse* mouse;
 };
 
 class org::gcreator::Components::Audio
@@ -192,7 +203,7 @@ class org::gcreator::Components::Audio
             Audio();
             Audio(Mix_Music*);
             Audio(std::string);
-            bool loadFile(std::string);
+            bool loadAudio(std::string);
             bool setAudio(Mix_Music*);
             Mix_Music* getAudio();
             bool audioPlaying();
@@ -201,7 +212,7 @@ class org::gcreator::Components::Audio
             void unpauseAudio();
             bool audioPaused();
             void stopAudio();
-            void release()
+            void release();
 };
 
 class org::gcreator::Components::SFX
@@ -210,13 +221,13 @@ class org::gcreator::Components::SFX
             Mix_Chunk* sound;
         public:
             SFX();
-            SFX(Mix_Chunk*)
-            SFX(std::string)
-            bool loadFile(std::string)
-            bool setSFX(Mix_Chunk*)
+            SFX(Mix_Chunk*);
+            SFX(std::string);
+            bool loadFile(std::string);
+            bool setSFX(Mix_Chunk*);
             Mix_Chunk* getSFX();
-            void playSFX(int,int)
-            void release()
+            void playSFX(int,int);
+            void release();
 };
 
 #ifndef _GCPP_COMPONENTS_APPLICATION_

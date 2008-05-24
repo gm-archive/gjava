@@ -9,6 +9,7 @@ org::gcreator::Components::Actor::Actor()
 	x = 0;
 	y = 0;
 	depth = 0;
+	direction = 0;
 	spritepos = 0;
 	curspritepos = 0;
 	spritedelay = 0;
@@ -114,6 +115,11 @@ int org::gcreator::Components::Actor::getDepth()
 	return depth;
 }
 
+int org::gcreator::Components::Actor::getDirection()
+{
+	return direction;
+}
+
 void org::gcreator::Components::Actor::setX(int _x)
 {
 	x = _x;
@@ -129,6 +135,11 @@ void org::gcreator::Components::Actor::setDepth(int _depth)
 	depth = _depth;
 }
 
+void org::gcreator::Components::Actor::setDirection(int _direction)
+{
+	direction = _direction;
+}
+
 boolean org::gcreator::Components::Actor::isSolid()
 {
 	return solid;
@@ -141,62 +152,63 @@ void org::gcreator::Components::Actor::setSolid(boolean _solid)
 
 void org::gcreator::Components::Actor::onCreate()
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onDestroy()
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onTimer(int Timer)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onBeginStep()
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onStep()
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onEndStep()
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onCollision(org::gcreator::Components::Actor who)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onKeyboard(std::string key)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onMouse(std::string button)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onKeyPress(std::string key)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onKeyRelease(std::string key)
 {
-    
+    ;
 }
 
 void org::gcreator::Components::Actor::onDraw()
 {
-    
+    ;
 }
 
 #endif
+

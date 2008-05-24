@@ -4,25 +4,23 @@
 #include "../declare.h"
 
 org::gcreator::Components::Application::Application(int _argc, char** _argv){
-        this->argc = argc;
+    this->argc = argc;
 	this->argv = argv;
-	while(!org::gcreator::Interaction::Keyboard::isKeyPressed("Esc"))
-	{
-		;
-	}
+    done=false;
 }
 
-SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int BPP, String& caption){
+SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string& caption)
+{
         if(SDL_Init(SDL_INIT_EVERYTHING)==-1){
             return NULL;
         }
         screen=SDL_SetVideoMode(W,H,BPP,SDL_SWSURFACE);
-        Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096)
+        Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096);
         if(screen==NULL){
             return NULL;
         }
         SDL_WM_SetCaption(caption.c_str(), NULL);
-        return screen;
+	return screen;
 }
 
 SDL_Surface* org::gcreator::Components::Application::getScreenSurface()
@@ -30,6 +28,24 @@ SDL_Surface* org::gcreator::Components::Application::getScreenSurface()
 	return screen;
 }
 
-org::gcreator::Components::Application* Game;
+org::gcreator::Interaction::Keyboard* org::gcreator::Components::Application::getKeyboard()
+{
+    return keyboard;
+}
+
+org::gcreator::Interaction::Mouse* org::gcreator::Components::Application::getMouse()
+{
+    return mouse;
+}
+
+boolean org::gcreator::Components::Application::gameEnd()
+{
+    done=true;
+}
+
+boolean org::gcreator::Components::Application::stopped()
+{
+    return done;
+}
 
 #endif

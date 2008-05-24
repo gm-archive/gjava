@@ -16,18 +16,9 @@ int org::gcreator::Components::Sprite::getImageCount()
 	return sizeof(images)/sizeof(images[0]);
 }
 
-boolean org::gcreator::Components::Sprite::setImage(int num, org::gcreator::Components::Image* image)
-{
-	if(images==NULL)
-		return false;
-	if(num<0)
-		return false;
-	images[num] = image;
-}
-
 boolean org::gcreator::Components::Sprite::freeImage(int num)
 {
-	return images[num]->free();
+	return images[num]->freeImage();
 }
 
 boolean org::gcreator::Components::Sprite::freeSprite()
@@ -46,10 +37,18 @@ org::gcreator::Components::Image** org::gcreator::Components::Sprite::getImageAr
 
 boolean org::gcreator::Components::Sprite::setImageArray(org::gcreator::Components::Image** array)
 {
-	if(array==NULL)
-		return false;
+    /*if(array==NULL){ // YOU HAVE TO PUT THE {
+        cout<<"array==NULL"; //THE "IF" WAS ASSIGNED TO "log", SO IT ALWAYS RETURNED false!
+        cout<<"returning false"; //you should put this BEFORE the return statement
+        return false;
+    }
+    cout<<"assigning array";
+    for(int i=0;i<sizeof(array)/sizeof(array[0])-1;i++){
+    images[i]=array[i];
+    cout<<"returning true";
+    }*/
 	images = array;
-	return true;
+    return true;
 }
 
 int org::gcreator::Components::Sprite::getWidth()
@@ -76,18 +75,25 @@ void org::gcreator::Components::Sprite::setFrame(int _frame)
         frame=_frame;
 }
 
-int org::gcreator::Components::Sprite::blit(org::gcreator::Components::Sprite* img, int x, int y, int _frame)
+int org::gcreator::Components::Sprite::blit(int x, int y, int _frame, org::gcreator::Components::Application game)
 {
         SDL_Rect s;
-        s.x=x;
-        s.y=y;
+        s.x=0;
+        s.y=0;
+	s.w = 32;
+	s.h = 32;
+	SDL_Rect d;
+	d.x = x;
+	d.y = y;
+	d.w = 32;
+	d.h = 32;
         if(_frame==-1)
         {
-            SDL_BlitSurface((img->getImageArray()[0])->img,NULL, Application::getScreenSurface(), &s);
+           SDL_BlitSurface(((getImageArray())[0])->getImage(),&s,game.getScreenSurface(), &d);
         }
         else
         {
-            SDL_BlitSurface((img->getImageArray()[frame])->img,NULL, Application::getScreenSurface(), &s);
+            SDL_BlitSurface(((getImageArray())[frame])->getImage(),NULL,game.getScreenSurface(), &s);
             setFrame(_frame++);
             if(getFrame()>getImageCount())
             {

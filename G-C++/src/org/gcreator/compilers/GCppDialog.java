@@ -65,8 +65,8 @@ public class GCppDialog extends javax.swing.JFrame implements Runnable{
             main.write("using namespace org::gcreator::Components::Application");
             main.write("\n");
             main.write("int main(int argc, char** argv){\n");
-            main.write("	gameInit(640,480,32,\"tes\");\n");
             main.write("	Game = new Application(argc, argv);");
+            main.write("	Game.gameInit(640,480,32,\"test\");\n");
             main.write("}\n");
             main.write("\n");
             main.close();

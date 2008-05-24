@@ -26,4 +26,21 @@ int org::gcreator::Interaction::Mouse::getY(){
     }
 }
 
+boolean org::gcreator::Interaction::Mouse::buttonPressed(std::string button){
+        SDL_Event event;
+        if(event.type ==SDL_MOUSEBUTTONDOWN)
+        {
+             if(event.button.button==SDL_BUTTON_LEFT)
+             {
+                  if(button=="left"){return true;}
+                  else{return false;}
+             }
+             if(event.button.button==SDL_BUTTON_RIGHT)
+             {
+                  if(button=="right"){return true;}
+                  else{return false;}
+             }
+        }
+}
+
 #endif
