@@ -114,7 +114,7 @@ public class GCppDialog extends javax.swing.JFrame implements Runnable{
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("G-C++ Compiler");
 
-        jLabel1.setText("<html>Welcome to G-C++ compiler. This will compile your game.<br/>Do <b>NOT</b> close the window unless it takes too much time.");
+        jLabel1.setText("<html>Welcome to SeaGulls C++ compiler. This will compile your game.<br/>Do <b>NOT</b> close the window unless it takes too much time.");
 
         jTextArea1.setColumns(20);
         jTextArea1.setEditable(false);
@@ -133,11 +133,11 @@ public class GCppDialog extends javax.swing.JFrame implements Runnable{
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
                         .addComponent(jButton2)))
                 .addContainerGap())
         );

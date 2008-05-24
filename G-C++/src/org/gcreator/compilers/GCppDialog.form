@@ -25,11 +25,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="274" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" pref="415" max="32767" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace pref="125" max="32767" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -57,7 +57,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;Welcome to G-C++ compiler. This will compile your game.&lt;br/&gt;Do &lt;b&gt;NOT&lt;/b&gt; close the window unless it takes too much time."/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;Welcome to SeaGulls C++ compiler. This will compile your game.&lt;br/&gt;Do &lt;b&gt;NOT&lt;/b&gt; close the window unless it takes too much time."/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

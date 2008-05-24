@@ -1,0 +1,8 @@
+[~Plugin~]
+Author=sleija
+Author=Luís Reis
+Core=org.gcreator.compilers.GCpp
+License=LGPL
+Name=SeaGulls
+Version=1.0a1
+Image=
