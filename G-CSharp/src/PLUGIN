@@ -4,4 +4,4 @@ Core=org.gcreator.compilers.GCS.plugin.GCSharp
 License=LGPL
 Name=StarFish
 Version=1.0a3
-Image=
+Image=starfish.png
