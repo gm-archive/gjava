@@ -17,6 +17,7 @@ import javax.swing.*;
 public class IconList extends JComponent{
     private int columns = 3;
     private Vector<IconListElement> elements = new Vector<IconListElement>();
+    private Vector<Runnable> onclickRunnables = new Vector<Runnable>();
     private int columnWidth = 120;
     private int columnHeight = 120;
     private int selIndex = 0;
@@ -57,6 +58,8 @@ public class IconList extends JComponent{
             repaint();
             //updateUI();
         }
+        for (Runnable r : onclickRunnables)
+            r.run();
     }
     
     public int countVisibleElements(){
@@ -255,11 +258,29 @@ public class IconList extends JComponent{
             return cf/columns;
     }
     
+    @Override
     public Dimension getPreferredSize(){
         int rows = calcRows();
-        return new Dimension(columnWidth*columns+(columns+1)*wgap, columnHeight*rows+(rows+1)*hgap);
+        return new Dimension(columnWidth*columns+(columns+1)*Math.max(wgap,1), columnHeight*rows+(rows+1)*Math.max(hgap,1));
+    }
+    /**
+     * Removes all icons in the iconlist.
+     */
+    public void clear() {
+        elements.clear();
+    }
+    /**
+     * Adds a Runnable to the list of runnables that will be ran
+     * when a icon on the list is clicked.
+     * @param r The Runnable to add.
+     */
+    public void addRunnable(Runnable r) {
+        onclickRunnables.add(r);
     }
     
+    public boolean removeRunnable(Runnable r) {
+        return onclickRunnables.remove(r);
+    }
     private void paintComponent(Graphics g, IconListElement element, int r, int c, int i){
         int wstart = c*columnWidth + (c+1)*wgap;
         int hstart = r*columnHeight + (r+1)*hgap;

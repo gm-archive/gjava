@@ -78,7 +78,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         }
         if(root.eraseActorsBelow()){
             Sprite s = (Sprite) act.Sactor.value;
-            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).width, s.getImageAt(0).height));
+            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).image.getIconWidth(), s.getImageAt(0).image.getIconHeight()));
         }
         /*
          * already done in root.makeNewActor()

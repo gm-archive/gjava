@@ -16,7 +16,7 @@ import org.gcreator.exceptions.NoSuchFolderException;
  *
  * @author Luís
  */
-public class Project extends Folder {
+public abstract class Project extends Folder {
      
     public String location = "";
     //public javax.swing.tree.DefaultMutableTreeNode froot;
@@ -41,7 +41,7 @@ public class Project extends Folder {
     }
     
     public static Project balance(){
-        return new Project();
+        return null;//new Project();
     } 
      
     public String getObjectType(){

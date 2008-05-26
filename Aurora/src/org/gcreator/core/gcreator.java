@@ -12,8 +12,6 @@ package org.gcreator.core;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
@@ -371,6 +369,7 @@ public class gcreator {
         //SystemOutputReader.instance.
         if(splash!=null)
             SwingUtilities.updateComponentTreeUI(splash);
+        SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
         splash.progressBar.setVisible(true);
         
         if(!applet&&plugload)

@@ -15,12 +15,13 @@ import org.gcreator.units.Dictionary;
  *
  * @author Luís
  */
-public class English extends Dictionary{
-    public English(){
+public class English extends Dictionary {
+    public English() {
         status = "Finished";
         language = "English";
         authors = new String[10];
         authors[0] = "Luís Reis";
+        authors[1] = "Serge Humphrey";
         //If you changed this language, add your name here.
         entry = new String[300];
         entry[0] = "File";
@@ -320,9 +321,37 @@ public class English extends Dictionary{
         entry[269] = "Add action";
         entry[270] = "View Console Output";
         entry[271] = "Rename";
-        entry[272] = "Choose the minimum transparency value for BoundBox detection.\n" +
-                " 0 is completely transparent where as 256 is fully transparent.";
-        
+        entry[272] = "Choose the minimum transparency value for\n BoundBox detection." +
+                " 0 is completely transparent where as \n256 is fully transparent.";
+        //GetImageResizeIngoDialog
+        entry[273] = "<html>Image is not the correct size.<br> What do you want to do with it?</>";
+        entry[274] = "Adjust Image";
+        entry[275] = "Place at top left (don't resize image)";
+        entry[276] = "Place at:";
+        entry[277] = "Canvas Size";
+        entry[278] = "Use maximal size";
+        entry[279] = "Use original size";
+        entry[280] = "Use new size";
+        entry[281] = "OK";
+        entry[282] = "Stretch";
+        entry[283] = "Resize image";
+        entry[284] = "Create new image";
+        entry[285] = "Keep aspect ratio";
+        /*entry[286] = "";
+        entry[287] = "";
+        entry[288] = "";
+        entry[289] = "";
+        entry[290] = "";
+        entry[291] = "";
+        entry[292] = "";
+        entry[293] = "";
+        entry[294] = "";
+        entry[295] = "";
+        entry[296] = "";
+        entry[297] = "";
+        entry[298] = "";
+        entry[299] = "";
+        */
         try{
             init();
         }

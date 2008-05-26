@@ -63,7 +63,18 @@ public class Sprite implements Resource {
         Simages.add(i);
     }
     
-     
+    public GImage firstImage() {
+        if (countImages() <= 0)
+            return null;
+        return getImageAt(0);
+    }
+    
+    public GImage lastImage() {
+        if (countImages() <= 0)
+            return null;
+        return getImageAt(countImages()-1);
+    }
+    
     public String writeXml() {
         String xml = "";
       xml += "<?xml version=\"1.0\"?>\n";

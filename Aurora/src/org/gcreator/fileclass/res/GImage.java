@@ -22,7 +22,6 @@ public class GImage implements Resource {
 
     static final long serialVersionUID = 1L;
     public ImageIcon image;
-    public int width,height;
     public boolean transparent;
     public Color transparentColor; 
     public int zoom;
@@ -99,10 +98,10 @@ public class GImage implements Resource {
         return "";
     }
     
+    @Override
     public Object clone() {
         GImage a = new GImage(/*name*/);
-        a.height = height;
-        a.width = width;
+        a.image = new ImageIcon(image.getImage());
         a.transparent = transparent;
         a.transparentColor = transparentColor;  
         return a;

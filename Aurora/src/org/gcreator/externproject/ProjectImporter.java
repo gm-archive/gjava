@@ -211,6 +211,34 @@ public class ProjectImporter {
         }
         if (project != null) {
             ProjectTree.importFolderToTree(project, org.gcreator.core.gcreator.panel.top);
+            
+            if (project instanceof GameProject) {
+                try {
+                    GameProject p = (GameProject) project;
+                    p.actors = p.getFolderFor("actor").getChildNum()+1;
+                    p.classes = p.getFolderFor("class").getChildNum()+1;
+                    p.images = p.getFolderFor("image").getChildNum()+1;
+                    p.paths = p.getFolderFor("path").getChildNum()+1;
+                    p.scenes = p.getFolderFor("scene").getChildNum()+1;
+                    p.scripts = p.getFolderFor("class").getChildNum()+1;
+                    p.sounds = p.getFolderFor("sound").getChildNum()+1;
+                    p.sprites = p.getFolderFor("sprite").getChildNum()+1;
+                    p.tilesets = p.getFolderFor("tileset").getChildNum()+1;
+                    p.timelines = p.getFolderFor("timeline").getChildNum()+1;
+                    } catch (NullPointerException exc) {
+                    exc.printStackTrace();
+                }
+            } else if (project instanceof ModuleProject) {
+                try {
+                    ModuleProject p = (ModuleProject) project;
+                    p.actions = p.getFolderFor("action").getChildNum()+1;
+                    p.classes = p.getFolderFor("class").getChildNum()+1;
+                    p.images = p.getFolderFor("image").getChildNum()+1;
+                    p.scripts = p.getFolderFor("class").getChildNum()+1;
+                } catch (NullPointerException exc) {
+                    exc.printStackTrace();
+                }
+            }
         }
         GPanel.setMainProject(project);
         gcreator.panel.workspace.updateUI();
@@ -262,21 +290,19 @@ public class ProjectImporter {
                         } else {
                             
                             /// following code beta
-                    ObjectInputStream s = new ObjectInputStream(new ByteArrayInputStream(stream.toByteArray()));
-                    
                     try {
+                        ObjectInputStream s = new ObjectInputStream(new ByteArrayInputStream(stream.toByteArray()));
                         objects.add(s.readObject());
                         s.close();
+                    } catch (EOFException exc) {
+                        System.err.println("[ProjectImporter]EOFException: "+exc);
                     } catch (Exception e) {
                         //class not found?
                         System.out.println("Class error(projectimporter): " + e.getLocalizedMessage());
                     }
-                            
-                            readFile(stream + "", zipe.getName());
-
-                            Bytefiles.add(stream.toByteArray());
-
-                            //  String today = (String)s.readObject();
+                    readFile(stream + "", zipe.getName());
+                    Bytefiles.add(stream.toByteArray());
+                    //  String today = (String)s.readObject();
                         }
                     }
                 }

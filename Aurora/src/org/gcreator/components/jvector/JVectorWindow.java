@@ -787,8 +787,6 @@ public class JVectorWindow extends javax.swing.JFrame {
            s.paint(g);
         }
         editor.i.image = new ImageIcon(bufImg);
-        editor.i.width = bufImg.getWidth();
-        editor.i.height = bufImg.getHeight();
         editor.pane.updateUI();
         editor.pane.repaint();
         dispose();

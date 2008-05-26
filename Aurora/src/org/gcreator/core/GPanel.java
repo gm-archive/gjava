@@ -210,7 +210,7 @@ public class GPanel extends JPanel{
 
                         //Check wether 'Delete' was pressed
 
-                        if (e.getKeyCode() != e.VK_DELETE) {
+                        if (e.getKeyCode() != KeyEvent.VK_DELETE) {
                             return;
                         }
 
@@ -274,6 +274,7 @@ public class GPanel extends JPanel{
         MenuSupporter.MakeDefaultMenus(this);
         
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
+        splitter1.setOneTouchExpandable(true);//NOTE: this doesn't display correctly in GTK+
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
@@ -553,14 +554,14 @@ public class GPanel extends JPanel{
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
-    private void closeAllTabs(DefaultMutableTreeNode node) {
+    private void closeAllTabs(DefaultMutableTreeNode node, Project project) {
         for (int i = 0; i < node.getChildCount(); i++) {
             ObjectNode on = (ObjectNode)node.getChildAt(i);
             GObject go = on.object;
             
             if (!(go instanceof GFile)) {
                 if (go instanceof Folder) {
-                    closeAllTabs(on);
+                    closeAllTabs(on, project);
                     continue;
                 }
                 else {
@@ -568,7 +569,7 @@ public class GPanel extends JPanel{
                 }
             }
             GFile o = (GFile)go;
-            if (o.tabPanel != null) {
+            if (o.tabPanel != null && o.tabPanel.project == project) {
                 remove(o.tabPanel, o.tabPanel.frame);
             }
         }
@@ -624,7 +625,7 @@ public class GPanel extends JPanel{
                 Object i = m.addMenuItem(
                 246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
                 m.setEnabled(i, ((org.gcreator.fileclass.GFile) o).root.allowsDelete(o));
-                m.addActionListener(i, new ActionListener() {
+                MenuGenerator.addActionListener(i, new ActionListener() {
 
                             public void actionPerformed(ActionEvent evt) {
                                 deleteFile((org.gcreator.fileclass.GFile) o);
@@ -697,7 +698,7 @@ public class GPanel extends JPanel{
         if (o instanceof Project) {
             Object j = m.addMenuItem(
                 245, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
-            m.addActionListener(j, new ActionListener() {
+            MenuGenerator.addActionListener(j, new ActionListener() {
 
                         public void actionPerformed(ActionEvent e) {
                             CloseProject((Project) o, true);
@@ -1741,7 +1742,7 @@ public class GPanel extends JPanel{
     public void CloseProject(Project p) {
         org.gcreator.core.utilities.addStringMessage("close project");
         //Close all tabs
-        closeAllTabs((DefaultMutableTreeNode) p.node.getParent());
+        closeAllTabs((DefaultMutableTreeNode) p.node.getParent(), p);
         
         top.remove((DefaultMutableTreeNode) getCurrentProject().node/*.getParent()*/);
         workspace.updateUI();

@@ -32,7 +32,7 @@ public class SplashScreen extends DialogPlus {
         setResizable(false);
         setUndecorated(true);
 
-        i = new ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen20tf0.jpg")); // NOI18N
+        i = new ImageIcon(getClass().getResource("/org/gcreator/resources/splashscreen300bob.png")); // NOI18N
 
         JPanel p = new JPanel(){
             public void paint(Graphics g){
