@@ -262,6 +262,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     return;
                 }
                 org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
+                if(b==null)
+                    continue;
                 if(b.depth==dep){
                     //try{
                         GFile sf = b.sprite;

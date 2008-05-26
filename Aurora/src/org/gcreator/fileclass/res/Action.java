@@ -5,8 +5,9 @@
 
 package org.gcreator.fileclass.res;
 
-import java.util.Hashtable;
+import java.util.*;
 import org.gcreator.fileclass.GFile;
+import org.gcreator.units.ActionProperty;
 
 /**
  *
@@ -26,9 +27,11 @@ public class Action implements Resource{
     public boolean unindentself = false;
     public boolean unindentnext = false;
     
+    public Vector<ActionProperty> args = new Vector<ActionProperty>();
+    
     public String output = "";
     
-    public Hashtable<String, Class> table = new Hashtable<String, Class>();
+    //public Hashtable<String, Class> table = new Hashtable<String, Class>();
     
     public Action(){
         
@@ -43,7 +46,9 @@ public class Action implements Resource{
         act.unindentself = unindentself;
         act.unindentnext = unindentnext;
         act.output = output;
-        act.table = (Hashtable<String, Class>) table.clone();
+        //act.table = (Hashtable<String, Class>) table.clone();
+        for(ActionProperty arg : args)
+            act.args.add(arg.clone());
         
         return act;
     }
