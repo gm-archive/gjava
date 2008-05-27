@@ -11,7 +11,7 @@ package org.gcreator.fileclass.res;
 
 /**
  *
- * @author Ali1
+ * @author TGMG
  */
 public class Sound implements Resource  {
 static final long serialVersionUID = 1L;

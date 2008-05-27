@@ -328,92 +328,201 @@ public class PlatformCore extends PluginCore {
         return "/*var statement*/{"+vars+"}";//type + " "+vars;
     }
 
+    /*
+     * Currently unused, don't bother with it
+     */
     public String fieldstatement(String m, String varstatement) {
         return m+" "+varstatement+";";
     }
 
+    /**
+     * Replace this with return statement, converts:
+     * return value;
+     * @param exp - the value to return
+     * @return
+     */
     public String returnstatement(String exp) {
         return "return " + exp + ";";
     }
 
+    /**
+     * Replace this with exist statment, converts:
+     * exit;
+     * @return
+     */
     public String exitstatement() {
         return "return null;";
     }
 
+    /**
+     * Replace with if statement
+     * @param exp - the expression to decide wither it is true or false
+     * @param statement(s) - the statement to run if true
+     * @param elses - else statements that follow on from the if
+     * @return
+     */
     public String ifstatement(String exp, String statement, String elses) {
         return "if (" + exp + ".getBoolean()) \n" + statement + " \n " + elses;
     }
 
+    /**
+     * else statement
+     * @param statement - statement to run if else is called
+     * @return
+     */
     public String elsestatement(String statement) {
         return " else " + statement;
     }
     
+    /**
+     * block statement { }
+     * @param st - statement inside block
+     * @return
+     */
     public String bstatement(String st) {
         return "{ \n"+st+"\n }";
     }
 
+    /**
+     * Expression
+     * @param ex - the expression
+     * @return
+     */
     public String expression(String ex) {
        // System.out.println("Expression:"+ex);
         return ex;
     }
     
+    /**
+     * Not expression
+     * @param exp - the expression that should not be true
+     * @return
+     */
     public String notexpression(String exp) {
         return " ("+exp+").not()";
     }
     
+    /**
+     * Expression inside parenthesis
+     * @param exp
+     * @return
+     */
     public String pexpression(String exp) {
         return " ("+exp+")";
     }
     
+    /**
+     * And expression
+     * @return
+     */
     public String andexpression() {
         return " .and ";
     }
     
+    /**
+     * Or expression
+     * @return
+     */
     public String orexpression() {
         return " .or ";
     }
     
+    /**
+     * xor expression
+     * @return
+     */
     public String xorexpression() {
         return " .xor ";
     }
     
+    /**
+     * repeat statement
+     * @param ex
+     * @param st
+     * @return
+     */
     public String repeatstatement(String ex, String st) {
         return "G_CREATOR__repeat=new Double(0); \n while(G_CREATOR__repeat.lt("+ex+").getBoolean()){\n"+st+" G_CREATOR__repeat.add(new Integer(1));}"; 
     }
     
+    /**
+     * Break statement
+     * @return
+     */
     public String breakstatement() {
         return "break;";
     }
     
+    /**
+     * Contine statement
+     * @return
+     */
     public String continuestatement() {
         return "continue;";
     }
     
+    /**
+     * Do statement
+     * @param statement - statement to do in loop
+     * @param expression - expression to check loop
+     * @return
+     */
     public String dostatement(String statement, String expression) {
         return "do "+statement+"while("+expression+".getBoolean());"; //todo
     }
     
+    /**
+     * While statement
+     * @param exp
+     * @param st
+     * @return
+     */
     public String whilestatement(String exp, String st) {
         return "while ("+exp + ".getBoolean()) "+ st;
     }
     
+    /**
+     * For statement
+     * @param statement1 - variable to set initital value
+     * @param exp - expression to check for loop
+     * @param statement2 - statement to add one to variable
+     * @param statements - statements inside for loop
+     * @return
+     */
     public String forstatement(String statement1, String exp, String statement2, String statements) {
-        System.out.println(statement2.substring(statement2.length()-1,statement2.length()));
+        //System.out.println(statement2.substring(statement2.length()-1,statement2.length()));
         if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";"))
         statement2 = statement2.substring(0, statement2.length()-1);
         return "for (Object "+statement1+exp+".getBoolean(); "+statement2+") "+statements;
     }
     
+    /**
+     * Not done yet so don't use
+     * @return
+     */
     public String switchstatement() {
         return ""; //TODO
     }    
     
+    /**
+     * not finished yet
+     * @param exp - The actor to use in with statement
+     * @param statement - statements inside with statement
+     * @return
+     */
     public String withstatement(String exp, String statement) {
         usingwith++;
         with.add(exp);
         return "\n{\n" + statement+"\n}\n";
     }    
     
+    /**
+     * Assignment statement
+     * @param variable - variable to set value of
+     * @param operator - operator (+,-)
+     * @param expression - value to set variable
+     * @return
+     */
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
         
@@ -490,6 +599,12 @@ public class PlatformCore extends PluginCore {
         return value+")";
     }
     
+    /**
+     * Function statement
+     * @param name - name of function
+     * @param parameters - paramters of function
+     * @return
+     */
     public String functionstatement(String name, String parameters) {
         if (parameters == null)
             parameters="";
@@ -500,23 +615,54 @@ public class PlatformCore extends PluginCore {
         return name+ "("+parameters+")";
     }
     
-     public void parseScript(String code,String name)
+    /**
+     * Parses scripts
+     * @param code
+     * @param name
+     */
+    public void parseScript(String code,String name)
     {
      //parses scripts   
     }
     
+    /**
+     * ignore this for now
+     * @param name
+     * @param parameters
+     * @return
+     */
     public String otherclassfunctionstatement(String name, String parameters) {
         return name+ "("+parameters+")";
     }
 
+    /**
+     * Nor compeltely working, array statement
+     * @param name - name of array
+     * @param exp - number of array element
+     * @return
+     */
     public String array(String name, String exp) {
         return name + "[" + exp + "]";
     }
     
+    /**
+     * IGNORE
+     * @param m
+     * @param retvalue
+     * @param name
+     * @param st
+     * @param args
+     * @return
+     */
     public String methodstatement(String m, String retvalue, String name, String st, String args) {
         return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
     } 
     
+    /**
+     * Variable, converts "" to (new String("")) etc
+     * @param variable
+     * @return
+     */
     public String variable(String variable)
     {
         String instance="",value="";
@@ -558,6 +704,7 @@ public class PlatformCore extends PluginCore {
     }
     
     /**
+     * Assignment expression, e.g 3+4*8
      * For c++ change the '.' to '->'
      * @param operator
      * @param expression
@@ -591,6 +738,13 @@ public class PlatformCore extends PluginCore {
         return "aexpression";
     }
     
+    /**
+     * relationalExpression - checks if true or false
+     * @param name - name of first expression/variable
+     * @param operator - == != > < etc
+     * @param name2 - name of second expression/variable
+     * @return
+     */
     public String relationalExpression(String name, String operator, String name2)
     {
        // System.out.println("relationalExpression:"+name+" "+operator+" "+name2);
@@ -614,12 +768,22 @@ public class PlatformCore extends PluginCore {
             return name;
     }
     
+    /**
+     * Shows syntax error to user.
+     * @param msg
+     */
     public void showError(String msg)
     {
         JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
-        
     }
 
+    /**
+     * Parses code, you don't need to override this.
+     * @param code
+     * @param p
+     * @return
+     * @throws java.io.IOException
+     */
     public String parseGCL(String code, PlatformCore p) throws IOException {
         //change code simply for testing
         gscriptParser parser;
@@ -650,6 +814,13 @@ public class PlatformCore extends PluginCore {
         return returncode;
     }
     
+    /**
+     * Ignore this, unused fo now
+     * @param code
+     * @param p
+     * @return
+     * @throws java.io.IOException
+     */
     public static String parseGCLClass(String code, PlatformCore p) throws IOException {
         //change code simply for testing
         gscriptParser parser;
@@ -676,6 +847,9 @@ public class PlatformCore extends PluginCore {
         return "";
     }
     
+    /**
+     * Start progress bar, under development
+     */
     public void startprogress()
     { 
         p = new Progress(gcreator.window,false, this);
@@ -762,6 +936,11 @@ public class PlatformCore extends PluginCore {
         out.close();
     }
 
+    /**
+     * parses the settings
+     * @param string
+     * @param name
+     */
     public void parseSettings(String string, String name) {
   //      System.out.println(string+"got here");
         

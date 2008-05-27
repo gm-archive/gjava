@@ -20,7 +20,7 @@ import org.gcreator.fileclass.GFile;
  */
 public class Actor implements Resource {
 static final long serialVersionUID = 1L;
-    public boolean visible,  solid,  persistant;
+    public boolean visible=true,  solid=true,  persistant;
     public GFile sprite;
     public GFile extend,  mask;
     public int index,  depth;

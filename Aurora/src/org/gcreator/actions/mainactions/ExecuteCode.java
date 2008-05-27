@@ -34,6 +34,16 @@ public class ExecuteCode extends ActionPattern{
         //this.context = context;
     }
     
+    public ExecuteCode(String c){
+        super();
+        code=c;
+        //this.context = context;
+    }
+    
+    public void  setCode(String code){
+        //((SyntaxHighlighter) panel).setText(code);
+    }
+    
     public void setStandardImage(ImageIcon icon){
         img = icon;
     }

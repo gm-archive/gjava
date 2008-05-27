@@ -10,6 +10,7 @@
 
 package org.gcreator.actions;
 
+import com.l2fprod.common.propertysheet.DefaultProperty;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.editors.*;
 import javax.swing.*;
@@ -83,6 +84,19 @@ public abstract class ActionPattern implements Serializable, Cloneable {
     public void setLayout(Object o)
     {
         
+        
+    }
+    
+    public DefaultProperty Relative(){
+        DefaultProperty p = new DefaultProperty();
+        p.setCategory("<html><b>Main");
+        p.setName("relative");
+        p.setDisplayName("Relative");
+        p.setEditable(true);
+        p.setType(Boolean.class);
+        p.setValue(false);
+        p.setShortDescription("Is the new value absolute or relative to the old one.");
+        return p;
     }
     
 //    public ActionPattern clone(){
