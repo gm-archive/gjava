@@ -9,6 +9,20 @@
 
 package org.gcreator.core;
 
+import com.l2fprod.gui.plaf.skin.CompoundSkin;
+import com.l2fprod.gui.plaf.skin.Skin;
+import com.l2fprod.gui.plaf.skin.SkinButton;
+import com.l2fprod.gui.plaf.skin.SkinFrame;
+import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
+import com.l2fprod.gui.plaf.skin.SkinPersonality;
+import com.l2fprod.gui.plaf.skin.SkinProgress;
+import com.l2fprod.gui.plaf.skin.SkinScrollbar;
+import com.l2fprod.gui.plaf.skin.SkinSeparator;
+import com.l2fprod.gui.plaf.skin.SkinSlider;
+import com.l2fprod.gui.plaf.skin.SkinSplitPane;
+import com.l2fprod.gui.plaf.skin.SkinTab;
+import com.l2fprod.gui.plaf.skin.impl.gtk.GtkSkin;
+import com.l2fprod.gui.plaf.skin.impl.kde.KdeSkin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -16,7 +30,6 @@ import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
-
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
 import org.gcreator.api.util.CreateApiList;
@@ -48,11 +61,20 @@ public class gcreator {
     public static String settingsLocation = "." + File.separator + "settings" + File.separator;
     
     static {
+        //Tap into System.out and System.err
         new SystemOutputReader();
         SystemOutStream.instance = new SystemOutStream(System.out);
         System.setOut(SystemOutStream.instance);
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
+        try {
+            Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
+            SkinLookAndFeel.setSkin(skin);
+            UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
+            //UIManager.setLookAndFeel(new SkinLookAndFeel());
+        } catch (Exception exc) {
+            System.err.println("Exception_fh456f45y4h: "+exc);
+        }
     }
     
     public static String[] getargs(){

@@ -16,6 +16,13 @@ import java.awt.*;
  * @author Luís
  */
 public class Colorfeel {
+    /*
+     * Don't allow instantation.
+     * Of course this is also useful if you're using
+     * the factory pattern.
+     */
+    private Colorfeel(){}
+    
     public static Color GridDarkColor = Color.BLACK;
     public static Color GridLightColor = Color.WHITE;
     public static Color ConsoleBGColor = Color.WHITE;//LIGHT_GRAY light gray is unbearably ugly

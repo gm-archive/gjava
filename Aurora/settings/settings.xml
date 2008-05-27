@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<settings><style>Native</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1032, 710</size><antialiasing>true</antialiasing></settings>
+<settings><style>com.l2fprod.gui.plaf.skin.SkinLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1032, 710</size><antialiasing>true</antialiasing></settings>
