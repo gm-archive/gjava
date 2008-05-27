@@ -9,20 +9,8 @@
 
 package org.gcreator.core;
 
-import com.l2fprod.gui.plaf.skin.CompoundSkin;
 import com.l2fprod.gui.plaf.skin.Skin;
-import com.l2fprod.gui.plaf.skin.SkinButton;
-import com.l2fprod.gui.plaf.skin.SkinFrame;
 import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
-import com.l2fprod.gui.plaf.skin.SkinPersonality;
-import com.l2fprod.gui.plaf.skin.SkinProgress;
-import com.l2fprod.gui.plaf.skin.SkinScrollbar;
-import com.l2fprod.gui.plaf.skin.SkinSeparator;
-import com.l2fprod.gui.plaf.skin.SkinSlider;
-import com.l2fprod.gui.plaf.skin.SkinSplitPane;
-import com.l2fprod.gui.plaf.skin.SkinTab;
-import com.l2fprod.gui.plaf.skin.impl.gtk.GtkSkin;
-import com.l2fprod.gui.plaf.skin.impl.kde.KdeSkin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;

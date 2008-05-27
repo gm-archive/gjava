@@ -16,6 +16,7 @@ import javax.imageio.stream.FileImageInputStream;
 import javax.swing.ImageIcon;
 import org.gcreator.core.GPanel;
 import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.res.GImage;
 import org.gcreator.units.ObjectNode;
 
 /**
@@ -60,7 +61,9 @@ public class StdImport{
                 for (int i = 0; i < reader.getNumImages(true); i++) {
                     b[i] = reader.read(i);
                 }
-                file.value = new ImageIcon(b[0]);
+                GImage g = new GImage();
+                g.image = new ImageIcon(b[0]);
+                file.value = g;
                 //file.treeimage = org.gcreator.fileclass.File.getScaledIcon(new ImageIcon(b[1]));
             } else {
                 System.out.println("Type:" + file.type.toLowerCase());

@@ -25,16 +25,20 @@ public class PreferencesTab extends OptionPanel {
         try {
             if (settings[0] == null) {
                 throw new Exception();//Lazy way of going to the catch statement below.
-            }
-            LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
-            int i;
-            for (i = 0; i < info.length; i++) {
-                if (info[i].getClassName().equals(settings[0])) {
-                    i++;
-                    break;
+            } else if (settings[0].equalsIgnoreCase("Native")) {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                jComboBox1.setSelectedIndex(0);
+            } else {
+                LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
+                int i;
+                for (i = 0; i < info.length; i++) {
+                    if (info[i].getClassName().equals(settings[0])) {
+                        i++;
+                        break;
+                    }
                 }
+                jComboBox1.setSelectedIndex(i);
             }
-            jComboBox1.setSelectedIndex(i);
         //gcreator.window.look = i;
             /*
         if (settings != null && settings[0] != null && settings[0].equals("Native")) {
@@ -315,6 +319,7 @@ public class PreferencesTab extends OptionPanel {
             //gcreator.window.look = sel;
             gcreator.panel.workspace.updateUI();
         } catch (Exception e) {
+            System.err.println("[PreferencesTab]Exception: "+e);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
 

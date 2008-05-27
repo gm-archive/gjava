@@ -18,7 +18,6 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
-import org.gcreator.units.ObjectNode;
 
 /**
  *
@@ -38,7 +37,7 @@ public class TilesetEditor extends TabPanel {
         this.project = project;
         this.file = file;
         if(file.value == null || !(file.value instanceof Tileset))
-            file.value = new Tileset(file.name);
+            file.value = new Tileset(/*file.name*/);
         value = (Tileset) file.value;
         initComponents();
         jPanel2.setLayout(new FlowLayout());
@@ -46,6 +45,8 @@ public class TilesetEditor extends TabPanel {
         if(value.image != null && value.image.value instanceof ImageIcon)
             k = value.image.name;
         jPanel2.add(res = new ResourceChooser(project, "image"));
+        if (((Tileset)file.value).image != null)
+            res.setFile(((Tileset)file.value).image);
         res.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 GFile n = res.getFile();
@@ -314,12 +315,12 @@ public class TilesetEditor extends TabPanel {
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
-        value.bheight = ((Integer) jSpinner5.getValue()).intValue();
+        value.bwidth = ((Integer) jSpinner5.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner5StateChanged
 
     private void jSpinner6StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner6StateChanged
-        value.bwidth = ((Integer) jSpinner6.getValue()).intValue();
+        value.bheight = ((Integer) jSpinner6.getValue()).intValue();
         jScrollPane1.updateUI();
     }//GEN-LAST:event_jSpinner6StateChanged
 

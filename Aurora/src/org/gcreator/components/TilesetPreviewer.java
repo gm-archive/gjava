@@ -8,6 +8,7 @@ package org.gcreator.components;
 import java.awt.*;
 import javax.swing.*;
 import org.gcreator.editors.*;
+import org.gcreator.fileclass.res.GImage;
 
 /**
  *
@@ -32,7 +33,7 @@ public class TilesetPreviewer extends JComponent{
     }
     
     public int getPreferredWidth(){
-        int w = 0;
+        /*int w = 0;
         try{
             w = getSourceImage().getIconWidth();
         }
@@ -42,9 +43,19 @@ public class TilesetPreviewer extends JComponent{
         w -= editor.value.startx;
         int hsepcount = (w % editor.value.tilew == 0 ? w/editor.value.tilew : (w/editor.value.tilew)+1);
         return w+(hsepcount*2);
+        */
+        try {
+            return ((GImage)editor.value.image.value).image.getIconWidth();
+        } catch (NullPointerException exc) {
+            return 0;
+        } catch (ClassCastException exc) {
+            System.out.println("??? "+exc);
+            return 0;
+        }
     }
     
     public int getPreferredHeight(){
+        /*
         int h = 0;
         try{
             h = getSourceImage().getIconHeight();
@@ -55,6 +66,15 @@ public class TilesetPreviewer extends JComponent{
         h -= editor.value.starty;
         int vsepcount = (h % editor.value.tileh == 0 ? h/editor.value.tileh : (h/editor.value.tileh)+1);
         return h+(vsepcount*2);
+        */
+        try {
+            return ((GImage)editor.value.image.value).image.getIconHeight();
+        } catch (NullPointerException exc) {
+            return 0;
+        } catch (ClassCastException exc) {
+            System.out.println("??? "+exc);
+            return 0;
+        }
     }
     
     public int getWidth(){
@@ -77,6 +97,8 @@ public class TilesetPreviewer extends JComponent{
             return;
         int imgw = img.getIconWidth();
         int imgh = img.getIconHeight();
+        int w = editor.value.tilew;
+        int h = editor.value.tileh;
         int bw =  editor.value.bwidth;
         int bh =  editor.value.bheight;
         //int di = 0;
@@ -94,15 +116,10 @@ public class TilesetPreviewer extends JComponent{
         g.drawImage(img.getImage(),0,0,((org.gcreator.fileclass.res.GImage)(editor.value.image.value)).transparentColor,img.getImageObserver());
         g.setColor(Color.WHITE);
         g.setXORMode(Color.BLACK);
-        for (int i = editor.value.startx,times = 0; i+bh*times < imgw-1; i+= editor.value.tilew, times++) {
-            g.drawLine(i+bh*times,0,i+bh*times,imgh-1);
-            if (bh > 0 && i+bh*(times+1) < imgw-1)
-                g.drawLine(i+bh*(times+1),0,i+bh*(times+1),imgh-1);
-        }
-        for (int i = editor.value.starty,times = 0; i+bw*times < imgh-1; i+= editor.value.tileh, times++) {
-            g.drawLine(0,i+bw*times,imgw-1,i+bw*times);
-            if (bw > 0 && i+bw*(times+1) < imgh-1)
-                g.drawLine(0,i+bw*(times+1),imgw-1,i+bw*(times+1));
-        }
+        
+        for (int i = editor.value.startx; i < imgw-1; i += w+bw+1)
+            for (int j = editor.value.starty; j < imgh-1; j += h+bh+1) {
+                g.drawRect(i, j, w, h);
+            }
     }
 }
