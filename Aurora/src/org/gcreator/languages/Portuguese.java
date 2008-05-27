@@ -321,6 +321,25 @@ public class Portuguese extends Dictionary{
         entry[267] = "Mostrar ecrã de boas vindas";
         entry[268] = "Acções";
         entry[269] = "Adicionar acção";
+        entry[270] = "Ver output da console";
+        entry[271] = "Renomear";
+        entry[272] = "Escolher a transparência minima para a detecção\n dos limites da imagem." +
+                " 0 é completamente transparente e \n256 é totalmente opaco.";
+        //GetImageResizeIngoDialog
+        entry[273] = "<html>A imagem não tem o tamanho adequado.<br> O que fazer=</>";
+        entry[274] = "Ajustar imagem";
+        entry[275] = "Colocar no canto superior esquerdo(não redimensionar)";
+        entry[276] = "Colocar em:";
+        entry[277] = "Tamanho do Canvas";
+        entry[278] = "Usar tamanho máximo";
+        entry[279] = "Usar tamanho original";
+        entry[280] = "Usar tamanho novo";
+        entry[281] = "OK";
+        entry[282] = "Esticar";
+        entry[283] = "Redimensionar";
+        entry[284] = "Criar nova imagem";
+        entry[285] = "Manter a razão altura-largura";
+        entry[286] = "Adicionar Snippet";
         
         try{
             init();

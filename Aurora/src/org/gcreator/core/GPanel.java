@@ -1676,6 +1676,16 @@ public class GPanel extends JPanel{
                 }
                 addFile(getCurrentFolder(), "action_" + ((ModuleProject)getCurrentProject()).actions++, "action");
                 break;
+            case 17:
+                if (!(getCurrentProject() instanceof GameProject))
+                    return;
+                a = getCurrentFolder();
+                if (a == null) {
+                    JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
+                    return;
+                }
+                addFile(getCurrentFolder(), "newSnippet" + ((GameProject)getCurrentProject()).snippets++, "snippet");
+                break;
         }
     }
 

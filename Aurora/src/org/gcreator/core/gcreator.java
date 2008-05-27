@@ -68,8 +68,8 @@ public class gcreator {
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
         try {
-            Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
-            SkinLookAndFeel.setSkin(skin);
+            //Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
+            //SkinLookAndFeel.setSkin(skin);
             UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
             //UIManager.setLookAndFeel(new SkinLookAndFeel());
         } catch (Exception exc) {
@@ -203,6 +203,7 @@ public class gcreator {
         ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
         ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), 245);
         ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), 269);
+        ToolbarButton addsnippet = new DefaultToolbarItem("std_addSnippet", null, 286);
         
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -300,6 +301,12 @@ public class gcreator {
             }
         });
         
+        addsnippet.setActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent evt) {
+                panel.onToolbarActionPerformed(17, evt);
+            }
+        });
+        
         ToolbarManager.toolbuttons.add(newp);
         ToolbarManager.toolbuttons.add(opn);
         ToolbarManager.toolbuttons.add(save);
@@ -316,6 +323,7 @@ public class gcreator {
 //        ToolbarManager.toolbuttons.add(addcls);
         ToolbarManager.toolbuttons.add(addgs);
         ToolbarManager.toolbuttons.add(addgr);
+        ToolbarManager.toolbuttons.add(addsnippet);
         
         /*Toolbar tool = new Toolbar();
         tool.horizontal = true;

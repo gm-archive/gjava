@@ -31,6 +31,7 @@ public class GameProject extends Project{
     public int scenes = 1;
     public int classes = 1;
     public int scripts = 1;
+    public int snippets = 1;
      
     public GameProject(String name, String location){
         super(name, location);
@@ -80,6 +81,8 @@ public class GameProject extends Project{
             e = node.getChildAt(8).children();
         } else if (key.equals("path")) {
             e = node.getChildAt(3).children();
+        } else if (key.equals("snippet")) {
+            e = node.getChildAt(9).children();
         }
         return e;
     }
@@ -104,6 +107,8 @@ public class GameProject extends Project{
             return (Folder) ((ObjectNode) node.getChildAt(8)).object;
         } else if (key.equals("path")) {
             return (Folder) ((ObjectNode) node.getChildAt(3)).object;
+        } else if (key.equals("snippet")) {
+            return (Folder) ((ObjectNode) node.getChildAt(9)).object;
         }
         return null;
     }
@@ -149,6 +154,8 @@ public class GameProject extends Project{
                 return obj instanceof SoundGroup;
             if(key.equals("path"))
                 return obj instanceof PathGroup;
+            if(key.equals("snippet"))
+                return obj instanceof SnippetGroup;
         }
         return false;
     }
@@ -176,6 +183,8 @@ public class GameProject extends Project{
                 return findFolder("$213");
             else if(file.equals("path"))
                 return findFolder("$256");
+            else if(file.equals("snippet"))
+                return findFolder("Snippets");
             return findFolder("$217");
         }
         catch(Exception e){
@@ -204,7 +213,7 @@ public class GameProject extends Project{
                 return findFolder("$256");
             else if(folder instanceof EGMLGroup)
                 return findFolder("$216");
-            return findFolder("Distribution");
+            return findFolder("$217");
         }
         catch(Exception e){
             return null;
@@ -234,6 +243,7 @@ public class GameProject extends Project{
         project.add(new ActorGroup(project, "$214"));
         project.add(new SceneGroup(project, "$215"));
         project.add(new EGMLGroup(project, "$216"));
+        project.add(new SnippetGroup(project, "Snippets"));
         project.add(new Group(project, "$217"));
         org.gcreator.fileclass.GFile a = new org.gcreator.fileclass.GFile(project, "$218", "settings", null);
         a.editable = false;
