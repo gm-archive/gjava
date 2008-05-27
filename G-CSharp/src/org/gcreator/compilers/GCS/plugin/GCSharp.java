@@ -89,22 +89,37 @@ public class GCSharp extends PlatformCore {
 
     public void parseActor(Actor a, GFile f) {
         files.add(f.name + ".cs");
+        System.out.println("Parsing actor " + f.name);
+        if(a==null)
+            System.out.println("a is null");
         try {
+            System.out.println("Got here 1");
             FileWriter actorFW = new FileWriter(FileFolder + f.name + ".cs");
+            System.out.println("Got here 2");
             BufferedWriter actor = new BufferedWriter(actorFW);
+            System.out.println("Got here 3");
             print(actor, "using org.gcreator.Components;");
+            System.out.println("Got here 5");
             print(actor, "using org.gcreator.Support;");
             print(actor, "using org.gcreator.Types;");
             print(actor, "");
+            System.out.println("Got here 6");
             print(actor, "public class " + f.name + " : Actor");
+            System.out.println("Got here 7");
             print(actor, "{");
+            System.out.println("Got here 9");
             print(actor, "\tpublic " + f.name + "(Object x, Object y)" +
                     ": base(x,y, new Integer(" + a.depth + "))");
+            System.out.println("Got here 10");
             print(actor, "\t{");
             print(actor, "\t\tsetVisible(" + a.visible + ");");
-            print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
+            if(a.sprite==null)
+                print(actor, "\t\tsetSprite(null);");
+            else
+                print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
             print(actor, "\t}");
             print(actor, "");
+            System.out.println("Got here 4");
             //events
             PluginHelper.println("Before loop");
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
@@ -117,6 +132,7 @@ public class GCSharp extends PlatformCore {
                     org.gcreator.events.Event evt = (org.gcreator.events.Event) m_evt;
                     if(evt instanceof org.gcreator.events.CreateEvent){
                         print(actor, "\tpublic override void Create()");
+                        System.out.println("Got here");
                     }
                     if(evt instanceof org.gcreator.events.BeginStepEvent){
                         print(actor, "\tpublic override void BeginStep()");
@@ -131,7 +147,7 @@ public class GCSharp extends PlatformCore {
                         print(actor, "\tpublic override void Draw()");
                     }
                     print(actor, "\t{");
-                    PluginHelper.println("Got here");
+                    PluginHelper.println("Got here 5");
                     for(org.gcreator.actions.Action act : evt.actions){
                         print(actor, parseGCL(act.getGCL(), this));
                     }
@@ -141,6 +157,7 @@ public class GCSharp extends PlatformCore {
             }
             print(actor, "}");
             actor.close();
+            actorFW.close();
         } catch (Exception e) {
             PluginHelper.println(e.getMessage());
         }
