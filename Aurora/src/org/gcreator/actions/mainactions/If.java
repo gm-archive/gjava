@@ -25,7 +25,7 @@ public class If extends ActionPattern{
     public boolean not = false;
     public String condition = "";
     
-    public static ImageIcon img = null;
+    public static ImageIcon img = new ImageIcon(If.class.getResource("/org/gcreator/actions/images/If.png"));;
     
     public If(){
         super();

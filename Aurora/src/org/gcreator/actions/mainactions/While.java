@@ -25,7 +25,7 @@ public class While extends ActionPattern{
     public boolean not = false;
     public String condition = "";
     
-    public static ImageIcon img = null;
+    public static ImageIcon img = new ImageIcon(While.class.getResource("/org/gcreator/actions/images/While.png"));;
     
     public While(){
         super();
