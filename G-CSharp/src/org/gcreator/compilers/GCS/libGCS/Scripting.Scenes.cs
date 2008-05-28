@@ -6,7 +6,7 @@ using org.gcreator.Types;
 
 namespace org.gcreator.Scripting
 {
-    public partial class GCL : Object
+    public partial class GCL : Constants
     {
         public static Object room_goto_next()
         {

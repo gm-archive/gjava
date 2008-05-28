@@ -22,6 +22,8 @@ public class SystemOutStream extends PrintStreamCensor {
    protected void alert(Object o) {
         if (dialog == null)
             return;
+        if(o == null)
+            return;
         dialog.addOutLine(o.toString());
         utilities.addStringFormatedMessage(o.toString(), "#0000aa", false);
     }

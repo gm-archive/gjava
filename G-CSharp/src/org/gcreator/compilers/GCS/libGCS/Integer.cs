@@ -32,5 +32,13 @@ namespace org.gcreator.Types
         {
             return "" + i;
         }
+		
+		public override Object add(Object o){
+			return new Integer(i + o.getInt());
+		}
+		
+		public override Boolean gte(Object o){
+			return new Boolean(i >= o.getInt());
+		}
     }
 }

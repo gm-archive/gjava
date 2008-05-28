@@ -28,6 +28,18 @@ public class GCSharp extends PlatformCore {
     public static String projectname,  FileFolder;
     public static Vector<String> files = new Vector<String>(),  scenelist = new Vector<String>();
 
+    public boolean checkvariable(String name) {
+        if(name.equals("x")) return true;
+        if(name.equals("y")) return true;
+        if(name.equals("depth")) return true;
+        if(name.equals("hspeed")) return true;
+        if(name.equals("vspeed")) return true;
+        if(name.equals("gravity")) return true;
+        if(name.equals("gravity_direction")) return true;
+        if(name.equals("solid")) return true;
+        return false;
+    }
+    
     public void parseImage(ImageIcon i, GFile f) {
         System.out.println("Got here");
         PluginHelper.println("Parse image " + f.name);

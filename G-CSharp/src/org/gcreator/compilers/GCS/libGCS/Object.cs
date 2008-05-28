@@ -185,7 +185,7 @@ namespace org.gcreator.Types
 
         public virtual bool getBoolean()
         {
-            return false;
+            return getInt()!=0;
         }
 
         public virtual String getString()

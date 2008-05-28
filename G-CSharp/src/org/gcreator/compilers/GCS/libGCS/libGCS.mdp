@@ -1,0 +1,45 @@
+<Project name="libGCS" fileversion="2.0" language="C#" clr-version="Net_2_0" ctype="DotNetProject">
+  <Configurations active="Debug">
+    <Configuration name="Debug" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Debug" assembly="libGCS" />
+      <Build debugmode="True" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" definesymbols="DEBUG" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+    <Configuration name="Release" ctype="DotNetProjectConfiguration">
+      <Output directory="bin/Release" assembly="libGCS" />
+      <Build debugmode="False" target="Library" />
+      <Execution runwithwarnings="True" consolepause="False" runtime="MsNet" clr-version="Net_2_0" />
+      <CodeGeneration compiler="Mcs" warninglevel="4" optimize="True" unsafecodeallowed="False" generateoverflowchecks="True" generatexmldocumentation="False" ctype="CSharpCompilerParameters" />
+    </Configuration>
+  </Configurations>
+  <Contents>
+    <File name="AssemblyInfo.cs" subtype="Code" buildaction="Compile" />
+    <File name="Boolean.cs" subtype="Code" buildaction="Compile" />
+    <File name="Components.Actor.cs" subtype="Code" buildaction="Compile" />
+    <File name="Components.cs" subtype="Code" buildaction="Compile" />
+    <File name="Double.cs" subtype="Code" buildaction="Compile" />
+    <File name="Integer.cs" subtype="Code" buildaction="Compile" />
+    <File name="Native.cs" subtype="Code" buildaction="Compile" />
+    <File name="Number.cs" subtype="Code" buildaction="Compile" />
+    <File name="Object.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Clipboard.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Drawing.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.FontsText.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Math.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Mouse.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Scenes.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.String.cs" subtype="Code" buildaction="Compile" />
+    <File name="Scripting.Window.cs" subtype="Code" buildaction="Compile" />
+    <File name="String.cs" subtype="Code" buildaction="Compile" />
+    <File name="Support.cs" subtype="Code" buildaction="Compile" />
+    <File name="Constants.cs" subtype="Code" buildaction="Compile" />
+  </Contents>
+  <References>
+    <ProjectReference type="Gac" localcopy="True" refto="System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../require/SdlDotNet.dll" />
+    <ProjectReference type="Assembly" localcopy="True" refto="../require/Tao.Sdl.dll" />
+    <ProjectReference type="Gac" localcopy="True" refto="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  </References>
+</Project>

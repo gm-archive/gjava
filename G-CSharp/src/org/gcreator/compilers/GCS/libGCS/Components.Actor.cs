@@ -21,6 +21,7 @@ namespace org.gcreator.Components
 			this.z = z.getInt();
 			this.startx = this.x;
 			this.starty = this.y;
+			this.self = this;
 		}		
 		
 		public Actor(int x, int y, int z)
@@ -155,20 +156,20 @@ namespace org.gcreator.Components
             this.persistent = persistent;
         }
 		
-		public Object getHSpeed(){
+		public Object getHspeed(){
 			return new Double(hspeed);
 		}
 		
-		public Object getVSpeed(){
+		public Object getVspeed(){
 			return new Double(vspeed);
 		}
 		
-		public Object setHSpeed(Object hspeed){
+		public Object setHspeed(Object hspeed){
 			this.hspeed = hspeed.getDouble();
 			return new Object();
 		}
 		
-		public Object setVSpeed(Object vspeed){
+		public Object setVspeed(Object vspeed){
 			this.vspeed = vspeed.getDouble();
 			return new Object();
 		}
