@@ -29,7 +29,9 @@ public class ActionContainer {
         main.add(new org.gcreator.actions.mainactions.EndOfABlock());
         main.add(new org.gcreator.actions.mainactions.Comment());
         main.add(new org.gcreator.actions.mainactions.ExecuteCode());
+        main.add(new org.gcreator.actions.mainactions.If());
         main.add(new org.gcreator.actions.mainactions.Else());
+        main.add(new org.gcreator.actions.mainactions.While());
         main.add(new org.gcreator.actions.mainactions.Exit());
         main.add(new org.gcreator.actions.mainactions.StartOfAComment());
         main.add(new org.gcreator.actions.mainactions.EndOfAComment());
