@@ -29,6 +29,7 @@ public class ActionContainer {
         main.add(new org.gcreator.actions.mainactions.EndOfABlock());
         main.add(new org.gcreator.actions.mainactions.Comment());
         main.add(new org.gcreator.actions.mainactions.ExecuteCode());
+        main.add(new org.gcreator.actions.mainactions.Else());
         main.name = LangSupporter.activeLang.getEntry(199);
         main.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/Main.png"));
         //move.add(new org.gcreator.actions.mainactions.SetHSpeed());
