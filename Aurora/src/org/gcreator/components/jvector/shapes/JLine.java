@@ -20,7 +20,7 @@ import java.util.Vector;
 
 /**
  *
- * @author bob
+ * @autho Serge Humphrey
  */
 public class JLine extends Line2D.Double implements JVectorable, Serializable {
     private int n;

@@ -2,5 +2,5 @@
 <theme>
 <element id="Keywords"><color>0, 0, 255</color><font size="12" style="0">Monospaced</font></element>
 <element id="Strings"><color>255, 0, 0</color><font size="12" style="0">Monospaced</font></element>
-<element id="Comments"><color>0, 178, 0</color><font size="12" style="0">Monospaced</font></element>
+<element id="Comments"><color>254, 95, 95</color><font size="20" style="3">Monospaced</font></element>
 </theme>

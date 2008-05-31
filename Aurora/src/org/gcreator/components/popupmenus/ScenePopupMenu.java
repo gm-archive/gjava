@@ -44,6 +44,6 @@ public class ScenePopupMenu extends JPopupMenu{
     public void grid(){
         ((Scene) res.file.value).grid = grid.isSelected();
         res.jToggleButton1.setSelected(grid.isSelected());
-        res.scene.updateUI();
+        res.scenePanel.updateUI();
     }
 }

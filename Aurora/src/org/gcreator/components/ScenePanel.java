@@ -30,6 +30,12 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     SceneEditor root;
     ScenePopupMenu popup;
     ImageIcon unknown;
+    boolean draggingActor;
+    ActorInScene actorDragging;
+    boolean draggingTile;
+    Tile tileDragging;
+    Dimension dragOffset = new Dimension();
+    
     public ScenePanel(SceneEditor root){
         this.root = root;
         this.addMouseListener(this);
@@ -41,20 +47,33 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     
     public void mouseExited(MouseEvent evt){}
     public void mouseEntered(MouseEvent evt){}
-    public void mouseReleased(MouseEvent evt){}
+    public void mouseReleased(MouseEvent evt){
+        draggingActor = false;
+        draggingTile = false;
+        dragOffset.width = 0;
+        dragOffset.height = 0;
+    }
     public void mousePressed(MouseEvent evt){
         if(evt.getButton()==MouseEvent.BUTTON1){
             int a = root.mode();
-            if(a==SceneEditor.INVALID)
+            if(a == SceneEditor.INVALID) {
                 return;
+            }
             int x = (int) (evt.getX() * root.getZoom());
             int y = (int) (evt.getY() * root.getZoom());
-            if(a==SceneEditor.ERASE)
+            if (a == SceneEditor.ERASE) {
                 eraseActorsAt(x, y);
-            if(a==SceneEditor.PENCIL)
+            } else if (a == SceneEditor.PENCIL) {
                 addActorAt(x, y);
-            if(a==SceneEditor.TILEADD)
+            } else if (a == SceneEditor.EDIT) {
+                moveActorAt(x, y);
+            } else if (a == SceneEditor.TILEADD) {
                 addTileAt(x, y);
+            } else if (a == SceneEditor.TILEEDIT) {
+                moveTileAt(x, y);
+            } else if (a == SceneEditor.TILEERASE) {
+                deleteTileAt(x, y);
+            }
             root.updateScroll();
         }
     }
@@ -68,6 +87,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         root.eraseActorsAt(r);
     }
     
+    @SuppressWarnings("unchecked")
     public void addActorAt(int x, int y){
         // if there is no actor selected in the list to add, don't add it.
         if (root.curactor.getFile() == null)
@@ -77,52 +97,39 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             System.err.println("Error while adding actor at "+x+", "+y+" Actor returned from root is null.");
         }
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) act.Sactor.value;
+            Sprite s = (Sprite) ((Actor) act.Sactor.value).sprite.value;
             root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).image.getIconWidth(), s.getImageAt(0).image.getIconHeight()));
         }
-        /*
-         * already done in root.makeNewActor()
-         if(root.snapToGrid()){
-            Scene s = (Scene) root.file.value;
-            if(x%s.snapX>s.snapX/2){
-                x /= s.snapX;
-                x++;
-                x *= s.snapX;
-            }
-            else{
-                x /= s.snapX;
-                x *= s.snapX;
-            }
-            if(y%s.snapY>s.snapY/2){
-                y /= s.snapY;
-                y++;
-                y *= s.snapY;
-            }
-            else{
-                y /= s.snapY;
-                y *= s.snapY;
-            }
-        }*/
         ((Scene) root.file.value).actors.add(act);
+        draggingActor = true;
+        actorDragging = act;
     }
     
+    @SuppressWarnings("unchecked")
     public void addTileAt(int x, int y){
         Tile tile = root.makeNewTile(x, y);
-        ((Scene) root.file.value).tiles.add(tile);
+        if (tile != null) {
+            root.getTileLayer().add(tile);
+            draggingTile = true;
+            tileDragging = tile;
+        }
     }
      
+    @Override
     public int getWidth(){
         double zoom = root.getZoom();
         return (int) (root.getMapWidth() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
      
+    @Override
     public int getHeight(){
         double zoom = root.getZoom();
         return (int) (root.getMapHeight() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
     }
     
      
+    @Override
     public Dimension getSize(){
         return new Dimension(getWidth(), getHeight());
     }
@@ -165,9 +172,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             if(d<result)
                 result = d;
         }
-        e = scn.tiles.elements(); //<ActorInScene>
+        e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
-            Tile a = (Tile) e.nextElement();
+            TileLayer a = (TileLayer) e.nextElement();
+            if (a == null)
+                return result;
             if(a.depth<result)
                 result = a.depth;
         }
@@ -198,9 +207,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             if(d>result)
                 result = d;
         }
-        e = scn.tiles.elements(); //<ActorInScene>
+        e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
-            Tile a = (Tile) e.nextElement();
+            TileLayer a = (TileLayer) e.nextElement();
+            if (a == null)
+                return result;
             if(a.depth>result)
                 result = a.depth;
         }
@@ -213,17 +224,22 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e = scn.actors.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
+            if (a == null) {
+                System.out.println("[NextDepth]a is null!");
+                return result;
+            }
             if (a.Sactor == null) {
                 System.out.println("[NextDepth]a.Sactor is null!");
                 return Integer.MIN_VALUE;
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
-            if(b.depth>result&&b.depth<Depth)
+            if(b.depth>result&&b.depth<Depth) {
                 b.depth = result;
+            }
         }
-        e = scn.tiles.elements(); //<ActorInScene>
+        e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
-            Tile a = (Tile) e.nextElement();
+            TileLayer a = (TileLayer) e.nextElement();
             if(a.depth>result&&a.depth<Depth)
                 a.depth = result;
         }
@@ -236,20 +252,21 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         super.setSize(getWidth(), getHeight());
     }
     
-     
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         drawField(g);
         drawActors(g);
-        if(root.isGridVisible())
+        if(root.isGridVisible()) {
             drawGrid(g);
+        }
     }
     
     public void drawActors(Graphics g) {
         Scene scn = (Scene) root.file.value;
-        if(scn.actors.isEmpty() && scn.tiles.isEmpty())
+        if(scn.actors.isEmpty() && scn.tileLayers.isEmpty()) {
             return;
+        }
         Enumeration e;
         int dep = getMaximumDepth();
         int mindep = getMinimumDepth();
@@ -262,14 +279,15 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     return;
                 }
                 org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
-                if(b==null)
+                if(b==null) {
                     continue;
-                if(b.depth==dep){
-                    //try{
+                }
+                if (b.depth == dep) {
                         GFile sf = b.sprite;
                     org.gcreator.fileclass.res.Sprite f = null;
-                    if(sf!=null&&sf.value!=null)
+                    if(sf!=null&&sf.value!=null) {
                         f = (org.gcreator.fileclass.res.Sprite) sf.value;
+                    }
                     if(f!=null&&f.getImageAt(0).image!=null){
                         ImageIcon h = f.getImageAt(0).image;
                         g.drawImage(
@@ -280,58 +298,80 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                                 (int) (h.getIconHeight() / root.getZoom()),
                                 h.getImageObserver()
                         );
+                        g.setColor(Color.BLACK);
+                        g.drawRect((int) ((ascn.x - f.originX) / root.getZoom()),
+                                (int) ((ascn.y - f.originY) / root.getZoom()),
+                                (int) (h.getIconWidth() / root.getZoom()),
+                                (int) (h.getIconHeight() / root.getZoom()));
                     }
-                    else
+                    else {
                         g.drawImage(
-                                unknown.getImage(),
-                                (int) (ascn.x / root.getZoom()),
-                                (int) (ascn.y / root.getZoom()),
-                                (int) (32 / root.getZoom()),
-                                (int) (32 / root.getZoom()),
+                                unknown.getImage(), 
+                                (int) (ascn.x / root.getZoom()), 
+                                (int) (ascn.y / root.getZoom()), 
+                                (int) (16 / root.getZoom()), 
+                                (int) (16 / root.getZoom()), 
                                 unknown.getImageObserver());
-                    //}
-                    //catch(NullPointerException ex){
-                    //    System.out.println("Exception at addactors: "+ex);
-                    //}
-                }
-            }
-            e = scn.tiles.elements();//<ActorInScene>
-            while(e.hasMoreElements()){
-                Tile ascn = (Tile) e.nextElement();
-                if(ascn.depth==dep){
-                    try{
-                    ImageIcon h = ascn.getTilesetImage();
-                    if(h!=null)
-                        g.drawImage(
-                                h.getImage(),
-                                (int) ((ascn.dx) / root.getZoom()),
-                                (int) ((ascn.dy) / root.getZoom()),
-                                (int) (ascn.width / root.getZoom()),
-                                (int) (ascn.height / root.getZoom()),
-                                ascn.sx+((Tileset) ascn.tileset.value).startx,
-                                ascn.sy+((Tileset) ascn.tileset.value).starty,
-                                ascn.width,
-                                ascn.height,
-                                h.getImageObserver()
-                        );
                     }
-                    catch(NullPointerException ex){}
                 }
             }
-            if(dep<=mindep)
+            Enumeration tle = scn.tileLayers.elements();//<ActorInScene>
+            while (tle.hasMoreElements()) {
+                TileLayer l = (TileLayer) tle.nextElement();
+                if (!l.visible) {
+                    continue;
+                }
+                if (l.depth == dep) {
+                    e = l.tiles.elements();
+                    while(e.hasMoreElements()){
+                        Tile ascn = (Tile) e.nextElement();
+                        try{
+                        ImageIcon h = ascn.getTilesetImage();
+                        if(h != null) {
+                             g.drawImage(h.getImage().
+                                 getScaledInstance((int)(ascn.width/root.getZoom()), 
+                                 (int)(ascn.height/root.getZoom()), Image.SCALE_FAST),
+                                 (int)(ascn.x/root.getZoom()),(int) (ascn.y/root.getZoom()), h.getImageObserver());   
+                            /*g.drawImage(
+                                    h.getImage(),
+                                    (int) ((ascn.dx) / root.getZoom()),
+                                    (int) ((ascn.dy) / root.getZoom()),
+                                    (int) (ascn.width / root.getZoom()),
+                                    (int) (ascn.height / root.getZoom()),
+                                    ascn.sx+((Tileset) ascn.file.value).startx,
+                                    ascn.sy+((Tileset) ascn.file.value).starty,
+                                    ascn.width,
+                                    ascn.height,
+                                    h.getImageObserver()
+                                );
+                                */
+                            } else {
+                                System.out.println("but h is null");
+                            }
+                        }
+                        catch(NullPointerException ex){
+                            System.out.println("[6794358]nullpointerexception: "+ex);
+                        }
+                    }
+                }
+            }
+            if(dep<=mindep) {
                 break;
+            }
             dep = getNextDepth(dep);
         }
         /*while(e.hasMoreElements()){
             ActorInScene a = (ActorInScene)e.nextElement();
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
+            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) 
+         ((org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(a.Sactor,"actor",gcreator.window.getCurrentProject()).object).value;
             ObjectNode c = b.getSpriteFile().node;
             if(c!=null){
                 org.gcreator.fileclass.File d = (org.gcreator.fileclass.File) c.object;
                 org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
                 ImageIcon h = f.getImageAt(0);
                 if(h!=null)
-                    g.drawImage(h.getImage(), (int) ((a.x - f.originX) / root.getZoom()), (int) ((a.y - f.originY) / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
+                    g.drawImage(h.getImage(), (int) ((a.x - f.originX) / root.getZoom()), 
+         (int) ((a.y - f.originY) / root.getZoom()), (int) (h.getIconWidth() / root.getZoom()), (int) (h.getIconHeight() / root.getZoom()), h.getImageObserver());
             }
         }*/
     }
@@ -350,8 +390,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     
     public void drawBackground(Graphics g, BackgroundInScene bg){
         ImageIcon i = ((GImage) bg.image.value).getImage();
-        if(i==null)
+        if(i==null) {
             return;
+        }
         int hrep = bg.hmode;
         int vrep = bg.vmode;
         if(hrep==BackgroundInScene.MODE_SINGLE&&vrep==BackgroundInScene.MODE_SINGLE){
@@ -361,31 +402,39 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
         }
         else if(hrep==BackgroundInScene.MODE_STRETCH&&vrep==BackgroundInScene.MODE_STRETCH){
-            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), 
+                    (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
         }
         else if(hrep==BackgroundInScene.MODE_SINGLE&&vrep==BackgroundInScene.MODE_STRETCH){
-            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), 
+                    (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
         }
         else if(hrep==BackgroundInScene.MODE_REPEAT&&vrep==BackgroundInScene.MODE_SINGLE){
-            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
                 g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            }
         }
         else if(hrep==BackgroundInScene.MODE_REPEAT&&vrep==BackgroundInScene.MODE_STRETCH){
-            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
                 g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+            }
         }
         else if(hrep==BackgroundInScene.MODE_SINGLE&&vrep==BackgroundInScene.MODE_REPEAT){
-            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++)
+            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++) {
                 g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            }
         }
         else if(hrep==BackgroundInScene.MODE_STRETCH&&vrep==BackgroundInScene.MODE_REPEAT){
-            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++)
+            for(int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++) {
                 g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            }
         }
         else if(hrep==BackgroundInScene.MODE_REPEAT&&vrep==BackgroundInScene.MODE_REPEAT){
-            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++)
-                for(int k = 0; k * i.getIconHeight() < ((Scene) root.file.value).height; k++)
+            for(int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
+                for (int k = 0; k * i.getIconHeight() < ((Scene) root.file.value).height; k++) {
                     g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), (int) (k * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+                }
+            }
         }
     }
     
@@ -407,8 +456,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         int snapx = root.getSnapX();
         int snapy = root.getSnapY();
         double zoom = root.getZoom();
-        if(zoom==0)
+        if(zoom==0) {
             zoom = 0.5;
+        }
         if(!root.isIsometric()){
             for(int i = 0; i <= truew / snapx ; i++){
                 g.drawLine((int) (i * snapx / zoom), 0,(int) ( i * snapx / zoom), getHeight());
@@ -438,11 +488,66 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
 
     public void mouseDragged(MouseEvent e) {
-        //do nothing
+        if (draggingActor && actorDragging != null) {
+            if (root.snapToGrid()) {
+                Scene s = (Scene) root.file.value;
+                actorDragging.x = (Math.round((e.getX()+dragOffset.width) / s.snapX) * s.snapX);
+                actorDragging.y = (Math.round((e.getY()+dragOffset.height) / s.snapY) * s.snapY);
+            } else {
+                actorDragging.x = e.getX()+dragOffset.width;
+                actorDragging.y = e.getY()+dragOffset.height;
+            }
+            repaint(0, 0, getPreferredSize().width, getPreferredSize().height);
+        } else if (draggingTile && tileDragging != null) {
+            if (root.snapToGrid()) {
+                Scene s = (Scene) root.file.value;
+                tileDragging.x = (Math.round((e.getX()+dragOffset.width) / s.snapX) * s.snapX);
+                tileDragging.y = (Math.round((e.getY()+dragOffset.height) / s.snapY) * s.snapY);
+            } else {
+                tileDragging.x = e.getX()+dragOffset.width;
+                tileDragging.y = e.getY()+dragOffset.height;
+            }
+            repaint(0, 0, getPreferredSize().width, getPreferredSize().height);
+        }
+        double zoom = root.getZoom();
+        root.BottomLeft.setText("X: " + (int) (e.getX()*zoom) + " Y: " + (int) (e.getY()*zoom));
     }
 
     public void mouseMoved(MouseEvent evt) {
         double zoom = root.getZoom();
-        root.BottomLeft.setText("X:" + (int) (evt.getX()*zoom) + " Y:" + (int) (evt.getY()*zoom));
+        root.BottomLeft.setText("X: " + (int) (evt.getX()*zoom) + " Y: " + (int) (evt.getY()*zoom));
+    }
+
+    private void deleteTileAt(int x, int y) {
+        Tile t = root.findTileAt(x, y);
+        if (t == null) {
+            return;
+        }
+        root.getTileLayer().tiles.remove(t);
+        repaint();
+    }
+
+    private void moveActorAt(int x, int y) {
+        ActorInScene bob = root.findActorAt(x, y);
+        if (bob == null) {
+            return;
+        }
+        dragOffset.width = bob.x - x;
+        dragOffset.height = bob.y - y;
+        draggingActor = true;
+        actorDragging = bob;
+        repaint();
+    }
+
+    private void moveTileAt(int x, int y) {
+        Tile t = root.findTileAt(x, y);
+        if (t == null) {
+            return;
+        }
+        dragOffset.width = t.x - x;
+        dragOffset.height = t.y - y;
+        draggingTile = true;
+        tileDragging = t;
+        repaint();
     }
 }

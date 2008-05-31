@@ -9,7 +9,7 @@ package org.gcreator.fileclass;
  * 
  * @author Luís
  * 
- * @author bob
+ * @author Serge Humphrey
  */
 public class PathGroup extends Group {
     

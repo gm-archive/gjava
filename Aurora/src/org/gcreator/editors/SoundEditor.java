@@ -6,14 +6,13 @@
 
 package org.gcreator.editors;
 
-//import com.jmex.audio.AudioSystem;
-//import com.jmex.audio.AudioTrack;
+import com.jmex.audio.AudioSystem;
+import com.jmex.audio.AudioTrack;
 import java.applet.*;
 import java.io.*;
-import java.net.URL;
+import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.sound.sampled.AudioSystem;
 import javax.swing.*;
 import org.gcreator.components.*;
 import org.gcreator.core.*;
@@ -22,8 +21,6 @@ import org.gcreator.managers.*;
 import org.gcreator.components.impl.*;
 //import org.newdawn.slick.Sound;
 import org.gcreator.fileclass.res.Sound;
-//import org.newdawn.slick.SlickException;
-//import sun.applet.AppletAudioClip;
 
 /**
  *
@@ -31,20 +28,26 @@ import org.gcreator.fileclass.res.Sound;
  */
 public class SoundEditor extends TabPanel {
     static int number = 0;
-//    AudioSystem audio;
-  //  private AudioTrack targetSound;
+    public AudioSystem audio;
+    private AudioTrack targetSound;
+    private File soundFile;
+    private AudioClip newAudioClip;
     /** Creates new form SoundEditor
      * @param file
      * @param project 
      */
     public SoundEditor(org.gcreator.fileclass.GFile file,Project project) {
         if(!(file.value instanceof Sound))
-            file.value = new Sound(file.name);
+            file.value = new Sound();
         this.project = project;
         this.file = file;
         initComponents();
         jTextField1.setText(file.name);
-//        audio = AudioSystem.getSystem();
+        try {
+            audio = AudioSystem.getSystem();
+        } catch (UnsatisfiedLinkError exc) {
+            System.err.println("Cannot get AudioSystem: "+exc);
+        }
     }
     
     
@@ -163,21 +166,21 @@ public class SoundEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-   // org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
+    org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
 //fx.play();
-   // public SoundPlayer p = null;
-    //public AudioClip clip = null;
+    public SoundPlayer p = null;
+    public AudioClip clip = null;
     
     //open the file
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+       // try {
             
             jFileChooser1.showDialog(this, null);
             
-            File f = jFileChooser1.getSelectedFile();
-            System.out.println("Name:"+f.getName());
-            System.out.println("path:"+f.getPath());
-            if(f.getName().endsWith(".wav"))
+            this.soundFile = jFileChooser1.getSelectedFile();
+            System.out.println("Name:"+soundFile.getName());
+            System.out.println("path:"+soundFile.getPath());
+            /*if(f.getName().endsWith(".wav"))
                 ((Sound)file.value).extension = ".wav";
             else if (f.getName().endsWith(".ogg"))
                 ((Sound)file.value).extension = ".ogg";
@@ -213,18 +216,29 @@ public class SoundEditor extends TabPanel {
             ((Sound)file.value).sound = bytes;
            
             
-            //clip = new AppletAudioClip(bytes);
-            //p = new SoundPlayer((byte[]) file.value);
-            //p = new SoundPlayer(f.getAbsolutePath());
+            clip = new AppletAudioClip(bytes);
+            p = new SoundPlayer((byte[]) file.value);
+            p = new SoundPlayer(f.getAbsolutePath());
         } catch (Exception ex) {
             System.out.println("Exception in load sound");
             Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
-         //   audio.cleanup();
+    //     AudioClip newAudioClip;
+       try {
+            if (soundFile == null) {
+                return;
+            }
+            newAudioClip = Applet.newAudioClip(soundFile.toURI().toURL());
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         newAudioClip.play();
+         
+        /* try {
+            audio.cleanup();
 //      Delete old file
         File ff = new File("./Sound/");
         if(!ff.exists())
@@ -240,46 +254,79 @@ public class SoundEditor extends TabPanel {
             FileOutputStream f = new FileOutputStream("./Sound/play"+number+((Sound)file.value).extension); //+ ((Sound) file.value).extension);
 
 //GEN-LAST:event_jButton3ActionPerformed
+       
+            /* try {
+            audio.cleanup();
+            //      Delete old file
+            File ff = new File("./Sound/");
+            if(!ff.exists())
+            ff.mkdir();
+            ff = new File("./Sound/play"+number+".ogg");
+            if (ff.exists())
+            ff.delete();
+            ff = new File("./Sound/play"+number+".wav");
+            if (ff.exists())
+            ff.delete();
+            number++;
+            FileOutputStream f = new FileOutputStream("./Sound/play"+number+((Sound)file.value).extension); //+ ((Sound) file.value).extension);
+            byte[] b = ((Sound)file.value).sound;
+            f = new FileOutputStream("./Sound/play.wav");// + ((Sound) file.value).extension);
+            f.write(b);
+            f.close();
+            ff= new File("Sound/play"+number+((Sound)file.value).extension );
+            if (this.jCheckBox1.isSelected())
+            targetSound = audio.createAudioTrack(ff.toURI().toURL() , true);
+            else
+            targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);
+            targetSound.setVolume(1.0f);
+            targetSound.play();
+            fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
+            fx.play();
+            } catch (Exception ex) {
+            System.out.println(""+ex);
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+            } 
+        
                 byte[] b = ((Sound)file.value).sound;
-               // f = new FileOutputStream("./Sound/play.wav");// + ((Sound) file.value).extension);
+                f = new FileOutputStream("./Sound/play.wav");// + ((Sound) file.value).extension);
                 f.write(b);
                 f.close();
                 
                 ff= new File("Sound/play"+number+((Sound)file.value).extension );
-          //     if (this.jCheckBox1.isSelected())
-//             targetSound = audio.createAudioTrack(ff.toURI().toURL() , true); 
-            //    else
-  //                 targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);  
+               if (this.jCheckBox1.isSelected())
+             targetSound = audio.createAudioTrack(ff.toURI().toURL() , true); 
+                else
+                   targetSound = audio.createAudioTrack(ff.toURI().toURL() , false);  
              
-           //  targetSound.setVolume(1.0f);
-            // targetSound.play();
-             //    fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
-           // fx.play();
+             targetSound.setVolume(1.0f);
+             targetSound.play();
+                 fx = new org.newdawn.slick.Music("/Sound/play"+number+((Sound)file.value).extension,true);// + ((Sound) file.value).extension);
+            fx.play();
             
             } catch (Exception ex) {
                 System.out.println(""+ex);
                 Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            } */
         
                 
     }                                        
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //stop sound
-//        if (targetSound != null) {
-//            targetSound.setLooping(false);
-//            targetSound.stop();
-//        }
-       //fx.stop(); 
+        if (targetSound != null) {
+            targetSound.setLooping(false);
+            targetSound.stop();
+        }
+       fx.stop(); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //loop sound
-       // fx.loop();
-//        if (targetSound != null) {
-//            targetSound.setLooping(true);
-//            targetSound.play();
-//        }
+        fx.loop();
+        if (targetSound != null) {
+            targetSound.setLooping(true);
+            targetSound.play();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate

@@ -11,7 +11,7 @@ import org.gcreator.core.utilities;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class SystemOutStream extends PrintStreamCensor {
     public static SystemOutputReader dialog;
@@ -20,16 +20,19 @@ public class SystemOutStream extends PrintStreamCensor {
 	super(out, false);
     }
    protected void alert(Object o) {
-        if (dialog == null)
+        if (dialog == null) {
             return;
-        if(o == null)
+        }
+        if(o == null) {
             return;
+        }
         dialog.addOutLine(o.toString());
         utilities.addStringFormatedMessage(o.toString(), "#0000aa", false);
     }
     protected void alertln() {
-        if (dialog == null)
+        if (dialog == null) {
             return;
+        }
         dialog.addOutLine("\n");
     }
 }

@@ -338,6 +338,8 @@ public class English extends Dictionary {
         entry[284] = "Create new image";
         entry[285] = "Keep aspect ratio";
         entry[286] = "Add Snippet";
+        entry[287] = "Theme";
+        
         try{
             init();
         }

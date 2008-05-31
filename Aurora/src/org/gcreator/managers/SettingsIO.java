@@ -13,10 +13,10 @@ import java.awt.*;
 import java.io.*;
 import org.gcreator.exceptions.*;
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import org.gcreator.core.*;
 import org.w3c.dom.*;
 import javax.xml.parsers.*;
-import org.gcreator.components.PreferencesTab;
 import org.xml.sax.*;
 
 /**
@@ -122,6 +122,9 @@ public class SettingsIO {
             out.write("<antialiasing>");
             out.write(""+gcreator.panel.antialiasing);
             out.write("</antialiasing>");
+            out.write("<theme>");
+            out.write(MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName());
+            out.write("</theme>");
             out.write("</settings>");
             out.close();
         } catch (IOException e) {
@@ -140,7 +143,7 @@ public class SettingsIO {
             catch(Exception e){}
             return null;
         }
-        String[] a = new String[8];
+        String[] a = new String[9];
         a[0] = null;
         a[1] = null;
         a[2] = null;
@@ -149,6 +152,7 @@ public class SettingsIO {
         a[5] = null;
         a[6] = null;
         a[7] = null;
+        a[8] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
         //SAXParserFactory fact = SAXParserFactory.newInstance();
         DocumentBuilder builder;
@@ -184,7 +188,8 @@ public class SettingsIO {
                     id = 6;
                 else if(name.equals("antialiasing"))
                     id = 7;
-                
+                else if(name.equals("theme"))
+                    id = 8;
                 if(id==-1){
                     addError(33);
                     addStringFormatedMessage(name, null, true);
@@ -194,7 +199,7 @@ public class SettingsIO {
                     addError(34);
                 a[id] = child.getTextContent(); //1.4 
             }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null||a[7]==null){
+            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null||a[7]==null||a[8]==null){
                 addError(35);
             }
             return a;

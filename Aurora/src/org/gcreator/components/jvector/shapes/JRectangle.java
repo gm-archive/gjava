@@ -20,7 +20,7 @@ import java.util.Vector;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class JRectangle extends Rectangle2D.Double implements JVectorable, Serializable {
     private int n;

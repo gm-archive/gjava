@@ -27,7 +27,6 @@ import java.util.Vector;
  * shape, making it very easy to add more shapes.
  * 
  * @author Serge Humphrey
- * @author bob
  */
 public interface JVectorable {
     /**

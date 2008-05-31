@@ -15,7 +15,7 @@ import java.io.UnsupportedEncodingException;
  * the contet of a PrintStream. (Like China 
  * or the USA does.)
  * 
- * @author bob
+ * @author Serge Humphrey
  */
 public abstract class PrintStreamCensor extends PrintStream {
     public static PrintStream instance;

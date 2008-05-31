@@ -83,6 +83,7 @@ public class PlainTextEditor extends TabPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
 
+        jTextPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTextPane1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jTextPane1PropertyChange(evt);

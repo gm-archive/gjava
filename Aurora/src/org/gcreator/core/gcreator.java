@@ -13,14 +13,22 @@ import com.l2fprod.gui.plaf.skin.Skin;
 import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.text.ParseException;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.MetalTheme;
 import org.gcreator.api.util.CreateApiList;
+//import org.gcreator.bob.boblook.BobLookAndFeel;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
 import org.gcreator.components.SystemOutputReader;
@@ -56,15 +64,21 @@ public class gcreator {
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
         try {
+            /*
+             * Ethos does not work very well when switching to another L&F.
+             * Is is also ugly and incredibly slow, therefore I have disabled it.
+             */
             //Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
             //SkinLookAndFeel.setSkin(skin);
-            UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
+            //UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
             //UIManager.setLookAndFeel(new SkinLookAndFeel());
+            //UIManager.installLookAndFeel(new LookAndFeelInfo("Bob Look", BobLookAndFeel.class.getName()));
         } catch (Exception exc) {
-            System.err.println("Exception_fh456f45y4h: "+exc);
+            System.err.println("Exception_at gcreator<static>: "+exc);
         }
     }
-    
+
+
     public static String[] getargs(){
         return arguments;
     }
@@ -88,12 +102,13 @@ public class gcreator {
         __main(args);
     }
     
-    public static void __main(String[] args){
-        try{
+    public static void __main(String[] args) {
+        try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            loadLookandFeels();
         }
-        catch(Exception e){
-            
+        catch(Exception exc) {
+            System.out.println("Exception: "+exc);
         }
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
@@ -143,7 +158,7 @@ public class gcreator {
         }
 
         if (settings == null) {
-            settings = new String[8];
+            settings = new String[9];
             //settings[0] = "Metal";
             settings[0] = UIManager.getSystemLookAndFeelClassName();
             settings[1] = "Tabs (Top)";
@@ -153,6 +168,7 @@ public class gcreator {
             settings[5] = "Left";
             settings[6] = "800, 600";
             settings[7] = "true";
+            settings[8] = MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName();
         }
 
         if(ismdi||ver<6)
@@ -175,6 +191,11 @@ public class gcreator {
                 utilities.addError(36);
             }
         }
+        try {
+            MetalLookAndFeel.setCurrentTheme((MetalTheme)Class.forName(settings[8]).newInstance());
+        } catch (Exception exc) {
+            System.err.println("[gcreator:191]Exception: "+exc);
+        }
         ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
         ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
         ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), 41);
@@ -191,7 +212,7 @@ public class gcreator {
         ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), 207);
         ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), 245);
         ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), 269);
-        ToolbarButton addsnippet = new DefaultToolbarItem("std_addSnippet", null, 286);
+        ToolbarButton addsnippet = new DefaultToolbarItem("std_addSnippet", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsnippet.png")), 286);
         
         newp.setActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
@@ -410,5 +431,31 @@ public class gcreator {
                 Plugger.onSplashDispose();
             panel.menubar.updateUI();
         }
+    }
+    
+    private static void loadLookandFeels() throws Exception {
+        //Load lookandfeels from /settings/LookAndFeels
+        BufferedReader r = new BufferedReader(new FileReader(new File("settings/LookAndFeels")));
+        URLClassLoader loader = null;
+        String lafname = null;
+        while (r.ready()) {
+            String s = r.readLine().trim();
+            if (s.startsWith(";") || s.equals("")) {
+                continue;
+            }
+            if (s.startsWith("jar")) {
+               loader = new URLClassLoader(new URL[]{new URL(s.replaceAll("jar\\W*\\\"(.+)\\\"\\W*", "$1"))});
+            } else if (s.startsWith("lafname")){
+                lafname = s.replaceAll("lafname\\W*\\\"(.+)\\\"\\W*", "$1");
+            } else if (s.startsWith("laf")) {
+                if (loader == null || lafname == null) {
+                    throw new ParseException("Error while parsing /settings/LookAndFeels!", 0);
+                }
+                UIManager.installLookAndFeel(lafname, s.replaceAll("laf\\W*(.+)\\W*","$1"));
+                loader = null;
+                lafname = null;
+            }
+        }
+        r.close();
     }
 }

@@ -32,9 +32,9 @@ import publicdomain.*;
  */
 
 public class SceneEditor extends TabPanel {
-    
+    private final static long serialVersionUID = 1;
     /** Creates new form SceneEditor */
-    public ScenePanel scene;
+    public ScenePanel scenePanel;
     public ViewsModel model;
     public BackgroundsModel bgmodel;
     public boolean changed = false;
@@ -42,7 +42,8 @@ public class SceneEditor extends TabPanel {
     public ResourceChooser curbg;
     public ResourceChooser curtileset;
     double instanceids = 0;
-    
+    public Scene scene;
+
     /*private org.gcreator.fileclass.File getFile(){
         return file;
     }*/
@@ -52,7 +53,7 @@ public class SceneEditor extends TabPanel {
     }
     
     public ActorInScene makeNewActor(int x, int y){
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) curactor.getFile();
+        org.gcreator.fileclass.GFile a = curactor.getFile();
         if (a == null) {
             System.err.print("[SceneEditor@MakeNewActor:58]: curactor.getFile() is NULL!");
             return null;
@@ -60,24 +61,8 @@ public class SceneEditor extends TabPanel {
         instanceids++;
         if(jToggleButton3.isSelected()){
             Scene s = (Scene) file.value;
-            if(x%s.snapX>s.snapX/2){
-                x /= s.snapX;
-                x++;
-                x *= s.snapX;
-            }
-            else{
-                x /= s.snapX;
-                x *= s.snapX;
-            }
-            if(y%s.snapY>s.snapY/2){
-                y /= s.snapY;
-                y++;
-                y *= s.snapY;
-            }
-            else{
-                y /= s.snapY;
-                y *= s.snapY;
-            }
+            x = (Math.round(x / s.snapX) * s.snapX);
+            y = (Math.round(y / s.snapY) * s.snapY);
         }
         return new ActorInScene(a, x, y, instanceids);
     }
@@ -88,10 +73,10 @@ public class SceneEditor extends TabPanel {
     
     /**
      * Mainly created to help the TileChooser component
-     * @return The current tileset
+     * @return The current file
      */
     public Tileset getTileset(){
-        return (Tileset) ((org.gcreator.fileclass.GFile) curtileset.getFile()).value;
+        return (Tileset) (curtileset.getFile()).value;
     }
     
     /**
@@ -99,23 +84,58 @@ public class SceneEditor extends TabPanel {
      * @param r
      */
     public void eraseActorsAt(Rectangle r){
+        @SuppressWarnings("unchecked")
         Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
         while(e.hasMoreElements()){
             ActorInScene ais = e.nextElement();
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            GFile k = curactor.getFile();
-            Sprite j = (Sprite) ((Actor) k.value).sprite.value;
+            Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
             ImageIcon i = j.getImageAt(0).image;
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
-            if(aisx<=r.x+r.width)
-                if(aisx+aisw>=r.x)
-                    if(aisy<=r.y+r.height)
-                        if(aisy+aish>=r.y)
+            if(aisx<=r.x+r.width) {
+                if (aisx + aisw >= r.x) {
+                    if (aisy <= r.y + r.height) {
+                        if (aisy + aish >= r.y) {
                             ((Scene) file.value).actors.remove(ais);
+                        }
+                    }
+                }
+            }
         }
+    }
+    
+    public ActorInScene findActorAt(int x, int y){
+        @SuppressWarnings("unchecked")
+        Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
+        while(e.hasMoreElements()){
+            ActorInScene ais = e.nextElement();
+            int aisx, aisy, aisw, aish;
+            aisx = ais.x;
+            aisy = ais.y;
+            Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
+            ImageIcon i = j.getImageAt(0).image;
+            aisw = i.getIconWidth();
+            aish = i.getIconHeight();
+            if (x >= aisx && x < aisx+aisw && y >= aisy && y < aisy+aisw) {
+                return ais;
+            }
+        }
+        return null;
+    }
+    
+    public Tile findTileAt(int x, int y) {
+        @SuppressWarnings("unchecked")
+        Enumeration<Tile> e = getTileLayer().tiles.elements();
+        while(e.hasMoreElements()){
+            Tile t = e.nextElement();
+            if (x >= t.x && x < t.x+t.width && y >= t.y && y < t.y+t.width) {
+                return t;
+            }
+        }
+        return null;
     }
     
     public boolean eraseActorsBelow(){
@@ -123,14 +143,17 @@ public class SceneEditor extends TabPanel {
     }
     
     public void updateImage(){
-        if (curactor.getFile() == null)
+        if (curactor.getFile() == null) {
             return;
+        }
         org.gcreator.fileclass.res.Actor b = (Actor) curactor.getFile().value;
-        if(b == null)
+        if(b == null) {
             return;
+        }
         org.gcreator.fileclass.GFile t = b.sprite;
-        if(t==null)
+        if(t==null) {
             return;
+        }
         ObjectNode c = t.node;
         if(c!=null){
             org.gcreator.fileclass.GFile d = (org.gcreator.fileclass.GFile) c.object;
@@ -143,7 +166,7 @@ public class SceneEditor extends TabPanel {
         if(curbg.getFile()==null){
             jLabel23.setIcon(null);
             //((Scene) file.value).bgimage = null;
-            scene.updateUI();
+            scenePanel.updateUI();
             return;
         }
         //((Scene) file.value).bgimage = (org.gcreator.fileclass.File) ((org.gcreator.fileclass.File) curbg.getCurrentObject().object);
@@ -151,24 +174,27 @@ public class SceneEditor extends TabPanel {
         //if(b!=null){
         //    jLabel23.setIcon(b);
         //}
-        scene.updateUI();
+        scenePanel.updateUI();
     }
     
     public JEditTextArea egml;
     public TileChooser tilechooser;
     //<editor-fold desc="Constructor">
+    @SuppressWarnings("unchecked")
     public SceneEditor(final org.gcreator.fileclass.GFile file, Project project) {
-        if(!(file.value instanceof Scene))
-            file.value = new Scene(/*file.name*/);
+        if(!(file.value instanceof Scene)) {
+            file.value = new Scene /*file.name*/ ();
+        }
+        scene = (Scene) file.value;
         this.file = file;
         this.project = project;
         setMinimumSize(new Dimension(300,220));
         model = new ViewsModel(((Scene) file.value).views);
         bgmodel = new BackgroundsModel(((Scene) file.value).backgrounds);
         initComponents();
-        scene = new ScenePanel(this);
-        scene.setSize(500,500);
-        jScrollPane1.setViewportView(scene);
+        scenePanel = new ScenePanel(this);
+        scenePanel.setSize(500,500);
+        jScrollPane1.setViewportView(scenePanel);
         //egml
         GScriptTokenMarker scanner = new GScriptTokenMarker();
         egml = new JEditTextArea(project);
@@ -228,7 +254,7 @@ public class SceneEditor extends TabPanel {
             }
         });
         jScrollPane7.setViewportView(tilechooser);
-        jPanel13.setLayout(new FlowLayout());
+        jPanel13.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanel13.add(curtileset = new ResourceChooser(project, "tileset"));
         curtileset.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
@@ -237,6 +263,21 @@ public class SceneEditor extends TabPanel {
             }
         });
         jList2ValueChanged(null);
+        jComboBox3.setModel(new DefaultComboBoxModel() {
+            private final static long serialVersionUID = 1;
+
+            @Override
+            public int getSize() {
+                return scene.tileLayers.size();
+            }
+
+            @Override
+            public Object getElementAt(int index) {
+                return scene.tileLayers.get(index);
+            }
+        }); 
+        jComboBox3.setSelectedIndex(0);
+        jList2.setSelectedIndex(0);
     }
 //</editor-fold>
      
@@ -298,6 +339,9 @@ public class SceneEditor extends TabPanel {
         catch(NullPointerException e){}
     }
     
+    public TileLayer getTileLayer() {
+        return (TileLayer) jComboBox3.getSelectedItem();
+    }
     public boolean isGridVisible(){
         return jToggleButton1.isSelected();
     }
@@ -363,20 +407,18 @@ public class SceneEditor extends TabPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane9 = new javax.swing.JScrollPane();
-        jPanel8 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel2 = new javax.swing.JLabel();
-        jSpinner2 = new javax.swing.JSpinner();
-        jLabel3 = new javax.swing.JLabel();
         jSpinner3 = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        jSpinner2 = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jButton6 = new javax.swing.JButton();
         jToggleButton3 = new javax.swing.JToggleButton();
+        jButton5 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -390,6 +432,8 @@ public class SceneEditor extends TabPanel {
         jPanel14 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         jButton8 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel16 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -449,15 +493,11 @@ public class SceneEditor extends TabPanel {
         jPanel15 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jSpinner13 = new javax.swing.JSpinner();
-        jLabel26 = new javax.swing.JLabel();
-        jSpinner14 = new javax.swing.JSpinner();
-        jLabel27 = new javax.swing.JLabel();
-        jSpinner15 = new javax.swing.JSpinner();
-        jLabel28 = new javax.swing.JLabel();
-        jSpinner16 = new javax.swing.JSpinner();
-        jLabel29 = new javax.swing.JLabel();
-        jSpinner17 = new javax.swing.JSpinner();
+        jButton9 = new javax.swing.JButton();
+        jComboBox3 = new javax.swing.JComboBox();
+        jButton13 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jCheckBox6 = new javax.swing.JCheckBox();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jLabel18 = new javax.swing.JLabel();
@@ -466,22 +506,43 @@ public class SceneEditor extends TabPanel {
         jButton7 = new javax.swing.JButton();
         saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/general/undo.png"))); // NOI18N
-        jButton4.setFocusable(false);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(2)));
+        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/clearall.png"))); // NOI18N
-        jButton5.setToolTipText("Clear all instances");
-        jButton5.setFocusable(false);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jLabel3.setText("Snap Y");
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/shift.png"))); // NOI18N
-        jButton6.setToolTipText("Shift all instances");
-        jButton6.setFocusable(false);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(2)));
+        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("Snap X");
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
+
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/iso.png"))); // NOI18N
+        jToggleButton2.setToolTipText("Isometric");
+        jToggleButton2.setFocusable(false);
+        jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jToggleButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
 
         jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/showgrid.png"))); // NOI18N
         jToggleButton1.setSelected(true);
@@ -495,48 +556,27 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/iso.png"))); // NOI18N
-        jToggleButton2.setToolTipText("Isometric");
-        jToggleButton2.setFocusable(false);
-        jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jToggleButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
-        jLabel2.setText("Snap X");
-
-        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(2)));
-        jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
-        jLabel3.setText("Snap Y");
-
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(20), Integer.valueOf(1), null, Integer.valueOf(2)));
-        jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/shift.png"))); // NOI18N
+        jButton6.setToolTipText("Shift all instances");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
         jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/Snap_To_Grid.png"))); // NOI18N
         jToggleButton3.setToolTipText("Snap to grid");
 
-        jSplitPane1.setDividerLocation(280);
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/clearall.png"))); // NOI18N
+        jButton5.setToolTipText("Clear all instances");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/general/undo.png"))); // NOI18N
+        jButton4.setFocusable(false);
+        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        jSplitPane1.setDividerLocation(282);
         jSplitPane1.setMaximumSize(new java.awt.Dimension(100, 100));
         jSplitPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentResized(java.awt.event.ComponentEvent evt) {
@@ -556,7 +596,7 @@ public class SceneEditor extends TabPanel {
             jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel4Layout.createSequentialGroup()
                 .add(BottomLeft)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 216, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 199, Short.MAX_VALUE)
                 .add(BottomRight))
         );
         jPanel4Layout.setVerticalGroup(
@@ -636,25 +676,47 @@ public class SceneEditor extends TabPanel {
         });
         jToolBar1.add(jButton8);
 
+        jButton11.setText("Edit");
+        jButton11.setFocusable(false);
+        jButton11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton11.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton11);
+
+        jButton12.setText("Delete");
+        jButton12.setFocusable(false);
+        jButton12.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton12.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton12);
+
+        jScrollPane1.setMaximumSize(new java.awt.Dimension(367, 327));
+
         org.jdesktop.layout.GroupLayout jPanel3Layout = new org.jdesktop.layout.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel3Layout.createSequentialGroup()
-                .add(jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(37, 37, 37))
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jToolBar1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE))
-                .addContainerGap())
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jToolBar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 464, Short.MAX_VALUE))
+                .add(12, 12, 12))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel3Layout.createSequentialGroup()
                 .add(jToolBar1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );
@@ -724,27 +786,27 @@ public class SceneEditor extends TabPanel {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel5)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                        .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                     .add(jLabel6)
                     .add(jCheckBox3)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel7)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                     .add(jLabel19)
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel8)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+                        .add(jTextField3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
                     .add(jPanel1Layout.createSequentialGroup()
                         .add(jLabel9)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner12, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
+                        .add(jSpinner12, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -775,7 +837,7 @@ public class SceneEditor extends TabPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel19)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                .add(jScrollPane5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -817,7 +879,7 @@ public class SceneEditor extends TabPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 238, Short.MAX_VALUE)
+            .add(0, 246, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -862,17 +924,17 @@ public class SceneEditor extends TabPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel5Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel5Layout.createSequentialGroup()
                         .add(jCheckBox1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jComboBox2, 0, 238, Short.MAX_VALUE)
+                    .add(jComboBox2, 0, 246, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel22)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel21)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jComboBox1, 0, 238, Short.MAX_VALUE)
+                    .add(jComboBox1, 0, 246, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, jLabel20))
                 .addContainerGap())
         );
@@ -898,7 +960,7 @@ public class SceneEditor extends TabPanel {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
+                .add(jScrollPane6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -976,7 +1038,7 @@ public class SceneEditor extends TabPanel {
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jSpinner4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jSpinner5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 84, Short.MAX_VALUE)
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jPanel9Layout.createSequentialGroup()
                         .add(jLabel12)
@@ -1058,7 +1120,7 @@ public class SceneEditor extends TabPanel {
                 .add(jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jSpinner8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jSpinner9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 86, Short.MAX_VALUE)
                 .add(jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                     .add(jLabel16)
                     .add(jLabel17))
@@ -1099,7 +1161,7 @@ public class SceneEditor extends TabPanel {
                         .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(jPanel9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(jCheckBox4)
-                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .add(jScrollPane3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
                             .add(jCheckBox2)))
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel7Layout.createSequentialGroup()
                         .add(9, 9, 9)
@@ -1119,7 +1181,7 @@ public class SceneEditor extends TabPanel {
                 .add(jPanel9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(150), jPanel7);
@@ -1128,52 +1190,49 @@ public class SceneEditor extends TabPanel {
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 218, Short.MAX_VALUE)
+            .add(0, 132, Short.MAX_VALUE)
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 28, Short.MAX_VALUE)
+            .add(0, 18, Short.MAX_VALUE)
         );
 
-        jLabel4.setText("X:");
+        jLabel4.setText("Layer:");
 
-        jSpinner13.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jSpinner13.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner13StateChanged(evt);
+        jButton9.setText("New...");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
             }
         });
 
-        jLabel26.setText("Y:");
-
-        jSpinner14.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jSpinner14.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner14StateChanged(evt);
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
             }
         });
 
-        jLabel27.setText("Width:");
-
-        jSpinner15.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jSpinner15.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner15StateChanged(evt);
+        jButton13.setText("Edit...");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
             }
         });
 
-        jLabel28.setText("Height:");
-
-        jSpinner16.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
-        jSpinner16.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner16StateChanged(evt);
+        jButton10.setText("Delete");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
             }
         });
 
-        jLabel29.setText("Depth:");
-
-        jSpinner17.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jCheckBox6.setText("Visible");
+        jCheckBox6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox6ActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout jPanel15Layout = new org.jdesktop.layout.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -1182,50 +1241,35 @@ public class SceneEditor extends TabPanel {
             .add(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(jPanel15Layout.createSequentialGroup()
+                        .add(jButton13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 74, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton10)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jCheckBox6))
+                    .add(jPanel13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel15Layout.createSequentialGroup()
                         .add(jLabel4)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel26)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel15Layout.createSequentialGroup()
-                        .add(jLabel27)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel28)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jPanel15Layout.createSequentialGroup()
-                        .add(jLabel29)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .add(18, 18, 18)
+                        .add(jComboBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 134, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButton9))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel15Layout.createSequentialGroup()
-                .addContainerGap()
                 .add(jPanel13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel4)
-                    .add(jSpinner13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel26)
-                    .add(jSpinner14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jComboBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel27)
-                    .add(jSpinner15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel28)
-                    .add(jSpinner16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jButton10)
+                    .add(jCheckBox6)
+                    .add(jButton13))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jPanel15Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel29)
-                    .add(jSpinner17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(jButton9)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1233,21 +1277,19 @@ public class SceneEditor extends TabPanel {
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel12Layout.createSequentialGroup()
-                .add(jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane7, 0, 0, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel12Layout.createSequentialGroup()
-                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(jPanel15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel12Layout.createSequentialGroup()
+                .add(jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+                    .add(jPanel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel12Layout.createSequentialGroup()
-                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 165, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(jScrollPane7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 225, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel15, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(144, 144, 144))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Tiles", jPanel12);
@@ -1260,7 +1302,7 @@ public class SceneEditor extends TabPanel {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 262, Short.MAX_VALUE)
+            .add(0, 270, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -1280,7 +1322,7 @@ public class SceneEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
+            .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
             .add(jPanel11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(jPanel2Layout.createSequentialGroup()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
@@ -1302,7 +1344,7 @@ public class SceneEditor extends TabPanel {
                 .add(jCheckBox5)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jButton7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(147), jPanel2);
@@ -1312,93 +1354,75 @@ public class SceneEditor extends TabPanel {
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel16Layout.createSequentialGroup()
-                .add(36, 36, 36)
+                .addContainerGap()
                 .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
-            .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addContainerGap(126, Short.MAX_VALUE))
+            .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel16Layout.createSequentialGroup()
-                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 511, Short.MAX_VALUE)
+            .add(jPanel16Layout.createSequentialGroup()
+                .add(jTabbedPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 431, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel16);
-
-        org.jdesktop.layout.GroupLayout jPanel8Layout = new org.jdesktop.layout.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel8Layout.createSequentialGroup()
-                .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel8Layout.createSequentialGroup()
-                        .add(jButton4)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jToggleButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jToggleButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 25, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jToggleButton3)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel2)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel3)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSpinner3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel8Layout.createSequentialGroup()
-                .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jLabel1)
-                            .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel2)
-                            .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jLabel3)
-                            .add(jSpinner3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jToggleButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jToggleButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(jToggleButton3))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
-
-        jScrollPane9.setViewportView(jPanel8);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(jButton4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 44, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jToggleButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jToggleButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jToggleButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 48, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(2, 2, 2)
+                .add(jLabel1)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel2)
+                .add(18, 18, 18)
+                .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jLabel3)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSpinner3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 47, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(54, 54, 54))
+            .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jScrollPane9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jToggleButton3, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(jToggleButton2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jToggleButton1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jButton6, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jButton5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jButton4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                            .add(jLabel1)
+                            .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel2)
+                            .add(jSpinner2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jLabel3)
+                            .add(jSpinner3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jSplitPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -1446,7 +1470,7 @@ public class SceneEditor extends TabPanel {
             ((Scene) file.value).width = 0;
         }
         jScrollPane1.updateUI();
-        scene.updateUI();
+        scenePanel.updateUI();
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jEditorPane1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyTyped
@@ -1466,7 +1490,7 @@ public class SceneEditor extends TabPanel {
             ((Scene) file.value).width = 0;
         }
         jScrollPane1.updateUI();
-        scene.updateUI();
+        scenePanel.updateUI();
     }//GEN-LAST:event_jTextField2KeyTyped
 
     private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
@@ -1478,7 +1502,7 @@ public class SceneEditor extends TabPanel {
             ((Scene) file.value).height = 0;
         }
         jScrollPane1.updateUI();
-        scene.updateUI();
+        scenePanel.updateUI();
     }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1486,6 +1510,8 @@ public class SceneEditor extends TabPanel {
         jButton3.setSelected(false);
         jButton8.setSelected(false);
         jButton1.setSelected(false);
+        jButton11.setSelected(false);
+        jButton12.setSelected(false);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -1493,6 +1519,8 @@ public class SceneEditor extends TabPanel {
         jButton3.setSelected(true);
         jButton8.setSelected(false);
         jButton1.setSelected(false);
+        jButton11.setSelected(false);
+        jButton12.setSelected(false);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void colorSelection1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MousePressed
@@ -1555,14 +1583,14 @@ public class SceneEditor extends TabPanel {
         Scene s = (Scene) file.value;
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         bg.hmode = jComboBox1.getSelectedIndex();
-        scene.updateUI();
+        scenePanel.updateUI();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         Scene s = (Scene) file.value;
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         bg.vmode = jComboBox2.getSelectedIndex();
-        scene.updateUI();
+        scenePanel.updateUI();
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1570,6 +1598,8 @@ public class SceneEditor extends TabPanel {
         jButton2.setSelected(false);
         jButton3.setSelected(false);
         jButton8.setSelected(false);
+        jButton11.setSelected(false);
+        jButton12.setSelected(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -1577,6 +1607,8 @@ public class SceneEditor extends TabPanel {
         jButton2.setSelected(false);
         jButton3.setSelected(false);
         jButton8.setSelected(true);
+        jButton11.setSelected(false);
+        jButton12.setSelected(false);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
@@ -1590,8 +1622,9 @@ public class SceneEditor extends TabPanel {
             jComboBox1.setEnabled(true);
             jComboBox2.setEnabled(true);
         }
-        if(jList2.getSelectedIndex()<0)
+        if(jList2.getSelectedIndex()<0) {
             return;
+        }
         Scene s = (Scene) file.value;
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         jComboBox1.setSelectedIndex(bg.hmode);
@@ -1600,53 +1633,165 @@ public class SceneEditor extends TabPanel {
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
 
-    private void jSpinner13StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner13StateChanged
-        tilechooser.updateUI();
-        jScrollPane7.updateUI();
-    }//GEN-LAST:event_jSpinner13StateChanged
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton11.setSelected(true);
+        jButton12.setSelected(false);
+        jButton8.setSelected(false);
+    }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jSpinner14StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner14StateChanged
-        tilechooser.updateUI();
-        jScrollPane7.updateUI();
-    }//GEN-LAST:event_jSpinner14StateChanged
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        jButton1.setSelected(false);
+        jButton2.setSelected(false);
+        jButton3.setSelected(false);
+        jButton11.setSelected(false);
+        jButton12.setSelected(true);
+        jButton8.setSelected(false);
+    }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jSpinner15StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner15StateChanged
-        tilechooser.updateUI();
-        jScrollPane7.updateUI();
-    }//GEN-LAST:event_jSpinner15StateChanged
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if  (scene.tileLayers.size() <= 1) {
+            JOptionPane.showMessageDialog(this, "You must at have at least one tile layer!", 
+                    "Fatal ExceptionOE at E74F38A2.", JOptionPane.ERROR_MESSAGE);
+        } else {
+            scene.tileLayers.remove(jComboBox3.getSelectedItem());
+            if (jComboBox3.getSelectedIndex() >= scene.tileLayers.size()) {
+                jComboBox3.setSelectedIndex(jComboBox3.getSelectedIndex()-1);
+            }
+            scenePanel.repaint();
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
 
-    private void jSpinner16StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner16StateChanged
-        tilechooser.updateUI();
-        jScrollPane7.updateUI();
-    }//GEN-LAST:event_jSpinner16StateChanged
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        final JDialog dialog = new JDialog(gcreator.window, true);
+        dialog.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Box b1 = Box.createHorizontalBox();
+        b1.add(new JLabel("Layer Depth:   "));
+        final JSpinner spin = new JSpinner(new SpinnerNumberModel(-10000, Integer.MIN_VALUE, Integer.MAX_VALUE, 100));
+        b1.add(spin);
+        Box b2 = Box.createVerticalBox();
+        b2.add(b1);
+        b2.add(Box.createVerticalStrut(14));
+        JButton ok = new JButton("OK");
+        ok.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                int n = ((Integer)spin.getValue());
+                dialog.dispose();
+                TileLayer t = new TileLayer(n);
+                scene.tileLayers.add(t);
+                jComboBox3.setSelectedItem(t);
+            }
+        });
+        b2.add(ok);
+        dialog.add(b2);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        final JDialog dialog = new JDialog(gcreator.window, true);
+        dialog.setLayout(new FlowLayout(FlowLayout.LEFT));
+        Box b1 = Box.createHorizontalBox();
+        b1.add(new JLabel("Layer Depth:   "));
+        final JSpinner spin = new JSpinner(new SpinnerNumberModel(-10000, Integer.MIN_VALUE, Integer.MAX_VALUE, 100));
+        b1.add(spin);
+        Box b2 = Box.createVerticalBox();
+        b2.add(b1);
+        b2.add(Box.createVerticalStrut(14));
+        JButton ok = new JButton("OK");
+        ok.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                int n = ((Integer)spin.getValue());
+                dialog.dispose();
+                getTileLayer().depth = n;
+                jComboBox3.updateUI();
+                scenePanel.repaint();
+            }
+        });
+        b2.add(ok);
+        dialog.add(b2);
+        dialog.pack();
+        dialog.setLocationRelativeTo(null);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jCheckBox6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox6ActionPerformed
+        getTileLayer().visible = jCheckBox6.isSelected();
+        scenePanel.repaint();
+    }//GEN-LAST:event_jCheckBox6ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+       jCheckBox6.setSelected(getTileLayer().visible);
+    }//GEN-LAST:event_jComboBox3ActionPerformed
     
-            public static final int INVALID = 0;
+    public static final int INVALID = 0;
     public static final int PENCIL = 1;
     public static final int ERASE = 2;
-    public static final int TILEADD = 3;
+    public static final int EDIT = 3;
+    public static final int TILEADD = 4;
+    public static final int TILEERASE = 5;
+    public static final int TILEEDIT = 6;
     
     public Tile makeNewTile(int x, int y){
-        Tile tile = new Tile();
-        tile.dx = x;
-        tile.dy = y;
-        tile.sx = (Integer) jSpinner13.getValue();
-        tile.sy = (Integer) jSpinner14.getValue();
-        tile.width = (Integer) jSpinner15.getValue();
-        tile.height = (Integer) jSpinner16.getValue();
-        if (curtileset == null)
+        if (curtileset == null) {
             curtileset = new ResourceChooser(project, "tileset");
-        tile.tileset = curtileset.getFile();
-        tile.depth = (Integer) jSpinner17.getValue();
+        }
+        if (curtileset.getFile() == null) {
+            return null;
+        }
+        Tile tile = new Tile();
+        Tileset t;
+        try {
+            t = (Tileset) curtileset.getFile().value;
+        } catch (ClassCastException exc) {
+            System.out.println("? ?? "+exc);
+            return null;
+        }
+        if (!snapToGrid()) {
+            tile.x = x;
+        }
+        else {
+            tile.x = (int) (Math.floor(x / getSnapX()) * getSnapX());
+        }
+        if (!snapToGrid()) {
+            tile.y = y;
+        }
+        else {
+            tile.y = (int) (Math.floor(y / getSnapY()) * getSnapY());
+        }
+        tile.width = t.tilew;
+        tile.height = t.tileh;
+        tile.tilex = tilechooser.getTileX();
+        tile.tiley = tilechooser.getTileY();
+        tile.file = curtileset.getFile();
+        tile.file = curtileset.getFile();
         return tile;
     }
     
     public int mode(){
-        if(jButton2.isSelected())
+        if(jButton1.isSelected()) {
+            return EDIT;
+        }
+        if(jButton2.isSelected()) {
             return PENCIL;
-        if(jButton3.isSelected())
+        }
+        if(jButton3.isSelected()) {
             return ERASE;
-        if(jButton8.isSelected())
+        }
+        if(jButton8.isSelected()) {
             return TILEADD;
+        }
+        if (jButton11.isSelected()) {
+            return TILEEDIT;
+        }
+        if (jButton12.isSelected()) {
+            return TILEERASE;
+        }
         return INVALID;
     }
     
@@ -1663,7 +1808,7 @@ public class SceneEditor extends TabPanel {
             jSpinner1.setValue(-5);
         ((Scene) file.value).snapX = (Integer) jSpinner2.getValue();
         ((Scene) file.value).snapY = (Integer) jSpinner3.getValue();
-        scene.updateUI();
+        scenePanel.updateUI();
         jScrollPane1.updateUI();
 //        scene.repaint();
     }
@@ -1673,6 +1818,10 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JLabel BottomRight;
     private org.gcreator.components.ColorSelection colorSelection1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1680,13 +1829,16 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     public javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JCheckBox jCheckBox5;
+    private javax.swing.JCheckBox jCheckBox6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     public javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1706,10 +1858,6 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1733,7 +1881,6 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1743,16 +1890,10 @@ public class SceneEditor extends TabPanel {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jSpinner10;
     private javax.swing.JSpinner jSpinner11;
     private javax.swing.JSpinner jSpinner12;
-    public javax.swing.JSpinner jSpinner13;
-    public javax.swing.JSpinner jSpinner14;
-    public javax.swing.JSpinner jSpinner15;
-    public javax.swing.JSpinner jSpinner16;
-    public javax.swing.JSpinner jSpinner17;
     private javax.swing.JSpinner jSpinner2;
     private javax.swing.JSpinner jSpinner3;
     private javax.swing.JSpinner jSpinner4;

@@ -6,6 +6,8 @@
 package org.gcreator.components;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.*;
@@ -14,108 +16,127 @@ import org.gcreator.fileclass.res.*;
  *
  * @author luis
  */
-public class TileChooser extends JComponent{
+public final class TileChooser extends JComponent {
+    private final static long serialVersionUID = 1;
     private SceneEditor sceneeditor;
-    public TileChooser(SceneEditor editor){
+    private int tx, ty;
+    
+    public TileChooser(SceneEditor editor) {
         sceneeditor = editor;
+        addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                Tileset t = getSourceTileset();
+                if (t == null) {
+                    return;
+                }
+                int x = e.getX()-t.startx, y = e.getY()-t.starty;
+                int xindex, yindex;
+                int xsz = t.bwidth+t.tilew, ysz = t.bheight+t.tileh;
+                xindex = (int) Math.floor(x / xsz);
+                yindex = (int) Math.floor(y / ysz);
+                tx = xindex*xsz+t.startx+xindex;
+                ty = yindex*ysz+t.starty+yindex;
+                repaint();
+            }
+            
+            @Override
+            public void mouseDragged(MouseEvent e) {//NOTE: this is never called Why? I don't know
+                Tileset t = getSourceTileset();
+                if (t == null) {
+                    return;
+                }
+                int x = e.getX()-t.startx, y = e.getY()-t.starty;
+                int xindex, yindex;
+                int xsz = t.bwidth+t.tilew, ysz = t.bheight+t.tileh;
+                xindex = (int) Math.floor(x / xsz);
+                yindex = (int) Math.floor(y / ysz);
+                tx = xindex*xsz+t.startx+xindex;
+                ty = yindex*ysz+t.starty+yindex;
+                repaint();
+            }
+        });
     }
     
-    public Tileset getSourceTileset(){
+    public int getTileX() {
+        return tx;
+    }
+    public int getTileY() {
+        return ty;
+    }
+    public Point getTileLocation() {
+        return new Point(tx, ty);
+    }
+    public Tileset getSourceTileset() {
         try{
             return sceneeditor.getTileset();
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e) {
             return null;
         }
     }
     
-    public ImageIcon getSourceImage(){
+    public ImageIcon getSourceImage() {
         Tileset t = getSourceTileset();
-        if(t==null)
+        if(t == null) {
             return null;
+        }
         return t.getImage();
     }
     
-    public int getPreferredWidth(){
-        int w = 0;
+    public int getPreferredWidth() {
         try{
-            w = getSourceImage().getIconWidth();
-            w -= getSourceTileset().startx;
+            return getSourceImage().getIconWidth();
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e) {
             return 0;
         }
-        /*Tileset t = getSourceTileset();
-        int hsepcount = 
-                (w % t.tilew == 0 ?
-                    w/t.tilew
-                    : (w/t.tilew)+1);
-        return w+(hsepcount*2);*/
-        return w;
     }
     
-    public int getPreferredHeight(){
-        int h = 0;
-        try{
-            h = getSourceImage().getIconHeight();
+    public int getPreferredHeight() {
+        try {
+            return getSourceImage().getIconHeight();
         }
-        catch(NullPointerException e){
+        catch (NullPointerException e) {
             return 0;
         }
-        /*Tileset t = getSourceTileset();
-        h -= t.starty;
-        int vsepcount = 
-                (h % t.tileh == 0 ?
-                    h/t.tileh
-                    : (h/t.tileh)+1);
-        return h+(vsepcount*2);*/
-        return h;
     }
     
-    public int getWidth(){
+    @Override
+    public int getWidth() {
         return getPreferredWidth();
     }
     
-    
-    public int getHeight(){
+    @Override
+    public int getHeight() {
         return getPreferredHeight();
     }
     
-    public Dimension getPreferredSize(){
+    @Override
+    public Dimension getPreferredSize() {
         return new Dimension(getPreferredWidth(), getPreferredHeight());
     }
     
-    public void paint(Graphics g){
+    @Override
+    public void paint(Graphics g) {
         ImageIcon img = getSourceImage();
         g.clearRect(0, 0, getPreferredWidth(), getPreferredHeight());
-        if(img==null)
+        if (img == null) {
             return;
+        }
         g.drawImage(img.getImage(), 0, 0, img.getImageObserver());
-        int x = (Integer) sceneeditor.jSpinner13.getValue();
-        int y = (Integer) sceneeditor.jSpinner14.getValue();
-        int w = (Integer) sceneeditor.jSpinner15.getValue();
-        int h = (Integer) sceneeditor.jSpinner16.getValue();
         g.setColor(Color.WHITE);
-        g.drawRect(x-2, y-2, w+4, h+4);
-        g.drawRect(x, y, w, h);
-        g.setColor(Color.BLACK);
-        g.drawRect(x-1, y-1, w+2, h+2);
-        /*int imgw = img.getIconWidth();
+        g.setXORMode(Color.black);
+        tx = Math.max(tx, getSourceTileset().startx);
+        ty = Math.max(ty, getSourceTileset().starty);
+        g.drawRect(tx, ty, getSourceTileset().tilew, getSourceTileset().tileh);
+        
+        int imgw = img.getIconWidth();
         int imgh = img.getIconHeight();
-        int di = 0;
-        int dj = 0;
-        Tileset t = getSourceTileset();
-        for(int i = t.startx; i < imgw; i+=t.tilew+t.bwidth){
-            dj = 0;
-            for(int j = t.starty; j < imgh; j+=t.tileh+t.bheight){
-                g.drawImage(img.getImage(), di, dj,
-                        di+t.tilew, dj+t.tileh, i, j,
-                        t.tilew, j+t.tileh,img.getImageObserver());
-                dj += 2;
-                dj += t.tileh;
-            }
-            di += 2;
-            di += t.tilew;
-        }*/
+        int w = getSourceTileset().tilew;
+        int h = getSourceTileset().tileh;
+        int bw = getSourceTileset().bwidth;
+        int bh = getSourceTileset().bheight;
     }
 }

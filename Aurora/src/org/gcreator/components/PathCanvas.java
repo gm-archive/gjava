@@ -26,7 +26,7 @@ import org.gcreator.units.PathNode;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 
 public class PathCanvas extends JPanel {

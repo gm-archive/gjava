@@ -6,6 +6,7 @@
 package org.gcreator.units;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
@@ -15,31 +16,44 @@ import org.gcreator.fileclass.res.*;
  * @author luis
  */
 public class Tile {
-    public GFile tileset = null;
-    public int sx = 0;
-    public int sy = 0;
+    public GFile file = null;
     public int width = 20;
     public int height = 20;
-    public int dx = 0;
-    public int dy = 0;
-    public int depth = 0;
+    public int tilex;
+    public int tiley;
+    public int x = 0;
+    public int y = 0;
     
     public ImageIcon getTilesetImage(){
-        if(tileset == null)
+        if(file == null) {
+            System.out.println("file is null");
             return null;
-        if(tileset.value == null)
+        }
+        if(file.value == null) {
+            System.out.println("file.value is null");
             return null;
-        if(tileset.value instanceof ImageIcon)
-            return (ImageIcon) tileset.value;
+        }
+        if(file.value instanceof Tileset) {
+            ImageIcon i = ((Tileset) file.value).getImage();
+            BufferedImage b = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+            b.createGraphics().drawImage(i.getImage(), -tilex, -tiley, i.getImageObserver());
+            return new ImageIcon(b);
+        }
+        System.out.println("tileset.value ain't no Tileset. It's a "+file.value.getClass().getSimpleName());
         return null;
     }
     
     public void drawTileImage(Graphics g){
-        if(g==null)
+        if(g==null) {
             return;
+        }
         ImageIcon img = getTilesetImage();
-        if(img==null)
+        if(img==null) {
             return;
-        g.drawImage(img.getImage(), dx, dy, dx+width, dy+height, sx, sy, sx+width, sy+height, img.getImageObserver());
+        }
+        ImageIcon i = ((Tileset) file.value).getImage();
+        BufferedImage b = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        b.createGraphics().drawImage(i.getImage(), -tilex, -tiley, i.getImageObserver());
+        g.drawImage(new ImageIcon(b).getImage(),x,y,null);
     }
 }

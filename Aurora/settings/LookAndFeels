@@ -1,0 +1,18 @@
+; LookAndFeels
+; Add additional LookAndFeels here
+;
+; Syntax:
+;  jar "<LookAndFeelJAR URL>.jar"
+;  lafname "<lookandfeel name>"
+;  laf <LookAndFeelClassName>
+;
+;   NOTE: The name of the jar-file AND the name of the LookAndFeel MUST be in double-quotes!
+;   You may load a JAR file off the internet (though it is not reccomended), but if you are
+;       loading the file from your computer (not off the internet), you MUST place 'file:///'
+;       in front of the JAR file's pathname.
+;
+; Example:
+;   jar "file:////home/ned/jars/lookandfeels/Plastic.jar"
+;   lafname = "Plastic"
+;   laf com.webdomain.lookandfeels.plastic.PlasticLookAndFeel
+;

@@ -11,7 +11,7 @@ import org.w3c.dom.NamedNodeMap;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class PathNode extends Point {
 

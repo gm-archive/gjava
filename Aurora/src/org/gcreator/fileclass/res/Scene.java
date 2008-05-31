@@ -27,10 +27,10 @@ public class Scene implements Resource {
     public boolean persistant,  grid = true,  isometric,  drawbackcolor = true;
     public Vector views;
     public Vector actors;
-    public Vector tiles;
+//    public Vector tiles;
     public Vector backgrounds;
     public Color background = Color.lightGray;
-
+    public Vector<TileLayer> tileLayers;
     /*public ImageIcon getBackground(){
     if(bgimage==null)
     return null;
@@ -49,7 +49,8 @@ public class Scene implements Resource {
     public Scene(/*String name*/) {
         //this.name = name;
         actors = new Vector();
-        tiles = new Vector();
+        tileLayers = new Vector<TileLayer>(1);
+        tileLayers.add(new TileLayer(-10000));
         views = new Vector();
         backgrounds = new Vector();
     }

@@ -35,7 +35,7 @@
         <Component class="javax.swing.JEditorPane" name="jEditorPane1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="Listed in alphabetic order:&#xa;&#x9;Lu&#xed;s Reis&#xa;&#x9;Serge Humphrey (BobSerge or Bobistaken)&#xa;&#x9;TGMG"/>
+            <Property name="text" type="java.lang.String" value="Listed in alphabetic order:&#xa;&#x9;Lu&#xed;s Reis&#xa;&#x9;Serge Humphrey&#xa;&#x9;TGMG"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -20,7 +20,7 @@ import java.util.Vector;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class JEllipse extends Ellipse2D.Double implements JVectorable, Serializable {
     private int n;

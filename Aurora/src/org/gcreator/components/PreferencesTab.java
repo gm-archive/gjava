@@ -6,21 +6,64 @@
 package org.gcreator.components;
 
 import java.awt.Component;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.event.ListDataListener;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
+import javax.swing.plaf.metal.MetalTheme;
+import javax.swing.plaf.metal.OceanTheme;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
+import publicdomain.AquaTheme;
+import publicdomain.CharcoalTheme;
+import publicdomain.ContrastTheme;
+import publicdomain.EmeraldTheme;
+import publicdomain.RubyTheme;
 
 /**
  *
  * @author  Luís
  */
 public class PreferencesTab extends OptionPanel {
-
+    
+    public static Vector<MetalTheme> themes;
     /** Creates new form PreferencesTab */
     public PreferencesTab(String[] settings) {
         initComponents();
+        if (themes == null) {
+            themes = new Vector<MetalTheme>(7);
+            themes.add(new DefaultMetalTheme());
+            themes.add(new AquaTheme());
+            themes.add(new CharcoalTheme());
+            themes.add(new ContrastTheme());
+            themes.add(new EmeraldTheme());
+            themes.add(new OceanTheme());
+            themes.add(new RubyTheme());
+        }
+        jComboBox3.setModel(new DefaultComboBoxModel() {
 
+            public int getSize() {
+                return themes.size();
+            }
+
+            public Object getElementAt(int index) {
+                return themes.get(index);
+            }
+        });
+        jComboBox3.setRenderer(new DefaultListCellRenderer() {
+            public Component getListCellRendererComponent(JList list, Object value,int index, boolean isSelected,boolean cellHasFocus) {
+                JLabel l = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                if (value != null)
+                    l.setText(value.getClass().getSimpleName());
+                return l;
+            }
+        });
         //jComboBox1.setSelectedIndex(0);
         try {
             if (settings[0] == null) {
@@ -39,23 +82,6 @@ public class PreferencesTab extends OptionPanel {
                 }
                 jComboBox1.setSelectedIndex(i);
             }
-        //gcreator.window.look = i;
-            /*
-        if (settings != null && settings[0] != null && settings[0].equals("Native")) {
-        gcreator.window.look = 0;
-        } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-        jComboBox1.setSelectedIndex(1);
-        gcreator.window.look = 1;
-        } else if (settings[0].equals("Motif")) {
-        jComboBox1.setSelectedIndex(2);
-        gcreator.window.look = 2;
-        } else if (settings[0].equals("Metal")) {
-        jComboBox1.setSelectedIndex(3);
-        gcreator.window.look = 3;
-        } else {
-        jComboBox1.setSelectedIndex(1);
-        gcreator.window.look = 1;
-        }*/
 
         } catch (Exception e) {
             jComboBox1.setSelectedIndex(0); 
@@ -90,6 +116,7 @@ public class PreferencesTab extends OptionPanel {
 
         jCheckBox1.setSelected(Boolean.parseBoolean(settings[7]));
         jComboBox2ActionPerformed(null);
+        findMetalTheme();
     }
     public DefaultComboBoxModel lafmodel = new DefaultComboBoxModel() {
 
@@ -150,6 +177,8 @@ public class PreferencesTab extends OptionPanel {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
 
         jLabel1.setText(getLang(15));
 
@@ -197,7 +226,7 @@ public class PreferencesTab extends OptionPanel {
                     .add(jCheckBox1)
                     .add(jCheckBox2)
                     .add(jCheckBox3))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -211,22 +240,34 @@ public class PreferencesTab extends OptionPanel {
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel3.setText(LangSupporter.activeLang.getEntry(287));
+
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+            .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jComboBox1, 0, 315, Short.MAX_VALUE))
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jLabel1)
-                            .add(jLabel2))
+                            .add(jLabel2)
+                            .add(jLabel3))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jComboBox2, 0, 310, Short.MAX_VALUE)
-                            .add(jComboBox1, 0, 310, Short.MAX_VALUE))))
+                            .add(jComboBox3, 0, 315, Short.MAX_VALUE)
+                            .add(jComboBox2, 0, 315, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -238,11 +279,15 @@ public class PreferencesTab extends OptionPanel {
                     .add(jComboBox1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel3)
+                    .add(jComboBox3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jComboBox2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(18, 18, 18)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -250,63 +295,17 @@ public class PreferencesTab extends OptionPanel {
         int sel = jComboBox1.getSelectedIndex();
 
         try {
-            /*switch (sel) {
-            case 0:
-            //UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel].getClassName());
-            SwingUtilities.updateComponentTreeUI(gcreator.window);
-            if (gcreator.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-            } else {
-            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-            }
-            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-            gcreator.window.look = sel;
-            Aurwindow.workspace.updateUI();
-            break;
-            case 1:
-            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            SwingUtilities.updateComponentTreeUI(gcreator.window);
-            if (gcreator.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-            } else {
-            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-            }
-            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-            gcreator.window.look = 1;
-            Aurwindow.workspace.updateUI();
-            break;
-            case 2:
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
-            SwingUtilities.updateComponentTreeUI(gcreator.window);
-            if (gcreator.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-            } else {
-            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-            }
-            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-            gcreator.window.look = 2;
-            Aurwindow.workspace.updateUI();
-            break;
-            case 3:
-            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
-            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            SwingUtilities.updateComponentTreeUI(gcreator.window);
-            if (gcreator.window.istabs) {
-            SwingUtilities.updateComponentTreeUI(gcreator.window.mdi);
-            } else {
-            SwingUtilities.updateComponentTreeUI(Aurwindow.tabs);
-            }
-            SwingUtilities.updateComponentTreeUI(gcreator.window.consolepopup);
-            gcreator.window.look = 3;
-            Aurwindow.workspace.updateUI();
-            break;
-            }*/
             if (sel == 0) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else {
                 UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName());
+            }
+            if (UIManager.getLookAndFeel().getClass().getName().equals(MetalLookAndFeel.class.getName())) {
+                jComboBox3.setEnabled(true);
+                findMetalTheme();
+            }
+            else {
+                jComboBox3.setEnabled(false);
             }
             SwingUtilities.updateComponentTreeUI(gcreator.window);
             SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
@@ -322,7 +321,14 @@ public class PreferencesTab extends OptionPanel {
             System.err.println("[PreferencesTab]Exception: "+e);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
-
+    private void findMetalTheme() {
+        for (int i = 0; i < jComboBox3.getItemCount(); i++) {
+            if (jComboBox3.getItemAt(i).getClass().getName().equals(MetalLookAndFeel.getCurrentTheme().getClass().getName())) {
+                jComboBox3.setSelectedIndex(i);
+                break;
+            }
+        }
+    }
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         int sel = jComboBox2.getSelectedIndex();
 
@@ -413,14 +419,35 @@ public class PreferencesTab extends OptionPanel {
         gcreator.panel.antialiasing = jCheckBox1.isSelected();
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        MetalLookAndFeel.setCurrentTheme((MetalTheme)jComboBox3.getSelectedItem());
+        if (UIManager.getLookAndFeel().getClass().getName().equals(MetalLookAndFeel.class.getName())) {
+            try {
+                UIManager.setLookAndFeel(MetalLookAndFeel.class.getName());
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(PreferencesTab.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (InstantiationException ex) {
+                Logger.getLogger(PreferencesTab.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(PreferencesTab.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (UnsupportedLookAndFeelException ex) {
+                Logger.getLogger(PreferencesTab.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            SwingUtilities.updateComponentTreeUI(gcreator.window);
+            SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
+        }
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox2;
+    private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

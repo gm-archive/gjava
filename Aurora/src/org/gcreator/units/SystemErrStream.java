@@ -11,7 +11,7 @@ import org.gcreator.core.utilities;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class SystemErrStream extends PrintStreamCensor {
     public static SystemOutputReader dialog;

@@ -21,7 +21,7 @@ import java.util.Vector;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class JRoundRectangle extends RoundRectangle2D.Double implements JVectorable, Serializable{
     private int n;
