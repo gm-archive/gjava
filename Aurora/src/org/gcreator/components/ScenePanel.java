@@ -27,9 +27,10 @@ import org.gcreator.fileclass.GFile;
  * @author Luís
  */
 public class ScenePanel extends JPanel implements MouseListener, MouseMotionListener{
+    private static final long serialVersionUID = 1;
     SceneEditor root;
     ScenePopupMenu popup;
-    ImageIcon unknown;
+    public final ImageIcon unknown;
     boolean draggingActor;
     ActorInScene actorDragging;
     boolean draggingTile;
@@ -54,7 +55,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         dragOffset.height = 0;
     }
     public void mousePressed(MouseEvent evt){
-        if(evt.getButton()==MouseEvent.BUTTON1){
+        if (evt.getButton() == MouseEvent.BUTTON1) {
             int a = root.mode();
             if(a == SceneEditor.INVALID) {
                 return;
@@ -90,8 +91,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     @SuppressWarnings("unchecked")
     public void addActorAt(int x, int y){
         // if there is no actor selected in the list to add, don't add it.
-        if (root.curactor.getFile() == null)
+        if (root.curactor.getFile() == null) {
             return;
+        }
         ActorInScene act = root.makeNewActor(x,y);
         if (act == null) {
             System.err.println("Error while adding actor at "+x+", "+y+" Actor returned from root is null.");
@@ -135,16 +137,19 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
     
      
+    @Override
     public Dimension getPreferredSize(){
         return getSize();
     }
     
      
+    @Override
     public Dimension getMinimumSize(){
         return getSize();
     }
     
      
+    @Override
     public Dimension getMaximumSize(){
         return getSize();
     }
@@ -165,20 +170,25 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             int d;
-            if(b==null)
+            if(b==null) {
                 d = 0;
-            else
+            }
+            else {
                 d = b.depth;
-            if(d<result)
+            }
+            if(d<result) {
                 result = d;
+            }
         }
         e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             TileLayer a = (TileLayer) e.nextElement();
-            if (a == null)
+            if (a == null) {
                 return result;
-            if(a.depth<result)
+            }
+            if (a.depth < result) {
                 result = a.depth;
+            }
         }
         return result;
     }
@@ -200,20 +210,25 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
             int d;
-            if(b!=null)
+            if(b!=null) {
                 d = b.depth;
-            else
+            }
+            else {
                 d = 0;
-            if(d>result)
+            }
+            if(d>result) {
                 result = d;
+            }
         }
         e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             TileLayer a = (TileLayer) e.nextElement();
-            if (a == null)
+            if (a == null) {
                 return result;
-            if(a.depth>result)
+            }
+            if(a.depth>result) {
                 result = a.depth;
+            }
         }
         return result;
     }
@@ -233,15 +248,19 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 return Integer.MIN_VALUE;
             }
             org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
-            if(b.depth>result&&b.depth<Depth) {
+            if (b == null) {
+                b = new Actor();
+            }
+            if (b.depth > result && b.depth < Depth) {
                 b.depth = result;
             }
         }
         e = scn.tileLayers.elements(); //<ActorInScene>
         while(e.hasMoreElements()){
             TileLayer a = (TileLayer) e.nextElement();
-            if(a.depth>result&&a.depth<Depth)
+            if (a.depth > result && a.depth < Depth) {
                 a.depth = result;
+            }
         }
         return result;
     }
@@ -279,16 +298,18 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     return;
                 }
                 org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
-                if(b==null) {
-                    continue;
+                if(b == null) {
+                    b = new Actor();
+                    //continue;
                 }
                 if (b.depth == dep) {
                         GFile sf = b.sprite;
                     org.gcreator.fileclass.res.Sprite f = null;
-                    if(sf!=null&&sf.value!=null) {
+                    if (sf != null && sf.value != null) {
                         f = (org.gcreator.fileclass.res.Sprite) sf.value;
                     }
-                    if(f!=null&&f.getImageAt(0).image!=null){
+                    
+                    if (f != null && f.getImageAt(0).image != null) {
                         ImageIcon h = f.getImageAt(0).image;
                         g.drawImage(
                                 h.getImage(),
@@ -315,7 +336,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     }
                 }
             }
-            Enumeration tle = scn.tileLayers.elements();//<ActorInScene>
+            Enumeration tle = scn.tileLayers.elements();
             while (tle.hasMoreElements()) {
                 TileLayer l = (TileLayer) tle.nextElement();
                 if (!l.visible) {

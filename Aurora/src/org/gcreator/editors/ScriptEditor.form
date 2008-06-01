@@ -29,7 +29,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="197" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="195" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="saveResourcePanel1" min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
@@ -83,7 +83,7 @@
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder title="Lagnuage">
+                <TitledBorder title="Language">
                   <Border PropertyName="innerBorder" info="null"/>
                 </TitledBorder>
               </Border>

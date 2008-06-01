@@ -52,6 +52,7 @@ public class GPanel extends JPanel{
     public JMenuItem[] items = new JMenuItem[MenuSupporter.MENULIMIT * MenuSupporter.ITEMLIMIT];
     public JSplitPane splitter1;
     public JSplitPane splitter2;
+    public int dividerLocation;
     //public JSplitPane splitter3;
 
     public JTabbedPane navigatorTabs;
@@ -91,7 +92,7 @@ public class GPanel extends JPanel{
     //</editor-fold>
     
     //<editor-fold defaultstate="Collapsed" desc="Constructor">
-    public GPanel(ICore icore, String[] settings){
+    public GPanel(ICore icore, String[] settings) {
         this.icore = icore;
         
         try{
@@ -101,7 +102,7 @@ public class GPanel extends JPanel{
         chooseImage.setApproveButtonText("OK");
         chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
         }catch(Exception e){
-            System.out.println("JfileChooser error in static Aurwindow!");
+            System.out.println("JFileChooser error in static Aurwindow!");
         }
         
         SplashScreen.message = "Initiating window....";
@@ -425,13 +426,17 @@ public class GPanel extends JPanel{
                         splitter1.updateUI();
                     }
                 });
-
+        try {
+            dividerLocation = Integer.parseInt(settings[9]);
+        } catch (NumberFormatException exc) {
+            dividerLocation = 540;
+        }
         if (settings[2].equals("Hidden")) {
             onItemActionPerformed(2, 0, null);
         } else {
             items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(true);
             icore.pack();
-            splitter1.setDividerLocation(0.66);
+            splitter1.setDividerLocation(dividerLocation);
         }
 
         /*try {
@@ -479,7 +484,7 @@ public class GPanel extends JPanel{
         }
         icore.setSize(w, h);
         splitter2.setDividerLocation(159);
-        splitter1.setDividerSize(5);
+        splitter1.setDividerSize(10);
         splitter2.setDividerSize(5);
         utilities.addMessage(29);
         if(!(new File("settings/disable_welcome")).exists()){
@@ -1275,7 +1280,7 @@ public class GPanel extends JPanel{
             //this.setSize(a);
             //this.setExtendedState(b);
             this.repaint();
-            splitter1.setDividerLocation(0.80);
+            splitter1.setDividerLocation(dividerLocation);
         }
         if (menu == 2 && item == 1) {
             Dimension a = this.getSize();

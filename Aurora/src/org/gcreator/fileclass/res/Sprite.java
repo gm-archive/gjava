@@ -18,13 +18,15 @@ import org.gcreator.fileclass.GFile;
  * @author Ali1
  */
 public class Sprite implements Resource {
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
     //public Vector<org.gcreator.fileclass.File> images;
     public Vector<GFile> Simages;
     public int width,height,originX,originY,BBLeft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
     
-    /**@deprecated*/
+    /**
+     * @param name The name of the sprite.
+     * @deprecated*/
     public Sprite(String name){
         this();
     }
@@ -37,20 +39,23 @@ public class Sprite implements Resource {
     }
 
     public GImage getImageAt(int pos){
-        if(pos>=Simages.size())
+        if(pos>=Simages.size()) {
             return null;
+        }
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
-        if(a == null)
+        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
+        if(a == null) {
             return null;
+        }
         return  ((org.gcreator.fileclass.res.GImage)(a.value))/*.image*/;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){
-        if(pos>=Simages.size())
+        if(pos>=Simages.size()) {
             return null;
+        }
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) Simages.elementAt(pos);
+        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
         return a;
     }
     
@@ -95,18 +100,22 @@ public class Sprite implements Resource {
     public void readXml(String xml){
         String[] lines = xml.split("\n");
         String line;
-        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>"))
+        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>")) {
             return;
-        if(!lines[1].matches("<sprite>"))
+        }
+        if(!lines[1].matches("<sprite>")) {
             return;
-        if(lines.length<2)
+        }
+        if(lines.length<2) {
             return;
+        }
         int i = 2;
         while(i < lines.length){
             line = lines[i];
             System.out.println(line);
-            if(line==null||line.equals(""))
+            if(line==null||line.equals("")) {
                 continue;
+            }
             if(line.equals("</sprite>")){
                 break;
             }
@@ -135,8 +144,9 @@ public class Sprite implements Resource {
         return "";
     }
     
-    //SuppressWarnings("unchecked")
-    public Object clone(){
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object clone() {
         Sprite a = new Sprite(/*name*/);
         a.BBBottom = BBBottom;
         a.BBRight = BBRight;

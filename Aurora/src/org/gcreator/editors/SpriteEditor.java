@@ -33,7 +33,7 @@ import org.gcreator.units.ObjectNode;
  * @author  Ali1
  */
 public class SpriteEditor extends TabPanel {
-    
+    public static final long serialVersionUID = 1;
     public Sprite sprite;
     public boolean changed;
     private SubimagePreview prev;
@@ -43,58 +43,49 @@ public class SpriteEditor extends TabPanel {
     private Bounds bounds;
     public IconList subimageList;
     
-    /** Creates new form SpriteEditor */
-    public SpriteEditor(org.gcreator.fileclass.GFile file,Project project) {
+    /** Creates new form SpriteEditor
+     * @param file The file that the sprite belongs to.
+     * @param project The project that the sprite belongs to.
+     */
+    public SpriteEditor(org.gcreator.fileclass.GFile file, Project project) {
         this.project = project;
         this.file = file;
         boolean dontChange = false;
-        //title = file.name + "(" + project.name+")";
-        //if (file.value instanceof Sprite)
-        //{
-        if(file.value != null){
-            if(file.value instanceof String){
+        if (file.value != null) {
+            if(file.value instanceof String) {
                 Sprite spr = new Sprite();
                 spr.readXml((String) file.value);
                 file.value = spr;
                 changed = true;
-            }
-            else{
-                //System.out.println("GOT HERE");
+            } else {
                 this.sprite = (Sprite) ((Sprite) file.value).clone();
                 changed = false;
                 dontChange = true;
             }
         }
         else{
-            this.sprite = (Sprite) new Sprite();
+            this.sprite = new Sprite();
             changed = true;
         }
         Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
-        if(c instanceof JPanel){
-         //   System.out.println("Update c JPanel");
+        if (c instanceof JPanel) {
             ((JPanel) c).updateUI();
         }
         else if(c instanceof JScrollPane){
             ((JScrollPane) c).updateUI();
             Component d = ((JScrollPane) c).getViewport().getView();
-            if(d instanceof JPanel){
-           //     System.out.println("Update d JPanel");
+            if (d instanceof JPanel) {
                 ((JPanel) d).updateUI();
             }
-            else if(d instanceof JEditorPane){
-        //        System.out.println("Update d editor pane");
+            else if(d instanceof JEditorPane) {
                 ((JEditorPane) d).updateUI();
             }
-            else
+            else {
                 d.repaint();
+            }
         }
         initComponents();
         load();
-       // }
-//        else
-//        {
-//            this.sprite = new Sprite(file.name);
-//        }
         try {
             jTextField1.setText(file.name);
         }
@@ -114,8 +105,7 @@ public class SpriteEditor extends TabPanel {
                 updateName();
             }
         });
-        if(dontChange){
-            System.out.println("And here");
+        if (dontChange) {
             changed = false;
         }
         
@@ -132,10 +122,11 @@ public class SpriteEditor extends TabPanel {
                 }
             }
         });
+        int i = 0;
         for (GFile f : sprite.Simages) {
             Image img = ((GImage)f.value).getImage().getImage();
-            subimageList.addElement("Subimage "+sprite.countImages(),new ImageIcon 
-                    (img.getScaledInstance(100, -1, Image.SCALE_DEFAULT)), sprite.countImages()-1);
+            subimageList.addElement("Subimage "+(i+1),new ImageIcon 
+                    (img.getScaledInstance(100, -1, Image.SCALE_DEFAULT)), i++);
         }
         jScrollPane2.setViewportView(subimageList);
     }
@@ -184,7 +175,6 @@ public class SpriteEditor extends TabPanel {
             this.sprite = new Sprite(/*file.name*/);
             return;
         }
-        System.out.println("Loading");
         jSpinner1.setValue(sprite.originX);
         jSpinner2.setValue(sprite.originY);
         
@@ -251,7 +241,7 @@ public class SpriteEditor extends TabPanel {
         saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
         jScrollPane2 = new javax.swing.JScrollPane();
 
-        jSplitPane1.setDividerLocation(375);
+        jSplitPane1.setDividerLocation(400);
         jSplitPane1.setDividerSize(8);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setResizeWeight(0.99);
@@ -359,7 +349,7 @@ public class SpriteEditor extends TabPanel {
                     .add(jLabel2))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jLabel4)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 53, Short.MAX_VALUE)
                 .add(jLabel5)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel4Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
@@ -532,27 +522,12 @@ public class SpriteEditor extends TabPanel {
             }
         });
 
-        jSpinner1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSpinner1MouseClicked(evt);
-            }
-        });
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner1StateChanged(evt);
             }
         });
-        jSpinner1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jSpinner1KeyTyped(evt);
-            }
-        });
 
-        jSpinner2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jSpinner2MouseClicked(evt);
-            }
-        });
         jSpinner2.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jSpinner2StateChanged(evt);
@@ -603,7 +578,7 @@ public class SpriteEditor extends TabPanel {
             .add(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Other", jPanel6);
@@ -637,7 +612,7 @@ public class SpriteEditor extends TabPanel {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                     .add(jPanel7Layout.createSequentialGroup()
                         .add(jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jLabel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -662,10 +637,11 @@ public class SpriteEditor extends TabPanel {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
             .add(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
                 .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 36, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-            .add(jScrollPane2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jSplitPane1.setRightComponent(jPanel8);
@@ -693,30 +669,13 @@ public class SpriteEditor extends TabPanel {
         changed=true;
         sprite.originY = (Integer) jSpinner2.getValue();
         jScrollPane1.updateUI();
-        //   System.out.println("7");
     }//GEN-LAST:event_jSpinner2StateChanged
-
-    private void jSpinner2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner2MouseClicked
-        changed=true;
-        //  System.out.println("3");
-    }//GEN-LAST:event_jSpinner2MouseClicked
-
-    private void jSpinner1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSpinner1KeyTyped
-        changed=true;
-        //  System.out.println("2");
-    }//GEN-LAST:event_jSpinner1KeyTyped
 
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         changed=true;
         sprite.originX = (Integer) jSpinner1.getValue();
         jScrollPane1.updateUI();
-        //   System.out.println("6");
     }//GEN-LAST:event_jSpinner1StateChanged
-
-    private void jSpinner1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinner1MouseClicked
-        changed=true;
-        // System.out.println("1");
-    }//GEN-LAST:event_jSpinner1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         changed=true;
@@ -724,13 +683,11 @@ public class SpriteEditor extends TabPanel {
         jSpinner2.setValue(sprite.height / 2);
         sprite.originX = (Integer) jSpinner1.getValue();
         sprite.originY = (Integer) jSpinner2.getValue();
-        //   System.out.println("12");
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         changed=true;
         sprite.precise = jCheckBox1.isSelected();
-        //    System.out.println("4");
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -747,7 +704,6 @@ public class SpriteEditor extends TabPanel {
         changed=true;
         bounds = SpriteEditor.Bounds.FULL;
         setAutomaticBounds();
-        //  System.out.println("13");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -760,7 +716,6 @@ public class SpriteEditor extends TabPanel {
         bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBBottom = (Integer) jSpinner6.getValue();
         jScrollPane1.updateUI();
-        // System.out.println("9");
     }//GEN-LAST:event_jSpinner6StateChanged
 
     private void jSpinner5StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner5StateChanged
@@ -768,7 +723,6 @@ public class SpriteEditor extends TabPanel {
         bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBRight = (Integer) jSpinner5.getValue();
         jScrollPane1.updateUI();
-        // System.out.println("10");
     }//GEN-LAST:event_jSpinner5StateChanged
 
     private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
@@ -776,7 +730,6 @@ public class SpriteEditor extends TabPanel {
         bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBTop = (Integer) jSpinner4.getValue();
         jScrollPane1.updateUI();
-        //System.out.println("8");
     }//GEN-LAST:event_jSpinner4StateChanged
 
     private void jSpinner3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner3StateChanged
@@ -784,7 +737,6 @@ public class SpriteEditor extends TabPanel {
         bounds = SpriteEditor.Bounds.CUSTOM;
         sprite.BBLeft = (Integer) jSpinner3.getValue();
         jScrollPane1.updateUI();
-        //  System.out.println("11");
     }//GEN-LAST:event_jSpinner3StateChanged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -793,11 +745,12 @@ public class SpriteEditor extends TabPanel {
         sprite.Simages.remove(id);
         subimageList.removeElement(id);
         cleanSubimages();
-        //    System.out.println("15");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (sprite.countImages() == 0) return;
+        if (sprite.countImages() == 0) {
+            return;
+        }
         int id = (getViewedId() + 1)%sprite.countImages();
         setViewedId(id);
         subimageList.setSelectedIndex(id);
@@ -806,17 +759,19 @@ public class SpriteEditor extends TabPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int id = getViewedId() - 1;
-        if(id < 0)
-            id = Math.max(0, sprite.countImages()-1);
+        if(id < 0) {
+            id = Math.max(0, sprite.countImages() - 1);
+        }
         setViewedId(id);
         subimageList.setSelectedIndex(id);
         subimageList.repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) res.getFile();
-        if (a == null || a.value == null)
+        org.gcreator.fileclass.GFile a = res.getFile();
+        if (a == null || a.value == null) {
             return;
+        }
         changed = true;
         Object o = a.value;
         if (sprite.countImages()  == 0){
@@ -834,8 +789,9 @@ public class SpriteEditor extends TabPanel {
         
         if (((org.gcreator.fileclass.res.GImage) o)!=null&&
                 (sprite.width == ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth()) &&
-                sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() )
+                sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() ) {
             sprite.addToList(res.getFile());
+        }
         else if (((org.gcreator.fileclass.res.GImage) o) != null) {
             GImage newImg = (GImage) o;
             GetImageResizeInfoDialog dialog = new GetImageResizeInfoDialog(gcreator.window, project);
@@ -979,14 +935,13 @@ public class SpriteEditor extends TabPanel {
         bounds = SpriteEditor.Bounds.FULL;
         setAutomaticBounds();
         jScrollPane1.updateUI();
-        System.gc();
-        //    System.out.println("14");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jScrollPane1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseDragged
         changed = true;
-        if (!dragging)
+        if (!dragging) {
             return;
+        }
         int x,y;
         x = evt.getX()-2;
         y = evt.getY()-2;
@@ -995,22 +950,20 @@ public class SpriteEditor extends TabPanel {
         jSpinner1.setValue(x);
         jSpinner2.setValue(y);
         prev.repaint();
-        //   System.out.println("16");
     }//GEN-LAST:event_jScrollPane1MouseDragged
 
     private void jScrollPane1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MouseReleased
         changed = true;
         dragging = false;
-        //    System.out.println("18");
     }//GEN-LAST:event_jScrollPane1MouseReleased
 
     private void jScrollPane1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jScrollPane1MousePressed
         changed = true;
-        if (evt.getX() > sprite.width || evt.getY() > sprite.height)
+        if (evt.getX() > sprite.width || evt.getY() > sprite.height) {
             return;
+        }
         dragging = true;
         jScrollPane1MouseDragged(evt);
-        //   System.out.println("17");
     }//GEN-LAST:event_jScrollPane1MousePressed
     
     private Point getLocationFor(GetImageResizeInfoDialog.ImageScale scale, Dimension containerSize, Dimension thingSize) {
@@ -1022,6 +975,7 @@ public class SpriteEditor extends TabPanel {
        } else if (scale == GetImageResizeInfoDialog.ImageScale.PLACE_AT_CENTER) {
            x = containerSize.width/2-width/2; y = containerSize.height/2-height/2;
        } else if (scale == GetImageResizeInfoDialog.ImageScale.PLACE_AT_NORTH) {
+        System.gc();
            x = containerSize.width/2-width/2; y = 0;
        } else if (scale == GetImageResizeInfoDialog.ImageScale.PLACE_AT_NORTHEAST) {
            x = containerSize.width/2-width; y = 0;
@@ -1041,8 +995,9 @@ public class SpriteEditor extends TabPanel {
     
     private void cleanSubimages() {
         int id = getViewedId();
-        if(id >= sprite.countImages())
+        if(id >= sprite.countImages()) {
             id = 0;
+        }
         jLabel4.setText("Subimages: " + sprite.countImages());
         setViewedId(id);
         /*while (subimageList.countVisibleElements() > sprite.countImages()) {
@@ -1091,8 +1046,9 @@ public class SpriteEditor extends TabPanel {
     }
     
     private void setAutomaticBounds() {
-        if (sprite.countImages() <= 0)
+        if (sprite.countImages() <= 0) {
             return;
+        }
         changed = true;
         final int MIN_ALPHA;
         if (bounds == Bounds.FULL) {
@@ -1106,8 +1062,9 @@ public class SpriteEditor extends TabPanel {
             sprite.BBBottom = (Integer) jSpinner6.getValue();
             return;
         } else {
-            if (bounds == Bounds.AUTO_STANDARD)
+            if (bounds == Bounds.AUTO_STANDARD) {
                 MIN_ALPHA = (int) (0.5 * 255);
+            }
             else if (bounds == Bounds.AUTO_STRICT)
                 MIN_ALPHA = (int) (0.8 * 255);
             else {// Bounds.AUTO_CUSTOM
@@ -1126,8 +1083,9 @@ public class SpriteEditor extends TabPanel {
             try {
                 GImage gimg = sprite.getImageAt(n);
                 img = gimg.getImage().getImage();
-                if (gimg.transparent)
+                if (gimg.transparent) {
                     transparentColor = gimg.transparentColor;
+                }
             } catch (NullPointerException e) {
                 System.out.println("[SpriteEditor@FixAutomaticBounds:862]NullPointerException!");
                 return;
@@ -1136,60 +1094,68 @@ public class SpriteEditor extends TabPanel {
             g.drawImage(img,0,0,this);
             //left
             boolean setl = false, setr = false, sett = false, setb = false;
-            for (int i = 0; i < sprite.width; i++)
+            for (int i = 0; i < sprite.width; i++) {
                 for (int j = 0; j < sprite.height; j++) {
                     int RGBA = bufImg.getRGB(i, j);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
                         if (!setl) {
-                           sprite.BBLeft = i;
-                           setl = true;
-                        } else
+                            sprite.BBLeft = i;
+                            setl = true;
+                        } else {
                             sprite.BBLeft = Math.min(sprite.BBLeft, i);
+                        }
                         break;
                     }
+                }
             }
             //right
-            for (int i = sprite.width-1; i >= 0; i--)
+            for (int i = sprite.width-1; i >= 0; i--) {
                 for (int j = 0; j < sprite.height; j++) {
                     int RGBA = bufImg.getRGB(i, j);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
                         if (!setr) {
-                           sprite.BBRight = i;
-                           setr = true;
-                        } else
+                            sprite.BBRight = i;
+                            setr = true;
+                        } else {
                             sprite.BBRight = Math.max(sprite.BBRight, i);
+                        }
                         break;
                     }
+                }
             }
             //top
-            for (int i = 0; i < sprite.height; i++)
+            for (int i = 0; i < sprite.height; i++) {
                 for (int j = 0; j < sprite.width; j++) {
                     int RGBA = bufImg.getRGB(j, i);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
                         if (!sett) {
-                           sprite.BBTop = i;
-                           sett = true;
-                        } else
+                            sprite.BBTop = i;
+                            sett = true;
+                        } else {
                             sprite.BBTop = Math.min(sprite.BBTop, i);
+                        }
                         break;
                     }
+                }
             }
             //bottom
-            for (int i = sprite.height-1; i >= 0; i--)
+            for (int i = sprite.height-1; i >= 0; i--) {
                 for (int j = 0; j < sprite.width; j++) {
                     int RGBA = bufImg.getRGB(j, i);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
                         if (!setb) {
-                           sprite.BBBottom = i;
-                           setb = true;
-                        } else
+                            sprite.BBBottom = i;
+                            setb = true;
+                        } else {
                             sprite.BBBottom = Math.max(sprite.BBBottom, i);
+                        }
                         break;
                     }
+                }
             }
             if (n+1 < sprite.countImages()) {
                 bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);

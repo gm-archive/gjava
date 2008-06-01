@@ -86,16 +86,18 @@ public class SceneEditor extends TabPanel {
     public void eraseActorsAt(Rectangle r){
         @SuppressWarnings("unchecked")
         Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
-        while(e.hasMoreElements()){
+        while(e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
-            ImageIcon i = j.getImageAt(0).image;
-            aisw = i.getIconWidth();
-            aish = i.getIconHeight();
-            if(aisx<=r.x+r.width) {
+            try {
+                aisw = ((Sprite)(((Actor)(ais.Sactor.value)).sprite.value)).width;
+                aish = ((Sprite)(((Actor)(ais.Sactor.value)).sprite.value)).height;
+            } catch (NullPointerException exc) {
+                aisw = aish = 8;
+            }
+            if (aisx <= r.x+r.width) {
                 if (aisx + aisw >= r.x) {
                     if (aisy <= r.y + r.height) {
                         if (aisy + aish >= r.y) {
@@ -115,11 +117,16 @@ public class SceneEditor extends TabPanel {
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
-            Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
-            ImageIcon i = j.getImageAt(0).image;
+            ImageIcon i;
+            try {
+                Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
+                i = j.getImageAt(0).image;
+            } catch (NullPointerException exc) {
+                i = scenePanel.unknown;
+            }
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
-            if (x >= aisx && x < aisx+aisw && y >= aisy && y < aisy+aisw) {
+            if (x >= aisx && x < aisx+aisw && y >= aisy && y < aisy+aish) {
                 return ais;
             }
         }
@@ -131,7 +138,7 @@ public class SceneEditor extends TabPanel {
         Enumeration<Tile> e = getTileLayer().tiles.elements();
         while(e.hasMoreElements()){
             Tile t = e.nextElement();
-            if (x >= t.x && x < t.x+t.width && y >= t.y && y < t.y+t.width) {
+            if (x >= t.x && x < t.x+t.width && y >= t.y && y < t.y+t.height) {
                 return t;
             }
         }
@@ -1781,16 +1788,18 @@ public class SceneEditor extends TabPanel {
     }
     
     public Color getMapBGColor(){
-        if(jCheckBox1.isSelected())
-            return colorSelection1.getBackground(); 
+        if(jCheckBox1.isSelected()) {
+            return colorSelection1.getBackground();
+        } 
         return Color.BLACK;
     }
     
     public void updateScroll(){
         if(((Integer) jSpinner1.getValue()) > 5)
             jSpinner1.setValue(5);
-        else if(((Integer) jSpinner1.getValue()) < -5)
+        else if(((Integer) jSpinner1.getValue()) < -5) {
             jSpinner1.setValue(-5);
+        }
         ((Scene) file.value).snapX = (Integer) jSpinner2.getValue();
         ((Scene) file.value).snapY = (Integer) jSpinner3.getValue();
         scenePanel.updateUI();

@@ -17,7 +17,7 @@ import org.gcreator.editors.*;
  *
  * @author luis
  */
-public class EventPopupMenu extends JPopupMenu{
+public class EventPopupMenu extends JPopupMenu {
     private static final long serialVersionUID = 1;
     private Vector array;
     private ActorEditor edit;
@@ -43,6 +43,9 @@ public class EventPopupMenu extends JPopupMenu{
             array.remove(x);
         }
         catch(Exception e){}
+        if (edit.jList1.getSelectedIndex() >= edit.actor.events.size()) {
+            edit.jList1.setSelectedIndex(edit.actor.events.size() - 1);
+        }
         edit.updateUI();
         edit.updateActionList();
     }

@@ -125,6 +125,9 @@ public class SettingsIO {
             out.write("<theme>");
             out.write(MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName());
             out.write("</theme>");
+            out.write("<consoleboxlocation>");
+            out.write(gcreator.panel.splitter1.getDividerLocation()+"");
+            out.write("</consoleboxlocation>");
             out.write("</settings>");
             out.close();
         } catch (IOException e) {
@@ -143,7 +146,7 @@ public class SettingsIO {
             catch(Exception e){}
             return null;
         }
-        String[] a = new String[9];
+        String[] a = new String[10];
         a[0] = null;
         a[1] = null;
         a[2] = null;
@@ -153,6 +156,7 @@ public class SettingsIO {
         a[6] = null;
         a[7] = null;
         a[8] = null;
+        a[9] = null;
         DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
         //SAXParserFactory fact = SAXParserFactory.newInstance();
         DocumentBuilder builder;
@@ -172,34 +176,47 @@ public class SettingsIO {
                 child = childs.item(i);
                 String name = child.getNodeName();
                 int id = -1;
-                if(name.equals("style"))
+                if(name.equals("style")) {
                     id = 0;
-                else if(name.equals("desktop"))
+                }
+                else if(name.equals("desktop")) {
                     id = 1;
-                else if(name.equals("console"))
+                }
+                else if(name.equals("console")) {
                     id = 2;
-                else if(name.equals("language"))
+                }
+                else if(name.equals("language")) {
                     id = 3;
-                else if(name.equals("toolbar"))
+                }
+                else if(name.equals("toolbar")) {
                     id = 4;
-                else if(name.equals("tree"))
+                }
+                else if(name.equals("tree")) {
                     id = 5;
-                else if(name.equals("size"))
+                }
+                else if(name.equals("size")) {
                     id = 6;
-                else if(name.equals("antialiasing"))
+                }
+                else if(name.equals("antialiasing")) {
                     id = 7;
-                else if(name.equals("theme"))
+                }
+                else if(name.equals("theme")) {
                     id = 8;
+                }
+                else if(name.equals("consoleboxlocation")) {
+                    id = 9;
+                }
                 if(id==-1){
                     addError(33);
                     addStringFormatedMessage(name, null, true);
                     return null;
                 }
-                if(a[id]!=null)
+                if(a[id]!=null) {
                     addError(34);
+                }
                 a[id] = child.getTextContent(); //1.4 
             }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null||a[7]==null||a[8]==null){
+            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null||a[7]==null||a[8]==null||a[9]==null){
                 addError(35);
             }
             return a;

@@ -114,13 +114,15 @@ public class gcreator {
         boolean ismdi = false;
         for(int i = 0; i < args.length; i++){
             System.out.println("args[" + i + "] = " + args[i]);
-            if(args[i].equals("-safe"))
+            if(args[i].equals("-safe")) {
                 plugload = false;
+            }
             else if(args[i].matches("^-jemul:.*$")){
                 java_version = args[i].replaceFirst("^-jemul:(.*)$", "$1");
             }
-            else if(args[i].equals("-mdi"))
+            else if(args[i].equals("-mdi")) {
                 ismdi = true;
+            }
             else if(args[i].matches("^-(-?)help$")){
                 System.out.println("G-Creator version: " + version);
                 System.out.println("Licensed under LGPL v3. More information in README.txt and 'About'.");
@@ -146,8 +148,9 @@ public class gcreator {
                     //plugins = Plugger.getPlugList(PluginsList.loadPluglist());
                 }
         }
-        if(ver<=4)
+        if (ver <= 4) {
             plugload = false;
+        }
         arguments = args;
         
                 String[] settings = null;
@@ -157,7 +160,7 @@ public class gcreator {
         }
 
         if (settings == null) {
-            settings = new String[9];
+            settings = new String[10];
             //settings[0] = "Metal";
             settings[0] = UIManager.getSystemLookAndFeelClassName();
             settings[1] = "Tabs (Top)";
@@ -168,6 +171,7 @@ public class gcreator {
             settings[6] = "800, 600";
             settings[7] = "true";
             settings[8] = MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName();
+            settings[9] = "540";
         }
 
         if(ismdi||ver<6)
@@ -354,7 +358,7 @@ public class gcreator {
         
         ScriptThemeManager.load();
         
-        if(!applet&&plugload){
+        if (!applet && plugload) {
             Plugger.onLoad();
             Plugger.onSplashStart();
         }
@@ -405,13 +409,15 @@ public class gcreator {
             e.printStackTrace();
         }
         //SystemOutputReader.instance.
-        if(splash!=null)
+        if(splash!=null) {
             SwingUtilities.updateComponentTreeUI(splash);
+        }
         SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
         splash.progressBar.setVisible(true);
         
-        if(!applet&&plugload)
+        if (!applet && plugload) {
             Plugger.onMainWindowStart();
+        }
         //ActorEditor.setupActions();
         window = new Aurwindow(settings);
         gcreator.panel.antialiasing = Boolean.parseBoolean(settings[7]);
@@ -426,8 +432,9 @@ public class gcreator {
         
         if(splash!=null){
             splash.fadeOut();
-            if(!applet&&plugload)
+            if(!applet&&plugload) {
                 Plugger.onSplashDispose();
+            }
             panel.menubar.updateUI();
         }
     }
