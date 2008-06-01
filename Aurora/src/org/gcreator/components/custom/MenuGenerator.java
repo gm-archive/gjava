@@ -27,17 +27,19 @@ public class MenuGenerator {
     private int ltype;
     private Object parent;
     
-    public MenuGenerator(){
+    public MenuGenerator() {
         ltype = type;//Don't change your mind
         
         initMenu();
     }
     
     public static void addActionListener(Object o, ActionListener a){
-        if(o instanceof JMenuItem)
+        if(o instanceof JMenuItem) {
             ((JMenuItem) o).addActionListener(a);
-        if(o instanceof DiscMenuItem)
+        }
+        if(o instanceof DiscMenuItem) {
             ((DiscMenuItem) o).addActionListener(a);
+        }
     }
     
     private void initMenu(){
@@ -142,10 +144,12 @@ public class MenuGenerator {
     }
     
     public void show(Component invoker, int x, int y){
-        Point p = invoker.getLocation/*OnScreen*/();
-        if(ltype==TYPE_STD)
+        Point p = invoker.getLocation();
+        if(ltype == TYPE_STD) {
             std.show(invoker, x, y);
+        }
         else{
+            
             disc.setLocation(x+p.x-disc.getWidth()/2, y+p.y-disc.getHeight()/2);
             disc.setVisible(true);
         }

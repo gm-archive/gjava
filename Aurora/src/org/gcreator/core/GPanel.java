@@ -591,7 +591,6 @@ public class GPanel extends JPanel{
 
     //<editor-fold defaultstate="collapsed" desc="popupTreeMenu">
     public void popupTreeMenu(MouseEvent e) {
-        System.out.println("popup menu");
         if (!using) {
             try {
                 Robot robot = new Robot();

@@ -107,7 +107,8 @@ public class DiscMenu extends DialogPlus {
         setDoubleBuffered(true);
         setAlwaysOnTop(true);
         JPanel p = new JPanel() {
-
+            public static final long serialVersionUID = 1;
+            @Override
             public void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 DiscMenu.this.paintComponent(g);
@@ -151,8 +152,9 @@ public class DiscMenu extends DialogPlus {
     }
 
     private void call(DiscMenuItem item, boolean back) {
-        if(!item.isEnabled())
+        if(!item.isEnabled()) {
             return;
+        }
         ActionEvent evt = new ActionEvent(this, -1, "call");
         item.actionPerformed(evt, back);
         if (!(item instanceof DiscMenuContainer)) {
@@ -207,6 +209,7 @@ public class DiscMenu extends DialogPlus {
 
     }
 
+    @Override
     public void update(Graphics g) {
         paint(g);
     }
@@ -419,8 +422,16 @@ public class DiscMenu extends DialogPlus {
         }
     }
 
+    @Override
     public void dispose() {
         menus.remove(this);
         super.dispose();
+    }
+    
+    @Override
+    public void setVisible(boolean b) {
+        if (b)
+            useless = false;
+        super.setVisible(b);
     }
 }

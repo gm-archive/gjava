@@ -220,7 +220,7 @@
                               <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jPanel7" pref="221" max="32767" attributes="0"/>
+                              <Component id="jPanel7" pref="213" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

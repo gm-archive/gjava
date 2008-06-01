@@ -1,7 +1,7 @@
 /*
- * ActorEditor2.java
+ * ActorEditor.java
  *
- * Created on 12 September 2007, 22:43
+ * Created on 12 September 2007, 22:43f
  */
 package org.gcreator.editors;
 
@@ -24,7 +24,7 @@ import org.gcreator.actions.*;
 import org.gcreator.managers.LangSupporter;
 
 public class ActorEditor extends TabPanel {
-
+    public static final long serialVersionUID = 1;
     public boolean changed = false;
     public EventListModel elist;
     Actor actor;
@@ -55,12 +55,14 @@ public class ActorEditor extends TabPanel {
                 System.out.println("Update d editor pane");
                 ((JEditorPane) d).updateUI();
             }
-            else
+            else {
                 d.repaint();
+            }
         }
         else
-            if(c!=null)
-                c.repaint();
+            if(c!=null) {
+            c.repaint();
+        }
     }
     
     public void spriteChanged() {
@@ -69,6 +71,12 @@ public class ActorEditor extends TabPanel {
     }
 
     //You may think this is a stupid function, but I needed it.
+    //(stupid functions for stupid people)
+    /**
+     * If you neeed to access ActorEditor's 'this' from an inner class
+     * (anonymous or not), just use ActorEditor.this.
+     * @deprecated
+     */
     protected ActorEditor getThis(){
         return this;
     }
@@ -95,7 +103,7 @@ public class ActorEditor extends TabPanel {
             public void mousePressed(java.awt.event.MouseEvent evt){}
             public void mouseReleased(java.awt.event.MouseEvent evt){
                 if(evt.isPopupTrigger()){
-                ActionPopupMenu p = new ActionPopupMenu(getThis());
+                ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
                 p.show(jList2, evt.getX(), evt.getY());
                 }
             }
@@ -155,14 +163,17 @@ public class ActorEditor extends TabPanel {
         jSpinner1.setValue((Integer) actor.depth);
     }
 
+    @Override
     public boolean wasModified() {
         return changed;
     }
     
+    @Override
     public boolean canSave(){
         return changed;
     }
 
+    @Override
     public boolean Load() {
         jCheckBox1.setSelected(actor.visible);
         jCheckBox2.setSelected(actor.solid);
@@ -170,6 +181,7 @@ public class ActorEditor extends TabPanel {
         return true;
     }
 
+    @Override
     public boolean Save() {
         this.jList2.updateUI();
         actor.visible = jCheckBox1.isSelected();
@@ -186,7 +198,7 @@ public class ActorEditor extends TabPanel {
         //actor.name = file.name;
         org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
-    
+    //<editor-fold desc="Useless Junk" defaultstate="collapsed">
     public static void setupActions() {
         //JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
         //addAction(p,"test");
@@ -242,7 +254,7 @@ public class ActorEditor extends TabPanel {
             this.j = j;
         }
     }*/
-
+//</editor-fold>
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -798,12 +810,12 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jList2MousePressed
 
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-         int to  = jList1.locationToIndex(evt.getPoint());
+   /*      int to  = jList1.locationToIndex(evt.getPoint());
      if (to == from) return;
        org.gcreator.events.Event remove = (org.gcreator.events.Event) this.elist.getEvents().remove(from);
       (this.elist.getEvents()).add(to,remove);
       from = to;
-      
+     */ 
     }//GEN-LAST:event_jList1MouseDragged
 
     private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed

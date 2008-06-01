@@ -28,7 +28,6 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.MetalTheme;
 import org.gcreator.api.util.CreateApiList;
-//import org.gcreator.bob.boblook.BobLookAndFeel;
 import org.gcreator.components.NewFileGroup;
 import org.gcreator.components.NewProject;
 import org.gcreator.components.SystemOutputReader;
@@ -72,7 +71,7 @@ public class gcreator {
             //SkinLookAndFeel.setSkin(skin);
             //UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
             //UIManager.setLookAndFeel(new SkinLookAndFeel());
-            //UIManager.installLookAndFeel(new LookAndFeelInfo("Bob Look", BobLookAndFeel.class.getName()));
+            //UIManager.installLookAndFeel("Bob Look", "org.gcreator.bob.boblook.BobLookAndFeel");
         } catch (Exception exc) {
             System.err.println("Exception_at gcreator<static>: "+exc);
         }

@@ -18,7 +18,7 @@ import org.gcreator.editors.*;
  * @author luis
  */
 public class EventPopupMenu extends JPopupMenu{
-    
+    private static final long serialVersionUID = 1;
     private Vector array;
     private ActorEditor edit;
     
