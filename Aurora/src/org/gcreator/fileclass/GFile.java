@@ -20,6 +20,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
+import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;

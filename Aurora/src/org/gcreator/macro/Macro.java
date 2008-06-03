@@ -5,18 +5,20 @@
 
 package org.gcreator.macro;
 
-import java.util.*;
+import javax.script.*;
+import javax.swing.JOptionPane;
 
 /**
  * A list of actions that can be recorded and played
  * @author Luís
  */
 public class Macro {
-    private Vector<MacroAction> actions = new Vector<MacroAction>();
+    public String javascript = "";
     private String name;
     public static Macro recordingMacro = null;
     public String author;
     public String description;
+    private static ScriptEngineManager manager = new ScriptEngineManager();
     
     //Should this be public?
     public Macro(String name){
@@ -63,23 +65,27 @@ public class Macro {
      * Add a new action to the recording macro
      * @param action The action to be added
      */
-    public static void macroAction(MacroAction action){
+    public static void macroAction(String action){
         if(recordingMacro!=null)
-            recordingMacro.actions.add(action);
+            recordingMacro.javascript += action;
     }
     
     /**
      * Plays the macro
      */
     public void play(){
-        Enumeration<MacroAction> gnum = actions.elements();
-        MacroAction macro;
-        while(gnum.hasMoreElements()){
-            macro = gnum.nextElement();
-            macro.play();
+        ScriptEngine engine = manager.getEngineByName("JavaScript");
+        try{
+            engine.eval(javascript);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(
+                    org.gcreator.core.gcreator.panel.getICore().getParentWindow(),
+                    "Error executing macro:\n" + e.toString(), "Macro Execution Error", JOptionPane.WARNING_MESSAGE);
         }
         if(recordingMacro!=this) //Avoid cyclic references.
-            Macro.macroAction(new PlayMacroAction(this));
+            Macro.macroAction(
+                    "org.gcreator.macro.MacroLibrary.playMacroWithName(\"" + getName() + "\");\n");
     }
     
     /**

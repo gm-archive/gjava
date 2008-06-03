@@ -14,7 +14,6 @@ import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.Project;
 import org.gcreator.macro.Macro;
-import org.gcreator.macro.NewProjectAction;
 import org.gcreator.managers.*;
 
 /**
@@ -141,7 +140,14 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     project.location = "";
     GPanel.setMainProject(project);
     ProjectTree.importFolderToTree(project, gcreator.panel.top);
-    Macro.macroAction(new NewProjectAction(project.name));
+    Macro.macroAction(
+                        "project = org.gcreator.fileclass.GameProject.balance("
+                        + "org.gcreator.components.ProjectTypes.EMPTY_GAME);\n"
+                        + "project.name = \"" + project.name + "\";\n"
+                        + "project.location = \"\";\n"
+                        + "org.gcreator.core.GPanel.setMainProject(project);\n"
+                        + "org.gcreator.managers.ProjectTree.importFolderToTree("
+                        + "project, org.gcreator.core.gcreator.panel.top);\n");
     try {
         gcreator.panel.workspace.updateUI();
     } catch (Exception e) {

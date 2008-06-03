@@ -48,7 +48,7 @@ public class MacroCellRenderer extends JLabel implements ListCellRenderer {
                  background = new Color(0, 200, 0);
              else
                  try{
-                 background = list.getBackground();
+                 background = list.getSelectionBackground();
                  }
                  catch(Exception e){
                      background = Color.BLUE;

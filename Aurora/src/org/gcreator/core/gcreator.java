@@ -9,8 +9,8 @@
 
 package org.gcreator.core;
 
-import com.l2fprod.gui.plaf.skin.Skin;
-import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
+//import com.l2fprod.gui.plaf.skin.Skin;
+//import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -49,7 +49,7 @@ public class gcreator {
     public static Aurwindow window;
     public static GPanel panel;
     public static String output = "";
-    static SplashScreen splash;
+    public static SplashScreen splash;
     public static ClipboardManager clipboard = new ClipboardManager();
     public static String folder;
     private static String java_version = System.getProperty("java.version");
@@ -103,15 +103,18 @@ public class gcreator {
     
     public static void __main(String[] args) {
         try {
+            UIManager.installLookAndFeel("Bob Look&Feel", "org.gcreator.bob.boblook.BobLookAndFeel");
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             loadLookandFeels();
         }
         catch(Exception exc) {
             System.out.println("Exception: "+exc);
         }
+        //org.gcreator.bob.boblook.BobLookAndFeel
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;
+        if(args!=null)
         for(int i = 0; i < args.length; i++){
             System.out.println("args[" + i + "] = " + args[i]);
             if(args[i].equals("-safe")) {

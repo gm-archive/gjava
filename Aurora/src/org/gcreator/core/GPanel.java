@@ -882,7 +882,6 @@ public class GPanel extends JPanel{
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         }
-        Macro.macroAction(new OpenFileAction(file));
     }
     //</editor-fold>
 

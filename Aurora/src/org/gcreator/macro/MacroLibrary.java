@@ -57,4 +57,13 @@ public class MacroLibrary{
         Arrays.sort(ret);
         return ret;
     }
+    
+    public static void playMacroWithName(String name){
+        for(Macro macro : macros){
+            if(macro.getName().equals(name)){
+                macro.play();
+                break;
+            }
+        }
+    }
 }
