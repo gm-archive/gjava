@@ -122,8 +122,20 @@ public class MenuSupporter {
         items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_saveall.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
         items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_save.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 6)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 6, evt);
+                    }
+                });
         items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
         items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_saveall.png")));
+        items[MenuSupporter.GenerateMenuItemId(0, 7)].addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent evt) {
+                        onItemActionPerformed(0, 7, evt);
+                    }
+                });
         menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
         menus[9].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/import.png")));
         menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
