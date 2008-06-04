@@ -105,7 +105,7 @@ public class SyntaxStyle
 			(f.isBold() ? Font.BOLD : 0)
 			| (f.isItalic() ? Font.ITALIC : 0),
 			f.getSize());
-		fontMetrics = Toolkit.getDefaultToolkit().getFontMetrics(lastStyledFont);
+		fontMetrics = /*Toolkit.getDefaultToolkit().*/getFontMetrics(lastStyledFont);
 		return fontMetrics;
 	}
 

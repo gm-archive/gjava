@@ -1,6 +1,6 @@
 //Modified by Luís Reis(disabled main function)
 
-package net.iharder.dnd;
+/*package net.iharder.dnd;
 
 import java.awt.datatransfer.DataFlavor;
 import java.io.BufferedReader;
@@ -49,14 +49,14 @@ import java.util.logging.Logger;
  * @author  Robert Harder
  * @author  rharder@users.sf.net
  * @version 1.0.1
- */
+ *
 public class FileDrop
 {
     private transient javax.swing.border.Border normalBorder;
     private transient java.awt.dnd.DropTargetListener dropListener;
     
     
-    /** Discover if the running JVM is modern enough to have drag and drop. */
+    /** Discover if the running JVM is modern enough to have drag and drop. *
     private static Boolean supportsDnD;
     
     // Default border color
@@ -71,7 +71,7 @@ public class FileDrop
      * @param c Component on which files will be dropped.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.awt.Component c,
     final Listener listener )
@@ -94,7 +94,7 @@ public class FileDrop
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.awt.Component c,
     final boolean recursive,
@@ -119,7 +119,7 @@ public class FileDrop
      * @param c Component on which files will be dropped.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.io.PrintStream out,
     final java.awt.Component c,
@@ -149,7 +149,7 @@ public class FileDrop
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.io.PrintStream out,
     final java.awt.Component c,
@@ -172,7 +172,7 @@ public class FileDrop
      * @param dragBorder Border to use on <tt>JComponent</tt> when dragging occurs.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.awt.Component c,
     final javax.swing.border.Border dragBorder,
@@ -198,7 +198,7 @@ public class FileDrop
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.awt.Component c,
     final javax.swing.border.Border dragBorder,
@@ -226,7 +226,7 @@ public class FileDrop
      * @param dragBorder Border to use on <tt>JComponent</tt> when dragging occurs.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.io.PrintStream out,
     final java.awt.Component c,
@@ -257,7 +257,7 @@ public class FileDrop
      * @param recursive Recursively set children as drop targets.
      * @param listener Listens for <tt>filesDropped</tt>.
      * @since 1.0
-     */
+     *
     public FileDrop(
     final java.io.PrintStream out,
     final java.awt.Component c,
@@ -322,7 +322,7 @@ public class FileDrop
 
                             // Convert list to array
                             java.io.File[] filesTemp = new java.io.File[ fileList.size() ];
-                            fileList.toArray( filesTemp );
+                            fileList.toArray(filesTemp);
                             final java.io.File[] files = filesTemp;
 
                             // Alert listener to drop.
@@ -514,7 +514,7 @@ public class FileDrop
     
     
     
-    /** Determine if the dragged data is a file list. */
+    /** Determine if the dragged data is a file list. *
     private boolean isDragOk( final java.io.PrintStream out, final java.awt.dnd.DropTargetDragEvent evt )
     {   boolean ok = false;
         
@@ -548,7 +548,7 @@ public class FileDrop
     }   // end isDragOk
     
     
-    /** Outputs <tt>message</tt> to <tt>out</tt> if it's not null. */
+    /** Outputs <tt>message</tt> to <tt>out</tt> if it's not null. *
     private static void log( java.io.PrintStream out, String message )
     {   // Log message if requested
         if( out != null )
@@ -567,7 +567,7 @@ public class FileDrop
      *
      * @param c The component to unregister as a drop target
      * @since 1.0
-     */
+     *
     public static boolean remove( java.awt.Component c)
     {   return remove( null, c, true );
     }   // end remove
@@ -583,7 +583,7 @@ public class FileDrop
      * @param c The component to unregister
      * @param recursive Recursively unregister components within a container
      * @since 1.0
-     */
+     *
     public static boolean remove( java.io.PrintStream out, java.awt.Component c, boolean recursive )
     {   // Make sure we support dnd.
         if( supportsDnD() )
@@ -637,7 +637,7 @@ public class FileDrop
 
 
     
-/* ********  I N N E R   I N T E R F A C E   L I S T E N E R  ******** */    
+/* ********  I N N E R   I N T E R F A C E   L I S T E N E R  ******** *    
     
     
     /**
@@ -654,7 +654,7 @@ public class FileDrop
      * </pre></code>
      *
      * @since 1.0
-     */
+     *
     public interface Listener
     {   
         /**
@@ -662,8 +662,9 @@ public class FileDrop
          *
          * @param files An array of <tt>File</tt>s that were dropped.
          * @since 1.0
-         */
+         *
         public abstract void filesDropped( java.io.File[] files );
     }   // end inner-interface Listener
     
 }   // end class FileDrop
+*/

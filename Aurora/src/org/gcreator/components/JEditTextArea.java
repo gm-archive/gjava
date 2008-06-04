@@ -199,6 +199,7 @@ public class JEditTextArea extends JComponent {
     /**
      * Returns if this component can be traversed by pressing
      * the Tab key. This returns false.
+     * @deprecated
      */
     public final boolean isManagingFocus() {
         return true;
@@ -206,6 +207,7 @@ public class JEditTextArea extends JComponent {
 
     /**
      * Returns the object responsible for painting this text area.
+     * @deprecated
      */
     public final TextAreaPainter getPainter() {
         return painter;

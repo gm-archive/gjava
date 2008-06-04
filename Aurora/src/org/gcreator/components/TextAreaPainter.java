@@ -66,6 +66,7 @@ public class TextAreaPainter extends JComponent implements TabExpander {
     /**
      * Returns if this component can be traversed by pressing the
      * Tab key. This returns false.
+     * @deprecated
      */
     public final boolean isManagingFocus() {
         return false;

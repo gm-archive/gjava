@@ -85,7 +85,7 @@ public class ImageEditor extends TabPanel {
     {
         if (image == null)
         {
-            this.image = new GImage(file.name);
+            this.image = new GImage();
             return;
         }
         colorSelection1.setBackground(image.transparentColor);

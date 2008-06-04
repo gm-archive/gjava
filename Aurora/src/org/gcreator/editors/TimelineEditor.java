@@ -36,7 +36,7 @@ public class TimelineEditor extends TabPanel {
         this.project = project;
         this.file = file;
         if (file.value == null) {
-            timeline = new Timeline(file.name);
+            timeline = new Timeline();
             file.value = timeline;
         } else if (file.value instanceof Timeline) {
             this.timeline = (Timeline) file.value;

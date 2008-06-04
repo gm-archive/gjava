@@ -10,26 +10,26 @@ public class FileDropBeanBeanInfo extends SimpleBeanInfo
 
     // Here you can add code for customizing the properties array.
 
-  //GEN-LAST:Properties
+//GEN-LAST:Properties
 
   // Event set information will be obtained from introspection.//GEN-FIRST:Events
   private static EventSetDescriptor[] eventSets = null;//GEN-HEADEREND:Events
 
     // Here you can add code for customizing the event sets array.
 
-  //GEN-LAST:Events
+//GEN-LAST:Events
 
   // Method information will be obtained from introspection.//GEN-FIRST:Methods
   private static MethodDescriptor[] methods = null;//GEN-HEADEREND:Methods
 
     // Here you can add code for customizing the methods array.
     
-  //GEN-LAST:Methods
+//GEN-LAST:Methods
 
-    private static java.awt.Image iconColor16 = null; //GEN-BEGIN:IconsDef
+    private static java.awt.Image iconColor16 = null;//GEN-BEGIN:IconsDef
     private static java.awt.Image iconColor32 = null;
     private static java.awt.Image iconMono16 = null;
-    private static java.awt.Image iconMono32 = null; //GEN-END:IconsDef
+    private static java.awt.Image iconMono32 = null;//GEN-END:IconsDef
   private static String iconNameC16 = null;//GEN-BEGIN:Icons
   private static String iconNameC32 = null;
   private static String iconNameM16 = null;

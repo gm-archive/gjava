@@ -5,6 +5,7 @@
  */
 package org.gcreator.components;
 
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import javax.swing.JScrollPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -108,6 +110,9 @@ public class RSSReader extends javax.swing.JPanel {
                     System.out.println(e.toString());
                 }
                 loaded = true;
+                Container c = getParent();
+                if(c instanceof JScrollPane)
+                    ((JScrollPane) c).updateUI();
                 repaint();
                 updateUI();
             }
@@ -145,15 +150,15 @@ public class RSSReader extends javax.swing.JPanel {
 
     public int getHeight() {
         if (failed) {
-            return 50;
+            return 1;
         }
         Font f = getFont();
         int fh = getFontMetrics(f).getHeight();
-        return (fh + 5) * items.size() + 30;
+        return (fh + 5) * items.size() + 10;
     }
 
     public Dimension getPreferredSize() {
-        return new Dimension(super.getPreferredSize().width, 200);
+        return new Dimension(super.getPreferredSize().width, getHeight());
     }
 
     /** This method is called from within the constructor to

@@ -29,9 +29,9 @@ public class ProjectImporter {
     static int type;
     static Project project;
     static String config;
-    static Vector<String> Stringfiles = new Vector();
-    static Vector<byte[]> Bytefiles = new Vector();
-    static Vector<java.lang.Object> objects = new Vector();
+    static Vector<String> Stringfiles = new Vector<String>();
+    static Vector<byte[]> Bytefiles = new Vector<byte[]>();
+    static Vector<Object> objects = new Vector<Object>();
 
     public static void readFile(String s, String name) {
         Stringfiles.add(s);

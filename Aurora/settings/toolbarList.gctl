@@ -29,5 +29,4 @@ Item=std_addScript
 Item=std_addAction
 Item=std_addGroup
 Separator=Standard
-Item=Run program
 

@@ -1,4 +1,4 @@
-package net.iharder.dnd;
+/*package net.iharder.dnd;
 
 /**
  * An extension of {@link javax.swing.JList} that supports drag and drop
@@ -15,7 +15,7 @@ package net.iharder.dnd;
  * @author  Robert Harder
  * @author  rharder@usa.net
  * @version 1.1
- */
+ *
 public class DnDList 
 extends javax.swing.JList
 implements  java.awt.dnd.DropTargetListener, 
@@ -31,13 +31,13 @@ implements  java.awt.dnd.DropTargetListener,
     private int dropIndex   = -1;
     private Object sourceObject;
 
-    
+    *
     /**
      * Constructs a default {@link DnDList} using a
      * {@link javax.swing.DefaultListModel}.
      *
      * @since 1.1
-     */
+     *
     public DnDList() 
     {   
         super( new javax.swing.DefaultListModel() );
@@ -53,7 +53,7 @@ implements  java.awt.dnd.DropTargetListener,
      *
      * @param model The model to use
      * @since 1.1
-     */
+     *
     public DnDList( javax.swing.DefaultListModel model )
     {   super( model );
         initComponents();
@@ -68,7 +68,7 @@ implements  java.awt.dnd.DropTargetListener,
      *
      * @param data The data from which to construct a list
      * @since 1.1
-     */
+     *
     public DnDList( Object[] data )
     {   this();
         ((javax.swing.DefaultListModel)getModel()).copyInto( data );
@@ -84,7 +84,7 @@ implements  java.awt.dnd.DropTargetListener,
      *
      * @param data The data from which to construct a list
      * @since 1.1
-     */
+     *
     public DnDList( java.util.Vector data )
     {   this();
         ((javax.swing.DefaultListModel)getModel()).copyInto( data.toArray() );
@@ -100,7 +100,7 @@ implements  java.awt.dnd.DropTargetListener,
     }   // end initComponents
     
     
-/* ********  D R A G   G E S T U R E   L I S T E N E R   M E T H O D S  ******** */    
+/* ********  D R A G   G E S T U R E   L I S T E N E R   M E T H O D S  ******** *   
     
     
     
@@ -115,7 +115,7 @@ implements  java.awt.dnd.DropTargetListener,
             {   /**
                  * This will be called when the transfer data is requested at the very end.
                  * At this point we can remove the object from its original place in the list.
-                 */
+                 *
                 public Object getObject()
                 {   
                     ((javax.swing.DefaultListModel)getModel()).remove( sourceIndex );
@@ -133,7 +133,7 @@ implements  java.awt.dnd.DropTargetListener,
     }   // end dragGestureRecognized
 
     
-/* ********  D R A G   S O U R C E   L I S T E N E R   M E T H O D S  ******** */    
+/* ********  D R A G   S O U R C E   L I S T E N E R   M E T H O D S  ******** *    
     
     
     public void dragDropEnd( java.awt.dnd.DragSourceDropEvent evt ) 
@@ -162,7 +162,7 @@ implements  java.awt.dnd.DropTargetListener,
    
     
     
-/* ********  D R O P   T A R G E T   L I S T E N E R   M E T H O D S  ******** */    
+/* ********  D R O P   T A R G E T   L I S T E N E R   M E T H O D S  ******** *   
     
     
     
@@ -237,3 +237,4 @@ implements  java.awt.dnd.DropTargetListener,
 
   
 }   // end class DnDList
+*/

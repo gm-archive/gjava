@@ -30,7 +30,7 @@ import org.jdesktop.layout.LayoutStyle;
 public class NewProject extends TabPanel {
 
     /** Creates new form NewProject */
-    public Vector ProjectButtons = new Vector(); //
+    public Vector<AbstractButton> ProjectButtons = new Vector<AbstractButton>(); //
 
     public NewProject() {
         initComponents();

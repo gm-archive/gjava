@@ -97,7 +97,6 @@ public class GPanel extends JPanel {
             chooseImage.setApproveButtonText("OK");
             chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
         } catch (Exception e) {
-            System.out.println("JFileChooser error in static Aurwindow!");
         }
 
         SplashScreen.message = "Initiating window....";
@@ -131,20 +130,17 @@ public class GPanel extends JPanel {
         scroller.setViewportView(console);
         statusbar = new Statusbar();
         navigatorTabs = new JTabbedPane();
-        // System.out.println("window2");
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
-        // System.out.println("window"); 
-        new FileDrop(this, new FileDrop.Listener() {
+        /*new FileDrop(this, new FileDrop.Listener() {
 
             @Override
             public void filesDropped(java.io.File[] files) {
                 // handle file drop
                 for (int i = 0; i < files.length; i++) {
-                    System.out.println(files[i].getName());
                 }
             }   // end filesDropped
-            }); // end FileDrop.Listener
+            }); // end FileDrop.Listener*/
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
@@ -248,7 +244,6 @@ public class GPanel extends JPanel {
 
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger() || e.getButton() == MouseEvent.BUTTON3) {
-                    //        System.out.println("Got here");
                     popupTreeMenu(e);
                 }
             }
@@ -511,7 +506,6 @@ public class GPanel extends JPanel {
 
     //<editor-fold defaultstate="collapsed" desc="deleteFile">
     public void deleteFile(org.gcreator.fileclass.GFile o) {
-        System.out.println("Delete file");
         org.gcreator.fileclass.Folder root = o.root;
         ObjectNode node = o.node;
         o.node = null;
@@ -751,7 +745,6 @@ public class GPanel extends JPanel {
      * @param file The GFile to open
      */
     public void Open(org.gcreator.fileclass.GFile file) {
-        System.out.println("Open: " + file.name + "." + file.type);
         boolean found = false;
         int iii = 0;
         int foundloc = 0;
@@ -771,7 +764,6 @@ public class GPanel extends JPanel {
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("sprite")) {
 
-            System.out.println("Sprite created");
 
             //            for (Enumeration e = getCurrentProject().sprites.elements(); e.hasMoreElements();) {
 //                if (((Sprite) e.nextElement()).name.equals(file.name)) {
@@ -938,7 +930,6 @@ public class GPanel extends JPanel {
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
-        System.out.println("Save settings");
         SettingsIO.saveSettings(istabs, scroller.isVisible());
         try {
             ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");
@@ -1459,7 +1450,6 @@ public class GPanel extends JPanel {
                 break;
             case 4:
                 //save all projects
-                System.out.println("Saving all...");
                 if (istabs) {
                     for (int ii = 0; ii < tabs.getTabCount(); ii++) {
                         if (((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
@@ -1790,7 +1780,6 @@ public class GPanel extends JPanel {
     //<editor-fold defaultstate="collapsed" desc="SaveProject(boolean)">
     public void SaveMainProject(boolean saveAs) {
         //only save for main project
-        System.out.println("Saving...");
         if (istabs) {
             for (int ii = 0; ii < tabs.getTabCount(); ii++) {
                 if (((TabPanel) tabs.getComponentAt(ii)).project == null) {
