@@ -12,12 +12,10 @@
 
 package org.gcreator.actions;
 
-//import org.gcreator.editors.ActorEditor;
 import javax.swing.*;
 import java.awt.*;
 import java.io.ObjectStreamField;
 import java.io.Serializable;
-//import org.gcreator.editors.*;
 import java.util.Vector;
 import org.gcreator.editors.*;
 import org.gcreator.fileclass.Project;

@@ -8,10 +8,8 @@ import com.l2fprod.common.propertysheet.DefaultProperty;
 import com.l2fprod.common.propertysheet.Property;
 import com.l2fprod.common.propertysheet.PropertySheetPanel;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import org.gcreator.actions.components.*;
 import javax.swing.*;
-import java.awt.event.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
@@ -74,14 +72,17 @@ public class AddImageToSprite extends ActionPattern {
         }
     }
 
+    @Override
     public void setStandardImage(ImageIcon img) {
         AddImageToSprite.img = img;
     }
 
+    @Override
     public ImageIcon getStandardImage() {
         return img;
     }
 
+    @Override
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
         //AddImageToSpritePanel panel = new AddImageToSpritePanel();
         PropertyManager panel = new PropertyManager();
@@ -133,6 +134,7 @@ public class AddImageToSprite extends ActionPattern {
         return panel;
     }
 
+    @Override
     public String getStandardText(JComponent panel) {
         if (panel != null) {
             save(panel);
@@ -140,6 +142,7 @@ public class AddImageToSprite extends ActionPattern {
         return LangSupporter.activeLang.getEntry(229);
     }
 
+    @Override
     public String generateGCL(JComponent cmp) {
         if (cmp != null) {
             save(cmp);

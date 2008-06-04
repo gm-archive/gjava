@@ -8,9 +8,6 @@ package org.gcreator.actions.components;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.beans.PropertyChangeListener;
 import java.beans.PropertyEditorSupport;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -23,16 +20,19 @@ import org.gcreator.managers.LangSupporter;
 public class FailureBehaviorEditor extends PropertyEditorSupport{
     JComboBox c = new JComboBox();
     
+    @Override
     public String getAsText(){
         return ((FailureBehavior) getValue()).toString();
     }
     
+    @Override
     public Component getCustomEditor(){
         c.setModel(new DefaultComboBoxModel(retrieveComboModel()));
         FailureBehavior f = (FailureBehavior) getValue();
         if(f!=null)
             c.setSelectedIndex(f.status);
         c.addActionListener(new ActionListener(){
+            @Override
             public void actionPerformed(ActionEvent evt){
                 setValue(new FailureBehavior(c.getSelectedIndex()));
                 firePropertyChange();
@@ -41,6 +41,7 @@ public class FailureBehaviorEditor extends PropertyEditorSupport{
         return c;
     }
     
+    @Override
     public boolean supportsCustomEditor(){
         return true;
     }

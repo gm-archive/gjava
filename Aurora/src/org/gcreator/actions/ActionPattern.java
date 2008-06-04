@@ -11,8 +11,6 @@
 package org.gcreator.actions;
 
 import com.l2fprod.common.propertysheet.DefaultProperty;
-import org.gcreator.editors.ActorEditor;
-import org.gcreator.editors.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.ObjectStreamField;

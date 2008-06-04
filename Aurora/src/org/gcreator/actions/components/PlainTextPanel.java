@@ -6,7 +6,6 @@
 
 package org.gcreator.actions.components;
 
-import java.io.ObjectStreamField;
 import java.io.Serializable;
 
 /**

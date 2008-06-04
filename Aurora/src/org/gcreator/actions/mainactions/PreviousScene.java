@@ -10,9 +10,7 @@
 package org.gcreator.actions.mainactions;
 
 import java.util.Vector;
-import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import javax.swing.*;
 import org.gcreator.managers.LangSupporter;
 
@@ -26,23 +24,29 @@ public class PreviousScene extends ActionPattern{
     public PreviousScene(){
         super();
     }
-    
      
+    @Override
     public String getStandardText(JComponent panel){
         return LangSupporter.activeLang.getEntry(228);
     }
+    
+    @Override
     public void setStandardImage(ImageIcon icon){
         PreviousScene.icon = icon;
     }
      
+    @Override
     public String generateGCL(JComponent panel){
         return "room_goto_previous();\n";
     }
-     public ImageIcon getStandardImage() {
+    
+    @Override
+    public ImageIcon getStandardImage() {
         return icon;
     }
      
-     public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
-         return false;
-     }
+    @Override
+    public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
+        return false;
+    }
 }

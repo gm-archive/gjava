@@ -17,7 +17,6 @@ import javax.swing.*;
 import org.gcreator.components.scanning.GScriptTokenMarker;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
-import publicdomain.*;
 
 /**
  *
@@ -44,10 +43,12 @@ public class ExecuteCode extends ActionPattern{
         //((SyntaxHighlighter) panel).setText(code);
     }
     
+    @Override
     public void setStandardImage(ImageIcon icon){
         img = icon;
     }
     
+    @Override
     public ImageIcon getStandardImage(){
         return img;
     }
@@ -62,6 +63,7 @@ public class ExecuteCode extends ActionPattern{
         ((JEditTextArea) panel).setText(code);
     }
      
+    @Override
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         TokenMarker scanner = new GScriptTokenMarker();
         JEditTextArea panel = new JEditTextArea(project); //100, 100, scanner, project);
@@ -82,6 +84,7 @@ public class ExecuteCode extends ActionPattern{
     }
     
      
+    @Override
     public String getStandardText(JComponent panel){
         if(panel!=null){
             save(panel);
@@ -95,6 +98,7 @@ public class ExecuteCode extends ActionPattern{
     }
     
      
+    @Override
     public String generateGCL(JComponent panel){
         save(panel);
         code = ((JEditTextArea) panel).getText();

@@ -10,11 +10,8 @@
 package org.gcreator.actions.mainactions;
 
 import java.util.Vector;
-import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import javax.swing.*;
-import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -28,20 +25,25 @@ public class EndOfAComment extends ActionPattern{
     }
     
      
+    @Override
     public String getStandardText(JComponent panel){
         return "End of a comment";
     }
+    @Override
     public void setStandardImage(ImageIcon icon){
         EndOfAComment.icon = icon;
     }
      
+    @Override
     public String generateGCL(JComponent panel){
         return "*/";
     }
+    @Override
      public ImageIcon getStandardImage() {
         return icon;
     }
      
+    @Override
      public boolean unindentsNext(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
          return true;
      }

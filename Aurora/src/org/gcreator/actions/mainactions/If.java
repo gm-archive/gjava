@@ -8,11 +8,9 @@ package org.gcreator.actions.mainactions;
 import com.l2fprod.common.propertysheet.DefaultProperty;
 import com.l2fprod.common.propertysheet.Property;
 import org.gcreator.actions.*;
-import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -53,14 +51,17 @@ public class If extends ActionPattern{
         }
     }
     
+    @Override
     public void setStandardImage(ImageIcon img){
         If.img = img;
     }
     
+    @Override
     public ImageIcon getStandardImage(){
         return img;
     }
     
+    @Override
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
         PropertyManager panel = new PropertyManager();
         
@@ -85,6 +86,7 @@ public class If extends ActionPattern{
         return panel;
     }
     
+    @Override
     public String getStandardText(JComponent panel){
         if(panel!=null)
             save(panel);
@@ -95,6 +97,7 @@ public class If extends ActionPattern{
         return "if(!("+condition+"))";
     }
     
+    @Override
     public String generateGCL(JComponent panel){
         save(panel);
         if(!not)

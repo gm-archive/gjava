@@ -10,9 +10,7 @@
 package org.gcreator.actions.mainactions;
 
 import java.util.Vector;
-import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import javax.swing.*;
 import org.gcreator.managers.LangSupporter;
 
@@ -28,20 +26,25 @@ public class NextScene extends ActionPattern{
     }
     
      
+    @Override
     public String getStandardText(JComponent panel){
         return LangSupporter.activeLang.getEntry(227);
     }
+    @Override
     public void setStandardImage(ImageIcon icon){
         NextScene.icon = icon;
     }
      
+    @Override
     public String generateGCL(JComponent panel){
         return "room_goto_next();\n";
     }
+    @Override
      public ImageIcon getStandardImage() {
         return icon;
     }
      
+    @Override
      public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
          return false;
      }

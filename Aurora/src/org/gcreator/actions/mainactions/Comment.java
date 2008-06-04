@@ -11,7 +11,6 @@ package org.gcreator.actions.mainactions;
 import org.gcreator.actions.components.PlainTextPanel;
 import org.gcreator.actions.*;
 import javax.swing.*;
-import java.awt.event.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 
@@ -30,6 +29,7 @@ public class Comment extends ActionPattern {
         //this.context = context;
     }
     
+    @Override
     public void setStandardImage(ImageIcon img){
         Comment.img = img;
     }
@@ -48,12 +48,14 @@ public class Comment extends ActionPattern {
         ((PlainTextPanel) panel).text.setText(text);
     }
     
+    @Override
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
         PlainTextPanel panel = new PlainTextPanel();
         panel.text.setText(text);
         return panel; // new PlainTextPanel();
     }
 
+    @Override
     public String getStandardText(JComponent panel) {
 
         if (panel != null) {
@@ -67,6 +69,7 @@ public class Comment extends ActionPattern {
         }
     }
 
+    @Override
     public String generateGCL(JComponent panel) {
         save(panel);
         return ""; //It could generate a comment, but why should it?

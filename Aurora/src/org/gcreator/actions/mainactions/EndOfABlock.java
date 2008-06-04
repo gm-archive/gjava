@@ -10,9 +10,7 @@
 package org.gcreator.actions.mainactions;
 
 import java.util.Vector;
-import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
-import org.gcreator.editors.*;
 import javax.swing.*;
 import org.gcreator.managers.LangSupporter;
 
@@ -29,23 +27,28 @@ public class EndOfABlock extends ActionPattern{
     }
     
      
+    @Override
     public String getStandardText(JComponent panel){
         return LangSupporter.activeLang.getEntry(220);
     }
     
      
+    @Override
     public String generateGCL(JComponent panel){
         return "}\n";
     }
 
+    @Override
     public void setStandardImage(ImageIcon icon){
         EndOfABlock.icon = icon;
     }
     
+    @Override
     public ImageIcon getStandardImage() {
         return icon;
     }
     
+    @Override
     public boolean unindentsNext(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
          return true;
      }

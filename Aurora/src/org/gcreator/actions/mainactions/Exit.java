@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import org.gcreator.actions.ActionPattern;
-import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -23,21 +22,28 @@ public class Exit extends ActionPattern{
     }
     
      
+    @Override
     public String getStandardText(JComponent panel){
         return "Exit";
     }
+    
+    @Override
     public void setStandardImage(ImageIcon icon){
         Exit.icon = icon;
     }
      
+    @Override
     public String generateGCL(JComponent panel){
         return "return;";
     }
-     public ImageIcon getStandardImage() {
+    
+    @Override
+    public ImageIcon getStandardImage() {
         return icon;
     }
      
-     public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
-         return false;
-     }
+    @Override
+    public boolean indents(JComponent comp, Vector<org.gcreator.actions.Action> indented, Vector<org.gcreator.actions.Action> unindented, JList list, boolean selected){
+        return false;
+    }
 }
