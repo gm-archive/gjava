@@ -18,7 +18,7 @@ public class Macro {
     public static Macro recordingMacro = null;
     public String author;
     public String description;
-    private static ScriptEngineManager manager = new ScriptEngineManager();
+    private ScriptEngineManager manager = new ScriptEngineManager();
     
     //Should this be public?
     public Macro(String name){

@@ -1,6 +1,6 @@
 [G-Creator Plugin List]
 [~Plugin~]
-Author=LuÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â­s Reis
+Author=Luï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?Â­s Reis
 Author=The LGM team #but not directly
 Core=org.gcreator.utils.GMImporter.plugin
 License=GPL v3
@@ -33,7 +33,7 @@ File=org/lateralgm/messages/Messages.class
 File=org/lateralgm/messages/messages.properties
 [~Plugin~]
 Author=sleija
-Author=LuÃ?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â?Ã?Â­s Reis
+Author=Luï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?ï¿½?Â­s Reis
 Core=org.gcreator.compilers.GCpp
 License=LGPL
 Name=SeaGulls
@@ -318,3 +318,13 @@ File=org/gcreator/compilers/GCS/test/graphics/small.png
 File=org/gcreator/compilers/GCS/test/test1.cs
 File=org/gcreator/compilers/GCS/test/test1.exe
 File=starfish.png
+[~Plugin~]
+Author=LuÃ­s Reis
+Name=Test
+Image=
+License=
+JSFile=jstest/Test1.js
+JSFile=jstest/Test2.js
+File=META-INF/MANIFEST.MF
+File=jstest/Test1.js
+File=jstest/Test2.js

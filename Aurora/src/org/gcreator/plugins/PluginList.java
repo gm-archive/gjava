@@ -76,7 +76,8 @@ public class PluginList {
             
             if(curplugin==null&&!line.equals("[~Plugin~]"))
                 break mainloop;
-            else if(curplugin==null){
+            
+            if(curplugin==null){
                 curplugin = new Plugin();
                 continue mainloop;
             }
@@ -104,6 +105,7 @@ public class PluginList {
             
             if(line.matches("^Name=.*$")){
                 curplugin.name = line.replaceAll("^Name=(.*)$", "$1");
+                System.out.println("Found name " + curplugin.name);
                 continue mainloop;
             }
             
@@ -130,6 +132,21 @@ public class PluginList {
                 }
                 catch(Exception e){
                     
+                }
+                continue mainloop;
+            }
+            
+            if(line.matches("^JSFile=.*$")){
+                String t = line.replaceAll("^JSFile=(.*)$", "$1");
+                try{
+                    if(curplugin.value==null)
+                        curplugin.value = new JSPlugin(t);
+                    else{
+                        ((JSPlugin) curplugin.value).append(t);
+                    }
+                }
+                catch(Exception e){
+                    System.out.println(e.toString());
                 }
                 continue mainloop;
             }
