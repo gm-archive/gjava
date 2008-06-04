@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.core;
 
 //<editor-fold defaultstate="collapsed" desc="Import statements">
@@ -31,14 +30,13 @@ import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
 import org.gcreator.units.*;
 //</editor-fold>
-
 /**
  * GPanel is the main panel
  * 
  * @author Luís Reis
  * @author TGMG
  */
-public class GPanel extends JPanel{
+public class GPanel extends JPanel {
     //<editor-fold defaultstate="collapsed" desc="Variables">
     private ICore icore;
     public boolean istabs; //True - tabs; False - MDI
@@ -54,10 +52,8 @@ public class GPanel extends JPanel{
     public JSplitPane splitter2;
     public int dividerLocation;
     //public JSplitPane splitter3;
-
     public JTabbedPane navigatorTabs;
     //public int look;
-
     public boolean showToolbars;
     public JTextPane console;
     public JToolBar tool;
@@ -68,7 +64,6 @@ public class GPanel extends JPanel{
     private static Project mainProject;
     public ButtonGroup wtreepos;
     //public JComboBox winlist; //This will be the windows list
-
     public ToolbarPopupMenu toolpopup;
     public ConsolePopupMenu consolepopup;
     public GlobalSettings globalsettings;
@@ -90,21 +85,21 @@ public class GPanel extends JPanel{
     public JFileChooser chooseImage;// = new JFileChooser();
     //public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
     //</editor-fold>
-    
+
     //<editor-fold defaultstate="Collapsed" desc="Constructor">
     public GPanel(ICore icore, String[] settings) {
         this.icore = icore;
-        
-        try{
-        chooseImage = new JFileChooser();
-        chooseImage.setDialogTitle("Select Image");
-        chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
-        chooseImage.setApproveButtonText("OK");
-        chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        }catch(Exception e){
+
+        try {
+            chooseImage = new JFileChooser();
+            chooseImage.setDialogTitle("Select Image");
+            chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
+            chooseImage.setApproveButtonText("OK");
+            chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        } catch (Exception e) {
             System.out.println("JFileChooser error in static Aurwindow!");
         }
-        
+
         SplashScreen.message = "Initiating window....";
         gcreator.splash.repaint();
         icore.setTitle("G-Creator");
@@ -117,42 +112,39 @@ public class GPanel extends JPanel{
         add(p, BorderLayout.CENTER);
         SplashScreen.message = "Starting user interface...";
         gcreator.splash.repaint();
-        
+
         istabs = true;
         console = new JTextPane();
         topContainer = new Container();
         bottomContainer = new Container();
         rightContainer = new Container();
         leftContainer = new Container();
-        
+
         console.setEditable(false);
         console.setBackground(Colorfeel.ConsoleBGColor);
         console.setDisabledTextColor(Colorfeel.ConsoleFGColor);
         scroller = new JScrollPane();
         //winlist = new JComboBox();
         //winlist.setModel(new MyModel());
-        
+
         console.setContentType("text/html");
         scroller.setViewportView(console);
         statusbar = new Statusbar();
         navigatorTabs = new JTabbedPane();
-       // System.out.println("window2");
+        // System.out.println("window2");
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
-       // System.out.println("window"); 
-        int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
-        if (ver >= 6) {
-            new FileDrop(this, new FileDrop.Listener() {
+        // System.out.println("window"); 
+        new FileDrop(this, new FileDrop.Listener() {
 
-                        public void filesDropped(java.io.File[] files) {
-                            // handle file drop
-                            for (int i = 0; i < files.length; i++) {
-                                System.out.println(files[i].getName());
-                            }
-                        }   // end filesDropped
-
-                    }); // end FileDrop.Listener
-        }
+            @Override
+            public void filesDropped(java.io.File[] files) {
+                // handle file drop
+                for (int i = 0; i < files.length; i++) {
+                    System.out.println(files[i].getName());
+                }
+            }   // end filesDropped
+            }); // end FileDrop.Listener
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
@@ -164,24 +156,25 @@ public class GPanel extends JPanel{
         tabs.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         changed = new ChangeListener() {
 
-                    public void stateChanged(ChangeEvent evt) {
-                        if (istabs) {
-                            Component c = tabs.getSelectedComponent();
-                            if (c != null) {
-                                selectedDocumentChanged((TabPanel) c);
-                            } else {
-                                selectedDocumentChanged(null);
-                            }
-                        } else {
-                            JInternalFrame f = mdi.getSelectedFrame();
-                            if (f != null) {
-                                selectedDocumentChanged(((ExtendedFrame) f).getPanel());
-                            } else {
-                                selectedDocumentChanged(null);
-                            }
-                        }
+            @Override
+            public void stateChanged(ChangeEvent evt) {
+                if (istabs) {
+                    Component c = tabs.getSelectedComponent();
+                    if (c != null) {
+                        selectedDocumentChanged((TabPanel) c);
+                    } else {
+                        selectedDocumentChanged(null);
                     }
-                };
+                } else {
+                    JInternalFrame f = mdi.getSelectedFrame();
+                    if (f != null) {
+                        selectedDocumentChanged(((ExtendedFrame) f).getPanel());
+                    } else {
+                        selectedDocumentChanged(null);
+                    }
+                }
+            }
+        };
         tabs.addChangeListener(changed);
 
         try {
@@ -207,73 +200,73 @@ public class GPanel extends JPanel{
         workspace.addKeyListener(new KeyAdapter() {
 
             @Override
-                    public void keyReleased(KeyEvent e) {
+            public void keyReleased(KeyEvent e) {
 
-                        //Check wether 'Delete' was pressed
+                //Check wether 'Delete' was pressed
 
-                        if (e.getKeyCode() != KeyEvent.VK_DELETE) {
-                            return;
+                if (e.getKeyCode() != KeyEvent.VK_DELETE) {
+                    return;
+                }
+
+                final org.gcreator.fileclass.GObject o = getCurrentObject();
+                if (o == null) {
+                    return;
+                }
+
+                if (o instanceof org.gcreator.fileclass.GFile) {
+                    if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
+                        if (getConfirmDelete("Are you sure you want to delete this resource?")) {
+                            deleteFile((org.gcreator.fileclass.GFile) o);
                         }
-
-                        final org.gcreator.fileclass.GObject o = getCurrentObject();
-                        if (o == null) {
-                            return;
-                        }
-
-                        if (o instanceof org.gcreator.fileclass.GFile) {
-                            if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
-                                if (getConfirmDelete("Are you sure you want to delete this resource?")) {
-                                    deleteFile((org.gcreator.fileclass.GFile) o);
-                                }
-                            }
-                        }
-                        if (o instanceof org.gcreator.fileclass.Group) {
-                            if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                                if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                                    if (getConfirmDelete("Are you sure you want to delete this group and all of its contents?")) {
-                                        deleteGroup((org.gcreator.fileclass.Group) o);
-                                    }
-                                }
+                    }
+                }
+                if (o instanceof org.gcreator.fileclass.Group) {
+                    if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
+                        if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
+                            if (getConfirmDelete("Are you sure you want to delete this group and all of its contents?")) {
+                                deleteGroup((org.gcreator.fileclass.Group) o);
                             }
                         }
                     }
+                }
+            }
 
-                    public boolean getConfirmDelete(String message) {
-                        int i = JOptionPane.showConfirmDialog(GPanel.this, message, "Confirmation", JOptionPane.YES_NO_OPTION);
-                        return (i == 0);
-                    }
-                });
+            public boolean getConfirmDelete(String message) {
+                int i = JOptionPane.showConfirmDialog(GPanel.this, message, "Confirmation", JOptionPane.YES_NO_OPTION);
+                return (i == 0);
+            }
+        });
 
         workspace.addMouseListener(new MouseListener() {
 
-                    public void mouseClicked(MouseEvent e) {
-                        if (e.getClickCount() == 2) {
-                            treeDoubleClicked(e);
-                        }
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    treeDoubleClicked(e);
+                }
 
-                    }
+            }
 
-                    public void mousePressed(MouseEvent e) {
-                        if (e.isPopupTrigger() || e.getButton() == MouseEvent.BUTTON3) {
+            public void mousePressed(MouseEvent e) {
+                if (e.isPopupTrigger() || e.getButton() == MouseEvent.BUTTON3) {
                     //        System.out.println("Got here");
-                            popupTreeMenu(e);
-                        }
-                    }
+                    popupTreeMenu(e);
+                }
+            }
 
-                    public void mouseReleased(MouseEvent e) {
-                    }
+            public void mouseReleased(MouseEvent e) {
+            }
 
-                    public void mouseEntered(MouseEvent e) {
-                    }
+            public void mouseEntered(MouseEvent e) {
+            }
 
-                    public void mouseExited(MouseEvent e) {
-                    }
-                });
+            public void mouseExited(MouseEvent e) {
+            }
+        });
         treescroll = new JScrollPane();
         treescroll.setViewportView(workspace);
 
         MenuSupporter.MakeDefaultMenus(this);
-        
+
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitter1.setOneTouchExpandable(true);//NOTE: this doesn't display correctly in GTK+
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
@@ -292,86 +285,85 @@ public class GPanel extends JPanel{
         navigatorTabs.add(LangSupporter.activeLang.getEntry(251), navroot);
         navigatorTabs.addMouseListener(new MouseListener() {
 
-                    public void mouseExited(MouseEvent evt) {
-                    }
+            public void mouseExited(MouseEvent evt) {
+            }
 
-                    public void mouseEntered(MouseEvent evt) {
-                    }
+            public void mouseEntered(MouseEvent evt) {
+            }
 
-                    public void mouseReleased(MouseEvent evt) {
-                        if (evt.getButton() != MouseEvent.BUTTON1) {
-                            return;
-                        }
-                        dragging = false;
-                    }
+            public void mouseReleased(MouseEvent evt) {
+                if (evt.getButton() != MouseEvent.BUTTON1) {
+                    return;
+                }
+                dragging = false;
+            }
 
-                    public void mousePressed(MouseEvent evt) {
-                        if (evt.getButton() != MouseEvent.BUTTON1) {
-                            return;
-                        }
-                        if (!dragging) {
-                            dragging = true;
-                        }
-                    }
+            public void mousePressed(MouseEvent evt) {
+                if (evt.getButton() != MouseEvent.BUTTON1) {
+                    return;
+                }
+                if (!dragging) {
+                    dragging = true;
+                }
+            }
 
-                    public void mouseClicked(MouseEvent evt) {
-                    }
-                });
+            public void mouseClicked(MouseEvent evt) {
+            }
+        });
         navigatorTabs.addMouseMotionListener(new MouseMotionListener() {
 
-                    public void mouseMoved(MouseEvent evt) {
+            public void mouseMoved(MouseEvent evt) {
+            }
+
+            public void mouseDragged(MouseEvent evt) {
+                if (!dragging) {
+                    return;
+                }
+                int x = evt.getXOnScreen();
+                int y = evt.getYOnScreen();
+                Point p = navigatorTabs.getLocationOnScreen();
+                int nx = p.x;
+                int ny = p.y;
+                int w = navigatorTabs.getWidth();
+                int h = navigatorTabs.getHeight();
+                int index = navigatorTabs.getSelectedIndex();
+                if (index == -1) {
+                    return;
+                }
+                Component c = navigatorTabs.getSelectedComponent();
+                String title = navigatorTabs.getTitleAt(index);
+                if (x < nx || y < ny || x > nx + w || y > ny + h) {
+                    Robot r = null;
+                    try {
+                        r = new Robot();
+                    } catch (Exception e) {
                     }
-
-                    public void mouseDragged(MouseEvent evt) {
-                        if (!dragging) {
-                            return;
-                        }
-                        int x = evt.getX()+getLocationOnScreen().x;
-                        int y = evt.getY()+getLocationOnScreen().y;
-                        Point p = navigatorTabs.getLocationOnScreen();
-                        int nx = p.x;
-                        int ny = p.y;
-                        int w = navigatorTabs.getWidth();
-                        int h = navigatorTabs.getHeight();
-                        int index = navigatorTabs.getSelectedIndex();
-                        if (index == -1) {
-                            return;
-                        }
-                        Component c = navigatorTabs.getSelectedComponent();
-                        String title = navigatorTabs.getTitleAt(index);
-                        if (x < nx || y < ny || x > nx + w || y > ny + h) {
-                            Robot r = null;
-                            try {
-                                r = new Robot();
-                            } catch (Exception e) {
-
-                            }
-                            if (r != null) {
-                                r.mouseRelease(InputEvent.BUTTON1_MASK);
-                            }
-                            JFrame f = new JFrame() {
+                    if (r != null) {
+                        r.mouseRelease(InputEvent.BUTTON1_MASK);
+                    }
+                    JFrame f = new JFrame() {
 
                         @Override
-                                        public void dispose() {
-                                            navigatorTabs.addTab(getTitle(), getContentPane());
-                                            super.dispose();
-                                        }
-                                    };
-                            f.setAlwaysOnTop(true);
-                            f.setVisible(true);
-                            f.setTitle(title);
-                            f.setLayout(new BorderLayout());
-                            f.setSize(c.getSize());
-                            f.add(c, BorderLayout.CENTER);
-                            f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                            f.setResizable(true);
-                            f.setLocation(evt.getX() + getLocationOnScreen().x - 30, evt.getY() + getLocationOnScreen().y - 5);
-                            if (r != null) {
-                                r.mousePress(InputEvent.BUTTON1_MASK);
-                            }
+                        public void dispose() {
+                            navigatorTabs.addTab(getTitle(), getContentPane());
+                            super.dispose();
                         }
+                    };
+                    f.setAlwaysOnTop(true);
+                    f.setTitle(title);
+                    f.setLayout(new BorderLayout());
+                    f.setSize(c.getSize());
+                    f.add(c, BorderLayout.CENTER);
+                    f.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    f.setResizable(true);
+                    f.setLocation(evt.getXOnScreen() - 30, evt.getYOnScreen() - 5);
+                    f.setVisible(true);
+                    if (r != null) {
+                        r.mousePress(InputEvent.BUTTON1_MASK);
                     }
-                });
+                }
+            }
+        });
         splitter2.setDividerLocation(149);
 
         /*org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -406,26 +398,26 @@ public class GPanel extends JPanel{
         //layer.add(internal, JLayeredPane.PALETTE_LAYER);
         layer.addComponentListener(new ComponentListener() {
 
-                    public void componentHidden(ComponentEvent evt) {
-                    }
+            public void componentHidden(ComponentEvent evt) {
+            }
 
-                    public void componentShown(ComponentEvent evt) {
-                    }
+            public void componentShown(ComponentEvent evt) {
+            }
 
-                    public void componentMoved(ComponentEvent evt) {
-                    }
+            public void componentMoved(ComponentEvent evt) {
+            }
 
-                    public void componentResized(ComponentEvent evt) {
-                        //String thi = evt.paramString().replaceAll("COMPONENT_RESIZED [(][0-9]+,[0-9]+ (.*)[)]", "$1");
+            public void componentResized(ComponentEvent evt) {
+                //String thi = evt.paramString().replaceAll("COMPONENT_RESIZED [(][0-9]+,[0-9]+ (.*)[)]", "$1");
                 //String ws = thi.replaceAll("([0-9]+)x[0-9]+", "$1");
                 //String hs = thi.replaceAll("[0-9]+x([0-9]+)", "$1");
                 //int width = Integer.parseInt(ws);
                 //int height = Integer.parseInt(hs);
                 //splitter1.setSize(width, height);
-                        splitter1.setSize(layer.getSize());
-                        splitter1.updateUI();
-                    }
-                });
+                splitter1.setSize(layer.getSize());
+                splitter1.updateUI();
+            }
+        });
         try {
             dividerLocation = Integer.parseInt(settings[9]);
         } catch (NumberFormatException exc) {
@@ -440,24 +432,24 @@ public class GPanel extends JPanel{
         }
 
         /*try {
-            if (settings != null && settings[0] != null && settings[0].equals("Native")) {
-                look = 0;
-            } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-                items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
-                look = 1;
-            } else if (settings[0].equals("Motif")) {
-                items[MenuSupporter.GenerateMenuItemId(5, 2)].setSelected(true);
-                look = 2;
-            } else if (settings[0].equals("Metal")) {
-                items[MenuSupporter.GenerateMenuItemId(5, 3)].setSelected(true);
-                look = 3;
-            } else {
-                items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
-                look = 1;
-            }
+        if (settings != null && settings[0] != null && settings[0].equals("Native")) {
+        look = 0;
+        } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
+        items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
+        look = 1;
+        } else if (settings[0].equals("Motif")) {
+        items[MenuSupporter.GenerateMenuItemId(5, 2)].setSelected(true);
+        look = 2;
+        } else if (settings[0].equals("Metal")) {
+        items[MenuSupporter.GenerateMenuItemId(5, 3)].setSelected(true);
+        look = 3;
+        } else {
+        items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
+        look = 1;
+        }
         } catch (Exception e) {
-            items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
-            look = 1;
+        items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
+        look = 1;
         }*/
 
         if (settings[4].equals("Visible")) {
@@ -487,7 +479,7 @@ public class GPanel extends JPanel{
         splitter1.setDividerSize(10);
         splitter2.setDividerSize(5);
         utilities.addMessage(29);
-        if(!(new File("settings/disable_welcome")).exists()){
+        if (!(new File("settings/disable_welcome")).exists()) {
             SplashScreen.message = "Starting welcome window";
             gcreator.splash.repaint();
             WelcomeTab welcome = new WelcomeTab();
@@ -505,10 +497,9 @@ public class GPanel extends JPanel{
         statusbar.getProgressBar().setVisible(false);
         SplashScreen.message = "Displaying application";
         gcreator.splash.repaint();
-        //setVisible(true);
+    //setVisible(true);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
     public boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -557,30 +548,27 @@ public class GPanel extends JPanel{
         workspace.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
     private void closeAllTabs(DefaultMutableTreeNode node, Project project) {
         for (int i = 0; i < node.getChildCount(); i++) {
-            ObjectNode on = (ObjectNode)node.getChildAt(i);
+            ObjectNode on = (ObjectNode) node.getChildAt(i);
             GObject go = on.object;
-            
+
             if (!(go instanceof GFile)) {
                 if (go instanceof Folder) {
                     closeAllTabs(on, project);
                     continue;
-                }
-                else {
+                } else {
                     continue;
                 }
             }
-            GFile o = (GFile)go;
+            GFile o = (GFile) go;
             if (o.tabPanel != null && o.tabPanel.project == project) {
                 remove(o.tabPanel, o.tabPanel.frame);
             }
         }
     }
     //</editor-fold>
-        
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
         for (java.lang.Object o : from) {
@@ -605,7 +593,6 @@ public class GPanel extends JPanel{
                 robot.mousePress(MouseEvent.BUTTON3_MASK);
                 return;
             } catch (Exception ex) {
-
             }
         }
         MenuGenerator m = new MenuGenerator();
@@ -623,18 +610,18 @@ public class GPanel extends JPanel{
         i.setEnabled(false);
         j.setVisible(false);
         k.setVisible(false);*/
-        
+
         if (o instanceof org.gcreator.fileclass.GFile) {
             //if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
-                Object i = m.addMenuItem(
-                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
-                m.setEnabled(i, ((org.gcreator.fileclass.GFile) o).root.allowsDelete(o));
-                MenuGenerator.addActionListener(i, new ActionListener() {
+            Object i = m.addMenuItem(
+                    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+            m.setEnabled(i, ((org.gcreator.fileclass.GFile) o).root.allowsDelete(o));
+            MenuGenerator.addActionListener(i, new ActionListener() {
 
-                            public void actionPerformed(ActionEvent evt) {
-                                deleteFile((org.gcreator.fileclass.GFile) o);
-                            }
-                        });
+                public void actionPerformed(ActionEvent evt) {
+                    deleteFile((org.gcreator.fileclass.GFile) o);
+                }
+            });
             //}
             //else{
             //    Object i = m.addMenuItem(
@@ -645,7 +632,7 @@ public class GPanel extends JPanel{
                 MenuGenerator.addActionListener(i, new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for "+o.name+".", o.name);
+                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for " + o.name + ".", o.name);
                         if (s != null && !s.trim().equals("")) {
                             o.name = s;
                             workspace.updateUI();
@@ -655,33 +642,33 @@ public class GPanel extends JPanel{
             }
         }
         if (o instanceof org.gcreator.fileclass.Group) {
-                Object i = m.addMenuItem(
-                246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
-                if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
-                    MenuGenerator.addActionListener(i, new ActionListener() {
+            Object i = m.addMenuItem(
+                    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+            if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
+                MenuGenerator.addActionListener(i, new ActionListener() {
 
-                                public void actionPerformed(ActionEvent evt) {
-                                    deleteGroup((org.gcreator.fileclass.Group) o);
-                                }
-                            });
-                }
-                else{
-                    m.setEnabled(i, false);
-                }
+                    public void actionPerformed(ActionEvent evt) {
+                        deleteGroup((org.gcreator.fileclass.Group) o);
+                    }
+                });
+            } else {
+                m.setEnabled(i, false);
+            }
             Object k = m.addMenuItem(
-                245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
+                    245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
             //k.setVisible(true);
             MenuGenerator.addActionListener(k, new ActionListener() {
+
                 public void actionPerformed(ActionEvent e) {
                     Folder f = getCurrentFolder();
                     int in = 1;
-                    for(Object o : f.getChildren()){
-                        if(((GObject) o).name.equals("subgroup"+in)){
+                    for (Object o : f.getChildren()) {
+                        if (((GObject) o).name.equals("subgroup" + in)) {
                             in++;
                             continue;
                         }
                     }
-                
+
                     addGroup(f, f.newGroup("subgroup" + in));
                 }
             });
@@ -690,7 +677,7 @@ public class GPanel extends JPanel{
                 MenuGenerator.addActionListener(k, new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
-                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for "+o.name+".", o.name);
+                        String s = JOptionPane.showInputDialog(GPanel.this, "Type a new name for " + o.name + ".", o.name);
                         if (s != null && !s.trim().equals("")) {
                             o.name = s;
                             workspace.updateUI();
@@ -701,19 +688,19 @@ public class GPanel extends JPanel{
         }
         if (o instanceof Project) {
             Object j = m.addMenuItem(
-                245, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
+                    245, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
             MenuGenerator.addActionListener(j, new ActionListener() {
 
-                        public void actionPerformed(ActionEvent e) {
-                            CloseProject((Project) o, true);
-                        }
-                    });
+                public void actionPerformed(ActionEvent e) {
+                    CloseProject((Project) o, true);
+                }
+            });
         }
         //i.setVisible(true);
         //m.add(i);
         //m.add(j);
         //m.add(k);
-        m.show(this, e.getX()+/*getLocationOnScreen().x+*/workspace.getLocationOnScreen().x, e.getY()+/*getLocationOnScreen().y+*/workspace.getLocationOnScreen().y);
+        m.show(this, e.getX() +/*getLocationOnScreen().x+*/ workspace.getLocationOnScreen().x, e.getY() +/*getLocationOnScreen().y+*/ workspace.getLocationOnScreen().y);
         using = false;
     }
     //</editor-fold>
@@ -773,11 +760,12 @@ public class GPanel extends JPanel{
         ImageIcon img = null;
         try {
             img = (ImageIcon) ((WorkspaceCellRenderer) workspace.getCellRenderer()).getImageFor(file.node);
-        } catch (ClassCastException e) {}
-        
+        } catch (ClassCastException e) {
+        }
+
         if (listener != null) {
             listener.openNewFile(file, this.getCurrentProject(), img);
-        } else if(file.type.equals("action")){
+        } else if (file.type.equals("action")) {
             TabPanel tp = new ActionEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
@@ -920,13 +908,12 @@ public class GPanel extends JPanel{
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="getICore">
-    public ICore getICore(){
+    public ICore getICore() {
         return icore;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="dispose">
-    public void dispose(){
+    public void dispose() {
         if (!gcreator.applet && gcreator.plugload) {
             Plugger.onMainWindowDispose();
         }
@@ -944,11 +931,11 @@ public class GPanel extends JPanel{
                 }
             }
         }
-        if(icore!=null)
+        if (icore != null) {
             icore.disposeIt();
+        }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         System.out.println("Save settings");
@@ -960,7 +947,6 @@ public class GPanel extends JPanel{
         ScriptThemeManager.save();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int)">
     public void addWindow(TabPanel panel, int title) {
         addWindow(panel, LangSupporter.activeLang.getEntry(title), null);
@@ -1006,23 +992,20 @@ public class GPanel extends JPanel{
         try {
             panel.parent = this;
             panel.title = title;
-            int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
-            if (istabs && ver >= 6) {
-                for (int i = 0; i < tabs.getTabCount(); i++) {
-                    if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project == null) {
-                        tabs.setSelectedComponent(tabs.getComponentAt(i));
+            for (int i = 0; i < tabs.getTabCount(); i++) {
+                if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project == null) {
+                    tabs.setSelectedComponent(tabs.getComponentAt(i));
 
-                        return;
-                    } else if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project.equals(this.getCurrentProject()) && tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
-                        tabs.setSelectedComponent(tabs.getComponentAt(i));
-                        return;
-                    }
+                    return;
+                } else if (tabs.getTitleAt(i).equals(title) && ((TabPanel) tabs.getComponentAt(i)).project.equals(this.getCurrentProject()) && tabs.getComponentAt(i).getClass().getName().equals(panel.getClass().getName())) {
+                    tabs.setSelectedComponent(tabs.getComponentAt(i));
+                    return;
                 }
-                tabs.addTab(panel.title, img, panel, "");
-                int index = tabs.indexOfComponent(panel);
-                tabs.setTabComponentAt(index, new ButtonTabComponent(tabs));
-                tabs.setSelectedComponent(panel);
             }
+            tabs.addTab(panel.title, img, panel, "");
+            int index = tabs.indexOfComponent(panel);
+            tabs.setTabComponentAt(index, new ButtonTabComponent(tabs));
+            tabs.setSelectedComponent(panel);
             /*
              * This does not work
              * 
@@ -1030,30 +1013,30 @@ public class GPanel extends JPanel{
              * 
              * 
             for (int i = 0; i < mdi.getComponentCount(); i++) {
-                try {
-                    if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
-                        ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
-
-                        return;
-                    } else if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && (((ExtendedFrame) mdi.getComponent(i)).getPanel().project.equals(this.getCurrentProject()))) {
-                        try {
-
-                            ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
-
-                            return;
-                        } catch (PropertyVetoException ex) {
-                            Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                } catch (ClassCastException e) {
-                }
+            try {
+            if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
+            ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
+            
+            return;
+            } else if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && (((ExtendedFrame) mdi.getComponent(i)).getPanel().project.equals(this.getCurrentProject()))) {
+            try {
+            
+            ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
+            
+            return;
+            } catch (PropertyVetoException ex) {
+            Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            }
+            } catch (ClassCastException e) {
+            }
             }
              */
             ExtendedFrame frame = new ExtendedFrame();
             panel.frame = frame;
             frame.setPanel(panel);
-            frame.setSize(new Dimension(Math.max(panel.getPreferredSize().width,300),
-                                Math.max(panel.getPreferredSize().height,300)) );
+            frame.setSize(new Dimension(Math.max(panel.getPreferredSize().width, 300),
+                    Math.max(panel.getPreferredSize().height, 300)));
             frame.setMinimumSize(panel.getPreferredSize());
             frame.updateUI();
             frame.setClosable(true);
@@ -1065,33 +1048,33 @@ public class GPanel extends JPanel{
             frame.setFrameIcon(img);
             frame.addInternalFrameListener(new InternalFrameListener() {
 
-                        public void internalFrameDeactivated(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
+                public void internalFrameDeactivated(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
 
-                        public void internalFrameActivated(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
+                public void internalFrameActivated(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
 
-                        public void internalFrameDeiconified(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
+                public void internalFrameDeiconified(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
 
-                        public void internalFrameIconified(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
+                public void internalFrameIconified(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
 
-                        public void internalFrameClosed(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
+                public void internalFrameClosed(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
 
-                        public void internalFrameClosing(InternalFrameEvent evt) {
-                        }
+                public void internalFrameClosing(InternalFrameEvent evt) {
+                }
 
-                        public void internalFrameOpened(InternalFrameEvent evt) {
-                            changed.stateChanged(null);
-                        }
-                    });
+                public void internalFrameOpened(InternalFrameEvent evt) {
+                    changed.stateChanged(null);
+                }
+            });
             frame.setDefaultCloseOperation(JInternalFrame.DISPOSE_ON_CLOSE);
             org.jdesktop.layout.GroupLayout jInternalFrame1Layout = new org.jdesktop.layout.GroupLayout(frame.getContentPane());
             frame.getContentPane().setLayout(jInternalFrame1Layout);
@@ -1108,7 +1091,6 @@ public class GPanel extends JPanel{
     //winlist.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="installFileEditor">
     public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
@@ -1140,7 +1122,6 @@ public class GPanel extends JPanel{
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentProject">
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
@@ -1156,7 +1137,6 @@ public class GPanel extends JPanel{
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentFolder">
     public Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
@@ -1186,7 +1166,6 @@ public class GPanel extends JPanel{
         return node.object;
     }
     //</editor-fold>
-    
     public boolean addPanelSelectedListener(PanelSelectedListener psl) {
         return psel.add(psl);
     }
@@ -1215,7 +1194,6 @@ public class GPanel extends JPanel{
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createPaletteFrame()">
     public JInternalFrame createPaletteFrame() {
         JInternalFrame f = new JInternalFrame();
@@ -1238,7 +1216,6 @@ public class GPanel extends JPanel{
         return f;
     }
     //</editor-fold>
-
     private void selectedDocumentChanged(TabPanel tabpanel) {
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
@@ -1314,75 +1291,75 @@ public class GPanel extends JPanel{
             addWindow(help, 27);
         }
         /*if (menu == 6 && (item < 4)) {
-            if (!istabs) {
-                int k = splitter2.getDividerLocation();
-                tabs.setVisible(true);
-                mdi.setVisible(false);
-                if (isWorkspaceLeft()) {
-                    splitter2.setRightComponent(tabs);
-                    if (splitter2.getRightComponent().isVisible()) {
-                        splitter2.setDividerLocation(k);
-                    }
-                } else {
-                    splitter2.setLeftComponent(tabs);
-                    if (splitter2.getLeftComponent().isVisible()) {
-                        splitter2.setDividerLocation(k);
-                    }
-                }
-                istabs = true;
-                for (int i = 0; i < mdi.getComponents().length; i++) {
-                    try {
-                        TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
-                        tabs.addTab(panel.title, panel);
-                        int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
-                        if (ver >= 6) {
-                            tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
-                        }
-                    } catch (ClassCastException e) {
-                    }
-                }
-            }
+        if (!istabs) {
+        int k = splitter2.getDividerLocation();
+        tabs.setVisible(true);
+        mdi.setVisible(false);
+        if (isWorkspaceLeft()) {
+        splitter2.setRightComponent(tabs);
+        if (splitter2.getRightComponent().isVisible()) {
+        splitter2.setDividerLocation(k);
+        }
+        } else {
+        splitter2.setLeftComponent(tabs);
+        if (splitter2.getLeftComponent().isVisible()) {
+        splitter2.setDividerLocation(k);
+        }
+        }
+        istabs = true;
+        for (int i = 0; i < mdi.getComponents().length; i++) {
+        try {
+        TabPanel panel = ((ExtendedFrame) mdi.getComponent(i)).getPanel();
+        tabs.addTab(panel.title, panel);
+        int ver = Integer.parseInt(org.gcreator.core.gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
+        if (ver >= 6) {
+        tabs.setTabComponentAt(tabs.indexOfComponent(panel), new ButtonTabComponent(tabs));
+        }
+        } catch (ClassCastException e) {
+        }
+        }
+        }
         }
         if (menu == 6 && item == 0) {
-            tabs.setTabPlacement(JTabbedPane.TOP);
+        tabs.setTabPlacement(JTabbedPane.TOP);
         }
         if (menu == 6 && item == 1) {
-            tabs.setTabPlacement(JTabbedPane.LEFT);
+        tabs.setTabPlacement(JTabbedPane.LEFT);
         }
         if (menu == 6 && item == 2) {
-            tabs.setTabPlacement(JTabbedPane.BOTTOM);
+        tabs.setTabPlacement(JTabbedPane.BOTTOM);
         }
         if (menu == 6 && item == 3) {
-            tabs.setTabPlacement(JTabbedPane.RIGHT);
+        tabs.setTabPlacement(JTabbedPane.RIGHT);
         }
         if (menu == 6 && item == 4) {//MDI
-            if (istabs) {
-                int k = splitter2.getDividerLocation();
-                tabs.setVisible(false);
-                mdi.setVisible(true);
-                if (isWorkspaceLeft()) {
-                    splitter2.setRightComponent(mdi);
-                    if (splitter2.getRightComponent().isVisible()) {
-                        splitter2.setDividerLocation(k);
-                    }
-                } else {
-                    splitter2.setLeftComponent(mdi);
-                    if (splitter2.getLeftComponent().isVisible()) {
-                        splitter2.setDividerLocation(k);
-                    }
-                }
-
-                istabs = false;
-                Component[] panels = tabs.getComponents();
-                for (int i = 0; i < panels.length; i++) {
-                    if (panels[i] instanceof TabPanel) {
-                        TabPanel panel = (TabPanel) panels[i];
-                        org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
-                        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
-                    }
-                }
-            }
+        if (istabs) {
+        int k = splitter2.getDividerLocation();
+        tabs.setVisible(false);
+        mdi.setVisible(true);
+        if (isWorkspaceLeft()) {
+        splitter2.setRightComponent(mdi);
+        if (splitter2.getRightComponent().isVisible()) {
+        splitter2.setDividerLocation(k);
+        }
+        } else {
+        splitter2.setLeftComponent(mdi);
+        if (splitter2.getLeftComponent().isVisible()) {
+        splitter2.setDividerLocation(k);
+        }
+        }
+        
+        istabs = false;
+        Component[] panels = tabs.getComponents();
+        for (int i = 0; i < panels.length; i++) {
+        if (panels[i] instanceof TabPanel) {
+        TabPanel panel = (TabPanel) panels[i];
+        org.jdesktop.layout.GroupLayout jInternalFrame1Layout = (org.jdesktop.layout.GroupLayout) panel.frame.getContentPane().getLayout();
+        jInternalFrame1Layout.setHorizontalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        jInternalFrame1Layout.setVerticalGroup(jInternalFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING).add(panel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        }
+        }
+        }
         }*/
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
@@ -1404,7 +1381,7 @@ public class GPanel extends JPanel{
             addWindow(new PowerPackImporter(), 184,
                     (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
-        if (menu == 7 && item == 5){
+        if (menu == 7 && item == 5) {
             WelcomeTab welcome = new WelcomeTab();
             addWindow(welcome, 26);
             updateToDefaultNavigatorPanel(welcome);
@@ -1470,8 +1447,9 @@ public class GPanel extends JPanel{
         Folder a;
         switch (item) {
             case 1:
-                if(newproject != null)
-                    addWindow(newproject, 55,new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
+                if (newproject != null) {
+                    addWindow(newproject, 55, new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
+                }
                 break;
             case 2:
                 ProjectImporter.OpenProject(this);
@@ -1497,7 +1475,7 @@ public class GPanel extends JPanel{
                 }
                 break;
             case 5:
-                if (!(getCurrentProject() instanceof GameProject)){
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1507,12 +1485,11 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newSprite" + ((GameProject)getCurrentProject()).sprites++, "sprite");
+                addFile(getCurrentFolder(), "newSprite" + ((GameProject) getCurrentProject()).sprites++, "sprite");
 
                 break;
             case 6:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1522,34 +1499,34 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newSound" + ((GameProject)getCurrentProject()).sounds++, "wav");
+                addFile(getCurrentFolder(), "newSound" + ((GameProject) getCurrentProject()).sounds++, "wav");
 
                 break;
             case 7:
                 //add class
-                if (getCurrentProject() instanceof GameProject)
-                    i = ((GameProject)getCurrentProject()).classes;
-                else if (getCurrentProject() instanceof ModuleProject)
-                    i = ((ModuleProject)getCurrentProject()).classes;
-                else {
+                if (getCurrentProject() instanceof GameProject) {
+                    i = ((GameProject) getCurrentProject()).classes;
+                } else if (getCurrentProject() instanceof ModuleProject) {
+                    i = ((ModuleProject) getCurrentProject()).classes;
+                } else {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
-                
+
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
                 addFile(getCurrentFolder(), "newClass" + i, "gcl");
-                if (getCurrentProject() instanceof GameProject)
-                    ((GameProject)getCurrentProject()).classes++;
-                else if (getCurrentProject() instanceof ModuleProject)
-                    ((ModuleProject)getCurrentProject()).classes++;
+                if (getCurrentProject() instanceof GameProject) {
+                    ((GameProject) getCurrentProject()).classes++;
+                } else if (getCurrentProject() instanceof ModuleProject) {
+                    ((ModuleProject) getCurrentProject()).classes++;
+                }
                 break;
             case 8:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1559,11 +1536,10 @@ public class GPanel extends JPanel{
                     return;
                 }
                 //getCurrentProject().actors.add(new Actor("newActor" + i));
-                addFile(getCurrentFolder(), "act_" + ((GameProject)getCurrentProject()).actors++, "actor");
+                addFile(getCurrentFolder(), "act_" + ((GameProject) getCurrentProject()).actors++, "actor");
                 break;
             case 9:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1573,7 +1549,7 @@ public class GPanel extends JPanel{
                     return;
                 }
                 //getCurrentProject().scenes.add(new Scene("newScene" + i));
-                addFile(getCurrentFolder(), "sc_" + ((GameProject)getCurrentProject()).scenes++, "scene");
+                addFile(getCurrentFolder(), "sc_" + ((GameProject) getCurrentProject()).scenes++, "scene");
                 break;
             case 10:
                 a = getCurrentFolder();
@@ -1581,23 +1557,19 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                if (getCurrentProject() instanceof GameProject)
-                    {
-                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((GameProject)getCurrentProject()).images++, "png");
+                if (getCurrentProject() instanceof GameProject) {
+                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((GameProject) getCurrentProject()).images++, "png");
                     return;
-                }
-                else if(getCurrentProject() instanceof ModuleProject){
-                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((ModuleProject)getCurrentProject()).images++, "png");
+                } else if (getCurrentProject() instanceof ModuleProject) {
+                    org.gcreator.fileclass.GFile file = addFile(getCurrentFolder(), "img_" + ((ModuleProject) getCurrentProject()).images++, "png");
                     return;
-                }
-                else{
+                } else {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                 }
 
                 break;
             case 11:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1606,11 +1578,10 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "tset_" + ((GameProject)getCurrentProject()).tilesets++, "tileset");
+                addFile(getCurrentFolder(), "tset_" + ((GameProject) getCurrentProject()).tilesets++, "tileset");
                 break;
             case 12:
-                if (!(getCurrentProject() instanceof GameProject))
-                    {
+                if (!(getCurrentProject() instanceof GameProject)) {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1619,15 +1590,15 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "tl_" + ((GameProject)getCurrentProject()).timelines++, "timeline");
+                addFile(getCurrentFolder(), "tl_" + ((GameProject) getCurrentProject()).timelines++, "timeline");
                 break;
             case 13:
                 //add class
-                if (getCurrentProject() instanceof GameProject)
-                    i = ((GameProject)getCurrentProject()).scripts;
-                else if (getCurrentProject() instanceof ModuleProject)
-                    i = ((ModuleProject)getCurrentProject()).scripts;
-                else {
+                if (getCurrentProject() instanceof GameProject) {
+                    i = ((GameProject) getCurrentProject()).scripts;
+                } else if (getCurrentProject() instanceof ModuleProject) {
+                    i = ((ModuleProject) getCurrentProject()).scripts;
+                } else {
                     JOptionPane.showMessageDialog(null, "You have not selected a project to add to!");
                     return;
                 }
@@ -1637,38 +1608,39 @@ public class GPanel extends JPanel{
                     return;
                 }
                 addFile(getCurrentFolder(), "script_" + i, "gs");
-                if (getCurrentProject() instanceof GameProject)
-                    ((GameProject)getCurrentProject()).scripts++;
-                else if (getCurrentProject() instanceof ModuleProject)
-                    ((ModuleProject)getCurrentProject()).scripts++;
+                if (getCurrentProject() instanceof GameProject) {
+                    ((GameProject) getCurrentProject()).scripts++;
+                } else if (getCurrentProject() instanceof ModuleProject) {
+                    ((ModuleProject) getCurrentProject()).scripts++;
+                }
                 break;
             case 14:
                 Folder f = getCurrentFolder();
                 int in = 1;
-                for(Object o : f.getChildren()){
-                    if(((GObject) o).name.equals("subgroup"+in)){
+                for (Object o : f.getChildren()) {
+                    if (((GObject) o).name.equals("subgroup" + in)) {
                         in++;
                         continue;
                     }
                 }
-                
+
                 addGroup(f, f.newGroup("subgroup" + in));
-                
-                break;               
-             case 15:
-                 //add path
-                if (!(getCurrentProject() instanceof GameProject))
+
+                break;
+            case 15:
+                //add path
+                if (!(getCurrentProject() instanceof GameProject)) {
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newPath" + ((GameProject)getCurrentProject()).paths++, "path");
+                addFile(getCurrentFolder(), "newPath" + ((GameProject) getCurrentProject()).paths++, "path");
                 break;
             case 16:
-                if (!(getCurrentProject() instanceof ModuleProject))
-                    {
+                if (!(getCurrentProject() instanceof ModuleProject)) {
                     JOptionPane.showMessageDialog(null, "<html>You have not selected a <em>module</> to add to!</>");
                     return;
                 }
@@ -1677,17 +1649,18 @@ public class GPanel extends JPanel{
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "action_" + ((ModuleProject)getCurrentProject()).actions++, "action");
+                addFile(getCurrentFolder(), "action_" + ((ModuleProject) getCurrentProject()).actions++, "action");
                 break;
             case 17:
-                if (!(getCurrentProject() instanceof GameProject))
+                if (!(getCurrentProject() instanceof GameProject)) {
                     return;
+                }
                 a = getCurrentFolder();
                 if (a == null) {
                     JOptionPane.showMessageDialog(null, "Select a folder on the project tree!");
                     return;
                 }
-                addFile(getCurrentFolder(), "newSnippet" + ((GameProject)getCurrentProject()).snippets++, "snippet");
+                addFile(getCurrentFolder(), "newSnippet" + ((GameProject) getCurrentProject()).snippets++, "snippet");
                 break;
         }
     }
@@ -1756,7 +1729,7 @@ public class GPanel extends JPanel{
         org.gcreator.core.utilities.addStringMessage("close project");
         //Close all tabs
         closeAllTabs((DefaultMutableTreeNode) p.node.getParent(), p);
-        
+
         top.remove((DefaultMutableTreeNode) getCurrentProject().node/*.getParent()*/);
         workspace.updateUI();
     }
@@ -1798,14 +1771,12 @@ public class GPanel extends JPanel{
         CloseProject(getCurrentProject());
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
@@ -1828,8 +1799,8 @@ public class GPanel extends JPanel{
                 }
             }
         } else {
-           for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
-               if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
+            for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
                 } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(getMainProject()) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
                     ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
                 }
@@ -1837,21 +1808,19 @@ public class GPanel extends JPanel{
         }
         //save to gcp file
         if (mainProject.location == null || mainProject.location.equals("") || saveAs) {
-          JFileChooser fc = new JFileChooser();
+            JFileChooser fc = new JFileChooser();
             fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             fc.showSaveDialog(gcreator.window);
             java.io.File file = fc.getSelectedFile();
             if (file == null) {
-              return;
+                return;
             }
             mainProject.location = file.getPath();
-            if (!mainProject.location.contains(".gcp")) 
-            {
+            if (!mainProject.location.contains(".gcp")) {
                 mainProject.location += ".gcp";
             }
         }
         ProjectExporter.export(mainProject, mainProject.location);
     }
     //</editor-fold>
-    
 }
