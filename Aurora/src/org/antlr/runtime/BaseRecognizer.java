@@ -82,7 +82,12 @@ public abstract class BaseRecognizer {
 	 *  here and bail out of the current production to the normal error
 	 *  exception catch (at the end of the method) by just throwing
 	 *  MismatchedTokenException upon input.LA(1)!=ttype.
-	 */
+         * 
+         * @param input
+         * @param ttype 
+         * @param follow 
+         * @throws org.antlr.runtime.RecognitionException
+         */
 	public void match(IntStream input, int ttype, BitSet follow)
 		throws RecognitionException
 	{
@@ -110,7 +115,12 @@ public abstract class BaseRecognizer {
 	 *  differently.  Override this method in your parser to do things
 	 *  like bailing out after the first error; just throw the mte object
 	 *  instead of calling the recovery method.
-	 */
+         * 
+         * @param input
+         * @param ttype 
+         * @param follow 
+         * @throws org.antlr.runtime.RecognitionException
+         */
 	protected void mismatch(IntStream input, int ttype, BitSet follow)
 		throws RecognitionException
 	{
@@ -131,7 +141,9 @@ public abstract class BaseRecognizer {
 	 * 		3. consume until token found in resynch set
 	 * 		4. try to resume parsing
 	 * 		5. next match() will reset errorRecovery mode
-	 */
+         * 
+         * @param e 
+         */
 	public void reportError(RecognitionException e) {
 		// if we've already reported an error and have not matched a token
 		// yet successfully, don't report any errors.
@@ -173,7 +185,11 @@ public abstract class BaseRecognizer {
 	 *
 	 *  Override this to change the message generated for one or more
 	 *  exception types.
-	 */
+         * 
+         * @param e
+         * @param tokenNames
+         * @return 
+         */
 	public String getErrorMessage(RecognitionException e, String[] tokenNames) {
 		String msg = null;
 		if ( e instanceof MismatchedTokenException ) {
@@ -231,7 +247,10 @@ public abstract class BaseRecognizer {
 		return msg;
 	}
 
-	/** What is the error header, normally line/character position information? */
+        /** What is the error header, normally line/character position information?
+         * @param e
+         * @return 
+         */
 	public String getErrorHeader(RecognitionException e) {
 		return "line "+e.line+":"+e.charPositionInLine;
 	}
@@ -243,7 +262,10 @@ public abstract class BaseRecognizer {
 	 *  the token). This is better than forcing you to override a method in
 	 *  your token objects because you don't have to go modify your lexer
 	 *  so that it creates a new Java type.
-	 */
+         * 
+         * @param t
+         * @return 
+         */
 	public String getTokenErrorDisplay(Token t) {
 		String s = t.getText();
 		if ( s==null ) {
@@ -260,7 +282,9 @@ public abstract class BaseRecognizer {
 		return "'"+s+"'";
 	}
 
-	/** Override this method to change where error messages go */
+        /** Override this method to change where error messages go
+         * @param msg 
+         */
 	public void emitErrorMessage(String msg) {
 		System.err.println(msg);
 	}
@@ -268,7 +292,10 @@ public abstract class BaseRecognizer {
 	/** Recover from an error found on the input stream.  Mostly this is
 	 *  NoViableAlt exceptions, but could be a mismatched token that
 	 *  the match() routine could not recover from.
-	 */
+         * 
+         * @param input
+         * @param re 
+         */
 	public void recover(IntStream input, RecognitionException re) {
 		if ( lastErrorIndex==input.index() ) {
 			// uh oh, another error at same token index; must be a case
@@ -439,7 +466,9 @@ public abstract class BaseRecognizer {
 	 *  the viable next token set, then you know there is most likely
 	 *  a missing token in the input stream.  "Insert" one by just not
 	 *  throwing an exception.
-	 */
+         * 
+         * @return 
+         */
 	protected BitSet computeContextSensitiveRuleFOLLOW() {
 		return combineFollows(true);
 	}
@@ -448,7 +477,7 @@ public abstract class BaseRecognizer {
 		int top = _fsp;
 		BitSet followSet = new BitSet();
 		for (int i=top; i>=0; i--) {
-			BitSet localFollowSet = (BitSet) following[i];
+			BitSet localFollowSet = following[i];
 			/*
 			System.out.println("local follow depth "+i+"="+
 							   localFollowSet.toString(getTokenNames())+")");
@@ -490,7 +519,13 @@ public abstract class BaseRecognizer {
 	 *  mismatched token error.  To recover, it sees that LA(1)==';'
 	 *  is in the set of tokens that can follow the ')' token
 	 *  reference in rule atom.  It can assume that you forgot the ')'.
-	 */
+         * 
+         * @param input
+         * @param e 
+         * @param ttype
+         * @param follow
+         * @throws org.antlr.runtime.RecognitionException 
+         */
 	public void recoverFromMismatchedToken(IntStream input,
 										   RecognitionException e,
 										   int ttype,
@@ -531,7 +566,12 @@ public abstract class BaseRecognizer {
 	 *  recovery.  It handles "single token insertion" error recovery for
 	 *  both.  No tokens are consumed to recover from insertions.  Return
 	 *  true if recovery was possible else return false.
-	 */
+         * 
+         * @param input 
+         * @param follow
+         * @param e
+         * @return 
+         */
 	protected boolean recoverFromMismatchedElement(IntStream input,
 												   RecognitionException e,
 												   BitSet follow)
@@ -570,7 +610,10 @@ public abstract class BaseRecognizer {
 		}
 	}
 
-	/** Consume tokens until one matches the given token set */
+        /** Consume tokens until one matches the given token set
+         * @param input 
+         * @param set
+         */
 	public void consumeUntil(IntStream input, BitSet set) {
 		//System.out.println("consumeUntil("+set.toString(getTokenNames())+")");
 		int ttype = input.LA(1);
@@ -581,7 +624,9 @@ public abstract class BaseRecognizer {
 		}
 	}
 
-	/** Push a rule's follow set using our own hardcoded stack */
+        /** Push a rule's follow set using our own hardcoded stack
+         * @param fset 
+         */
 	protected void pushFollow(BitSet fset) {
 		if ( (_fsp +1)>=following.length ) {
 			BitSet[] f = new BitSet[following.length*2];
@@ -598,7 +643,9 @@ public abstract class BaseRecognizer {
 	 *
 	 *  This is very useful for error messages and for context-sensitive
 	 *  error recovery.
-	 */
+         * 
+         * @return 
+         */
 	public List getRuleInvocationStack() {
 		String parserClassName = getClass().getName();
 		return getRuleInvocationStack(new Throwable(), parserClassName);
@@ -610,9 +657,13 @@ public abstract class BaseRecognizer {
 	 *  static.
 	 *
 	 *  TODO: move to a utility class or something; weird having lexer call this
-	 */
-	public static List getRuleInvocationStack(Throwable e,
-											  String recognizerClassName)
+         * 
+         * @param e 
+         * @param recognizerClassName
+         * @return 
+         */
+    @SuppressWarnings("unchecked")
+	public static List getRuleInvocationStack(Throwable e, String recognizerClassName)
 	{
 		List rules = new ArrayList();
 		StackTraceElement[] stack = e.getStackTrace();
@@ -640,23 +691,33 @@ public abstract class BaseRecognizer {
 	/** Used to print out token names like ID during debugging and
 	 *  error reporting.  The generated parsers implement a method
 	 *  that overrides this to point to their String[] tokenNames.
-	 */
+         * 
+         * @return 
+         */
 	public String[] getTokenNames() {
 		return null;
 	}
 
 	/** For debugging and other purposes, might want the grammar name.
 	 *  Have ANTLR generate an implementation for this method.
-	 */
+         * 
+         * @return 
+         */
 	public String getGrammarFileName() {
 		return null;
 	}
 
 	/** A convenience method for use most often with template rewrites.
 	 *  Convert a List<Token> to List<String>
-	 */
+         * 
+         * @param tokens
+         * @return 
+         */
+    @SuppressWarnings("unchecked")
 	public List toStrings(List tokens) {
-		if ( tokens==null ) return null;
+		if ( tokens==null ) {
+            return null;
+        }
 		List strings = new ArrayList(tokens.size());
 		for (int i=0; i<tokens.size(); i++) {
 			strings.add(((Token)tokens.get(i)).getText());
@@ -692,7 +753,11 @@ public abstract class BaseRecognizer {
 	 *  For now we use a hashtable and just the slow Object-based one.
 	 *  Later, we can make a special one for ints and also one that
 	 *  tosses out data after we commit past input position i.
-	 */
+         * 
+         * @param ruleIndex
+         * @param ruleStartIndex
+         * @return 
+         */
 	public int getRuleMemoization(int ruleIndex, int ruleStartIndex) {
 		if ( ruleMemo[ruleIndex]==null ) {
 			ruleMemo[ruleIndex] = new HashMap();
@@ -713,7 +778,11 @@ public abstract class BaseRecognizer {
 	 *  This method has a side-effect: if we have seen this input for
 	 *  this rule and successfully parsed before, then seek ahead to
 	 *  1 past the stop token matched for this rule last time.
-	 */
+         * 
+         * @param input
+         * @param ruleIndex
+         * @return 
+         */
 	public boolean alreadyParsedRule(IntStream input, int ruleIndex) {
 		int stopIndex = getRuleMemoization(ruleIndex, input.index());
 		if ( stopIndex==MEMO_RULE_UNKNOWN ) {
@@ -732,7 +801,12 @@ public abstract class BaseRecognizer {
 
 	/** Record whether or not this rule parsed the input at this position
 	 *  successfully.  Use a standard java hashtable for now.
-	 */
+         * 
+         * @param input 
+         * @param ruleStartIndex
+         * @param ruleIndex 
+         */
+    @SuppressWarnings("unchecked")
 	public void memoize(IntStream input,
 						int ruleIndex,
 						int ruleStartIndex)
@@ -769,7 +843,9 @@ public abstract class BaseRecognizer {
 
 	/** return how many rule/input-index pairs there are in total.
 	 *  TODO: this includes synpreds. :(
-	 */
+         * 
+         * @return 
+         */
 	public int getRuleMemoizationCacheSize() {
 		int n = 0;
 		for (int i = 0; ruleMemo!=null && i < ruleMemo.length; i++) {

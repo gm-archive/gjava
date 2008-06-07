@@ -64,6 +64,7 @@ public class gcreator {
         System.setOut(SystemOutStream.instance);
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
+        
         //try {
             /*
              * Ethos does not work very well when switching to another L&F.

@@ -164,14 +164,19 @@ public class ActionPopupMenu extends MenuGenerator{
         }
     }
     
+    @SuppressWarnings("unchecked")
     public void onPaste() {
-    if(ActorEditorClipboard.copiedAction == null) return;
+    if(ActorEditorClipboard.copiedAction == null) {
+            return;
+        }
     try{
         Vector array = null;
-            if(aedit!=null)
+            if(aedit!=null) {
                 array = ((Event) aedit.jList1.getSelectedValue()).actions;
-            if(tedit!=null)
+            }
+            if(tedit!=null) {
                 array = (TimelineStep) tedit.jComboBox3.getSelectedItem();
+            }
             array.add(ActorEditorClipboard.copiedAction);
         }
         catch(Exception e){}

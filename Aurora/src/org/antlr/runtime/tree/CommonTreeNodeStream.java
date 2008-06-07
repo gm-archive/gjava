@@ -54,10 +54,12 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 
 	protected class StreamIterator implements Iterator {
 		int i = 0;
+        @Override
 		public boolean hasNext() {
 			return i<nodes.size();
 		}
 
+        @Override
 		public Object next() {
 			int current = i;
 			i++;
@@ -67,6 +69,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 			return eof;
 		}
 
+        @Override
 		public void remove() {
 			throw new RuntimeException("cannot remove nodes from stream");
 		}
@@ -165,6 +168,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		p = 0; // buffer of nodes intialized now
 	}
 
+    @SuppressWarnings("unchecked")
 	protected void fillBuffer(Object t) {
 		boolean nil = adaptor.isNil(t);
 		if ( !nil ) {
@@ -204,7 +208,11 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	 *
 	 *  If you change this method, you will likely need to change
 	 *  getNodeIndex(), which extracts information.
-	 */
+         * 
+         * @param node
+         * @param streamIndex 
+         */
+    @SuppressWarnings("unchecked")
 	protected void fillReverseIndex(Object node, int streamIndex) {
 		//System.out.println("revIndex "+node+"@"+streamIndex);
 		if ( tokenTypesToReverseIndex==null ) {
@@ -239,6 +247,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	 *  set all at once.
 	 * @param tokenType
 	 */
+    @SuppressWarnings("unchecked")
 	public void reverseIndex(int tokenType) {
 		if ( tokenTypesToReverseIndex==null ) {
 			tokenTypesToReverseIndex = new HashSet();
@@ -251,7 +260,9 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 
 	/** Track the indicated token types in the reverse index. Set
 	 *  to INDEX_ALL to track all token types.
-	 */
+         * 
+         * @param tokenTypes 
+         */
 	public void reverseIndex(Set tokenTypes) {
 		tokenTypesToReverseIndex = tokenTypes;
 	}
@@ -262,7 +273,10 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	 *  for node's token type, a linear search of entire stream is used.
 	 *
 	 *  Return -1 if exact node pointer not in stream.
-	 */
+         * 
+         * @param node
+         * @return 
+         */
 	public int getNodeIndex(Object node) {
 		//System.out.println("get "+node);
 		if ( tokenTypeToStreamIndexesMap==null ) {
@@ -291,7 +305,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 			fillBuffer();
 		}
 		for (int i = 0; i < nodes.size(); i++) {
-			Object t = (Object) nodes.get(i);
+			Object t = nodes.get(i);
 			if ( t==node ) {
 				return i;
 			}
@@ -302,7 +316,10 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	/** As we flatten the tree, we use UP, DOWN nodes to represent
 	 *  the tree structure.  When debugging we need unique nodes
 	 *  so instantiate new ones when uniqueNavigationNodes is true.
-	 */
+         * 
+         * @param ttype 
+         */
+    @SuppressWarnings("unchecked")
 	protected void addNavigationNode(final int ttype) {
 		Object navNode = null;
 		if ( ttype==Token.DOWN ) {
@@ -324,6 +341,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		nodes.add(navNode);
 	}
 
+    @Override
 	public Object get(int i) {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -331,6 +349,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		return nodes.get(i);
 	}
 
+    @Override
 	public Object LT(int k) {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -367,7 +386,10 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	}
 */
 	
-	/** Look backwards k nodes */
+    /** Look backwards k nodes
+     * @param k
+     * @return 
+     */
 	protected Object LB(int k) {
 		if ( k==0 ) {
 			return null;
@@ -378,10 +400,12 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		return nodes.get(p-k);
 	}
 
+    @Override
 	public Object getTreeSource() {
 		return root;
 	}
 
+    @Override
 	public TokenStream getTokenStream() {
 		return tokens;
 	}
@@ -390,6 +414,7 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		this.tokens = tokens;
 	}
 
+    @Override
 	public TreeAdaptor getTreeAdaptor() {
 		return adaptor;
 	}
@@ -398,10 +423,12 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		return uniqueNavigationNodes;
 	}
 
+    @Override
 	public void setUniqueNavigationNodes(boolean uniqueNavigationNodes) {
 		this.uniqueNavigationNodes = uniqueNavigationNodes;
 	}
 
+    @Override
 	public void consume() {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -409,10 +436,12 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		p++;
 	}
 
+    @Override
 	public int LA(int i) {
 		return adaptor.getType(LT(i));
 	}
 
+    @Override
 	public int mark() {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -421,22 +450,27 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 		return lastMarker;
 	}
 
+    @Override
 	public void release(int marker) {
 		// no resources to release
 	}
 
+    @Override
 	public int index() {
 		return p;
 	}
 
+    @Override
 	public void rewind(int marker) {
 		seek(marker);
 	}
 
+    @Override
 	public void rewind() {
 		seek(lastMarker);
 	}
 
+    @Override
 	public void seek(int index) {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -447,7 +481,9 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	/** Make stream jump to a new location, saving old location.
 	 *  Switch back with pop().  I manage dyanmic array manually
 	 *  to avoid creating Integer objects all over the place.
-	 */
+         * 
+         * @param index 
+         */
 	public void push(int index) {
 		if ( calls==null ) {
 			calls = new int[INITIAL_CALL_STACK_SIZE];
@@ -463,13 +499,16 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 
 	/** Seek back to previous index saved during last push() call.
 	 *  Return top of stack (return index).
-	 */
+         * 
+         * @return 
+         */
 	public int pop() {
 		int ret = calls[_sp--];
 		seek(ret);
 		return ret;
 	}
 
+    @Override
 	public int size() {
 		if ( p==-1 ) {
 			fillBuffer();
@@ -485,19 +524,21 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 	}
 
 	/** Used for testing, just return the token type stream */
+    @Override
 	public String toString() {
 		if ( p==-1 ) {
 			fillBuffer();
 		}
 		StringBuffer buf = new StringBuffer();
 		for (int i = 0; i < nodes.size(); i++) {
-			Object t = (Object) nodes.get(i);
+			Object t = nodes.get(i);
 			buf.append(" ");
 			buf.append(adaptor.getType(t));
 		}
 		return buf.toString();
 	}
 
+    @Override
 	public String toString(Object start, Object stop) {
 		if ( start==null || stop==null ) {
 			return null;
@@ -506,14 +547,18 @@ public class CommonTreeNodeStream implements TreeNodeStream {
 			fillBuffer();
 		}
 		System.out.println("stop: "+stop);
-		if ( start instanceof CommonTree )
-			System.out.print("toString: "+((CommonTree)start).getToken()+", ");
-		else
-			System.out.println(start);
-		if ( stop instanceof CommonTree )
-			System.out.println(((CommonTree)stop).getToken());
-		else
-			System.out.println(stop);
+		if ( start instanceof CommonTree ) {
+            System.out.print("toString: " + ((CommonTree) start).getToken() + ", ");
+        }
+		else {
+            System.out.println(start);
+        }
+		if ( stop instanceof CommonTree ) {
+            System.out.println(((CommonTree) stop).getToken());
+        }
+		else {
+            System.out.println(stop);
+        }
 		// if we have the token stream, use that to dump text in order
 		if ( tokens!=null ) {
 			int beginTokenIndex = adaptor.getTokenStartIndex(start);

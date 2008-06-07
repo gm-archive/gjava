@@ -54,7 +54,8 @@ import org.gcreator.fileclass.Project;
  * @version $Id: JEditTextArea.java,v 1.36 1999/12/13 03:40:30 sp Exp $
  */
 public class JEditTextArea extends JComponent {
-
+    private static final long serialVersionUID = 1;
+    
     /**
      * Adding components with this name to the text area will place
      * them left of the horizontal scroll bar. In jEdit, the status
@@ -1550,6 +1551,7 @@ public class JEditTextArea extends JComponent {
 
     class ScrollLayout implements LayoutManager {
 
+        @SuppressWarnings("unchecked")
         public void addLayoutComponent(String name, Component comp) {
             if (name.equals(CENTER)) {
                 center = comp;

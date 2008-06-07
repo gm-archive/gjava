@@ -8,7 +8,6 @@
  */
 package org.gcreator.fileclass;
 
-import java.applet.AudioClip;
 import java.awt.Image;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
@@ -19,8 +18,6 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
-import java.io.Serializable;
-import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.ImageIcon;
 import javax.imageio.*;
@@ -31,8 +28,7 @@ import org.gcreator.fileclass.res.*;
  * @author Luís
  */
 public class GFile extends GObject implements Transferable {
-
-    static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1;
     public static final DataFlavor NODE_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, "Node");
     private static DataFlavor[] flavors = {NODE_FLAVOR};
     public Folder root;
@@ -58,6 +54,7 @@ public class GFile extends GObject implements Transferable {
         this.type = type;
     }
 
+    @Override
     public String getObjectType() {
         return "File";
     }
@@ -123,12 +120,13 @@ public class GFile extends GObject implements Transferable {
                     System.out.println("Toolkit");
                     ii = ((sun.awt.image.ToolkitImage)img.getImage()).getBufferedImage();
                 }
-                else
-                    ii =  (BufferedImage) ((Image)img.getImage());
+                else {
+                        ii = (BufferedImage) (img.getImage());
+                    }
             }
             catch(Exception e){ //CLass not found?
                 System.out.println("Exception " + e.getMessage());
-                ii =  (BufferedImage) ((Image)img.getImage());
+                ii =  (BufferedImage) (img.getImage());
             }
             
             ImageIO.write(ii, type, baos); 
@@ -165,14 +163,17 @@ public class GFile extends GObject implements Transferable {
         return null;//(Object)o;
     }
 
+    @Override
     public DataFlavor[] getTransferDataFlavors() {
         return flavors;
     }
 
+    @Override
     public boolean isDataFlavorSupported(DataFlavor flavor) {
         return flavor == NODE_FLAVOR;
     }
 
+    @Override
     public GObject getTransferData(DataFlavor flavor) throws UnsupportedFlavorException, IOException {
         if (flavor != NODE_FLAVOR) {
             throw new UnsupportedFlavorException(flavor);

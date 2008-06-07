@@ -39,6 +39,7 @@ import java.util.Stack;
 public class ParseTreeBuilder extends BlankDebugEventListener {
 	Stack callStack = new Stack();
 
+    @SuppressWarnings("unchecked")
 	public ParseTreeBuilder(String grammarName) {
 		ParseTree root = create("<grammar "+grammarName+">");
 		callStack.push(root);
@@ -50,11 +51,16 @@ public class ParseTreeBuilder extends BlankDebugEventListener {
 
 	/**  What kind of node to create.  You might want to override
 	 *   so I factored out creation here.
-	 */
+         * 
+         * @param payload
+         * @return 
+         */
 	public ParseTree create(Object payload) {
 		return new ParseTree(payload);
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
 	public void enterRule(String ruleName) {
 		ParseTree parentRuleNode = (ParseTree)callStack.peek();
 		ParseTree ruleNode = create(ruleName);
@@ -62,16 +68,19 @@ public class ParseTreeBuilder extends BlankDebugEventListener {
 		callStack.push(ruleNode);
 	}
 
+    @Override
 	public void exitRule(String ruleName) {
 		callStack.pop();
 	}
 
+    @Override
 	public void consumeToken(Token token) {
 		ParseTree ruleNode = (ParseTree)callStack.peek();
 		ParseTree elementNode = create(token);
 		ruleNode.addChild(elementNode);
 	}
 
+    @Override
 	public void recognitionException(RecognitionException e) {
 		ParseTree ruleNode = (ParseTree)callStack.peek();
 		ParseTree errorNode = create(e);

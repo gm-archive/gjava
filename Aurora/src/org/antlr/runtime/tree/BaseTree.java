@@ -45,10 +45,13 @@ public abstract class BaseTree implements Tree {
 	/** Create a new node from an existing node does nothing for BaseTree
 	 *  as there are no fields other than the children list, which cannot
 	 *  be copied as the children are not considered part of this node. 
-	 */
+         * 
+         * @param node 
+         */
 	public BaseTree(Tree node) {
 	}
 
+    @Override
 	public Tree getChild(int i) {
 		if ( children==null || i>=children.size() ) {
 			return null;
@@ -66,6 +69,7 @@ public abstract class BaseTree implements Tree {
 		return null;
 	}
 
+    @Override
 	public int getChildCount() {
 		if ( children==null ) {
 			return 0;
@@ -79,6 +83,8 @@ public abstract class BaseTree implements Tree {
 	 *  and child isNil then this routine moves children to t via
 	 *  t.children = child.children; i.e., without copying the array.
 	 */
+    @SuppressWarnings("unchecked")
+    @Override
 	public void addChild(Tree t) {
 		//System.out.println("add "+t.toStringTree()+" as child to "+this.toStringTree());
 		if ( t==null ) {
@@ -111,7 +117,9 @@ public abstract class BaseTree implements Tree {
 		}
 	}
 
-	/** Add all elements of kids list as children of this node */
+    /** Add all elements of kids list as children of this node
+     * @param kids 
+     */
 	public void addChildren(List kids) {
 		for (int i = 0; i < kids.size(); i++) {
 			Tree t = (Tree) kids.get(i);
@@ -119,6 +127,7 @@ public abstract class BaseTree implements Tree {
 		}
 	}
 
+    @SuppressWarnings("unchecked")
 	public void setChild(int i, BaseTree t) {
 		if ( children==null ) {
 			children = createChildrenList();
@@ -133,11 +142,14 @@ public abstract class BaseTree implements Tree {
 		return (BaseTree)children.remove(i);
 	}
 
-	/** Override in a subclass to change the impl of children list */
+        /** Override in a subclass to change the impl of children list
+         * @return 
+         */
 	protected List createChildrenList() {
 		return new ArrayList();
 	}
 
+    @Override
 	public boolean isNil() {
 		return false;
 	}
@@ -145,7 +157,10 @@ public abstract class BaseTree implements Tree {
 	/** Recursively walk this tree, dup'ing nodes until you have copy of
 	 *  this tree.  This method should work for all subclasses as long
 	 *  as they override dupNode().
-	 */
+         * 
+         * @return 
+         */
+    @Override
 	public Tree dupTree() {
 		Tree newTree = this.dupNode();
 		for (int i = 0; children!=null && i < children.size(); i++) {
@@ -156,7 +171,10 @@ public abstract class BaseTree implements Tree {
 		return newTree;
 	}
 
-	/** Print out a whole tree not just a node */
+    /** Print out a whole tree not just a node
+     * @return 
+     */
+    @Override
     public String toStringTree() {
 		if ( children==null || children.size()==0 ) {
 			return this.toString();
@@ -180,14 +198,17 @@ public abstract class BaseTree implements Tree {
 		return buf.toString();
 	}
 
+    @Override
     public int getLine() {
 		return 0;
 	}
 
+    @Override
 	public int getCharPositionInLine() {
 		return 0;
 	}
 
 	/** Override to say how a node (not a tree) should look as text */
+    @Override
 	public abstract String toString();
 }

@@ -33,6 +33,7 @@ public class DefaultInputHandler extends InputHandler {
     /**
      * Sets up the default key bindings.
      */
+    @Override
     public void addDefaultKeyBindings() {
         addKeyBinding("BACK_SPACE", BACKSPACE);
         addKeyBinding("C+BACK_SPACE", BACKSPACE_WORD);
@@ -84,6 +85,8 @@ public class DefaultInputHandler extends InputHandler {
      * @param keyBinding The key binding
      * @param action The action
      */
+    @Override
+    @SuppressWarnings("unchecked")
     public void addKeyBinding(String keyBinding, ActionListener action) {
         Hashtable<KeyStroke, Object> current = bindings;
 
@@ -113,6 +116,7 @@ public class DefaultInputHandler extends InputHandler {
      * implemented.
      * @param keyBinding The key binding
      */
+    @Override
     public void removeKeyBinding(String keyBinding) {
         throw new InternalError("Not yet implemented");
     }
@@ -120,6 +124,7 @@ public class DefaultInputHandler extends InputHandler {
     /**
      * Removes all key bindings from this input handler.
      */
+    @Override
     public void removeAllKeyBindings() {
         bindings.clear();
     }
@@ -128,7 +133,9 @@ public class DefaultInputHandler extends InputHandler {
      * Returns a copy of this input handler that shares the same
      * key bindings. Setting key bindings in the copy will also
      * set them in the original.
+     * @return A new DefaultInputHnadler.
      */
+    @Override
     public InputHandler copy() {
         return new DefaultInputHandler(this);
     }
@@ -136,13 +143,17 @@ public class DefaultInputHandler extends InputHandler {
     /**
      * Handle a key pressed event. This will look up the binding for
      * the key stroke and execute it.
+     * @param evt the KeyEvent that was pressed.
      */
+    @Override
+    @SuppressWarnings("unchecked")
     public void keyPressed(KeyEvent evt) {
         int keyCode = evt.getKeyCode();
         int modifiers = evt.getModifiers();
 
-        if(evt.isControlDown())
+        if(evt.isControlDown()) {
             return;
+        }
         
         if (keyCode == KeyEvent.VK_CONTROL ||
                 keyCode == KeyEvent.VK_SHIFT ||
@@ -192,13 +203,17 @@ public class DefaultInputHandler extends InputHandler {
 
     /**
      * Handle a key typed event. This inserts the key into the text area.
+     * @param evt The KeyEvent that was pressed.
      */
+    @Override
+    @SuppressWarnings("unchecked")
     public void keyTyped(KeyEvent evt) {
         int modifiers = evt.getModifiers();
         char c = evt.getKeyChar();
         
-        if(evt.isControlDown())
+        if(evt.isControlDown()) {
             return;
+        }
 
         if (c != KeyEvent.CHAR_UNDEFINED &&
                 (modifiers & KeyEvent.ALT_MASK) == 0) {
@@ -249,6 +264,7 @@ public class DefaultInputHandler extends InputHandler {
      * or a keycode name from the <code>KeyEvent</code> class, without
      * the <code>VK_</code> prefix.
      * @param keyStroke A string description of the key stroke
+     * @return A KeyStroke, or null if the String given is null.
      */
     public static KeyStroke parseKeyStroke(String keyStroke) {
         if (keyStroke == null) {
@@ -300,8 +316,8 @@ public class DefaultInputHandler extends InputHandler {
     }
 
     // private members
-    private Hashtable bindings;
-    private Hashtable currentBindings;
+    private Hashtable<KeyStroke, Object> bindings;
+    private Hashtable<KeyStroke, Object> currentBindings;
 
     private DefaultInputHandler(DefaultInputHandler copy) {
         bindings = currentBindings = copy.bindings;

@@ -66,14 +66,19 @@ public class ANTLRStringStream implements CharStream {
 	public ANTLRStringStream() {
 	}
 
-	/** Copy data in string to a local char array */
+        /** Copy data in string to a local char array
+         * @param input The Input String.
+         */
 	public ANTLRStringStream(String input) {
 		this();
 		this.data = input.toCharArray();
 		this.n = input.length();
 	}
 
-	/** This is the preferred constructor as no data is copied */
+        /** This is the preferred constructor as no data is copied
+         * @param data An array of chars.
+         * @param numberOfActualCharsInArray The actual number of charachters in the array.
+         */
 	public ANTLRStringStream(char[] data, int numberOfActualCharsInArray) {
 		this();
 		this.data = data;
@@ -91,6 +96,7 @@ public class ANTLRStringStream implements CharStream {
 		markDepth = 0;
 	}
 
+    @Override
     public void consume() {
 		//System.out.println("prev p="+p+", c="+(char)data[p]);
         if ( p < n ) {
@@ -108,6 +114,7 @@ public class ANTLRStringStream implements CharStream {
         }
     }
 
+    @Override
     public int LA(int i) {
 		if ( i==0 ) {
 			return 0; // undefined
@@ -128,6 +135,7 @@ public class ANTLRStringStream implements CharStream {
 		return data[p+i-1];
     }
 
+    @Override
 	public int LT(int i) {
 		return LA(i);
 	}
@@ -135,15 +143,20 @@ public class ANTLRStringStream implements CharStream {
 	/** Return the current input symbol index 0..n where n indicates the
      *  last symbol has been read.  The index is the index of char to
 	 *  be returned from LA(1).
-     */
+         * @return An int.
+         */
+    @Override
     public int index() {
         return p;
     }
 
+    @Override
 	public int size() {
 		return n;
 	}
 
+    @Override
+    @SuppressWarnings("unchecked")
 	public int mark() {
         if ( markers==null ) {
             markers = new ArrayList();
@@ -165,6 +178,7 @@ public class ANTLRStringStream implements CharStream {
 		return markDepth;
     }
 
+    @Override
     public void rewind(int m) {
 		CharStreamState state = (CharStreamState)markers.get(m);
 		// restore stream state
@@ -174,10 +188,12 @@ public class ANTLRStringStream implements CharStream {
 		release(m);
 	}
 
+    @Override
 	public void rewind() {
 		rewind(lastMarker);
 	}
 
+    @Override
 	public void release(int marker) {
 		// unwind any other markers made after m and release m
 		markDepth = marker;
@@ -187,7 +203,10 @@ public class ANTLRStringStream implements CharStream {
 
 	/** consume() ahead until p==index; can't just set p=index as we must
 	 *  update line and charPositionInLine.
-	 */
+         * 
+         * @param index The index to seek.
+         */
+    @Override
 	public void seek(int index) {
 		if ( index<=p ) {
 			p = index; // just jump; don't update stream state (line, ...)
@@ -199,22 +218,27 @@ public class ANTLRStringStream implements CharStream {
 		}
 	}
 
+    @Override
 	public String substring(int start, int stop) {
 		return new String(data,start,stop-start+1);
 	}
 
+    @Override
 	public int getLine() {
 		return line;
 	}
 
+    @Override
 	public int getCharPositionInLine() {
 		return charPositionInLine;
 	}
 
+    @Override
 	public void setLine(int line) {
 		this.line = line;
 	}
 
+    @Override
 	public void setCharPositionInLine(int pos) {
 		this.charPositionInLine = pos;
 	}

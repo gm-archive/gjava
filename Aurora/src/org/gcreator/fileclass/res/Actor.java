@@ -10,7 +10,6 @@ package org.gcreator.fileclass.res;
 
 import java.util.Enumeration;
 import java.util.Vector;
-import org.gcreator.core.gcreator;
 import org.gcreator.events.Event;
 import org.gcreator.fileclass.GFile;
 
@@ -28,6 +27,7 @@ static final long serialVersionUID = 1L;
     
 
     /**
+     * @param name 
      * @deprecated Use plain constructor instead
      */
     public Actor(String name) {
@@ -196,6 +196,8 @@ static final long serialVersionUID = 1L;
     }*/
 
     //SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
+    @Override
     public Object clone() {
         Actor a = new Actor(/*name*/);
         a.depth = depth;

@@ -17,17 +17,21 @@ import org.gcreator.managers.*;
  * @author  luis
  */
 public class ToolbarEditor extends javax.swing.JPanel {
+    private static final long serialVersionUID = 1;
     
     /** Creates new form ToolbarManager */
+    @SuppressWarnings({"unchecked", "unchecked"})
     public ToolbarEditor() {
         initComponents();
         jComboBox1.setModel(new VectorComboBoxModel(ToolbarManager.toolbars));
         jComboBox1.setRenderer(new ToolbarCellRenderer());
         jComboBox1.setBackground(Color.WHITE);
-        if(ToolbarManager.toolbars.size()>0)
+        if(ToolbarManager.toolbars.size()>0) {
             jComboBox1.setSelectedIndex(0);
-        else
+        }
+        else {
             jComboBox1.setSelectedIndex(-1);
+        }
         updateToolbar();
         ListCellRenderer r = new ToolButtonListCellRenderer();
         jList1.setCellRenderer(r);
@@ -302,8 +306,9 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         int index = jList1.getSelectedIndex();
-        if(index<=0)
+        if(index<=0) {
             return;
+        }
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
         ToolbarItem before = t.items.get(index-1);
         ToolbarItem self = t.items.get(index);
@@ -317,8 +322,9 @@ public class ToolbarEditor extends javax.swing.JPanel {
         int index = jList1.getSelectedIndex();
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
         t.items.trimToSize();
-        if(index>=t.items.size())
+        if(index>=t.items.size()) {
             return;
+        }
         ToolbarItem after = t.items.get(index+1);
         ToolbarItem self = t.items.get(index);
         t.items.set(index+1, self);
@@ -341,8 +347,9 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String name = JOptionPane.showInputDialog(this, "Toolbar name", "untitled");
-        if(name==null)
+        if(name==null) {
             return;
+        }
         Toolbar t = new Toolbar();
         t.name = name;
         ToolbarManager.toolbars.add(t);
@@ -352,8 +359,9 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
-        if(t==null)
+        if(t==null) {
             return;
+        }
         ToolbarItem item = (ToolbarItem) jList2.getSelectedValue();
         t.items.add(item);
         updateToolbar();
@@ -361,11 +369,13 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Toolbar t = (Toolbar) jComboBox1.getSelectedItem();
-        if(t==null)
+        if(t==null) {
             return;
+        }
         ToolbarItem item = (ToolbarItem) jList2.getSelectedValue();
-        if(item==null)
+        if(item==null) {
             return;
+        }
         t.items.remove(item);
         updateToolbar();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -376,22 +386,25 @@ public class ToolbarEditor extends javax.swing.JPanel {
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
         ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
-        if(item==null||item instanceof ToolbarSeparator)
+        if(item==null||item instanceof ToolbarSeparator) {
             return;
+        }
         ((ToolbarButton) item).setTextVisible(jCheckBox3.isSelected());
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void jCheckBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox4ActionPerformed
         ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
-        if(item==null||item instanceof ToolbarSeparator)
+        if(item==null||item instanceof ToolbarSeparator) {
             return;
+        }
         ((ToolbarButton) item).setImageVisible(jCheckBox4.isSelected());
     }//GEN-LAST:event_jCheckBox4ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         ToolbarItem item = (ToolbarItem) jList1.getSelectedValue();
-        if(item==null||item instanceof ToolbarSeparator)
+        if(item==null||item instanceof ToolbarSeparator) {
             return;
+        }
         ((ToolbarButton) item).setBold(jCheckBox5.isSelected());
     }//GEN-LAST:event_jCheckBox5ActionPerformed
     
@@ -416,20 +429,26 @@ public class ToolbarEditor extends javax.swing.JPanel {
         jButton8.setEnabled(true);
         jCheckBox1.setSelected(t.floatable);
         jCheckBox2.setSelected(t.rollover);
-        if(t.first&&t.horizontal)
+        if(t.first&&t.horizontal) {
             jComboBox2.setSelectedIndex(0);
-        if(!t.first&&t.horizontal)
+        }
+        if(!t.first&&t.horizontal) {
             jComboBox2.setSelectedIndex(1);
-        if(t.first&&!t.horizontal)
+        }
+        if(t.first&&!t.horizontal) {
             jComboBox2.setSelectedIndex(2);
-        if(!t.first&&!t.horizontal)
+        }
+        if(!t.first&&!t.horizontal) {
             jComboBox2.setSelectedIndex(3);
+        }
         jList1.setEnabled(true);
         jList1.setModel(new VectorListModel(t.items));
-        if(t.items.size()==0)
+        if(t.items.size()==0) {
             jList1.setSelectedIndex(-1);
-        else
+        }
+        else {
             jList1.setSelectedIndex(0);
+        }
         updateToolItem();
     }
     

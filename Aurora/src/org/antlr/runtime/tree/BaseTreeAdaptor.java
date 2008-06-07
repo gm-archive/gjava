@@ -13,14 +13,17 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 	protected Map treeToUniqueIDMap;
 	protected int uniqueNodeID = 1;
 
+    @Override
 	public Object nil() {
 		return create(null);
 	}
 
+    @Override
 	public boolean isNil(Object tree) {
 		return ((Tree)tree).isNil();
 	}
 
+    @Override
 	public Object dupTree(Object tree) {
 		return ((Tree)tree).dupTree();
 	}
@@ -31,7 +34,11 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 	 *  t.children = child.children; i.e., without copying the array.  Just
 	 *  make sure that this is consistent with have the user will build
 	 *  ASTs.
-	 */
+         * 
+         * @param t
+         * @param child 
+         */
+    @Override
 	public void addChild(Object t, Object child) {
 		if ( t!=null && child!=null ) {
 			((Tree)t).addChild((Tree)child);
@@ -63,7 +70,12 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 	 *  children; i.e., you don't have to copy the list.  We are
 	 *  constructing these nodes so we should have this control for
 	 *  efficiency.
-	 */
+         * 
+         * @param newRoot
+         * @param oldRoot
+         * @return s
+         */
+    @Override
 	public Object becomeRoot(Object newRoot, Object oldRoot) {
 		Tree newRootTree = (Tree)newRoot;
 		Tree oldRootTree = (Tree)oldRoot;
@@ -76,7 +88,7 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 				// TODO: make tree run time exceptions hierarchy
 				throw new RuntimeException("more than one node as root (TODO: make exception hierarchy)");
 			}
-			newRootTree = (Tree)newRootTree.getChild(0);
+			newRootTree = newRootTree.getChild(0);
 		}
 		// add oldRoot to newRoot; addChild takes care of case where oldRoot
 		// is a flat list (i.e., nil-rooted tree).  All children of oldRoot
@@ -85,19 +97,25 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 		return newRootTree;
 	}
 
-	/** Transform ^(nil x) to x */
+        /** Transform ^(nil x) to x
+         * @param root
+         * @return 
+         */
+    @Override
 	public Object rulePostProcessing(Object root) {
 		Tree r = (Tree)root;
 		if ( r!=null && r.isNil() && r.getChildCount()==1 ) {
-			r = (Tree)r.getChild(0);
+			r = r.getChild(0);
 		}
 		return r;
 	}
 
+    @Override
 	public Object becomeRoot(Token newRoot, Object oldRoot) {
 		return becomeRoot(create(newRoot), oldRoot);
 	}
 
+    @Override
 	public Object create(int tokenType, Token fromToken) {
 		fromToken = createToken(fromToken);
 		//((ClassicToken)fromToken).setType(tokenType);
@@ -106,6 +124,7 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 		return t;
 	}
 
+    @Override
 	public Object create(int tokenType, Token fromToken, String text) {
 		fromToken = createToken(fromToken);
 		fromToken.setType(tokenType);
@@ -114,37 +133,46 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 		return t;
 	}
 
+    @Override
 	public Object create(int tokenType, String text) {
 		Token fromToken = createToken(tokenType, text);
 		Tree t = (Tree)create(fromToken);
 		return t;
 	}
 
+    @Override
 	public int getType(Object t) {
 		((Tree)t).getType();
 		return 0;
 	}
 
+    @Override
 	public void setType(Object t, int type) {
 		throw new NoSuchMethodError("don't know enough about Tree node");
 	}
 
+    @Override
 	public String getText(Object t) {
 		return ((Tree)t).getText();
 	}
 
+    @Override
 	public void setText(Object t, String text) {
 		throw new NoSuchMethodError("don't know enough about Tree node");
 	}
 
+    @Override
 	public Object getChild(Object t, int i) {
 		return ((Tree)t).getChild(i);
 	}
 
+    @Override
 	public int getChildCount(Object t) {
 		return ((Tree)t).getChildCount();
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
 	public int getUniqueID(Object node) {
 		if ( treeToUniqueIDMap==null ) {
 			 treeToUniqueIDMap = new HashMap();
@@ -168,7 +196,11 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 	 *
 	 *  If you care what the token payload objects' type is, you should
 	 *  override this method and any other createToken variant.
-	 */
+         * 
+         * @param tokenType
+         * @param text
+         * @return 
+         */
 	public abstract Token createToken(int tokenType, String text);
 
 	/** Tell me how to create a token for use with imaginary token nodes.
@@ -184,7 +216,10 @@ public abstract class BaseTreeAdaptor implements TreeAdaptor {
 	 *
 	 *  If you care what the token payload objects' type is, you should
 	 *  override this method and any other createToken variant.
-	 */
+         * 
+         * @param fromToken
+         * @return 
+         */
 	public abstract Token createToken(Token fromToken);
 }
 

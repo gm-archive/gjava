@@ -17,7 +17,7 @@ import org.gcreator.fileclass.res.*;
  * @author Luís
  */
 public class CollisionListPopup extends JPopupMenu {
-
+    private static final long serialVersionUID = 1;
     private String key;
     private EventSelect selector;
 
@@ -51,17 +51,21 @@ public class CollisionListPopup extends JPopupMenu {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void done(GFile file) {
         Vector e = ((Actor) selector.ae.file.value).events;
         boolean has = false;
         for(Object o : e){
-            if(!(o instanceof Event)) //This should NEVER happen
+            if(!(o instanceof Event)) {
+                //This should NEVER happen
                 return;
-            if(((Event) o) instanceof CollisionEvent)
-                if(((CollisionEvent) o).other==file){
+            }
+            if(((Event) o) instanceof CollisionEvent) {
+                if (((CollisionEvent) o).other == file) {
                     has = true;
                     break;
                 }
+            }
         }
         if(!has){
             e.add(new CollisionEvent(file));

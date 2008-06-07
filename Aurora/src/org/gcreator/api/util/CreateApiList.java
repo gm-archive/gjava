@@ -14,6 +14,7 @@ public class CreateApiList {
     public static Vector classes = new Vector<ApiClass>();
     static ApiClass clas;
 
+    @SuppressWarnings("unchecked")
     public static void setup() {
        
         clas = new ApiClass("Clipboard");

@@ -83,6 +83,7 @@ public class Profiler extends BlankDebugEventListener {
 		this.parser = parser;
 	}
 
+    @Override
 	public void enterRule(String ruleName) {
 		//System.out.println("enterRule "+ruleName);
 		ruleLevel++;
@@ -96,7 +97,11 @@ public class Profiler extends BlankDebugEventListener {
 	/** Track memoization; this is not part of standard debug interface
 	 *  but is triggered by profiling.  Code gen inserts an override
 	 *  for this method in the recognizer, which triggers this method.
-	 */
+         * 
+         * @param input 
+         * @param ruleName
+         * @param ruleIndex 
+         */
 	public void examineRuleMemoization(IntStream input,
 									   int ruleIndex,
 									   String ruleName)
@@ -125,10 +130,13 @@ public class Profiler extends BlankDebugEventListener {
 		numMemoizationCacheEntries++;
 	}
 
+    @Override
 	public void exitRule(String ruleName) {
 		ruleLevel--;
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
 	public void enterDecision(int decisionNumber) {
 		decisionLevel++;
 		int startingLookaheadIndex = parser.getTokenStream().index();
@@ -136,6 +144,7 @@ public class Profiler extends BlankDebugEventListener {
 		lookaheadStack.add(new Integer(startingLookaheadIndex));
 	}
 
+    @Override
 	public void exitDecision(int decisionNumber) {
 		//System.out.println("exitDecision "+decisionNumber);
 		// track how many of acyclic, cyclic here as we don't know what kind
@@ -168,6 +177,7 @@ public class Profiler extends BlankDebugEventListener {
 		maxLookaheadInCurrentDecision = 0;
 	}
 
+    @Override
 	public void consumeToken(Token token) {
 		//System.out.println("consume token "+token);
 		lastTokenConsumed = (CommonToken)token;
@@ -175,18 +185,25 @@ public class Profiler extends BlankDebugEventListener {
 
 	/** The parser is in a decision if the decision depth > 0.  This
 	 *  works for backtracking also, which can have nested decisions.
-	 */
+         * 
+         * @return 
+         */
 	public boolean inDecision() {
 		return decisionLevel>0;
 	}
 
+    @Override
 	public void consumeHiddenToken(Token token) {
 		//System.out.println("consume hidden token "+token);
 		lastTokenConsumed = (CommonToken)token;
 	}
 
 	/** Track refs to lookahead if in a fixed/nonfixed decision.
-	 */
+         * 
+         * @param i
+         * @param t 
+         */
+    @Override
 	public void LT(int i, Token t) {
 		if ( inDecision() ) {
 			// get starting index off stack
@@ -221,13 +238,21 @@ public class Profiler extends BlankDebugEventListener {
 	 * 		exit decision
 	 * 		...
 	 * 		exit rule
-	 */
+         * 
+         * @param level 
+         */
+    @Override
 	public void beginBacktrack(int level) {
 		//System.out.println("enter backtrack "+level);
 		numBacktrackDecisions++;
 	}
 
-	/** Successful or not, track how much lookahead synpreds use */
+    /** Successful or not, track how much lookahead synpreds use
+     * @param level
+     * @param successful 
+     */
+    @SuppressWarnings("unchecked")
+    @Override
 	public void endBacktrack(int level, boolean successful) {
 		//System.out.println("exit backtrack "+level+": "+successful);
 		decisionMaxSynPredLookaheads.add(
@@ -258,16 +283,19 @@ public class Profiler extends BlankDebugEventListener {
 	}
 	*/
 
+    @Override
 	public void recognitionException(RecognitionException e) {
 		numberReportedErrors++;
 	}
 
+    @Override
 	public void semanticPredicate(boolean result, String predicate) {
 		if ( inDecision() ) {
 			numSemanticPredicates++;
 		}
 	}
 
+    @Override
 	public void terminate() {
 		String stats = toNotifyString();
 		try {
@@ -359,6 +387,7 @@ public class Profiler extends BlankDebugEventListener {
 		return buf.toString();
 	}
 
+    @Override
 	public String toString() {
 		return toString(toNotifyString());
 	}
@@ -491,7 +520,11 @@ public class Profiler extends BlankDebugEventListener {
 		return x;
 	}
 
-	/** Get num hidden tokens between i..j inclusive */
+        /** Get num hidden tokens between i..j inclusive
+         * @param i
+         * @param j
+         * @return 
+         */
 	public int getNumberOfHiddenTokens(int i, int j) {
 		int n = 0;
 		TokenStream input = parser.getTokenStream();

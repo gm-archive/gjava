@@ -15,11 +15,15 @@ import java.util.Map;
  * @author  bob
  */
 public class RenderingHintsPanel extends javax.swing.JPanel {
-    private Map/*<?, ?>*/ renderingHints;
+    private static final long serialVersionUID = 1;
+    private Map<RenderingHints.Key, Object> renderingHints;
     private Window window;
     
-    /** Creates new form RenderingHintsPanel */
-    public RenderingHintsPanel(Map<?, ?> map, Window w) {
+    /** Creates new form RenderingHintsPanel
+     * @param map The map on RenderingHints
+     * @param w The Window the panel this panel belongs to.
+     */
+    public RenderingHintsPanel(Map<RenderingHints.Key, Object> map, Window w) {
         this.renderingHints = map;
         initComponents(); 
         correctComponents();
@@ -33,11 +37,11 @@ public class RenderingHintsPanel extends javax.swing.JPanel {
                 "Use RenderingHintsPanel(Map<?, ?> map, Window w) constructor instead.");         
     }
     
-    public Map<?, ?> getMap() {
+    public Map<RenderingHints.Key, Object> getMap() {
         return renderingHints;
     }
     
-    public void setMap(Map<?, ?> map) {
+    public void setMap(Map<RenderingHints.Key, Object> map) {
         this.renderingHints = map;
         correctComponents();
     }

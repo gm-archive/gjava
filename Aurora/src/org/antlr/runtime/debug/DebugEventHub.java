@@ -15,10 +15,12 @@ import java.util.ArrayList;
 public class DebugEventHub implements DebugEventListener {
 	protected List listeners = new ArrayList();
 
+    @SuppressWarnings("unchecked")
 	public DebugEventHub(DebugEventListener listener) {
 		listeners.add(listener);
 	}
 
+    @SuppressWarnings("unchecked")
 	public DebugEventHub(DebugEventListener a, DebugEventListener b) {
 		listeners.add(a);
 		listeners.add(b);
@@ -26,7 +28,10 @@ public class DebugEventHub implements DebugEventListener {
 
 	/** Add another listener to broadcast events too.  Not thread-safe.
 	 *  Don't add events in one thread while parser fires events in another.
-	 */
+         * 
+         * @param listener The listener to add.
+         */
+    @SuppressWarnings("unchecked")
 	public void addListener(DebugEventListener listener) {
 		listeners.add(listeners);
 	}
@@ -47,6 +52,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void exitRule(String ruleName) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -54,6 +60,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void enterAlt(int alt) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -61,6 +68,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void enterSubRule(int decisionNumber) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -75,6 +83,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void enterDecision(int decisionNumber) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -82,6 +91,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void exitDecision(int decisionNumber) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -89,6 +99,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void location(int line, int pos) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -96,6 +107,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void consumeToken(Token token) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -103,6 +115,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void consumeHiddenToken(Token token) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -110,6 +123,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void LT(int index, Token t) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -117,6 +131,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void mark(int index) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -124,20 +139,23 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void rewind(int index) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
 			listener.rewind(index);
 		}
 	}
-
-	public void rewind() {
+    
+    @Override
+        public void rewind() {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
 			listener.rewind();
 		}
 	}
 
+    @Override
 	public void beginBacktrack(int level) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -145,6 +163,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void endBacktrack(int level, boolean successful) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -152,6 +171,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void recognitionException(RecognitionException e) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -159,6 +179,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void beginResync() {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -166,6 +187,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void endResync() {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -173,6 +195,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void semanticPredicate(boolean result, String predicate) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -180,6 +203,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void commence() {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -187,6 +211,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void terminate() {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -197,6 +222,7 @@ public class DebugEventHub implements DebugEventListener {
 
 	// Tree parsing stuff
 
+    @Override
 	public void consumeNode(Object t) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -204,6 +230,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void LT(int index, Object t) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -214,6 +241,7 @@ public class DebugEventHub implements DebugEventListener {
 
 	// AST Stuff
 
+    @Override
 	public void nilNode(Object t) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -221,6 +249,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void createNode(Object t) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -228,6 +257,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void createNode(Object node, Token token) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -235,6 +265,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void becomeRoot(Object newRoot, Object oldRoot) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -242,6 +273,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void addChild(Object root, Object child) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);
@@ -249,6 +281,7 @@ public class DebugEventHub implements DebugEventListener {
 		}
 	}
 
+    @Override
 	public void setTokenBoundaries(Object t, int tokenStartIndex, int tokenStopIndex) {
 		for (int i = 0; i < listeners.size(); i++) {
 			DebugEventListener listener = (DebugEventListener)listeners.get(i);

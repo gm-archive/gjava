@@ -60,6 +60,7 @@ public class TreeWizard {
 	}
 
 	public static abstract class Visitor implements ContextVisitor {
+        @Override
 		public void visit(Object t, Object parent, int childIndex, Map labels) {
 			visit(t);
 		}
@@ -75,6 +76,7 @@ public class TreeWizard {
 		public TreePattern(Token payload) {
 			super(payload);
 		}
+        @Override
 		public String toString() {
 			if ( label!=null ) {
 				return "%"+label+":"+super.toString();
@@ -93,6 +95,7 @@ public class TreeWizard {
 
 	/** This adaptor creates TreePattern objects for use during scan() */
 	public static class TreePatternTreeAdaptor extends CommonTreeAdaptor {
+        @Override
 		public Object create(Token payload) {
 			return new TreePattern(payload);
 		}
@@ -118,7 +121,11 @@ public class TreeWizard {
 
 	/** Compute a Map<String, Integer> that is an inverted index of
 	 *  tokenNames (which maps int token types to names).
-	 */
+         * 
+         * @param tokenNames
+         * @return 
+         */
+    @SuppressWarnings("unchecked")
 	public Map computeTokenTypes(String[] tokenNames) {
 		Map m = new HashMap();
 		for (int ttype = Token.MIN_TOKEN_TYPE; ttype < tokenNames.length; ttype++) {
@@ -128,7 +135,10 @@ public class TreeWizard {
 		return m;
 	}
 
-	/** Using the map of token names to token types, return the type. */
+    /** Using the map of token names to token types, return the type.
+     * @param tokenName
+     * @return 
+     */
 	public int getTokenType(String tokenName) {
 	 	if ( tokenNameToTypeMap==null ) {
 			 return Token.INVALID_TOKEN_TYPE;
@@ -146,14 +156,21 @@ public class TreeWizard {
 	 *  of your AST node type.  The Integer is the token type of the node.
 	 *
 	 *  TODO: save this index so that find and visit are faster
-	 */
+         * 
+         * @param t
+         * @return 
+         */
 	public Map index(Object t) {
 		Map m = new HashMap();
 		_index(t, m);
 		return m;
 	}
 
-	/** Do the work for index */
+        /** Do the work for index
+         * @param t
+         * @param m 
+         */
+    @SuppressWarnings("unchecked")
 	protected void _index(Object t, Map m) {
 		if ( t==null ) {
 			return;
@@ -172,10 +189,16 @@ public class TreeWizard {
 		}
 	}
 
-	/** Return a List of tree nodes with token type ttype */
+        /** Return a List of tree nodes with token type ttype
+         * @param t
+         * @param ttype
+         * @return 
+         */
 	public List find(Object t, int ttype) {
 		final List nodes = new ArrayList();
 		visit(t, ttype, new TreeWizard.Visitor() {
+            @SuppressWarnings("unchecked")
+            @Override
 			public void visit(Object t) {
 				nodes.add(t);
 			}
@@ -183,7 +206,11 @@ public class TreeWizard {
 		return nodes;
 	}
 
-	/** Return a List of subtrees matching pattern. */
+        /** Return a List of subtrees matching pattern.
+         * @param t An Object.
+         * @param pattern
+         * @return 
+         */
 	public List find(Object t, String pattern) {
 		final List subtrees = new ArrayList();
 		// Create a TreePattern from the pattern
@@ -200,6 +227,8 @@ public class TreeWizard {
 		}
 		int rootTokenType = tpattern.getType();
 		visit(t, rootTokenType, new TreeWizard.ContextVisitor() {
+            @Override
+            @SuppressWarnings("unchecked")
 			public void visit(Object t, Object parent, int childIndex, Map labels) {
 				if ( _parse(t, tpattern, null) ) {
 					subtrees.add(t);
@@ -221,12 +250,22 @@ public class TreeWizard {
 	 *  version of the general visit(t, pattern) method.  The labels arg
 	 *  of the visitor action method is never set (it's null) since using
 	 *  a token type rather than a pattern doesn't let us set a label.
-	 */
+         * 
+         * @param t An Object.
+         * @param ttype A number.
+         * @param visitor A Visitor.
+         */
 	public void visit(Object t, int ttype, ContextVisitor visitor) {
 		_visit(t, null, 0, ttype, visitor);
 	}
 
-	/** Do the recursive work for visit */
+        /** Do the recursive work for visit
+         * @param t
+         * @param parent 
+         * @param childIndex
+         * @param ttype
+         * @param visitor 
+         */
 	protected void _visit(Object t, Object parent, int childIndex, int ttype, ContextVisitor visitor) {
 		if ( t==null ) {
 			return;
@@ -245,7 +284,11 @@ public class TreeWizard {
 	 *  The implementation uses the root node of the pattern in combination
 	 *  with visit(t, ttype, visitor) so nil-rooted patterns are not allowed.
 	 *  Patterns with wildcard roots are also not allowed.
-	 */
+         * 
+         * @param t
+         * @param pattern
+         * @param visitor 
+         */
 	public void visit(Object t, final String pattern, final ContextVisitor visitor) {
 		// Create a TreePattern from the pattern
 		TreePatternLexer tokenizer = new TreePatternLexer(pattern);
@@ -262,6 +305,7 @@ public class TreeWizard {
 		final Map labels = new HashMap(); // reused for each _parse
 		int rootTokenType = tpattern.getType();
 		visit(t, rootTokenType, new TreeWizard.ContextVisitor() {
+            @Override
 			public void visit(Object t, Object parent, int childIndex, Map unusedlabels) {
 				// the unusedlabels arg is null as visit on token type doesn't set.
 				labels.clear();
@@ -282,7 +326,12 @@ public class TreeWizard {
 	 *  for that node in t.
 	 *
 	 *  TODO: what's a better way to indicate bad pattern? Exceptions are a hassle 
-	 */
+         * 
+         * @param t
+         * @param pattern 
+         * @param labels
+         * @return 
+         */
 	public boolean parse(Object t, String pattern, Map labels) {
 		TreePatternLexer tokenizer = new TreePatternLexer(pattern);
 		TreePatternParser parser =
@@ -304,7 +353,13 @@ public class TreeWizard {
 	 *  structure and token types in t1.  Check text if the pattern has
 	 *  text arguments on nodes.  Fill labels map with pointers to nodes
 	 *  in tree matched against nodes in pattern with labels.
-	 */
+         * 
+         * @param t1
+         * @param t2 
+         * @param labels
+         * @return 
+         */
+    @SuppressWarnings("unchecked")
 	protected boolean _parse(Object t1, TreePattern t2, Map labels) {
 		// make sure both are non-null
 		if ( t1==null || t2==null ) {
@@ -351,7 +406,10 @@ public class TreeWizard {
 	 *
 	 *  nil is a special name meaning "give me a nil node".  Useful for
 	 *  making lists: (nil A B C) is a list of A B C.
- 	 */
+         * 
+         * @param pattern
+         * @return 
+         */
 	public Object create(String pattern) {
 		TreePatternLexer tokenizer = new TreePatternLexer(pattern);
 		TreePatternParser parser = new TreePatternParser(tokenizer, this, adaptor);
@@ -367,14 +425,23 @@ public class TreeWizard {
 	 *
 	 *  I cannot rely on the tree node's equals() implementation as I make
 	 *  no constraints at all on the node types nor interface etc... 
-	 */
+         * 
+         * @param t1
+         * @param t2 
+         * @param adaptor
+         * @return 
+         */
 	public static boolean equals(Object t1, Object t2, TreeAdaptor adaptor) {
 		return _equals(t1, t2, adaptor);
 	}
 
 	/** Compare type, structure, and text of two trees, assuming adaptor in
 	 *  this instance of a TreeWizard.
-	 */
+         * 
+         * @param t1 
+         * @param t2
+         * @return 
+         */
 	public boolean equals(Object t1, Object t2) {
 		return _equals(t1, t2, adaptor);
 	}

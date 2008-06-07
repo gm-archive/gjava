@@ -161,6 +161,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 
 	// Satisfy TreeNodeStream
 
+    @Override
 	public Object get(int i) {
 		throw new UnsupportedOperationException("stream is unbuffered");
 	}
@@ -174,7 +175,11 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  This is analogus to the LT() method of the TokenStream, but this
 	 *  returns a tree node instead of a token.  Makes code gen identical
 	 *  for both parser and tree grammars. :)
-	 */
+         * 
+         * @param k
+         * @return 
+         */
+    @Override
 	public Object LT(int k) {
 		//System.out.println("LT("+k+"); head="+head+", tail="+tail);
 		if ( k==-1 ) {
@@ -192,11 +197,15 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 
 	/** Where is this stream pulling nodes from?  This is not the name, but
 	 *  the object that provides node objects.
-	 */
+         * 
+         * @return 
+         */
+    @Override
 	public Object getTreeSource() {
 		return root;
 	}
 
+    @Override
 	public TokenStream getTokenStream() {
 		return tokens;
 	}
@@ -205,7 +214,9 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		this.tokens = tokens;
 	}
 
-	/** Make sure we have at least k symbols in lookahead buffer */
+        /** Make sure we have at least k symbols in lookahead buffer
+         * @param k 
+         */
 	protected void fill(int k) {
 		int n = getLookaheadSize();
 		//System.out.println("we have "+n+" nodes; need "+(k-n));
@@ -218,7 +229,9 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  If you tail+1 == head, then we must create a bigger buffer
 	 *  and copy all the nodes over plus reset head, tail.  After
 	 *  this method, LT(1) will be lookahead[0].
-	 */
+         * 
+         * @param node 
+         */
 	protected void addLookahead(Object node) {
 		//System.out.println("addLookahead head="+head+", tail="+tail);
 		lookahead[tail] = node;
@@ -240,6 +253,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 
 	// Satisfy IntStream interface
 
+    @Override
 	public void consume() {
 		/*
 		System.out.println("consume: currentNode="+currentNode.getType()+
@@ -253,6 +267,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		head = (head+1) % lookahead.length;
 	}
 
+    @Override
 	public int LA(int i) {
 		Object t = LT(i);
 		if ( t==null ) {
@@ -264,7 +279,11 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	/** Record the current state of the tree walk which includes
 	 *  the current node and stack state as well as the lookahead
 	 *  buffer.
-	 */
+         * 
+         * @return 
+         */
+    @Override
+    @SuppressWarnings("unchecked")
 	public int mark() {
 		if ( markers==null ) {
 			markers = new ArrayList();
@@ -296,6 +315,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		return markDepth;
 	}
 
+    @Override
 	public void release(int marker) {
 		// unwind any other markers made after marker and release marker
 		markDepth = marker;
@@ -308,7 +328,10 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  wipe out the lookahead which will force reloading a few nodes
 	 *  but it is better than making a copy of the lookahead buffer
 	 *  upon mark().
-	 */
+         * 
+         * @param marker 
+         */
+    @Override
 	public void rewind(int marker) {
 		if ( markers==null ) {
 			return;
@@ -328,13 +351,17 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		release(marker);
 	}
 
+    @Override
 	public void rewind() {
 		rewind(lastMarker);
 	}
 
 	/** consume() ahead until we hit index.  Can't just jump ahead--must
 	 *  spit out the navigation nodes.
-	 */
+         * 
+         * @param index 
+         */
+    @Override
 	public void seek(int index) {
 		if ( index<this.index() ) {
 			throw new IllegalArgumentException("can't seek backwards in node stream");
@@ -345,6 +372,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		}
 	}
 
+    @Override
 	public int index() {
 		return absoluteNodeIndex+1;
 	}
@@ -353,7 +381,10 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  include navigation nodes and EOF.  Reuse functionality
 	 *  in CommonTreeNodeStream as we only really use this
 	 *  for testing.
-	 */
+         * 
+         * @return 
+         */
+    @Override
 	public int size() {
 		CommonTreeNodeStream s = new CommonTreeNodeStream(root);
 		return s.size();
@@ -372,7 +403,9 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  Ugh.  This mechanism is much more complicated than a recursive
 	 *  solution, but it's the only way to provide nodes on-demand instead
 	 *  of walking once completely through and buffering up the nodes. :(
-	 */
+         * 
+         * @return 
+         */
 	public Object next() {
 		// already walked entire tree; nothing to return
 		if ( currentNode==null ) {
@@ -420,6 +453,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		return node;
 	}
 
+    @SuppressWarnings("unchecked")
 	protected Object visitChild(int child) {
 		Object node = null;
 		// save state
@@ -440,7 +474,9 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	/** As we flatten the tree, we use UP, DOWN nodes to represent
 	 *  the tree structure.  When debugging we need unique nodes
 	 *  so instantiate new ones when uniqueNavigationNodes is true.
-	 */
+         * 
+         * @param ttype 
+         */
 	protected void addNavigationNode(final int ttype) {
 		Object navNode = null;
 		if ( ttype==Token.DOWN ) {
@@ -484,6 +520,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		}
 	}
 
+    @Override
 	public TreeAdaptor getTreeAdaptor() {
 		return adaptor;
 	}
@@ -492,6 +529,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		return uniqueNavigationNodes;
 	}
 
+    @Override
 	public void setUniqueNavigationNodes(boolean uniqueNavigationNodes) {
 		this.uniqueNavigationNodes = uniqueNavigationNodes;
 	}
@@ -500,6 +538,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 	 *  a recursive walk.  Mostly useful for testing as it yields
 	 *  the token types not text.
 	 */
+    @Override
 	public String toString() {
 		return toString(root, null);
 	}
@@ -508,6 +547,7 @@ public class UnBufferedTreeNodeStream implements TreeNodeStream {
 		return tail<head?(lookahead.length-head+tail):(tail-head);
 	}
 
+    @Override
 	public String toString(Object start, Object stop) {
 		if ( start==null ) {
 			return null;

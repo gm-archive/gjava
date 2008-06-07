@@ -55,17 +55,21 @@ public class Path implements Resource {
     public void readXml(String xml) {
         String[] lines = xml.split("\n");
         String line;
-        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>"))
+        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>")) {
             return;
-        if(!lines[1].matches("<path>"))
+        }
+        if(!lines[1].matches("<path>")) {
             return;
-        if(lines.length < 3)
+        }
+        if(lines.length < 3) {
             return;
+        }
         int i = 3;
         while(i < lines.length) {
             line = lines[i];
-            if(line == null || line.equals(""))
+            if(line == null || line.equals("")) {
                 continue;
+            }
             if(line.equals("</path>")){
                 break;
             }
@@ -103,7 +107,9 @@ public class Path implements Resource {
     }
 
     //SuppressWarnings("unchecked")
+    @Override
     public Object clone() {
+        @SuppressWarnings("unchecked")
         Path a = new Path((Vector<PathNode>)nodes.clone());
         a.smoothCurves = smoothCurves;
         a.closedCurves = closedCurves;

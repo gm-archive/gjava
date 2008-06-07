@@ -16,26 +16,36 @@ import org.gcreator.languages.*;
  * @author  Luís
  */
 public class LanguageTab extends TabPanel {
+    private static final long serialVersionUID = 1;
     
     /** Creates new form LanguageTab */
     public LanguageTab() {
         initComponents();
         try{
-        if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang))
-            jLabel4.setVisible(false);
+        if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang)) {
+                jLabel4.setVisible(false);
+            }
         }
         catch(Exception e){}
         int l = 0;
-        if(gcreator.panel.lang.equals("German"))
+        if(gcreator.panel.lang.equals("German")) {
             l = 1;
-        if(gcreator.panel.lang.equals("German (Old)"))
+        }
+        if(gcreator.panel.lang.equals("German (Old)")) {
             l = 2;
-        if(gcreator.panel.lang.equals("Portuguese (European)"))
+        }
+        if(gcreator.panel.lang.equals("Portuguese (European)")) {
             l = 3;
-        if(gcreator.panel.lang.equals("Russian"))
+        }
+        if(gcreator.panel.lang.equals("Russian")) {
             l = 4;
-        if(gcreator.panel.lang.equals("Spanish"))
+        }
+        if(gcreator.panel.lang.equals("Spanish")) {
             l = 5;
+        }
+        if(gcreator.panel.lang.equals("French")) {
+            l = 6;
+        }
         jComboBox1.setSelectedIndex(l);
         updateLanguage();
     }
@@ -43,18 +53,26 @@ public class LanguageTab extends TabPanel {
     public void updateLanguage(){
         int l = jComboBox1.getSelectedIndex();
         Dictionary m;
-        if(l==0)
+        if(l==0) {
             m = new English();
-        else if(l==1)
+        }
+        else if(l==1) {
             m = new German();
-        else if(l==2)
+        }
+        else if(l==2) {
             m = new GermanOld();
-        else if(l==3)
+        }
+        else if(l==3) {
             m = new Portuguese();
-        else if(l==4)
+        }
+        else if(l==4) {
             m = new Russian();
-        else
+        }
+        else if (l == 5){
             m = new Spanish();
+        } else {
+            m = new French();
+        }
         jLabel1.setText(m.getEntry(47));
         jLabel2.setText(m.getEntry(48));
         jLabel3.setText(m.getStatus());
@@ -79,7 +97,7 @@ public class LanguageTab extends TabPanel {
 
         jLabel1.setText("Language");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English (Universal)", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish" , "French"}));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

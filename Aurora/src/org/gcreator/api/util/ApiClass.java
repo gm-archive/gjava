@@ -25,6 +25,7 @@ public class ApiClass {
         return name;
     }
     
+    @SuppressWarnings("unchecked")
     public void add(ApiFunction af) {
       functions.add(af);  
     }

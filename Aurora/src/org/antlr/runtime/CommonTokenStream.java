@@ -78,7 +78,9 @@ public class CommonTokenStream implements TokenStream {
 		this.channel = channel;
 	}
 
-	/** Reset this token stream by setting its token source. */
+        /** Reset this token stream by setting its token source.
+         * @param tokenSource 
+         */
 	public void setTokenSource(TokenSource tokenSource) {
 		this.tokenSource = tokenSource;
 		tokens.clear();
@@ -90,6 +92,7 @@ public class CommonTokenStream implements TokenStream {
 	 *  This is done upon first LT request because you might want to
 	 *  set some token type / channel overrides before filling buffer.
 	 */
+    @SuppressWarnings("unchecked")
 	protected void fillBuffer() {
 		int index = 0;
 		Token t = tokenSource.nextToken();
@@ -130,6 +133,7 @@ public class CommonTokenStream implements TokenStream {
 	 *
 	 *  Walk past any token not on the channel the parser is listening to.
 	 */
+    @Override
 	public void consume() {
 		if ( p<tokens.size() ) {
             p++;
@@ -139,7 +143,10 @@ public class CommonTokenStream implements TokenStream {
 
 	/** Given a starting index, return the index of the first on-channel
 	 *  token.
-	 */
+         * 
+         * @param i The number of channels to skip.
+         * @return A number.
+         */
 	protected int skipOffTokenChannels(int i) {
 		int n = tokens.size();
 		while ( i<n && ((Token)tokens.get(i)).getChannel()!=channel ) {
@@ -160,7 +167,11 @@ public class CommonTokenStream implements TokenStream {
 	 *  when interpreting, we cannot exec actions so we need to tell
 	 *  the stream to force all WS and NEWLINE to be a different, ignored
 	 *  channel.
-	 */
+         * 
+         * @param ttype The index of the token type.
+         * @param channel The index of the channel.
+         */
+    @SuppressWarnings("unchecked")
 	public void setTokenTypeChannel(int ttype, int channel) {
 		if ( channelOverrideMap==null ) {
 			channelOverrideMap = new HashMap();
@@ -168,6 +179,7 @@ public class CommonTokenStream implements TokenStream {
         channelOverrideMap.put(new Integer(ttype), new Integer(channel));
 	}
 
+    @SuppressWarnings("unchecked")
 	public void discardTokenType(int ttype) {
 		if ( discardSet==null ) {
 			discardSet = new HashSet();
@@ -193,7 +205,13 @@ public class CommonTokenStream implements TokenStream {
 	/** Given a start and stop index, return a List of all tokens in
 	 *  the token type BitSet.  Return null if no tokens were found.  This
 	 *  method looks at both on and off channel tokens.
-	 */
+         * 
+         * @param start A number.
+         * @param stop  A number.
+         * @param types The BitSets.
+         * @return A List.
+         */
+    @SuppressWarnings("unchecked")
 	public List getTokens(int start, int stop, BitSet types) {
 		if ( p == -1 ) {
 			fillBuffer();
@@ -232,7 +250,11 @@ public class CommonTokenStream implements TokenStream {
 
 	/** Get the ith token from the current position 1..n where k=1 is the
 	 *  first symbol of lookahead.
-	 */
+         * 
+         * @param k A number.
+         * @return A Token.
+         */
+    @Override
 	public Token LT(int k) {
 		if ( p == -1 ) {
 			fillBuffer();
@@ -262,7 +284,10 @@ public class CommonTokenStream implements TokenStream {
         return (Token)tokens.get(i);
     }
 
-	/** Look backwards k tokens on-channel tokens */
+        /** Look backwards k tokens on-channel tokens
+         * @param k A number.
+         * @return A Token.
+         */
 	protected Token LB(int k) {
 		//System.out.print("LB(p="+p+","+k+") ");
 		if ( p == -1 ) {
@@ -291,15 +316,22 @@ public class CommonTokenStream implements TokenStream {
 
 	/** Return absolute token i; ignore which channel the tokens are on;
 	 *  that is, count all tokens not just on-channel tokens.
-	 */
-	public Token get(int i) {
+         * 
+         * @param i The index of the token to get.
+         * @return A token.
+         */
+
+    @Override
+        public Token get(int i) {
 		return (Token)tokens.get(i);
 	}
 
+    @Override
     public int LA(int i) {
         return LT(i).getType();
     }
 
+    @Override
     public int mark() {
 		if ( p == -1 ) {
 			fillBuffer();
@@ -308,34 +340,42 @@ public class CommonTokenStream implements TokenStream {
 		return lastMarker;
 	}
 
+    @Override
 	public void release(int marker) {
 		// no resources to release
 	}
 
+    @Override
 	public int size() {
 		return tokens.size();
 	}
 
+    @Override
     public int index() {
         return p;
     }
 
+        @Override
 	public void rewind(int marker) {
 		seek(marker);
 	}
 
+        @Override
 	public void rewind() {
 		seek(lastMarker);
 	}
 
+        @Override
 	public void seek(int index) {
 		p = index;
 	}
 
+        @Override
 	public TokenSource getTokenSource() {
 		return tokenSource;
 	}
 
+        @Override
 	public String toString() {
 		if ( p == -1 ) {
 			fillBuffer();
@@ -343,6 +383,7 @@ public class CommonTokenStream implements TokenStream {
 		return toString(0, tokens.size()-1);
 	}
 
+        @Override
 	public String toString(int start, int stop) {
 		if ( start<0 || stop<0 ) {
 			return null;
@@ -361,6 +402,7 @@ public class CommonTokenStream implements TokenStream {
 		return buf.toString();
 	}
 
+        @Override
 	public String toString(Token start, Token stop) {
 		if ( start!=null && stop!=null ) {
 			return toString(start.getTokenIndex(), stop.getTokenIndex());

@@ -100,6 +100,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		public int execute(StringBuffer buf) {
 			return index;
 		}
+        @Override
 		public String toString() {
 			String opName = getClass().getName();
 			int $index = opName.indexOf('$');
@@ -112,6 +113,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		public InsertBeforeOp(int index, Object text) {
 			super(index,text);
 		}
+        @Override
 		public int execute(StringBuffer buf) {
 			buf.append(text);
 			return index;
@@ -135,6 +137,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 			super(from,text);
 			lastIndex = to;
 		}
+        @Override
 		public int execute(StringBuffer buf) {
 			if ( text!=null ) {
 				buf.append(text);
@@ -162,6 +165,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		init();
 	}
 
+    @SuppressWarnings("unchecked")
 	protected void init() {
 		programs = new HashMap();
 		programs.put(DEFAULT_PROGRAM_NAME, new ArrayList(PROGRAM_INIT_SIZE));
@@ -185,7 +189,11 @@ public class TokenRewriteStream extends CommonTokenStream {
 	/** Rollback the instruction stream for a program so that
 	 *  the indicated instruction (via instructionIndex) is no
 	 *  longer in the stream.  UNTESTED!
-	 */
+         * 
+         * @param programName The name of the program.
+         * @param instructionIndex The index of the instruction.
+         */
+    @SuppressWarnings("unchecked")
 	public void rollback(String programName, int instructionIndex) {
 		List is = (List)programs.get(programName);
 		if ( is!=null ) {
@@ -197,14 +205,16 @@ public class TokenRewriteStream extends CommonTokenStream {
 		deleteProgram(DEFAULT_PROGRAM_NAME);
 	}
 
-	/** Reset the program so that no instructions exist */
+        /** Reset the program so that no instructions exist
+         * @param programName The name of the program.
+         */
 	public void deleteProgram(String programName) {
 		rollback(programName, MIN_TOKEN_INDEX);
 	}
 
 	/** If op.index > lastRewriteTokenIndexes, just add to the end.
 	 *  Otherwise, do linear */
-	protected void addToSortedRewriteList(RewriteOperation op) {
+	private void addToSortedRewriteList(RewriteOperation op) {
 		addToSortedRewriteList(DEFAULT_PROGRAM_NAME, op);
 	}
 
@@ -224,18 +234,25 @@ public class TokenRewriteStream extends CommonTokenStream {
 	 *  delete is the same as replace with null text, i can check for
 	 *  ReplaceOp and cover DeleteOp at same time. :)
 	 */
-	protected void addToSortedRewriteList(String programName, RewriteOperation op) {
+    @SuppressWarnings("unchecked")
+	private void addToSortedRewriteList(String programName, RewriteOperation op) {
 		List rewrites = getProgram(programName);
 		//System.out.println("### add "+op+"; rewrites="+rewrites);
 		Comparator comparator = new Comparator() {
+            @Override
 			public int compare(Object o, Object o1) {
 				RewriteOperation a = (RewriteOperation)o;
 				RewriteOperation b = (RewriteOperation)o1;
-				if ( a.index<b.index ) return -1;
-				if ( a.index>b.index ) return 1;
+				if ( a.index<b.index ) {
+                    return -1;
+                }
+				if ( a.index>b.index ) {
+                    return 1;
+                }
 				return 0;
 			}
 		};
+        @SuppressWarnings("unchecked")
         int pos = Collections.binarySearch(rewrites, op, comparator);
 		//System.out.println("bin search returns: pos="+pos);
 
@@ -396,6 +413,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		return I.intValue();
 	}
 
+    @SuppressWarnings("unchecked")
 	protected void setLastRewriteTokenIndex(String programName, int i) {
 		lastRewriteTokenIndexes.put(programName, new Integer(i));
 	}
@@ -408,6 +426,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		return is;
 	}
 
+    @SuppressWarnings("unchecked")
 	private List initializeProgram(String name) {
 		List is = new ArrayList(PROGRAM_INIT_SIZE);
 		programs.put(name, is);
@@ -426,6 +445,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		return buf.toString();
 	}
 
+    @Override
 	public String toString() {
 		return toString(MIN_TOKEN_INDEX, size()-1);
 	}
@@ -434,6 +454,7 @@ public class TokenRewriteStream extends CommonTokenStream {
 		return toString(programName, MIN_TOKEN_INDEX, size()-1);
 	}
 
+    @Override
 	public String toString(int start, int end) {
 		return toString(DEFAULT_PROGRAM_NAME, start, end);
 	}

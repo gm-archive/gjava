@@ -27,8 +27,6 @@
 */
 package org.antlr.runtime.tree;
 
-import org.antlr.runtime.Token;
-import org.antlr.runtime.CommonToken;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -80,7 +78,11 @@ public abstract class RewriteRuleElementStream {
 		this.adaptor = adaptor;
 	}
 
-	/** Create a stream with one element */
+        /** Create a stream with one element
+         * @param adaptor
+         * @param elementDescription
+         * @param oneElement 
+         */
 	public RewriteRuleElementStream(TreeAdaptor adaptor,
 									String elementDescription,
 									Object oneElement)
@@ -89,7 +91,11 @@ public abstract class RewriteRuleElementStream {
 		add(oneElement);
 	}
 
-	/** Create a stream, but feed off an existing list */
+        /** Create a stream, but feed off an existing list
+         * @param adaptor 
+         * @param elementDescription
+         * @param elements 
+         */
 	public RewriteRuleElementStream(TreeAdaptor adaptor,
 									String elementDescription,
 									List elements)
@@ -109,6 +115,7 @@ public abstract class RewriteRuleElementStream {
 		dirty = true;
 	}
 
+    @SuppressWarnings("unchecked")
 	public void add(Object el) {
 		//System.out.println("add '"+elementDescription+"' is "+el);
 		if ( el==null ) {
@@ -133,7 +140,9 @@ public abstract class RewriteRuleElementStream {
 	 *  an exception unless size()==1.  If size is 1, then return elements[0].
 	 *  Return a duplicate node/subtree if stream is out of elements and
 	 *  size==1.  If we've already used the element, dup (dirty bit set).
-	 */
+         * 
+         * @return 
+         */
 	public Object next() {
 		int n = size();
 		if ( dirty || (cursor>=n && n==1) ) {
@@ -151,7 +160,9 @@ public abstract class RewriteRuleElementStream {
 	 *  element list versus list of size > 1.  Throw an exception
 	 *  if the stream is empty or we're out of elements and size>1.
 	 *  protected so you can override in a subclass if necessary.
-	 */
+         * 
+         * @return 
+         */
 	protected Object _next() {
 		int n = size();
 		if ( n ==0 ) {
@@ -179,12 +190,18 @@ public abstract class RewriteRuleElementStream {
 	 * 	subtree.  Dup'ing a token means just creating another AST node
 	 *  around it.  For trees, you must call the adaptor.dupTree() unless
 	 *  the element is for a tree root; then it must be a node dup.
-	 */
+         * 
+         * @param el
+         * @return 
+         */
 	protected abstract Object dup(Object el);
 
 	/** Ensure stream emits trees; tokens must be converted to AST nodes.
 	 *  AST nodes can be passed through unmolested.
-	 */
+         * 
+         * @param el
+         * @return 
+         */
 	protected Object toTree(Object el) {
 		return el;
 	}

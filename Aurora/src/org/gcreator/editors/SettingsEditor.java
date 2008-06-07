@@ -22,7 +22,7 @@ import org.gcreator.plugins.*;
  * @author  Luís
  */
 public class SettingsEditor extends TabPanel {
-    
+    private static final long serialVersionUID = 1;
     /** Creates new form SettingsEditor */
     SettingsValues value;
     TabValues Graphics, Resolution, Other, SceneOrder;
@@ -41,6 +41,7 @@ public class SettingsEditor extends TabPanel {
     
     private Vector<org.gcreator.fileclass.GFile> scenelist;
     
+    @SuppressWarnings("unchecked")
     public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.GFile file) {
         scenelist = new Vector<org.gcreator.fileclass.GFile>();
         this.file = file;
@@ -84,24 +85,28 @@ public class SettingsEditor extends TabPanel {
             Resolution.setVariable("depth", depth = (Integer) 0);
         }
         Integer dep = (Integer) depth;
-        if(dep!=0&&dep!=16&&dep!=32)
+        if(dep!=0&&dep!=16&&dep!=32) {
             Resolution.setVariable("depth", dep = 0);
+        }
         Object resol = Resolution.getValue("resol");
         if(resol==null||!(resol instanceof Integer)){
             Resolution.setVariable("resol", resol = (Integer) 0);
         }
         Integer res = (Integer) resol;
-        if(res<0||res>6)
+        if(res<0||res>6) {
             Resolution.setVariable("resol", res = 0);
-        if(res<0||res>6)
+        }
+        if(res<0||res>6) {
             Resolution.setVariable("resol", res = 0);
+        }
         Object frequency = Resolution.getValue("frequency");
         if(frequency==null||!(frequency instanceof Integer)){
             Resolution.setVariable("frequency", frequency = (Integer) 0);
         }
         Integer freq = (Integer) frequency;
-        if(freq<0||freq>5)
+        if(freq<0||freq>5) {
             Resolution.setVariable("frequency", freq = 0);
+        }
         Object esc = Other.getValue("ESC");
         if(esc==null||!(esc instanceof Boolean)){
             Other.setVariable("ESC", esc = (Boolean) false);
@@ -116,44 +121,60 @@ public class SettingsEditor extends TabPanel {
         jCheckBox7.setSelected((Boolean) setres);
         jCheckBox8.setSelected((Boolean) esc);
         jCheckBox9.setSelected((Boolean) f4);
-        if(dep==0)
+        if(dep==0) {
             jRadioButton1.setSelected(true);
-        else if(dep==16)
+        }
+        else if(dep==16) {
             jRadioButton2.setSelected(true);
-        else if(dep==32)
+        }
+        else if(dep==32) {
             jRadioButton3.setSelected(true);
-        if(res==0)
+        }
+        if(res==0) {
             jRadioButton4.setSelected(true);
-        else if(res==1)
+        }
+        else if(res==1) {
             jRadioButton5.setSelected(true);
-        else if(res==2)
+        }
+        else if(res==2) {
             jRadioButton6.setSelected(true);
-        else if(res==3)
+        }
+        else if(res==3) {
             jRadioButton7.setSelected(true);
-        else if(res==4)
+        }
+        else if(res==4) {
             jRadioButton8.setSelected(true);
+        }
         else if(res==5)
             jRadioButton9.setSelected(true);
-        else if(res==6)
+        else if(res==6) {
             jRadioButton10.setSelected(true);
-        if(freq==0)
+        }
+        if(freq==0) {
             jRadioButton11.setSelected(true);
-        else if(freq==1)
+        }
+        else if(freq==1) {
             jRadioButton12.setSelected(true);
-        else if(freq==2)
+        }
+        else if(freq==2) {
             jRadioButton13.setSelected(true);
-        else if(freq==3)
+        }
+        else if(freq==3) {
             jRadioButton14.setSelected(true);
-        else if(freq==4)
+        }
+        else if(freq==4) {
             jRadioButton15.setSelected(true);
-        else if(freq==5)
+        }
+        else if(freq==5) {
             jRadioButton16.setSelected(true);
+        }
         Object scn=null;
         try{
         scn = SceneOrder.getValue("Scenes");
         } catch (Exception e){}
-        if(scn==null||!(scn instanceof Vector))
+        if(scn==null||!(scn instanceof Vector)) {
             SceneOrder.setVariable("Scenes", scn = new Vector());
+        }
         scenelist = (Vector/*<org.gcreator.fileclass.File>*/) scn;
         checkres();
         jPanel10.setLayout(new FlowLayout());
@@ -843,8 +864,9 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jRadioButton16ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(scenes.getFile()!=null)
+        if(scenes.getFile()!=null) {
             addScene(scenes.getFile());
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -853,7 +875,9 @@ public class SettingsEditor extends TabPanel {
 
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
         int to  = jList1.locationToIndex(evt.getPoint());
-     if (to == from) return;
+     if (to == from) {
+            return;
+        }
         GFile remove = scenelist.remove(from);
       scenelist.add(to,remove);
       from = to;
@@ -866,10 +890,12 @@ public class SettingsEditor extends TabPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int pos = jList1.getSelectedIndex();
-        if(pos<=0) //0 or -1
+        if(pos<=0) {
+            //0 or -1
             return; //Do nothing
-        org.gcreator.fileclass.GFile o = (org.gcreator.fileclass.GFile) scenelist.get(pos);
-        org.gcreator.fileclass.GFile p = (org.gcreator.fileclass.GFile) scenelist.get(pos-1);
+        } //Do nothing
+        org.gcreator.fileclass.GFile o = scenelist.get(pos);
+        org.gcreator.fileclass.GFile p = scenelist.get(pos - 1);
         scenelist.set(pos-1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos-1);
@@ -878,10 +904,12 @@ public class SettingsEditor extends TabPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int pos = jList1.getSelectedIndex();
-        if(pos<0||pos>=scenelist.size()-1) //-1
+        if(pos<0||pos>=scenelist.size()-1) {
+            //-1
             return; //Do nothing
-        org.gcreator.fileclass.GFile o = (org.gcreator.fileclass.GFile) scenelist.get(pos);
-        org.gcreator.fileclass.GFile p = (org.gcreator.fileclass.GFile) scenelist.get(pos+1);
+        } //Do nothing
+        org.gcreator.fileclass.GFile o = scenelist.get(pos);
+        org.gcreator.fileclass.GFile p = scenelist.get(pos + 1);
         scenelist.set(pos+1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos+1);
@@ -898,8 +926,9 @@ public class SettingsEditor extends TabPanel {
     }
     
     public void removeSelectedScene(){
-        if(jList1.getSelectedValue()!=null)
+        if(jList1.getSelectedValue()!=null) {
             scenelist.remove(jList1.getSelectedIndex());
+        }
         scenelist.trimToSize();
         jList1.updateUI();
     }
