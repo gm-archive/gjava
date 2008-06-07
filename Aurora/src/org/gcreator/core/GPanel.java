@@ -1468,7 +1468,6 @@ public class GPanel extends JPanel {
     }
 
     //</editor-fold>
-    //Tree accessing functions
 
     //<editor-fold defaultstate="collapsed" desc="onToolbarActionPerformed">
     public void onToolbarActionPerformed(int item, ActionEvent evt) {
@@ -1484,7 +1483,12 @@ public class GPanel extends JPanel {
                 ProjectImporter.OpenProject(this);
                 break;
             case 3:
-                SaveMainProject(false);
+                if(istabs){
+                ((TabPanel) tabs.getSelectedComponent()).Save();
+            }
+            else{
+                ((ExtendedFrame) mdi.getSelectedFrame()).getPanel().Save();
+            }
                 break;
             case 4:
                 //save all projects
@@ -1799,12 +1803,14 @@ public class GPanel extends JPanel {
         CloseProject(getCurrentProject());
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);

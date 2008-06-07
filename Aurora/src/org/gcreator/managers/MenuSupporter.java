@@ -23,6 +23,7 @@ import org.gcreator.components.*;
 public class MenuSupporter {
     public static final int MENULIMIT = 20;
     public static final int ITEMLIMIT = 20;
+    
     public static JMenu MakeMenu(JMenuBar menubar, int label, String description){
         JMenu menu = new JMenu(LangSupporter.activeLang.getEntry(label));
         menu.getAccessibleContext().setAccessibleDescription(description);
