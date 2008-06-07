@@ -26,7 +26,6 @@ import org.gcreator.compilers.gjava.api.Variables;
 import org.gcreator.components.ExtendedFrame;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.ToolbarButton;
-import org.gcreator.core.Aurwindow;
 import org.gcreator.core.GPanel;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
@@ -52,6 +51,7 @@ import sun.awt.image.ToolkitImage;
  */
 public class GJava extends PlatformCore {
 
+    private JMenuItem menuItem;
     public static String projectname,  FileFolder;
     public static int sprites = 0,  actors = 0,  scenes = 0,  fonts = 0;
     String loadscene = "", loadSprites = "public static Sprite ", createSprites = "public void loadSprites() { ",script="";
@@ -387,15 +387,15 @@ actorindex++;
 //                    }
 //                });
                 
-        JMenuItem i = new JMenuItem("Compile with G-Java");
-        i.addActionListener(new ActionListener(){
+        menuItem = new JMenuItem("Compile with G-Java");
+        menuItem.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt) {
                // run(Aurwindow.getMainProject());
                startprogress();
             }
         });
         
-        PluginHelper.addMenuItem(3, i);
+        PluginHelper.addMenuItem(3, menuItem);
         //Aurwindow.tool.add(run);
     }
     
@@ -624,5 +624,8 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
 //        return type+ " "+vars+";";
 //    }
     
-    
+    @Override
+    public void uninstall() {
+        PluginHelper.removeMenuItem(3, menuItem);
+    }
 }
