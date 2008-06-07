@@ -1,5 +1,5 @@
 /*
- * @(#)BobFileChooserUI.java	1.52 07/06/20
+ * @(#)BobFileChooserUI.java	1.94 07/06/04
  *
  * Copyright 2006 Sun Microsystems, Inc. All rights reserved.
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
@@ -8,702 +8,1014 @@
 package org.gcreator.bob.boblook;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.filechooser.*;
 import javax.swing.event.*;
 import javax.swing.plaf.*;
 import javax.swing.plaf.basic.*;
+import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
+import javax.accessibility.*;
+
 import sun.awt.shell.ShellFolder;
-import sun.swing.SwingUtilities2;
+import sun.swing.*;
 
 /**
- * Bob FileChooserUI.
+ * Bob L&F implementation of a FileChooser.
  *
- * @version 1.52 06/20/07
+ * @version 1.94 06/04/07
  * @author Jeff Dinkins
  */
 public class BobFileChooserUI extends BasicFileChooserUI {
 
+    // Much of the Bob UI for JFilechooser is just a copy of
+    // the windows implementation, but using Bob themed buttons, lists,
+    // icons, etc. We are planning a complete rewrite, and hence we've
+    // made most things in this class private.
+
+    private JLabel lookInLabel;
+    private JComboBox directoryComboBox;
+    private DirectoryComboBoxModel directoryComboBoxModel;
+    private Action directoryComboBoxAction = new DirectoryComboBoxAction();
+
     private FilterComboBoxModel filterComboBoxModel;
 
-    protected JList directoryList = null;
-    protected JList fileList = null;
+    private JTextField fileNameTextField;
 
-    protected JTextField pathField = null;
-    protected JComboBox filterComboBox = null;
-    protected JTextField filenameTextField = null;
+    private FilePane filePane;
+    private JToggleButton listViewButton;
+    private JToggleButton detailsViewButton;
 
-    private static final Dimension hstrut10 = new Dimension(10, 1);
-    private static final Dimension vstrut10 = new Dimension(1, 10);
+    private boolean useShellFolder;
 
-    private static final Insets insets = new Insets(10, 10, 10, 10);
+    private JButton approveButton;
+    private JButton cancelButton;
 
-    private static Dimension prefListSize = new Dimension(75, 150);
-
-    private static Dimension WITH_ACCELERATOR_PREF_SIZE = new Dimension(650, 450);
-    private static Dimension PREF_SIZE = new Dimension(350, 450);
-    private static Dimension MIN_SIZE = new Dimension(200, 300);
-
-    private static Dimension PREF_ACC_SIZE = new Dimension(10, 10);
-    private static Dimension ZERO_ACC_SIZE = new Dimension(1, 1);
-
-    private static Dimension MAX_SIZE = new Dimension(Short.MAX_VALUE, Short.MAX_VALUE);
-
-    private static final Insets buttonMargin = new Insets(3, 3, 3, 3);
-
-    private JPanel directoryPanel = new JPanel();
+    private JPanel buttonPanel;
     private JPanel bottomPanel;
 
-    protected JButton approveButton;
+    private JComboBox filterComboBox;
 
-    private String enterFileNameLabelText = null;
-    private int enterFileNameLabelMnemonic = 0;
+    private static final Dimension hstrut5 = new Dimension(5, 1);
+    private static final Dimension hstrut11 = new Dimension(11, 1);
 
-    private String filesLabelText = null;
-    private int filesLabelMnemonic = 0;
+    private static final Dimension vstrut5  = new Dimension(1, 5);
 
-    private String foldersLabelText = null;
-    private int foldersLabelMnemonic = 0;
+    private static final Insets shrinkwrap = new Insets(0,0,0,0);
 
-    private String pathLabelText = null;
-    private int pathLabelMnemonic = 0;
+    // Preferred and Minimum sizes for the dialog box
+    private static int PREF_WIDTH = 500;
+    private static int PREF_HEIGHT = 326;
+    private static Dimension PREF_SIZE = new Dimension(PREF_WIDTH, PREF_HEIGHT);
 
-    private String filterLabelText = null;
-    private int filterLabelMnemonic = 0;
+    private static int MIN_WIDTH = 500;
+    private static int MIN_HEIGHT = 326;
+    private static Dimension MIN_SIZE = new Dimension(MIN_WIDTH, MIN_HEIGHT);
 
-    private String fileNameString(File file) {
-        if (file == null) {
-            return null;
-        } else {
-            JFileChooser fc = getFileChooser();
-            if (fc.isDirectorySelectionEnabled() && !fc.isFileSelectionEnabled()) {
-                return file.getPath();
-            } else {
-                return file.getName();
-            }
-        }
-    }
+    private static int LIST_PREF_WIDTH = 405;
+    private static int LIST_PREF_HEIGHT = 135;
+    private static Dimension LIST_PREF_SIZE = new Dimension(LIST_PREF_WIDTH, LIST_PREF_HEIGHT);
 
-    private String fileNameString(File[] files) {
-        StringBuffer buf = new StringBuffer();
-        for (int i = 0; files != null && i < files.length; i++) {
-            if (i > 0) {
-                buf.append(" ");
-            }
-            if (files.length > 1) {
-                buf.append("\"");
-            }
-            buf.append(fileNameString(files[i]));
-            if (files.length > 1) {
-                buf.append("\"");
-            }
-        }
-        return buf.toString();
+    // Labels, mnemonics, and tooltips (oh my!)
+    private int    lookInLabelMnemonic = 0;
+    private String lookInLabelText = null;
+    private String saveInLabelText = null;
+
+    private int    fileNameLabelMnemonic = 0;
+    private String fileNameLabelText = null;
+
+    private int    filesOfTypeLabelMnemonic = 0;
+    private String filesOfTypeLabelText = null;
+
+    private String upFolderToolTipText = null;
+    private String upFolderAccessibleName = null;
+
+    private String homeFolderToolTipText = null;
+    private String homeFolderAccessibleName = null;
+
+    private String newFolderToolTipText = null;
+    private String newFolderAccessibleName = null;
+
+    private String listViewButtonToolTipText = null;
+    private String listViewButtonAccessibleName = null;
+
+    private String detailsViewButtonToolTipText = null;
+    private String detailsViewButtonAccessibleName = null;
+
+    //
+    // ComponentUI Interface Implementation methods
+    //
+    public static ComponentUI createUI(JComponent c) {
+        return new BobFileChooserUI((JFileChooser) c);
     }
 
     public BobFileChooserUI(JFileChooser filechooser) {
 	super(filechooser);
     }
 
-    public String getFileName() {
-	if(filenameTextField != null) {
-	    return filenameTextField.getText();
+    public void installUI(JComponent c) {
+	super.installUI(c);
+    }
+
+    public void uninstallComponents(JFileChooser fc) {
+	fc.removeAll();
+	bottomPanel = null;
+	buttonPanel = null;
+    }
+
+    private class BobFileChooserUIAccessor implements FilePane.FileChooserUIAccessor {
+	public JFileChooser getFileChooser() {
+	    return BobFileChooserUI.this.getFileChooser();
+	}
+
+	public BasicDirectoryModel getModel() {
+	    return BobFileChooserUI.this.getModel();
+	}
+
+	public JPanel createList() {
+	    return BobFileChooserUI.this.createList(getFileChooser());
+	}
+
+	public JPanel createDetailsView() {
+	    return BobFileChooserUI.this.createDetailsView(getFileChooser());
+	}
+
+	public boolean isDirectorySelected() {
+	    return BobFileChooserUI.this.isDirectorySelected();
+	}
+
+	public File getDirectory() {
+	    return BobFileChooserUI.this.getDirectory();
+	}
+
+	public Action getChangeToParentDirectoryAction() {
+	    return BobFileChooserUI.this.getChangeToParentDirectoryAction();
+	}
+
+	public Action getApproveSelectionAction() {
+	    return BobFileChooserUI.this.getApproveSelectionAction();
+	}
+
+	public Action getNewFolderAction() {
+	    return BobFileChooserUI.this.getNewFolderAction();
+	}
+
+	public MouseListener createDoubleClickListener(JList list) {
+	    return BobFileChooserUI.this.createDoubleClickListener(getFileChooser(),
+								     list);
+	}
+
+	public ListSelectionListener createListSelectionListener() {
+	    return BobFileChooserUI.this.createListSelectionListener(getFileChooser());
+	}
+        
+        public boolean usesShellFolder() {
+            return useShellFolder;
+        }
+    }
+
+    public void installComponents(JFileChooser fc) {
+	FileSystemView fsv = fc.getFileSystemView();
+
+	fc.setBorder(new EmptyBorder(12, 12, 11, 11));
+	fc.setLayout(new BorderLayout(0, 11));
+
+	filePane = new FilePane(new BobFileChooserUIAccessor());
+	fc.addPropertyChangeListener(filePane);
+
+	updateUseShellFolder();
+
+	// ********************************* //
+	// **** Construct the top panel **** //
+	// ********************************* //
+
+	// Directory manipulation buttons
+	JPanel topPanel = new JPanel(new BorderLayout(11, 0));
+	JPanel topButtonPanel = new JPanel();
+	topButtonPanel.setLayout(new BoxLayout(topButtonPanel, BoxLayout.LINE_AXIS));
+	topPanel.add(topButtonPanel, BorderLayout.AFTER_LINE_ENDS);
+
+	// Add the top panel to the fileChooser
+	fc.add(topPanel, BorderLayout.NORTH);
+
+	// ComboBox Label
+     	lookInLabel = new JLabel(lookInLabelText);
+     	lookInLabel.setDisplayedMnemonic(lookInLabelMnemonic);
+	topPanel.add(lookInLabel, BorderLayout.BEFORE_LINE_BEGINS);
+
+	// CurrentDir ComboBox
+	directoryComboBox = new JComboBox() {
+	    public Dimension getPreferredSize() {
+		Dimension d = super.getPreferredSize();
+		// Must be small enough to not affect total width.
+		d.width = 150;
+		return d;
+	    }
+	};
+        directoryComboBox.putClientProperty(AccessibleContext.ACCESSIBLE_DESCRIPTION_PROPERTY,
+                                            lookInLabelText);
+	directoryComboBox.putClientProperty( "JComboBox.isTableCellEditor", Boolean.TRUE );
+	lookInLabel.setLabelFor(directoryComboBox);
+	directoryComboBoxModel = createDirectoryComboBoxModel(fc);
+	directoryComboBox.setModel(directoryComboBoxModel);
+	directoryComboBox.addActionListener(directoryComboBoxAction);
+	directoryComboBox.setRenderer(createDirectoryComboBoxRenderer(fc));
+	directoryComboBox.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	directoryComboBox.setAlignmentY(JComponent.TOP_ALIGNMENT);
+	directoryComboBox.setMaximumRowCount(8);
+
+	topPanel.add(directoryComboBox, BorderLayout.CENTER);
+
+	// Up Button
+	JButton upFolderButton = new JButton(getChangeToParentDirectoryAction());
+	upFolderButton.setText(null);
+	upFolderButton.setIcon(upFolderIcon);
+        upFolderButton.setToolTipText(upFolderToolTipText);
+        upFolderButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY,
+                                         upFolderAccessibleName);
+	upFolderButton.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	upFolderButton.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+	upFolderButton.setMargin(shrinkwrap);
+
+	topButtonPanel.add(upFolderButton);
+	topButtonPanel.add(Box.createRigidArea(hstrut5));
+
+	// Home Button
+	File homeDir = fsv.getHomeDirectory();
+	String toolTipText = homeFolderToolTipText;
+	if (fsv.isRoot(homeDir)) {
+	    toolTipText = getFileView(fc).getName(homeDir); // Probably "Desktop".
+	}
+
+
+
+
+	JButton b = new JButton(homeFolderIcon);
+     	b.setToolTipText(toolTipText);
+        b.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY,
+                            homeFolderAccessibleName);
+	b.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	b.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+	b.setMargin(shrinkwrap);
+
+	b.addActionListener(getGoHomeAction());
+	topButtonPanel.add(b);
+	topButtonPanel.add(Box.createRigidArea(hstrut5));
+
+	// New Directory Button
+	if (!UIManager.getBoolean("FileChooser.readOnly")) {
+	    b = new JButton(filePane.getNewFolderAction());
+	    b.setText(null);
+	    b.setIcon(newFolderIcon);
+	    b.setToolTipText(newFolderToolTipText);
+            b.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY,
+                                newFolderAccessibleName);
+	    b.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	    b.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+	    b.setMargin(shrinkwrap);
+	}
+	topButtonPanel.add(b);
+	topButtonPanel.add(Box.createRigidArea(hstrut5));
+
+	// View button group
+	ButtonGroup viewButtonGroup = new ButtonGroup();
+
+	// List Button
+	listViewButton = new JToggleButton(listViewIcon);
+     	listViewButton.setToolTipText(listViewButtonToolTipText);
+        listViewButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY,
+                                         listViewButtonAccessibleName);
+	listViewButton.setSelected(true);
+	listViewButton.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	listViewButton.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+	listViewButton.setMargin(shrinkwrap);
+	listViewButton.addActionListener(filePane.getViewTypeAction(FilePane.VIEWTYPE_LIST));
+	topButtonPanel.add(listViewButton);
+	viewButtonGroup.add(listViewButton);
+
+	// Details Button
+	detailsViewButton = new JToggleButton(detailsViewIcon);
+     	detailsViewButton.setToolTipText(detailsViewButtonToolTipText);
+        detailsViewButton.putClientProperty(AccessibleContext.ACCESSIBLE_NAME_PROPERTY,
+                                            detailsViewButtonAccessibleName);
+	detailsViewButton.setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	detailsViewButton.setAlignmentY(JComponent.CENTER_ALIGNMENT);
+	detailsViewButton.setMargin(shrinkwrap);
+	detailsViewButton.addActionListener(filePane.getViewTypeAction(FilePane.VIEWTYPE_DETAILS));
+	topButtonPanel.add(detailsViewButton);
+	viewButtonGroup.add(detailsViewButton);
+
+	filePane.addPropertyChangeListener(new PropertyChangeListener() {
+	    public void propertyChange(PropertyChangeEvent e) {
+		if ("viewType".equals(e.getPropertyName())) {
+		    int viewType = filePane.getViewType();
+		    switch (viewType) {
+		      case FilePane.VIEWTYPE_LIST:
+			listViewButton.setSelected(true);
+			break;
+
+		      case FilePane.VIEWTYPE_DETAILS:
+			detailsViewButton.setSelected(true);
+			break;
+		    }
+		}
+	    }
+	});
+
+	// ************************************** //
+	// ******* Add the directory pane ******* //
+	// ************************************** //
+	fc.add(getAccessoryPanel(), BorderLayout.AFTER_LINE_ENDS);
+	JComponent accessory = fc.getAccessory();
+	if(accessory != null) {
+	    getAccessoryPanel().add(accessory);
+	}
+	filePane.setPreferredSize(LIST_PREF_SIZE);
+	fc.add(filePane, BorderLayout.CENTER);
+
+	// ********************************** //
+	// **** Construct the bottom panel ** //
+	// ********************************** //
+	JPanel bottomPanel = getBottomPanel();
+	bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.Y_AXIS));
+	fc.add(bottomPanel, BorderLayout.SOUTH);
+
+	// FileName label and textfield
+	JPanel fileNamePanel = new JPanel();
+	fileNamePanel.setLayout(new BoxLayout(fileNamePanel, BoxLayout.LINE_AXIS));
+	bottomPanel.add(fileNamePanel);
+	bottomPanel.add(Box.createRigidArea(vstrut5));
+
+     	AlignedLabel fileNameLabel = new AlignedLabel(fileNameLabelText);
+     	fileNameLabel.setDisplayedMnemonic(fileNameLabelMnemonic);
+	fileNamePanel.add(fileNameLabel);
+
+	fileNameTextField = new JTextField(35) {
+	    public Dimension getMaximumSize() {
+		return new Dimension(Short.MAX_VALUE, super.getPreferredSize().height);
+	    }
+	};
+	fileNamePanel.add(fileNameTextField);
+	fileNameLabel.setLabelFor(fileNameTextField);
+        fileNameTextField.addFocusListener(
+	    new FocusAdapter() {
+		public void focusGained(FocusEvent e) {
+		    if (!getFileChooser().isMultiSelectionEnabled()) {
+			filePane.clearSelection();
+		    }
+		}
+	    }
+        );
+	if (fc.isMultiSelectionEnabled()) {
+	    setFileName(fileNameString(fc.getSelectedFiles()));
 	} else {
+	    setFileName(fileNameString(fc.getSelectedFile()));
+	}
+
+
+	// Filetype label and combobox
+	JPanel filesOfTypePanel = new JPanel();
+	filesOfTypePanel.setLayout(new BoxLayout(filesOfTypePanel, BoxLayout.LINE_AXIS));
+	bottomPanel.add(filesOfTypePanel);
+
+     	AlignedLabel filesOfTypeLabel = new AlignedLabel(filesOfTypeLabelText);
+     	filesOfTypeLabel.setDisplayedMnemonic(filesOfTypeLabelMnemonic);
+	filesOfTypePanel.add(filesOfTypeLabel);
+
+	filterComboBoxModel = createFilterComboBoxModel();
+	fc.addPropertyChangeListener(filterComboBoxModel);
+	filterComboBox = new JComboBox(filterComboBoxModel);
+        filterComboBox.putClientProperty(AccessibleContext.ACCESSIBLE_DESCRIPTION_PROPERTY,
+                                         filesOfTypeLabelText);
+	filesOfTypeLabel.setLabelFor(filterComboBox);
+	filterComboBox.setRenderer(createFilterComboBoxRenderer());
+	filesOfTypePanel.add(filterComboBox);
+
+	// buttons
+	getButtonPanel().setLayout(new ButtonAreaLayout());
+
+	approveButton = new JButton(getApproveButtonText(fc));
+	// Note: Bob does not use mnemonics for approve and cancel
+	approveButton.addActionListener(getApproveSelectionAction());
+	approveButton.setToolTipText(getApproveButtonToolTipText(fc));
+	getButtonPanel().add(approveButton);
+
+	cancelButton = new JButton(cancelButtonText);
+	cancelButton.setToolTipText(cancelButtonToolTipText);
+	cancelButton.addActionListener(getCancelSelectionAction());
+	getButtonPanel().add(cancelButton);
+
+	if(fc.getControlButtonsAreShown()) {
+	    addControlButtons();
+	}
+
+	groupLabels(new AlignedLabel[] { fileNameLabel, filesOfTypeLabel });
+    }
+
+    private void updateUseShellFolder() {
+	// Decide whether to use the ShellFolder class to populate shortcut
+	// panel and combobox.
+	JFileChooser fc = getFileChooser();
+	Boolean prop =
+	    (Boolean)fc.getClientProperty("FileChooser.useShellFolder");
+	if (prop != null) {
+	    useShellFolder = prop.booleanValue();
+	} else {
+	    // See if FileSystemView.getRoots() returns the desktop folder,
+	    // i.e. the normal Windows hierarchy.
+	    useShellFolder = false;
+	    File[] roots = fc.getFileSystemView().getRoots();
+	    if (roots != null && roots.length == 1) {
+		File[] cbFolders = (File[])ShellFolder.get("fileChooserComboBoxFolders");
+		if (cbFolders != null && cbFolders.length > 0 && roots[0] == cbFolders[0]) {
+		    useShellFolder = true;
+		}
+	    }
+	}
+    }
+
+    protected JPanel getButtonPanel() {
+	if (buttonPanel == null) {
+	    buttonPanel = new JPanel();
+	}
+	return buttonPanel;
+    }
+
+    protected JPanel getBottomPanel() {
+	if(bottomPanel == null) {
+	    bottomPanel = new JPanel();
+	}
+	return bottomPanel;
+    }
+
+    protected void installStrings(JFileChooser fc) {
+	super.installStrings(fc);
+
+        Locale l = fc.getLocale();
+
+	lookInLabelMnemonic = UIManager.getInt("FileChooser.lookInLabelMnemonic"); 
+	lookInLabelText = UIManager.getString("FileChooser.lookInLabelText",l);
+	saveInLabelText = UIManager.getString("FileChooser.saveInLabelText",l);
+	
+	fileNameLabelMnemonic = UIManager.getInt("FileChooser.fileNameLabelMnemonic");  
+	fileNameLabelText = UIManager.getString("FileChooser.fileNameLabelText",l); 
+	
+	filesOfTypeLabelMnemonic = UIManager.getInt("FileChooser.filesOfTypeLabelMnemonic");  
+	filesOfTypeLabelText = UIManager.getString("FileChooser.filesOfTypeLabelText",l); 
+	
+	upFolderToolTipText =  UIManager.getString("FileChooser.upFolderToolTipText",l);
+	upFolderAccessibleName = UIManager.getString("FileChooser.upFolderAccessibleName",l); 
+	
+	homeFolderToolTipText =  UIManager.getString("FileChooser.homeFolderToolTipText",l);
+	homeFolderAccessibleName = UIManager.getString("FileChooser.homeFolderAccessibleName",l); 
+	
+	newFolderToolTipText = UIManager.getString("FileChooser.newFolderToolTipText",l);
+	newFolderAccessibleName = UIManager.getString("FileChooser.newFolderAccessibleName",l); 
+	
+	listViewButtonToolTipText = UIManager.getString("FileChooser.listViewButtonToolTipText",l); 
+	listViewButtonAccessibleName = UIManager.getString("FileChooser.listViewButtonAccessibleName",l); 
+	
+	detailsViewButtonToolTipText = UIManager.getString("FileChooser.detailsViewButtonToolTipText",l); 
+	detailsViewButtonAccessibleName = UIManager.getString("FileChooser.detailsViewButtonAccessibleName",l); 
+    }
+
+    protected void installListeners(JFileChooser fc) {
+	super.installListeners(fc);
+        ActionMap actionMap = getActionMap();
+        SwingUtilities.replaceUIActionMap(fc, actionMap);
+    }
+
+    protected ActionMap getActionMap() {
+        return createActionMap();
+    }
+
+    protected ActionMap createActionMap() {
+        ActionMap map = new ActionMapUIResource();
+	FilePane.addActionsToMap(map, filePane.getActions());
+        return map;
+    }
+
+    protected JPanel createList(JFileChooser fc) {
+	return filePane.createList();
+    }
+
+    protected JPanel createDetailsView(JFileChooser fc) {
+	return filePane.createDetailsView();
+    }
+
+    /**
+     * Creates a selection listener for the list of files and directories.
+     *
+     * @param fc a <code>JFileChooser</code>
+     * @return a <code>ListSelectionListener</code>
+     */
+    public ListSelectionListener createListSelectionListener(JFileChooser fc) {
+	return super.createListSelectionListener(fc);
+    }
+
+    // Obsolete class, not used in this version.
+    protected class SingleClickListener extends MouseAdapter {
+	public  SingleClickListener(JList list) {
+	}
+    }
+
+    // Obsolete class, not used in this version.
+    protected class FileRenderer extends DefaultListCellRenderer  {
+    }
+
+    public void uninstallUI(JComponent c) {
+	// Remove listeners
+	c.removePropertyChangeListener(filterComboBoxModel);
+	c.removePropertyChangeListener(filePane);
+	cancelButton.removeActionListener(getCancelSelectionAction());
+	approveButton.removeActionListener(getApproveSelectionAction());
+	fileNameTextField.removeActionListener(getApproveSelectionAction());
+
+	if (filePane != null) {
+	    filePane.uninstallUI();
+	    filePane = null;
+	}
+
+	super.uninstallUI(c);
+    }
+
+    /**
+     * Returns the preferred size of the specified
+     * <code>JFileChooser</code>.
+     * The preferred size is at least as large,
+     * in both height and width,
+     * as the preferred size recommended
+     * by the file chooser's layout manager.
+     *
+     * @param c  a <code>JFileChooser</code>
+     * @return   a <code>Dimension</code> specifying the preferred
+     *           width and height of the file chooser
+     */
+    public Dimension getPreferredSize(JComponent c) {
+	int prefWidth = PREF_SIZE.width;
+	Dimension d = c.getLayout().preferredLayoutSize(c);
+	if (d != null) {
+	    return new Dimension(d.width < prefWidth ? prefWidth : d.width,
+				 d.height < PREF_SIZE.height ? PREF_SIZE.height : d.height);
+	} else {
+	    return new Dimension(prefWidth, PREF_SIZE.height);
+	}
+    }
+
+    /**
+     * Returns the minimum size of the <code>JFileChooser</code>.
+     *
+     * @param c  a <code>JFileChooser</code>
+     * @return   a <code>Dimension</code> specifying the minimum
+     *           width and height of the file chooser
+     */
+    public Dimension getMinimumSize(JComponent c) {
+	return MIN_SIZE;
+    }
+
+    /**
+     * Returns the maximum size of the <code>JFileChooser</code>.
+     *
+     * @param c  a <code>JFileChooser</code>
+     * @return   a <code>Dimension</code> specifying the maximum 
+     *           width and height of the file chooser
+     */
+    public Dimension getMaximumSize(JComponent c) {
+	return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
+    private String fileNameString(File file) {
+	if (file == null) {
 	    return null;
+	} else {
+	    JFileChooser fc = getFileChooser();
+	    if ((fc.isDirectorySelectionEnabled() && !fc.isFileSelectionEnabled()) ||
+	        (fc.isDirectorySelectionEnabled() && fc.isFileSelectionEnabled() && fc.getFileSystemView().isFileSystemRoot(file))) {
+		return file.getPath();
+	    } else {
+		return file.getName();
+	    }
 	}
     }
 
-    public void setFileName(String filename) {
-	if(filenameTextField != null) {
-	    filenameTextField.setText(filename);
+    private String fileNameString(File[] files) {
+	StringBuffer buf = new StringBuffer();
+	for (int i = 0; files != null && i < files.length; i++) {
+	    if (i > 0) {
+		buf.append(" ");
+	    }
+	    if (files.length > 1) {
+		buf.append("\"");
+	    }
+	    buf.append(fileNameString(files[i]));
+	    if (files.length > 1) {
+		buf.append("\"");
+	    }
+	}
+	return buf.toString();
+    }
+
+    /* The following methods are used by the PropertyChange Listener */
+
+    private void doSelectedFileChanged(PropertyChangeEvent e) {
+	File f = (File) e.getNewValue();
+	JFileChooser fc = getFileChooser();
+	if (f != null 
+	    && ((fc.isFileSelectionEnabled() && !f.isDirectory())
+		|| (f.isDirectory() && fc.isDirectorySelectionEnabled()))) {
+
+	    setFileName(fileNameString(f));
+	}
+    }
+    
+    private void doSelectedFilesChanged(PropertyChangeEvent e) {
+	File[] files = (File[]) e.getNewValue();
+	JFileChooser fc = getFileChooser();
+	if (files != null
+	    && files.length > 0
+	    && (files.length > 1 || fc.isDirectorySelectionEnabled() || !files[0].isDirectory())) {
+	    setFileName(fileNameString(files));
+	}
+    }
+    
+    private void doDirectoryChanged(PropertyChangeEvent e) {
+	JFileChooser fc = getFileChooser();
+	FileSystemView fsv = fc.getFileSystemView();
+
+	clearIconCache();
+	File currentDirectory = fc.getCurrentDirectory();
+	if(currentDirectory != null) {
+	    directoryComboBoxModel.addItem(currentDirectory);
+
+	    if (fc.isDirectorySelectionEnabled() && !fc.isFileSelectionEnabled()) {
+		if (fsv.isFileSystem(currentDirectory)) {
+		    setFileName(currentDirectory.getPath());
+		} else {
+		    setFileName(null);
+		}
+	    }
 	}
     }
 
-    public String getDirectoryName() {
-	return pathField.getText();
+    private void doFilterChanged(PropertyChangeEvent e) {
+	clearIconCache();
     }
 
-    public void setDirectoryName(String dirname) {
-	pathField.setText(dirname);
+    private void doFileSelectionModeChanged(PropertyChangeEvent e) {
+	clearIconCache();
+
+	JFileChooser fc = getFileChooser();
+	File currentDirectory = fc.getCurrentDirectory();
+	if (currentDirectory != null
+	    && fc.isDirectorySelectionEnabled()
+	    && !fc.isFileSelectionEnabled()
+	    && fc.getFileSystemView().isFileSystem(currentDirectory)) {
+
+	    setFileName(currentDirectory.getPath());
+	} else {
+	    setFileName(null);
+	}
     }
 
-    public void ensureFileIsVisible(JFileChooser fc, File f) {
-	// PENDING(jeff)
+    private void doAccessoryChanged(PropertyChangeEvent e) {
+	if(getAccessoryPanel() != null) {
+	    if(e.getOldValue() != null) {
+		getAccessoryPanel().remove((JComponent) e.getOldValue());
+	    }
+	    JComponent accessory = (JComponent) e.getNewValue();
+	    if(accessory != null) {
+		getAccessoryPanel().add(accessory, BorderLayout.CENTER);
+	    }
+	}
     }
 
-    public void rescanCurrentDirectory(JFileChooser fc) {
-        getModel().validateFileCache();
+    private void doApproveButtonTextChanged(PropertyChangeEvent e) {
+	JFileChooser chooser = getFileChooser();
+	approveButton.setText(getApproveButtonText(chooser));
+	approveButton.setToolTipText(getApproveButtonToolTipText(chooser));
     }
 
+    private void doDialogTypeChanged(PropertyChangeEvent e) {
+	JFileChooser chooser = getFileChooser();
+	approveButton.setText(getApproveButtonText(chooser));
+	approveButton.setToolTipText(getApproveButtonToolTipText(chooser));
+	if (chooser.getDialogType() == JFileChooser.SAVE_DIALOG) {
+	    lookInLabel.setText(saveInLabelText);
+	} else {
+	    lookInLabel.setText(lookInLabelText);
+	}
+    }
+
+    private void doApproveButtonMnemonicChanged(PropertyChangeEvent e) {
+	// Note: Bob does not use mnemonics for approve and cancel
+    }
+
+    private void doControlButtonsChanged(PropertyChangeEvent e) {
+	if(getFileChooser().getControlButtonsAreShown()) {
+	    addControlButtons();
+	} else {
+	    removeControlButtons();
+	}
+    }
+
+    /*
+     * Listen for filechooser property changes, such as
+     * the selected file changing, or the type of the dialog changing.
+     */
     public PropertyChangeListener createPropertyChangeListener(JFileChooser fc) {
 	return new PropertyChangeListener() {
 	    public void propertyChange(PropertyChangeEvent e) {
-		String prop = e.getPropertyName();
-		if(prop.equals(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY)) {
-		    File f = (File) e.getNewValue();
-		    if(f != null) {
-			setFileName(getFileChooser().getName(f));
-		    }
-                } else if (prop.equals(JFileChooser.SELECTED_FILES_CHANGED_PROPERTY)) {
-                    File[] files = (File[]) e.getNewValue();
-                    JFileChooser fc = getFileChooser();
-                    if (files != null && files.length > 0 && (files.length > 1 || fc.isDirectorySelectionEnabled() 
-                            || !files[0].isDirectory())) {
-                        setFileName(fileNameString(files));
-                    }
-                } else if (prop.equals(JFileChooser.FILE_FILTER_CHANGED_PROPERTY)) {
-                    fileList.clearSelection();
-		} else if(prop.equals(JFileChooser.DIRECTORY_CHANGED_PROPERTY)) {
-		    directoryList.clearSelection();
-		    ListSelectionModel sm = directoryList.getSelectionModel();
-                    if (sm instanceof DefaultListSelectionModel) {
-		        ((DefaultListSelectionModel)sm).moveLeadSelectionIndex(0);       
-		        ((DefaultListSelectionModel)sm).setAnchorSelectionIndex(0);
-		    }
-		    fileList.clearSelection();
-		    sm = fileList.getSelectionModel();
-		    if (sm instanceof DefaultListSelectionModel) {
-		        ((DefaultListSelectionModel)sm).moveLeadSelectionIndex(0);
-		        ((DefaultListSelectionModel)sm).setAnchorSelectionIndex(0);
-		    }
-		    File currentDirectory = getFileChooser().getCurrentDirectory();
-		    if(currentDirectory != null) {
-			try {
-			    setDirectoryName(ShellFolder.getNormalizedFile((File)e.getNewValue()).getPath());
-			} catch (IOException ioe) {
-			    setDirectoryName(((File)e.getNewValue()).getAbsolutePath());
-			}
-			if ((getFileChooser().getFileSelectionMode() == JFileChooser.DIRECTORIES_ONLY) && !getFileChooser().isMultiSelectionEnabled()) {
-			    setFileName(getDirectoryName());
-			}
-		    }
-		} else if(prop.equals(JFileChooser.FILE_SELECTION_MODE_CHANGED_PROPERTY)) {
-		    directoryList.clearSelection();
-		} else if(prop == JFileChooser.MULTI_SELECTION_ENABLED_CHANGED_PROPERTY) {
-		    if(getFileChooser().isMultiSelectionEnabled()) {
-			fileList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-		    } else {
-			fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-			fileList.clearSelection();
-			getFileChooser().setSelectedFiles(null);
-		    }
-		} else if(prop == JFileChooser.ACCESSORY_CHANGED_PROPERTY) {
-		    if(getAccessoryPanel() != null) {
-			if(e.getOldValue() != null) {
-			    getAccessoryPanel().remove((JComponent) e.getOldValue());
-			}
-			JComponent accessory = (JComponent) e.getNewValue();
-			if(accessory != null) {
-			    getAccessoryPanel().add(accessory, BorderLayout.CENTER);
-			    getAccessoryPanel().setPreferredSize(PREF_ACC_SIZE);
-			    getAccessoryPanel().setMaximumSize(MAX_SIZE);
-			} else {
-			    getAccessoryPanel().setPreferredSize(ZERO_ACC_SIZE);
-			    getAccessoryPanel().setMaximumSize(ZERO_ACC_SIZE);
-			}
-		    }
-		} else if (prop == JFileChooser.APPROVE_BUTTON_TEXT_CHANGED_PROPERTY ||
-			   prop == JFileChooser.APPROVE_BUTTON_TOOL_TIP_TEXT_CHANGED_PROPERTY ||
-			   prop == JFileChooser.DIALOG_TYPE_CHANGED_PROPERTY) {
-		    approveButton.setText(getApproveButtonText(getFileChooser()));
-		    approveButton.setToolTipText(getApproveButtonToolTipText(getFileChooser()));
-		} else if (prop.equals(JFileChooser.CONTROL_BUTTONS_ARE_SHOWN_CHANGED_PROPERTY)) {
-                    doControlButtonsChanged(e);
-                } else if (prop.equals("componentOrientation")) {
+		String s = e.getPropertyName();
+		if(s.equals(JFileChooser.SELECTED_FILE_CHANGED_PROPERTY)) {
+		    doSelectedFileChanged(e);
+		} else if (s.equals(JFileChooser.SELECTED_FILES_CHANGED_PROPERTY)) {
+		    doSelectedFilesChanged(e);
+		} else if(s.equals(JFileChooser.DIRECTORY_CHANGED_PROPERTY)) {
+		    doDirectoryChanged(e);
+		} else if(s.equals(JFileChooser.FILE_FILTER_CHANGED_PROPERTY)) {
+		    doFilterChanged(e);
+		} else if(s.equals(JFileChooser.FILE_SELECTION_MODE_CHANGED_PROPERTY)) {
+		    doFileSelectionModeChanged(e);
+		} else if(s.equals(JFileChooser.ACCESSORY_CHANGED_PROPERTY)) {
+		    doAccessoryChanged(e);
+		} else if (s.equals(JFileChooser.APPROVE_BUTTON_TEXT_CHANGED_PROPERTY) ||
+			   s.equals(JFileChooser.APPROVE_BUTTON_TOOL_TIP_TEXT_CHANGED_PROPERTY)) { 
+		    doApproveButtonTextChanged(e);
+		} else if(s.equals(JFileChooser.DIALOG_TYPE_CHANGED_PROPERTY)) {
+		    doDialogTypeChanged(e);
+		} else if(s.equals(JFileChooser.APPROVE_BUTTON_MNEMONIC_CHANGED_PROPERTY)) {
+		    doApproveButtonMnemonicChanged(e);
+		} else if(s.equals(JFileChooser.CONTROL_BUTTONS_ARE_SHOWN_CHANGED_PROPERTY)) {
+		    doControlButtonsChanged(e);
+		} else if (s.equals("componentOrientation")) {
 		    ComponentOrientation o = (ComponentOrientation)e.getNewValue();
 		    JFileChooser cc = (JFileChooser)e.getSource();
 		    if (o != (ComponentOrientation)e.getOldValue()) {
 			cc.applyComponentOrientation(o);
+		    }
+		} else if (s == "FileChooser.useShellFolder") {
+		    updateUseShellFolder();
+		    doDirectoryChanged(e);
+		} else if (s.equals("ancestor")) {
+		    if (e.getOldValue() == null && e.getNewValue() != null) {
+			// Ancestor was added, set initial focus
+			fileNameTextField.selectAll();
+			fileNameTextField.requestFocus();
 		    }
 		}
 	    }
 	};
     }
 
-    //
-    // ComponentUI Interface Implementation methods
-    //
-    public static ComponentUI createUI(JComponent c) {
-        return new BobFileChooserUI((JFileChooser)c);
+
+    protected void removeControlButtons() {
+	getBottomPanel().remove(getButtonPanel());
     }
 
-    public void installUI(JComponent c) {
-	super.installUI(c);
+    protected void addControlButtons() {
+	getBottomPanel().add(getButtonPanel());
     }
 
-    public void uninstallUI(JComponent c) {
-	c.removePropertyChangeListener(filterComboBoxModel);
-	approveButton.removeActionListener(getApproveSelectionAction());
-	filenameTextField.removeActionListener(getApproveSelectionAction());
-	super.uninstallUI(c);
+    public void ensureFileIsVisible(JFileChooser fc, File f) {
+	filePane.ensureFileIsVisible(fc, f);
     }
 
-    public void installComponents(JFileChooser fc) {
-	fc.setLayout(new BorderLayout(10, 10));
-	fc.setAlignmentX(JComponent.CENTER_ALIGNMENT);
-
-	JPanel interior = new JPanel() {
-	    public Insets getInsets() {
-		return insets;
-	    }
-	};
-        interior.setInheritsPopupMenu(true);
-	align(interior);
-	interior.setLayout(new BoxLayout(interior, BoxLayout.PAGE_AXIS));
-
-	fc.add(interior, BorderLayout.CENTER);
-
-	// PENDING(jeff) - I18N
-	JLabel l = new JLabel(pathLabelText);
-	l.setDisplayedMnemonic(pathLabelMnemonic);
-	align(l);
-	interior.add(l);
-
-	File currentDirectory = fc.getCurrentDirectory();
-	String curDirName = null;
-	if(currentDirectory != null) {
-	    curDirName = currentDirectory.getPath();
-	}
-	pathField = new JTextField(curDirName) {
-	    public Dimension getMaximumSize() {
-		Dimension d = super.getMaximumSize();
-		d.height = getPreferredSize().height;
-		return d;
-	    }
-	};
-        pathField.setInheritsPopupMenu(true);
-	l.setLabelFor(pathField);
-	align(pathField);
-
-	// Change to folder on return
-	pathField.addActionListener(getUpdateAction());
-	interior.add(pathField);
-
-	interior.add(Box.createRigidArea(vstrut10));
-
-
-	// CENTER: left, right accessory
-	JPanel centerPanel = new JPanel();
-	centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.LINE_AXIS));
-	align(centerPanel);
-
-	// left panel - Filter & folderList
-	JPanel leftPanel = new JPanel();
-	leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
-	align(leftPanel);
-
-	// add the filter PENDING(jeff) - I18N
-	l = new JLabel(filterLabelText);
-	l.setDisplayedMnemonic(filterLabelMnemonic);
-	align(l);
-	leftPanel.add(l);
-
-	filterComboBox = new JComboBox() {
-	    public Dimension getMaximumSize() {
-		Dimension d = super.getMaximumSize();
-		d.height = getPreferredSize().height;
-		return d;
-	    }
-	};
-        filterComboBox.setInheritsPopupMenu(true);
-        l.setLabelFor(filterComboBox);
-	filterComboBoxModel = createFilterComboBoxModel();
-	filterComboBox.setModel(filterComboBoxModel);
-	filterComboBox.setRenderer(createFilterComboBoxRenderer());
-	fc.addPropertyChangeListener(filterComboBoxModel);
-	align(filterComboBox);
-	leftPanel.add(filterComboBox);
-
-	// leftPanel.add(Box.createRigidArea(vstrut10));
-
-	// Add the Folder List PENDING(jeff) - I18N
-	l = new JLabel(foldersLabelText);
-	l.setDisplayedMnemonic(foldersLabelMnemonic);
-	align(l);
-	leftPanel.add(l);
-	JScrollPane sp = createDirectoryList();
-        sp.getVerticalScrollBar().setFocusable(false);
-        sp.getHorizontalScrollBar().setFocusable(false);
-        sp.setInheritsPopupMenu(true);
-	l.setLabelFor(sp.getViewport().getView());
-	leftPanel.add(sp);
-        leftPanel.setInheritsPopupMenu(true);
-
-
-	// create files list
-	JPanel rightPanel = new JPanel();
-	align(rightPanel);
-	rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
-        rightPanel.setInheritsPopupMenu(true);
-
-	l = new JLabel(filesLabelText);
-	l.setDisplayedMnemonic(filesLabelMnemonic);
-	align(l);
-	rightPanel.add(l);
-	sp = createFilesList();
-	l.setLabelFor(sp.getViewport().getView());
-	rightPanel.add(sp);
-        sp.setInheritsPopupMenu(true);
-
-	centerPanel.add(leftPanel);
-	centerPanel.add(Box.createRigidArea(hstrut10));
-	centerPanel.add(rightPanel);
-        centerPanel.setInheritsPopupMenu(true);
-
-	JComponent accessoryPanel = getAccessoryPanel();
-	JComponent accessory = fc.getAccessory();
-	if(accessoryPanel != null) {
-	    if(accessory == null) {
-		accessoryPanel.setPreferredSize(ZERO_ACC_SIZE);
-		accessoryPanel.setMaximumSize(ZERO_ACC_SIZE);
-	    } else {
-		getAccessoryPanel().add(accessory, BorderLayout.CENTER);
-		accessoryPanel.setPreferredSize(PREF_ACC_SIZE);
-		accessoryPanel.setMaximumSize(MAX_SIZE);
-	    }
-	    align(accessoryPanel);
-	    centerPanel.add(accessoryPanel);
-            accessoryPanel.setInheritsPopupMenu(true);
-	}
-	interior.add(centerPanel);
-	interior.add(Box.createRigidArea(vstrut10));
-
-	// add the filename field PENDING(jeff) - I18N
-	l = new JLabel(enterFileNameLabelText);
-	l.setDisplayedMnemonic(enterFileNameLabelMnemonic);
-	align(l);
-	interior.add(l);
-
-	filenameTextField = new JTextField() {
-	    public Dimension getMaximumSize() {
-		Dimension d = super.getMaximumSize();
-		d.height = getPreferredSize().height;
-		return d;
-	    }
-	};
-        filenameTextField.setInheritsPopupMenu(true);
-	l.setLabelFor(filenameTextField);
-	filenameTextField.addActionListener(getApproveSelectionAction());
-	align(filenameTextField);
-	filenameTextField.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-	interior.add(filenameTextField);
-
-	bottomPanel = getBottomPanel();
-	bottomPanel.add(new JSeparator(), BorderLayout.NORTH);
-
-	// Add buttons
-	JPanel buttonPanel = new JPanel();
-	align(buttonPanel);
-	buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.LINE_AXIS));
-	buttonPanel.add(Box.createGlue());
-
-	approveButton = new JButton(getApproveButtonText(fc)) {
-	    public Dimension getMaximumSize() {
-		return new Dimension(MAX_SIZE.width, this.getPreferredSize().height);
-	    }
-	};
-	approveButton.setMnemonic(getApproveButtonMnemonic(fc));
-	approveButton.setToolTipText(getApproveButtonToolTipText(fc));
-        approveButton.setInheritsPopupMenu(true);
-	align(approveButton);
-	approveButton.setMargin(buttonMargin);
-	approveButton.addActionListener(getApproveSelectionAction());
-	buttonPanel.add(approveButton);
-	buttonPanel.add(Box.createGlue());
-
-	JButton updateButton = new JButton(updateButtonText) {
-	    public Dimension getMaximumSize() {
-		return new Dimension(MAX_SIZE.width, this.getPreferredSize().height);
-	    }
-	};
-	updateButton.setMnemonic(updateButtonMnemonic);
-	updateButton.setToolTipText(updateButtonToolTipText);
-        updateButton.setInheritsPopupMenu(true);
-	align(updateButton);
-	updateButton.setMargin(buttonMargin);
-	updateButton.addActionListener(getUpdateAction());
-	buttonPanel.add(updateButton);
-	buttonPanel.add(Box.createGlue());
-
-	JButton cancelButton = new JButton(cancelButtonText) {
-	    public Dimension getMaximumSize() {
-		return new Dimension(MAX_SIZE.width, this.getPreferredSize().height);
-	    }
-	};
-	cancelButton.setMnemonic(cancelButtonMnemonic);
-	cancelButton.setToolTipText(cancelButtonToolTipText);
-        cancelButton.setInheritsPopupMenu(true);
-	align(cancelButton);
-	cancelButton.setMargin(buttonMargin);
-	cancelButton.addActionListener(getCancelSelectionAction());
-	buttonPanel.add(cancelButton);
-	buttonPanel.add(Box.createGlue());
-
-	JButton helpButton = new JButton(helpButtonText) {
-	    public Dimension getMaximumSize() {
-		return new Dimension(MAX_SIZE.width, this.getPreferredSize().height);
-	    }
-	};
-	helpButton.setMnemonic(helpButtonMnemonic);
-	helpButton.setToolTipText(helpButtonToolTipText);
-	align(helpButton);
-	helpButton.setMargin(buttonMargin);
-	helpButton.setEnabled(false);
-        helpButton.setInheritsPopupMenu(true);
-	buttonPanel.add(helpButton);
-	buttonPanel.add(Box.createGlue());
-        buttonPanel.setInheritsPopupMenu(true);
-
-	bottomPanel.add(buttonPanel, BorderLayout.SOUTH);
-        bottomPanel.setInheritsPopupMenu(true);
-	if (fc.getControlButtonsAreShown()) {
-           fc.add(bottomPanel, BorderLayout.SOUTH);
-        }
+    public void rescanCurrentDirectory(JFileChooser fc) {
+	filePane.rescanCurrentDirectory();
     }
 
-    protected JPanel getBottomPanel() {
-        if (bottomPanel == null) {
-            bottomPanel = new JPanel(new BorderLayout(0, 4));
-        }
-        return bottomPanel;
-    }
-
-    private void doControlButtonsChanged(PropertyChangeEvent e) {
-        if (getFileChooser().getControlButtonsAreShown()) {
-            getFileChooser().add(bottomPanel,BorderLayout.SOUTH);
-        } else {
-            getFileChooser().remove(getBottomPanel());
-        }
-    }
-
-    public void uninstallComponents(JFileChooser fc) {
-	fc.removeAll();
-	bottomPanel = null;
-	directoryPanel = null;
-    }
-
-    protected void installStrings(JFileChooser fc) {
-        super.installStrings(fc);
-
-        Locale l = fc.getLocale();
-
-	enterFileNameLabelText = UIManager.getString("FileChooser.enterFileNameLabelText",l);
-	enterFileNameLabelMnemonic = UIManager.getInt("FileChooser.enterFileNameLabelMnemonic"); 
-	
-	filesLabelText = UIManager.getString("FileChooser.filesLabelText",l);
-	filesLabelMnemonic = UIManager.getInt("FileChooser.filesLabelMnemonic"); 
-	
-	foldersLabelText = UIManager.getString("FileChooser.foldersLabelText",l);
-	foldersLabelMnemonic = UIManager.getInt("FileChooser.foldersLabelMnemonic"); 
-	
-	pathLabelText = UIManager.getString("FileChooser.pathLabelText",l);
-	pathLabelMnemonic = UIManager.getInt("FileChooser.pathLabelMnemonic"); 
-	
-	filterLabelText = UIManager.getString("FileChooser.filterLabelText",l);
-	filterLabelMnemonic = UIManager.getInt("FileChooser.filterLabelMnemonic");  
-    }
-
-    protected void installIcons(JFileChooser fc) {
-	// Since motif doesn't have button icons, leave this empty
-	// which overrides the supertype icon loading
-    }
-
-    protected void uninstallIcons(JFileChooser fc) {
-	// Since motif doesn't have button icons, leave this empty
-	// which overrides the supertype icon loading
-    }
-
-    protected JScrollPane createFilesList() {
-	fileList = new JList();
-
-	if(getFileChooser().isMultiSelectionEnabled()) {
-	    fileList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
+    public String getFileName() {
+	if (fileNameTextField != null) {
+	    return fileNameTextField.getText();
 	} else {
-	    fileList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    return null;
 	}
-	
-	fileList.setModel(new BobFileListModel());
-        fileList.getSelectionModel().removeSelectionInterval(0, 0);
-	fileList.setCellRenderer(new FileCellRenderer());
-	fileList.addListSelectionListener(createListSelectionListener(getFileChooser()));
-	fileList.addMouseListener(createDoubleClickListener(getFileChooser(), fileList));
-        fileList.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent e) {
-                JFileChooser chooser = getFileChooser();
-                if (SwingUtilities.isLeftMouseButton(e) && !chooser.isMultiSelectionEnabled()) {
-                    int index = SwingUtilities2.loc2IndexFileList(fileList, e.getPoint());
-                    if (index >= 0) {
-                        File file = (File) fileList.getModel().getElementAt(index);
-                        setFileName(chooser.getName(file));
-                    }
-                }
+    }
+
+    public void setFileName(String filename) {
+	if (fileNameTextField != null) {
+	    fileNameTextField.setText(filename);
+	}
+    }
+
+    /**
+     * Property to remember whether a directory is currently selected in the UI.
+     * This is normally called by the UI on a selection event.
+     *
+     * @param directorySelected if a directory is currently selected.
+     * @since 1.4
+     */
+    protected void setDirectorySelected(boolean directorySelected) {
+	super.setDirectorySelected(directorySelected);
+	JFileChooser chooser = getFileChooser();
+	if(directorySelected) {
+            if (approveButton != null) {
+	        approveButton.setText(directoryOpenButtonText);
+	        approveButton.setToolTipText(directoryOpenButtonToolTipText);
             }
-        });
-	align(fileList);
-	JScrollPane scrollpane = new JScrollPane(fileList);
-	scrollpane.setPreferredSize(prefListSize);
-	scrollpane.setMaximumSize(MAX_SIZE);
-	align(scrollpane);
-        fileList.setInheritsPopupMenu(true);
-        scrollpane.setInheritsPopupMenu(true);
-	return scrollpane;
-    }
-
-    protected JScrollPane createDirectoryList() {
-	directoryList = new JList();
-	align(directoryList);
-
-	directoryList.setCellRenderer(new DirectoryCellRenderer());
-	directoryList.setModel(new BobDirectoryListModel());
-        directoryList.getSelectionModel().removeSelectionInterval(0, 0);
-	directoryList.addMouseListener(createDoubleClickListener(getFileChooser(), directoryList));
-	directoryList.addListSelectionListener(createListSelectionListener(getFileChooser()));
-        directoryList.setInheritsPopupMenu(true);
-
-	JScrollPane scrollpane = new JScrollPane(directoryList);
-	scrollpane.setMaximumSize(MAX_SIZE);
-	scrollpane.setPreferredSize(prefListSize);
-        scrollpane.setInheritsPopupMenu(true);
-	align(scrollpane);
-	return scrollpane;
-    }
-
-    public Dimension getPreferredSize(JComponent c) {
-	Dimension prefSize =
-	    (getFileChooser().getAccessory() != null) ? WITH_ACCELERATOR_PREF_SIZE : PREF_SIZE;
-	Dimension d = c.getLayout().preferredLayoutSize(c);
-	if (d != null) {
-	    return new Dimension(d.width < prefSize.width ? prefSize.width : d.width,
-				 d.height < prefSize.height ? prefSize.height : d.height);
 	} else {
-	    return prefSize;
+            if (approveButton != null) {
+                approveButton.setText(getApproveButtonText(chooser));
+                approveButton.setToolTipText(getApproveButtonToolTipText(chooser));
+            }
 	}
     }
 
-    public Dimension getMinimumSize(JComponent x)  {
-	return MIN_SIZE;
+    public String getDirectoryName() {
+	// PENDING(jeff) - get the name from the directory combobox
+	return null;
     }
 
-    public Dimension getMaximumSize(JComponent x) {
-	return new Dimension(Integer.MAX_VALUE, Integer.MAX_VALUE);
+    public void setDirectoryName(String dirname) {
+	// PENDING(jeff) - set the name in the directory combobox
     }
 
-    protected void align(JComponent c) {
-	c.setAlignmentX(JComponent.LEFT_ALIGNMENT);
-	c.setAlignmentY(JComponent.TOP_ALIGNMENT);
+    protected DirectoryComboBoxRenderer createDirectoryComboBoxRenderer(JFileChooser fc) {
+	return new DirectoryComboBoxRenderer();
     }
 
-    protected class FileCellRenderer extends DefaultListCellRenderer  {
-	public Component getListCellRendererComponent(JList list, Object value, int index,
-						      boolean isSelected, boolean cellHasFocus) {
+    //
+    // Renderer for DirectoryComboBox
+    //
+    class DirectoryComboBoxRenderer extends DefaultListCellRenderer  {
+	IndentIcon ii = new IndentIcon();
+	public Component getListCellRendererComponent(JList list, Object value,
+						      int index, boolean isSelected,
+						      boolean cellHasFocus) {
 
 	    super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-	    setText(getFileChooser().getName((File) value));
-            setInheritsPopupMenu(true);
+
+	    if (value == null) {
+		setText("");
+		return this;
+	    }
+	    File directory = (File)value;
+	    setText(getFileChooser().getName(directory));
+	    Icon icon = getFileChooser().getIcon(directory);
+	   // ii.icon = icon;
+	    ii.depth = directoryComboBoxModel.getDepth(index);
+	    setIcon(ii);
+
 	    return this;
 	}
     }
 
-    protected class DirectoryCellRenderer extends DefaultListCellRenderer  {
-	public Component getListCellRendererComponent(JList list, Object value, int index,
-						      boolean isSelected, boolean cellHasFocus) {
+    final static int space = 10;
+    class IndentIcon implements Icon {
 
-	    super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-	    setText(getFileChooser().getName((File) value));
-            setInheritsPopupMenu(true);
-	    return this;
-	}
-    }
+	final Icon icon = new ImageIcon(new ImageIcon(this.getClass().getResource(
+                "/org/gcreator/bob/boblook/resources/question.png")).getImage().
+                getScaledInstance(16, 16, Image.SCALE_AREA_AVERAGING));
+	int depth = 0;
 
-    protected class BobDirectoryListModel extends AbstractListModel implements ListDataListener {
-	public BobDirectoryListModel() {
-	    getModel().addListDataListener(this);
-	}
-
-	public int getSize() {
-	    return getModel().getDirectories().size();
+	public void paintIcon(Component c, Graphics g, int x, int y) {
+	    if (c.getComponentOrientation().isLeftToRight()) {
+		icon.paintIcon(c, g, x+depth*space, y);
+	    } else {
+		icon.paintIcon(c, g, x, y);
+	    }
 	}
 
-	public Object getElementAt(int index) {
-	    return getModel().getDirectories().elementAt(index);
+	public int getIconWidth() {
+	    return icon.getIconWidth() + depth*space;
 	}
 
-	public void intervalAdded(ListDataEvent e) {
-            fireIntervalAdded(this, e.getIndex0(), e.getIndex1());
-	}
-
-	public void intervalRemoved(ListDataEvent e) {
-            fireIntervalRemoved(this, e.getIndex0(), e.getIndex1());
-	}
-
-	// PENDING(jeff) - this is inefficient - should sent out
-	// incremental adjustment values instead of saying that the
-	// whole list has changed.
-	public void fireContentsChanged() {
-	    fireContentsChanged(this, 0, getModel().getDirectories().size()-1);
-	}
-
-	// PENDING(jeff) - fire the correct interval changed - currently sending
-	// out that everything has changed
-	public void contentsChanged(ListDataEvent e) {
-	    fireContentsChanged();
-	}
-
-    }
-
-    protected class BobFileListModel extends AbstractListModel implements ListDataListener {
-	public BobFileListModel() {
-	    getModel().addListDataListener(this);
-	}
-
-	public int getSize() {
-	    return getModel().getFiles().size();
-	}
-
-	public boolean contains(Object o) {
-	    return getModel().getFiles().contains(o);
-	}
-
-	public int indexOf(Object o) {
-	    return getModel().getFiles().indexOf(o);
-	}
-
-	public Object getElementAt(int index) {
-	    return getModel().getFiles().elementAt(index);
-	}
-
-	public void intervalAdded(ListDataEvent e) {
-            fireIntervalAdded(this, e.getIndex0(), e.getIndex1());
-	}
-
-	public void intervalRemoved(ListDataEvent e) {
-            fireIntervalRemoved(this, e.getIndex0(), e.getIndex1());
-	}
-
-	// PENDING(jeff) - this is inefficient - should sent out
-	// incremental adjustment values instead of saying that the
-	// whole list has changed.
-	public void fireContentsChanged() {
-	    fireContentsChanged(this, 0, getModel().getFiles().size()-1);
-	}
-
-	// PENDING(jeff) - fire the interval changed
-	public void contentsChanged(ListDataEvent e) {
-	    fireContentsChanged();
+	public int getIconHeight() {
+	    return icon.getIconHeight();
 	}
 
     }
 
     //
-    // DataModel for Types Comboxbox
+    // DataModel for DirectoryComboxbox
     //
-    protected FilterComboBoxModel createFilterComboBoxModel() {
-	return new FilterComboBoxModel();
+    protected DirectoryComboBoxModel createDirectoryComboBoxModel(JFileChooser fc) {
+	return new DirectoryComboBoxModel();
+    }
+
+    /**
+     * Data model for a type-face selection combo-box.
+     */
+    protected class DirectoryComboBoxModel extends AbstractListModel implements ComboBoxModel {
+	Vector directories = new Vector();
+	int[] depths = null;
+	File selectedDirectory = null;
+	JFileChooser chooser = getFileChooser();
+	FileSystemView fsv = chooser.getFileSystemView();
+
+	public DirectoryComboBoxModel() {
+	    // Add the current directory to the model, and make it the
+	    // selectedDirectory
+	    File dir = getFileChooser().getCurrentDirectory();
+	    if(dir != null) {
+		addItem(dir);
+	    }
+	}
+
+	/**
+	 * Adds the directory to the model and sets it to be selected,
+	 * additionally clears out the previous selected directory and
+	 * the paths leading up to it, if any.
+	 */
+	private void addItem(File directory) {
+
+	    if(directory == null) {
+		return;
+	    }
+
+	    directories.clear();
+
+	    File[] baseFolders;
+	    if (useShellFolder) {
+		baseFolders = (File[])ShellFolder.get("fileChooserComboBoxFolders");
+	    } else {
+		baseFolders = fsv.getRoots();
+	    }
+	    directories.addAll(Arrays.asList(baseFolders));
+
+	    // Get the canonical (full) path. This has the side
+	    // benefit of removing extraneous chars from the path,
+	    // for example /foo/bar/ becomes /foo/bar
+	    File canonical = null;
+	    try {
+		canonical = ShellFolder.getNormalizedFile(directory);
+	    } catch (IOException e) {
+		// Maybe drive is not ready. Can't abort here.
+		canonical = directory;
+	    }
+
+	    // create File instances of each directory leading up to the top
+	    try {
+		File sf = useShellFolder ? ShellFolder.getShellFolder(canonical)
+					 : canonical;
+		File f = sf;
+		Vector path = new Vector(10);
+		do {
+		    path.addElement(f);
+		} while ((f = f.getParentFile()) != null);
+
+		int pathCount = path.size();
+		// Insert chain at appropriate place in vector
+		for (int i = 0; i < pathCount; i++) {
+		    f = (File)path.get(i);
+		    if (directories.contains(f)) {
+			int topIndex = directories.indexOf(f);
+			for (int j = i-1; j >= 0; j--) {
+			    directories.insertElementAt(path.get(j), topIndex+i-j);
+			}
+			break;
+		    }
+		}
+		calculateDepths();
+		setSelectedItem(sf);
+	    } catch (FileNotFoundException ex) {
+		calculateDepths();
+	    }
+	}
+
+	private void calculateDepths() {
+	    depths = new int[directories.size()];
+	    for (int i = 0; i < depths.length; i++) {
+		File dir = (File)directories.get(i);
+		File parent = dir.getParentFile();
+		depths[i] = 0;
+		if (parent != null) {
+		    for (int j = i-1; j >= 0; j--) {
+			if (parent.equals((File)directories.get(j))) {
+			    depths[i] = depths[j] + 1;
+			    break;
+			}
+		    }
+		}
+	    }
+	}
+
+	public int getDepth(int i) {
+	    return (depths != null && i >= 0 && i < depths.length) ? depths[i] : 0;
+	}
+
+	public void setSelectedItem(Object selectedDirectory) {
+	    this.selectedDirectory = (File)selectedDirectory;
+            fireContentsChanged(this, -1, -1);
+	}
+
+	public Object getSelectedItem() {
+	    return selectedDirectory;
+	}
+
+	public int getSize() {
+	    return directories.size();
+	}
+
+	public Object getElementAt(int index) {
+	    return directories.elementAt(index);
+	}
     }
 
     //
@@ -712,7 +1024,6 @@ public class BobFileChooserUI extends BasicFileChooserUI {
     protected FilterComboBoxRenderer createFilterComboBoxRenderer() {
 	return new FilterComboBoxRenderer();
     }
-
 
     /**
      * Render different type sizes and styles.
@@ -730,6 +1041,13 @@ public class BobFileChooserUI extends BasicFileChooserUI {
 
 	    return this;
 	}
+    }
+
+    //
+    // DataModel for Types Comboxbox
+    //
+    protected FilterComboBoxModel createFilterComboBoxModel() {
+	return new FilterComboBoxModel();
     }
 
     /**
@@ -801,8 +1119,147 @@ public class BobFileChooserUI extends BasicFileChooserUI {
 	}
     }
 
+    public void valueChanged(ListSelectionEvent e) {
+	JFileChooser fc = getFileChooser();
+	File f = fc.getSelectedFile();
+	if (!e.getValueIsAdjusting() && f != null && !getFileChooser().isTraversable(f)) {
+	    setFileName(fileNameString(f));
+	}
+    }
+
+    /**
+     * Acts when DirectoryComboBox has changed the selected item.
+     */
+    protected class DirectoryComboBoxAction extends AbstractAction {
+	protected DirectoryComboBoxAction() {
+	    super("DirectoryComboBoxAction");
+	}
+
+	public void actionPerformed(ActionEvent e) {
+            directoryComboBox.hidePopup();
+	    File f = (File)directoryComboBox.getSelectedItem();
+            if (!getFileChooser().getCurrentDirectory().equals(f)) {
+	        getFileChooser().setCurrentDirectory(f);
+            }
+	}
+    }
+
     protected JButton getApproveButton(JFileChooser fc) {
 	return approveButton;
     }
 
+
+    /**
+     * <code>ButtonAreaLayout</code> behaves in a similar manner to
+     * <code>FlowLayout</code>. It lays out all components from left to
+     * right, flushed right. The widths of all components will be set
+     * to the largest preferred size width.
+     */  
+    private static class ButtonAreaLayout implements LayoutManager {
+	private int hGap = 5;
+	private int topMargin = 17;
+
+	public void addLayoutComponent(String string, Component comp) {
+	}
+
+	public void layoutContainer(Container container) {
+	    Component[] children = container.getComponents();
+
+	    if (children != null && children.length > 0) {
+		int         numChildren = children.length;
+		Dimension[] sizes = new Dimension[numChildren];
+		Insets      insets = container.getInsets();
+		int         yLocation = insets.top + topMargin;
+		int         maxWidth = 0;
+
+		for (int counter = 0; counter < numChildren; counter++) {
+		    sizes[counter] = children[counter].getPreferredSize();
+		    maxWidth = Math.max(maxWidth, sizes[counter].width);
+		}
+		int xLocation, xOffset;
+		if (container.getComponentOrientation().isLeftToRight()) {
+		    xLocation = container.getSize().width - insets.left - maxWidth;
+		    xOffset = hGap + maxWidth;
+		} else {
+		    xLocation = insets.left;
+		    xOffset = -(hGap + maxWidth);
+		}
+		for (int counter = numChildren - 1; counter >= 0; counter--) {
+		    children[counter].setBounds(xLocation, yLocation,
+						maxWidth, sizes[counter].height);
+		    xLocation -= xOffset;
+		}
+	    }
+	}
+
+	public Dimension minimumLayoutSize(Container c) {
+	    if (c != null) {
+		Component[] children = c.getComponents();
+
+		if (children != null && children.length > 0) {
+		    int       numChildren = children.length;
+		    int       height = 0;
+		    Insets    cInsets = c.getInsets();
+		    int       extraHeight = topMargin + cInsets.top + cInsets.bottom;
+		    int       extraWidth = cInsets.left + cInsets.right;
+		    int       maxWidth = 0;
+
+		    for (int counter = 0; counter < numChildren; counter++) {
+			Dimension aSize = children[counter].getPreferredSize();
+			height = Math.max(height, aSize.height);
+			maxWidth = Math.max(maxWidth, aSize.width);
+		    }
+		    return new Dimension(extraWidth + numChildren * maxWidth + 
+					 (numChildren - 1) * hGap,
+					 extraHeight + height);
+		}
+	    }
+	    return new Dimension(0, 0);
+	}
+
+	public Dimension preferredLayoutSize(Container c) {
+	    return minimumLayoutSize(c);
+	}
+
+	public void removeLayoutComponent(Component c) { }
+    }
+
+    private static void groupLabels(AlignedLabel[] group) {
+	for (int i = 0; i < group.length; i++) {
+	    group[i].group = group;
+	}
+    }
+
+    private class AlignedLabel extends JLabel {
+	private AlignedLabel[] group;
+	private int maxWidth = 0;
+
+	AlignedLabel(String text) {
+	    super(text);
+	    setAlignmentX(JComponent.LEFT_ALIGNMENT);
+	}
+
+	public Dimension getPreferredSize() {
+	    Dimension d = super.getPreferredSize();
+	    // Align the width with all other labels in group.
+	    return new Dimension(getMaxWidth() + 11, d.height);
+	}
+
+	private int getMaxWidth() {
+	    if (maxWidth == 0 && group != null) {
+		int max = 0;
+		for (int i = 0; i < group.length; i++) {
+		    max = Math.max(group[i].getSuperPreferredWidth(), max);
+		}
+		for (int i = 0; i < group.length; i++) {
+		    group[i].maxWidth = max;
+		}
+	    }
+	    return maxWidth;
+	}
+
+	private int getSuperPreferredWidth() {
+	    return super.getPreferredSize().width;
+	}
+    }
 }

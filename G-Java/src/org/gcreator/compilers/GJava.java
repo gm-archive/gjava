@@ -92,7 +92,7 @@ public class GJava extends PlatformCore {
         //super.parseSprite(s);
         
         loadSprites += f.name + ",";
-        createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBleft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
+        createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBLeft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
             org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
@@ -487,6 +487,10 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
     }
 
     public void run(Project project) {
+        if (project == null) {
+            System.out.println("Error: Can't compile null!");
+            return;
+        }
         System.out.println("Saving...");
         if (gcreator.panel.istabs) {
             for (int ii = 0; ii < gcreator.panel.tabs.getTabCount(); ii++) {
@@ -530,25 +534,31 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
 
     @Override
     public void parseSettings(String string, String name) {
-        System.out.println("got here!");
+      //  System.out.println("got here!");
     }
     
      
+    @Override
     public Object onSignalReceived(PluginCore caller, Object signal){
-        if(signal instanceof Object[]){
-            Object[] args = (Object[]) signal;
-            if(args[0] instanceof String&&((String) args[0]).equals("compile")){
-                for(int i = 1; i < args.length; i++){
-                    if(args[i]!=null&&args[i] instanceof Project){
-                        run((Project) args[i]);
+        try {
+            if(signal instanceof Object[]){
+                Object[] args = (Object[]) signal;
+                if(args[0] instanceof String&&((String) args[0]).equals("compile")){
+                    for(int i = 1; i < args.length; i++){
+                        if(args[i]!=null&&args[i] instanceof Project){
+                            run((Project) args[i]);
+                        }
                     }
+                    return true;
                 }
-                return true;
             }
+        } catch (NullPointerException exc) {
+            return false;
         }
         return false;
     }
     
+    @Override
     public String getID(){
         return "G-Java";
     }

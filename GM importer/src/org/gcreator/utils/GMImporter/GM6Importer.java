@@ -83,7 +83,7 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
-        System.out.println("Line 75, fileName=" + fileName);
+        //System.out.println("Line 75, fileName=" + fileName);
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -98,14 +98,14 @@ public class GM6Importer {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
-        System.out.println("version:"+ver);
+        //System.out.println("version:"+ver);
         if (ver < 600) {
-            System.out.println("unsupported");
+            //System.out.println("unsupported");
                     JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
-        System.out.println("read settings");
+        //System.out.println("read settings");
         SettingsValues values = readSettings(settings, c);
         
         readSounds(c);
@@ -300,7 +300,7 @@ public class GM6Importer {
             Sound val;
             soundFile.value = val = new Sound(name);
             soundFile.type= type.replaceFirst(".", "");
-            System.out.println("type:"+soundFile.type);
+            //System.out.println("type:"+soundFile.type);
             //val.width = in.read4();
             if (ver == 440) {
                 //-1 = no sound
@@ -323,7 +323,7 @@ public class GM6Importer {
 
     private void readSprites(GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-        System.out.println("readSprites");
+        //System.out.println("readSprites");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) {
@@ -349,7 +349,7 @@ public class GM6Importer {
             spriteFile.value = val = new Sprite();
             val.width = in.read4();
             val.height = in.read4();
-            val.BBleft = in.read4();
+            val.BBLeft = in.read4();
             val.BBRight = in.read4();
             val.BBBottom = in.read4();
             val.BBTop = in.read4();
@@ -638,7 +638,7 @@ public class GM6Importer {
     }
     
     private static void readActors(GmFileContext c) throws IOException,GmFormatException{
-                System.out.println("readActors");
+                //System.out.println("readActors");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
@@ -678,7 +678,7 @@ public class GM6Importer {
                     int first = in.read4();
                     int id = 0;
                     if(first!=-1){
-                        System.out.println("event:"+j+" first:"+first);
+                        //System.out.println("event:"+j+" first:"+first);
                         if(j==EV_CREATE){
                             e = new CreateEvent();
                             a.events.add(e);
@@ -722,22 +722,22 @@ public class GM6Importer {
             throw new GmFormatException("version error:" + ver);
         }
         int noacts = in.read4();
-        //System.out.println("No of actions:"+noacts);
+        ////System.out.println("No of actions:"+noacts);
         for(int i = 0; i < noacts; i++){
             String code="",function="";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
-            //System.out.println("retrive actions");
+            ////System.out.println("retrive actions");
             
             //boolean unknownLib = (act == null); //this should always be false
             if (true){
                 in.read4(); //action kind
                 in.readBool(); //allow relative
-                System.out.println("question:"+in.readBool()); //question
-                System.out.println("applyto"+in.readBool()); //can apply to
+                //System.out.println("question:"+in.readBool()); //question
+                //System.out.println("applyto"+in.readBool()); //can apply to
                 int exectype = in.read4();
-                System.out.println("etype:"+exectype);
+                //System.out.println("etype:"+exectype);
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
                 else {
@@ -745,23 +745,23 @@ public class GM6Importer {
                 
                 if(exectype == EXEC_CODE){
                     code=in.readStr(); //Exec info
-                System.out.println("read code:"+code);
+                //System.out.println("read code:"+code);
                 }
                 else {
                     in.skip(in.read4());
-                    System.out.println("not code");
+                    //System.out.println("not code");
                 }
                 
             }
             else{
-                System.out.println("error: not unknownlib");
+                //System.out.println("error: not unknownlib");
                 in.skip(20);
                 in.skip(in.read4());
                 in.skip(in.read4());
             }
-            System.out.println("action code:"+code+function);
+            //System.out.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
-            System.out.println("arg count");
+            //System.out.println("arg count");
             int argkinds = in.read4();
             for(int x = 0; x < argkinds; x++)
                 in.read4();
@@ -787,11 +787,11 @@ public class GM6Importer {
             //if(act!=null)
             org.gcreator.actions.Action act =    parseAction(code,c, null, appliesTo, relative, args);
             act.project = c.pro;
-           // System.out.println("Got here");
+           // //System.out.println("Got here");
             if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
         }
-        System.out.println("Ended actions");
+        //System.out.println("Ended actions");
     }
     
     private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code){
@@ -815,7 +815,7 @@ public class GM6Importer {
             act = new org.gcreator.actions.Action(tt);
             return act;
 //        
-//        System.out.println("libid=" + libid + ", actid=" + actid);
+//        //System.out.println("libid=" + libid + ", actid=" + actid);
 //        
 //        return act;
     }
@@ -826,11 +826,11 @@ public class GM6Importer {
             {
             code+=args[i];
             }
-            System.out.println("Code:"+code);
+            //System.out.println("Code:"+code);
             org.gcreator.actions.Action act = retrieveAction(0, 0,code);
             ((ExecuteCode)act.pattern).code = code;
 //            if (action.getPanel() == null){
-//                System.out.println("null panel");
+//                //System.out.println("null panel");
 //            }
             
        // }

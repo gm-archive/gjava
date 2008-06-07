@@ -22,9 +22,16 @@ includes=**
 jar.compress=true
 javac.classpath=\
     ${reference.Aurora.jar}:\
-    ${libs.JavaGL.classpath}:\
     ${libs.javac.classpath}:\
-    ${libs.GTGE.classpath}
+    ${libs.JavaGL.classpath}
+    ${libs.JavaGL.classpath}:\
+    ${libs.G-Java.classpath}
+=======
+    ${libs.G-Java.classpath}:\
+    ${libs.JavaGL.classpath}:\
+    ${reference.GTGE.jar}:\
+    ${reference.GTGE_Add-Ons.jar}
+>>>>>>> .r1097
 # Space-separated list of extra javac options
 javac.compilerargs=
 javac.deprecation=false
@@ -50,18 +57,25 @@ jnlp.codebase.url=file:/C:/Users/Ali.Ali-Laptop/Documents/NetBeansProjects/G-Cre
 jnlp.enabled=false
 jnlp.offline-allowed=false
 jnlp.signed=false
-# Property libs.GTGE.classpath is set here just to make sharing of project simpler.
+# Property libs.G-Java.classpath is set here just to make sharing of project simpler.
 # The library definition has always preference over this property.
-libs.GTGE.classpath=../Aurora/lib/GTGE.jar
+libs.G-Java.classpath=src
+# Property libs.javac.classpath is set here just to make sharing of project simpler.
+# The library definition has always preference over this property.
+libs.javac.classpath=build/classes
 # Property libs.JavaGL.classpath is set here just to make sharing of project simpler.
 # The library definition has always preference over this property.
-libs.JavaGL.classpath=../../../../../../G-java/ibxm.jar;../../../../../../G-java/jinput.jar;../../../../../../G-java/jme-audio.jar;../../../../../../G-java/jme-awt.jar;../../../../../../G-java/jme-collada.jar;../../../../../../G-java/jme-editors.jar;../../../../../../G-java/jme-effects.jar;../../../../../../G-java/jme-font.jar;../../../../../../G-java/jme-gamestates.jar;../../../../../../G-java/jme-model.jar;../../../../../../G-java/jme-scene.jar;../../../../../../G-java/jme-terrain.jar;../../../../../../G-java/jme-xml.jar;../../../../../../G-java/jme.jar;../../../../../../G-java/jnlp.jar;../../../../../../G-java/jogg-0.0.7.jar;../../../../../../G-java/jorbis-0.0.15.jar;../../../../../../G-java/lwjgl.jar;../../../../../../G-java/lwjgl_applet.jar;../../../../../../G-java/lwjgl_util.jar;../../../../../../G-java/lwjgl_util_applet.jar;../../../../../../G-java/natives.jar;../../../../../../G-java/scalar.jar;../../../../../../G-java/slick.jar
+libs.JavaGL.classpath=../Aurora/lib/jinput.jar:../Aurora/lib/jme-audio.jar:../Aurora/lib/jme-awt.jar:../Aurora/lib/jme-editors.jar:../Aurora/lib/jme-font.jar:../Aurora/lib/jme-gamestates.jar:../Aurora/lib/jme-model.jar:../Aurora/lib/jme-scene.jar:../Aurora/lib/jme-terrain.jar:../Aurora/lib/jme-xml.jar:../Aurora/lib/jme.jar:../Aurora/lib/jogg-0.0.7.jar:../Aurora/lib/jorbis-0.0.15.jar:../Aurora/lib/junit-4.1.jar:../Aurora/lib/lwjgl.jar:../Aurora/lib/lwjgl_fmod3.jar:../Aurora/lib/lwjgl_util_applet.jar:../Aurora/lib/natives.jar:../Aurora/lib/slick.jar:../Aurora/lib/swing-layout-1.0.3.jar
 main.class=org.gcreator.compilers.gjava.Game
 manifest.file=manifest.mf
 meta.inf.dir=${src.dir}/META-INF
 platform.active=default_platform
 project.Aurora=../Aurora
+project.GTGE=../GTGE/GTGE
+project.GTGE_Add-Ons=../GTGE/GTGE Add-Ons
 reference.Aurora.jar=${project.Aurora}/dist/Aurora.jar
+reference.GTGE.jar=${project.GTGE}/dist/GTGE.jar
+reference.GTGE_Add-Ons.jar=${project.GTGE_Add-Ons}/dist/GTGE_Add-Ons.jar
 run.classpath=\
     ${javac.classpath}:\
     ${build.classes.dir}
