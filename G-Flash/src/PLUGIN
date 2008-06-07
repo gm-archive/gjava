@@ -1,0 +1,7 @@
+[~Plugin~]
+Author=Serge Humphrey
+Core=org.gcreator.compilers.gflash.GFlash
+License=BSD
+Name=G-Flash
+Version=0.4
+Image=
