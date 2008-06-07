@@ -24,31 +24,36 @@ public abstract class PluginCore {
     public void onMainWindowStart(){}
     public void onSplashDispose(){}
     public void onMainWindowDispose(){}
-    public Object sendSignal(PluginCore caller, Object signal) throws InvalidSignalException{
+    public Object sendSignal(PluginCore caller, Object signal) throws InvalidSignalException {
         return onSignalReceived(caller, signal);
     }
-    protected Object onSignalReceived(PluginCore caller, Object signal) throws InvalidSignalException{
+    protected Object onSignalReceived(PluginCore caller, Object signal) throws InvalidSignalException {
         return null;
     }
-    public String getID(){
+    public String getID() {
         return null;
     }
     
     /**
-     * Gets the plugin that owns this PluginCore
+     * Gets the plugin that 
+     * @return The plugin that owns this PluginCore
      */
-    public Plugin getPlugin(){
-        for(Plugin p : PluginList.stdlist.plugins){
-            if(p.value==this)
+    public Plugin getPlugin() {
+        for (Plugin p : PluginList.stdlist.plugins) {
+            if (p.value == this) {
                 return p;
+            }
         }
         return null;
     }
     
-    public String getPluginName(){
+    public String getPluginName() {
         Plugin p = getPlugin();
-        if(p==null)
+        if (p == null) {
             return null;
+        }
         return p.name;
     }
+    
+    public void uninstall(){}
 }

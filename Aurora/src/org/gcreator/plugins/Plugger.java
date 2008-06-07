@@ -117,6 +117,7 @@ public class Plugger {
             loader = new JarClassLoader(getJars());
             ClassLoading.classLoader.add(loader);
             for (Plugin p : PluginList.stdlist.plugins) {
+                p.value.uninstall();
                 p.value.onSplashDispose();
             }
         } catch (Exception e) {

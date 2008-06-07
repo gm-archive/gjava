@@ -78,8 +78,16 @@ public class PluginHelper {
         gcreator.panel.menubar.add(menu);
     }
     
+    public static void removeMenu(JMenu menu){
+        gcreator.panel.menubar.remove(menu);
+    }
+    
     public static void addMenuItem(int menu, JMenuItem item){
         gcreator.panel.menus[menu].add(item);
+    }
+    
+    public static void removeMenuItem(int menu, JMenuItem item){
+        gcreator.panel.menus[menu].remove(item);
     }
     
     public static void addMenuSeparator(int menu){

@@ -205,8 +205,9 @@ public class PluginDialog extends JDialog {
     public void uninstall(Plugin plugin){
         //System.out.println("Uninstall " + plugin.name);
         String s = "[G-Creator Plugin List]\n";
+        plugin.value.uninstall();
         for(Plugin plug : PluginList.stdlist.plugins){
-            if(plug==plugin) {
+            if (plug == plugin) {
                 continue;
             }
             s += "[~Plugin~]\n";
