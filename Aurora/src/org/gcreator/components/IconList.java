@@ -261,7 +261,7 @@ public class IconList extends JComponent{
     @Override
     public Dimension getPreferredSize(){
         int rows = calcRows();
-        return new Dimension(columnWidth*columns+(columns+1)*Math.max(wgap,1), columnHeight*rows+(rows+1)*Math.max(hgap,1));
+        return new Dimension((columnWidth+wgap)*(Math.min(countVisibleElements(), columns))+wgap, columnHeight*rows+(rows+1)*Math.max(hgap,1));
     }
     /**
      * Removes all icons in the iconlist.
@@ -293,6 +293,7 @@ public class IconList extends JComponent{
         g.drawRect(wstart, hstart, columnWidth, columnHeight);
         int imgw = columnWidth-4;
         int imgh = columnHeight-22;
+        g.drawString(element.text, wstart+3, hstart+imgh+16);
         ImageIcon img = element.img;
         if(img==null)
             return;
@@ -309,8 +310,7 @@ public class IconList extends JComponent{
         }
         if(img.getIconWidth()<imgw&&img.getIconHeight()<imgh){
             g.drawImage(img.getImage(), wstart + 2 + (imgw-iconw)/2, hstart + 2 + (imgh-iconh)/2, iconw, img.getIconHeight(), img.getImageObserver());
-        }
-        g.drawString(element.text, wstart+3, hstart+imgh+16);
+        }        
     }
     
     public void paint(Graphics g){

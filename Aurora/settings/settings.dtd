@@ -18,7 +18,7 @@
 -->
 
 <!--- Put your DTDDoc comment here. -->
-<!ELEMENT settings (antialiasing|size|tree|toolbar|language|console|desktop|style)*>
+<!ELEMENT settings (consoleboxlocation|theme|antialiasing|size|tree|toolbar|language|console|desktop|style)*>
 
 <!--- Put your DTDDoc comment here. -->
 <!ELEMENT style (#PCDATA)>
@@ -43,3 +43,9 @@
 
 <!--- Put your DTDDoc comment here. -->
 <!ELEMENT antialiasing (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT theme (#PCDATA)>
+
+<!--- Put your DTDDoc comment here. -->
+<!ELEMENT consoleboxlocation (#PCDATA)>

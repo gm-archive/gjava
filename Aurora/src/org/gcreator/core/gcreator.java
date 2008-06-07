@@ -19,6 +19,7 @@ import java.io.FileReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.text.ParseException;
+import java.util.concurrent.TimeUnit;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
 import org.gcreator.clipboard.*;
@@ -36,6 +37,7 @@ import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.navigator.*;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
+import org.gcreator.threading.ThreadPool;
 import org.gcreator.units.SystemErrStream;
 import org.gcreator.units.SystemOutStream;
 
@@ -62,7 +64,7 @@ public class gcreator {
         System.setOut(SystemOutStream.instance);
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
-        try {
+        //try {
             /*
              * Ethos does not work very well when switching to another L&F.
              * Is is also ugly and incredibly slow, therefore I have disabled it.
@@ -71,10 +73,9 @@ public class gcreator {
             //SkinLookAndFeel.setSkin(skin);
             //UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
             //UIManager.setLookAndFeel(new SkinLookAndFeel());
-            //UIManager.installLookAndFeel("Bob Look", "org.gcreator.bob.boblook.BobLookAndFeel");
-        } catch (Exception exc) {
-            System.err.println("Exception_at gcreator<static>: "+exc);
-        }
+        //} catch (Exception exc) {
+        //    System.err.println("Exception_at gcreator<static>: "+exc);
+        //}
     }
 
 
@@ -103,7 +104,7 @@ public class gcreator {
     
     public static void __main(String[] args) {
         try {
-            UIManager.installLookAndFeel("Bob Look&Feel", "org.gcreator.bob.boblook.BobLookAndFeel");
+            //UIManager.installLookAndFeel("Bob Look&Feel", "org.gcreator.bob.boblook.BobLookAndFeel");
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             loadLookandFeels();
         }
@@ -114,26 +115,24 @@ public class gcreator {
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;
-        if(args!=null)
-        for(int i = 0; i < args.length; i++){
-            System.out.println("args[" + i + "] = " + args[i]);
-            if(args[i].equals("-safe")) {
-                plugload = false;
-            }
-            else if(args[i].matches("^-jemul:.*$")){
-                java_version = args[i].replaceFirst("^-jemul:(.*)$", "$1");
-            }
-            else if(args[i].equals("-mdi")) {
-                ismdi = true;
-            }
-            else if(args[i].matches("^-(-?)help$")){
-                System.out.println("G-Creator version: " + version);
-                System.out.println("Licensed under LGPL v3. More information in README.txt and 'About'.");
-                System.out.println("-safe\t\tStarts G-Creator in safe mode. (No plugins)");
-                System.out.println("-jemul:version\tPretends the user is running G-Creator with version 'version'");
-                System.out.println("-mdi\t\tStarts G-Creator in MDI mode");
-                System.out.println("-help\t\tDisplays info about G-Creator");
-                System.exit(0);
+        if(args!=null) {
+            for (int i = 0; i < args.length; i++) {
+                System.out.println("args[" + i + "] = " + args[i]);
+                if (args[i].equals("-safe")) {
+                    plugload = false;
+                } else if (args[i].matches("^-jemul:.*$")) {
+                    java_version = args[i].replaceFirst("^-jemul:(.*)$", "$1");
+                } else if (args[i].equals("-mdi")) {
+                    ismdi = true;
+                } else if (args[i].matches("^-(-?)help$")) {
+                    System.out.println("G-Creator version: " + version);
+                    System.out.println("Licensed under LGPL v3. More information in README.txt and 'About'.");
+                    System.out.println("-safe\t\tStarts G-Creator in safe mode. (No plugins)");
+                    System.out.println("-jemul:version\tPretends the user is running G-Creator with version 'version'");
+                    System.out.println("-mdi\t\tStarts G-Creator in MDI mode");
+                    System.out.println("-help\t\tDisplays info about G-Creator");
+                    System.exit(0);
+                }
             }
         }
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
@@ -146,9 +145,8 @@ public class gcreator {
 		folder = folder.replaceAll("%20"," ");
 		folder = folder.substring(1);
 		folder = folder.replace("/","\\");
-                if(plugload){
+                if(plugload) {
                     Plugger.registerLoader();
-                    //plugins = Plugger.getPlugList(PluginsList.loadPluglist());
                 }
         }
         if (ver <= 4) {
@@ -177,11 +175,12 @@ public class gcreator {
             settings[9] = "540";
         }
 
-        if(ismdi||ver<6)
+        if(ismdi||ver<6) {
             settings[1] = "MDI";
+        }
 
         LangSupporter.activeLang = new English();
-        
+      
         if (!settings[3].equals("English")) {
             if (settings[3].equals("Portuguese (European)")) {
                 LangSupporter.activeLang = new Portuguese();
@@ -328,7 +327,7 @@ public class gcreator {
                 panel.onToolbarActionPerformed(17, evt);
             }
         });
-        
+
         ToolbarManager.toolbuttons.add(newp);
         ToolbarManager.toolbuttons.add(opn);
         ToolbarManager.toolbuttons.add(save);
@@ -366,7 +365,7 @@ public class gcreator {
         tool.items.add(addscn);
         tool.items.add(addcls);
         ToolbarManager.toolbars.add(tool);*/
-        
+         
         ScriptThemeManager.load();
         
         if (!applet && plugload) {
@@ -379,17 +378,19 @@ public class gcreator {
         try{
             ToolbarManager.parseToolbarFile("settings/toolbarList.gctl");
         }
-        catch(Exception e){}
+        catch(Exception e){
+            System.out.println("Error while parsint toolbar file: "+e);
+        }
         
         //setup api list
         CreateApiList.setup();
         
         //install LWJGL
       try {
-//  LWJGLInstaller.tempInstall();
-} catch (Exception le) {
- System.out.println(""+le.getLocalizedMessage());
-}
+        //  LWJGLInstaller.tempInstall();
+      } catch (Exception le) {
+         System.out.println(""+le.getLocalizedMessage());
+      }
 
         try {/*
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
@@ -440,7 +441,6 @@ public class gcreator {
         gcreator.panel.nofileselnavigator = new NoFileSelectedNavigator();
         gcreator.panel.unkresnav = new UnknownResourceNavigator();
         window.setVisible(true);
-        
         if(splash!=null){
             splash.fadeOut();
             if(!applet&&plugload) {
@@ -448,6 +448,15 @@ public class gcreator {
             }
             panel.menubar.updateUI();
         }
+        //Doing this on average cuts the heap memory by 5-10 MB, and it isn't
+        // it doesn't seem to slow G-Creator down when it executes.
+        // Test it yourself using the Sun Java 6 Console "JConsole" tool.
+        ThreadPool.scheduledAtFixedRate(new Thread("Garbage Collector") {
+            @Override
+            public void run() {
+                Runtime.getRuntime().gc();
+            }
+        }, 2000L, 3000L, TimeUnit.MILLISECONDS);
     }
     
     private static void loadLookandFeels() throws Exception {

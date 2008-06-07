@@ -24,6 +24,12 @@ public class Aurwindow extends JFrame implements ICore{
        //setLocation(0, 0);
        //setSize(Toolkit.getDefaultToolkit().getScreenSize());
        //setExtendedState(MAXIMIZED_BOTH);
+       //if((getExtendedState()&MAXIMIZED_BOTH)!=0){
+       //    System.out.println("MAXIMIZED");
+       //}
+       //else{
+       //    System.out.println("NOT MAXIMIZED");
+       //}
        //setContentPane(gcreator.panel);
     }
     //</editor-fold>

@@ -19,8 +19,9 @@ public class ClassLoading {
         this.add(this.getClass().getClassLoader());
     }
     public void add(ClassLoader loader){
-        if(loader!=null)
+        if(loader!=null) {
             loaders.add(loader);
+        }
     }
     public void remove(ClassLoader loader){
         loaders.remove(loader);
@@ -36,9 +37,11 @@ public class ClassLoading {
         for(ClassLoader loader : loaders){
             try{
                 cls = loader.loadClass(x);
+                //System.out.println("class "+x+" was successfully loaded.");
                 break;
             }
             catch(ClassNotFoundException e){
+                //System.out.println("class "+x+" not found in ClassLoader "+loader);
                 cls = null;
             }
         }

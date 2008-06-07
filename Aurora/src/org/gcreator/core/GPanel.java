@@ -89,7 +89,17 @@ public class GPanel extends JPanel {
     //<editor-fold defaultstate="Collapsed" desc="Constructor">
     public GPanel(ICore icore, String[] settings) {
         this.icore = icore;
-
+        
+        try {
+            chooseImage = new JFileChooser();
+            chooseImage.setDialogTitle("Select Image");
+            chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
+            chooseImage.setApproveButtonText("OK");
+            chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        } catch(Exception e){
+            System.out.println("JFileChooser error in static Aurwindow: "+e);
+            e.printStackTrace();
+        }
         try {
             chooseImage = new JFileChooser();
             chooseImage.setDialogTitle("Select Image");
@@ -263,7 +273,7 @@ public class GPanel extends JPanel {
         MenuSupporter.MakeDefaultMenus(this);
 
         splitter1.setOrientation(JSplitPane.VERTICAL_SPLIT);
-        splitter1.setOneTouchExpandable(true);//NOTE: this doesn't display correctly in GTK+
+        splitter1.setOneTouchExpandable(true);//Note that this doesn't display correctly in GTK+
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);

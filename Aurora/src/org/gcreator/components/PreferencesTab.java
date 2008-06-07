@@ -434,6 +434,8 @@ public class PreferencesTab extends OptionPanel {
                 Logger.getLogger(PreferencesTab.class.getName()).log(Level.SEVERE, null, ex);
             }
             SwingUtilities.updateComponentTreeUI(gcreator.window);
+            SwingUtilities.updateComponentTreeUI(gcreator.panel);
+            SwingUtilities.updateComponentTreeUI(gcreator.panel.chooseImage);
             SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
         }
     }//GEN-LAST:event_jComboBox3ActionPerformed
