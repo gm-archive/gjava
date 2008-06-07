@@ -97,7 +97,7 @@ public class SyntaxStyle
 		if(font == null)
 			throw new NullPointerException("font param must not"
 				+ " be null");
-		if(f.equals(lastFont) && fontMetrics != null)
+		if(font.equals(lastFont) && fontMetrics != null)
 			return fontMetrics;
 		//lastFont = font;
                 lastFont = f;
@@ -105,7 +105,7 @@ public class SyntaxStyle
 			(f.isBold() ? Font.BOLD : 0)
 			| (f.isItalic() ? Font.ITALIC : 0),
 			f.getSize());
-		fontMetrics = /*Toolkit.getDefaultToolkit().*/getFontMetrics(lastStyledFont);
+		fontMetrics = Toolkit.getDefaultToolkit().getFontMetrics(lastStyledFont);
 		return fontMetrics;
 	}
 
