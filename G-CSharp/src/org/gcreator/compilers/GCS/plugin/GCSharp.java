@@ -346,7 +346,8 @@ public class GCSharp extends PlatformCore {
         GCSCompiler compiler = new GCSCompiler(this);
         p.setVisible(false);
     }
-
+    
+    JMenuItem menuItem;
     @Override
     public void onSplashDispose() {
         PluginHelper.println("Installed StarFish (C#)");
@@ -358,8 +359,8 @@ public class GCSharp extends PlatformCore {
                         run(Aurwindow.getMainProject());
                     }
                 });*/
-        JMenuItem i = new JMenuItem("Compile with StarFish (C#)");
-        i.addActionListener(new ActionListener() {
+        menuItem = new JMenuItem("Compile with StarFish (C#)");
+        menuItem.addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         //run(Aurwindow.getMainProject());
@@ -367,13 +368,19 @@ public class GCSharp extends PlatformCore {
                     }
                 });
 
-        PluginHelper.addMenuItem(3, i);
+        PluginHelper.addMenuItem(3, menuItem);
         version=0.2;
         updateURL="http://g-creator.org/update/G-CSharp/update.xml";
         update();
         //Aurwindow.tool.add(run);
     }
-
+    
+    @Override
+    public void uninstall() {
+        PluginHelper.removeMenuItem(3, menuItem);
+    }
+    
+    @Override
     public Object onSignalReceived(PluginCore caller, Object signal) {
         if (signal instanceof Object[]) {
             Object[] args = (Object[]) signal;
