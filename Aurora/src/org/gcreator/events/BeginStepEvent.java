@@ -19,7 +19,7 @@ public class BeginStepEvent extends Event{
     static final long serialVersionUID = 1L;
    static ImageIcon icon;
     public BeginStepEvent(){
-        PRIORITY = 851;
+        PRIORITY = 8510;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/step.png"));
     }
     

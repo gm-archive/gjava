@@ -18,11 +18,11 @@ public class CollisionEvent extends Event {
     static final long serialVersionUID = 1L;
 
     public CollisionEvent() {
-        PRIORITY = 800;
+        PRIORITY = 8000;
     }
 
     public CollisionEvent(GFile other) {
-        PRIORITY = 800;
+        PRIORITY = 8000;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/collision.png"));
         this.other = other;
     }

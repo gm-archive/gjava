@@ -15,7 +15,7 @@ import org.gcreator.components.impl.EventSelectListener;
 public class KeyReleased extends KeyboardEvent {
     static final long serialVersionUID = 1L;
     public KeyReleased(int type,String name){
-    PRIORITY = 500;
+    PRIORITY = 5000;
     this.name=name;
     text=" Released";
         this.type = type;

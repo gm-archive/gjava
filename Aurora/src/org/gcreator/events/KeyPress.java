@@ -16,7 +16,7 @@ public class KeyPress extends KeyboardEvent {
     static final long serialVersionUID = 1L;
 
     public KeyPress(int type,String name){
-    PRIORITY = 600;
+    PRIORITY = 6000;
     this.name=name;
         this.type = type;
         text=" Pressed";

@@ -11,11 +11,12 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 import java.util.Vector;
 import javax.swing.*;
-import org.gcreator.core.GPanel;
 
 /**
- *
- * @author Luís
+ * DiscMenu are a new way of dealing with menus.
+ * Instead of standard menus, disc menu organizes data in a circle way.
+ * However, you should use org.gcreator.components.custom.MenuGenerator instead.
+ * @author Luís Reis
  */
 public class DiscMenu extends DialogPlus {
 
