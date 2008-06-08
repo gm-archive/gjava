@@ -22,6 +22,7 @@ import org.gcreator.fileclass.*;
     private Project p;
     private String key;
     private Vector<ActionListener> a = new Vector<ActionListener>();
+    private boolean savecheck = true;
     
     public FileLabel(Project p, String key){
         this.p = p;
@@ -79,8 +80,13 @@ import org.gcreator.fileclass.*;
         }
     }
     
+    @Override
     public void mouseExited(MouseEvent evt){}
+    
+    @Override
     public void mouseEntered(MouseEvent evt){}
+    
+    @Override
     public void mousePressed(MouseEvent evt){
     //    System.out.println("got here");
         Folder f = p.getFolderFor(key);
@@ -94,7 +100,11 @@ import org.gcreator.fileclass.*;
         folderToPopup(p, f, pop);
         pop.show(this, evt.getX(), evt.getY());
     }
+    
+    @Override
     public void mouseReleased(MouseEvent evt){}
+    
+    @Override
     public void mouseClicked(MouseEvent evt){}
     
     public void setFile(GFile file){
@@ -102,6 +112,25 @@ import org.gcreator.fileclass.*;
     }
     
     public void setFile(GFile file, boolean trigger){
+        if(file!=null&&isSaveChecked()&&file.tabPanel!=null&&file.tabPanel.wasModified()){
+            int result = JOptionPane.showConfirmDialog
+                    (this, "File " + file.name + " was modified. Do you want to save it?",
+                    "File not saved", JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.WARNING_MESSAGE);
+            if(result==JOptionPane.YES_OPTION){
+                file.tabPanel.Save();
+                setFile(file, false, false);
+            }
+            else if(result==JOptionPane.NO_OPTION){
+                setFile(file, false, false);
+            }
+        }
+        else{
+            setFile(file, false, false);
+        }
+    }
+    
+    public void setFile(GFile file, boolean trigger, boolean UNUSED){
         this.file = file;
         this.repaint();
         if(trigger)
@@ -118,6 +147,7 @@ import org.gcreator.fileclass.*;
         this.a.add(a);
     }
     
+    @Override
     public void paint(Graphics g){
         super.paint(g);
         
@@ -145,5 +175,13 @@ import org.gcreator.fileclass.*;
         catch(Exception e){}
         
         g.drawString(file.name, x, fm.getHeight()+1);
+    }
+    
+    public boolean isSaveChecked(){
+        return savecheck;
+    }
+    
+    public void setSaveChecked(boolean savecheck){
+        this.savecheck = savecheck;
     }
 }

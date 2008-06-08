@@ -17,6 +17,7 @@ import org.gcreator.units.*;
  */
 public class ResourceChooser extends JComponent{
     private FileLabel label;
+    
     public ResourceChooser(Project p, String key){
         label = new FileLabel(p, key);
         
@@ -34,6 +35,10 @@ public class ResourceChooser extends JComponent{
         return label.getFile();
     }
     
+    public boolean isSaveChecked(){
+        return label.isSaveChecked();
+    }
+    
     public void addActionListener(ActionListener a){
         label.addActionListener(a);
     }
@@ -48,6 +53,7 @@ public class ResourceChooser extends JComponent{
         return f.node;
     }
     
+    @Override
     public Dimension getPreferredSize(){
         return new Dimension(120, 30);
     }
