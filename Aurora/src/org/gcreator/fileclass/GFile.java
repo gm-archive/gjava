@@ -115,10 +115,12 @@ public class GFile extends GObject implements Transferable {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             
             BufferedImage ii = null;
+            Image imgg = null;
             try{
-                if (img.getImage() instanceof sun.awt.image.ToolkitImage) {
+                imgg = img.getImage();
+                if (imgg.getClass().getName().equals("sun.awt.image.ToolkitImage")) {
                     System.out.println("Toolkit");
-                    ii = ((sun.awt.image.ToolkitImage)img.getImage()).getBufferedImage();
+                    ii = (BufferedImage) imgg.getClass().getMethod("getBufferedImage").invoke(imgg);
                 }
                 else {
                         ii = (BufferedImage) (img.getImage());
@@ -126,7 +128,7 @@ public class GFile extends GObject implements Transferable {
             }
             catch(Exception e){ //CLass not found?
                 System.out.println("Exception " + e.getMessage());
-                ii =  (BufferedImage) (img.getImage());
+                ii =  (BufferedImage) (imgg);
             }
             
             ImageIO.write(ii, type, baos); 

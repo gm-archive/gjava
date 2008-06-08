@@ -10,6 +10,7 @@
 package org.gcreator.components;
 
 import java.awt.*;
+import javax.swing.JLabel;
 
 /**
  * A simple text style class. It can specify the color, italic flag,
@@ -105,7 +106,7 @@ public class SyntaxStyle
 			(f.isBold() ? Font.BOLD : 0)
 			| (f.isItalic() ? Font.ITALIC : 0),
 			f.getSize());
-		fontMetrics = Toolkit.getDefaultToolkit().getFontMetrics(lastStyledFont);
+		fontMetrics = (new JLabel()).getFontMetrics(lastStyledFont);
 		return fontMetrics;
 	}
 

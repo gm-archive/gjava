@@ -792,6 +792,10 @@ public class GPanel extends JPanel {
             TabPanel tp = new SpriteEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
+        } else if (file.type.equals("snippet")) {
+            TabPanel tp = new SnippetEditor(this.getCurrentProject(), file);
+            file.tabPanel = tp;
+            addEWindow(tp, file.name, img);
         } else if (file.type.equals("actor")) {
             //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
