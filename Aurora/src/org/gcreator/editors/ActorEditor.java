@@ -24,64 +24,60 @@ import org.gcreator.actions.*;
 import org.gcreator.managers.LangSupporter;
 
 public class ActorEditor extends TabPanel {
+
     public static final long serialVersionUID = 1;
     public boolean changed = false;
     public EventListModel elist;
     public Actor actor;
     int from;
     /*static {
-        jList1 = new javax.swing.JList();
+    jList1 = new javax.swing.JList();
     }*/
-    
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
-    
     ResourceChooser spriteres, extendres, maskres;
 
-    public void updateNavigator(){
+    public void updateNavigator() {
         System.out.println("Update navigator");
         Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
-        if(c instanceof JPanel){
+        if (c instanceof JPanel) {
             System.out.println("Update c JPanel");
             ((JPanel) c).updateUI();
-        }
-        else if(c instanceof JScrollPane){
+        } else if (c instanceof JScrollPane) {
             ((JScrollPane) c).updateUI();
             Component d = ((JScrollPane) c).getViewport().getView();
-            if(d instanceof JPanel){
+            if (d instanceof JPanel) {
                 System.out.println("Update d JPanel");
                 ((JPanel) d).updateUI();
-            }
-            else if(d instanceof JEditorPane){
+            } else if (d instanceof JEditorPane) {
                 System.out.println("Update d editor pane");
                 ((JEditorPane) d).updateUI();
-            }
-            else {
+            } else {
                 d.repaint();
             }
-        }
-        else
-            if(c!=null) {
+        } else if (c != null) {
             c.repaint();
         }
     }
-    
+
     public void spriteChanged() {
+        System.out.println("Sprite changed to " + spriteres.getFile());
         actor.sprite = spriteres.getFile();
+        changed = true;
         updateNavigator();
     }
 
     //You may think this is a stupid function, but I needed it.
     //(stupid methods for stupid people)
     /**
-     * If you neeed to access ActorEditor's 'this' from an inner class
+     * If you need to access ActorEditor's 'this' from an inner class
      * (anonymous or not), just use ActorEditor.this.
      * @return ActorEditor.this
      * @deprecated
      */
-    protected ActorEditor getThis(){
+    protected ActorEditor getThis() {
         return this;
     }
-    
+
     /** Creates new form ActorEditor2 */
     public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
@@ -100,17 +96,31 @@ public class ActorEditor extends TabPanel {
         elist = new EventListModel(file, actor);
         initComponents();
         //PopupListener a = new PopupListener(jList2, new ActionPopupMenu(this));
-        jList2.addMouseListener(new MouseListener(){
-            public void mousePressed(java.awt.event.MouseEvent evt){}
-            public void mouseReleased(java.awt.event.MouseEvent evt){
-                if(evt.isPopupTrigger()){
-                ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
-                p.show(jList2, evt.getX(), evt.getY());
+        jList2.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                if (evt.isPopupTrigger()) {
+                    ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
+                    p.show(jList2, evt.getX(), evt.getY());
                 }
             }
-            public void mouseClicked(java.awt.event.MouseEvent evt){}
-            public void mouseExited(java.awt.event.MouseEvent evt){}
-            public void mouseEntered(java.awt.event.MouseEvent evt){}
+
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            }
         });
         jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
         //a.update = true;
@@ -121,18 +131,24 @@ public class ActorEditor extends TabPanel {
             jTextField1.setText(file.name);
         } catch (NullPointerException e) {
         }
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent evt){
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void insertUpdate(DocumentEvent evt){
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void removeUpdate(DocumentEvent evt){
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
                 updateName();
             }
         });
-        
+
         jList1.setCellRenderer(new EventCellRenderer());
         jList3.setModel(new DefaultComboBoxModel(ActionContainer.actionCats.get(0).patterns));
         jList3.setCellRenderer(new ActionListCellRenderer());
@@ -146,11 +162,11 @@ public class ActorEditor extends TabPanel {
             spriteres.setFile(actor.sprite);
         }
         spriteres.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        spriteChanged();
-                    }
-                });
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                spriteChanged();
+            }
+        });
         jPanel11.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanel11.add(extendres = new ResourceChooser(project, "actor"));
         jPanel12.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -168,9 +184,9 @@ public class ActorEditor extends TabPanel {
     public boolean wasModified() {
         return changed;
     }
-    
+
     @Override
-    public boolean canSave(){
+    public boolean canSave() {
         return changed;
     }
 
@@ -193,7 +209,7 @@ public class ActorEditor extends TabPanel {
 
         return true;
     }
-    
+
     public void updateName() {
         file.name = jTextField1.getText();
         //actor.name = file.name;
@@ -232,28 +248,28 @@ public class ActorEditor extends TabPanel {
     }
 
     /*public static void addAction(JPanel p, String name) {
-        JLabel b = new JLabel(name);
-
-        b.setHorizontalAlignment(JLabel.LEFT);
-        b.setVerticalAlignment(JLabel.TOP);
-        b.setPreferredSize(new Dimension(32, 32));
-        p.add(b);
+    JLabel b = new JLabel(name);
+    
+    b.setHorizontalAlignment(JLabel.LEFT);
+    b.setVerticalAlignment(JLabel.TOP);
+    b.setPreferredSize(new Dimension(32, 32));
+    p.add(b);
     }*/
 
     /*public static void addActionCat(JPanel p, String name)
     {
-        jComboBox1.addItem(name);
-        actionCats.add(new actionCat(name,p));
+    jComboBox1.addItem(name);
+    actionCats.add(new actionCat(name,p));
     }*/
     /*static class actionCat {
-
-        String name;
-        JPanel j;
-
-        actionCat(String name, JPanel j) {
-            this.name = name;
-            this.j = j;
-        }
+    
+    String name;
+    JPanel j;
+    
+    actionCat(String name, JPanel j) {
+    this.name = name;
+    this.j = j;
+    }
     }*/
 //</editor-fold>
     /** This method is called from within the constructor to
@@ -626,8 +642,8 @@ public class ActorEditor extends TabPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public void event(int type,String name) {
-        System.out.println("Actor editor:event:type"+type);
+    public void event(int type, String name) {
+        System.out.println("Actor editor:event:type" + type);
         if (type == EventSelectListener.CREATE) {
             elist.add(new CreateEvent());
         } else if (type == EventSelectListener.DESTROY) {
@@ -642,17 +658,14 @@ public class ActorEditor extends TabPanel {
             elist.add(new EndStepEvent());
         } else if (type >= EventSelectListener.MOUSELEFTCLICKED && type <= EventSelectListener.MOUSEOUT) {
             elist.add(new org.gcreator.events.MouseEvent(type));
-        } else if (type >= EventSelectListener.ALARM && type <= EventSelectListener.ALARM + 11){
-            elist.add(new org.gcreator.events.AlarmEvent(type-EventSelectListener.ALARM));
-        }
-        else if (type >= EventSelectListener.Keyboard && type <= EventSelectListener.Keyboard + 999){
-            elist.add(new org.gcreator.events.KeyboardEvent(type-EventSelectListener.Keyboard,name));
-        }
-        else if (type >= EventSelectListener.Keypress && type <= EventSelectListener.Keypress + 999){
-            elist.add(new org.gcreator.events.KeyPress(type-EventSelectListener.Keypress,name));
-        }
-        else if (type >= EventSelectListener.Keyrelease && type <= EventSelectListener.Keyrelease + 999){
-            elist.add(new org.gcreator.events.KeyReleased(type-EventSelectListener.Keyrelease,name));
+        } else if (type >= EventSelectListener.ALARM && type <= EventSelectListener.ALARM + 11) {
+            elist.add(new org.gcreator.events.AlarmEvent(type - EventSelectListener.ALARM));
+        } else if (type >= EventSelectListener.Keyboard && type <= EventSelectListener.Keyboard + 999) {
+            elist.add(new org.gcreator.events.KeyboardEvent(type - EventSelectListener.Keyboard, name));
+        } else if (type >= EventSelectListener.Keypress && type <= EventSelectListener.Keypress + 999) {
+            elist.add(new org.gcreator.events.KeyPress(type - EventSelectListener.Keypress, name));
+        } else if (type >= EventSelectListener.Keyrelease && type <= EventSelectListener.Keyrelease + 999) {
+            elist.add(new org.gcreator.events.KeyReleased(type - EventSelectListener.Keyrelease, name));
         }
         jScrollPane1.updateUI();
         jList1.updateUI();
@@ -664,7 +677,7 @@ public class ActorEditor extends TabPanel {
         if (jList1.getSelectedValue() == null) {
             return;
         }
-        Vector<org.gcreator.actions.Action> actions = 
+        Vector<org.gcreator.actions.Action> actions =
                 ((org.gcreator.events.Event) jList1.getSelectedValue()).actions;
         for (int i = 0; i < actions.size(); i++) {
             actmodel.addElement(actions.get(i));
@@ -674,17 +687,17 @@ public class ActorEditor extends TabPanel {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         EventSelectListener listener = new EventSelectListener() {
 
-                    public void eventSelected(int type,String name) {
-                        event(type,name);
-                        changed = true;
-                    }
-                    
-                    public void eventSelected(int type) {
-                        event(type,"");
-                        changed = true;
-                    }
-                };
-        EventSelect selector = new EventSelect(this,gcreator.window, true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()
+            public void eventSelected(int type, String name) {
+                event(type, name);
+                changed = true;
+            }
+
+            public void eventSelected(int type) {
+                event(type, "");
+                changed = true;
+            }
+        };
+        EventSelect selector = new EventSelect(this, gcreator.window, true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()
     }//GEN-LAST:event_jButton5MouseClicked
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -695,7 +708,7 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jCheckBox1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jCheckBox1StateChanged
-    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1StateChanged
 
     private void jCheckBox1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox1MouseClicked
@@ -719,39 +732,38 @@ public class ActorEditor extends TabPanel {
         jPanel7.removeAll();
         updateUI();
     }//GEN-LAST:event_jList1ValueChanged
-
     org.gcreator.actions.Action a = null;
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(a!=null)
+        if (a != null) {
             a.pattern.save(a.getPanel());
+        }
         jPanel7.removeAll();
-        
+
         //add button            
         if (jList1.getSelectedValue() == null) {
-                return;
-            }
-            if (jList3.getSelectedValue() == null) {
-                return;
-            }
-            ActionPattern ap = (org.gcreator.actions.ActionPattern)
-                    ((org.gcreator.actions.ActionPattern) jList3.getSelectedValue()).clone();
-            
-            org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
-            ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
-            changed = true;
-            
-            updateActionList();
+            return;
+        }
+        if (jList3.getSelectedValue() == null) {
+            return;
+        }
+        ActionPattern ap = (org.gcreator.actions.ActionPattern) ((org.gcreator.actions.ActionPattern) jList3.getSelectedValue()).clone();
+
+        org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
+        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(a);
+        changed = true;
+
+        updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
         jPanel7.removeAll();
         a = (org.gcreator.actions.Action) jList2.getSelectedValue();
-        
+
         if (a == null) {
             return;
         }
-        
+
         jPanel7.add(a.getPanel(), BorderLayout.CENTER);
         updateUI();
     }//GEN-LAST:event_jList2ValueChanged
@@ -777,26 +789,28 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jList2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MouseDragged
-        int to  = jList2.locationToIndex(evt.getPoint());
-     if (to == from) return;
-       org.gcreator.actions.Action remove = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.remove(from);
-      ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to,remove);
-      from = to;
-      updateActionList();
+        int to = jList2.locationToIndex(evt.getPoint());
+        if (to == from) {
+            return;
+        }
+        org.gcreator.actions.Action remove = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.remove(from);
+        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to, remove);
+        from = to;
+        updateActionList();
     }//GEN-LAST:event_jList2MouseDragged
 
     private void jList2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList2MousePressed
         from = jList2.locationToIndex(evt.getPoint());
-        //jList2.updateUI();
+    //jList2.updateUI();
     }//GEN-LAST:event_jList2MousePressed
 
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-   /*      int to  = jList1.locationToIndex(evt.getPoint());
-     if (to == from) return;
-       org.gcreator.events.Event remove = (org.gcreator.events.Event) this.elist.getEvents().remove(from);
-      (this.elist.getEvents()).add(to,remove);
-      from = to;
-     */ 
+        /*      int to  = jList1.locationToIndex(evt.getPoint());
+        if (to == from) return;
+        org.gcreator.events.Event remove = (org.gcreator.events.Event) this.elist.getEvents().remove(from);
+        (this.elist.getEvents()).add(to,remove);
+        from = to;
+         */
     }//GEN-LAST:event_jList1MouseDragged
 
     private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
@@ -813,7 +827,6 @@ public class ActorEditor extends TabPanel {
         changed = true;
         updateNavigator();
     }//GEN-LAST:event_jSpinner1StateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -852,38 +865,38 @@ public class ActorEditor extends TabPanel {
     /*class Value
     {
     //value is the event name
-        public String value,img;
-        public ImageIcon image;
-        public DefaultListModel actions = new DefaultListModel();
-        public Value(String value, String img,DefaultListModel actions)
-        {
-            this.img = img;
-            this.image = new ImageIcon(img);
-            this.value = value;
-            
-        }
-        
+    public String value,img;
+    public ImageIcon image;
+    public DefaultListModel actions = new DefaultListModel();
+    public Value(String value, String img,DefaultListModel actions)
+    {
+    this.img = img;
+    this.image = new ImageIcon(img);
+    this.value = value;
+    
+    }
+    
     }*/
     /*class SimpleCellRenderer extends JLabel implements ListCellRenderer
     {
-        public SimpleCellRenderer()
-        {
-            setOpaque(true);
-        }
-        
-        public Component getListCellRendererComponent(JList list, Object value, 
-                        int index, boolean isSelected, boolean cellHasFocus)
-        {
-            Value val = (Value)value;
-            setText(val.value);
-            setIcon(val.image);
-            
-            setBackground(isSelected ? Color.black : (index & 1) == 0 ? Color.white : Color.LIGHT_GRAY);
-            setForeground(isSelected ? Color.white : Color.black);
-            return this;
-        }
-        
-        
+    public SimpleCellRenderer()
+    {
+    setOpaque(true);
+    }
+    
+    public Component getListCellRendererComponent(JList list, Object value, 
+    int index, boolean isSelected, boolean cellHasFocus)
+    {
+    Value val = (Value)value;
+    setText(val.value);
+    setIcon(val.image);
+    
+    setBackground(isSelected ? Color.black : (index & 1) == 0 ? Color.white : Color.LIGHT_GRAY);
+    setForeground(isSelected ? Color.white : Color.black);
+    return this;
+    }
+    
+    
     }*/
 }
     

@@ -119,14 +119,14 @@ import org.gcreator.fileclass.*;
                     JOptionPane.WARNING_MESSAGE);
             if(result==JOptionPane.YES_OPTION){
                 file.tabPanel.Save();
-                setFile(file, false, false);
+                setFile(file, trigger, false);
             }
             else if(result==JOptionPane.NO_OPTION){
-                setFile(file, false, false);
+                setFile(file, trigger, false);
             }
         }
         else{
-            setFile(file, false, false);
+            setFile(file, trigger, false);
         }
     }
     
@@ -135,6 +135,7 @@ import org.gcreator.fileclass.*;
         this.repaint();
         if(trigger)
             for(ActionListener al : a){
+                System.out.println("Action Performed");
                 al.actionPerformed(null);
             }
     }
