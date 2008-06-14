@@ -51,7 +51,9 @@ public class DialogPlus extends JDialog{
     }
     
     public void fadeOut(final long delay){
+        System.out.println(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported());
         Thread t = new Thread(){
+            @Override
             public void run(){
                 try{
                 if(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported()){

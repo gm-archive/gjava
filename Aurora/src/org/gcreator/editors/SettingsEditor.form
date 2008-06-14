@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,-120,0,0,1,-16"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,60,0,0,1,-44"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -59,7 +59,7 @@
                           <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="316" max="32767" attributes="0"/>
+                      <EmptySpace pref="261" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -78,7 +78,7 @@
                       <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="231" max="32767" attributes="0"/>
+                      <EmptySpace pref="155" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -209,7 +209,7 @@
                           <Component id="jPanel5" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="187" max="32767" attributes="0"/>
+                      <EmptySpace pref="108" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -250,7 +250,7 @@
                               <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioButton3" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="80" max="32767" attributes="0"/>
+                          <EmptySpace pref="13" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -649,7 +649,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" pref="319" max="32767" attributes="0"/>
+                              <Component id="jTextField2" pref="264" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -668,7 +668,7 @@
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="176" max="32767" attributes="0"/>
+                      <EmptySpace pref="94" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -688,10 +688,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jCheckBox9" alignment="0" pref="377" max="32767" attributes="0"/>
-                      <Component id="jCheckBox8" alignment="0" pref="377" max="32767" attributes="0"/>
+                      <Component id="jCheckBox9" alignment="0" pref="318" max="32767" attributes="0"/>
+                      <Component id="jCheckBox8" alignment="0" pref="318" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jCheckBox10" pref="371" max="32767" attributes="0"/>
+                          <Component id="jCheckBox10" pref="312" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -756,9 +756,9 @@
                       <Group type="102" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" pref="307" max="32767" attributes="0"/>
+                          <Component id="jTextField1" pref="248" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jCheckBox11" alignment="0" pref="377" max="32767" attributes="0"/>
+                      <Component id="jCheckBox11" alignment="0" pref="318" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -828,7 +828,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" pref="389" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" pref="334" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="jPanel10" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -859,7 +859,7 @@
                           <Component id="jPanel10" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="336" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="260" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -889,7 +889,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="139" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="84" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -930,6 +930,40 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
               </Events>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel11">
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+              <JTabbedPaneConstraints tabName="G-Script Extensions">
+                <Property name="tabTitle" type="java.lang.String" value="G-Script Extensions"/>
+              </JTabbedPaneConstraints>
+            </Constraint>
+          </Constraints>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
+          <SubComponents>
+            <Component class="org.gcreator.components.PropertyManager" name="propertyManager1">
+              <Properties>
+                <Property name="descriptionVisible" type="boolean" value="true"/>
+                <Property name="toolBarVisible" type="boolean" value="false"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="Center"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;b&gt;WARNING&lt;/b&gt;:&lt;br&gt;&#xa;Please note that some extensions may not be available in some compilers.&lt;br&gt;&#xa;In addition, some compilers may have some extensions permanenty activated.&lt;br&gt;&#xa;Contact your compiler&apos;s author for further details."/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
+                  <BorderConstraints direction="First"/>
+                </Constraint>
+              </Constraints>
             </Component>
           </SubComponents>
         </Container>

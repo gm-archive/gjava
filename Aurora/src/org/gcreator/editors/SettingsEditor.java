@@ -6,6 +6,7 @@
 
 package org.gcreator.editors;
 
+import com.l2fprod.common.propertysheet.DefaultProperty;
 import java.awt.*;
 import java.util.*;
 import javax.swing.border.*;
@@ -25,7 +26,7 @@ public class SettingsEditor extends TabPanel {
     private static final long serialVersionUID = 1;
     /** Creates new form SettingsEditor */
     SettingsValues value;
-    TabValues Graphics, Resolution, Other, SceneOrder;
+    TabValues Graphics, Resolution, Other, SceneOrder, Extensions;
     ResourceChooser scenes;
     int from;
     private static Vector<SettingsManager> managers;// = new Vector<SettingsManager>();
@@ -181,6 +182,25 @@ public class SettingsEditor extends TabPanel {
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer());
+        Extensions = value.getValue("Extensions");
+        if(Extensions==null){
+            value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
+            Extensions.setVariable("Regular Expressions", Boolean.FALSE);
+            Extensions.setVariable("Game Maker Compatibility", Boolean.TRUE);
+        }
+        for(String key : Extensions.getKeys()){
+            DefaultProperty p = new DefaultProperty();
+            p.setName(key);
+            p.setValue(Extensions.getValue(key));
+            p.setEditable(true);
+            p.setType(Boolean.TYPE);
+            p.setDisplayName(key);
+            if(key.equals("Regular Expressions"))
+                p.setShortDescription("Allows regular expression functions.");
+            else if(key.equals("Game Maker Compatibility"))
+                p.setShortDescription("Functions such as room_goto_next for those migrating from Game Maker.");
+            propertyManager1.addProperty(p);
+        }
     }
     
     /** This method is called from within the constructor to
@@ -242,6 +262,9 @@ public class SettingsEditor extends TabPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        propertyManager1 = new org.gcreator.components.PropertyManager();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -292,7 +315,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jCheckBox6)
                     .add(jCheckBox1)
                     .add(jCheckBox2))
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(261, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -309,7 +332,7 @@ public class SettingsEditor extends TabPanel {
                 .add(jCheckBox1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(jCheckBox2)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(64), jPanel1);
@@ -360,7 +383,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jRadioButton1)
                     .add(jRadioButton2)
                     .add(jRadioButton3))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -579,7 +602,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jPanel4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(71), jPanel2);
@@ -607,10 +630,10 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .add(jCheckBox9, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+            .add(jCheckBox8, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
             .add(jPanel7Layout.createSequentialGroup()
-                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .add(jCheckBox10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -640,8 +663,8 @@ public class SettingsEditor extends TabPanel {
             .add(jPanel8Layout.createSequentialGroup()
                 .add(jLabel1)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+                .add(jTextField1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE))
+            .add(jCheckBox11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -670,7 +693,7 @@ public class SettingsEditor extends TabPanel {
                     .add(jPanel6Layout.createSequentialGroup()
                         .add(jLabel2)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)))
+                        .add(jTextField2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -684,7 +707,7 @@ public class SettingsEditor extends TabPanel {
                 .add(jPanel6Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
                     .add(jTextField2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
@@ -706,7 +729,7 @@ public class SettingsEditor extends TabPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 101, Short.MAX_VALUE)
+            .add(0, 84, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -748,7 +771,7 @@ public class SettingsEditor extends TabPanel {
             .add(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel9Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel9Layout.createSequentialGroup()
                         .add(jPanel10, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -773,11 +796,22 @@ public class SettingsEditor extends TabPanel {
                         .add(jButton2))
                     .add(jPanel10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Scene Order", jPanel9);
+
+        jPanel11.setLayout(new java.awt.BorderLayout());
+
+        propertyManager1.setDescriptionVisible(true);
+        propertyManager1.setToolBarVisible(false);
+        jPanel11.add(propertyManager1, java.awt.BorderLayout.CENTER);
+
+        jLabel3.setText("<html><b>WARNING</b>:<br>\nPlease note that some extensions may not be available in some compilers.<br>\nIn addition, some compilers may have some extensions permanenty activated.<br>\nContact your compiler's author for further details.");
+        jPanel11.add(jLabel3, java.awt.BorderLayout.PAGE_START);
+
+        jTabbedPane1.addTab("G-Script Extensions", jPanel11);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -1005,9 +1039,11 @@ public class SettingsEditor extends TabPanel {
     private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1036,6 +1072,7 @@ public class SettingsEditor extends TabPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private org.gcreator.components.PropertyManager propertyManager1;
     // End of variables declaration//GEN-END:variables
     
 }

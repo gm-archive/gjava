@@ -53,6 +53,7 @@ public class FramePlus extends JFrame{
     
     public void fadeOut(final long delay){
         Thread t = new Thread(){
+            @Override
             public void run(){
                 if(com.sun.jna.examples.WindowUtils.isWindowAlphaSupported()){
                     while(alpha>=0.01){
