@@ -44,6 +44,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         this.addMouseListener(new PopupListener(this, popup));
         this.addMouseMotionListener(this);
         unknown = new ImageIcon(getClass().getResource("/org/gcreator/resources/Unknown.png"));
+        setDoubleBuffered(true);
     }
     
     public void mouseExited(MouseEvent evt){}
@@ -292,6 +293,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         Enumeration e;
         int dep = getMaximumDepth();
         int mindep = getMinimumDepth();
+        Rectangle r = getVisibleRect();
         while(dep>=mindep){
             e = scn.actors.elements();//<ActorInScene>
             while(e.hasMoreElements()){
@@ -311,22 +313,27 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     if (sf != null && sf.value != null) {
                         f = (org.gcreator.fileclass.res.Sprite) sf.value;
                     }
+                    else
+                        continue; //Don't waste time with spriteless images.
                     
-                    if (f != null && f.getImageAt(0).image != null) {
+                    
+                    if (f.getImageAt(0).image != null) {
                         ImageIcon h = f.getImageAt(0).image;
+                        int x = (int) ((ascn.x - f.originX) / root.getZoom());
+                        int y = (int) ((ascn.y - f.originY) / root.getZoom());
+                        int width = (int) (h.getIconWidth() / root.getZoom());
+                        int height = (int) (h.getIconHeight() / root.getZoom());
+                        if(x>r.getX()+r.getWidth()||y>r.getY()+r.getHeight())
+                            continue; //Don't bother drawing. It won't appear.
+                        if(x+width<r.getX()||y+height<r.getY())
+                            continue; //Don't bother drawing. It won't appear.
                         g.drawImage(
-                                h.getImage(),
-                                (int) ((ascn.x - f.originX) / root.getZoom()),
-                                (int) ((ascn.y - f.originY) / root.getZoom()),
-                                (int) (h.getIconWidth() / root.getZoom()),
-                                (int) (h.getIconHeight() / root.getZoom()),
+                                h.getImage(), x, y,
+                                width, height,
                                 h.getImageObserver()
                         );
                         g.setColor(Color.BLACK);
-                        g.drawRect((int) ((ascn.x - f.originX) / root.getZoom()),
-                                (int) ((ascn.y - f.originY) / root.getZoom()),
-                                (int) (h.getIconWidth() / root.getZoom()),
-                                (int) (h.getIconHeight() / root.getZoom()));
+                        g.drawRect(x, y, width, height);
                     }
                     else {
                         g.drawImage(
@@ -352,6 +359,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                         try{
                         ImageIcon h = ascn.getTilesetImage();
                         if(h != null) {
+                            if(ascn.x>r.getX()+r.getWidth()||ascn.y>r.getY()+r.getHeight())
+                                continue; //Don't bother drawing. It won't show up anyway.
+                            if(ascn.x+ascn.width<r.getX()||ascn.y+ascn.height<r.getY())
+                                continue; //Don't bother drawing. It won't show up anyway.
                              g.drawImage(h.getImage().
                                  getScaledInstance((int)(ascn.width/root.getZoom()), 
                                  (int)(ascn.height/root.getZoom()), Image.SCALE_FAST),
