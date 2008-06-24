@@ -85,7 +85,7 @@ public class SceneEditor extends TabPanel {
      */
     public void eraseActorsAt(Rectangle r){
         @SuppressWarnings("unchecked")
-        Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
+        Enumeration<ActorInScene> e = scene.actors.elements();
         while(e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
             int aisx, aisy, aisw, aish;
@@ -101,7 +101,33 @@ public class SceneEditor extends TabPanel {
                 if (aisx + aisw >= r.x) {
                     if (aisy <= r.y + r.height) {
                         if (aisy + aish >= r.y) {
-                            ((Scene) file.value).actors.remove(ais);
+                            scene.actors.remove(ais);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    public void eraseTilesAt(TileLayer t, Rectangle r){
+        @SuppressWarnings("unchecked")
+        Enumeration<Tile> e = t.tiles.elements();
+        while(e.hasMoreElements()) {
+            Tile ais = e.nextElement();
+            int aisx, aisy, aisw, aish;
+            aisx = ais.x;
+            aisy = ais.y;
+            try {
+                aisw = ais.width;
+                aish = ais.height;
+            } catch (NullPointerException exc) {
+                aisw = aish = 8;
+            }
+            if (aisx < r.x+r.width) {
+                if (aisx + aisw > r.x) {
+                    if (aisy < r.y + r.height) {
+                        if (aisy + aish > r.y) {
+                            t.remove(ais);
                         }
                     }
                 }
@@ -441,6 +467,7 @@ public class SceneEditor extends TabPanel {
         jButton8 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jCheckBox5 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jPanel16 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -509,7 +536,6 @@ public class SceneEditor extends TabPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jLabel18 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jCheckBox5 = new javax.swing.JCheckBox();
         jButton7 = new javax.swing.JButton();
         saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
 
@@ -708,6 +734,14 @@ public class SceneEditor extends TabPanel {
             }
         });
         jToolBar1.add(jButton12);
+
+        jCheckBox5.setText("Delete Instance Under");
+        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jCheckBox5);
 
         jPanel3.add(jToolBar1, java.awt.BorderLayout.PAGE_START);
 
@@ -1302,13 +1336,6 @@ public class SceneEditor extends TabPanel {
             .add(0, 24, Short.MAX_VALUE)
         );
 
-        jCheckBox5.setText("Delete Instance Under");
-        jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox5ActionPerformed(evt);
-            }
-        });
-
         jButton7.setText("<HTML>Delete all instances<bR>outside scene");
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -1318,13 +1345,8 @@ public class SceneEditor extends TabPanel {
             .add(jScrollPane4, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
             .add(jPanel11, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .add(jPanel2Layout.createSequentialGroup()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jButton7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jPanel2Layout.createSequentialGroup()
-                        .add(10, 10, 10)
-                        .add(jCheckBox5, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap()
+                .add(jButton7, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -1333,9 +1355,7 @@ public class SceneEditor extends TabPanel {
                 .add(jScrollPane4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 243, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jCheckBox5)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(27, 27, 27)
                 .add(jButton7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 41, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(42, Short.MAX_VALUE))
         );
@@ -1761,7 +1781,7 @@ public class SceneEditor extends TabPanel {
         tile.tilex = tilechooser.getTileX();
         tile.tiley = tilechooser.getTileY();
         tile.file = curtileset.getFile();
-        tile.file = curtileset.getFile();
+        //tile.layer = 
         return tile;
     }
     

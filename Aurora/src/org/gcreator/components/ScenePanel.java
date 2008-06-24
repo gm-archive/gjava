@@ -111,6 +111,9 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     public void addTileAt(int x, int y){
         Tile tile = root.makeNewTile(x, y);
         if (tile != null) {
+            if(root.eraseActorsBelow()){
+                root.eraseTilesAt(root.getTileLayer(), new Rectangle(x, y, tile.width, tile.height));
+            }
             root.getTileLayer().add(tile);
             draggingTile = true;
             tileDragging = tile;

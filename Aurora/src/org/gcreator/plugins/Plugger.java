@@ -157,7 +157,7 @@ public class Plugger {
                 }
             }
         }
-        return jars.toArray(new Jar[]{});
+        return jars.toArray(new Jar[jars.size()]);
     }
     
 }

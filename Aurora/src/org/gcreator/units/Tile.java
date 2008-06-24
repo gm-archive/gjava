@@ -19,6 +19,7 @@ public class Tile {
     public GFile file = null;
     public int width = 20;
     public int height = 20;
+    public int layer = 0;
     public int tilex;
     public int tiley;
     public int x = 0;
