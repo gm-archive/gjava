@@ -91,6 +91,7 @@ public class TilesetPreviewer extends JComponent{
     }
     
     public void paint(Graphics g){
+        super.paint(g);
         ImageIcon img = getSourceImage();
         g.clearRect(0, 0, getPreferredWidth(), getPreferredHeight());
         if(img==null)
@@ -114,11 +115,12 @@ public class TilesetPreviewer extends JComponent{
         //    di += editor.value.tilew;
         //}
         g.drawImage(img.getImage(),0,0,((org.gcreator.fileclass.res.GImage)(editor.value.image.value)).transparentColor,img.getImageObserver());
-        g.setColor(Color.WHITE);
-        g.setXORMode(Color.BLACK);
+        //g.setColor(Color.WHITE);
+        //g.setXORMode(Color.BLACK);
+        g.setColor(Color.BLUE);
         
-        for (int i = editor.value.startx; i < imgw-1; i += w+bw+1)
-            for (int j = editor.value.starty; j < imgh-1; j += h+bh+1) {
+        for (int i = editor.value.startx; i < imgw-1; i += w+bw)
+            for (int j = editor.value.starty; j < imgh-1; j += h+bh) {
                 g.drawRect(i, j, w, h);
             }
     }
