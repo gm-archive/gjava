@@ -9,7 +9,7 @@ package org.gcreator.fileclass.res;
  *
  * @author Luís
  */
-public class Snippet implements Resource{
+/*public class Snippet implements Resource{
     
     @Override
     public Object clone(){
@@ -18,3 +18,4 @@ public class Snippet implements Resource{
         return s;
     }
 }
+*/
