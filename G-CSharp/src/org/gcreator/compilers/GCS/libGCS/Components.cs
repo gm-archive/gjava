@@ -108,15 +108,87 @@ namespace org.gcreator.Components
         private SdlDotNet.Audio.Sound s;
 
         private SdlDotNet.Audio.Channel c = null;
+        private string path = "";
+        private static ArrayList list = new ArrayList();
+
+        public static void Stop(string s)
+        {
+            foreach(object o in list){
+                if (o is Sound)
+                {
+                    if (((Sound)o).path == s && ((Sound)o).IsPlaying())
+                        ((Sound)o).Stop();
+                }
+            }
+        }
+
+        public static void StopAll()
+        {
+            foreach (object o in list)
+            {
+                if (o is Sound)
+                {
+                    if (((Sound)o).IsPlaying())
+                        ((Sound)o).Stop();
+                }
+            }
+        }
+
+        public static bool IsPlaying(string s)
+        {
+            foreach (object o in list)
+            {
+                if (o is Sound)
+                {
+                    if (((Sound)o).path == s && ((Sound)o).IsPlaying())
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        public static int GetVolume(string s)
+        {
+            foreach (object o in list)
+            {
+                if (o is Sound)
+                {
+                    if (((Sound)o).path == s && ((Sound)o).IsPlaying())
+                        return ((Sound)o).GetVolume();
+                }
+            }
+            return 0;
+        }
+
+        public static void SetVolume(string s, int volume)
+        {
+            foreach (object o in list)
+            {
+                if (o is Sound)
+                {
+                    if (((Sound)o).path == s && ((Sound)o).IsPlaying())
+                        ((Sound)o).SetVolume(volume);
+                }
+            }
+        }
 
         public Sound(string path)
         {
+            this.path = path;
             s = new SdlDotNet.Audio.Sound(path);
+            list.Add(this);
         }
 
         public void Play(bool loop)
         {
             c = s.Play(loop);
+        }
+
+        public bool IsPlaying()
+        {
+            if (c == null)
+                return false;
+            return c.IsPlaying();
         }
 
         public void Loop()
@@ -150,6 +222,11 @@ namespace org.gcreator.Components
         public void SetVolume(int vol)
         {
             s.Volume = vol;
+        }
+
+        public int GetVolume()
+        {
+            return s.Volume;
         }
 
         public void FadeIn(int milliseconds)

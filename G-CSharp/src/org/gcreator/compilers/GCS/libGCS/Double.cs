@@ -27,5 +27,10 @@ namespace org.gcreator.Types
         {
             return "" + i;
         }
+
+        public override Object div(Object o)
+        {
+            return new Double(i / o.getDouble());
+        }
     }
 }
