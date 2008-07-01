@@ -22,7 +22,7 @@ namespace org.gcreator.Components
 			this.startx = this.x;
 			this.starty = this.y;
 			this.self = this;
-		}		
+		}
 		
 		public Actor(int x, int y, int z)
 			: this(new Integer(x), new Integer(y), new Integer(z))

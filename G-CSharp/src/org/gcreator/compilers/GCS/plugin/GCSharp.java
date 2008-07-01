@@ -262,17 +262,45 @@ public class GCSharp extends PlatformCore {
                     t = "/" + t;
             }
             PluginHelper.println(t);
-            File f = new File(getClass().getClassLoader().getResource("/").toURI());
-            System.out.println("f.exists()="+f.exists());
-            for(File fi : f.listFiles())
-                System.out.println("ListFiles:" + fi.toURI().toString());
-            f1.mkdirs();
-            copyDirectory(new File(getClass().getResource("/").toURI()), new File(FileFolder));
+            
+            copyRequired("SDL.dll", FileFolder);
+            copyRequired("SDL_image.dll", FileFolder);
+            copyRequired("SDL_mixer.dll", FileFolder);
+            copyRequired("SdlDotNet.dll", FileFolder);
+            copyRequired("Tao.Sdl.dll", FileFolder);
+            copyRequired("gmcs.bat", FileFolder);
+            copyRequired("jpeg.dll", FileFolder);
+            copyRequired("libGCS.dll", FileFolder);
+            copyRequired("tiff.dll", FileFolder);
+            
         } catch (Exception ex) {
             System.out.println("" + ex.getLocalizedMessage());
         }
     }
 
+    public void copy(InputStream from, String to){
+        File f = new File(to);
+        try{
+            FileOutputStream fo = new FileOutputStream(f);
+            
+            int c = 0;
+            while((c=from.read())!=-1){
+                fo.write(c);
+            }
+            
+            fo.close();
+        }
+        catch(Exception e){
+            
+        }
+    }
+    
+    public void copyRequired(String file, String to){
+        copy(
+                getClass().getResourceAsStream(
+                "/org/gcreator/compilers/GCS/require/"+file), to + file);
+    }
+    
     public GCSharp() {
         VarsRegistry.setVariable("gcs.version", "draft");
         settings = new GCSOptions();

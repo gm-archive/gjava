@@ -7,6 +7,18 @@ namespace org.gcreator.Scripting
 {
     public partial class GCL
     {
+        public static Object draw_image(Object image, Object x, Object y)
+        {
+            int _x = (int)x.getDouble();
+            int _y = (int)y.getDouble();
+            Image i = (Image)image;
+
+            SDL.DrawToSurface(i, SDL.Game.game.cursurface,
+                new Rectangle(0, 0, i.texture.Width, i.texture.Height),
+                new Rectangle(_x, _y, i.texture.Width, i.texture.Height));
+            return new Object();
+        }
+
         public static Object draw_sprite(Object sprite, Object subimg, Object x, Object y)
         {
             Sprite s = sprite as Sprite;
