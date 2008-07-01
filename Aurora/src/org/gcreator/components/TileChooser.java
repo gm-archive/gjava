@@ -6,8 +6,7 @@
 package org.gcreator.components;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.editors.*;
 import org.gcreator.fileclass.res.*;
@@ -40,9 +39,11 @@ public final class TileChooser extends JComponent {
                 ty = yindex*ysz+t.starty+yindex;
                 repaint();
             }
+        });
+        addMouseMotionListener(new MouseAdapter(){
             
             @Override
-            public void mouseDragged(MouseEvent e) {//NOTE: this is never called Why? I don't know
+            public void mouseDragged(MouseEvent e) { //NOTE: This wasn't being called because it was in the wrong listener.
                 Tileset t = getSourceTileset();
                 if (t == null) {
                     return;

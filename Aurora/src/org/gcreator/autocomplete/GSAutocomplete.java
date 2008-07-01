@@ -353,6 +353,9 @@ public class GSAutocomplete extends AutocompleteFrame{
         applyFunction("clipboard_has_text", "");
         applyFunction("clipboard_get_text", "");
         applyFunction("clipboard_set_text", "text");
+        applyFunction("clipboard_has_image", "");
+        applyFunction("clipboard_get_image", "");
+        applyFunction("clipboard_set_image", "text");
         applyFunction("date_current_date", "");
         applyFunction("move_snap", "hsnap, vsnap");
         applyFunction("place_snapped", "hsnap, vsnap");

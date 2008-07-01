@@ -59,6 +59,10 @@ public abstract class Project extends Folder {
     public Folder getFolderFor(String key){
         return null;
     }
+    
+    public boolean allowDrag(){
+        return false;
+    }
      
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)

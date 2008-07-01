@@ -27,11 +27,8 @@ public class WorkspaceTree extends JTree {
     public WorkspaceTree(TreeNode root) {
         super(root);
         setScrollsOnExpand(true);
-        int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
-        if (ver >= 6) {
-            setDragEnabled(true);
-            setDropMode(DropMode.ON_OR_INSERT);
-        }
+        setDragEnabled(true);
+        setDropMode(DropMode.ON_OR_INSERT);
         getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         // Tree drag and drop support
 
@@ -73,6 +70,8 @@ public class WorkspaceTree extends JTree {
                 //if (dragNode == dropNode) return false;
                 //if (dragNode.isNodeDescendant(dropNode)) return false;
 
+                if(!dragNode.object.allowDrag())
+                    return false;
                 if (dropNode.object instanceof org.gcreator.fileclass.Group) {
                     if (dragNode.object instanceof GFile) {
                         if (((org.gcreator.fileclass.Group) dropNode.object).allowsFileType(((org.gcreator.fileclass.GFile) dragNode.object).type)) {

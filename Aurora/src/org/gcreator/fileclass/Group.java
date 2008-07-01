@@ -26,7 +26,6 @@ public class Group extends Folder implements Serializable, Transferable {
     private static DataFlavor[] flavors = {GROUP_FLAVOR};
     
     public Group(){super("");}
-
     
     public Group(Folder root, String name){
         super(name);
@@ -52,7 +51,6 @@ public class Group extends Folder implements Serializable, Transferable {
         add(group);
         return group;
     }
-    
      
     public String getObjectType(){
         return "Group";

@@ -19,6 +19,7 @@ import org.gcreator.components.*;
  */
 public class GObject implements Serializable {
     static final long serialVersionUID = 1L;
+    public boolean allowDrag = true;
     public String name;
     public ObjectNode node;
     
@@ -39,6 +40,9 @@ public class GObject implements Serializable {
     
     public boolean editable = true;
     
+    public boolean allowDrag(){
+        return allowDrag;
+    }
      
     @Override
     public GObject clone(){

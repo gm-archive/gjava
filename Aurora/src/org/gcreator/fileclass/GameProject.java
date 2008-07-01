@@ -248,6 +248,9 @@ public class GameProject extends Project{
         org.gcreator.fileclass.GFile a = new org.gcreator.fileclass.GFile(project, "$218", "settings", null);
         a.editable = false;
         a.value = new org.gcreator.fileclass.res.SettingsValues();
+        
+        for(GObject o : project.childNodes)
+            o.allowDrag = false;
         return project;
     }
     

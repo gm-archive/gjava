@@ -31,7 +31,6 @@ public class ActionGroup extends Group{
             return true;
         return false;
     }
-    
      
     public Group newGroup(String name){
         Group group = new ActionGroup(this, name);
