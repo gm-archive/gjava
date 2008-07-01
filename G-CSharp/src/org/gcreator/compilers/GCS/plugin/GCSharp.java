@@ -5,13 +5,13 @@ package org.gcreator.compilers.GCS.plugin;
 
 import org.gcreator.core.*;
 import org.gcreator.plugins.*;
-import org.gcreator.managers.*;
 import javax.swing.*;
 import java.awt.event.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 import java.io.*;
 import java.awt.image.*;
+import java.net.URL;
 import sun.awt.image.*;
 import javax.imageio.*;
 import org.gcreator.components.*;
@@ -244,7 +244,7 @@ public class GCSharp extends PlatformCore {
             }
             f1.mkdirs();
             
-            String t = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
+            String t = getClass().getProtectionDomain().getCodeSource().getLocation().getPath().toString();
             t = t.replaceAll("\\./", "");
             try{
             t = t.replaceAll("/+", File.separator);
@@ -262,9 +262,13 @@ public class GCSharp extends PlatformCore {
                     t = "/" + t;
             }
             PluginHelper.println(t);
-            copyDirectory(new File(t), new File(FileFolder));
+            File f = new File(getClass().getClassLoader().getResource("/").toURI());
+            System.out.println("f.exists()="+f.exists());
+            for(File fi : f.listFiles())
+                System.out.println("ListFiles:" + fi.toURI().toString());
             f1.mkdirs();
-        } catch (IOException ex) {
+            copyDirectory(new File(getClass().getResource("/").toURI()), new File(FileFolder));
+        } catch (Exception ex) {
             System.out.println("" + ex.getLocalizedMessage());
         }
     }

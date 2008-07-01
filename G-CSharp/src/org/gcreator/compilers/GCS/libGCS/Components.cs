@@ -103,15 +103,76 @@ namespace org.gcreator.Components
         }
     }
 
-    public class Sound
+    public class Sound : Object
     {
+        private SdlDotNet.Audio.Sound s;
+
+        private SdlDotNet.Audio.Channel c = null;
+
+        public Sound(string path)
+        {
+            s = new SdlDotNet.Audio.Sound(path);
+        }
+
+        public void Play(bool loop)
+        {
+            c = s.Play(loop);
+        }
+
+        public void Loop()
+        {
+            Play(true);
+        }
+
+        public void Pause()
+        {
+            if (c != null)
+                c.Pause();
+        }
+
+        public void Resume()
+        {
+            if (c != null)
+                c.Resume();
+        }
+
+        public void SetPanning(int left, int right)
+        {
+            if (c != null)
+                c.SetPanning(left, right);
+        }
+
+        public void Stop()
+        {
+            s.Stop();
+        }
+
+        public void SetVolume(int vol)
+        {
+            s.Volume = vol;
+        }
+
+        public void FadeIn(int milliseconds)
+        {
+            s.FadeIn(milliseconds);
+        }
+
+        public void FadeOut(int milliseconds)
+        {
+            s.Fadeout(milliseconds);
+        }
     }
 
-    public class Scene
+    public class Scene : Object
     {
 		private ArrayList actors = new ArrayList();
 		private int width = 640, height = 480;
         private System.Drawing.Color background = System.Drawing.Color.Black;
+
+        public Scene()
+        {
+            setVariable("fps", new Integer(30));
+        }
 
         public System.Drawing.Color getBackground()
         {

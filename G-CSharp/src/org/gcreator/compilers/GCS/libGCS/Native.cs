@@ -173,7 +173,7 @@ namespace org.gcreator.Native
                     Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
                 }
                 Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
-                SdlDotNet.Core.Events.Fps = 60;
+                SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
             }
 
             public int SceneGetCurrentIndex()
@@ -188,9 +188,9 @@ namespace org.gcreator.Native
 
             public void SceneGoto(int i)
             {
-                System.Console.WriteLine("Going to " + i);
                 currentScene.Destroy();
                 currentScene = scenes[i];
+                Events.Fps = currentScene.getVariable("fps").getInt();
                 currentScene.Create();
             }
 

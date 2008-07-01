@@ -1,0 +1,12 @@
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\jpeg.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\SDL.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\SDL_image.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\tiff.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\libGCS.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\libGCS.pdb
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\SdlDotNet.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\Tao.Sdl.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\obj\Release\libGCS.dll
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\obj\Release\libGCS.pdb
+C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\SDL_mixer.dll
