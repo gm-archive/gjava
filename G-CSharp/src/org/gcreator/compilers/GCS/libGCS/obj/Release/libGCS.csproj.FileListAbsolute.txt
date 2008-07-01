@@ -10,3 +10,13 @@ C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\l
 C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\obj\Release\libGCS.dll
 C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\obj\Release\libGCS.pdb
 C:\Documents and Settings\Luís\Os meus documentos\Visual Studio 2008\Projects\libGCS\libGCS\bin\Release\SDL_mixer.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\jpeg.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\SDL.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\SDL_image.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\SDL_mixer.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\tiff.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\libGCS.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\bin\Release\libGCS.pdb
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\obj\Release\libGCS.dll
+C:\Documents and Settings\Luís\Os meus documentos\NetBeansProjects\G-CSharp\src\org\gcreator\compilers\GCS\libGCS\obj\Release\libGCS.pdb

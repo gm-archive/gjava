@@ -21,6 +21,11 @@ namespace org.gcreator.Components
         {
             texture = new Surface(path);
         }
+
+        public System.Drawing.Bitmap GetBitmap()
+        {
+            return texture.Bitmap;
+        }
     }
 
     public class Sprite : Object
