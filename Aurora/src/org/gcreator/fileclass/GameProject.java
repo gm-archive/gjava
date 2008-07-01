@@ -243,7 +243,7 @@ public class GameProject extends Project{
         project.add(new ActorGroup(project, "$214"));
         project.add(new SceneGroup(project, "$215"));
         project.add(new EGMLGroup(project, "$216"));
-        project.add(new SnippetGroup(project, "Snippets"));
+        //project.add(new SnippetGroup(project, "Snippets"));
         project.add(new Group(project, "$217"));
         org.gcreator.fileclass.GFile a = new org.gcreator.fileclass.GFile(project, "$218", "settings", null);
         a.editable = false;

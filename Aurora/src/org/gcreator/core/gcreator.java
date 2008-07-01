@@ -346,7 +346,7 @@ public class gcreator {
 //        ToolbarManager.toolbuttons.add(addcls);
         ToolbarManager.toolbuttons.add(addgs);
         ToolbarManager.toolbuttons.add(addgr);
-        ToolbarManager.toolbuttons.add(addsnippet);
+        //ToolbarManager.toolbuttons.add(addsnippet);
         
         /*Toolbar tool = new Toolbar();
         tool.horizontal = true;

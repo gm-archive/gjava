@@ -280,8 +280,8 @@ public class MenuSupporter {
                     }
                 });
         menus[7].addSeparator();
-        menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
-        menus[8].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_macro.png")));
+        //menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
+        //menus[8].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_macro.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)] = MenuSupporter.MakeMenuItem(menus[7], 183, "PowerPack");
         items[MenuSupporter.GenerateMenuItemId(7, 4)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_powerpack.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)].addActionListener(new ActionListener() {
@@ -290,7 +290,7 @@ public class MenuSupporter {
                         onItemActionPerformed(7, 4, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(8, 0)] = MenuSupporter.MakeMenuItem(menus[8], 172, "Play macro");
+        /*items[MenuSupporter.GenerateMenuItemId(8, 0)] = MenuSupporter.MakeMenuItem(menus[8], 172, "Play macro");
         items[MenuSupporter.GenerateMenuItemId(8, 0)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_macro_play.png")));
         items[MenuSupporter.GenerateMenuItemId(8, 0)].addActionListener(new ActionListener() {
 
@@ -321,7 +321,7 @@ public class MenuSupporter {
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(8, 3, evt);
                     }
-                });
+                });*/
         menus[4] = MenuSupporter.MakeMenu(panel.menubar, 4, "Get info about Aurora.");
         items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/help_about.png")));
