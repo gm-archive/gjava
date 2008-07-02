@@ -53,7 +53,7 @@ public class CallFunction extends ActionPattern {
             Property p = plist[i];
             if (p.getName().equals("ret")) {
                 ret = (String) p.getValue();
-            } else if (p.getName().equals("ret")) {
+            } else if (p.getName().equals("fname")) {
                 fname = (String) p.getValue();
             }
         }
