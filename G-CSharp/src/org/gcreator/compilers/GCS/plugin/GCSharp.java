@@ -272,6 +272,8 @@ public class GCSharp extends PlatformCore {
             copyRequired("jpeg.dll", FileFolder);
             copyRequired("libGCS.dll", FileFolder);
             copyRequired("tiff.dll", FileFolder);
+            (new File(FileFolder+"fonts/")).mkdir();
+            copyRequired("CourierNew.ttf", FileFolder+"fonts/");
             
         } catch (Exception ex) {
             System.out.println("" + ex.getLocalizedMessage());
