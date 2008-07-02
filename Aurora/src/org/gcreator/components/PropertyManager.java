@@ -10,6 +10,8 @@ import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import org.gcreator.actions.components.ArgumentList;
+import org.gcreator.actions.components.ArgumentListEditor;
 import org.gcreator.actions.components.FailureBehavior;
 import org.gcreator.actions.components.FailureBehaviorEditor;
 
@@ -23,6 +25,7 @@ public class PropertyManager extends PropertySheetPanel{
     
     static{
         editors.put(FailureBehavior.class, new FailureBehaviorEditor());
+        editors.put(ArgumentList.class, new ArgumentListEditor());
     }
     
     public PropertyManager(){
