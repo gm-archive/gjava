@@ -52,7 +52,7 @@ namespace org.gcreator.Scripting
             return new Object();
         }
 
-        public static Object sound_is_playing(Object o)
+        public static Object sound_isplaying(Object o)
         {
             if (o is Sound)
                 return new Boolean(((Sound)o).IsPlaying());
