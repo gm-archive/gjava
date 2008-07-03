@@ -1,4 +1,5 @@
 ﻿using org.gcreator.Types;
+using org.gcreator.Native;
 
 namespace org.gcreator.Scripting
 {
@@ -12,7 +13,13 @@ namespace org.gcreator.Scripting
         public static Object window_set_caption(Object caption)
         {
             SdlDotNet.Graphics.Video.WindowCaption = caption.getString().ToString();
-            Native.SDL.Game.game.titled = true;
+            SDL.Game.game.titled = true;
+            return new Object();
+        }
+
+        public static Object window_set_size(Object width, Object height)
+        {
+            SdlDotNet.Graphics.Video.SetVideoMode(width.getInt(), height.getInt());
             return new Object();
         }
     }

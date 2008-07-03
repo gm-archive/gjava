@@ -31,5 +31,11 @@ namespace org.gcreator.Scripting
             SDL.Game.game.SceneGotoPrevious();
             return new Object();
         }
+
+        public static Object game_end()
+        {
+            SDL.Game.game.Quit(null, null);
+            return new Object();
+        }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="Scripting.FontsText.cs" />
     <Compile Include="Scripting.Math.cs" />
     <Compile Include="Scripting.Mouse.cs" />
+    <Compile Include="Scripting.Popup.cs" />
     <Compile Include="Scripting.Scenes.cs" />
     <Compile Include="Scripting.Sound.cs" />
     <Compile Include="Scripting.String.cs" />
