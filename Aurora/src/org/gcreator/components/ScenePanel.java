@@ -353,16 +353,19 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     continue;
                 }
                 if (l.depth == dep) {
+                    if(l.optimize!=null){
+                        g.drawImage(l.optimize.getImage(), 0, 0, l.optimize.getImageObserver());
+                    }
                     e = l.tiles.elements();
                     while(e.hasMoreElements()){
                         Tile ascn = (Tile) e.nextElement();
                         try{
                         ImageIcon h = ascn.getTilesetImage();
                         if(h != null) {
-                            if(ascn.x>r.getX()+r.getWidth()||ascn.y>r.getY()+r.getHeight())
-                                continue; //Don't bother drawing. It won't show up anyway.
-                            if(ascn.x+ascn.width<r.getX()||ascn.y+ascn.height<r.getY())
-                                continue; //Don't bother drawing. It won't show up anyway.
+                            //if(ascn.x>r.getX()+r.getWidth()||ascn.y>r.getY()+r.getHeight())
+                            //    continue; //Don't bother drawing. It won't show up anyway.
+                            //if(ascn.x+ascn.width<r.getX()||ascn.y+ascn.height<r.getY())
+                            //    continue; //Don't bother drawing. It won't show up anyway.
                              g.drawImage(h.getImage().
                                  getScaledInstance((int)(ascn.width/root.getZoom()), 
                                  (int)(ascn.height/root.getZoom()), Image.SCALE_FAST),

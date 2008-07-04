@@ -8,6 +8,7 @@ package org.gcreator.units;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -17,6 +18,7 @@ public class TileLayer implements Serializable {
     public Vector<Tile> tiles = new Vector<Tile>();
     public int depth;
     public boolean visible = true;
+    public transient ImageIcon optimize = null;
     public TileLayer(int depth) {
         this.depth = depth;
     }
@@ -26,6 +28,7 @@ public class TileLayer implements Serializable {
     }
     
     public boolean remove(Tile t) {
+        optimize = null;
         return tiles.remove(t);
     }
     
