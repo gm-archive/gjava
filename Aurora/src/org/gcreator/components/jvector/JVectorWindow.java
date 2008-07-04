@@ -38,7 +38,7 @@ import javax.swing.JPanel;
 import javax.swing.ListSelectionModel;
 import javax.swing.TransferHandler;
 import org.gcreator.components.jvector.shapes.JEllipse;
-import org.gcreator.editors.ImageEditor2;
+import org.gcreator.editors.ImageEditor;
 
 /**
  *
@@ -54,10 +54,10 @@ public class JVectorWindow extends javax.swing.JFrame {
     private static JVectorWindow currentInstance;
     public JVectorable creatingShape;
     private File saveFile = null;
-    private ImageEditor2 editor;
+    private ImageEditor editor;
     
     /** Creates new form JVectorWindow */
-    public JVectorWindow(ImageEditor2 imgeditor) {
+    public JVectorWindow(ImageEditor imgeditor) {
         currentInstance = this;
         this.editor = imgeditor;
         setEnabled(editor, false);

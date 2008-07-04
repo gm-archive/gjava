@@ -8,9 +8,6 @@ package org.gcreator.components;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.gcreator.editors.ImageEditor2;
-import org.gcreator.editors.SceneEditor;
-import org.gcreator.editors.SpriteEditor;
 
 /**
  *

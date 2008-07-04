@@ -844,7 +844,7 @@ public class GPanel extends JPanel {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("bmp") || file.type.equals("gif") || file.type.equals("jpg") || file.type.equals("jpeg") || file.type.equals("png") || file.type.equals("img")) {
-            TabPanel tp = new ImageEditor2(this.getCurrentProject(), file);
+            TabPanel tp = new ImageEditor(this.getCurrentProject(), file);
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")) {

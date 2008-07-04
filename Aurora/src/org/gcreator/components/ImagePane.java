@@ -21,7 +21,7 @@ import org.gcreator.editors.*;
  */
 public class ImagePane extends JPanel {
 
-    public ImageEditor2 editor;
+    public ImageEditor editor;
     private Cursor c = null;
     private Cursor c2 = null;
     private int px,  py;
@@ -34,7 +34,7 @@ public class ImagePane extends JPanel {
     private Image i = null;
 
     /** Creates new form ImagePane */
-    public ImagePane(ImageEditor2 _editor) {
+    public ImagePane(ImageEditor _editor) {
         editor = _editor;
         initComponents();
         addMouseListener(new MouseListener() {

@@ -1,144 +1,175 @@
 /*
- * ImageEditor.java
+ * ImageEditor2.java
  *
- * Created on 10 September 2007, 02:24
+ * Created on 8 de Maio de 2008, 20:46
  */
 package org.gcreator.editors;
 
-import org.gcreator.components.TabPanel;
-//import org.gcreator.components.ImageDisplayer;
-import javax.swing.*;
-
-import org.gcreator.components.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.image.*;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.*;
+import org.gcreator.components.*;
+import org.gcreator.components.jvector.JVectorWindow;
 import org.gcreator.fileclass.*;
-import org.gcreator.fileclass.res.GImage;
+import org.gcreator.fileclass.res.*;
 
 /**
  *
- * @author  Ali1
+ * @author  luis
  */
 public class ImageEditor extends TabPanel {
 
-    /** Creates new form ImageEditor */
-    //private ImageDisplayer displayer;
-    public GImage image;
-    public Color getTransparencyColor() {
-        return colorSelection1.getBackground();
-    }
-    
-    public boolean getTransparent() {
-        return jCheckBox1.isSelected();
-    }
-    
-    public ImageEditor(org.gcreator.fileclass.GFile file, Project project){
-        this.project = project;
-        this.file = file;
-        //displayer = new ImageDisplayer(this, file);
-        initComponents();
-        
-        this.project = project;
-        if (file.value == null) {
-            this.image = new GImage();
-            image.readXml(file.xml);
-            file.value = image;
-        } else if (file.value instanceof GImage) {
-            this.image = (GImage) file.value;
-        }
-        this.file = file;
-        
-        //jScrollPane1.setViewportView(displayer);
+    public GImage i;
+    public boolean changed;
+    public ImagePane pane;
+    public String type;
+    public static JFileChooser jFileChooser1 = null;
 
+    /** Creates new form ImageEditor2 */
+    public ImageEditor(Project p, GFile f) {
+        this.project = p;
+        this.file = f;
+        initComponents(); 
+        i = new GImage();
+        if (f.value == null || ((GImage) f.value).image == null) {
+            i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
+            changed = true;
+            i.transparentColor = Color.white;
+            i.transparent = true;
+            jCheckBox1.setSelected(true);
+        } else {
+            BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
+                    ((GImage) f.value).image.getIconHeight(),
+                    BufferedImage.TYPE_INT_ARGB);
+            //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
+            img.getGraphics().drawImage(((GImage) f.value).image.getImage(), 0, 0,
+                    ((GImage) f.value).image.getImageObserver());
+            i.readXml(file.xml);
+            i.image = new ImageIcon(img);
+            i.transparentColor = ((GImage) f.value).transparentColor;
+            jCheckBox1.setSelected(i.transparent);
+        }
+        colorSelection1.setBackground(i.transparentColor);
         jTextField1.setText(file.name);
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent evt){
-                updateName();
-            }
-            public void insertUpdate(DocumentEvent evt){
-                updateName();
-            }
-            public void removeUpdate(DocumentEvent evt){
-                updateName();
-            }
-        });
         
-        int w = 0;
-        int h = 0;
-        try {
-            ImageIcon img = ((GImage)file.value).image;
-            w = img.getIconWidth();
-            h = img.getIconHeight();
-        } catch (NullPointerException exc) {
-        }
-        widthLabel.setText("Width: " + w);
-        heightLabel.setText("Height: " + h);
-        load();
-    }
-    
-    public void load()
-    {
-        if (image == null)
-        {
-            this.image = new GImage();
-            return;
-        }
-        colorSelection1.setBackground(image.transparentColor);
-        jCheckBox1.setSelected(image.transparent);
+        pane = new ImagePane(this);
+        jScrollPane1.setViewportView(pane);
     }
 
-     
-    @Override
-    public boolean wasModified() {
-        return false;
-    }
-
-     
     @Override
     public boolean canSave() {
-        return false; //Not needed
+        return changed;
     }
 
-     
+    @Override
+    public boolean wasModified() {
+        return changed;
+    }
+
     @Override
     public boolean Save() {
+        changed = false;
+        file.value = i;
         return true;
     }
-    
-    public void updateName(){
-        file.name = jTextField1.getText();
-//        org.gcreator.core.Aurwindow.workspace.updateUI();
-    }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
      * always regenerated by the Form Editor.
      */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jScrollPane1 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jSpinner1 = new javax.swing.JSpinner();
+        jPanel2 = new javax.swing.JPanel();
         colorSelection1 = new org.gcreator.components.ColorSelection();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jPanel2 = new javax.swing.JPanel();
-        jSpinner1 = new javax.swing.JSpinner();
-        heightLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        widthLabel = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel3 = new javax.swing.JPanel();
+        colorSelection2 = new org.gcreator.components.ColorSelection();
+        jSpinner2 = new javax.swing.JSpinner();
+        jLabel2 = new javax.swing.JLabel();
+        jToggleButton1 = new javax.swing.JToggleButton();
+        jToggleButton2 = new javax.swing.JToggleButton();
+        jToggleButton3 = new javax.swing.JToggleButton();
+        jToggleButton4 = new javax.swing.JToggleButton();
+        jToggleButton5 = new javax.swing.JToggleButton();
+        jButton2 = new javax.swing.JButton();
+        saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
+        jButton3 = new javax.swing.JButton();
 
-        jScrollPane1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
+        jPanel1.setFocusable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Transparency"));
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jTextField1.setText("jTextField1");
+        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextField1CaretUpdate(evt);
+            }
+        });
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
+
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSpinner1StateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Transparency"));
+        jPanel2.setFocusable(false);
 
         colorSelection1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         colorSelection1.setToolTipText("Transparent Colour");
@@ -148,17 +179,18 @@ public class ImageEditor extends TabPanel {
             }
         });
 
-        org.jdesktop.layout.GroupLayout colorSelection1Layout = new org.jdesktop.layout.GroupLayout(colorSelection1);
+        javax.swing.GroupLayout colorSelection1Layout = new javax.swing.GroupLayout(colorSelection1);
         colorSelection1.setLayout(colorSelection1Layout);
         colorSelection1Layout.setHorizontalGroup(
-            colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 36, Short.MAX_VALUE)
+            colorSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 34, Short.MAX_VALUE)
         );
         colorSelection1Layout.setVerticalGroup(
-            colorSelection1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 42, Short.MAX_VALUE)
+            colorSelection1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 31, Short.MAX_VALUE)
         );
 
+        jCheckBox1.setSelected(true);
         jCheckBox1.setText("Transparent");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,248 +198,354 @@ public class ImageEditor extends TabPanel {
             }
         });
 
-        org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(colorSelection1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(18, 18, 18)
-                .add(jCheckBox1)
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel1Layout.createSequentialGroup()
-                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, colorSelection1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jCheckBox1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
-
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
-        heightLabel.setText("height");
-
-        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
-
-        widthLabel.setText("width");
-
-        jTextField1.setText("jTextField1");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(10, 10, 10)
-                        .add(widthLabel)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(heightLabel))
-                    .add(jPanel2Layout.createSequentialGroup()
-                        .add(jButton1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 162, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jLabel1)
-                        .add(10, 10, 10)
-                        .add(jSpinner1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(colorSelection1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox1)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jPanel2Layout.createSequentialGroup()
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jButton1)
-                    .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jLabel1)
-                    .add(jSpinner1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 10, Short.MAX_VALUE)
-                .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(widthLabel)
-                    .add(heightLabel)))
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckBox1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                    .addComponent(colorSelection1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Edit"));
+        jPanel3.setFocusable(false);
+
+        colorSelection2.setBackground(new java.awt.Color(1, 1, 1));
+        colorSelection2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        javax.swing.GroupLayout colorSelection2Layout = new javax.swing.GroupLayout(colorSelection2);
+        colorSelection2.setLayout(colorSelection2Layout);
+        colorSelection2Layout.setHorizontalGroup(
+            colorSelection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 41, Short.MAX_VALUE)
+        );
+        colorSelection2Layout.setVerticalGroup(
+            colorSelection2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 44, Short.MAX_VALUE)
+        );
+
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(255, 0, 255, 10));
+
+        jLabel2.setText("Opacity");
+
+        buttonGroup1.add(jToggleButton1);
+        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Draw_Base.png"))); // NOI18N
+        jToggleButton1.setSelected(true);
+        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton1ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton2);
+        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Draw_Line.png"))); // NOI18N
+        jToggleButton2.setSelected(true);
+        jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton2ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton3);
+        jToggleButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Draw_Rect.png"))); // NOI18N
+        jToggleButton3.setSelected(true);
+        jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton3ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton4);
+        jToggleButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Fill_Rect.png"))); // NOI18N
+        jToggleButton4.setSelected(true);
+        jToggleButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton4ActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(jToggleButton5);
+        jToggleButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/imageeditor/Select_Linear.png"))); // NOI18N
+        jToggleButton5.setSelected(true);
+        jToggleButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jToggleButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(colorSelection2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToggleButton5)
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jToggleButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                        .addComponent(jToggleButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(3, 3, 3)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jToggleButton4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jToggleButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(colorSelection2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
+
+        jButton2.setText("Edit with JVector");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/tree/img.png"))); // NOI18N
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)
+                        .addContainerGap())))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
+                .addComponent(jButton3))
+        );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE)
-                .addContainerGap())
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
+                .addGap(6, 6, 6)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    public static JFileChooser jFileChooser1 = null;
+private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
+    i.zoom = (Integer) jSpinner1.getValue();
+    updateScroll();
+}//GEN-LAST:event_jSpinner1StateChanged
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jFileChooser1 == null) {
-            jFileChooser1 = new JFileChooser();
-        }
+private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
+    i.transparentColor = colorSelection1.getBackground();
+    updateScroll();
+}//GEN-LAST:event_colorSelection1MouseClicked
 
-        try {
-            jFileChooser1.resetChoosableFileFilters();
-            JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
-            jFileChooser1.addChoosableFileFilter(filter);
-            JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
-            jFileChooser1.addChoosableFileFilter(filter2);
-            jFileChooser1.setFileFilter(filter);
-            jFileChooser1.showDialog(this, "OK");
-            if (jFileChooser1.getSelectedFile() != null) {
-                java.io.File _file = jFileChooser1.getSelectedFile();
-                file.type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
-                if (file.type.toLowerCase().equals("gif")) {
-                    System.out.println("GIF!");
-                    //                    boolean animated = false;
-                    ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
-                    //                    if (reader.getNumImages(true) > 1) {
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    if (jFileChooser1 == null) {
+        jFileChooser1 = new JFileChooser();
+    }
+
+    try {
+        jFileChooser1.resetChoosableFileFilters();
+        JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
+        jFileChooser1.addChoosableFileFilter(filter);
+        JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
+        jFileChooser1.addChoosableFileFilter(filter2);
+        jFileChooser1.setFileFilter(filter);
+        jFileChooser1.showDialog(this, "OK");
+        if (jFileChooser1.getSelectedFile() != null) {
+            java.io.File _file = jFileChooser1.getSelectedFile();
+            type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
+            if (type.toLowerCase().equals("gif")) {
+                System.out.println("GIF!");
+                //                    boolean animated = false;
+                ImageReader reader = ImageIO.getImageReadersByFormatName("gif").next();
+                //                    if (reader.getNumImages(true) > 1) {
 //                        animated = true;
 //                    }
-                    reader.setInput(new FileImageInputStream(_file));
-                    System.out.println("GIF No: "+reader.getNumImages(true));
-                    BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
-                    
-                    for (int i = 0; i < reader.getNumImages(true); i++) {
-                        b[i] = reader.read(i);
-                    }
-                    ((GImage)file.value).image = new ImageIcon(b[0]);
-                    //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
-                } else {
-                    ((GImage)file.value).image = new ImageIcon(ImageIO.read(_file));
-                    //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
+                reader.setInput(new FileImageInputStream(_file));
+                System.out.println("No: " + reader.getNumImages(true));
+                BufferedImage[] b = new BufferedImage[reader.getNumImages(true)];
+
+                for (int i = 0; i < reader.getNumImages(true); i++) {
+                    b[i] = reader.read(i);
                 }
-//                org.gcreator.core.Aurwindow.workspace.updateUI();
-                jScrollPane1.updateUI();
-                System.out.println(file.name + "." + file.type);
+                i.image = new ImageIcon(b[0]);
+            //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
+            } else {
+                i.image = new ImageIcon(ImageIO.read(_file));
+            //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
             }
-        } catch (Exception e) {
+            org.gcreator.core.gcreator.panel.workspace.updateUI();
+            jScrollPane1.updateUI();
         }
-        int w = 0;
-        int h = 0;
-        if (file.value != null) {
-//            if (file.type.toLowerCase().equals("gif")) {
-//                BufferedImage[] b = (BufferedImage[]) file.value;
-//                w = (new ImageIcon(b[0])).getIconWidth();
-//                h = (new ImageIcon(b[0])).getIconHeight();
-//            } else {
+    } catch (Exception e) {
+    }
+    updateScroll();
+}//GEN-LAST:event_jButton1ActionPerformed
+    public boolean sel5 = false;
 
-                w = ((GImage) file.value).image.getIconWidth();
-                h = ((GImage) file.value).image.getIconHeight();
-//            }
+private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+    if (sel5) {
+        deactivate5();
+    }
+}//GEN-LAST:event_jToggleButton2ActionPerformed
+
+private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
+    if (sel5) {
+        deactivate5();
+    }
+}//GEN-LAST:event_jToggleButton3ActionPerformed
+
+private void jToggleButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton4ActionPerformed
+    if (sel5) {
+        deactivate5();
+    }
+}//GEN-LAST:event_jToggleButton4ActionPerformed
+
+private void jToggleButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton5ActionPerformed
+    if (sel5) {
+        deactivate5(); //First deactivate, then reactivate
+    }
+    sel5 = true;
+}//GEN-LAST:event_jToggleButton5ActionPerformed
+
+private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
+    if (sel5) {
+        deactivate5();
+    }
+}//GEN-LAST:event_jToggleButton1ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    new JVectorWindow(ImageEditor.this);
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    file.name = jTextField1.getText();
+    org.gcreator.core.gcreator.panel.workspace.updateUI();
+}//GEN-LAST:event_jTextField1ActionPerformed
+
+private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
+    file.name = jTextField1.getText();
+    org.gcreator.core.gcreator.panel.workspace.updateUI();
+}//GEN-LAST:event_jTextField1CaretUpdate
+
+private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    changed = true;
+    i.transparent = jCheckBox1.isSelected();
+}//GEN-LAST:event_jCheckBox1ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    final JDialog d = new JDialog() {
+            @Override
+        public void paint(Graphics g) {
+            super.paint(g);
+            g.drawImage(i.image.getImage(), 0, 0, i.image.getImageObserver());
         }
-        widthLabel.setText("Width: " + w);
-        heightLabel.setText("Height: " + h);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    };
+   // com.sun.jna.examples.WindowUtils.setWindowAlpha(d, 0); - doren't work
+    d.setSize(i.image.getIconWidth(), i.image.getIconHeight());
+    d.addMouseListener(new MouseAdapter() {
+            @Override
+        public void mouseClicked(MouseEvent e) {
+            d.dispose();
+        }
+    });
+    d.setUndecorated(true);
+    d.setModal(true);
+    d.setResizable(false);
+    d.setLocationRelativeTo(null);
+    d.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    d.setVisible(true);
+}//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        file.name = jTextField1.getText();
-        //org.gcreator.core.Aurwindow.workspace.updateUI();
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        updateScroll();
-    }//GEN-LAST:event_jSpinner1StateChanged
-
-    private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
-        //displayer.updateUI();
-        image.transparentColor = colorSelection1.getBackground();
-    }//GEN-LAST:event_colorSelection1MouseClicked
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        image.transparent = jCheckBox1.isSelected();
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    public void deactivate5() {
+        sel5 = false;
+        pane.mergeSelection();
+    }
 
     public void updateScroll() {
-        System.out.println("Update");
-        if (((Integer) jSpinner1.getValue()) > 5) {
-            jSpinner1.setValue(5);
-        } else if (((Integer) jSpinner1.getValue()) < -5) {
-            jSpinner1.setValue(-5);
-        }
-        //displayer.zoom = getZoom();
-        //displayer.updateUI();
+        changed = true;
+        pane.repaint();
+        pane.updateUI();
         jScrollPane1.updateUI();
     }
 
-    public double getZoom() {
-        int x = ((Integer) jSpinner1.getValue()).intValue();
-        switch (x) {
-            case 5:
-                return 6;
-            case 4:
-                return 5;
-            case 3:
-                return 4;
-            case 2:
-                return 3;
-            case 1:
-                return 2;
-            case 0:
-                return 1;
-            case -1:
-                return 0.5;
-            case -2:
-                return 0.33;
-            case -3:
-                return 0.25;
-            case -4:
-                return 0.2;
-            default:
-                return 0.16;
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private org.gcreator.components.ColorSelection colorSelection1;
-    private javax.swing.JLabel heightLabel;
+    public org.gcreator.components.ColorSelection colorSelection2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner jSpinner1;
+    public javax.swing.JSpinner jSpinner2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JLabel widthLabel;
+    public javax.swing.JToggleButton jToggleButton1;
+    public javax.swing.JToggleButton jToggleButton2;
+    public javax.swing.JToggleButton jToggleButton3;
+    public javax.swing.JToggleButton jToggleButton4;
+    public javax.swing.JToggleButton jToggleButton5;
+    private org.gcreator.components.SaveResourcePanel saveResourcePanel1;
     // End of variables declaration//GEN-END:variables
-
 }
