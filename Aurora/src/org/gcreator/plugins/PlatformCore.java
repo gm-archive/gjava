@@ -37,6 +37,7 @@ import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.GImage;
 import org.gcreator.fileclass.res.Scene;
 import org.gcreator.fileclass.res.Sprite;
+import org.gcreator.fileclass.res.Tileset;
 import org.gcreator.plugins.platform.gscriptLexer;
 import org.gcreator.plugins.platform.gscriptParser;
 
@@ -230,6 +231,12 @@ public class PlatformCore extends PluginCore {
                             parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("tileset")) {
+                            current="Tileset: "+((org.gcreator.fileclass.GFile) childNode).name;
+                            p.jProgressBar1.setValue(40);
+                            p.jLabel2.setText("Task: Converting tilesets:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            System.out.println("parsing tileset!");
+                            parseTileset((Tileset) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gs")) {
                             current="Script: "+((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
@@ -347,6 +354,10 @@ public class PlatformCore extends PluginCore {
     System.out.println("called wrong method!");
     }
     
+    
+    public void parseTileset(Tileset t, String name) throws IOException {
+        
+    }
     
 
     /**
