@@ -24,7 +24,7 @@ import org.gcreator.exceptions.*;
 import org.gcreator.externproject.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.help.*;
-import org.gcreator.macro.*;
+//import org.gcreator.macro.*;
 import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
 import org.gcreator.refactoring.*;
@@ -1430,24 +1430,24 @@ public class GPanel extends JPanel {
             updateToDefaultNavigatorPanel(welcome);
         }
         if (menu == 8 && item == 0) {
-            PlayMacroDialog dialog = new PlayMacroDialog(this, true);
-            dialog.setVisible(true);
+            //PlayMacroDialog dialog = new PlayMacroDialog(this, true);
+            //dialog.setVisible(true);
         }
         if (menu == 8 && item == 2) {
             String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
             if (mname != null && mname.length() > 0) {
-                if (MacroLibrary.findMacro(mname) != null) {
+                /*if (MacroLibrary.findMacro(mname) != null) {
                     JOptionPane.showMessageDialog(this,
                             LangSupporter.activeLang.getEntry(177),
                             LangSupporter.activeLang.getEntry(176),
                             JOptionPane.ERROR_MESSAGE);
                 } else {
                     MacroLibrary.addMacro(Macro.record(mname));
-                }
+                }*/
             }
         }
         if (menu == 8 && item == 3) {
-            Macro.recordingMacro = null;
+            //Macro.recordingMacro = null;
         }
         if (menu == 10 && item == 0) {
             chooseImage.showDialog(this, null);

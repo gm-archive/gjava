@@ -7,6 +7,7 @@ package org.gcreator.actions.mainactions;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import com.l2fprod.common.propertysheet.*;
+import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
@@ -21,6 +22,7 @@ public class CallFunction extends ActionPattern {
     public String ret = "x";
     public String fname = "f";
     public Boolean relative = false;
+    public ArgumentList args;
     public static ImageIcon icon = null;
 
 //    private static final ObjectStreamField[] serialPersistentFields
@@ -39,6 +41,8 @@ public class CallFunction extends ActionPattern {
                 p.setValue(ret);
             } else if (p.getName().equals("fname")) {
                 p.setValue(fname);
+            } else if (p.getName().equals("args")) {
+                p.setValue(args);
             }
         }
     //((HSpeedEditor) panel).to.setText(to);
@@ -55,6 +59,8 @@ public class CallFunction extends ActionPattern {
                 ret = (String) p.getValue();
             } else if (p.getName().equals("fname")) {
                 fname = (String) p.getValue();
+            } else if (p.getName().equals("args")) {
+                args = (ArgumentList) p.getValue();
             }
         }
     //to = ((HSpeedEditor) panel).to.getText();
@@ -102,6 +108,16 @@ public class CallFunction extends ActionPattern {
         p.setShortDescription("The function to call");
         propertySheetPanel1.addProperty(p);
         
+        p = new DefaultProperty();
+        p.setCategory("<html><b>Main");
+        p.setName("args");
+        p.setDisplayName("Arguments");
+        p.setEditable(true);
+        p.setType(ArgumentList.class);
+        p.setValue(new ArgumentList());
+        p.setShortDescription("The arguments of the function");
+        propertySheetPanel1.addProperty(p);
+        
         //p = new DefaultProperty();
         //p.setCategory("<html><b>Useless");
         //p.setName("test");
@@ -130,9 +146,9 @@ public class CallFunction extends ActionPattern {
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             save(panel);
             if (ret.equals("")) {
-                return fname + "()";
+                return fname + "("+args.toString()+")";
             } else {
-                return ret + " = " + fname + "()";
+                return ret + " = " + fname + "("+args.toString()+")";
             }
         }
         return "";

@@ -13,6 +13,6 @@ import javax.swing.JLabel;
  */
 /*internal*/ class ArgumentListLabel extends JLabel{
     ArgumentListLabel(ArgumentList a){
-        super(a.toString());
+        super(a==null?"":a.toString());
     }
 }

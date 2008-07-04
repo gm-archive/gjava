@@ -6,16 +6,23 @@
 
 package org.gcreator.actions.components;
 
+import org.gcreator.components.impl.VectorListModel;
+
 /**
  *
  * @author  Luís
  */
 public class ArgumentListDialog extends javax.swing.JDialog {
 
+    ArgumentListLabel l;
+    ArgumentList e;
     /** Creates new form ArgumentListDialog */
-    public ArgumentListDialog(java.awt.Frame parent, boolean modal) {
+    public ArgumentListDialog(java.awt.Frame parent, boolean modal, ArgumentList e, ArgumentListLabel l) {
         super(parent, modal);
         initComponents();
+        this.l = l;
+        this.e = e;
+        jList1.setModel(new VectorListModel(e.arguments));
     }
 
     /** This method is called from within the constructor to
@@ -43,8 +50,18 @@ public class ArgumentListDialog extends javax.swing.JDialog {
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Remove");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -84,23 +101,26 @@ public class ArgumentListDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-    * @param args the command line arguments
-    */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                ArgumentListDialog dialog = new ArgumentListDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    e.arguments.add(jTextField1.getText());
+    jList1.updateUI();
+    l.setText(e.toString());
+}//GEN-LAST:event_jButton1ActionPerformed
 
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    int i;
+    if((i = jList1.getSelectedIndex())<jList1.getModel().getSize()){
+        e.arguments.remove(i);
+        l.setText(e.toString());
+        jList1.updateUI();
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
+
+    public void dispose(){
+        l.setText(e.toString());
+        super.dispose();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

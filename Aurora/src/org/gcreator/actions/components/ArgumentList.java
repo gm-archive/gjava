@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.actions.components;
 
+import java.util.NoSuchElementException;
 import java.util.Vector;
 
 /**
@@ -12,17 +12,23 @@ import java.util.Vector;
  * @author Luís
  */
 public class ArgumentList {
+
     public Vector<String> arguments = new Vector<String>();
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         String res = "";
-        String last = arguments.lastElement();
-        for(String arg : arguments){
-            res += arg;
-            if(!arg.equals(last))
-                res += ", ";
+        try {
+            String last = arguments.lastElement();
+            for (String arg : arguments) {
+                res += arg;
+                if (arg!=last) { //I KNOW I'M NOT USING equals
+                    res += ", ";
+                }
+            }
+            return res;
+        } catch (NoSuchElementException e) {
+            return "";
         }
-        return res;
     }
 }

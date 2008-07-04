@@ -11,9 +11,9 @@ package org.gcreator.components.impl;
 
 import java.awt.*;
 import javax.swing.*;
-import org.gcreator.macro.*;
+//import org.gcreator.macro.*;
         
-public class MacroCellRenderer extends JLabel implements ListCellRenderer {
+/*public class MacroCellRenderer extends JLabel implements ListCellRenderer {
      public MacroCellRenderer() {
          setOpaque(true);
      }
@@ -68,4 +68,4 @@ public class MacroCellRenderer extends JLabel implements ListCellRenderer {
 
          return this;
      }
- }
+ }*/

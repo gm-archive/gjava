@@ -18,7 +18,7 @@ import java.util.*;
 import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
-import org.gcreator.macro.*;
+//import org.gcreator.macro.*;
 import org.gcreator.managers.*;
 import org.jdesktop.layout.GroupLayout;
 import org.jdesktop.layout.LayoutStyle;
@@ -159,59 +159,59 @@ public class NewProject extends TabPanel {
                 project.name = jTextField1.getText();
                 project.location = "";
                 GPanel.setMainProject(project);
-                Macro.macroAction(
+                /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
                         + "org.gcreator.components.ProjectTypes.EMPTY_GAME);\n"
                         + "project.name = \"" + project.name + "\";\n"
                         + "project.location = \"\";\n"
-                        + "org.gcreator.core.GPanel.setMainProject(project);");
+                        + "org.gcreator.core.GPanel.setMainProject(project);");*/
             }
             else if (type == ProjectTypes.RPG_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 GPanel.setMainProject(project);
-                Macro.macroAction(
+                /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
                         + type + ");\n"
                         + "project.name = \"" + project.name + "\";\n"
                         + "project.location = \"\";\n"
-                        + "org.gcreator.core.GPanel.setMainProject(project);");
+                        + "org.gcreator.core.GPanel.setMainProject(project);");*/
             }
             else if (type == ProjectTypes.PLATFORM_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 GPanel.setMainProject(project);
-                Macro.macroAction(
+                /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
                         + type + ");\n"
                         + "project.name = \"" + project.name + "\";\n"
                         + "project.location = \"\";\n"
-                        + "org.gcreator.core.GPanel.setMainProject(project);");
+                        + "org.gcreator.core.GPanel.setMainProject(project);");*/
             }
             else if (type == ProjectTypes.AIR_BATTLE){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
                 project.location = "";
                 GPanel.setMainProject(project);
-                Macro.macroAction(
+                /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
                         + type + ");\n"
                         + "project.name = \"" + project.name + "\";\n"
                         + "project.location = \"\";\n"
-                        + "org.gcreator.core.GPanel.setMainProject(project);");
+                        + "org.gcreator.core.GPanel.setMainProject(project);");*/
             }
             else if (type == 4){
                 project = ModuleProject.balance();
                 project.name = jTextField1.getText();
                 project.location = "";
                 GPanel.setMainProject(project);
-                Macro.macroAction(
+                /*Macro.macroAction(
                         "project = org.gcreator.fileclass.ModuleProject.balance();\n"
                         + "project.name = \"" + project.name + "\";\n"
                         + "project.location = \"\";\n"
-                        + "org.gcreator.core.GPanel.setMainProject(project);");
+                        + "org.gcreator.core.GPanel.setMainProject(project);");*/
             }
             /*else if(type == 1){
                 project = new PackageProject(jTextField1.getText(), "");
@@ -244,13 +244,13 @@ public class NewProject extends TabPanel {
             }*/
             if(type!=-1){
                 if(project!=null){
-                    Macro.macroAction(
+                    /*Macro.macroAction(
                             "org.gcreator.managers.ProjectTree.importFolderToTree(project, "
-                            + "org.gcreator.core.gcreator.panel);\n");
+                            + "org.gcreator.core.gcreator.panel);\n");*/
                     ProjectTree.importFolderToTree(project, gcreator.panel.top);
                 }
-                Macro.macroAction("try{ org.gcreator.core.gcreator.panel.workspace.updateUI(); }\n");
-                Macro.macroAction("catch(err){}\n");
+                //Macro.macroAction("try{ org.gcreator.core.gcreator.panel.workspace.updateUI(); }\n");
+                //Macro.macroAction("catch(err){}\n");
                 try{
                 gcreator.panel.workspace.updateUI();
                 }

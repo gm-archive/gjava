@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 public class ArgumentListEditor extends PropertyEditorSupport{
     @Override
     public String getAsText(){
-        return ((FailureBehavior) getValue()).toString();
+        return ((ArgumentList) getValue()).toString();
     }
     
     @Override
@@ -27,8 +27,9 @@ public class ArgumentListEditor extends PropertyEditorSupport{
         ArgumentList value = (ArgumentList) getValue();
         
         p.setLayout(new BorderLayout());
-        p.add(BorderLayout.CENTER, new ArgumentListLabel(value));
-        p.add(BorderLayout.EAST, new ArgumentListButton(value));
+        ArgumentListLabel l;
+        p.add(BorderLayout.CENTER, l = new ArgumentListLabel(value));
+        p.add(BorderLayout.EAST, new ArgumentListButton(value, l));
         
         return p;
     }
