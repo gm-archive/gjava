@@ -156,8 +156,8 @@ public class JVectorWindow extends javax.swing.JFrame {
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 super.paint(g);
-                if (editor.i.image != null)
-                    g2.drawImage(editor.i.image.getImage(), 0,0, editor.i.image.getImageObserver());
+                if (editor.i != null)
+                    g2.drawImage(editor.i.getImage(), 0,0, editor.i.getImageObserver());
                 
                 g2.setColor(Color.BLACK);
                 for (JVectorable s : shapes) {
@@ -306,8 +306,8 @@ public class JVectorWindow extends javax.swing.JFrame {
     
     public void shapeSizeChanged() {
         Dimension size = null;
-        if (editor.i.image != null)
-            size = new Dimension(editor.i.image.getIconWidth(), editor.i.image.getIconHeight());
+        if (editor.i != null)
+            size = new Dimension(editor.i.getIconWidth(), editor.i.getIconHeight());
         else
             size = new Dimension();
         for (JVectorable j : shapes) {
@@ -780,13 +780,13 @@ public class JVectorWindow extends javax.swing.JFrame {
         BufferedImage bufImg = new BufferedImage(shapePanel.getMinimumSize().width,
                  shapePanel.getMinimumSize().height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bufImg.createGraphics();
-        if (editor.i.image != null)
-            g.drawImage(editor.i.image.getImage(), 0,0, editor.i.image.getImageObserver());
+        if (editor.i != null)
+            g.drawImage(editor.i.getImage(), 0,0, editor.i.getImageObserver());
         g.setColor(Color.BLACK);
         for (JVectorable s : shapes) {
            s.paint(g);
         }
-        editor.i.image = new ImageIcon(bufImg);
+        editor.i = new ImageIcon(bufImg);
         editor.pane.updateUI();
         editor.pane.repaint();
         dispose();

@@ -221,13 +221,13 @@ public class PlatformCore extends PluginCore {
                         } else if (((GFile) childNode).type.equals("jpg")) {
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
-                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
-                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
-                            parseImage((GImage) ((org.gcreator.fileclass.GFile) childNode).value, (org.gcreator.fileclass.GFile) childNode);
+                            parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gs")) {

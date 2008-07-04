@@ -47,7 +47,7 @@ public class Sprite implements Resource {
         if(a == null) {
             return null;
         }
-        return  ((org.gcreator.fileclass.res.GImage)(a.value))/*.image*/;
+        return  new GImage((ImageIcon) a.value)/*.image*/;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){

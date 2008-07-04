@@ -23,7 +23,7 @@ public class GImage implements Resource {
     static final long serialVersionUID = 1L;
     public ImageIcon image;
     public boolean transparent;
-    public Color transparentColor; 
+    public Color transparentColor = Color.WHITE; 
     public int zoom;
     
     /**
@@ -36,6 +36,10 @@ public class GImage implements Resource {
     public GImage(/*String name*/) {
         //this.name = name;
         image = null;
+    }
+    
+    public GImage(ImageIcon i){
+        image = i;
     }
         
     public ImageIcon getImage() {

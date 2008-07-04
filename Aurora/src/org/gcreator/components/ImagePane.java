@@ -69,14 +69,15 @@ public class ImagePane extends JPanel {
 
                     BufferedImage b = new BufferedImage(x, y, BufferedImage.TYPE_INT_ARGB);
                     Graphics g = b.getGraphics();
-                    g.drawImage(editor.i.getImage().getImage(), 0, 0, editor.i.getImage().getImageObserver());
-                    editor.i.image = new ImageIcon(b);
+                    g.drawImage(editor.i.getImage(), 0, 0, editor.i.getImageObserver());
+                    editor.i = new ImageIcon(b);
+                    editor.g.image = editor.i;
                     repaint();
                     updateUI();
                     resizing = false;
                 }
                 if (editor.jToggleButton2.isSelected() && drawing) {
-                    Graphics g = editor.i.getImage().getImage().getGraphics();
+                    Graphics g = editor.i.getImage().getGraphics();
                     Color c = editor.colorSelection2.getBackground();
                     c = new Color(c.getRed(), c.getGreen(), c.getBlue(), (Integer) editor.jSpinner2.getValue());
                     g.setColor(c);
@@ -88,7 +89,7 @@ public class ImagePane extends JPanel {
                     editor.changed = true;
                 }
                 if (editor.jToggleButton3.isSelected() && drawing) {
-                    Graphics g = editor.i.getImage().getImage().getGraphics();
+                    Graphics g = editor.i.getImage().getGraphics();
                     Color c = editor.colorSelection2.getBackground();
                     c = new Color(c.getRed(), c.getGreen(), c.getBlue(), (Integer) editor.jSpinner2.getValue());
                     g.setColor(c);
@@ -105,7 +106,7 @@ public class ImagePane extends JPanel {
                     editor.changed = true;
                 }
                 if (editor.jToggleButton4.isSelected() && drawing) {
-                    Graphics g = editor.i.getImage().getImage().getGraphics();
+                    Graphics g = editor.i.getImage().getGraphics();
                     Color c = editor.colorSelection2.getBackground();
                     c = new Color(c.getRed(), c.getGreen(), c.getBlue(), (Integer) editor.jSpinner2.getValue());
                     g.setColor(c);
@@ -172,9 +173,9 @@ public class ImagePane extends JPanel {
                             i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
                             Graphics g = i.getGraphics();
                             g.drawImage(
-                                    editor.i.getImage().getImage(),
-                                    -sx, -sy, editor.i.getImage().getImageObserver());
-                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
+                                    editor.i.getImage(),
+                                    -sx, -sy, editor.i.getImageObserver());
+                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getGraphics();
                             Composite c = g2.getComposite();
                             g2.setComposite(AlphaComposite.Src);
                             g2.setColor(new Color(255, 255, 255, 0));
@@ -294,9 +295,9 @@ public class ImagePane extends JPanel {
                             i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
                             Graphics g = i.getGraphics();
                             g.drawImage(
-                                    editor.i.getImage().getImage(),
-                                    -sx, -sy, editor.i.getImage().getImageObserver());
-                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
+                                    editor.i.getImage(),
+                                    -sx, -sy, editor.i.getImageObserver());
+                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getGraphics();
                             Composite c = g2.getComposite();
                             g2.setComposite(AlphaComposite.Src);
                             g2.setColor(new Color(255, 255, 255, 0));
@@ -315,9 +316,9 @@ public class ImagePane extends JPanel {
                             i = new BufferedImage(sw, sh, BufferedImage.TYPE_INT_ARGB);
                             Graphics g = i.getGraphics();
                             g.drawImage(
-                                    editor.i.getImage().getImage(),
-                                    -sx, -sy, editor.i.getImage().getImageObserver());
-                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getImage().getGraphics();
+                                    editor.i.getImage(),
+                                    -sx, -sy, editor.i.getImageObserver());
+                            Graphics2D g2 = (Graphics2D) editor.i.getImage().getGraphics();
                             Composite c = g2.getComposite();
                             g2.setComposite(AlphaComposite.Src);
                             g2.setColor(new Color(255, 255, 255, 0));
@@ -349,7 +350,7 @@ public class ImagePane extends JPanel {
         //int rx = x;
         //int ry = y;
 
-        Graphics g = editor.i.getImage().getImage().getGraphics();
+        Graphics g = editor.i.getImage().getGraphics();
         Color c = editor.colorSelection2.getBackground();
         c = new Color(c.getRed(), c.getGreen(), c.getBlue(), (Integer) editor.jSpinner2.getValue());
         g.setColor(c);
@@ -365,11 +366,11 @@ public class ImagePane extends JPanel {
     }
 
     public int getPreferredWidth() {
-        return (int) (editor.i.image.getIconWidth() * getZoom()) + 10;
+        return (int) (editor.i.getIconWidth() * getZoom()) + 10;
     }
 
     public int getPreferredHeight() {
-        return (int) (editor.i.image.getIconHeight() * getZoom()) + 10;
+        return (int) (editor.i.getIconHeight() * getZoom()) + 10;
     }
 
     @Override
@@ -379,7 +380,7 @@ public class ImagePane extends JPanel {
     }
 
     public double getZoom() {
-        switch (editor.i.zoom) {
+        switch (editor.g.zoom) {
             case 5:
                 return 6;
             case 4:
@@ -408,9 +409,9 @@ public class ImagePane extends JPanel {
     public void paint(Graphics g) {
         super.paint(g);
 
-        ImageIcon img = editor.i.getImage();
+        ImageIcon img = editor.i;
 
-        g.setColor(editor.i.transparentColor);
+        g.setColor(editor.g.transparentColor);
         g.fillRect(0, 0, getWidth(), getHeight());
 
         g.drawImage(img.getImage(), 0, 0, (int) (img.getIconWidth() * getZoom()),
@@ -510,7 +511,7 @@ public class ImagePane extends JPanel {
 
     public void mergeSelection() {
         if (i != null) {
-            Graphics g = editor.i.image.getImage().getGraphics();
+            Graphics g = editor.i.getImage().getGraphics();
             g.drawImage(i, sx, sy, sw, sh, null);
             i = null;
             repaint();

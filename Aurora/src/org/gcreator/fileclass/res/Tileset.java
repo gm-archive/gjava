@@ -21,7 +21,7 @@ public class Tileset implements Resource{
     public ImageIcon getImage(){
         if(image==null)
             return null;
-        return ((org.gcreator.fileclass.res.GImage)(image.value)).image;
+        return (ImageIcon) image.value;
     }
     
     /**@deprecated*/

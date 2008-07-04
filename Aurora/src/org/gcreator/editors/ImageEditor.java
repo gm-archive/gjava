@@ -26,7 +26,8 @@ import org.gcreator.fileclass.res.*;
  */
 public class ImageEditor extends TabPanel {
 
-    public GImage i;
+    public ImageIcon i;
+    public GImage g;
     public boolean changed;
     public ImagePane pane;
     public String type;
@@ -37,30 +38,31 @@ public class ImageEditor extends TabPanel {
         this.project = p;
         this.file = f;
         initComponents(); 
-        i = new GImage();
-        if (f.value == null || ((GImage) f.value).image == null) {
-            i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
+        //i = new GImage();
+        if (f.value == null) {
+            i = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
             changed = true;
-            i.transparentColor = Color.white;
-            i.transparent = true;
+            //i.transparentColor = Color.white;
+            //i.transparent = true;
             jCheckBox1.setSelected(true);
         } else {
-            BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
-                    ((GImage) f.value).image.getIconHeight(),
+            BufferedImage img = new BufferedImage(((ImageIcon)f.value).getIconWidth(),
+                    ((ImageIcon) f.value).getIconHeight(),
                     BufferedImage.TYPE_INT_ARGB);
             //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
-            img.getGraphics().drawImage(((GImage) f.value).image.getImage(), 0, 0,
-                    ((GImage) f.value).image.getImageObserver());
-            i.readXml(file.xml);
-            i.image = new ImageIcon(img);
-            i.transparentColor = ((GImage) f.value).transparentColor;
-            jCheckBox1.setSelected(i.transparent);
+            img.getGraphics().drawImage(((ImageIcon) f.value).getImage(), 0, 0,
+                    ((ImageIcon) f.value).getImageObserver());
+            //i.readXml(file.xml);
+            i = new ImageIcon(img);
+            //i.transparentColor = ((GImage) f.value).transparentColor;
+            //jCheckBox1.setSelected(i.transparent);
         }
-        colorSelection1.setBackground(i.transparentColor);
+        //colorSelection1.setBackground(i.transparentColor);
         jTextField1.setText(file.name);
         
         pane = new ImagePane(this);
         jScrollPane1.setViewportView(pane);
+        g = new GImage(i);
     }
 
     @Override
@@ -384,12 +386,12 @@ public class ImageEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-    i.zoom = (Integer) jSpinner1.getValue();
+    g.zoom = (Integer) jSpinner1.getValue();
     updateScroll();
 }//GEN-LAST:event_jSpinner1StateChanged
 
 private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
-    i.transparentColor = colorSelection1.getBackground();
+    g.transparentColor = colorSelection1.getBackground();
     updateScroll();
 }//GEN-LAST:event_colorSelection1MouseClicked
 
@@ -423,10 +425,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 for (int i = 0; i < reader.getNumImages(true); i++) {
                     b[i] = reader.read(i);
                 }
-                i.image = new ImageIcon(b[0]);
+                i = new ImageIcon(b[0]);
+                g.image = i;
             //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
             } else {
-                i.image = new ImageIcon(ImageIO.read(_file));
+                i = new ImageIcon(ImageIO.read(_file));
+                g.image = i;
             //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
             }
             org.gcreator.core.gcreator.panel.workspace.updateUI();
@@ -485,7 +489,7 @@ private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIR
 
 private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
     changed = true;
-    i.transparent = jCheckBox1.isSelected();
+    g.transparent = jCheckBox1.isSelected();
 }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -493,11 +497,11 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             @Override
         public void paint(Graphics g) {
             super.paint(g);
-            g.drawImage(i.image.getImage(), 0, 0, i.image.getImageObserver());
+            g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
         }
     };
    // com.sun.jna.examples.WindowUtils.setWindowAlpha(d, 0); - doren't work
-    d.setSize(i.image.getIconWidth(), i.image.getIconHeight());
+    d.setSize(i.getIconWidth(), i.getIconHeight());
     d.addMouseListener(new MouseAdapter() {
             @Override
         public void mouseClicked(MouseEvent e) {

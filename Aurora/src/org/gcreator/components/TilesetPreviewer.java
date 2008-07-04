@@ -29,7 +29,7 @@ public class TilesetPreviewer extends JComponent{
         org.gcreator.fileclass.GFile imgFile = editor.value.image;
         if(imgFile==null)
             return null;
-        return ((org.gcreator.fileclass.res.GImage)(imgFile.value)).image;
+        return (ImageIcon) imgFile.value;
     }
     
     public int getPreferredWidth(){
@@ -45,7 +45,7 @@ public class TilesetPreviewer extends JComponent{
         return w+(hsepcount*2);
         */
         try {
-            return ((GImage)editor.value.image.value).image.getIconWidth();
+            return ((ImageIcon)editor.value.image.value).getIconWidth();
         } catch (NullPointerException exc) {
             return 0;
         } catch (ClassCastException exc) {
@@ -68,7 +68,7 @@ public class TilesetPreviewer extends JComponent{
         return h+(vsepcount*2);
         */
         try {
-            return ((GImage)editor.value.image.value).image.getIconHeight();
+            return ((ImageIcon)editor.value.image.value).getIconHeight();
         } catch (NullPointerException exc) {
             return 0;
         } catch (ClassCastException exc) {
@@ -114,7 +114,7 @@ public class TilesetPreviewer extends JComponent{
         //    di += 2;
         //    di += editor.value.tilew;
         //}
-        g.drawImage(img.getImage(),0,0,((org.gcreator.fileclass.res.GImage)(editor.value.image.value)).transparentColor,img.getImageObserver());
+        g.drawImage(img.getImage(),0,0,Color.WHITE,img.getImageObserver());
         //g.setColor(Color.WHITE);
         //g.setXORMode(Color.BLACK);
         g.setColor(Color.BLUE);

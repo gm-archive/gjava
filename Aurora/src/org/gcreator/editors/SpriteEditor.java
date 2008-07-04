@@ -124,7 +124,7 @@ public class SpriteEditor extends TabPanel {
         });
         int i = 0;
         for (GFile f : sprite.Simages) {
-            Image img = ((GImage)f.value).getImage().getImage();
+            Image img = ((ImageIcon)f.value).getImage();
             subimageList.addElement("Subimage "+(i+1),new ImageIcon 
                     (img.getScaledInstance(100, -1, Image.SCALE_DEFAULT)), i++);
         }
@@ -775,9 +775,9 @@ public class SpriteEditor extends TabPanel {
         changed = true;
         Object o = a.value;
         if (sprite.countImages()  == 0){
-            if(o!=null&&((org.gcreator.fileclass.res.GImage) o).image != null){
-                sprite.width = ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth();
-                sprite.height = ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight();
+            if(o!=null){
+                sprite.width = ((ImageIcon) o).getIconWidth();
+                sprite.height = ((ImageIcon) o).getIconHeight();
                 jLabel2.setText("Width: "+sprite.width);
                 jLabel3.setText("Height: "+sprite.height);
             } else{
@@ -787,13 +787,13 @@ public class SpriteEditor extends TabPanel {
             jButton9ActionPerformed(evt);
         }
         
-        if (((org.gcreator.fileclass.res.GImage) o)!=null&&
-                (sprite.width == ((org.gcreator.fileclass.res.GImage) o).image.getIconWidth()) &&
-                sprite.height == ((org.gcreator.fileclass.res.GImage) o).image.getIconHeight() ) {
+        if (o!=null&&
+                (sprite.width == ((ImageIcon) o).getIconWidth()) &&
+                sprite.height == ((ImageIcon) o).getIconHeight() ) {
             sprite.addToList(res.getFile());
         }
-        else if (((org.gcreator.fileclass.res.GImage) o) != null) {
-            GImage newImg = (GImage) o;
+        else if (o != null) {
+            ImageIcon newImg = (ImageIcon) o;
             GetImageResizeInfoDialog dialog = new GetImageResizeInfoDialog(gcreator.window, project);
             if (dialog.canceled) {
                 return;
@@ -801,15 +801,15 @@ public class SpriteEditor extends TabPanel {
             BufferedImage bufImg = null;
             //<editor-fold desc="Use new size">
             if (dialog.size == GetImageResizeInfoDialog.CanvasSize.NEW) {
-                bufImg = new BufferedImage(newImg.getImage().getIconWidth(),
-                        newImg.getImage().getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+                bufImg = new BufferedImage(newImg.getIconWidth(),
+                        newImg.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
                 
                 for (int i = 0; i < sprite.countImages(); i++) {
                     bufImg.getGraphics().drawImage(sprite.getImageAt(i).getImage().getImage(), 0, 0, sprite.getImageAt(i).getImage().getImageObserver());
                     sprite.getImageAt(i).image = new ImageIcon(bufImg);// TODO: figure out why this changes the origanal sprite, not the cloned one
                     //!!BAD PROGRAMMING ALERT:
-                    bufImg = new BufferedImage(newImg.getImage().getIconWidth(),
-                            newImg.getImage().getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);//Any good way to clear bufImg? flush() doesn't seem to work.
+                    bufImg = new BufferedImage(newImg.getIconWidth(),
+                            newImg.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);//Any good way to clear bufImg? flush() doesn't seem to work.
                     /*
                      * Debugging
                      *
@@ -820,8 +820,8 @@ public class SpriteEditor extends TabPanel {
                     f.setVisible(true);
                      */
                 }
-                sprite.width = newImg.image.getIconWidth();
-                sprite.height = newImg.image.getIconHeight();
+                sprite.width = newImg.getIconWidth();
+                sprite.height = newImg.getIconHeight();
                 sprite.addToList(res.getFile());
             }//</editor-fold>
             //<editor-fold desc="Use original size">
@@ -830,26 +830,26 @@ public class SpriteEditor extends TabPanel {
                 //<editor-fold desc="Stretch">
                 if (dialog.imgScale == GetImageResizeInfoDialog.ImageScale.STRETCH) {
                     if (dialog.aspect) {
-                        if (newImg.image.getIconWidth() > newImg.image.getIconHeight()) {
-                            bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                        if (newImg.getIconWidth() > newImg.getIconHeight()) {
+                            bufImg.getGraphics().drawImage(newImg.getImage().
                                     getScaledInstance(sprite.width, -1, Image.SCALE_SMOOTH), 0, 0, null);
                         } else {
-                            bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                            bufImg.getGraphics().drawImage(newImg.getImage().
                                     getScaledInstance(-1, sprite.height, Image.SCALE_SMOOTH), 0, 0, null);
                         }
                     } else {
-                        bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                        bufImg.getGraphics().drawImage(newImg.getImage().
                                 getScaledInstance(sprite.width, sprite.height, Image.SCALE_SMOOTH), 0, 0, null);
                     }
                 }//</editor-fold>
                 //<editor-fold desc="Else">
                 else {
-                    Point p = getLocationFor(dialog.imgScale, new Dimension(sprite.width, sprite.height), new Dimension(newImg.image.getIconWidth(), newImg.image.getIconHeight()));
-                    bufImg.getGraphics().drawImage(newImg.getImage().getImage(), p.x, p.y, newImg.image.getImageObserver());
+                    Point p = getLocationFor(dialog.imgScale, new Dimension(sprite.width, sprite.height), new Dimension(newImg.getIconWidth(), newImg.getIconHeight()));
+                    bufImg.getGraphics().drawImage(newImg.getImage(), p.x, p.y, newImg.getImageObserver());
                 }//</editor-fold>
                 GFile f;
                 if (dialog.alteration == dialog.alteration.MESS_UP) {
-                    ((GImage)res.getFile().value).image = new ImageIcon(bufImg);
+                    res.getFile().value = new ImageIcon(bufImg);
                     f = res.getFile();
                 } else {
                     Folder folder = project.getFolderFor("image");
@@ -865,17 +865,15 @@ public class SpriteEditor extends TabPanel {
                         System.out.println("Error : spriteeditor-4453_bob");
                         return;
                     }
-                    GImage g = new GImage();
-                    g.image = new ImageIcon(bufImg);
-                    tempFile.value = g;
+                    tempFile.value = new ImageIcon(bufImg);
                     f = tempFile;
                 }
                 sprite.addToList(f);
             }//</editor-fold>
             //<editor-fold desc="Use maximal size">
             else if (dialog.size == GetImageResizeInfoDialog.CanvasSize.MAXIMAL) {
-                int width = Math.max(sprite.width, newImg.image.getIconWidth());
-                int height = Math.max(sprite.height, newImg.image.getIconHeight());
+                int width = Math.max(sprite.width, newImg.getIconWidth());
+                int height = Math.max(sprite.height, newImg.getIconHeight());
                 bufImg = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
                 //<editor-fold desc="Resize all the images">
                 for (int i = 0; i < sprite.countImages(); i++) {
@@ -885,21 +883,21 @@ public class SpriteEditor extends TabPanel {
                 }//</editor-fold>
                 //<editor-fold desc="if the option isn't 'Stretched'">
                 if (dialog.imgScale != GetImageResizeInfoDialog.ImageScale.STRETCH) {
-                    Point p = getLocationFor(dialog.imgScale,new Dimension(width, height), new Dimension(newImg.image.getIconWidth(), newImg.image.getIconHeight()));
-                    bufImg.getGraphics().drawImage(newImg.getImage().getImage(), p.x, p.y, newImg.image.getImageObserver());
+                    Point p = getLocationFor(dialog.imgScale,new Dimension(width, height), new Dimension(newImg.getIconWidth(), newImg.getIconHeight()));
+                    bufImg.getGraphics().drawImage(newImg.getImage(), p.x, p.y, newImg.getImageObserver());
                 }//</editor-fold>
                 //<editor-fold desc="if not, ">
                 else {
                     if (dialog.aspect) {
-                        if (newImg.image.getIconWidth() > newImg.image.getIconHeight()) {
-                            bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                        if (newImg.getIconWidth() > newImg.getIconHeight()) {
+                            bufImg.getGraphics().drawImage(newImg.getImage().
                                     getScaledInstance(width, -1, Image.SCALE_SMOOTH), 0, 0, null);
                         } else {
-                            bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                            bufImg.getGraphics().drawImage(newImg.getImage().
                                     getScaledInstance(-1, height, Image.SCALE_SMOOTH), 0, 0, null);
                         }
                     } else {
-                        bufImg.getGraphics().drawImage(newImg.getImage().getImage().
+                        bufImg.getGraphics().drawImage(newImg.getImage().
                                 getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
                     }
                 }//</editor-fold>
@@ -907,7 +905,7 @@ public class SpriteEditor extends TabPanel {
                 sprite.height = height;
                 GFile f;
                 if (dialog.alteration == dialog.alteration.MESS_UP) {
-                    ((GImage)res.getFile().value).image = new ImageIcon(bufImg);
+                    res.getFile().value = new ImageIcon(bufImg);
                     f = res.getFile();
                 } else {
                     Folder folder = project.getFolderFor("image");
@@ -923,9 +921,8 @@ public class SpriteEditor extends TabPanel {
                         System.out.println("Error : spriteeditor-4456_bob");
                         return;
                     }
-                    GImage g = new GImage();
-                    g.image = new ImageIcon(bufImg);
-                    tempFile.value = g;
+                    //GImage g = new GImage();
+                    tempFile.value = new ImageIcon(bufImg);
                     f = tempFile;
                 }
                 sprite.addToList(f);
