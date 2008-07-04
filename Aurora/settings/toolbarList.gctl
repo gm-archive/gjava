@@ -28,7 +28,6 @@ Item=std_addTileset
 Item=std_addPath
 Item=std_addSound
 Item=std_addTimeline
-Item=std_addSnippet
 Item=std_addActor
 Item=std_addScene
 Item=std_addScript

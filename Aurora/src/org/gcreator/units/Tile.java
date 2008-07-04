@@ -7,6 +7,7 @@ package org.gcreator.units;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.Serializable;
 import javax.swing.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
@@ -15,7 +16,9 @@ import org.gcreator.fileclass.res.*;
  *
  * @author luis
  */
-public class Tile {
+public class Tile implements Serializable{
+    static final long serialVersionUID = 1L;
+    
     public GFile file = null;
     public int width = 20;
     public int height = 20;

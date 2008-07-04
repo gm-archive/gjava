@@ -17,6 +17,8 @@ import javax.imageio.*;
 import org.gcreator.components.*;
 import java.util.*;
 import org.gcreator.units.ActorInScene;
+import org.gcreator.units.Tile;
+import org.gcreator.units.TileLayer;
 
 /**
  *
@@ -24,32 +26,59 @@ import org.gcreator.units.ActorInScene;
  */
 public class GCSharp extends PlatformCore {
 
+    public static class Comb {
+
+        public Tileset t;
+        public String name;
+
+        public Comb(Tileset t, String name) {
+            this.t = t;
+            this.name = name;
+        }
+    }
     public GCSOptions settings;
     public static String projectname,  FileFolder;
     public static Vector<String> files = new Vector<String>(),  scenelist = new Vector<String>();
+    public static Vector<Comb> tilelist = new Vector<Comb>();
 
     public boolean checkvariable(String name) {
-        if(name.equals("x")) return true;
-        if(name.equals("y")) return true;
-        if(name.equals("depth")) return true;
-        if(name.equals("hspeed")) return true;
-        if(name.equals("vspeed")) return true;
-        if(name.equals("gravity")) return true;
-        if(name.equals("gravity_direction")) return true;
-        if(name.equals("solid")) return true;
+        if (name.equals("x")) {
+            return true;
+        }
+        if (name.equals("y")) {
+            return true;
+        }
+        if (name.equals("depth")) {
+            return true;
+        }
+        if (name.equals("hspeed")) {
+            return true;
+        }
+        if (name.equals("vspeed")) {
+            return true;
+        }
+        if (name.equals("gravity")) {
+            return true;
+        }
+        if (name.equals("gravity_direction")) {
+            return true;
+        }
+        if (name.equals("solid")) {
+            return true;
+        }
         return false;
     }
-    
+
     public void parseImage(ImageIcon i, GFile f) {
         System.out.println("Got here");
         PluginHelper.println("Parse image " + f.name);
         try {
             File tff = new File(FileFolder + "graphics");
             //
-            PluginHelper.println("ttf="+tff+"; exits="+tff.exists());
+            PluginHelper.println("ttf=" + tff + "; exits=" + tff.exists());
             tff.mkdirs();
             File ff = new File(FileFolder + "graphics" + File.separator + f.name + "." + f.type);
-            
+
             BufferedImage ii;
             if ((i.getImage()) instanceof ToolkitImage) {
                 System.out.println("Toolkit");
@@ -65,7 +94,7 @@ public class GCSharp extends PlatformCore {
 
     public void parseSprite(Sprite s, GFile f) {
         //super.parseSprite(s);
-        files.add(f.name+".cs");
+        files.add(f.name + ".cs");
         try {
             FileWriter spr = new FileWriter(FileFolder + f.name + ".cs");
             BufferedWriter w = new BufferedWriter(spr);
@@ -102,8 +131,9 @@ public class GCSharp extends PlatformCore {
     public void parseActor(Actor a, GFile f) {
         files.add(f.name + ".cs");
         System.out.println("Parsing actor " + f.name);
-        if(a==null)
+        if (a == null) {
             System.out.println("a is null");
+        }
         try {
             System.out.println("Got here 1");
             FileWriter actorFW = new FileWriter(FileFolder + f.name + ".cs");
@@ -125,10 +155,11 @@ public class GCSharp extends PlatformCore {
             System.out.println("Got here 10");
             print(actor, "\t{");
             print(actor, "\t\tsetVisible(" + a.visible + ");");
-            if(a.sprite==null)
+            if (a.sprite == null) {
                 print(actor, "\t\tsetSprite(null);");
-            else
+            } else {
                 print(actor, "\t\tsetSprite(new " + a.sprite.name + "());");
+            }
             print(actor, "\t}");
             print(actor, "");
             System.out.println("Got here 4");
@@ -137,35 +168,35 @@ public class GCSharp extends PlatformCore {
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
                 Object m_evt = e.nextElement();
                 PluginHelper.println("Loop");
-                if(!(m_evt instanceof org.gcreator.events.Event)){
+                if (!(m_evt instanceof org.gcreator.events.Event)) {
                     PluginHelper.println("Invalid convertion");
                     continue;
                 }
-                    org.gcreator.events.Event evt = (org.gcreator.events.Event) m_evt;
-                    if(evt instanceof org.gcreator.events.CreateEvent){
-                        print(actor, "\tpublic override void Create()");
-                        System.out.println("Got here");
-                    }
-                    if(evt instanceof org.gcreator.events.BeginStepEvent){
-                        print(actor, "\tpublic override void BeginStep()");
-                    }
-                    if(evt instanceof org.gcreator.events.StepEvent){
-                        print(actor, "\tpublic override void Step()");
-                    }
-                    if(evt instanceof org.gcreator.events.EndStepEvent){
-                        print(actor, "\tpublic override void End()");
-                    }
-                    if(evt instanceof org.gcreator.events.DrawEvent){
-                        print(actor, "\tpublic override void Draw()");
-                    }
-                    print(actor, "\t{");
-                    PluginHelper.println("Got here 5");
-                    for(org.gcreator.actions.Action act : evt.actions){
-                        print(actor, parseGCL(act.getGCL(), this));
-                    }
-                    PluginHelper.println("And here too");
-                    print(actor, "\t}");
-                    print(actor, "");
+                org.gcreator.events.Event evt = (org.gcreator.events.Event) m_evt;
+                if (evt instanceof org.gcreator.events.CreateEvent) {
+                    print(actor, "\tpublic override void Create()");
+                    System.out.println("Got here");
+                }
+                if (evt instanceof org.gcreator.events.BeginStepEvent) {
+                    print(actor, "\tpublic override void BeginStep()");
+                }
+                if (evt instanceof org.gcreator.events.StepEvent) {
+                    print(actor, "\tpublic override void Step()");
+                }
+                if (evt instanceof org.gcreator.events.EndStepEvent) {
+                    print(actor, "\tpublic override void End()");
+                }
+                if (evt instanceof org.gcreator.events.DrawEvent) {
+                    print(actor, "\tpublic override void Draw()");
+                }
+                print(actor, "\t{");
+                PluginHelper.println("Got here 5");
+                for (org.gcreator.actions.Action act : evt.actions) {
+                    print(actor, parseGCL(act.getGCL(), this));
+                }
+                PluginHelper.println("And here too");
+                print(actor, "\t}");
+                print(actor, "");
             }
             print(actor, "}");
             actor.close();
@@ -176,19 +207,23 @@ public class GCSharp extends PlatformCore {
 
     }
 
-    public void parseClass(String s, String name){
-        files.add(name+".cs");
-        try{
+    public void parseClass(String s, String name) {
+        files.add(name + ".cs");
+        try {
             FileWriter scriptFW = new FileWriter(FileFolder + name + ".cs");
             BufferedWriter script = new BufferedWriter(scriptFW);
             print(script, "using org.gcreator.Components;");
             print(script, "using org.gcreator.Support;");
             print(script, "using org.gcreator.Scripting;");
             super.parseGCLClass(s, this);
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }
-    
+
+    public void parseTileset(Tileset t, String name) {
+        tilelist.add(new Comb(t, name));
+    }
+
     public void parseScene(Scene s, GFile f) throws IOException {
         files.add(f.name + ".cs");
         FileWriter sceneFW = new FileWriter(FileFolder + f.name + ".cs");
@@ -204,10 +239,8 @@ public class GCSharp extends PlatformCore {
         print(scene, "\tpublic override void Create(){");
         print(scene, "\t\tbase.setWidth(" + s.width + ");");
         print(scene, "\t\tbase.setHeight(" + s.height + ");");
-        if(s.drawbackcolor){
-            print(scene, "\t\tbase.setBackground(System.Drawing.Color.FromArgb("
-                    + s.background.getRed() + ", " + s.background.getGreen() + ", "
-                    + s.background.getBlue() + "));");
+        if (s.drawbackcolor) {
+            print(scene, "\t\tbase.setBackground(System.Drawing.Color.FromArgb(" + s.background.getRed() + ", " + s.background.getGreen() + ", " + s.background.getBlue() + "));");
         }
         print(scene, "\t\tActor c;");
         for (Enumeration<ActorInScene> e = s.actors.elements(); e.hasMoreElements();) {
@@ -216,15 +249,39 @@ public class GCSharp extends PlatformCore {
                     "(new Integer(" + ais.x + "), new Integer(" + ais.y + ")));");
             print(scene, "\t\tc.Create();");
         }
+        for (Enumeration<TileLayer> e = s.tileLayers.elements(); e.hasMoreElements();) {
+            TileLayer ais = e.nextElement();
+            for (Tile t : ais.tiles) {
+                String res = "\t\taddTile(new Tile(";
+                res += "TilesetList.";
+                res += t.file.name;
+                res += ", ";
+                res += t.x;
+                res += ", ";
+                res += t.y;
+                res += ", ";
+                res += t.tilex;
+                res += ", ";
+                res += t.tiley;
+                res += ", ";
+                res += t.width;
+                res += ", ";
+                res += t.height;
+                res += ", ";
+                res += ais.depth;
+                res += ", true));";
+                print(scene, res);
+            }
+        }
         print(scene, "\t}");
         print(scene, "}");
         scene.close();
     }
-    
+
     public void createFolders() {
         try {
             java.lang.String osName = System.getProperty("os.name");
-            if(osName.startsWith("Windows")){
+            if (osName.startsWith("Windows")) {
                 FileFolder = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
                 FileFolder += "/";
                 FileFolder = FileFolder.replaceAll("%20", " ");
@@ -233,8 +290,7 @@ public class GCSharp extends PlatformCore {
                 FileFolder = FileFolder.replaceAll("\\\\/", "/");
                 FileFolder = FileFolder.replaceAll("//", "/");
                 FileFolder = FileFolder.substring(1, 2) + ":" + File.separator;
-            }
-            else{
+            } else {
                 FileFolder = "/tmp/";
             }
             FileFolder += "Projects" + File.separator + projectname + File.separator + "CSharp" + File.separator;
@@ -243,72 +299,71 @@ public class GCSharp extends PlatformCore {
                 f1.delete();
             }
             f1.mkdirs();
-            
+
             String t = getClass().getProtectionDomain().getCodeSource().getLocation().getPath().toString();
             t = t.replaceAll("\\./", "");
-            try{
-            t = t.replaceAll("/+", File.separator);
+            try {
+                t = t.replaceAll("/+", File.separator);
+            } catch (Exception e) {
             }
-            catch(Exception e){}
             t = t.replaceAll("%20", " ");
             t = t.replaceAll("\\\\", File.separator);
             t = t.replaceAll("file:/*", "") + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "GCS" + File.separator + "require";
             if (osName.startsWith("Windows")) {
-                if(t.startsWith("/")||t.startsWith("\\"))
+                if (t.startsWith("/") || t.startsWith("\\")) {
                     t = t.substring(1);
-            }
-            else{
-                if(!t.startsWith("/")&&!t.startsWith("~"))
+                }
+            } else {
+                if (!t.startsWith("/") && !t.startsWith("~")) {
                     t = "/" + t;
+                }
             }
             PluginHelper.println(t);
-            
-            copyRequired("SDL.dll", FileFolder);
-            copyRequired("SDL_image.dll", FileFolder);
-            copyRequired("SDL_mixer.dll", FileFolder);
-            copyRequired("SdlDotNet.dll", FileFolder);
-            copyRequired("Tao.Sdl.dll", FileFolder);
-            copyRequired("gmcs.bat", FileFolder);
-            copyRequired("jpeg.dll", FileFolder);
-            copyRequired("libGCS.dll", FileFolder);
-            copyRequired("tiff.dll", FileFolder);
-            (new File(FileFolder+"fonts/")).mkdir();
-            copyRequired("CourierNew.ttf", FileFolder+"fonts/");
-            
+
         } catch (Exception ex) {
             System.out.println("" + ex.getLocalizedMessage());
         }
     }
 
-    public void copy(InputStream from, String to){
+    public void copy(InputStream from, String to) {
         File f = new File(to);
-        try{
+        try {
             FileOutputStream fo = new FileOutputStream(f);
-            
+
             int c = 0;
-            while((c=from.read())!=-1){
+            while ((c = from.read()) != -1) {
                 fo.write(c);
             }
-            
+
             fo.close();
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
-    
-    public void copyRequired(String file, String to){
+
+    public void copyRequired(String file, String to) {
         copy(
                 getClass().getResourceAsStream(
-                "/org/gcreator/compilers/GCS/require/"+file), to + file);
+                "/org/gcreator/compilers/GCS/require/" + file), to + file);
     }
-    
+
     public GCSharp() {
         VarsRegistry.setVariable("gcs.version", "draft");
         settings = new GCSOptions();
     }
 
     public void createSharpFiles(Project p) throws IOException {
+        copyRequired("SDL.dll", FileFolder);
+        copyRequired("SDL_image.dll", FileFolder);
+        copyRequired("SDL_mixer.dll", FileFolder);
+        copyRequired("SdlDotNet.dll", FileFolder);
+        copyRequired("Tao.Sdl.dll", FileFolder);
+        copyRequired("gmcs.bat", FileFolder);
+        copyRequired("jpeg.dll", FileFolder);
+        copyRequired("libGCS.dll", FileFolder);
+        copyRequired("tiff.dll", FileFolder);
+        (new File(FileFolder + "fonts/")).mkdir();
+        copyRequired("CourierNew.ttf", FileFolder + "fonts/");
         files.add("Game.cs");
         FileWriter gameFW = new FileWriter(FileFolder + "Game.cs");
         BufferedWriter game = new BufferedWriter(gameFW);
@@ -370,50 +425,51 @@ public class GCSharp extends PlatformCore {
         PluginHelper.println("Building/running using StarFish (C#)");
         createFolders();
         files.clear();
+        tilelist.clear();
         super.run(proj);
         try {
             createSharpFiles(proj);
         } catch (Exception e) {
         }
-      
+
         p.dispose();
         GCSCompiler compiler = new GCSCompiler(this);
         p.setVisible(false);
     }
-    
     JMenuItem menuItem;
+
     @Override
     public void onSplashDispose() {
         PluginHelper.println("Installed StarFish (C#)");
         PluginHelper.addGlobalTab("StarFish (C#)", settings);
         //JButton run = ToolbarManager.addButton(new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")), 50);
         /*run.addActionListener(new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {
-                        run(Aurwindow.getMainProject());
-                    }
-                });*/
+        
+        public void actionPerformed(ActionEvent evt) {
+        run(Aurwindow.getMainProject());
+        }
+        });*/
         menuItem = new JMenuItem("Compile with StarFish (C#)");
         menuItem.addActionListener(new ActionListener() {
 
-                    public void actionPerformed(ActionEvent evt) {
-                        //run(Aurwindow.getMainProject());
-                        startprogress();
-                    }
-                });
+            public void actionPerformed(ActionEvent evt) {
+                //run(Aurwindow.getMainProject());
+                startprogress();
+            }
+        });
 
         PluginHelper.addMenuItem(3, menuItem);
-        version=0.2;
-        updateURL="http://g-creator.org/update/G-CSharp/update.xml";
+        version = 0.2;
+        updateURL = "http://g-creator.org/update/G-CSharp/update.xml";
         update();
-        //Aurwindow.tool.add(run);
+    //Aurwindow.tool.add(run);
     }
-    
+
     @Override
     public void uninstall() {
         PluginHelper.removeMenuItem(3, menuItem);
     }
-    
+
     @Override
     public Object onSignalReceived(PluginCore caller, Object signal) {
         if (signal instanceof Object[]) {

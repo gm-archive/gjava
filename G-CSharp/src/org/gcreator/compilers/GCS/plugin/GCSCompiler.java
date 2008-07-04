@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
@@ -99,6 +101,27 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         command += " -r:libGCS.dll";
         command += " -target:winexe";
         command += " -out:Game.exe";
+
+        try {
+            if (!GCSharp.tilelist.isEmpty()) {
+                FileOutputStream fs = new FileOutputStream(GCSharp.FileFolder + "TilesetList.cs");
+                fs.write(("public class TilesetList\n{\n" +
+                        "\tpublic static org.gcreator.Components.Image ").getBytes());
+                Enumeration<GCSharp.Comb> tl = GCSharp.tilelist.elements();
+                GCSharp.Comb s = tl.nextElement();
+                fs.write((s.name + " = new org.gcreator.Components.Image(\"graphics/" + s.t.image.name + "." + s.t.image.type + "\")").getBytes());
+                while (tl.hasMoreElements()) {
+                    s = tl.nextElement();
+                    fs.write((s.name + " = new org.gcreator.Components.Image(\"graphics/" + s.t.image.name + "." + s.t.image.type + "\")").getBytes());
+                }
+                fs.write((";\n}\n").getBytes());
+                fs.close();
+            }
+        } catch (IOException e) {
+        }
+
+        command += " TilesetList.cs";
+        
         Enumeration<String> e = GCSharp.files.elements();
         while (e.hasMoreElements()) {
             command += " \"" + /*GCSharp.FileFolder +*/ e.nextElement() + "\"";

@@ -23,7 +23,7 @@ public class ByteInputStream extends InputStream{
     public int read() throws IOException{
         if(res==null)
             throw new IOException("Null buffer");
-        if(pos+1>=res.length)
+        if(pos>=res.length)
             return -1;
         return res[pos++];
     }

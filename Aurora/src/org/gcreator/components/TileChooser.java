@@ -35,8 +35,8 @@ public final class TileChooser extends JComponent {
                 int xsz = t.bwidth+t.tilew, ysz = t.bheight+t.tileh;
                 xindex = (int) Math.floor(x / xsz);
                 yindex = (int) Math.floor(y / ysz);
-                tx = xindex*xsz+t.startx+xindex;
-                ty = yindex*ysz+t.starty+yindex;
+                tx = xindex*(xsz-1)+t.startx+xindex;
+                ty = yindex*(ysz-1)+t.starty+yindex;
                 repaint();
             }
         });
@@ -53,8 +53,8 @@ public final class TileChooser extends JComponent {
                 int xsz = t.bwidth+t.tilew, ysz = t.bheight+t.tileh;
                 xindex = (int) Math.floor(x / xsz);
                 yindex = (int) Math.floor(y / ysz);
-                tx = xindex*xsz+t.startx+xindex;
-                ty = yindex*ysz+t.starty+yindex;
+                tx = xindex*(xsz-1)+t.startx+xindex;
+                ty = yindex*(ysz-1)+t.starty+yindex;
                 repaint();
             }
         });

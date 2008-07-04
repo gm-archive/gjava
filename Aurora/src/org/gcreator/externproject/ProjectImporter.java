@@ -296,7 +296,10 @@ public class ProjectImporter {
                         } else if (zipe.getName().endsWith(".png")) {
                             Bytefiles.add(stream.toByteArray());
                             Stringfiles.add(new String(stream.toByteArray()));
-                            BufferedImage bu = ImageIO.read(new ByteInputStream(stream.toByteArray()));
+                            FileOutputStream fr = new FileOutputStream("read.png");
+                            fr.write(stream.toByteArray());
+                            fr.close();
+                            BufferedImage bu = ImageIO.read(new FileInputStream("read.png"));
                             objects.add(new ImageIcon(bu));
                         } else {
 
