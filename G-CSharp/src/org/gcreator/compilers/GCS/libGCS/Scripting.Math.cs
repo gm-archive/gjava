@@ -4,8 +4,14 @@ namespace org.gcreator.Scripting
 {
 	public partial class GCL
 	{
-		public static readonly Double PI = new Double(3.14159265358979324);
-		public static readonly Double E = new Double(2.71828182845904523);
+		public static readonly Double PI;
+		public static readonly Double E;
+        
+        static GCL()
+        {
+            PI = new Double(3.14159265358979324);
+            E = new Double(2.71828182845904523);
+        }
 
         public static Object abs(Object _value)
 		{
@@ -132,36 +138,36 @@ namespace org.gcreator.Scripting
 		}
 
         public static Object min(params Object[] args){
-            double min = 0;
-            bool mindef = false;
+            double cur = 0;
+            bool curdef = false;
             for (int i = 0; i < args.Length; i++)
             {
                 Object o = args[i];
                 double d = o.getDouble();
-                if (d <= min || !mindef)
+                if (d <= cur || !curdef)
                 {
-                    mindef = true;
-                    min = d;
+                    curdef = true;
+                    cur = d;
                 }
             }
-            return new Double(min);
+            return new Double(cur);
         }
 
         public static Object max(params Object[] args)
         {
-            double max = 0;
-            bool maxdef = false;
+            double cur = 0;
+            bool curdef = false;
             for (int i = 0; i < args.Length; i++)
             {
                 Object o = args[i];
                 double d = o.getDouble();
-                if (d <= max || !maxdef)
+                if (d >= cur || !curdef)
                 {
-                    maxdef = true;
-                    max = d;
+                    curdef = true;
+                    cur = d;
                 }
             }
-            return new Double(max);
+            return new Double(cur);
         }
 
         public static Object random(Object x)

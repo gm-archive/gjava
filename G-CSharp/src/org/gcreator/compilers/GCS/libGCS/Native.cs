@@ -6,7 +6,7 @@ using SdlDotNet.Graphics;
 
 namespace org.gcreator.Native
 {
-	public class CSharp
+	public static class CSharp
 	{
 		/*public static org.gcreator.Support.Color ToSupportColor(System.Drawing.Color c)
 		{
@@ -24,7 +24,7 @@ namespace org.gcreator.Native
 		}
 	}
 	
-    public class SDL
+    public static class SDL
     {
 		public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle source, org.gcreator.Support.Rectangle destination)
 		{
@@ -70,12 +70,12 @@ namespace org.gcreator.Native
 			screen.Blit(t, destination);
 		}
 	
-		public Surface getSDLTexture(Image img)
+		public static Surface getSDLTexture(Image img)
 		{
 			return img.texture;
 		}
 		
-		public Image makeImage(Surface tex)
+		public static Image makeImage(Surface tex)
 		{
 			Image i = new Image();
 			i.texture = tex;

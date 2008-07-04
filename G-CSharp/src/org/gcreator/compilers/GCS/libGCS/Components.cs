@@ -28,6 +28,35 @@ namespace org.gcreator.Components
         }
     }
 
+    public class Tile : Object
+    {
+        internal Image i;
+        internal int x, y, tx, ty, width, height, depth;
+        internal bool visible;
+
+        public Tile(Image i, int x, int y, int tx, int ty, int width, int height, int depth, bool visible)
+        {
+            this.i = i;
+            this.x = x;
+            this.y = y;
+            this.tx = tx;
+            this.ty = ty;
+            this.width = width;
+            this.height = height;
+            this.depth = depth;
+            this.visible = visible;
+        }
+
+        public void Draw()
+        {
+            Surface s = org.gcreator.Native.SDL.Game.game.cursurface;
+            s.Blit(
+                i.texture,
+                new System.Drawing.Point(x, y),
+                new System.Drawing.Rectangle(tx, ty, width, height));
+        }
+    }
+
     public class Sprite : Object
     {
         private ArrayList images = new ArrayList();
@@ -243,156 +272,5 @@ namespace org.gcreator.Components
         {
             s.Fadeout(milliseconds);
         }
-    }
-
-    public class Scene : Object
-    {
-		private ArrayList actors = new ArrayList();
-		private int width = 640, height = 480;
-        private System.Drawing.Color background = System.Drawing.Color.Black;
-
-        public Scene()
-        {
-            setVariable("fps", new Integer(30));
-        }
-
-        public System.Drawing.Color getBackground()
-        {
-            return background;
-        }
-
-        public void setBackground(System.Drawing.Color background)
-        {
-            this.background = background;
-        }
-
-		private int getMinimumDepth()
-		{
-            int result = System.Int32.MaxValue;
-			foreach(object o in actors)
-			{
-				if(o is Actor)
-				{
-					int adep = ((Actor) o).getDepth();
-					if(adep<result)
-						result = adep;
-				}
-			}
-			return result;
-		}
-
-		private int getMaximumDepth()
-		{
-            int result = System.Int32.MinValue;
-			foreach(object o in actors)
-			{
-				if(o is Actor)
-				{
-					int adep = ((Actor) o).getDepth();
-					if(adep>result)
-						result = adep;
-				}
-			}
-			return result;
-		}
-		private int getNextDepth(int Depth)
-		{
-            int result = System.Int32.MinValue;
-			foreach(object o in actors)
-			{
-				if(o is Actor)
-				{
-					int adep = ((Actor) o).getDepth();
-					if(adep>result&&adep<Depth)
-						result = adep;
-				}
-			}
-			return result;
-		}
-
-		public int getWidth()
-		{
-			return width;
-		}
-
-		public int getHeight()
-		{
-			return height;
-		}
-
-		public void setWidth(int w)
-		{
-			width = w;
-		}
-
-		public void setHeight(int h)
-		{
-			height = h;
-		}
-
-		public virtual void Create()
-		{
-		
-		}
-		public void addActor(Actor actor)
-		{
-			actors.Add(actor);
-		}
-		internal void InheritPersistents(Actor[] persistents)
-		{
-		
-		}
-		public void Destroy()
-		{
-		    foreach(Actor a in actors){
-                //Destroy a if isn't persistent
-            }
-            actors.Clear();
-		}
-		public void Loop()
-		{
-			foreach(object o in actors)
-			{
-				if(o is Actor)
-				{
-					(o as Actor).Loop();
-				}
-			}
-			Surface t = new Surface(getWidth(), getHeight());
-            t.Fill(background);
-			Native.SDL.Game.game.cursurface = t;
-			int a = getMaximumDepth();
-			while(a >= getMinimumDepth()){
-				foreach(object o in actors)
-				{
-					if(o is Actor)
-					{
-						if((o as Actor).getDepth()==a&&(o as Actor).isVisible())
-							(o as Actor).Draw();
-					}
-				}
-				if(a!=getNextDepth(a))
-					a = getNextDepth(a);
-				else
-					break;
-			}
-			viewDrawer(t);
-			Native.SDL.Game.game.cursurface = Native.SDL.Game.game.master;
-		}
-
-		private void viewDrawer(Surface t)
-		{
-			//No Views
-			Native.SDL.DrawToSurface(t, Native.SDL.Game.game.master, new Rectangle(0, 0, getWidth(), getHeight()), new Rectangle(0,0,Native.SDL.Game.game.master.Width, Native.SDL.Game.game.master.Height));
-		}
-
-		internal Actor[] getPersistentActors()
-		{
-			return null;
-		}
-		internal Actor[] getNonPersistentActors()
-		{
-			return null;
-		}
     }
 }
