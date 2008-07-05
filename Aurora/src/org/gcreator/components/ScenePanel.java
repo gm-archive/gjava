@@ -17,6 +17,7 @@ import org.gcreator.editors.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.res.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import org.gcreator.units.*;
 import java.util.*;
 import org.gcreator.components.popupmenus.*;
@@ -116,6 +117,13 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 root.eraseTilesAt(root.getTileLayer(), new Rectangle(x, y, tile.width, tile.height));
             }
             root.getTileLayer().add(tile);
+            if(root.getTileLayer().optimize != null){
+            Graphics g = root.getTileLayer().optimize.getImage().getGraphics();
+            g.drawImage(tile.getTilesetImage().getImage().
+                                 getScaledInstance((int)(tile.width/root.getZoom()), 
+                                 (int)(tile.height/root.getZoom()), Image.SCALE_FAST),
+                                 (int)(tile.x/root.getZoom()),(int) (tile.y/root.getZoom()), tile.getTilesetImage().getImageObserver());
+            }
             draggingTile = true;
             tileDragging = tile;
         }
@@ -355,7 +363,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 if (l.depth == dep) {
                     if(l.optimize!=null){
                         g.drawImage(l.optimize.getImage(), 0, 0, l.optimize.getImageObserver());
+                        continue;
                     }
+                    l.optimize = new ImageIcon(new BufferedImage(root.getMapWidth(), root.getMapHeight(), BufferedImage.TYPE_INT_ARGB));
+                    Graphics ig = l.optimize.getImage().getGraphics();
                     e = l.tiles.elements();
                     while(e.hasMoreElements()){
                         Tile ascn = (Tile) e.nextElement();
@@ -366,7 +377,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                             //    continue; //Don't bother drawing. It won't show up anyway.
                             //if(ascn.x+ascn.width<r.getX()||ascn.y+ascn.height<r.getY())
                             //    continue; //Don't bother drawing. It won't show up anyway.
-                             g.drawImage(h.getImage().
+                             ig.drawImage(h.getImage().
                                  getScaledInstance((int)(ascn.width/root.getZoom()), 
                                  (int)(ascn.height/root.getZoom()), Image.SCALE_FAST),
                                  (int)(ascn.x/root.getZoom()),(int) (ascn.y/root.getZoom()), h.getImageObserver());   
@@ -391,6 +402,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                             System.out.println("[6794358]nullpointerexception: "+ex);
                         }
                     }
+                    g.drawImage(l.optimize.getImage(), 0, 0, l.optimize.getImageObserver());
                 }
             }
             if(dep<=mindep) {
@@ -545,6 +557,10 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 tileDragging.x = e.getX()+dragOffset.width;
                 tileDragging.y = e.getY()+dragOffset.height;
             }
+            root.scene.tileLayers.get(tileDragging.layer).optimize = null;
+            //for(TileLayer layer : root.scene.tileLayers)
+            //    if(layer.depth==tileDragging.layer)
+            //        layer.optimize = null;
             repaint(0, 0, getPreferredSize().width, getPreferredSize().height);
         }
         double zoom = root.getZoom();
@@ -561,7 +577,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         if (t == null) {
             return;
         }
-        root.getTileLayer().tiles.remove(t);
+        root.getTileLayer().remove(t);
         repaint();
     }
 

@@ -3,7 +3,6 @@
  *
  * Created on 10 September 2007, 18:47
  */
-
 package org.gcreator.editors;
 //<editor-fold desc="Import Statements" defaultstate="collapsed">
 import org.gcreator.components.JEditTextArea;
@@ -25,13 +24,12 @@ import org.gcreator.managers.*;
 
 import publicdomain.*;
 //</editor-fold>
-
 /**
  *
  * @author  TGMG
  */
-
 public class SceneEditor extends TabPanel {
+
     private final static long serialVersionUID = 1;
     /** Creates new form SceneEditor */
     public ScenePanel scenePanel;
@@ -45,59 +43,58 @@ public class SceneEditor extends TabPanel {
     public Scene scene;
 
     /*private org.gcreator.fileclass.File getFile(){
-        return file;
+    return file;
     }*/
-    
-    public boolean snapToGrid(){
+    public boolean snapToGrid() {
         return jToggleButton3.isSelected();
     }
-    
-    public ActorInScene makeNewActor(int x, int y){
+
+    public ActorInScene makeNewActor(int x, int y) {
         org.gcreator.fileclass.GFile a = curactor.getFile();
         if (a == null) {
             System.err.print("[SceneEditor@MakeNewActor:58]: curactor.getFile() is NULL!");
             return null;
         }
         instanceids++;
-        if(jToggleButton3.isSelected()){
+        if (jToggleButton3.isSelected()) {
             Scene s = (Scene) file.value;
             x = (Math.round(x / s.snapX) * s.snapX);
             y = (Math.round(y / s.snapY) * s.snapY);
         }
         return new ActorInScene(a, x, y, instanceids);
     }
-    
-    public void eraseActorsAt(int x, int y){
+
+    public void eraseActorsAt(int x, int y) {
         eraseActorsAt(new Rectangle(x, y, 1, 1));
     }
-    
+
     /**
      * Mainly created to help the TileChooser component
      * @return The current file
      */
-    public Tileset getTileset(){
+    public Tileset getTileset() {
         return (Tileset) (curtileset.getFile()).value;
     }
-    
+
     /**
      * Remove actors from the scene within the rectangle
      * @param r
      */
-    public void eraseActorsAt(Rectangle r){
+    public void eraseActorsAt(Rectangle r) {
         @SuppressWarnings("unchecked")
         Enumeration<ActorInScene> e = scene.actors.elements();
-        while(e.hasMoreElements()) {
+        while (e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
             try {
-                aisw = ((Sprite)(((Actor)(ais.Sactor.value)).sprite.value)).width;
-                aish = ((Sprite)(((Actor)(ais.Sactor.value)).sprite.value)).height;
+                aisw = ((Sprite) (((Actor) (ais.Sactor.value)).sprite.value)).width;
+                aish = ((Sprite) (((Actor) (ais.Sactor.value)).sprite.value)).height;
             } catch (NullPointerException exc) {
                 aisw = aish = 8;
             }
-            if (aisx <= r.x+r.width) {
+            if (aisx <= r.x + r.width) {
                 if (aisx + aisw >= r.x) {
                     if (aisy <= r.y + r.height) {
                         if (aisy + aish >= r.y) {
@@ -108,11 +105,11 @@ public class SceneEditor extends TabPanel {
             }
         }
     }
-    
-    public void eraseTilesAt(TileLayer t, Rectangle r){
+
+    public void eraseTilesAt(TileLayer t, Rectangle r) {
         @SuppressWarnings("unchecked")
         Enumeration<Tile> e = t.tiles.elements();
-        while(e.hasMoreElements()) {
+        while (e.hasMoreElements()) {
             Tile ais = e.nextElement();
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
@@ -123,7 +120,7 @@ public class SceneEditor extends TabPanel {
             } catch (NullPointerException exc) {
                 aisw = aish = 8;
             }
-            if (aisx < r.x+r.width) {
+            if (aisx < r.x + r.width) {
                 if (aisx + aisw > r.x) {
                     if (aisy < r.y + r.height) {
                         if (aisy + aish > r.y) {
@@ -134,69 +131,70 @@ public class SceneEditor extends TabPanel {
             }
         }
     }
-    
-    public ActorInScene findActorAt(int x, int y){
+
+    public ActorInScene findActorAt(int x, int y) {
         @SuppressWarnings("unchecked")
         Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
-        while(e.hasMoreElements()){
+        while (e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
             int aisx, aisy, aisw, aish;
             aisx = ais.x;
             aisy = ais.y;
             ImageIcon i;
             try {
-                Sprite j = (Sprite)(((Actor)(ais.Sactor.value)).sprite.value);
+                Sprite j = (Sprite) (((Actor) (ais.Sactor.value)).sprite.value);
                 i = j.getImageAt(0).image;
             } catch (NullPointerException exc) {
                 i = scenePanel.unknown;
             }
             aisw = i.getIconWidth();
             aish = i.getIconHeight();
-            if (x >= aisx && x < aisx+aisw && y >= aisy && y < aisy+aish) {
+            if (x >= aisx && x < aisx + aisw && y >= aisy && y < aisy + aish) {
                 return ais;
             }
         }
         return null;
     }
-    
+
     public Tile findTileAt(int x, int y) {
         @SuppressWarnings("unchecked")
         Enumeration<Tile> e = getTileLayer().tiles.elements();
-        while(e.hasMoreElements()){
+        while (e.hasMoreElements()) {
             Tile t = e.nextElement();
-            if (x >= t.x && x < t.x+t.width && y >= t.y && y < t.y+t.height) {
+            if (x >= t.x && x < t.x + t.width && y >= t.y && y < t.y + t.height) {
                 return t;
             }
         }
         return null;
     }
-    
-    public boolean eraseActorsBelow(){
+
+    public boolean eraseActorsBelow() {
         return jCheckBox5.isSelected();
     }
-    
-    public void updateImage(){
+
+    public void updateImage() {
         if (curactor.getFile() == null) {
             return;
         }
         org.gcreator.fileclass.res.Actor b = (Actor) curactor.getFile().value;
-        if(b == null) {
+        if (b == null) {
             return;
         }
         org.gcreator.fileclass.GFile t = b.sprite;
-        if(t==null) {
+        if (t == null) {
             return;
         }
         ObjectNode c = t.node;
-        if(c!=null){
+        if (c != null) {
             org.gcreator.fileclass.GFile d = (org.gcreator.fileclass.GFile) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
             ImageIcon h = f.getImageAt(0).image;
             jLabel18.setIcon(h);
         }
     }
-    public void updateBgImage(){
-        if(curbg.getFile()==null){
+
+    public void updateBgImage() {
+        if (curbg.getFile() == null) {
             jLabel23.setIcon(null);
             //((Scene) file.value).bgimage = null;
             scenePanel.updateUI();
@@ -209,24 +207,23 @@ public class SceneEditor extends TabPanel {
         //}
         scenePanel.updateUI();
     }
-    
     public JEditTextArea egml;
     public TileChooser tilechooser;
     //<editor-fold desc="Constructor">
     @SuppressWarnings("unchecked")
     public SceneEditor(final org.gcreator.fileclass.GFile file, Project project) {
-        if(!(file.value instanceof Scene)) {
-            file.value = new Scene /*file.name*/ ();
+        if (!(file.value instanceof Scene)) {
+            file.value = new Scene /*file.name*/();
         }
         scene = (Scene) file.value;
         this.file = file;
         this.project = project;
-        setMinimumSize(new Dimension(300,220));
+        setMinimumSize(new Dimension(300, 220));
         model = new ViewsModel(((Scene) file.value).views);
         bgmodel = new BackgroundsModel(((Scene) file.value).backgrounds);
         initComponents();
         scenePanel = new ScenePanel(this);
-        scenePanel.setSize(500,500);
+        scenePanel.setSize(500, 500);
         jScrollPane1.setViewportView(scenePanel);
         //egml
         GScriptTokenMarker scanner = new GScriptTokenMarker();
@@ -238,33 +235,38 @@ public class SceneEditor extends TabPanel {
         jList1.setSelectedIndex(0);
         setup();
         jTextField1.setText(file.name);
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent evt){
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void changedUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void insertUpdate(DocumentEvent evt){
+
+            public void insertUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void removeUpdate(DocumentEvent evt){
+
+            public void removeUpdate(DocumentEvent evt) {
                 updateName();
             }
         });
-        
+
         Load();
         jPanel11.setLayout(new FlowLayout());
         jPanel11.add(curactor = new ResourceChooser(project, "actor"));
-        curactor.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        curactor.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
                 updateImage();
             }
         });
         jPanel6.setLayout(new FlowLayout());
         /*if(((org.gcreator.fileclass.res.Scene) file.value).bgimage!=null)
-            jPanel6.add(curbg = new ResourceMenu("image",((org.gcreator.fileclass.res.Scene) file.value).bgimage.name,true,project));
+        jPanel6.add(curbg = new ResourceMenu("image",((org.gcreator.fileclass.res.Scene) file.value).bgimage.name,true,project));
         else*/
         jPanel6.add(curbg = new ResourceChooser(project, "image"));
-        curbg.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        curbg.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
                 Scene s = (Scene) file.value;
                 BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
                 bg.image = (org.gcreator.fileclass.GFile) curbg.getFile();
@@ -276,27 +278,31 @@ public class SceneEditor extends TabPanel {
         colorSelection1.setBackground(((Scene) file.value).background);
         jSpinner12.setValue(((Scene) file.value).speed);
         jScrollPane5.setViewportView(egml);
-        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-            public void adjustmentValueChanged(AdjustmentEvent evt){
+        jScrollPane1.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+
+            public void adjustmentValueChanged(AdjustmentEvent evt) {
                 jScrollPane1.updateUI();
             }
         });
-        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener(){
-            public void adjustmentValueChanged(AdjustmentEvent evt){
+        jScrollPane1.getHorizontalScrollBar().addAdjustmentListener(new AdjustmentListener() {
+
+            public void adjustmentValueChanged(AdjustmentEvent evt) {
                 jScrollPane1.updateUI();
             }
         });
         jScrollPane7.setViewportView(tilechooser);
         jPanel13.setLayout(new FlowLayout(FlowLayout.LEFT));
         jPanel13.add(curtileset = new ResourceChooser(project, "tileset"));
-        curtileset.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent evt){
+        curtileset.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent evt) {
                 jScrollPane7.updateUI();
                 tilechooser.updateUI();
             }
         });
         jList2ValueChanged(null);
         jComboBox3.setModel(new DefaultComboBoxModel() {
+
             private final static long serialVersionUID = 1;
 
             @Override
@@ -308,32 +314,58 @@ public class SceneEditor extends TabPanel {
             public Object getElementAt(int index) {
                 return scene.tileLayers.get(index);
             }
-        }); 
+        });
         jComboBox3.setSelectedIndex(0);
         jList2.setSelectedIndex(0);
+        DocumentListener l = new DocumentListener() {
+
+            public void changedUpdate(DocumentEvent evt) {
+                update();
+            }
+
+            public void removeUpdate(DocumentEvent evt) {
+                update();
+            }
+
+            public void insertUpdate(DocumentEvent evt) {
+                update();
+            }
+
+            public void update() {
+                changed = true;
+                try {
+                    ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
+                } catch (Exception e) {
+                    ((Scene) file.value).width = 0;
+                }
+                for (TileLayer layer : scene.tileLayers) {
+                    layer.optimize = null;
+                }
+                jScrollPane1.updateUI();
+                scenePanel.updateUI();
+            }
+        };
+        jTextField2.getDocument().addDocumentListener(l);
+        jTextField3.getDocument().addDocumentListener(l);
     }
 //</editor-fold>
-     
     @Override
     public boolean Load() {
         jEditorPane1.setText(((Scene) file.value).caption);
-        if(((Scene) file.value).width==0){
+        if (((Scene) file.value).width == 0) {
             jTextField2.setText("600");
+        } else {
+            jTextField2.setText("" + ((Scene) file.value).width);
         }
-        else{
-            jTextField2.setText(""+((Scene) file.value).width);
-        }
-        if(((Scene) file.value).height==0){
+        if (((Scene) file.value).height == 0) {
             jTextField3.setText("600");
-        }
-        else{
-            jTextField3.setText(""+((Scene) file.value).height);
+        } else {
+            jTextField3.setText("" + ((Scene) file.value).height);
         }
         jCheckBox1.setSelected(((Scene) file.value).drawbackcolor);
         return true;
     }
 
-     
     @Override
     public boolean Save() {
         Scene s = (Scene) file.value;
@@ -342,22 +374,21 @@ public class SceneEditor extends TabPanel {
         s.height = Integer.parseInt(jTextField3.getText());
         s.speed = (Integer) jSpinner12.getValue();
         s.persistant = this.jCheckBox3.isSelected();
-        s.snapX = (Integer)this.jSpinner2.getValue();
-        s.snapY = (Integer)this.jSpinner3.getValue();
+        s.snapX = (Integer) this.jSpinner2.getValue();
+        s.snapY = (Integer) this.jSpinner3.getValue();
         s.background = this.getMapBGColor();
         s.drawbackcolor = this.jCheckBox1.isSelected();
         //file.value = sceneObject.writeXml();
         return true;
     }
 
-     
     @Override
     public boolean wasModified() {
         return changed;
     }
-    
-    public void setup(){
-        try{
+
+    public void setup() {
+        try {
             ViewInScene v = (ViewInScene) jList1.getSelectedValue();
             jCheckBox4.setSelected(v.visibleonstart);
             jSpinner4.setValue((Integer) v.viewx);
@@ -368,70 +399,80 @@ public class SceneEditor extends TabPanel {
             jSpinner9.setValue((Integer) v.porty);
             jSpinner10.setValue((Integer) v.portw);
             jSpinner11.setValue((Integer) v.porth);
+        } catch (NullPointerException e) {
         }
-        catch(NullPointerException e){}
     }
-    
+
     public TileLayer getTileLayer() {
         return (TileLayer) jComboBox3.getSelectedItem();
     }
-    public boolean isGridVisible(){
+
+    public boolean isGridVisible() {
         return jToggleButton1.isSelected();
     }
-    
-    public boolean isIsometric(){
+
+    public boolean isIsometric() {
         return jToggleButton2.isSelected();
     }
-    
-    public int getSnapX(){
+
+    public int getSnapX() {
         return ((Integer) jSpinner2.getValue()).intValue();
     }
-    
-    public int getSnapY(){
+
+    public int getSnapY() {
         return ((Integer) jSpinner3.getValue()).intValue();
     }
-    
 
-    public int getMapWidth(){
-        try{
+    public int getMapWidth() {
+        try {
             return Integer.parseInt(jTextField2.getText());
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return 0;
         }
     }
-    
-    public int getMapHeight(){
-        try{
+
+    public int getMapHeight() {
+        try {
             return Integer.parseInt(jTextField3.getText());
-        }
-        catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             return 0;
         }
     }
-    
-    public double getZoom(){
+
+    public double getZoom() {
         int x = ((Integer) jSpinner1.getValue()).intValue();
-        switch(x){
-        case -5: return 6;
-        case -4: return 5;
-        case -3: return 4;
-        case -2: return 3;
-        case -1: return 2;
-        case 0: return 1;
-        case 1: return 0.5;
-        case 2: return 0.33;
-        case 3: return 0.25;
-        case 4: return 0.2;
-        default: return 0.16;
+        switch (x) {
+            case -5:
+                return 6;
+            case -4:
+                return 5;
+            case -3:
+                return 4;
+            case -2:
+                return 3;
+            case -1:
+                return 2;
+            case 0:
+                return 1;
+            case 1:
+                return 0.5;
+            case 2:
+                return 0.33;
+            case 3:
+                return 0.25;
+            case 4:
+                return 0.2;
+            default:
+                return 0.16;
         }
     }
-    
+
     public void updateName() {
         file.name = jTextField1.getText();
-   //     scene.setName(file.name);
+        //     scene.setName(file.name);
         org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -772,25 +813,10 @@ public class SceneEditor extends TabPanel {
         jLabel7.setText(LangSupporter.activeLang.getEntry(161));
 
         jTextField2.setText("640");
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
-        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField2KeyTyped(evt);
-            }
-        });
 
         jLabel8.setText(LangSupporter.activeLang.getEntry(162));
 
         jTextField3.setText("480");
-        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField3KeyTyped(evt);
-            }
-        });
 
         jLabel9.setText(LangSupporter.activeLang.getEntry(163));
 
@@ -1465,25 +1491,11 @@ public class SceneEditor extends TabPanel {
         setup();
     }//GEN-LAST:event_jList1ValueChanged
 
-
-    
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
         //((Scene) file.value).name = file.name;
         gcreator.panel.workspace.updateUI();
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        changed = true;
-        try{
-            ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
-        }
-        catch(Exception e){
-            ((Scene) file.value).width = 0;
-        }
-        jScrollPane1.updateUI();
-        scenePanel.updateUI();
-    }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jEditorPane1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jEditorPane1KeyTyped
         changed = true;
@@ -1492,30 +1504,6 @@ public class SceneEditor extends TabPanel {
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
-
-    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
-        changed = true;
-        try{
-            ((Scene) file.value).width = Integer.parseInt(jTextField2.getText());
-        }
-        catch(Exception e){
-            ((Scene) file.value).width = 0;
-        }
-        jScrollPane1.updateUI();
-        scenePanel.updateUI();
-    }//GEN-LAST:event_jTextField2KeyTyped
-
-    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
-        changed = true;
-        try{
-            ((Scene) file.value).height = Integer.parseInt(jTextField3.getText());
-        }
-        catch(Exception e){
-            ((Scene) file.value).height = 0;
-        }
-        jScrollPane1.updateUI();
-        scenePanel.updateUI();
-    }//GEN-LAST:event_jTextField3KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         jButton2.setSelected(true);
@@ -1548,9 +1536,9 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_colorSelection1MouseClicked
 
     private void jSpinner12StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner12StateChanged
-       ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
+        ((Scene) file.value).speed = (Integer) jSpinner12.getValue();
     }//GEN-LAST:event_jSpinner12StateChanged
-    
+
     private void jSpinner4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner4StateChanged
         ViewInScene v = (ViewInScene) jList1.getSelectedValue();
         v.viewx = (Integer) jSpinner4.getValue();
@@ -1624,17 +1612,16 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jList2ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList2ValueChanged
-        if(jList2.isSelectionEmpty()){
+        if (jList2.isSelectionEmpty()) {
             curbg.setEnabled(false);
             jComboBox1.setEnabled(false);
             jComboBox2.setEnabled(false);
-        }
-        else{
+        } else {
             curbg.setEnabled(true);
             jComboBox1.setEnabled(true);
             jComboBox2.setEnabled(true);
         }
-        if(jList2.getSelectedIndex()<0) {
+        if (jList2.getSelectedIndex() < 0) {
             return;
         }
         Scene s = (Scene) file.value;
@@ -1664,13 +1651,13 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if  (scene.tileLayers.size() <= 1) {
-            JOptionPane.showMessageDialog(this, "You must at have at least one tile layer!", 
+        if (scene.tileLayers.size() <= 1) {
+            JOptionPane.showMessageDialog(this, "You must at have at least one tile layer!",
                     "Fatal ExceptionOE at E74F38A2.", JOptionPane.ERROR_MESSAGE);
         } else {
             scene.tileLayers.remove(jComboBox3.getSelectedItem());
             if (jComboBox3.getSelectedIndex() >= scene.tileLayers.size()) {
-                jComboBox3.setSelectedIndex(jComboBox3.getSelectedIndex()-1);
+                jComboBox3.setSelectedIndex(jComboBox3.getSelectedIndex() - 1);
             }
             scenePanel.repaint();
         }
@@ -1690,7 +1677,7 @@ public class SceneEditor extends TabPanel {
         ok.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int n = ((Integer)spin.getValue());
+                int n = ((Integer) spin.getValue());
                 dialog.dispose();
                 TileLayer t = new TileLayer(n);
                 scene.tileLayers.add(t);
@@ -1718,7 +1705,7 @@ public class SceneEditor extends TabPanel {
         ok.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                int n = ((Integer)spin.getValue());
+                int n = ((Integer) spin.getValue());
                 dialog.dispose();
                 getTileLayer().depth = n;
                 jComboBox3.updateUI();
@@ -1738,9 +1725,8 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jCheckBox6ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-       jCheckBox6.setSelected(getTileLayer().visible);
+        jCheckBox6.setSelected(getTileLayer().visible);
     }//GEN-LAST:event_jComboBox3ActionPerformed
-    
     public static final int INVALID = 0;
     public static final int PENCIL = 1;
     public static final int ERASE = 2;
@@ -1748,8 +1734,8 @@ public class SceneEditor extends TabPanel {
     public static final int TILEADD = 4;
     public static final int TILEERASE = 5;
     public static final int TILEEDIT = 6;
-    
-    public Tile makeNewTile(int x, int y){
+
+    public Tile makeNewTile(int x, int y) {
         if (curtileset == null) {
             curtileset = new ResourceChooser(project, "tileset");
         }
@@ -1761,19 +1747,17 @@ public class SceneEditor extends TabPanel {
         try {
             t = (Tileset) curtileset.getFile().value;
         } catch (ClassCastException exc) {
-            System.out.println("? ?? "+exc);
+            System.out.println("? ?? " + exc);
             return null;
         }
         if (!snapToGrid()) {
             tile.x = x;
-        }
-        else {
+        } else {
             tile.x = (int) (Math.floor(x / getSnapX()) * getSnapX());
         }
         if (!snapToGrid()) {
             tile.y = y;
-        }
-        else {
+        } else {
             tile.y = (int) (Math.floor(y / getSnapY()) * getSnapY());
         }
         tile.width = t.tilew;
@@ -1784,18 +1768,18 @@ public class SceneEditor extends TabPanel {
         //tile.layer = 
         return tile;
     }
-    
-    public int mode(){
-        if(jButton1.isSelected()) {
+
+    public int mode() {
+        if (jButton1.isSelected()) {
             return EDIT;
         }
-        if(jButton2.isSelected()) {
+        if (jButton2.isSelected()) {
             return PENCIL;
         }
-        if(jButton3.isSelected()) {
+        if (jButton3.isSelected()) {
             return ERASE;
         }
-        if(jButton8.isSelected()) {
+        if (jButton8.isSelected()) {
             return TILEADD;
         }
         if (jButton11.isSelected()) {
@@ -1806,18 +1790,18 @@ public class SceneEditor extends TabPanel {
         }
         return INVALID;
     }
-    
-    public Color getMapBGColor(){
-        if(jCheckBox1.isSelected()) {
+
+    public Color getMapBGColor() {
+        if (jCheckBox1.isSelected()) {
             return colorSelection1.getBackground();
-        } 
+        }
         return Color.BLACK;
     }
-    
-    public void updateScroll(){
-        if(((Integer) jSpinner1.getValue()) > 5)
+
+    public void updateScroll() {
+        if (((Integer) jSpinner1.getValue()) > 5) {
             jSpinner1.setValue(5);
-        else if(((Integer) jSpinner1.getValue()) < -5) {
+        } else if (((Integer) jSpinner1.getValue()) < -5) {
             jSpinner1.setValue(-5);
         }
         ((Scene) file.value).snapX = (Integer) jSpinner2.getValue();
