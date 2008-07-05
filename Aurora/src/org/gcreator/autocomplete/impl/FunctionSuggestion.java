@@ -16,8 +16,8 @@ import javax.swing.*;
  * @author Luís Reis
  */
 public class FunctionSuggestion extends Suggestion{
-    private String name = "";
-    private String args;
+    public String name = "";
+    public String args = "";
     //private String[] args;
     private static ImageIcon img = new ImageIcon(ClassSuggestion.class.getResource("/org/gcreator/resources/i_function.png"));
     public FunctionSuggestion(){}
