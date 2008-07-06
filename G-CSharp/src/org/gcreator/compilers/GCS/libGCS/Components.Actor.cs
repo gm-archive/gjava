@@ -76,24 +76,24 @@ namespace org.gcreator.Components
             this.sprite = sprite;
         }
 
-        public double getGravity()
+        public Object getGravity()
         {
-            return gravity;
+            return new Double(gravity);
         }
 
-        public double getGravityDirection()
+        public Object getGravity_direction()
         {
-            return gravitydir;
+            return new Double(gravitydir);
         }
 
-        public void setGravity(double gravity)
+        public void setGravity(Object gravity)
         {
-            this.gravity = gravity;
+            this.gravity = gravity.getDouble();
         }
 
-        public void setGravityDirection(double direction)
+        public void setGravity_direction(Object direction)
         {
-            gravitydir = direction;
+            gravitydir = direction.getDouble();
         }
 
         public void setX(Object x)
@@ -178,6 +178,10 @@ namespace org.gcreator.Components
 			BeginStep();
 			x += (int) hspeed;
 			y += (int) vspeed;
+
+            hspeed += System.Math.Sin(gravitydir * System.Math.PI/180) * gravity;
+            vspeed -= System.Math.Cos(gravitydir * System.Math.PI / 180) * gravity;
+
 			MouseCheck();
 			KeyboardCheck();
 			spritett++;
