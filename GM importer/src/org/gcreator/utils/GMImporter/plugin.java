@@ -19,11 +19,12 @@ import org.gcreator.plugins.*;
 public class plugin extends PluginCore{
     
     public static JFileChooser jFileChooser1 = null;
+    JMenuItem GM = new JMenuItem();
     
     public plugin(){}
     public void onSplashDispose(){
-        System.out.println("onSplashDispose");
-        JMenuItem GM = new JMenuItem();
+        //System.out.println("onSplashDispose (GM importer)");
+        
         VarsRegistry.setVariable("GMImporter.GM", GM);
         System.out.println("Registered GM Importer");
         GM.setText("Game Maker Project");
@@ -76,6 +77,15 @@ public class plugin extends PluginCore{
         importFile(_file.getPath(), MODE_GM6);
             } else { return;}
     }
+
+    @Override
+    public void uninstall() {
+        super.uninstall();
+        PluginHelper.removeMenuItem(11, GM);
+        GM = new JMenuItem();
+    }
+    
+    
     
     public void importFile(String fname, int mode)
     {

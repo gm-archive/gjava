@@ -39,9 +39,9 @@ public abstract class AbstractBitmapIndexed extends AbstractBitmap
 		{
 		super(pDescriptor);
 
-                System.out.println("Begin");
+                //System.out.println("Begin");
 		pixels = new int[getWidth() * getHeight()];
-                System.out.println("End");
+                //System.out.println("End");
 		}
 
 	/**

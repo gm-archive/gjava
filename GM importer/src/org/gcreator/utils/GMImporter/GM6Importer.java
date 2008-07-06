@@ -8,14 +8,12 @@
 package org.gcreator.utils.GMImporter;
 
 import java.io.*;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
-import org.gcreator.actions.mainactions.SetVSpeed;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.components.ProjectTypes;
 import org.gcreator.core.*;
@@ -83,7 +81,7 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
-        //System.out.println("Line 75, fileName=" + fileName);
+        System.out.println("GMI: Line 75, fileName=" + fileName);
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -105,18 +103,25 @@ public class GM6Importer {
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
-        //System.out.println("read settings");
+        System.out.println("GMI: Read settings");
         SettingsValues values = readSettings(settings, c);
-        
+                System.out.println("GMI: Read Sounds");
         readSounds(c);
+        System.out.println("GMI: Read Sprites");
         readSprites(c);
+        System.out.println("GMI: Read Backgrounds");
         readBackgrounds(c);
+        System.out.println("GMI: Read Paths");
         readPaths(c);
+        System.out.println("GMI: Read Scripts");
         readScripts(c);
+        System.out.println("GMI: Read Fonts");
         readFonts(c);
         readTimelines(c);
+        System.out.println("GMI: Read Actors");
         readActors(c);
-
+        System.out.println("GMI: Read Scenes");
+        
         in.close();
 
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
@@ -126,6 +131,7 @@ public class GM6Importer {
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
+                System.out.println("GMI: in Settings");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -224,6 +230,7 @@ public class GM6Importer {
             // hopefully this won't happen
             e.printStackTrace();
         }
+
         boolean displayErrors = in.readBool();
         boolean writeToLog = in.readBool();
         boolean abortOnError = in.readBool();
@@ -244,6 +251,7 @@ public class GM6Importer {
             /*con.name = */            in.readStr();
             /*con.value = */            in.readStr();
         }
+        
         if (ver > 600) {
             in.skip(4); //Major
             in.skip(4); //Minor
@@ -264,6 +272,7 @@ public class GM6Importer {
             boolean overwriteExisting = in.readBool();
             boolean removeAtGameEnd = in.readBool();
         }
+        
         return value;
     }
 
@@ -704,6 +713,7 @@ public class GM6Importer {
                         else
                             id = first; //ev.id = first;
                         //ev.mainId = j;
+                        System.out.println("GMI: read action");
                         readActions(c, i, j*1000+id, e);
                     }
                     else
@@ -732,11 +742,14 @@ public class GM6Importer {
             
             //boolean unknownLib = (act == null); //this should always be false
             if (true){
-                in.read4(); //action kind
-                in.readBool(); //allow relative
-                //System.out.println("question:"+in.readBool()); //question
-                //System.out.println("applyto"+in.readBool()); //can apply to
+                int k = in.read4(); //action kind
+                System.out.println("kind:"+k);//1=sblock,2=eblock
+                boolean ar = in.readBool(); //allow relative
+                System.out.println("allow relative:"+ar);
+                System.out.println("question:"+in.readBool()); //question
+                System.out.println("applyto"+in.readBool()); //can apply to
                 int exectype = in.read4();
+                System.out.println("exectype:"+exectype);
                 //System.out.println("etype:"+exectype);
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
@@ -744,7 +757,9 @@ public class GM6Importer {
                     in.skip(in.read4());}
                 
                 if(exectype == EXEC_CODE){
+                    System.out.println("exec code");
                     code=in.readStr(); //Exec info
+                    System.out.println("code:"+code);
                 //System.out.println("read code:"+code);
                 }
                 else {
