@@ -170,7 +170,7 @@ namespace org.gcreator.Components
                 {
                     if (o is Actor)
                     {
-                        if ((o as Actor).getDepth() == a && (o as Actor).isVisible())
+                        if ((o as Actor).getDepth() == a && (o as Actor).isVisible().getBoolean())
                             (o as Actor).Draw();
                     }
                 }

@@ -136,14 +136,14 @@ namespace org.gcreator.Components
             this.solid = solid;
         }
 
-        public bool isVisible()
+        public Object isVisible()
         {
-            return visible;
+            return new Boolean(visible);
         }
 
-        public void setVisible(bool visible)
+        public void setVisible(Object visible)
         {
-            this.visible = visible;
+            this.visible = visible.getBoolean();
         }
 		
 		public bool isPersistent()
@@ -173,6 +173,43 @@ namespace org.gcreator.Components
 			this.vspeed = vspeed.getDouble();
 			return new Object();
 		}
+
+        public Object getSpeed()
+        {
+            return new Double(System.Math.Sqrt(hspeed*hspeed+vspeed*vspeed));
+        }
+
+        private Object lastdir = null;
+
+        public Object getDirection()
+        {
+            if (hspeed == 0)
+            {
+                if (vspeed == 0)
+                {
+                    if (lastdir != null)
+                        return new Double(lastdir.getDouble());
+                    return new Double(0);
+                }
+                if (vspeed > 0)
+                    return new Double(270);
+                return new Double(90);
+            }
+            return new Double(System.Math.Atan((0-vspeed)/hspeed)*180/System.Math.PI);
+        }
+
+        public void setSpeed(Object speed)
+        {
+            hspeed = System.Math.Sin(getDirection().getDouble() * System.Math.PI / 180) * speed.getDouble();
+            vspeed = 0 - System.Math.Cos(getDirection().getDouble() * System.Math.PI / 180) * speed.getDouble();
+        }
+
+        public void setDirection(Object direction)
+        {
+            lastdir = direction;
+            hspeed = System.Math.Sin(direction.getDouble() * System.Math.PI / 180) * getSpeed().getDouble();
+            vspeed = 0 - System.Math.Cos(direction.getDouble() * System.Math.PI / 180) * getSpeed().getDouble();
+        }
 		
 		public void Loop(){
 			BeginStep();

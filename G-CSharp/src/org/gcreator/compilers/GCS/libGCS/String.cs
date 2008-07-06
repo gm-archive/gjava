@@ -24,7 +24,7 @@ namespace org.gcreator.Types
 
         public override Object add(Object o)
         {
-            return new String(s + o.getString().s);
+            return new String(s + o.getString().ToString());
         }
 
         public override string ToString()

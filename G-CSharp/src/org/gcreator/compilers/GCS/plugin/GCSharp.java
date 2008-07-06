@@ -41,31 +41,28 @@ public class GCSharp extends PlatformCore {
     public static Vector<String> files = new Vector<String>(),  scenelist = new Vector<String>();
     public static Vector<Comb> tilelist = new Vector<Comb>();
 
+    @Override
     public boolean checkvariable(String name) {
-        if (name.equals("x")) {
+        if (name.equals("x"))
             return true;
-        }
-        if (name.equals("y")) {
+        if (name.equals("y"))
             return true;
-        }
-        if (name.equals("depth")) {
+        if (name.equals("depth"))
             return true;
-        }
-        if (name.equals("hspeed")) {
+        if (name.equals("hspeed"))
             return true;
-        }
-        if (name.equals("vspeed")) {
+        if (name.equals("vspeed"))
             return true;
-        }
-        if (name.equals("gravity")) {
+        if (name.equals("gravity"))
             return true;
-        }
-        if (name.equals("gravity_direction")) {
+        if (name.equals("gravity_direction"))
             return true;
-        }
-        if (name.equals("solid")) {
+        if (name.equals("solid"))
             return true;
-        }
+        if (name.equals("speed"))
+            return true;
+        if (name.equals("direction"))
+            return true;
         return false;
     }
 
@@ -154,7 +151,7 @@ public class GCSharp extends PlatformCore {
                     ": base(x,y, new Integer(" + a.depth + "))");
             System.out.println("Got here 10");
             print(actor, "\t{");
-            print(actor, "\t\tsetVisible(" + a.visible + ");");
+            print(actor, "\t\tsetVisible(new Boolean(" + a.visible + "));");
             if (a.sprite == null) {
                 print(actor, "\t\tsetSprite(null);");
             } else {
