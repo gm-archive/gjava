@@ -4,6 +4,7 @@
  */
 package org.gcreator.actions.components;
 
+import java.io.Serializable;
 import java.util.NoSuchElementException;
 import java.util.Vector;
 
@@ -11,7 +12,7 @@ import java.util.Vector;
  *
  * @author Luís
  */
-public class ArgumentList {
+public class ArgumentList implements Serializable{
 
     public Vector<String> arguments = new Vector<String>();
 
