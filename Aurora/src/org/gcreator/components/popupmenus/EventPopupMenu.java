@@ -5,36 +5,33 @@
 
 package org.gcreator.components.popupmenus;
 
-import org.gcreator.editors.ActorEditor;
 import java.util.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import org.gcreator.events.*;
+import org.gcreator.components.custom.MenuGenerator;
 import org.gcreator.editors.*;
 
 /**
  *
  * @author luis
  */
-public class EventPopupMenu extends JPopupMenu {
+public class EventPopupMenu extends MenuGenerator {
     private static final long serialVersionUID = 1;
     private Vector array;
     private ActorEditor edit;
     
-    private JMenuItem delete;
+    private Object delete;
     
     public EventPopupMenu(ActorEditor edit){
         this.array = edit.elist.getEvents();
         this.edit = edit;
-        delete = new JMenuItem("Delete");
-        delete.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
-        delete.addActionListener(new ActionListener(){
+        delete = addMenuItem(255, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
+        addActionListener(delete, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onDelete();
             }
         });
-        this.add(delete);
     }
     
     public void onDelete(){

@@ -27,7 +27,12 @@ public class EventListModel extends AbstractListModel {
     }
     @Override
     public Object getElementAt(int pos){
+        try{
         return val.events.get(pos);
+        }
+        catch(Exception e){
+            return null;
+        }
     }
     public ImageIcon getImageAt(int pos){
         return ((Event)val.events.get(pos)).getImage();

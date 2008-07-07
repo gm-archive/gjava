@@ -106,7 +106,7 @@ public class ActorEditor extends TabPanel {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
-                    //p.show(jList2, evt.getX(), evt.getY());
+                    p.show(jList2, evt.getXOnScreen(), evt.getYOnScreen());
                 }
             }
 
@@ -122,7 +122,32 @@ public class ActorEditor extends TabPanel {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
             }
         });
-        jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
+        jList1.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                if (evt.isPopupTrigger()) {
+                    EventPopupMenu p = new EventPopupMenu(ActorEditor.this);
+                    p.show(jList2, evt.getXOnScreen(), evt.getYOnScreen());
+                }
+            }
+
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+            }
+
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+            }
+        });
         //a.update = true;
         //jList2.addMouseListener(a);
         jComboBox2.setModel(new DefaultComboBoxModel(ActionContainer.actionCats));
@@ -175,8 +200,8 @@ public class ActorEditor extends TabPanel {
         //load variables
         Load();
 
-        jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
-        jList2.addMouseListener(new PopupListener(jList2, new ActionPopupMenu(this)));
+        //jList1.addMouseListener(new PopupListener(jList1, new EventPopupMenu(this)));
+        //jList2.addMouseListener(new PopupListener(jList2, new ActionPopupMenu(this)));
         jSpinner1.setValue((Integer) actor.depth);
     }
 
