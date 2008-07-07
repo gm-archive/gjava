@@ -7,7 +7,7 @@ namespace org.gcreator.Components
 {
     public class Scene : Object
     {
-        private ArrayList actors = new ArrayList();
+        internal ArrayList actors = new ArrayList();
         private ArrayList tiles = new ArrayList();
         private int width = 640, height = 480;
         private System.Drawing.Color background = System.Drawing.Color.Black;
@@ -170,7 +170,7 @@ namespace org.gcreator.Components
                 {
                     if (o is Actor)
                     {
-                        if ((o as Actor).getDepth() == a && (o as Actor).isVisible().getBoolean())
+                        if ((o as Actor).getDepth() == a && (o as Actor).getVisible().getBoolean())
                             (o as Actor).Draw();
                     }
                 }

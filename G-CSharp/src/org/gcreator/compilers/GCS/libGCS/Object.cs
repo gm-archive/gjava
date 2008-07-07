@@ -17,6 +17,117 @@ namespace org.gcreator.Types
             return variables[key];
         }
 
+        public virtual Object getX()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setX(Object x)
+        {
+
+        }
+
+        public virtual Object getY()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setY(Object y)
+        {
+
+        }
+
+        public virtual Object getVisible()
+        {
+            return new Boolean(true);
+        }
+
+        public virtual void setVisible(Object visible)
+        {
+
+        }
+
+        public virtual Object getGravity()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setGravity(Object gravity)
+        {
+
+        }
+
+        public virtual Object getGravity_direction()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setGravity_direction(Object gravitydir)
+        {
+
+        }
+
+        public virtual Object getHspeed()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setHspeed(Object speed)
+        {
+
+        }
+
+        public virtual Object getVspeed()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setXprevious(Object prev)
+        {
+
+        }
+
+        public virtual Object getXPrevious()
+        {
+            return new Integer(0);
+        }
+        
+
+        public virtual void setYprevious(Object prev)
+        {
+
+        }
+
+        public virtual Object getYPrevious()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setVspeed(Object speed)
+        {
+
+        }
+
+        public virtual Object getSpeed()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setSpeed(Object speed)
+        {
+
+        }
+
+        public virtual Object getDirection()
+        {
+            return new Integer(0);
+        }
+
+        public virtual void setDirection(Object directory)
+        {
+
+        }
+
         public virtual bool isInstanceOf(Object obj)
         {
             return obj is Object;

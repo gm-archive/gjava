@@ -5,7 +5,9 @@ namespace org.gcreator.Components
 {
 	public class Actor : org.gcreator.Scripting.GCL
     {
-        private int x, y, z, spritepos, spritemovdelay, spritet, spritett = 0;
+        private int x, y, z;
+        private int xprevious, yprevious;
+        private int spritepos, spritemovdelay, spritet, spritett = 0;
         //spritet-current position(only on -1 mode)
         //spritett-time to fill delay
         private Sprite sprite = null;
@@ -19,6 +21,8 @@ namespace org.gcreator.Components
 			this.x = x.getInt();
 			this.y = y.getInt();
 			this.z = z.getInt();
+            this.xprevious = this.x;
+            this.yprevious = this.y;
 			this.startx = this.x;
 			this.starty = this.y;
 			this.self = this;
@@ -76,32 +80,32 @@ namespace org.gcreator.Components
             this.sprite = sprite;
         }
 
-        public Object getGravity()
+        public override Object getGravity()
         {
             return new Double(gravity);
         }
 
-        public Object getGravity_direction()
+        public override Object getGravity_direction()
         {
             return new Double(gravitydir);
         }
 
-        public void setGravity(Object gravity)
+        public override void setGravity(Object gravity)
         {
             this.gravity = gravity.getDouble();
         }
 
-        public void setGravity_direction(Object direction)
+        public override void setGravity_direction(Object direction)
         {
             gravitydir = direction.getDouble();
         }
 
-        public void setX(Object x)
+        public override void setX(Object x)
         {
             this.x = x.getInt();
         }
 
-        public void setY(Object y)
+        public override void setY(Object y)
         {
             this.y = y.getInt();
         }
@@ -111,12 +115,12 @@ namespace org.gcreator.Components
             z = depth;
         }
 
-        public Object getX()
+        public override Object getX()
         {
             return new Integer(x);
         }
 
-        public Object getY()
+        public override Object getY()
         {
             return new Integer(y);
         }
@@ -136,12 +140,12 @@ namespace org.gcreator.Components
             this.solid = solid;
         }
 
-        public Object isVisible()
+        public override Object getVisible()
         {
             return new Boolean(visible);
         }
 
-        public void setVisible(Object visible)
+        public override void setVisible(Object visible)
         {
             this.visible = visible.getBoolean();
         }
@@ -156,32 +160,30 @@ namespace org.gcreator.Components
             this.persistent = persistent;
         }
 		
-		public Object getHspeed(){
+		public override Object getHspeed(){
 			return new Double(hspeed);
 		}
 		
-		public Object getVspeed(){
+		public override Object getVspeed(){
 			return new Double(vspeed);
 		}
 		
-		public Object setHspeed(Object hspeed){
+		public override void setHspeed(Object hspeed){
 			this.hspeed = hspeed.getDouble();
-			return new Object();
 		}
 		
-		public Object setVspeed(Object vspeed){
+		public override void setVspeed(Object vspeed){
 			this.vspeed = vspeed.getDouble();
-			return new Object();
 		}
 
-        public Object getSpeed()
+        public override Object getSpeed()
         {
             return new Double(System.Math.Sqrt(hspeed*hspeed+vspeed*vspeed));
         }
 
         private Object lastdir = null;
 
-        public Object getDirection()
+        public override Object getDirection()
         {
             if (hspeed == 0)
             {
@@ -198,13 +200,13 @@ namespace org.gcreator.Components
             return new Double(System.Math.Atan((0-vspeed)/hspeed)*180/System.Math.PI);
         }
 
-        public void setSpeed(Object speed)
+        public override void setSpeed(Object speed)
         {
             hspeed = System.Math.Sin(getDirection().getDouble() * System.Math.PI / 180) * speed.getDouble();
             vspeed = 0 - System.Math.Cos(getDirection().getDouble() * System.Math.PI / 180) * speed.getDouble();
         }
 
-        public void setDirection(Object direction)
+        public override void setDirection(Object direction)
         {
             lastdir = direction;
             hspeed = System.Math.Sin(direction.getDouble() * System.Math.PI / 180) * getSpeed().getDouble();
@@ -213,6 +215,8 @@ namespace org.gcreator.Components
 		
 		public void Loop(){
 			BeginStep();
+            xprevious = x;
+            yprevious = y;
 			x += (int) hspeed;
 			y += (int) vspeed;
 
@@ -248,7 +252,36 @@ namespace org.gcreator.Components
 				Native.SDL.Game.game.cursurface,
 				new Rectangle(x - sprite.getOriginX(), y - sprite.getOriginY(), sprite.getWidth(), sprite.getHeight()));
 		}
-		public virtual void CollisionCheck(){} //TODO: Check collisions/solid
+
+		public void CollisionCheck()
+        {
+            if (sprite == null)
+                return;
+            foreach (object o in Native.SDL.Game.game.currentScene.actors)
+            {
+                if (o is Actor)
+                {
+                    Actor a2 = o as Actor;
+                    if (a2.sprite != null)
+                    {
+                        Sprite s1 = sprite;
+                        Sprite s2 = a2.sprite;
+                        Actor a1 = this;
+                        if (a1.x - s1.getOriginX() < a2.x - s2.getOriginX() + s2.getWidth() &&
+                            a1.x - s1.getOriginX() + s1.getWidth() > a2.x - s2.getOriginX() &&
+                            a1.y - s1.getOriginY() < a2.y - s2.getOriginY() + s2.getHeight() &&
+                            a1.y - s1.getOriginY() + s1.getHeight() > a2.y - s2.getOriginY())
+                        {
+                            setVariable("other", a2);
+                            CollisionWith(a2);
+                        }
+                    }
+                }
+            }
+        }
+
+        public virtual void CollisionWith(Actor other){}
+
 		public virtual void Create(){}
     }
 }
