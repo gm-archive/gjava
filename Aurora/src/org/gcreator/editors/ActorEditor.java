@@ -106,7 +106,7 @@ public class ActorEditor extends TabPanel {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 if (evt.isPopupTrigger()) {
                     ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
-                    p.show(jList2, evt.getX(), evt.getY());
+                    //p.show(jList2, evt.getX(), evt.getY());
                 }
             }
 

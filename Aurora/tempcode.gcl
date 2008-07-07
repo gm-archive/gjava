@@ -1,2 +1,3 @@
-//Some GCL Code
-show_message("HI");
+hspeed = 1;
+vspeed = 1;
+show_message(direction);
