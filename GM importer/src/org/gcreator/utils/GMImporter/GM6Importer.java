@@ -84,6 +84,12 @@ public class GM6Importer {
         }
         
         Vector<org.gcreator.fileclass.GFile> sprites = new Vector<org.gcreator.fileclass.GFile>();
+            Vector<org.gcreator.fileclass.GFile> actors = new Vector<org.gcreator.fileclass.GFile>();
+                    Vector<org.gcreator.fileclass.GFile> scenes = new Vector<org.gcreator.fileclass.GFile>();
+                    Vector<org.gcreator.fileclass.GFile> scripts = new Vector<org.gcreator.fileclass.GFile>();
+                    Vector<org.gcreator.fileclass.GFile> fonts = new Vector<org.gcreator.fileclass.GFile>();
+                    Vector<org.gcreator.fileclass.GFile> sounds = new Vector<org.gcreator.fileclass.GFile>();
+
     }
 
     private static GmFormatException versionError(String error, String res, int ver) {
@@ -137,6 +143,7 @@ public class GM6Importer {
         readActors(c);
         System.out.println("GMI: Read Scenes");
         readScenes(c);
+        c=null;
         in.close();
 
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
@@ -672,10 +679,12 @@ public class GM6Importer {
         int noGmRooms = in.read4();
         for(int i = 0; i < noGmRooms; i++){
             if (!in.readBool()){
+                c.scenes.add(null);
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(scenesGroup, in.readStr(), "scene", null);
             f.value = a = new Scene(f.name);
+            c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
             System.out.println("Caption:"+a.caption);
@@ -735,12 +744,18 @@ public class GM6Importer {
 			for (int j = 0; j < noinstances; j++)
 				{
                             //ActorInScene = new ActorInScene(f, j, j, i);
-                            in.read4();//x
-                            in.read4();//y
-                            in.read4(); //actor
-                            in.read4(); //instanceID
+                            int x = in.read4();//x
+                            int y = in.read4();//y
+                            int temp = in.read4(); //actor
+                            int id = in.read4(); //instanceID
                             in.readStr(); //code
                             in.readBool(); //locked
+                            
+                            if(temp<c.actors.size()&&temp>=0){
+                org.gcreator.fileclass.GFile act = c.actors.get(temp);
+                if(act!=null)
+                    a.actors.add(new ActorInScene(act, x, y, id));
+            }
                         }
             
             int notiles = in.read4();
@@ -785,10 +800,12 @@ public class GM6Importer {
         int noGmObjects = in.read4();
         for(int i = 0; i < noGmObjects; i++){
             if (!in.readBool()){
+                c.actors.add(null);
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
             f.value = a = new Actor(f.name);
+            c.actors.add(f);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
             int temp = in.read4();
