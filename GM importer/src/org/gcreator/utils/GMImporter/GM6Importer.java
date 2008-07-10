@@ -12,14 +12,22 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
+import org.gcreator.actions.mainactions.CallFunction;
+import org.gcreator.actions.mainactions.Comment;
 import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.components.ProjectTypes;
 import org.gcreator.core.*;
+import org.gcreator.events.AlarmEvent;
+import org.gcreator.events.BeginStepEvent;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.DestroyEvent;
 import org.gcreator.events.DrawEvent;
+import org.gcreator.events.EndStepEvent;
+import org.gcreator.events.KeyPress;
+import org.gcreator.events.KeyReleased;
+import org.gcreator.events.KeyboardEvent;
 import org.gcreator.events.StepEvent;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.managers.*;
@@ -689,27 +697,66 @@ public class GM6Importer {
                     if(first!=-1){
                         //System.out.println("event:"+j+" first:"+first);
                         if(j==EV_CREATE){
+                            System.out.println("Create");
                             e = new CreateEvent();
                             a.events.add(e);
                             id = first;
                         }
                         else if(j==EV_DESTROY){
+                            System.out.println("destroy");
                             e = new DestroyEvent();
                             a.events.add(e);
                             id = first;
                         }
-                        else if(j==EV_STEP){
-                            e = new StepEvent();
+                        else if(j==EV_ALARM){
+                             System.out.println("alarm");
+                            e= new AlarmEvent(first);
                             a.events.add(e);
                             id = first;
                         }
+                        else if(j==EV_STEP){
+                            
+                            if (first == 1)
+                                e = new BeginStepEvent();
+                            else if (first == 2)
+                                e = new EndStepEvent();
+                            else   
+                            e = new StepEvent();
+                            a.events.add(e);
+                            id = first;
+                            System.out.println("Step Id:"+id);
+                        }
+                        else if(j==EV_COLLISION)
+                        {} //ev.other = c.objids.get(first);
+                        else if(j==EV_KEYBOARD)
+                        {
+                        System.out.println("keyboard");
+                        e = new KeyboardEvent(first, ""+first);
+                            a.events.add(e);
+                            id = first;
+                        } 
+                         else if(j==EV_KEYPRESS)
+                        {
+                        System.out.println("keyboard press");
+                        e = new KeyPress(first, ""+first);
+                            a.events.add(e);
+                            id = first;
+                        } 
+                        else if(j==EV_KEYRELEASE)
+                        {
+                        System.out.println("keyboard press");
+                        e = new KeyReleased(first, ""+first);
+                            a.events.add(e);
+                            id = first;
+                        } 
                         else if(j==EV_DRAW){
+                            System.out.println("draw");
                             e = new DrawEvent();
                             a.events.add(e);
                             id = first;
                         } 
-                        else if(j==EV_COLLISION)
-                            ; //ev.other = c.objids.get(first);
+                        
+                        
                         else
                             id = first; //ev.id = first;
                         //ev.mainId = j;
@@ -739,11 +786,11 @@ public class GM6Importer {
             int libid = in.read4();
             int actid = in.read4();
             ////System.out.println("retrive actions");
-            
+            int k;
             //boolean unknownLib = (act == null); //this should always be false
             if (true){
-                int k = in.read4(); //action kind
-                System.out.println("kind:"+k);//1=sblock,2=eblock
+                k = in.read4(); //action kind
+                System.out.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
                 boolean ar = in.readBool(); //allow relative
                 System.out.println("allow relative:"+ar);
                 System.out.println("question:"+in.readBool()); //question
@@ -753,13 +800,11 @@ public class GM6Importer {
                 //System.out.println("etype:"+exectype);
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
-                else {
-                    in.skip(in.read4());}
+                else {in.skip(in.read4());}
                 
                 if(exectype == EXEC_CODE){
-                    System.out.println("exec code");
                     code=in.readStr(); //Exec info
-                    System.out.println("code:"+code);
+                    System.out.println("code action:"+code);
                 //System.out.println("read code:"+code);
                 }
                 else {
@@ -776,7 +821,8 @@ public class GM6Importer {
             }
             //System.out.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
-            //System.out.println("arg count");
+            
+            System.out.println("arg count:"+arglen);
             int argkinds = in.read4();
             for(int x = 0; x < argkinds; x++)
                 in.read4();
@@ -794,13 +840,13 @@ public class GM6Importer {
                 }
                 args[l] = in.readStr(); //strval
             }
-            in.readBool(); //Not
             
-            //org.gcreator.actions.Action act = retrieveAction(libid, actid,code);
-            //if(act!=null)
+            boolean not = in.readBool(); //Not
+            System.out.println("Not:"+not);
                 
-            //if(act!=null)
-            org.gcreator.actions.Action act =    parseAction(code,c, null, appliesTo, relative, args);
+            org.gcreator.actions.Action act;
+            System.out.println("about to parse action!");
+            act =    parseAction(code,function,c, null, appliesTo, relative, args,k);
             act.project = c.pro;
            // //System.out.println("Got here");
             if(act!=null&&e!=null&&e.actions!=null)
@@ -809,25 +855,38 @@ public class GM6Importer {
         //System.out.println("Ended actions");
     }
     
-    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code){
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code,boolean function, String fname,int kind){
         org.gcreator.actions.Action act = null;
        
-        if(libid==1){
-            if(actid==422){
-                act = new org.gcreator.actions.Action(new StartOfABlock());
-                return act;
+        //check kind
+            if (kind==0)
+            {
+                Comment c = new Comment();
+                c.text = code;
+            act = new org.gcreator.actions.Action(c);
             }
-            if(actid==424){
-                act = new org.gcreator.actions.Action(new EndOfABlock());
-                return act;
+            else if (kind==1)
+            {
+            act = new org.gcreator.actions.Action(new StartOfABlock());
             }
-//            if(actid==104){
-//                act = new org.gcreator.actions.Action(new SetVSpeed());
-//                return act;
+            else if (kind==2)
+            {
+            act = new org.gcreator.actions.Action(new EndOfABlock());
             }
+        
+        //org.gcreator.actions.Action tt;
+        if (function){
+        CallFunction tt = new CallFunction();
+        tt.fname=fname;
+        act = new org.gcreator.actions.Action(tt);
+        }else if (kind == 7){
             ExecuteCode tt = new ExecuteCode();
             tt.code = code;
             act = new org.gcreator.actions.Action(tt);
+            
+        }
+        
+            
             return act;
 //        
 //        //System.out.println("libid=" + libid + ", actid=" + actid);
@@ -835,15 +894,26 @@ public class GM6Importer {
 //        return act;
     }
     
-    private static org.gcreator.actions.Action parseAction(String code, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args) {
-        //if(action.pattern instanceof ExecuteCode){
+    private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args,int kind) {
+        System.out.println("parse action");
+        boolean func=true;
+        String fname=function;
+        if (function.equals(""))
+            func=false;
+        System.out.println("argslength");
+        if (args != null)
             for (int i=0; i< args.length; i++)
             {
-            code+=args[i];
+            function+=args[i];
             }
+        
+        System.out.println("function:"+function);
             //System.out.println("Code:"+code);
-            org.gcreator.actions.Action act = retrieveAction(0, 0,code);
-            ((ExecuteCode)act.pattern).code = code;
+            org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind);
+            if (act.pattern instanceof ExecuteCode)
+            ((ExecuteCode)act.pattern).code = function;
+            else if (act.pattern instanceof CallFunction)
+            ((CallFunction)act.pattern).fname = fname;
 //            if (action.getPanel() == null){
 //                //System.out.println("null panel");
 //            }
