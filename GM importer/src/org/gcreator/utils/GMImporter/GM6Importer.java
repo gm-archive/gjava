@@ -7,6 +7,7 @@
  */
 package org.gcreator.utils.GMImporter;
 
+import java.awt.Color;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import java.util.Vector;
@@ -41,6 +42,8 @@ import org.lateralgm.file.*;
 import org.lateralgm.file.iconio.*;
 import org.gcreator.plugins.*;
 //import org.lateralgm.messages.*;
+import org.gcreator.units.ActorInScene;
+import org.gcreator.units.BackgroundInScene;
 /**
  *
  * @author Luís
@@ -133,7 +136,7 @@ public class GM6Importer {
         System.out.println("GMI: Read Actors");
         readActors(c);
         System.out.println("GMI: Read Scenes");
-        
+        readScenes(c);
         in.close();
 
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
@@ -655,6 +658,117 @@ public class GM6Importer {
                     in.readBool(); //not
                 }
             }
+        }
+    }
+    
+    
+    private static void readScenes(GmFileContext c) throws IOException,GmFormatException{
+    GmStreamDecoder in = c.in;
+        int ver = in.read4();
+        Group scenesGroup = (Group) c.pro.childAt(c.pro.findFromName("$215"));
+        org.gcreator.fileclass.GFile f;
+        Scene a;
+        
+        int noGmRooms = in.read4();
+        for(int i = 0; i < noGmRooms; i++){
+            if (!in.readBool()){
+                continue;
+            }
+            f = new org.gcreator.fileclass.GFile(scenesGroup, in.readStr(), "scene", null);
+            f.value = a = new Scene(f.name);
+            ver = in.read4();
+            a.caption = in.readStr();
+            System.out.println("Caption:"+a.caption);
+            a.width = in.read4();
+            a.height = in.read4();
+            a.snapY = in.read4();
+            a.snapX = in.read4();
+            a.isometric = in.readBool();
+            a.speed = in.read4();
+            a.persistant= in.readBool();
+            int col = in.read4();
+            a.background = new Color(col & 0xFF,(col & 0xFF00) >> 8,(col & 0xFF0000) >> 16);
+            a.drawbackcolor = in.readBool();
+            a.code = in.readStr();
+            
+            int nobackgrounds = in.read4();
+			for (int j = 0; j < nobackgrounds; j++)
+				{
+                          BackgroundInScene bis = new BackgroundInScene("");
+                          bis.visibleonstart = in.readBool();
+                          in.read4(); //foreground?
+                          in.read4(); //image
+                          in.read4(); //xpos
+                          in.read4(); //ypos
+                          in.read4(); //tileh
+                          in.read4(); //tilev
+                         in.read4(); //hspeed
+                          in.read4(); //vspeed
+                          in.read4(); //stretch
+                        a.backgrounds.add(bis);
+                        }
+            in.readBool(); //enable views
+            int noviews = in.read4();
+			for (int j = 0; j < noviews; j++)
+				{
+                            
+                            boolean visible = in.readBool();
+				int viewX = in.read4();
+				int viewY = in.read4();
+				int viewW = in.read4();
+				int viewH = in.read4();
+				int portX = in.read4();
+				int portY = in.read4();
+				if (ver > 520)
+					{
+					int portW = in.read4();
+					int portH = in.read4();
+					}
+				int hbor = in.read4();
+				int vbor = in.read4();
+				int hspeed = in.read4();
+				int vspeed = in.read4();
+                            in.read4(); //actor to follow
+                        }
+            
+            int noinstances = in.read4();
+			for (int j = 0; j < noinstances; j++)
+				{
+                            //ActorInScene = new ActorInScene(f, j, j, i);
+                            in.read4();//x
+                            in.read4();//y
+                            in.read4(); //actor
+                            in.read4(); //instanceID
+                            in.readStr(); //code
+                            in.readBool(); //locked
+                        }
+            
+            int notiles = in.read4();
+			for (int j = 0; j < notiles; j++)
+				{
+                            in.read4();//x
+                            in.read4();//y
+                            in.read4();//width
+                            in.read4();//height
+                            in.read4();//depth
+                            in.read4();//tileId
+                            in.readBool(); //locked
+                        }
+            in.readBool();//rememberWindowSize
+			in.read4();//editorWidth
+			in.read4();//editorHeight
+			in.readBool();//showGrid
+			in.readBool();//showObjects
+			in.readBool();//showTiles
+			in.readBool();//showBackgrounds
+			in.readBool();//showForegrounds
+			in.readBool();//showViews
+			in.readBool();//deleteUnderlyingObjects
+			in.readBool();//deleteUnderlyingTiles
+			if (ver == 520) in.skip(6 * 4); //tile info
+			in.read4(); //currenttab
+			in.read4();//scrollBarX
+			in.read4();//scrollBarY
         }
     }
     
