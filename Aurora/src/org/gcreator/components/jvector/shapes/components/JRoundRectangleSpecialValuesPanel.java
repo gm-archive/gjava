@@ -1,9 +1,10 @@
 /*
- * JRoundRectangleSpecialValuesPanel.java
- *
- * Created on May 12, 2008, 10:21 PM
+ * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
-
 package org.gcreator.components.jvector.shapes.components;
 
 import org.gcreator.components.jvector.*;
