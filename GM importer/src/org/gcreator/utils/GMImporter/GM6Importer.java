@@ -14,8 +14,12 @@ import java.util.zip.*;
 import javax.swing.*;
 import org.gcreator.actions.mainactions.CallFunction;
 import org.gcreator.actions.mainactions.Comment;
+import org.gcreator.actions.mainactions.Else;
 import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
+import org.gcreator.actions.mainactions.Exit;
+import org.gcreator.actions.mainactions.Repeat;
+import org.gcreator.actions.mainactions.SetVariable;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.components.ProjectTypes;
 import org.gcreator.core.*;
@@ -792,9 +796,9 @@ public class GM6Importer {
                 k = in.read4(); //action kind
                 System.out.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
                 boolean ar = in.readBool(); //allow relative
-                System.out.println("allow relative:"+ar);
-                System.out.println("question:"+in.readBool()); //question
-                System.out.println("applyto"+in.readBool()); //can apply to
+                //System.out.println("allow relative:"+ar);
+                in.readBool(); //is a question
+                in.readBool(); //can apply to
                 int exectype = in.read4();
                 System.out.println("exectype:"+exectype);
                 //System.out.println("etype:"+exectype);
@@ -822,7 +826,7 @@ public class GM6Importer {
             //System.out.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
             
-            System.out.println("arg count:"+arglen);
+            
             int argkinds = in.read4();
             for(int x = 0; x < argkinds; x++)
                 in.read4();
@@ -842,10 +846,10 @@ public class GM6Importer {
             }
             
             boolean not = in.readBool(); //Not
-            System.out.println("Not:"+not);
+            
                 
             org.gcreator.actions.Action act;
-            System.out.println("about to parse action!");
+            
             act =    parseAction(code,function,c, null, appliesTo, relative, args,k);
             act.project = c.pro;
            // //System.out.println("Got here");
@@ -873,7 +877,26 @@ public class GM6Importer {
             {
             act = new org.gcreator.actions.Action(new EndOfABlock());
             }
-        
+        else if (kind==3)
+            {
+            act = new org.gcreator.actions.Action(new Else());
+            }
+        else if (kind==4)
+            {
+            act = new org.gcreator.actions.Action(new Exit());
+            }
+        else if (kind==5)
+            {
+            Repeat r = new Repeat();
+            r.times = code;
+            act = new org.gcreator.actions.Action(r);
+            }
+        else if (kind==6)
+            {
+            SetVariable s = new SetVariable();
+            s.to=code;
+            act = new org.gcreator.actions.Action(s);
+            }
         //org.gcreator.actions.Action tt;
         if (function){
         CallFunction tt = new CallFunction();
@@ -895,12 +918,12 @@ public class GM6Importer {
     }
     
     private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args,int kind) {
-        System.out.println("parse action");
+        
         boolean func=true;
         String fname=function;
         if (function.equals(""))
             func=false;
-        System.out.println("argslength");
+        
         if (args != null)
             for (int i=0; i< args.length; i++)
             {
