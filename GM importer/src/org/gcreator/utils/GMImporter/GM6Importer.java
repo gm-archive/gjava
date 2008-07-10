@@ -406,8 +406,8 @@ public class GM6Importer {
                 org.gcreator.fileclass.GFile imgF;
                 imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
                 ImageIcon iico;
-                imgF.value = new GImage();
-                ((GImage) imgF.value).image = iico = new ImageIcon(img);
+                imgF.value = new ImageIcon(img);//new GImage();
+                //((GImage) imgF.value).image = iico = new ImageIcon(img);
                 //imgF.treeimage = org.gcreator.fileclass.GFile.getScaledIcon(iico);
                 val.addToList(imgF);
             }
@@ -469,9 +469,9 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             ImageIcon iicon = new ImageIcon(backgroundImage);
-            bkimg.value = new GImage("bgimg_" + name);
+            bkimg.value = iicon;//new GImage("bgimg_" + name);
             //bkimg.value = iicon;
-            ((GImage) bkimg.value).image = iicon;
+            //((GImage) bkimg.value).image = iicon;
             if (tileset) {
                 org.gcreator.fileclass.GFile tlimg;
                 tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
