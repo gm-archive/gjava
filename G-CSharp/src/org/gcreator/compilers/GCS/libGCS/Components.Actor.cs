@@ -259,7 +259,7 @@ namespace org.gcreator.Components
                 return;
             foreach (object o in Native.SDL.Game.game.currentScene.actors)
             {
-                if (o is Actor)
+                if (o!=null&&o is Actor)
                 {
                     Actor a2 = o as Actor;
                     if (a2.sprite != null)

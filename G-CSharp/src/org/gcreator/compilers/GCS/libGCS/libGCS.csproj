@@ -60,6 +60,7 @@
     <Compile Include="Scripting.Clipboard.cs" />
     <Compile Include="Scripting.Drawing.cs" />
     <Compile Include="Scripting.FontsText.cs" />
+    <Compile Include="Scripting.Instances.cs" />
     <Compile Include="Scripting.Math.cs" />
     <Compile Include="Scripting.Mouse.cs" />
     <Compile Include="Scripting.Popup.cs" />

@@ -9,7 +9,10 @@ namespace org.gcreator.Types
 
         public virtual void setVariable(string key, Object o)
         {
-            variables.Add(key, o);
+                if (variables.ContainsKey(key))
+                    variables[key] = o;
+                else
+                    variables.Add(key, o);
         }
 
         public virtual Object getVariable(string key)

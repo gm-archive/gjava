@@ -50,7 +50,7 @@ public class GCSharp extends PlatformCore {
         if (name.equals("xprevious"))
             return true;
         if (name.equals("yprevious"))
-
+            return true;
         if (name.equals("depth"))
             return true;
         if (name.equals("hspeed"))

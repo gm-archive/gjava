@@ -134,7 +134,7 @@ namespace org.gcreator.Components
         {
 
         }
-        public void Destroy()
+        public virtual void Destroy()
         {
             foreach (Actor a in actors)
             {
@@ -143,11 +143,11 @@ namespace org.gcreator.Components
             actors.Clear();
             tiles.Clear();
         }
-        public void Loop()
+        public virtual void Loop()
         {
             foreach (object o in actors)
             {
-                if (o is Actor)
+                if (o!=null&&o is Actor)
                 {
                     (o as Actor).Loop();
                 }
