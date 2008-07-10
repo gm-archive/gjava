@@ -1,6 +1,7 @@
 /*
  * JavaScriptTokenMarker.java - JavaScript token marker
  * Copyright (C) 1999 Slava Pestov
+ * Copyright (C) 2008 Luís Reis
  *
  * You may use and modify this package for any purpose. Redistribution is
  * permitted, in both source and binary form, provided that this notice
@@ -15,10 +16,10 @@ import org.gcreator.fileclass.Project;
 import publicdomain.*;
 
 /**
- * JavaScript token marker.
+ * G-Script token marker.
  *
- * @author Slava Pestov
- * @version $Id: JavaScriptTokenMarker.java,v 1.3 1999/12/13 03:40:29 sp Exp $
+ * @author Slava Pestov, modified by Luís Reis
+ * @version $Id: GScriptTokenMarker.java,v 1.3 1999/12/13 03:40:29 sp Exp $
  */
 public class GScriptTokenMarker extends CTokenMarker {
     public GSAutocomplete autoFrame;

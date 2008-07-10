@@ -1,12 +1,12 @@
 /*
- * Sound.java
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
  * 
- * Created on 13-Sep-2007, 07:50:14
- * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
-
 package org.gcreator.fileclass.res;
 
 /**

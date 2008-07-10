@@ -1,9 +1,12 @@
 /*
- * SoundEditor.java
- *
- * Created on 13 September 2007, 07:52
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
-
 package org.gcreator.editors;
 
 import com.jmex.audio.AudioSystem;
@@ -13,7 +16,6 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
 import org.gcreator.components.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;

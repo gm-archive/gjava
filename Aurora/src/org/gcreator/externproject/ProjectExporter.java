@@ -1,12 +1,12 @@
 /*
- * ProjectImporter.java
- *
- * Created on 5/Set/2007, 13:24:52
- *
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
-
 package org.gcreator.externproject;
 
 import org.gcreator.core.*;
