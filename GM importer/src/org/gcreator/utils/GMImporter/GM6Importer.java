@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
+import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.actions.mainactions.CallFunction;
 import org.gcreator.actions.mainactions.Comment;
 import org.gcreator.actions.mainactions.Else;
@@ -707,13 +708,13 @@ public class GM6Importer {
                           bis.visibleonstart = in.readBool();
                           in.read4(); //foreground?
                           in.read4(); //image
-                          in.read4(); //xpos
-                          in.read4(); //ypos
-                          in.read4(); //tileh
-                          in.read4(); //tilev
-                         in.read4(); //hspeed
-                          in.read4(); //vspeed
-                          in.read4(); //stretch
+                          bis.xpos = in.read4(); //xpos
+                          bis.ypos = in.read4(); //ypos
+                          bis.tileh = in.read4(); //tileh
+                          bis.tilev = in.read4(); //tilev
+                         bis.hspeed = in.read4(); //hspeed
+                         bis.vspeed =  in.read4(); //vspeed
+                         bis.stretch =  in.readBool(); //stretch
                         a.backgrounds.add(bis);
                         }
             in.readBool(); //enable views
@@ -925,14 +926,14 @@ public class GM6Importer {
             //boolean unknownLib = (act == null); //this should always be false
             if (true){
                 k = in.read4(); //action kind
-                System.out.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
+                //System.out.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
                 boolean ar = in.readBool(); //allow relative
                 //System.out.println("allow relative:"+ar);
                 in.readBool(); //is a question
                 in.readBool(); //can apply to
                 int exectype = in.read4();
-                System.out.println("exectype:"+exectype);
-                //System.out.println("etype:"+exectype);
+                //System.out.println("exectype:"+exectype);
+                
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
                 else {in.skip(in.read4());}
@@ -1049,7 +1050,7 @@ public class GM6Importer {
     }
     
     private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args,int kind) {
-        
+        ArgumentList a = new ArgumentList();
         boolean func=true;
         String fname=function;
         if (function.equals(""))
@@ -1058,6 +1059,7 @@ public class GM6Importer {
         if (args != null)
             for (int i=0; i< args.length; i++)
             {
+                a.arguments.add(args[i]);
             function+=args[i];
             }
         
@@ -1066,8 +1068,10 @@ public class GM6Importer {
             org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind);
             if (act.pattern instanceof ExecuteCode)
             ((ExecuteCode)act.pattern).code = function;
-            else if (act.pattern instanceof CallFunction)
+            else if (act.pattern instanceof CallFunction){
             ((CallFunction)act.pattern).fname = fname;
+            ((CallFunction)act.pattern).args = a;
+            }
 //            if (action.getPanel() == null){
 //                //System.out.println("null panel");
 //            }
