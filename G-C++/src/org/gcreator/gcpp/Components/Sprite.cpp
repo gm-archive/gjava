@@ -75,31 +75,24 @@ void org::gcreator::Components::Sprite::setFrame(int _frame)
         frame=_frame;
 }
 
-int org::gcreator::Components::Sprite::blit(int x, int y, int _frame, org::gcreator::Components::Application game)
+int org::gcreator::Components::Sprite::blit(int x, int y, int _frame, SDL_Surface *dest)
 {
-        SDL_Rect s;
-        s.x=0;
-        s.y=0;
-	s.w = 32;
-	s.h = 32;
 	SDL_Rect d;
 	d.x = x;
 	d.y = y;
-	d.w = 32;
-	d.h = 32;
         if(_frame==-1)
         {
-           SDL_BlitSurface(((getImageArray())[0])->getImage(),&s,game.getScreenSurface(), &d);
+           SDL_BlitSurface(((getImageArray())[0])->getImage(),NULL,dest, &d);
         }
         else
         {
-            SDL_BlitSurface(((getImageArray())[frame])->getImage(),NULL,game.getScreenSurface(), &s);
+            SDL_BlitSurface(((getImageArray())[frame])->getImage(),NULL, dest, &d);
             setFrame(_frame++);
             if(getFrame()>getImageCount())
             {
                 setFrame(0);
             }
         }
-}
+}  
 
 #endif
