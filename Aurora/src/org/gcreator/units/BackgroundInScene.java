@@ -24,7 +24,8 @@ public class BackgroundInScene implements Serializable{
     public static final int MODE_STRETCH = 2;
     public int hmode = MODE_SINGLE;
     public int vmode = MODE_SINGLE;
-    public boolean visibleonstart = false;
+    public boolean visibleonstart = false,stretch=false;
+    public int xpos=0,ypos=0,hspeed=0,vspeed=0,tileh=0,tilev=0;
     
     public BackgroundInScene(String name){
         this.name = name;

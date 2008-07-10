@@ -109,7 +109,7 @@ public class CallFunction extends ActionPattern {
         p.setDisplayName("Function");
         p.setEditable(true);
         p.setType(String.class);
-        p.setValue("function");
+        p.setValue(fname);
         p.setShortDescription("The function to call");
         propertySheetPanel1.addProperty(p);
         

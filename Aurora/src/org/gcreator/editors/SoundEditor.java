@@ -9,8 +9,8 @@
  */
 package org.gcreator.editors;
 
-import com.jmex.audio.AudioSystem;
-import com.jmex.audio.AudioTrack;
+//import com.jmex.audio.AudioSystem;
+//import com.jmex.audio.AudioTrack;
 import java.applet.*;
 import java.io.*;
 import java.net.MalformedURLException;
@@ -30,8 +30,8 @@ import org.gcreator.fileclass.res.Sound;
  */
 public class SoundEditor extends TabPanel {
     static int number = 0;
-    public AudioSystem audio;
-    private AudioTrack targetSound;
+//    public AudioSystem audio;
+//    private AudioTrack targetSound;
     private File soundFile;
     private AudioClip newAudioClip;
     /** Creates new form SoundEditor
@@ -46,7 +46,7 @@ public class SoundEditor extends TabPanel {
         initComponents();
         jTextField1.setText(file.name);
         try {
-            audio = AudioSystem.getSystem();
+//            audio = AudioSystem.getSystem();
         } catch (UnsatisfiedLinkError exc) {
             System.err.println("Cannot get AudioSystem: "+exc);
         }
@@ -168,7 +168,7 @@ public class SoundEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
+//    org.newdawn.slick.Music fx;// = new Sound("res/boom.wav");
 //fx.play();
     public SoundPlayer p = null;
     public AudioClip clip = null;
@@ -315,20 +315,20 @@ public class SoundEditor extends TabPanel {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 //stop sound
-        if (targetSound != null) {
-            targetSound.setLooping(false);
-            targetSound.stop();
-        }
-       fx.stop(); 
+//        if (targetSound != null) {
+//            targetSound.setLooping(false);
+//            targetSound.stop();
+//        }
+//       fx.stop(); 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 //loop sound
-        fx.loop();
-        if (targetSound != null) {
-            targetSound.setLooping(true);
-            targetSound.play();
-        }
+//        fx.loop();
+//        if (targetSound != null) {
+//            targetSound.setLooping(true);
+//            targetSound.play();
+//        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
