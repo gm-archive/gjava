@@ -27,8 +27,9 @@ public class CallFunction extends ActionPattern {
     public String ret = "x";
     public String fname = "f";
     public Boolean relative = false;
-    public ArgumentList args;
+    public ArgumentList args = new ArgumentList();
     public static ImageIcon icon = null;
+    
 
 //    private static final ObjectStreamField[] serialPersistentFields
 //                 = {new ObjectStreamField(
@@ -48,6 +49,8 @@ public class CallFunction extends ActionPattern {
                 p.setValue(fname);
             } else if (p.getName().equals("args")) {
                 p.setValue(args);
+            } else if (p.getName().equals("relative")) {
+                p.setValue(relative);
             }
         }
     //((HSpeedEditor) panel).to.setText(to);
@@ -66,6 +69,8 @@ public class CallFunction extends ActionPattern {
                 fname = (String) p.getValue();
             } else if (p.getName().equals("args")) {
                 args = (ArgumentList) p.getValue();
+            } else if (p.getName().equals("relative")) {
+                relative = (Boolean) p.getValue();
             }
         }
     //to = ((HSpeedEditor) panel).to.getText();
@@ -119,8 +124,18 @@ public class CallFunction extends ActionPattern {
         p.setDisplayName("Arguments");
         p.setEditable(true);
         p.setType(ArgumentList.class);
-        p.setValue(new ArgumentList());
+        p.setValue(args);
         p.setShortDescription("The arguments of the function");
+        propertySheetPanel1.addProperty(p);
+        
+        p = new DefaultProperty();
+        p.setCategory("<html><b>Main");
+        p.setName("relative");
+        p.setDisplayName("Relative?");
+        p.setEditable(true);
+        p.setType(Boolean.class);
+        p.setValue(relative);
+        p.setShortDescription("Should the result of the function be relative to previous value?");
         propertySheetPanel1.addProperty(p);
         
         //p = new DefaultProperty();

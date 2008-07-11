@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.gcreator.fileclass.GFile;
-import org.gcreator.fileclass.res.GImage;
+//import org.gcreator.fileclass.res.GImage;
 import org.gcreator.fileclass.res.Sprite;
 
 /**
@@ -55,7 +55,7 @@ public class SpriteNavigator extends JScrollPane{
                            // System.out.println("There are " + s.Simages.size());
                             if(i >= s.Simages.size())
                                 i = 0;
-                            p.i = ((GImage) (((GFile) s.Simages.get(i)).value)).image;
+                            p.i = ((ImageIcon) (((GFile) s.Simages.get(i)).value));
                             updateUI();
                             repaint();
                           //  System.out.println("Updating to " + i);

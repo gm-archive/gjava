@@ -439,7 +439,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     }
     
     public void drawBackground(Graphics g, BackgroundInScene bg){
-        ImageIcon i = ((GImage) bg.image.value).getImage();
+        ImageIcon i = ((ImageIcon)bg.image.value);
         if(i==null) {
             return;
         }
