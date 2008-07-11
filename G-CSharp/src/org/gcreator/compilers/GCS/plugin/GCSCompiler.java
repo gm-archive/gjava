@@ -39,7 +39,7 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
                 "<html>Welcome to the G-C# compiler! This will compile your game. Do not close the window unless it takes over an hour!");
         t.setPreferredSize(new Dimension(380, 48));
         getContentPane().add(t);
-        textbox = new JTextArea("Please wait while G-C# compiles your game");
+        textbox = new JTextArea("Please wait while G-C# compiles your game.<br>");
         textbox.setLineWrap(true);
         textbox.setForeground(Color.red);
         textbox.setCaretPosition(textbox.getDocument().getLength());
@@ -103,8 +103,8 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         command += " -out:Game.exe";
 
         try {
-            if (!GCSharp.tilelist.isEmpty()) {
                 FileOutputStream fs = new FileOutputStream(GCSharp.FileFolder + "TilesetList.cs");
+                if (!GCSharp.tilelist.isEmpty()) {
                 fs.write(("public class TilesetList\n{\n" +
                         "\tpublic static org.gcreator.Components.Image ").getBytes());
                 Enumeration<GCSharp.Comb> tl = GCSharp.tilelist.elements();
@@ -115,8 +115,8 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
                     fs.write((s.name + " = new org.gcreator.Components.Image(\"graphics/" + s.t.image.name + "." + s.t.image.type + "\")").getBytes());
                 }
                 fs.write((";\n}\n").getBytes());
+                }
                 fs.close();
-            }
         } catch (IOException e) {
         }
 

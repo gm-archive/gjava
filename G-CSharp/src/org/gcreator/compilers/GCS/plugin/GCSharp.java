@@ -355,16 +355,27 @@ public class GCSharp extends PlatformCore {
 
     public void createSharpFiles(Project p) throws IOException {
         copyRequired("SDL.dll", FileFolder);
+        this.p.jProgressBar1.setValue(91);
         copyRequired("SDL_image.dll", FileFolder);
+        this.p.jProgressBar1.setValue(92);
         copyRequired("SDL_mixer.dll", FileFolder);
+        this.p.jProgressBar1.setValue(93);
         copyRequired("SdlDotNet.dll", FileFolder);
+        this.p.jProgressBar1.setValue(94);
         copyRequired("Tao.Sdl.dll", FileFolder);
+        this.p.jProgressBar1.setValue(95);
+        this.p.repaint();
         copyRequired("gmcs.bat", FileFolder);
         copyRequired("jpeg.dll", FileFolder);
+        this.p.jProgressBar1.setValue(96);
         copyRequired("libGCS.dll", FileFolder);
+        this.p.jProgressBar1.setValue(97);
         copyRequired("tiff.dll", FileFolder);
+        this.p.jProgressBar1.setValue(98);
         (new File(FileFolder + "fonts/")).mkdir();
         copyRequired("CourierNew.ttf", FileFolder + "fonts/");
+        this.p.jProgressBar1.setValue(99);
+        this.p.repaint();
         files.add("Game.cs");
         FileWriter gameFW = new FileWriter(FileFolder + "Game.cs");
         BufferedWriter game = new BufferedWriter(gameFW);
@@ -377,6 +388,7 @@ public class GCSharp extends PlatformCore {
         print(game, "{");
         print(game, "\tprivate static Scene[] scenelist = new Scene[]");
         print(game, "\t{");
+        this.p.repaint();
         int i = p.findFromName("$218");
         if (i > 0) {
             GObject ff = p.childAt(i);
@@ -402,10 +414,12 @@ public class GCSharp extends PlatformCore {
         print(game, "\t\tgame.Run();");
         print(game, "\t}");
         print(game, "}");
+        this.p.jProgressBar1.setValue(100);
+        this.p.repaint();
         game.close();
     }
 
-    public void run(Project proj) {
+    public void preDo(Project proj) {
         System.out.println("Saving...");
         if (gcreator.panel.istabs) {
             for (int ii = 0; ii < gcreator.panel.tabs.getTabCount(); ii++) {
@@ -427,7 +441,12 @@ public class GCSharp extends PlatformCore {
         createFolders();
         files.clear();
         tilelist.clear();
-        super.run(proj);
+    }
+    
+    public void postDo(Project proj){
+        p.jLabel2.setText("Finishing");
+        p.jProgressBar1.setValue(90);
+        p.repaint();
         try {
             createSharpFiles(proj);
         } catch (Exception e) {
@@ -437,6 +456,7 @@ public class GCSharp extends PlatformCore {
         GCSCompiler compiler = new GCSCompiler(this);
         p.setVisible(false);
     }
+    
     JMenuItem menuItem;
 
     @Override

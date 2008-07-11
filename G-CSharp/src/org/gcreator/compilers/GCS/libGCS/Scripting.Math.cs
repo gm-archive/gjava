@@ -174,7 +174,7 @@ namespace org.gcreator.Scripting
         {
             int max = (int) x.getDouble();
             System.Random r = new System.Random();
-            return new Double(r.Next(max));
+            return new Integer(r.Next(max));
         }
 
         public static Object choose(params Object[] args)

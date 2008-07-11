@@ -204,7 +204,6 @@ public class PlatformCore extends PluginCore {
                             p.jProgressBar1.setValue(20);
                             p.jLabel2.setText("Task: Converting sprite:"+((org.gcreator.fileclass.GFile) childNode).name);
                             current="Sprite: "+((GFile) childNode).name;
-                            p.repaint();
                             parseSprite((Sprite) ((GFile) childNode).value, (GFile) childNode);
                         } else if (((GFile) childNode).type.equals("actor")) {
                             current="Actor: "+((GFile) childNode).name;
@@ -212,13 +211,11 @@ public class PlatformCore extends PluginCore {
                             //p.jProgressBar1.setValue(50);
                             p.jLabel2.setText("Task: Converting actor:"+((GFile) childNode).name);
                             
-                            p.repaint();
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             p.jProgressBar1.setValue(80);
                             p.jLabel2.setText("Task: Converting scene:"+((GFile) childNode).name);
                             current="Scene: "+((GFile) childNode).name;
                             parseScene((Scene) ((GFile) childNode).value, (GFile) childNode);
-                            p.repaint();
                         } else if (((GFile) childNode).type.equals("jpg")) {
                             p.jProgressBar1.setValue(10);
                             p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
@@ -248,6 +245,7 @@ public class PlatformCore extends PluginCore {
                         } else {
                             PluginHelper.println("Invalid type:" + ((org.gcreator.fileclass.GFile) childNode).type);
                         }
+                        p.repaint();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                     }
@@ -943,12 +941,31 @@ public class PlatformCore extends PluginCore {
         p.run(this);
         //p.setVisible(true);
     }
+    
+    /**
+     * Basic compiler-specific actions
+     */
+    public void preDo(Project project){
+    }
+    
+    /**
+     * Basic compiler-specific actions
+     */
+    public void postDo(Project project){
+    }
 
-    public void run(Project project) {
+    public void run(final Project project) {
         
         if (project != null) {
            // p.setVisible(true);
-            putFolder(project);
+            Thread t = new Thread(){
+                public void run(){
+                    preDo(project);
+                    putFolder(project);
+                    postDo(project);
+                }
+            };
+            t.start();
             //p.setVisible(false);
         }
     }
