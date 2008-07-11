@@ -23,6 +23,11 @@ namespace org.gcreator.Scripting
             return (Object) o;
         }
 
+        public static Object instance_exists()
+        {
+            return instance_exists(new String(""));
+        }
+
         public static Object instance_exists(Object obj)
         {
             string s = obj.getString().ToString();
