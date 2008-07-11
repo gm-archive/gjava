@@ -28,7 +28,7 @@ namespace org.gcreator.Scripting
             string s = obj.getString().ToString();
             foreach (object o in Native.SDL.Game.game.currentScene.actors)
             {
-                if (o.GetType().FullName == s)
+                if (s==""||o.GetType().FullName == s)
                     return new Boolean(true);
             }
             return new Boolean(false);
