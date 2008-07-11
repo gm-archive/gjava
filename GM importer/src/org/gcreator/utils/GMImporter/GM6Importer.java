@@ -108,7 +108,7 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
-        System.out.println("GMI: Line 75, fileName=" + fileName);
+        //System.out.println("GMI: Line 75, fileName=" + fileName);
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -150,11 +150,82 @@ public class GM6Importer {
         System.out.println("GMI: Read Scenes");
         readScenes(c);
         c=null;
+        in.read4();//lastInstanceId
+			in.read4();//lastTileId
+			ver = in.read4();
+			if (ver != 430 && ver != 600 && ver != 620) throw versionError("BEFORE","GAMEINFO",ver); //$NON-NLS-1$ //$NON-NLS-2$
+			if (ver != 620)
+				readGameInformation(c,ver);
+			else
+				{
+                            int noIncludes = in.read4();
+				for (int i = 0; i < noIncludes; i++)
+					{
+					ver = in.read4();
+//                                        if (ver != 620)
+//						throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
+//								Messages.getString("GmFileReader.INGM7INCLUDES"),ver)); //$NON-NLS-1$
+					//Include inc = new Include();
+					in.skip(in.read4()); //Filename
+					in.readStr();//filePath
+					in.skip(4); //orig file chosen
+					in.skip(4); //orig file size
+					if (in.readBool()) in.skip(in.read4()); //Store in editable
+					in.skip(4); //export
+					in.skip(in.read4()); //folder to export to
+					in.skip(12); //overwrite if exists, free mem, remove at game end
+					//f.gameSettings.includes.add(inc);
+                                }
+                            ver = in.read4();
+				if (ver != 700) throw versionError("BEFORE","EXTENSIONS",ver); //$NON-NLS-1$ //$NON-NLS-2$
+				int noPackages = in.read4();
+				for (int i = 0; i < noPackages; i++)
+					{
+					in.skip(in.read4()); //Package name
+					}
+				ver = in.read4();
+				if (ver != 600) throw versionError("BEFORE","GAMEINFO",ver); //$NON-NLS-1$ //$NON-NLS-2$
+				readGameInformation(c,620);
+				}
+			ver = in.read4();
+//			if (ver != 500) throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
+//					Messages.getString("GmFileReader.AFTERINFO"),ver)); //$NON-NLS-1$
+			int no = in.read4(); //Library Creation Code
+			for (int j = 0; j < no; j++)
+				in.skip(in.read4());
+			ver = in.read4();
+//			if (ver != 500 && ver != 540 && ver != 700)
+//				throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
+//						Messages.getString("GmFileReader.AFTERINFO2"),ver)); //$NON-NLS-1$
+			in.skip(in.read4() * 4); //Room Execution Order
+			//readTree(c,ver);
+                        
         in.close();
 
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
         PluginHelper.getPanel().workspace.updateUI();
         PluginHelper.getPanel().workspace.repaint();
+    }
+
+    private void readGameInformation(GmFileContext c, int ver) throws IOException {
+        GmStreamDecoder in = c.in;
+		//GameInformation gameInfo = c.f.gameInfo;
+		int bc = in.read4();
+		//if (bc >= 0) gameInfo.backgroundColor = Util.convertGmColor(bc);
+		in.readBool();//mimicGameWindow
+		if (ver > 430)
+			{
+			in.readStr();//formCaption
+			in.read4();//left
+			in.read4();//top
+			in.read4();//width
+			in.read4();//height
+			in.readBool();//showBorder
+			in.readBool();//allowResize
+			in.readBool();//stayOnTop
+			in.readBool();//pauseGame
+			}
+		in.readStr();//gameInfoStr
     }
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
@@ -1021,18 +1092,23 @@ public class GM6Importer {
                 else if (argkind[l]==0){}
                 else if (argkind[l]==5){ //sprite
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null";else
                     args[l]=c.sprites.get(r).name;
                 } else if (argkind[l]==6){//sound
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null";else
                     args[l]=c.sounds.get(r).name;
                 } else if (argkind[l]==7){//background
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null"; else
                     args[l]=c.backgrounds.get(r).name;
                 } else if (argkind[l]==8){//path
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null";else
                     args[l]=c.paths.get(r).name;
                 } else if (argkind[l]==9){//script
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null";else
                     args[l]=c.scripts.get(r).name;
                 } else if (argkind[l]==10){//actor
 //                    int r = Integer.parseInt(args[l]);
@@ -1051,6 +1127,7 @@ public class GM6Importer {
                 }
                 else if (argkind[l]==14){//timeline
                     int r = Integer.parseInt(args[l]);
+                    if (r<0) args[l]="null";else
                     args[l]=c.timelines.get(r).name;
                 }
                 //System.out.println("argkind:"+argkind[l]);
@@ -1167,5 +1244,9 @@ public class GM6Importer {
 //            if(appliesTo==-1)
 //                ((VSpeedEditor) action.getPanel()).of.setText("this");
 //        }
+    }
+
+    private void readTree(GmFileContext c, int ver) {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
