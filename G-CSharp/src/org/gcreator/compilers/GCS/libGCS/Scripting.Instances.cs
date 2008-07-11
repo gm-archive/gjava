@@ -41,12 +41,12 @@ namespace org.gcreator.Scripting
             }
         }
 
-        public static Object instance_location(Object x, Object y)
+        public static Object instance_place(Object x, Object y)
         {
-            return instance_find(x, y, new String(""));
+            return instance_place(x, y, new String(""));
         }
 
-        public static Object instance_location(Object x, Object y, Object type)
+        public static Object instance_place(Object x, Object y, Object type)
         {
             int _x = x.getInt();
             int _y = y.getInt();
