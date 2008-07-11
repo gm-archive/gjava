@@ -45,6 +45,7 @@ import org.gcreator.plugins.*;
 //import org.lateralgm.messages.*;
 import org.gcreator.units.ActorInScene;
 import org.gcreator.units.BackgroundInScene;
+import org.gcreator.units.TimelineStep;
 /**
  *
  * @author Luís
@@ -85,7 +86,11 @@ public class GM6Importer {
         }
         
         Vector<org.gcreator.fileclass.GFile> sprites = new Vector<org.gcreator.fileclass.GFile>();
-            Vector<org.gcreator.fileclass.GFile> actors = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> backgrounds = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> paths = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> timelines = new Vector<org.gcreator.fileclass.GFile>();
+
+        Vector<org.gcreator.fileclass.GFile> actors = new Vector<org.gcreator.fileclass.GFile>();
                     Vector<org.gcreator.fileclass.GFile> scenes = new Vector<org.gcreator.fileclass.GFile>();
                     Vector<org.gcreator.fileclass.GFile> scripts = new Vector<org.gcreator.fileclass.GFile>();
                     Vector<org.gcreator.fileclass.GFile> fonts = new Vector<org.gcreator.fileclass.GFile>();
@@ -310,6 +315,7 @@ public class GM6Importer {
         int noSounds = in.read4();
         for (int i = 0; i < noSounds; i++) {
             if (!in.readBool()) {
+                c.sounds.add(null);
                 continue;
             }
             String name = in.readStr(); //Name
@@ -329,6 +335,7 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile soundFile;
             Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$212"));
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
+            c.sounds.add(soundFile);
             Sound val;
             soundFile.value = val = new Sound(name);
             soundFile.type= type.replaceFirst(".", "");
@@ -428,9 +435,14 @@ public class GM6Importer {
         for (int i = 0; i < noBackgrounds; i++) {
             /*Must deal with backgrounds and tilesets separatelly*/
             if (!in.readBool()) {
+                c.backgrounds.add(null);
                 continue;
             }
             String name = in.readStr();
+            org.gcreator.fileclass.GFile bkimg;
+            bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
+            c.backgrounds.add(bkimg);
+            
             ver = in.read4();
             if (ver != 400 && ver != 543) {
                 throw versionError("IN", "BACKGROUNDS", i, ver);
@@ -467,12 +479,12 @@ public class GM6Importer {
                 }
                 backgroundImage = in.readImage(width, height);
             }
-            org.gcreator.fileclass.GFile bkimg;
-            bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
+            
             ImageIcon iicon = new ImageIcon(backgroundImage);
             bkimg.value = iicon;//new GImage("bgimg_" + name);
             //bkimg.value = iicon;
             //((GImage) bkimg.value).image = iicon;
+            
             if (tileset) {
                 org.gcreator.fileclass.GFile tlimg;
                 tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
@@ -501,6 +513,7 @@ public class GM6Importer {
         //Dump paths
         for (int i = 0; i < noPaths; i++) {
             if (!in.readBool()) {
+                c.paths.add(null);
                 continue;
             }
             in.readStr(); //name
@@ -537,10 +550,12 @@ public class GM6Importer {
         Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("$216"));
         for (int i = 0; i < noScripts; i++) {
             if (!in.readBool()) {
+                c.scripts.add(null);
                 continue;
             }
             org.gcreator.fileclass.GFile script;
             script = new org.gcreator.fileclass.GFile(scriptsGroup, in.readStr(), "gs", null);
+            c.scripts.add(script);
             ver = in.read4();
             if (ver != 400) {
                 throw versionError("IN", "SCRIPTS", i, ver);
@@ -569,6 +584,7 @@ public class GM6Importer {
             int noDataFiles = in.read4();
             for (int i = 0; i < noDataFiles; i++) {
                 if (!in.readBool()) {
+                    c.fonts.add(null);
                     continue;
                 }
                 in.skip(in.read4());
@@ -605,18 +621,32 @@ public class GM6Importer {
     private static void readTimelines(GmFileContext c) throws IOException,GmFormatException{
         GmStreamDecoder in = c.in;
         int ver = in.read4();
+        
+        Group tlGroup = (Group) c.pro.childAt(c.pro.findFromName("$213"));
+        org.gcreator.fileclass.GFile f;
+        Timeline a;
+        
         if (ver != 500) throw versionError("BEFORE","TIMELINES",ver);
         int noTimelines = in.read4();
         for(int i = 0; i < noTimelines; i++){
             if (!in.readBool()){
+                c.timelines.add(null);
                 continue;
             }
-            in.readStr(); //Name
+            
+            //in.readStr(); //Name
+            f = new org.gcreator.fileclass.GFile(tlGroup, in.readStr(), "timeline", null);
+            f.value = a = new Timeline(f.name);
+            
+            c.timelines.add(f);
             ver = in.read4();
             if (ver != 500) throw versionError("IN","TIMELINES",i,ver);
             int nomoms = in.read4();
             for(int j = 0; j < nomoms; j++){
-                in.read4(); //stepnum
+                //a.steps
+                TimelineStep ts = new TimelineStep();
+                ts.stepnum=in.read4(); //stepnum
+                
                 readTimelineActions(in);
             }
         }
@@ -707,7 +737,10 @@ public class GM6Importer {
                           BackgroundInScene bis = new BackgroundInScene("");
                           bis.visibleonstart = in.readBool();
                           in.read4(); //foreground?
-                          in.read4(); //image
+                          int im = in.read4(); //image
+                          //System.out.println("size:"+c.backgrounds.size());
+                          if (im != -1)
+                          bis.image=c.backgrounds.get(im);
                           bis.xpos = in.read4(); //xpos
                           bis.ypos = in.read4(); //ypos
                           bis.tileh = in.read4(); //tileh
@@ -801,12 +834,12 @@ public class GM6Importer {
         int noGmObjects = in.read4();
         for(int i = 0; i < noGmObjects; i++){
             if (!in.readBool()){
-                c.actors.add(null);
+                c.actors.add(i,null);
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
             f.value = a = new Actor(f.name);
-            c.actors.add(f);
+            c.actors.add(i,f);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
             int temp = in.read4();
@@ -897,7 +930,9 @@ public class GM6Importer {
                             id = first; //ev.id = first;
                         //ev.mainId = j;
                         System.out.println("GMI: read action");
+                        try{
                         readActions(c, i, j*1000+id, e);
+                        }catch(Exception ee){ee.printStackTrace(); System.out.println("error in actor readactions");}
                     }
                     else
                         done = true;
@@ -959,13 +994,18 @@ public class GM6Importer {
             int arglen = in.read4(); //argument count
             
             
+            String[] args = null;
+            int[] argkind=null;
+            
             int argkinds = in.read4();
+            argkind = new int[argkinds];
             for(int x = 0; x < argkinds; x++)
-                in.read4();
+                argkind[x]=in.read4();
+            
             int appliesTo = in.read4();
             boolean relative = in.readBool(); //relative
             int actualnoargs = in.read4();
-            String[] args = null;
+            
             if(actualnoargs!=0)
                 args = new String[actualnoargs];
             for (int l = 0; l < actualnoargs; l++)
@@ -975,6 +1015,45 @@ public class GM6Importer {
                     continue;
                 }
                 args[l] = in.readStr(); //strval
+                //change based on arg kind
+                if (argkind[l]==1)
+                    args[l] = "\""+args[l]+"\"";
+                else if (argkind[l]==0){}
+                else if (argkind[l]==5){ //sprite
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.sprites.get(r).name;
+                } else if (argkind[l]==6){//sound
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.sounds.get(r).name;
+                } else if (argkind[l]==7){//background
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.backgrounds.get(r).name;
+                } else if (argkind[l]==8){//path
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.paths.get(r).name;
+                } else if (argkind[l]==9){//script
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.scripts.get(r).name;
+                } else if (argkind[l]==10){//actor
+//                    int r = Integer.parseInt(args[l]);
+//                    try{
+//                    if (r>c.actors.size())
+//                    {}//c.actors.add(i, null);
+//                    else if (c.actors.get(r) !=null)
+//                    args[l]=c.actors.get(r).name;
+//                    }catch(Exception ee){}
+                } else if (argkind[l]==11){//scene
+                    int r = Integer.parseInt(args[l]);
+                    //args[l]=c.scenes.get(r).name;
+                } else if (argkind[l]==12){//font
+                    int r = Integer.parseInt(args[l]);
+                   // args[l]=c.fonts.get(r).name; fonts not added yet
+                }
+                else if (argkind[l]==14){//timeline
+                    int r = Integer.parseInt(args[l]);
+                    args[l]=c.timelines.get(r).name;
+                }
+                //System.out.println("argkind:"+argkind[l]);
             }
             
             boolean not = in.readBool(); //Not
@@ -988,17 +1067,17 @@ public class GM6Importer {
             if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
         }
-        //System.out.println("Ended actions");
+        System.out.println("Ended actions");
     }
     
-    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code,boolean function, String fname,int kind){
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code,boolean function, String fname,int kind,ArgumentList al,boolean relative){
         org.gcreator.actions.Action act = null;
        
         //check kind
             if (kind==0)
             {
                 Comment c = new Comment();
-                c.text = code;
+                c.text = code.substring(1, code.length()-1);
             act = new org.gcreator.actions.Action(c);
             }
             else if (kind==1)
@@ -1033,10 +1112,13 @@ public class GM6Importer {
         if (function){
         CallFunction tt = new CallFunction();
         tt.fname=fname;
+        tt.args=al;
+        tt.relative = relative;
+        
         act = new org.gcreator.actions.Action(tt);
         }else if (kind == 7){
             ExecuteCode tt = new ExecuteCode();
-            tt.code = code;
+            tt.code = code.substring(1, code.length()-1);
             act = new org.gcreator.actions.Action(tt);
             
         }
@@ -1051,6 +1133,7 @@ public class GM6Importer {
     
     private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args,int kind) {
         ArgumentList a = new ArgumentList();
+        
         boolean func=true;
         String fname=function;
         if (function.equals(""))
@@ -1059,26 +1142,25 @@ public class GM6Importer {
         if (args != null)
             for (int i=0; i< args.length; i++)
             {
+                if (args[i] != null){
                 a.arguments.add(args[i]);
-            function+=args[i];
+            function+=" ,"+args[i];
+                }
             }
         
         System.out.println("function:"+function);
             //System.out.println("Code:"+code);
-            org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind);
-            if (act.pattern instanceof ExecuteCode)
-            ((ExecuteCode)act.pattern).code = function;
-            else if (act.pattern instanceof CallFunction){
-            ((CallFunction)act.pattern).fname = fname;
-            ((CallFunction)act.pattern).args = a;
-            }
-//            if (action.getPanel() == null){
-//                //System.out.println("null panel");
-//            }
+        try{
+            org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind,a,relative);
+            //System.out.println("aftre ret");
+//            if (act.pattern instanceof ExecuteCode)
+//            ((ExecuteCode)act.pattern).code = function;
             
-       // }
+            
+
         
         return act;
+        }catch(Exception e){e.printStackTrace(); return null;}
 //        if(action.pattern instanceof SetVSpeed){
 //            //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
 //            ((VSpeedEditor) action.getPanel()).to.setText(args[0]);

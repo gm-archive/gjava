@@ -72,9 +72,12 @@ public class plugin extends PluginCore{
             jFileChooser1.addChoosableFileFilter(filter2);
             jFileChooser1.setFileFilter(filter);
             jFileChooser1.showDialog(PluginHelper.getWindow(), "OK");
+            
             if (jFileChooser1.getSelectedFile() != null) {
                 java.io.File _file = jFileChooser1.getSelectedFile();
+                jFileChooser1.setCurrentDirectory(jFileChooser1.getSelectedFile());
         importFile(_file.getPath(), MODE_GM6);
+       
             } else { return;}
     }
 
