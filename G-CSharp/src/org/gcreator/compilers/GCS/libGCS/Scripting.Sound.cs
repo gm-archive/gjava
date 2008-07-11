@@ -12,13 +12,9 @@ namespace org.gcreator.Scripting
                 ((Sound)s).Play(false);
                 return s;
             }
-            if (s is String)
-            {
-                Sound q = new Sound(s.ToString());
+                Sound q = new Sound(s.getString().ToString());
                 q.Play(false);
                 return q;
-            }
-            return new Object();
         }
 
         public static Object sound_loop(Object s)
@@ -28,21 +24,17 @@ namespace org.gcreator.Scripting
                 ((Sound)s).Loop();
                 return s;
             }
-            if (s is String)
-            {
-                Sound q = new Sound(s.ToString());
-                q.Loop();
-                return q;
-            }
-            return new Object();
+            Sound q = new Sound(s.getString().ToString());
+            q.Loop();
+            return q;
         }
 
         public static Object sound_stop(Object s)
         {
             if (s is Sound)
                 ((Sound)s).Stop();
-            else if (s is String)
-                Sound.Stop(s.ToString());
+            else
+                Sound.Stop(s.getString().ToString());
             return new Object();
         }
 
@@ -56,26 +48,22 @@ namespace org.gcreator.Scripting
         {
             if (o is Sound)
                 return new Boolean(((Sound)o).IsPlaying());
-            else if (o is String)
-                return new Boolean(Sound.IsPlaying(o.ToString()));
-            return new Boolean(false);
+            return new Boolean(Sound.IsPlaying(o.getString().ToString()));
         }
 
         public static Object sound_get_volume(Object o)
         {
             if (o is Sound)
                 return new Double(128).div(new Double(((Sound)o).GetVolume()));
-            else if (o is String)
-                return new Double(128).div(new Double(Sound.GetVolume(o.ToString())));
-            return new Double(0);
+            return new Double(128).div(new Double(Sound.GetVolume(o.getString().ToString())));
         }
 
         public static Object sound_set_volume(Object o)
         {
             if (o is Sound)
                 ((Sound)o).SetVolume((int)(o.getDouble() * 128.0));
-            else if (o is String)
-                Sound.SetVolume(o.ToString(), (int)(o.getDouble() * 128.0));
+            else
+                Sound.SetVolume(o.getString().ToString(), (int)(o.getDouble() * 128.0));
             return new Object();
         }
 
