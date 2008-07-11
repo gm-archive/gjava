@@ -25,20 +25,13 @@ namespace org.gcreator.Scripting
 
         public static Object instance_exists(Object obj)
         {
-            if (obj is Actor)
+            string s = obj.getString().ToString();
+            foreach (object o in Native.SDL.Game.game.currentScene.actors)
             {
-                return new Boolean(Native.SDL.Game.game.currentScene.actors.Contains(obj));
+                if (o.GetType().FullName == s)
+                    return new Boolean(true);
             }
-            else
-            {
-                string s = obj.getString().ToString();
-                foreach (object o in Native.SDL.Game.game.currentScene.actors)
-                {
-                    if (o.GetType().FullName == s)
-                        return new Boolean(true);
-                }
-                return new Boolean(false);
-            }
+            return new Boolean(false);
         }
 
         public static Object instance_place(Object x, Object y)
