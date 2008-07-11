@@ -12,7 +12,7 @@ package org.gcreator.components;
 import java.awt.*;
 import javax.swing.*;
 import org.gcreator.editors.*;
-import org.gcreator.fileclass.res.GImage;
+//import org.gcreator.fileclass.res.GImage;
 
 /**
  *
