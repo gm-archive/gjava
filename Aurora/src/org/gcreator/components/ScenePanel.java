@@ -101,8 +101,14 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             System.err.println("Error while adding actor at "+x+", "+y+" Actor returned from root is null.");
         }
         if(root.eraseActorsBelow()){
-            Sprite s = (Sprite) ((Actor) act.Sactor.value).sprite.value;
-            root.eraseActorsAt(new Rectangle(x, y, s.getImageAt(0).image.getIconWidth(), s.getImageAt(0).image.getIconHeight()));
+            Sprite s;
+            try{
+                s = (Sprite) ((Actor) act.Sactor.value).sprite.value;
+            }
+            catch(Exception e){
+                s = null;
+            }
+            root.eraseActorsAt(new Rectangle(x, y, s==null?16:s.getImageIconAt(0).getIconWidth(), s==null?16:s.getImageIconAt(0).getIconHeight()));
         }
         ((Scene) root.file.value).actors.add(act);
         draggingActor = true;
@@ -322,11 +328,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                         f = (org.gcreator.fileclass.res.Sprite) sf.value;
                     }
                     else
-                        continue; //Don't waste time with spriteless images.
+                        f = null; //Needed in order to use "unknown" image.
                     
                     
-                    if (f.getImageAt(0).image != null) {
-                        ImageIcon h = f.getImageAt(0).image;
+                    if (f!=null&&f.getImageIconAt(0) != null) {
+                        ImageIcon h = f.getImageIconAt(0);
                         int x = (int) ((ascn.x - f.originX) / root.getZoom());
                         int y = (int) ((ascn.y - f.originY) / root.getZoom());
                         int width = (int) (h.getIconWidth() / root.getZoom());
