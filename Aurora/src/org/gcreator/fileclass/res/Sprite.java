@@ -38,6 +38,9 @@ public class Sprite implements Resource {
         Simages = new Vector<GFile>();
     }
 
+    /**
+     * @deprecated Use getImageIconAt instead
+     */
     public GImage getImageAt(int pos){
         if(pos>=Simages.size()) {
             return null;
@@ -47,7 +50,16 @@ public class Sprite implements Resource {
         if(a == null) {
             return null;
         }
-        return  new GImage((ImageIcon) a.value)/*.image*/;
+        return new GImage((ImageIcon) a.value)/*.image*/;
+    }
+    
+    public ImageIcon getImageIconAt(int pos){
+        if(pos>=Simages.size()) {
+            return null;
+        }
+        //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
+        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
+        return (ImageIcon) a.value;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){

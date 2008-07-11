@@ -1081,11 +1081,8 @@ public class SpriteEditor extends TabPanel {
             Image img;
             Color transparentColor = null;
             try {
-                GImage gimg = sprite.getImageAt(n);
-                img = gimg.getImage().getImage();
-                if (gimg.transparent) {
-                    transparentColor = gimg.transparentColor;
-                }
+                ImageIcon gimg = sprite.getImageIconAt(n);
+                img = gimg.getImage();
             } catch (NullPointerException e) {
                 System.out.println("[SpriteEditor@FixAutomaticBounds:862]NullPointerException!");
                 return;
