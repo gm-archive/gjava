@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<settings><style>Native</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1280, 770</size><antialiasing>true</antialiasing><theme>publicdomain.CharcoalTheme</theme><consoleboxlocation>618</consoleboxlocation></settings>
+<settings><style>javax.swing.plaf.metal.MetalLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>902, 655</size><antialiasing>true</antialiasing><theme>org.gcreator.themes.HappyTheme</theme><consoleboxlocation>527</consoleboxlocation></settings>

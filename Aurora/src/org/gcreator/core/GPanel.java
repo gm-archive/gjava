@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -1503,7 +1503,9 @@ public class GPanel extends JPanel {
                 break;
             case 3:
                 if(istabs){
-                ((TabPanel) tabs.getSelectedComponent()).Save();
+                    try {
+                    ((TabPanel) tabs.getSelectedComponent()).Save();
+                    } catch (NullPointerException exc){}
             }
             else{
                 ((ExtendedFrame) mdi.getSelectedFrame()).getPanel().Save();

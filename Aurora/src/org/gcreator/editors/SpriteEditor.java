@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -1065,8 +1065,9 @@ public class SpriteEditor extends TabPanel {
             if (bounds == Bounds.AUTO_STANDARD) {
                 MIN_ALPHA = (int) (0.5 * 255);
             }
-            else if (bounds == Bounds.AUTO_STRICT)
+            else if (bounds == Bounds.AUTO_STRICT) {
                 MIN_ALPHA = (int) (0.8 * 255);
+            }
             else {// Bounds.AUTO_CUSTOM
                 GetValueDialog d = new GetValueDialog(gcreator.window, 0, 255, 128,
                         LangSupporter.activeLang.getEntry(272));
@@ -1075,8 +1076,9 @@ public class SpriteEditor extends TabPanel {
             }
         }
         
-        BufferedImage bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);
+        BufferedImage bufImg = new BufferedImage(sprite.width, sprite.height, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics2D g = bufImg.createGraphics();
+        boolean setl = false, sett = false, setr = false, setb = false;
         for (int n = 0; n < sprite.countImages(); n++) {
             Image img;
             Color transparentColor = null;
@@ -1087,81 +1089,63 @@ public class SpriteEditor extends TabPanel {
                 System.out.println("[SpriteEditor@FixAutomaticBounds:862]NullPointerException!");
                 return;
             }
-
-            g.drawImage(img,0,0,this);
+            g.drawImage(img, 0, 0, null);
             //left
-            boolean setl = false, setr = false, sett = false, setb = false;
-            for (int i = 0; i < sprite.width; i++) {
+            for (int i = 0; i < ( (setl) ? sprite.BBLeft : sprite.width ); i++) {
                 for (int j = 0; j < sprite.height; j++) {
                     int RGBA = bufImg.getRGB(i, j);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
-                        if (!setl) {
-                            sprite.BBLeft = i;
-                            setl = true;
-                        } else {
-                            sprite.BBLeft = Math.min(sprite.BBLeft, i);
-                        }
+                        sprite.BBLeft = i;
+                        setl = true;
                         break;
                     }
                 }
             }
             //right
-            for (int i = sprite.width-1; i >= 0; i--) {
+            for (int i = sprite.width-1; i >= ((setr) ? sprite.BBRight : 0); i--) {
                 for (int j = 0; j < sprite.height; j++) {
                     int RGBA = bufImg.getRGB(i, j);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
-                        if (!setr) {
-                            sprite.BBRight = i;
-                            setr = true;
-                        } else {
-                            sprite.BBRight = Math.max(sprite.BBRight, i);
-                        }
+                        sprite.BBRight = i;
+                        setr = true;
                         break;
                     }
                 }
             }
             //top
-            for (int i = 0; i < sprite.height; i++) {
+            for (int i = 0; i < ((sett) ? sprite.BBTop : sprite.height); i++) {
                 for (int j = 0; j < sprite.width; j++) {
                     int RGBA = bufImg.getRGB(j, i);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
-                        if (!sett) {
-                            sprite.BBTop = i;
-                            sett = true;
-                        } else {
-                            sprite.BBTop = Math.min(sprite.BBTop, i);
-                        }
+                        sprite.BBTop = i;
+                        sett = true;
                         break;
                     }
                 }
             }
             //bottom
-            for (int i = sprite.height-1; i >= 0; i--) {
+            for (int i = sprite.height-1; i >= ((setb) ? sprite.BBBottom : 0); i--) {
                 for (int j = 0; j < sprite.width; j++) {
                     int RGBA = bufImg.getRGB(j, i);
                     Color col = new Color(RGBA, true);
                     if (!col.equals(transparentColor) && col.getAlpha() >= MIN_ALPHA) {
-                        if (!setb) {
-                            sprite.BBBottom = i;
-                            setb = true;
-                        } else {
-                            sprite.BBBottom = Math.max(sprite.BBBottom, i);
-                        }
+                        sprite.BBBottom = i;
+                        setb = true;
                         break;
                     }
                 }
             }
             if (n+1 < sprite.countImages()) {
-                bufImg = new BufferedImage(sprite.width,sprite.height,BufferedImage.TYPE_4BYTE_ABGR);
+                bufImg = new BufferedImage(sprite.width, sprite.height, BufferedImage.TYPE_4BYTE_ABGR);
+                g = bufImg.createGraphics();
             }
         }
         System.gc();
         load();
         prev.repaint();
-      //  System.out.println("19");
         
     } 
     

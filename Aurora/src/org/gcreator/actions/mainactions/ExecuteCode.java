@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -9,12 +9,10 @@
  */
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.components.TokenMarker;
-import org.gcreator.components.JEditTextArea;
 import org.gcreator.actions.*;
 import javax.swing.*;
 
-import org.gcreator.components.scanning.GScriptTokenMarker;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.fileclass.Project;
 import org.gcreator.managers.LangSupporter;
 
@@ -55,19 +53,17 @@ public class ExecuteCode extends ActionPattern{
     
     @Override
     public void save(JComponent panel){
-        code = ((JEditTextArea) panel).getText();
+        code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
     }
     
     @Override
     public void load(JComponent panel){
-        ((JEditTextArea) panel).setText(code);
+        ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).setText(code);
     }
      
     @Override
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        TokenMarker scanner = new GScriptTokenMarker();
-        JEditTextArea panel = new JEditTextArea(project); //100, 100, scanner, project);
-        panel.setTokenMarker(scanner);
+        ColorCodedTextArea panel = new ColorCodedTextArea(project);
         panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){
             public void keyReleased(KeyEvent evt){
@@ -80,7 +76,7 @@ public class ExecuteCode extends ActionPattern{
                 context.jList2.updateUI();
             }
         }); //Doesn't seem to be working */
-        return panel;
+        return new JScrollPane(panel);
     }
     
      
@@ -88,7 +84,7 @@ public class ExecuteCode extends ActionPattern{
     public String getStandardText(JComponent panel){
         if(panel!=null){
             save(panel);
-            code = ((JEditTextArea) panel).getText();
+            code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
             if(code==null||!code.equals(""))
                 return LangSupporter.activeLang.getEntry(222);
             return code;
@@ -101,7 +97,7 @@ public class ExecuteCode extends ActionPattern{
     @Override
     public String generateGCL(JComponent panel){
         save(panel);
-        code = ((JEditTextArea) panel).getText();
+        code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
         return code;
     }
 }

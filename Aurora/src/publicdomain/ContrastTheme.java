@@ -107,5 +107,14 @@ public class ContrastTheme extends DefaultMetalTheme {
 
 
     }
-
+    
+    /**
+     *  Same as getName().
+     *  @return getName()
+     *  @see getName();
+     */
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

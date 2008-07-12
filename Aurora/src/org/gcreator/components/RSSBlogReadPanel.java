@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -18,18 +18,23 @@ import javax.swing.border.*;
  * @author  Luís
  */
 public class RSSBlogReadPanel extends JPanel {
+    private RSSReader rssReader;
     
     /** Creates new form BeanForm */
     public RSSBlogReadPanel() {
         initComponents();
-        jScrollPane1.setViewportView(new RSSReader("http://forums.g-java.com/index.php?automodule=blog&req=syndicate"));
+        jScrollPane1.setViewportView(rssReader = new RSSReader("http://forums.g-java.com/index.php?automodule=blog&req=syndicate"));
     }
     
     //http://forums.g-java.com/index.php?automodule=blog&req=syndicate
+    @Override
     public void paint(Graphics g){
         super.paint(g);
     }
     
+    public RSSReader getRSSReader() {
+        return rssReader;
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

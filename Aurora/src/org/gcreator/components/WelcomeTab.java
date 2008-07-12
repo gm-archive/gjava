@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -9,10 +9,16 @@
  */
 package org.gcreator.components;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import org.gcreator.core.GPanel;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.GameProject;
@@ -65,12 +71,26 @@ public class WelcomeTab extends TabPanel {
         rSSBlogReadPanel2 = new org.gcreator.components.RSSBlogReadPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome to Aurora,");
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("The Next Generation of G-Creator");
+
+        rSSReadPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSSReadPanel1MouseClicked(evt);
+            }
+        });
+
+        rSSBlogReadPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                rSSBlogReadPanel2MouseClicked(evt);
+            }
+        });
 
         jToggleButton1.setText("Show welcome screen on start.");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -87,6 +107,20 @@ public class WelcomeTab extends TabPanel {
             }
         });
 
+        jButton2.setText("Go");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Go");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,35 +128,48 @@ public class WelcomeTab extends TabPanel {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.TRAILING, rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
+                    .add(layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                     .add(layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                                 .add(jLabel1)
-                                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .add(jToggleButton1))
-                            .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 228, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 60, Short.MAX_VALUE)
-                        .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
+                                .add(jLabel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 228, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(jToggleButton1))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(layout.createSequentialGroup()
+                                .add(12, 12, 12)
+                                .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 49, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                            .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                    .add(layout.createSequentialGroup()
+                        .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 274, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton2)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED))
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jLabel2)
                         .add(18, 18, 18)
                         .add(jButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 71, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 139, Short.MAX_VALUE)
-                        .add(jToggleButton1))
-                    .add(rSSReadPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE))
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(jToggleButton1)
+                        .add(25, 25, 25)))
+                .add(rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 170, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(rSSBlogReadPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 195, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .add(jButton3)
+                .add(12, 12, 12))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,12 +185,12 @@ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GE
 }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    Project project = null;
-    project = GameProject.balance(ProjectTypes.EMPTY_GAME);
-    project.name = "NewGame";
-    project.location = "";
-    GPanel.setMainProject(project);
-    ProjectTree.importFolderToTree(project, gcreator.panel.top);
+    Project p = null;
+    p = GameProject.balance(ProjectTypes.EMPTY_GAME);
+    p.name = "NewGame";
+    p.location = "";
+    GPanel.setMainProject(p);
+    ProjectTree.importFolderToTree(p, gcreator.panel.top);
     /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
                         + "org.gcreator.components.ProjectTypes.EMPTY_GAME);\n"
@@ -157,8 +204,45 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     } catch (Exception e) {
     }
 }//GEN-LAST:event_jButton1ActionPerformed
+
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    gotoRSS(rSSBlogReadPanel1.getRSSReader());
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    gotoRSS(rSSBlogReadPanel2.getRSSReader());
+}//GEN-LAST:event_jButton3ActionPerformed
+
+private void rSSReadPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSSReadPanel1MouseClicked
+    if (evt.getClickCount() >= 2) {
+        gotoRSS(rSSBlogReadPanel1.getRSSReader());
+    }
+}//GEN-LAST:event_rSSReadPanel1MouseClicked
+
+private void rSSBlogReadPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rSSBlogReadPanel2MouseClicked
+    if (evt.getClickCount() >= 2) {
+        gotoRSS(rSSBlogReadPanel2.getRSSReader());
+    }    
+}//GEN-LAST:event_rSSBlogReadPanel2MouseClicked
+
+private void gotoRSS(RSSReader r) {
+    try {
+            Object o = r.getSelectedValue();
+            if (o == null) {
+                return;
+            }
+            RSSReader.RSSEntry e = (RSSReader.RSSEntry) o;
+            Desktop.getDesktop().browse(new URL(e.url).toURI());
+        } catch (IOException ex) {
+            Logger.getLogger(WelcomeTab.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(WelcomeTab.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;

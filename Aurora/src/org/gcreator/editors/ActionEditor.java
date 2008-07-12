@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -13,11 +13,10 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.event.*;
-import org.gcreator.components.JEditTextArea;
 import org.gcreator.fileclass.res.Action;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.resource.ResourceChooser;
-import org.gcreator.components.scanning.GScriptTokenMarker;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
@@ -31,7 +30,7 @@ public class ActionEditor extends TabPanel {
     public boolean changed = false;
     public Action action = null;
     private ResourceChooser image = null;
-    private JEditTextArea textarea = null;
+    private ColorCodedTextArea textarea = null;
 
     /** Creates new form ActionEditor */
     public ActionEditor(GFile file, Project project) {
@@ -84,9 +83,8 @@ public class ActionEditor extends TabPanel {
         jCheckBox2.setSelected(action.indentnext);
         jCheckBox3.setSelected(action.unindentself);
         jCheckBox4.setSelected(action.unindentnext);
-        textarea = new JEditTextArea(project);
+        textarea = new ColorCodedTextArea(project);
         textarea.setEditable(true);
-        textarea.setTokenMarker(new GScriptTokenMarker());
         textarea.setText(action.output);
         textarea.getDocument().addDocumentListener(new DocumentListener(){
             public void changedUpdate(DocumentEvent e){

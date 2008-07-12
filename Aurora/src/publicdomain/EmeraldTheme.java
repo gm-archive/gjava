@@ -63,5 +63,14 @@ public class EmeraldTheme extends DefaultMetalTheme {
     protected ColorUIResource getPrimary1() { return primary1; }  
     protected ColorUIResource getPrimary2() { return primary2; } 
     protected ColorUIResource getPrimary3() { return primary3; } 
-
+    
+    /**
+     *  Same as getName().
+     *  @return getName()
+     *  @see getName();
+     */
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

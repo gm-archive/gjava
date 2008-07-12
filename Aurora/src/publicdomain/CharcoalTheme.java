@@ -78,5 +78,14 @@ public class CharcoalTheme extends DefaultMetalTheme {
 
     protected ColorUIResource getBlack() { return black; }
     protected ColorUIResource getWhite() { return white; }
-
+    
+    /**
+     *  Same as getName().
+     *  @return getName()
+     *  @see getName();
+     */
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

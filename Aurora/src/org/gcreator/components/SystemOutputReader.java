@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -10,6 +10,7 @@
 
 package org.gcreator.components;
 
+import com.sun.java.swing.plaf.windows.WindowsButtonUI;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -34,19 +35,21 @@ public class SystemOutputReader extends javax.swing.JFrame {
     }
     
     public void addOutLine(String s) {
-        jTextArea1.setText(jTextArea1.getText()+s);
+        jTextArea1.append(s);
     }
     
     public void addErrLine(String s) {
-        jTextArea2.setText(jTextArea2.getText()+s);
+        jTextArea2.append(s);
     }
     public static void showDialog() {
-        if (instance != null)
+        if (instance != null) {
             instance.setVisible(true);
+        }
     }
     public static void hideDialog() {
-        if (instance != null)
+        if (instance != null) {
             instance.setVisible(false);
+        }
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -87,9 +90,10 @@ public class SystemOutputReader extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jButton1)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

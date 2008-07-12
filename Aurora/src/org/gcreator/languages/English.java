@@ -321,8 +321,8 @@ public class English extends Dictionary {
         entry[269] = "Add action";
         entry[270] = "View Console Output";
         entry[271] = "Rename";
-        entry[272] = "Choose the minimum transparency value for\n BoundBox detection." +
-                " 0 is completely transparent where as \n256 is fully opaque.";
+        entry[272] = "<html>Choose the minimum transparency value for<br/> BoundBox detection." +
+                " 0 is completely transparent where as 255 is fully opaque.</html>";
         //GetImageResizeIngoDialog
         entry[273] = "<html>Image is not the correct size.<br> What do you want to do with it?</>";
         entry[274] = "Adjust Image";

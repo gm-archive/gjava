@@ -1,6 +1,8 @@
 <?xml version = "1.0"?>
 <theme>
+<element id="Constants"><color>0, 0, 178</color><font size="12" style="0">Monospaced</font></element>
 <element id="Keywords"><color>0, 0, 255</color><font size="12" style="0">Monospaced</font></element>
 <element id="Strings"><color>255, 0, 0</color><font size="12" style="0">Monospaced</font></element>
-<element id="Comments"><color>153, 204, 0</color><font size="12" style="0">Monospaced</font></element>
+<element id="Plain"><color>0, 0, 0</color><font size="12" style="0">Monospaced</font></element>
+<element id="Comments"><color>0, 178, 0</color><font size="12" style="0">Monospaced</font></element>
 </theme>

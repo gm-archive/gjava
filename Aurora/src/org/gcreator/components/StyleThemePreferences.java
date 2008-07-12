@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,8 +15,8 @@ import java.util.Enumeration;
 import java.util.Vector;
 import javax.swing.BorderFactory;
 import javax.swing.border.BevelBorder;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.VectorListModel;
-import org.gcreator.components.scanning.*;
 import org.gcreator.managers.ScriptThemeManager;
 import publicdomain.*;
 
@@ -26,9 +26,7 @@ import publicdomain.*;
  */
 public class StyleThemePreferences extends javax.swing.JPanel {
     
-    public GScriptTokenMarker scanner = new GScriptTokenMarker();
-    //public SyntaxHighlighter g = new SyntaxHighlighter(100, 100, scanner, null);
-    public JEditTextArea g = new JEditTextArea(null);
+    public ColorCodedTextArea g = new ColorCodedTextArea(null);
     
     /** Creates new form StyleThemePreferences */
     public StyleThemePreferences() {
@@ -44,7 +42,6 @@ public class StyleThemePreferences extends javax.swing.JPanel {
         jList1.setModel(new VectorListModel(v));
         jList1.setSelectedIndex(0);
         
-        g.setTokenMarker(scanner);
         g.setText("{\n" +
                 "\tvar x, y, z; //Variable declaration\n" +
                 "\tx = true;\n" +

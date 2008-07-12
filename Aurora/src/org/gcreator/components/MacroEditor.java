@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -12,24 +12,24 @@ package org.gcreator.components;
 import java.awt.BorderLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import org.gcreator.components.scanning.JavaScriptTokenMarker;
 //import org.gcreator.macro.Macro;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
+import org.gcreator.components.codeeditor.JSKeywordList;
 
 /**
  *
  * @author  Luís
- */
-/*public class MacroEditor extends TabPanel {
+ *//*
+public class MacroEditor extends TabPanel {
 
     public Macro macro;
-    public JEditTextArea editor;
-    */
+    public ColorCodedTextArea editor;
+    
     /** Creates new form MacroEditor *//*
     public MacroEditor(Macro m) {
         initComponents();
         this.macro = m;
-        editor = new JEditTextArea(null);
-        editor.setTokenMarker(new JavaScriptTokenMarker());
+        editor = new ColorCodedTextArea(null, new JSKeywordList());
         editor.setText(macro.javascript);
         editor.getDocument().addDocumentListener(new DocumentListener(){
             public void changedUpdate(DocumentEvent evt){

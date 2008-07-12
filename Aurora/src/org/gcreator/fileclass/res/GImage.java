@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -10,7 +10,6 @@
 package org.gcreator.fileclass.res;
 
 import java.awt.Color;
-import java.awt.image.BufferedImage;
 import java.util.*;
 import javax.swing.*;
 
@@ -28,6 +27,7 @@ public class GImage implements Resource {
     public int zoom;
     
     /**
+     * @param name The name of the resource.
      * @deprecated Use plain constructor instead
      */
     public GImage(String name){
@@ -62,18 +62,22 @@ public class GImage implements Resource {
     public void readXml(String xml){     
         String[] lines = xml.split("\n");
         String line;
-        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>"))
+        if(!lines[0].matches("<\\?xml version=\"1\\.0\"\\?>")) {
             return;
-        if(!lines[1].matches("<gimage>"))
+        }
+        if(!lines[1].matches("<gimage>")) {
             return;
-        if(lines.length < 3)
+        }
+        if(lines.length < 3) {
             return;
+        }
         int i = 3;
         while(i < lines.length) {
             line = lines[i];
             System.out.println(line);
-            if(line == null || line.equals(""))
+            if(line == null || line.equals("")) {
                 continue;
+            }
             if(line.equals("</gimage>")){
                 break;
             }

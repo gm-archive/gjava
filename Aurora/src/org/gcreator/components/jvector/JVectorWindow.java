@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -158,7 +158,7 @@ public class JVectorWindow extends javax.swing.JFrame {
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 super.paint(g);
                 if (editor.i != null)
-                    g2.drawImage(editor.i.getImage(), 0,0, editor.i.getImageObserver());
+                    g2.drawImage(editor.i.getImage().getImage(), 0,0, editor.i.getImage().getImageObserver());
                 
                 g2.setColor(Color.BLACK);
                 for (JVectorable s : shapes) {
@@ -308,7 +308,7 @@ public class JVectorWindow extends javax.swing.JFrame {
     public void shapeSizeChanged() {
         Dimension size = null;
         if (editor.i != null)
-            size = new Dimension(editor.i.getIconWidth(), editor.i.getIconHeight());
+            size = new Dimension(editor.i.getImage().getIconWidth(), editor.i.getImage().getIconHeight());
         else
             size = new Dimension();
         for (JVectorable j : shapes) {
@@ -782,12 +782,12 @@ public class JVectorWindow extends javax.swing.JFrame {
                  shapePanel.getMinimumSize().height, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g = bufImg.createGraphics();
         if (editor.i != null)
-            g.drawImage(editor.i.getImage(), 0,0, editor.i.getImageObserver());
+            g.drawImage(editor.i.getImage().getImage(), 0,0, editor.i.getImage().getImageObserver());
         g.setColor(Color.BLACK);
         for (JVectorable s : shapes) {
            s.paint(g);
         }
-        editor.i = new ImageIcon(bufImg);
+        editor.i.image = new ImageIcon(bufImg);
         editor.pane.updateUI();
         editor.pane.repaint();
         dispose();

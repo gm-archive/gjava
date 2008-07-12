@@ -48,11 +48,8 @@
                       <Component id="jButton2" alignment="0" max="32767" attributes="1"/>
                       <Component id="jButton1" alignment="0" pref="185" max="32767" attributes="1"/>
                   </Group>
-                  <EmptySpace pref="65" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton3" min="-2" pref="130" max="-2" attributes="1"/>
-                      <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="1"/>
-                  </Group>
+                  <EmptySpace pref="61" max="32767" attributes="0"/>
+                  <Component id="jButton3" min="-2" pref="130" max="-2" attributes="1"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -70,10 +67,7 @@
                       <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="1"/>
-                  </Group>
+                  <Component id="jButton4" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -106,11 +100,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;Reload plugins&lt;/&gt;"/>
-          </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton4">
           <Properties>

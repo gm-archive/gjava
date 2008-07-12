@@ -64,7 +64,7 @@ public class ScriptThemeManager {
                 //e.printStackTrace();
             }
         }
-        if(colors.isEmpty()){
+        if (colors.isEmpty()){
             colors.put("Keywords", Color.blue);
             colors.put("Constants", Color.blue.darker());
             colors.put("Comments", Color.green.darker());

@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -15,15 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;
-import javax.swing.event.ListDataListener;
-import javax.swing.plaf.ColorUIResource;
-import javax.swing.plaf.FontUIResource;
 import javax.swing.plaf.metal.DefaultMetalTheme;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.MetalTheme;
 import javax.swing.plaf.metal.OceanTheme;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
+import org.gcreator.themes.HappyTheme;
 import publicdomain.AquaTheme;
 import publicdomain.CharcoalTheme;
 import publicdomain.ContrastTheme;
@@ -41,34 +39,48 @@ public class PreferencesTab extends OptionPanel {
     public PreferencesTab(String[] settings) {
         initComponents();
         if (themes == null) {
-            themes = new Vector<MetalTheme>(7);
-            themes.add(new DefaultMetalTheme());
+            themes = new Vector<MetalTheme>(8);
             themes.add(new AquaTheme());
             themes.add(new CharcoalTheme());
             themes.add(new ContrastTheme());
+            themes.add(new DefaultMetalTheme());
             themes.add(new EmeraldTheme());
+            themes.add(new HappyTheme());
             themes.add(new OceanTheme());
             themes.add(new RubyTheme());
         }
         jComboBox3.setModel(new DefaultComboBoxModel() {
-
+            private static final long serialVersionUID = 1;
+            
+            @Override
             public int getSize() {
                 return themes.size();
             }
 
+            @Override
             public Object getElementAt(int index) {
                 return themes.get(index);
             }
         });
         jComboBox3.setRenderer(new DefaultListCellRenderer() {
+            private static final long serialVersionUID = 1;
+            
+            @Override
             public Component getListCellRendererComponent(JList list, Object value,int index, boolean isSelected,boolean cellHasFocus) {
                 JLabel l = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                if (value != null)
-                    l.setText(value.getClass().getSimpleName());
+                if (value != null) {
+                    if (value instanceof MetalTheme) {
+                        l.setText(((MetalTheme) value).getName());
+                    } else {
+                        l.setText(value.getClass().getSimpleName());
+                    }
+                }
                 return l;
             }
         });
-        //jComboBox1.setSelectedIndex(0);
+        //   According to TGMG this makes G-Creator crash.
+        // jComboBox1.setSelectedIndex(0);
+        // 
         try {
             if (settings[0] == null) {
                 throw new Exception();//Lazy way of going to the catch statement below.
@@ -319,6 +331,7 @@ public class PreferencesTab extends OptionPanel {
                 SwingUtilities.updateComponentTreeUI(gcreator.panel.tabs);
             }
             SwingUtilities.updateComponentTreeUI(gcreator.panel.consolepopup);
+            SwingUtilities.updateComponentTreeUI(gcreator.panel.about);
             //gcreator.window.look = sel;
             gcreator.panel.workspace.updateUI();
         } catch (Exception e) {
@@ -327,7 +340,7 @@ public class PreferencesTab extends OptionPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
     private void findMetalTheme() {
         for (int i = 0; i < jComboBox3.getItemCount(); i++) {
-            if (jComboBox3.getItemAt(i).getClass().getName().equals(MetalLookAndFeel.getCurrentTheme().getClass().getName())) {
+            if (((MetalTheme)jComboBox3.getItemAt(i)).getName().equals(MetalLookAndFeel.getCurrentTheme().getName())) {
                 jComboBox3.setSelectedIndex(i);
                 break;
             }

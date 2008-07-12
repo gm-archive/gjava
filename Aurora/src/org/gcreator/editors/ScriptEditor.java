@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -9,15 +9,11 @@
  */
 package org.gcreator.editors;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import org.gcreator.components.TokenMarker;
-import org.gcreator.components.JEditTextArea;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.SwingUtilities;
-import org.gcreator.components.scanning.*;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
@@ -32,7 +28,7 @@ import publicdomain.*;
 public class ScriptEditor extends TabPanel {
     
     public boolean changed = true;
-    JEditTextArea g;
+    ColorCodedTextArea g;
     
     @Override
     public boolean Save() {
@@ -48,56 +44,43 @@ public class ScriptEditor extends TabPanel {
         return changed;
     }
     
+    public String stripTags(String s) {
+        return s.replaceAll("<[.+]>(.*)</$1>", "$2");
+    }
     /** Creates new form ScriptEditor */
-    public ScriptEditor(org.gcreator.fileclass.GFile file,Project project) {
+    public ScriptEditor(org.gcreator.fileclass.GFile file, Project project) {
         initComponents();
         this.file = file;
         jTextField1.setText(file.name);
-        if(file.value==null)
+        if(file.value==null) {
             file.value = new Classes("// Press CTRL + SPACE for code completion \n show_message(\"test\")\n");
-        TokenMarker scanner = new GScriptTokenMarker();
-        //g = new SyntaxHighlighter(100, 100, scanner, project);
-        g = new JEditTextArea(project);
-        g.setTokenMarker(scanner);
-        if (file.value instanceof Classes)
-            g.setText(((Classes)file.value).toString());
-        else
-            g.setText(file.value.toString());
+        }
         
-       // org.jdesktop.layout.GroupLayout jPanel1Layout = new org.jdesktop.layout.GroupLayout(jPanel1);
-        //jPanel1.setLayout(jPanel1Layout);
-        /*jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, g, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 14, Short.MAX_VALUE)
-        );*/
-     //   setLayout(new BorderLayout());
-      //  add(BorderLayout.CENTER, jScrollPane1);
+        String text;
+        if (file.value instanceof Classes) {
+            text = ((Classes) file.value).toString();
+        }
+        else {
+            text = file.value.toString();
+        }
+        
+        g = new ColorCodedTextArea(project, text);
+        
         jScrollPane1.setViewportView(g);
-        jScrollPane1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (g.getDocument().getTokenMarker() instanceof GScriptTokenMarker) {
-                    ((GScriptTokenMarker)g.getDocument().getTokenMarker()).autoFrame.dispose();
-                    ((GScriptTokenMarker)g.getDocument().getTokenMarker()).autoFrame = null;
-                }
-            }
-        });
+      
         g.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 changed = true;
             }
         });
-
+        
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 g.requestFocusInWindow();
             }
-        });
-        
+        });  
     }
     
     /** This method is called from within the constructor to
@@ -121,8 +104,6 @@ public class ScriptEditor extends TabPanel {
         jLabel1 = new javax.swing.JLabel();
         saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jScrollPane1.setDoubleBuffered(true);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -167,7 +148,7 @@ public class ScriptEditor extends TabPanel {
                     .add(jRadioButton4)
                     .add(jRadioButton3)
                     .add(jRadioButton2))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Title"));
@@ -198,7 +179,7 @@ public class ScriptEditor extends TabPanel {
                 .add(jPanel3Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
@@ -210,7 +191,7 @@ public class ScriptEditor extends TabPanel {
                 .add(jPanel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -227,15 +208,15 @@ public class ScriptEditor extends TabPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
-            .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
+            .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .add(jPanel2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(saveResourcePanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 35, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
         );

@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -29,11 +29,11 @@ public class GlobalSettings extends TabPanel {
         initComponents();
         jTabbedPane1.add("Language", new LanguageTab());
         jTabbedPane1.add("Toolbars", new ToolbarEditor());
-        jTabbedPane1.add("Script Editor", new StyleThemePreferences());
         this.addComponentListener(new ComponentListener(){
             public void componentHidden(ComponentEvent evt){}
             public void componentShown(ComponentEvent evt){
-                if(!b){
+                if (!b) {
+                    jTabbedPane1.add("Script Editor", new StyleThemePreferences());
                     jTabbedPane1.add("User interface", new PreferencesTab(settings));
                     b = true;
                 }

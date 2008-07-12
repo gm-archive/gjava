@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintStream;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.text.ParseException;
@@ -56,6 +57,17 @@ public class gcreator {
     public static String folder;
     private static String java_version = System.getProperty("java.version");
     public static String settingsLocation = "." + File.separator + "settings" + File.separator;
+    
+    /**
+     * Use this to bypass printing stuff in the GUI components and print it directly to the <tt>System</tt>.
+     * Use only for debuging and printing large amounts of data.
+     */
+    public static PrintStream debugOut = System.out;
+    /**
+     * Use this to bypass printing stuff in the GUI components and print it directly to the <tt>System</tt>.
+     * Use only for debuging and printing large amounts of data.
+     */
+    public static PrintStream debugErr = System.err;
     
     static {
         //Tap into System.out and System.err
@@ -206,7 +218,7 @@ public class gcreator {
         ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
         ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), 41);
         ToolbarButton saveall = new DefaultToolbarItem("std_saveAll", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/saveall.png")), 89);
-        ToolbarButton saveproj = new DefaultToolbarItem("std_saveProj", null, 8);
+        ToolbarButton saveproj = new DefaultToolbarItem("std_saveProj", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/project_saveall.png")), 8);
         ToolbarButton addimg = new DefaultToolbarItem("std_addImage", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addimage.png")), 198);
         ToolbarButton addspr = new DefaultToolbarItem("std_addSprite", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsprite.png")), 43);
         ToolbarButton addtls = new DefaultToolbarItem("std_addTileset", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtileset.png")), 190);

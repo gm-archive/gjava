@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -16,10 +16,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Collections;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import org.gcreator.autocomplete.gscript.GSFunctions;
 import org.gcreator.autocomplete.impl.*;
 import org.gcreator.components.*;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.VectorListModel;
 import org.gcreator.fileclass.Project;
 import publicdomain.*;
@@ -30,7 +34,7 @@ import publicdomain.*;
 public class GSAutocomplete extends AutocompleteFrame{
     int selstart;
     int selend;
-    JEditTextArea editor;
+    ColorCodedTextArea editor;
     String prevWord;
     String context;
     boolean requestDie = false;
@@ -92,15 +96,15 @@ public class GSAutocomplete extends AutocompleteFrame{
                     //editor.setSelectionEnd(selstart+1);
                  //   editor.setSelectionStart(editor.getCaretPosition()+1);
                  //   editor.setSelectionEnd(editor.getCaretPosition()+1);
-                    editor.setCaretPosition(editor.getDocumentLength());
+                    editor.setCaretPosition(editor.getDocument().getLength());
                     //dispose();
                     editor.callAutocomplete();
                     //editor.setSelectionEnd(selstart);
                     //GSAutocomplete.this.selstart = editor.getSelectionStart();
                    // GSAutocomplete.this.selend = editor.getSelectionEnd();
                     GSAutocomplete.this.selstart = findSelectionStart(
-                            Math.min(editor.getDocumentLength(), editor.getCaretPosition()+1));
-                    GSAutocomplete.this.selend = Math.min(editor.getDocumentLength(), editor.getCaretPosition()+1);
+                            Math.min(editor.getDocument().getLength(), editor.getCaretPosition()+1));
+                    GSAutocomplete.this.selend = Math.min(editor.getDocument().getLength(), editor.getCaretPosition()+1);
                     context = getContext();
                     useContext();
                     list.repaint();
@@ -130,7 +134,7 @@ public class GSAutocomplete extends AutocompleteFrame{
             public void keyTyped(KeyEvent evt){}
         };
     
-    public GSAutocomplete(int selstart, int selend, JEditTextArea editor, Project p){
+    public GSAutocomplete(int selstart, int selend, ColorCodedTextArea editor, Project p){
         super("GS Autocomplete...");
         this.setAlwaysOnTop(true);
         editor.requestFocusInWindow();
@@ -144,7 +148,7 @@ public class GSAutocomplete extends AutocompleteFrame{
         findSelectionStart();
     }
     
-    public void resetAutocomplete(final int selstart, final int selend, final JEditTextArea editor, Project p) {
+    public void resetAutocomplete(final int selstart, final int selend, final ColorCodedTextArea editor, Project p) {
         this.selstart = selstart;
         this.selend = selend;
         this.editor = editor;
@@ -176,7 +180,7 @@ public class GSAutocomplete extends AutocompleteFrame{
             selstart = selstart+t.length()-s.retreat();
             selend = selstart+t.length()-s.retreat();
             editor.setSelectionStart(selstart);
-            editor.setSelectionEnd(Math.min(selend, editor.getDocumentLength()));
+            editor.setSelectionEnd(Math.min(selend, editor.getDocument().getLength()));
         }
         dispose();
     }
@@ -463,18 +467,23 @@ public class GSAutocomplete extends AutocompleteFrame{
         return findSelectionStart(editor.getCaretPosition());
     }
     private int findSelectionStart(int endpoint) {
-        int start = editor.getSelectionStart();
-        if (editor.getText(endpoint, 1).matches("\\W+|\n+|\\+|\\-|\\*|/|\\%|\\&|\\|" +
-                "|\\(|\\)|\\{|\\}|\\!|\\^|\\,|\\;|\\<|\\>|\\=|\\?|\\:"))
+        try {
+            int start = editor.getSelectionStart();
+            if (editor.getText(endpoint, 1).matches("\\W+|\n+|\\+|\\-|\\*|/|\\%|\\&|\\|" + "|\\(|\\)|\\{|\\}|\\!|\\^|\\,|\\;|\\<|\\>|\\=|\\?|\\:")) {
+                return start;
+            }
+            for (int i = endpoint; i >= 0; i--) {
+                if (editor.getText(i, 1).matches("\\W+|\n+")) {
+                    // System.out.println("i: "+i+"\ttext: '"+editor.getText(i, 1)+"'");
+                    start = i;
+                    break;
+                }
+            }
             return start;
-        for (int i = endpoint; i >= 0; i--) {
-           if (editor.getText(i, 1).matches("\\W+|\n+")) {
-              // System.out.println("i: "+i+"\ttext: '"+editor.getText(i, 1)+"'");
-               start = i;
-               break;
-           }
+        } catch (BadLocationException ex) {
+            Logger.getLogger(GSAutocomplete.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return start;
+        return -1;
     }
     
     private void fixSel() {

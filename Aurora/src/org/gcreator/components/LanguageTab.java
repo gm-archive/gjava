@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -46,9 +46,6 @@ public class LanguageTab extends TabPanel {
         if(gcreator.panel.lang.equals("Spanish")) {
             l = 5;
         }
-        if(gcreator.panel.lang.equals("French")) {
-            l = 6;
-        }
         jComboBox1.setSelectedIndex(l);
         updateLanguage();
     }
@@ -71,10 +68,8 @@ public class LanguageTab extends TabPanel {
         else if(l==4) {
             m = new Russian();
         }
-        else if (l == 5){
+        else{
             m = new Spanish();
-        } else {
-            m = new French();
         }
         jLabel1.setText(m.getEntry(47));
         jLabel2.setText(m.getEntry(48));
@@ -100,7 +95,7 @@ public class LanguageTab extends TabPanel {
 
         jLabel1.setText("Language");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English (Universal)", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish" , "French"}));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English (Universal)", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish"}));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);

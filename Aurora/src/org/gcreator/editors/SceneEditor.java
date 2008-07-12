@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -9,8 +9,6 @@
  */
 package org.gcreator.editors;
 //<editor-fold desc="Import Statements" defaultstate="collapsed">
-import org.gcreator.components.JEditTextArea;
-import org.gcreator.components.scanning.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -18,6 +16,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.gcreator.components.*;
+import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.resource.ResourceChooser;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
@@ -211,7 +210,7 @@ public class SceneEditor extends TabPanel {
         //}
         scenePanel.updateUI();
     }
-    public JEditTextArea egml;
+    public ColorCodedTextArea egml;
     public TileChooser tilechooser;
     //<editor-fold desc="Constructor">
     @SuppressWarnings("unchecked")
@@ -230,9 +229,6 @@ public class SceneEditor extends TabPanel {
         scenePanel.setSize(500, 500);
         jScrollPane1.setViewportView(scenePanel);
         //egml
-        GScriptTokenMarker scanner = new GScriptTokenMarker();
-        egml = new JEditTextArea(project);
-        egml.setTokenMarker(scanner);
         egml.setText(((Scene) file.value).code);
         //end of egml
         tilechooser = new TileChooser(this);

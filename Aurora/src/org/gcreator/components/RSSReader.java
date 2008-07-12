@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -16,11 +16,14 @@ import java.awt.Graphics;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import javax.swing.AbstractListModel;
 import javax.swing.JScrollPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+import org.gcreator.core.gcreator;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -29,12 +32,12 @@ import org.w3c.dom.NodeList;
  *
  * @author  Luís
  */
-public class RSSReader extends javax.swing.JPanel {
+public class RSSReader extends javax.swing.JList {
 
     private boolean loaded = false;
     private boolean failed = true;
-    private Hashtable<String, String> items = new Hashtable<String, String>();
-
+    //private Hashtable<String, String> items = new Hashtable<String, String>();
+    protected ArrayList<RSSEntry> rssEntries = new ArrayList<RSSEntry>(12);
     public class StringInputStream extends InputStream {
 
         private String s;
@@ -52,11 +55,26 @@ public class RSSReader extends javax.swing.JPanel {
         }
     }
 
-    /** Creates new form RSSReader */
+    /** Creates new form RSSReader
+     * @param url The URL to download the RSS entries from.
+     */
     public RSSReader(final String url) {
+        setModel(new AbstractListModel() {
+
+            @Override
+            public int getSize() {
+                return rssEntries.size();
+            }
+
+            @Override
+            public Object getElementAt(int index) {
+                return rssEntries.get(index);
+            }
+        });
         initComponents();
         Thread t = new Thread() {
 
+            @Override
             public void run() {
                 try {
                     //FileInputStream r = new FileInputStream(url);
@@ -95,7 +113,7 @@ public class RSSReader extends javax.swing.JPanel {
                         throw new Exception("Invalid");
                     }
                     childs = child.getChildNodes();
-                    System.out.println(childs.getLength());
+                  //  System.out.println(childs.getLength());
                     for (int j = 0; i < childs.getLength(); j++) {
                         child = childs.item(j);
                         if (child != null) {
@@ -111,7 +129,7 @@ public class RSSReader extends javax.swing.JPanel {
 
                     failed = false;
                 } catch (Exception e) {
-                    System.out.println(e.toString());
+                    System.err.println(e.toString());
                 }
                 loaded = true;
                 Container c = getParent();
@@ -132,9 +150,11 @@ public class RSSReader extends javax.swing.JPanel {
         for (int i = 0; i < childs.getLength(); i++) {
             Node c = childs.item(i);
         }
-        items.put(childs.item(1).getTextContent(), childs.item(0).getTextContent());
+        rssEntries.add(new RSSEntry(childs.item(1).getTextContent(), childs.item(3).getTextContent()));
+        //items.put(childs.item(1).getTextContent(), childs.item(0).getTextContent());
     }
 
+    @Override
     public void paint(Graphics g) {
         g.setFont(getFont());
         if (!loaded) {
@@ -142,6 +162,7 @@ public class RSSReader extends javax.swing.JPanel {
         } else if (failed) {
             g.drawString("Failed to retrieve RSS", 10, 30);
         } else {
+            /*
             Font f = getFont();
             int fh = getFontMetrics(f).getHeight();
             Enumeration<String> e = items.keys();
@@ -149,22 +170,40 @@ public class RSSReader extends javax.swing.JPanel {
                 String s = e.nextElement();
                 g.drawString(s, 5, (fh + 5) * (i + 1));
             }
+             */
+            super.paint(g);
         }
     }
 
+    @Override
     public int getHeight() {
         if (failed) {
             return 1;
         }
-        Font f = getFont();
-        int fh = getFontMetrics(f).getHeight();
-        return (fh + 5) * items.size() + 10;
+     //   Font f = getFont();
+       // int fh = getFontMetrics(f).getHeight();
+      //  return (fh + 5) * items.size() + 10;
+      return super.getHeight();
     }
-
+    /*
+    @Override
     public Dimension getPreferredSize() {
         return new Dimension(super.getPreferredSize().width, getHeight());
+    }*/
+    
+    public class RSSEntry {
+        public final String title;
+        public final String url;
+        public RSSEntry(String title, String url) {
+            this.title = title;
+            this.url = url;
+        }
+        
+        @Override
+        public String toString() {
+            return "<html>"+title+"</html>";
+        }
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

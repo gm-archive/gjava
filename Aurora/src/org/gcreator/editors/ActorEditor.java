@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (c) 2008 BobSerge or Bobistaken <serge_1994@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
  * 
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
@@ -69,24 +69,12 @@ public class ActorEditor extends TabPanel {
         changed = true;
         updateNavigator();
     }
-
-    //You may think this is a stupid function, but I needed it.
-    //(stupid methods for stupid people)
-    /**
-     * If you need to access ActorEditor's 'this' from an inner class
-     * (anonymous or not), just use ActorEditor.this.
-     * @return ActorEditor.this
-     * @deprecated
-     */
-    protected ActorEditor getThis() {
-        return this;
-    }
-
+    
     /** Creates new form ActorEditor2 */
     public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
         if (file.value == null) {
-            this.actor = new Actor(/*file.name*/);
+            this.actor = new Actor();
             actor.readXml(file.xml);
             //file.value = actor;
             actor.events = new Vector<org.gcreator.events.Event>();
@@ -244,63 +232,6 @@ public class ActorEditor extends TabPanel {
         //actor.name = file.name;
         org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
-    //<editor-fold desc="Useless Junk" defaultstate="collapsed">
-    public static void setupActions() {
-        //JPanel p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        //addAction(p,"test");
-        //addAction(p,"test2");
-        //addActionCat(p,"Move");
-        //p = new JPanel(new FlowLayout(FlowLayout.LEFT,0,0));
-        //addAction(p,"OtherCat");
-        //addAction(p,"2");
-        //addActionCat(p,"Main");
-        //addActionCat(p,"Control");
-        //addActionCat(p,"Draw");
-
-//        jComboBox1.addActionListener(new ActionListener() {
-//
-//                    public void actionPerformed(ActionEvent e) {
-//                        JComboBox cb = (JComboBox) e.getSource();
-//                        String name = (String) cb.getSelectedItem();
-//
-//                        for (Enumeration en = actionCats.elements(); en.hasMoreElements();) {
-//                            ActionCategory a = ((ActionCategory) en.nextElement());
-//                            if (a.name.equals(name)) {
-//                            //jScrollPane3.setViewportView(a.j); 
-//                            }
-//
-//                        }
-//
-//
-//                    }
-//                });
-    }
-
-    /*public static void addAction(JPanel p, String name) {
-    JLabel b = new JLabel(name);
-    
-    b.setHorizontalAlignment(JLabel.LEFT);
-    b.setVerticalAlignment(JLabel.TOP);
-    b.setPreferredSize(new Dimension(32, 32));
-    p.add(b);
-    }*/
-
-    /*public static void addActionCat(JPanel p, String name)
-    {
-    jComboBox1.addItem(name);
-    actionCats.add(new actionCat(name,p));
-    }*/
-    /*static class actionCat {
-    
-    String name;
-    JPanel j;
-    
-    actionCat(String name, JPanel j) {
-    this.name = name;
-    this.j = j;
-    }
-    }*/
-//</editor-fold>
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -890,42 +821,5 @@ public class ActorEditor extends TabPanel {
     private javax.swing.JSplitPane jSplitPane3;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
-    /*class Value
-    {
-    //value is the event name
-    public String value,img;
-    public ImageIcon image;
-    public DefaultListModel actions = new DefaultListModel();
-    public Value(String value, String img,DefaultListModel actions)
-    {
-    this.img = img;
-    this.image = new ImageIcon(img);
-    this.value = value;
-    
-    }
-    
-    }*/
-    /*class SimpleCellRenderer extends JLabel implements ListCellRenderer
-    {
-    public SimpleCellRenderer()
-    {
-    setOpaque(true);
-    }
-    
-    public Component getListCellRendererComponent(JList list, Object value, 
-    int index, boolean isSelected, boolean cellHasFocus)
-    {
-    Value val = (Value)value;
-    setText(val.value);
-    setIcon(val.image);
-    
-    setBackground(isSelected ? Color.black : (index & 1) == 0 ? Color.white : Color.LIGHT_GRAY);
-    setForeground(isSelected ? Color.white : Color.black);
-    return this;
-    }
-    
-    
-    }*/
 }
     
