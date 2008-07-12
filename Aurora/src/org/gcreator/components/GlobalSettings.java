@@ -29,11 +29,11 @@ public class GlobalSettings extends TabPanel {
         initComponents();
         jTabbedPane1.add("Language", new LanguageTab());
         jTabbedPane1.add("Toolbars", new ToolbarEditor());
+        jTabbedPane1.add("Script Editor", new StyleThemePreferences());
         this.addComponentListener(new ComponentListener(){
             public void componentHidden(ComponentEvent evt){}
             public void componentShown(ComponentEvent evt){
                 if (!b) {
-                    jTabbedPane1.add("Script Editor", new StyleThemePreferences());
                     jTabbedPane1.add("User interface", new PreferencesTab(settings));
                     b = true;
                 }

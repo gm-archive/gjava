@@ -9,7 +9,6 @@
  */
 package org.gcreator.autocomplete;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -18,15 +17,20 @@ import java.util.Collections;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.*;
+import javax.swing.JScrollBar;
 import javax.swing.text.BadLocationException;
 import org.gcreator.autocomplete.gscript.GSFunctions;
-import org.gcreator.autocomplete.impl.*;
-import org.gcreator.components.*;
+import org.gcreator.autocomplete.impl.CKeywordSuggestion;
+import org.gcreator.autocomplete.impl.ClassSuggestion;
+import org.gcreator.autocomplete.impl.FunctionSuggestion;
+import org.gcreator.autocomplete.impl.KeywordSuggestion;
+import org.gcreator.autocomplete.impl.NKeywordSuggestion;
+import org.gcreator.autocomplete.impl.Suggestion;
+import org.gcreator.autocomplete.impl.SuggestionCellRenderer;
+import org.gcreator.autocomplete.impl.VKeywordSuggestion;
 import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.VectorListModel;
 import org.gcreator.fileclass.Project;
-import publicdomain.*;
 
 /**
  * @author Luís Reis

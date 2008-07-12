@@ -11,12 +11,9 @@
 package org.gcreator.components.codeeditor;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.FontMetrics;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.AbstractAction;
@@ -63,36 +60,10 @@ public final class ColorCodedTextArea extends JTextArea implements DocumentListe
         AutocompleteFrame f = new GSAutocomplete(this.getSelectionStart(), this.getSelectionEnd(), this, project);
         if (f != null && !f.requestDie()) {
             try {
-                FontMetrics fm = getFontMetrics(getFont());
-                int x = 0;
-                int lh = fm.getHeight();
-                int y = lh;
-                int w = getWidth();
-                String d = getText();
-                for (int i = 0; i < getSelectionEnd(); i++) {
-                    char t = d.charAt(i);
-                    if (t == '\r' || (t == '\n' && (i == 0 || d.charAt(i - 1) != '\r'))) {
-                        x = 0;
-                        y += lh;
-                        continue;
-                    }
-                    int cw;
-                    if (t != '\t') {
-                        cw = fm.charWidth(t);
-                    } else {
-                        cw = fm.charWidth(' ') * 10;
-                    }
-                    if (x + cw > w) {
-                        x = cw;
-                        y += lh;
-                        continue;
-                    }
-                    x += cw;
-                }
                 String before = getDocument().getText(0, getCaretPosition()).replaceAll("\t", "    ");
                 int top = 0;
                 if (before.contains("\n")) {
-                    int n = 0;
+                    int n = 1;
                     String text = before;
                     while ((text.indexOf("\n")) != -1) {
                         n++;
@@ -191,11 +162,11 @@ public final class ColorCodedTextArea extends JTextArea implements DocumentListe
         if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_SPACE) {
             callAutocomplete();
         } else if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Z) {
-            if (undo.canUndo()) {
+            if (undo.canUndo() && isEditable() && isEnabled()) {
                 undo.undo();
             }
         } else if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_Y) {
-            if (undo.canRedo()) {
+            if (undo.canRedo() && isEditable() && isEnabled()) {
                 undo.redo();
             }
         } else if (e.getKeyChar() == '}') {
@@ -238,52 +209,83 @@ public final class ColorCodedTextArea extends JTextArea implements DocumentListe
                     doc.insertString(getCaretPosition(), tabs, null);
                 }
             } catch (BadLocationException ex) {
-                Logger.getLogger(ColorCodedTextArea.class.getName()).log(Level.SEVERE, null, ex);
+              //  Logger.getLogger(ColorCodedTextArea.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
     
     @Override
     public void insertUpdate(DocumentEvent e) {
+        try {
+            Document doc = getDocument();
+            boolean damage = false;
+            String change = doc.getText(e.getOffset(), e.getLength());
+            if (change.contains("\"") || change.contains("\'") || change.contains("/*") || change.contains("//")) {
+                damage = true;
+            } else if (getCaretPosition() > 0) {
+                if (change.equals("*") && doc.getText(getCaretPosition()-1, 1).equals("/")) {
+                    damage = true;
+                } else if (change.equals("/") && doc.getText(getCaretPosition()-1, 1).equals("/")) {
+                    damage = true;
+                } else if (getCaretPosition() < doc.getLength()) {
+                    if (change.equals("/") && doc.getText(getCaretPosition(), 1).equals("/") || doc.getText(getCaretPosition(), 1).equals("*")) {
+                        damage = true;
+                    }
+                }
+            }
+            
+            if (damage) {
+                view.damageLineRange(getLineOfOffset(e.getOffset()),  getLineOfOffset(getDocument().getLength()), getBounds(), ColorCodedTextArea.this);
+            }
+        } catch (BadLocationException ex) {
+          //  Logger.getLogger(ColorCodedTextArea.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-
+    
     @Override
     public void removeUpdate(DocumentEvent e) {
         if (getCaretPosition() <= 0) {
-            gcreator.debugOut.println("caret postion too small");
             return;
         }
         
         try {
-            String s = getDocument().getText(getCaretPosition() - 1, 1);
-            boolean yes = false;
-            System.out.println("1: "+getDocument().getText(getCaretPosition() - 2, 1)+" 2: "+ getDocument().getText(getCaretPosition() - 1, 1));
-            if ((getCaretPosition() > 2 && getDocument().getText(getCaretPosition() - 2, 1).equals("/")) ||
-                (getCaretPosition() > 1 && getDocument().getText(getCaretPosition() - 1, 1).equals("/"))) {
-                yes = true;
+            for (int[] i : view.allstrings) {
+                if ((i[0] >= e.getOffset() && i[0] < e.getOffset()+e.getLength()) || 
+                        (i[1] >= e.getOffset() && i[1] < e.getOffset()+e.getLength())) {
+                    
+                    view.damageLineRange( ((i[0] >= e.getOffset() && i[0] < e.getOffset()+e.getLength())
+                            ? getLineOfOffset(getCaretPosition() - 1) : getLineOfOffset(getCaretPosition()) ), 
+                            getLineOfOffset(getDocument().getLength()), getBounds(), ColorCodedTextArea.this);
+                }
             }
-            int pos = getCaretPosition();
-            if (true) {//(s.equals("\"") || s.equals("\'") || yes) {
-              //  for (int[] i : view.allcomments) {System.out.println("i0: "+i[0]+" i1: "+i[1]+" pos: "+getCaretPosition());
-                 //   if (i[0] == pos || i[1] == pos) {
-                        
-                        final int startLine = getLineOfOffset(pos-1);
-                        final int endLine = getLineOfOffset(getDocument().getLength());
-                        view.damageLineRange(startLine, endLine, getBounds(), ColorCodedTextArea.this);
-                    //    break;
-               //     }
-             //   }
+            for (int[] i : view.allcomments) {
+                boolean doDamage = false;
+                /* '//' comments*/
+                if (i[2] == 0) {
+                    String text = getDocument().getText(i[0], i[1]-i[0]);
+                    if (text.contains("/*") || text.contains("*/") || text.contains("\"") || text.contains("\'")) {
+                        doDamage = (e.getOffset() >= i[0] && e.getOffset()+2 <= i[1]);
+                    }
+                } else {
+                    doDamage = ((e.getOffset() >= i[0] && e.getOffset() < i[0]+2) ||
+                            (e.getOffset() > i[1]-2 && e.getOffset() <= i[1]));
+                }
+                
+                if (doDamage) {
+                    view.damageLineRange( ((i[0] >= e.getOffset() && i[0] < e.getOffset()+e.getLength())
+                            ? getLineOfOffset(getCaretPosition() - 1) : getLineOfOffset(getCaretPosition()) ), 
+                            getLineOfOffset(getDocument().getLength()), getBounds(), ColorCodedTextArea.this);
+                }
             }
         } catch (BadLocationException ex) {
-            Logger.getLogger(ColorCodedTextArea.class.getName()).log(Level.SEVERE, null, ex);
+           // Logger.getLogger(ColorCodedTextArea.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
-    public void changedUpdate(DocumentEvent e) {
-    }
+    public void changedUpdate(DocumentEvent e) {}
     
+    //<editor-fold desc="Undo Actions" default-state="collapsed">
     /**
      * An Undo Action.
      */
@@ -350,4 +352,5 @@ public final class ColorCodedTextArea extends JTextArea implements DocumentListe
             }
         }
     }
+    //</editor-fold>
 }

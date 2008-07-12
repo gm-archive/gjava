@@ -161,7 +161,7 @@ public final class ColorCodedView extends PlainView {
                         if ((cslash >= p0 && cslash <= p1) || (end >= p0 && end <= p1)) {
                             comments.add(new int[]{cslash+((isInside(cslash+1, comments)) ? 1 : 0)-p0, end-p0});
                         }
-                        allcomments.add(new int[]{cslash+((isInside(cslash+1, comments)) ? 1 : 0), end});
+                        allcomments.add(new int[]{cslash+((isInside(cslash+1, comments)) ? 1 : 0), end, 0});
                         end += 2;
                     }
                 } else if (index == cstar) {
@@ -169,7 +169,7 @@ public final class ColorCodedView extends PlainView {
                     if ((cstar <= p1 && cstar >= p0) || end >= p0) {
                         comments.add(new int[]{cstar-p0, end+1-p0});
                     }
-                    allcomments.add(new int[]{cstar, end+1});
+                    allcomments.add(new int[]{cstar, end+1, 1});
                     end ++;
                 } else if (index == qsingle) {
                     end = indexOf(qsingle+1, "\'");
@@ -282,7 +282,7 @@ public final class ColorCodedView extends PlainView {
     @Override
     
     public float nextTabStop(float x, int tabOffset) {
-        return x+component.getFontMetrics(component.getFont()).charWidth(' ')*4;
+        return x+component.getFontMetrics(component.getFont()).charWidth(' ')*6;
     }
     
     /**
