@@ -21,6 +21,11 @@ namespace org.gcreator.Types
         {
             return System.Double.Parse(s);
         }
+		
+		public override int getInt()
+		{
+			return System.Int32.Parse(s);
+		}
 
         public override Object add(Object o)
         {

@@ -100,14 +100,16 @@ namespace org.gcreator.Components
             gravitydir = direction.getDouble();
         }
 
-        public override void setX(Object x)
+        public override Object setX(Object x)
         {
             this.x = x.getInt();
+			return new Integer(0);
         }
 
-        public override void setY(Object y)
+        public override Object setY(Object y)
         {
             this.y = y.getInt();
+			return new Integer(0);
         }
 
         public void setDepth(int depth)
@@ -145,9 +147,10 @@ namespace org.gcreator.Components
             return new Boolean(visible);
         }
 
-        public override void setVisible(Object visible)
+        public override Object setVisible(Object visible)
         {
             this.visible = visible.getBoolean();
+			return new Integer(0);
         }
 		
 		public bool isPersistent()

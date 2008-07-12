@@ -22,32 +22,56 @@ namespace org.gcreator.Types
 
         public virtual Object getX()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getX();
+			}
             return new Integer(0);
         }
 
-        public virtual void setX(Object x)
+        public virtual Object setX(Object x)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setX(x);
+			}
+            return new Integer(0);
         }
 
         public virtual Object getY()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getY();
+			}
             return new Integer(0);
         }
 
-        public virtual void setY(Object y)
+        public virtual Object setY(Object y)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setY(y);
+			}
+			return new Integer(0);
         }
 
         public virtual Object getVisible()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getVisible();
+			}
             return new Boolean(true);
         }
 
-        public virtual void setVisible(Object visible)
+        public virtual Object setVisible(Object visible)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setVisible(visible);
+			}
+            return new Boolean(true);
         }
 
         public virtual Object getGravity()
