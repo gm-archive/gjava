@@ -27,77 +27,6 @@ namespace org.gcreator.Components
             this.background = background;
         }
 
-        private int getMinimumDepth()
-        {
-            int result = System.Int32.MaxValue;
-            foreach (object o in actors)
-            {
-                if (o is Actor)
-                {
-                    int adep = ((Actor)o).getDepth();
-                    if (adep < result)
-                        result = adep;
-                }
-            }
-            foreach (object o in tiles)
-            {
-                if (o is Tile)
-                {
-                    int adep = ((Tile)o).depth;
-                    if (adep < result)
-                        result = adep;
-                }
-            }
-            return result;
-        }
-
-        private int getMaximumDepth()
-        {
-            int result = System.Int32.MinValue;
-            foreach (object o in actors)
-            {
-                if (o is Actor)
-                {
-                    int adep = ((Actor)o).getDepth();
-                    if (adep > result)
-                        result = adep;
-                }
-            }
-            foreach (object o in tiles)
-            {
-                if (o is Tile)
-                {
-                    int adep = ((Tile)o).depth;
-                    if (adep > result)
-                        result = adep;
-                }
-            }
-            return result;
-        }
-        private int getNextDepth(int Depth)
-        {
-            int result = System.Int32.MinValue;
-            foreach (object o in actors)
-            {
-                if (o is Actor)
-                {
-                    int adep = ((Actor)o).getDepth();
-                    if (adep > result && adep < Depth)
-                        result = adep;
-                }
-            }
-            foreach (object o in tiles)
-            {
-                if (o is Tile)
-                {
-                    int adep = ((Tile)o).depth;
-                    if (adep > result && adep < Depth)
-                        result = adep;
-                }
-            }
-            return result;
-        }
-
         public int getWidth()
         {
             return width;
@@ -155,7 +84,7 @@ namespace org.gcreator.Components
             Surface t = new Surface(getWidth(), getHeight());
             t.Fill(background);
             Native.SDL.Game.game.cursurface = t;
-            int a = getMaximumDepth();
+            /*int a = getMaximumDepth();
             while (a >= getMinimumDepth())
             {
                 foreach (object o in tiles)
@@ -178,7 +107,20 @@ namespace org.gcreator.Components
                     a = getNextDepth(a);
                 else
                     break;
-            }
+            }*/
+			
+			ArrayList l = new ArrayList();
+			l.AddRange(actors);
+			l.AddRange(tiles);
+			l.Sort(new DepthComparer());
+			foreach(object o in l)
+			{
+				if(o is Tile&&(o as Tile).visible)
+					(o as Tile).Draw();
+				if(o is Actor&&(o as Actor).getVisible().getBoolean())
+					(o as Actor).Draw();
+			}
+			
             viewDrawer(t);
             Native.SDL.Game.game.cursurface = Native.SDL.Game.game.master;
         }
@@ -198,4 +140,29 @@ namespace org.gcreator.Components
             return null;
         }
     }
+	
+	internal class DepthComparer : IComparer
+	{
+		int IComparer.Compare(System.Object x, System.Object y)
+		{
+			int v1 = 0;
+			int v2 = 0;
+			
+			if(x is Actor)
+				v1 = (x as Actor).getDepth();
+			if(x is Tile)
+				v1 = (x as Tile).depth;
+			
+			if(y is Actor)
+				v2 = (x as Actor).getDepth();
+			if(y is Tile)
+				v2 = (x as Tile).depth;
+			
+			if(v1>v2)
+				return 1;
+			if(v1==v2)
+				return 0;
+			return -1;
+		}
+	}
 }
