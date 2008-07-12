@@ -90,26 +90,24 @@ namespace org.gcreator.Components
             return new Double(gravitydir);
         }
 
-        public override void setGravity(Object gravity)
+        public override Object setGravity(Object gravity)
         {
-            this.gravity = gravity.getDouble();
+            return new Double(this.gravity = gravity.getDouble());
         }
 
-        public override void setGravity_direction(Object direction)
+        public override Object setGravity_direction(Object direction)
         {
-            gravitydir = direction.getDouble();
+            return new Double(gravitydir = direction.getDouble());
         }
 
         public override Object setX(Object x)
         {
-            this.x = x.getInt();
-			return new Integer(0);
+            return new Integer(this.x = x.getInt());
         }
 
         public override Object setY(Object y)
         {
-            this.y = y.getInt();
-			return new Integer(0);
+            return new Integer(this.y = y.getInt());
         }
 
         public void setDepth(int depth)
@@ -171,12 +169,12 @@ namespace org.gcreator.Components
 			return new Double(vspeed);
 		}
 		
-		public override void setHspeed(Object hspeed){
-			this.hspeed = hspeed.getDouble();
+		public override Object setHspeed(Object hspeed){
+			return new Double(this.hspeed = hspeed.getDouble());
 		}
 		
-		public override void setVspeed(Object vspeed){
-			this.vspeed = vspeed.getDouble();
+		public override Object setVspeed(Object vspeed){
+			return new Double(this.vspeed = vspeed.getDouble());
 		}
 
         public override Object getSpeed()

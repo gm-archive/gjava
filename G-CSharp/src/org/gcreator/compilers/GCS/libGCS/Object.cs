@@ -76,42 +76,74 @@ namespace org.gcreator.Types
 
         public virtual Object getGravity()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getGravity();
+			}
             return new Integer(0);
         }
 
-        public virtual void setGravity(Object gravity)
+        public virtual Object setGravity(Object gravity)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setGravity(gravity);
+			}
+			return new Integer(0);
         }
 
         public virtual Object getGravity_direction()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getGravity_direction();
+			}
             return new Integer(0);
         }
 
-        public virtual void setGravity_direction(Object gravitydir)
+        public virtual Object setGravity_direction(Object gd)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setGravity_direction(gd);
+			}
+			return new Integer(0);
         }
 
-        public virtual Object getHspeed()
+        public virtual Object setHspeed(Object hspeed)
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setHspeed(hspeed);
+			}
+			return new Integer(0);
+        }
+		
+		public virtual Object getHspeed()
+        {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getHspeed();
+			}
             return new Integer(0);
         }
-
-        public virtual void setHspeed(Object speed)
+		
+		public virtual Object setVspeed(Object vspeed)
         {
-
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setVspeed(vspeed);
+			}
+			return new Integer(0);
         }
-
-        public virtual Object getVspeed()
+		
+		public virtual Object getVspeed()
         {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getVspeed();
+			}
             return new Integer(0);
-        }
-
-        public virtual void setXprevious(Object prev)
-        {
-
         }
 
         public virtual Object getXPrevious()
@@ -128,11 +160,6 @@ namespace org.gcreator.Types
         public virtual Object getYPrevious()
         {
             return new Integer(0);
-        }
-
-        public virtual void setVspeed(Object speed)
-        {
-
         }
 
         public virtual Object getSpeed()
