@@ -108,7 +108,7 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
-        //System.out.println("GMI: Line 75, fileName=" + fileName);
+        //org.gcreator.core.gcreator.debugOut.println("GMI: Line 75, fileName=" + fileName);
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -123,31 +123,31 @@ public class GM6Importer {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
-        //System.out.println("version:"+ver);
+        //org.gcreator.core.gcreator.debugOut.println("version:"+ver);
         if (ver < 600) {
-            //System.out.println("unsupported");
+            //org.gcreator.core.gcreator.debugOut.println("unsupported");
                     JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
             String msg = "Unsupported"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
-        System.out.println("GMI: Read settings");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
         SettingsValues values = readSettings(settings, c);
-                System.out.println("GMI: Read Sounds");
+                org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
         readSounds(c);
-        System.out.println("GMI: Read Sprites");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
         readSprites(c);
-        System.out.println("GMI: Read Backgrounds");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Backgrounds");
         readBackgrounds(c);
-        System.out.println("GMI: Read Paths");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Paths");
         readPaths(c);
-        System.out.println("GMI: Read Scripts");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scripts");
         readScripts(c);
-        System.out.println("GMI: Read Fonts");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
         readFonts(c);
         readTimelines(c);
-        System.out.println("GMI: Read Actors");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors");
         readActors(c);
-        System.out.println("GMI: Read Scenes");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
         readScenes(c);
         c=null;
         in.read4();//lastInstanceId
@@ -230,7 +230,7 @@ public class GM6Importer {
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-                System.out.println("GMI: in Settings");
+                org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -410,7 +410,7 @@ public class GM6Importer {
             Sound val;
             soundFile.value = val = new Sound(name);
             soundFile.type= type.replaceFirst(".", "");
-            //System.out.println("type:"+soundFile.type);
+            //org.gcreator.core.gcreator.debugOut.println("type:"+soundFile.type);
             //val.width = in.read4();
             if (ver == 440) {
                 //-1 = no sound
@@ -433,7 +433,7 @@ public class GM6Importer {
 
     private void readSprites(GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-        //System.out.println("readSprites");
+        //org.gcreator.core.gcreator.debugOut.println("readSprites");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) {
@@ -789,7 +789,7 @@ public class GM6Importer {
             c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
-            System.out.println("Caption:"+a.caption);
+            org.gcreator.core.gcreator.debugOut.println("Caption:"+a.caption);
             a.width = in.read4();
             a.height = in.read4();
             a.snapY = in.read4();
@@ -809,7 +809,7 @@ public class GM6Importer {
                           bis.visibleonstart = in.readBool();
                           in.read4(); //foreground?
                           int im = in.read4(); //image
-                          //System.out.println("size:"+c.backgrounds.size());
+                          //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
                           if (im != -1)
                           bis.image=c.backgrounds.get(im);
                           bis.xpos = in.read4(); //xpos
@@ -893,7 +893,7 @@ public class GM6Importer {
     }
     
     private static void readActors(GmFileContext c) throws IOException,GmFormatException{
-                //System.out.println("readActors");
+                //org.gcreator.core.gcreator.debugOut.println("readActors");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
@@ -935,21 +935,21 @@ public class GM6Importer {
                     int first = in.read4();
                     int id = 0;
                     if(first!=-1){
-                        //System.out.println("event:"+j+" first:"+first);
+                        //org.gcreator.core.gcreator.debugOut.println("event:"+j+" first:"+first);
                         if(j==EV_CREATE){
-                            System.out.println("Create");
+                            org.gcreator.core.gcreator.debugOut.println("Create");
                             e = new CreateEvent();
                             a.events.add(e);
                             id = first;
                         }
                         else if(j==EV_DESTROY){
-                            System.out.println("destroy");
+                            org.gcreator.core.gcreator.debugOut.println("destroy");
                             e = new DestroyEvent();
                             a.events.add(e);
                             id = first;
                         }
                         else if(j==EV_ALARM){
-                             System.out.println("alarm");
+                             org.gcreator.core.gcreator.debugOut.println("alarm");
                             e= new AlarmEvent(first);
                             a.events.add(e);
                             id = first;
@@ -964,33 +964,33 @@ public class GM6Importer {
                             e = new StepEvent();
                             a.events.add(e);
                             id = first;
-                            System.out.println("Step Id:"+id);
+                            org.gcreator.core.gcreator.debugOut.println("Step Id:"+id);
                         }
                         else if(j==EV_COLLISION)
                         {} //ev.other = c.objids.get(first);
                         else if(j==EV_KEYBOARD)
                         {
-                        System.out.println("keyboard");
+                        org.gcreator.core.gcreator.debugOut.println("keyboard");
                         e = new KeyboardEvent(first, ""+first);
                             a.events.add(e);
                             id = first;
                         } 
                          else if(j==EV_KEYPRESS)
                         {
-                        System.out.println("keyboard press");
+                        org.gcreator.core.gcreator.debugOut.println("keyboard press");
                         e = new KeyPress(first, ""+first);
                             a.events.add(e);
                             id = first;
                         } 
                         else if(j==EV_KEYRELEASE)
                         {
-                        System.out.println("keyboard press");
+                        org.gcreator.core.gcreator.debugOut.println("keyboard press");
                         e = new KeyReleased(first, ""+first);
                             a.events.add(e);
                             id = first;
                         } 
                         else if(j==EV_DRAW){
-                            System.out.println("draw");
+                            org.gcreator.core.gcreator.debugOut.println("draw");
                             e = new DrawEvent();
                             a.events.add(e);
                             id = first;
@@ -1000,10 +1000,10 @@ public class GM6Importer {
                         else
                             id = first; //ev.id = first;
                         //ev.mainId = j;
-                        System.out.println("GMI: read action");
+                        org.gcreator.core.gcreator.debugOut.println("GMI: read action");
                         try{
                         readActions(c, i, j*1000+id, e);
-                        }catch(Exception ee){ee.printStackTrace(); System.out.println("error in actor readactions");}
+                        }catch(Exception ee){ee.printStackTrace(); org.gcreator.core.gcreator.debugOut.println("error in actor readactions");}
                     }
                     else
                         done = true;
@@ -1021,24 +1021,24 @@ public class GM6Importer {
             throw new GmFormatException("version error:" + ver);
         }
         int noacts = in.read4();
-        ////System.out.println("No of actions:"+noacts);
+        ////org.gcreator.core.gcreator.debugOut.println("No of actions:"+noacts);
         for(int i = 0; i < noacts; i++){
             String code="",function="";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
-            ////System.out.println("retrive actions");
+            ////org.gcreator.core.gcreator.debugOut.println("retrive actions");
             int k;
             //boolean unknownLib = (act == null); //this should always be false
             if (true){
                 k = in.read4(); //action kind
-                //System.out.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
+                //org.gcreator.core.gcreator.debugOut.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
                 boolean ar = in.readBool(); //allow relative
-                //System.out.println("allow relative:"+ar);
+                //org.gcreator.core.gcreator.debugOut.println("allow relative:"+ar);
                 in.readBool(); //is a question
                 in.readBool(); //can apply to
                 int exectype = in.read4();
-                //System.out.println("exectype:"+exectype);
+                //org.gcreator.core.gcreator.debugOut.println("exectype:"+exectype);
                 
                 if(exectype == EXEC_FUNCTION)
                     function=in.readStr(); //Exec info
@@ -1046,22 +1046,22 @@ public class GM6Importer {
                 
                 if(exectype == EXEC_CODE){
                     code=in.readStr(); //Exec info
-                    System.out.println("code action:"+code);
-                //System.out.println("read code:"+code);
+                    org.gcreator.core.gcreator.debugOut.println("code action:"+code);
+                //org.gcreator.core.gcreator.debugOut.println("read code:"+code);
                 }
                 else {
                     in.skip(in.read4());
-                    //System.out.println("not code");
+                    //org.gcreator.core.gcreator.debugOut.println("not code");
                 }
                 
             }
             else{
-                //System.out.println("error: not unknownlib");
+                //org.gcreator.core.gcreator.debugOut.println("error: not unknownlib");
                 in.skip(20);
                 in.skip(in.read4());
                 in.skip(in.read4());
             }
-            //System.out.println("action code:"+code+function);
+            //org.gcreator.core.gcreator.debugOut.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
             
             
@@ -1130,7 +1130,7 @@ public class GM6Importer {
                     if (r<0) args[l]="null";else
                     args[l]=c.timelines.get(r).name;
                 }
-                //System.out.println("argkind:"+argkind[l]);
+                //org.gcreator.core.gcreator.debugOut.println("argkind:"+argkind[l]);
             }
             
             boolean not = in.readBool(); //Not
@@ -1140,11 +1140,11 @@ public class GM6Importer {
             
             act =    parseAction(code,function,c, null, appliesTo, relative, args,k);
             act.project = c.pro;
-           // //System.out.println("Got here");
+           // //org.gcreator.core.gcreator.debugOut.println("Got here");
             if(act!=null&&e!=null&&e.actions!=null)
                 e.actions.add(act);
         }
-        System.out.println("Ended actions");
+        org.gcreator.core.gcreator.debugOut.println("Ended actions");
     }
     
     private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code,boolean function, String fname,int kind,ArgumentList al,boolean relative){
@@ -1203,7 +1203,7 @@ public class GM6Importer {
             
             return act;
 //        
-//        //System.out.println("libid=" + libid + ", actid=" + actid);
+//        //org.gcreator.core.gcreator.debugOut.println("libid=" + libid + ", actid=" + actid);
 //        
 //        return act;
     }
@@ -1225,11 +1225,11 @@ public class GM6Importer {
                 }
             }
         
-        System.out.println("function:"+function);
-            //System.out.println("Code:"+code);
+        org.gcreator.core.gcreator.debugOut.println("function:"+function);
+            //org.gcreator.core.gcreator.debugOut.println("Code:"+code);
         try{
             org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind,a,relative);
-            //System.out.println("aftre ret");
+            //org.gcreator.core.gcreator.debugOut.println("aftre ret");
 //            if (act.pattern instanceof ExecuteCode)
 //            ((ExecuteCode)act.pattern).code = function;
             
