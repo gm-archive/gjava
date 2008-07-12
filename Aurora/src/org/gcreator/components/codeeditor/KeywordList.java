@@ -12,6 +12,7 @@ package org.gcreator.components.codeeditor;
 
 import java.awt.Color;
 import java.awt.Font;
+import org.gcreator.managers.ScriptThemeManager;
 
 /**
  * A list of keywords of a programming lanugage.
@@ -21,11 +22,11 @@ public abstract class KeywordList {
     public abstract Keyword[] getKeywords();
     
     public Color getCommentColor() {
-        return new Color(0x008B00);
+        return ScriptThemeManager.getColors().get("Comments");
     }
     
     public Color getStringColor() {
-        return Color.ORANGE;
+        return ScriptThemeManager.getColors().get("Strings");
     }
     public static class Keyword {
         private String name;
@@ -79,6 +80,6 @@ public abstract class KeywordList {
     }
 
     public Color getNumberColor() {
-        return new Color(0xB03060);
+        return ScriptThemeManager.getColors().get("Constants");
     }
 }

@@ -126,7 +126,7 @@ public final class ColorCodedTextArea extends JTextArea implements DocumentListe
         setDragEnabled(true); 
         addKeyListener(this);
         
-        if (text != null && text != "") {
+        if (text != null &&!text.equals("")) {
             setText(text);
         }
         

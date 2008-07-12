@@ -22,6 +22,7 @@ import java.util.LinkedList;
 import java.util.regex.Pattern;
 import javax.swing.text.*;
 import org.gcreator.components.codeeditor.KeywordList.Keyword;
+import org.gcreator.managers.ScriptThemeManager;
     
 /**
  *
@@ -29,7 +30,7 @@ import org.gcreator.components.codeeditor.KeywordList.Keyword;
  */
 public final class ColorCodedView extends PlainView {
     
-    protected Color unselected = Color.BLACK;
+    protected Color unselected = ScriptThemeManager.getColors().get("Plain");
     protected Color selected = Color.BLUE.darker().darker();
     protected ColorCodedTextArea component;
     protected String document;
