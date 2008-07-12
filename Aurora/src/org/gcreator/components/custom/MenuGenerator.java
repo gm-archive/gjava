@@ -158,4 +158,13 @@ public class MenuGenerator {
             disc.setVisible(true);
         }
     }
+    
+    public void show(MouseEvent evt){
+        if(ltype == TYPE_STD) {
+            show(evt.getComponent(), evt.getX(), evt.getY());
+        }
+        else{
+            show(evt.getComponent(), evt.getX(), evt.getYOnScreen());
+        }
+    }
 }

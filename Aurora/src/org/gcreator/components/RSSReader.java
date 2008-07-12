@@ -76,6 +76,7 @@ public class RSSReader extends javax.swing.JList {
 
             @Override
             public void run() {
+                System.out.println("Started");
                 try {
                     //FileInputStream r = new FileInputStream(url);
                     //xr.parse(new InputSource(url));
@@ -132,11 +133,15 @@ public class RSSReader extends javax.swing.JList {
                     System.err.println(e.toString());
                 }
                 loaded = true;
-                Container c = getParent();
-                if(c instanceof JScrollPane)
-                    ((JScrollPane) c).updateUI();
-                repaint();
+                //Container c = getParent();
+                System.out.println("Got here");
+                //if(c instanceof JScrollPane)
+                //    ((JScrollPane) c).updateUI();
+                System.out.println("and here");
+                //repaint();
+                System.out.println("and here 2");
                 updateUI();
+                System.out.println("and here 3");
             }
         };
         t.start();
@@ -156,10 +161,11 @@ public class RSSReader extends javax.swing.JList {
 
     @Override
     public void paint(Graphics g) {
-        g.setFont(getFont());
         if (!loaded) {
+            g.setFont(getFont());
             g.drawString("Loading RSS...", 10, 30);
         } else if (failed) {
+            g.setFont(getFont());
             g.drawString("Failed to retrieve RSS", 10, 30);
         } else {
             /*
@@ -175,8 +181,8 @@ public class RSSReader extends javax.swing.JList {
         }
     }
 
-    @Override
-    public int getHeight() {
+    //@Override
+    /*public int getHeight() {
         if (failed) {
             return 1;
         }
@@ -184,7 +190,7 @@ public class RSSReader extends javax.swing.JList {
        // int fh = getFontMetrics(f).getHeight();
       //  return (fh + 5) * items.size() + 10;
       return super.getHeight();
-    }
+    }*/
     /*
     @Override
     public Dimension getPreferredSize() {

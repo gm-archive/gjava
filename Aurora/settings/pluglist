@@ -8,3 +8,12 @@ Name=GM Importer
 Version=1.0a1
 Image=
 Jar=GM_importer.jar
+[~Plugin~]
+Author=Luís Reis
+Core=org.gcreator.compilers.GCS.plugin.GCSharp
+License=LGPL
+Name=StarFish
+Version=1.0a3
+Image=starfish.png
+
+Jar=G-CSharp.jar

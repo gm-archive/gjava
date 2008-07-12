@@ -187,6 +187,19 @@ public class GPanel extends JPanel {
             }
         };
         tabs.addChangeListener(changed);
+        
+        tabs.addMouseListener(new MouseListener(){
+            public void mousePressed(MouseEvent evt){
+                if(evt.isPopupTrigger()){
+                    TabsPopupMenu m = new TabsPopupMenu(tabs);
+                    m.show(evt);
+                }
+            }
+            public void mouseEntered(MouseEvent evt){}
+            public void mouseExited(MouseEvent evt){}
+            public void mouseReleased(MouseEvent evt){}
+            public void mouseClicked(MouseEvent evt){}
+        });
 
         try {
             if (LangSupporter.activeLang != null) {

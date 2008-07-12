@@ -1,11 +1,9 @@
 /*
- * German.java
- * 
- * Created on 18/Oct/2007,19:48:00
- * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
  */
+
 
 package org.gcreator.languages;
 
