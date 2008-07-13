@@ -77,7 +77,7 @@ public class ImageEditor extends TabPanel {
     @Override
     public boolean Save() {
         changed = false;
-        file.value = i;
+        file.value = i.getImage();
         return true;
     }
 
