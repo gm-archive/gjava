@@ -3,13 +3,12 @@
  * 
  * Created on 4/Set/2007, 11:16:25
  * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 
 package org.gcreator.units;
 
 import org.gcreator.exceptions.*;
+import org.gcreator.languages.English;
 
 /**
  *
@@ -24,27 +23,42 @@ public class Dictionary {
     public Dictionary(){}
     
     protected void init() throws NoLanguageNameException, NullDictionaryException{
-        if(language==null)
+        if (language == null) {
             throw new NoLanguageNameException();
-        if(status==null)
+        }
+        if (status == null) {
             status = "";
-        if(entry==null)
+        }
+        if (entry == null) {
             throw new NullDictionaryException();
+        }
     }
     
-    public String getEntry(int num){
-        if(num==-1)
+    public String getEntry(int num) {
+        if (num == -1) {
             return "";
-        if(num>=entry.length)
-            return "";
-        if(entry[num]==null)
-            return "";
+        }
+        if (num >= entry.length) {
+            if (this.getClass() != English.class) {
+                return new English().getEntry(num);
+            } else {
+                return "";
+            }
+        }
+        if (entry[num] == null) {
+            if (this.getClass() != English.class) {
+                return new English().getEntry(num);
+            } else {
+                return "";
+            }
+        }
         return entry[num];
     }
     
-    public String getLanguage() throws NoLanguageNameException{
-        if(language==null)
+    public String getLanguage() throws NoLanguageNameException {
+        if (language == null) {
             throw new NoLanguageNameException();
+        }
         return language;
     }
     
