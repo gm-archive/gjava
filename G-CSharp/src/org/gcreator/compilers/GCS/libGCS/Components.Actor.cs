@@ -1,5 +1,4 @@
 using org.gcreator.Types;
-using org.gcreator.Support;
 
 namespace org.gcreator.Components
 {
@@ -12,7 +11,7 @@ namespace org.gcreator.Components
         //spritett-time to fill delay
         private Sprite sprite = null;
         private double gravity, gravitydir;
-        private bool visible, solid, persistent;
+        internal bool visible, solid, persistent;
 		private int startx, starty;
 		private double hspeed, vspeed;
 		
@@ -251,7 +250,7 @@ namespace org.gcreator.Components
 			Native.SDL.DrawToSurface(
 				sprite.getImage(getCurrentSpritePosition()),
 				Native.SDL.Game.game.cursurface,
-				new Rectangle(x - sprite.getOriginX(), y - sprite.getOriginY(), sprite.getWidth(), sprite.getHeight()));
+				new System.Drawing.Rectangle(x - sprite.getOriginX(), y - sprite.getOriginY(), sprite.getWidth(), sprite.getHeight()));
 		}
 
 		public void CollisionCheck()

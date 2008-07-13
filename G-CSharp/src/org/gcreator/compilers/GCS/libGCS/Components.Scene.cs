@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using SdlDotNet.Graphics;
 using org.gcreator.Types;
-using org.gcreator.Support;
 
 namespace org.gcreator.Components
 {
@@ -54,10 +53,16 @@ namespace org.gcreator.Components
         public void addActor(Actor actor)
         {
             actors.Add(actor);
+			l = new ArrayList();
+			l.AddRange(actors);
+			l.AddRange(tiles);
         }
         public void addTile(Tile tile)
         {
             tiles.Add(tile);
+			l = new ArrayList();
+			l.AddRange(actors);
+			l.AddRange(tiles);
         }
         internal void InheritPersistents(Actor[] persistents)
         {
@@ -74,6 +79,7 @@ namespace org.gcreator.Components
         }
 		
 		Surface t = null;
+		ArrayList l = null;
         public virtual void Loop()
         {
             foreach (object o in actors)
@@ -113,15 +119,17 @@ namespace org.gcreator.Components
                     break;
             }*/
 			
-			ArrayList l = new ArrayList();
-			l.AddRange(actors);
-			l.AddRange(tiles);
+			if(l==null){
+				l = new ArrayList();
+				l.AddRange(actors);
+				l.AddRange(tiles);
+			}
 			l.Sort(new DepthComparer());
 			foreach(object o in l)
 			{
 				if(o is Tile&&(o as Tile).visible)
 					(o as Tile).Draw();
-				if(o is Actor&&(o as Actor).getVisible().getBoolean())
+				if(o is Actor&&(o as Actor).visible)
 					(o as Actor).Draw();
 			}
 			
@@ -132,7 +140,8 @@ namespace org.gcreator.Components
         private void viewDrawer(Surface t)
         {
             //No Views
-            Native.SDL.DrawToSurface(t, Native.SDL.Game.game.master, new Rectangle(0, 0, getWidth(), getHeight()), new Rectangle(0, 0, Native.SDL.Game.game.master.Width, Native.SDL.Game.game.master.Height));
+			Native.SDL.Game.game.master.Blit(t, new System.Drawing.Rectangle(0, 0, getWidth(), getHeight()),
+			                                 new System.Drawing.Rectangle(0, 0, Native.SDL.Game.game.master.Width, Native.SDL.Game.game.master.Height));
         }
 
         internal Actor[] getPersistentActors()
