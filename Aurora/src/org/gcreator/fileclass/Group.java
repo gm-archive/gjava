@@ -55,7 +55,6 @@ public class Group extends Folder implements Serializable, Transferable {
     public String getObjectType(){
         return "Group";
     }
-    
      
     public String getPath(){
         return root.getPath() + "/" + super.getPath();

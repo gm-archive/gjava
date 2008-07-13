@@ -408,7 +408,7 @@ public class PlatformCore extends PluginCore {
      * @return A String
      */
     public String ifstatement(String exp, String statement, String elses) {
-        return "if (" + exp + ".getBoolean()) \n" + statement + " \n " + elses;
+        return "if ((" + exp + ").getBoolean()) \n" + statement + " \n " + elses;
     }
 
     /**
@@ -488,7 +488,7 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String repeatstatement(String ex, String st) {
-        return "G_CREATOR__repeat=new Double(0); \n while(G_CREATOR__repeat.lt("+ex+").getBoolean()){\n"+st+" G_CREATOR__repeat.add(new Integer(1));}"; 
+        return "for(G_CREATOR__repeat=new Double(0); G_CREATOR__repeat.lt("+ex+").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n"+st+" }"; 
     }
     
     /**
@@ -729,7 +729,7 @@ public class PlatformCore extends PluginCore {
             return "(new Boolean(false))";
         }
         else if (variable.equals("pi")) {
-            return "(new Double(false))";
+            return "(new Double(PI))";
         }
         
         if(variable.contains("all.")) {
@@ -988,6 +988,10 @@ public class PlatformCore extends PluginCore {
             v[index] = name + "=" + value;
         }
         return v;
+    }
+    
+    public static String intval(String value){
+        return "(new Integer(" + value + "))";
     }
     
     public static void openbrowser(String location) {
