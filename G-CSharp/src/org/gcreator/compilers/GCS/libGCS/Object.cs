@@ -3,10 +3,13 @@ using System.Text;
 
 namespace org.gcreator.Types
 {
+	
     public class Object
     {
         Dictionary<string, Object> variables = new Dictionary<string, Object>();
 
+		public static Object Global = new Object();
+		
         public virtual void setVariable(string key, Object o)
         {
                 if (variables.ContainsKey(key))
@@ -17,6 +20,8 @@ namespace org.gcreator.Types
 
         public virtual Object getVariable(string key)
         {
+			if(key=="fps")
+				return new Integer(SdlDotNet.Core.Events.Fps);
             return variables[key];
         }
 

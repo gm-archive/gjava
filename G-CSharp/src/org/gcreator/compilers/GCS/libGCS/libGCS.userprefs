@@ -1,17 +1,16 @@
 ﻿<UserCombinePreferences version="1.0" filename="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/libGCS.sln">
   <Files>
     <File name="Bemvindo" />
-    <File name="Components.Scene.cs" line="165" column="29" />
-    <File name="Native.cs" line="1" column="1" />
-    <File name="Components.Actor.cs" line="24" column="20" />
-    <File name="Scripting.Instances.cs" line="1" column="1" />
+    <File name="Components.Scene.cs" line="1" column="1" />
+    <File name="Components.Actor.cs" line="1" column="1" />
     <File name="Object.cs" line="108" column="106" />
+    <File name="Components.cs" line="1" column="1" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
         <Node name="libGCS" expanded="True">
-          <Node name="Components.Scene.cs" selected="True" />
+          <Node name="Components.cs" selected="True" />
         </Node>
       </Node>
     </ViewMemento>
@@ -20,7 +19,7 @@
     </ViewMemento>
   </Views>
   <Properties>
-    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Components.Scene.cs" />
-    <Property key="ActiveConfiguration" value="Release|Any CPU" />
+    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Components.cs" />
+    <Property key="ActiveConfiguration" value="Debug|Any CPU" />
   </Properties>
 </UserCombinePreferences>

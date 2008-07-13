@@ -129,6 +129,7 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         PluginHelper.println(command);
         try {
             System.out.println("command=" + command);
+            System.out.println("dir=" + GCSharp.FileFolder);
             Process p = Runtime.getRuntime().exec(command, GCSharp.environmentVars(), new File(GCSharp.FileFolder));
             InputStream stderr = p.getErrorStream();
             InputStreamReader isr = new InputStreamReader(stderr);

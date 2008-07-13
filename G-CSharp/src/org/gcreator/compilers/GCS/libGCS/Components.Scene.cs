@@ -14,7 +14,7 @@ namespace org.gcreator.Components
 
         public Scene()
         {
-            setVariable("fps", new Integer(30));
+            setVariable("fps", new Integer(9999));
         }
 
         public System.Drawing.Color getBackground()
@@ -72,6 +72,8 @@ namespace org.gcreator.Components
             actors.Clear();
             tiles.Clear();
         }
+		
+		Surface t = null;
         public virtual void Loop()
         {
             foreach (object o in actors)
@@ -81,7 +83,9 @@ namespace org.gcreator.Components
                     (o as Actor).Loop();
                 }
             }
-            Surface t = new Surface(getWidth(), getHeight());
+			if(t==null)
+				t = new Surface(getWidth(), getHeight());
+			t.Fill(System.Drawing.Color.White);
             t.Fill(background);
             Native.SDL.Game.game.cursurface = t;
             /*int a = getMaximumDepth();
