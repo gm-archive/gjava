@@ -91,18 +91,18 @@ public class GPanel extends JPanel {
     //public static ImageIcon imgicon = new ImageIcon(Aurwindow.class.getResource("/org/gcreator/resources/img.png"));
     //</editor-fold>
 
-    //<editor-fold defaultstate="Collapsed" desc="Constructor">
+    //<editor-fold defaultstate="collapsed" desc="GPanel (Constructor)">
     public GPanel(ICore icore, String[] settings) {
         this.icore = icore;
-        
+
         try {
             chooseImage = new JFileChooser();
             chooseImage.setDialogTitle("Select Image");
             chooseImage.setDialogType(JFileChooser.OPEN_DIALOG);
             chooseImage.setApproveButtonText("OK");
             chooseImage.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        } catch(Exception e){
-            System.out.println("JFileChooser error in static Aurwindow: "+e);
+        } catch (Exception e) {
+            System.out.println("JFileChooser error in static Aurwindow: " + e);
             e.printStackTrace();
         }
         try {
@@ -148,14 +148,14 @@ public class GPanel extends JPanel {
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
         /*new FileDrop(this, new FileDrop.Listener() {
-
-            @Override
-            public void filesDropped(java.io.File[] files) {
-                // handle file drop
-                for (int i = 0; i < files.length; i++) {
-                }
-            }   // end filesDropped
-            }); // end FileDrop.Listener*/
+        
+        @Override
+        public void filesDropped(java.io.File[] files) {
+        // handle file drop
+        for (int i = 0; i < files.length; i++) {
+        }
+        }   // end filesDropped
+        }); // end FileDrop.Listener*/
         SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
@@ -187,18 +187,27 @@ public class GPanel extends JPanel {
             }
         };
         tabs.addChangeListener(changed);
-        
-        tabs.addMouseListener(new MouseListener(){
-            public void mousePressed(MouseEvent evt){
-                if(evt.isPopupTrigger()){
+
+        tabs.addMouseListener(new MouseListener() {
+
+            public void mousePressed(MouseEvent evt) {
+                if (evt.isPopupTrigger()) {
                     TabsPopupMenu m = new TabsPopupMenu(tabs);
                     m.show(evt);
                 }
             }
-            public void mouseEntered(MouseEvent evt){}
-            public void mouseExited(MouseEvent evt){}
-            public void mouseReleased(MouseEvent evt){}
-            public void mouseClicked(MouseEvent evt){}
+
+            public void mouseEntered(MouseEvent evt) {
+            }
+
+            public void mouseExited(MouseEvent evt) {
+            }
+
+            public void mouseReleased(MouseEvent evt) {
+            }
+
+            public void mouseClicked(MouseEvent evt) {
+            }
         });
 
         try {
@@ -523,7 +532,6 @@ public class GPanel extends JPanel {
     //setVisible(true);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
     public boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -571,7 +579,6 @@ public class GPanel extends JPanel {
         workspace.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
     private void closeAllTabs(DefaultMutableTreeNode node, Project project) {
         for (int i = 0; i < node.getChildCount(); i++) {
@@ -593,7 +600,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
         for (java.lang.Object o : from) {
@@ -811,10 +817,10 @@ public class GPanel extends JPanel {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } /*else if (file.type.equals("snippet")) {
-            TabPanel tp = new SnippetEditor(this.getCurrentProject(), file);
-            file.tabPanel = tp;
-            addEWindow(tp, file.name, img);
-        } */else if (file.type.equals("actor")) {
+        TabPanel tp = new SnippetEditor(this.getCurrentProject(), file);
+        file.tabPanel = tp;
+        addEWindow(tp, file.name, img);
+        } */ else if (file.type.equals("actor")) {
             //            for (Enumeration e = getCurrentProject().actors.elements(); e.hasMoreElements();) {
 //                if (((Actor) e.nextElement()).name.equals(file.name)) {
 //                    found = true;
@@ -939,7 +945,6 @@ public class GPanel extends JPanel {
         return icore;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="dispose">
     public void dispose() {
         if (!gcreator.applet && gcreator.plugload) {
@@ -964,7 +969,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         SettingsIO.saveSettings(istabs, scroller.isVisible());
@@ -975,7 +979,6 @@ public class GPanel extends JPanel {
         ScriptThemeManager.save();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int)">
     public void addWindow(TabPanel panel, int title) {
         addWindow(panel, LangSupporter.activeLang.getEntry(title), null);
@@ -1120,7 +1123,6 @@ public class GPanel extends JPanel {
     //winlist.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="installFileEditor">
     public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
@@ -1152,7 +1154,6 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentProject">
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
@@ -1168,7 +1169,6 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentFolder">
     public Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
@@ -1198,7 +1198,6 @@ public class GPanel extends JPanel {
         return node.object;
     }
     //</editor-fold>
-    
     public boolean addPanelSelectedListener(PanelSelectedListener psl) {
         return psel.add(psl);
     }
@@ -1227,7 +1226,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createPaletteFrame()">
     public JInternalFrame createPaletteFrame() {
         JInternalFrame f = new JInternalFrame();
@@ -1250,7 +1248,6 @@ public class GPanel extends JPanel {
         return f;
     }
     //</editor-fold>
-    
     private void selectedDocumentChanged(TabPanel tabpanel) {
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
@@ -1273,29 +1270,27 @@ public class GPanel extends JPanel {
         if (menu == 0 && item == 4) {
             SaveMainProject(true);
         }
-        if (menu == 0 && item == 6){
-            if(istabs){
+        if (menu == 0 && item == 6) {
+            if (istabs) {
                 ((TabPanel) tabs.getSelectedComponent()).Save();
-            }
-            else{
+            } else {
                 ((ExtendedFrame) mdi.getSelectedFrame()).getPanel().Save();
             }
         }
-        if (menu == 0 && item == 7){
-            if(istabs){
-                for(Component c : tabs.getComponents()){
-                    try{
+        if (menu == 0 && item == 7) {
+            if (istabs) {
+                for (Component c : tabs.getComponents()) {
+                    try {
                         ((TabPanel) c).Save();
+                    } catch (Exception e) {
                     }
-                    catch(Exception e){}
                 }
-            }
-            else{
-                for(JInternalFrame c : mdi.getDesktop().getAllFrames()){
-                    try{
+            } else {
+                for (JInternalFrame c : mdi.getDesktop().getAllFrames()) {
+                    try {
                         ((ExtendedFrame) c).getPanel().Save();
+                    } catch (Exception e) {
                     }
-                    catch(Exception e){}
                 }
             }
         }
@@ -1455,12 +1450,12 @@ public class GPanel extends JPanel {
             String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
             if (mname != null && mname.length() > 0) {
                 /*if (MacroLibrary.findMacro(mname) != null) {
-                    JOptionPane.showMessageDialog(this,
-                            LangSupporter.activeLang.getEntry(177),
-                            LangSupporter.activeLang.getEntry(176),
-                            JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                LangSupporter.activeLang.getEntry(177),
+                LangSupporter.activeLang.getEntry(176),
+                JOptionPane.ERROR_MESSAGE);
                 } else {
-                    MacroLibrary.addMacro(Macro.record(mname));
+                MacroLibrary.addMacro(Macro.record(mname));
                 }*/
             }
         }
@@ -1515,14 +1510,14 @@ public class GPanel extends JPanel {
                 ProjectImporter.OpenProject(this);
                 break;
             case 3:
-                if(istabs){
+                if (istabs) {
                     try {
-                    ((TabPanel) tabs.getSelectedComponent()).Save();
-                    } catch (NullPointerException exc){}
-            }
-            else{
-                ((ExtendedFrame) mdi.getSelectedFrame()).getPanel().Save();
-            }
+                        ((TabPanel) tabs.getSelectedComponent()).Save();
+                    } catch (NullPointerException exc) {
+                    }
+                } else {
+                    ((ExtendedFrame) mdi.getSelectedFrame()).getPanel().Save();
+                }
                 break;
             case 4:
                 //save all projects
@@ -1776,8 +1771,9 @@ public class GPanel extends JPanel {
 
     //<editor-fold defaultstate="collapsed" desc="SaveProject()">
     public void SaveProject() {
-        if (getCurrentProject() != null) {
-            ProjectExporter.export(getCurrentProject(), getCurrentProject().name + ".gcp");
+        Project p = getCurrentProject();
+        if (p != null) {
+            SaveProject(p);
         }
     }
     //</editor-fold>
@@ -1785,7 +1781,36 @@ public class GPanel extends JPanel {
     //<editor-fold defaultstate="collapsed" desc="SaveProject(Project)">
     public void SaveProject(Project p) {
         if (p != null) {
-            ProjectExporter.export(p, p.name + ".gcp");
+            if (istabs) {
+                for (int ii = 0; ii < tabs.getTabCount(); ii++) {
+                    if (((TabPanel) tabs.getComponentAt(ii)).project == null) {
+                    } else if (((TabPanel) tabs.getComponentAt(ii)).project.equals(p) && ((TabPanel) tabs.getComponentAt(ii)).wasModified()) {
+                        ((TabPanel) tabs.getComponentAt(ii)).Save();
+                    }
+                }
+            } else {
+                for (int ii = 0; ii < mdi.getComponentCount(); ii++) {
+                    if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project == null) {
+                    } else if (((ExtendedFrame) mdi.getComponent(ii)).getPanel().project.equals(p) && ((ExtendedFrame) mdi.getComponent(ii)).getPanel().wasModified()) {
+                        ((ExtendedFrame) mdi.getComponent(ii)).getPanel().Save();
+                    }
+                }
+            }
+            //save to gcp file
+            if (p.location == null || p.location.equals("")) {
+                JFileChooser fc = new JFileChooser();
+                fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
+                fc.showSaveDialog(gcreator.window);
+                java.io.File file = fc.getSelectedFile();
+                if (file == null) {
+                    return;
+                }
+                p.location = file.getPath();
+                if (!p.location.contains(".gcp")) {
+                    p.location += ".gcp";
+                }
+            }
+            ProjectExporter.export(p, p.location);
         }
     }
     //</editor-fold>
@@ -1837,14 +1862,12 @@ public class GPanel extends JPanel {
         CloseProject(getCurrentProject());
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
