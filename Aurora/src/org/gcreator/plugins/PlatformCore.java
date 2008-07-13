@@ -994,6 +994,14 @@ public class PlatformCore extends PluginCore {
         return "(new Integer(" + value + "))";
     }
     
+    public static String doubleval(String value){
+        return "(new Double(" + value + "))";
+    }
+    
+    public static String stringval(String value){
+        return "(new String(" + value + "))";
+    }
+    
     public static void openbrowser(String location) {
         if (System.getProperty("os.name").indexOf("Windows") == 0) {
             try {
