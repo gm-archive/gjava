@@ -58,7 +58,7 @@ public class CollisionListPopup extends JPopupMenu {
 
     @SuppressWarnings("unchecked")
     public void done(GFile file) {
-        Vector e = ((Actor) selector.ae.file.value).events;
+        Vector e = selector.ae.actor.events;
         boolean has = false;
         for(Object o : e){
             if(!(o instanceof Event)) {
@@ -67,6 +67,7 @@ public class CollisionListPopup extends JPopupMenu {
             }
             if(((Event) o) instanceof CollisionEvent) {
                 if (((CollisionEvent) o).other == file) {
+                    JOptionPane.showMessageDialog(null, "Found");
                     has = true;
                     break;
                 }

@@ -26,7 +26,9 @@ public class SetVariable extends ActionPattern {
     public String to = "0.0";
     public String var = "x";
     public Boolean relative = false;
-    public static ImageIcon icon = null;
+    public static ImageIcon icon =
+            new ImageIcon(
+            SetVariable.class.getResource("/org/gcreator/actions/images/Setvar.png"));
 
 //    private static final ObjectStreamField[] serialPersistentFields
 //                 = {new ObjectStreamField(
@@ -104,7 +106,7 @@ public class SetVariable extends ActionPattern {
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("to");
-        p.setDisplayName("Speed");
+        p.setDisplayName("Value");
         p.setEditable(true);
         p.setType(String.class);
         p.setValue("0.0");
