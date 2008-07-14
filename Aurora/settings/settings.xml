@@ -1,2 +1,2 @@
 <?xml version = "1.0"?>
-<settings><style>javax.swing.plaf.metal.MetalLookAndFeel</style><desktop>Tabs (Top)</desktop><console>Hidden</console><language>English (Universal)</language><toolbar>Visible</toolbar><tree>Left</tree><size>1024, 720</size><antialiasing>true</antialiasing><theme>org.gcreator.themes.HappyTheme</theme><consoleboxlocation>596</consoleboxlocation></settings>
+<settings><style>Native</style><desktop>Tabs (Top)</desktop><console>Visible</console><language>English</language><toolbar>Visible</toolbar><tree>Left</tree><size>1060, 997</size><antialiasing>true</antialiasing><theme>javax.swing.plaf.metal.OceanTheme</theme><consoleboxlocation>661</consoleboxlocation></settings>

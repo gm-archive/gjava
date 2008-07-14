@@ -40,25 +40,25 @@ public class ImageEditor extends TabPanel {
         if (f.value instanceof ImageIcon) {//powerpack
             GImage img  = new GImage();
             img.image = (ImageIcon) file.value;
-            file.value = img;
+            file.value = img.image;
         }
         
-        if (f.value == null || ((GImage) f.value).image == null) {
+        if (f.value == null) {
             i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
             changed = true;
             i.transparentColor = Color.white;
             i.transparent = true;
             jCheckBox1.setSelected(true);
         } else {
-            BufferedImage img = new BufferedImage(((GImage) f.value).image.getIconWidth(),
-                    ((GImage) f.value).image.getIconHeight(),
+            BufferedImage img = new BufferedImage(((ImageIcon) f.value).getIconWidth(),
+                    ((ImageIcon) f.value).getIconHeight(),
                     BufferedImage.TYPE_INT_ARGB);
             //((BufferedImage) ((GImage) f.value).image.getImage()).getType());
-            img.getGraphics().drawImage(((GImage) f.value).image.getImage(), 0, 0,
-                    ((GImage) f.value).image.getImageObserver());
+            img.getGraphics().drawImage(((ImageIcon) f.value).getImage(), 0, 0,
+                    ((ImageIcon) f.value).getImageObserver());
             i.readXml(file.xml);
             i.image = new ImageIcon(img);
-            i.transparentColor = ((GImage) f.value).transparentColor;
+            i.transparentColor = Color.white;
             jCheckBox1.setSelected(i.transparent);
         }
         colorSelection1.setBackground(i.transparentColor);

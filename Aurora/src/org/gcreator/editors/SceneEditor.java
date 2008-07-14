@@ -215,7 +215,7 @@ public class SceneEditor extends TabPanel {
     //<editor-fold desc="Constructor">
     @SuppressWarnings("unchecked")
     public SceneEditor(final org.gcreator.fileclass.GFile file, Project project) {
-        if (!(file.value instanceof Scene)) {
+        if (file.value==null||!(file.value instanceof Scene)) {
             file.value = new Scene /*file.name*/();
         }
         scene = (Scene) file.value;
@@ -229,7 +229,8 @@ public class SceneEditor extends TabPanel {
         scenePanel.setSize(500, 500);
         jScrollPane1.setViewportView(scenePanel);
         //egml
-        egml.setText(((Scene) file.value).code);
+        egml = new ColorCodedTextArea(project);
+        egml.setText(scene.code);
         //end of egml
         tilechooser = new TileChooser(this);
         jList1.setSelectedIndex(0);
