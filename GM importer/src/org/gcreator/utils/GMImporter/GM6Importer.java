@@ -35,6 +35,7 @@ import org.gcreator.events.KeyPress;
 import org.gcreator.events.KeyReleased;
 import org.gcreator.events.KeyboardEvent;
 import org.gcreator.events.StepEvent;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.managers.*;
 import org.gcreator.fileclass.Group;
@@ -149,6 +150,12 @@ public class GM6Importer {
         readActors(c);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
         readScenes(c);
+        TabValues SceneOrder;
+        values.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
+        Vector v = new Vector();
+        SceneOrder.setVariable("Scenes", v);
+        for(GFile f : c.scenes)
+            v.add(f);
         c=null;
         in.read4();//lastInstanceId
 			in.read4();//lastTileId
@@ -371,7 +378,6 @@ public class GM6Importer {
             boolean overwriteExisting = in.readBool();
             boolean removeAtGameEnd = in.readBool();
         }
-        
         return value;
     }
 
@@ -785,7 +791,7 @@ public class GM6Importer {
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(scenesGroup, in.readStr(), "scene", null);
-            f.value = a = new Scene(f.name);
+            f.value = a = new Scene();
             c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
