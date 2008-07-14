@@ -290,11 +290,6 @@ actorindex++;
         BufferedWriter scene = new BufferedWriter(sceneFW);
         print(scene, "package org.gcreator.compilers.gjava;");
         print(scene, "");
-        
-
-
-
-
 
         print(scene, "import java.awt.Color;");
         print(scene, "import org.gcreator.compilers.gjava.core.*;");
@@ -368,7 +363,7 @@ actorindex++;
     public void init() {
         utilities.addStringMessage("Installed G-Java!");
         //compilername = "GJava";
-        version=0.4;
+        version=0.5;
         updateURL="http://g-creator.org/update/G-Java/update.xml";
         update();
         

@@ -194,6 +194,7 @@ public class Scene2D {
     
     public void update()  {
        for (int i = 0; i < instances.size(); i++) {
+           if (instances.elementAt(i) !=null)
             ((Actor)instances.elementAt(i)).callEvents();
         }
     }
@@ -222,6 +223,7 @@ public class Scene2D {
         //Draw instances
         for (int i = 0; i < instances.size(); i++) {
             if (((Actor)instances.elementAt(i)).visible)
+                if (instances.elementAt(i) !=null)
             ((Actor)instances.elementAt(i)).Draw_event(g);
         }
 

@@ -24,7 +24,7 @@ public static Sprite G_Creator_NULL_SPRITE, sprite1;
    public void loadScenes(){
   //scenes = new Scene2D[1]; 
  //   scenes[0] = new newScene1();
-       scenes = new Scene2D[]{new newScene1(),new newScene1()};
+       scenes = new Scene2D[]{new newScene1()};
     }
 public void loadSprites() {
     //BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};

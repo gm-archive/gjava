@@ -12,6 +12,8 @@ import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.net.URL;
+import java.util.Hashtable;
+import java.util.Vector;
 import javax.swing.JApplet;
 import org.gcreator.compilers.gjava.api.components.GameFrame;
 import org.gcreator.compilers.gjava.core.GameSettings;
@@ -36,6 +38,8 @@ public class Basicgame extends Game {
 public static Graphics2D graphics=null;
 public static GameLoader game;
 public static boolean fullscreen=false,auto_redraw=true;
+public static Hashtable allinstances = new Hashtable();
+public static double maxInstanceId = 100001;
 
     public Basicgame() {
         

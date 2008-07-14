@@ -133,9 +133,9 @@ protected static Actor self;
     public void setBm_zero(Object bm_zero) {
         // Constant: this.bm_zero = bm_zero;
     }
-
+Color c_aqua = new Color(new java.awt.Color(0,255,255));
     public Object getC_aqua() {
-        return new Color(new java.awt.Color(0,255,255)); //  c_aqua;
+        return c_aqua; //  c_aqua;
     }
 
     public void setC_aqua(Object c_aqua) {
@@ -181,9 +181,9 @@ protected static Actor self;
     public void setC_gray(Object c_gray) {
         // Constant: this.c_gray = c_gray;
     }
-
+Color c_green = new Color(java.awt.Color.GREEN);
     public Object getC_green() {
-        return  new Color(java.awt.Color.GREEN); //  c_green;
+        return  c_green; //  c_green;
     }
 
     public void setC_green(Object c_green) {

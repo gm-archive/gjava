@@ -3,6 +3,7 @@ package org.gcreator.compilers.gjava.api;
 import org.gcreator.compilers.gjava.api.components.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.lang.reflect.Method;
 import java.util.*;
 import org.gcreator.compilers.gjava.Game;
 
@@ -13,12 +14,15 @@ import org.gcreator.compilers.gjava.Game;
  */
 public class Actor extends tile {
 
+    Hashtable variables = new Hashtable(); 
+    
     protected Sprite sprite;
 //local variables
     protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single, mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
     public boolean visible=true,mouseover=false;
+    protected int posinvector=-1;
     public Actor() {
     }
 
@@ -31,6 +35,7 @@ public class Actor extends tile {
         this.id = instance_id;
         this.x = X.getFloat();
         this.y = Y.getFloat();
+        //posinvector=pos;
         self = this;
     }
 
@@ -80,7 +85,7 @@ public class Actor extends tile {
     /**
      * Override with actor Begin Step event
      */
-    public void BeginStep() {
+    public void BeginStep() throws DestroyException {
     }
 
     /**
@@ -92,20 +97,20 @@ public class Actor extends tile {
     /**
      * Override with actor Step event
      */
-    public void Step() {
+    public void Step() throws DestroyException {
     }
 
     /**
      * Override with actor End Step event
      */
-    public void EndStep() {
+    public void EndStep() throws DestroyException {
     }
 
     /**
      * Override with actor Key Pressed event
      * @param keycode 
      */
-    public void KeyPressed(int keycode) {
+    public void KeyPressed(int keycode) throws DestroyException {
 
     }
 
@@ -113,7 +118,7 @@ public class Actor extends tile {
      * Override with actor Key Released event
      * @param keycode 
      */
-    public void KeyReleased(int keycode) {
+    public void KeyReleased(int keycode) throws DestroyException {
 
     }
 
@@ -153,10 +158,14 @@ public class Actor extends tile {
     }
 
     public void callEvents() {
+        try{
         BeginStep();
         Step();
         Move();
         EndStep();
+        }catch(DestroyException d){
+        //it has been destroyed
+        }
         //System.out.println("move");
 //        setImage_xscale(getImage_xscale().add(new Double(0.1)));
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
@@ -166,6 +175,10 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
+        //use gravity
+        hspeed += Math.sin(getGravity_direction().getInt()) * getGravity().getDouble();
+        vspeed -= Math.cos(getGravity_direction().getInt()) * getGravity().getDouble();
+        
         //use friction
         
         if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() >0){
@@ -244,11 +257,14 @@ public class Actor extends tile {
         return depth;
     }
 
+    
+    Double directionr = new Double(0);
     public Object getDirection() {
-        Object d = radtodeg(arctan2(new Double(-vspeed), new Double(hspeed)));
-        if (d.getDouble() < 0)
-            d= new Double(360+d.getDouble());
-        return d;
+        double dd = Math.radtodeg(Math.arctan2(-vspeed, hspeed));
+        if (dd < 0)
+            dd+=360;
+        directionr.setValue(dd);
+        return directionr;
     }
 
     public Object getFriction() {
@@ -424,10 +440,10 @@ public class Actor extends tile {
         return solid;
     }
 
+    public static Double returndouble= new Double(0);
     public Object getSpeed() {
-        double h = hspeed;
-     double v = vspeed;
-     return new Double( Math.sqrt((h*h) + (v*v)));
+        returndouble.setValue( Math.sqrt((hspeed*hspeed) + (vspeed*vspeed)));
+     return returndouble;
     //return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
@@ -563,6 +579,7 @@ public class Actor extends tile {
     public void setDirection(Object direction) {
         double sp = getSpeed().getDouble();
         System.out.println("speed:"+sp);
+        if (sp==0) sp=1;
         hspeed = sp * cos(degtorad(direction)).getDouble();
         vspeed = -sp * sin(degtorad(direction)).getDouble();
     }
@@ -667,8 +684,8 @@ public class Actor extends tile {
 
     public void setSpeed(Object speed) {
     
-        hspeed = speed.getDouble() * cos(degtorad(getDirection())).getDouble();
-        vspeed = -speed.getDouble() * sin(degtorad(getDirection())).getDouble();
+        hspeed = speed.getDouble() * Math.cos(Math.degtorad(getDirection().getDouble()));
+        vspeed = -speed.getDouble() * Math.sin(Math.degtorad(getDirection().getDouble()));
         }
 
     public void setSprite_height(Object sprite_height) {
@@ -749,4 +766,74 @@ public class Actor extends tile {
         this.ystart = ystart.getFloat();
     }
     // </editor-fold>   
+
+public void setVariable(String name, Object value)
+    {
+        try {
+            java.lang.String nm= ""+name;
+            Method m = Variables.class.getDeclaredMethod("set"+name.charAt(nm, 0).toUpperCase()+nm.substring(1) + "", new Class[]{Object.class});
+            try {
+                
+                    m.invoke(Variables.class.newInstance(), value);
+               
+                System.out.println("method invoked!");
+            } catch (Exception ex) {
+                System.out.println("no method"+ex);
+            variables.put(name.toString(), value);
+            } 
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no method"+ex);
+            variables.put(name.toString(), value);
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            variables.put(name.toString(), value);
+        }
+        
+        
+    }
+    
+    /*
+     * This function is required, it sets the value of variable with string name.
+     */
+    public void setVariable(java.lang.String name, Object value)
+    {
+        variables.put(name, value);
+    }
+    
+    public Object getVariable(String name)
+    {
+        try {
+            java.lang.String nm= ""+name;
+            Method m = Variables.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
+            try {                
+                  return  (Object) m.invoke(Variables.class.newInstance(), null);
+               
+               // System.out.println("method invoked!");
+            } catch (Exception ex) {
+                System.out.println("no method"+ex);
+            variables.get(name.toString());
+            } 
+        } catch (NoSuchMethodException ex) {
+            System.out.println("no method"+ex);
+            variables.get(name.toString());
+        } catch (SecurityException ex) {
+            System.out.println("security:"+ex);
+            variables.get(name.toString());
+        }
+        
+        Object o = (Object)variables.get(name.toString());
+         if (o == null) return new Integer(0);
+        return o;
+    }
+    
+    /*
+     * Gets the value of the variable with string name.
+     * 
+     */
+     public Object getVariable(java.lang.String name)
+    {
+         Object o = (Object)variables.get(name.toString());
+         if (o == null) return new Integer(0);
+        return o;
+    }
 }

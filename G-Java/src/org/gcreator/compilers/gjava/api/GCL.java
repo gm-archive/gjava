@@ -932,16 +932,38 @@ return new Object();
 
 public static Object instance_create(Object x, Object y, Object obj)
 {
-return new Object();
+        try {
+            Class ins = Class.forName("org.gcreator.compilers.gjava."+obj.toString());
+            Game.maxInstanceId++;
+            Object o = (Object) ins.getDeclaredConstructor(Object.class,Object.class,Object.class).newInstance(x,y,new Double(Game.maxInstanceId));
+            
+            Game.Current.instances.add(o);
+            Game.allinstances.put(Game.maxInstanceId, o);
+        } catch (Exception ex) {
+            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+return new Double(Game.maxInstanceId);
 }
 
-public static Object instance_copy(Object performevent)
+public Object instance_copy(Object performevent)
 {
-return new Object();
+    Game.maxInstanceId++;
+        try {
+            
+            Object o = (Object) this.clone();
+            Game.Current.instances.add(o);
+            Game.allinstances.put(Game.maxInstanceId, o);
+        } catch (CloneNotSupportedException ex) {
+            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Double(Game.maxInstanceId);
 }
 
 public static Object instance_change(Object obj, Object performevents)
 {
+    System.out.println("instance change");
+    
 return new Object();
 }
 
@@ -1493,6 +1515,7 @@ return new Object();
 
 public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
+   // System.out.println(""+x1.getDouble());
     if (x1.getDouble() > x2.getDouble()) {
     Object temp = x1;
     x1 = x2;

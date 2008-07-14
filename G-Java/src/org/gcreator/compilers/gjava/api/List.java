@@ -1,6 +1,5 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This class is needed for the gcl list functions
  */
 
 package org.gcreator.compilers.gjava.api;
@@ -8,7 +7,7 @@ package org.gcreator.compilers.gjava.api;
 import java.util.ArrayList;
 
 /**
- *
+ * List class
  * @author TGMG
  */
 public class List extends Object {

@@ -15,6 +15,7 @@ public class Double extends Object {
 
     public Double(double ii) {
         i = ii;
+        
     }
    
     @Override
@@ -45,6 +46,10 @@ public class Double extends Object {
     public Object add(Object o) {
         i+= o.getDouble();
         return this;
+    }
+    
+    public void add(double o){
+        i+=o;
     }
 
     @Override
@@ -92,6 +97,12 @@ public class Double extends Object {
     public Boolean equals(Object obj) {
         return new Boolean(i == (obj).getDouble());
     }
+    
+    public void setValue(double d)
+    {
+        i=d;
+    }
+        
 
     
 }

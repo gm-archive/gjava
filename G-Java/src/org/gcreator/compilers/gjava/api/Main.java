@@ -1,17 +1,11 @@
 /*
  * main.java
- * 
- * Created on 11-Sep-2007, 01:36:47
- * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * This class is temp and will be removed when i have put the functions elsewhere.
  */
 
 package org.gcreator.compilers.gjava.api;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import org.gcreator.compilers.gjava.java2d.basicgame;
 import org.gcreator.compilers.gjava.java2d.basicgame;
 
 /**

@@ -4,8 +4,6 @@
  */
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.api.Object;
-
 /**
  * The Integer class wraps a value of the primitive type int  in an object. 
  * In addition, this class provides several methods for converting an int to a String and a String to an int, as well as other constants and methods useful when dealing with an int.
@@ -141,6 +139,10 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
         return new Boolean(i == (obj).getDouble());
     }
 
+    public Object setValue(int v){
+        this.i=v;
+        return this;
+    }
     
     
 }
