@@ -358,8 +358,10 @@ public class GCSharp extends PlatformCore {
             System.out.println(e.toString());
         }
     }
-
-    public void copyRequired(String file, String to) {
+    
+    public void copyRequired(String file, String to, boolean overwrite) {
+        if(!overwrite&&(new File(to + file)).exists())
+            return;
         copy(
                 getClass().getResourceAsStream(
                 "/org/gcreator/compilers/GCS/require/" + file), to + file);
@@ -371,26 +373,26 @@ public class GCSharp extends PlatformCore {
     }
 
     public void createSharpFiles(Project p) throws IOException {
-        copyRequired("SDL.dll", FileFolder);
+        copyRequired("SDL.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(91);
-        copyRequired("SDL_image.dll", FileFolder);
+        copyRequired("SDL_image.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(92);
-        copyRequired("SDL_mixer.dll", FileFolder);
+        copyRequired("SDL_mixer.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(93);
-        copyRequired("SdlDotNet.dll", FileFolder);
+        copyRequired("SdlDotNet.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(94);
-        copyRequired("Tao.Sdl.dll", FileFolder);
+        copyRequired("Tao.Sdl.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(95);
         this.p.repaint();
-        copyRequired("gmcs.bat", FileFolder);
-        copyRequired("jpeg.dll", FileFolder);
+        copyRequired("gmcs.bat", FileFolder, false);
+        copyRequired("jpeg.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(96);
-        copyRequired("libGCS.dll", FileFolder);
+        copyRequired("libGCS.dll", FileFolder, true);
         this.p.jProgressBar1.setValue(97);
-        copyRequired("tiff.dll", FileFolder);
+        copyRequired("tiff.dll", FileFolder, false);
         this.p.jProgressBar1.setValue(98);
         (new File(FileFolder + "fonts/")).mkdir();
-        copyRequired("CourierNew.ttf", FileFolder + "fonts/");
+        copyRequired("CourierNew.ttf", FileFolder + "fonts/", false);
         this.p.jProgressBar1.setValue(99);
         this.p.repaint();
         files.add("Game.cs");

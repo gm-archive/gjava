@@ -124,7 +124,10 @@ public class GCSCompiler extends JFrame implements Runnable, ActionListener {
         
         Enumeration<String> e = GCSharp.files.elements();
         while (e.hasMoreElements()) {
-            command += " \"" + /*GCSharp.FileFolder +*/ e.nextElement() + "\"";
+            if(osName.equals("Linux"))
+                command += " " + e.nextElement();
+            else
+                command += " \"" + /*GCSharp.FileFolder +*/ e.nextElement() + "\"";
         }
         PluginHelper.println(command);
         try {

@@ -1,16 +1,12 @@
 ﻿<UserCombinePreferences version="1.0" filename="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/libGCS.mds">
   <Files>
-    <File name="Bemvindo" />
-    <File name="Components.Actor.cs" line="245" column="30" />
-    <File name="Object.cs" line="189" column="1" />
-    <File name="Components.Scene.cs" line="75" column="40" />
-    <File name="../../../../../../../../../../tmp/Projects/NewGame/CSharp/newSprite2.cs" line="14" column="32" />
+    <File name="Scripting.Instances.cs" line="70" column="10" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
         <Node name="libGCS" expanded="True">
-          <Node name="Components.Actor.cs" selected="True" />
+          <Node name="Scripting.Instances.cs" selected="True" />
         </Node>
       </Node>
     </ViewMemento>
@@ -19,7 +15,7 @@
     </ViewMemento>
   </Views>
   <Properties>
-    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Components.Actor.cs" />
-    <Property key="ActiveConfiguration" value="Debug|Any CPU" />
+    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Scripting.Instances.cs" />
+    <Property key="ActiveConfiguration" value="Release|Any CPU" />
   </Properties>
 </UserCombinePreferences>

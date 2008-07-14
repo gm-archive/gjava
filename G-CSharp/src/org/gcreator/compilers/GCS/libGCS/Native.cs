@@ -162,7 +162,7 @@ namespace org.gcreator.Native
 					currentScene = scenelist[0];
 					currentScene.Create();
 				}
-                //master = new Surface(currentScene.getWidth(), currentScene.getHeight());
+                master = new Surface(currentScene.getWidth(), currentScene.getHeight());
                 if (standalone)
                 {
                     screen = Video.SetVideoMode(
@@ -172,11 +172,10 @@ namespace org.gcreator.Native
                         Video.WindowCaption = title;
                     Events.Quit += new System.EventHandler<QuitEventArgs>(this.Quit);
                     Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
-					master = screen;
+					//master = screen;
                 }
-				else{
-					master = new Surface(currentScene.getWidth(), currentScene.getHeight());
-				}
+				//master = new Surface(currentScene.getWidth(), currentScene.getHeight());
+
                 Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
                 //SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
 				SdlDotNet.Core.Events.Fps = 200;
@@ -229,13 +228,13 @@ namespace org.gcreator.Native
 				if(currentScene!=null)
 					currentScene.Loop();
 				master.Update();
-                //if (standalone)
-                //{
-                    //screen.Blit(master);
-                    //screen.Update();
-                //}
-                //else
-				if (!standalone)
+                if (standalone)
+                {
+                    screen.Blit(master);
+                    screen.Update();
+                }
+                else
+				//if (!standalone)
                 {
                     c.SafeBlit(master);
                     c.SafeUpdate();

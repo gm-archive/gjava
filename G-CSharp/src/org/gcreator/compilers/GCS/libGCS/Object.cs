@@ -60,6 +60,42 @@ namespace org.gcreator.Types
 			}
 			return new Integer(0);
         }
+		
+        public virtual Object getXprevious()
+        {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getXprevious();
+			}
+            return new Integer(0);
+        }
+
+        public virtual Object setXprevious(Object xprevious)
+        {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setXprevious(xprevious);
+			}
+            return new Integer(0);
+        }
+
+        public virtual Object getYprevious()
+        {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getYprevious();
+			}
+            return new Integer(0);
+        }
+
+        public virtual Object setYprevious(Object yprevious)
+        {
+			int i = getInt();
+			if(i>10000){
+				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).setYprevious(yprevious);
+			}
+			return new Integer(0);
+        }
 
         public virtual Object getVisible()
         {
@@ -149,23 +185,7 @@ namespace org.gcreator.Types
 				return ((Object) org.gcreator.Native.SDL.Game.game.currentScene.actors[i-10000]).getVspeed();
 			}
             return new Integer(0);
-        }
-
-        public virtual Object getXPrevious()
-        {
-            return new Integer(0);
-        }
-        
-
-        public virtual void setYprevious(Object prev)
-        {
-
-        }
-
-        public virtual Object getYPrevious()
-        {
-            return new Integer(0);
-        }
+        }
 
         public virtual Object getSpeed()
         {

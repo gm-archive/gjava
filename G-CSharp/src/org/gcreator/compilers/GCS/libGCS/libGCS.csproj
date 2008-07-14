@@ -80,7 +80,6 @@
     <Compile Include="Scripting.String.cs" />
     <Compile Include="Scripting.Window.cs" />
     <Compile Include="String.cs" />
-    <Compile Include="Support.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="jpeg.dll">

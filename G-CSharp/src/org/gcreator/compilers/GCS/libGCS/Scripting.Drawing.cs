@@ -1,7 +1,6 @@
 ﻿using org.gcreator.Types;
 using org.gcreator.Components;
 using org.gcreator.Native;
-using org.gcreator.Support;
 
 namespace org.gcreator.Scripting
 {
@@ -14,8 +13,8 @@ namespace org.gcreator.Scripting
             Image i = (Image)image;
 
             SDL.DrawToSurface(i, SDL.Game.game.cursurface,
-                new Rectangle(0, 0, i.texture.Width, i.texture.Height),
-                new Rectangle(_x, _y, i.texture.Width, i.texture.Height));
+                new System.Drawing.Rectangle(0, 0, i.texture.Width, i.texture.Height),
+                new System.Drawing.Rectangle(_x, _y, i.texture.Width, i.texture.Height));
             return new Object();
         }
 
@@ -26,7 +25,7 @@ namespace org.gcreator.Scripting
             int _x = (int)x.getDouble();
             int _y = (int)y.getDouble();
 
-            Rectangle r = new Rectangle(
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(
                 _x-s.getOriginX(),
                 _y-s.getOriginY(),
                 s.getWidth(), s.getHeight());
@@ -44,7 +43,7 @@ namespace org.gcreator.Scripting
             int _x = (int)x.getDouble();
             int _y = (int)y.getDouble();
 
-            Rectangle r = new Rectangle(
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(
                 _x - s.getOriginX(),
                 _y - s.getOriginY(),
                 (int) w.getDouble(), (int) h.getDouble());
@@ -62,19 +61,19 @@ namespace org.gcreator.Scripting
             int _x = (int)x.getDouble();
             int _y = (int)y.getDouble();
 
-            Rectangle src =
-                new Rectangle(s.getBounds().x, s.getBounds().y,
-                    s.getBounds().width, s.getBounds().height);
+            System.Drawing.Rectangle src =
+                new System.Drawing.Rectangle(s.getBounds().X, s.getBounds().Y,
+                    s.getBounds().Width, s.getBounds().Height);
 
-            src.x += (int) left.getDouble();
-            src.y += (int) top.getDouble();
-            src.width = (int)min(width, new Double(src.width)).getDouble();
-            src.height = (int)min(height, new Double(src.height)).getDouble();
+            src.X += (int) left.getDouble();
+            src.X += (int) top.getDouble();
+            src.Width = (int)min(width, new Double(src.Width)).getDouble();
+            src.Height = (int)min(height, new Double(src.Height)).getDouble();
 
-            Rectangle r = new Rectangle(
+            System.Drawing.Rectangle r = new System.Drawing.Rectangle(
                 _x - s.getOriginX(),
                 _y - s.getOriginY(),
-                src.width, src.height);
+                src.Width, src.Height);
 
             SDL.DrawToSurface(s.getImage(index), SDL.Game.game.cursurface,
                 src, r);

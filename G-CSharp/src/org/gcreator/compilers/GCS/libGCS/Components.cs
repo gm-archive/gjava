@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Collections;
-using org.gcreator.Support;
 using SdlDotNet.Graphics;
 using org.gcreator.Types;
+using System.Drawing;
 
 namespace org.gcreator.Components
 {
