@@ -18,15 +18,15 @@ namespace org.gcreator.Native
 			return System.Drawing.Color.FromArgb(c.getRed(), c.getGreen(), c.getBlue());
 		}*/
 		
-		public static System.Drawing.Rectangle ToDrawingRectangle(org.gcreator.Support.Rectangle r)
-		{
-			return new System.Drawing.Rectangle(r.x, r.y, r.width, r.height);
-		}
+		//public static System.Drawing.Rectangle ToDrawingRectangle(org.gcreator.Support.Rectangle r)
+		//{
+		//	return new System.Drawing.Rectangle(r.x, r.y, r.width, r.height);
+		//}
 	}
 	
     public static class SDL
     {
-		public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle source, org.gcreator.Support.Rectangle destination)
+		/*public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle source, org.gcreator.Support.Rectangle destination)
 		{
 			DrawToSurface(image.texture, screen, CSharp.ToDrawingRectangle(source), CSharp.ToDrawingRectangle(destination));
 		}
@@ -34,7 +34,7 @@ namespace org.gcreator.Native
 		public static void DrawToSurface(Surface image, Surface screen, org.gcreator.Support.Rectangle source, org.gcreator.Support.Rectangle destination)
 		{
 			DrawToSurface(image, screen, CSharp.ToDrawingRectangle(source), CSharp.ToDrawingRectangle(destination));
-		}
+		}*/
 		
 		public static void DrawToSurface(Image image, Surface screen, System.Drawing.Rectangle source, System.Drawing.Rectangle destination)
 		{
@@ -47,22 +47,22 @@ namespace org.gcreator.Native
 			DrawToSurface(s, screen, destination);
 		}
 		
-		public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle destination)
-		{
-            if(image!=null)
-			    DrawToSurface(image.texture, screen, CSharp.ToDrawingRectangle(destination));
-		}
+		//public static void DrawToSurface(Image image, Surface screen, org.gcreator.Support.Rectangle destination)
+		//{
+        //    if(image!=null)
+		//	    DrawToSurface(image.texture, screen, CSharp.ToDrawingRectangle(destination));
+		//}
 		
 		public static void DrawToSurface(Image image, Surface screen, System.Drawing.Rectangle destination)
 		{
 			DrawToSurface(image.texture, screen, destination);
 		}
 		
-		public static void DrawToSurface(Surface image, Surface screen, org.gcreator.Support.Rectangle destination)
-		{
-			Surface t = image.CreateStretchedSurface(new System.Drawing.Size(destination.width, destination.height));
-			screen.Blit(t, CSharp.ToDrawingRectangle(destination));
-		}
+		//public static void DrawToSurface(Surface image, Surface screen, org.gcreator.Support.Rectangle destination)
+		//{
+		//	Surface t = image.CreateStretchedSurface(new System.Drawing.Size(destination.width, destination.height));
+		//	screen.Blit(t, CSharp.ToDrawingRectangle(destination));
+		//}
 		
 		public static void DrawToSurface(Surface image, Surface screen, System.Drawing.Rectangle destination)
 		{
@@ -162,18 +162,24 @@ namespace org.gcreator.Native
 					currentScene = scenelist[0];
 					currentScene.Create();
 				}
-                master = new Surface(currentScene.getWidth(), currentScene.getHeight());
+                //master = new Surface(currentScene.getWidth(), currentScene.getHeight());
                 if (standalone)
                 {
                     screen = Video.SetVideoMode(
-                        currentScene.getWidth(), currentScene.getHeight(), resizable, false, fullscreen);
+                        currentScene.getWidth(), currentScene.getHeight());
+					//screen.AlphaBlending = false;
                     if (!titled)
                         Video.WindowCaption = title;
                     Events.Quit += new System.EventHandler<QuitEventArgs>(this.Quit);
                     Events.VideoResize += new System.EventHandler<VideoResizeEventArgs>(this.Resize);
+					master = screen;
                 }
+				else{
+					master = new Surface(currentScene.getWidth(), currentScene.getHeight());
+				}
                 Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
-                SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
+                //SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
+				SdlDotNet.Core.Events.Fps = 200;
             }
 
             public int SceneGetCurrentIndex()
@@ -190,7 +196,7 @@ namespace org.gcreator.Native
             {
                 currentScene.Destroy();
                 currentScene = scenes[i];
-                Events.Fps = currentScene.getVariable("fps").getInt();
+                //Events.Fps = currentScene.getVariable("fps").getInt();
                 currentScene.Create();
             }
 
@@ -223,12 +229,13 @@ namespace org.gcreator.Native
 				if(currentScene!=null)
 					currentScene.Loop();
 				master.Update();
-                if (standalone)
-                {
-                    screen.Blit(master);
-                    screen.Update();
-                }
-                else
+                //if (standalone)
+                //{
+                    //screen.Blit(master);
+                    //screen.Update();
+                //}
+                //else
+				if (!standalone)
                 {
                     c.SafeBlit(master);
                     c.SafeUpdate();

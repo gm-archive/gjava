@@ -108,6 +108,16 @@ namespace org.gcreator.Components
         {
             return new Integer(this.y = y.getInt());
         }
+		
+		public override Object setXprevious(Object xprevious)
+        {
+            return new Integer(this.xprevious = xprevious.getInt());
+        }
+
+        public override Object setYprevious(Object yprevious)
+        {
+            return new Integer(this.yprevious = yprevious.getInt());
+        }
 
         public void setDepth(int depth)
         {
@@ -122,6 +132,16 @@ namespace org.gcreator.Components
         public override Object getY()
         {
             return new Integer(y);
+        }
+		
+		public override Object getXprevious()
+        {
+            return new Integer(xprevious);
+        }
+
+        public override Object getYprevious()
+        {
+            return new Integer(yprevious);
         }
 
         public int getDepth()
@@ -220,9 +240,11 @@ namespace org.gcreator.Components
 			x += (int) hspeed;
 			y += (int) vspeed;
 
-            hspeed += System.Math.Sin(gravitydir * System.Math.PI/180) * gravity;
-            vspeed -= System.Math.Cos(gravitydir * System.Math.PI / 180) * gravity;
-
+			if(gravity!=0){
+				hspeed += System.Math.Cos(gravitydir * System.Math.PI/180) * gravity;
+				vspeed -= System.Math.Sin(gravitydir * System.Math.PI/180) * gravity;
+			}
+				
 			MouseCheck();
 			KeyboardCheck();
 			spritett++;
@@ -280,7 +302,8 @@ namespace org.gcreator.Components
             }
         }
 
-        public virtual void CollisionWith(Actor other){}
+        public virtual void CollisionWith(Actor other){
+		}
 
 		public virtual void Create(){}
     }

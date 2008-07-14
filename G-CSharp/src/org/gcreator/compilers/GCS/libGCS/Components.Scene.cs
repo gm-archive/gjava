@@ -89,9 +89,10 @@ namespace org.gcreator.Components
                     (o as Actor).Loop();
                 }
             }
-			if(t==null)
+			if(t==null){
 				t = new Surface(getWidth(), getHeight());
-			t.Fill(System.Drawing.Color.White);
+			}
+			//t.Fill(System.Drawing.Color.White);
             t.Fill(background);
             Native.SDL.Game.game.cursurface = t;
             /*int a = getMaximumDepth();

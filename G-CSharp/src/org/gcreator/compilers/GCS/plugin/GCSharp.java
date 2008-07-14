@@ -119,7 +119,8 @@ public class GCSharp extends PlatformCore {
                 }
             }
             print(w, "\t\t});");
-            print(w, "\t\tsetBounds(new Rectangle(" + s.BBLeft + ", " + s.BBTop + ", " + (s.BBRight - s.width) + ", " + (s.BBBottom - s.height) + "));");
+            print(w, "\t\tsetBounds(new System.Drawing.Rectangle("
+                    + s.BBLeft + ", " + s.BBTop + ", " + (s.BBRight - s.width) + ", " + (s.BBBottom - s.height) + "));");
             print(w, "\t}");
             print(w, "}");
             w.close();
@@ -164,6 +165,7 @@ public class GCSharp extends PlatformCore {
             System.out.println("Got here 4");
             //events
             PluginHelper.println("Before loop");
+            Vector<String> collisionactors = new Vector<String>();
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
                 Object m_evt = e.nextElement();
                 PluginHelper.println("Loop");
@@ -188,6 +190,15 @@ public class GCSharp extends PlatformCore {
                 if (evt instanceof org.gcreator.events.DrawEvent) {
                     print(actor, "\tpublic override void Draw()");
                 }
+                if (evt instanceof org.gcreator.events.KeyboardEvent) {
+                    org.gcreator.events.KeyboardEvent ev = (org.gcreator.events.KeyboardEvent) evt;
+                }
+                if (evt instanceof org.gcreator.events.CollisionEvent) {
+                    org.gcreator.events.CollisionEvent ev = (org.gcreator.events.CollisionEvent) evt;
+                    print(actor, "\tpublic void CollisionWith_"
+                            + ev.other.name + "()");
+                    collisionactors.add(ev.other.name);
+                }
                 print(actor, "\t{");
                 PluginHelper.println("Got here 5");
                 for (org.gcreator.actions.Action act : evt.actions) {
@@ -197,6 +208,16 @@ public class GCSharp extends PlatformCore {
                 print(actor, "\t}");
                 print(actor, "");
             }
+            print(actor, "\tpublic override void CollisionWith(Actor other)");
+            print(actor, "\t{");
+            
+            for(String e : collisionactors){
+                print(actor, "\t\tif(other.GetType().FullName==\"" + e + "\")");
+                print(actor, "\t\t\tCollisionWith_" + e + "();");
+            }
+            
+            print(actor, "\t}");
+            
             print(actor, "}");
             actor.close();
             actorFW.close();
