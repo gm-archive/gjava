@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : laf.xml
+    Created on : July 13, 2008, 8:44 PM
+    Author     : Serge Humphrey
+    Description:
+        BobLookAndFeel synth XML file
+-->
+
+<synth>
+  <style id="backingStyle">
+    <opaque value="TRUE"/>
+    <font name="Dialog" size="12"/>
+    <state>
+      <!-- Provide default colors -->
+      <color value="WHITE" type="BACKGROUND"/>
+      <color value="BLACK" type="FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="backingStyle" type="region" key=".*"/>
+  
+  <style id="toolbarStyle">
+    <!-- Make all the regions opaque-->
+    <opaque value="TRUE"/>
+    <font name="Dialog" size="12"/>
+    <state>
+      <color value="#EEEEEE" type="BACKGROUND"/>
+      <color value="BLACK" type="FOREGROUND"/>
+    </state>
+  </style>
+  <bind style="toolbarStyle" type="region" key="ToolBar.*"/>
+  
+  <style id="buttonStyle">
+    <!-- Shift the text one pixel when pressed -->
+    <property key="Button.textShiftOffset" type="integer" value="1"/>
+    <insets top="8" left="8" right="8" bottom="8"/>
+    <state>
+      <imagePainter method="buttonBackground" path="images/bob-button-inactive.gif"
+                    sourceInsets="10 10 10 10"/>
+    </state>
+    <state value="SELECTED">
+      <imagePainter method="buttonBackground" path="images/bob-button-active.gif"
+                    sourceInsets="1 1 1 1"/>
+    </state>
+    <state value="MOUSE_OVER">
+      <imagePainter method="buttonBackground" path="images/bob-button-active.gif"
+                    sourceInsets="10 10 10 10"/>
+    </state>
+    <state value="PRESSED">
+      <imagePainter method="buttonBackground" path="images/bob-button-clicked.gif"
+                    sourceInsets="10 10 10 10"/>
+    </state>
+  </style>
+  <!-- Bind buttonStyle to all JButtons -->
+  <bind style="buttonStyle" type="region" key="button"/> 
+</synth>

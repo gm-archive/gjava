@@ -314,7 +314,14 @@ public class PreferencesTab extends OptionPanel {
             if (sel == 0) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else {
-                UIManager.setLookAndFeel(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName());
+                try {
+                    LookAndFeel look = (LookAndFeel) Class.forName(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName()).newInstance();
+                    UIManager.setLookAndFeel(look);
+                } catch (ClassNotFoundException exc) {
+                    //Was the lookAndFeel loaded from a JAR?
+                    LookAndFeel look = (LookAndFeel) gcreator.lafLoader.loadClass(UIManager.getInstalledLookAndFeels()[sel - 1].getClassName()).newInstance();
+                    UIManager.setLookAndFeel(look);
+                }
             }
             if (UIManager.getLookAndFeel().getClass().getName().equals(MetalLookAndFeel.class.getName())) {
                 jComboBox3.setEnabled(true);

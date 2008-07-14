@@ -52,13 +52,13 @@ public final class ColorCodedView extends PlainView {
     public void paint(Graphics g, Shape a) {
 	Shape originalA = a;
         Rectangle alloc = (Rectangle) a;
-	JTextComponent host = (JTextComponent) getContainer();
+	ColorCodedTextArea host = (ColorCodedTextArea) getContainer();
         Highlighter h = host.getHighlighter();
         g.setFont(host.getFont());
         int sel0 = host.getSelectionStart();
         int sel1 = host.getSelectionEnd();
         unselected = (host.isEnabled()) ? 
-            host.getForeground() : host.getDisabledTextColor();
+            /*host.getForeground()*/host.getKeywordList().getPlainTextColor() : host.getDisabledTextColor();
 	Caret c = host.getCaret();
         selected = c.isSelectionVisible() && h != null ?
                        host.getSelectedTextColor() : unselected;

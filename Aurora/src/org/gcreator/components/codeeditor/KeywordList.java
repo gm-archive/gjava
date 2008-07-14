@@ -25,9 +25,14 @@ public abstract class KeywordList {
         return ScriptThemeManager.getColors().get("Comments");
     }
     
+    public Color getPlainTextColor() {
+        return ScriptThemeManager.getColors().get("Plain");
+    }
+    
     public Color getStringColor() {
         return ScriptThemeManager.getColors().get("Strings");
     }
+    
     public static class Keyword {
         private String name;
         private Color color;

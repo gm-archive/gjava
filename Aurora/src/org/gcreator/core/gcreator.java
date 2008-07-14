@@ -36,6 +36,7 @@ import org.gcreator.components.SystemOutputReader;
 import org.gcreator.components.impl.DefaultToolbarItem;
 import org.gcreator.components.impl.ToolbarButton;
 import org.gcreator.components.navigator.*;
+import org.gcreator.extended.JarClassLoader;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
 import org.gcreator.threading.ThreadPool;
@@ -57,6 +58,7 @@ public class gcreator {
     public static String folder;
     private static String java_version = System.getProperty("java.version");
     public static String settingsLocation = "." + File.separator + "settings" + File.separator;
+    public final static JarClassLoader lafLoader = new JarClassLoader();
     
     /**
      * Use this to bypass printing stuff in the GUI components and print it directly to the <tt>System</tt>.
@@ -117,14 +119,12 @@ public class gcreator {
     
     public static void __main(String[] args) {
         try {
-            //UIManager.installLookAndFeel("Bob Look&Feel", "org.gcreator.bob.boblook.BobLookAndFeel");
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             loadLookandFeels();
         }
         catch(Exception exc) {
             System.out.println("Exception: "+exc);
         }
-        //org.gcreator.bob.boblook.BobLookAndFeel
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;
@@ -158,7 +158,7 @@ public class gcreator {
 		folder = folder.replaceAll("%20"," ");
 		folder = folder.substring(1);
 		folder = folder.replace("/","\\");
-                if(plugload) {
+                if (plugload) {
                     Plugger.registerLoader();
                 }
         }
@@ -399,11 +399,11 @@ public class gcreator {
         CreateApiList.setup();
         
         //install LWJGL
-      try {
-        //  LWJGLInstaller.tempInstall();
-      } catch (Exception le) {
-         System.out.println(""+le.getLocalizedMessage());
-      }
+//      try {
+//          LWJGLInstaller.tempInstall();
+//      } catch (Exception le) {
+//         System.out.println(""+le.getLocalizedMessage());
+//      }
 
         try {/*
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
@@ -424,7 +424,15 @@ public class gcreator {
                 int i;
                 for (i = 0; i < info.length; i++) {
                     if (info[i].getClassName().equals(settings[0])) {
-                        UIManager.setLookAndFeel(info[i].getClassName());
+                        try {
+                            LookAndFeel look = (LookAndFeel) Class.forName(info[i].getClassName()).newInstance();
+                            UIManager.setLookAndFeel(look);
+                        } catch (ClassNotFoundException exc) {
+                            //Was the lookAndFeel loaded from a JAR?
+                            LookAndFeel look = (LookAndFeel) lafLoader.loadClass(info[i].getClassName()).newInstance();
+                            UIManager.setLookAndFeel(look);
+                        }
+                        //UIManager.setLookAndFeel(info[i].getClassName());
                         break;
                     }
                 }
@@ -461,10 +469,10 @@ public class gcreator {
             }
             panel.menubar.updateUI();
         }
-        //Doing this on average cuts the heap memory by 5-10 MB, and it isn't
+        // Doing this on average cuts the heap memory by 5-10 MB, and it isn't
         // it doesn't seem to slow G-Creator down when it executes.
         // Test it yourself using the Sun Java 6 Console "JConsole" tool.
-        ThreadPool.scheduledAtFixedRate(new Thread("Garbage Collector") {
+        ThreadPool.scheduledAtFixedRate(new Thread("Forced Garbage Collection") {
             @Override
             public void run() {
                 Runtime.getRuntime().gc();
@@ -475,7 +483,6 @@ public class gcreator {
     private static void loadLookandFeels() throws Exception {
         //Load lookandfeels from /settings/LookAndFeels
         BufferedReader r = new BufferedReader(new FileReader(new File("settings/LookAndFeels")));
-        URLClassLoader loader = null;
         String lafname = null;
         while (r.ready()) {
             String s = r.readLine().trim();
@@ -483,15 +490,15 @@ public class gcreator {
                 continue;
             }
             if (s.startsWith("jar")) {
-               loader = new URLClassLoader(new URL[]{new URL(s.replaceAll("jar\\W*\\\"(.+)\\\"\\W*", "$1"))});
+               lafLoader.addJar(new Jar(new URL(s.replaceAll("jar\\W*\\\"(.+)\\\"\\W*", "$1"))));
             } else if (s.startsWith("lafname")){
                 lafname = s.replaceAll("lafname\\W*\\\"(.+)\\\"\\W*", "$1");
             } else if (s.startsWith("laf")) {
-                if (loader == null || lafname == null) {
+                if (lafname == null) {
                     throw new ParseException("Error while parsing /settings/LookAndFeels!", 0);
                 }
-                UIManager.installLookAndFeel(lafname, s.replaceAll("laf\\W*(.+)\\W*","$1"));
-                loader = null;
+                String laf = s.replaceAll("laf\\W*(.+)\\W*","$1");
+                UIManager.installLookAndFeel(lafname, laf);
                 lafname = null;
             }
         }

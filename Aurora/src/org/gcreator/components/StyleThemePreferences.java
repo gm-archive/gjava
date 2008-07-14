@@ -26,7 +26,16 @@ import publicdomain.*;
  */
 public class StyleThemePreferences extends javax.swing.JPanel {
     
-    public ColorCodedTextArea g = new ColorCodedTextArea(null);
+    public ColorCodedTextArea g = new ColorCodedTextArea(null, "{\n" +
+                "\tvar x, y, z; //Variable declaration\n" +
+                "\tx = true;\n" +
+                "\ty = 1.0;\n" +
+                "\tz = \"Hello World\";\n" +
+                "\tif(clipboard_has_text())\n" +
+                "\t\treturn clipboard_get_text();\n" +
+                "\telse\n" +
+                "\t\treturn null;\n" +
+                "}");
     
     /** Creates new form StyleThemePreferences */
     public StyleThemePreferences() {
@@ -42,16 +51,6 @@ public class StyleThemePreferences extends javax.swing.JPanel {
         jList1.setModel(new VectorListModel(v));
         jList1.setSelectedIndex(0);
         
-        g.setText("{\n" +
-                "\tvar x, y, z; //Variable declaration\n" +
-                "\tx = true;\n" +
-                "\ty = 1.0;\n" +
-                "\tz = \"Hello World\";\n" +
-                "\tif(clipboard_has_text())\n" +
-                "\t\treturn clipboard_get_text();\n" +
-                "\telse\n" +
-                "\t\treturn null;\n" +
-                "}");
         g.setEditable(false);// - doesn't work
         g.setBorder(BorderFactory.createLineBorder(Color.darkGray));
         this.jScrollPane2.setViewportView(g);

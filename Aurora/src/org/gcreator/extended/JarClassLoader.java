@@ -22,6 +22,10 @@ import org.gcreator.plugins.Jar;
  * @author bob
  */
 public class JarClassLoader extends URLClassLoader {
+
+    public JarClassLoader() {
+        super(new URL[]{});
+    }
     
     public JarClassLoader(Jar jar) {
         super(new URL[]{});

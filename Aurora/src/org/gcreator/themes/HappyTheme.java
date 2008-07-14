@@ -1,9 +1,11 @@
 package org.gcreator.themes;
 
-import java.awt.*;
-import java.util.*;
-import javax.swing.*;
-import javax.swing.plaf.*;
+import java.awt.Color;
+import java.awt.Insets;
+import java.util.Arrays;
+import javax.swing.Icon;
+import javax.swing.UIDefaults;
+import javax.swing.plaf.ColorUIResource;
 import javax.swing.plaf.metal.OceanTheme;
 import sun.swing.SwingUtilities2;
 import sun.swing.PrintColorUIResource;
@@ -23,7 +25,7 @@ public class HappyTheme extends OceanTheme {
     protected static final ColorUIResource PRIMARY1 =
                               new ColorUIResource(0x6382BF);
     protected static final ColorUIResource PRIMARY2 =
-                              new ColorUIResource(0xA89A6E0);
+                              new ColorUIResource(0x89A6E0);
     protected static final ColorUIResource PRIMARY3 =
                               new ColorUIResource(0xD5E5ED);
     protected static final ColorUIResource SECONDARY1 =
@@ -45,44 +47,7 @@ public class HappyTheme extends OceanTheme {
     protected static final ColorUIResource OCEAN_DROP =
                               new ColorUIResource(0xD2E9FF);
     protected static final ColorUIResource WHITE = new ColorUIResource(0xFFFFFF);
-    // ComponentOrientation Icon
-    // Delegates to different icons based on component orientation
-    protected static class COIcon extends IconUIResource {
-        private Icon rtl;
 
-        public COIcon(Icon ltr, Icon rtl) {
-            super(ltr);
-            this.rtl = rtl;
-        }
-
-        public void paintIcon(Component c, Graphics g, int x, int y) {        
-            if (isLeftToRight(c)) {
-                super.paintIcon(c, g, x, y);
-            } else {
-                rtl.paintIcon(c, g, x, y);
-            }
-        }
-    }
-
-    // InternalFrame Icon
-    // Delegates to different icons based on button state
-    protected static class IFIcon extends IconUIResource {
-        private Icon pressed;
-
-        public IFIcon(Icon normal, Icon pressed) {
-            super(normal);
-            this.pressed = pressed;
-        }
-        
-        public void paintIcon(Component c, Graphics g, int x, int y) {
-            ButtonModel model = ((AbstractButton)c).getModel();
-            if (model.isPressed() && model.isArmed()) {
-                pressed.paintIcon(c, g, x, y);
-            } else {
-                super.paintIcon(c, g, x, y);
-            }
-        }
-    }
 
     /**
      * Creates an instance of <code>OceanTheme</code>
@@ -96,9 +61,10 @@ public class HappyTheme extends OceanTheme {
      * @param table the defaults table, non-null
      * @throws NullPointerException if {@code table} is {@code null}
      */
+    @Override
     public void addCustomEntriesToTable(UIDefaults table) {
         Object focusBorder = new UIDefaults.ProxyLazyValue(
-                      "javax.swing.plaf.BorderUIResource$LineBorderUIResource",
+                      "javax.swing.plaf.BorderUIResource$EtchedBorderUIResource",
                       new Object[] {getPrimary1()});
         // .30 0 DDE8F3 white secondary2
         java.util.List buttonGradient = Arrays.asList(
@@ -116,7 +82,7 @@ public class HappyTheme extends OceanTheme {
         Color dadada = new ColorUIResource(0xDADADA);
         Color menubarBottom = new ColorUIResource(0xB9CBDA);
         Color c8ddf2 = new ColorUIResource(0xC8DDF2);
-        Color $8fc6e2 = new ColorUIResource(0x8FC6E2);
+        Color $8fc6e2 = new ColorUIResource(0xA3C7E2);
         java.util.List sliderGradient = Arrays.asList(new Object[] {
             new Float(.3f), new Float(.2f),
             c8ddf2, getWhite(), new ColorUIResource(SECONDARY2) });
@@ -165,10 +131,10 @@ public class HappyTheme extends OceanTheme {
 
             "TabbedPane.borderHightlightColor", getPrimary1(),
             "TabbedPane.contentAreaColor", $8fc6e2,
-            "TabbedPane.contentBorderInsets", new Insets(4, 2, 3, 3),
+            "TabbedPane.contentBorderInsets", new Insets(4, 4, 8, 4),
             "TabbedPane.selected", $8fc6e2,
             "TabbedPane.tabAreaBackground", dadada,
-            "TabbedPane.tabAreaInsets", new Insets(2, 2, 0, 6),
+            "TabbedPane.tabAreaInsets", new Insets(3, 3, 0, 2),
             "TabbedPane.unselectedBackground", SECONDARY3,
 
             "Table.focusCellHighlightBorder", focusBorder,
@@ -188,9 +154,6 @@ public class HappyTheme extends OceanTheme {
             "Tree.dropCellBackground", OCEAN_DROP,
             "List.dropCellBackground", OCEAN_DROP,
             "List.dropLineColor", getPrimary1()
-        
-        
-        
         };
         table.putDefaults(defaults);
     }
@@ -316,6 +279,7 @@ public class HappyTheme extends OceanTheme {
      *
      * @return the menu disabled foreground color
      */
+    @Override
     public ColorUIResource getMenuDisabledForeground() {
         return MENU_DISABLED_FOREGROUND;
     }
@@ -339,13 +303,5 @@ public class HappyTheme extends OceanTheme {
     @Override
     public String toString() {
         return getName();
-    }
-    
-    /*
-     * Convenience function for determining ComponentOrientation.  Helps us
-     * avoid having Munge directives throughout the code.
-     */
-    static boolean isLeftToRight( Component c ) {
-        return c.getComponentOrientation().isLeftToRight();
     }
 }
