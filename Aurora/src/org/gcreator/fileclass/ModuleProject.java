@@ -9,6 +9,9 @@
  */
 package org.gcreator.fileclass;
 
+import org.gcreator.fileclass.groups.EGMLGroup;
+import org.gcreator.fileclass.groups.ActionGroup;
+import org.gcreator.fileclass.groups.ImageGroup;
 import java.util.*;
 import javax.swing.*;
 import org.gcreator.units.ObjectNode;

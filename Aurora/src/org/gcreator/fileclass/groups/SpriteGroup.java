@@ -7,43 +7,45 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.fileclass;
+package org.gcreator.fileclass.groups;
+
+import org.gcreator.fileclass.*;
 
 /**
  *
  * @author Luís
  */
-public class CppGroup extends Group{
-    public CppGroup(){
+public class SpriteGroup extends Group{
+    public SpriteGroup(){
         super();
     }
     
-    public CppGroup(Folder root, String name){
+    public SpriteGroup(Folder root, String name){
         super(root, name);
     }
     
      
     public boolean allowsFileType(String format){
-        if(format.equals("cpp")||format.equals("h"))
+        if(format.equals("sprite"))
             return true;
         return false;
     }
     
      
     public boolean allowsGroup(Group group){
-        if(group instanceof CppGroup)
+        if(group instanceof SpriteGroup)
             return true;
         return false;
     }
     
      
     public Group newGroup(String name){
-        Group group = new CppGroup(this, name);
+        Group group = new SpriteGroup(this, name);
         add(group);
         return group;
     }
     
     public String getObjectType(){
-        return "CppGroup";
+        return "SpriteGroup";
     }
 }

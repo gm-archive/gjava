@@ -7,43 +7,45 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.fileclass;
+package org.gcreator.fileclass.groups;
+
+import org.gcreator.fileclass.*;
 
 /**
  *
- * @author luis
+ * @author Luís
  */
-public class TilesetGroup extends Group{
-    public TilesetGroup(){
+public class SceneGroup extends Group{
+    public SceneGroup(){
         super();
     }
     
-    public TilesetGroup(Folder root, String name){
+    public SceneGroup(Folder root, String name){
         super(root, name);
     }
     
      
     public boolean allowsFileType(String format){
-        if(format.equals("tileset"))
+        if(format.equals("scene"))
             return true;
         return false;
     }
     
      
     public boolean allowsGroup(Group group){
-        if(group instanceof TilesetGroup)
+        if(group instanceof SceneGroup)
             return true;
         return false;
     }
     
      
     public Group newGroup(String name){
-        Group group = new TilesetGroup(this, name);
+        Group group = new SceneGroup(this, name);
         add(group);
         return group;
     }
     
     public String getObjectType(){
-        return "TilesetGroup";
+        return "SceneGroup";
     }
 }

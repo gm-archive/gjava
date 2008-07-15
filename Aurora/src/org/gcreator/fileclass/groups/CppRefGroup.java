@@ -7,23 +7,27 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.fileclass;
+package org.gcreator.fileclass.groups;
+
+import org.gcreator.fileclass.*;
 
 /**
  *
  * @author Luís
  */
-public class StaticGroup extends Group{
-    public StaticGroup(){
+public class CppRefGroup extends Group{
+    public CppRefGroup(){
         super();
     }
     
-    public StaticGroup(Folder root, String name){
+    public CppRefGroup(Folder root, String name){
         super(root, name);
     }
     
      
     public boolean allowsFileType(String format){
+        if(format.equals("a")) //Static library
+            return true;
         return false;
     }
     
@@ -32,15 +36,14 @@ public class StaticGroup extends Group{
         return false;
     }
     
-    public boolean allowsDelete(Object o){
-        return false;
-    }
      
     public Group newGroup(String name){
-        return null;
+        Group group = new JavaGroup(this, name);
+        add(group);
+        return group;
     }
     
     public String getObjectType(){
-        return "StaticGroup";
+        return "CppRefGroup";
     }
 }

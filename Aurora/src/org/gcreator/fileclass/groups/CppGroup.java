@@ -7,43 +7,45 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.fileclass;
+package org.gcreator.fileclass.groups;
+
+import org.gcreator.fileclass.*;
 
 /**
  *
  * @author Luís
  */
-public class EGMLGroup extends Group{
-    public EGMLGroup(){
+public class CppGroup extends Group{
+    public CppGroup(){
         super();
     }
     
-    public EGMLGroup(Folder root, String name){
+    public CppGroup(Folder root, String name){
         super(root, name);
     }
     
      
     public boolean allowsFileType(String format){
-        if(format.equals("egml")||format.equals("struct")||format.equals("gcl")||format.equals("gs"))
+        if(format.equals("cpp")||format.equals("h"))
             return true;
         return false;
     }
     
      
     public boolean allowsGroup(Group group){
-        if(group instanceof EGMLGroup)
+        if(group instanceof CppGroup)
             return true;
         return false;
     }
     
      
     public Group newGroup(String name){
-        Group group = new EGMLGroup(this, name);
+        Group group = new CppGroup(this, name);
         add(group);
         return group;
     }
     
     public String getObjectType(){
-        return "EGMLGroup";
+        return "CppGroup";
     }
 }

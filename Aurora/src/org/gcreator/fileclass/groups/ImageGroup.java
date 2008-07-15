@@ -7,48 +7,48 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.fileclass;
+package org.gcreator.fileclass.groups;
+
+import org.gcreator.fileclass.*;
+
+
 
 /**
- * 
+ *
  * @author Luís
- * 
- * @author Serge Humphrey
  */
-public class PathGroup extends Group {
+public class ImageGroup extends Group {
     
-    public PathGroup() {
+    public ImageGroup(){
         super();
     }
     
-    public PathGroup(Folder root, String name){
+    public ImageGroup(Folder root, String name){
         super(root, name);
     }
     
      
-    @Override
     public boolean allowsFileType(String format){
-        return (format.equalsIgnoreCase("path"));
-    }
-    
-     
-    @Override
-    public boolean allowsGroup(Group group){
-        if(group instanceof PathGroup)
+        if(format.equals("gif")|format.equals("jpg")|format.equals("png"))
             return true;
         return false;
     }
     
      
-    @Override
+    public boolean allowsGroup(Group group){
+        if(group instanceof ImageGroup)
+            return true;
+        return false;
+    }
+    
+     
     public Group newGroup(String name){
-        Group group = new PathGroup(this, name);
+        Group group = new ImageGroup(this, name);
         add(group);
         return group;
     }
     
-    @Override
     public String getObjectType(){
-        return "PathGroup";
+        return "ImageGroup";
     }
 }

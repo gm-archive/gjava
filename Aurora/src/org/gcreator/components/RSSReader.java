@@ -134,14 +134,14 @@ public class RSSReader extends javax.swing.JList {
                 }
                 loaded = true;
                 //Container c = getParent();
-                System.out.println("Got here");
+           //     System.out.println("Got here");
                 //if(c instanceof JScrollPane)
                 //    ((JScrollPane) c).updateUI();
-                System.out.println("and here");
+            //    System.out.println("and here");
                 //repaint();
-                System.out.println("and here 2");
+               // System.out.println("and here 2");
                 updateUI();
-                System.out.println("and here 3");
+             //   System.out.println("and here 3");
             }
         };
         t.start();

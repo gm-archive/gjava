@@ -9,6 +9,16 @@
  */
 package org.gcreator.fileclass;
 
+import org.gcreator.fileclass.groups.SceneGroup;
+import org.gcreator.fileclass.groups.PathGroup;
+import org.gcreator.fileclass.groups.SnippetGroup;
+import org.gcreator.fileclass.groups.SoundGroup;
+import org.gcreator.fileclass.groups.EGMLGroup;
+import org.gcreator.fileclass.groups.ActorGroup;
+import org.gcreator.fileclass.groups.SpriteGroup;
+import org.gcreator.fileclass.groups.TilesetGroup;
+import org.gcreator.fileclass.groups.TimelineGroup;
+import org.gcreator.fileclass.groups.ImageGroup;
 import java.util.Enumeration;
 import javax.swing.ImageIcon;
 import java.util.*;
