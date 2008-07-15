@@ -20,8 +20,15 @@ import java.util.Vector;
  */
 public class ArgumentList implements Serializable{
 
-    public Vector<String> arguments = new Vector<String>();
+    public Vector<String> arguments;
 
+    public ArgumentList(Vector<String> args){
+        arguments = args;
+    }
+    
+    public ArgumentList(){
+        arguments = new Vector<String>();
+    }
     
     @Override
     public String toString() {

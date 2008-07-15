@@ -27,10 +27,6 @@ public class RSSBlogReadPanel extends JPanel {
     }
     
     //http://forums.g-java.com/index.php?automodule=blog&req=syndicate
-    @Override
-    public void paint(Graphics g){
-        super.paint(g);
-    }
     
     public RSSReader getRSSReader() {
         return rssReader;

@@ -5,8 +5,7 @@ Author=The LGM team #but not directly
 Core=org.gcreator.utils.GMImporter.plugin
 License=GPL v3
 Name=GM Importer
-Version=1.0a1
-Image=
+Image=./plugins/./plugins/./plugins/./plugins/
 Jar=GM_importer.jar
 [~Plugin~]
 Author=Luís Reis
@@ -15,5 +14,4 @@ License=LGPL
 Name=StarFish
 Version=1.0a3
 Image=starfish.png
-
 Jar=G-CSharp.jar

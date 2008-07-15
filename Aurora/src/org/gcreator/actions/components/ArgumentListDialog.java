@@ -10,6 +10,7 @@
 
 package org.gcreator.actions.components;
 
+import java.util.Vector;
 import org.gcreator.components.impl.VectorListModel;
 
 /**
@@ -19,14 +20,15 @@ import org.gcreator.components.impl.VectorListModel;
 public class ArgumentListDialog extends javax.swing.JDialog {
 
     ArgumentListLabel l;
-    ArgumentList e;
+    ArgumentListEditor e;
     /** Creates new form ArgumentListDialog */
-    public ArgumentListDialog(java.awt.Frame parent, boolean modal, ArgumentList e, ArgumentListLabel l) {
+    public ArgumentListDialog(java.awt.Frame parent, boolean modal, ArgumentListEditor e, ArgumentListLabel l) {
         super(parent, modal);
         initComponents();
         this.l = l;
         this.e = e;
-        jList1.setModel(new VectorListModel(e.arguments));
+        jList1.setModel(
+                new VectorListModel((Vector) ((ArgumentList) this.e.getValue()).arguments.clone()));
     }
 
     /** This method is called from within the constructor to
@@ -106,7 +108,11 @@ public class ArgumentListDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    e.arguments.add(jTextField1.getText());
+    Vector v = ((VectorListModel) jList1.getModel()).getVector();
+    v.add(jTextField1.getText());
+    
+    e.setValue(new ArgumentList(v));
+    
     jList1.updateUI();
     l.setText(e.toString());
 }//GEN-LAST:event_jButton1ActionPerformed
@@ -114,7 +120,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     int i;
     if((i = jList1.getSelectedIndex())<jList1.getModel().getSize()){
-        e.arguments.remove(i);
+        Vector v = ((VectorListModel) jList1.getModel()).getVector();
+        v.remove(i);
+        
+        e.setValue(new ArgumentList(v));
+        
         l.setText(e.toString());
         jList1.updateUI();
     }

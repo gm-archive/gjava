@@ -20,21 +20,21 @@ import javax.swing.JPanel;
  * @author Luís
  */
 public class ArgumentListEditor extends PropertyEditorSupport{
+    JPanel p = new JPanel();
     @Override
     public String getAsText(){
-        return ((ArgumentList) getValue()).toString();
+        Object o = getValue();
+        if(o==null)
+            return "";
+        return ((ArgumentList) o).toString();
     }
     
     @Override
     public Component getCustomEditor(){
-        JPanel p = new JPanel();
-        
-        ArgumentList value = (ArgumentList) getValue();
-        
         p.setLayout(new BorderLayout());
         ArgumentListLabel l;
-        p.add(BorderLayout.CENTER, l = new ArgumentListLabel(value));
-        p.add(BorderLayout.EAST, new ArgumentListButton(value, l));
+        p.add(BorderLayout.CENTER, l = new ArgumentListLabel(this));
+        p.add(BorderLayout.EAST, new ArgumentListButton(this, l));
         
         return p;
     }

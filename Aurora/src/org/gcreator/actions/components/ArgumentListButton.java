@@ -21,11 +21,11 @@ import javax.swing.JFrame;
  * @author Luís
  */
 /*internal*/ class ArgumentListButton extends JButton implements ActionListener{
-    ArgumentList a;
+    ArgumentListEditor e;
     ArgumentListLabel l;
-    ArgumentListButton(ArgumentList a, ArgumentListLabel l){
+    ArgumentListButton(ArgumentListEditor e, ArgumentListLabel l){
         super("...");
-        this.a = a;
+        this.e = e;
         this.l = l;
         addActionListener(this);
     }
@@ -35,7 +35,7 @@ import javax.swing.JFrame;
         Container c = this.getParent();
         while(!(c instanceof JFrame))
             c = c.getParent();
-        ArgumentListDialog d = new ArgumentListDialog((JFrame) c, true, a, l);
+        ArgumentListDialog d = new ArgumentListDialog((JFrame) c, true, e, l);
         d.setVisible(true);
     }
 }

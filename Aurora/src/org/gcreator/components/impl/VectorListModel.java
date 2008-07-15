@@ -34,6 +34,10 @@ public class VectorListModel extends AbstractListModel{
         this.v = v;
     }
     
+    public Vector getVector(){
+        return v;
+    }
+    
     public int getIndexOf(Object o){
         return v.indexOf(o);
     }

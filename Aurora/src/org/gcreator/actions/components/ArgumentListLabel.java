@@ -17,7 +17,17 @@ import javax.swing.JLabel;
  * @author Luís
  */
 /*internal*/ class ArgumentListLabel extends JLabel{
-    ArgumentListLabel(ArgumentList a){
-        super(a==null?"":a.toString());
+    public ArgumentListEditor a;
+    ArgumentListLabel(ArgumentListEditor a){
+        this.a = a;
+    }
+    
+    public String getText(){
+        if(a==null)
+            return "";
+        String s = a.getAsText();
+        if(s==null)
+            return "null";
+        return s;
     }
 }
