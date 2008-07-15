@@ -180,7 +180,7 @@ public class English extends Dictionary {
         entry[138] = "Edit";
         entry[139] = "Visible";
         entry[140] = "Solid";
-        entry[141] = "Persistant";
+        entry[141] = "Persistent";
         entry[142] = "Depth:";
         entry[143] = "Extends:";
         entry[144] = "Mask:";

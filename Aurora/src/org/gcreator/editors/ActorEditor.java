@@ -211,7 +211,7 @@ public class ActorEditor extends TabPanel {
     public boolean Load() {
         jCheckBox1.setSelected(actor.visible);
         jCheckBox2.setSelected(actor.solid);
-        jCheckBox3.setSelected(actor.persistant);
+        jCheckBox3.setSelected(actor.persistent);
         return true;
     }
 
@@ -220,7 +220,7 @@ public class ActorEditor extends TabPanel {
         this.jList2.updateUI();
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();
-        actor.persistant = jCheckBox3.isSelected();
+        actor.persistent = jCheckBox3.isSelected();
         file.value = actor;
         changed = false;
 
@@ -739,7 +739,7 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        actor.persistant = jCheckBox3.isSelected();
+        actor.persistent = jCheckBox3.isSelected();
         updateNavigator();
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 

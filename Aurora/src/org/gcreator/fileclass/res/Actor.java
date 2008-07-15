@@ -20,7 +20,7 @@ import org.gcreator.fileclass.GFile;
  */
 public class Actor implements Resource {
 static final long serialVersionUID = 1L;
-    public boolean visible=true,  solid=true,  persistant;
+    public boolean visible=true,  solid=true,  persistent;
     public GFile sprite;
     public GFile extend,  mask;
     public int index,  depth;
@@ -46,7 +46,7 @@ static final long serialVersionUID = 1L;
         xml += "<actoreditor version=\"1.0\"/>\n";
         xml += "<Solid>" + solid + "</Solid>\n";
         xml += "<Visible>" + visible + "</Visible>\n";
-        xml += "<Persistant>" + persistant + "</Persistant>\n";
+        xml += "<Persistent>" + persistent + "</Persistent>\n";
         if (sprite == null) {
             xml += "<Sprite>//!NULLSPRITE</Sprite>";
         } else {
@@ -212,7 +212,7 @@ static final long serialVersionUID = 1L;
         a.extend = extend;
         a.index = index;
         a.mask = mask;
-        a.persistant = persistant;
+        a.persistent = persistent;
         a.solid = solid;
         a.visible = visible;
         a.sprite = sprite;

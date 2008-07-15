@@ -54,7 +54,7 @@ public class ActorNavigator extends JPanel {
         result += "<br/><b>Visible:</b>: ";
         result += actor.visible ? "True" : "False";
         result += "<br/><b>Persistent</b> ";
-        result += actor.persistant ? "True" : "False";
+        result += actor.persistent ? "True" : "False";
         return result;
     }
     

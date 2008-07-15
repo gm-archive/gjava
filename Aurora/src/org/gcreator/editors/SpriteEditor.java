@@ -1035,7 +1035,7 @@ public class SpriteEditor extends TabPanel {
         //if(id<sprite.countImages())
         //    return null;
         try {
-            return sprite.getImageAt(id).image;
+            return sprite.getImageIconAt(id);
         } catch (NullPointerException exc) {
             return null;
         }
