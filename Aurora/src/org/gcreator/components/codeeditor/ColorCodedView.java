@@ -163,7 +163,7 @@ public final class ColorCodedView extends PlainView {
                             comments.add(new int[]{cslash+((isInside(cslash+1, comments)) ? 1 : 0)-p0, end-p0});
                         }
                         allcomments.add(new int[]{cslash+((isInside(cslash+1, comments)) ? 1 : 0), end, 0});
-                        end += 2;
+                        end += 1;
                     }
                 } else if (index == cstar) {
                     end = indexOf(cstar+2, "*/");
