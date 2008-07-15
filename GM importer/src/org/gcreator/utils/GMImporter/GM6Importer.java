@@ -150,13 +150,14 @@ public class GM6Importer {
         readActors(c);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
         readScenes(c);
+        org.gcreator.core.gcreator.debugOut.println("GMI: Scene Order");
         TabValues SceneOrder;
         values.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
         Vector v = new Vector();
         SceneOrder.setVariable("Scenes", v);
         for(GFile f : c.scenes)
             v.add(f);
-        c=null;
+        //c=null;
         in.read4();//lastInstanceId
 			in.read4();//lastTileId
 			ver = in.read4();
@@ -414,7 +415,7 @@ public class GM6Importer {
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
             Sound val;
-            soundFile.value = val = new Sound(name);
+            soundFile.value = val = new Sound();
             soundFile.type= type.replaceFirst(".", "");
             //org.gcreator.core.gcreator.debugOut.println("type:"+soundFile.type);
             //val.width = in.read4();
@@ -713,7 +714,7 @@ public class GM6Importer {
             
             //in.readStr(); //Name
             f = new org.gcreator.fileclass.GFile(tlGroup, in.readStr(), "timeline", null);
-            f.value = a = new Timeline(f.name);
+            f.value = a = new Timeline();
             
             c.timelines.add(f);
             ver = in.read4();
@@ -804,13 +805,16 @@ public class GM6Importer {
             a.speed = in.read4();
             a.persistant= in.readBool();
             int col = in.read4();
+            System.out.println("Got here");
             a.background = new Color(col & 0xFF,(col & 0xFF00) >> 8,(col & 0xFF0000) >> 16);
             a.drawbackcolor = in.readBool();
             a.code = in.readStr();
             
+            System.out.println("Got here2");
             int nobackgrounds = in.read4();
 			for (int j = 0; j < nobackgrounds; j++)
 				{
+                            System.out.println("Looping");
                           BackgroundInScene bis = new BackgroundInScene("");
                           bis.visibleonstart = in.readBool();
                           in.read4(); //foreground?
@@ -831,6 +835,7 @@ public class GM6Importer {
             int noviews = in.read4();
 			for (int j = 0; j < noviews; j++)
 				{
+                            System.out.println("Looping again");
                             
                             boolean visible = in.readBool();
 				int viewX = in.read4();
@@ -880,6 +885,7 @@ public class GM6Importer {
                             in.read4();//tileId
                             in.readBool(); //locked
                         }
+            System.out.println("Got here Finally!");
             in.readBool();//rememberWindowSize
 			in.read4();//editorWidth
 			in.read4();//editorHeight
@@ -895,6 +901,7 @@ public class GM6Importer {
 			in.read4(); //currenttab
 			in.read4();//scrollBarX
 			in.read4();//scrollBarY
+            System.out.println("The end of scenes");
         }
     }
     
