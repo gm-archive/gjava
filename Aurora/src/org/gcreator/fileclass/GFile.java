@@ -32,9 +32,9 @@ public class GFile extends GObject implements Transferable {
     private static final long serialVersionUID = 1;
     public static final DataFlavor NODE_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, "Node");
     private static DataFlavor[] flavors = {NODE_FLAVOR};
-    public Folder root;
+    public transient Folder root;
     public String type; //If file is "a.txt", leave only "txt" here
-    public org.gcreator.components.TabPanel tabPanel;//Used to kill any tabpanel when this is deleted. 
+    public transient org.gcreator.components.TabPanel tabPanel;//Used to kill any tabpanel when this is deleted. 
     public java.lang.Object value;
     //public ImageIcon treeimage;
     public String xml = ""; // the data xml used to load

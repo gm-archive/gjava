@@ -61,7 +61,12 @@ public class ProjectImporter {
         }
         project.name = name;
 //        System.out.println("NAME: " + name);
-        s = s.replaceAll("<project>.*?<content>", "");
+        String ver = s.replaceAll("<project version=\"([0-9]\\.[0-9])\">", "$1");
+        if(!ver.equals("1.0")){
+            JOptionPane.showMessageDialog(null, "Could not load file. Incorrect version.");
+            return;
+        }
+        s = s.replaceAll("<project version=\"1\\.0\">.*?<content>", "");
         s = s.replaceAll("</content>", "");
         try {
             s = s.replaceAll("<?\\?xml version=\"1\\.0\"\\?>", "");

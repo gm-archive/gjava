@@ -88,7 +88,7 @@ public class ProjectExporter {
 
     public static String getConfigFile(Project project) {
         String config = "<?xml version=\"1.0\"?>\n";
-        config += "<project>";
+        config += "<project version=\"1.0\">";
         config += "<type>" + project.getClass().getName() + "</type>";
         config += "<content>";
         config += getContent("", project);
