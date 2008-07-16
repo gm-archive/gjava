@@ -37,7 +37,7 @@ public class Else extends ActionPattern{
      
     @Override
     public String generateGCL(JComponent panel){
-        return "else";
+        return "else\n";
     }
     @Override
      public ImageIcon getStandardImage() {

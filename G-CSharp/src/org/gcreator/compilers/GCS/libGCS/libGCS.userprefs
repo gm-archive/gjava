@@ -1,8 +1,7 @@
 ﻿<UserCombinePreferences version="1.0" filename="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/libGCS.mds">
   <Files>
-    <File name="Native.cs" line="193" column="36" />
-    <File name="Components.Scene.cs" line="86" column="14" />
-    <File name="Components.Actor.cs" line="310" column="4" />
+    <File name="Components.Scene.cs" line="1" column="1" />
+    <File name="Components.Actor.cs" line="272" column="12" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
@@ -18,6 +17,6 @@
   </Views>
   <Properties>
     <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Components.Actor.cs" />
-    <Property key="ActiveConfiguration" value="Release|Any CPU" />
+    <Property key="ActiveConfiguration" value="Debug|Any CPU" />
   </Properties>
 </UserCombinePreferences>

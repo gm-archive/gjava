@@ -18,12 +18,14 @@ namespace org.gcreator.Components
 		
 		public void KeyPress(object o, SdlDotNet.Input.KeyboardEventArgs args)
 		{
-			
+			foreach(object ob in actors)
+				((Actor) ob).KeyPress(args.Key);
 		}
 			
 		public void KeyRelease(object o, SdlDotNet.Input.KeyboardEventArgs args)
 		{
-			
+			foreach(object ob in actors)
+				((Actor) ob).KeyRelease(args.Key);
 		}
 
         public System.Drawing.Color getBackground()

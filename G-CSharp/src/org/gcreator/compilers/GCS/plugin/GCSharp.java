@@ -198,22 +198,22 @@ public class GCSharp extends PlatformCore {
                 if (evt instanceof org.gcreator.events.KeyPress) {
                     org.gcreator.events.KeyPress ev = (org.gcreator.events.KeyPress) evt;
                     if(ev.name.equals("<left>")){
-                        print(actor, "\tpublic override void KeyPress_LeftArrow()");
+                        print(actor, "\tpublic void KeyPress_LeftArrow()");
                         keyprs.add("LeftArrow");
                     }
                     if(ev.name.equals("<right>")){
-                        print(actor, "\tpublic override void KeyPress_RightArrow()");
+                        print(actor, "\tpublic void KeyPress_RightArrow()");
                         keyprs.add("RightArrow");
                     }
                 }
                 if (evt instanceof org.gcreator.events.KeyReleased) {
                     org.gcreator.events.KeyReleased ev = (org.gcreator.events.KeyReleased) evt;
                     if(ev.name.equals("<left>")){
-                        print(actor, "\tpublic override void KeyRelease_LeftArrow()");
+                        print(actor, "\tpublic void KeyRelease_LeftArrow()");
                         keyres.add("LeftArrow");
                     }
                     if(ev.name.equals("<right>")){
-                        print(actor, "\tpublic override void KeyRelease_RightArrow()");
+                        print(actor, "\tpublic void KeyRelease_RightArrow()");
                         keyres.add("RightArrow");
                     }
                 }

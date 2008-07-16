@@ -1,10 +1,17 @@
 [G-Creator Plugin List]
 [~Plugin~]
-Author=Luís Reis
+Author=LuÃÂ­s Reis
 Author=The LGM team #but not directly
 Core=org.gcreator.utils.GMImporter.plugin
 License=GPL v3
 Name=GM Importer
-Version=1.0a1
-Image=
+Image=./plugins/./plugins/
 Jar=GM_importer.jar
+[~Plugin~]
+Author=Luís Reis
+Core=org.gcreator.compilers.GCS.plugin.GCSharp
+License=LGPL
+Name=StarFish
+Version=1.0a3
+Image=starfish.png
+Jar=G-CSharp.jar

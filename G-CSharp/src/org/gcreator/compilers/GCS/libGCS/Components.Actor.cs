@@ -268,6 +268,8 @@ namespace org.gcreator.Components
 		public virtual void EndStep(){}
 		public virtual void Draw()
 		{
+			if(sprite==null)
+				return;
 			//Unless otherwise specified
 			Native.SDL.DrawToSurface(
 				sprite.getImage(getCurrentSpritePosition()),

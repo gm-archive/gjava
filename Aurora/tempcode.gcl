@@ -1,1 +1,1 @@
-draw_text(10, 10, fps)
+show_message("That's correct!")

@@ -36,7 +36,7 @@ public class StartOfABlock extends ActionPattern{
     }
      
     public String generateGCL(JComponent panel){
-        return "{";
+        return "{\n";
     }
      public ImageIcon getStandardImage() {
         return icon;
