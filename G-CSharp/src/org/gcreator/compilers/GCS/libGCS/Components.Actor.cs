@@ -302,9 +302,18 @@ namespace org.gcreator.Components
             }
         }
 
-        public virtual void CollisionWith(Actor other){
+        public virtual void CollisionWith(Actor other)
+		{
 		}
 
+		public virtual void KeyPress(SdlDotNet.Input.Key key)
+		{
+		}
+		
+		public virtual void KeyRelease(SdlDotNet.Input.Key key)
+		{
+		}
+			
 		public virtual void Create(){}
     }
 }

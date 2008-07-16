@@ -166,6 +166,8 @@ public class GCSharp extends PlatformCore {
             //events
             PluginHelper.println("Before loop");
             Vector<String> collisionactors = new Vector<String>();
+            Vector<String> keyprs = new Vector<String>();
+            Vector<String> keyres = new Vector<String>();
             for (Enumeration e = a.events.elements(); e.hasMoreElements();) {
                 Object m_evt = e.nextElement();
                 PluginHelper.println("Loop");
@@ -193,6 +195,28 @@ public class GCSharp extends PlatformCore {
                 if (evt instanceof org.gcreator.events.KeyboardEvent) {
                     org.gcreator.events.KeyboardEvent ev = (org.gcreator.events.KeyboardEvent) evt;
                 }
+                if (evt instanceof org.gcreator.events.KeyPress) {
+                    org.gcreator.events.KeyPress ev = (org.gcreator.events.KeyPress) evt;
+                    if(ev.name.equals("<left>")){
+                        print(actor, "\tpublic override void KeyPress_LeftArrow()");
+                        keyprs.add("LeftArrow");
+                    }
+                    if(ev.name.equals("<right>")){
+                        print(actor, "\tpublic override void KeyPress_RightArrow()");
+                        keyprs.add("RightArrow");
+                    }
+                }
+                if (evt instanceof org.gcreator.events.KeyReleased) {
+                    org.gcreator.events.KeyReleased ev = (org.gcreator.events.KeyReleased) evt;
+                    if(ev.name.equals("<left>")){
+                        print(actor, "\tpublic override void KeyRelease_LeftArrow()");
+                        keyres.add("LeftArrow");
+                    }
+                    if(ev.name.equals("<right>")){
+                        print(actor, "\tpublic override void KeyRelease_RightArrow()");
+                        keyres.add("RightArrow");
+                    }
+                }
                 if (evt instanceof org.gcreator.events.CollisionEvent) {
                     org.gcreator.events.CollisionEvent ev = (org.gcreator.events.CollisionEvent) evt;
                     print(actor, "\tpublic void CollisionWith_"
@@ -214,6 +238,26 @@ public class GCSharp extends PlatformCore {
             for(String e : collisionactors){
                 print(actor, "\t\tif(other.GetType().FullName==\"" + e + "\")");
                 print(actor, "\t\t\tCollisionWith_" + e + "();");
+            }
+            
+            print(actor, "\t}");
+            
+            print(actor, "\tpublic override void KeyPress(SdlDotNet.Input.Key key)");
+            print(actor, "\t{");
+            
+            for(String e : keyprs){
+                print(actor, "\t\tif(key==SdlDotNet.Input.Key." + e + ")");
+                print(actor, "\t\t\tKeyPress_" + e + "();");
+            }
+            
+            print(actor, "\t}");
+            
+            print(actor, "\tpublic override void KeyRelease(SdlDotNet.Input.Key key)");
+            print(actor, "\t{");
+            
+            for(String e : keyres){
+                print(actor, "\t\tif(key==SdlDotNet.Input.Key." + e + ")");
+                print(actor, "\t\t\tKeyRelease_" + e + "();");
             }
             
             print(actor, "\t}");

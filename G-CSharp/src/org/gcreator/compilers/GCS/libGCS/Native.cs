@@ -177,9 +177,21 @@ namespace org.gcreator.Native
 				//master = new Surface(currentScene.getWidth(), currentScene.getHeight());
 
                 Events.Tick += new System.EventHandler<TickEventArgs>(this.Tick);
-                //SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
+				Events.KeyboardDown += new System.EventHandler<SdlDotNet.Input.KeyboardEventArgs>(this.KeyPress);
+				Events.KeyboardUp += new System.EventHandler<SdlDotNet.Input.KeyboardEventArgs>(this.KeyRelease);
+				//SdlDotNet.Core.Events.Fps = currentScene.getVariable("fps").getInt();
 				SdlDotNet.Core.Events.Fps = 200;
             }
+			
+			public void KeyPress(object o, SdlDotNet.Input.KeyboardEventArgs args)
+			{
+				currentScene.KeyPress(o, args);
+			}
+			
+			public void KeyRelease(object o, SdlDotNet.Input.KeyboardEventArgs args)
+			{
+				currentScene.KeyPress(o, args);
+			}
 
             public int SceneGetCurrentIndex()
             {

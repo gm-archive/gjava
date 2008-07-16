@@ -1,12 +1,14 @@
 ﻿<UserCombinePreferences version="1.0" filename="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/libGCS.mds">
   <Files>
-    <File name="Scripting.Instances.cs" line="70" column="10" />
+    <File name="Native.cs" line="193" column="36" />
+    <File name="Components.Scene.cs" line="86" column="14" />
+    <File name="Components.Actor.cs" line="310" column="4" />
   </Files>
   <Views>
     <ViewMemento id="ProjectPad">
       <Node expanded="True">
         <Node name="libGCS" expanded="True">
-          <Node name="Scripting.Instances.cs" selected="True" />
+          <Node name="Components.Actor.cs" selected="True" />
         </Node>
       </Node>
     </ViewMemento>
@@ -15,7 +17,7 @@
     </ViewMemento>
   </Views>
   <Properties>
-    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Scripting.Instances.cs" />
+    <Property key="ActiveWindow" value="/home/luis/NetBeansProjects/G-CSharp/src/org/gcreator/compilers/GCS/libGCS/Components.Actor.cs" />
     <Property key="ActiveConfiguration" value="Release|Any CPU" />
   </Properties>
 </UserCombinePreferences>

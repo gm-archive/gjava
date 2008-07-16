@@ -15,6 +15,16 @@ namespace org.gcreator.Components
         {
             setVariable("fps", new Integer(9999));
         }
+		
+		public void KeyPress(object o, SdlDotNet.Input.KeyboardEventArgs args)
+		{
+			
+		}
+			
+		public void KeyRelease(object o, SdlDotNet.Input.KeyboardEventArgs args)
+		{
+			
+		}
 
         public System.Drawing.Color getBackground()
         {
