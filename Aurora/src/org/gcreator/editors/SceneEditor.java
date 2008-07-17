@@ -210,7 +210,7 @@ public class SceneEditor extends TabPanel {
         //}
         scenePanel.updateUI();
     }
-    public ColorCodedTextArea egml;
+    public ColorCodedTextArea gcl;
     public TileChooser tilechooser;
     //<editor-fold desc="Constructor">
     @SuppressWarnings("unchecked")
@@ -228,10 +228,10 @@ public class SceneEditor extends TabPanel {
         scenePanel = new ScenePanel(this);
         scenePanel.setSize(500, 500);
         jScrollPane1.setViewportView(scenePanel);
-        //egml
-        egml = new ColorCodedTextArea(project);
-        egml.setText(scene.code);
-        //end of egml
+        //gcl
+        gcl = new ColorCodedTextArea(project);
+        gcl.setText(scene.code);
+        //end of gcl
         tilechooser = new TileChooser(this);
         jList1.setSelectedIndex(0);
         setup();
@@ -278,7 +278,7 @@ public class SceneEditor extends TabPanel {
         jToggleButton1.setSelected(((Scene) file.value).grid);
         colorSelection1.setBackground(((Scene) file.value).background);
         jSpinner12.setValue(((Scene) file.value).speed);
-        jScrollPane5.setViewportView(egml);
+        jScrollPane5.setViewportView(gcl);
         jScrollPane1.getVerticalScrollBar().addAdjustmentListener(new AdjustmentListener() {
 
             public void adjustmentValueChanged(AdjustmentEvent evt) {

@@ -326,12 +326,9 @@ public class ActorEditor extends TabPanel {
         jScrollPane1.setViewportView(jList1);
 
         jButton5.setText(LangSupporter.activeLang.getEntry(145));
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                jButton5MouseReleased(evt);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -395,11 +392,11 @@ public class ActorEditor extends TabPanel {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jComboBox2, 0, 188, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1))
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,9 +404,9 @@ public class ActorEditor extends TabPanel {
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addGap(5, 5, 5)
                 .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
         );
 
@@ -601,34 +598,37 @@ public class ActorEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     public void event(int type, String name) {
-        System.out.println("Actor editor:event:type" + type);
+        //System.out.println("Actor editor:event:type" + type);
+        org.gcreator.events.Event e = null;
         if (type == EventSelectListener.CREATE) {
-            elist.add(new CreateEvent());
+            elist.add(e = new CreateEvent());
         } else if (type == EventSelectListener.DESTROY) {
-            elist.add(new DestroyEvent());
+            elist.add(e = new DestroyEvent());
         } else if (type == EventSelectListener.DRAW) {
-            elist.add(new DrawEvent());
+            elist.add(e = new DrawEvent());
         } else if (type == EventSelectListener.BEGINSTEP) {
-            elist.add(new BeginStepEvent());
+            elist.add(e = new BeginStepEvent());
         } else if (type == EventSelectListener.STEP) {
-            elist.add(new StepEvent());
+            elist.add(e = new StepEvent());
         } else if (type == EventSelectListener.ENDSTEP) {
-            elist.add(new EndStepEvent());
+            elist.add(e = new EndStepEvent());
         } else if (type >= EventSelectListener.MOUSELEFTCLICKED && type <= EventSelectListener.MOUSEOUT) {
-            elist.add(new org.gcreator.events.MouseEvent(type));
+            elist.add(e = new org.gcreator.events.MouseEvent(type));
         } else if (type >= EventSelectListener.ALARM && type <= EventSelectListener.ALARM + 11) {
-            elist.add(new org.gcreator.events.AlarmEvent(type - EventSelectListener.ALARM));
+            elist.add(e = new org.gcreator.events.AlarmEvent(type - EventSelectListener.ALARM));
         } else if (type >= EventSelectListener.Keyboard && type <= EventSelectListener.Keyboard + 999) {
-            elist.add(new org.gcreator.events.KeyboardEvent(type - EventSelectListener.Keyboard, name));
+            elist.add(e = new org.gcreator.events.KeyboardEvent(type - EventSelectListener.Keyboard, name));
         } else if (type >= EventSelectListener.Keypress && type <= EventSelectListener.Keypress + 999) {
-            elist.add(new org.gcreator.events.KeyPress(type - EventSelectListener.Keypress, name));
+            elist.add(e = new org.gcreator.events.KeyPress(type - EventSelectListener.Keypress, name));
         } else if (type >= EventSelectListener.Keyrelease && type <= EventSelectListener.Keyrelease + 999) {
-            elist.add(new org.gcreator.events.KeyReleased(type - EventSelectListener.Keyrelease, name));
+            elist.add(e = new org.gcreator.events.KeyReleased(type - EventSelectListener.Keyrelease, name));
         }
+       
         jScrollPane1.updateUI();
         jList1.updateUI();
         updateActionList();
-    }
+        jList1.setSelectedValue(e, true);
+    } 
 
     public void updateActionList() {
         actmodel.removeAllElements();
@@ -640,23 +640,7 @@ public class ActorEditor extends TabPanel {
         for (int i = 0; i < actions.size(); i++) {
             actmodel.addElement(actions.get(i));
         }
-    }
-
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        EventSelectListener listener = new EventSelectListener() {
-
-            public void eventSelected(int type, String name) {
-                event(type, name);
-                changed = true;
-            }
-
-            public void eventSelected(int type) {
-                event(type, "");
-                changed = true;
-            }
-        };
-        EventSelect selector = new EventSelect(this, gcreator.window, true, evt.getX(), evt.getY(), listener); //java 6 uses OnScreen()
-    }//GEN-LAST:event_jButton5MouseClicked
+    }                                  
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         file.name = jTextField1.getText();
@@ -680,10 +664,6 @@ public class ActorEditor extends TabPanel {
     private void jCheckBox3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCheckBox3MouseClicked
         changed = true;
     }//GEN-LAST:event_jCheckBox3MouseClicked
-
-    private void jButton5MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseReleased
-        jButton5MouseClicked(evt);
-    }//GEN-LAST:event_jButton5MouseReleased
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         updateActionList();
@@ -785,6 +765,24 @@ public class ActorEditor extends TabPanel {
         changed = true;
         updateNavigator();
     }//GEN-LAST:event_jSpinner1StateChanged
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         EventSelectListener listener = new EventSelectListener() {
+
+            public void eventSelected(int type, String name) {
+                event(type, name);
+                changed = true;
+            }
+
+            public void eventSelected(int type) {
+                event(type, "");
+                changed = true;
+            }
+        };
+        EventSelect selector = new EventSelect(this, gcreator.window, true, Toolkit.getDefaultToolkit().getScreenSize().width/2, 
+                Toolkit.getDefaultToolkit().getScreenSize().height/2, listener);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

@@ -232,7 +232,7 @@ public class NewProject extends TabPanel {
                 grp.editable = false;
                 src.add(grp = new CppGroup(project, "C++"));
                 grp.editable = false;
-                src.add(grp = new EGMLGroup(project, "EGML"));
+                src.add(grp = new GCLGroup(project, "GCL"));
                 grp.editable = false;
                 StaticGroup ref;
                 project.add(grp = ref = new StaticGroup(project, "References"));

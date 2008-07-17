@@ -46,7 +46,7 @@ public class IOManager {
         if(c==Group.class) return "Group";
         if(c==ActionGroup.class) return "ActionGroup";
         if(c==ActorGroup.class) return "ActorGroup";
-        if(c==EGMLGroup.class) return "CodeGroup";
+        if(c==GCLGroup.class) return "CodeGroup";
         if(c==ImageGroup.class) return "ImageGroup";
         if(c==PathGroup.class) return "PathGroup";
         if(c==SceneGroup.class) return "SceneGroup";

@@ -40,6 +40,7 @@ public class KeyboardListPopup extends JPopupMenu{
     JMenuItem[] items;
     EventSelect selector;
     int kcode;
+    
     public KeyboardListPopup(EventSelect selector,int code){
         kcode=code;
         JMenu letters = new JMenu("Letters");
@@ -125,6 +126,17 @@ public class KeyboardListPopup extends JPopupMenu{
         add(letters,new JMenuItem("X"),88);
         add(letters,new JMenuItem("Y"),89);
         add(letters,new JMenuItem("Z"),90);
+        
+        add(keypad, new JMenuItem("0"), 0x60);
+        add(keypad, new JMenuItem("1"), 0x61);
+        add(keypad, new JMenuItem("2"), 0x62);
+        add(keypad, new JMenuItem("3"), 0x63);
+        add(keypad, new JMenuItem("4"), 0x64);
+        add(keypad, new JMenuItem("5"), 0x65);
+        add(keypad, new JMenuItem("6"), 0x66);
+        add(keypad, new JMenuItem("7"), 0x67);
+        add(keypad, new JMenuItem("8"), 0x68);
+        add(keypad, new JMenuItem("9"), 0x69);
         
         this.selector = selector;
         this.updateUI();

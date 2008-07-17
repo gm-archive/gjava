@@ -9,7 +9,7 @@
  */
 package org.gcreator.fileclass;
 
-import org.gcreator.fileclass.groups.EGMLGroup;
+import org.gcreator.fileclass.groups.GCLGroup;
 import org.gcreator.fileclass.groups.ActionGroup;
 import org.gcreator.fileclass.groups.ImageGroup;
 import java.util.*;
@@ -84,7 +84,7 @@ public class ModuleProject extends Project{
         try{
             if(g instanceof ImageGroup)
                 return findFolder("$209");
-            if(g instanceof EGMLGroup)
+            if(g instanceof GCLGroup)
                 return findFolder("$216");
             if(g instanceof ActionGroup)
                 return findFolder("$268");
@@ -96,7 +96,7 @@ public class ModuleProject extends Project{
     private static Project balancedCreation(){
         Project project = new ModuleProject();
         project.add(new ImageGroup(project, "$209"));
-        project.add(new EGMLGroup(project, "$216"));
+        project.add(new GCLGroup(project, "$216"));
         project.add(new ActionGroup(project, "$268"));
         return project;
     }

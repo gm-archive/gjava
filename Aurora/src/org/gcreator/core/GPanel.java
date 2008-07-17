@@ -872,7 +872,7 @@ public class GPanel extends JPanel {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("wav") || file.type.equals("mid") || file.type.equals("ogg")) {
-            TabPanel tp = new SoundEditor(file, this.getCurrentProject());
+            TabPanel tp = new SoundEditor2(file, this.getCurrentProject());
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("settings")) {

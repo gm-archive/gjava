@@ -277,13 +277,14 @@ public class EventSelect extends javax.swing.JDialog {
         col.show(jButton9, evt.getX(), evt.getY());
     }//GEN-LAST:event_jButton9MouseReleased
     
-    public void callEvent(int type){
-        if(listener!=null)
-            listener.eventSelected(type,"");
+    public void callEvent(int type) {
+        if (listener != null) {
+            listener.eventSelected(type, "");
+        }
     }
     
-    public void callEvent(int type,String name){
-        if(listener!=null)
+    public void callEvent(int type,String name) {
+        if (listener != null)
             listener.eventSelected(type,name);
     }
     

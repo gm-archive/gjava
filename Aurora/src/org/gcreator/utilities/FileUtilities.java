@@ -29,10 +29,11 @@ public class FileUtilities {
      * @param src The file to copy.
      * @param dest The file to copy the file to. If it is a drectory, then
      * the name of the <tt>src</tt> file is used.
+     * @return The new file that was created when the file was copied.
      * @throws java.io.IOException if <tt>dest</tt> is a directory and does
      * not exist, or if an error occurs while copying the file.
      */
-    public static void copyFile(File src, File dest) throws IOException {
+    public static File copyFile(File src, File dest) throws IOException {
         //long startTime = System.nanoTime();
         if (!src.exists()) {
             throw new IOException("File"+src.getPath()+" does not exist.");
@@ -59,5 +60,6 @@ public class FileUtilities {
         System.out.println("It took "+time+" nano-secoonds to copy "+src.getName());
         System.out.println("(That's "+time*10e9+" seconds.)");
         */
+        return dest;
     }
 }

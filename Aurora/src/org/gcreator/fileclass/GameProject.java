@@ -13,7 +13,7 @@ import org.gcreator.fileclass.groups.SceneGroup;
 import org.gcreator.fileclass.groups.PathGroup;
 import org.gcreator.fileclass.groups.SnippetGroup;
 import org.gcreator.fileclass.groups.SoundGroup;
-import org.gcreator.fileclass.groups.EGMLGroup;
+import org.gcreator.fileclass.groups.GCLGroup;
 import org.gcreator.fileclass.groups.ActorGroup;
 import org.gcreator.fileclass.groups.SpriteGroup;
 import org.gcreator.fileclass.groups.TilesetGroup;
@@ -159,7 +159,7 @@ public class GameProject extends Project{
             if(key.equals("image"))
                 return obj instanceof ImageGroup;
             if(key.equals("class"))
-                return obj instanceof EGMLGroup;
+                return obj instanceof GCLGroup;
             if(key.equals("sound"))
                 return obj instanceof SoundGroup;
             if(key.equals("path"))
@@ -221,7 +221,7 @@ public class GameProject extends Project{
                 return findFolder("$213");
             else if(folder instanceof PathGroup)
                 return findFolder("$256");
-            else if(folder instanceof EGMLGroup)
+            else if(folder instanceof GCLGroup)
                 return findFolder("$216");
             return findFolder("$217");
         }
@@ -252,7 +252,7 @@ public class GameProject extends Project{
         project.add(new TimelineGroup(project, "$213"));
         project.add(new ActorGroup(project, "$214"));
         project.add(new SceneGroup(project, "$215"));
-        project.add(new EGMLGroup(project, "$216"));
+        project.add(new GCLGroup(project, "$216"));
         //project.add(new SnippetGroup(project, "Snippets"));
         project.add(new Group(project, "$217"));
         org.gcreator.fileclass.GFile a = new org.gcreator.fileclass.GFile(project, "$218", "settings", null);

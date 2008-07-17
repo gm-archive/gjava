@@ -15,12 +15,12 @@ import org.gcreator.fileclass.*;
  *
  * @author Luís
  */
-public class EGMLGroup extends Group{
-    public EGMLGroup(){
+public class GCLGroup extends Group{
+    public GCLGroup(){
         super();
     }
     
-    public EGMLGroup(Folder root, String name){
+    public GCLGroup(Folder root, String name){
         super(root, name);
     }
     
@@ -33,19 +33,19 @@ public class EGMLGroup extends Group{
     
      
     public boolean allowsGroup(Group group){
-        if(group instanceof EGMLGroup)
+        if(group instanceof GCLGroup)
             return true;
         return false;
     }
     
      
     public Group newGroup(String name){
-        Group group = new EGMLGroup(this, name);
+        Group group = new GCLGroup(this, name);
         add(group);
         return group;
     }
     
     public String getObjectType(){
-        return "EGMLGroup";
+        return "GCLGroup";
     }
 }

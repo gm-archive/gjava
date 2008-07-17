@@ -84,7 +84,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                     return(tileset);
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("sprite")) {
                     return(sprite);
-                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("egml")) {
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gcl")) {
                     return(GCL);
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("gcl")) {
                     return(GCL);

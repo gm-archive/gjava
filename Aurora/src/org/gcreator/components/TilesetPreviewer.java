@@ -106,22 +106,10 @@ public class TilesetPreviewer extends JComponent{
         int h = editor.value.tileh;
         int bw =  editor.value.bwidth;
         int bh =  editor.value.bheight;
-        //int di = 0;
-        //int dj = 0;
-        //for(int i = editor.value.startx; i < imgw; i+=editor.value.tilew+editor.value.bwidth){
-        //    dj = 0;
-        //    for(int j = editor.value.starty; j < imgh; j+=editor.value.tileh+editor.value.bheight){
-        //        g.drawImage(img.getImage(), di, dj, di+editor.value.tilew, dj+editor.value.tileh, i, j, i+editor.value.tilew, j+editor.value.tileh,img.getImageObserver());
-        //        dj += 2;
-        //        dj += editor.value.tileh;
-        //    }
-        //    di += 2;
-        //    di += editor.value.tilew;
-        //}
         g.drawImage(img.getImage(),0,0,Color.WHITE,img.getImageObserver());
-        //g.setColor(Color.WHITE);
-        //g.setXORMode(Color.BLACK);
-        g.setColor(Color.BLUE);
+        g.setColor(Color.WHITE);
+        g.setXORMode(Color.BLACK);
+        //g.setColor(Color.BLUE); -- What's wrong with XORMode?
         
         for (int i = editor.value.startx; i < imgw-1; i += w+bw)
             for (int j = editor.value.starty; j < imgh-1; j += h+bh) {
