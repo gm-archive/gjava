@@ -42,14 +42,14 @@ import org.gcreator.utilities.FileUtilities;
  *
  * @author  Serge Humphrey
  */
-public class SoundEditor2 extends TabPanel {
+public class SoundEditor extends TabPanel {
     private static final long serialVersionUID = 1;
     protected AudioSystem system;
     protected File sndFile;
     protected AudioTrack track;
     protected static File fileDirectory;
     
-    public SoundEditor2(GFile f, Project p) {
+    public SoundEditor(GFile f, Project p) {
         this.file = f;
         this.project = p;
         //Initilize audio
@@ -263,7 +263,7 @@ public class SoundEditor2 extends TabPanel {
             }
             jButton3.setEnabled(true);
         } catch (IOException ex) {
-            Logger.getLogger(SoundEditor2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -276,7 +276,7 @@ public class SoundEditor2 extends TabPanel {
         try {
             track = system.createAudioTrack(sndFile.toURI().toURL(), jCheckBox1.isSelected());
         } catch (MalformedURLException ex) {
-            Logger.getLogger(SoundEditor2.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
