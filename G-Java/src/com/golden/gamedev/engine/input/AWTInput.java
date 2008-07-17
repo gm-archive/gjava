@@ -36,8 +36,11 @@ import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 
 import com.golden.gamedev.engine.BaseInput;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.Actor;
+import org.gcreator.compilers.gjava.api.DestroyException;
 
 /**
  * Input engine using AWT Component as the input listener.
@@ -427,8 +430,13 @@ public class AWTInput implements BaseInput {
 			}
 			
                         for (int i = 0; i < Game.Current.instances.size(); i++) {
-            if (((Actor)Game.Current.instances.elementAt(i)).visible)
-            ((Actor)Game.Current.instances.elementAt(i)).KeyPressed(e.getKeyCode());
+                try {
+                    if (((Actor) Game.Current.instances.elementAt(i)).visible) {
+                        ((Actor) Game.Current.instances.elementAt(i)).KeyPressed(e.getKeyCode());
+                    }
+                } catch (DestroyException ex) {
+                    Logger.getLogger(AWTInput.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
                         
 			// make sure the key isn't processed for anything else
@@ -443,8 +451,13 @@ public class AWTInput implements BaseInput {
 			        .getKeyCode();
 			AWTInput.this.releasedKey++;
 			for (int i = 0; i < Game.Current.instances.size(); i++) {
-            if (((Actor)Game.Current.instances.elementAt(i)).visible)
-            ((Actor)Game.Current.instances.elementAt(i)).KeyReleased(e.getKeyCode());
+                try {
+                    if (((Actor) Game.Current.instances.elementAt(i)).visible) {
+                        ((Actor) Game.Current.instances.elementAt(i)).KeyReleased(e.getKeyCode());
+                    }
+                } catch (DestroyException ex) {
+                    Logger.getLogger(AWTInput.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
 			// make sure the key isn't processed for anything else
 			e.consume();
