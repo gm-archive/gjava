@@ -21,7 +21,7 @@ public class GObject implements Serializable {
     static final long serialVersionUID = 1L;
     public boolean allowDrag = true;
     public String name;
-    public ObjectNode node;
+    public transient ObjectNode node;
     
     //Used for serilization only
     public GObject(){}

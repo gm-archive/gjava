@@ -1,117 +1,132 @@
 /*
- * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
- * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
- * 
- * This file is part of G-Creator.
- * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
- * See LICENSE for more details.
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
+
 package org.gcreator.externproject;
 
-import org.gcreator.core.*;
-import org.gcreator.fileclass.*;
-import javax.swing.*;
-import org.gcreator.components.*;
-import java.awt.*;
-import java.io.*;
-import java.util.zip.ZipOutputStream;
-import java.util.zip.Deflater;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import org.gcreator.managers.IOManager;
+import java.util.Hashtable;
+import java.util.Vector;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+import org.gcreator.exceptions.WrongResourceException;
+import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Group;
+import org.gcreator.fileclass.Project;
 
 /**
  *
- * @author Luís
+ * @author luis
  */
 public class ProjectExporter {
-
-    public static boolean export(Project project, String filename) {
-
-        String config = getConfigFile(project);
-        //byte[] buffer = new byte[18024];
-        ZipOutputStream out = null;
-        try {
-            out = new ZipOutputStream(new FileOutputStream(filename));
-        } catch (Exception e) {
-            System.out.println("ProjectExport: " + e.getLocalizedMessage());
-            return false;
-        }
-        out.setLevel(Deflater.BEST_COMPRESSION);
-        //out.putNextEntry(new ZipEntry(""));
-        //out.closeEntry();
-
-        try{
-        out.putNextEntry(new ZipEntry("config"));
-        for (int i = 0; i < config.length(); i++) {
-            out.write(config.charAt(i));
-        }
-        out.closeEntry();
-        }
-        catch(Exception e){
-            System.out.println("ProjectExport: " + e.getLocalizedMessage());
-        }
-        a = 1;
-        putFolder(project, "", out);
-        try{
-            out.close();
-        }
-        catch(Exception e){
-            System.out.println("ProjectExport: " + e.getLocalizedMessage());
-        }
-        utilities.addStringMessage("Saved");
-        return false; //Failed to export
-    }
-
-    private static int a;
+    public static Hashtable<Class, String> types =
+            new Hashtable<Class, String>();
     
-    public static void putFolder(Folder folder, String prefix, ZipOutputStream out){
-        org.gcreator.fileclass.GObject childNode;
-
-
-        for (int i = 0; i < folder.getChildArrayNum(); i++) {
-            if ((childNode = folder.childAt(i)) != null) {
-                if (childNode instanceof org.gcreator.fileclass.GFile) {
-                    try{
-                        out.putNextEntry(new ZipEntry("src/_" + (a++) + "."+((org.gcreator.fileclass.GFile)childNode).type));
-                        ((org.gcreator.fileclass.GFile) childNode).writeToBuffer(out);
-                        out.closeEntry();
-                    }
-                    catch(IOException e){
-                        System.out.println("ProjectExport: " + e.getLocalizedMessage());
-                    }
-                } else if (childNode instanceof org.gcreator.fileclass.Folder) {
-                    putFolder((Folder) childNode, prefix + childNode.name + "/", out);
-                }
+    public static int compression = 5;
+    
+    static{
+        types.put(org.gcreator.fileclass.GameProject.class, "Game");
+    }
+    
+    public static void export(Project p, String location){
+        
+        try{
+            File fp = new File(location);
+            FileOutputStream fs = new FileOutputStream(fp);
+            ZipOutputStream zip = new ZipOutputStream(fs);
+            
+            zip.setLevel(compression);
+            
+            ZipEntry e = new ZipEntry("config");
+            
+            zip.putNextEntry(e);
+            zip.write(generateManifest(p).getBytes());
+            zip.closeEntry();
+            
+            exportFolder(zip, p, 1);
+            
+            zip.close();
+            fs.close();
+            
+        }
+        catch(IOException e){
+            System.out.println("IOException:" + e.toString());
+        }
+        
+    }
+    
+    public static int exportFolder(ZipOutputStream zip, Folder f, int i)
+        throws IOException{
+        
+        int c = i;
+        
+        Vector v = f.getChildren();
+        
+        for(Object o : v){
+            if(o instanceof GFile){
+                ZipEntry e = new ZipEntry("src/_" + c);
+                zip.putNextEntry(e);
+                
+                zip.closeEntry();
+                c++;
+            }
+            if(o instanceof Group){
+                c = exportFolder(zip, (Group) o, c);
             }
         }
+        
+        return c;
     }
-
-    public static String getConfigFile(Project project) {
-        String config = "<?xml version=\"1.0\"?>\n";
-        config += "<project version=\"1.0\">";
-        config += "<type>" + project.getClass().getName() + "</type>";
-        config += "<content>";
-        config += getContent("", project);
-        config += "</content>";
-        config += "</project>";
-        return config;
+    
+    public static String generateManifest(Project p) throws IOException{
+        String res = "<?xml version=\"1.0\">\n";
+        
+        res +=
+                "<project version=\"1.0\" type=\""
+                + types.get(p.getClass())
+                + "\">";
+        
+        res += generateManifestForFolder(p, "\t");
+        
+        res += "</project>";
+        
+        return res;
     }
-
-    public static String getContent(String prefix, Folder folder) {
-        String content = "";
-        org.gcreator.fileclass.GObject childNode;
-        for (int i = 0; i < folder.getChildArrayNum(); i++) {
-            if ((childNode = folder.childAt(i)) != null) {
-                content += "<file type=\"" + childNode.getClass().getName() + "\">" + prefix + childNode.name;
-                if (childNode instanceof org.gcreator.fileclass.GFile) {
-                    content += "." + ((org.gcreator.fileclass.GFile) childNode).type;
-                }
-                content += "</file>";
-                if (childNode instanceof Folder) {
-                    content += getContent(prefix + childNode.name + "/", (Folder) childNode);
-                }
+    
+    public static String generateManifestForFolder
+            (Folder f, String prefix) throws IOException {
+        String res = "";
+        
+        Vector v = f.getChildren();
+        
+        for(Object o : v){
+            if(o instanceof GFile){
+                res += prefix;
+                res += "<file type=\"";
+                res += ((GFile) o).type;
+                res += "\" manager=\"";
+                res += IOManager.getPreferredTypeFor((GFile) o);
+                res += "\">";
+                res += ((GFile) o).name;
+                res += "</file>\n";
+            }
+            else if(o instanceof Group){
+                res += prefix;
+                res += "<group type=\"";
+                res += IOManager.getSimpleNameFor((Group) o);
+                res += "\" name=\"" + ((Group) o).name;
+                res += "\">\n";
+                res += generateManifestForFolder((Group) o, prefix + "\t");
+                res += prefix;
+                res += "</group>\n";
             }
         }
-        return content;
+        
+        return res;
     }
 }

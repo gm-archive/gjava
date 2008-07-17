@@ -15,4 +15,8 @@ package org.gcreator.exceptions;
  */
 public class WrongResourceException extends Exception{
     public WrongResourceException(){}
+    
+    public WrongResourceException(String message){
+        super(message);
+    }
 }
