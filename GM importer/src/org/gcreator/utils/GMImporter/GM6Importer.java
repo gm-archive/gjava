@@ -936,7 +936,7 @@ public class GM6Importer {
             a.solid = in.readBool();
             a.visible = in.readBool();
             a.depth = in.read4();
-            a.persistant = in.readBool();
+            a.persistent = in.readBool();
             in.read4(); //parent
             in.read4(); //temp again for mask
             in.skip(4);
