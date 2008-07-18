@@ -37,6 +37,7 @@ public class GFile extends GObject implements Transferable {
      * ONLY TO BE USED BY IOManager!!!
      */
     public transient String _savetype = "";
+    public transient boolean _read = false;
     public String type; //If file is "a.txt", leave only "txt" here
     public transient org.gcreator.components.TabPanel tabPanel;//Used to kill any tabpanel when this is deleted. 
     public java.lang.Object value;

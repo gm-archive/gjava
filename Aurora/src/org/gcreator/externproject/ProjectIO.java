@@ -18,7 +18,7 @@ import java.util.HashMap;
  */
 public class ProjectIO {
     public static HashMap<String, Class> projectMap;
-    public static HashMap<String, Class> fileMap;
+    //public static HashMap<String, Class> fileMap;
     
     static {
         /* Initilize HashMaps*/
@@ -34,7 +34,7 @@ public class ProjectIO {
         projectMap.put("Module.Empty", org.gcreator.fileclass.ModuleProject.class);
         
         
-        fileMap = new HashMap<String, Class>(10);
+        /*fileMap = new HashMap<String, Class>(10);
         // Game
         fileMap.put("Game.File", org.gcreator.fileclass.GFile.class);
         fileMap.put("Game.ImageGroup", org.gcreator.fileclass.groups.ImageGroup.class);
@@ -52,7 +52,7 @@ public class ProjectIO {
         fileMap.put("Game.ImageGroup", org.gcreator.fileclass.groups.ImageGroup.class);
         fileMap.put("Game.GCLGroup", org.gcreator.fileclass.groups.GCLGroup.class);
         fileMap.put("Game.ActionGroup", org.gcreator.fileclass.groups.ActionGroup.class);
-        fileMap.put("Module.PlainGroup", org.gcreator.fileclass.Group.class);
+        fileMap.put("Module.PlainGroup", org.gcreator.fileclass.Group.class);*/
     }
     
     /*
