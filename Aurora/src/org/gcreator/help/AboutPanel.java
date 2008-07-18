@@ -10,6 +10,8 @@
 
 package org.gcreator.help;
 
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.*;
 
@@ -22,6 +24,14 @@ public class AboutPanel extends TabPanel {
     /** Creates new form AboutPanel */
     public AboutPanel() {
         initComponents();
+        jTabbedPane1.addChangeListener(new ChangeListener(){
+            public void stateChanged(ChangeEvent evt){
+                if(jTabbedPane1.getSelectedComponent() instanceof FancyAboutPanel)
+                    fancyAboutPanel1.begin();
+                else
+                    fancyAboutPanel1.end();
+            }
+        });
     }
     
     /** This method is called from within the constructor to
@@ -33,26 +43,34 @@ public class AboutPanel extends TabPanel {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jEditorPane2 = new javax.swing.JEditorPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        programmers1 = new org.gcreator.help.Programmers();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         fancyAboutPanel1 = new org.gcreator.help.FancyAboutPanel();
-        designers1 = new org.gcreator.help.Designers();
-        others1 = new org.gcreator.help.Others();
 
-        jPanel1.setLayout(new java.awt.BorderLayout());
+        setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14));
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png"))); // NOI18N
         jLabel2.setText("G-Creator 1.0 - Project \"Aurora\"");
-        jPanel1.add(jLabel2, java.awt.BorderLayout.NORTH);
+        jPanel2.add(jLabel2, java.awt.BorderLayout.NORTH);
+
+        jEditorPane2.setContentType("text/html");
+        jEditorPane2.setEditable(false);
+        jEditorPane2.setText("<html>\n  <head>\n\n  </head>\n  <body>\n    <div align=\"center\">Game Development Software</div>\n\n&emsp;&emsp;G-Creator 1.0 - codenamed \"Aurora\" - is a software(mainly game) development application.<br>\n&emsp;&emsp;Although it may sound similar to other Integrated Development Environments, it is designed to be much simpler, and yet still powerful.<br>\n&emsp;&emsp;G-Creator is free and open-source. However, it comes with no warranty. For more details, check \"License and Copyrights\".<br>\n&emsp;&emsp;If you want to know who made G-Creator possible, check our \"Credits\".\n  </body>\n</html>\n");
+        jScrollPane1.setViewportView(jEditorPane2);
+
+        jPanel2.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jTabbedPane1.addTab("About", jPanel2);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jEditorPane1.setEditable(false);
         jEditorPane1.setText("    G-Creator - Multiple languages and platforms game development.\n\n    Copyright (C) 2007-2008  Luís Reis\n    Copyright (C) 2007-2008  TGMG\n    Copyright (C) 2008 Serge Humphrey\n\n    This program is free software: you can redistribute it and/or modify\n    it under the terms of the GNU Lesser General Public License as published by\n    the Free Software Foundation, either version 3 of the License, or\n    (at your option) any later version.\n\n    This program is distributed in the hope that it will be useful,\n    but WITHOUT ANY WARRANTY; without even the implied warranty of\n    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the\n    GNU Lesser General Public License for more details.\n\n    You should have received a copy of the GNU Lesser General Public License\n    along with this program.  If not, see <http://www.gnu.org/licenses/>.");
@@ -60,87 +78,25 @@ public class AboutPanel extends TabPanel {
 
         jPanel1.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
-        jTabbedPane1.addTab("Main", jPanel1);
+        jTabbedPane1.addTab("License and Copyrights", jPanel1);
 
-        jScrollPane1.setViewportView(programmers1);
+        fancyAboutPanel1.setLayout(null);
+        jTabbedPane1.addTab("Credits", fancyAboutPanel1);
 
-        jTabbedPane1.addTab("Programmers", jScrollPane1);
-
-        jPanel2.setLayout(new java.awt.BorderLayout());
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Luís Reis", "Portuguese, English"},
-                {"B Biglari", "German"},
-                {"Jonathon Potapenko", "Russian"},
-                {"Peregrina", "Spanish (Most of it)"}
-            },
-            new String [] {
-                "Name", "Languages"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setEnabled(false);
-        jScrollPane2.setViewportView(jTable1);
-
-        jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
-
-        jLabel1.setText("Listed in order of contribution(Newer contributions appear in the bottom)");
-        jPanel2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
-
-        jTabbedPane1.addTab("Translators", jPanel2);
-        jTabbedPane1.addTab("Contributors", fancyAboutPanel1);
-        jTabbedPane1.addTab("Designers", designers1);
-        jTabbedPane1.addTab("Others", others1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        add(jTabbedPane1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.gcreator.help.Designers designers1;
     private org.gcreator.help.FancyAboutPanel fancyAboutPanel1;
     private javax.swing.JEditorPane jEditorPane1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JEditorPane jEditorPane2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private org.gcreator.help.Others others1;
-    private org.gcreator.help.Programmers programmers1;
     // End of variables declaration//GEN-END:variables
     
 }

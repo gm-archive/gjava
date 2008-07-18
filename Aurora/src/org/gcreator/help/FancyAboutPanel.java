@@ -41,30 +41,57 @@ public final class FancyAboutPanel extends javax.swing.JPanel {
         "Luís Reis", "Lead G-Creator Developer", 
         "TGMG", "G-Creator Developer",
         "Serge Humphrey", "G-Creator Developer",
+        // PlatformCore Programmers
+        "TGMG", "Lead (S)GCL And Compiler Developer",
         // G-Java Programmers
         "TGMG", "Lead G-Java Developer",
+        // GM Importer
+        "TGMG", "Lead GM Importer Developer",
+        "Luís Reis", "GM Importer Developer",
+        "LGM Team", "GM Format Documentation",
         // G-Creator Translators
         "Luís Reis", "Portuguese Translation",
         "B Biglari", "German Translation",
         "Johnathan Potapenko", "Russian Translation",
         "Luis Peregrina", "Spanish Translation",
+        //Art
+        "Luis Peregrina", "Lead G-Creator designer",
         // Starfish Programmers
         "Luís Reis", "Lead Starfish Developer",
         // Seagulls Programmers
         "Sleija", "Lead Seagulls Developer",
         "Piggy1", "Seagulls Developer",
+        //Special Thanks
+        "G-Creator Community", "Special Thanks",
+        "All our users", "Special Thanks"
     };
+    
+    private Timer ti = null;
+    
+    public void begin(){
+        t = 1.0;
+        person = 0;
+        rotation = 0.0;
+        doRotate = false;
+        didCall = false;
+        scale = 0.0;
+        ti.start();
+    }
+    
+    public void end(){
+        ti.stop();
+    }
     
     /** Creates new form FancyAboutPanel */
     public FancyAboutPanel() {
         initComponents();
-        new Timer(20, new ActionListener() {
+        ti = new Timer(20, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
                 update();
                 repaint();
             }
-        }).start();
+        });
     }
     
     private double scale;
@@ -143,15 +170,6 @@ public final class FancyAboutPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    public static void main(String[] args) {
-        JFrame f = new JFrame("The Machine");
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.add(new FancyAboutPanel());
-        f.setSize(640, 480);
-        f.setLocationRelativeTo(null);
-        f.setVisible(true);
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
