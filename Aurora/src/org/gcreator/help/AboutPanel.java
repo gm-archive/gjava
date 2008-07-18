@@ -22,9 +22,6 @@ public class AboutPanel extends TabPanel {
     /** Creates new form AboutPanel */
     public AboutPanel() {
         initComponents();
-        jScrollPane1.setViewportView(new Programmers());
-        jTabbedPane1.add("Designers", new Designers());
-        jTabbedPane1.add("Others", new Others());
     }
     
     /** This method is called from within the constructor to
@@ -41,10 +38,14 @@ public class AboutPanel extends TabPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jScrollPane1 = new javax.swing.JScrollPane();
+        programmers1 = new org.gcreator.help.Programmers();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        fancyAboutPanel1 = new org.gcreator.help.FancyAboutPanel();
+        designers1 = new org.gcreator.help.Designers();
+        others1 = new org.gcreator.help.Others();
 
         jPanel1.setLayout(new java.awt.BorderLayout());
 
@@ -60,6 +61,9 @@ public class AboutPanel extends TabPanel {
         jPanel1.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
         jTabbedPane1.addTab("Main", jPanel1);
+
+        jScrollPane1.setViewportView(programmers1);
+
         jTabbedPane1.addTab("Programmers", jScrollPane1);
 
         jPanel2.setLayout(new java.awt.BorderLayout());
@@ -99,6 +103,9 @@ public class AboutPanel extends TabPanel {
         jPanel2.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jTabbedPane1.addTab("Translators", jPanel2);
+        jTabbedPane1.addTab("Contributors", fancyAboutPanel1);
+        jTabbedPane1.addTab("Designers", designers1);
+        jTabbedPane1.addTab("Others", others1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -120,6 +127,8 @@ public class AboutPanel extends TabPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private org.gcreator.help.Designers designers1;
+    private org.gcreator.help.FancyAboutPanel fancyAboutPanel1;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -130,6 +139,8 @@ public class AboutPanel extends TabPanel {
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
+    private org.gcreator.help.Others others1;
+    private org.gcreator.help.Programmers programmers1;
     // End of variables declaration//GEN-END:variables
     
 }
