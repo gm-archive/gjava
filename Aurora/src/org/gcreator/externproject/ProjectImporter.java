@@ -7,25 +7,35 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-
 package org.gcreator.externproject;
 
 import java.awt.Component;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.gcreator.components.impl.ByteInputStream;
 import org.gcreator.components.impl.CustomFileFilter;
+import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.Project;
+import org.gcreator.managers.IOManager;
+import org.gcreator.managers.ProjectTree;
 import org.gcreator.sax.Node;
 import org.gcreator.sax.SAXParser;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 /**
@@ -33,160 +43,268 @@ import org.xml.sax.SAXException;
  * @author luis
  */
 public class ProjectImporter {
-    
+
     private static JFileChooser fc = new JFileChooser();
     
-    static{
+
+    static {
         fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
     }
-    
-    public static void OpenProject(Component caller){
+
+    public static void OpenProject(Component caller) {
         String fname = null;
         if (fc.showOpenDialog(caller) == JFileChooser.CANCEL_OPTION) {
             return;
         }
-        
+
         File file = fc.getSelectedFile();
-        if(file==null) return;
-        if(!file.exists()) return;
-        if(file.isDirectory()) return;
-        
+        if (file == null) {
+            return;
+        }
+        if (!file.exists()) {
+            return;
+        }
+        if (file.isDirectory()) {
+            return;
+        }
         ImportContext c = new ImportContext(file);
-        
-        try{
+
+        try {
             OpenProject(c);
-        } catch(IOException e){
-            JOptionPane.showMessageDialog(caller, "Could not load project:\n"
-                    + e.getMessage(), "Project I/O Error", JOptionPane.ERROR_MESSAGE);
-        } catch(SAXException e){
-            JOptionPane.showMessageDialog(caller, "Failed to load project:\n"
-                    + e.getMessage(), "Project SAX Error", JOptionPane.ERROR_MESSAGE);
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(caller, "Could not load project:\n" + e.getMessage(), "Project I/O Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SAXException e) {
+            JOptionPane.showMessageDialog(caller, "Failed to load project:\n" + e.getMessage(), "Project SAX Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public static void OpenProject(ImportContext c) throws IOException, SAXException{
+
+    public static void OpenProject(ImportContext c) throws IOException, SAXException {
         FileInputStream fs = new FileInputStream(c.getFile());
         ZipInputStream zip = new ZipInputStream(fs);
-        
+
         ZipEntry entry;
-        
+
         boolean manfound = false;
         String s = "";
         entry = zip.getNextEntry();
-        while(entry!=null){
-            if(entry.getName().equals("config")){
+        while (entry != null) {
+            if (entry.getName().equals("config")) {
                 manfound = true;
-                while(zip.available()>0){
+                while (zip.available() > 0) {
                     s += (byte) zip.read();
                 }
             }
             zip.closeEntry();
             entry = zip.getNextEntry();
         }
-        if(!manfound)
+        if (!manfound) {
             throw new IOException("Could not find project manifest");
+        }
         parseManifest(zip, c, s);
     }
-    
+
     private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
-    throws SAXException, IOException{
-        
+            throws SAXException, IOException {
+
         SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
-        if(root == null)
+        if (root == null) {
             throw new SAXException("No root node");
+        }
         String rname = root.getName();
-        if(rname==null||!rname.equals("project"))
+        if (rname == null || !rname.equals("project")) {
             throw new SAXException("Invalid root name: " + rname);
+        }
         String version = null;
         String type = null;
-        for(int i = 0; i < root.getAttributeCount(); i++){
+        for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
             String val = root.getAttributeValue(n);
-            if(n.equals("version")){
+            if (n.equals("version")) {
                 version = val;
                 continue;
             }
-            if(n.equals("type"))
+            if (n.equals("type")) {
                 type = val;
             //Ignore other attributes for forward-compatibility reasons
+            }
         }
-        if(version==null)
+        if (version == null) {
             throw new SAXException("Malformed project manifest: No project version specified");
-        if(!version.equals("1.0"))
-            throw new SAXException("Invalid version. The project may be from a future version of G-Creator.");
-        if(type==null)
-            throw new SAXException("Malformed project manifest: No project type specified.");
-        Class ptype = ProjectIO.projectMap.get(type);
-        if(ptype==null)
-            throw new SAXException("Unknown project type");
-        Constructor cons;
-        try{
-            cons = ptype.getConstructor();
         }
-        catch(NoSuchMethodException e){
+        if (!version.equals("1.0")) {
+            throw new SAXException("Invalid version. The project may be from a future version of G-Creator.");
+        }
+        if (type == null) {
+            throw new SAXException("Malformed project manifest: No project type specified.");
+        }
+        Class ptype = ProjectIO.projectMap.get(type);
+        if (ptype == null) {
+            throw new SAXException("Unknown project type");
+        }
+        Constructor cons;
+        try {
+            cons = ptype.getConstructor();
+        } catch (NoSuchMethodException e) {
             throw new SAXException("Project type does not own empty constructor");
         }
-        
+
         Project p;
-        try{
-             p = (Project) cons.newInstance();
-        }
-        catch(ClassCastException e){
+        try {
+            p = (Project) cons.newInstance();
+        } catch (ClassCastException e) {
             throw new SAXException("Type is not a project");
-        }
-        catch(InstantiationException e){
+        } catch (InstantiationException e) {
             throw new SAXException("Could not call constructor");
-        }
-        catch(IllegalAccessException e){
+        } catch (IllegalAccessException e) {
             throw new SAXException("Constructor must be marked as public");
-        }
-        catch(InvocationTargetException e){
+        } catch (InvocationTargetException e) {
             throw new SAXException("Constructor threw exception");
         }
-        
+
         String path = c.getFile().getAbsolutePath();
         String name = path.substring(path.lastIndexOf(File.separator));
         name = name.substring(name.indexOf("."));
-        
+
         p.name = name;
         p.location = path;
-        
+
         Method e;
-        try{
-             e = ptype.getMethod("balance");
-        }
-        catch(NoSuchMethodException ex){
+        try {
+            e = ptype.getMethod("balance");
+        } catch (NoSuchMethodException ex) {
             e = null;
         }
-        
+
         //Note: If the class has no "balance" function
         //do not fail. balance may not be needed in that
         //particular case
-        if(e!=null){
-            try{
+        if (e != null) {
+            try {
                 e.invoke(p);
-            }
-            catch(Exception ex){
+            } catch (Exception ex) {
                 //Ignore
             }
         }
-        
-        
-        
+
+        importFolder(p, root, c);
+
+        ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.panel.top);
+
     }
-    
-    private static ZipEntry getNextValidEntry(ZipInputStream s) throws IOException{
-        
-        ZipEntry z = s.getNextEntry();
-        
-        while(z.isDirectory()||!z.getName().matches("^src/_[0-9]+$")){
-            s.closeEntry();
-            z = s.getNextEntry();
-            if(z==null)
+
+    private static ZipEntry getNextValidEntry(ImportContext c) throws IOException {
+
+        ZipEntry z = c.zip.getNextEntry();
+
+        while (z.isDirectory() || !z.getName().matches("^src/_[0-9]+$")) {
+            c.zip.closeEntry();
+            z = c.zip.getNextEntry();
+            if (z == null) {
                 throw new IOException("Invalid number of files");
+            }
         }
-        
+
         return z;
+    }
+
+    private static void importFolder(Folder f, Node node, ImportContext c)
+            throws SAXException, IOException {
+        for (int i = 0; i < node.getChildrenCount(); i++) {
+            Node child = node.getChildAt(i);
+            String name = child.getName();
+
+            if (name.equals("file")) {
+                String fname = child.getContent();
+                String type = null;
+                String manager = null;
+                for (int j = 0; j < child.getAttributeCount(); j++) {
+                    String aname = child.getAttributeName(j);
+                    if (aname.equals("type")) {
+                        type = child.getAttributeValue(aname);
+                    } else if (aname.equals("manager")) {
+                        manager = child.getAttributeValue(aname);
+                    } else {
+                        throw new SAXException("Invalid manifest. Unknown file attribute " + aname);
+                    }
+                }
+                if (type == null) {
+                    throw new SAXException("Invalid manifest. Missing file type");
+                }
+                if (manager == null) {
+                    throw new SAXException("Invalid manifest. Missing content manager");
+                }
+                if (child.getChildrenCount() > 0) {
+                    throw new SAXException("Invalid manifest. Unexpected children for file.");
+                }
+                GFile file = new GFile(f, fname, type, null);
+                getNextValidEntry(c);
+                file.value = importContent(type, manager, c.zip);
+
+            } else if (name.equals("group")) {
+                if (child.getAttributeCount() != 2) {
+                    throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
+                }
+                String gname = null;
+                String gtype = null;
+                for (int j = 0; j < child.getAttributeCount(); j++) {
+                    String aname = child.getAttributeName(j);
+                    if (aname.equals("type")) {
+                        gtype = child.getAttributeValue(aname);
+                    } else if (aname.equals("name")) {
+                        gname = child.getAttributeValue(aname);
+                    } else {
+                        throw new SAXException("Invalid manifest. Unknown group attribute " + aname);
+                    }
+                }
+                Class cls = IOManager.getClassFrom(gtype);
+                Constructor con;
+                try {
+                    con = cls.getConstructor(Folder.class, String.class);
+                } catch (NoSuchMethodException e) {
+                    throw new SAXException("Could not find valid group constructor");
+                }
+
+                Group g;
+                try {
+                    g = (Group) con.newInstance(f, gname);
+                } catch (ClassCastException e) {
+                    throw new SAXException("Invalid group type: Type must extend class Group");
+                } catch (InstantiationException e) {
+                    throw new SAXException("Could not properly call group constructor");
+                } catch (IllegalAccessException e) {
+                    throw new SAXException("Group constructor must be marked as public");
+                } catch (InvocationTargetException e) {
+                    throw new SAXException("Group constructor threw an exception");
+                }
+                importFolder(g, child, c);
+            } else {
+                throw new SAXException("Invalid manifest. Unknown entry " + name);
+            }
+        }
+    }
+
+    public static Object importContent(String type, String manager, InputStream s)
+            throws IOException, SAXException {
+        if (manager.equals("PlainText")) {
+            String res = "";
+            while (s.available() > 0) {
+                res += (byte) s.read();
+            }
+            return res;
+        }
+        if (manager.equals("Image")) {
+            BufferedImage b = ImageIO.read(s);
+            return new ImageIcon(b);
+        }
+        if (manager.equals("Serialize")) {
+            ObjectInputStream stream = new ObjectInputStream(s);
+            try {
+                return stream.readObject();
+            } catch (ClassNotFoundException e) {
+                throw new IOException("Could not read serialized object: Class Not Found");
+            }
+        }
+        throw new SAXException("Invalid content manager and/or file type");
     }
 }

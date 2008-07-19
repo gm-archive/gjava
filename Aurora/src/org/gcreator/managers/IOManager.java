@@ -21,6 +21,7 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.Resource;
 import org.gcreator.fileclass.groups.*;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -58,6 +59,19 @@ public class IOManager {
         if(c==TimelineGroup.class) return "TimelineGroup";
         throw new IOException("Unknown simple type for"
                 + f.getClass().getName());
+    }
+    
+    public static Class getClassFrom(String name) throws SAXException{
+        if(name.equals("CodeGroup"))
+            return GCLGroup.class;
+        if(name.equals("Group"))
+            return Group.class;
+        try{
+            return Class.forName("org.gcreator.fileclass.groups." + name);
+        }
+        catch(Exception e){
+            throw new SAXException("Unknown group type " + name);
+        }
     }
     
     public static void writeFileAs(ZipOutputStream s, GFile f) throws IOException{
