@@ -13,6 +13,7 @@ package org.gcreator.externproject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Enumeration;
 import org.gcreator.managers.IOManager;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -29,14 +30,8 @@ import org.gcreator.fileclass.Project;
  * @author luis
  */
 public class ProjectExporter {
-    public static Hashtable<Class, String> types =
-            new Hashtable<Class, String>();
     
     public static int compression = 5;
-    
-    static{
-        types.put(org.gcreator.fileclass.GameProject.class, "Game");
-    }
     
     public static void export(Project p, String location){
         
@@ -91,10 +86,28 @@ public class ProjectExporter {
     public static String generateManifest(Project p) throws IOException{
         String res = "<?xml version=\"1.0\">\n";
         
-        res +=
-                "<project version=\"1.0\" type=\""
-                + types.get(p.getClass())
-                + "\">";
+        res += "<project version=\"1.0\" type=\"";
+        Class pc = p.getClass();
+        Enumeration<String> e = ProjectIO.projectMap.keys();
+        
+        String type = null;
+        
+        while(e.hasMoreElements()){
+            String s = e.nextElement();
+            Class c = ProjectIO.projectMap.get(s);
+            if(c==pc){
+                type = s;
+                break;
+            }
+        }
+        
+        if(type!=null){
+            res += type;
+        }
+        else
+            throw new IOException("Invalid project type");
+        
+        res += "\">";
         
         res += generateManifestForFolder(p, "\t");
         

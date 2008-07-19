@@ -143,10 +143,12 @@ public final class FancyAboutPanel extends javax.swing.JPanel {
         String description = contributors[person+1];
         g.rotate(rotation, getWidth() / 2, getHeight() / 2);
         g.setColor(Color.BLACK);
-        g.drawString(description, getWidth()/2-g.getFontMetrics().stringWidth(description)/2, (int)(getHeight()/3+g.getFontMetrics().getHeight()*0.8)+((int)(scale*100))/12);
+        int c1 = getWidth()/2-g.getFontMetrics().stringWidth(description)/2;
+        int c2 = (int)(getHeight()/3+g.getFontMetrics().getHeight()*0.8);
+        g.drawString(description, c1, c2+((int)(scale*100))/12);
         g.drawString(text, getWidth()/2-g.getFontMetrics().stringWidth(text)/2, getHeight()/2+g.getFontMetrics().getHeight()+((int)(scale*100))/12);
         g.setColor(Color.BLUE);
-        g.drawString(description, getWidth()/2-g.getFontMetrics().stringWidth(description)/2, (int)(getHeight()/3+g.getFontMetrics().getHeight()*0.8));
+        g.drawString(description, c1, c2);
         g.drawString(text, getWidth()/2-g.getFontMetrics().stringWidth(text)/2, getHeight()/2+g.getFontMetrics().getHeight());
     }
     /** This method is called from within the constructor to

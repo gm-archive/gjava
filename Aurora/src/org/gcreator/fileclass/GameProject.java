@@ -66,6 +66,10 @@ public class GameProject extends Project{
         return "Game";
     }
     
+    public static GameProject balance(){
+        return balance(ProjectTypes.EMPTY_GAME);
+    }
+    
     public static GameProject balance(int projectType){
         return (GameProject) balancedCreation(projectType);
     }

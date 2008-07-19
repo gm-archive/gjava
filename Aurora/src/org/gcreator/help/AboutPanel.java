@@ -56,7 +56,7 @@ public class AboutPanel extends TabPanel {
 
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/GCreator.png"))); // NOI18N
         jLabel2.setText("G-Creator 1.0 - Project \"Aurora\"");
         jPanel2.add(jLabel2, java.awt.BorderLayout.NORTH);
@@ -83,7 +83,7 @@ public class AboutPanel extends TabPanel {
         fancyAboutPanel1.setLayout(null);
         jTabbedPane1.addTab("Credits", fancyAboutPanel1);
 
-        add(jTabbedPane1, java.awt.BorderLayout.PAGE_START);
+        add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     
     

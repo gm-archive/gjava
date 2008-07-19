@@ -14,11 +14,16 @@ import java.awt.Component;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.gcreator.components.impl.ByteInputStream;
 import org.gcreator.components.impl.CustomFileFilter;
+import org.gcreator.fileclass.Project;
 import org.gcreator.sax.Node;
 import org.gcreator.sax.SAXParser;
 import org.xml.sax.SAXException;
@@ -66,23 +71,27 @@ public class ProjectImporter {
         ZipEntry entry;
         
         boolean manfound = false;
+        String s = "";
         entry = zip.getNextEntry();
         while(entry!=null){
             if(entry.getName().equals("config")){
                 manfound = true;
-                parseManifest(zip, c);
+                while(zip.available()>0){
+                    s += (byte) zip.read();
+                }
             }
             zip.closeEntry();
             entry = zip.getNextEntry();
         }
         if(!manfound)
             throw new IOException("Could not find project manifest");
+        parseManifest(zip, c, s);
     }
     
-    private static void parseManifest(ZipInputStream zip, ImportContext c)
+    private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
     throws SAXException, IOException{
         
-        SAXParser sax = new SAXParser(zip);
+        SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
         if(root == null)
             throw new SAXException("No root node");
@@ -108,5 +117,76 @@ public class ProjectImporter {
             throw new SAXException("Invalid version. The project may be from a future version of G-Creator.");
         if(type==null)
             throw new SAXException("Malformed project manifest: No project type specified.");
+        Class ptype = ProjectIO.projectMap.get(type);
+        if(ptype==null)
+            throw new SAXException("Unknown project type");
+        Constructor cons;
+        try{
+            cons = ptype.getConstructor();
+        }
+        catch(NoSuchMethodException e){
+            throw new SAXException("Project type does not own empty constructor");
+        }
+        
+        Project p;
+        try{
+             p = (Project) cons.newInstance();
+        }
+        catch(ClassCastException e){
+            throw new SAXException("Type is not a project");
+        }
+        catch(InstantiationException e){
+            throw new SAXException("Could not call constructor");
+        }
+        catch(IllegalAccessException e){
+            throw new SAXException("Constructor must be marked as public");
+        }
+        catch(InvocationTargetException e){
+            throw new SAXException("Constructor threw exception");
+        }
+        
+        String path = c.getFile().getAbsolutePath();
+        String name = path.substring(path.lastIndexOf(File.separator));
+        name = name.substring(name.indexOf("."));
+        
+        p.name = name;
+        p.location = path;
+        
+        Method e;
+        try{
+             e = ptype.getMethod("balance");
+        }
+        catch(NoSuchMethodException ex){
+            e = null;
+        }
+        
+        //Note: If the class has no "balance" function
+        //do not fail. balance may not be needed in that
+        //particular case
+        if(e!=null){
+            try{
+                e.invoke(p);
+            }
+            catch(Exception ex){
+                //Ignore
+            }
+        }
+        
+        
+        
+    }
+    
+    private static ZipEntry getNextValidEntry(ZipInputStream s) throws IOException{
+        
+        ZipEntry z = s.getNextEntry();
+        
+        while(z.isDirectory()||!z.getName().matches("^src/_[0-9]+$")){
+            s.closeEntry();
+            z = s.getNextEntry();
+            if(z==null)
+                throw new IOException("Invalid number of files");
+        }
+        
+        return z;
     }
 }

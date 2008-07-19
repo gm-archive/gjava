@@ -10,19 +10,19 @@
 
 package org.gcreator.externproject;
 
-import java.util.HashMap;
+import java.util.Hashtable;
 
 /**
  *
  * @author Serge Humphrey
  */
 public class ProjectIO {
-    public static HashMap<String, Class> projectMap;
+    public static Hashtable<String, Class> projectMap;
     //public static HashMap<String, Class> fileMap;
     
     static {
         /* Initilize HashMaps*/
-        projectMap = new HashMap<String, Class>(5);
+        projectMap = new Hashtable<String, Class>(5);
         
         //Game types
         projectMap.put("Game.Empty", org.gcreator.fileclass.GameProject.class);
