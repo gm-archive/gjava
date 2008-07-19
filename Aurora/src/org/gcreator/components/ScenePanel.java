@@ -138,14 +138,14 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
     @Override
     public int getWidth(){
         double zoom = root.getZoom();
-        return (int) (root.getMapWidth() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
+        return (int) (root.getMapWidth() / zoom + 10);
     }
     
      
     @Override
     public int getHeight(){
         double zoom = root.getZoom();
-        return (int) (root.getMapHeight() / zoom + (root.isGridVisible()&&!root.isIsometric() ? 1 : 0));
+        return (int) (root.getMapHeight() / zoom + 10);
     }
     
      
@@ -297,6 +297,14 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         if(root.isGridVisible()) {
             drawGrid(g);
         }
+        int w = getWidth();
+        int h = getHeight();
+        g.setColor(Color.WHITE);
+        g.fillRect(0, h-10, w, 10);
+        g.fillRect(w-10, 0, 10, h);
+        
+        g.setColor(Color.BLACK);
+        g.fillRect(w-10, h-10, 10, 10);
     }
     
     public void drawActors(Graphics g) {
@@ -335,8 +343,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                         ImageIcon h = f.getImageIconAt(0);
                         int x = (int) ((ascn.x - f.originX) / root.getZoom());
                         int y = (int) ((ascn.y - f.originY) / root.getZoom());
-                        int width = (int) (h.getIconWidth() / root.getZoom());
-                        int height = (int) (h.getIconHeight() / root.getZoom());
+                        int width = (int) ((h.getIconWidth()-10) / root.getZoom());
+                        int height = (int) ((h.getIconHeight()-10) / root.getZoom());
                         if(x>r.getX()+r.getWidth()||y>r.getY()+r.getHeight())
                             continue; //Don't bother drawing. It won't appear.
                         if(x+width<r.getX()||y+height<r.getY())
@@ -455,7 +463,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
         }
         else if(hrep==BackgroundInScene.MODE_STRETCH&&vrep==BackgroundInScene.MODE_SINGLE){
-            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            g.drawImage(i.getImage(), 0, 0, (int) ((((Scene) root.file.value).width) / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
         }
         else if(hrep==BackgroundInScene.MODE_STRETCH&&vrep==BackgroundInScene.MODE_STRETCH){
             g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()), 
