@@ -84,7 +84,7 @@ public class ProjectExporter {
     }
     
     public static String generateManifest(Project p) throws IOException{
-        String res = "<?xml version=\"1.0\">\n";
+        String res = "<?xml version=\"1.0\"?>\n";
         
         res += "<project version=\"1.0\" type=\"";
         Class pc = p.getClass();
@@ -107,7 +107,7 @@ public class ProjectExporter {
         else
             throw new IOException("Invalid project type");
         
-        res += "\">";
+        res += "\">\n";
         
         res += generateManifestForFolder(p, "\t");
         

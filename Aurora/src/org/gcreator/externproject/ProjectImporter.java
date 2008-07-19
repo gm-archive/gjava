@@ -35,7 +35,6 @@ import org.gcreator.managers.IOManager;
 import org.gcreator.managers.ProjectTree;
 import org.gcreator.sax.Node;
 import org.gcreator.sax.SAXParser;
-import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 /**
@@ -81,9 +80,10 @@ public class ProjectImporter {
     public static void OpenProject(ImportContext c) throws IOException, SAXException {
         FileInputStream fs = new FileInputStream(c.getFile());
         ZipInputStream zip = new ZipInputStream(fs);
+        c.zip = zip;
 
         ZipEntry entry;
-
+        
         boolean manfound = false;
         String s = "";
         entry = zip.getNextEntry();
@@ -91,12 +91,18 @@ public class ProjectImporter {
             if (entry.getName().equals("config")) {
                 manfound = true;
                 while (zip.available() > 0) {
-                    s += (byte) zip.read();
+                    int ch = zip.read();
+                    if(ch==-1) break;
+                    s += (char) ch;
                 }
+                zip.closeEntry();
+                break;
             }
             zip.closeEntry();
             entry = zip.getNextEntry();
         }
+        if(entry==null)
+            zip.closeEntry();
         if (!manfound) {
             throw new IOException("Could not find project manifest");
         }
@@ -105,7 +111,7 @@ public class ProjectImporter {
 
     private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
             throws SAXException, IOException {
-
+        System.out.println("s="+s);
         SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
         if (root == null) {
@@ -119,7 +125,9 @@ public class ProjectImporter {
         String type = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
+            System.out.println("n="+n);
             String val = root.getAttributeValue(n);
+            System.out.println("val="+val);
             if (n.equals("version")) {
                 version = val;
                 continue;
@@ -163,29 +171,26 @@ public class ProjectImporter {
         }
 
         String path = c.getFile().getAbsolutePath();
-        String name = path.substring(path.lastIndexOf(File.separator));
-        name = name.substring(name.indexOf("."));
+        String name = path.substring(path.lastIndexOf(File.separator)+1);
+        name = name.substring(0, name.indexOf("."));
 
         p.name = name;
         p.location = path;
 
-        Method e;
-        try {
-            e = ptype.getMethod("balance");
-        } catch (NoSuchMethodException ex) {
-            e = null;
-        }
+        //Method e;
+        //try {
+        //    e = ptype.getMethod("balance");
+        //} catch (NoSuchMethodException ex) {
+        //    e = null;
+        //}
 
-        //Note: If the class has no "balance" function
-        //do not fail. balance may not be needed in that
-        //particular case
-        if (e != null) {
-            try {
-                e.invoke(p);
-            } catch (Exception ex) {
-                //Ignore
-            }
-        }
+        //if (e != null) {
+        //    try {
+        //        e.invoke(p);
+        //    } catch (Exception ex) {
+        //        //Ignore
+        //    }
+        //}
 
         importFolder(p, root, c);
 
@@ -242,6 +247,7 @@ public class ProjectImporter {
                 file.value = importContent(type, manager, c.zip);
 
             } else if (name.equals("group")) {
+                System.out.println("Got to group");
                 if (child.getAttributeCount() != 2) {
                     throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
                 }
@@ -277,6 +283,7 @@ public class ProjectImporter {
                 } catch (InvocationTargetException e) {
                     throw new SAXException("Group constructor threw an exception");
                 }
+                f.add(g);
                 importFolder(g, child, c);
             } else {
                 throw new SAXException("Invalid manifest. Unknown entry " + name);

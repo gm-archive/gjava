@@ -32,6 +32,7 @@ public class Group extends Folder implements Serializable, Transferable {
         this.root = root;
        if (root instanceof Project)
            editable = false;
+        
     }
     
     public Folder magicAddition(String type){
