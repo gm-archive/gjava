@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<java version="1.6.0_10-beta" class="java.beans.XMLDecoder"> 
+ <boolean>true</boolean> 
+ <string>TOP</string> 
+ <string>English</string> 
+ <object class="javax.swing.plaf.metal.OceanTheme"/> 
+ <boolean>true</boolean> 
+ <string>LEFT</string> 
+ <object class="java.awt.Dimension"> 
+  <int>1032</int> 
+  <int>728</int> 
+ </object> 
+ <boolean>true</boolean> 
+ <string>Native</string> 
+ <boolean>true</boolean> 
+ <int>557</int> 
+</java> 

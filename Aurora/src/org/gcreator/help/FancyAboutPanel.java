@@ -25,7 +25,6 @@ import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.concurrent.TimeUnit;
-import javax.swing.JFrame;
 import javax.swing.Timer;
 import javax.swing.plaf.FontUIResource;
 
@@ -85,10 +84,12 @@ public final class FancyAboutPanel extends javax.swing.JPanel {
     /** Creates new form FancyAboutPanel */
     public FancyAboutPanel() {
         initComponents();
-        ti = new Timer(20, new ActionListener() {
+        ti = new Timer(20*slowness, new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {
-                update();
+                for (int i = 0; i < slowness; i++) {
+                    update();
+                }
                 repaint();
             }
         });
@@ -100,6 +101,7 @@ public final class FancyAboutPanel extends javax.swing.JPanel {
     private boolean doRotate;
     private boolean didCall;
     private int person;
+    private static final int slowness = 2;
     
     private void update() {
         if (!doRotate) {

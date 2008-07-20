@@ -16,6 +16,7 @@ import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 import java.util.Vector;
 import javax.swing.*;
+import org.gcreator.managers.Registry;
 
 /**
  * DiscMenu are a new way of dealing with menus.
@@ -233,7 +234,7 @@ public class DiscMenu extends DialogPlus {
         int r = 8;
         
         Graphics2D g = (Graphics2D) gg;
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, (org.gcreator.core.gcreator.panel.antialiasing)
+        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, (Boolean)Registry.get("Graphics.antialiasing")
                 ? RenderingHints.VALUE_ANTIALIAS_ON : RenderingHints.VALUE_ANTIALIAS_OFF);
         if (selection == index * 6 && index * 6 < curcontainer.count() && curcontainer.elementAt(index * 6).isEnabled()) {
             g.setColor(t2);

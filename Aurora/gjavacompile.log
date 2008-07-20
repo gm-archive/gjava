@@ -1,0 +1,100 @@
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:2: package com.golden.gamedev does not exist
+import com.golden.gamedev.GameLoader; import com.golden.gamedev.engine.graphics.WindowedMode;
+                          ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:2: package com.golden.gamedev.engine.graphics does not exist
+import com.golden.gamedev.GameLoader; import com.golden.gamedev.engine.graphics.WindowedMode;
+                                                                                ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:4: package org.gcreator.compilers.gjava.api does not exist
+import org.gcreator.compilers.gjava.api.*;
+^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:5: package org.gcreator.compilers.gjava.api.components does not exist
+import org.gcreator.compilers.gjava.api.components.*;
+^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:6: package org.gcreator.compilers.gjava.gtge does not exist
+import org.gcreator.compilers.gjava.gtge.Scene2D;
+                                         ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:8: package org.gcreator.compilers.gjava.gtge does not exist
+public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
+                                                           ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:9: cannot find symbol
+symbol  : class Sprite
+location: class org.gcreator.compilers.gjava.Game
+public static Sprite G_Creator_NULL_SPRITE;
+              ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:17: cannot find symbol
+symbol  : variable scenes
+location: class org.gcreator.compilers.gjava.Game
+scenes = new Scene2D[]{
+^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:17: cannot find symbol
+symbol  : class Scene2D
+location: class org.gcreator.compilers.gjava.Game
+scenes = new Scene2D[]{
+             ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:18: cannot find symbol
+symbol  : class sc_1
+location: class org.gcreator.compilers.gjava.Game
+new sc_1()
+    ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
+symbol  : variable newSprite1
+location: class org.gcreator.compilers.gjava.Game
+public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
+                            ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
+symbol  : class Sprite
+location: class org.gcreator.compilers.gjava.Game
+public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
+                                             ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
+symbol  : method getImage(java.lang.String)
+location: class org.gcreator.compilers.gjava.Game
+public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
+                                                                                                                         ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:23: cannot find symbol
+symbol  : variable Runningas
+location: class org.gcreator.compilers.gjava.Game
+       Runningas = "Application";
+       ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:24: cannot find symbol
+symbol  : variable game
+location: class org.gcreator.compilers.gjava.Game
+       game = new GameLoader();
+       ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:24: cannot find symbol
+symbol  : class GameLoader
+location: class org.gcreator.compilers.gjava.Game
+       game = new GameLoader();
+                  ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
+symbol  : variable game
+location: class org.gcreator.compilers.gjava.Game
+       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
+       ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
+symbol  : variable frame
+location: class org.gcreator.compilers.gjava.Game
+       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
+                                                              ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
+symbol  : class WindowedMode
+location: class org.gcreator.compilers.gjava.Game
+       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
+                                                                      ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
+symbol  : variable game
+location: class org.gcreator.compilers.gjava.Game
+       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
+                                                                                       ^
+Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:26: cannot find symbol
+symbol  : variable game
+location: class org.gcreator.compilers.gjava.Game
+       game.start();
+       ^
+21 errors
+Projects/Platform_Game1/Java/com : no such file or directory
+Exception in thread "Thread-13" java.lang.NoSuchFieldError: persistant
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:126)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)

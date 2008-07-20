@@ -9,10 +9,10 @@
  */
 package org.gcreator.core;
 
-//<editor-fold defaultstate="collapsed" desc="import">
-import java.awt.*;
-import javax.swing.*;
-//</editor-fold>
+import java.awt.BorderLayout;
+import java.awt.Window;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Aurwindow is G-Creator main frame.<br/>
@@ -21,36 +21,29 @@ import javax.swing.*;
  * @author Luís Reis
  * @author TGMG
  */
-public class Aurwindow extends JFrame implements ICore{
+public class Aurwindow extends JFrame implements ICore {
 
-    //<editor-fold defaultstate="collapsed" desc="Aurwindow">
-    protected Aurwindow(String[] settings) {
-       gcreator.panel = new GPanel(this, settings);
-       gcreator.panel.setVisible(true);
-       setLayout(new BorderLayout());
-       add(gcreator.panel, BorderLayout.CENTER);
-       setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-       //setLocation(0, 0);
-       //setSize(Toolkit.getDefaultToolkit().getScreenSize());
-       //setExtendedState(MAXIMIZED_BOTH);
-       //if((getExtendedState()&MAXIMIZED_BOTH)!=0){
-       //    System.out.println("MAXIMIZED");
-       //}
-       //else{
-       //    System.out.println("NOT MAXIMIZED");
-       //}
-       //setContentPane(gcreator.panel);
+    private static final long serialVersionUID = 1;
+
+    //<editor-fold defaultstate="expanded" desc="Aurwindow">
+    protected Aurwindow() {
+        setLocationByPlatform(true);
+        gcreator.panel = new GPanel(this);
+        gcreator.panel.setVisible(true);
+        setLayout(new BorderLayout());
+        add(gcreator.panel, BorderLayout.CENTER);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
     //</editor-fold>
-
     public void updateUI() {
         ((JPanel) this.getContentPane()).updateUI();
     }
-    
-    public void dispose(){
+
+    @Override
+    public void dispose() {
         gcreator.panel.dispose();
     }
-    
+
     //<editor-fold defaultstate="collapsed" desc="disposeIt">
     @Override
     public void disposeIt() {
@@ -58,8 +51,7 @@ public class Aurwindow extends JFrame implements ICore{
         super.dispose();
     }
     //</editor-fold>
-    
-    public Window getParentWindow(){
+    public Window getParentWindow() {
         return this;
     }
 }

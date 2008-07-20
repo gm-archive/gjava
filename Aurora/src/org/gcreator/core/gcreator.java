@@ -19,13 +19,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintStream;
 import java.net.URL;
-import java.net.URLClassLoader;
 import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
-import org.gcreator.plugins.*;
-import org.gcreator.managers.*;
-import org.gcreator.languages.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.LookAndFeel;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import javax.swing.plaf.metal.MetalTheme;
@@ -35,19 +34,36 @@ import org.gcreator.components.NewProject;
 import org.gcreator.components.SystemOutputReader;
 import org.gcreator.components.impl.DefaultToolbarItem;
 import org.gcreator.components.impl.ToolbarButton;
-import org.gcreator.components.navigator.*;
+import org.gcreator.components.navigator.NoFileSelectedNavigator;
+import org.gcreator.components.navigator.UnknownResourceNavigator;
 import org.gcreator.extended.JarClassLoader;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
+import org.gcreator.languages.English;
+import org.gcreator.languages.German;
+import org.gcreator.languages.GermanOld;
+import org.gcreator.languages.Portuguese;
+import org.gcreator.languages.Russian;
+import org.gcreator.languages.Spanish;
+import org.gcreator.managers.LangSupporter;
+import org.gcreator.managers.Registry;
+import org.gcreator.managers.ScriptThemeManager;
+import org.gcreator.managers.SettingsIO;
+import org.gcreator.managers.ToolbarManager;
+import org.gcreator.plugins.Jar;
+import org.gcreator.plugins.Plugger;
 import org.gcreator.threading.ThreadPool;
 import org.gcreator.units.SystemErrStream;
 import org.gcreator.units.SystemOutStream;
 
 /**
  *
- * @author Luís, TGMG
+ * @author Luís
+ * @author TGMG
+ * @author Serge Humphrey
  */
 public class gcreator {
+
     private static String[] arguments;
     public static final String version = "0.83"; //only use numbers as it is parsed to double for updating!
     public static Aurwindow window;
@@ -59,7 +75,6 @@ public class gcreator {
     private static String java_version = System.getProperty("java.version");
     public static String settingsLocation = "." + File.separator + "settings" + File.separator;
     public final static JarClassLoader lafLoader = new JarClassLoader();
-    
     /**
      * Use this to bypass printing stuff in the GUI components and print it directly to the <tt>System</tt>.
      * Use only for debuging and printing large amounts of data.
@@ -70,7 +85,7 @@ public class gcreator {
      * Use only for debuging and printing large amounts of data.
      */
     public static PrintStream debugErr = System.err;
-    
+
     static {
         //Tap into System.out and System.err
         new SystemOutputReader();
@@ -78,57 +93,53 @@ public class gcreator {
         System.setOut(SystemOutStream.instance);
         SystemErrStream.instance = new SystemErrStream(System.err);
         System.setErr(SystemErrStream.instance);
-        
-        //try {
+
+    //try {
             /*
-             * Ethos does not work very well when switching to another L&F.
-             * Is is also ugly and incredibly slow, therefore I have disabled it.
-             */
-            //Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
-            //SkinLookAndFeel.setSkin(skin);
-            //UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
-            //UIManager.setLookAndFeel(new SkinLookAndFeel());
-        //} catch (Exception exc) {
-        //    System.err.println("Exception_at gcreator<static>: "+exc);
-        //}
+     * Ethos does not work very well when switching to another L&F.
+     * Is is also ugly and incredibly slow, therefore I have disabled it.
+     */
+    //Skin skin = SkinLookAndFeel.loadThemePack(org.gcreator.utils.ethos.Plugin.class.getResource("/themepack.zip"));
+    //SkinLookAndFeel.setSkin(skin);
+    //UIManager.installLookAndFeel(new LookAndFeelInfo("Ethos", SkinLookAndFeel.class.getName()));
+    //UIManager.setLookAndFeel(new SkinLookAndFeel());
+    //} catch (Exception exc) {
+    //    System.err.println("Exception_at gcreator<static>: "+exc);
+    //}
     }
 
-
-    public static String[] getargs(){
+    public static String[] getargs() {
         return arguments;
     }
 
-    public static final String getJavaVersion(){
+    public static final String getJavaVersion() {
         return java_version;
     }
-    
     protected static boolean applet;
-    
+
     public static void main(String[] args) {
         applet = false;
         __main(args);
     }
-    
     protected static boolean plugload = true;
-    
-    public static void __main(String[] args, boolean plugload, boolean applet){
+
+    public static void __main(String[] args, boolean plugload, boolean applet) {
         gcreator.plugload = plugload;
         gcreator.applet = applet;
         __main(args);
     }
-    
+
     public static void __main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             loadLookandFeels();
-        }
-        catch(Exception exc) {
-            System.out.println("Exception: "+exc);
+        } catch (Exception exc) {
+            System.out.println("Exception: " + exc);
         }
         //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;
-        if(args!=null) {
+        if (args != null) {
             for (int i = 0; i < args.length; i++) {
                 System.out.println("args[" + i + "] = " + args[i]);
                 if (args[i].equals("-safe")) {
@@ -150,69 +161,47 @@ public class gcreator {
         }
         int ver = Integer.parseInt(gcreator.getJavaVersion().replaceAll("1\\.([0-9])\\..*", "$1"));
         System.out.println("Running Java version " + java_version);
-        if(!applet){
-        folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-		int location = folder.lastIndexOf("/");
-		folder = folder.substring(0,location+1);
-		folder = folder.replaceAll("file://","");
-		folder = folder.replaceAll("%20"," ");
-		folder = folder.substring(1);
-		folder = folder.replace("/","\\");
-                if (plugload) {
-                    Plugger.registerLoader();
-                }
+        if (!applet) {
+            folder = "" + gcreator.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            int location = folder.lastIndexOf("/");
+            folder = folder.substring(0, location + 1);
+            folder = folder.replaceAll("file://", "");
+            folder = folder.replaceAll("%20", " ");
+            folder = folder.substring(1);
+            folder = folder.replace("/", "\\");
+            if (plugload) {
+                Plugger.registerLoader();
+            }
         }
         if (ver <= 4) {
             plugload = false;
         }
         arguments = args;
-        
-                String[] settings = null;
-        
-        if(!applet){
-            settings = SettingsIO.loadSettings();
+        if (!applet) {
+            SettingsIO.loadSettings();
         }
 
-        if (settings == null) {
-            settings = new String[10];
-            //settings[0] = "Metal";
-            settings[0] = UIManager.getSystemLookAndFeelClassName();
-            settings[1] = "Tabs (Top)";
-            settings[2] = "Visible";
-            settings[3] = "English";
-            settings[4] = "Visible";
-            settings[5] = "Left";
-            settings[6] = "800, 600";
-            settings[7] = "true";
-            settings[8] = MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName();
-            settings[9] = "540";
-        }
-
-        if(ismdi||ver<6) {
-            settings[1] = "MDI";
-        }
-
-        LangSupporter.activeLang = new English();
-      
-        if (!settings[3].equals("English")) {
-            if (settings[3].equals("Portuguese (European)")) {
+        if (Registry.get("Global.language").equals("English")) {
+            LangSupporter.activeLang = new English();
+        } else if (((String)Registry.get("Global.language")).contains("Portuguese")) {
                 LangSupporter.activeLang = new Portuguese();
-            } else if (settings[3].equals("German")) {
-                LangSupporter.activeLang = new German();
-            } else if (settings[3].equals("German (Old)")) {
-                LangSupporter.activeLang = new GermanOld();
-            } else if (settings[3].equals("Russian")) {
-                LangSupporter.activeLang = new Russian();
-            } else if (settings[3].equals("Spanish")) {
-                LangSupporter.activeLang = new Spanish();
-            } else {
-                utilities.addError(36);
-            }
+        } else if (Registry.get("Global.language").equals("German")) {
+            LangSupporter.activeLang = new German();
+        } else if (Registry.get("Global.language").equals("German (Old)")) {
+            LangSupporter.activeLang = new GermanOld();
+        } else if (Registry.get("Global.language").equals("Russian")) {
+            LangSupporter.activeLang = new Russian();
+        } else if (Registry.get("Global.language").equals("Spanish")) {
+            LangSupporter.activeLang = new Spanish();
+        } else {
+            LangSupporter.activeLang = new English();
+            utilities.addError(36);
         }
+        
         try {
-            MetalLookAndFeel.setCurrentTheme((MetalTheme)Class.forName(settings[8]).newInstance());
+            MetalLookAndFeel.setCurrentTheme((MetalTheme) Registry.get("Graphics.metalTheme"));
         } catch (Exception exc) {
-            System.err.println("[gcreator:191]Exception: "+exc);
+            System.err.println("[gcreator:191]Exception: " + exc);
         }
         ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), 39);
         ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), 40);
@@ -232,113 +221,129 @@ public class gcreator {
         ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), 245);
         ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), 269);
         //ToolbarButton addsnippet = new DefaultToolbarItem("std_addSnippet", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsnippet.png")), 286);
-        
+
         newp.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(1, evt);
             }
         });
 
         opn.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(2, evt);
             }
         });
-        
+
         save.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(3, evt);
             }
         });
-        
+
         saveall.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(4, evt);
             }
         });
-        
+
         saveproj.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.SaveProject();
             }
         });
-        
+
         addimg.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(10, evt);
             }
         });
-        
+
         addspr.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(5, evt);
             }
         });
-        
+
         addtls.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(11, evt);
             }
         });
-        
+
         addpth.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(15, evt);
             }
         });
-        
+
         addsnd.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(6, evt);
             }
         });
-        
+
         addact.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(8, evt);
             }
         });
-        
+
         addscn.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(9, evt);
             }
         });
-        
+
 //        addcls.setActionListener(new ActionListener() {
 //            public void actionPerformed(ActionEvent evt) {
 //                window.onToolbarActionPerformed(7, evt);
 //            }
 //        });
-        
+
         addgs.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(13, evt);
             }
         });
-        
+
         addtml.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(12, evt);
             }
         });
-        
+
         addgr.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(14, evt);
             }
         });
-        
+
         addaction.setActionListener(new ActionListener() {
+
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(16, evt);
             }
         });
-        
+
         /*addsnippet.setActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                panel.onToolbarActionPerformed(17, evt);
-            }
+        public void actionPerformed(ActionEvent evt) {
+        panel.onToolbarActionPerformed(17, evt);
+        }
         });*/
 
         ToolbarManager.toolbuttons.add(newp);
@@ -359,7 +364,7 @@ public class gcreator {
         ToolbarManager.toolbuttons.add(addgs);
         ToolbarManager.toolbuttons.add(addgr);
         //ToolbarManager.toolbuttons.add(addsnippet);
-        
+
         /*Toolbar tool = new Toolbar();
         tool.horizontal = true;
         tool.first = true;
@@ -378,26 +383,25 @@ public class gcreator {
         tool.items.add(addscn);
         tool.items.add(addcls);
         ToolbarManager.toolbars.add(tool);*/
-         
+
         ScriptThemeManager.load();
-        
+
         if (!applet && plugload) {
             Plugger.onLoad();
             Plugger.onSplashStart();
         }
-        
+
         splash = new SplashScreen(applet);
-        
-        try{
+
+        try {
             ToolbarManager.parseToolbarFile("settings/toolbarList.gctl");
+        } catch (Exception e) {
+            System.out.println("Error while parsint toolbar file: " + e);
         }
-        catch(Exception e){
-            System.out.println("Error while parsint toolbar file: "+e);
-        }
-        
+
         //setup api list
         CreateApiList.setup();
-        
+
         //install LWJGL
 //      try {
 //          LWJGLInstaller.tempInstall();
@@ -407,23 +411,23 @@ public class gcreator {
 
         try {/*
             if (settings != null && settings[0] != null && settings[0].equals("Native")) {
-                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else if (settings == null || settings[0] == null || settings[0].equals("Cross-platform")) {
-                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.OceanTheme());
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             } else if (settings[0].equals("Motif")) {
-                UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
             } else if (settings[0].equals("Metal")) {
-                javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            javax.swing.plaf.metal.MetalLookAndFeel.setCurrentTheme(new javax.swing.plaf.metal.DefaultMetalTheme());
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
             }*/
-            if (settings[0].equalsIgnoreCase("Native")) {
+            if (Registry.get("Graphics.theme").equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             } else {
                 LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
                 int i;
                 for (i = 0; i < info.length; i++) {
-                    if (info[i].getClassName().equals(settings[0])) {
+                    if (info[i].getClassName().equals(Registry.get("Graphics.theme"))) {
                         try {
                             LookAndFeel look = (LookAndFeel) Class.forName(info[i].getClassName()).newInstance();
                             UIManager.setLookAndFeel(look);
@@ -438,33 +442,32 @@ public class gcreator {
                 }
             }
         } catch (Exception e) {
-            System.out.println("[gcreator]Exception Caught: "+e.getMessage());
+            System.out.println("[gcreator]Exception Caught: " + e.getMessage());
             e.printStackTrace();
         }
         //SystemOutputReader.instance.
-        if(splash!=null) {
+        if (splash != null) {
             SwingUtilities.updateComponentTreeUI(splash);
         }
         SwingUtilities.updateComponentTreeUI(SystemOutputReader.instance);
         splash.progressBar.setVisible(true);
-        
+
         if (!applet && plugload) {
             Plugger.onMainWindowStart();
         }
         //ActorEditor.setupActions();
-        window = new Aurwindow(settings);
-        gcreator.panel.antialiasing = Boolean.parseBoolean(settings[7]);
+        window = new Aurwindow();
         panel.console.setText(output);
-        gcreator.panel.globalsettings = new org.gcreator.components.GlobalSettings(settings);
+        gcreator.panel.globalsettings = new org.gcreator.components.GlobalSettings();
         gcreator.panel.newfilegroup = new NewFileGroup();
         gcreator.panel.newproject = new NewProject();
         gcreator.panel.about = new AboutPanel();
         gcreator.panel.nofileselnavigator = new NoFileSelectedNavigator();
         gcreator.panel.unkresnav = new UnknownResourceNavigator();
         window.setVisible(true);
-        if(splash!=null){
+        if (splash != null) {
             splash.fadeOut();
-            if(!applet&&plugload) {
+            if (!applet && plugload) {
                 Plugger.onSplashDispose();
             }
             panel.menubar.updateUI();
@@ -473,13 +476,14 @@ public class gcreator {
         // it doesn't seem to slow G-Creator down when it executes.
         // Test it yourself using the Sun Java 6 Console "JConsole" tool.
         ThreadPool.scheduledAtFixedRate(new Thread("Forced Garbage Collection") {
+
             @Override
             public void run() {
                 Runtime.getRuntime().gc();
             }
         }, 2000L, 3000L, TimeUnit.MILLISECONDS);
     }
-    
+
     private static void loadLookandFeels() throws Exception {
         //Load lookandfeels from /settings/LookAndFeels
         BufferedReader r = new BufferedReader(new FileReader(new File("settings/LookAndFeels")));
@@ -490,14 +494,14 @@ public class gcreator {
                 continue;
             }
             if (s.startsWith("jar")) {
-               lafLoader.addJar(new Jar(new URL(s.replaceAll("jar\\W*\\\"(.+)\\\"\\W*", "$1"))));
-            } else if (s.startsWith("lafname")){
+                lafLoader.addJar(new Jar(new URL(s.replaceAll("jar\\W*\\\"(.+)\\\"\\W*", "$1"))));
+            } else if (s.startsWith("lafname")) {
                 lafname = s.replaceAll("lafname\\W*\\\"(.+)\\\"\\W*", "$1");
             } else if (s.startsWith("laf")) {
                 if (lafname == null) {
                     throw new ParseException("Error while parsing /settings/LookAndFeels!", 0);
                 }
-                String laf = s.replaceAll("laf\\W*(.+)\\W*","$1");
+                String laf = s.replaceAll("laf\\W*(.+)\\W*", "$1");
                 UIManager.installLookAndFeel(lafname, laf);
                 lafname = null;
             }

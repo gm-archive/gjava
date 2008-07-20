@@ -21,28 +21,35 @@ import java.awt.event.ComponentListener;
  * @author  Luís
  */
 public class GlobalSettings extends TabPanel {
-    
+
     boolean b = false;
-    
+
     /** Creates new form GlobalSettings */
-    public GlobalSettings(final String[] settings) {
+    public GlobalSettings() {
         initComponents();
         jTabbedPane1.add("Language", new LanguageTab());
         jTabbedPane1.add("Toolbars", new ToolbarEditor());
         jTabbedPane1.add("Script Editor", new StyleThemePreferences());
-        this.addComponentListener(new ComponentListener(){
-            public void componentHidden(ComponentEvent evt){}
-            public void componentShown(ComponentEvent evt){
+        this.addComponentListener(new ComponentListener() {
+
+            public void componentHidden(ComponentEvent evt) {
+            }
+
+            public void componentShown(ComponentEvent evt) {
                 if (!b) {
-                    jTabbedPane1.add("User interface", new PreferencesTab(settings));
+                    jTabbedPane1.add("User interface", new PreferencesTab());
                     b = true;
                 }
             }
-            public void componentMoved(ComponentEvent evt){}
-            public void componentResized(ComponentEvent evt){}
+
+            public void componentMoved(ComponentEvent evt) {
+            }
+
+            public void componentResized(ComponentEvent evt) {
+            }
         });
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -68,23 +75,22 @@ public class GlobalSettings extends TabPanel {
             .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    public void dispose(){
+    @Override
+    public void dispose() {
         int len = jTabbedPane1.getTabCount();
-        for(int i = 0; i < len; i++){
+        for (int i = 0; i < len; i++) {
             Component p = jTabbedPane1.getComponentAt(i);
-            if(p instanceof OptionPanel)
-                if(!((OptionPanel) p).dispose())
+            if (p instanceof OptionPanel) {
+                if (!((OptionPanel) p).dispose()) {
                     return;
+                }
+            }
         }
         super.dispose();
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     public javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
-    
 }

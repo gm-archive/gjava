@@ -22,6 +22,11 @@ import javax.swing.plaf.metal.OceanTheme;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
 import org.gcreator.themes.HappyTheme;
+import sun.themes.AquaTheme;
+import sun.themes.CharcoalTheme;
+import sun.themes.ContrastTheme;
+import sun.themes.EmeraldTheme;
+import sun.themes.RubyTheme;
 
 /**
  *
@@ -31,13 +36,18 @@ public class PreferencesTab extends OptionPanel {
     
     public static Vector<MetalTheme> themes;
     /** Creates new form PreferencesTab */
-    public PreferencesTab(String[] settings) {
+    public PreferencesTab() {
         initComponents();
         if (themes == null) {
             themes = new Vector<MetalTheme>(8);
+            themes.add(new AquaTheme());
+            themes.add(new CharcoalTheme());
+            themes.add(new ContrastTheme());
             themes.add(new DefaultMetalTheme());
+            themes.add(new EmeraldTheme());
             themes.add(new HappyTheme());
             themes.add(new OceanTheme());
+            themes.add(new RubyTheme());
         }
         jComboBox3.setModel(new DefaultComboBoxModel() {
             private static final long serialVersionUID = 1;
@@ -72,16 +82,16 @@ public class PreferencesTab extends OptionPanel {
         // jComboBox1.setSelectedIndex(0);
         // 
         try {
-            if (settings[0] == null) {
+            if (Registry.get("Graphics.theme") == null) {
                 throw new Exception();//Lazy way of going to the catch statement below.
-            } else if (settings[0].equalsIgnoreCase("Native")) {
+            } else if (Registry.get("Graphics.theme").equals("Native")) {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
                 jComboBox1.setSelectedIndex(0);
             } else {
                 LookAndFeelInfo[] info = UIManager.getInstalledLookAndFeels();
                 int i;
                 for (i = 0; i < info.length; i++) {
-                    if (info[i].getClassName().equals(settings[0])) {
+                    if (info[i].getClassName().equals(Registry.get("Graphics.theme"))) {
                         i++;
                         break;
                     }
@@ -90,37 +100,23 @@ public class PreferencesTab extends OptionPanel {
             }
 
         } catch (Exception e) {
-            jComboBox1.setSelectedIndex(0); 
-        //gcreator.window.look = i;
-            /*
-        jComboBox1.setSelectedIndex(1);
-        gcreator.window.look = 1;*/
+            jComboBox1.setSelectedIndex(0);
         }
+        
 
-        jComboBox2.setSelectedIndex(0);
-
-        if (settings[1].equals("MDI")) {
+        if (Registry.get("Window.desktop").equals("MDI")) {
             jComboBox2.setSelectedIndex(4);
-        //items[MenuSupporter.GenerateMenuItemId(6, 4)].setSelected(true);
-        //onItemActionPerformed(6, 4, null);
+        } else if (Registry.get("Window.desktop").equals("LEFT")) {
+            jComboBox2.setSelectedIndex(1);
+        } else if (Registry.get("Window.desktop").equals("BOTTOM")) {
+            jComboBox2.setSelectedIndex(2);
+        } else if (Registry.get("Window.desktop").equals("RIGHT")) {
+            jComboBox2.setSelectedIndex(3);
+        } else {
+            jComboBox2.setSelectedIndex(0);
         }
-        if (settings[1].equals("Tabs (Left)")) {
-            jComboBox2.setSelectedIndex(4);
-        //items[MenuSupporter.GenerateMenuItemId(6, 1)].setSelected(true);
-        //onItemActionPerformed(6, 1, null);
-        }
-        if (settings[1].equals("Tabs (Bottom)")) {
-            jComboBox2.setSelectedIndex(4);
-        //items[MenuSupporter.GenerateMenuItemId(6, 2)].setSelected(true);
-        //onItemActionPerformed(6, 2, null);
-        }
-        if (settings[1].equals("Tabs (Right)")) {
-            jComboBox2.setSelectedIndex(4);
-        //items[MenuSupporter.GenerateMenuItemId(6, 3)].setSelected(true);
-        //onItemActionPerformed(6, 3, null);
-        }
-
-        jCheckBox1.setSelected(Boolean.parseBoolean(settings[7]));
+        
+        jCheckBox1.setSelected((Boolean)Registry.get("Graphics.antialiasing"));
         jComboBox2ActionPerformed(null);
         findMetalTheme();
     }
@@ -384,15 +380,19 @@ public class PreferencesTab extends OptionPanel {
             switch (sel) {
                 case 0:
                     gcreator.panel.tabs.setTabPlacement(JTabbedPane.TOP);
+                    Registry.set("Window.desktop", "TOP");
                     break;
                 case 1:
                     gcreator.panel.tabs.setTabPlacement(JTabbedPane.LEFT);
+                    Registry.set("Window.desktop", "LEFT");
                     break;
                 case 2:
                     gcreator.panel.tabs.setTabPlacement(JTabbedPane.BOTTOM);
+                    Registry.set("Window.desktop", "BOTTOM");
                     break;
                 case 3:
                     gcreator.panel.tabs.setTabPlacement(JTabbedPane.RIGHT);
+                    Registry.set("Window.desktop", "RIGHT");
                     break;
             }
         } catch (Exception e) {
@@ -426,11 +426,12 @@ public class PreferencesTab extends OptionPanel {
                     }
                 }
             }
+            Registry.set("Window.desktop", "MDI");
         }
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        gcreator.panel.antialiasing = jCheckBox1.isSelected();
+        Registry.set("Graphics.antialiasing", jCheckBox1.isSelected());
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed

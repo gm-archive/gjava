@@ -112,7 +112,7 @@ public class ProjectImporter {
 
     private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
             throws SAXException, IOException {
-        System.out.println("s="+s);
+    //    System.out.println("s="+s);
         SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
         if (root == null) {
@@ -126,9 +126,9 @@ public class ProjectImporter {
         String type = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
-            System.out.println("n="+n);
+       //     System.out.println("n="+n);
             String val = root.getAttributeValue(n);
-            System.out.println("val="+val);
+      //      System.out.println("val="+val);
             if (n.equals("version")) {
                 version = val;
                 continue;

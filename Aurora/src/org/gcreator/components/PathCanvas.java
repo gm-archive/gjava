@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import org.gcreator.core.GPanel;
 import org.gcreator.core.gcreator;
 import org.gcreator.editors.PathEditor;
+import org.gcreator.managers.Registry;
 import org.gcreator.units.PathNode;
 
 /**
@@ -110,15 +111,17 @@ public class PathCanvas extends JPanel {
         
         g.setColor(Color.WHITE);
         g.fillRect(0,0, getWidth(), getHeight());
-        if(editor.path.showGrid)
+        if(editor.path.showGrid) {
             paintGrid(g);
+        }
         drawPath(g);
         Graphics2D g2 = (Graphics2D)g;
-        setAntialiasing(g2, gcreator.panel.antialiasing);
+        setAntialiasing(g2, (Boolean)Registry.get("Graphics.antialiasing"));
         for (int i = 0; i < nodes.size(); i++) {
             PathNode p = nodes.get(i);
-            if (p == selectedNode)
+            if (p == selectedNode) {
                 continue;
+            }
             g2.setColor(Color.BLUE);
             g2.fillOval(p.x-d/2, p.y-d/2, d,d);
             g2.setColor(new Color(0,0,0,0.5F));
@@ -180,7 +183,7 @@ public class PathCanvas extends JPanel {
 
     private void drawPath(java.awt.Graphics g) {
         Graphics2D g2 = (Graphics2D)g.create();
-        setAntialiasing(g2, gcreator.panel.antialiasing);
+        setAntialiasing(g2, (Boolean)Registry.get("Graphics.antialiasing"));
         boolean smooth = editor.smoothCurves;
         int size = nodes.size();
         

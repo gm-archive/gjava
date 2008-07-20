@@ -20,7 +20,6 @@ import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.resource.ResourceChooser;
 import org.gcreator.units.*;
 import org.gcreator.core.*;
-import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;

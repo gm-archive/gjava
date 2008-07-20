@@ -63,7 +63,6 @@ public class GPanel extends JPanel {
     public JTextPane console;
     public JToolBar tool;
     public String lang;
-    public boolean antialiasing;
     public WorkspaceTree workspace;
     public JScrollPane treescroll;
     private static Project mainProject;
@@ -92,7 +91,7 @@ public class GPanel extends JPanel {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="GPanel (Constructor)">
-    public GPanel(ICore icore, String[] settings) {
+    public GPanel(ICore icore) {
         this.icore = icore;
 
         try {
@@ -148,7 +147,6 @@ public class GPanel extends JPanel {
         navroot = new JPanel();
         navroot.setLayout(new BorderLayout());
         /*new FileDrop(this, new FileDrop.Listener() {
-        
         @Override
         public void filesDropped(java.io.File[] files) {
         // handle file drop
@@ -156,7 +154,6 @@ public class GPanel extends JPanel {
         }
         }   // end filesDropped
         }); // end FileDrop.Listener*/
-        SettingsIO.console = console;
 
         consolepopup = new ConsolePopupMenu();
         console.addMouseListener(new PopupListener(console, consolepopup));
@@ -304,7 +301,7 @@ public class GPanel extends JPanel {
         splitter2.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         splitter1.setLeftComponent(splitter2);
         splitter1.setRightComponent(scroller);
-        if (settings == null || settings.length < 6 || settings[5] == null || !settings[5].equals("Right")) {
+        if (Registry.get("Window.treePosition") == null || !Registry.get("Window.treePosition").equals("Right")) {
             splitter2.setLeftComponent(navigatorTabs);
             splitter2.setRightComponent(tabs);
             items[MenuSupporter.GenerateMenuItemId(15, 0)].setSelected(true);
@@ -450,12 +447,8 @@ public class GPanel extends JPanel {
                 splitter1.updateUI();
             }
         });
-        try {
-            dividerLocation = Integer.parseInt(settings[9]);
-        } catch (NumberFormatException exc) {
-            dividerLocation = 540;
-        }
-        if (settings[2].equals("Hidden")) {
+        dividerLocation = (Integer) Registry.get("Window.consoleLocation");
+        if (((Boolean) Registry.get("Window.showConsole")) == false) {
             onItemActionPerformed(2, 0, null);
         } else {
             items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(true);
@@ -483,8 +476,7 @@ public class GPanel extends JPanel {
         items[MenuSupporter.GenerateMenuItemId(5, 1)].setSelected(true);
         look = 1;
         }*/
-
-        if (settings[4].equals("Visible")) {
+        if (((Boolean) Registry.get("Window.showToolbar")) == true) {
             showToolbars = true;
             //tool.setVisible(true);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(true);
@@ -497,16 +489,10 @@ public class GPanel extends JPanel {
             rightContainer.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-
-        //pack();
-        int w = 800;
-        int h = 600;
-        try {
-            w = Integer.parseInt(settings[6].replaceAll("([0-9]+), ([0-9]+)", "$1"));
-            h = Integer.parseInt(settings[6].replaceAll("([0-9]+), ([0-9]+)", "$2"));
-        } catch (Exception e) {
-        }
-        icore.setSize(w, h);
+        
+        Dimension d = (Dimension) Registry.get("Window.size");
+        icore.setSize(d.width, d.height);
+        
         splitter2.setDividerLocation(159);
         splitter1.setDividerSize(10);
         splitter2.setDividerSize(5);
@@ -519,11 +505,37 @@ public class GPanel extends JPanel {
             updateToDefaultNavigatorPanel(welcome);
         }
         setMinimumSize(new Dimension(200, 200));
-        if (settings[6].equals("True")) {
+        if (((Boolean) Registry.get("Window.maximized")) == true) {
             icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
         } else {
             icore.setExtendedState(JFrame.NORMAL);
         }
+        String desktop = (String) Registry.get("Window.desktop");
+        if (desktop.equals("TOP")) {
+        } else if (desktop.equals("LEFT")) {
+            tabs.setTabPlacement(JTabbedPane.LEFT);
+        } else if (desktop.equals("BOTTOM")) {
+            tabs.setTabPlacement(JTabbedPane.BOTTOM);
+        } else if (desktop.equals("RIGHT")) {
+            tabs.setTabPlacement(JTabbedPane.RIGHT);
+        } else if (desktop.equals("MDI")) {
+            this.istabs = false;
+            int k = this.splitter2.getDividerLocation();
+            this.tabs.setVisible(false);
+            this.mdi.setVisible(true);
+            if (this.isWorkspaceLeft()) {
+                this.splitter2.setRightComponent(this.mdi);
+                if (this.splitter2.getRightComponent().isVisible()) {
+                    this.splitter2.setDividerLocation(k);
+                }
+            } else {
+                this.splitter2.setLeftComponent(this.mdi);
+                if (this.splitter2.getLeftComponent().isVisible()) {
+                    this.splitter2.setDividerLocation(k);
+                }
+            }
+        }
+        
         statusbar.setStandardText("Done");
         statusbar.restoreText();
         statusbar.getProgressBar().setVisible(false);
@@ -856,9 +868,9 @@ public class GPanel extends JPanel {
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
         } else if (file.type.equals("egml") || file.type.equals("gcl")) {
-            //TabPanel tp = new GCLEditor(file, this.getCurrentProject());
-            //file.tabPanel = tp;
-            //addEWindow(tp, file.name, img);
+        //TabPanel tp = new GCLEditor(file, this.getCurrentProject());
+        //file.tabPanel = tp;
+        //addEWindow(tp, file.name, img);
         } else if (file.type.equals("gs")) {
             TabPanel tp = new ScriptEditor(file, this.getCurrentProject());
             file.tabPanel = tp;
@@ -971,7 +983,7 @@ public class GPanel extends JPanel {
     //</editor-fold>
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
-        SettingsIO.saveSettings(istabs, scroller.isVisible());
+        SettingsIO.saveSettings();
         try {
             ToolbarManager.writeToolbarFile("settings/toolbarList.gctl");
         } catch (IOException e) {
@@ -1048,13 +1060,10 @@ public class GPanel extends JPanel {
             try {
             if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && ((ExtendedFrame) mdi.getComponent(i)).getPanel().project == null) {
             ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
-            
             return;
             } else if (((ExtendedFrame) mdi.getComponent(i)).getTitle().equals(title) && (((ExtendedFrame) mdi.getComponent(i)).getPanel().project.equals(this.getCurrentProject()))) {
             try {
-            
             ((ExtendedFrame) mdi.getComponent(i)).setSelected(true);
-            
             return;
             } catch (PropertyVetoException ex) {
             Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
@@ -1310,9 +1319,7 @@ public class GPanel extends JPanel {
             Dimension a = this.getSize();
             int b = icore.getExtendedState();
             scroller.setVisible(!scroller.isVisible());
-            //pack();
-            //this.setSize(a);
-            //this.setExtendedState(b);
+            Registry.set("Window.showConsole", scroller.isVisible());
             this.repaint();
             splitter1.setDividerLocation(dividerLocation);
         }
@@ -1406,7 +1413,6 @@ public class GPanel extends JPanel {
         splitter2.setDividerLocation(k);
         }
         }
-        
         istabs = false;
         Component[] panels = tabs.getComponents();
         for (int i = 0; i < panels.length; i++) {
@@ -1445,24 +1451,24 @@ public class GPanel extends JPanel {
             updateToDefaultNavigatorPanel(welcome);
         }
         if (menu == 8 && item == 0) {
-            //PlayMacroDialog dialog = new PlayMacroDialog(this, true);
-            //dialog.setVisible(true);
+        //PlayMacroDialog dialog = new PlayMacroDialog(this, true);
+        //dialog.setVisible(true);
         }
         if (menu == 8 && item == 2) {
             String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
             if (mname != null && mname.length() > 0) {
-                /*if (MacroLibrary.findMacro(mname) != null) {
-                JOptionPane.showMessageDialog(this,
-                LangSupporter.activeLang.getEntry(177),
-                LangSupporter.activeLang.getEntry(176),
-                JOptionPane.ERROR_MESSAGE);
-                } else {
-                MacroLibrary.addMacro(Macro.record(mname));
-                }*/
+            /*if (MacroLibrary.findMacro(mname) != null) {
+            JOptionPane.showMessageDialog(this,
+            LangSupporter.activeLang.getEntry(177),
+            LangSupporter.activeLang.getEntry(176),
+            JOptionPane.ERROR_MESSAGE);
+            } else {
+            MacroLibrary.addMacro(Macro.record(mname));
+            }*/
             }
         }
         if (menu == 8 && item == 3) {
-            //Macro.recordingMacro = null;
+        //Macro.recordingMacro = null;
         }
         if (menu == 10 && item == 0) {
             chooseImage.showDialog(this, null);

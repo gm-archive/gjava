@@ -6,227 +6,75 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package org.gcreator.managers;
 
-import java.awt.*;
-import java.io.*;
-import org.gcreator.exceptions.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
-import org.gcreator.core.*;
-import org.w3c.dom.*;
-import javax.xml.parsers.*;
-import org.xml.sax.*;
+import org.gcreator.core.gcreator;
+import org.gcreator.core.utilities;
 
 /**
  *
  * @author Luís
  */
-public class SettingsIO {
-    public static JTextPane console;
+public final class SettingsIO {
 
-    private static void addError(int message) {
-        addFormatedMessage(message, "red", true);
+    /* Don't allow instantation.
+     */
+    private SettingsIO() {
     }
-    
-    private static void addStringMessage(String message){
-        addStringFormatedMessage(message, null, false);
-    }
+    private static final File registry = new File(gcreator.settingsLocation + "registry.xml");
 
-    private static void addFormatedMessage(int message, String color, boolean bold) {
-        addStringFormatedMessage(LangSupporter.activeLang.getEntry(message), color, bold);
-    }
-
-    private static void addStringFormatedMessage(String message, String color, boolean bold) {
-        String out = "";
-        if (color != null) {
-            out += "<font color='" + color + "'>";
-        }
-        if (bold) {
-            out += "<b>";
-        }
-        out += message;
-        if (bold) {
-            out += "</b>";
-        }
-        if (color != null) {
-            out += "</font>";
-        }
-        out += "<br/>";
-        gcreator.output += out;
-        if(gcreator.output!=null&&console!=null)
-            console.setText(gcreator.output);
-    }
-
-    public static void saveSettings(boolean istabs, boolean scrollvisible) {
-        File a = new File("settings/settings.xml");
-        if (!a.exists()) {
-            try {
-                a.createNewFile();
-            } catch (IOException e) {
-                addError(30);
-            }
-        }
+    public static void saveSettings() {
+        savetoRegistry();
         try {
-            FileWriter b = new FileWriter("settings/settings.xml");
-            BufferedWriter out = new BufferedWriter(b);
-            out.write("<?xml version = \"1.0\"?>\n");
-            out.write("<settings>");
-            out.write("<style>");
-            //out.write(UIManager.getInstalledLookAndFeels()[look].getName());
-            if (UIManager.getLookAndFeel().getClass().getName().equals(UIManager.getSystemLookAndFeelClassName()))
-                out.write("Native");
-            else
-                out.write(UIManager.getLookAndFeel().getClass().getName());
-            out.write("</style>");
-            out.write("<desktop>");
-            if (istabs) {
-                out.write("Tabs ");
-                if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.TOP)
-                    out.write("(Top)");
-                else if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.LEFT)
-                    out.write("(Left)");
-                else if(gcreator.panel.tabs.getTabPlacement()==JTabbedPane.BOTTOM)
-                    out.write("(Bottom)");
-                else
-                    out.write("(Right)");
-            } else {
-                out.write("MDI");
-            }
-            out.write("</desktop>");
-            out.write("<console>");
-            out.write(scrollvisible ? "Visible" : "Hidden");
-            out.write("</console>");
-            out.write("<language>");
-            out.write(gcreator.panel.lang);
-            out.write("</language>");
-            out.write("<toolbar>");
-            out.write(gcreator.panel.showToolbars ? "Visible" : "Hidden");
-            out.write("</toolbar>");
-            out.write("<tree>");
-            if(gcreator.panel.splitter2.getLeftComponent()==gcreator.panel.treescroll){
-                out.write("Left");
-            }
-            else if(gcreator.panel.splitter2.getRightComponent()==gcreator.panel.treescroll){
-                out.write("Right");
-            }
-            else{
-                addStringFormatedMessage("Invalid tree position-setting to Left", "red", false);
-                out.write("Left");
-            }
-            out.write("</tree>");
-            out.write("<size>");
-            out.write(gcreator.window.getWidth() + ", " + gcreator.window.getHeight());
-            out.write("</size>");
-            out.write("<antialiasing>");
-            out.write(""+gcreator.panel.antialiasing);
-            out.write("</antialiasing>");
-            out.write("<theme>");
-            out.write(MetalLookAndFeel.getCurrentTheme().getClass().getCanonicalName());
-            out.write("</theme>");
-            out.write("<consoleboxlocation>");
-            out.write(gcreator.panel.splitter1.getDividerLocation()+"");
-            out.write("</consoleboxlocation>");
-            out.write("</settings>");
-            out.close();
+            Registry.writeXML(registry);
         } catch (IOException e) {
-            addError(31);
-            addStringFormatedMessage(e.getMessage(), null, false);
+            utilities.addError(31);
+            utilities.addStringFormatedMessage(e.getMessage(), null, false);
         }
     }
 
-    public static String[] loadSettings() {
-        File target = new File("settings/settings.xml");
-        if (!target.exists()) {
-            addStringFormatedMessage(target.getAbsolutePath() + " does not exist", null, false);
-            try{
-                target.createNewFile();
-            }
-            catch(Exception e){}
-            return null;
+    public static void loadSettings() {
+        try {
+            Registry.readXML(registry);
+        } catch (IOException ex) {
+            Logger.getLogger(SettingsIO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            registerRegistry();
         }
-        String[] a = new String[10];
-        a[0] = null;
-        a[1] = null;
-        a[2] = null;
-        a[3] = null;
-        a[4] = null;
-        a[5] = null;
-        a[6] = null;
-        a[7] = null;
-        a[8] = null;
-        a[9] = null;
-        DocumentBuilderFactory fact = DocumentBuilderFactory.newInstance();
-        //SAXParserFactory fact = SAXParserFactory.newInstance();
-        DocumentBuilder builder;
-        Document doc;
-        try{
-            builder = fact.newDocumentBuilder();
-            doc = builder.parse("settings/settings.xml");
-            Node node = doc.getDocumentElement();
-            String root = node.getNodeName();
-            if(!root.equals("settings")){
-                addError(33);
-                return null;
-            }
-            NodeList childs = node.getChildNodes();
-            Node child;
-            for(int i = 0; i < childs.getLength(); i++){
-                child = childs.item(i);
-                String name = child.getNodeName();
-                int id = -1;
-                if(name.equals("style")) {
-                    id = 0;
-                }
-                else if(name.equals("desktop")) {
-                    id = 1;
-                }
-                else if(name.equals("console")) {
-                    id = 2;
-                }
-                else if(name.equals("language")) {
-                    id = 3;
-                }
-                else if(name.equals("toolbar")) {
-                    id = 4;
-                }
-                else if(name.equals("tree")) {
-                    id = 5;
-                }
-                else if(name.equals("size")) {
-                    id = 6;
-                }
-                else if(name.equals("antialiasing")) {
-                    id = 7;
-                }
-                else if(name.equals("theme")) {
-                    id = 8;
-                }
-                else if(name.equals("consoleboxlocation")) {
-                    id = 9;
-                }
-                if(id==-1){
-                    addError(33);
-                    addStringFormatedMessage(name, null, true);
-                    return null;
-                }
-                if(a[id]!=null) {
-                    addError(34);
-                }
-                a[id] = child.getTextContent(); //1.4 
-            }
-            if(a[0]==null||a[1]==null||a[2]==null||a[3]==null||a[4]==null||a[5]==null||a[6]==null||a[7]==null||a[8]==null||a[9]==null){
-                addError(35);
-            }
-            return a;
-        }
-        catch(Exception e)
-        {
-            //the following 2 lines are out to make it run!
-          //  addError(32);
-           // addStringFormatedMessage(e.getMessage(), null, false);
-            return null;
-        }
+    }
+
+    private static void registerRegistry() {
+        Registry.create("Graphics.theme", "Native");
+        Registry.create("Window.desktop", "TOP");
+        Registry.create("Window.showConsole", false);
+        Registry.create("Global.language", "English");
+        Registry.create("Window.showToolbar", true);
+        Registry.create("Window.treePosition", "LEFT");
+        Registry.create("Window.size", new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width * 4 / 5,
+                Toolkit.getDefaultToolkit().getScreenSize().height * 4 / 5));
+        Registry.create("Graphics.antialiasing", true);
+        Registry.create("Graphics.metalTheme", MetalLookAndFeel.getCurrentTheme());
+        Registry.create("Window.consoleLocation", 540);
+        Registry.create("Window.maximized", false);
+    }
+
+    private static void savetoRegistry() {
+        Registry.set("Graphics.theme", ((UIManager.getLookAndFeel().getClass().getName().
+                equals(UIManager.getSystemLookAndFeelClassName()))
+                ? "Native" : UIManager.getLookAndFeel().getClass().getName()));
+        Registry.set("Window.size", gcreator.window.getSize());
+        Registry.set("Graphics.metalTheme", MetalLookAndFeel.getCurrentTheme());
+        Registry.set("Window.consoleLocation", gcreator.panel.splitter1.getDividerLocation());
+        Registry.set("Window.maximized", gcreator.window.getExtendedState() == Frame.MAXIMIZED_BOTH);
     }
 }

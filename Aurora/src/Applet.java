@@ -51,7 +51,7 @@ public class Applet extends JApplet implements ICore {
         settings[7] = "true";
 
         gcreator.settingsLocation = "http://g-creator.org/applet/";
-        gcreator.panel = new GPanel(this, settings);
+        gcreator.panel = new GPanel(this);
         add(gcreator.panel, BorderLayout.CENTER);
     }
 
