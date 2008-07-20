@@ -9,7 +9,7 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 
 /**
      * Good games require careful timing of things happening. Fortunately G-Java does most of the timing for you.
@@ -23,7 +23,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
         /**
          * Number of frames that are actually drawn per second.
          */
-        public static double fps = basicgame.Current.averageFPS;
+        public static double fps = Basicgame.Current.getFPS();
         /**
          * Number of milliseconds that have passed since the system was started.
          */

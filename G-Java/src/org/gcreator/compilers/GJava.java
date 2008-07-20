@@ -121,9 +121,9 @@ public class GJava extends PlatformCore {
             print(actor, "");
             print(actor, "    " + f.name + "(int X,int Y,double instance_id) {");
             if (a.sprite == null) {
-                print(actor, "        super(\"" + f.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistant+");");
+                print(actor, "        super(\"" + f.name + "\", null, "+a.solid +", "+a.visible+", "+a.depth+", "+a.persistent+");");
             } else {
-                print(actor, "        super(\"" + f.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistant+");");
+                print(actor, "        super(\"" + f.name + "\", Game." + a.sprite.name + ","+a.solid +", "+a.visible+", "+a.depth+".0 , "+a.persistent+");");
             }
             print(actor, "        xstart = X;xprevious=X;yprevious=Y;");
             print(actor, "        ystart = Y;");

@@ -11,7 +11,7 @@ package org.gcreator.compilers.gjava.api;
 
 import java.util.Vector;
 import org.gcreator.compilers.gjava.api.Actor;
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 
 /**
      * <h2>Instances</h2>
@@ -29,7 +29,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @return
          */
         public static int count() {
-            return basicgame.Current.instances.size();
+            return Basicgame.Current.instances.size();
         }
 
         /**
@@ -38,7 +38,7 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @return
          */
         public static Actor get_actor(int id) {
-            return (Actor) basicgame.Current.instances.get(id);
+            return (Actor) Basicgame.Current.instances.get(id);
         }
         
          /**
@@ -49,8 +49,8 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          */
         public static void create(double x, double y, Actor act) {
             // (act.getClass()) instance = new act.getClass()(x,y,basicgame.Current.instance_id);
-            basicgame.Current.instance_id += 1;
-            basicgame.Current.SortDepth();
+            //Basicgame.Current.instance_id += 1;
+            Basicgame.Current.SortDepth();
             // basicgame.Current.instances.add(0, instance);
         }
 
@@ -70,15 +70,15 @@ import org.gcreator.compilers.gjava.java2d.basicgame;
          * @param notme
          */
         public static void instance_deactivate_all(Actor act, boolean notme) {
-            basicgame.Current.deactivated = basicgame.Current.instances;
-            basicgame.Current.instances = new Vector();
+            Basicgame.Current.deactivated = Basicgame.Current.instances;
+            Basicgame.Current.instances = new Vector();
         }
 
         /**
          * Activates all instances in the room.
          */
         public static void instance_activate_all() {
-            basicgame.Current.instances.addAll(basicgame.Current.deactivated);
+            Basicgame.Current.instances.addAll(Basicgame.Current.deactivated);
         }
     }
 

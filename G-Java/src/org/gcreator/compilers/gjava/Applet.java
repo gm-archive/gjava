@@ -6,7 +6,7 @@
 package org.gcreator.compilers.gjava;
 
 import com.golden.gamedev.GameLoader;
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 
 /**
  *

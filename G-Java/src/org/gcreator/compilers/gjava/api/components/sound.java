@@ -1,6 +1,6 @@
 package org.gcreator.compilers.gjava.api.components;
 
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 import org.gcreator.compilers.gjava.api.res.TimedAudioClip;
 
 /**
@@ -71,7 +71,7 @@ public class sound extends Thread
 	public void run()
 		{
 		// AudioClip audioClip = applet.getAudioClip(baseURL, relativeURL);
-		sound = new TimedAudioClip(basicgame.applet.newAudioClip(getClass().getResource(sound_name)));
+		sound = new TimedAudioClip(Basicgame.applet.newAudioClip(getClass().getResource(sound_name)));
 		// soundList.putClip(audioClip, relativeURL);
 		}
 

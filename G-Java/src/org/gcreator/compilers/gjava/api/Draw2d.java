@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 
 public class Draw2d {
  static Graphics g;
@@ -17,9 +17,9 @@ public class Draw2d {
      * @param col Color to clear the room to
      */
     public static void clear(Color col) {
-        if (basicgame.Current.graphics != null) {
-            basicgame.Current.graphics.setColor(col);
-            basicgame.Current.graphics.fillRect(0, 0, basicgame.Current.width, basicgame.Current.height);
+        if (Basicgame.Current.graphics != null) {
+            Basicgame.Current.graphics.setColor(col);
+            Basicgame.Current.graphics.fillRect(0, 0, Basicgame.Current.width, basicgame.Current.height);
         }
     }
 

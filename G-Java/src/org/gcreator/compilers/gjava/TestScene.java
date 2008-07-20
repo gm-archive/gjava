@@ -4,10 +4,10 @@
  */
 
 package org.gcreator.compilers.gjava;
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import org.gcreator.compilers.gjava.gtge.Basicgame;
 import java.awt.Color;
-import org.gcreator.compilers.gjava.java2d.Scene2D;
-import org.gcreator.compilers.gjava.core.*;
+import org.gcreator.compilers.gjava.gtge.Scene2D;
+//import org.gcreator.compilers.gjava.core.*;
 
 /**
  *
@@ -17,7 +17,7 @@ public class TestScene extends Scene2D {
 
     TestScene()
     {
-       super(basicgame.frame,"caption",30,200,300,Color.BLUE); 
+       super(Basicgame.frame,"caption",30,200,300,Color.BLUE); 
     }
     
 }

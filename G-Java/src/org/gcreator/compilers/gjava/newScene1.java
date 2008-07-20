@@ -1,7 +1,7 @@
 package org.gcreator.compilers.gjava;
 
 import java.awt.Color;
-import org.gcreator.compilers.gjava.core.*;
+//import org.gcreator.compilers.gjava.core.*;
 import org.gcreator.compilers.gjava.api.*;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
