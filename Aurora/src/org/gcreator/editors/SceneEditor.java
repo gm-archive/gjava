@@ -24,8 +24,6 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
-
-import publicdomain.*;
 //</editor-fold>
 /**
  *

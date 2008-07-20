@@ -3,7 +3,7 @@
  * http://www.javapractices.com/Topic82.cjp
  */
 
-package org.gcreator.clipboard;
+package org.gcreator.managers;
 
 import java.awt.datatransfer.*;
 import java.awt.*;

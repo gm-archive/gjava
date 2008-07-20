@@ -19,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JScrollBar;
 import javax.swing.text.BadLocationException;
-import org.gcreator.autocomplete.gscript.GSFunctions;
+import org.gcreator.autocomplete.GSFunctions;
 import org.gcreator.autocomplete.impl.CKeywordSuggestion;
 import org.gcreator.autocomplete.impl.ClassSuggestion;
 import org.gcreator.autocomplete.impl.FunctionSuggestion;

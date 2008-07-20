@@ -19,7 +19,6 @@ import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
 
 import org.gcreator.managers.LangSupporter;
-import publicdomain.*;
 
 /**
  *

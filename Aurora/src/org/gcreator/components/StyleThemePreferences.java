@@ -18,7 +18,6 @@ import javax.swing.border.BevelBorder;
 import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.VectorListModel;
 import org.gcreator.managers.ScriptThemeManager;
-import publicdomain.*;
 
 /**
  *

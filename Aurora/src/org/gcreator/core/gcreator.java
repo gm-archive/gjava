@@ -11,6 +11,7 @@ package org.gcreator.core;
 
 //import com.l2fprod.gui.plaf.skin.Skin;
 //import com.l2fprod.gui.plaf.skin.SkinLookAndFeel;
+import org.gcreator.managers.ClipboardManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -23,7 +24,6 @@ import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 import org.gcreator.plugins.*;
 import org.gcreator.managers.*;
-import org.gcreator.clipboard.*;
 import org.gcreator.languages.*;
 import javax.swing.*;
 import javax.swing.UIManager.LookAndFeelInfo;

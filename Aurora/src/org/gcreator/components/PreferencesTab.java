@@ -22,11 +22,6 @@ import javax.swing.plaf.metal.OceanTheme;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
 import org.gcreator.themes.HappyTheme;
-import publicdomain.AquaTheme;
-import publicdomain.CharcoalTheme;
-import publicdomain.ContrastTheme;
-import publicdomain.EmeraldTheme;
-import publicdomain.RubyTheme;
 
 /**
  *
@@ -40,14 +35,9 @@ public class PreferencesTab extends OptionPanel {
         initComponents();
         if (themes == null) {
             themes = new Vector<MetalTheme>(8);
-            themes.add(new AquaTheme());
-            themes.add(new CharcoalTheme());
-            themes.add(new ContrastTheme());
             themes.add(new DefaultMetalTheme());
-            themes.add(new EmeraldTheme());
             themes.add(new HappyTheme());
             themes.add(new OceanTheme());
-            themes.add(new RubyTheme());
         }
         jComboBox3.setModel(new DefaultComboBoxModel() {
             private static final long serialVersionUID = 1;

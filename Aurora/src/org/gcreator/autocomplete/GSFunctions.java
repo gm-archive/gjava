@@ -7,7 +7,7 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-package org.gcreator.autocomplete.gscript;
+package org.gcreator.autocomplete;
 
 import java.util.Vector;
 import org.gcreator.autocomplete.impl.FunctionSuggestion;

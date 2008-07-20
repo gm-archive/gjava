@@ -17,7 +17,7 @@ import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
 import org.gcreator.extended.JarClassLoader;
 import org.gcreator.plugins.*;
-import org.gcreator.utilities.FileUtilities;
+import org.gcreator.core.utilities;
 
 /**
  *
@@ -265,7 +265,7 @@ public class PluginDialog extends JDialog {
             f2stream.close();
             in.close();
             //Copy the jar file.
-            FileUtilities.copyFile(f, new File("./plugins/jars"));
+            utilities.copyFile(f, new File("./plugins/jars"));
         } catch(IOException e) {
         }
         if (failed) {
