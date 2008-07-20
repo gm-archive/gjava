@@ -177,8 +177,8 @@ public class Actor extends tile {
     public void Move() {
         System.out.println("v:"+vspeed+"H:"+hspeed+" gd:"+getGravity_direction()+"grav:"+getGravity().getDouble());
         //use gravity
-        hspeed += Math.sin(getGravity_direction().getInt()* 180 / Math.PI) * getGravity().getDouble();
-        vspeed -= (Math.cos(getGravity_direction().getInt()) * 180 / Math.PI) * getGravity().getDouble();
+        hspeed += Math.sin(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble();
+        vspeed -= (Math.cos(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble();
                 System.out.println("v2:"+vspeed+"H2:"+hspeed);
 
         //use friction
