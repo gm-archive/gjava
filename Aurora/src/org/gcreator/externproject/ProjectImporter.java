@@ -307,7 +307,7 @@ public class ProjectImporter {
             return res;
         }
         if (manager.equals("File")) {
-            File file = File.createTempFile("gcreator_tmp_", "/" + name + "." + type);
+            File file = File.createTempFile("gc_tmp_", "." + type);
             FileOutputStream fs = new FileOutputStream(file);
             int i = s.read();
             while(i!=-1){

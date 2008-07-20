@@ -16,7 +16,10 @@ import com.golden.gamedev.engine.BaseAudio;
 import com.golden.gamedev.engine.BaseAudioRenderer;
 import com.golden.gamedev.engine.audio.MidiRenderer;
 import com.golden.gamedev.engine.audio.WaveRenderer;
+import java.awt.Color;
 import java.net.URL;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 
 /**
@@ -39,6 +42,31 @@ public class SoundEditor extends TabPanel {
         }
         initComponents();
         updateComponents();
+        jTextField1.setText(file.name);
+        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
+            public void changedUpdate(DocumentEvent evt){
+                perform();
+            }
+            public void removeUpdate(DocumentEvent evt){
+                perform();
+            }
+            public void insertUpdate(DocumentEvent evt){
+                perform();
+            }
+        });
+        perform();
+    }
+    
+    public void perform(){
+        String name = jTextField1.getText();
+        if(name.matches("[a-zA-Z_][a-zA-Z_0-9]*")){
+            jTextField1.setBackground(Color.WHITE);
+            file.name = name;
+            org.gcreator.core.gcreator.panel.workspace.updateUI();
+        }
+        else{
+            jTextField1.setBackground(Color.RED);
+        }
     }
     
     public void dispose(){
@@ -49,12 +77,10 @@ public class SoundEditor extends TabPanel {
     
     public void updateComponents(){
         if(efile==null){
-            jLabel1.setText("Sound: <null>");
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
         }
         else{
-            jLabel1.setText("Sound: " + efile.getName());
             jButton2.setEnabled(true);
             jButton3.setEnabled(true);
         }
@@ -88,6 +114,7 @@ public class SoundEditor extends TabPanel {
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
 
         jLabel1.setText("Sound: ");
 
@@ -131,8 +158,10 @@ public class SoundEditor extends TabPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
+
+        jTextField1.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,7 +173,9 @@ public class SoundEditor extends TabPanel {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -154,7 +185,8 @@ public class SoundEditor extends TabPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -178,10 +210,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         String cp = efile.getCanonicalPath();
         String type = cp.substring(cp.lastIndexOf(".")+1);
         if(type.equals("mid")){
+            file.type = "mid";
             midi.setVolume(1.0f);
             midi.play(efile.toURI().toURL());
         }
         else if(type.equals("wav")){
+            file.type = "wav";
             System.out.println("Got here");
             wave.setVolume(1.0f);
             wave.play(efile.toURI().toURL());
@@ -231,6 +265,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }
