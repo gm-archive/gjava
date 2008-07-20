@@ -17,6 +17,6 @@
 ;   laf com.webdomain.lookandfeels.plastic.PlasticLookAndFeel
 ;
 
-jar "file:////home/bob/NetBeansProjects/G-Java/BobLookAndFeel/dist/BobLookAndFeel.jar"
-lafname = "Bob Look&Feel"
-laf org.gcreator.bob.boblook.BobLookAndFeel
+;jar "file:////home/bob/NetBeansProjects/G-Java/BobLookAndFeel/dist/BobLookAndFeel.jar"
+;lafname = "Bob Look&Feel"
+;laf org.gcreator.bob.boblook.BobLookAndFeel
