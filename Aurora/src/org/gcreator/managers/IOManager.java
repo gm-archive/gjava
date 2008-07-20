@@ -11,6 +11,8 @@
 package org.gcreator.managers;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.zip.ZipOutputStream;
@@ -30,12 +32,16 @@ import org.xml.sax.SAXException;
 public class IOManager {
     public static String getPreferredTypeFor(GFile f) throws IOException{
         Object o = f.value;
+        if(o==null)
+            return f._savetype = "Null";
         if(o instanceof String)
             return f._savetype = "PlainText";
         if(o instanceof ImageIcon)
             return f._savetype = "Image";
         if(o instanceof BufferedImage)
             return f._savetype = "Image";
+        if(o instanceof File) //java.io
+            return f._savetype = "File";
         if(o instanceof Resource)
             return f._savetype = "Serialize";
         throw new IOException("Unknown preferred type for"
@@ -77,7 +83,20 @@ public class IOManager {
     public static void writeFileAs(ZipOutputStream s, GFile f) throws IOException{
         String str = f._savetype;
         
-        if(str.equals("PlainText")){
+        if(str.equals("Null")){
+            //Don't do anything
+        }
+        else if(str.equals("File")){
+            File file = (File) f.value;
+            FileInputStream fs = new FileInputStream(file);
+            int i = fs.read();
+            while(i!=-1){
+                s.write(i);
+                i = fs.read();
+            }
+            fs.close();
+        }
+        else if(str.equals("PlainText")){
             String val = f.value.toString();
             s.write(val.getBytes());
         }

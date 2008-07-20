@@ -13,6 +13,7 @@ import java.awt.Component;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
@@ -244,7 +245,7 @@ public class ProjectImporter {
                 }
                 GFile file = new GFile(f, fname, type, null);
                 getNextValidEntry(c);
-                file.value = importContent(type, manager, c.zip);
+                file.value = importContent(type, manager, fname, c.zip);
 
             } else if (name.equals("group")) {
                 System.out.println("Got to group");
@@ -291,14 +292,30 @@ public class ProjectImporter {
         }
     }
 
-    public static Object importContent(String type, String manager, InputStream s)
+    public static Object importContent(String type, String manager, String name, InputStream s)
             throws IOException, SAXException {
+        if(manager.equals("Null")){
+            return null;
+        }
         if (manager.equals("PlainText")) {
             String res = "";
-            while (s.available() > 0) {
-                res += (byte) s.read();
+            int i = s.read();
+            while (i!=-1) {
+                res += (char) i;
+                i = s.read();
             }
             return res;
+        }
+        if (manager.equals("File")) {
+            File file = File.createTempFile("gcreator_tmp_", "/" + name + "." + type);
+            FileOutputStream fs = new FileOutputStream(file);
+            int i = s.read();
+            while(i!=-1){
+                fs.write(i);
+                i = s.read();
+            }
+            fs.close();
+            return file;
         }
         if (manager.equals("Image")) {
             BufferedImage b = ImageIO.read(s);

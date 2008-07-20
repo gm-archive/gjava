@@ -18,9 +18,14 @@ public class JFileFilter extends FileFilter {
     private String filter;
     private String desc;
 
-    public JFileFilter(String a, String b) {
-        filter = a;
-        desc = b;
+    /**
+     * 
+     * @param filter The filter regular expression
+     * @param desc The description
+     */
+    public JFileFilter(String filter, String desc) {
+        this.filter = filter;
+        this.desc = desc;
     }
 
     public boolean accept(File f) {
@@ -28,9 +33,9 @@ public class JFileFilter extends FileFilter {
             return true;
         }
         String fname = f.getName().toLowerCase();
-        if (fname.matches(filter)) {
+        String[] s = filter.split("|");
+        if(fname.matches(filter))
             return true;
-        }
         return false;
     }
 

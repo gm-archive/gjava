@@ -1,215 +1,152 @@
 /*
- * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
- * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
- * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
- * 
- * This file is part of G-Creator.
- * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
- * See LICENSE for more details.
+ * SoundEditor.java
+ *
+ * Created on 20 de Julho de 2008, 13:45
  */
 
 package org.gcreator.editors;
 
-import com.jmex.audio.AudioSystem;
-import com.jmex.audio.AudioTrack;
-import com.jmex.audio.openal.OpenALStreamedAudioPlayer;
-import com.jmex.audio.player.MemoryAudioPlayer;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipInputStream;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import org.gcreator.components.JFileFilter;
 import org.gcreator.components.TabPanel;
-import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
-import org.gcreator.utilities.FileUtilities;
+import com.golden.gamedev.engine.BaseAudio;
+import com.golden.gamedev.engine.BaseAudioRenderer;
+import com.golden.gamedev.engine.audio.MidiRenderer;
+import com.golden.gamedev.engine.audio.WaveRenderer;
+import java.net.URL;
+
 
 /**
  *
- * @author  Serge Humphrey
+ * @author  luis
  */
 public class SoundEditor extends TabPanel {
-    private static final long serialVersionUID = 1;
-    protected AudioSystem system;
-    protected File sndFile;
-    protected AudioTrack track;
-    protected static File fileDirectory;
+
+    public File efile = null;
+    public boolean changed = false;
+    public WaveRenderer wave = new WaveRenderer();
+    public MidiRenderer midi = new MidiRenderer();
     
-    public SoundEditor(GFile f, Project p) {
+    /** Creates new form SoundEditor
+     */
+    public SoundEditor(GFile f, Project unused) {
         this.file = f;
-        this.project = p;
-        //Initilize audio
-        system = AudioSystem.getSystem();
-        
-        //Initilize components
-        initComponents();
-        jTextField1.setText(file.name);
-    }
-    
-    static {
-        /*Prepare for AudioSystem.getSystem()*/
-        
-        // Extract Natives.jar
-        //    This is a BAD IDEA.
-        //    The lib/natives folder should be extracted by a G-Creator Installer.
-        
-        File f = new File("./lib/natives");
-        if (!f.exists()) {
-        JOptionPane.showMessageDialog(gcreator.panel, "<HTML>Extracting Files...<br/>This will take a few minutes<br/><br/>Please Wait . . .</HTML>", "Please Wait...", JOptionPane.INFORMATION_MESSAGE);
-            
-            f.mkdir();
-            try {
-                final ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream("./lib/natives.jar")));
-                ZipEntry entry;
-                while ((entry = in.getNextEntry()) != null) {
-                    if (!entry.getName().endsWith(".jar")) {
-                        continue;
-                    }
-                    ZipInputStream innerIn = new ZipInputStream(new BufferedInputStream(new InputStream() {
-                        @Override
-                        public int read() throws IOException {
-                            return in.read();
-                        }
-                    }));
-                    ZipEntry lib;
-                    while ((lib = innerIn.getNextEntry()) != null) {
-                        if (!lib.isDirectory()) {
-                            File newFile = new File("./lib/natives/"+lib.getName());
-                            if (!newFile.getParentFile().exists()) {
-                                newFile.getParentFile().mkdirs();
-                            }
-                            newFile.createNewFile();
-                            if (newFile.isDirectory()) {
-                                continue;
-                            }
-                            BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(newFile));
-                            int data;
-                            while ((data = innerIn.read()) != -1) {
-                                out.write(data);
-                            }
-                            out.close();
-                        } else {
-                            File newDir = new File("./lib/natives/"+lib.getName());
-                            if (!newDir.getParentFile().exists()) {
-                                newDir.getParentFile().mkdirs();
-                            }
-                            newDir.mkdirs();
-                        }
-                    }
-                }
-            } catch (IOException exc) {
-                System.err.println("? "+exc);
-                exc.printStackTrace();
-            }
+        if(f.value!=null){
+            efile = (File) f.value;
         }
-        System.setProperty("org.lwjgl.librarypath", new File("./lib/natives").getAbsoluteFile().toURI().getPath());
+        initComponents();
+        updateComponents();
     }
     
+    public void dispose(){
+        wave.stop();
+        midi.stop();
+        super.dispose();
+    }
     
+    public void updateComponents(){
+        if(efile==null){
+            jLabel1.setText("Sound: <null>");
+            jButton2.setEnabled(false);
+            jButton3.setEnabled(false);
+        }
+        else{
+            jLabel1.setText("Sound: " + efile.getName());
+            jButton2.setEnabled(true);
+            jButton3.setEnabled(true);
+        }
+    }
+    
+    public boolean Save(){
+        file.value = efile;
+        changed = false;
+        return true;
+    }
+    
+    public boolean canSave(){
+        return changed;
+    }
+    
+    public boolean wasModified(){
+        return changed;
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
      * always regenerated by the Form Editor.
      */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
-        jLabel2.setText("<html>If it is a large file (over 1mb) then make sure \"Stream\" is on, otherwise it will load the whole file into memory when playing. Only take \"Stream\" off if you are having trouble playing very small files.</html>");
+        jLabel1.setText("Sound: ");
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Stream");
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText(LangSupporter.activeLang.getEntry(170));
+        jButton1.setText("Load");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton3.setText(LangSupporter.activeLang.getEntry(167));
-        jButton3.setEnabled(false);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 19, 255))); // NOI18N
+
+        jButton2.setText("Play");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Stop");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jButton5.setText(LangSupporter.activeLang.getEntry(169));
-        jButton5.setEnabled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
-            public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                jTextField1CaretUpdate(evt);
-            }
-        });
-
-        jLabel1.setText(LangSupporter.activeLang.getEntry(166));
-
-        jCheckBox2.setText("Loop");
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(jCheckBox1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3)
-                                .addGap(6, 6, 6)
-                                .addComponent(jButton5)))))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 284, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,86 +154,83 @@ public class SoundEditor extends TabPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton5))
+                    .addComponent(jButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
-        file.name = jTextField1.getText();
-        gcreator.panel.workspace.updateUI();
-    }//GEN-LAST:event_jTextField1CaretUpdate
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            //Load a file
-            JFileChooser fc = new JFileChooser(fileDirectory);
-            fc.setFileFilter(new JFileFilter(".+\\.ogg|.+\\.wav|.+\\.riff|$", "Sound Files"));
-            if (fc.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
-                return;
-            }
-            if (fc.getSelectedFile() == null) {
-                return;
-            }
-            fileDirectory = fc.getCurrentDirectory();
-            sndFile = fc.getSelectedFile();
-            File tmp = new File(System.getProperty("java.io.tmpdir")+"/gcreator/sound");
-            tmp.mkdirs();
-            sndFile = FileUtilities.copyFile(sndFile, tmp);
-            try {
-                track = system.createAudioTrack(sndFile.toURI().toURL(), jCheckBox1.isSelected());
-            } catch (Exception exc) {
-                JOptionPane.showMessageDialog(this, "Error: "+exc.getMessage(), "Error loading sound", JOptionPane.ERROR_MESSAGE);
-                sndFile = null;
-                jButton3.setEnabled(false);
-            }
-            jButton3.setEnabled(true);
-        } catch (IOException ex) {
-            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    JFileChooser fc = new JFileChooser();
+    if(efile!=null)
+        fc.setCurrentDirectory(efile.getParentFile());
+    fc.addChoosableFileFilter(new JFileFilter(".*\\.(wav|mid|ogg)", "Sound file"));
+    fc.addChoosableFileFilter(new JFileFilter(".*\\..*", "Any file"));
+    fc.setApproveButtonText("OK");
+    fc.setDialogTitle("Select sound file");
+    int res = fc.showDialog(this, null);
+    if(res==JFileChooser.APPROVE_OPTION){
+        wave.stop();
+        midi.stop();
+        efile = fc.getSelectedFile();
+        try{
+        String cp = efile.getCanonicalPath();
+        String type = cp.substring(cp.lastIndexOf(".")+1);
+        if(type.equals("mid")){
+            midi.setVolume(1.0f);
+            midi.play(efile.toURI().toURL());
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        track.stop();
-        jButton5.setEnabled(false);
-    }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        try {
-            track = system.createAudioTrack(sndFile.toURI().toURL(), jCheckBox1.isSelected());
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+        else if(type.equals("wav")){
+            System.out.println("Got here");
+            wave.setVolume(1.0f);
+            wave.play(efile.toURI().toURL());
         }
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+        changed = true;
+        updateComponents();
+    }
+}//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        track.stop();
-        track.setLooping(jCheckBox2.isSelected());
-        track.play();
-        jButton5.setEnabled(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    wave.stop();
+    midi.stop();
     
-    
+    if(efile!=null){
+        try{
+        String cp = efile.getCanonicalPath();
+        String type = cp.substring(cp.lastIndexOf(".")+1);
+        if(type.equals("mid")){
+            midi.setVolume(1.0f);
+            midi.play(efile.toURI().toURL());
+        }
+        else if(type.equals("wav")){
+            System.out.println("Got here");
+            wave.setVolume(1.0f);
+            wave.play(efile.toURI().toURL());
+        }
+        }
+        catch(Exception e){
+            System.out.println(e.toString());
+        }
+    }
+}//GEN-LAST:event_jButton2ActionPerformed
+
+private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    wave.stop();
+    midi.stop();
+}//GEN-LAST:event_jButton3ActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
-    
+
 }
