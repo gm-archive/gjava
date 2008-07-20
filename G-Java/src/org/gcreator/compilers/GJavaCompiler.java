@@ -19,8 +19,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import org.gcreator.core.gcreator;
 
+/**
+ * The GJavaCompiler used to compile g-java projects.
+ * @author TGMG
+ */
 public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 	{
 

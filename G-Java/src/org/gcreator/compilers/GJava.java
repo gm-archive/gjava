@@ -47,7 +47,7 @@ import sun.awt.image.ToolkitImage;
 
 /**
  *
- * @author luis
+ * @author TGMG, luis
  */
 public class GJava extends PlatformCore {
 
@@ -475,6 +475,10 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         game.close();
     }
     
+    /**
+     * Not in use at the moment, possibly never be used.
+     * @param filename
+     */
     public void convertVariables(String filename){
         String search="";
         String replace="";

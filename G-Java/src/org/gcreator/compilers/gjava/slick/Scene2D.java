@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.lwjgl;
+package org.gcreator.compilers.gjava.slick;
 
 
 import java.awt.Frame;

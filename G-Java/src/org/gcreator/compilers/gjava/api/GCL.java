@@ -183,24 +183,44 @@ public static Object logn(Object n, Object x)
 return new Double(Math.power(n.getDouble(),x.getDouble()));
 }
 
-public static Object min(Object x[])
+public static Object min(Object... x)
 {
-return new Object();
+    double min=x[0].getDouble();
+    for (Object n : x) {
+              if (n.getDouble() <min)
+                  min=n.getDouble();
+              
+          }
+return new Double(min);
 }
 
 public static Object max(Object x[])
 {
-return new Object();
+double max=x[0].getDouble();
+    for (Object n : x) {
+              if (n.getDouble() >max)
+                  max=n.getDouble();
+          }
+return new Double(max);
 }
 
-public static Object mean(Object x[])
+public static Object mean(Object... x)
 {
-return new Object();
+     if (x.length == 0)
+                return new Double(0);
+            double total = 0;
+            for (Object n:x)
+                total += n.getDouble();
+            return new Double(total / x.length);
 }
 
-public static Object median(Object x[])
+public static Object median(Object... x)
 {
-return new Object();
+    if (x.length == 0)
+                return new Double(0);
+            if (x.length % 2 == 1)
+                return x[x.length / 2];
+            return mean(x[x.length / 2], x[(x.length / 2) - 1]);
 }
 
 public static Object point_distance(Object x1, Object y1, Object x2, Object y2)
@@ -223,8 +243,25 @@ public static Object lengthdir_y(Object len, Object dir)
 return new Double(Math.lengthDirY(len.getDouble(),dir.getDouble()));
 }
 
+public static Object cbrt(Object x) {
+return new Double(Math.cbrt(x.getDouble()));
+}
 
+public static Object sinh(Object x) {
+return new Double(Math.sinh(x.getDouble()));
+}
 
+public static Object cosh(Object x) {
+return new Double(Math.cosh(x.getDouble()));
+}
+
+public static Object tanh(Object x) {
+return new Double(Math.tanh(x.getDouble()));
+}
+
+public static Object expm1(Object x) {
+return new Double(Math.expm1(x.getDouble()));
+}
 
 /**
  * 

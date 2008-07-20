@@ -1,17 +1,13 @@
 /*
  * GameSettings.java
  * 
- * Created on 11-Sep-2007, 00:11:33
- * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 
-package org.gcreator.compilers.gjava.core;
+package org.gcreator.compilers.gjava.api.components;
 
 /**
- *
- * @author Ali1
+ * The GameSettings class used for storing global settings.
+ * @author TGMG
  */
 public class GameSettings {
 

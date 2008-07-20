@@ -9,6 +9,11 @@ import java.io.*;
 import java.nio.*;
 import java.nio.channels.*;
  
+/*
+ * This class is used by convertVariables in GJava.class as an old tool to convert variables
+ * Since it may be useful in the near future it is still in G-Java - TGMG
+ * @author TGMG
+ */
 public class Patch {
  
     private static byte[] sought;

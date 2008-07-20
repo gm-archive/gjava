@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package org.gcreator.compilers.gjava.lwjgl;
+package org.gcreator.compilers.gjava.slick;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -10,7 +10,7 @@ import java.awt.Frame;
 import java.net.URL;
 import javax.swing.JApplet;
 import org.gcreator.compilers.gjava.api.components.GameFrame;
-import org.gcreator.compilers.gjava.core.GameSettings;
+import org.gcreator.compilers.gjava.api.components.GameSettings;
 //import org.lwjgl.util.applet.LWJGLInstaller;
 
 /**

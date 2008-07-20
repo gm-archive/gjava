@@ -7,16 +7,13 @@ package org.gcreator.compilers.gjava.gtge;
 
 import com.golden.gamedev.Game;
 import com.golden.gamedev.GameLoader;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.net.URL;
 import java.util.Hashtable;
-import java.util.Vector;
 import javax.swing.JApplet;
-import org.gcreator.compilers.gjava.api.components.GameFrame;
-import org.gcreator.compilers.gjava.core.GameSettings;
+import org.gcreator.compilers.gjava.api.components.GameSettings;
 //import org.lwjgl.util.applet.LWJGLInstaller;
 
 /**

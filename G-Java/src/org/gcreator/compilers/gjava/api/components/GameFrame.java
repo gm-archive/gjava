@@ -1,15 +1,13 @@
 package org.gcreator.compilers.gjava.api.components;
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.
-        ////////////////////////////////////////
-        *;
-import org.gcreator.compilers.gjava.core.GameSettings;
-import org.gcreator.compilers.gjava.java2d.basicgame;
+import java.awt.event.*;
+import org.gcreator.compilers.gjava.api.components.GameSettings;
+//import org.gcreator.compilers.gjava.java2d.basicgame;
 
 
 /**
- * An extended JFrame used for adding rooms
+ * An extended JFrame used for adding scenes, currently not used in gtge.
  * @author G-Java development team
  * @version 1.0
  */

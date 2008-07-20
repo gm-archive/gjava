@@ -36,19 +36,20 @@ public class TestActor2 extends Actor {
 
     @Override
     public void BeginStep() throws DestroyException {
-//       double start= System.currentTimeMillis();
-//       for(int i=0; i<9999999;i++)
-//       {
-//          // java.lang.Object o =3;
-//           //o=o+4;
-////           int o = 0+100+200+i;
-////         java.lang.String s = "t"+"e"+"s"+i; 
-//          // System.out.println("int:"+((java.lang.Integer)o).intValue());
-//           //System.out.println(""+((int)o));
-//        (n0).add(n100).mult(n200);
-//        }
-//        double end= System.currentTimeMillis();
-//        System.out.println("Time:"+(end-start));
+       double start= System.currentTimeMillis();
+       for(int i=0; i<999;i++)
+       {
+          // java.lang.Object o =3;
+           //o=o+4;
+//           int o = 0+100+200+i;
+//         java.lang.String s = "t"+"e"+"s"+i; 
+          // System.out.println("int:"+((java.lang.Integer)o).intValue());
+           //System.out.println(""+((int)o));
+//           (n0).add(n100).mult(n200);
+        (new Integer(0)).add(new Integer(100)).mult(new Integer(200));
+        }
+        double end= System.currentTimeMillis();
+        System.out.println("Time:"+(end-start));
     }
     
     
