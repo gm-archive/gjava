@@ -175,12 +175,13 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
-        System.out.println("v:"+vspeed+"H:"+hspeed+" gd:"+getGravity_direction()+"grav:"+getGravity().getDouble());
+        System.out.println("1-> V:"+vspeed+"; H:"+hspeed+"; gd:"+getGravity_direction().getInt()+"; grav:"+getGravity().getDouble());
         //use gravity
-        hspeed += Math.sin(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble();
-        vspeed -= (Math.cos(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble();
-                System.out.println("v2:"+vspeed+"H2:"+hspeed);
-
+        System.out.println("vspeed += " + (Math.cos(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble());
+        hspeed += Math.cos(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble();
+        vspeed -= (Math.sin(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble();
+        System.out.println("2-> V:"+vspeed+"; H:"+hspeed+"; gd:"+getGravity_direction()+"; grav:"+getGravity().getDouble());
+        
         //use friction
         
         if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() >0){

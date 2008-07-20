@@ -8,7 +8,7 @@
  */
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.lwjgl.*;
+import org.gcreator.compilers.gjava.gtge.*;
 
 /**
  * @author Luís Reis

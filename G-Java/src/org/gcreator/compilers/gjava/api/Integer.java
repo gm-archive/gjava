@@ -116,7 +116,10 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
         return new Integer(i ^(int) (o.getDouble()));
     }
 
-   
+    @Override
+   public int getInt(){
+       return i;
+   }
 
     @Override
     public boolean getBoolean() {

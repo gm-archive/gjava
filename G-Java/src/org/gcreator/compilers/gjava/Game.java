@@ -28,7 +28,7 @@ public static Sprite G_Creator_NULL_SPRITE, sprite1;
     }
 public void loadSprites() {
     //BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};
-sprite1 = new Sprite("sprite1", 32, 34, 1, 2, 3, 4, 0, 0, new BufferedImage[]{getImage("\\image.png"),getImage("\\screenshot.jpg")});
+sprite1 = new Sprite("sprite1", 32, 34, 1, 2, 3, 4, 0, 0, new BufferedImage[]{getImage("image.png"),getImage("screenshot.jpg")});
 System.out.println("load sprites");
 
 }
