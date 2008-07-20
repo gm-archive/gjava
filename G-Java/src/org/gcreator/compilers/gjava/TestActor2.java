@@ -25,6 +25,9 @@ public class TestActor2 extends Actor {
     public TestActor2(Object X, Object Y, Object instance_id) {
         super(X,Y,instance_id);
         System.out.println("testActor2 is created!");
+        setGravity(new Double(0.1));
+        setGravity_direction(new Double(0));
+        System.out.println("h:"+hspeed+"v:"+vspeed);
       //  System.out.println("copy id:"+instance_copy(new Boolean(false)).getDouble());
 //        Object o;
 //        test();
@@ -36,20 +39,21 @@ public class TestActor2 extends Actor {
 
     @Override
     public void BeginStep() throws DestroyException {
-       double start= System.currentTimeMillis();
-       for(int i=0; i<999;i++)
-       {
-          // java.lang.Object o =3;
-           //o=o+4;
-//           int o = 0+100+200+i;
-//         java.lang.String s = "t"+"e"+"s"+i; 
-          // System.out.println("int:"+((java.lang.Integer)o).intValue());
-           //System.out.println(""+((int)o));
-//           (n0).add(n100).mult(n200);
-        (new Integer(0)).add(new Integer(100)).mult(new Integer(200));
-        }
-        double end= System.currentTimeMillis();
-        System.out.println("Time:"+(end-start));
+      //  System.out.println("x:"+x+"y:"+y);
+//       double start= System.currentTimeMillis();
+//       for(int i=0; i<999;i++)
+//       {
+//          // java.lang.Object o =3;
+//           //o=o+4;
+////           int o = 0+100+200+i;
+////         java.lang.String s = "t"+"e"+"s"+i; 
+//          // System.out.println("int:"+((java.lang.Integer)o).intValue());
+//           //System.out.println(""+((int)o));
+////           (n0).add(n100).mult(n200);
+//        (new Integer(0)).add(new Integer(100)).mult(new Integer(200));
+//        }
+//        double end= System.currentTimeMillis();
+//        System.out.println("Time:"+(end-start));
     }
     
     
@@ -61,9 +65,9 @@ public class TestActor2 extends Actor {
         //draw_clear(getC_black());
         //draw_set_color(getC_green());
     Game.Current.g2d.setColor(java.awt.Color.GREEN);
-    self.setVariable("px",(new Integer(3)) .add((new Integer(4)) .mult((new Integer(6)))));
- self.setVariable("py",(new Integer(10)) .add((new Integer(8))));
- draw_text(self.getVariable("px"), self.getVariable("py"),getFps());
+//    self.setVariable("px",(new Integer(3)) .add((new Integer(4)) .mult((new Integer(6)))));
+// self.setVariable("py",(new Integer(10)) .add((new Integer(8))));
+ draw_text(new Double(x+10), new Double(y+10),getFps());
 
         
                // Game.Current.g2d.drawString("fps:"+Game.game.getGame().getCurrentFPS(), n0.getInt(), n10.getInt());

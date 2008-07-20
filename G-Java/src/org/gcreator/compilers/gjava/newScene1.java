@@ -2,10 +2,8 @@ package org.gcreator.compilers.gjava;
 
 import java.awt.Color;
 //import org.gcreator.compilers.gjava.core.*;
-import org.gcreator.compilers.gjava.api.*;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
-import org.gcreator.compilers.gjava.api.components.Background;
 
 
 public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {

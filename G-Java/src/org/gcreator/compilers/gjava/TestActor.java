@@ -57,6 +57,7 @@ if (keycode == (37))
     
     @Override
     public void Step(){
+        System.out.println("x:"+x+"y:"+y);
         //screen_redraw();
         //return new Object();
 //        sprite.BBLeft=94;
@@ -107,6 +108,7 @@ if (keycode == (37))
     public void callEvents() {
         try {
             //super.callEvents();
+            System.out.println("call events");
             BeginStep();
             Step();
             EndStep();
@@ -120,7 +122,7 @@ if (keycode == (37))
     
     @Override
     public void Create() {
-
+        System.out.println("create event");
         // show_message(new String("Test worked :)"+java.lang.Math.PI));
         x = 1;
         Object n = new Integer(1),
@@ -150,21 +152,21 @@ if (keycode == (37))
 //        return null;
     }
 
-    @Override
-    public void Draw_event(Graphics2D g) {
+//    @Override
+//    public void Draw_event(Graphics2D g) {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
         //draw_clear(getC_black());
-        draw_set_color(getC_aqua());
+//        draw_set_color(getC_aqua());
         //draw_set_color(self.getC_aqua());
 //        
-        draw_text(new Integer(10), new Integer(30), new String("FPS:"+getFps()));
+//        draw_text(new Integer(10), new Integer(30), new String("FPS:"+getFps()));
         //Game.Current.g2d.drawString("test", 100, 100);
         //test surface
         //draw_rectangle(new Integer(509),new Integer(116),new Integer(94),new Integer(221), new Boolean(true));
 
         //draw_surface(sid, new Integer(100), new Integer(100));
         //System.out.println("paint");
-    }
+//    }
 
 //    @Override
 //    public void Draw_event() {

@@ -24,6 +24,13 @@ public class Double extends Object {
     }
 
     @Override
+    public int getInt() {
+        return (int)i;
+    }
+    
+    
+
+    @Override
     public String getString() {
         return new String(""+i);
     }

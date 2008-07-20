@@ -25,7 +25,14 @@ public class Date {
         // Time used by GM to base the datetime off of
         then.set(1899, 11, 29, 22, 59, 34);
     }
+    
+   // java.util.Date date;
 
+    public Date()
+    {
+        
+    }
+    
     /**
      * Returns the date-time value that corresponds to the current moment.
      * @return

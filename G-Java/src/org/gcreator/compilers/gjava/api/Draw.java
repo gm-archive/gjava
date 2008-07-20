@@ -5,11 +5,9 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import org.gcreator.compilers.gjava.Game;
-
 
 /**
- *
+ * Not currently used
  * @author TGMG
  */
 public class Draw extends Draw2d {

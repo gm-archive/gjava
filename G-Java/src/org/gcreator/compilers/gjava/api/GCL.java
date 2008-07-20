@@ -278,6 +278,11 @@ public static Object string(Object val)
 return val.getString();
 }
 
+public static Object tostring(Object val)
+{
+return val.getString();
+}
+
 public static Object string_format(Object val, Object total, Object dec)
 {
 return new String(String.stringFormat(val.getDouble(), total.getDouble(), dec.getDouble()));
@@ -1546,7 +1551,7 @@ return new Object();
 
 public static Object draw_line(Object x1, Object y1, Object x2, Object y2)
 {
-    Game.Current.g2d.drawLine((int)x1.getDouble(), (int)y1.getDouble(), (int)x2.getDouble(), (int)y2.getDouble());
+    Game.Current.g2d.drawLine(x1.getInt(), (int)y1.getDouble(), (int)x2.getDouble(), (int)y2.getDouble());
 return new Object();
 }
 
@@ -1554,12 +1559,12 @@ public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, 
 {
    // System.out.println(""+x1.getDouble());
     if (x1.getDouble() > x2.getDouble()) {
-    Object temp = x1;
+    temp = x1;
     x1 = x2;
     x2=temp;
     }
     if (y1.getDouble() > y2.getDouble()) {
-    Object temp = y1;
+    temp = y1;
     y1 = y2;
     y2=temp;
     }
@@ -1570,16 +1575,16 @@ public static Object draw_rectangle(Object x1, Object y1, Object x2, Object y2, 
     
     return new Object();
 }
-
+static Object temp= new Object();
 public static Object draw_roundrect(Object x1, Object y1, Object x2, Object y2, Object outline)
 {
      if (x1.getDouble() > x2.getDouble()) {
-    Object temp = x1;
+    temp = x1;
     x1 = x2;
     x2=temp;
     }
     if (y1.getDouble() > y2.getDouble()) {
-    Object temp = y1;
+    temp = y1;
     y1 = y2;
     y2=temp;
     }

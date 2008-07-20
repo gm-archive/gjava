@@ -175,10 +175,12 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
+        System.out.println("v:"+vspeed+"H:"+hspeed+" gd:"+getGravity_direction()+"grav:"+getGravity().getDouble());
         //use gravity
-        hspeed += Math.sin(getGravity_direction().getInt()) * getGravity().getDouble();
-        vspeed -= Math.cos(getGravity_direction().getInt()) * getGravity().getDouble();
-        
+        x += Math.sin(getGravity_direction().getInt()) * getGravity().getDouble();
+        y += (Math.cos(getGravity_direction().getInt())) * getGravity().getDouble();
+                System.out.println("v2:"+vspeed+"H2:"+hspeed);
+
         //use friction
         
         if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() >0){
@@ -217,7 +219,7 @@ public class Actor extends tile {
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     public Object getAlarm() {
         if (alarm == null) {
-            alarm = new Integer(0);
+            alarm = _0;
         }
         return alarm;
     }
@@ -252,7 +254,7 @@ public class Actor extends tile {
 
     public Object getDepth() {
         if (depth == null) {
-            depth = new Integer(0);
+            depth = _0;
         }
         return depth;
     }
@@ -269,21 +271,21 @@ public class Actor extends tile {
 
     public Object getFriction() {
         if (friction == null) {
-            friction = new Integer(0);
+            friction = _0;
         }
         return friction;
     }
 
     public Object getGravity() {
         if (gravity == null) {
-            gravity = new Integer(0);
+            gravity = _0;
         }
         return gravity;
     }
-
+final Integer _0 = new Integer(0);
     public Object getGravity_direction() {
         if (gravity_direction == null) {
-            gravity_direction = new Integer(0);
+            gravity_direction = _0;
         }
         return gravity_direction;
     }
@@ -295,14 +297,14 @@ public class Actor extends tile {
 
     public Object getId() {
         if (id == null) {
-            id = new Integer(0);
+            id = _0;
         }
         return id;
     }
 
     public Object getImage_alpha() {
         if (image_alpha == null) {
-            image_alpha = new Integer(0);
+            image_alpha = _0;
         }
         return image_alpha;
     }
@@ -316,7 +318,7 @@ public class Actor extends tile {
 
     public Object getImage_blend() {
         if (image_blend == null) {
-            image_blend = new Integer(0);
+            image_blend = _0;
         }
         return image_blend;
     }
@@ -337,7 +339,7 @@ public class Actor extends tile {
 
     public Object getImage_single() {
         if (image_single == null) {
-            image_single = new Integer(0);
+            image_single = _0;
         }
         return image_single;
     }
@@ -365,77 +367,77 @@ public class Actor extends tile {
 
     public Object getMask_index() {
         if (mask_index == null) {
-            mask_index = new Integer(0);
+            mask_index = _0;
         }
         return mask_index;
     }
 
     public Object getObject_index() {
         if (object_index == null) {
-            object_index = new Integer(0);
+            object_index = _0;
         }
         return object_index;
     }
 
     public Object getPath_endaction() {
         if (path_endaction == null) {
-            path_endaction = new Integer(0);
+            path_endaction = _0;
         }
         return path_endaction;
     }
 
     public Object getPath_index() {
         if (path_index == null) {
-            path_index = new Integer(0);
+            path_index = _0;
         }
         return path_index;
     }
 
     public Object getPath_orientation() {
         if (path_orientation == null) {
-            path_orientation = new Integer(0);
+            path_orientation = _0;
         }
         return path_orientation;
     }
 
     public Object getPath_position() {
         if (path_position == null) {
-            path_position = new Integer(0);
+            path_position = _0;
         }
         return path_position;
     }
 
     public Object getPath_positionprevious() {
         if (path_positionprevious == null) {
-            path_positionprevious = new Integer(0);
+            path_positionprevious = _0;
         }
         return path_positionprevious;
     }
 
     public Object getPath_scale() {
         if (path_scale == null) {
-            path_scale = new Integer(0);
+            path_scale = _0;
         }
         return path_scale;
     }
 
     public Object getPath_speed() {
         if (path_speed == null) {
-            path_speed = new Integer(0);
+            path_speed = _0;
         }
         return path_speed;
     }
 
     public Object getPersistent() {
         if (persistent == null) {
-            persistent = new Integer(0);
+            persistent = _0;
         }
         return persistent;
     }
 
     public Object getSolid() {
         if (solid == null) {
-            solid = new Integer(0);
+            solid = _0;
         }
         return solid;
     }
@@ -484,21 +486,21 @@ public class Actor extends tile {
 
     public Object getTimeline_index() {
         if (timeline_index == null) {
-            timeline_index = new Integer(0);
+            timeline_index = _0;
         }
         return timeline_index;
     }
 
     public Object getTimeline_position() {
         if (timeline_position == null) {
-            timeline_position = new Integer(0);
+            timeline_position = _0;
         }
         return timeline_position;
     }
 
     public Object getTimeline_speed() {
         if (timeline_speed == null) {
-            timeline_speed = new Integer(0);
+            timeline_speed = _0;
         }
         return timeline_speed;
     }
