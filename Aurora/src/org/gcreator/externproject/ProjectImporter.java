@@ -248,7 +248,7 @@ public class ProjectImporter {
                 file.value = importContent(type, manager, fname, c.zip);
 
             } else if (name.equals("group")) {
-                System.out.println("Got to group");
+              //  System.out.println("Got to group");
                 if (child.getAttributeCount() != 2) {
                     throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
                 }

@@ -3,15 +3,16 @@
  <boolean>true</boolean> 
  <string>TOP</string> 
  <string>English</string> 
+ <object class="org.gcreator.units.BeanFile"/> 
  <object class="javax.swing.plaf.metal.OceanTheme"/> 
- <boolean>true</boolean> 
  <string>LEFT</string> 
  <object class="java.awt.Dimension"> 
-  <int>1032</int> 
-  <int>728</int> 
+  <int>819</int> 
+  <int>614</int> 
  </object> 
  <boolean>true</boolean> 
+ <boolean>false</boolean> 
  <string>Native</string> 
- <boolean>true</boolean> 
- <int>557</int> 
+ <boolean>false</boolean> 
+ <int>478</int> 
 </java> 

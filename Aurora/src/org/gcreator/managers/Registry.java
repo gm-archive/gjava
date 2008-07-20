@@ -133,11 +133,10 @@ public final class Registry {
         }
         Element elem = doc.getDocumentElement();
         NodeList nl = elem.getElementsByTagName("key");
-        Iterator<Object> iterator = objects.iterator();
         for (int i = 0; i < nl.getLength(); i++) {
             DeferredElementImpl node = (DeferredElementImpl) nl.item(i);
             String key = node.getAttribute("name");
-            registry.put(key, iterator.next());
+            registry.put(key, objects.get(i));
         }
     }
     
@@ -170,6 +169,7 @@ public final class Registry {
                 Element key = doc.createElement("key");
                 String keyn = keys.next();
                 key.setAttribute("name", keyn);
+                key.setAttribute("index", Integer.toString(i));
                 reg.appendChild(key);
                 en.writeObject(registry.get(keyn));
             }

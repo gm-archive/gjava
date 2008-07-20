@@ -3,7 +3,6 @@
  *
  * Created on 20 de Julho de 2008, 13:45
  */
-
 package org.gcreator.editors;
 
 import java.io.File;
@@ -12,15 +11,13 @@ import org.gcreator.components.JFileFilter;
 import org.gcreator.components.TabPanel;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
-import com.golden.gamedev.engine.BaseAudio;
-import com.golden.gamedev.engine.BaseAudioRenderer;
 import com.golden.gamedev.engine.audio.MidiRenderer;
 import com.golden.gamedev.engine.audio.WaveRenderer;
 import java.awt.Color;
-import java.net.URL;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-
+import org.gcreator.managers.Registry;
+import org.gcreator.units.BeanFile;
 
 /**
  *
@@ -32,71 +29,73 @@ public class SoundEditor extends TabPanel {
     public boolean changed = false;
     public WaveRenderer wave = new WaveRenderer();
     public MidiRenderer midi = new MidiRenderer();
-    
+
     /** Creates new form SoundEditor
      */
     public SoundEditor(GFile f, Project unused) {
         this.file = f;
-        if(f.value!=null){
+        if (f.value != null) {
             efile = (File) f.value;
         }
         initComponents();
         updateComponents();
         jTextField1.setText(file.name);
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent evt){
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void changedUpdate(DocumentEvent evt) {
                 perform();
             }
-            public void removeUpdate(DocumentEvent evt){
+
+            public void removeUpdate(DocumentEvent evt) {
                 perform();
             }
-            public void insertUpdate(DocumentEvent evt){
+
+            public void insertUpdate(DocumentEvent evt) {
                 perform();
             }
         });
         perform();
     }
-    
-    public void perform(){
+
+    public void perform() {
         String name = jTextField1.getText();
-        if(name.matches("[a-zA-Z_][a-zA-Z_0-9]*")){
+        if (name.matches("[a-zA-Z_][a-zA-Z_0-9]*")) {
             jTextField1.setBackground(Color.WHITE);
             file.name = name;
             org.gcreator.core.gcreator.panel.workspace.updateUI();
-        }
-        else{
+        } else {
             jTextField1.setBackground(Color.RED);
         }
     }
-    
-    public void dispose(){
+
+    @Override
+    public void dispose() {
         wave.stop();
         midi.stop();
         super.dispose();
     }
-    
-    public void updateComponents(){
-        if(efile==null){
+
+    public void updateComponents() {
+        if (efile == null) {
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
-        }
-        else{
+        } else {
             jButton2.setEnabled(true);
             jButton3.setEnabled(true);
         }
     }
-    
-    public boolean Save(){
+
+    public boolean Save() {
         file.value = efile;
         changed = false;
         return true;
     }
-    
-    public boolean canSave(){
+
+    public boolean canSave() {
         return changed;
     }
-    
-    public boolean wasModified(){
+
+    public boolean wasModified() {
         return changed;
     }
 
@@ -125,7 +124,7 @@ public class SoundEditor extends TabPanel {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 19, 255))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("DejaVu Sans", 0, 13), new java.awt.Color(0, 19, 255)));
 
         jButton2.setText("Play");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -147,10 +146,10 @@ public class SoundEditor extends TabPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addContainerGap())
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,7 +157,7 @@ public class SoundEditor extends TabPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         jTextField1.setText("jTextField1");
@@ -174,7 +173,7 @@ public class SoundEditor extends TabPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -194,38 +193,38 @@ public class SoundEditor extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    JFileChooser fc = new JFileChooser();
-    if(efile!=null)
-        fc.setCurrentDirectory(efile.getParentFile());
+    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile)Registry.get("Directories.soundEditor") : null);
+    if (efile != null) {
+            fc.setCurrentDirectory(efile.getParentFile());
+        }
     fc.addChoosableFileFilter(new JFileFilter(".*\\.(wav|mid|ogg)", "Sound file"));
-    fc.addChoosableFileFilter(new JFileFilter(".*\\..*", "Any file"));
+//    fc.addChoosableFileFilter(new JFileFilter(".*\\..*", "Any file"));
     fc.setApproveButtonText("OK");
     fc.setDialogTitle("Select sound file");
     int res = fc.showDialog(this, null);
-    if(res==JFileChooser.APPROVE_OPTION){
+    if (res == JFileChooser.APPROVE_OPTION) {
         wave.stop();
         midi.stop();
         efile = fc.getSelectedFile();
-        try{
-        String cp = efile.getCanonicalPath();
-        String type = cp.substring(cp.lastIndexOf(".")+1);
-        if(type.equals("mid")){
-            file.type = "mid";
-            midi.setVolume(1.0f);
-            midi.play(efile.toURI().toURL());
-        }
-        else if(type.equals("wav")){
-            file.type = "wav";
-            System.out.println("Got here");
-            wave.setVolume(1.0f);
-            wave.play(efile.toURI().toURL());
-        }
-        }
-        catch(Exception e){
+        try {
+            String cp = efile.getCanonicalPath();
+            String type = cp.substring(cp.lastIndexOf(".")+1);
+            if (type.equals("mid")) {
+                file.type = "mid";
+                midi.setVolume(1.0f);
+                midi.play(efile.toURI().toURL());
+            }
+            else if(type.equals("wav")) {
+                file.type = "wav";
+                wave.setVolume(1.0f);
+                wave.play(efile.toURI().toURL());
+            }
+        } catch(Exception e) {
             System.out.println(e.toString());
         }
         changed = true;
         updateComponents();
+        Registry.set("Directories.soundEditor", new BeanFile(fc.getCurrentDirectory()));
     }
 }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -242,7 +241,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             midi.play(efile.toURI().toURL());
         }
         else if(type.equals("wav")){
-            System.out.println("Got here");
             wave.setVolume(1.0f);
             wave.play(efile.toURI().toURL());
         }
