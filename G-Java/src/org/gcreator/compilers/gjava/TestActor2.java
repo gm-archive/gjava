@@ -7,14 +7,10 @@ package org.gcreator.compilers.gjava;
 
 import java.awt.Graphics2D;
 import org.gcreator.compilers.gjava.api.Actor;
-import org.gcreator.compilers.gjava.api.Actor;
 import org.gcreator.compilers.gjava.api.DestroyException;
 import org.gcreator.compilers.gjava.api.Object;
-import org.gcreator.compilers.gjava.api.String;
 import org.gcreator.compilers.gjava.api.Integer;
 import org.gcreator.compilers.gjava.api.Double;
-import org.gcreator.compilers.gjava.api.Boolean;
-import org.gcreator.compilers.gjava.api.Color;
 
 /**
  *
