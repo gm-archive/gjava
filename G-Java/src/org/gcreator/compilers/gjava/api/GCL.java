@@ -646,10 +646,11 @@ return new Object();
 
 public static Object motion_add(Object dir, Object speed)
 {
-    self.hspeed += -(speed.getDouble());
-    self.vspeed += speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
-    self.speed += speed.getDouble();
-    self.direction = new Double(self.direction.getDouble() + dir.getDouble());
+   // self.hspeed += -(speed.getDouble());
+   // self.vspeed += speed.getDouble() * Math.sin(dir.getDouble() * (Math.PI/180));
+    //self.speed += speed.getDouble();
+    self.setDirection(new Double(self.getDirection().getDouble() + dir.getDouble()));
+    self.setSpeed(speed.add(self.getSpeed()));
 return new Object();
 }
 

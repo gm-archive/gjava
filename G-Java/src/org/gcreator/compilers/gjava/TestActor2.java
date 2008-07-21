@@ -19,14 +19,18 @@ import org.gcreator.compilers.gjava.api.Double;
 public class TestActor2 extends Actor {
     
     public TestActor2(Object X, Object Y, Object instance_id) {
-        super(X,Y,instance_id);
+        super(new Integer(100),new Integer(100),instance_id);
         System.out.println("testActor2 is created!");
-        setGravity(new Double(0.1));
-        setGravity_direction(new Double(180));
+        //setGravity(new Double(0.01));
+        //setFriction(new Double(0.009));
+        //setGravity_direction(new Double(0));
+        motion_set(new Double(270), new Double(1));
+        motion_add(new Double(90), new Double(1));
         System.out.println("h:"+hspeed+"v:"+vspeed);
       //  System.out.println("copy id:"+instance_copy(new Boolean(false)).getDouble());
 //        Object o;
 //        test();
+       // hspeed=1;
     }
     public void test(Object X, Object Y)
     {
