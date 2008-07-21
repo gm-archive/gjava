@@ -343,6 +343,8 @@ actorindex++;
             copyDirectory(f2, f1);
         } catch (IOException ex) {
             System.out.println("" + ex.getLocalizedMessage());
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error moving runner files:"+ex.getMessage());
         }
     }
 
