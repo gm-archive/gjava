@@ -414,8 +414,8 @@ public class GM6Importer {
             Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$212"));
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
-            Sound val;
-            soundFile.value = val = new Sound();
+            File f = File.createTempFile("gc_tmp_", "." + type);
+            soundFile.value = f;
             soundFile.type= type.replaceFirst(".", "");
             //org.gcreator.core.gcreator.debugOut.println("type:"+soundFile.type);
             //val.width = in.read4();
@@ -427,7 +427,8 @@ public class GM6Importer {
             } else {
                 /*snd.fileName = */                in.readStr();
                 if (in.readBool()) /*snd.data =*/ {
-                    val.sound = in.decompress(in.read4());
+                    FileOutputStream fos = new FileOutputStream(f);
+                    fos.write(in.decompress(in.read4()));
                 }
                 int effects = in.read4();
                 //snd.setEffects(effects);
