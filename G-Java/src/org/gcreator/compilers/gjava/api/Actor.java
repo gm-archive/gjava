@@ -175,6 +175,7 @@ public class Actor extends tile {
         //use gravity
         System.out.println("vspeed -= " + Math.sin(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble());
         int gd = getGravity_direction().getInt();
+        gd %= 360;
         if (gd != 90 && gd != 270) {
             hspeed += Math.cos((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
         }
