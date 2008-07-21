@@ -176,7 +176,7 @@ public class ProjectImporter {
         name = name.substring(0, name.indexOf("."));
 
         p.name = name;
-        p.location = path;
+        p.location = c.getFile();
 
         //Method e;
         //try {

@@ -60,4 +60,12 @@ public class BeanFile extends File {
     public BeanFile(URI uri) {
         super(uri);
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
 }

@@ -158,7 +158,7 @@ public class NewProject extends TabPanel {
             if (type == ProjectTypes.EMPTY_GAME){
                 project = GameProject.balance(ProjectTypes.EMPTY_GAME);
                 project.name = jTextField1.getText();
-                project.location = "";
+                project.location = null;
                 GPanel.setMainProject(project);
                 /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
@@ -170,7 +170,7 @@ public class NewProject extends TabPanel {
             else if (type == ProjectTypes.RPG_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
-                project.location = "";
+                project.location = null;
                 GPanel.setMainProject(project);
                 /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
@@ -182,7 +182,7 @@ public class NewProject extends TabPanel {
             else if (type == ProjectTypes.PLATFORM_GAME){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
-                project.location = "";
+                project.location = null;
                 GPanel.setMainProject(project);
                 /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
@@ -194,7 +194,7 @@ public class NewProject extends TabPanel {
             else if (type == ProjectTypes.AIR_BATTLE){
                 project = GameProject.balance(type);
                 project.name = jTextField1.getText();
-                project.location = "";
+                project.location = null;
                 GPanel.setMainProject(project);
                 /*Macro.macroAction(
                         "project = org.gcreator.fileclass.GameProject.balance("
@@ -206,7 +206,7 @@ public class NewProject extends TabPanel {
             else if (type == 4){
                 project = ModuleProject.balance();
                 project.name = jTextField1.getText();
-                project.location = "";
+                project.location = null;
                 GPanel.setMainProject(project);
                 /*Macro.macroAction(
                         "project = org.gcreator.fileclass.ModuleProject.balance();\n"

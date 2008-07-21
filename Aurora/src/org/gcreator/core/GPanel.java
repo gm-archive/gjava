@@ -10,6 +10,7 @@
 package org.gcreator.core;
 
 //<editor-fold defaultstate="collapsed" desc="Import statements">
+import com.golden.gamedev.util.FileUtil;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -1813,9 +1814,9 @@ public class GPanel extends JPanel {
                 if (file == null) {
                     return;
                 }
-                p.location = file.getPath();
-                if (!p.location.contains(".gcp")) {
-                    p.location += ".gcp";
+                p.location = file;
+                if (!FileUtil.getExtension(p.location).equalsIgnoreCase("gcp")) {
+                    p.location = FileUtil.setExtension(p.location, "gcp");
                 }
             }
             ProjectExporter.export(p, p.location);
@@ -1904,19 +1905,27 @@ public class GPanel extends JPanel {
                 }
             }
         }
+        if (mainProject == null) {
+            JOptionPane.showMessageDialog(this, "<html>No main project selected.<br/>Please select main project in Build&Run>Set as Main Project.</html>",
+                    "A Fatal Exception OE has occured at "+Integer.toHexString((int)(Math.random()*Integer.MAX_VALUE)).toUpperCase(), JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         //save to gcp file
         if (mainProject.location == null || mainProject.location.equals("") || saveAs) {
-            JFileChooser fc = new JFileChooser();
+            JFileChooser fc = new JFileChooser((Registry.exists("Directories.gpanelSaveProject")) ? (BeanFile)Registry.get("Directories.gpanelSaveProject") : null);
             fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
-            fc.showSaveDialog(gcreator.window);
+            if (fc.showSaveDialog(gcreator.window) != JFileChooser.APPROVE_OPTION) {
+                return;
+            }
             java.io.File file = fc.getSelectedFile();
             if (file == null) {
                 return;
             }
-            mainProject.location = file.getPath();
-            if (!mainProject.location.contains(".gcp")) {
-                mainProject.location += ".gcp";
+            mainProject.location = file;
+            if (!FileUtil.getExtension(mainProject.location).equalsIgnoreCase("gcp")) {
+                mainProject.location = FileUtil.setExtension(mainProject.location, "gcp");
             }
+            Registry.set("Directories.gpanelSaveProject", new BeanFile(fc.getCurrentDirectory()));
         }
         ProjectExporter.export(mainProject, mainProject.location);
     }

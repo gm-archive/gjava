@@ -83,7 +83,7 @@ public final class Registry {
     /**
      * Returns the value of the key (which may be <tt>null</tt>), or <tt>null</tt> if the key does not exist.
      * @param key The key to find the value for.
-     * @return The value of the given key. (Or <tt>null</tt> if ti does not exist.)
+     * @return The value of the given key. (Or <tt>null</tt> if ot does not exist.)
      */
     public static Object get(String key) {
         return registry.get(key);
@@ -91,7 +91,7 @@ public final class Registry {
     
     /**
      * Registers a key with a given value if it does not exist.
-     * This has no effect if the key already exists and value is not <tt>null</tt>.
+     * This has no effect if the key already exists.
      * @param key The key to create
      * @param value The value for the given key.
      * @return Return <tt>true</tt> if the key was created. Else returns <tt>false</tt>.

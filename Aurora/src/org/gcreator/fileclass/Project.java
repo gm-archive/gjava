@@ -18,7 +18,7 @@ import org.gcreator.exceptions.NoSuchFolderException;
  */
 public abstract class Project extends Folder {
      
-    public String location = "";
+    public java.io.File location = null;
     //public javax.swing.tree.DefaultMutableTreeNode froot;
     //The following vectors are for saving, getting resouces etc
     /*public Vector<Actor> actors = new Vector<Actor>();
@@ -31,7 +31,7 @@ public abstract class Project extends Folder {
         super(null);
     }
     
-    public Project(String name, String location){
+    public Project(String name, java.io.File location) {
         super(name);
         this.location = location;
     }

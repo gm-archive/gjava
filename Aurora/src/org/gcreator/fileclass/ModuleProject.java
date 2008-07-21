@@ -27,7 +27,7 @@ public class ModuleProject extends Project{
     public int scripts = 1;
     public int actions = 1;
     
-    public ModuleProject(String name, String location){
+    public ModuleProject(String name, java.io.File location){
         super(name, location);
     }
     

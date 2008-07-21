@@ -10,56 +10,52 @@
 package org.gcreator.fileclass;
 
 import javax.swing.ImageIcon;
-import org.gcreator.managers.FilesFinder;
 
 /**
  *
  * @author Luís
  */
 public class ExtensionProject extends Project {
-    public ExtensionProject(String name, String location){
+
+    public ExtensionProject(String name, java.io.File location) {
         super(name, location);
     }
-    
-    public ExtensionProject(){}
-    
-     
-    public boolean allowsFileType(String format){
+
+    public ExtensionProject() {
+    }
+
+    public boolean allowsFileType(String format) {
         return false;
     }
-    
-     
-    public boolean allowsGroup(Group group){
+
+    public boolean allowsGroup(Group group) {
         return false;
     }
-    
-     
-    public String getType(){
+
+    public String getType() {
         return "Extension";
     }
-    
-    public String getObjectType(){
+
+    public String getObjectType() {
         return "ExtensionProject";
     }
-    
-     
-    public Group newGroup(String name){
+
+    public Group newGroup(String name) {
         Group group = new Group(this, name);
         add(group);
         return group;
     }
-    
-    public org.gcreator.fileclass.GFile[] getJavaFiles(){
+
+    public org.gcreator.fileclass.GFile[] getJavaFiles() {
         return org.gcreator.managers.FilesFinder.getFilesAt(this, "java");
     }
-    
-    public org.gcreator.fileclass.GFile[] getCppFiles(){
+
+    public org.gcreator.fileclass.GFile[] getCppFiles() {
         return org.gcreator.managers.FilesFinder.getFilesAt(this, "cpp");
     }
-    
     private ImageIcon img = new ImageIcon(getClass().getResource("/org/gcreator/resources/extension.png"));
-    
-    public ImageIcon getImage(){
+
+    public ImageIcon getImage() {
         return img;
     }
 }

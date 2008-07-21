@@ -188,7 +188,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     Project p = null;
     p = GameProject.balance(ProjectTypes.EMPTY_GAME);
     p.name = "NewGame";
-    p.location = "";
+    p.location = null;
     GPanel.setMainProject(p);
     ProjectTree.importFolderToTree(p, gcreator.panel.top);
     /*Macro.macroAction(

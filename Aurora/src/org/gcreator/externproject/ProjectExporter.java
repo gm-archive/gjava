@@ -33,11 +33,10 @@ public class ProjectExporter {
     
     public static int compression = 5;
     
-    public static void export(Project p, String location){
+    public static void export(Project p, File f) {
         
         try{
-            File fp = new File(location);
-            FileOutputStream fs = new FileOutputStream(fp);
+            FileOutputStream fs = new FileOutputStream(f);
             ZipOutputStream zip = new ZipOutputStream(fs);
             
             zip.setLevel(compression);

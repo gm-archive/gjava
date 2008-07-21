@@ -9,6 +9,7 @@
  */
 package org.gcreator.fileclass;
 
+import java.io.File;
 import org.gcreator.fileclass.groups.SceneGroup;
 import org.gcreator.fileclass.groups.PathGroup;
 import org.gcreator.fileclass.groups.SnippetGroup;
@@ -43,7 +44,7 @@ public class GameProject extends Project{
     public int scripts = 1;
     public int snippets = 1;
      
-    public GameProject(String name, String location){
+    public GameProject(String name, File location){
         super(name, location);
         project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
     }
@@ -52,7 +53,7 @@ public class GameProject extends Project{
         project_game = new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/new_game_sm.png"));
     }
     
-    public GameProject(String name, String location, ImageIcon img){
+    public GameProject(String name, File location, ImageIcon img){
         super(name, location);
         project_game = img;
     }

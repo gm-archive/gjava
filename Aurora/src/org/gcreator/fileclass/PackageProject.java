@@ -9,6 +9,7 @@
  */
 package org.gcreator.fileclass;
 
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -16,7 +17,7 @@ import javax.swing.ImageIcon;
  * @author Luís
  */
 public class PackageProject extends Project {
-    public PackageProject(String name, String location){
+    public PackageProject(String name, File location){
         super(name, location);
     }
     
