@@ -22,7 +22,7 @@ public class TestActor2 extends Actor {
         super(X,Y,instance_id);
         System.out.println("testActor2 is created!");
         setGravity(new Double(0.1));
-        setGravity_direction(new Double(0));
+        setGravity_direction(new Double(180));
         System.out.println("h:"+hspeed+"v:"+vspeed);
       //  System.out.println("copy id:"+instance_copy(new Boolean(false)).getDouble());
 //        Object o;

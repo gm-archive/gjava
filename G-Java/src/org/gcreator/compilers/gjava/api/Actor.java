@@ -14,15 +14,15 @@ import org.gcreator.compilers.gjava.Game;
  */
 public class Actor extends tile {
 
-    Hashtable variables = new Hashtable(); 
-    
+    Hashtable variables = new Hashtable();
     protected Sprite sprite;
 //local variables
-    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single, mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
+    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
-    public boolean visible=true,mouseover=false;
-    protected int posinvector=-1;
+    public boolean visible = true,  mouseover = false;
+    protected int posinvector = -1;
+
     public Actor() {
     }
 
@@ -48,20 +48,20 @@ public class Actor extends tile {
         depth = Depth;
         persistent = Persistent;
         sprite = spr;
-    Create();
+        Create();
     }
-    
+
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent) {
         solid = new Boolean(Solid);
         visible = Visible;
-        depth = new Integer((int)Depth);
+        depth = new Integer((int) Depth);
         persistent = new Boolean(Persistent);
         sprite = spr;
         self = this;
         Create();
     }
-    
+
     public Actor(java.lang.String Object_name, Sprite spr, boolean Solid,
             boolean Visible, double Depth, boolean Persistent, int actorindex) {
         this(new String(Object_name), spr, new Boolean(Solid),
@@ -111,7 +111,6 @@ public class Actor extends tile {
      * @param keycode 
      */
     public void KeyPressed(int keycode) throws DestroyException {
-
     }
 
     /**
@@ -119,7 +118,6 @@ public class Actor extends tile {
      * @param keycode 
      */
     public void KeyReleased(int keycode) throws DestroyException {
-
     }
 
     /**
@@ -135,38 +133,36 @@ public class Actor extends tile {
     }
 
     public void mouse_Pressed(int keycode, int xx, int yy) {
-
     }
 
     /**
      * Override with actor Collision event
      */
     public void checkCollision() {
-
     }
-    
+
     /**
      * This is used for collision detection
      * @return
      */
-           
-    public Rectangle getBounds(){
-        if (sprite!=null)
-        return new Rectangle((int)(sprite.BBRight+x-sprite.sprite_xoffset),(int)(sprite.BBTop+y-sprite.sprite_yoffset),(int)(sprite.BBLeft+x-sprite.sprite_xoffset),(int)(sprite.BBBottom+y-sprite.sprite_yoffset));
-        else
-            return new Rectangle(0,0,0,0);
+    public Rectangle getBounds() {
+        if (sprite != null) {
+            return new Rectangle((int) (sprite.BBRight + x - sprite.sprite_xoffset), (int) (sprite.BBTop + y - sprite.sprite_yoffset), (int) (sprite.BBLeft + x - sprite.sprite_xoffset), (int) (sprite.BBBottom + y - sprite.sprite_yoffset));
+        } else {
+            return new Rectangle(0, 0, 0, 0);
+        }
     }
 
     public void callEvents() {
-        try{
-        BeginStep();
-        Step();
-        Move();
-        EndStep();
-        }catch(DestroyException d){
-        //it has been destroyed
+        try {
+            BeginStep();
+            Step();
+            Move();
+            EndStep();
+        } catch (DestroyException d) {
+            //it has been destroyed
         }
-        //System.out.println("move");
+    //System.out.println("move");
 //        setImage_xscale(getImage_xscale().add(new Double(0.1)));
 //setImage_yscale(getImage_yscale().add(new Double(0.1)));
     }
@@ -175,29 +171,34 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
-        System.out.println("1-> V:"+vspeed+"; H:"+hspeed+"; gd:"+getGravity_direction().getInt()+"; grav:"+getGravity().getDouble());
+        System.out.println("1-> V:" + vspeed + "; H:" + hspeed + "; gd:" + getGravity_direction().getInt() + "; grav:" + getGravity().getDouble());
         //use gravity
-        System.out.println("vspeed += " + (Math.cos(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble());
-        hspeed += Math.cos(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble();
-        vspeed -= (Math.sin(getGravity_direction().getInt()) * Math.PI /180) * getGravity().getDouble();
-        System.out.println("2-> V:"+vspeed+"; H:"+hspeed+"; gd:"+getGravity_direction()+"; grav:"+getGravity().getDouble());
-        
+        System.out.println("vspeed -= " + Math.sin(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble());
+        int gd = getGravity_direction().getInt();
+        if (gd != 90 && gd != 270) {
+            hspeed += Math.cos((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
+        }
+        if (gd != 0 && gd != 180) {
+            vspeed -= Math.sin((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
+        }
+        System.out.println("2-> V:" + vspeed + "; H:" + hspeed + "; gd:" + getGravity_direction() + "; grav:" + getGravity().getDouble());
+
         //use friction
-        
-        if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() >0){
-        setSpeed(getSpeed().sub(getFriction()));
-        }
-        else if (getSpeed().getDouble() < getFriction().getDouble() && getSpeed().getDouble() <0) { 
-            setSpeed(getSpeed().add(getFriction()));
-        }
-        else {
-            setSpeed(new Integer(0));
+
+        if (getFriction().getDouble() != 0) {
+            if (getSpeed().getDouble() > getFriction().getDouble() && getSpeed().getDouble() > 0) {
+                setSpeed(getSpeed().sub(getFriction()));
+            } else if (getSpeed().getDouble() < getFriction().getDouble() && getSpeed().getDouble() < 0) {
+                setSpeed(getSpeed().add(getFriction()));
+            } else {
+                setSpeed(new Integer(0));
+            }
         }
         xprevious = x;
         yprevious = y;
         x = x + hspeed;
         y = y + vspeed;
-        
+
     }
 
     /**
@@ -205,17 +206,13 @@ public class Actor extends tile {
      * @param g 
      */
     public void Draw_event(Graphics2D g) {
-        if(sprite!=null)
-        {
-            g.drawImage(sprite.imshow(), null, (int)x-sprite.sprite_xoffset, (int)y-sprite.sprite_yoffset);
-            
-        }
-        else
-        {
+        if (sprite != null) {
+            g.drawImage(sprite.imshow(), null, (int) x - sprite.sprite_xoffset, (int) y - sprite.sprite_yoffset);
+
+        } else {
             //System.out.println("sprite is null");
-            
         }
-        
+
     }
     // <editor-fold defaultstate="collapsed" desc="Getters">  
     public Object getAlarm() {
@@ -259,13 +256,13 @@ public class Actor extends tile {
         }
         return depth;
     }
-
-    
     Double directionr = new Double(0);
+
     public Object getDirection() {
         double dd = Math.radtodeg(Math.arctan2(-vspeed, hspeed));
-        if (dd < 0)
-            dd+=360;
+        if (dd < 0) {
+            dd += 360;
+        }
         directionr.setValue(dd);
         return directionr;
     }
@@ -283,7 +280,8 @@ public class Actor extends tile {
         }
         return gravity;
     }
-final Integer _0 = new Integer(0);
+    final Integer _0 = new Integer(0);
+
     public Object getGravity_direction() {
         if (gravity_direction == null) {
             gravity_direction = _0;
@@ -360,7 +358,7 @@ final Integer _0 = new Integer(0);
     }
 
     public Object getImage_yscale() {
-         if (sprite == null) {
+        if (sprite == null) {
             return new Integer(0);
         }
         return new Double(sprite.image_yscale);
@@ -442,11 +440,11 @@ final Integer _0 = new Integer(0);
         }
         return solid;
     }
+    public static Double returndouble = new Double(0);
 
-    public static Double returndouble= new Double(0);
     public Object getSpeed() {
-        returndouble.setValue( Math.sqrt((hspeed*hspeed) + (vspeed*vspeed)));
-     return returndouble;
+        returndouble.setValue(Math.sqrt((hspeed * hspeed) + (vspeed * vspeed)));
+        return returndouble;
     //return sqrt(new Double(hspeed*hspeed + vspeed*vspeed));
     }
 
@@ -507,7 +505,7 @@ final Integer _0 = new Integer(0);
     }
 
     public Object getVisible() {
-        
+
         return new Boolean(visible);
     }
 
@@ -581,8 +579,10 @@ final Integer _0 = new Integer(0);
 
     public void setDirection(Object direction) {
         double sp = getSpeed().getDouble();
-        System.out.println("speed:"+sp);
-        if (sp==0) sp=1;
+        System.out.println("speed:" + sp);
+        if (sp == 0) {
+            sp = 1;
+        }
         hspeed = sp * cos(degtorad(direction)).getDouble();
         vspeed = -sp * sin(degtorad(direction)).getDouble();
     }
@@ -612,8 +612,9 @@ final Integer _0 = new Integer(0);
     }
 
     public void setImage_angle(Object image_angle) {
-        if (sprite !=null)
-        sprite.angle((int)image_angle.getDouble());
+        if (sprite != null) {
+            sprite.angle((int) image_angle.getDouble());
+        }
     }
 
     public void setImage_blend(Object image_blend) {
@@ -621,8 +622,9 @@ final Integer _0 = new Integer(0);
     }
 
     public void setImage_index(Object image_index) {
-        if (sprite !=null)
-        sprite.index = (int)image_index.getDouble();
+        if (sprite != null) {
+            sprite.index = (int) image_index.getDouble();
+        }
     }
 
     public void setImage_number(Object image_number) {
@@ -686,19 +688,21 @@ final Integer _0 = new Integer(0);
     }
 
     public void setSpeed(Object speed) {
-    
+
         hspeed = speed.getDouble() * Math.cos(Math.degtorad(getDirection().getDouble()));
         vspeed = -speed.getDouble() * Math.sin(Math.degtorad(getDirection().getDouble()));
-        }
+    }
 
     public void setSprite_height(Object sprite_height) {
         //constant
     }
 
     public void setSprite_index(Object sprite_index) {
-        if (sprite_index != null)
-        if (sprite_index instanceof Sprite)
-            sprite = (Sprite)sprite_index;
+        if (sprite_index != null) {
+            if (sprite_index instanceof Sprite) {
+                sprite = (Sprite) sprite_index;
+            }
+        }
     }
 
     public void setSprite_width(Object sprite_width) {
@@ -706,11 +710,11 @@ final Integer _0 = new Integer(0);
     }
 
     public void setSprite_xoffset(Object sprite_xoffset) {
-        sprite.sprite_xoffset = (int)sprite_xoffset.getDouble();
+        sprite.sprite_xoffset = (int) sprite_xoffset.getDouble();
     }
 
     public void setSprite_yoffset(Object sprite_yoffset) {
-        sprite.sprite_yoffset = (int)sprite_yoffset.getDouble();
+        sprite.sprite_yoffset = (int) sprite_yoffset.getDouble();
     }
 
     public void setTimeline_index(Object timeline_index) {
@@ -736,8 +740,8 @@ final Integer _0 = new Integer(0);
     public void setX(Object x) {
         this.x = x.getDouble();
     }
-    
-    public void setX(double x){
+
+    public void setX(double x) {
         setX(new Double(x));
     }
 
@@ -760,8 +764,8 @@ final Integer _0 = new Integer(0);
     public void setY(Object y) {
         this.y = y.getDouble();
     }
-    
-    public void setY(double y){
+
+    public void setY(double y) {
         setY(new Double(y));
     }
 
@@ -769,74 +773,73 @@ final Integer _0 = new Integer(0);
         this.ystart = ystart.getFloat();
     }
     // </editor-fold>   
-
-public void setVariable(String name, Object value)
-    {
+    public void setVariable(String name, Object value) {
         try {
-            java.lang.String nm= ""+name;
-            Method m = Variables.class.getDeclaredMethod("set"+name.charAt(nm, 0).toUpperCase()+nm.substring(1) + "", new Class[]{Object.class});
+            java.lang.String nm = "" + name;
+            Method m = Variables.class.getDeclaredMethod("set" + name.charAt(nm, 0).toUpperCase() + nm.substring(1) + "", new Class[]{Object.class});
             try {
-                
-                    m.invoke(Variables.class.newInstance(), value);
-               
+
+                m.invoke(Variables.class.newInstance(), value);
+
                 System.out.println("method invoked!");
             } catch (Exception ex) {
-                System.out.println("no method"+ex);
-            variables.put(name.toString(), value);
-            } 
+                System.out.println("no method" + ex);
+                variables.put(name.toString(), value);
+            }
         } catch (NoSuchMethodException ex) {
-            System.out.println("no method"+ex);
+            System.out.println("no method" + ex);
             variables.put(name.toString(), value);
         } catch (SecurityException ex) {
-            System.out.println("security:"+ex);
+            System.out.println("security:" + ex);
             variables.put(name.toString(), value);
         }
-        
-        
+
+
     }
-    
+
     /*
      * This function is required, it sets the value of variable with string name.
      */
-    public void setVariable(java.lang.String name, Object value)
-    {
+    public void setVariable(java.lang.String name, Object value) {
         variables.put(name, value);
     }
-    
-    public Object getVariable(String name)
-    {
+
+    public Object getVariable(String name) {
         try {
-            java.lang.String nm= ""+name;
-            Method m = Variables.class.getDeclaredMethod("get"+(""+nm.charAt(0)).toUpperCase()+nm.substring(1) + "", new Class[]{});
-            try {                
-                  return  (Object) m.invoke(Variables.class.newInstance(), null);
-               
-               // System.out.println("method invoked!");
+            java.lang.String nm = "" + name;
+            Method m = Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
+            try {
+                return (Object) m.invoke(Variables.class.newInstance(), null);
+
+            // System.out.println("method invoked!");
             } catch (Exception ex) {
-                System.out.println("no method"+ex);
-            variables.get(name.toString());
-            } 
+                System.out.println("no method" + ex);
+                variables.get(name.toString());
+            }
         } catch (NoSuchMethodException ex) {
-            System.out.println("no method"+ex);
+            System.out.println("no method" + ex);
             variables.get(name.toString());
         } catch (SecurityException ex) {
-            System.out.println("security:"+ex);
+            System.out.println("security:" + ex);
             variables.get(name.toString());
         }
-        
-        Object o = (Object)variables.get(name.toString());
-         if (o == null) return new Integer(0);
+
+        Object o = (Object) variables.get(name.toString());
+        if (o == null) {
+            return new Integer(0);
+        }
         return o;
     }
-    
+
     /*
      * Gets the value of the variable with string name.
      * 
      */
-     public Object getVariable(java.lang.String name)
-    {
-         Object o = (Object)variables.get(name.toString());
-         if (o == null) return new Integer(0);
+    public Object getVariable(java.lang.String name) {
+        Object o = (Object) variables.get(name.toString());
+        if (o == null) {
+            return new Integer(0);
+        }
         return o;
     }
 }
