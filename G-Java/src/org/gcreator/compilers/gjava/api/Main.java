@@ -31,7 +31,7 @@ public class Main {
          */
         public static void execute_program(java.lang.String prog, java.lang.String arg, boolean wait) {
             try {
-                java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog + arg);
+                java.lang.Process proc = java.lang.Runtime.getRuntime().exec(""+prog +" "+ arg);
                 
                 if (wait) {
                     try {

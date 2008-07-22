@@ -13,6 +13,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -656,7 +657,23 @@ return new Object();
 
 public static Object place_free(Object x, Object y)
 {
-return new Object();
+     for (int i = 0; i < Game.Current.instances.size(); i++) {
+           if (Game.Current.instances.elementAt(i) !=null){
+               Actor a = ((Actor)Game.Current.instances.elementAt(i));
+               if (a.getSolid().getBoolean())
+            if (new Rectangle((int)self.x,(int)self.y, self.sprite.sprite_width,self.sprite.sprite_height).intersects(a.getBounds())){
+            //if not instance id
+                if (a.getId().getDouble() == self.getId().getDouble()){
+                    System.out.println("a.id:"+a.getId().getDouble()+" s.id"+self.getId().getDouble());
+                }else {
+                    System.out.println("x"+self.x+"y"+self.y+"width:"+self.sprite.sprite_width);
+                    System.out.println(""+a.getBounds().toString());
+                    return new Boolean(false);
+                }
+            }
+           }
+        }
+return new Boolean(true);
 }
 
 public static Object place_empty(Object x, Object y)
@@ -996,7 +1013,7 @@ public Object instance_copy(Object performevent)
             
             Object o = (Object) this.clone();
             Game.Current.instances.add(o);
-            Game.allinstances.put(Game.maxInstanceId, o);
+            //Game.allinstances.put(Game.maxInstanceId, o);
         } catch (CloneNotSupportedException ex) {
             Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1249,6 +1266,9 @@ return new Object();
  */
 public static Object keyboard_set_map(Object key1, Object key2)
 {
+    if (Game.keymap == null)
+        Game.keymap = new Hashtable();
+    Game.keymap.put(key1.getInt(), key2.getInt());
 return new Object();
 }
 
@@ -2412,12 +2432,13 @@ return new Cursor(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getC
 
 public static Object window_set_color(Object color)
 {
+  ((WindowedMode)Game.game.getGame().bsGraphics).getFrame().setBackground(((Color)color).c);
 return new Object();
 }
 
 public static Object window_get_color()
 {
-return new Object();
+return new Color(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getBackground());
 }
 
 public static Object window_set_region_scale(Object scale, Object adaptwindow)
@@ -2488,12 +2509,20 @@ return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getH
 
 public static Object window_mouse_get_x()
 {
-return new Object();
+    try{
+    return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getX());
+
+    }catch(Exception e){}
+    return new Integer(0);
 }
 
 public static Object window_mouse_get_y()
 {
-return new Object();
+ try{
+    return new Double(((WindowedMode)Game.game.getGame().bsGraphics).getFrame().getMousePosition().getY());
+
+    }catch(Exception e){}
+    return new Integer(0);
 }
 
 public static Object window_mouse_set(Object x, Object y)
@@ -3368,14 +3397,14 @@ return new Object();
  * Objects
  * 
  */
-public static Object object_exists(Object ind)
+public static Object actor_exists(Object ind)
 {
 return new Object();
 }
 
-public static Object object_get_name(Object ind)
+public static Object actor_get_name(Object ind)
 {
-return new Object();
+return ind;
 }
 
 public static Object object_get_sprite(Object ind)

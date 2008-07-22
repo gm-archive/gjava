@@ -15,6 +15,7 @@ import org.gcreator.compilers.gjava.gtge.Scene2D;
 
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 public static Sprite G_Creator_NULL_SPRITE, sprite1;
+    
 //public static GameLoader game;
 
     Game(){   
@@ -28,7 +29,7 @@ public static Sprite G_Creator_NULL_SPRITE, sprite1;
     }
 public void loadSprites() {
     //BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};
-sprite1 = new Sprite("sprite1", 32, 34, 1, 2, 3, 4, 0, 0, new BufferedImage[]{getImage("image.png"),getImage("screenshot.jpg")});
+sprite1 = new Sprite("sprite1", 32, 34, 0, 47, 10, 2, 0, 0, new BufferedImage[]{getImage("image.png")/*,getImage("screenshot.jpg")*/});
 System.out.println("load sprites");
 
 }

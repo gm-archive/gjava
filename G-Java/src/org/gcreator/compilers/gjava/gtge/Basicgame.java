@@ -35,8 +35,10 @@ public class Basicgame extends Game {
 public static Graphics2D graphics=null;
 public static GameLoader game;
 public static boolean fullscreen=false,auto_redraw=true;
-public static Hashtable allinstances = new Hashtable();
+public static Hashtable allinstances = new Hashtable(),keymap;
 public static double maxInstanceId = 100001;
+public static int lastkey=0;
+public static String lastchar="";
 
     public Basicgame() {
         

@@ -46,6 +46,7 @@ import com.golden.gamedev.engine.BaseTimer;
 import com.golden.gamedev.engine.audio.MidiRenderer;
 import com.golden.gamedev.engine.audio.WaveRenderer;
 import com.golden.gamedev.engine.input.AWTInput;
+import com.golden.gamedev.engine.input.EnhancedAWTInput;
 import com.golden.gamedev.engine.timer.SystemTimer;
 import com.golden.gamedev.funbox.ErrorNotificationDialog;
 import com.golden.gamedev.object.Background;
@@ -618,7 +619,7 @@ public abstract class Game {
 			this.bsLoader = new BaseLoader(this.bsIO, Color.MAGENTA);
 		}
 		if (this.bsInput == null) {
-			this.bsInput = new AWTInput(this.bsGraphics.getComponent());
+			this.bsInput = new EnhancedAWTInput(this.bsGraphics.getComponent());
 		}
 		if (this.bsMusic == null) {
 			this.bsMusic = new BaseAudio(this.bsIO, new MidiRenderer());

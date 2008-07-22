@@ -4,6 +4,7 @@ package org.gcreator.compilers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -15,6 +16,8 @@ import java.util.Enumeration;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JDesktopPane;
@@ -363,6 +366,32 @@ actorindex++;
     }
     
     public void init() {
+        System.out.println(""+new File("plugins"+File.separator+"jars"+File.separator+"G-Java.jar").getPath());
+        //unzip it
+        try {
+            ZipFile zipFile = new ZipFile(new File("plugins"+File.separator+"jars"+File.separator+"G-Java.jar"));
+            
+            for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
+                ZipEntry entry = (ZipEntry) entries.nextElement();
+                if (entry.isDirectory()) {
+                    System.out.println("Folder:" + entry.getName());
+                    (new File("plugins"+File.separator+(entry.getName()).toString())).mkdirs();
+                } else {
+                    
+                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream((new StringBuilder()).append("plugins"+File.separator).append(entry.getName()).toString())));
+                }
+            }
+
+            zipFile.close();
+            
+        } catch (IOException ioe) {
+        
+            ioe.printStackTrace();
+            //JOptionPane.showMessageDialog(null, "Error unziping, are you sure it was a valid zip file? The link has to be directly to a zip not to a php page!");
+           
+            //return;
+        }
+        
         utilities.addStringMessage("Installed G-Java!");
         //compilername = "GJava";
         version=0.5;

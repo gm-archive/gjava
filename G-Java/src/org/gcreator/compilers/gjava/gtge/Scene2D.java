@@ -226,8 +226,7 @@ public class Scene2D {
                 if (instances.elementAt(i) !=null)
             ((Actor)instances.elementAt(i)).Draw_event(g);
         }
-
-        
+       
     }
    
     

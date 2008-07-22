@@ -17,11 +17,12 @@ public class Actor extends tile {
     Hashtable variables = new Hashtable();
     protected Sprite sprite;
 //local variables
-    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  id,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
+    protected org.gcreator.compilers.gjava.api.Object alarm,  depth,  direction,  friction,  gravity,  gravity_direction,  image_alpha,  image_angle,  image_blend,  image_single,  mask_index,  object_index,  path_endaction,  path_index,  path_orientation,  path_position,  path_positionprevious,  path_scale,  path_speed,  persistent,  solid,  timeline_index,  timeline_position,  timeline_speed;
     //protected double x,  y, -- We already have this in the super classes.
     protected double xprevious,  xstart,  yprevious,  ystart,  hspeed,  vspeed,  speed;
     public boolean visible = true,  mouseover = false;
     protected int posinvector = -1;
+    public double id=0;//instance id
 
     public Actor() {
     }
@@ -32,13 +33,14 @@ public class Actor extends tile {
     public Actor(Object X, Object Y, Object instance_id) {
         this.xstart = X.getFloat();
         this.ystart = Y.getFloat();
-        this.id = instance_id;
+        this.id = instance_id.getDouble();
         this.x = X.getFloat();
         this.y = Y.getFloat();
         //posinvector=pos;
         self = this;
     }
 
+    static Object DSolid,DVisible,DSprite,DDepth,Dpersistent;
     /**
      * Creates a new actor, don't call this, call other constructor
      */
@@ -171,9 +173,7 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
-        System.out.println("1-> V:" + vspeed + "; H:" + hspeed + "; gd:" + getGravity_direction().getInt() + "; grav:" + getGravity().getDouble());
         //use gravity
-        System.out.println("vspeed -= " + Math.sin(getGravity_direction().getInt() * Math.PI / 180) * getGravity().getDouble());
         int gd = getGravity_direction().getInt();
         gd %= 360;
         if (gd != 90 && gd != 270) {
@@ -182,8 +182,7 @@ public class Actor extends tile {
         if (gd != 0 && gd != 180) {
             vspeed -= Math.sin((getGravity_direction().getDouble() / 180) * Math.PI) * getGravity().getDouble();
         }
-        System.out.println("2-> V:" + vspeed + "; H:" + hspeed + "; gd:" + getGravity_direction() + "; grav:" + getGravity().getDouble());
-
+       
         //use friction
 
         if (getFriction().getDouble() != 0) {
@@ -296,10 +295,10 @@ public class Actor extends tile {
     }
 
     public Object getId() {
-        if (id == null) {
-            id = _0;
-        }
-        return id;
+//        if (id == null) {
+//            id = _0;
+//        }
+        return new Double(id);
     }
 
     public Object getImage_alpha() {
@@ -605,7 +604,7 @@ public class Actor extends tile {
     }
 
     public void setId(Object id) {
-        this.id = id;
+       // id is contstant
     }
 
     public void setImage_alpha(Object image_alpha) {

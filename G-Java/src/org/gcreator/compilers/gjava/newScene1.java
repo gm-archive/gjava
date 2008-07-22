@@ -19,6 +19,7 @@ public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
      //   backgrounds.add(new Background(true,0,0,0,0,0,0,0,0,0,0,0,0,0,Game.sprite1.imshow()));
 instances.add(new TestActor2(new Integer(0),new Integer(0),new Double(100001)));
 Game.allinstances.put(100001, "");
+instances.add(new TestActor2(new Integer(0),new Integer(200),new Double(100002)));
 
 //instances.add(new TestActor(new Integer(0),new Integer(0),new Double(1.0)));
 
