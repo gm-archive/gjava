@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_10-beta" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_03" class="java.beans.XMLDecoder"> 
  <boolean>true</boolean> 
- <string>TOP</string> 
  <string>English</string> 
+ <string>TOP</string> 
  <object class="org.gcreator.units.BeanFile"/> 
  <object class="javax.swing.plaf.metal.OceanTheme"/> 
- <string>LEFT</string> 
- <object class="java.awt.Dimension"> 
-  <int>819</int> 
-  <int>614</int> 
- </object> 
+ <boolean>false</boolean> 
  <boolean>true</boolean> 
- <boolean>false</boolean> 
+ <object class="java.awt.Dimension"> 
+  <int>1292</int> 
+  <int>786</int> 
+ </object> 
+ <string>LEFT</string> 
+ <boolean>true</boolean> 
  <string>Native</string> 
- <boolean>false</boolean> 
- <int>478</int> 
+ <int>485</int> 
 </java> 

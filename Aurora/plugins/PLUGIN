@@ -1,0 +1,7 @@
+[~Plugin~]
+Author=TGMG
+Core=org.gcreator.compilers.GJava
+License=BSD
+Name=G-Java
+Version=3.0m3
+Image=

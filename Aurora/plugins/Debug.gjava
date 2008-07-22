@@ -1,0 +1,9 @@
+java.lang.NullPointerException
+	at org.gcreator.compilers.gjava.gtge.Scene2D.<init>(Scene2D.java:115)
+	at org.gcreator.compilers.gjava.newScene1.<init>(newScene1.java:14)
+	at org.gcreator.compilers.gjava.Game.loadScenes(Game.java:27)
+	at org.gcreator.compilers.gjava.gtge.Basicgame.initResources(Basicgame.java:112)
+	at com.golden.gamedev.Game.initialize(Game.java:412)
+	at com.golden.gamedev.Game.start(Game.java:342)
+	at com.golden.gamedev.GameLoader.start(GameLoader.java:203)
+	at org.gcreator.compilers.gjava.Game.main(Game.java:46)

@@ -1,100 +1,737 @@
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:2: package com.golden.gamedev does not exist
-import com.golden.gamedev.GameLoader; import com.golden.gamedev.engine.graphics.WindowedMode;
-                          ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:2: package com.golden.gamedev.engine.graphics does not exist
-import com.golden.gamedev.GameLoader; import com.golden.gamedev.engine.graphics.WindowedMode;
-                                                                                ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:4: package org.gcreator.compilers.gjava.api does not exist
-import org.gcreator.compilers.gjava.api.*;
-^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:5: package org.gcreator.compilers.gjava.api.components does not exist
-import org.gcreator.compilers.gjava.api.components.*;
-^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:6: package org.gcreator.compilers.gjava.gtge does not exist
-import org.gcreator.compilers.gjava.gtge.Scene2D;
-                                         ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:8: package org.gcreator.compilers.gjava.gtge does not exist
-public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
-                                                           ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:9: cannot find symbol
-symbol  : class Sprite
+Projects\pacman\Java\org\gcreator\compilers\gjava\Game.java:18: cannot find symbol
+symbol  : class room0
 location: class org.gcreator.compilers.gjava.Game
-public static Sprite G_Creator_NULL_SPRITE;
-              ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:17: cannot find symbol
-symbol  : variable scenes
-location: class org.gcreator.compilers.gjava.Game
-scenes = new Scene2D[]{
-^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:17: cannot find symbol
-symbol  : class Scene2D
-location: class org.gcreator.compilers.gjava.Game
-scenes = new Scene2D[]{
-             ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:18: cannot find symbol
-symbol  : class sc_1
-location: class org.gcreator.compilers.gjava.Game
-new sc_1()
+new room0(),
     ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
-symbol  : variable newSprite1
+Projects\pacman\Java\org\gcreator\compilers\gjava\Game.java:19: cannot find symbol
+symbol  : class room1
 location: class org.gcreator.compilers.gjava.Game
-public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
-                            ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
-symbol  : class Sprite
+new room1(),
+    ^
+Projects\pacman\Java\org\gcreator\compilers\gjava\Game.java:20: cannot find symbol
+symbol  : class room2
 location: class org.gcreator.compilers.gjava.Game
-public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
-                                             ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:21: cannot find symbol
-symbol  : method getImage(java.lang.String)
+new room2(),
+    ^
+Projects\pacman\Java\org\gcreator\compilers\gjava\Game.java:21: cannot find symbol
+symbol  : class room3
 location: class org.gcreator.compilers.gjava.Game
-public void loadSprites() { newSprite1 = new Sprite("newSprite1",307, 321, 0, 320, 306, 0, 160, 153, new BufferedImage[]{getImage("img_1.png")});}
-                                                                                                                         ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:23: cannot find symbol
-symbol  : variable Runningas
-location: class org.gcreator.compilers.gjava.Game
-       Runningas = "Application";
-       ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:24: cannot find symbol
-symbol  : variable game
-location: class org.gcreator.compilers.gjava.Game
-       game = new GameLoader();
-       ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:24: cannot find symbol
-symbol  : class GameLoader
-location: class org.gcreator.compilers.gjava.Game
-       game = new GameLoader();
-                  ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
-symbol  : variable game
-location: class org.gcreator.compilers.gjava.Game
-       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
-       ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
-symbol  : variable frame
-location: class org.gcreator.compilers.gjava.Game
-       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
-                                                              ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
-symbol  : class WindowedMode
-location: class org.gcreator.compilers.gjava.Game
-       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
-                                                                      ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:25: cannot find symbol
-symbol  : variable game
-location: class org.gcreator.compilers.gjava.Game
-       game.setup(new Game(), new Dimension(640,480), false); frame=((WindowedMode)Game.game.getGame().bsGraphics).getFrame();
-                                                                                       ^
-Projects/Platform_Game1/Java/org/gcreator/compilers/gjava/Game.java:26: cannot find symbol
-symbol  : variable game
-location: class org.gcreator.compilers.gjava.Game
-       game.start();
-       ^
-21 errors
-Projects/Platform_Game1/Java/com : no such file or directory
-Exception in thread "Thread-13" java.lang.NoSuchFieldError: persistant
-	at org.gcreator.compilers.GJava.parseActor(GJava.java:126)
+new room3()
+    ^
+4 errors
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
 	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
 	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
 	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+java.net.BindException: Address already in use: JVM_Bind
+java.net.BindException: Address already in use: JVM_Bind
+	at java.net.PlainSocketImpl.socketBind(Native Method)
+	at java.net.PlainSocketImpl.bind(PlainSocketImpl.java:359)
+	at java.net.ServerSocket.bind(ServerSocket.java:319)
+	at java.net.ServerSocket.<init>(ServerSocket.java:185)
+	at java.net.ServerSocket.<init>(ServerSocket.java:97)
+	at org.antlr.runtime.debug.DebugEventSocketProxy.handshake(DebugEventSocketProxy.java:75)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:72)
+	at org.gcreator.plugins.platform.gscriptParser.<init>(gscriptParser.java:81)
+	at org.gcreator.plugins.PlatformCore.parseGCL(PlatformCore.java:886)
+	at org.gcreator.compilers.GJava.parseActor(GJava.java:242)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:210)
+	at org.gcreator.plugins.PlatformCore.putFolder(PlatformCore.java:253)
+	at org.gcreator.plugins.PlatformCore$1.run(PlatformCore.java:964)
+Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: Width (0) and height (480) cannot be <= 0
+	at java.awt.image.DirectColorModel.createCompatibleWritableRaster(DirectColorModel.java:999)
+	at java.awt.image.BufferedImage.<init>(BufferedImage.java:321)
+	at org.gcreator.components.ScenePanel.drawActors(ScenePanel.java:382)
+	at org.gcreator.components.ScenePanel.paintComponent(ScenePanel.java:296)
+	at javax.swing.JComponent.paint(JComponent.java:1027)
+	at javax.swing.JComponent.paintChildren(JComponent.java:864)
+	at javax.swing.JComponent.paint(JComponent.java:1036)
+	at javax.swing.JViewport.paint(JViewport.java:747)
+	at javax.swing.JComponent.paintChildren(JComponent.java:864)
+	at javax.swing.JComponent.paint(JComponent.java:1036)
+	at javax.swing.JComponent.paintToOffscreen(JComponent.java:5122)
+	at javax.swing.BufferStrategyPaintManager.paint(BufferStrategyPaintManager.java:285)
+	at javax.swing.RepaintManager.paint(RepaintManager.java:1128)
+	at javax.swing.JComponent._paintImmediately(JComponent.java:5070)
+	at javax.swing.JComponent.paintImmediately(JComponent.java:4880)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:723)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:679)
+	at javax.swing.RepaintManager.seqPaintDirtyRegions(RepaintManager.java:659)
+	at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(SystemEventQueueUtilities.java:128)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:209)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:597)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)
+Exception in thread "AWT-EventQueue-0" java.lang.IllegalArgumentException: Width (0) and height (480) cannot be <= 0
+	at java.awt.image.DirectColorModel.createCompatibleWritableRaster(DirectColorModel.java:999)
+	at java.awt.image.BufferedImage.<init>(BufferedImage.java:321)
+	at org.gcreator.components.ScenePanel.drawActors(ScenePanel.java:382)
+	at org.gcreator.components.ScenePanel.paintComponent(ScenePanel.java:296)
+	at javax.swing.JComponent.paint(JComponent.java:1027)
+	at javax.swing.JComponent.paintChildren(JComponent.java:864)
+	at javax.swing.JComponent.paint(JComponent.java:1036)
+	at javax.swing.JViewport.paint(JViewport.java:747)
+	at javax.swing.JComponent.paintChildren(JComponent.java:864)
+	at javax.swing.JComponent.paint(JComponent.java:1036)
+	at javax.swing.JComponent.paintToOffscreen(JComponent.java:5122)
+	at javax.swing.BufferStrategyPaintManager.paint(BufferStrategyPaintManager.java:285)
+	at javax.swing.RepaintManager.paint(RepaintManager.java:1128)
+	at javax.swing.JComponent._paintImmediately(JComponent.java:5070)
+	at javax.swing.JComponent.paintImmediately(JComponent.java:4880)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:723)
+	at javax.swing.RepaintManager.paintDirtyRegions(RepaintManager.java:679)
+	at javax.swing.RepaintManager.seqPaintDirtyRegions(RepaintManager.java:659)
+	at javax.swing.SystemEventQueueUtilities$ComponentWorkRequest.run(SystemEventQueueUtilities.java:128)
+	at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:209)
+	at java.awt.EventQueue.dispatchEvent(EventQueue.java:597)
+	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:273)
+	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:183)
+	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:173)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:168)
+	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:160)
+	at java.awt.EventDispatchThread.run(EventDispatchThread.java:121)

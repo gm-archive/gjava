@@ -343,8 +343,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                         ImageIcon h = f.getImageIconAt(0);
                         int x = (int) ((ascn.x - f.originX) / root.getZoom());
                         int y = (int) ((ascn.y - f.originY) / root.getZoom());
-                        int width = (int) ((h.getIconWidth()-10) / root.getZoom());
-                        int height = (int) ((h.getIconHeight()-10) / root.getZoom());
+                        int width = (int) ((h.getIconWidth()) / root.getZoom());
+                        int height = (int) ((h.getIconHeight()) / root.getZoom());
                         if(x>r.getX()+r.getWidth()||y>r.getY()+r.getHeight())
                             continue; //Don't bother drawing. It won't appear.
                         if(x+width<r.getX()||y+height<r.getY())
@@ -354,6 +354,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                                 width, height,
                                 h.getImageObserver()
                         );
+                        
                         g.setColor(Color.BLACK);
                         g.drawRect(x, y, width, height);
                     }

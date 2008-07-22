@@ -11,7 +11,7 @@ package org.gcreator.components.impl;
 
 /**
  *
- * @author Luís
+ * @author Luís, TGMG
  */
 public interface EventSelectListener {
     public static /* not final */ int CREATE = 1000;
