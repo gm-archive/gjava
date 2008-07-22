@@ -384,7 +384,7 @@ public class GM6Importer {
 
     private void readSounds(GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-        //Dumps sounds
+        
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) {
