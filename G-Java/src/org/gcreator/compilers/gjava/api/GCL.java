@@ -4034,7 +4034,7 @@ return new Object();
 
 public static Object file_exists(Object fname)
 {
-return new Object();
+return new Boolean(File.exists(fname.getString()));
 }
 
 public static Object file_delete(Object fname)
@@ -4054,7 +4054,7 @@ return new Object();
 
 public static Object directory_exists(Object dname)
 {
-return new Object();
+return new Boolean(File.exists(dname.getString()));
 }
 
 public static Object directory_create(Object dname)

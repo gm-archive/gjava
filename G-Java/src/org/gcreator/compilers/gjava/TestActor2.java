@@ -88,10 +88,12 @@ public class TestActor2 extends Actor {
 
 
              final Integer arg0=new Integer(10),  arg1 = new Integer(2);
+             
+           System.out.println("exists:"+file_exists(new String("C:\\DarkAI3DDemo2")));  
         //test new system
        double start = System.currentTimeMillis();
-       for (double i=0;i<999679999;i++)
-       testfunction(convert(10),convert(2));
+//       for (double i=0;i<999679999;i++)
+//       testfunction(convert(10),convert(2));
        //testfunction(new Integer(10),new Integer(2));
        
        double endt = System.currentTimeMillis()-start;
