@@ -1,0 +1,18 @@
+class Hello extends Actor{
+    public static int num = 0;
+    private int id = num++;
+
+    public this(){}
+
+    public int getID(){
+        return id;
+    }
+
+    public Actor returnMyself(){
+        return this;
+    }
+
+    public double math_floor(double x){
+        return (int) x;
+    }
+}
