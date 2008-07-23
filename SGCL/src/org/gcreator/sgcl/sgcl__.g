@@ -34,80 +34,82 @@ DEC : '--' ;
 T47 : 'partial' ;
 T48 : 'class' ;
 T49 : 'extends' ;
-T50 : 'static' ;
-T51 : 'final' ;
-T52 : ';' ;
-T53 : 'this' ;
-T54 : '(' ;
-T55 : ',' ;
-T56 : ')' ;
-T57 : '.' ;
-T58 : 'null' ;
-T59 : 'continue' ;
-T60 : 'break' ;
-T61 : 'return' ;
-T62 : 'if' ;
-T63 : 'else' ;
-T64 : 'while' ;
-T65 : 'for' ;
-T66 : 'switch' ;
-T67 : 'case' ;
-T68 : ':' ;
-T69 : 'default' ;
-T70 : 'int' ;
-T71 : 'float' ;
-T72 : 'double' ;
-T73 : 'boolean' ;
-T74 : 'char' ;
-T75 : 'string' ;
-T76 : 'true' ;
-T77 : 'false' ;
-T78 : 'public' ;
-T79 : 'protected' ;
-T80 : 'private' ;
-
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 98
-WORD	:	ALPHA (ALPHA|DIGIT)*;
+T50 : 'fail' ;
+T51 : '(' ;
+T52 : ')' ;
+T53 : 'static' ;
+T54 : 'final' ;
+T55 : ';' ;
+T56 : 'this' ;
+T57 : ',' ;
+T58 : '.' ;
+T59 : 'null' ;
+T60 : 'continue' ;
+T61 : 'break' ;
+T62 : 'return' ;
+T63 : 'if' ;
+T64 : 'else' ;
+T65 : 'while' ;
+T66 : 'do' ;
+T67 : 'for' ;
+T68 : 'switch' ;
+T69 : 'case' ;
+T70 : ':' ;
+T71 : 'default' ;
+T72 : 'int' ;
+T73 : 'float' ;
+T74 : 'double' ;
+T75 : 'boolean' ;
+T76 : 'char' ;
+T77 : 'string' ;
+T78 : 'true' ;
+T79 : 'false' ;
+T80 : 'public' ;
+T81 : 'protected' ;
+T82 : 'private' ;
 
 // $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 100
-INTEGER	:	'-'? (DIGIT)+ ;
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 101
-DOUBLE 	:	'-'? (DIGIT)* '.' (DIGIT)+;
+WORD	:	ALPHA (ALPHA|DIGIT)*;
+
 // $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 102
-FLOAT	:	(INTEGER|DOUBLE) ('f'|'F');
+INTEGER	:	'-'? (DIGIT)+ ;
 // $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 103
-STRING	:	'"' STRCONTENT* '"';
+DOUBLE 	:	'-'? (DIGIT)* '.' (DIGIT)+;
 // $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 104
+FLOAT	:	(INTEGER|DOUBLE) ('f'|'F');
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 105
+STRING	:	'"' STRCONTENT* '"';
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 106
 CHAR	:	'\'' CHRCONTENT* '\'';
 
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 106
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 108
 WHITESPACE
 	:	( '\t' | ' ' | '\r' | '\n'| '\u000C' )+ 	{ $channel = HIDDEN; } ;
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 108
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 110
 SLCOMMENT
 	:	CMTSL (~LINE)* { $channel = HIDDEN; };
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 110
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 112
 MLCOMMENT
 	:	CMTBEG (options{greedy=false;}: .*) CMTEND { $channel = HIDDEN; } ;
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 112
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 114
 DCOMMENT:	DCMTB
 		(options{greedy=false;}: .*)
 		(DCOMMENT
 		(options{greedy=false;}: .*))*
 		DCMTE { $channel = HIDDEN; } ;
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 117
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 119
 fragment LINE :	'\r' | '\n';
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 118
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 120
 STRCONTENT
 	:	(~('"'|'\\'))|'\\\\'|'\\"'|'\\n'|'\\t';
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 120
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 122
 CHRCONTENT
 	:	(~('\''|'\\'))|'\\\\'|'\\"'|'\\n'|'\\t';
 
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 123
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 125
 fragment DIGIT
 	:	'0'..'9' ;
 
-// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 126
+// $ANTLR src "/home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g" 128
 fragment ALPHA
 	:	'a'..'z'|'A'..'Z'|'_';

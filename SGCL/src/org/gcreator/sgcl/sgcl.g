@@ -39,13 +39,14 @@ package org.gcreator.sgcl;
 package org.gcreator.sgcl;
 }
 
-doc	:	classdef; //If one day the document becomes more than a class defition
-				//Then just change this
+doc	:	classdef;
 
 classdef:	('partial')? 'class' WORD ('extends' WORD)?
 		BLKBEG
 		clsext*
 		BLKEND;
+
+fail	:	'fail' '(' STRING ')';
 
 clsext	:	fieldas | funct | constructor;
 fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
@@ -54,7 +55,7 @@ constructor
 		BLKBEG
 		statement*
 		BLKEND;
-funct	:	privacy 'static'? type WORD '(' (type WORD (',' type WORD)*)? ')'
+funct	:	privacy 'static'? type? WORD '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
 		statement*
 		BLKEND;
@@ -68,7 +69,7 @@ value	:	('(' type ')')*
 constant
 	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null';
 statement
-	:	((declare | returnstmt | incrstmt | 'continue' | 'break') ';')
+	:	((declare | returnstmt | incrstmt | dowhile | 'continue' | 'break') ';')
 	| ifstmt | whilestmt | forstmt | switchstmt;
 incrstmt:	(('this'|WORD) '.')? WORD (INC|DEC);
 returnstmt
@@ -77,6 +78,7 @@ ifstmt	:	'if' '(' value ')' (statement|(BLKBEG statement* BLKEND))
 		('else' (statement|(BLKBEG statement* BLKEND)))?;
 whilestmt
 	:	'while' '(' value ')' (statement|(BLKBEG statement* BLKEND));
+dowhile	:	'do' (statement|(BLKBEG statement* BLKEND)) 'while' '(' value ')';
 forstmt	:	'for' '(' declare? ';' value ';' (declare|incrstmt)? ')' (statement|(BLKBEG statement* BLKEND));
 switchstmt
 	:	'switch' '(' WORD ')'
