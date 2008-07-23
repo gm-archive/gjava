@@ -35,6 +35,8 @@ System.out.println("load sprites");
 }
 
    public static void main(java.lang.String[] args){
+       parameter_count=args.length;
+       parameters=args;
        Runningas = "Application";
        //canvas=frame;
        //new Game();

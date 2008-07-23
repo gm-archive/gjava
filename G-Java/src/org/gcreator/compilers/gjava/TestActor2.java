@@ -5,6 +5,7 @@
 package org.gcreator.compilers.gjava;
 
 import java.awt.Graphics2D;
+import java.io.File;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Vector;
@@ -16,6 +17,7 @@ import org.gcreator.compilers.gjava.api.Double;
 import org.gcreator.compilers.gjava.api.String;
 import org.gcreator.compilers.gjava.api.Boolean;
 import org.gcreator.compilers.gjava.api.Color;
+import org.gcreator.compilers.gjava.api.Variables;
 
 /**
  *
@@ -88,8 +90,21 @@ public class TestActor2 extends Actor {
 
 
              final Integer arg0=new Integer(10),  arg1 = new Integer(2);
-             
-           System.out.println("exists:"+file_exists(new String("C:\\DarkAI3DDemo2")));  
+             file_delete(new String("C:\\game33.exe"));
+             try{
+           System.out.println("filename_name:"+filename_change_ext(new String("C:\\test\\game.exe"),new String(".exe2")));  
+            Object fileid= file_bin_open(new String("C:\\test\\test.hex"),new Integer(2));
+                 
+//                 file_bin_write_byte(fileid,new Integer(49));
+//                 file_bin_write_byte(fileid,new Integer(49));
+//                 file_bin_write_byte(fileid,new Integer(49));
+//                 file_bin_write_byte(fileid,new Integer(49));
+                 System.out.println("pos:"+file_bin_position(fileid));
+                // System.out.println("byte:"+file_bin_read_byte(fileid));//,new Integer(45));
+                 file_bin_seek(fileid, new Integer(3));
+                 System.out.println("pos:"+file_bin_position(fileid));
+            file_bin_close(fileid);
+             }catch(Exception ee){ee.printStackTrace();}
         //test new system
        double start = System.currentTimeMillis();
 //       for (double i=0;i<999679999;i++)

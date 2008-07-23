@@ -12,20 +12,21 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
  * BinaryFile is used to modify binary files, files are open for both reading and writing.
  * @author TGMG
  */
-public class BinaryFile {
+public class BinaryFile extends Object {
     
     FileStream f;
+    java.lang.String fname="";
 /**
          * Opens the file with the indicated name as binary.
          * @param fname
          * 
          */
-        public void open(String fname) {
+        public void open(java.lang.String fname) {
             try {
                 f = new FileStream();
                 
                     f.open(""+fname, true);
-                
+                this.fname=fname;
                 //return f;
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -39,7 +40,12 @@ public class BinaryFile {
          */
         public void rewrite() {
             try {
+                System.out.println("rewrite");
+                f.close();
+                new java.io.File(fname).delete();
+                
                 f.open(f.fname, true);
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -74,7 +80,7 @@ public class BinaryFile {
          * Returns the current position(in bytes; 0 is the first position) of the file.
          * @return
          */
-        public double getPosition(FileStream fileid) {
+        public double getPosition() {
             try {
                 return f.pos();
             } catch (IOException ex) {
@@ -103,6 +109,7 @@ public class BinaryFile {
          */
         public void writeByte(byte b) {
             try {
+                
                 f.writeByte(b);
             } catch (IOException ex) {
                 ex.printStackTrace();

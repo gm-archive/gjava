@@ -39,6 +39,8 @@ public static Hashtable allinstances = new Hashtable(),keymap;
 public static double maxInstanceId = 100001;
 public static int lastkey=0;
 public static String lastchar="";
+public static int parameter_count=0;
+    public static String[] parameters;
 
     public Basicgame() {
         

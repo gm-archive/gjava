@@ -43,8 +43,10 @@ public class FileStream
 	public void open(String file,boolean write) throws IOException
 		{
             File f = new File(file);
-            if (!f.exists())
+            if (!f.exists()){
+                new File(f.getPath().substring(0, f.getPath().lastIndexOf(java.io.File.separator))).mkdirs();
             f.createNewFile();
+            }
 		if (write)
 			this.write = true;
 		else
@@ -106,27 +108,29 @@ public class FileStream
 	//Read a byte from file
 	public byte readByte() throws IOException
 		{
-		return f.readByte();
+                    System.out.println("t:"+t);
+                    
+		return t.readByte();
 		}
 
 	//Read a 2-byte short from file
 	public short readShort() throws IOException
 		{
-		f.readFully(w,0,2);
+		t.readFully(w,0,2);
 		return (short) ((w[1] & 0xff) << 8 | (w[0] & 0xff));
 		}
 
 	//Read a 4-byte integer from file
 	public int readInt() throws IOException
 		{
-		f.readFully(w,0,4);
+		t.readFully(w,0,4);
 		return (w[3]) << 24 | (w[2] & 0xff) << 16 | (w[1] & 0xff) << 8 | (w[0] & 0xff);
 		}
 
 	//Read an 8-byte double from file
 	public final double readDouble() throws IOException
 		{
-		f.readFully(w,0,8);
+		t.readFully(w,0,8);
 		long l = (long) (w[7]) << 56 | /* long cast needed or shift done modulo 32 */
 		(long) (w[6] & 0xff) << 48 |
 		(long) (w[5] & 0xff) << 40 |
@@ -151,7 +155,7 @@ public class FileStream
 		 */
 		if (s > Runtime.getRuntime().maxMemory()) throw new IOException("Not enough memory");
 		byte[] b = new byte[s];
-		f.readFully(b);
+		t.readFully(b);
 		return new String(b);
 		}
 

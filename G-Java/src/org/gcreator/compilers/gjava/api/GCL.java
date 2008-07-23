@@ -4039,16 +4039,19 @@ return new Boolean(File.exists(fname.getString()));
 
 public static Object file_delete(Object fname)
 {
+    File.delete(fname.toString());
 return new Object();
 }
 
 public static Object file_rename(Object oldname, Object newname)
 {
+    File.rename(oldname.toString(), newname.toString());
 return new Object();
 }
 
 public static Object file_copy(Object fname, Object newname)
 {
+    File.copy(fname.toString(), newname.toString());
 return new Object();
 }
 
@@ -4059,6 +4062,7 @@ return new Boolean(File.exists(dname.getString()));
 
 public static Object directory_create(Object dname)
 {
+    (new java.io.File(dname.toString())).mkdirs();
 return new Object();
 }
 
@@ -4082,89 +4086,124 @@ public static Object file_attributes(Object fname, Object attr)
 return new Object();
 }
 
-public static Object filename_name(Object fname)
-{
-return new Object();
-}
-
 public static Object filename_path(Object fname)
 {
-return new Object();
+return new String(""+fname.toString().substring(0, fname.toString().lastIndexOf(java.io.File.separator)+1));
+}
+
+public static Object filename_name(Object fname)
+{
+return new String(""+fname.toString().substring(fname.toString().lastIndexOf(java.io.File.separator)+1,fname.toString().length()));
 }
 
 public static Object filename_dir(Object fname)
 {
-return new Object();
+return new String(""+fname.toString().substring(0, fname.toString().lastIndexOf(java.io.File.separator)));
 }
 
 public static Object filename_drive(Object fname)
 {
-return new Object();
+return new String(""+fname.toString().substring(0, fname.toString().indexOf(java.io.File.separator)));
 }
 
 public static Object filename_ext(Object fname)
 {
-return new Object();
+return new String(""+fname.toString().substring(fname.toString().length()-4,fname.toString().length()));
+
 }
 
 public static Object filename_change_ext(Object fname, Object newext)
 {
-return new Object();
+return new String(""+fname.toString().substring(0, fname.toString().length()-4)+newext.toString());
 }
 
 public static Object file_bin_open(Object fname, Object mode)
 {
-return new Object();
+    BinaryFile bf = new BinaryFile();
+    bf.open(""+fname);
+return bf;
 }
 
 public static Object file_bin_rewrite(Object file)
 {
+    if (file instanceof BinaryFile)
+    {
+    ((BinaryFile)file).rewrite();
+    }
 return new Object();
 }
 
 public static Object file_bin_close(Object file)
 {
+    if (file instanceof BinaryFile)
+    {
+    ((BinaryFile)file).close();
+    }
 return new Object();
 }
 
 public static Object file_bin_position(Object file)
 {
+    if (file instanceof BinaryFile)
+    {
+    return new Double(((BinaryFile)file).getPosition());
+    }
 return new Object();
 }
 
 public static Object file_bin_size(Object file)
 {
+    if (file instanceof BinaryFile)
+    {
+    return new Double(((BinaryFile)file).getSize());
+    }
 return new Object();
 }
 
 public static Object file_bin_seek(Object file, Object pos)
 {
+    if (file instanceof BinaryFile)
+    {
+    ((BinaryFile)file).seek(pos.getInt());
+    }
 return new Object();
 }
 
 public static Object file_bin_write_byte(Object file, Object BYTE)
 {
+    if (file instanceof BinaryFile)
+    {
+    ((BinaryFile)file).writeByte((byte)BYTE.getInt());
+    }
 return new Object();
 }
 
 public static Object file_bin_read_byte(Object file)
 {
+    if (file instanceof BinaryFile)
+    {
+    return new Integer(((BinaryFile)file).readByte());
+    }
 return new Object();
 }
 
 public static Object parameter_count()
 {
-return new Object();
+return new Integer(Game.parameter_count);
 }
 
 public static Object parameter_string(Object n)
 {
-return new Object();
+    try{
+return new String(Game.parameters[n.getInt()]);
+    }catch(Exception e){
+   return new Object();
+    }
 }
 
 public static Object environment_get_variable(Object name)
 {
-return new Object();
+return new String(System.getenv(""+name));
 }
 
 /*

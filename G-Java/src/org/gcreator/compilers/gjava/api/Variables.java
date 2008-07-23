@@ -68,7 +68,7 @@ public static Object   argument
 = new Boolean(false),  event_type
 = new Boolean(false),  fps
 = new Boolean(false),  game_id
-= new Boolean(false),  health = new Integer(100)
+= new Integer((int)Math.ceil(Math.random(9000))),  health = new Integer(100)
 ,  instance_count
 = new Boolean(false),  instance_id
 = new Boolean(false),  keyboard_key
@@ -81,7 +81,7 @@ public static Object   argument
 = new Boolean(false),  mouse_x
 = new Boolean(false),  mouse_y
 = new Boolean(false),  program_directory
-= new Boolean(false),  room
+= new String(""),  room
 = new Boolean(false),  room_caption
 = new Boolean(false),  room_first
 = new Boolean(false),  room_last
@@ -93,7 +93,7 @@ public static Object   argument
 = new Boolean(false),  show_lives
 = new Boolean(false),  show_score
 = new Boolean(false),  temp_directory
-= new Boolean(false),  transition_kind
+= new String(System.getProperty("java.io.tmpdir")),  transition_kind
 = new Boolean(false),  transition_steps
 = new Boolean(false),  view_angle
 = new Boolean(false),  view_current
@@ -113,7 +113,7 @@ public static Object   argument
 = new Boolean(false),  view_yport
 = new Boolean(false),  view_yview
 = new Boolean(false),  working_directory
-        = new Boolean(false);
+        = new String(System.getProperty("user.dir"));
 
     public static Object getArgument() {
         return argument;
@@ -671,11 +671,15 @@ public static Object   argument
     }
 
     public static Object getProgram_directory() {
+        try{
+        return new String(""+(Variables.class.getProtectionDomain()
+.getCodeSource().getLocation().toURI()));
+        }catch(Exception ee){ee.printStackTrace();}
         return program_directory;
     }
 
     public static void setProgram_directory(Object program_directory) {
-        Variables.program_directory = program_directory;
+        //Variables.program_directory = program_directory;
     }
 
     public static Object getRoom() {
@@ -793,7 +797,7 @@ public static Object   argument
     }
 
     public static void setTemp_directory(Object temp_directory) {
-        Variables.temp_directory = temp_directory;
+       // Variables.temp_directory = temp_directory;
     }
 
     public static Object getTransition_kind() {

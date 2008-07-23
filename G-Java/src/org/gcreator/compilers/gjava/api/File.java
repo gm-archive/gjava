@@ -200,7 +200,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          *  Deletes the file with the given name.
          * @param fname
          */
-        public static void delete(String fname) {
+        public static void delete(java.lang.String fname) {
             new java.io.File(fname+"").delete();
         }
 
@@ -209,7 +209,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param oldname
          * @param newname
          */
-        public static void rename(String oldname, String newname) {
+        public static void rename(java.lang.String oldname, java.lang.String newname) {
             new java.io.File(oldname+"").renameTo(new java.io.File(newname+""));
         }
 
@@ -218,7 +218,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          * @param fname
          * @param newname
          */
-        public static void copy(String fname, String newname) {
+        public static void copy(java.lang.String fname, java.lang.String newname) {
             try {
                 java.io.InputStream in;
                 in = new java.io.FileInputStream(new java.io.File(fname+""));
