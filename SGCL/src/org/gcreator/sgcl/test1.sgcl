@@ -1,7 +1,5 @@
-class X{
-    //Hi!
-
-    public int A(){
-        
+class X extends Actor{
+    public this(){
+        super();
     }
 }

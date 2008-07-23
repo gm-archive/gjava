@@ -1,4 +1,13 @@
-grammar sgcl;
+/*
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
+ */
+ grammar sgcl;
 
 options {
 backtrack = true;
@@ -36,10 +45,28 @@ tokens {
 }
 
 @header{
+/*
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
+ */
 package org.gcreator.sgcl;
 }
 
 @lexer::header{
+/*
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
+ */
 package org.gcreator.sgcl;
 }
 
@@ -55,6 +82,7 @@ fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
 constructor
 	:	privacy 'this' '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
+		(('super'|'this') '(' (value (',' value)*)? ')' ';')?
 		statement*
 		BLKEND;
 funct	:	privacy 'static'? type? WORD '(' (type WORD (',' type WORD)*)? ')'

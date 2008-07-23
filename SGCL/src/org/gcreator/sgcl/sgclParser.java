@@ -1,5 +1,14 @@
-// $ANTLR 3.0.1 /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g 2008-07-23 16:51:07
+// $ANTLR 3.0.1 /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g 2008-07-23 18:08:57
 
+/*
+ * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
+ * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
+ * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
+ * 
+ * This file is part of G-Creator.
+ * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
+ * See LICENSE for more details.
+ */
 package org.gcreator.sgcl;
 
 
@@ -60,7 +69,7 @@ public class sgclParser extends Parser {
 
         public sgclParser(TokenStream input) {
             super(input);
-            ruleMemo = new HashMap[156+1];
+            ruleMemo = new HashMap[160+1];
          }
         
 
@@ -70,13 +79,13 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start doc
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:1: doc : classdef ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:1: doc : classdef ;
     public final void doc() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:5: ( classdef )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:7: classdef
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:5: ( classdef )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:7: classdef
             {
-            pushFollow(FOLLOW_classdef_in_doc271);
+            pushFollow(FOLLOW_classdef_in_doc274);
             classdef();
             _fsp--;
             if (failed) return ;
@@ -96,13 +105,13 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start classdef
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:1: classdef : ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:1: classdef : ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND ;
     public final void classdef() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:9: ( ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:11: ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:9: ( ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( 'partial' )? 'class' WORD ( 'extends' WORD )? BLKBEG ( clsext )* BLKEND
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:11: ( 'partial' )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( 'partial' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -111,18 +120,18 @@ public class sgclParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:12: 'partial'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:12: 'partial'
                     {
-                    match(input,47,FOLLOW_47_in_classdef279); if (failed) return ;
+                    match(input,47,FOLLOW_47_in_classdef282); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,48,FOLLOW_48_in_classdef283); if (failed) return ;
-            match(input,WORD,FOLLOW_WORD_in_classdef285); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:37: ( 'extends' WORD )?
+            match(input,48,FOLLOW_48_in_classdef286); if (failed) return ;
+            match(input,WORD,FOLLOW_WORD_in_classdef288); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:37: ( 'extends' WORD )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -131,18 +140,18 @@ public class sgclParser extends Parser {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:38: 'extends' WORD
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:38: 'extends' WORD
                     {
-                    match(input,49,FOLLOW_49_in_classdef288); if (failed) return ;
-                    match(input,WORD,FOLLOW_WORD_in_classdef290); if (failed) return ;
+                    match(input,49,FOLLOW_49_in_classdef291); if (failed) return ;
+                    match(input,WORD,FOLLOW_WORD_in_classdef293); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,BLKBEG,FOLLOW_BLKBEG_in_classdef296); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:50:3: ( clsext )*
+            match(input,BLKBEG,FOLLOW_BLKBEG_in_classdef299); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:3: ( clsext )*
             loop3:
             do {
                 int alt3=2;
@@ -157,7 +166,7 @@ public class sgclParser extends Parser {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: clsext
             	    {
-            	    pushFollow(FOLLOW_clsext_in_classdef300);
+            	    pushFollow(FOLLOW_clsext_in_classdef303);
             	    clsext();
             	    _fsp--;
             	    if (failed) return ;
@@ -170,7 +179,7 @@ public class sgclParser extends Parser {
                 }
             } while (true);
 
-            match(input,BLKEND,FOLLOW_BLKEND_in_classdef305); if (failed) return ;
+            match(input,BLKEND,FOLLOW_BLKEND_in_classdef308); if (failed) return ;
 
             }
 
@@ -187,36 +196,26 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start clsext
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:1: clsext : ( fieldas | funct | constructor );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:1: clsext : ( fieldas | funct | constructor );
     public final void clsext() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:8: ( fieldas | funct | constructor )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:8: ( fieldas | funct | constructor )
             int alt4=3;
             int LA4_0 = input.LA(1);
 
             if ( ((LA4_0>=80 && LA4_0<=82)) ) {
                 switch ( input.LA(2) ) {
-                case 53:
-                    {
-                    alt4=3;
-                    }
-                    break;
                 case 50:
                     {
                     switch ( input.LA(3) ) {
-                    case 51:
-                        {
-                        alt4=1;
-                        }
-                        break;
                     case WORD:
                         {
-                        int LA4_5 = input.LA(4);
+                        int LA4_4 = input.LA(4);
 
-                        if ( (LA4_5==54) ) {
+                        if ( (LA4_4==54) ) {
                             alt4=2;
                         }
-                        else if ( (LA4_5==WORD) ) {
+                        else if ( (LA4_4==WORD) ) {
                             int LA4_8 = input.LA(5);
 
                             if ( (LA4_8==54) ) {
@@ -228,7 +227,7 @@ public class sgclParser extends Parser {
                             else {
                                 if (backtracking>0) {failed=true; return ;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
+                                    new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
 
                                 throw nvae;
                             }
@@ -236,7 +235,7 @@ public class sgclParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 5, input);
+                                new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 4, input);
 
                             throw nvae;
                         }
@@ -249,9 +248,9 @@ public class sgclParser extends Parser {
                     case 76:
                     case 77:
                         {
-                        int LA4_6 = input.LA(4);
+                        int LA4_5 = input.LA(4);
 
-                        if ( (LA4_6==WORD) ) {
+                        if ( (LA4_5==WORD) ) {
                             int LA4_8 = input.LA(5);
 
                             if ( (LA4_8==54) ) {
@@ -263,7 +262,7 @@ public class sgclParser extends Parser {
                             else {
                                 if (backtracking>0) {failed=true; return ;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
+                                    new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
 
                                 throw nvae;
                             }
@@ -271,16 +270,21 @@ public class sgclParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 6, input);
+                                new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 5, input);
 
                             throw nvae;
                         }
                         }
                         break;
+                    case 51:
+                        {
+                        alt4=1;
+                        }
+                        break;
                     default:
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 3, input);
+                            new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 2, input);
 
                         throw nvae;
                     }
@@ -294,12 +298,12 @@ public class sgclParser extends Parser {
                     break;
                 case WORD:
                     {
-                    int LA4_5 = input.LA(3);
+                    int LA4_4 = input.LA(3);
 
-                    if ( (LA4_5==54) ) {
+                    if ( (LA4_4==54) ) {
                         alt4=2;
                     }
-                    else if ( (LA4_5==WORD) ) {
+                    else if ( (LA4_4==WORD) ) {
                         int LA4_8 = input.LA(4);
 
                         if ( (LA4_8==54) ) {
@@ -311,7 +315,7 @@ public class sgclParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
+                                new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
 
                             throw nvae;
                         }
@@ -319,7 +323,7 @@ public class sgclParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 5, input);
+                            new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 4, input);
 
                         throw nvae;
                     }
@@ -332,9 +336,9 @@ public class sgclParser extends Parser {
                 case 76:
                 case 77:
                     {
-                    int LA4_6 = input.LA(3);
+                    int LA4_5 = input.LA(3);
 
-                    if ( (LA4_6==WORD) ) {
+                    if ( (LA4_5==WORD) ) {
                         int LA4_8 = input.LA(4);
 
                         if ( (LA4_8==54) ) {
@@ -346,7 +350,7 @@ public class sgclParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
+                                new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 8, input);
 
                             throw nvae;
                         }
@@ -354,16 +358,21 @@ public class sgclParser extends Parser {
                     else {
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 6, input);
+                            new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 5, input);
 
                         throw nvae;
                     }
                     }
                     break;
+                case 53:
+                    {
+                    alt4=3;
+                    }
+                    break;
                 default:
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 1, input);
+                        new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 1, input);
 
                     throw nvae;
                 }
@@ -372,15 +381,15 @@ public class sgclParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("53:1: clsext : ( fieldas | funct | constructor );", 4, 0, input);
+                    new NoViableAltException("80:1: clsext : ( fieldas | funct | constructor );", 4, 0, input);
 
                 throw nvae;
             }
             switch (alt4) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:10: fieldas
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:10: fieldas
                     {
-                    pushFollow(FOLLOW_fieldas_in_clsext313);
+                    pushFollow(FOLLOW_fieldas_in_clsext316);
                     fieldas();
                     _fsp--;
                     if (failed) return ;
@@ -388,9 +397,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:20: funct
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:20: funct
                     {
-                    pushFollow(FOLLOW_funct_in_clsext317);
+                    pushFollow(FOLLOW_funct_in_clsext320);
                     funct();
                     _fsp--;
                     if (failed) return ;
@@ -398,9 +407,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:28: constructor
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:28: constructor
                     {
-                    pushFollow(FOLLOW_constructor_in_clsext321);
+                    pushFollow(FOLLOW_constructor_in_clsext324);
                     constructor();
                     _fsp--;
                     if (failed) return ;
@@ -422,17 +431,17 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start fieldas
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:1: fieldas : privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';' ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:1: fieldas : privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';' ;
     public final void fieldas() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:9: ( privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:11: privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:9: ( privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:11: privacy ( 'static' )? ( 'final' )? type WORD ( EQUAL value )? ';'
             {
-            pushFollow(FOLLOW_privacy_in_fieldas328);
+            pushFollow(FOLLOW_privacy_in_fieldas331);
             privacy();
             _fsp--;
             if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:19: ( 'static' )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:19: ( 'static' )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -443,14 +452,14 @@ public class sgclParser extends Parser {
                 case 1 :
                     // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: 'static'
                     {
-                    match(input,50,FOLLOW_50_in_fieldas330); if (failed) return ;
+                    match(input,50,FOLLOW_50_in_fieldas333); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:29: ( 'final' )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:29: ( 'final' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -461,19 +470,19 @@ public class sgclParser extends Parser {
                 case 1 :
                     // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: 'final'
                     {
-                    match(input,51,FOLLOW_51_in_fieldas333); if (failed) return ;
+                    match(input,51,FOLLOW_51_in_fieldas336); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            pushFollow(FOLLOW_type_in_fieldas336);
+            pushFollow(FOLLOW_type_in_fieldas339);
             type();
             _fsp--;
             if (failed) return ;
-            match(input,WORD,FOLLOW_WORD_in_fieldas338); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:48: ( EQUAL value )?
+            match(input,WORD,FOLLOW_WORD_in_fieldas341); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:48: ( EQUAL value )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -482,10 +491,10 @@ public class sgclParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:49: EQUAL value
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:49: EQUAL value
                     {
-                    match(input,EQUAL,FOLLOW_EQUAL_in_fieldas341); if (failed) return ;
-                    pushFollow(FOLLOW_value_in_fieldas343);
+                    match(input,EQUAL,FOLLOW_EQUAL_in_fieldas344); if (failed) return ;
+                    pushFollow(FOLLOW_value_in_fieldas346);
                     value();
                     _fsp--;
                     if (failed) return ;
@@ -495,7 +504,7 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,52,FOLLOW_52_in_fieldas347); if (failed) return ;
+            match(input,52,FOLLOW_52_in_fieldas350); if (failed) return ;
 
             }
 
@@ -512,19 +521,19 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start constructor
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:55:1: constructor : privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:1: constructor : privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( ( 'super' | 'this' ) '(' ( value ( ',' value )* )? ')' ';' )? ( statement )* BLKEND ;
     public final void constructor() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:2: ( privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:4: privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:2: ( privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( ( 'super' | 'this' ) '(' ( value ( ',' value )* )? ')' ';' )? ( statement )* BLKEND )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:4: privacy 'this' '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( ( 'super' | 'this' ) '(' ( value ( ',' value )* )? ')' ';' )? ( statement )* BLKEND
             {
-            pushFollow(FOLLOW_privacy_in_constructor355);
+            pushFollow(FOLLOW_privacy_in_constructor358);
             privacy();
             _fsp--;
             if (failed) return ;
-            match(input,53,FOLLOW_53_in_constructor357); if (failed) return ;
-            match(input,54,FOLLOW_54_in_constructor359); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:23: ( type WORD ( ',' type WORD )* )?
+            match(input,53,FOLLOW_53_in_constructor360); if (failed) return ;
+            match(input,54,FOLLOW_54_in_constructor362); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:23: ( type WORD ( ',' type WORD )* )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -533,14 +542,14 @@ public class sgclParser extends Parser {
             }
             switch (alt9) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:24: type WORD ( ',' type WORD )*
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:24: type WORD ( ',' type WORD )*
                     {
-                    pushFollow(FOLLOW_type_in_constructor362);
+                    pushFollow(FOLLOW_type_in_constructor365);
                     type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,WORD,FOLLOW_WORD_in_constructor364); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:34: ( ',' type WORD )*
+                    match(input,WORD,FOLLOW_WORD_in_constructor367); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:34: ( ',' type WORD )*
                     loop8:
                     do {
                         int alt8=2;
@@ -553,14 +562,14 @@ public class sgclParser extends Parser {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:35: ',' type WORD
+                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:35: ',' type WORD
                     	    {
-                    	    match(input,55,FOLLOW_55_in_constructor367); if (failed) return ;
-                    	    pushFollow(FOLLOW_type_in_constructor369);
+                    	    match(input,55,FOLLOW_55_in_constructor370); if (failed) return ;
+                    	    pushFollow(FOLLOW_type_in_constructor372);
                     	    type();
                     	    _fsp--;
                     	    if (failed) return ;
-                    	    match(input,WORD,FOLLOW_WORD_in_constructor371); if (failed) return ;
+                    	    match(input,WORD,FOLLOW_WORD_in_constructor374); if (failed) return ;
 
                     	    }
                     	    break;
@@ -576,24 +585,116 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,56,FOLLOW_56_in_constructor377); if (failed) return ;
-            match(input,BLKBEG,FOLLOW_BLKBEG_in_constructor381); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:58:3: ( statement )*
-            loop10:
-            do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+            match(input,56,FOLLOW_56_in_constructor380); if (failed) return ;
+            match(input,BLKBEG,FOLLOW_BLKBEG_in_constructor384); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:3: ( ( 'super' | 'this' ) '(' ( value ( ',' value )* )? ')' ';' )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-                if ( (LA10_0==WORD||LA10_0==51||(LA10_0>=53 && LA10_0<=54)||LA10_0==57||(LA10_0>=60 && LA10_0<=63)||(LA10_0>=65 && LA10_0<=68)||(LA10_0>=72 && LA10_0<=77)) ) {
-                    alt10=1;
+            if ( (LA12_0==53) ) {
+                int LA12_1 = input.LA(2);
+
+                if ( (LA12_1==54) ) {
+                    alt12=1;
+                }
+            }
+            else if ( (LA12_0==57) ) {
+                int LA12_3 = input.LA(2);
+
+                if ( (LA12_3==54) ) {
+                    alt12=1;
+                }
+            }
+            switch (alt12) {
+                case 1 :
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:4: ( 'super' | 'this' ) '(' ( value ( ',' value )* )? ')' ';'
+                    {
+                    if ( input.LA(1)==53||input.LA(1)==57 ) {
+                        input.consume();
+                        errorRecovery=false;failed=false;
+                    }
+                    else {
+                        if (backtracking>0) {failed=true; return ;}
+                        MismatchedSetException mse =
+                            new MismatchedSetException(null,input);
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_constructor389);    throw mse;
+                    }
+
+                    match(input,54,FOLLOW_54_in_constructor395); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:25: ( value ( ',' value )* )?
+                    int alt11=2;
+                    int LA11_0 = input.LA(1);
+
+                    if ( ((LA11_0>=WORD && LA11_0<=CHAR)||(LA11_0>=53 && LA11_0<=54)||LA11_0==57||LA11_0==59||(LA11_0>=78 && LA11_0<=79)) ) {
+                        alt11=1;
+                    }
+                    switch (alt11) {
+                        case 1 :
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:26: value ( ',' value )*
+                            {
+                            pushFollow(FOLLOW_value_in_constructor398);
+                            value();
+                            _fsp--;
+                            if (failed) return ;
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:32: ( ',' value )*
+                            loop10:
+                            do {
+                                int alt10=2;
+                                int LA10_0 = input.LA(1);
+
+                                if ( (LA10_0==55) ) {
+                                    alt10=1;
+                                }
+
+
+                                switch (alt10) {
+                            	case 1 :
+                            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:33: ',' value
+                            	    {
+                            	    match(input,55,FOLLOW_55_in_constructor401); if (failed) return ;
+                            	    pushFollow(FOLLOW_value_in_constructor403);
+                            	    value();
+                            	    _fsp--;
+                            	    if (failed) return ;
+
+                            	    }
+                            	    break;
+
+                            	default :
+                            	    break loop10;
+                                }
+                            } while (true);
+
+
+                            }
+                            break;
+
+                    }
+
+                    match(input,56,FOLLOW_56_in_constructor409); if (failed) return ;
+                    match(input,52,FOLLOW_52_in_constructor411); if (failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:3: ( statement )*
+            loop13:
+            do {
+                int alt13=2;
+                int LA13_0 = input.LA(1);
+
+                if ( (LA13_0==WORD||LA13_0==51||(LA13_0>=53 && LA13_0<=54)||LA13_0==57||(LA13_0>=60 && LA13_0<=63)||(LA13_0>=65 && LA13_0<=68)||(LA13_0>=72 && LA13_0<=77)) ) {
+                    alt13=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt13) {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_constructor385);
+            	    pushFollow(FOLLOW_statement_in_constructor417);
             	    statement();
             	    _fsp--;
             	    if (failed) return ;
@@ -602,11 +703,11 @@ public class sgclParser extends Parser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop13;
                 }
             } while (true);
 
-            match(input,BLKEND,FOLLOW_BLKEND_in_constructor390); if (failed) return ;
+            match(input,BLKEND,FOLLOW_BLKEND_in_constructor422); if (failed) return ;
 
             }
 
@@ -623,107 +724,107 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start funct
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:1: funct : privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:1: funct : privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND ;
     public final void funct() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:7: ( privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:9: privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:7: ( privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:9: privacy ( 'static' )? ( type )? WORD '(' ( type WORD ( ',' type WORD )* )? ')' BLKBEG ( statement )* BLKEND
             {
-            pushFollow(FOLLOW_privacy_in_funct397);
+            pushFollow(FOLLOW_privacy_in_funct429);
             privacy();
             _fsp--;
             if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:17: ( 'static' )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
-
-            if ( (LA11_0==50) ) {
-                alt11=1;
-            }
-            switch (alt11) {
-                case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: 'static'
-                    {
-                    match(input,50,FOLLOW_50_in_funct399); if (failed) return ;
-
-                    }
-                    break;
-
-            }
-
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:27: ( type )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0==WORD) ) {
-                int LA12_1 = input.LA(2);
-
-                if ( (LA12_1==WORD) ) {
-                    alt12=1;
-                }
-            }
-            else if ( ((LA12_0>=72 && LA12_0<=77)) ) {
-                alt12=1;
-            }
-            switch (alt12) {
-                case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: type
-                    {
-                    pushFollow(FOLLOW_type_in_funct402);
-                    type();
-                    _fsp--;
-                    if (failed) return ;
-
-                    }
-                    break;
-
-            }
-
-            match(input,WORD,FOLLOW_WORD_in_funct405); if (failed) return ;
-            match(input,54,FOLLOW_54_in_funct407); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:42: ( type WORD ( ',' type WORD )* )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:17: ( 'static' )?
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==WORD||(LA14_0>=72 && LA14_0<=77)) ) {
+            if ( (LA14_0==50) ) {
                 alt14=1;
             }
             switch (alt14) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:43: type WORD ( ',' type WORD )*
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: 'static'
                     {
-                    pushFollow(FOLLOW_type_in_funct410);
+                    match(input,50,FOLLOW_50_in_funct431); if (failed) return ;
+
+                    }
+                    break;
+
+            }
+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:27: ( type )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
+
+            if ( (LA15_0==WORD) ) {
+                int LA15_1 = input.LA(2);
+
+                if ( (LA15_1==WORD) ) {
+                    alt15=1;
+                }
+            }
+            else if ( ((LA15_0>=72 && LA15_0<=77)) ) {
+                alt15=1;
+            }
+            switch (alt15) {
+                case 1 :
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: type
+                    {
+                    pushFollow(FOLLOW_type_in_funct434);
                     type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,WORD,FOLLOW_WORD_in_funct412); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:53: ( ',' type WORD )*
-                    loop13:
-                    do {
-                        int alt13=2;
-                        int LA13_0 = input.LA(1);
 
-                        if ( (LA13_0==55) ) {
-                            alt13=1;
+                    }
+                    break;
+
+            }
+
+            match(input,WORD,FOLLOW_WORD_in_funct437); if (failed) return ;
+            match(input,54,FOLLOW_54_in_funct439); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:42: ( type WORD ( ',' type WORD )* )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
+
+            if ( (LA17_0==WORD||(LA17_0>=72 && LA17_0<=77)) ) {
+                alt17=1;
+            }
+            switch (alt17) {
+                case 1 :
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:43: type WORD ( ',' type WORD )*
+                    {
+                    pushFollow(FOLLOW_type_in_funct442);
+                    type();
+                    _fsp--;
+                    if (failed) return ;
+                    match(input,WORD,FOLLOW_WORD_in_funct444); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:53: ( ',' type WORD )*
+                    loop16:
+                    do {
+                        int alt16=2;
+                        int LA16_0 = input.LA(1);
+
+                        if ( (LA16_0==55) ) {
+                            alt16=1;
                         }
 
 
-                        switch (alt13) {
+                        switch (alt16) {
                     	case 1 :
-                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:54: ',' type WORD
+                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:54: ',' type WORD
                     	    {
-                    	    match(input,55,FOLLOW_55_in_funct415); if (failed) return ;
-                    	    pushFollow(FOLLOW_type_in_funct417);
+                    	    match(input,55,FOLLOW_55_in_funct447); if (failed) return ;
+                    	    pushFollow(FOLLOW_type_in_funct449);
                     	    type();
                     	    _fsp--;
                     	    if (failed) return ;
-                    	    match(input,WORD,FOLLOW_WORD_in_funct419); if (failed) return ;
+                    	    match(input,WORD,FOLLOW_WORD_in_funct451); if (failed) return ;
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop13;
+                    	    break loop16;
                         }
                     } while (true);
 
@@ -733,24 +834,24 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,56,FOLLOW_56_in_funct425); if (failed) return ;
-            match(input,BLKBEG,FOLLOW_BLKBEG_in_funct429); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:62:3: ( statement )*
-            loop15:
+            match(input,56,FOLLOW_56_in_funct457); if (failed) return ;
+            match(input,BLKBEG,FOLLOW_BLKBEG_in_funct461); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:3: ( statement )*
+            loop18:
             do {
-                int alt15=2;
-                int LA15_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( (LA15_0==WORD||LA15_0==51||(LA15_0>=53 && LA15_0<=54)||LA15_0==57||(LA15_0>=60 && LA15_0<=63)||(LA15_0>=65 && LA15_0<=68)||(LA15_0>=72 && LA15_0<=77)) ) {
-                    alt15=1;
+                if ( (LA18_0==WORD||LA18_0==51||(LA18_0>=53 && LA18_0<=54)||LA18_0==57||(LA18_0>=60 && LA18_0<=63)||(LA18_0>=65 && LA18_0<=68)||(LA18_0>=72 && LA18_0<=77)) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt15) {
+                switch (alt18) {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_funct433);
+            	    pushFollow(FOLLOW_statement_in_funct465);
             	    statement();
             	    _fsp--;
             	    if (failed) return ;
@@ -759,11 +860,11 @@ public class sgclParser extends Parser {
             	    break;
 
             	default :
-            	    break loop15;
+            	    break loop18;
                 }
             } while (true);
 
-            match(input,BLKEND,FOLLOW_BLKEND_in_funct438); if (failed) return ;
+            match(input,BLKEND,FOLLOW_BLKEND_in_funct470); if (failed) return ;
 
             }
 
@@ -780,29 +881,29 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start declare
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );
     public final void declare() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:9: ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )
-            int alt18=2;
-            int LA18_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:9: ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )
+            int alt21=2;
+            int LA21_0 = input.LA(1);
 
-            if ( (LA18_0==51||(LA18_0>=72 && LA18_0<=77)) ) {
-                alt18=1;
+            if ( (LA21_0==51||(LA21_0>=72 && LA21_0<=77)) ) {
+                alt21=1;
             }
-            else if ( (LA18_0==WORD) ) {
-                int LA18_2 = input.LA(2);
+            else if ( (LA21_0==WORD) ) {
+                int LA21_2 = input.LA(2);
 
-                if ( (LA18_2==EQUAL||(LA18_2>=PLEQUAL && LA18_2<=MOEQUAL)) ) {
-                    alt18=2;
+                if ( (LA21_2==EQUAL||(LA21_2>=PLEQUAL && LA21_2<=MOEQUAL)) ) {
+                    alt21=2;
                 }
-                else if ( (LA18_2==WORD) ) {
-                    alt18=1;
+                else if ( (LA21_2==WORD) ) {
+                    alt21=1;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("64:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );", 18, 2, input);
+                        new NoViableAltException("92:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );", 21, 2, input);
 
                     throw nvae;
                 }
@@ -810,47 +911,47 @@ public class sgclParser extends Parser {
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("64:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );", 18, 0, input);
+                    new NoViableAltException("92:1: declare : ( ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )? | WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value );", 21, 0, input);
 
                 throw nvae;
             }
-            switch (alt18) {
+            switch (alt21) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:11: ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )?
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:11: ( 'final' )? type WORD ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )?
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:11: ( 'final' )?
-                    int alt16=2;
-                    int LA16_0 = input.LA(1);
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:11: ( 'final' )?
+                    int alt19=2;
+                    int LA19_0 = input.LA(1);
 
-                    if ( (LA16_0==51) ) {
-                        alt16=1;
+                    if ( (LA19_0==51) ) {
+                        alt19=1;
                     }
-                    switch (alt16) {
+                    switch (alt19) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:12: 'final'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:12: 'final'
                             {
-                            match(input,51,FOLLOW_51_in_declare446); if (failed) return ;
+                            match(input,51,FOLLOW_51_in_declare478); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    pushFollow(FOLLOW_type_in_declare450);
+                    pushFollow(FOLLOW_type_in_declare482);
                     type();
                     _fsp--;
                     if (failed) return ;
-                    match(input,WORD,FOLLOW_WORD_in_declare452); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:32: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )?
-                    int alt17=2;
-                    int LA17_0 = input.LA(1);
+                    match(input,WORD,FOLLOW_WORD_in_declare484); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:32: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value )?
+                    int alt20=2;
+                    int LA20_0 = input.LA(1);
 
-                    if ( (LA17_0==EQUAL||(LA17_0>=PLEQUAL && LA17_0<=MOEQUAL)) ) {
-                        alt17=1;
+                    if ( (LA20_0==EQUAL||(LA20_0>=PLEQUAL && LA20_0<=MOEQUAL)) ) {
+                        alt20=1;
                     }
-                    switch (alt17) {
+                    switch (alt20) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:64:33: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:33: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value
                             {
                             if ( input.LA(1)==EQUAL||(input.LA(1)>=PLEQUAL && input.LA(1)<=MOEQUAL) ) {
                                 input.consume();
@@ -860,10 +961,10 @@ public class sgclParser extends Parser {
                                 if (backtracking>0) {failed=true; return ;}
                                 MismatchedSetException mse =
                                     new MismatchedSetException(null,input);
-                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_declare455);    throw mse;
+                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_declare487);    throw mse;
                             }
 
-                            pushFollow(FOLLOW_value_in_declare469);
+                            pushFollow(FOLLOW_value_in_declare501);
                             value();
                             _fsp--;
                             if (failed) return ;
@@ -877,9 +978,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:65:5: WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:93:5: WORD ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL ) value
                     {
-                    match(input,WORD,FOLLOW_WORD_in_declare477); if (failed) return ;
+                    match(input,WORD,FOLLOW_WORD_in_declare509); if (failed) return ;
                     if ( input.LA(1)==EQUAL||(input.LA(1)>=PLEQUAL && input.LA(1)<=MOEQUAL) ) {
                         input.consume();
                         errorRecovery=false;failed=false;
@@ -888,10 +989,10 @@ public class sgclParser extends Parser {
                         if (backtracking>0) {failed=true; return ;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_declare479);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_declare511);    throw mse;
                     }
 
-                    pushFollow(FOLLOW_value_in_declare493);
+                    pushFollow(FOLLOW_value_in_declare525);
                     value();
                     _fsp--;
                     if (failed) return ;
@@ -913,26 +1014,26 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start value
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );
     public final void value() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:7: ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) )
-            int alt28=2;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:7: ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) )
+            int alt31=2;
             switch ( input.LA(1) ) {
             case 54:
                 {
-                int LA28_1 = input.LA(2);
+                int LA31_1 = input.LA(2);
 
-                if ( (synpred56()) ) {
-                    alt28=1;
+                if ( (synpred60()) ) {
+                    alt31=1;
                 }
                 else if ( (true) ) {
-                    alt28=2;
+                    alt31=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("68:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 28, 1, input);
+                        new NoViableAltException("96:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 31, 1, input);
 
                     throw nvae;
                 }
@@ -940,18 +1041,18 @@ public class sgclParser extends Parser {
                 break;
             case 53:
                 {
-                int LA28_2 = input.LA(2);
+                int LA31_2 = input.LA(2);
 
-                if ( (synpred56()) ) {
-                    alt28=1;
+                if ( (synpred60()) ) {
+                    alt31=1;
                 }
                 else if ( (true) ) {
-                    alt28=2;
+                    alt31=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("68:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 28, 2, input);
+                        new NoViableAltException("96:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 31, 2, input);
 
                     throw nvae;
                 }
@@ -959,23 +1060,23 @@ public class sgclParser extends Parser {
                 break;
             case 57:
                 {
-                alt28=1;
+                alt31=1;
                 }
                 break;
             case WORD:
                 {
-                int LA28_4 = input.LA(2);
+                int LA31_4 = input.LA(2);
 
-                if ( (synpred56()) ) {
-                    alt28=1;
+                if ( (synpred60()) ) {
+                    alt31=1;
                 }
                 else if ( (true) ) {
-                    alt28=2;
+                    alt31=2;
                 }
                 else {
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("68:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 28, 4, input);
+                        new NoViableAltException("96:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 31, 4, input);
 
                     throw nvae;
                 }
@@ -990,38 +1091,38 @@ public class sgclParser extends Parser {
             case 78:
             case 79:
                 {
-                alt28=2;
+                alt31=2;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("68:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 28, 0, input);
+                    new NoViableAltException("96:1: value : ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) | ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) ) );", 31, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt28) {
+            switch (alt31) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:9: ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:9: ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:9: ( '(' type ')' )*
-                    loop19:
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:9: ( '(' type ')' )*
+                    loop22:
                     do {
-                        int alt19=2;
-                        int LA19_0 = input.LA(1);
+                        int alt22=2;
+                        int LA22_0 = input.LA(1);
 
-                        if ( (LA19_0==54) ) {
-                            int LA19_2 = input.LA(2);
+                        if ( (LA22_0==54) ) {
+                            int LA22_2 = input.LA(2);
 
-                            if ( (LA19_2==WORD) ) {
-                                int LA19_3 = input.LA(3);
+                            if ( (LA22_2==WORD) ) {
+                                int LA22_3 = input.LA(3);
 
-                                if ( (LA19_3==56) ) {
-                                    int LA19_5 = input.LA(4);
+                                if ( (LA22_3==56) ) {
+                                    int LA22_5 = input.LA(4);
 
-                                    if ( (LA19_5==WORD||(LA19_5>=53 && LA19_5<=54)||LA19_5==57) ) {
-                                        alt19=1;
+                                    if ( (LA22_5==WORD||(LA22_5>=53 && LA22_5<=54)||LA22_5==57) ) {
+                                        alt22=1;
                                     }
 
 
@@ -1029,112 +1130,112 @@ public class sgclParser extends Parser {
 
 
                             }
-                            else if ( ((LA19_2>=72 && LA19_2<=77)) ) {
-                                alt19=1;
+                            else if ( ((LA22_2>=72 && LA22_2<=77)) ) {
+                                alt22=1;
                             }
 
 
                         }
 
 
-                        switch (alt19) {
+                        switch (alt22) {
                     	case 1 :
-                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:10: '(' type ')'
+                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:10: '(' type ')'
                     	    {
-                    	    match(input,54,FOLLOW_54_in_value503); if (failed) return ;
-                    	    pushFollow(FOLLOW_type_in_value505);
+                    	    match(input,54,FOLLOW_54_in_value535); if (failed) return ;
+                    	    pushFollow(FOLLOW_type_in_value537);
                     	    type();
                     	    _fsp--;
                     	    if (failed) return ;
-                    	    match(input,56,FOLLOW_56_in_value507); if (failed) return ;
+                    	    match(input,56,FOLLOW_56_in_value539); if (failed) return ;
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop19;
+                    	    break loop22;
                         }
                     } while (true);
 
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:3: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:3: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
-                    int alt21=2;
-                    int LA21_0 = input.LA(1);
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
+                    int alt24=2;
+                    int LA24_0 = input.LA(1);
 
-                    if ( ((LA21_0>=53 && LA21_0<=54)||LA21_0==57) ) {
-                        alt21=1;
+                    if ( ((LA24_0>=53 && LA24_0<=54)||LA24_0==57) ) {
+                        alt24=1;
                     }
-                    else if ( (LA21_0==WORD) ) {
-                        int LA21_2 = input.LA(2);
+                    else if ( (LA24_0==WORD) ) {
+                        int LA24_2 = input.LA(2);
 
-                        if ( (LA21_2==58) ) {
-                            alt21=1;
+                        if ( (LA24_2==58) ) {
+                            alt24=1;
                         }
                     }
-                    switch (alt21) {
+                    switch (alt24) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
                             {
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
-                            int alt20=4;
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
+                            int alt23=4;
                             switch ( input.LA(1) ) {
                             case 53:
                                 {
-                                alt20=1;
+                                alt23=1;
                                 }
                                 break;
                             case 57:
                                 {
-                                alt20=2;
+                                alt23=2;
                                 }
                                 break;
                             case 54:
                                 {
-                                alt20=3;
+                                alt23=3;
                                 }
                                 break;
                             case WORD:
                                 {
-                                alt20=4;
+                                alt23=4;
                                 }
                                 break;
                             default:
                                 if (backtracking>0) {failed=true; return ;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 20, 0, input);
+                                    new NoViableAltException("97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 23, 0, input);
 
                                 throw nvae;
                             }
 
-                            switch (alt20) {
+                            switch (alt23) {
                                 case 1 :
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:6: 'this'
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:6: 'this'
                                     {
-                                    match(input,53,FOLLOW_53_in_value516); if (failed) return ;
+                                    match(input,53,FOLLOW_53_in_value548); if (failed) return ;
 
                                     }
                                     break;
                                 case 2 :
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:13: 'super'
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:13: 'super'
                                     {
-                                    match(input,57,FOLLOW_57_in_value518); if (failed) return ;
+                                    match(input,57,FOLLOW_57_in_value550); if (failed) return ;
 
                                     }
                                     break;
                                 case 3 :
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:21: ( '(' value ')' )
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:21: ( '(' value ')' )
                                     {
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:21: ( '(' value ')' )
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:22: '(' value ')'
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:21: ( '(' value ')' )
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:22: '(' value ')'
                                     {
-                                    match(input,54,FOLLOW_54_in_value521); if (failed) return ;
-                                    pushFollow(FOLLOW_value_in_value522);
+                                    match(input,54,FOLLOW_54_in_value553); if (failed) return ;
+                                    pushFollow(FOLLOW_value_in_value554);
                                     value();
                                     _fsp--;
                                     if (failed) return ;
-                                    match(input,56,FOLLOW_56_in_value523); if (failed) return ;
+                                    match(input,56,FOLLOW_56_in_value555); if (failed) return ;
 
                                     }
 
@@ -1142,56 +1243,56 @@ public class sgclParser extends Parser {
                                     }
                                     break;
                                 case 4 :
-                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:35: WORD
+                                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:35: WORD
                                     {
-                                    match(input,WORD,FOLLOW_WORD_in_value526); if (failed) return ;
+                                    match(input,WORD,FOLLOW_WORD_in_value558); if (failed) return ;
 
                                     }
                                     break;
 
                             }
 
-                            match(input,58,FOLLOW_58_in_value529); if (failed) return ;
+                            match(input,58,FOLLOW_58_in_value561); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,WORD,FOLLOW_WORD_in_value533); if (failed) return ;
-                    match(input,54,FOLLOW_54_in_value535); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:56: ( value ( ',' value )* )?
-                    int alt23=2;
-                    int LA23_0 = input.LA(1);
+                    match(input,WORD,FOLLOW_WORD_in_value565); if (failed) return ;
+                    match(input,54,FOLLOW_54_in_value567); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:56: ( value ( ',' value )* )?
+                    int alt26=2;
+                    int LA26_0 = input.LA(1);
 
-                    if ( ((LA23_0>=WORD && LA23_0<=CHAR)||(LA23_0>=53 && LA23_0<=54)||LA23_0==57||LA23_0==59||(LA23_0>=78 && LA23_0<=79)) ) {
-                        alt23=1;
+                    if ( ((LA26_0>=WORD && LA26_0<=CHAR)||(LA26_0>=53 && LA26_0<=54)||LA26_0==57||LA26_0==59||(LA26_0>=78 && LA26_0<=79)) ) {
+                        alt26=1;
                     }
-                    switch (alt23) {
+                    switch (alt26) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:57: value ( ',' value )*
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:57: value ( ',' value )*
                             {
-                            pushFollow(FOLLOW_value_in_value538);
+                            pushFollow(FOLLOW_value_in_value570);
                             value();
                             _fsp--;
                             if (failed) return ;
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:63: ( ',' value )*
-                            loop22:
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:63: ( ',' value )*
+                            loop25:
                             do {
-                                int alt22=2;
-                                int LA22_0 = input.LA(1);
+                                int alt25=2;
+                                int LA25_0 = input.LA(1);
 
-                                if ( (LA22_0==55) ) {
-                                    alt22=1;
+                                if ( (LA25_0==55) ) {
+                                    alt25=1;
                                 }
 
 
-                                switch (alt22) {
+                                switch (alt25) {
                             	case 1 :
-                            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:64: ',' value
+                            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:64: ',' value
                             	    {
-                            	    match(input,55,FOLLOW_55_in_value541); if (failed) return ;
-                            	    pushFollow(FOLLOW_value_in_value543);
+                            	    match(input,55,FOLLOW_55_in_value573); if (failed) return ;
+                            	    pushFollow(FOLLOW_value_in_value575);
                             	    value();
                             	    _fsp--;
                             	    if (failed) return ;
@@ -1200,7 +1301,7 @@ public class sgclParser extends Parser {
                             	    break;
 
                             	default :
-                            	    break loop22;
+                            	    break loop25;
                                 }
                             } while (true);
 
@@ -1210,17 +1311,17 @@ public class sgclParser extends Parser {
 
                     }
 
-                    match(input,56,FOLLOW_56_in_value549); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:70:3: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
-                    int alt24=2;
-                    int LA24_0 = input.LA(1);
+                    match(input,56,FOLLOW_56_in_value581); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:98:3: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
+                    int alt27=2;
+                    int LA27_0 = input.LA(1);
 
-                    if ( ((LA24_0>=PLUS && LA24_0<=AND)) ) {
-                        alt24=1;
+                    if ( ((LA27_0>=PLUS && LA27_0<=AND)) ) {
+                        alt27=1;
                     }
-                    switch (alt24) {
+                    switch (alt27) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:70:4: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:98:4: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
                             {
                             if ( (input.LA(1)>=PLUS && input.LA(1)<=AND) ) {
                                 input.consume();
@@ -1230,10 +1331,10 @@ public class sgclParser extends Parser {
                                 if (backtracking>0) {failed=true; return ;}
                                 MismatchedSetException mse =
                                     new MismatchedSetException(null,input);
-                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_value554);    throw mse;
+                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_value586);    throw mse;
                             }
 
-                            pushFollow(FOLLOW_value_in_value594);
+                            pushFollow(FOLLOW_value_in_value626);
                             value();
                             _fsp--;
                             if (failed) return ;
@@ -1250,28 +1351,28 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:5: ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:5: ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:5: ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:6: ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:5: ( ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:6: ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:6: ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:7: ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:6: ( ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:7: ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:7: ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:8: ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )?
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:7: ( ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )? )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:8: ( 'this' | '(' value ')' | constant | WORD ) ( '.' WORD )* ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )?
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:8: ( 'this' | '(' value ')' | constant | WORD )
-                    int alt25=4;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:8: ( 'this' | '(' value ')' | constant | WORD )
+                    int alt28=4;
                     switch ( input.LA(1) ) {
                     case 53:
                         {
-                        alt25=1;
+                        alt28=1;
                         }
                         break;
                     case 54:
                         {
-                        alt25=2;
+                        alt28=2;
                         }
                         break;
                     case INTEGER:
@@ -1283,46 +1384,46 @@ public class sgclParser extends Parser {
                     case 78:
                     case 79:
                         {
-                        alt25=3;
+                        alt28=3;
                         }
                         break;
                     case WORD:
                         {
-                        alt25=4;
+                        alt28=4;
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("71:8: ( 'this' | '(' value ')' | constant | WORD )", 25, 0, input);
+                            new NoViableAltException("99:8: ( 'this' | '(' value ')' | constant | WORD )", 28, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt25) {
+                    switch (alt28) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:9: 'this'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:9: 'this'
                             {
-                            match(input,53,FOLLOW_53_in_value607); if (failed) return ;
+                            match(input,53,FOLLOW_53_in_value639); if (failed) return ;
 
                             }
                             break;
                         case 2 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:16: '(' value ')'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:16: '(' value ')'
                             {
-                            match(input,54,FOLLOW_54_in_value609); if (failed) return ;
-                            pushFollow(FOLLOW_value_in_value610);
+                            match(input,54,FOLLOW_54_in_value641); if (failed) return ;
+                            pushFollow(FOLLOW_value_in_value642);
                             value();
                             _fsp--;
                             if (failed) return ;
-                            match(input,56,FOLLOW_56_in_value611); if (failed) return ;
+                            match(input,56,FOLLOW_56_in_value643); if (failed) return ;
 
                             }
                             break;
                         case 3 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:28: constant
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:28: constant
                             {
-                            pushFollow(FOLLOW_constant_in_value613);
+                            pushFollow(FOLLOW_constant_in_value645);
                             constant();
                             _fsp--;
                             if (failed) return ;
@@ -1330,43 +1431,43 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:37: WORD
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:37: WORD
                             {
-                            match(input,WORD,FOLLOW_WORD_in_value615); if (failed) return ;
+                            match(input,WORD,FOLLOW_WORD_in_value647); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:43: ( '.' WORD )*
-                    loop26:
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:43: ( '.' WORD )*
+                    loop29:
                     do {
-                        int alt26=2;
-                        int LA26_0 = input.LA(1);
+                        int alt29=2;
+                        int LA29_0 = input.LA(1);
 
-                        if ( (LA26_0==58) ) {
-                            alt26=1;
+                        if ( (LA29_0==58) ) {
+                            alt29=1;
                         }
 
 
-                        switch (alt26) {
+                        switch (alt29) {
                     	case 1 :
-                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:71:44: '.' WORD
+                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:44: '.' WORD
                     	    {
-                    	    match(input,58,FOLLOW_58_in_value619); if (failed) return ;
-                    	    match(input,WORD,FOLLOW_WORD_in_value621); if (failed) return ;
+                    	    match(input,58,FOLLOW_58_in_value651); if (failed) return ;
+                    	    match(input,WORD,FOLLOW_WORD_in_value653); if (failed) return ;
 
                     	    }
                     	    break;
 
                     	default :
-                    	    break loop26;
+                    	    break loop29;
                         }
                     } while (true);
 
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:4: ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )?
-                    int alt27=4;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:4: ( ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value ) | INC | DEC )?
+                    int alt30=4;
                     switch ( input.LA(1) ) {
                         case PLUS:
                         case MINUS:
@@ -1388,27 +1489,27 @@ public class sgclParser extends Parser {
                         case OR:
                         case AND:
                             {
-                            alt27=1;
+                            alt30=1;
                             }
                             break;
                         case INC:
                             {
-                            alt27=2;
+                            alt30=2;
                             }
                             break;
                         case DEC:
                             {
-                            alt27=3;
+                            alt30=3;
                             }
                             break;
                     }
 
-                    switch (alt27) {
+                    switch (alt30) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:5: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:5: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )
                             {
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:5: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:6: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:5: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:6: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
                             {
                             if ( (input.LA(1)>=PLUS && input.LA(1)<=AND) ) {
                                 input.consume();
@@ -1418,10 +1519,10 @@ public class sgclParser extends Parser {
                                 if (backtracking>0) {failed=true; return ;}
                                 MismatchedSetException mse =
                                     new MismatchedSetException(null,input);
-                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_value630);    throw mse;
+                                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_value662);    throw mse;
                             }
 
-                            pushFollow(FOLLOW_value_in_value670);
+                            pushFollow(FOLLOW_value_in_value702);
                             value();
                             _fsp--;
                             if (failed) return ;
@@ -1432,16 +1533,16 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:120: INC
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:120: INC
                             {
-                            match(input,INC,FOLLOW_INC_in_value673); if (failed) return ;
+                            match(input,INC,FOLLOW_INC_in_value705); if (failed) return ;
 
                             }
                             break;
                         case 3 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:72:124: DEC
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:100:124: DEC
                             {
-                            match(input,DEC,FOLLOW_DEC_in_value675); if (failed) return ;
+                            match(input,DEC,FOLLOW_DEC_in_value707); if (failed) return ;
 
                             }
                             break;
@@ -1475,96 +1576,96 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start constant
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:1: constant : ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:1: constant : ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' );
     public final void constant() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:2: ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' )
-            int alt29=7;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:2: ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' )
+            int alt32=7;
             switch ( input.LA(1) ) {
             case INTEGER:
                 {
-                alt29=1;
+                alt32=1;
                 }
                 break;
             case DOUBLE:
                 {
-                alt29=2;
+                alt32=2;
                 }
                 break;
             case FLOAT:
                 {
-                alt29=3;
+                alt32=3;
                 }
                 break;
             case STRING:
                 {
-                alt29=4;
+                alt32=4;
                 }
                 break;
             case CHAR:
                 {
-                alt29=5;
+                alt32=5;
                 }
                 break;
             case 78:
             case 79:
                 {
-                alt29=6;
+                alt32=6;
                 }
                 break;
             case 59:
                 {
-                alt29=7;
+                alt32=7;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("73:1: constant : ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' );", 29, 0, input);
+                    new NoViableAltException("101:1: constant : ( INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null' );", 32, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt29) {
+            switch (alt32) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:4: INTEGER
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:4: INTEGER
                     {
-                    match(input,INTEGER,FOLLOW_INTEGER_in_constant688); if (failed) return ;
+                    match(input,INTEGER,FOLLOW_INTEGER_in_constant720); if (failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:14: DOUBLE
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:14: DOUBLE
                     {
-                    match(input,DOUBLE,FOLLOW_DOUBLE_in_constant692); if (failed) return ;
+                    match(input,DOUBLE,FOLLOW_DOUBLE_in_constant724); if (failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:23: FLOAT
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:23: FLOAT
                     {
-                    match(input,FLOAT,FOLLOW_FLOAT_in_constant696); if (failed) return ;
+                    match(input,FLOAT,FOLLOW_FLOAT_in_constant728); if (failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:31: STRING
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:31: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_constant700); if (failed) return ;
+                    match(input,STRING,FOLLOW_STRING_in_constant732); if (failed) return ;
 
                     }
                     break;
                 case 5 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:40: CHAR
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:40: CHAR
                     {
-                    match(input,CHAR,FOLLOW_CHAR_in_constant704); if (failed) return ;
+                    match(input,CHAR,FOLLOW_CHAR_in_constant736); if (failed) return ;
 
                     }
                     break;
                 case 6 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:47: boolval
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:47: boolval
                     {
-                    pushFollow(FOLLOW_boolval_in_constant708);
+                    pushFollow(FOLLOW_boolval_in_constant740);
                     boolval();
                     _fsp--;
                     if (failed) return ;
@@ -1572,9 +1673,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 7 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:74:57: 'null'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:57: 'null'
                     {
-                    match(input,59,FOLLOW_59_in_constant712); if (failed) return ;
+                    match(input,59,FOLLOW_59_in_constant744); if (failed) return ;
 
                     }
                     break;
@@ -1593,88 +1694,88 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start fnccall
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:1: fnccall : ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:1: fnccall : ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ;
     public final void fnccall() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:9: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:9: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:11: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')'
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
-            int alt31=2;
-            int LA31_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:11: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
+            int alt34=2;
+            int LA34_0 = input.LA(1);
 
-            if ( ((LA31_0>=53 && LA31_0<=54)||LA31_0==57) ) {
-                alt31=1;
+            if ( ((LA34_0>=53 && LA34_0<=54)||LA34_0==57) ) {
+                alt34=1;
             }
-            else if ( (LA31_0==WORD) ) {
-                int LA31_2 = input.LA(2);
+            else if ( (LA34_0==WORD) ) {
+                int LA34_2 = input.LA(2);
 
-                if ( (LA31_2==58) ) {
-                    alt31=1;
+                if ( (LA34_2==58) ) {
+                    alt34=1;
                 }
             }
-            switch (alt31) {
+            switch (alt34) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
-                    int alt30=4;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
+                    int alt33=4;
                     switch ( input.LA(1) ) {
                     case 53:
                         {
-                        alt30=1;
+                        alt33=1;
                         }
                         break;
                     case 57:
                         {
-                        alt30=2;
+                        alt33=2;
                         }
                         break;
                     case 54:
                         {
-                        alt30=3;
+                        alt33=3;
                         }
                         break;
                     case WORD:
                         {
-                        alt30=4;
+                        alt33=4;
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("75:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 30, 0, input);
+                            new NoViableAltException("103:12: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 33, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt30) {
+                    switch (alt33) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:13: 'this'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:13: 'this'
                             {
-                            match(input,53,FOLLOW_53_in_fnccall721); if (failed) return ;
+                            match(input,53,FOLLOW_53_in_fnccall753); if (failed) return ;
 
                             }
                             break;
                         case 2 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:20: 'super'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:20: 'super'
                             {
-                            match(input,57,FOLLOW_57_in_fnccall723); if (failed) return ;
+                            match(input,57,FOLLOW_57_in_fnccall755); if (failed) return ;
 
                             }
                             break;
                         case 3 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:28: ( '(' value ')' )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:28: ( '(' value ')' )
                             {
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:28: ( '(' value ')' )
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:29: '(' value ')'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:28: ( '(' value ')' )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:29: '(' value ')'
                             {
-                            match(input,54,FOLLOW_54_in_fnccall726); if (failed) return ;
-                            pushFollow(FOLLOW_value_in_fnccall728);
+                            match(input,54,FOLLOW_54_in_fnccall758); if (failed) return ;
+                            pushFollow(FOLLOW_value_in_fnccall760);
                             value();
                             _fsp--;
                             if (failed) return ;
-                            match(input,56,FOLLOW_56_in_fnccall730); if (failed) return ;
+                            match(input,56,FOLLOW_56_in_fnccall762); if (failed) return ;
 
                             }
 
@@ -1682,56 +1783,56 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:44: WORD
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:44: WORD
                             {
-                            match(input,WORD,FOLLOW_WORD_in_fnccall733); if (failed) return ;
+                            match(input,WORD,FOLLOW_WORD_in_fnccall765); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,58,FOLLOW_58_in_fnccall736); if (failed) return ;
+                    match(input,58,FOLLOW_58_in_fnccall768); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,WORD,FOLLOW_WORD_in_fnccall740); if (failed) return ;
-            match(input,54,FOLLOW_54_in_fnccall742); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:65: ( value ( ',' value )* )?
-            int alt33=2;
-            int LA33_0 = input.LA(1);
+            match(input,WORD,FOLLOW_WORD_in_fnccall772); if (failed) return ;
+            match(input,54,FOLLOW_54_in_fnccall774); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:65: ( value ( ',' value )* )?
+            int alt36=2;
+            int LA36_0 = input.LA(1);
 
-            if ( ((LA33_0>=WORD && LA33_0<=CHAR)||(LA33_0>=53 && LA33_0<=54)||LA33_0==57||LA33_0==59||(LA33_0>=78 && LA33_0<=79)) ) {
-                alt33=1;
+            if ( ((LA36_0>=WORD && LA36_0<=CHAR)||(LA36_0>=53 && LA36_0<=54)||LA36_0==57||LA36_0==59||(LA36_0>=78 && LA36_0<=79)) ) {
+                alt36=1;
             }
-            switch (alt33) {
+            switch (alt36) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:66: value ( ',' value )*
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:66: value ( ',' value )*
                     {
-                    pushFollow(FOLLOW_value_in_fnccall745);
+                    pushFollow(FOLLOW_value_in_fnccall777);
                     value();
                     _fsp--;
                     if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:72: ( ',' value )*
-                    loop32:
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:72: ( ',' value )*
+                    loop35:
                     do {
-                        int alt32=2;
-                        int LA32_0 = input.LA(1);
+                        int alt35=2;
+                        int LA35_0 = input.LA(1);
 
-                        if ( (LA32_0==55) ) {
-                            alt32=1;
+                        if ( (LA35_0==55) ) {
+                            alt35=1;
                         }
 
 
-                        switch (alt32) {
+                        switch (alt35) {
                     	case 1 :
-                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:73: ',' value
+                    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:73: ',' value
                     	    {
-                    	    match(input,55,FOLLOW_55_in_fnccall748); if (failed) return ;
-                    	    pushFollow(FOLLOW_value_in_fnccall750);
+                    	    match(input,55,FOLLOW_55_in_fnccall780); if (failed) return ;
+                    	    pushFollow(FOLLOW_value_in_fnccall782);
                     	    value();
                     	    _fsp--;
                     	    if (failed) return ;
@@ -1740,7 +1841,7 @@ public class sgclParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop32;
+                    	    break loop35;
                         }
                     } while (true);
 
@@ -1750,7 +1851,7 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,56,FOLLOW_56_in_fnccall756); if (failed) return ;
+            match(input,56,FOLLOW_56_in_fnccall788); if (failed) return ;
 
             }
 
@@ -1767,11 +1868,11 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start statement
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:1: statement : ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:104:1: statement : ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt );
     public final void statement() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:2: ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt )
-            int alt35=5;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:2: ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt )
+            int alt38=5;
             switch ( input.LA(1) ) {
             case WORD:
             case 51:
@@ -1789,46 +1890,46 @@ public class sgclParser extends Parser {
             case 76:
             case 77:
                 {
-                alt35=1;
+                alt38=1;
                 }
                 break;
             case 63:
                 {
-                alt35=2;
+                alt38=2;
                 }
                 break;
             case 65:
                 {
-                alt35=3;
+                alt38=3;
                 }
                 break;
             case 67:
                 {
-                alt35=4;
+                alt38=4;
                 }
                 break;
             case 68:
                 {
-                alt35=5;
+                alt38=5;
                 }
                 break;
             default:
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("76:1: statement : ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt );", 35, 0, input);
+                    new NoViableAltException("104:1: statement : ( ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' ) | ifstmt | whilestmt | forstmt | switchstmt );", 38, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt35) {
+            switch (alt38) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:4: ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:4: ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:4: ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:4: ( ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';' )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' ) ';'
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )
-                    int alt34=7;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )
+                    int alt37=7;
                     switch ( input.LA(1) ) {
                     case 51:
                     case 72:
@@ -1838,46 +1939,15 @@ public class sgclParser extends Parser {
                     case 76:
                     case 77:
                         {
-                        alt34=1;
+                        alt37=1;
                         }
                         break;
                     case WORD:
                         {
                         switch ( input.LA(2) ) {
-                        case 58:
+                        case 54:
                             {
-                            int LA34_9 = input.LA(3);
-
-                            if ( (LA34_9==WORD) ) {
-                                int LA34_11 = input.LA(4);
-
-                                if ( ((LA34_11>=INC && LA34_11<=DEC)) ) {
-                                    alt34=3;
-                                }
-                                else if ( (LA34_11==54) ) {
-                                    alt34=5;
-                                }
-                                else {
-                                    if (backtracking>0) {failed=true; return ;}
-                                    NoViableAltException nvae =
-                                        new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 11, input);
-
-                                    throw nvae;
-                                }
-                            }
-                            else {
-                                if (backtracking>0) {failed=true; return ;}
-                                NoViableAltException nvae =
-                                    new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 9, input);
-
-                                throw nvae;
-                            }
-                            }
-                            break;
-                        case INC:
-                        case DEC:
-                            {
-                            alt34=3;
+                            alt37=5;
                             }
                             break;
                         case EQUAL:
@@ -1888,18 +1958,49 @@ public class sgclParser extends Parser {
                         case MOEQUAL:
                         case WORD:
                             {
-                            alt34=1;
+                            alt37=1;
                             }
                             break;
-                        case 54:
+                        case INC:
+                        case DEC:
                             {
-                            alt34=5;
+                            alt37=3;
+                            }
+                            break;
+                        case 58:
+                            {
+                            int LA37_10 = input.LA(3);
+
+                            if ( (LA37_10==WORD) ) {
+                                int LA37_11 = input.LA(4);
+
+                                if ( ((LA37_11>=INC && LA37_11<=DEC)) ) {
+                                    alt37=3;
+                                }
+                                else if ( (LA37_11==54) ) {
+                                    alt37=5;
+                                }
+                                else {
+                                    if (backtracking>0) {failed=true; return ;}
+                                    NoViableAltException nvae =
+                                        new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 11, input);
+
+                                    throw nvae;
+                                }
+                            }
+                            else {
+                                if (backtracking>0) {failed=true; return ;}
+                                NoViableAltException nvae =
+                                    new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 10, input);
+
+                                throw nvae;
+                            }
                             }
                             break;
                         default:
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 2, input);
+                                new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 2, input);
 
                             throw nvae;
                         }
@@ -1908,29 +2009,29 @@ public class sgclParser extends Parser {
                         break;
                     case 62:
                         {
-                        alt34=2;
+                        alt37=2;
                         }
                         break;
                     case 53:
                         {
-                        int LA34_4 = input.LA(2);
+                        int LA37_4 = input.LA(2);
 
-                        if ( (LA34_4==58) ) {
-                            int LA34_9 = input.LA(3);
+                        if ( (LA37_4==58) ) {
+                            int LA37_10 = input.LA(3);
 
-                            if ( (LA34_9==WORD) ) {
-                                int LA34_11 = input.LA(4);
+                            if ( (LA37_10==WORD) ) {
+                                int LA37_11 = input.LA(4);
 
-                                if ( ((LA34_11>=INC && LA34_11<=DEC)) ) {
-                                    alt34=3;
+                                if ( ((LA37_11>=INC && LA37_11<=DEC)) ) {
+                                    alt37=3;
                                 }
-                                else if ( (LA34_11==54) ) {
-                                    alt34=5;
+                                else if ( (LA37_11==54) ) {
+                                    alt37=5;
                                 }
                                 else {
                                     if (backtracking>0) {failed=true; return ;}
                                     NoViableAltException nvae =
-                                        new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 11, input);
+                                        new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 11, input);
 
                                     throw nvae;
                                 }
@@ -1938,7 +2039,7 @@ public class sgclParser extends Parser {
                             else {
                                 if (backtracking>0) {failed=true; return ;}
                                 NoViableAltException nvae =
-                                    new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 9, input);
+                                    new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 10, input);
 
                                 throw nvae;
                             }
@@ -1946,7 +2047,7 @@ public class sgclParser extends Parser {
                         else {
                             if (backtracking>0) {failed=true; return ;}
                             NoViableAltException nvae =
-                                new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 4, input);
+                                new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 4, input);
 
                             throw nvae;
                         }
@@ -1954,38 +2055,38 @@ public class sgclParser extends Parser {
                         break;
                     case 66:
                         {
-                        alt34=4;
+                        alt37=4;
                         }
                         break;
                     case 54:
                     case 57:
                         {
-                        alt34=5;
+                        alt37=5;
                         }
                         break;
                     case 60:
                         {
-                        alt34=6;
+                        alt37=6;
                         }
                         break;
                     case 61:
                         {
-                        alt34=7;
+                        alt37=7;
                         }
                         break;
                     default:
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("77:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 34, 0, input);
+                            new NoViableAltException("105:5: ( declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break' )", 37, 0, input);
 
                         throw nvae;
                     }
 
-                    switch (alt34) {
+                    switch (alt37) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:6: declare
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:6: declare
                             {
-                            pushFollow(FOLLOW_declare_in_statement766);
+                            pushFollow(FOLLOW_declare_in_statement798);
                             declare();
                             _fsp--;
                             if (failed) return ;
@@ -1993,9 +2094,9 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:16: returnstmt
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:16: returnstmt
                             {
-                            pushFollow(FOLLOW_returnstmt_in_statement770);
+                            pushFollow(FOLLOW_returnstmt_in_statement802);
                             returnstmt();
                             _fsp--;
                             if (failed) return ;
@@ -2003,9 +2104,9 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 3 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:29: incrstmt
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:29: incrstmt
                             {
-                            pushFollow(FOLLOW_incrstmt_in_statement774);
+                            pushFollow(FOLLOW_incrstmt_in_statement806);
                             incrstmt();
                             _fsp--;
                             if (failed) return ;
@@ -2013,9 +2114,9 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 4 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:40: dowhile
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:40: dowhile
                             {
-                            pushFollow(FOLLOW_dowhile_in_statement778);
+                            pushFollow(FOLLOW_dowhile_in_statement810);
                             dowhile();
                             _fsp--;
                             if (failed) return ;
@@ -2023,9 +2124,9 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 5 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:50: fnccall
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:50: fnccall
                             {
-                            pushFollow(FOLLOW_fnccall_in_statement782);
+                            pushFollow(FOLLOW_fnccall_in_statement814);
                             fnccall();
                             _fsp--;
                             if (failed) return ;
@@ -2033,23 +2134,23 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 6 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:60: 'continue'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:60: 'continue'
                             {
-                            match(input,60,FOLLOW_60_in_statement786); if (failed) return ;
+                            match(input,60,FOLLOW_60_in_statement818); if (failed) return ;
 
                             }
                             break;
                         case 7 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:73: 'break'
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:73: 'break'
                             {
-                            match(input,61,FOLLOW_61_in_statement790); if (failed) return ;
+                            match(input,61,FOLLOW_61_in_statement822); if (failed) return ;
 
                             }
                             break;
 
                     }
 
-                    match(input,52,FOLLOW_52_in_statement793); if (failed) return ;
+                    match(input,52,FOLLOW_52_in_statement825); if (failed) return ;
 
                     }
 
@@ -2057,9 +2158,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:4: ifstmt
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:106:4: ifstmt
                     {
-                    pushFollow(FOLLOW_ifstmt_in_statement799);
+                    pushFollow(FOLLOW_ifstmt_in_statement831);
                     ifstmt();
                     _fsp--;
                     if (failed) return ;
@@ -2067,9 +2168,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:13: whilestmt
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:106:13: whilestmt
                     {
-                    pushFollow(FOLLOW_whilestmt_in_statement803);
+                    pushFollow(FOLLOW_whilestmt_in_statement835);
                     whilestmt();
                     _fsp--;
                     if (failed) return ;
@@ -2077,9 +2178,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:25: forstmt
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:106:25: forstmt
                     {
-                    pushFollow(FOLLOW_forstmt_in_statement807);
+                    pushFollow(FOLLOW_forstmt_in_statement839);
                     forstmt();
                     _fsp--;
                     if (failed) return ;
@@ -2087,9 +2188,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:35: switchstmt
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:106:35: switchstmt
                     {
-                    pushFollow(FOLLOW_switchstmt_in_statement811);
+                    pushFollow(FOLLOW_switchstmt_in_statement843);
                     switchstmt();
                     _fsp--;
                     if (failed) return ;
@@ -2111,29 +2212,29 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start incrstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:1: incrstmt : ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC ) ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:1: incrstmt : ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC ) ;
     public final void incrstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:9: ( ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC ) )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:11: ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:9: ( ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:11: ( ( 'this' | WORD ) '.' )? WORD ( INC | DEC )
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:11: ( ( 'this' | WORD ) '.' )?
-            int alt36=2;
-            int LA36_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:11: ( ( 'this' | WORD ) '.' )?
+            int alt39=2;
+            int LA39_0 = input.LA(1);
 
-            if ( (LA36_0==WORD) ) {
-                int LA36_1 = input.LA(2);
+            if ( (LA39_0==WORD) ) {
+                int LA39_1 = input.LA(2);
 
-                if ( (LA36_1==58) ) {
-                    alt36=1;
+                if ( (LA39_1==58) ) {
+                    alt39=1;
                 }
             }
-            else if ( (LA36_0==53) ) {
-                alt36=1;
+            else if ( (LA39_0==53) ) {
+                alt39=1;
             }
-            switch (alt36) {
+            switch (alt39) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:12: ( 'this' | WORD ) '.'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:12: ( 'this' | WORD ) '.'
                     {
                     if ( input.LA(1)==WORD||input.LA(1)==53 ) {
                         input.consume();
@@ -2143,17 +2244,17 @@ public class sgclParser extends Parser {
                         if (backtracking>0) {failed=true; return ;}
                         MismatchedSetException mse =
                             new MismatchedSetException(null,input);
-                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_incrstmt818);    throw mse;
+                        recoverFromMismatchedSet(input,mse,FOLLOW_set_in_incrstmt850);    throw mse;
                     }
 
-                    match(input,58,FOLLOW_58_in_incrstmt824); if (failed) return ;
+                    match(input,58,FOLLOW_58_in_incrstmt856); if (failed) return ;
 
                     }
                     break;
 
             }
 
-            match(input,WORD,FOLLOW_WORD_in_incrstmt828); if (failed) return ;
+            match(input,WORD,FOLLOW_WORD_in_incrstmt860); if (failed) return ;
             if ( (input.LA(1)>=INC && input.LA(1)<=DEC) ) {
                 input.consume();
                 errorRecovery=false;failed=false;
@@ -2162,7 +2263,7 @@ public class sgclParser extends Parser {
                 if (backtracking>0) {failed=true; return ;}
                 MismatchedSetException mse =
                     new MismatchedSetException(null,input);
-                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_incrstmt830);    throw mse;
+                recoverFromMismatchedSet(input,mse,FOLLOW_set_in_incrstmt862);    throw mse;
             }
 
 
@@ -2181,14 +2282,14 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start returnstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:80:1: returnstmt : 'return' value ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:108:1: returnstmt : 'return' value ;
     public final void returnstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:2: ( 'return' value )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:81:4: 'return' value
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:2: ( 'return' value )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:4: 'return' value
             {
-            match(input,62,FOLLOW_62_in_returnstmt842); if (failed) return ;
-            pushFollow(FOLLOW_value_in_returnstmt844);
+            match(input,62,FOLLOW_62_in_returnstmt874); if (failed) return ;
+            pushFollow(FOLLOW_value_in_returnstmt876);
             value();
             _fsp--;
             if (failed) return ;
@@ -2208,41 +2309,41 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start ifstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:1: ifstmt : 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )? ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:1: ifstmt : 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )? ;
     public final void ifstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:8: ( 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )? )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:10: 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:8: ( 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )? )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:10: 'if' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )?
             {
-            match(input,63,FOLLOW_63_in_ifstmt851); if (failed) return ;
-            match(input,54,FOLLOW_54_in_ifstmt853); if (failed) return ;
-            pushFollow(FOLLOW_value_in_ifstmt855);
+            match(input,63,FOLLOW_63_in_ifstmt883); if (failed) return ;
+            match(input,54,FOLLOW_54_in_ifstmt885); if (failed) return ;
+            pushFollow(FOLLOW_value_in_ifstmt887);
             value();
             _fsp--;
             if (failed) return ;
-            match(input,56,FOLLOW_56_in_ifstmt857); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:29: ( statement | ( BLKBEG ( statement )* BLKEND ) )
-            int alt38=2;
-            int LA38_0 = input.LA(1);
+            match(input,56,FOLLOW_56_in_ifstmt889); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:29: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            int alt41=2;
+            int LA41_0 = input.LA(1);
 
-            if ( (LA38_0==WORD||LA38_0==51||(LA38_0>=53 && LA38_0<=54)||LA38_0==57||(LA38_0>=60 && LA38_0<=63)||(LA38_0>=65 && LA38_0<=68)||(LA38_0>=72 && LA38_0<=77)) ) {
-                alt38=1;
+            if ( (LA41_0==WORD||LA41_0==51||(LA41_0>=53 && LA41_0<=54)||LA41_0==57||(LA41_0>=60 && LA41_0<=63)||(LA41_0>=65 && LA41_0<=68)||(LA41_0>=72 && LA41_0<=77)) ) {
+                alt41=1;
             }
-            else if ( (LA38_0==BLKBEG) ) {
-                alt38=2;
+            else if ( (LA41_0==BLKBEG) ) {
+                alt41=2;
             }
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("82:29: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 38, 0, input);
+                    new NoViableAltException("110:29: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 41, 0, input);
 
                 throw nvae;
             }
-            switch (alt38) {
+            switch (alt41) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:30: statement
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:30: statement
                     {
-                    pushFollow(FOLLOW_statement_in_ifstmt860);
+                    pushFollow(FOLLOW_statement_in_ifstmt892);
                     statement();
                     _fsp--;
                     if (failed) return ;
@@ -2250,28 +2351,28 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:40: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:40: ( BLKBEG ( statement )* BLKEND )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:40: ( BLKBEG ( statement )* BLKEND )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:41: BLKBEG ( statement )* BLKEND
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:40: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:41: BLKBEG ( statement )* BLKEND
                     {
-                    match(input,BLKBEG,FOLLOW_BLKBEG_in_ifstmt863); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:48: ( statement )*
-                    loop37:
+                    match(input,BLKBEG,FOLLOW_BLKBEG_in_ifstmt895); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:110:48: ( statement )*
+                    loop40:
                     do {
-                        int alt37=2;
-                        int LA37_0 = input.LA(1);
+                        int alt40=2;
+                        int LA40_0 = input.LA(1);
 
-                        if ( (LA37_0==WORD||LA37_0==51||(LA37_0>=53 && LA37_0<=54)||LA37_0==57||(LA37_0>=60 && LA37_0<=63)||(LA37_0>=65 && LA37_0<=68)||(LA37_0>=72 && LA37_0<=77)) ) {
-                            alt37=1;
+                        if ( (LA40_0==WORD||LA40_0==51||(LA40_0>=53 && LA40_0<=54)||LA40_0==57||(LA40_0>=60 && LA40_0<=63)||(LA40_0>=65 && LA40_0<=68)||(LA40_0>=72 && LA40_0<=77)) ) {
+                            alt40=1;
                         }
 
 
-                        switch (alt37) {
+                        switch (alt40) {
                     	case 1 :
                     	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
                     	    {
-                    	    pushFollow(FOLLOW_statement_in_ifstmt865);
+                    	    pushFollow(FOLLOW_statement_in_ifstmt897);
                     	    statement();
                     	    _fsp--;
                     	    if (failed) return ;
@@ -2280,11 +2381,11 @@ public class sgclParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop37;
+                    	    break loop40;
                         }
                     } while (true);
 
-                    match(input,BLKEND,FOLLOW_BLKEND_in_ifstmt868); if (failed) return ;
+                    match(input,BLKEND,FOLLOW_BLKEND_in_ifstmt900); if (failed) return ;
 
                     }
 
@@ -2294,44 +2395,44 @@ public class sgclParser extends Parser {
 
             }
 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:3: ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )?
-            int alt41=2;
-            int LA41_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:3: ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )?
+            int alt44=2;
+            int LA44_0 = input.LA(1);
 
-            if ( (LA41_0==64) ) {
-                int LA41_1 = input.LA(2);
+            if ( (LA44_0==64) ) {
+                int LA44_1 = input.LA(2);
 
-                if ( (synpred111()) ) {
-                    alt41=1;
+                if ( (synpred115()) ) {
+                    alt44=1;
                 }
             }
-            switch (alt41) {
+            switch (alt44) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:4: 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:4: 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) )
                     {
-                    match(input,64,FOLLOW_64_in_ifstmt875); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )
-                    int alt40=2;
-                    int LA40_0 = input.LA(1);
+                    match(input,64,FOLLOW_64_in_ifstmt907); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+                    int alt43=2;
+                    int LA43_0 = input.LA(1);
 
-                    if ( (LA40_0==WORD||LA40_0==51||(LA40_0>=53 && LA40_0<=54)||LA40_0==57||(LA40_0>=60 && LA40_0<=63)||(LA40_0>=65 && LA40_0<=68)||(LA40_0>=72 && LA40_0<=77)) ) {
-                        alt40=1;
+                    if ( (LA43_0==WORD||LA43_0==51||(LA43_0>=53 && LA43_0<=54)||LA43_0==57||(LA43_0>=60 && LA43_0<=63)||(LA43_0>=65 && LA43_0<=68)||(LA43_0>=72 && LA43_0<=77)) ) {
+                        alt43=1;
                     }
-                    else if ( (LA40_0==BLKBEG) ) {
-                        alt40=2;
+                    else if ( (LA43_0==BLKBEG) ) {
+                        alt43=2;
                     }
                     else {
                         if (backtracking>0) {failed=true; return ;}
                         NoViableAltException nvae =
-                            new NoViableAltException("83:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 40, 0, input);
+                            new NoViableAltException("111:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 43, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt40) {
+                    switch (alt43) {
                         case 1 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:12: statement
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:12: statement
                             {
-                            pushFollow(FOLLOW_statement_in_ifstmt878);
+                            pushFollow(FOLLOW_statement_in_ifstmt910);
                             statement();
                             _fsp--;
                             if (failed) return ;
@@ -2339,28 +2440,28 @@ public class sgclParser extends Parser {
                             }
                             break;
                         case 2 :
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:22: ( BLKBEG ( statement )* BLKEND )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:22: ( BLKBEG ( statement )* BLKEND )
                             {
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:22: ( BLKBEG ( statement )* BLKEND )
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:23: BLKBEG ( statement )* BLKEND
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:22: ( BLKBEG ( statement )* BLKEND )
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:23: BLKBEG ( statement )* BLKEND
                             {
-                            match(input,BLKBEG,FOLLOW_BLKBEG_in_ifstmt881); if (failed) return ;
-                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:30: ( statement )*
-                            loop39:
+                            match(input,BLKBEG,FOLLOW_BLKBEG_in_ifstmt913); if (failed) return ;
+                            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:30: ( statement )*
+                            loop42:
                             do {
-                                int alt39=2;
-                                int LA39_0 = input.LA(1);
+                                int alt42=2;
+                                int LA42_0 = input.LA(1);
 
-                                if ( (LA39_0==WORD||LA39_0==51||(LA39_0>=53 && LA39_0<=54)||LA39_0==57||(LA39_0>=60 && LA39_0<=63)||(LA39_0>=65 && LA39_0<=68)||(LA39_0>=72 && LA39_0<=77)) ) {
-                                    alt39=1;
+                                if ( (LA42_0==WORD||LA42_0==51||(LA42_0>=53 && LA42_0<=54)||LA42_0==57||(LA42_0>=60 && LA42_0<=63)||(LA42_0>=65 && LA42_0<=68)||(LA42_0>=72 && LA42_0<=77)) ) {
+                                    alt42=1;
                                 }
 
 
-                                switch (alt39) {
+                                switch (alt42) {
                             	case 1 :
                             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
                             	    {
-                            	    pushFollow(FOLLOW_statement_in_ifstmt883);
+                            	    pushFollow(FOLLOW_statement_in_ifstmt915);
                             	    statement();
                             	    _fsp--;
                             	    if (failed) return ;
@@ -2369,11 +2470,11 @@ public class sgclParser extends Parser {
                             	    break;
 
                             	default :
-                            	    break loop39;
+                            	    break loop42;
                                 }
                             } while (true);
 
-                            match(input,BLKEND,FOLLOW_BLKEND_in_ifstmt886); if (failed) return ;
+                            match(input,BLKEND,FOLLOW_BLKEND_in_ifstmt918); if (failed) return ;
 
                             }
 
@@ -2405,41 +2506,41 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start whilestmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:84:1: whilestmt : 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:112:1: whilestmt : 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ;
     public final void whilestmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:2: ( 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:4: 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:2: ( 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:4: 'while' '(' value ')' ( statement | ( BLKBEG ( statement )* BLKEND ) )
             {
-            match(input,65,FOLLOW_65_in_whilestmt898); if (failed) return ;
-            match(input,54,FOLLOW_54_in_whilestmt900); if (failed) return ;
-            pushFollow(FOLLOW_value_in_whilestmt902);
+            match(input,65,FOLLOW_65_in_whilestmt930); if (failed) return ;
+            match(input,54,FOLLOW_54_in_whilestmt932); if (failed) return ;
+            pushFollow(FOLLOW_value_in_whilestmt934);
             value();
             _fsp--;
             if (failed) return ;
-            match(input,56,FOLLOW_56_in_whilestmt904); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:26: ( statement | ( BLKBEG ( statement )* BLKEND ) )
-            int alt43=2;
-            int LA43_0 = input.LA(1);
+            match(input,56,FOLLOW_56_in_whilestmt936); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:26: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            int alt46=2;
+            int LA46_0 = input.LA(1);
 
-            if ( (LA43_0==WORD||LA43_0==51||(LA43_0>=53 && LA43_0<=54)||LA43_0==57||(LA43_0>=60 && LA43_0<=63)||(LA43_0>=65 && LA43_0<=68)||(LA43_0>=72 && LA43_0<=77)) ) {
-                alt43=1;
+            if ( (LA46_0==WORD||LA46_0==51||(LA46_0>=53 && LA46_0<=54)||LA46_0==57||(LA46_0>=60 && LA46_0<=63)||(LA46_0>=65 && LA46_0<=68)||(LA46_0>=72 && LA46_0<=77)) ) {
+                alt46=1;
             }
-            else if ( (LA43_0==BLKBEG) ) {
-                alt43=2;
+            else if ( (LA46_0==BLKBEG) ) {
+                alt46=2;
             }
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("85:26: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 43, 0, input);
+                    new NoViableAltException("113:26: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 46, 0, input);
 
                 throw nvae;
             }
-            switch (alt43) {
+            switch (alt46) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:27: statement
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:27: statement
                     {
-                    pushFollow(FOLLOW_statement_in_whilestmt907);
+                    pushFollow(FOLLOW_statement_in_whilestmt939);
                     statement();
                     _fsp--;
                     if (failed) return ;
@@ -2447,28 +2548,28 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:37: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:37: ( BLKBEG ( statement )* BLKEND )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:37: ( BLKBEG ( statement )* BLKEND )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:38: BLKBEG ( statement )* BLKEND
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:37: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:38: BLKBEG ( statement )* BLKEND
                     {
-                    match(input,BLKBEG,FOLLOW_BLKBEG_in_whilestmt910); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:85:45: ( statement )*
-                    loop42:
+                    match(input,BLKBEG,FOLLOW_BLKBEG_in_whilestmt942); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:113:45: ( statement )*
+                    loop45:
                     do {
-                        int alt42=2;
-                        int LA42_0 = input.LA(1);
+                        int alt45=2;
+                        int LA45_0 = input.LA(1);
 
-                        if ( (LA42_0==WORD||LA42_0==51||(LA42_0>=53 && LA42_0<=54)||LA42_0==57||(LA42_0>=60 && LA42_0<=63)||(LA42_0>=65 && LA42_0<=68)||(LA42_0>=72 && LA42_0<=77)) ) {
-                            alt42=1;
+                        if ( (LA45_0==WORD||LA45_0==51||(LA45_0>=53 && LA45_0<=54)||LA45_0==57||(LA45_0>=60 && LA45_0<=63)||(LA45_0>=65 && LA45_0<=68)||(LA45_0>=72 && LA45_0<=77)) ) {
+                            alt45=1;
                         }
 
 
-                        switch (alt42) {
+                        switch (alt45) {
                     	case 1 :
                     	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
                     	    {
-                    	    pushFollow(FOLLOW_statement_in_whilestmt912);
+                    	    pushFollow(FOLLOW_statement_in_whilestmt944);
                     	    statement();
                     	    _fsp--;
                     	    if (failed) return ;
@@ -2477,11 +2578,11 @@ public class sgclParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop42;
+                    	    break loop45;
                         }
                     } while (true);
 
-                    match(input,BLKEND,FOLLOW_BLKEND_in_whilestmt915); if (failed) return ;
+                    match(input,BLKEND,FOLLOW_BLKEND_in_whilestmt947); if (failed) return ;
 
                     }
 
@@ -2507,35 +2608,35 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start dowhile
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:1: dowhile : 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')' ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:1: dowhile : 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')' ;
     public final void dowhile() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:9: ( 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:11: 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:9: ( 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:11: 'do' ( statement | ( BLKBEG ( statement )* BLKEND ) ) 'while' '(' value ')'
             {
-            match(input,66,FOLLOW_66_in_dowhile924); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:16: ( statement | ( BLKBEG ( statement )* BLKEND ) )
-            int alt45=2;
-            int LA45_0 = input.LA(1);
+            match(input,66,FOLLOW_66_in_dowhile956); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:16: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            int alt48=2;
+            int LA48_0 = input.LA(1);
 
-            if ( (LA45_0==WORD||LA45_0==51||(LA45_0>=53 && LA45_0<=54)||LA45_0==57||(LA45_0>=60 && LA45_0<=63)||(LA45_0>=65 && LA45_0<=68)||(LA45_0>=72 && LA45_0<=77)) ) {
-                alt45=1;
+            if ( (LA48_0==WORD||LA48_0==51||(LA48_0>=53 && LA48_0<=54)||LA48_0==57||(LA48_0>=60 && LA48_0<=63)||(LA48_0>=65 && LA48_0<=68)||(LA48_0>=72 && LA48_0<=77)) ) {
+                alt48=1;
             }
-            else if ( (LA45_0==BLKBEG) ) {
-                alt45=2;
+            else if ( (LA48_0==BLKBEG) ) {
+                alt48=2;
             }
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("86:16: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 45, 0, input);
+                    new NoViableAltException("114:16: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 48, 0, input);
 
                 throw nvae;
             }
-            switch (alt45) {
+            switch (alt48) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:17: statement
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:17: statement
                     {
-                    pushFollow(FOLLOW_statement_in_dowhile927);
+                    pushFollow(FOLLOW_statement_in_dowhile959);
                     statement();
                     _fsp--;
                     if (failed) return ;
@@ -2543,28 +2644,28 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:27: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:27: ( BLKBEG ( statement )* BLKEND )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:27: ( BLKBEG ( statement )* BLKEND )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:28: BLKBEG ( statement )* BLKEND
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:27: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:28: BLKBEG ( statement )* BLKEND
                     {
-                    match(input,BLKBEG,FOLLOW_BLKBEG_in_dowhile930); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:35: ( statement )*
-                    loop44:
+                    match(input,BLKBEG,FOLLOW_BLKBEG_in_dowhile962); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:35: ( statement )*
+                    loop47:
                     do {
-                        int alt44=2;
-                        int LA44_0 = input.LA(1);
+                        int alt47=2;
+                        int LA47_0 = input.LA(1);
 
-                        if ( (LA44_0==WORD||LA44_0==51||(LA44_0>=53 && LA44_0<=54)||LA44_0==57||(LA44_0>=60 && LA44_0<=63)||(LA44_0>=65 && LA44_0<=68)||(LA44_0>=72 && LA44_0<=77)) ) {
-                            alt44=1;
+                        if ( (LA47_0==WORD||LA47_0==51||(LA47_0>=53 && LA47_0<=54)||LA47_0==57||(LA47_0>=60 && LA47_0<=63)||(LA47_0>=65 && LA47_0<=68)||(LA47_0>=72 && LA47_0<=77)) ) {
+                            alt47=1;
                         }
 
 
-                        switch (alt44) {
+                        switch (alt47) {
                     	case 1 :
                     	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
                     	    {
-                    	    pushFollow(FOLLOW_statement_in_dowhile932);
+                    	    pushFollow(FOLLOW_statement_in_dowhile964);
                     	    statement();
                     	    _fsp--;
                     	    if (failed) return ;
@@ -2573,11 +2674,11 @@ public class sgclParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop44;
+                    	    break loop47;
                         }
                     } while (true);
 
-                    match(input,BLKEND,FOLLOW_BLKEND_in_dowhile935); if (failed) return ;
+                    match(input,BLKEND,FOLLOW_BLKEND_in_dowhile967); if (failed) return ;
 
                     }
 
@@ -2587,13 +2688,13 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,65,FOLLOW_65_in_dowhile939); if (failed) return ;
-            match(input,54,FOLLOW_54_in_dowhile941); if (failed) return ;
-            pushFollow(FOLLOW_value_in_dowhile943);
+            match(input,65,FOLLOW_65_in_dowhile971); if (failed) return ;
+            match(input,54,FOLLOW_54_in_dowhile973); if (failed) return ;
+            pushFollow(FOLLOW_value_in_dowhile975);
             value();
             _fsp--;
             if (failed) return ;
-            match(input,56,FOLLOW_56_in_dowhile945); if (failed) return ;
+            match(input,56,FOLLOW_56_in_dowhile977); if (failed) return ;
 
             }
 
@@ -2610,26 +2711,26 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start forstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:1: forstmt : 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:1: forstmt : 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) ;
     public final void forstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:9: ( 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:11: 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:9: ( 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:11: 'for' '(' ( declare )? ';' value ';' ( declare | incrstmt )? ')' ( statement | ( BLKBEG ( statement )* BLKEND ) )
             {
-            match(input,67,FOLLOW_67_in_forstmt952); if (failed) return ;
-            match(input,54,FOLLOW_54_in_forstmt954); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:21: ( declare )?
-            int alt46=2;
-            int LA46_0 = input.LA(1);
+            match(input,67,FOLLOW_67_in_forstmt984); if (failed) return ;
+            match(input,54,FOLLOW_54_in_forstmt986); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:21: ( declare )?
+            int alt49=2;
+            int LA49_0 = input.LA(1);
 
-            if ( (LA46_0==WORD||LA46_0==51||(LA46_0>=72 && LA46_0<=77)) ) {
-                alt46=1;
+            if ( (LA49_0==WORD||LA49_0==51||(LA49_0>=72 && LA49_0<=77)) ) {
+                alt49=1;
             }
-            switch (alt46) {
+            switch (alt49) {
                 case 1 :
                     // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: declare
                     {
-                    pushFollow(FOLLOW_declare_in_forstmt956);
+                    pushFollow(FOLLOW_declare_in_forstmt988);
                     declare();
                     _fsp--;
                     if (failed) return ;
@@ -2639,14 +2740,14 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,52,FOLLOW_52_in_forstmt959); if (failed) return ;
-            pushFollow(FOLLOW_value_in_forstmt961);
+            match(input,52,FOLLOW_52_in_forstmt991); if (failed) return ;
+            pushFollow(FOLLOW_value_in_forstmt993);
             value();
             _fsp--;
             if (failed) return ;
-            match(input,52,FOLLOW_52_in_forstmt963); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:44: ( declare | incrstmt )?
-            int alt47=3;
+            match(input,52,FOLLOW_52_in_forstmt995); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:44: ( declare | incrstmt )?
+            int alt50=3;
             switch ( input.LA(1) ) {
                 case 51:
                 case 72:
@@ -2656,33 +2757,33 @@ public class sgclParser extends Parser {
                 case 76:
                 case 77:
                     {
-                    alt47=1;
+                    alt50=1;
                     }
                     break;
                 case WORD:
                     {
-                    int LA47_2 = input.LA(2);
+                    int LA50_2 = input.LA(2);
 
-                    if ( ((LA47_2>=INC && LA47_2<=DEC)||LA47_2==58) ) {
-                        alt47=2;
+                    if ( ((LA50_2>=INC && LA50_2<=DEC)||LA50_2==58) ) {
+                        alt50=2;
                     }
-                    else if ( (LA47_2==EQUAL||(LA47_2>=PLEQUAL && LA47_2<=MOEQUAL)||LA47_2==WORD) ) {
-                        alt47=1;
+                    else if ( (LA50_2==EQUAL||(LA50_2>=PLEQUAL && LA50_2<=MOEQUAL)||LA50_2==WORD) ) {
+                        alt50=1;
                     }
                     }
                     break;
                 case 53:
                     {
-                    alt47=2;
+                    alt50=2;
                     }
                     break;
             }
 
-            switch (alt47) {
+            switch (alt50) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:45: declare
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:45: declare
                     {
-                    pushFollow(FOLLOW_declare_in_forstmt966);
+                    pushFollow(FOLLOW_declare_in_forstmt998);
                     declare();
                     _fsp--;
                     if (failed) return ;
@@ -2690,9 +2791,9 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:53: incrstmt
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:53: incrstmt
                     {
-                    pushFollow(FOLLOW_incrstmt_in_forstmt968);
+                    pushFollow(FOLLOW_incrstmt_in_forstmt1000);
                     incrstmt();
                     _fsp--;
                     if (failed) return ;
@@ -2702,29 +2803,29 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,56,FOLLOW_56_in_forstmt972); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:68: ( statement | ( BLKBEG ( statement )* BLKEND ) )
-            int alt49=2;
-            int LA49_0 = input.LA(1);
+            match(input,56,FOLLOW_56_in_forstmt1004); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:68: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+            int alt52=2;
+            int LA52_0 = input.LA(1);
 
-            if ( (LA49_0==WORD||LA49_0==51||(LA49_0>=53 && LA49_0<=54)||LA49_0==57||(LA49_0>=60 && LA49_0<=63)||(LA49_0>=65 && LA49_0<=68)||(LA49_0>=72 && LA49_0<=77)) ) {
-                alt49=1;
+            if ( (LA52_0==WORD||LA52_0==51||(LA52_0>=53 && LA52_0<=54)||LA52_0==57||(LA52_0>=60 && LA52_0<=63)||(LA52_0>=65 && LA52_0<=68)||(LA52_0>=72 && LA52_0<=77)) ) {
+                alt52=1;
             }
-            else if ( (LA49_0==BLKBEG) ) {
-                alt49=2;
+            else if ( (LA52_0==BLKBEG) ) {
+                alt52=2;
             }
             else {
                 if (backtracking>0) {failed=true; return ;}
                 NoViableAltException nvae =
-                    new NoViableAltException("87:68: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 49, 0, input);
+                    new NoViableAltException("115:68: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 52, 0, input);
 
                 throw nvae;
             }
-            switch (alt49) {
+            switch (alt52) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:69: statement
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:69: statement
                     {
-                    pushFollow(FOLLOW_statement_in_forstmt975);
+                    pushFollow(FOLLOW_statement_in_forstmt1007);
                     statement();
                     _fsp--;
                     if (failed) return ;
@@ -2732,28 +2833,28 @@ public class sgclParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:79: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:79: ( BLKBEG ( statement )* BLKEND )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:79: ( BLKBEG ( statement )* BLKEND )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:80: BLKBEG ( statement )* BLKEND
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:79: ( BLKBEG ( statement )* BLKEND )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:80: BLKBEG ( statement )* BLKEND
                     {
-                    match(input,BLKBEG,FOLLOW_BLKBEG_in_forstmt978); if (failed) return ;
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:87: ( statement )*
-                    loop48:
+                    match(input,BLKBEG,FOLLOW_BLKBEG_in_forstmt1010); if (failed) return ;
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:115:87: ( statement )*
+                    loop51:
                     do {
-                        int alt48=2;
-                        int LA48_0 = input.LA(1);
+                        int alt51=2;
+                        int LA51_0 = input.LA(1);
 
-                        if ( (LA48_0==WORD||LA48_0==51||(LA48_0>=53 && LA48_0<=54)||LA48_0==57||(LA48_0>=60 && LA48_0<=63)||(LA48_0>=65 && LA48_0<=68)||(LA48_0>=72 && LA48_0<=77)) ) {
-                            alt48=1;
+                        if ( (LA51_0==WORD||LA51_0==51||(LA51_0>=53 && LA51_0<=54)||LA51_0==57||(LA51_0>=60 && LA51_0<=63)||(LA51_0>=65 && LA51_0<=68)||(LA51_0>=72 && LA51_0<=77)) ) {
+                            alt51=1;
                         }
 
 
-                        switch (alt48) {
+                        switch (alt51) {
                     	case 1 :
                     	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
                     	    {
-                    	    pushFollow(FOLLOW_statement_in_forstmt980);
+                    	    pushFollow(FOLLOW_statement_in_forstmt1012);
                     	    statement();
                     	    _fsp--;
                     	    if (failed) return ;
@@ -2762,11 +2863,11 @@ public class sgclParser extends Parser {
                     	    break;
 
                     	default :
-                    	    break loop48;
+                    	    break loop51;
                         }
                     } while (true);
 
-                    match(input,BLKEND,FOLLOW_BLKEND_in_forstmt983); if (failed) return ;
+                    match(input,BLKEND,FOLLOW_BLKEND_in_forstmt1015); if (failed) return ;
 
                     }
 
@@ -2792,33 +2893,33 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start switchstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:1: switchstmt : 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:116:1: switchstmt : 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND ;
     public final void switchstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:2: ( 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:4: 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:117:2: ( 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:117:4: 'switch' '(' WORD ')' BLKBEG ( casestmt )* ( defaultstmt )? BLKEND
             {
-            match(input,68,FOLLOW_68_in_switchstmt993); if (failed) return ;
-            match(input,54,FOLLOW_54_in_switchstmt995); if (failed) return ;
-            match(input,WORD,FOLLOW_WORD_in_switchstmt997); if (failed) return ;
-            match(input,56,FOLLOW_56_in_switchstmt999); if (failed) return ;
-            match(input,BLKBEG,FOLLOW_BLKBEG_in_switchstmt1003); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:3: ( casestmt )*
-            loop50:
+            match(input,68,FOLLOW_68_in_switchstmt1025); if (failed) return ;
+            match(input,54,FOLLOW_54_in_switchstmt1027); if (failed) return ;
+            match(input,WORD,FOLLOW_WORD_in_switchstmt1029); if (failed) return ;
+            match(input,56,FOLLOW_56_in_switchstmt1031); if (failed) return ;
+            match(input,BLKBEG,FOLLOW_BLKBEG_in_switchstmt1035); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:119:3: ( casestmt )*
+            loop53:
             do {
-                int alt50=2;
-                int LA50_0 = input.LA(1);
+                int alt53=2;
+                int LA53_0 = input.LA(1);
 
-                if ( (LA50_0==69) ) {
-                    alt50=1;
+                if ( (LA53_0==69) ) {
+                    alt53=1;
                 }
 
 
-                switch (alt50) {
+                switch (alt53) {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: casestmt
             	    {
-            	    pushFollow(FOLLOW_casestmt_in_switchstmt1007);
+            	    pushFollow(FOLLOW_casestmt_in_switchstmt1039);
             	    casestmt();
             	    _fsp--;
             	    if (failed) return ;
@@ -2827,22 +2928,22 @@ public class sgclParser extends Parser {
             	    break;
 
             	default :
-            	    break loop50;
+            	    break loop53;
                 }
             } while (true);
 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:3: ( defaultstmt )?
-            int alt51=2;
-            int LA51_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:120:3: ( defaultstmt )?
+            int alt54=2;
+            int LA54_0 = input.LA(1);
 
-            if ( (LA51_0==71) ) {
-                alt51=1;
+            if ( (LA54_0==71) ) {
+                alt54=1;
             }
-            switch (alt51) {
+            switch (alt54) {
                 case 1 :
                     // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: defaultstmt
                     {
-                    pushFollow(FOLLOW_defaultstmt_in_switchstmt1012);
+                    pushFollow(FOLLOW_defaultstmt_in_switchstmt1044);
                     defaultstmt();
                     _fsp--;
                     if (failed) return ;
@@ -2852,7 +2953,7 @@ public class sgclParser extends Parser {
 
             }
 
-            match(input,BLKEND,FOLLOW_BLKEND_in_switchstmt1017); if (failed) return ;
+            match(input,BLKEND,FOLLOW_BLKEND_in_switchstmt1049); if (failed) return ;
 
             }
 
@@ -2869,34 +2970,34 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start casestmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:1: casestmt : 'case' constant ':' ( statement )* ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:122:1: casestmt : 'case' constant ':' ( statement )* ;
     public final void casestmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:9: ( 'case' constant ':' ( statement )* )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:11: 'case' constant ':' ( statement )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:122:9: ( 'case' constant ':' ( statement )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:122:11: 'case' constant ':' ( statement )*
             {
-            match(input,69,FOLLOW_69_in_casestmt1023); if (failed) return ;
-            pushFollow(FOLLOW_constant_in_casestmt1025);
+            match(input,69,FOLLOW_69_in_casestmt1055); if (failed) return ;
+            pushFollow(FOLLOW_constant_in_casestmt1057);
             constant();
             _fsp--;
             if (failed) return ;
-            match(input,70,FOLLOW_70_in_casestmt1027); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:31: ( statement )*
-            loop52:
+            match(input,70,FOLLOW_70_in_casestmt1059); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:122:31: ( statement )*
+            loop55:
             do {
-                int alt52=2;
-                int LA52_0 = input.LA(1);
+                int alt55=2;
+                int LA55_0 = input.LA(1);
 
-                if ( (LA52_0==WORD||LA52_0==51||(LA52_0>=53 && LA52_0<=54)||LA52_0==57||(LA52_0>=60 && LA52_0<=63)||(LA52_0>=65 && LA52_0<=68)||(LA52_0>=72 && LA52_0<=77)) ) {
-                    alt52=1;
+                if ( (LA55_0==WORD||LA55_0==51||(LA55_0>=53 && LA55_0<=54)||LA55_0==57||(LA55_0>=60 && LA55_0<=63)||(LA55_0>=65 && LA55_0<=68)||(LA55_0>=72 && LA55_0<=77)) ) {
+                    alt55=1;
                 }
 
 
-                switch (alt52) {
+                switch (alt55) {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_casestmt1029);
+            	    pushFollow(FOLLOW_statement_in_casestmt1061);
             	    statement();
             	    _fsp--;
             	    if (failed) return ;
@@ -2905,7 +3006,7 @@ public class sgclParser extends Parser {
             	    break;
 
             	default :
-            	    break loop52;
+            	    break loop55;
                 }
             } while (true);
 
@@ -2925,30 +3026,30 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start defaultstmt
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:95:1: defaultstmt : 'default' ':' ( statement )* ;
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:123:1: defaultstmt : 'default' ':' ( statement )* ;
     public final void defaultstmt() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:2: ( 'default' ':' ( statement )* )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:4: 'default' ':' ( statement )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:124:2: ( 'default' ':' ( statement )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:124:4: 'default' ':' ( statement )*
             {
-            match(input,71,FOLLOW_71_in_defaultstmt1038); if (failed) return ;
-            match(input,70,FOLLOW_70_in_defaultstmt1040); if (failed) return ;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:18: ( statement )*
-            loop53:
+            match(input,71,FOLLOW_71_in_defaultstmt1070); if (failed) return ;
+            match(input,70,FOLLOW_70_in_defaultstmt1072); if (failed) return ;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:124:18: ( statement )*
+            loop56:
             do {
-                int alt53=2;
-                int LA53_0 = input.LA(1);
+                int alt56=2;
+                int LA56_0 = input.LA(1);
 
-                if ( (LA53_0==WORD||LA53_0==51||(LA53_0>=53 && LA53_0<=54)||LA53_0==57||(LA53_0>=60 && LA53_0<=63)||(LA53_0>=65 && LA53_0<=68)||(LA53_0>=72 && LA53_0<=77)) ) {
-                    alt53=1;
+                if ( (LA56_0==WORD||LA56_0==51||(LA56_0>=53 && LA56_0<=54)||LA56_0==57||(LA56_0>=60 && LA56_0<=63)||(LA56_0>=65 && LA56_0<=68)||(LA56_0>=72 && LA56_0<=77)) ) {
+                    alt56=1;
                 }
 
 
-                switch (alt53) {
+                switch (alt56) {
             	case 1 :
             	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
             	    {
-            	    pushFollow(FOLLOW_statement_in_defaultstmt1042);
+            	    pushFollow(FOLLOW_statement_in_defaultstmt1074);
             	    statement();
             	    _fsp--;
             	    if (failed) return ;
@@ -2957,7 +3058,7 @@ public class sgclParser extends Parser {
             	    break;
 
             	default :
-            	    break loop53;
+            	    break loop56;
                 }
             } while (true);
 
@@ -2977,10 +3078,10 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start type
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:1: type : ( 'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:125:1: type : ( 'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD );
     public final void type() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:6: ( 'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:125:6: ( 'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD )
             // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:
             {
             if ( input.LA(1)==WORD||(input.LA(1)>=72 && input.LA(1)<=77) ) {
@@ -3010,10 +3111,10 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start boolval
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:1: boolval : ( 'true' | 'false' );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:129:1: boolval : ( 'true' | 'false' );
     public final void boolval() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:9: ( 'true' | 'false' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:129:9: ( 'true' | 'false' )
             // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:
             {
             if ( (input.LA(1)>=78 && input.LA(1)<=79) ) {
@@ -3043,10 +3144,10 @@ public class sgclParser extends Parser {
 
 
     // $ANTLR start privacy
-    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:1: privacy : ( 'public' | 'protected' | 'private' );
+    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:131:1: privacy : ( 'public' | 'protected' | 'private' );
     public final void privacy() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:9: ( 'public' | 'protected' | 'private' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:131:9: ( 'public' | 'protected' | 'private' )
             // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:
             {
             if ( (input.LA(1)>=80 && input.LA(1)<=82) ) {
@@ -3074,28 +3175,28 @@ public class sgclParser extends Parser {
     }
     // $ANTLR end privacy
 
-    // $ANTLR start synpred56
-    public final void synpred56_fragment() throws RecognitionException {   
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:9: ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) )
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:9: ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
+    // $ANTLR start synpred60
+    public final void synpred60_fragment() throws RecognitionException {   
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:9: ( ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? ) )
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:9: ( '(' type ')' )* ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
         {
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:9: ( '(' type ')' )*
-        loop60:
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:9: ( '(' type ')' )*
+        loop66:
         do {
-            int alt60=2;
-            int LA60_0 = input.LA(1);
+            int alt66=2;
+            int LA66_0 = input.LA(1);
 
-            if ( (LA60_0==54) ) {
-                int LA60_2 = input.LA(2);
+            if ( (LA66_0==54) ) {
+                int LA66_2 = input.LA(2);
 
-                if ( (LA60_2==WORD) ) {
-                    int LA60_3 = input.LA(3);
+                if ( (LA66_2==WORD) ) {
+                    int LA66_3 = input.LA(3);
 
-                    if ( (LA60_3==56) ) {
-                        int LA60_5 = input.LA(4);
+                    if ( (LA66_3==56) ) {
+                        int LA66_5 = input.LA(4);
 
-                        if ( (LA60_5==WORD||(LA60_5>=53 && LA60_5<=54)||LA60_5==57) ) {
-                            alt60=1;
+                        if ( (LA66_5==WORD||(LA66_5>=53 && LA66_5<=54)||LA66_5==57) ) {
+                            alt66=1;
                         }
 
 
@@ -3103,112 +3204,112 @@ public class sgclParser extends Parser {
 
 
                 }
-                else if ( ((LA60_2>=72 && LA60_2<=77)) ) {
-                    alt60=1;
+                else if ( ((LA66_2>=72 && LA66_2<=77)) ) {
+                    alt66=1;
                 }
 
 
             }
 
 
-            switch (alt60) {
+            switch (alt66) {
         	case 1 :
-        	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:68:10: '(' type ')'
+        	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:96:10: '(' type ')'
         	    {
-        	    match(input,54,FOLLOW_54_in_synpred56503); if (failed) return ;
-        	    pushFollow(FOLLOW_type_in_synpred56505);
+        	    match(input,54,FOLLOW_54_in_synpred60535); if (failed) return ;
+        	    pushFollow(FOLLOW_type_in_synpred60537);
         	    type();
         	    _fsp--;
         	    if (failed) return ;
-        	    match(input,56,FOLLOW_56_in_synpred56507); if (failed) return ;
+        	    match(input,56,FOLLOW_56_in_synpred60539); if (failed) return ;
 
         	    }
         	    break;
 
         	default :
-        	    break loop60;
+        	    break loop66;
             }
         } while (true);
 
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:3: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:3: ( ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )? )
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )? WORD '(' ( value ( ',' value )* )? ')' ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
         {
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
-        int alt62=2;
-        int LA62_0 = input.LA(1);
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.' )?
+        int alt68=2;
+        int LA68_0 = input.LA(1);
 
-        if ( ((LA62_0>=53 && LA62_0<=54)||LA62_0==57) ) {
-            alt62=1;
+        if ( ((LA68_0>=53 && LA68_0<=54)||LA68_0==57) ) {
+            alt68=1;
         }
-        else if ( (LA62_0==WORD) ) {
-            int LA62_2 = input.LA(2);
+        else if ( (LA68_0==WORD) ) {
+            int LA68_2 = input.LA(2);
 
-            if ( (LA62_2==58) ) {
-                alt62=1;
+            if ( (LA68_2==58) ) {
+                alt68=1;
             }
         }
-        switch (alt62) {
+        switch (alt68) {
             case 1 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD ) '.'
                 {
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
-                int alt61=4;
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )
+                int alt67=4;
                 switch ( input.LA(1) ) {
                 case 53:
                     {
-                    alt61=1;
+                    alt67=1;
                     }
                     break;
                 case 57:
                     {
-                    alt61=2;
+                    alt67=2;
                     }
                     break;
                 case 54:
                     {
-                    alt61=3;
+                    alt67=3;
                     }
                     break;
                 case WORD:
                     {
-                    alt61=4;
+                    alt67=4;
                     }
                     break;
                 default:
                     if (backtracking>0) {failed=true; return ;}
                     NoViableAltException nvae =
-                        new NoViableAltException("69:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 61, 0, input);
+                        new NoViableAltException("97:5: ( 'this' | 'super' | ( '(' value ')' ) | WORD )", 67, 0, input);
 
                     throw nvae;
                 }
 
-                switch (alt61) {
+                switch (alt67) {
                     case 1 :
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:6: 'this'
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:6: 'this'
                         {
-                        match(input,53,FOLLOW_53_in_synpred56516); if (failed) return ;
+                        match(input,53,FOLLOW_53_in_synpred60548); if (failed) return ;
 
                         }
                         break;
                     case 2 :
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:13: 'super'
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:13: 'super'
                         {
-                        match(input,57,FOLLOW_57_in_synpred56518); if (failed) return ;
+                        match(input,57,FOLLOW_57_in_synpred60550); if (failed) return ;
 
                         }
                         break;
                     case 3 :
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:21: ( '(' value ')' )
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:21: ( '(' value ')' )
                         {
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:21: ( '(' value ')' )
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:22: '(' value ')'
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:21: ( '(' value ')' )
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:22: '(' value ')'
                         {
-                        match(input,54,FOLLOW_54_in_synpred56521); if (failed) return ;
-                        pushFollow(FOLLOW_value_in_synpred56522);
+                        match(input,54,FOLLOW_54_in_synpred60553); if (failed) return ;
+                        pushFollow(FOLLOW_value_in_synpred60554);
                         value();
                         _fsp--;
                         if (failed) return ;
-                        match(input,56,FOLLOW_56_in_synpred56523); if (failed) return ;
+                        match(input,56,FOLLOW_56_in_synpred60555); if (failed) return ;
 
                         }
 
@@ -3216,173 +3317,57 @@ public class sgclParser extends Parser {
                         }
                         break;
                     case 4 :
-                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:35: WORD
+                        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:35: WORD
                         {
-                        match(input,WORD,FOLLOW_WORD_in_synpred56526); if (failed) return ;
+                        match(input,WORD,FOLLOW_WORD_in_synpred60558); if (failed) return ;
 
                         }
                         break;
 
                 }
 
-                match(input,58,FOLLOW_58_in_synpred56529); if (failed) return ;
+                match(input,58,FOLLOW_58_in_synpred60561); if (failed) return ;
 
                 }
                 break;
 
         }
 
-        match(input,WORD,FOLLOW_WORD_in_synpred56533); if (failed) return ;
-        match(input,54,FOLLOW_54_in_synpred56535); if (failed) return ;
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:56: ( value ( ',' value )* )?
-        int alt64=2;
-        int LA64_0 = input.LA(1);
-
-        if ( ((LA64_0>=WORD && LA64_0<=CHAR)||(LA64_0>=53 && LA64_0<=54)||LA64_0==57||LA64_0==59||(LA64_0>=78 && LA64_0<=79)) ) {
-            alt64=1;
-        }
-        switch (alt64) {
-            case 1 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:57: value ( ',' value )*
-                {
-                pushFollow(FOLLOW_value_in_synpred56538);
-                value();
-                _fsp--;
-                if (failed) return ;
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:63: ( ',' value )*
-                loop63:
-                do {
-                    int alt63=2;
-                    int LA63_0 = input.LA(1);
-
-                    if ( (LA63_0==55) ) {
-                        alt63=1;
-                    }
-
-
-                    switch (alt63) {
-                	case 1 :
-                	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:69:64: ',' value
-                	    {
-                	    match(input,55,FOLLOW_55_in_synpred56541); if (failed) return ;
-                	    pushFollow(FOLLOW_value_in_synpred56543);
-                	    value();
-                	    _fsp--;
-                	    if (failed) return ;
-
-                	    }
-                	    break;
-
-                	default :
-                	    break loop63;
-                    }
-                } while (true);
-
-
-                }
-                break;
-
-        }
-
-        match(input,56,FOLLOW_56_in_synpred56549); if (failed) return ;
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:70:3: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
-        int alt65=2;
-        int LA65_0 = input.LA(1);
-
-        if ( ((LA65_0>=PLUS && LA65_0<=AND)) ) {
-            alt65=1;
-        }
-        switch (alt65) {
-            case 1 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:70:4: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
-                {
-                if ( (input.LA(1)>=PLUS && input.LA(1)<=AND) ) {
-                    input.consume();
-                    errorRecovery=false;failed=false;
-                }
-                else {
-                    if (backtracking>0) {failed=true; return ;}
-                    MismatchedSetException mse =
-                        new MismatchedSetException(null,input);
-                    recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred56554);    throw mse;
-                }
-
-                pushFollow(FOLLOW_value_in_synpred56594);
-                value();
-                _fsp--;
-                if (failed) return ;
-
-                }
-                break;
-
-        }
-
-
-        }
-
-
-        }
-    }
-    // $ANTLR end synpred56
-
-    // $ANTLR start synpred111
-    public final void synpred111_fragment() throws RecognitionException {   
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:4: ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:4: 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) )
-        {
-        match(input,64,FOLLOW_64_in_synpred111875); if (failed) return ;
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+        match(input,WORD,FOLLOW_WORD_in_synpred60565); if (failed) return ;
+        match(input,54,FOLLOW_54_in_synpred60567); if (failed) return ;
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:56: ( value ( ',' value )* )?
         int alt70=2;
         int LA70_0 = input.LA(1);
 
-        if ( (LA70_0==WORD||LA70_0==51||(LA70_0>=53 && LA70_0<=54)||LA70_0==57||(LA70_0>=60 && LA70_0<=63)||(LA70_0>=65 && LA70_0<=68)||(LA70_0>=72 && LA70_0<=77)) ) {
+        if ( ((LA70_0>=WORD && LA70_0<=CHAR)||(LA70_0>=53 && LA70_0<=54)||LA70_0==57||LA70_0==59||(LA70_0>=78 && LA70_0<=79)) ) {
             alt70=1;
-        }
-        else if ( (LA70_0==BLKBEG) ) {
-            alt70=2;
-        }
-        else {
-            if (backtracking>0) {failed=true; return ;}
-            NoViableAltException nvae =
-                new NoViableAltException("83:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 70, 0, input);
-
-            throw nvae;
         }
         switch (alt70) {
             case 1 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:12: statement
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:57: value ( ',' value )*
                 {
-                pushFollow(FOLLOW_statement_in_synpred111878);
-                statement();
+                pushFollow(FOLLOW_value_in_synpred60570);
+                value();
                 _fsp--;
                 if (failed) return ;
-
-                }
-                break;
-            case 2 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:22: ( BLKBEG ( statement )* BLKEND )
-                {
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:22: ( BLKBEG ( statement )* BLKEND )
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:23: BLKBEG ( statement )* BLKEND
-                {
-                match(input,BLKBEG,FOLLOW_BLKBEG_in_synpred111881); if (failed) return ;
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:83:30: ( statement )*
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:63: ( ',' value )*
                 loop69:
                 do {
                     int alt69=2;
                     int LA69_0 = input.LA(1);
 
-                    if ( (LA69_0==WORD||LA69_0==51||(LA69_0>=53 && LA69_0<=54)||LA69_0==57||(LA69_0>=60 && LA69_0<=63)||(LA69_0>=65 && LA69_0<=68)||(LA69_0>=72 && LA69_0<=77)) ) {
+                    if ( (LA69_0==55) ) {
                         alt69=1;
                     }
 
 
                     switch (alt69) {
                 	case 1 :
-                	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
+                	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:64: ',' value
                 	    {
-                	    pushFollow(FOLLOW_statement_in_synpred111883);
-                	    statement();
+                	    match(input,55,FOLLOW_55_in_synpred60573); if (failed) return ;
+                	    pushFollow(FOLLOW_value_in_synpred60575);
+                	    value();
                 	    _fsp--;
                 	    if (failed) return ;
 
@@ -3394,7 +3379,123 @@ public class sgclParser extends Parser {
                     }
                 } while (true);
 
-                match(input,BLKEND,FOLLOW_BLKEND_in_synpred111886); if (failed) return ;
+
+                }
+                break;
+
+        }
+
+        match(input,56,FOLLOW_56_in_synpred60581); if (failed) return ;
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:98:3: ( ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value )?
+        int alt71=2;
+        int LA71_0 = input.LA(1);
+
+        if ( ((LA71_0>=PLUS && LA71_0<=AND)) ) {
+            alt71=1;
+        }
+        switch (alt71) {
+            case 1 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:98:4: ( EQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLUS | MINUS | MULT | DIV | MOD | AND | OR ) value
+                {
+                if ( (input.LA(1)>=PLUS && input.LA(1)<=AND) ) {
+                    input.consume();
+                    errorRecovery=false;failed=false;
+                }
+                else {
+                    if (backtracking>0) {failed=true; return ;}
+                    MismatchedSetException mse =
+                        new MismatchedSetException(null,input);
+                    recoverFromMismatchedSet(input,mse,FOLLOW_set_in_synpred60586);    throw mse;
+                }
+
+                pushFollow(FOLLOW_value_in_synpred60626);
+                value();
+                _fsp--;
+                if (failed) return ;
+
+                }
+                break;
+
+        }
+
+
+        }
+
+
+        }
+    }
+    // $ANTLR end synpred60
+
+    // $ANTLR start synpred115
+    public final void synpred115_fragment() throws RecognitionException {   
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:4: ( 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) ) )
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:4: 'else' ( statement | ( BLKBEG ( statement )* BLKEND ) )
+        {
+        match(input,64,FOLLOW_64_in_synpred115907); if (failed) return ;
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )
+        int alt76=2;
+        int LA76_0 = input.LA(1);
+
+        if ( (LA76_0==WORD||LA76_0==51||(LA76_0>=53 && LA76_0<=54)||LA76_0==57||(LA76_0>=60 && LA76_0<=63)||(LA76_0>=65 && LA76_0<=68)||(LA76_0>=72 && LA76_0<=77)) ) {
+            alt76=1;
+        }
+        else if ( (LA76_0==BLKBEG) ) {
+            alt76=2;
+        }
+        else {
+            if (backtracking>0) {failed=true; return ;}
+            NoViableAltException nvae =
+                new NoViableAltException("111:11: ( statement | ( BLKBEG ( statement )* BLKEND ) )", 76, 0, input);
+
+            throw nvae;
+        }
+        switch (alt76) {
+            case 1 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:12: statement
+                {
+                pushFollow(FOLLOW_statement_in_synpred115910);
+                statement();
+                _fsp--;
+                if (failed) return ;
+
+                }
+                break;
+            case 2 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:22: ( BLKBEG ( statement )* BLKEND )
+                {
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:22: ( BLKBEG ( statement )* BLKEND )
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:23: BLKBEG ( statement )* BLKEND
+                {
+                match(input,BLKBEG,FOLLOW_BLKBEG_in_synpred115913); if (failed) return ;
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:30: ( statement )*
+                loop75:
+                do {
+                    int alt75=2;
+                    int LA75_0 = input.LA(1);
+
+                    if ( (LA75_0==WORD||LA75_0==51||(LA75_0>=53 && LA75_0<=54)||LA75_0==57||(LA75_0>=60 && LA75_0<=63)||(LA75_0>=65 && LA75_0<=68)||(LA75_0>=72 && LA75_0<=77)) ) {
+                        alt75=1;
+                    }
+
+
+                    switch (alt75) {
+                	case 1 :
+                	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:0:0: statement
+                	    {
+                	    pushFollow(FOLLOW_statement_in_synpred115915);
+                	    statement();
+                	    _fsp--;
+                	    if (failed) return ;
+
+                	    }
+                	    break;
+
+                	default :
+                	    break loop75;
+                    }
+                } while (true);
+
+                match(input,BLKEND,FOLLOW_BLKEND_in_synpred115918); if (failed) return ;
 
                 }
 
@@ -3407,13 +3508,13 @@ public class sgclParser extends Parser {
 
         }
     }
-    // $ANTLR end synpred111
+    // $ANTLR end synpred115
 
-    public final boolean synpred56() {
+    public final boolean synpred115() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred56_fragment(); // can never throw exception
+            synpred115_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3423,11 +3524,11 @@ public class sgclParser extends Parser {
         failed=false;
         return success;
     }
-    public final boolean synpred111() {
+    public final boolean synpred60() {
         backtracking++;
         int start = input.mark();
         try {
-            synpred111_fragment(); // can never throw exception
+            synpred60_fragment(); // can never throw exception
         } catch (RecognitionException re) {
             System.err.println("impossible: "+re);
         }
@@ -3441,211 +3542,218 @@ public class sgclParser extends Parser {
 
  
 
-    public static final BitSet FOLLOW_classdef_in_doc271 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_47_in_classdef279 = new BitSet(new long[]{0x0001000000000000L});
-    public static final BitSet FOLLOW_48_in_classdef283 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_classdef285 = new BitSet(new long[]{0x0002000000800000L});
-    public static final BitSet FOLLOW_49_in_classdef288 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_classdef290 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_BLKBEG_in_classdef296 = new BitSet(new long[]{0x0000000001000000L,0x0000000000070000L});
-    public static final BitSet FOLLOW_clsext_in_classdef300 = new BitSet(new long[]{0x0000000001000000L,0x0000000000070000L});
-    public static final BitSet FOLLOW_BLKEND_in_classdef305 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_fieldas_in_clsext313 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_funct_in_clsext317 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_constructor_in_clsext321 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_privacy_in_fieldas328 = new BitSet(new long[]{0x000C000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_50_in_fieldas330 = new BitSet(new long[]{0x0008000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_51_in_fieldas333 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_fieldas336 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_fieldas338 = new BitSet(new long[]{0x0010000000000200L});
-    public static final BitSet FOLLOW_EQUAL_in_fieldas341 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_fieldas343 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_fieldas347 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_privacy_in_constructor355 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_53_in_constructor357 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_constructor359 = new BitSet(new long[]{0x0100000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_constructor362 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_constructor364 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_55_in_constructor367 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_constructor369 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_constructor371 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_56_in_constructor377 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_BLKBEG_in_constructor381 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_constructor385 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_constructor390 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_privacy_in_funct397 = new BitSet(new long[]{0x0004000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_50_in_funct399 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_funct402 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_funct405 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_funct407 = new BitSet(new long[]{0x0100000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_funct410 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_funct412 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_55_in_funct415 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_funct417 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_funct419 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_56_in_funct425 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_BLKBEG_in_funct429 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_funct433 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_funct438 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_declare446 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_declare450 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_declare452 = new BitSet(new long[]{0x00000000001F0202L});
-    public static final BitSet FOLLOW_set_in_declare455 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_declare469 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_WORD_in_declare477 = new BitSet(new long[]{0x00000000001F0200L});
-    public static final BitSet FOLLOW_set_in_declare479 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_declare493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_value503 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_value505 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_value507 = new BitSet(new long[]{0x0260000100000000L});
-    public static final BitSet FOLLOW_53_in_value516 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_57_in_value518 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_54_in_value521 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value522 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_value523 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_WORD_in_value526 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_value529 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_value533 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_value535 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value538 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_55_in_value541 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value543 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_56_in_value549 = new BitSet(new long[]{0x00000000007FFFF2L});
-    public static final BitSet FOLLOW_set_in_value554 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_value607 = new BitSet(new long[]{0x04000000C07FFFF2L});
-    public static final BitSet FOLLOW_54_in_value609 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value610 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_value611 = new BitSet(new long[]{0x04000000C07FFFF2L});
-    public static final BitSet FOLLOW_constant_in_value613 = new BitSet(new long[]{0x04000000C07FFFF2L});
-    public static final BitSet FOLLOW_WORD_in_value615 = new BitSet(new long[]{0x04000000C07FFFF2L});
-    public static final BitSet FOLLOW_58_in_value619 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_value621 = new BitSet(new long[]{0x04000000C07FFFF2L});
-    public static final BitSet FOLLOW_set_in_value630 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_value670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INC_in_value673 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DEC_in_value675 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_INTEGER_in_constant688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_DOUBLE_in_constant692 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_FLOAT_in_constant696 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_constant700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_CHAR_in_constant704 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_boolval_in_constant708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_59_in_constant712 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_53_in_fnccall721 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_57_in_fnccall723 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_54_in_fnccall726 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_fnccall728 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_fnccall730 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_WORD_in_fnccall733 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_fnccall736 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_fnccall740 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_fnccall742 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_fnccall745 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_55_in_fnccall748 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_fnccall750 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_56_in_fnccall756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_declare_in_statement766 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_returnstmt_in_statement770 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_incrstmt_in_statement774 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_dowhile_in_statement778 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_fnccall_in_statement782 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_60_in_statement786 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_61_in_statement790 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_statement793 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ifstmt_in_statement799 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_whilestmt_in_statement803 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_forstmt_in_statement807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_switchstmt_in_statement811 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_set_in_incrstmt818 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_incrstmt824 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_incrstmt828 = new BitSet(new long[]{0x00000000C0000000L});
-    public static final BitSet FOLLOW_set_in_incrstmt830 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_62_in_returnstmt842 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_returnstmt844 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_63_in_ifstmt851 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_ifstmt853 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_ifstmt855 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_ifstmt857 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_ifstmt860 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_BLKBEG_in_ifstmt863 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_ifstmt865 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_ifstmt868 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
-    public static final BitSet FOLLOW_64_in_ifstmt875 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_ifstmt878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BLKBEG_in_ifstmt881 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_ifstmt883 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_ifstmt886 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_whilestmt898 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_whilestmt900 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_whilestmt902 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_whilestmt904 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_whilestmt907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BLKBEG_in_whilestmt910 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_whilestmt912 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_whilestmt915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_66_in_dowhile924 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_dowhile927 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_BLKBEG_in_dowhile930 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_dowhile932 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_dowhile935 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_dowhile939 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_dowhile941 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_dowhile943 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_dowhile945 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_forstmt952 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_forstmt954 = new BitSet(new long[]{0x0018000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_declare_in_forstmt956 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_forstmt959 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_forstmt961 = new BitSet(new long[]{0x0010000000000000L});
-    public static final BitSet FOLLOW_52_in_forstmt963 = new BitSet(new long[]{0x0128000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_declare_in_forstmt966 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_incrstmt_in_forstmt968 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_forstmt972 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_forstmt975 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BLKBEG_in_forstmt978 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_forstmt980 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_forstmt983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_switchstmt993 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_switchstmt995 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_switchstmt997 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_switchstmt999 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_BLKBEG_in_switchstmt1003 = new BitSet(new long[]{0x0000000001000000L,0x00000000000000A0L});
-    public static final BitSet FOLLOW_casestmt_in_switchstmt1007 = new BitSet(new long[]{0x0000000001000000L,0x00000000000000A0L});
-    public static final BitSet FOLLOW_defaultstmt_in_switchstmt1012 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_BLKEND_in_switchstmt1017 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_casestmt1023 = new BitSet(new long[]{0x0800003E00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_constant_in_casestmt1025 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_casestmt1027 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_casestmt1029 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_71_in_defaultstmt1038 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
-    public static final BitSet FOLLOW_70_in_defaultstmt1040 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_defaultstmt1042 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_classdef_in_doc274 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_47_in_classdef282 = new BitSet(new long[]{0x0001000000000000L});
+    public static final BitSet FOLLOW_48_in_classdef286 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_classdef288 = new BitSet(new long[]{0x0002000000800000L});
+    public static final BitSet FOLLOW_49_in_classdef291 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_classdef293 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_BLKBEG_in_classdef299 = new BitSet(new long[]{0x0000000001000000L,0x0000000000070000L});
+    public static final BitSet FOLLOW_clsext_in_classdef303 = new BitSet(new long[]{0x0000000001000000L,0x0000000000070000L});
+    public static final BitSet FOLLOW_BLKEND_in_classdef308 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_fieldas_in_clsext316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_funct_in_clsext320 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_constructor_in_clsext324 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_privacy_in_fieldas331 = new BitSet(new long[]{0x000C000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_50_in_fieldas333 = new BitSet(new long[]{0x0008000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_51_in_fieldas336 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_fieldas339 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_fieldas341 = new BitSet(new long[]{0x0010000000000200L});
+    public static final BitSet FOLLOW_EQUAL_in_fieldas344 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_fieldas346 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_fieldas350 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_privacy_in_constructor358 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_constructor360 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_constructor362 = new BitSet(new long[]{0x0100000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_constructor365 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_constructor367 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_constructor370 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_constructor372 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_constructor374 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_constructor380 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_BLKBEG_in_constructor384 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_set_in_constructor389 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_constructor395 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_constructor398 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_constructor401 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_constructor403 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_constructor409 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_constructor411 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_constructor417 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_constructor422 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_privacy_in_funct429 = new BitSet(new long[]{0x0004000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_50_in_funct431 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_funct434 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_funct437 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_funct439 = new BitSet(new long[]{0x0100000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_funct442 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_funct444 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_funct447 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_funct449 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_funct451 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_funct457 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_BLKBEG_in_funct461 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_funct465 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_funct470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_51_in_declare478 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_declare482 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_declare484 = new BitSet(new long[]{0x00000000001F0202L});
+    public static final BitSet FOLLOW_set_in_declare487 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_declare501 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_WORD_in_declare509 = new BitSet(new long[]{0x00000000001F0200L});
+    public static final BitSet FOLLOW_set_in_declare511 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_declare525 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_value535 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_value537 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_value539 = new BitSet(new long[]{0x0260000100000000L});
+    public static final BitSet FOLLOW_53_in_value548 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_57_in_value550 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_54_in_value553 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value554 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_value555 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_WORD_in_value558 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_value561 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_value565 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_value567 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value570 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_value573 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value575 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_value581 = new BitSet(new long[]{0x00000000007FFFF2L});
+    public static final BitSet FOLLOW_set_in_value586 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_value639 = new BitSet(new long[]{0x04000000C07FFFF2L});
+    public static final BitSet FOLLOW_54_in_value641 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value642 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_value643 = new BitSet(new long[]{0x04000000C07FFFF2L});
+    public static final BitSet FOLLOW_constant_in_value645 = new BitSet(new long[]{0x04000000C07FFFF2L});
+    public static final BitSet FOLLOW_WORD_in_value647 = new BitSet(new long[]{0x04000000C07FFFF2L});
+    public static final BitSet FOLLOW_58_in_value651 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_value653 = new BitSet(new long[]{0x04000000C07FFFF2L});
+    public static final BitSet FOLLOW_set_in_value662 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_value702 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INC_in_value705 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DEC_in_value707 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_INTEGER_in_constant720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_DOUBLE_in_constant724 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_FLOAT_in_constant728 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_constant732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_CHAR_in_constant736 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_boolval_in_constant740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_59_in_constant744 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_53_in_fnccall753 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_57_in_fnccall755 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_54_in_fnccall758 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_fnccall760 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_fnccall762 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_WORD_in_fnccall765 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_fnccall768 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_fnccall772 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_fnccall774 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_fnccall777 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_fnccall780 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_fnccall782 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_fnccall788 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_declare_in_statement798 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_returnstmt_in_statement802 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_incrstmt_in_statement806 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_dowhile_in_statement810 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_fnccall_in_statement814 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_60_in_statement818 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_61_in_statement822 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_statement825 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ifstmt_in_statement831 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_whilestmt_in_statement835 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_forstmt_in_statement839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_switchstmt_in_statement843 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_set_in_incrstmt850 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_incrstmt856 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_incrstmt860 = new BitSet(new long[]{0x00000000C0000000L});
+    public static final BitSet FOLLOW_set_in_incrstmt862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_62_in_returnstmt874 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_returnstmt876 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_63_in_ifstmt883 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_ifstmt885 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_ifstmt887 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_ifstmt889 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_ifstmt892 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_BLKBEG_in_ifstmt895 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_ifstmt897 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_ifstmt900 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000001L});
+    public static final BitSet FOLLOW_64_in_ifstmt907 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_ifstmt910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BLKBEG_in_ifstmt913 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_ifstmt915 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_ifstmt918 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_whilestmt930 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_whilestmt932 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_whilestmt934 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_whilestmt936 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_whilestmt939 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BLKBEG_in_whilestmt942 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_whilestmt944 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_whilestmt947 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_66_in_dowhile956 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_dowhile959 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_BLKBEG_in_dowhile962 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_dowhile964 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_dowhile967 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_65_in_dowhile971 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_dowhile973 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_dowhile975 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_dowhile977 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_67_in_forstmt984 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_forstmt986 = new BitSet(new long[]{0x0018000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_declare_in_forstmt988 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_forstmt991 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_forstmt993 = new BitSet(new long[]{0x0010000000000000L});
+    public static final BitSet FOLLOW_52_in_forstmt995 = new BitSet(new long[]{0x0128000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_declare_in_forstmt998 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_incrstmt_in_forstmt1000 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_forstmt1004 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_forstmt1007 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BLKBEG_in_forstmt1010 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_forstmt1012 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_forstmt1015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_switchstmt1025 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_switchstmt1027 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_switchstmt1029 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_switchstmt1031 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_BLKBEG_in_switchstmt1035 = new BitSet(new long[]{0x0000000001000000L,0x00000000000000A0L});
+    public static final BitSet FOLLOW_casestmt_in_switchstmt1039 = new BitSet(new long[]{0x0000000001000000L,0x00000000000000A0L});
+    public static final BitSet FOLLOW_defaultstmt_in_switchstmt1044 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_BLKEND_in_switchstmt1049 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_casestmt1055 = new BitSet(new long[]{0x0800003E00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_constant_in_casestmt1057 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_casestmt1059 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_casestmt1061 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_71_in_defaultstmt1070 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000040L});
+    public static final BitSet FOLLOW_70_in_defaultstmt1072 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_defaultstmt1074 = new BitSet(new long[]{0xF268000100000002L,0x0000000000003F1EL});
     public static final BitSet FOLLOW_set_in_type0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_boolval0 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_set_in_privacy0 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_synpred56503 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
-    public static final BitSet FOLLOW_type_in_synpred56505 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_synpred56507 = new BitSet(new long[]{0x0260000100000000L});
-    public static final BitSet FOLLOW_53_in_synpred56516 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_57_in_synpred56518 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_54_in_synpred56521 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_synpred56522 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_synpred56523 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_WORD_in_synpred56526 = new BitSet(new long[]{0x0400000000000000L});
-    public static final BitSet FOLLOW_58_in_synpred56529 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_WORD_in_synpred56533 = new BitSet(new long[]{0x0040000000000000L});
-    public static final BitSet FOLLOW_54_in_synpred56535 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_synpred56538 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_55_in_synpred56541 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_synpred56543 = new BitSet(new long[]{0x0180000000000000L});
-    public static final BitSet FOLLOW_56_in_synpred56549 = new BitSet(new long[]{0x00000000007FFFF2L});
-    public static final BitSet FOLLOW_set_in_synpred56554 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
-    public static final BitSet FOLLOW_value_in_synpred56594 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_synpred111875 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_synpred111878 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_BLKBEG_in_synpred111881 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_statement_in_synpred111883 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
-    public static final BitSet FOLLOW_BLKEND_in_synpred111886 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_synpred60535 = new BitSet(new long[]{0x0000000100000000L,0x0000000000003F00L});
+    public static final BitSet FOLLOW_type_in_synpred60537 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_synpred60539 = new BitSet(new long[]{0x0260000100000000L});
+    public static final BitSet FOLLOW_53_in_synpred60548 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_57_in_synpred60550 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_54_in_synpred60553 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_synpred60554 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_synpred60555 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_WORD_in_synpred60558 = new BitSet(new long[]{0x0400000000000000L});
+    public static final BitSet FOLLOW_58_in_synpred60561 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_WORD_in_synpred60565 = new BitSet(new long[]{0x0040000000000000L});
+    public static final BitSet FOLLOW_54_in_synpred60567 = new BitSet(new long[]{0x0B60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_synpred60570 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_55_in_synpred60573 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_synpred60575 = new BitSet(new long[]{0x0180000000000000L});
+    public static final BitSet FOLLOW_56_in_synpred60581 = new BitSet(new long[]{0x00000000007FFFF2L});
+    public static final BitSet FOLLOW_set_in_synpred60586 = new BitSet(new long[]{0x0A60003F00000000L,0x000000000000C000L});
+    public static final BitSet FOLLOW_value_in_synpred60626 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_64_in_synpred115907 = new BitSet(new long[]{0xF268000100800000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_synpred115910 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_BLKBEG_in_synpred115913 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_statement_in_synpred115915 = new BitSet(new long[]{0xF268000101000000L,0x0000000000003F1EL});
+    public static final BitSet FOLLOW_BLKEND_in_synpred115918 = new BitSet(new long[]{0x0000000000000002L});
 
 }
