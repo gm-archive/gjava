@@ -1766,16 +1766,21 @@ return new Object();
 
 public static Object draw_text_ext(Object x, Object y, Object string, Object sep, Object w)
 {
+    draw_text(x,y,string);
 return new Object();
 }
 
 public static Object string_width(Object string)
 {
+    if (Game.Current.g2d !=null)
+    return new Integer( Game.Current.g2d.getFontMetrics().stringWidth(""+string));
 return new Object();
 }
 
 public static Object string_height(Object string)
 {
+    if (Game.Current.g2d !=null)
+    return new Integer( Game.Current.g2d.getFontMetrics().getHeight());
 return new Object();
 }
 
@@ -4019,16 +4024,31 @@ return str;
 
 public static Object file_text_read_real(Object file)
 {
+    //String str = new String("");
+    try{
+    if (file instanceof File)
+    {
+     return new Double( java.lang.Double.parseDouble(""+((File)file).readString()));
+    }
+    }catch(Exception e){}
 return new Object();
 }
 
 public static Object file_text_readln(Object file)
 {
+    if (file instanceof File)
+    {
+      ((File)file).readln();
+    }
 return new Object();
 }
 
 public static Object file_text_eof(Object file)
 {
+    if (file instanceof File)
+    {
+     return new Boolean( ((File)file).endOfFile());
+    }
 return new Object();
 }
 

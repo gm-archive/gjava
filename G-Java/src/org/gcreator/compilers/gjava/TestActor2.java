@@ -92,18 +92,10 @@ public class TestActor2 extends Actor {
              final Integer arg0=new Integer(10),  arg1 = new Integer(2);
              file_delete(new String("C:\\game33.exe"));
              try{
-           System.out.println("filename_name:"+filename_change_ext(new String("C:\\test\\game.exe"),new String(".exe2")));  
-            Object fileid= file_bin_open(new String("C:\\test\\test.hex"),new Integer(2));
+          // System.out.println("filename_name:"+filename_change_ext(new String("C:\\test\\game.exe"),new String(".exe2")));  
+            
                  
-//                 file_bin_write_byte(fileid,new Integer(49));
-//                 file_bin_write_byte(fileid,new Integer(49));
-//                 file_bin_write_byte(fileid,new Integer(49));
-//                 file_bin_write_byte(fileid,new Integer(49));
-                 System.out.println("pos:"+file_bin_position(fileid));
-                // System.out.println("byte:"+file_bin_read_byte(fileid));//,new Integer(45));
-                 file_bin_seek(fileid, new Integer(3));
-                 System.out.println("pos:"+file_bin_position(fileid));
-            file_bin_close(fileid);
+            
              }catch(Exception ee){ee.printStackTrace();}
         //test new system
        double start = System.currentTimeMillis();
@@ -135,6 +127,7 @@ public class TestActor2 extends Actor {
 
     @Override
     public void BeginStep() throws DestroyException {
+        //System.out.println("pos:"+string_width(new String("test")));
         //keyboardright();
        // System.out.println("lastchar:"+Game.lastchar);
     //  System.out.println("x:"+x+"y:"+y);
@@ -171,8 +164,9 @@ public class TestActor2 extends Actor {
 //    self.setVariable("px",(new Integer(3)) .add((new Integer(4)) .mult((new Integer(6)))));
 // self.setVariable("py",(new Integer(10)) .add((new Integer(8))));
         draw_text(new Double(x + 10), new Double(y + 10), getFps());
+System.out.println("height:"+string_height(new String("test")));
 
-
+System.out.println("pos:"+string_width(new String("test")));
     // Game.Current.g2d.drawString("fps:"+Game.game.getGame().getCurrentFPS(), n0.getInt(), n10.getInt());
 //        
     //draw_text(n0, n10, new String("FPS:"+getFps()));

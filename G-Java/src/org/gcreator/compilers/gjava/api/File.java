@@ -36,6 +36,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
               
         private BufferedReader reader;
         private BufferedWriter writer;
+        
 
         /**
          * Opens the text file for reading and writing. Don't forget to close them once you are finished with them.
@@ -63,6 +64,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
         public void openAppend(String fname) {
             try {
                 writer = new BufferedWriter(new java.io.FileWriter(fname+"", true));
+                
             } catch (IOException ex) {
                 ex.printStackTrace();
                 
@@ -102,7 +104,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          */
         public void writeDouble(double x) {
             try {
-                writer.write(" " + x);
+                writer.write("" + x);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -167,18 +169,20 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
                 ex.printStackTrace();
             }
         }
-
-        /**
+        
+                /**
          * Returns whether we reached the end of the file in the reader.
          * @return 
          */
         public boolean endOfFile() {
             try {
+                char[] cbuf= new char[1];
+                
                 reader.mark(4);
-                if (reader.read() == -1) {
-
+                if (reader.read(cbuf) == -1) {
                     return true;
                 } else {
+                    reader.reset();
                     return false;
                 }
             } catch (IOException ex) {
