@@ -32,6 +32,30 @@ public class SGCLTranslator {
         this.manager = manager;
     }
     
+    public static String parseString(String str){
+        if(str.startsWith("\"")){
+            String parse = str.substring(1, str.length()-1);
+            String res = "";
+            for(int i = 0; i < parse.length(); i++){
+                char c = parse.charAt(i);
+                if(c!='\\') res += c;
+                else{
+                    i++;
+                    c = parse.charAt(i);
+                    if(c=='"') res += '"';
+                    else if(c=='\\') res += '\\';
+                    else if(c=='n') res += '\n';
+                    else if(c=='t') res += '\t';
+                }
+            }
+            return res;
+        }
+        else if(str.startsWith("@")){
+            return str.substring(2, str.length()-1);
+        }
+        else
+            return "";
+    }
 
     public void parse() throws Exception {
         sgclLexer lex;
@@ -61,7 +85,7 @@ public class SGCLTranslator {
             if (type == sgclLexer.DCOMMENT) {
                 continue;
             }
-            if(type == sgclLexer.TYPE||type == sgclLexer.CLSNAME){
+            if(type == sgclLexer.TYPE){
                 if(t.getText().contains("<")&&!hasGenericTypes)
                     throw new Exception("Using generic types without requesting extension");
             }
@@ -78,6 +102,7 @@ public class SGCLTranslator {
                     s += gt;
                 } while(true);
                 s = s.replaceAll("\\s", "");
+                System.out.println("s="+s);
                 if(!manager.supportsExtension(s))
                     throw new Exception("Unsupported extension");
                 if(s.equals("System.Extensions.Generics"))

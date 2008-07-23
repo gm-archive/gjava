@@ -76,12 +76,10 @@ doc	:	extension*
 extension
 	:	'using' WORD ('.' WORD)* ';';
 
-classdef:	('partial')? 'class' CLSNAME ('extends' TYPE (',' TYPE)*)?
+classdef:	('partial')? 'class' WORD ('extends' TYPE (',' TYPE)*)?
 		BLKBEG
 		clsext*
 		BLKEND;
-
-CLSNAME	:	WORD ('<' WORD '>')?;
 
 clsext	:	fieldas | funct | constructor;
 fieldas	:	privacy 'static'? 'final'? TYPE WORD (EQUAL value)? ';';
@@ -128,7 +126,6 @@ switchstmt
 casestmt:	'case' constant ':' statement*;
 defaultstmt
 	:	'default' ':' statement*;
-TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE  (',' TYPE)* '>')?);
 //May seem redundant. But it is actually useful
 //type	:	WORD;
 
@@ -137,11 +134,12 @@ boolval	:	'true' | 'false';
 privacy	:	'public' | 'protected' | 'private';
 
 WORD	:	ALPHA (ALPHA|DIGIT)*;
+TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE  (',' TYPE)* '>')?);
 
 INTEGER	:	'-'? (DIGIT)+ ;
 DOUBLE 	:	'-'? (DIGIT)* '.' (DIGIT)+;
 FLOAT	:	(INTEGER|DOUBLE) ('f'|'F');
-STRING	:	'"' STRCONTENT* '"';
+STRING	:	('"' STRCONTENT* '"') | ('@' '"' (options{greedy=false;}: .*) '"');
 CHAR	:	'\'' CHRCONTENT* '\'';
 
 WHITESPACE
@@ -157,9 +155,9 @@ DCOMMENT:	DCMTB
 		DCMTE { $channel = HIDDEN; } ;
 fragment LINE :	'\r' | '\n';
 STRCONTENT
-	:	(~('"'|'\\'))|'\\\\'|'\\"'|'\\n'|'\\t';
+	:	(~('"'|'\\'|'\n'))|'\\\\'|'\\"'|'\\n'|'\\t';
 CHRCONTENT
-	:	(~('\''|'\\'))|'\\\\'|'\\"'|'\\n'|'\\t';
+	:	(~('\''|'\\'|'\n'))|'\\\\'|'\\"'|'\\n'|'\\t';
 
 fragment DIGIT
 	:	'0'..'9' ;

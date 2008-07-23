@@ -41,7 +41,7 @@ public class Main implements SGCLManager{
     }
     
     public boolean supportsExtension(String extension){
-        if(extension.equals("System.Extensions.Generic"))
+        if(extension.equals("System.Extensions.Generics"))
             return true;
         return false;
     }

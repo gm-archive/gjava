@@ -1,7 +1,8 @@
-using System.Extensions.Generic;
+using System.Extensions.Generics;
 
-class X extends Actor<Actor>{
+class X extends Y<Z>{
     public this(){
-        super();
+        super(@"
+Abc");
     }
 }
