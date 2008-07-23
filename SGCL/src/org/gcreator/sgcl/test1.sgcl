@@ -1,4 +1,6 @@
-class X extends Actor{
+using System.Extensions.Generic;
+
+class X extends Actor<Actor>{
     public this(){
         super();
     }

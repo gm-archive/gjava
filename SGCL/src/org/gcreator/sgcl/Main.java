@@ -27,6 +27,7 @@ public class Main implements SGCLManager{
             Main m = new Main();
             SGCLTranslator t
                     = new SGCLTranslator(Main.class.getResourceAsStream("/org/gcreator/sgcl/test1.sgcl"), m);
+            t.parse();
         }
         catch(Exception e){
             System.out.println(e.toString());
@@ -34,7 +35,15 @@ public class Main implements SGCLManager{
     }
     
     public void outputCode(Vector<Token> tokens){
-        
+        for(Token t : tokens){
+            System.out.println("Type: " + t.getType() + "=" + t.getText());
+        }
+    }
+    
+    public boolean supportsExtension(String extension){
+        if(extension.equals("System.Extensions.Generic"))
+            return true;
+        return false;
     }
 
 }

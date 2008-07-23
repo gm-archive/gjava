@@ -21,6 +21,7 @@ public class SGCLTranslator {
     private String code = null;
     private InputStream stream = null;
     private SGCLManager manager;
+    private boolean hasGenericTypes = false;
 
     public SGCLTranslator(String code, SGCLManager manager) {
         this.code = code;
@@ -60,7 +61,31 @@ public class SGCLTranslator {
             if (type == sgclLexer.DCOMMENT) {
                 continue;
             }
+            if(type == sgclLexer.TYPE){
+                if(t.getText().contains("<")&&!hasGenericTypes)
+                    throw new Exception("Using generic types without requesting extension");
+            }
+            if (names[type].equals("'using'")){
+                String s = "";
+                do{
+                    i++;
+                    t = tost.get(i);
+                    type = t.getType();
+                    String gt = t.getText();
+                    if(gt.equals(";")){
+                        break;
+                    }
+                    s += gt;
+                } while(true);
+                s = s.replaceAll("\\s", "");
+                if(!manager.supportsExtension(s))
+                    throw new Exception("Unsupported extension");
+                if(s.equals("System.Extensions.Generics"))
+                    hasGenericTypes = true;
+                continue;
+            }
             tokens.add(t);
         }
+        manager.outputCode(tokens);
     }
 }

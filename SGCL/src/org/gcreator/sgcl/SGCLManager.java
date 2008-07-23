@@ -19,4 +19,5 @@ import org.antlr.runtime.Token;
  */
 public interface SGCLManager {
     public void outputCode(Vector<Token> tokens);
+    public boolean supportsExtension(String extension);
 }

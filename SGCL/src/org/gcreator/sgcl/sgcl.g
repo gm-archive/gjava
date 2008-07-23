@@ -70,30 +70,34 @@ package org.gcreator.sgcl;
 package org.gcreator.sgcl;
 }
 
-doc	:	classdef;
+doc	:	extension*
+		classdef;
+		
+extension
+	:	'using' WORD ('.' WORD)* ';';
 
-classdef:	('partial')? 'class' WORD ('extends' WORD)?
+classdef:	('partial')? 'class' WORD ('extends' TYPE)?
 		BLKBEG
 		clsext*
 		BLKEND;
 
 clsext	:	fieldas | funct | constructor;
-fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
+fieldas	:	privacy 'static'? 'final'? TYPE WORD (EQUAL value)? ';';
 constructor
-	:	privacy 'this' '(' (type WORD (',' type WORD)*)? ')'
+	:	privacy 'this' '(' (TYPE WORD (',' TYPE WORD)*)? ')'
 		BLKBEG
 		(('super'|'this') '(' (value (',' value)*)? ')' ';')?
 		statement*
 		BLKEND;
-funct	:	privacy 'static'? type? WORD '(' (type WORD (',' type WORD)*)? ')'
+funct	:	privacy 'static'? TYPE? WORD '(' (TYPE WORD (',' TYPE WORD)*)? ')'
 		BLKBEG
 		statement*
 		BLKEND;
-declare	:	('final')? type WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)?
+declare	:	('final')? TYPE WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)?
 		| WORD (EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value;
 //value	:	'this' | (((('(' type ')')? (('(' value ')')|constant|((('this'|WORD) '.')? WORD))
 //		(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
-value	:	('(' type ')')*
+value	:	('(' TYPE ')')*
 		((('this'|'super'|('('value')')|WORD) '.')? WORD '(' (value (',' value)*)? ')'
 		((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)?)
 		| (((('this'|'('value')'|constant|WORD) ('.' WORD)*
@@ -122,7 +126,7 @@ switchstmt
 casestmt:	'case' constant ':' statement*;
 defaultstmt
 	:	'default' ':' statement*;
-type	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD;
+TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE '>')?);
 //May seem redundant. But it is actually useful
 //type	:	WORD;
 
