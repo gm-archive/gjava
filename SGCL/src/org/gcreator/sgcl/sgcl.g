@@ -68,7 +68,8 @@ value	:	('(' type ')')*
 constant
 	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null';
 statement
-	:	((declare | returnstmt | incrstmt | 'continue' | 'break') ';') | ifstmt | whilestmt | forstmt;
+	:	((declare | returnstmt | incrstmt | 'continue' | 'break') ';')
+	| ifstmt | whilestmt | forstmt | switchstmt;
 incrstmt:	(('this'|WORD) '.')? WORD (INC|DEC);
 returnstmt
 	:	'return' value;
@@ -77,6 +78,15 @@ ifstmt	:	'if' '(' value ')' (statement|(BLKBEG statement* BLKEND))
 whilestmt
 	:	'while' '(' value ')' (statement|(BLKBEG statement* BLKEND));
 forstmt	:	'for' '(' declare? ';' value ';' (declare|incrstmt)? ')' (statement|(BLKBEG statement* BLKEND));
+switchstmt
+	:	'switch' '(' WORD ')'
+		BLKBEG
+		casestmt*
+		defaultstmt?
+		BLKEND;
+casestmt:	'case' constant ':' statement*;
+defaultstmt
+	:	'default' ':' statement*;
 type	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD;
 //May seem redundant. But it is actually useful
 //type	:	WORD;
