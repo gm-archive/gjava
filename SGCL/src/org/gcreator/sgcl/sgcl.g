@@ -1,5 +1,9 @@
 grammar sgcl;
 
+options {
+backtrack = true;
+}
+
 tokens {
 	PLUS 	= '+' ;
 	MINUS	= '-' ;
@@ -46,8 +50,6 @@ classdef:	('partial')? 'class' WORD ('extends' WORD)?
 		clsext*
 		BLKEND;
 
-fail	:	'fail' '(' STRING ')';
-
 clsext	:	fieldas | funct | constructor;
 fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
 constructor
@@ -64,12 +66,15 @@ declare	:	('final')? type WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) 
 //value	:	'this' | (((('(' type ')')? (('(' value ')')|constant|((('this'|WORD) '.')? WORD))
 //		(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
 value	:	('(' type ')')*
-		(('this'|'('value')'|constant|WORD) ('.' WORD)*
-			(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?);
+		((('this'|'super'|('('value')')|WORD) '.')? WORD '(' (value (',' value)*)? ')'
+		((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)?)
+		| (((('this'|'('value')'|constant|WORD) ('.' WORD)*
+			(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
 constant
 	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null';
+fnccall	:	(('this'|'super'|('(' value ')')|WORD) '.')? WORD '(' (value (',' value)*)? ')';
 statement
-	:	((declare | returnstmt | incrstmt | dowhile | 'continue' | 'break') ';')
+	:	((declare | returnstmt | incrstmt | dowhile | fnccall | 'continue' | 'break') ';')
 	| ifstmt | whilestmt | forstmt | switchstmt;
 incrstmt:	(('this'|WORD) '.')? WORD (INC|DEC);
 returnstmt

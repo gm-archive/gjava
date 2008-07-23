@@ -1,7 +1,7 @@
 class X{
-  public int doIt(){ return 3; }
-  private void do_other(double num, char c){
-     int i = doIt()+4;
-  }
-  public do_something(){ do_other(1.4, '\n'); }
+    //Hi!
+
+    public int A(){
+        
+    }
 }
