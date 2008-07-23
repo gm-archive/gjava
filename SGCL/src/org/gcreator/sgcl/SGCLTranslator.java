@@ -61,7 +61,7 @@ public class SGCLTranslator {
             if (type == sgclLexer.DCOMMENT) {
                 continue;
             }
-            if(type == sgclLexer.TYPE){
+            if(type == sgclLexer.TYPE||type == sgclLexer.CLSNAME){
                 if(t.getText().contains("<")&&!hasGenericTypes)
                     throw new Exception("Using generic types without requesting extension");
             }

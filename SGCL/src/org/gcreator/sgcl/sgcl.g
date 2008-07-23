@@ -7,7 +7,7 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
- grammar sgcl;
+grammar sgcl;
 
 options {
 backtrack = true;
@@ -76,10 +76,12 @@ doc	:	extension*
 extension
 	:	'using' WORD ('.' WORD)* ';';
 
-classdef:	('partial')? 'class' WORD ('extends' TYPE)?
+classdef:	('partial')? 'class' CLSNAME ('extends' TYPE (',' TYPE)*)?
 		BLKBEG
 		clsext*
 		BLKEND;
+
+CLSNAME	:	WORD ('<' WORD '>')?;
 
 clsext	:	fieldas | funct | constructor;
 fieldas	:	privacy 'static'? 'final'? TYPE WORD (EQUAL value)? ';';
@@ -126,7 +128,7 @@ switchstmt
 casestmt:	'case' constant ':' statement*;
 defaultstmt
 	:	'default' ':' statement*;
-TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE '>')?);
+TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE  (',' TYPE)* '>')?);
 //May seem redundant. But it is actually useful
 //type	:	WORD;
 
