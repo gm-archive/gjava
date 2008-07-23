@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g 2008-07-23 00:57:41
+// $ANTLR 3.0.1 /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g 2008-07-23 14:11:44
 
 package org.gcreator.sgcl;
 
@@ -9,55 +9,65 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class sgclLexer extends Lexer {
-    public static final int DEC=29;
+    public static final int T75=75;
+    public static final int T76=76;
+    public static final int T73=73;
+    public static final int DEC=31;
+    public static final int T74=74;
     public static final int LT=14;
     public static final int MOEQUAL=20;
+    public static final int DCOMMENT=46;
     public static final int MOD=8;
-    public static final int STRCONTENT=38;
+    public static final int STRCONTENT=40;
+    public static final int DCMTB=28;
     public static final int BLKEND=24;
+    public static final int DCMTE=29;
     public static final int GTE=11;
-    public static final int CHAR=35;
-    public static final int SLCOMMENT=42;
+    public static final int CHAR=37;
     public static final int PLEQUAL=16;
-    public static final int FLOAT=33;
+    public static final int SLCOMMENT=44;
+    public static final int FLOAT=35;
     public static final int AND=22;
     public static final int EOF=-1;
     public static final int LTE=13;
+    public static final int T72=72;
+    public static final int T71=71;
+    public static final int T70=70;
     public static final int T62=62;
-    public static final int WORD=30;
+    public static final int WORD=32;
     public static final int T63=63;
     public static final int T64=64;
-    public static final int INC=28;
+    public static final int INC=30;
     public static final int T65=65;
     public static final int T66=66;
+    public static final int T67=67;
+    public static final int T68=68;
+    public static final int T69=69;
     public static final int BLKBEG=23;
     public static final int CMTEND=27;
     public static final int EQUAL=9;
     public static final int DIEQUAL=19;
-    public static final int DOUBLE=32;
+    public static final int DOUBLE=34;
     public static final int PLUS=4;
-    public static final int DIGIT=37;
+    public static final int DIGIT=39;
     public static final int EQUAL2=10;
-    public static final int MLCOMMENT=43;
+    public static final int MLCOMMENT=45;
     public static final int T61=61;
     public static final int T60=60;
-    public static final int INTEGER=31;
+    public static final int INTEGER=33;
     public static final int NEQUAL=15;
     public static final int CMTBEG=26;
-    public static final int CHRCONTENT=39;
+    public static final int CHRCONTENT=41;
     public static final int T49=49;
-    public static final int WHITESPACE=40;
+    public static final int WHITESPACE=42;
     public static final int T48=48;
     public static final int MINUS=5;
     public static final int MULT=6;
-    public static final int Tokens=67;
-    public static final int LINE=41;
+    public static final int Tokens=77;
+    public static final int LINE=43;
     public static final int T47=47;
-    public static final int T46=46;
-    public static final int ALPHA=36;
-    public static final int T45=45;
+    public static final int ALPHA=38;
     public static final int MIEQUAL=17;
-    public static final int T44=44;
     public static final int MUEQUAL=18;
     public static final int CMTSL=25;
     public static final int T50=50;
@@ -72,7 +82,7 @@ public class sgclLexer extends Lexer {
     public static final int T56=56;
     public static final int T55=55;
     public static final int T58=58;
-    public static final int STRING=34;
+    public static final int STRING=36;
     public static final int T57=57;
     public sgclLexer() {;} 
     public sgclLexer(CharStream input) {
@@ -526,12 +536,50 @@ public class sgclLexer extends Lexer {
     }
     // $ANTLR end CMTEND
 
+    // $ANTLR start DCMTB
+    public final void mDCMTB() throws RecognitionException {
+        try {
+            int _type = DCMTB;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:30:7: ( '/+' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:30:9: '/+'
+            {
+            match("/+"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end DCMTB
+
+    // $ANTLR start DCMTE
+    public final void mDCMTE() throws RecognitionException {
+        try {
+            int _type = DCMTE;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:31:7: ( '+/' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:31:9: '+/'
+            {
+            match("+/"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end DCMTE
+
     // $ANTLR start INC
     public final void mINC() throws RecognitionException {
         try {
             int _type = INC;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:30:5: ( '++' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:30:7: '++'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:32:5: ( '++' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:32:7: '++'
             {
             match("++"); 
 
@@ -549,8 +597,8 @@ public class sgclLexer extends Lexer {
     public final void mDEC() throws RecognitionException {
         try {
             int _type = DEC;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:31:5: ( '--' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:31:7: '--'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:33:5: ( '--' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:33:7: '--'
             {
             match("--"); 
 
@@ -564,71 +612,14 @@ public class sgclLexer extends Lexer {
     }
     // $ANTLR end DEC
 
-    // $ANTLR start T44
-    public final void mT44() throws RecognitionException {
-        try {
-            int _type = T44;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:32:5: ( 'partial' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:32:7: 'partial'
-            {
-            match("partial"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T44
-
-    // $ANTLR start T45
-    public final void mT45() throws RecognitionException {
-        try {
-            int _type = T45;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:33:5: ( 'class' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:33:7: 'class'
-            {
-            match("class"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T45
-
-    // $ANTLR start T46
-    public final void mT46() throws RecognitionException {
-        try {
-            int _type = T46;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:34:5: ( 'extends' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:34:7: 'extends'
-            {
-            match("extends"); 
-
-
-            }
-
-            this.type = _type;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end T46
-
     // $ANTLR start T47
     public final void mT47() throws RecognitionException {
         try {
             int _type = T47;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:35:5: ( 'static' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:35:7: 'static'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:34:5: ( 'partial' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:34:7: 'partial'
             {
-            match("static"); 
+            match("partial"); 
 
 
             }
@@ -644,10 +635,10 @@ public class sgclLexer extends Lexer {
     public final void mT48() throws RecognitionException {
         try {
             int _type = T48;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:36:5: ( 'this' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:36:7: 'this'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:35:5: ( 'class' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:35:7: 'class'
             {
-            match("this"); 
+            match("class"); 
 
 
             }
@@ -663,10 +654,11 @@ public class sgclLexer extends Lexer {
     public final void mT49() throws RecognitionException {
         try {
             int _type = T49;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:37:5: ( '(' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:37:7: '('
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:36:5: ( 'extends' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:36:7: 'extends'
             {
-            match('('); 
+            match("extends"); 
+
 
             }
 
@@ -681,10 +673,11 @@ public class sgclLexer extends Lexer {
     public final void mT50() throws RecognitionException {
         try {
             int _type = T50;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:38:5: ( ',' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:38:7: ','
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:37:5: ( 'static' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:37:7: 'static'
             {
-            match(','); 
+            match("static"); 
+
 
             }
 
@@ -699,10 +692,11 @@ public class sgclLexer extends Lexer {
     public final void mT51() throws RecognitionException {
         try {
             int _type = T51;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:39:5: ( ')' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:39:7: ')'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:38:5: ( 'final' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:38:7: 'final'
             {
-            match(')'); 
+            match("final"); 
+
 
             }
 
@@ -717,11 +711,10 @@ public class sgclLexer extends Lexer {
     public final void mT52() throws RecognitionException {
         try {
             int _type = T52;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:40:5: ( 'final' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:40:7: 'final'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:39:5: ( ';' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:39:7: ';'
             {
-            match("final"); 
-
+            match(';'); 
 
             }
 
@@ -736,10 +729,11 @@ public class sgclLexer extends Lexer {
     public final void mT53() throws RecognitionException {
         try {
             int _type = T53;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:41:5: ( ';' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:41:7: ';'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:40:5: ( 'this' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:40:7: 'this'
             {
-            match(';'); 
+            match("this"); 
+
 
             }
 
@@ -754,10 +748,10 @@ public class sgclLexer extends Lexer {
     public final void mT54() throws RecognitionException {
         try {
             int _type = T54;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:42:5: ( '.' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:42:7: '.'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:41:5: ( '(' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:41:7: '('
             {
-            match('.'); 
+            match('('); 
 
             }
 
@@ -772,11 +766,10 @@ public class sgclLexer extends Lexer {
     public final void mT55() throws RecognitionException {
         try {
             int _type = T55;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:43:5: ( 'return' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:43:7: 'return'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:42:5: ( ',' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:42:7: ','
             {
-            match("return"); 
-
+            match(','); 
 
             }
 
@@ -791,11 +784,10 @@ public class sgclLexer extends Lexer {
     public final void mT56() throws RecognitionException {
         try {
             int _type = T56;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:44:5: ( 'int' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:44:7: 'int'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:43:5: ( ')' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:43:7: ')'
             {
-            match("int"); 
-
+            match(')'); 
 
             }
 
@@ -810,11 +802,10 @@ public class sgclLexer extends Lexer {
     public final void mT57() throws RecognitionException {
         try {
             int _type = T57;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:45:5: ( 'float' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:45:7: 'float'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:44:5: ( '.' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:44:7: '.'
             {
-            match("float"); 
-
+            match('.'); 
 
             }
 
@@ -829,10 +820,10 @@ public class sgclLexer extends Lexer {
     public final void mT58() throws RecognitionException {
         try {
             int _type = T58;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:5: ( 'double' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:7: 'double'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:45:5: ( 'null' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:45:7: 'null'
             {
-            match("double"); 
+            match("null"); 
 
 
             }
@@ -848,10 +839,10 @@ public class sgclLexer extends Lexer {
     public final void mT59() throws RecognitionException {
         try {
             int _type = T59;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:47:5: ( 'boolean' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:47:7: 'boolean'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:5: ( 'continue' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:46:7: 'continue'
             {
-            match("boolean"); 
+            match("continue"); 
 
 
             }
@@ -867,10 +858,10 @@ public class sgclLexer extends Lexer {
     public final void mT60() throws RecognitionException {
         try {
             int _type = T60;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:5: ( 'char' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:7: 'char'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:47:5: ( 'break' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:47:7: 'break'
             {
-            match("char"); 
+            match("break"); 
 
 
             }
@@ -886,10 +877,10 @@ public class sgclLexer extends Lexer {
     public final void mT61() throws RecognitionException {
         try {
             int _type = T61;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:49:5: ( 'string' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:49:7: 'string'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:5: ( 'return' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:48:7: 'return'
             {
-            match("string"); 
+            match("return"); 
 
 
             }
@@ -905,10 +896,10 @@ public class sgclLexer extends Lexer {
     public final void mT62() throws RecognitionException {
         try {
             int _type = T62;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:50:5: ( 'true' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:50:7: 'true'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:49:5: ( 'if' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:49:7: 'if'
             {
-            match("true"); 
+            match("if"); 
 
 
             }
@@ -924,10 +915,10 @@ public class sgclLexer extends Lexer {
     public final void mT63() throws RecognitionException {
         try {
             int _type = T63;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:51:5: ( 'false' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:51:7: 'false'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:50:5: ( 'else' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:50:7: 'else'
             {
-            match("false"); 
+            match("else"); 
 
 
             }
@@ -943,10 +934,10 @@ public class sgclLexer extends Lexer {
     public final void mT64() throws RecognitionException {
         try {
             int _type = T64;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:52:5: ( 'public' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:52:7: 'public'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:51:5: ( 'while' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:51:7: 'while'
             {
-            match("public"); 
+            match("while"); 
 
 
             }
@@ -962,10 +953,10 @@ public class sgclLexer extends Lexer {
     public final void mT65() throws RecognitionException {
         try {
             int _type = T65;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:5: ( 'protected' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:7: 'protected'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:52:5: ( 'for' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:52:7: 'for'
             {
-            match("protected"); 
+            match("for"); 
 
 
             }
@@ -981,10 +972,10 @@ public class sgclLexer extends Lexer {
     public final void mT66() throws RecognitionException {
         try {
             int _type = T66;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:5: ( 'private' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:7: 'private'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:5: ( 'int' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:53:7: 'int'
             {
-            match("private"); 
+            match("int"); 
 
 
             }
@@ -996,15 +987,205 @@ public class sgclLexer extends Lexer {
     }
     // $ANTLR end T66
 
+    // $ANTLR start T67
+    public final void mT67() throws RecognitionException {
+        try {
+            int _type = T67;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:5: ( 'float' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:54:7: 'float'
+            {
+            match("float"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T67
+
+    // $ANTLR start T68
+    public final void mT68() throws RecognitionException {
+        try {
+            int _type = T68;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:55:5: ( 'double' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:55:7: 'double'
+            {
+            match("double"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T68
+
+    // $ANTLR start T69
+    public final void mT69() throws RecognitionException {
+        try {
+            int _type = T69;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:5: ( 'boolean' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:56:7: 'boolean'
+            {
+            match("boolean"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T69
+
+    // $ANTLR start T70
+    public final void mT70() throws RecognitionException {
+        try {
+            int _type = T70;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:57:5: ( 'char' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:57:7: 'char'
+            {
+            match("char"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T70
+
+    // $ANTLR start T71
+    public final void mT71() throws RecognitionException {
+        try {
+            int _type = T71;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:58:5: ( 'string' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:58:7: 'string'
+            {
+            match("string"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T71
+
+    // $ANTLR start T72
+    public final void mT72() throws RecognitionException {
+        try {
+            int _type = T72;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:59:5: ( 'true' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:59:7: 'true'
+            {
+            match("true"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T72
+
+    // $ANTLR start T73
+    public final void mT73() throws RecognitionException {
+        try {
+            int _type = T73;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:5: ( 'false' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:60:7: 'false'
+            {
+            match("false"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T73
+
+    // $ANTLR start T74
+    public final void mT74() throws RecognitionException {
+        try {
+            int _type = T74;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:61:5: ( 'public' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:61:7: 'public'
+            {
+            match("public"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T74
+
+    // $ANTLR start T75
+    public final void mT75() throws RecognitionException {
+        try {
+            int _type = T75;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:62:5: ( 'protected' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:62:7: 'protected'
+            {
+            match("protected"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T75
+
+    // $ANTLR start T76
+    public final void mT76() throws RecognitionException {
+        try {
+            int _type = T76;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:63:5: ( 'private' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:63:7: 'private'
+            {
+            match("private"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T76
+
     // $ANTLR start WORD
     public final void mWORD() throws RecognitionException {
         try {
             int _type = WORD;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:6: ( ALPHA ( ALPHA | DIGIT )* )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:8: ALPHA ( ALPHA | DIGIT )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:6: ( ALPHA ( ALPHA | DIGIT )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:8: ALPHA ( ALPHA | DIGIT )*
             {
             mALPHA(); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:73:14: ( ALPHA | DIGIT )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:88:14: ( ALPHA | DIGIT )*
             loop1:
             do {
                 int alt1=2;
@@ -1052,10 +1233,10 @@ public class sgclLexer extends Lexer {
     public final void mINTEGER() throws RecognitionException {
         try {
             int _type = INTEGER;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:9: ( ( '-' )? ( DIGIT )+ )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( '-' )? ( DIGIT )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:9: ( ( '-' )? ( DIGIT )+ )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:11: ( '-' )? ( DIGIT )+
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: ( '-' )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:11: ( '-' )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -1064,7 +1245,7 @@ public class sgclLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:11: '-'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:11: '-'
                     {
                     match('-'); 
 
@@ -1073,7 +1254,7 @@ public class sgclLexer extends Lexer {
 
             }
 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:16: ( DIGIT )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:16: ( DIGIT )+
             int cnt3=0;
             loop3:
             do {
@@ -1087,7 +1268,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:75:17: DIGIT
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:90:17: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1117,10 +1298,10 @@ public class sgclLexer extends Lexer {
     public final void mDOUBLE() throws RecognitionException {
         try {
             int _type = DOUBLE;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:9: ( ( '-' )? ( DIGIT )* '.' ( DIGIT )+ )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:11: ( '-' )? ( DIGIT )* '.' ( DIGIT )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:9: ( ( '-' )? ( DIGIT )* '.' ( DIGIT )+ )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:11: ( '-' )? ( DIGIT )* '.' ( DIGIT )+
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:11: ( '-' )?
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:11: ( '-' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -1129,7 +1310,7 @@ public class sgclLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:11: '-'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:11: '-'
                     {
                     match('-'); 
 
@@ -1138,7 +1319,7 @@ public class sgclLexer extends Lexer {
 
             }
 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:16: ( DIGIT )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:16: ( DIGIT )*
             loop5:
             do {
                 int alt5=2;
@@ -1151,7 +1332,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:17: DIGIT
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:17: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1164,7 +1345,7 @@ public class sgclLexer extends Lexer {
             } while (true);
 
             match('.'); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:29: ( DIGIT )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:29: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -1178,7 +1359,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:76:30: DIGIT
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:30: DIGIT
             	    {
             	    mDIGIT(); 
 
@@ -1208,22 +1389,22 @@ public class sgclLexer extends Lexer {
     public final void mFLOAT() throws RecognitionException {
         try {
             int _type = FLOAT;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:7: ( ( INTEGER | DOUBLE ) ( 'f' | 'F' ) )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:9: ( INTEGER | DOUBLE ) ( 'f' | 'F' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:7: ( ( INTEGER | DOUBLE ) ( 'f' | 'F' ) )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:9: ( INTEGER | DOUBLE ) ( 'f' | 'F' )
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:9: ( INTEGER | DOUBLE )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:9: ( INTEGER | DOUBLE )
             int alt7=2;
             alt7 = dfa7.predict(input);
             switch (alt7) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:10: INTEGER
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:10: INTEGER
                     {
                     mINTEGER(); 
 
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:77:18: DOUBLE
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:92:18: DOUBLE
                     {
                     mDOUBLE(); 
 
@@ -1256,11 +1437,11 @@ public class sgclLexer extends Lexer {
     public final void mSTRING() throws RecognitionException {
         try {
             int _type = STRING;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:8: ( '\"' ( STRCONTENT )* '\"' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:10: '\"' ( STRCONTENT )* '\"'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:93:8: ( '\"' ( STRCONTENT )* '\"' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:93:10: '\"' ( STRCONTENT )* '\"'
             {
             match('\"'); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:14: ( STRCONTENT )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:93:14: ( STRCONTENT )*
             loop8:
             do {
                 int alt8=2;
@@ -1273,7 +1454,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:78:14: STRCONTENT
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:93:14: STRCONTENT
             	    {
             	    mSTRCONTENT(); 
 
@@ -1300,11 +1481,11 @@ public class sgclLexer extends Lexer {
     public final void mCHAR() throws RecognitionException {
         try {
             int _type = CHAR;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:6: ( '\\'' ( CHRCONTENT )* '\\'' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:8: '\\'' ( CHRCONTENT )* '\\''
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:6: ( '\\'' ( CHRCONTENT )* '\\'' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:8: '\\'' ( CHRCONTENT )* '\\''
             {
             match('\''); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:13: ( CHRCONTENT )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:13: ( CHRCONTENT )*
             loop9:
             do {
                 int alt9=2;
@@ -1317,7 +1498,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:79:13: CHRCONTENT
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:13: CHRCONTENT
             	    {
             	    mCHRCONTENT(); 
 
@@ -1344,10 +1525,10 @@ public class sgclLexer extends Lexer {
     public final void mWHITESPACE() throws RecognitionException {
         try {
             int _type = WHITESPACE;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:2: ( ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+ )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:82:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:4: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
             int cnt10=0;
             loop10:
             do {
@@ -1401,11 +1582,11 @@ public class sgclLexer extends Lexer {
     public final void mSLCOMMENT() throws RecognitionException {
         try {
             int _type = SLCOMMENT;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:84:2: ( CMTSL (~ LINE )* )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:84:4: CMTSL (~ LINE )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:2: ( CMTSL (~ LINE )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:4: CMTSL (~ LINE )*
             {
             mCMTSL(); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:84:10: (~ LINE )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:10: (~ LINE )*
             loop11:
             do {
                 int alt11=2;
@@ -1418,9 +1599,9 @@ public class sgclLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:84:11: ~ LINE
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:99:11: ~ LINE
             	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='(')||(input.LA(1)>='*' && input.LA(1)<='\uFFFE') ) {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='*')||(input.LA(1)>=',' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
 
             	    }
@@ -1454,14 +1635,14 @@ public class sgclLexer extends Lexer {
     public final void mMLCOMMENT() throws RecognitionException {
         try {
             int _type = MLCOMMENT;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:2: ( CMTBEG ( options {greedy=false; } : ( . )* ) CMTEND )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:4: CMTBEG ( options {greedy=false; } : ( . )* ) CMTEND
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:2: ( CMTBEG ( options {greedy=false; } : ( . )* ) CMTEND )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:4: CMTBEG ( options {greedy=false; } : ( . )* ) CMTEND
             {
             mCMTBEG(); 
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:11: ( options {greedy=false; } : ( . )* )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:36: ( . )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:11: ( options {greedy=false; } : ( . )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:36: ( . )*
             {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:36: ( . )*
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:36: ( . )*
             loop12:
             do {
                 int alt12=2;
@@ -1486,7 +1667,7 @@ public class sgclLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:86:36: .
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:101:36: .
             	    {
             	    matchAny(); 
 
@@ -1513,10 +1694,165 @@ public class sgclLexer extends Lexer {
     }
     // $ANTLR end MLCOMMENT
 
+    // $ANTLR start DCOMMENT
+    public final void mDCOMMENT() throws RecognitionException {
+        try {
+            int _type = DCOMMENT;
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:9: ( DCMTB ( options {greedy=false; } : ( . )* ) ( DCOMMENT ( options {greedy=false; } : ( . )* ) )* DCMTE )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:102:11: DCMTB ( options {greedy=false; } : ( . )* ) ( DCOMMENT ( options {greedy=false; } : ( . )* ) )* DCMTE
+            {
+            mDCMTB(); 
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:3: ( options {greedy=false; } : ( . )* )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:28: ( . )*
+            {
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:28: ( . )*
+            loop13:
+            do {
+                int alt13=2;
+                int LA13_0 = input.LA(1);
+
+                if ( (LA13_0=='/') ) {
+                    int LA13_1 = input.LA(2);
+
+                    if ( (LA13_1=='+') ) {
+                        alt13=2;
+                    }
+                    else if ( ((LA13_1>='\u0000' && LA13_1<='*')||(LA13_1>=',' && LA13_1<='\uFFFE')) ) {
+                        alt13=1;
+                    }
+
+
+                }
+                else if ( (LA13_0=='+') ) {
+                    int LA13_2 = input.LA(2);
+
+                    if ( (LA13_2=='/') ) {
+                        alt13=2;
+                    }
+                    else if ( ((LA13_2>='\u0000' && LA13_2<='.')||(LA13_2>='0' && LA13_2<='\uFFFE')) ) {
+                        alt13=1;
+                    }
+
+
+                }
+                else if ( ((LA13_0>='\u0000' && LA13_0<='*')||(LA13_0>=',' && LA13_0<='.')||(LA13_0>='0' && LA13_0<='\uFFFE')) ) {
+                    alt13=1;
+                }
+
+
+                switch (alt13) {
+            	case 1 :
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:103:28: .
+            	    {
+            	    matchAny(); 
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop13;
+                }
+            } while (true);
+
+
+            }
+
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:104:3: ( DCOMMENT ( options {greedy=false; } : ( . )* ) )*
+            loop15:
+            do {
+                int alt15=2;
+                int LA15_0 = input.LA(1);
+
+                if ( (LA15_0=='/') ) {
+                    alt15=1;
+                }
+
+
+                switch (alt15) {
+            	case 1 :
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:104:4: DCOMMENT ( options {greedy=false; } : ( . )* )
+            	    {
+            	    mDCOMMENT(); 
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:3: ( options {greedy=false; } : ( . )* )
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:28: ( . )*
+            	    {
+            	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:28: ( . )*
+            	    loop14:
+            	    do {
+            	        int alt14=2;
+            	        int LA14_0 = input.LA(1);
+
+            	        if ( (LA14_0=='+') ) {
+            	            int LA14_1 = input.LA(2);
+
+            	            if ( (LA14_1=='/') ) {
+            	                alt14=2;
+            	            }
+            	            else if ( ((LA14_1>='\u0000' && LA14_1<='.')||(LA14_1>='0' && LA14_1<='\uFFFE')) ) {
+            	                alt14=1;
+            	            }
+
+
+            	        }
+            	        else if ( (LA14_0=='/') ) {
+            	            int LA14_2 = input.LA(2);
+
+            	            if ( (LA14_2=='+') ) {
+            	                alt14=2;
+            	            }
+            	            else if ( ((LA14_2>='\u0000' && LA14_2<='*')||(LA14_2>=',' && LA14_2<='\uFFFE')) ) {
+            	                alt14=1;
+            	            }
+
+
+            	        }
+            	        else if ( ((LA14_0>='\u0000' && LA14_0<='*')||(LA14_0>=',' && LA14_0<='.')||(LA14_0>='0' && LA14_0<='\uFFFE')) ) {
+            	            alt14=1;
+            	        }
+
+
+            	        switch (alt14) {
+            	    	case 1 :
+            	    	    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:105:28: .
+            	    	    {
+            	    	    matchAny(); 
+
+            	    	    }
+            	    	    break;
+
+            	    	default :
+            	    	    break loop14;
+            	        }
+            	    } while (true);
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop15;
+                }
+            } while (true);
+
+            mDCMTE(); 
+             channel = HIDDEN; 
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end DCOMMENT
+
     // $ANTLR start LINE
     public final void mLINE() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:87:15: ( '\\r' | '\\n' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:107:15: ( '\\r' | '\\n' )
             // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:
             {
             if ( input.LA(1)=='\n'||input.LA(1)=='\r' ) {
@@ -1542,38 +1878,38 @@ public class sgclLexer extends Lexer {
     public final void mSTRCONTENT() throws RecognitionException {
         try {
             int _type = STRCONTENT;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:2: ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' )
-            int alt13=5;
-            int LA13_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:2: ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' )
+            int alt16=5;
+            int LA16_0 = input.LA(1);
 
-            if ( ((LA13_0>='\u0000' && LA13_0<='!')||(LA13_0>='#' && LA13_0<='[')||(LA13_0>=']' && LA13_0<='\uFFFE')) ) {
-                alt13=1;
+            if ( ((LA16_0>='\u0000' && LA16_0<='!')||(LA16_0>='#' && LA16_0<='[')||(LA16_0>=']' && LA16_0<='\uFFFE')) ) {
+                alt16=1;
             }
-            else if ( (LA13_0=='\\') ) {
+            else if ( (LA16_0=='\\') ) {
                 switch ( input.LA(2) ) {
                 case 't':
                     {
-                    alt13=5;
-                    }
-                    break;
-                case 'n':
-                    {
-                    alt13=4;
-                    }
-                    break;
-                case '\"':
-                    {
-                    alt13=3;
+                    alt16=5;
                     }
                     break;
                 case '\\':
                     {
-                    alt13=2;
+                    alt16=2;
+                    }
+                    break;
+                case '\"':
+                    {
+                    alt16=3;
+                    }
+                    break;
+                case 'n':
+                    {
+                    alt16=4;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("88:1: STRCONTENT : ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 13, 2, input);
+                        new NoViableAltException("108:1: STRCONTENT : ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 16, 2, input);
 
                     throw nvae;
                 }
@@ -1581,16 +1917,16 @@ public class sgclLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("88:1: STRCONTENT : ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 13, 0, input);
+                    new NoViableAltException("108:1: STRCONTENT : ( (~ ( '\"' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 16, 0, input);
 
                 throw nvae;
             }
-            switch (alt13) {
+            switch (alt16) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:4: (~ ( '\"' | '\\\\' ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:4: (~ ( '\"' | '\\\\' ) )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:4: (~ ( '\"' | '\\\\' ) )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:5: ~ ( '\"' | '\\\\' )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:4: (~ ( '\"' | '\\\\' ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:5: ~ ( '\"' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                         input.consume();
@@ -1609,7 +1945,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:18: '\\\\\\\\'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:18: '\\\\\\\\'
                     {
                     match("\\\\"); 
 
@@ -1617,7 +1953,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:25: '\\\\\"'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:25: '\\\\\"'
                     {
                     match("\\\""); 
 
@@ -1625,7 +1961,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:31: '\\\\n'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:31: '\\\\n'
                     {
                     match("\\n"); 
 
@@ -1633,7 +1969,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:89:37: '\\\\t'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:109:37: '\\\\t'
                     {
                     match("\\t"); 
 
@@ -1653,38 +1989,38 @@ public class sgclLexer extends Lexer {
     public final void mCHRCONTENT() throws RecognitionException {
         try {
             int _type = CHRCONTENT;
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:2: ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' )
-            int alt14=5;
-            int LA14_0 = input.LA(1);
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:2: ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' )
+            int alt17=5;
+            int LA17_0 = input.LA(1);
 
-            if ( ((LA14_0>='\u0000' && LA14_0<='&')||(LA14_0>='(' && LA14_0<='[')||(LA14_0>=']' && LA14_0<='\uFFFE')) ) {
-                alt14=1;
+            if ( ((LA17_0>='\u0000' && LA17_0<='&')||(LA17_0>='(' && LA17_0<='[')||(LA17_0>=']' && LA17_0<='\uFFFE')) ) {
+                alt17=1;
             }
-            else if ( (LA14_0=='\\') ) {
+            else if ( (LA17_0=='\\') ) {
                 switch ( input.LA(2) ) {
-                case 't':
-                    {
-                    alt14=5;
-                    }
-                    break;
                 case '\"':
                     {
-                    alt14=3;
+                    alt17=3;
                     }
                     break;
                 case 'n':
                     {
-                    alt14=4;
+                    alt17=4;
+                    }
+                    break;
+                case 't':
+                    {
+                    alt17=5;
                     }
                     break;
                 case '\\':
                     {
-                    alt14=2;
+                    alt17=2;
                     }
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("90:1: CHRCONTENT : ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 14, 2, input);
+                        new NoViableAltException("110:1: CHRCONTENT : ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 17, 2, input);
 
                     throw nvae;
                 }
@@ -1692,16 +2028,16 @@ public class sgclLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("90:1: CHRCONTENT : ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 14, 0, input);
+                    new NoViableAltException("110:1: CHRCONTENT : ( (~ ( '\\'' | '\\\\' ) ) | '\\\\\\\\' | '\\\\\"' | '\\\\n' | '\\\\t' );", 17, 0, input);
 
                 throw nvae;
             }
-            switch (alt14) {
+            switch (alt17) {
                 case 1 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:4: (~ ( '\\'' | '\\\\' ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:4: (~ ( '\\'' | '\\\\' ) )
                     {
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:4: (~ ( '\\'' | '\\\\' ) )
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:5: ~ ( '\\'' | '\\\\' )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:4: (~ ( '\\'' | '\\\\' ) )
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:5: ~ ( '\\'' | '\\\\' )
                     {
                     if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                         input.consume();
@@ -1720,7 +2056,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:19: '\\\\\\\\'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:19: '\\\\\\\\'
                     {
                     match("\\\\"); 
 
@@ -1728,7 +2064,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:26: '\\\\\"'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:26: '\\\\\"'
                     {
                     match("\\\""); 
 
@@ -1736,7 +2072,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:32: '\\\\n'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:32: '\\\\n'
                     {
                     match("\\n"); 
 
@@ -1744,7 +2080,7 @@ public class sgclLexer extends Lexer {
                     }
                     break;
                 case 5 :
-                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:91:38: '\\\\t'
+                    // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:111:38: '\\\\t'
                     {
                     match("\\t"); 
 
@@ -1763,8 +2099,8 @@ public class sgclLexer extends Lexer {
     // $ANTLR start DIGIT
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:2: ( '0' .. '9' )
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:94:4: '0' .. '9'
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:2: ( '0' .. '9' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:114:4: '0' .. '9'
             {
             matchRange('0','9'); 
 
@@ -1779,7 +2115,7 @@ public class sgclLexer extends Lexer {
     // $ANTLR start ALPHA
     public final void mALPHA() throws RecognitionException {
         try {
-            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:97:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
+            // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:117:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' )
             // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
@@ -1802,10 +2138,10 @@ public class sgclLexer extends Lexer {
     // $ANTLR end ALPHA
 
     public void mTokens() throws RecognitionException {
-        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:8: ( PLUS | MINUS | MULT | DIV | MOD | EQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | OR | AND | BLKBEG | BLKEND | CMTSL | CMTBEG | CMTEND | INC | DEC | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | WORD | INTEGER | DOUBLE | FLOAT | STRING | CHAR | WHITESPACE | SLCOMMENT | MLCOMMENT | STRCONTENT | CHRCONTENT )
-        int alt15=60;
-        alt15 = dfa15.predict(input);
-        switch (alt15) {
+        // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:8: ( PLUS | MINUS | MULT | DIV | MOD | EQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | OR | AND | BLKBEG | BLKEND | CMTSL | CMTBEG | CMTEND | DCMTB | DCMTE | INC | DEC | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | WORD | INTEGER | DOUBLE | FLOAT | STRING | CHAR | WHITESPACE | SLCOMMENT | MLCOMMENT | DCOMMENT | STRCONTENT | CHRCONTENT )
+        int alt18=70;
+        alt18 = dfa18.predict(input);
+        switch (alt18) {
             case 1 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:10: PLUS
                 {
@@ -1975,252 +2311,322 @@ public class sgclLexer extends Lexer {
                 }
                 break;
             case 25 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:149: INC
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:149: DCMTB
+                {
+                mDCMTB(); 
+
+                }
+                break;
+            case 26 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:155: DCMTE
+                {
+                mDCMTE(); 
+
+                }
+                break;
+            case 27 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:161: INC
                 {
                 mINC(); 
 
                 }
                 break;
-            case 26 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:153: DEC
+            case 28 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:165: DEC
                 {
                 mDEC(); 
 
                 }
                 break;
-            case 27 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:157: T44
-                {
-                mT44(); 
-
-                }
-                break;
-            case 28 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:161: T45
-                {
-                mT45(); 
-
-                }
-                break;
             case 29 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:165: T46
-                {
-                mT46(); 
-
-                }
-                break;
-            case 30 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:169: T47
                 {
                 mT47(); 
 
                 }
                 break;
-            case 31 :
+            case 30 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:173: T48
                 {
                 mT48(); 
 
                 }
                 break;
-            case 32 :
+            case 31 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:177: T49
                 {
                 mT49(); 
 
                 }
                 break;
-            case 33 :
+            case 32 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:181: T50
                 {
                 mT50(); 
 
                 }
                 break;
-            case 34 :
+            case 33 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:185: T51
                 {
                 mT51(); 
 
                 }
                 break;
-            case 35 :
+            case 34 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:189: T52
                 {
                 mT52(); 
 
                 }
                 break;
-            case 36 :
+            case 35 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:193: T53
                 {
                 mT53(); 
 
                 }
                 break;
-            case 37 :
+            case 36 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:197: T54
                 {
                 mT54(); 
 
                 }
                 break;
-            case 38 :
+            case 37 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:201: T55
                 {
                 mT55(); 
 
                 }
                 break;
-            case 39 :
+            case 38 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:205: T56
                 {
                 mT56(); 
 
                 }
                 break;
-            case 40 :
+            case 39 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:209: T57
                 {
                 mT57(); 
 
                 }
                 break;
-            case 41 :
+            case 40 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:213: T58
                 {
                 mT58(); 
 
                 }
                 break;
-            case 42 :
+            case 41 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:217: T59
                 {
                 mT59(); 
 
                 }
                 break;
-            case 43 :
+            case 42 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:221: T60
                 {
                 mT60(); 
 
                 }
                 break;
-            case 44 :
+            case 43 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:225: T61
                 {
                 mT61(); 
 
                 }
                 break;
-            case 45 :
+            case 44 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:229: T62
                 {
                 mT62(); 
 
                 }
                 break;
-            case 46 :
+            case 45 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:233: T63
                 {
                 mT63(); 
 
                 }
                 break;
-            case 47 :
+            case 46 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:237: T64
                 {
                 mT64(); 
 
                 }
                 break;
-            case 48 :
+            case 47 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:241: T65
                 {
                 mT65(); 
 
                 }
                 break;
-            case 49 :
+            case 48 :
                 // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:245: T66
                 {
                 mT66(); 
 
                 }
                 break;
+            case 49 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:249: T67
+                {
+                mT67(); 
+
+                }
+                break;
             case 50 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:249: WORD
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:253: T68
+                {
+                mT68(); 
+
+                }
+                break;
+            case 51 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:257: T69
+                {
+                mT69(); 
+
+                }
+                break;
+            case 52 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:261: T70
+                {
+                mT70(); 
+
+                }
+                break;
+            case 53 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:265: T71
+                {
+                mT71(); 
+
+                }
+                break;
+            case 54 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:269: T72
+                {
+                mT72(); 
+
+                }
+                break;
+            case 55 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:273: T73
+                {
+                mT73(); 
+
+                }
+                break;
+            case 56 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:277: T74
+                {
+                mT74(); 
+
+                }
+                break;
+            case 57 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:281: T75
+                {
+                mT75(); 
+
+                }
+                break;
+            case 58 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:285: T76
+                {
+                mT76(); 
+
+                }
+                break;
+            case 59 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:289: WORD
                 {
                 mWORD(); 
 
                 }
                 break;
-            case 51 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:254: INTEGER
+            case 60 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:294: INTEGER
                 {
                 mINTEGER(); 
 
                 }
                 break;
-            case 52 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:262: DOUBLE
+            case 61 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:302: DOUBLE
                 {
                 mDOUBLE(); 
 
                 }
                 break;
-            case 53 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:269: FLOAT
+            case 62 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:309: FLOAT
                 {
                 mFLOAT(); 
 
                 }
                 break;
-            case 54 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:275: STRING
+            case 63 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:315: STRING
                 {
                 mSTRING(); 
 
                 }
                 break;
-            case 55 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:282: CHAR
+            case 64 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:322: CHAR
                 {
                 mCHAR(); 
 
                 }
                 break;
-            case 56 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:287: WHITESPACE
+            case 65 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:327: WHITESPACE
                 {
                 mWHITESPACE(); 
 
                 }
                 break;
-            case 57 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:298: SLCOMMENT
+            case 66 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:338: SLCOMMENT
                 {
                 mSLCOMMENT(); 
 
                 }
                 break;
-            case 58 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:308: MLCOMMENT
+            case 67 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:348: MLCOMMENT
                 {
                 mMLCOMMENT(); 
 
                 }
                 break;
-            case 59 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:318: STRCONTENT
+            case 68 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:358: DCOMMENT
+                {
+                mDCOMMENT(); 
+
+                }
+                break;
+            case 69 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:367: STRCONTENT
                 {
                 mSTRCONTENT(); 
 
                 }
                 break;
-            case 60 :
-                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:329: CHRCONTENT
+            case 70 :
+                // /home/luis/NetBeansProjects/SGCL/src/org/gcreator/sgcl/sgcl.g:1:378: CHRCONTENT
                 {
                 mCHRCONTENT(); 
 
@@ -2233,7 +2639,7 @@ public class sgclLexer extends Lexer {
 
 
     protected DFA7 dfa7 = new DFA7(this);
-    protected DFA15 dfa15 = new DFA15(this);
+    protected DFA18 dfa18 = new DFA18(this);
     static final String DFA7_eotS =
         "\5\uffff";
     static final String DFA7_eofS =
@@ -2284,114 +2690,111 @@ public class sgclLexer extends Lexer {
             this.transition = DFA7_transition;
         }
         public String getDescription() {
-            return "77:9: ( INTEGER | DOUBLE )";
+            return "92:9: ( INTEGER | DOUBLE )";
         }
     }
-    static final String DFA15_eotS =
-        "\1\uffff\1\46\1\52\1\56\1\62\1\64\1\66\1\70\1\72\3\74\2\uffff\5"+
-        "\104\3\uffff\1\104\1\uffff\1\123\4\104\1\uffff\1\130\1\133\1\74"+
-        "\10\uffff\1\130\6\uffff\1\142\1\144\17\uffff\3\104\1\uffff\6\104"+
-        "\3\uffff\3\104\1\uffff\1\164\1\uffff\4\104\16\uffff\16\104\1\uffff"+
-        "\1\104\1\u0088\7\104\1\u0090\3\104\1\u0094\1\u0095\4\104\1\uffff"+
-        "\6\104\1\u00a0\1\uffff\3\104\2\uffff\1\u00a4\1\u00a5\1\u00a6\6\104"+
-        "\1\u00ad\1\uffff\1\104\1\u00af\1\u00b0\3\uffff\1\u00b1\1\u00b2\2"+
-        "\104\1\u00b5\1\u00b6\1\uffff\1\u00b7\4\uffff\1\u00b8\1\104\4\uffff"+
-        "\1\u00ba\1\uffff";
-    static final String DFA15_eofS =
-        "\u00bb\uffff";
-    static final String DFA15_minS =
-        "\1\0\1\53\1\55\1\57\1\52\5\75\1\174\1\46\2\uffff\1\141\1\150\1\170"+
-        "\1\164\1\150\3\uffff\1\141\1\uffff\1\60\1\145\1\156\2\157\1\uffff"+
-        "\1\56\2\0\2\uffff\1\42\5\uffff\1\56\1\uffff\1\60\4\uffff\2\0\17"+
-        "\uffff\1\151\1\162\1\142\1\uffff\2\141\1\164\1\141\1\151\1\165\3"+
-        "\uffff\1\157\1\156\1\154\1\uffff\1\60\1\uffff\2\164\1\165\1\157"+
-        "\16\uffff\1\164\1\166\1\164\1\154\1\163\1\162\1\145\1\164\1\151"+
-        "\1\163\1\145\2\141\1\163\1\uffff\1\165\1\60\1\142\1\154\1\145\1"+
-        "\141\2\151\1\163\1\60\1\156\1\151\1\156\2\60\1\164\1\154\1\145\1"+
-        "\162\1\uffff\1\154\1\145\1\143\1\164\1\141\1\143\1\60\1\uffff\1"+
-        "\144\1\143\1\147\2\uffff\3\60\1\156\1\145\1\141\1\164\1\145\1\154"+
-        "\1\60\1\uffff\1\163\2\60\3\uffff\2\60\1\156\1\145\2\60\1\uffff\1"+
-        "\60\4\uffff\1\60\1\144\4\uffff\1\60\1\uffff";
-    static final String DFA15_maxS =
-        "\1\ufffe\11\75\1\174\1\46\2\uffff\1\165\1\154\1\170\1\164\1\162"+
-        "\3\uffff\1\154\1\uffff\1\71\1\145\1\156\2\157\1\uffff\1\146\2\ufffe"+
-        "\2\uffff\1\164\5\uffff\1\146\1\uffff\1\71\4\uffff\2\ufffe\17\uffff"+
-        "\1\157\1\162\1\142\1\uffff\2\141\1\164\1\162\1\151\1\165\3\uffff"+
-        "\1\157\1\156\1\154\1\uffff\1\146\1\uffff\2\164\1\165\1\157\16\uffff"+
-        "\1\164\1\166\1\164\1\154\1\163\1\162\1\145\1\164\1\151\1\163\1\145"+
-        "\2\141\1\163\1\uffff\1\165\1\172\1\142\1\154\1\145\1\141\2\151\1"+
-        "\163\1\172\1\156\1\151\1\156\2\172\1\164\1\154\1\145\1\162\1\uffff"+
-        "\1\154\1\145\1\143\1\164\1\141\1\143\1\172\1\uffff\1\144\1\143\1"+
-        "\147\2\uffff\3\172\1\156\1\145\1\141\1\164\1\145\1\154\1\172\1\uffff"+
-        "\1\163\2\172\3\uffff\2\172\1\156\1\145\2\172\1\uffff\1\172\4\uffff"+
-        "\1\172\1\144\4\uffff\1\172\1\uffff";
-    static final String DFA15_acceptS =
-        "\14\uffff\1\24\1\25\5\uffff\1\40\1\41\1\42\1\uffff\1\44\5\uffff"+
-        "\1\62\3\uffff\1\70\1\73\1\uffff\1\15\1\31\1\1\1\16\1\32\1\uffff"+
-        "\1\2\1\uffff\1\17\1\30\1\3\1\20\2\uffff\1\4\1\21\1\5\1\7\1\6\1\10"+
-        "\1\11\1\12\1\13\1\14\1\73\1\22\1\23\1\24\1\25\3\uffff\1\62\6\uffff"+
-        "\1\40\1\41\1\42\3\uffff\1\44\1\uffff\1\45\4\uffff\1\63\1\65\1\66"+
-        "\1\74\1\67\1\70\4\73\1\27\1\72\1\26\1\71\16\uffff\1\64\23\uffff"+
-        "\1\47\7\uffff\1\53\3\uffff\1\37\1\55\12\uffff\1\34\3\uffff\1\50"+
-        "\1\43\1\56\6\uffff\1\57\1\uffff\1\36\1\54\1\46\1\51\2\uffff\1\61"+
-        "\1\33\1\35\1\52\1\uffff\1\60";
-    static final String DFA15_specialS =
-        "\u00bb\uffff}>";
-    static final String[] DFA15_transitionS = {
-            "\11\42\2\41\1\42\2\41\22\42\1\41\1\11\1\37\2\42\1\5\1\13\1\40"+
-            "\1\23\1\25\1\3\1\1\1\24\1\2\1\30\1\4\12\36\1\42\1\27\1\10\1"+
-            "\6\1\7\2\42\32\35\1\42\1\43\2\42\1\35\1\42\1\35\1\34\1\17\1"+
-            "\33\1\20\1\26\2\35\1\32\6\35\1\16\1\35\1\31\1\21\1\22\6\35\1"+
-            "\14\1\12\1\15\uff81\42",
-            "\1\45\21\uffff\1\44",
-            "\1\50\1\53\1\uffff\12\51\3\uffff\1\47",
-            "\1\55\15\uffff\1\54",
-            "\1\60\4\uffff\1\61\15\uffff\1\57",
-            "\1\63",
-            "\1\65",
+    static final String DFA18_eotS =
+        "\1\uffff\1\51\1\54\1\61\1\66\1\70\1\72\1\74\1\76\3\100\2\uffff\5"+
+        "\110\1\uffff\1\110\3\uffff\1\131\6\110\1\uffff\1\143\1\146\1\100"+
+        "\12\uffff\1\143\4\uffff\1\155\1\157\1\161\20\uffff\3\110\1\uffff"+
+        "\12\110\1\uffff\2\110\4\uffff\1\u0084\4\110\1\u0089\3\110\20\uffff"+
+        "\13\110\1\u0098\5\110\1\uffff\4\110\1\uffff\1\u00a2\7\110\1\u00aa"+
+        "\1\110\1\u00ac\3\110\1\uffff\3\110\1\u00b3\1\u00b4\1\u00b5\3\110"+
+        "\1\uffff\7\110\1\uffff\1\u00c0\1\uffff\3\110\1\u00c4\1\u00c5\1\u00c6"+
+        "\3\uffff\1\u00c7\2\110\1\u00ca\3\110\1\u00ce\2\110\1\uffff\1\110"+
+        "\1\u00d2\1\u00d3\4\uffff\1\110\1\u00d5\1\uffff\1\u00d6\1\110\1\u00d8"+
+        "\1\uffff\1\u00d9\1\110\1\u00db\2\uffff\1\u00dc\2\uffff\1\110\2\uffff"+
+        "\1\u00de\2\uffff\1\u00df\2\uffff";
+    static final String DFA18_eofS =
+        "\u00e0\uffff";
+    static final String DFA18_minS =
+        "\1\0\1\53\1\55\1\57\1\52\5\75\1\174\1\46\2\uffff\1\141\1\150\1\154"+
+        "\1\164\1\141\1\uffff\1\150\3\uffff\1\60\1\165\1\157\1\145\1\146"+
+        "\1\150\1\157\1\uffff\1\56\2\0\2\uffff\1\42\7\uffff\1\56\1\60\3\uffff"+
+        "\3\0\20\uffff\1\151\1\142\1\162\1\uffff\1\156\2\141\1\163\1\164"+
+        "\1\141\1\162\1\157\1\154\1\156\1\uffff\1\165\1\151\4\uffff\1\60"+
+        "\1\154\1\145\1\157\1\164\1\60\1\164\1\151\1\165\20\uffff\1\164\1"+
+        "\166\1\154\2\164\1\162\1\163\2\145\1\164\1\151\1\60\1\141\1\163"+
+        "\1\141\1\145\1\163\1\uffff\1\154\1\141\1\154\1\165\1\uffff\1\60"+
+        "\1\154\1\142\1\145\1\141\3\151\1\60\1\163\1\60\1\156\1\151\1\156"+
+        "\1\uffff\1\164\1\145\1\154\3\60\1\153\1\145\1\162\1\uffff\1\145"+
+        "\1\154\1\143\1\164\1\143\1\141\1\156\1\uffff\1\60\1\uffff\1\144"+
+        "\1\143\1\147\3\60\3\uffff\1\60\1\141\1\156\1\60\1\145\1\164\1\145"+
+        "\1\60\1\154\1\165\1\uffff\1\163\2\60\4\uffff\1\156\1\60\1\uffff"+
+        "\1\60\1\145\1\60\1\uffff\1\60\1\145\1\60\2\uffff\1\60\2\uffff\1"+
+        "\144\2\uffff\1\60\2\uffff\1\60\2\uffff";
+    static final String DFA18_maxS =
+        "\1\ufffe\11\75\1\174\1\46\2\uffff\1\165\1\157\1\170\1\164\1\157"+
+        "\1\uffff\1\162\3\uffff\1\71\1\165\1\162\1\145\1\156\1\150\1\157"+
+        "\1\uffff\1\146\2\ufffe\2\uffff\1\164\7\uffff\1\146\1\71\3\uffff"+
+        "\3\ufffe\20\uffff\1\157\1\142\1\162\1\uffff\1\156\2\141\1\163\1"+
+        "\164\2\162\1\157\1\154\1\156\1\uffff\1\165\1\151\4\uffff\1\146\1"+
+        "\154\1\145\1\157\1\164\1\172\1\164\1\151\1\165\20\uffff\1\164\1"+
+        "\166\1\154\2\164\1\162\1\163\2\145\1\164\1\151\1\172\1\141\1\163"+
+        "\1\141\1\145\1\163\1\uffff\1\154\1\141\1\154\1\165\1\uffff\1\172"+
+        "\1\154\1\142\1\145\1\141\3\151\1\172\1\163\1\172\1\156\1\151\1\156"+
+        "\1\uffff\1\164\1\145\1\154\3\172\1\153\1\145\1\162\1\uffff\1\145"+
+        "\1\154\1\143\1\164\1\143\1\141\1\156\1\uffff\1\172\1\uffff\1\144"+
+        "\1\143\1\147\3\172\3\uffff\1\172\1\141\1\156\1\172\1\145\1\164\1"+
+        "\145\1\172\1\154\1\165\1\uffff\1\163\2\172\4\uffff\1\156\1\172\1"+
+        "\uffff\1\172\1\145\1\172\1\uffff\1\172\1\145\1\172\2\uffff\1\172"+
+        "\2\uffff\1\144\2\uffff\1\172\2\uffff\1\172\2\uffff";
+    static final String DFA18_acceptS =
+        "\14\uffff\1\24\1\25\5\uffff\1\42\1\uffff\1\44\1\45\1\46\7\uffff"+
+        "\1\73\3\uffff\1\101\1\105\1\uffff\1\15\1\33\1\32\1\1\1\16\1\34\1"+
+        "\2\2\uffff\1\17\1\30\1\3\3\uffff\1\20\1\4\1\21\1\5\1\7\1\6\1\10"+
+        "\1\11\1\12\1\13\1\14\1\105\1\22\1\23\1\24\1\25\3\uffff\1\73\12\uffff"+
+        "\1\42\2\uffff\1\44\1\45\1\46\1\47\11\uffff\1\74\1\76\1\77\1\106"+
+        "\1\100\1\101\4\105\1\31\1\104\1\26\1\102\1\27\1\103\21\uffff\1\75"+
+        "\4\uffff\1\54\16\uffff\1\57\11\uffff\1\60\7\uffff\1\64\1\uffff\1"+
+        "\55\6\uffff\1\66\1\43\1\50\12\uffff\1\36\3\uffff\1\61\1\67\1\41"+
+        "\1\52\2\uffff\1\56\3\uffff\1\70\3\uffff\1\40\1\65\1\uffff\1\53\1"+
+        "\62\1\uffff\1\72\1\35\1\uffff\1\37\1\63\1\uffff\1\51\1\71";
+    static final String DFA18_specialS =
+        "\u00e0\uffff}>";
+    static final String[] DFA18_transitionS = {
+            "\11\44\2\43\1\44\2\43\22\44\1\43\1\11\1\41\2\44\1\5\1\13\1\42"+
+            "\1\25\1\27\1\3\1\1\1\26\1\2\1\30\1\4\12\40\1\44\1\23\1\10\1"+
+            "\6\1\7\2\44\32\37\1\44\1\45\2\44\1\37\1\44\1\37\1\32\1\17\1"+
+            "\36\1\20\1\22\2\37\1\34\4\37\1\31\1\37\1\16\1\37\1\33\1\21\1"+
+            "\24\2\37\1\35\3\37\1\14\1\12\1\15\uff81\44",
+            "\1\47\3\uffff\1\50\15\uffff\1\46",
+            "\1\53\1\56\1\uffff\12\55\3\uffff\1\52",
+            "\1\60\15\uffff\1\57",
+            "\1\64\1\62\3\uffff\1\63\15\uffff\1\65",
             "\1\67",
             "\1\71",
             "\1\73",
             "\1\75",
-            "\1\76",
+            "\1\77",
+            "\1\101",
+            "\1\102",
             "",
             "",
-            "\1\102\20\uffff\1\101\2\uffff\1\103",
-            "\1\106\3\uffff\1\105",
-            "\1\107",
-            "\1\110",
-            "\1\111\11\uffff\1\112",
+            "\1\107\20\uffff\1\105\2\uffff\1\106",
+            "\1\112\3\uffff\1\113\2\uffff\1\111",
+            "\1\114\13\uffff\1\115",
+            "\1\116",
+            "\1\121\7\uffff\1\122\2\uffff\1\120\2\uffff\1\117",
             "",
-            "",
-            "",
-            "\1\120\7\uffff\1\117\2\uffff\1\116",
-            "",
-            "\12\122",
-            "\1\124",
-            "\1\125",
-            "\1\126",
-            "\1\127",
-            "",
-            "\1\53\1\uffff\12\51\14\uffff\1\131\37\uffff\1\131",
-            "\uffff\132",
-            "\uffff\134",
-            "",
-            "",
-            "\1\140\71\uffff\1\141\21\uffff\1\136\5\uffff\1\137",
+            "\1\125\11\uffff\1\124",
             "",
             "",
             "",
+            "\12\132",
+            "\1\133",
+            "\1\135\2\uffff\1\134",
+            "\1\136",
+            "\1\137\7\uffff\1\140",
+            "\1\141",
+            "\1\142",
+            "",
+            "\1\56\1\uffff\12\55\14\uffff\1\144\37\uffff\1\144",
+            "\uffff\145",
+            "\uffff\147",
             "",
             "",
-            "\1\53\1\uffff\12\51\14\uffff\1\131\37\uffff\1\131",
-            "",
-            "\12\122",
-            "",
-            "",
-            "",
-            "",
-            "\uffff\143",
-            "\12\145\1\uffff\2\145\1\uffff\ufff1\145",
+            "\1\152\71\uffff\1\151\21\uffff\1\153\5\uffff\1\154",
             "",
             "",
             "",
@@ -2399,6 +2802,14 @@ public class sgclLexer extends Lexer {
             "",
             "",
             "",
+            "\1\56\1\uffff\12\55\14\uffff\1\144\37\uffff\1\144",
+            "\12\132",
+            "",
+            "",
+            "",
+            "\uffff\156",
+            "\12\160\1\uffff\2\160\1\uffff\ufff1\160",
+            "\uffff\162",
             "",
             "",
             "",
@@ -2407,161 +2818,202 @@ public class sgclLexer extends Lexer {
             "",
             "",
             "",
-            "\1\147\5\uffff\1\146",
-            "\1\150",
-            "\1\151",
-            "",
-            "\1\152",
-            "\1\153",
-            "\1\154",
-            "\1\155\20\uffff\1\156",
-            "\1\157",
-            "\1\160",
             "",
             "",
             "",
-            "\1\161",
-            "\1\162",
-            "\1\163",
             "",
-            "\12\122\14\uffff\1\131\37\uffff\1\131",
             "",
+            "",
+            "",
+            "",
+            "\1\164\5\uffff\1\163",
             "\1\165",
             "\1\166",
+            "",
             "\1\167",
             "\1\170",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
             "\1\171",
             "\1\172",
             "\1\173",
-            "\1\174",
-            "\1\175",
+            "\1\174\20\uffff\1\175",
             "\1\176",
             "\1\177",
             "\1\u0080",
             "\1\u0081",
+            "",
             "\1\u0082",
             "\1\u0083",
-            "\1\u0084",
+            "",
+            "",
+            "",
+            "",
+            "\12\132\14\uffff\1\144\37\uffff\1\144",
             "\1\u0085",
             "\1\u0086",
-            "",
             "\1\u0087",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\1\u0089",
+            "\1\u0088",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
             "\1\u008a",
             "\1\u008b",
             "\1\u008c",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u008d",
             "\1\u008e",
             "\1\u008f",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\u0090",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\u0094",
+            "\1\u0095",
             "\1\u0096",
             "\1\u0097",
-            "\1\u0098",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
             "\1\u0099",
-            "",
             "\1\u009a",
             "\1\u009b",
             "\1\u009c",
             "\1\u009d",
+            "",
             "\1\u009e",
             "\1\u009f",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "",
+            "\1\u00a0",
             "\1\u00a1",
-            "\1\u00a2",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
             "\1\u00a3",
-            "",
-            "",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\u00a4",
+            "\1\u00a5",
+            "\1\u00a6",
             "\1\u00a7",
             "\1\u00a8",
             "\1\u00a9",
-            "\1\u00aa",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
             "\1\u00ab",
-            "\1\u00ac",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00ad",
             "\1\u00ae",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\u00af",
             "",
+            "\1\u00b0",
+            "\1\u00b1",
+            "\1\u00b2",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00b6",
+            "\1\u00b7",
+            "\1\u00b8",
             "",
-            "",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\1\u00b3",
-            "\1\u00b4",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
-            "",
-            "",
-            "",
-            "",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
             "\1\u00b9",
+            "\1\u00ba",
+            "\1\u00bb",
+            "\1\u00bc",
+            "\1\u00bd",
+            "\1\u00be",
+            "\1\u00bf",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "\1\u00c1",
+            "\1\u00c2",
+            "\1\u00c3",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00c8",
+            "\1\u00c9",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00cb",
+            "\1\u00cc",
+            "\1\u00cd",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00cf",
+            "\1\u00d0",
+            "",
+            "\1\u00d1",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
             "",
             "",
             "",
             "",
-            "\12\104\7\uffff\32\104\4\uffff\1\104\1\uffff\32\104",
+            "\1\u00d4",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00d7",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "\1\u00da",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "",
+            "\1\u00dd",
+            "",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
+            "",
+            "\12\110\7\uffff\32\110\4\uffff\1\110\1\uffff\32\110",
+            "",
             ""
     };
 
-    static final short[] DFA15_eot = DFA.unpackEncodedString(DFA15_eotS);
-    static final short[] DFA15_eof = DFA.unpackEncodedString(DFA15_eofS);
-    static final char[] DFA15_min = DFA.unpackEncodedStringToUnsignedChars(DFA15_minS);
-    static final char[] DFA15_max = DFA.unpackEncodedStringToUnsignedChars(DFA15_maxS);
-    static final short[] DFA15_accept = DFA.unpackEncodedString(DFA15_acceptS);
-    static final short[] DFA15_special = DFA.unpackEncodedString(DFA15_specialS);
-    static final short[][] DFA15_transition;
+    static final short[] DFA18_eot = DFA.unpackEncodedString(DFA18_eotS);
+    static final short[] DFA18_eof = DFA.unpackEncodedString(DFA18_eofS);
+    static final char[] DFA18_min = DFA.unpackEncodedStringToUnsignedChars(DFA18_minS);
+    static final char[] DFA18_max = DFA.unpackEncodedStringToUnsignedChars(DFA18_maxS);
+    static final short[] DFA18_accept = DFA.unpackEncodedString(DFA18_acceptS);
+    static final short[] DFA18_special = DFA.unpackEncodedString(DFA18_specialS);
+    static final short[][] DFA18_transition;
 
     static {
-        int numStates = DFA15_transitionS.length;
-        DFA15_transition = new short[numStates][];
+        int numStates = DFA18_transitionS.length;
+        DFA18_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA15_transition[i] = DFA.unpackEncodedString(DFA15_transitionS[i]);
+            DFA18_transition[i] = DFA.unpackEncodedString(DFA18_transitionS[i]);
         }
     }
 
-    class DFA15 extends DFA {
+    class DFA18 extends DFA {
 
-        public DFA15(BaseRecognizer recognizer) {
+        public DFA18(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 15;
-            this.eot = DFA15_eot;
-            this.eof = DFA15_eof;
-            this.min = DFA15_min;
-            this.max = DFA15_max;
-            this.accept = DFA15_accept;
-            this.special = DFA15_special;
-            this.transition = DFA15_transition;
+            this.decisionNumber = 18;
+            this.eot = DFA18_eot;
+            this.eof = DFA18_eof;
+            this.min = DFA18_min;
+            this.max = DFA18_max;
+            this.accept = DFA18_accept;
+            this.special = DFA18_special;
+            this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | MOD | EQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | OR | AND | BLKBEG | BLKEND | CMTSL | CMTBEG | CMTEND | INC | DEC | T44 | T45 | T46 | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | WORD | INTEGER | DOUBLE | FLOAT | STRING | CHAR | WHITESPACE | SLCOMMENT | MLCOMMENT | STRCONTENT | CHRCONTENT );";
+            return "1:1: Tokens : ( PLUS | MINUS | MULT | DIV | MOD | EQUAL | EQUAL2 | GTE | GT | LTE | LT | NEQUAL | PLEQUAL | MIEQUAL | MUEQUAL | DIEQUAL | MOEQUAL | OR | AND | BLKBEG | BLKEND | CMTSL | CMTBEG | CMTEND | DCMTB | DCMTE | INC | DEC | T47 | T48 | T49 | T50 | T51 | T52 | T53 | T54 | T55 | T56 | T57 | T58 | T59 | T60 | T61 | T62 | T63 | T64 | T65 | T66 | T67 | T68 | T69 | T70 | T71 | T72 | T73 | T74 | T75 | T76 | WORD | INTEGER | DOUBLE | FLOAT | STRING | CHAR | WHITESPACE | SLCOMMENT | MLCOMMENT | DCOMMENT | STRCONTENT | CHRCONTENT );";
         }
     }
  

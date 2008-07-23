@@ -24,7 +24,7 @@ public class Main {
             sgclLexer lex = new sgclLexer(new ANTLRInputStream(s));
             CommonTokenStream tokens = new CommonTokenStream(lex);
             sgclParser p = new sgclParser(tokens);
-            p.classdef();
+            p.doc();
             
             System.out.println("End");
         }

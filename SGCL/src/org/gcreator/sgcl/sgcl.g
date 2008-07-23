@@ -25,6 +25,8 @@ tokens {
 	CMTSL	= '//';
 	CMTBEG	= '/*';
 	CMTEND	= '*/';
+	DCMTB	= '/+';
+	DCMTE	= '+/';
 	INC	= '++';
 	DEC	= '--';
 }
@@ -37,13 +39,16 @@ package org.gcreator.sgcl;
 package org.gcreator.sgcl;
 }
 
+doc	:	classdef; //If one day the document becomes more than a class defition
+				//Then just change this
+
 classdef:	('partial')? 'class' WORD ('extends' WORD)?
 		BLKBEG
 		clsext*
 		BLKEND;
 
 clsext	:	fieldas | funct | constructor;
-fieldas	:	privacy 'static'? declare;
+fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
 constructor
 	:	privacy 'this' '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
@@ -53,15 +58,25 @@ funct	:	privacy 'static'? type WORD '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
 		statement*
 		BLKEND;
-declare	:	(('final')? type)? WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)? ';';
-value	:	'this' | (((('(' type ')')? (('(' value ')')|constant|((('this'|WORD) '.')? WORD))
-		(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
+declare	:	('final')? type WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)?
+		| WORD (EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value;
+//value	:	'this' | (((('(' type ')')? (('(' value ')')|constant|((('this'|WORD) '.')? WORD))
+//		(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
+value	:	('(' type ')')*
+		(('this'|'('value')'|constant|WORD) ('.' WORD)*
+			(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?);
 constant
-	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval;
+	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null';
 statement
-	:	declare | returnstmt;
+	:	((declare | returnstmt | incrstmt | 'continue' | 'break') ';') | ifstmt | whilestmt | forstmt;
+incrstmt:	(('this'|WORD) '.')? WORD (INC|DEC);
 returnstmt
-	:	'return' value ';';
+	:	'return' value;
+ifstmt	:	'if' '(' value ')' (statement|(BLKBEG statement* BLKEND))
+		('else' (statement|(BLKBEG statement* BLKEND)))?;
+whilestmt
+	:	'while' '(' value ')' (statement|(BLKBEG statement* BLKEND));
+forstmt	:	'for' '(' declare? ';' value ';' (declare|incrstmt)? ')' (statement|(BLKBEG statement* BLKEND));
 type	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | WORD;
 //May seem redundant. But it is actually useful
 //type	:	WORD;
@@ -84,6 +99,11 @@ SLCOMMENT
 	:	CMTSL (~LINE)* { $channel = HIDDEN; };
 MLCOMMENT
 	:	CMTBEG (options{greedy=false;}: .*) CMTEND { $channel = HIDDEN; } ;
+DCOMMENT:	DCMTB
+		(options{greedy=false;}: .*)
+		(DCOMMENT
+		(options{greedy=false;}: .*))*
+		DCMTE { $channel = HIDDEN; } ;
 fragment LINE :	'\r' | '\n';
 STRCONTENT
 	:	(~('"'|'\\'))|'\\\\'|'\\"'|'\\n'|'\\t';
