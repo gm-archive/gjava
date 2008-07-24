@@ -825,17 +825,17 @@ c=null;
             a.speed = in.read4();
             a.persistant= in.readBool();
             int col = in.read4();
-            System.out.println("Got here");
+            //System.out.println("Got here");
             a.background = new Color(col & 0xFF,(col & 0xFF00) >> 8,(col & 0xFF0000) >> 16);
             a.drawbackcolor = in.readBool();
             a.code = in.readStr();
             
-            System.out.println("Got here2");
+            //System.out.println("Got here2");
             int nobackgrounds = in.read4();
 			for (int j = 0; j < nobackgrounds; j++)
 				{
-                            System.out.println("Looping");
-                          BackgroundInScene bis = new BackgroundInScene("");
+                            //System.out.println("Looping");
+                          BackgroundInScene bis = new BackgroundInScene("Background"+j);
                           bis.visibleonstart = in.readBool();
                           in.read4(); //foreground?
                           int im = in.read4(); //image
@@ -855,7 +855,7 @@ c=null;
             int noviews = in.read4();
 			for (int j = 0; j < noviews; j++)
 				{
-                            System.out.println("Looping again");
+                            //System.out.println("Looping again");
                             
                             boolean visible = in.readBool();
 				int viewX = in.read4();
