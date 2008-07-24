@@ -73,6 +73,7 @@ public class GJava extends PlatformCore {
             }
             else
             ii = (BufferedImage) i.getImage();
+            //System.out.println("type:");
             ImageIO.write(ii, f.type, baos);
 
 //            File ff = new File(FileFolder + File.separator + "images");
@@ -95,6 +96,7 @@ public class GJava extends PlatformCore {
         //super.parseSprite(s);
         
         loadSprites += f.name + ",";
+        System.out.println("createSprites"+createSprites);
         createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBLeft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
@@ -331,9 +333,11 @@ actorindex++;
         try {
             FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
+            try{
             if(f1.exists())
                 recursivelyDeleteDirectory(new File("Projects" + File.separator + projectname+ File.separator)); 
                 //new File("Projects" + File.separator + projectname+ File.separator).delete();
+            }catch(Exception ee){ee.printStackTrace();}
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
             copyDirectory(f2, f1);
@@ -495,6 +499,7 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         print(game, "    };");
         print(game, "    }");
         //Load sprites method
+        System.out.println("print createSprites"+createSprites);
         print(game, createSprites + "}");
         print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
@@ -543,6 +548,7 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
         projectname = project.name;
         loadscene = "";
         loadSprites = "public static Sprite ";
+        createSprites = "public void loadSprites() { ";
         scenes = 0;
         if (project == null) {
             return;
@@ -552,10 +558,14 @@ print(game, "import org.gcreator.compilers.gjava.gtge.Scene2D;");
        // this.p.jLabel1.setText("Converting to java with G-java");
         
         createFolders();
-        super.run(project);
+       // super.run(project);
+        //preDo(project);
+                    putFolder(project);
+          //          postDo(project);
         try {
             createJavaFiles();
         } catch (Exception e) {
+            e.printStackTrace();
         }
         p.dispose();
         GJavaCompiler compiler = new GJavaCompiler();

@@ -164,9 +164,9 @@ public class TestActor2 extends Actor {
 //    self.setVariable("px",(new Integer(3)) .add((new Integer(4)) .mult((new Integer(6)))));
 // self.setVariable("py",(new Integer(10)) .add((new Integer(8))));
         draw_text(new Double(x + 10), new Double(y + 10), getFps());
-System.out.println("height:"+string_height(new String("test")));
-
-System.out.println("pos:"+string_width(new String("test")));
+//System.out.println("height:"+string_height(new String("test")));
+draw_text_rotated(new Double(x + 10), new Double(y + 10), getFps(), new Integer(180));
+//System.out.println("pos:"+string_width(new String("test")));
     // Game.Current.g2d.drawString("fps:"+Game.game.getGame().getCurrentFPS(), n0.getInt(), n10.getInt());
 //        
     //draw_text(n0, n10, new String("FPS:"+getFps()));

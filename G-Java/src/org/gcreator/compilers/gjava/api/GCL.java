@@ -9,9 +9,11 @@ import com.golden.gamedev.engine.graphics.WindowedMode;
 import com.golden.gamedev.util.ImageUtil;
 import java.awt.AWTException;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.awt.geom.AffineTransform;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.logging.Level;
@@ -1284,22 +1286,24 @@ return new Object();
 
 public static Object keyboard_check(Object key)
 {
-return new Object();
+return new Boolean( Game.game.getGame().bsInput.isKeyDown(key.getInt()));
 }
 
 public static Object keyboard_check_pressed(Object key)
 {
-return new Object();
+   return new Boolean( Game.game.getGame().bsInput.isKeyPressed(key.getInt()));
+//return new Object();
 }
 
 public static Object keyboard_check_released(Object key)
 {
-return new Object();
+    return new Boolean( Game.game.getGame().bsInput.isKeyReleased(key.getInt()));
+//return new Object();
 }
 
 public static Object keyboard_check_direct(Object key)
 {
-return new Object();
+return keyboard_check(key);
 }
 
 public static Object keyboard_get_numlock()
@@ -1770,6 +1774,7 @@ public static Object draw_text_ext(Object x, Object y, Object string, Object sep
 return new Object();
 }
 
+
 public static Object string_width(Object string)
 {
     if (Game.Current.g2d !=null)
@@ -1786,41 +1791,61 @@ return new Object();
 
 public static Object string_width_ext(Object string, Object sep, Object w)
 {
-return new Object();
+return string_width(string);
 }
 
 public static Object string_height_ext(Object string, Object sep, Object w)
 {
+return string_height(string);
+}
+
+public static Object draw_text_rotated(Object x, Object y, Object string, Object angle)
+{
+AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( angle.getInt() ) );
+    Font f =  Game.Current.g2d.getFont();
+    Game.Current.g2d.setFont ( Game.Current.g2d.getFont().deriveFont ( at ) );
+    Game.Current.g2d.drawString(""+string, x.getInt(), y.getInt());
+Game.Current.g2d.setFont(f);
 return new Object();
 }
 
 public static Object draw_text_transformed(Object x, Object y, Object string, Object xscale, Object yscale, Object angle)
 {
+AffineTransform at = AffineTransform.getRotateInstance ( java.lang.Math.toRadians ( angle.getInt() ) );
+    Font f =  Game.Current.g2d.getFont();
+    Game.Current.g2d.setFont ( Game.Current.g2d.getFont().deriveFont ( at ) );
+    Game.Current.g2d.drawString(""+string, x.getInt(), y.getInt());
+Game.Current.g2d.setFont(f);
 return new Object();
 }
 
 public static Object draw_text_ext_transformed(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle)
 {
+    draw_text_transformed(x, y, string, xscale, yscale, angle);
 return new Object();
 }
 
 public static Object draw_text_color(Object x, Object y, Object string, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
+    draw_text(x, y, string);
 return new Object();
 }
 
 public static Object draw_text_ext_color(Object x, Object y, Object string, Object sep, Object w, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
+    draw_text(x, y, string);
 return new Object();
 }
 
 public static Object draw_text_transformed_color(Object x, Object y, Object string, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
+    draw_text(x, y, string);
 return new Object();
 }
 
 public static Object draw_text_ext_transformed_color(Object x, Object y, Object string, Object sep, Object w, Object xscale, Object yscale, Object angle, Object c1, Object c2, Object c3, Object c4, Object alpha)
 {
+    draw_text(x, y, string);
 return new Object();
 }
 
@@ -2074,7 +2099,14 @@ public static Object surface_save(Object id, Object fname)
 
 public static Object surface_save_part(Object id, Object fname, Object x, Object y, Object w, Object h)
 {
-return new Object();
+ try {
+
+            ImageIO.write(((Surface) id).b.getSubimage(x.getInt(), y.getInt(), w.getInt(), h.getInt()), "png", new java.io.File("" + fname+".png"));
+            return new Object();
+        } catch (IOException ex) {
+            Logger.getLogger(GCL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Object();
 }
 
 public static Object surface_copy(Object destination, Object x, Object y, Object source)

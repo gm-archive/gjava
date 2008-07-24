@@ -206,7 +206,15 @@ public class GJavaCompiler extends JFrame implements Runnable,ActionListener
 						"-classpath",
 						"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator+";"/*+"Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator+"lib"+ File.separator+"GTGE.jar"*/,
 						GJava.FileFolder  +"Game.java"
+                                                
 				};
+                                
+                                FileWriter batFW = new FileWriter("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator + "org"+ File.separator+"gcreator"+ File.separator+"compilers"+ File.separator+"gjava"+ File.separator+ "compile_windows.bat");
+			BufferedWriter bat = new BufferedWriter(batFW);
+			GJava.print(bat,"javac -classpath \""+
+						new File("Projects" + File.separator + GJava.projectname + File.separator + "Java"+ File.separator).getAbsolutePath()  +"\" Game.java");
+			GJava.print(bat,"pause");
+			bat.close();
 				
 				int status2 = javac.compile(args);
 				

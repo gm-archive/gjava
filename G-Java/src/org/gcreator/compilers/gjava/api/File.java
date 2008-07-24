@@ -104,7 +104,7 @@ import org.gcreator.compilers.gjava.api.res.FileStream;
          */
         public void writeDouble(double x) {
             try {
-                writer.write("" + x);
+                writer.write("" + x+"\n");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
