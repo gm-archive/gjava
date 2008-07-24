@@ -39,7 +39,8 @@ public class Repeat extends ActionPattern{
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
             if(p.getName().equals("times"))
-                times = (String) p.getValue();
+                p.setValue(times);
+                
         }
     }
     
@@ -48,7 +49,7 @@ public class Repeat extends ActionPattern{
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
             if(p.getName().equals("times"))
-                p.setValue(times);
+                times = (String) p.getValue();
         }
     }
     

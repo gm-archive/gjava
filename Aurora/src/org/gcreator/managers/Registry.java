@@ -128,6 +128,7 @@ public final class Registry {
                 objects.add(d.readObject());
             }
         } catch (ArrayIndexOutOfBoundsException exc) {
+            exc.printStackTrace();
         } finally {
             d.close();
         }

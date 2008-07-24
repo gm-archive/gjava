@@ -194,7 +194,7 @@ public class PlatformCore extends PluginCore {
             if ((childNode = folder.childAt(i)) != null) {
                 if (childNode instanceof org.gcreator.fileclass.GFile) {
                     try {
-                        System.out.println(""+((org.gcreator.fileclass.GFile) childNode).type);
+                        //System.out.println("putfolder:type:"+((org.gcreator.fileclass.GFile) childNode).type);
                         
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
                             parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
@@ -238,7 +238,7 @@ public class PlatformCore extends PluginCore {
                             current="Script: "+((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
                             p.jLabel2.setText("Task: Converting scripts:"+((org.gcreator.fileclass.GFile) childNode).name);
-                            System.out.println("parsing script!");
+                            //System.out.println("parsing script!");
                             parseScript((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
                             parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
@@ -248,6 +248,8 @@ public class PlatformCore extends PluginCore {
                         p.repaint();
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
+                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "An error has occured converting game:"+e.getMessage());
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode);
@@ -966,6 +968,9 @@ public class PlatformCore extends PluginCore {
                 }
             };
             t.start();
+            try{
+            t.wait();
+            }catch(Exception e){}
             //p.setVisible(false);
         }
     }
@@ -999,7 +1004,7 @@ public class PlatformCore extends PluginCore {
     }
     
     public static String stringval(String value){
-        return "(new String(" + value + "))";
+        return "(new String(\"" + value + "\"))";
     }
     
     public static void openbrowser(String location) {

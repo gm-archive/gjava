@@ -11,11 +11,11 @@ public class __Test__ {
         gscriptLexer lex = new gscriptLexer(new ANTLRFileStream("C:\\Users\\Ali.Ali-Laptop\\Documents\\NetBeansProjects\\G-Creator\\Aurora\\src\\org\\gcreator\\plugins\\platform\\__Test___input.txt"));
         CommonTokenStream tokens = new CommonTokenStream(lex);
 
-        gscriptParser g = new gscriptParser(tokens, 49284);
-        try {
-            g.code();
-        } catch (RecognitionException e) {
-            e.printStackTrace();
-        }
+//        gscriptParser g = new gscriptParser(tokens, 49284);
+//        try {
+//            g.code();
+//        } catch (RecognitionException e) {
+//            e.printStackTrace();
+//        }
     }
 }
