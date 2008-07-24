@@ -12,6 +12,7 @@ package org.gcreator.sgcl;
 import java.io.FileReader;
 import java.util.Vector;
 import org.antlr.runtime.Token;
+import org.gcreator.sgcl.example.JavaManager;
 
 /**
  *
@@ -24,10 +25,11 @@ public class Main implements SGCLManager{
      */
     public static void main(String[] args) {
         try{
-            Main m = new Main();
+            JavaManager m = new JavaManager(5);
             SGCLTranslator t
                     = new SGCLTranslator(Main.class.getResourceAsStream("/org/gcreator/sgcl/test1.sgcl"), m);
             t.parse();
+            System.out.println(m.getText());
         }
         catch(Exception e){
             System.out.println(e.toString());

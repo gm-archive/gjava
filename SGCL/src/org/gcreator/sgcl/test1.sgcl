@@ -1,8 +1,12 @@
-using System.Extensions.Generics;
-
-class X extends Y<Z>{
+class X extends Y{
+    public static double PI = 3.14159;
     public this(){
         super(@"
 Abc");
+        int x = 2;
+    }
+    public static void Main(string args){
+        X x = X.new();
+        this.g = 3;
     }
 }

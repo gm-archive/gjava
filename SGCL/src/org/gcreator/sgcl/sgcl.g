@@ -76,31 +76,31 @@ doc	:	extension*
 extension
 	:	'using' WORD ('.' WORD)* ';';
 
-classdef:	('partial')? 'class' WORD ('extends' TYPE (',' TYPE)*)?
+classdef:	('partial')? 'class' WORD ('extends' type)?
 		BLKBEG
 		clsext*
 		BLKEND;
 
 clsext	:	fieldas | funct | constructor;
-fieldas	:	privacy 'static'? 'final'? TYPE WORD (EQUAL value)? ';';
+fieldas	:	privacy 'static'? 'final'? type WORD (EQUAL value)? ';';
 constructor
-	:	privacy 'this' '(' (TYPE WORD (',' TYPE WORD)*)? ')'
+	:	privacy 'this' '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
 		(('super'|'this') '(' (value (',' value)*)? ')' ';')?
 		statement*
 		BLKEND;
-funct	:	privacy 'static'? TYPE? WORD '(' (TYPE WORD (',' TYPE WORD)*)? ')'
+funct	:	privacy 'static'? (type|'void')? WORD '(' (type WORD (',' type WORD)*)? ')'
 		BLKBEG
 		statement*
 		BLKEND;
-declare	:	('final')? TYPE WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)?
+declare	:	('final')? type WORD ((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value)?
 		| WORD (EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL) value;
 //value	:	'this' | (((('(' type ')')? (('(' value ')')|constant|((('this'|WORD) '.')? WORD))
 //		(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
-value	:	('(' TYPE ')')*
-		((('this'|'super'|('('value')')|WORD) '.')? WORD '(' (value (',' value)*)? ')'
-		((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)?)
-		| (((('this'|'('value')'|constant|WORD) ('.' WORD)*
+value	:	('(' type ')')*
+		((('this'|'super'|('('value')')) '.')? (WORD '.')* WORD '(' (value (',' value)*)? ')'
+		((EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)?)
+		| (((('this'|'('value')'|constant|WORD '.')? ( WORD '.')* (constant|WORD)
 			(((EQUAL|PLEQUAL|MIEQUAL|MUEQUAL|DIEQUAL|MOEQUAL|EQUAL2|GTE|GT|LTE|LT|NEQUAL|PLUS|MINUS|MULT|DIV|MOD|AND|OR) value)|INC|DEC)?)));
 constant
 	:	INTEGER | DOUBLE | FLOAT | STRING | CHAR | boolval | 'null';
@@ -133,8 +133,9 @@ boolval	:	'true' | 'false';
 
 privacy	:	'public' | 'protected' | 'private';
 
+type	:	TYPE | WORD;
+TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD '<' WORD (',' WORD)* '>'); //No ? to prevent unacessible WORDs
 WORD	:	ALPHA (ALPHA|DIGIT)*;
-TYPE	:	'int' | 'float' | 'double' | 'boolean' | 'char' | 'string' | (WORD ('<' TYPE  (',' TYPE)* '>')?);
 
 INTEGER	:	'-'? (DIGIT)+ ;
 DOUBLE 	:	'-'? (DIGIT)* '.' (DIGIT)+;
