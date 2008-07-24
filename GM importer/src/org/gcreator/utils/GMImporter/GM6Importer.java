@@ -8,8 +8,16 @@
 package org.gcreator.utils.GMImporter;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.io.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.FilteredImageSource;
+import java.awt.image.ImageFilter;
+import java.awt.image.ImageProducer;
+import java.awt.image.RGBImageFilter;
 import java.util.Vector;
 import java.util.zip.*;
 import javax.swing.*;
@@ -207,9 +215,9 @@ public class GM6Importer {
 //						Messages.getString("GmFileReader.AFTERINFO2"),ver)); //$NON-NLS-1$
 			in.skip(in.read4() * 4); //Room Execution Order
 			//readTree(c,ver);
-                        
+        //}catch(Exception e){e.printStackTrace();}           
         in.close();
-
+c=null;
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
         PluginHelper.getPanel().workspace.updateUI();
         PluginHelper.getPanel().workspace.repaint();
@@ -471,7 +479,7 @@ public class GM6Importer {
             val.BBRight = in.read4();
             val.BBBottom = in.read4();
             val.BBTop = in.read4();
-            in.readBool(); //Transparent
+            boolean transparent = in.readBool(); //Transparent
             if (ver > 400) {
                 /*spr.smoothEdges = */                in.readBool();
                 /*spr.preload = */                in.readBool();
@@ -490,10 +498,21 @@ public class GM6Importer {
                     continue;
                 }
                 BufferedImage img = in.readImage(val.width, val.height);
+                int tpixel = img.getRGB(img.getMinX(),img.getHeight() - 1);
+
+								BufferedImage timage;
+								if (transparent)
+									{
+									timage = Transparency.makeColorTransparent(img,new Color(tpixel));
+									}
+								else
+									{
+									timage = img;
+									}
                 org.gcreator.fileclass.GFile imgF;
-                imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "bmp", null);
+                imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "png", null);
                 ImageIcon iico;
-                imgF.value = new ImageIcon(img);//new GImage();
+                imgF.value = new ImageIcon(timage);//new GImage();
                 //((GImage) imgF.value).image = iico = new ImageIcon(img);
                 //imgF.treeimage = org.gcreator.fileclass.GFile.getScaledIcon(iico);
                 val.addToList(imgF);
@@ -985,21 +1004,21 @@ public class GM6Importer {
                         else if(j==EV_KEYBOARD)
                         {
                         org.gcreator.core.gcreator.debugOut.println("keyboard");
-                        e = new KeyboardEvent(first, ""+first);
+                        e = new KeyboardEvent(first, ""+getKeyText(first));
                             a.events.add(e);
                             id = first;
                         } 
                          else if(j==EV_KEYPRESS)
                         {
                         org.gcreator.core.gcreator.debugOut.println("keyboard press");
-                        e = new KeyPress(first, ""+first);
+                        e = new KeyPress(first, ""+getKeyText(first));
                             a.events.add(e);
                             id = first;
                         } 
                         else if(j==EV_KEYRELEASE)
                         {
                         org.gcreator.core.gcreator.debugOut.println("keyboard press");
-                        e = new KeyReleased(first, ""+first);
+                        e = new KeyReleased(first, ""+getKeyText(first));
                             a.events.add(e);
                             id = first;
                         } 
@@ -1025,6 +1044,174 @@ public class GM6Importer {
             }
         }
     }
+    
+    public static String getKeyText(int keyCode) {
+        if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 ||
+            keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
+            return String.valueOf((char)keyCode);
+        }
+    
+        switch(keyCode) {
+          case KeyEvent.VK_COMMA: return "COMMA";
+          case KeyEvent.VK_PERIOD: return "PERIOD";
+          case KeyEvent.VK_SLASH: return "SLASH";
+          case KeyEvent.VK_SEMICOLON: return "SEMICOLON";
+          case KeyEvent.VK_EQUALS: return "EQUALS";
+          case KeyEvent.VK_OPEN_BRACKET: return "OPEN_BRACKET";
+          case KeyEvent.VK_BACK_SLASH: return "BACK_SLASH";
+          case KeyEvent.VK_CLOSE_BRACKET: return "CLOSE_BRACKET";
+    
+          case KeyEvent.VK_ENTER: return "ENTER";
+          case KeyEvent.VK_BACK_SPACE: return "BACK_SPACE";
+          case KeyEvent.VK_TAB: return "TAB";
+          case KeyEvent.VK_CANCEL: return "CANCEL";
+          case KeyEvent.VK_CLEAR: return "CLEAR";
+          case KeyEvent.VK_SHIFT: return "SHIFT";
+          case KeyEvent.VK_CONTROL: return "CONTROL";
+          case KeyEvent.VK_ALT: return "ALT";
+          case KeyEvent.VK_PAUSE: return "PAUSE";
+          case KeyEvent.VK_CAPS_LOCK: return "CAPS_LOCK";
+          case KeyEvent.VK_ESCAPE: return "ESCAPE";
+          case KeyEvent.VK_SPACE: return "SPACE";
+          case KeyEvent.VK_PAGE_UP: return "PAGE_UP";
+          case KeyEvent.VK_PAGE_DOWN: return "PAGE_DOWN";
+          case KeyEvent.VK_END: return "END";
+          case KeyEvent.VK_HOME: return "HOME";
+          case KeyEvent.VK_LEFT: return "LEFT";
+          case KeyEvent.VK_UP: return "UP";
+          case KeyEvent.VK_RIGHT: return "RIGHT";
+          case KeyEvent.VK_DOWN: return "DOWN";
+    
+          // numpad numeric keys handled below
+          case KeyEvent.VK_MULTIPLY: return "MULTIPLY";
+          case KeyEvent.VK_ADD: return "ADD";
+          case KeyEvent.VK_SEPARATOR: return "SEPARATOR";
+          case KeyEvent.VK_SUBTRACT: return "SUBTRACT";
+          case KeyEvent.VK_DECIMAL: return "DECIMAL";
+          case KeyEvent.VK_DIVIDE: return "DIVIDE";
+          case KeyEvent.VK_DELETE: return "DELETE";
+          case KeyEvent.VK_NUM_LOCK: return "NUM_LOCK";
+          case KeyEvent.VK_SCROLL_LOCK: return "SCROLL_LOCK";
+    
+          case KeyEvent.VK_F1: return "F1";
+          case KeyEvent.VK_F2: return "F2";
+          case KeyEvent.VK_F3: return "F3";
+          case KeyEvent.VK_F4: return "F4";
+          case KeyEvent.VK_F5: return "F5";
+          case KeyEvent.VK_F6: return "F6";
+          case KeyEvent.VK_F7: return "F7";
+          case KeyEvent.VK_F8: return "F8";
+          case KeyEvent.VK_F9: return "F9";
+          case KeyEvent.VK_F10: return "F10";
+          case KeyEvent.VK_F11: return "F11";
+          case KeyEvent.VK_F12: return "F12";
+          case KeyEvent.VK_F13: return "F13";
+          case KeyEvent.VK_F14: return "F14";
+          case KeyEvent.VK_F15: return "F15";
+          case KeyEvent.VK_F16: return "F16";
+          case KeyEvent.VK_F17: return "F17";
+          case KeyEvent.VK_F18: return "F18";
+          case KeyEvent.VK_F19: return "F19";
+          case KeyEvent.VK_F20: return "F20";
+          case KeyEvent.VK_F21: return "F21";
+          case KeyEvent.VK_F22: return "F22";
+          case KeyEvent.VK_F23: return "F23";
+          case KeyEvent.VK_F24: return "F24";
+    
+          case KeyEvent.VK_PRINTSCREEN: return "PRINTSCREEN";
+          case KeyEvent.VK_INSERT: return "INSERT";
+          case KeyEvent.VK_HELP: return "HELP";
+          case KeyEvent.VK_META: return "META";
+          case KeyEvent.VK_BACK_QUOTE: return "BACK_QUOTE";
+          case KeyEvent.VK_QUOTE: return "QUOTE";
+    
+          case KeyEvent.VK_KP_UP: return "KP_UP";
+          case KeyEvent.VK_KP_DOWN: return "KP_DOWN";
+          case KeyEvent.VK_KP_LEFT: return "KP_LEFT";
+          case KeyEvent.VK_KP_RIGHT: return "KP_RIGHT";
+    
+          case KeyEvent.VK_DEAD_GRAVE: return "DEAD_GRAVE";
+          case KeyEvent.VK_DEAD_ACUTE: return "DEAD_ACUTE";
+          case KeyEvent.VK_DEAD_CIRCUMFLEX: return "DEAD_CIRCUMFLEX";
+          case KeyEvent.VK_DEAD_TILDE: return "DEAD_TILDE";
+          case KeyEvent.VK_DEAD_MACRON: return "DEAD_MACRON";
+          case KeyEvent.VK_DEAD_BREVE: return "DEAD_BREVE";
+          case KeyEvent.VK_DEAD_ABOVEDOT: return "DEAD_ABOVEDOT";
+          case KeyEvent.VK_DEAD_DIAERESIS: return "DEAD_DIAERESIS";
+          case KeyEvent.VK_DEAD_ABOVERING: return "DEAD_ABOVERING";
+          case KeyEvent.VK_DEAD_DOUBLEACUTE: return "DEAD_DOUBLEACUTE";
+          case KeyEvent.VK_DEAD_CARON: return "DEAD_CARON";
+          case KeyEvent.VK_DEAD_CEDILLA: return "DEAD_CEDILLA";
+          case KeyEvent.VK_DEAD_OGONEK: return "DEAD_OGONEK";
+          case KeyEvent.VK_DEAD_IOTA: return "DEAD_IOTA";
+          case KeyEvent.VK_DEAD_VOICED_SOUND: return "DEAD_VOICED_SOUND";
+          case KeyEvent.VK_DEAD_SEMIVOICED_SOUND: return "DEAD_SEMIVOICED_SOUND";
+    
+          case KeyEvent.VK_AMPERSAND: return "AMPERSAND";
+          case KeyEvent.VK_ASTERISK: return "ASTERISK";
+          case KeyEvent.VK_QUOTEDBL: return "QUOTEDBL";
+          case KeyEvent.VK_LESS: return "LESS";
+          case KeyEvent.VK_GREATER: return "GREATER";
+          case KeyEvent.VK_BRACELEFT: return "BRACELEFT";
+          case KeyEvent.VK_BRACERIGHT: return "BRACERIGHT";
+          case KeyEvent.VK_AT: return "AT";
+          case KeyEvent.VK_COLON: return "COLON";
+          case KeyEvent.VK_CIRCUMFLEX: return "CIRCUMFLEX";
+          case KeyEvent.VK_DOLLAR: return "DOLLAR";
+          case KeyEvent.VK_EURO_SIGN: return "EURO_SIGN";
+          case KeyEvent.VK_EXCLAMATION_MARK: return "EXCLAMATION_MARK";
+          case KeyEvent.VK_INVERTED_EXCLAMATION_MARK:
+                   return "INVERTED_EXCLAMATION_MARK";
+          case KeyEvent.VK_LEFT_PARENTHESIS: return "LEFT_PARENTHESIS";
+          case KeyEvent.VK_NUMBER_SIGN: return "NUMBER_SIGN";
+          case KeyEvent.VK_MINUS: return "MINUS";
+          case KeyEvent.VK_PLUS: return "PLUS";
+          case KeyEvent.VK_RIGHT_PARENTHESIS: return "RIGHT_PARENTHESIS";
+          case KeyEvent.VK_UNDERSCORE: return "UNDERSCORE";
+    
+          case KeyEvent.VK_FINAL: return "FINAL";
+          case KeyEvent.VK_CONVERT: return "CONVERT";
+          case KeyEvent.VK_NONCONVERT: return "NONCONVERT";
+          case KeyEvent.VK_ACCEPT: return "ACCEPT";
+          case KeyEvent.VK_MODECHANGE: return "MODECHANGE";
+          case KeyEvent.VK_KANA: return "KANA";
+          case KeyEvent.VK_KANJI: return "KANJI";
+          case KeyEvent.VK_ALPHANUMERIC: return "ALPHANUMERIC";
+          case KeyEvent.VK_KATAKANA: return "KATAKANA";
+          case KeyEvent.VK_HIRAGANA: return "HIRAGANA";
+          case KeyEvent.VK_FULL_WIDTH: return "FULL_WIDTH";
+          case KeyEvent.VK_HALF_WIDTH: return "HALF_WIDTH";
+          case KeyEvent.VK_ROMAN_CHARACTERS: return "ROMAN_CHARACTERS";
+          case KeyEvent.VK_ALL_CANDIDATES: return "ALL_CANDIDATES";
+          case KeyEvent.VK_PREVIOUS_CANDIDATE: return "PREVIOUS_CANDIDATE";
+          case KeyEvent.VK_CODE_INPUT: return "CODE_INPUT";
+          case KeyEvent.VK_JAPANESE_KATAKANA: return "JAPANESE_KATAKANA";
+          case KeyEvent.VK_JAPANESE_HIRAGANA: return "JAPANESE_HIRAGANA";
+          case KeyEvent.VK_JAPANESE_ROMAN: return "JAPANESE_ROMAN";
+          case KeyEvent.VK_KANA_LOCK: return "KANA_LOCK";
+          case KeyEvent.VK_INPUT_METHOD_ON_OFF: return "INPUT_METHOD_ON_OFF";
+    
+          case KeyEvent.VK_AGAIN: return "AGAIN";
+          case KeyEvent.VK_UNDO: return "UNDO";
+          case KeyEvent.VK_COPY: return "COPY";
+          case KeyEvent.VK_PASTE: return "PASTE";
+          case KeyEvent.VK_CUT: return "CUT";
+          case KeyEvent.VK_FIND: return "FIND";
+          case KeyEvent.VK_PROPS: return "PROPS";
+          case KeyEvent.VK_STOP: return "STOP";
+    
+          case KeyEvent.VK_COMPOSE: return "COMPOSE";
+          case KeyEvent.VK_ALT_GRAPH: return "ALT_GRAPH";
+        }
+    
+        if (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9) {
+            char c = (char)(keyCode - KeyEvent.VK_NUMPAD0 + '0');
+            return "NUMPAD"+c;
+        }
+    
+        return "unknown(0x" + Integer.toString(keyCode, 16) + ")";
+    }
+
     
     private static void readActions(GmFileContext c, int format1, int format2,
             org.gcreator.events.Event e)
@@ -1264,3 +1451,42 @@ public class GM6Importer {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 }
+
+class Transparency
+	{
+	public static BufferedImage makeColorTransparent(Image im,final Color color)
+		{
+		ImageFilter filter = new RGBImageFilter()
+			{
+				// the color we are looking for... Alpha bits are set to opaque
+				public int markerRGB = color.getRGB() | 0xFF000000;
+
+				public final int filterRGB(int x,int y,int rgb)
+					{
+					if ((rgb | 0xFF000000) == markerRGB)
+						{
+						// Mark the alpha bits as zero - transparent
+						return 0x00FFFFFF & rgb;
+						}
+					else
+						{
+						// nothing to do
+						return rgb;
+						}
+					}
+			};
+		ImageProducer ip = new FilteredImageSource(im.getSource(),filter);
+		return createBufferedImage(Toolkit.getDefaultToolkit().createImage(ip));
+		}
+
+	private static BufferedImage createBufferedImage(Image image)
+		{
+		BufferedImage bi = new BufferedImage(image.getWidth(null),image.getHeight(null),
+				BufferedImage.TYPE_INT_ARGB);
+		Graphics2D g = bi.createGraphics();
+		g.drawImage(image,0,0,null);
+
+		return bi;
+		}
+
+	}
