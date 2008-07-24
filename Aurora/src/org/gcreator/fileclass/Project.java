@@ -63,6 +63,10 @@ public abstract class Project extends Folder {
     public boolean allowDrag(){
         return false;
     }
+    
+    public String getPath(){
+        return "/";
+    }
      
     public Folder findFolder(String name) throws NoSuchFolderException{
         if(name==null)
@@ -82,6 +86,29 @@ public abstract class Project extends Folder {
             }
         }
         throw new NoSuchFolderException("Project");
+    }
+    
+    public GFile findFile(String name) throws NoSuchFolderException{
+        if(name==null)
+            throw new NoSuchFolderException();
+        if(name.equals("")||name.equals("/"))
+            return null;
+        if(name.charAt(0)=='/')
+            name = name.substring(1);
+        for(int i = 0; i < childNodes.size(); i++){
+            Object o = childNodes.get(i);
+            if(o != null && o instanceof Folder){
+                try{
+                    GFile a = ((Folder) o).findFile(name.substring(name.indexOf(name)));
+                    return a;
+                }
+                catch(NoSuchFolderException e){}
+            }
+            if(o != null && o instanceof GFile){
+                if(((GFile) o).name.equals(name)) return (GFile) o;
+            }
+        }
+        throw new NoSuchFolderException("Project: " + name);
     }
     
     public Project getProject(){

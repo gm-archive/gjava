@@ -127,7 +127,7 @@ public class Folder extends GObject implements Serializable{
                 return this;
         }
         else
-            if(!name.substring(name.indexOf("/")).equals(name))
+            if(!name.substring(0, name.indexOf("/")-1).equals(name))
                 throw new NoSuchFolderException();
         for(int i = 0; i < childNodes.size(); i++){
             GObject o = childNodes.get(i);
@@ -137,6 +137,40 @@ public class Folder extends GObject implements Serializable{
                     return a;
                 }
                 catch(NoSuchFolderException e){}
+            }
+        }
+        throw new NoSuchFolderException("Folder");
+    }
+    
+    public GFile findFile(String name) throws NoSuchFolderException{
+        if(name==null)
+            throw new NoSuchFolderException("null folder name");
+        if(name.equals("")||name.equals("/"))
+            return null;
+        if(name.charAt(0)=='/')
+            name = name.substring(1);
+        if(name.indexOf("/")==-1){
+            if(!name.equals(this.name))
+                throw new NoSuchFolderException("Obtained name is " + name +
+                        " but expected name was " + this.name);
+            else
+                return null;
+        }
+        else
+            if(!name.substring(0, name.indexOf("/")).equals(this.name))
+                throw new NoSuchFolderException();
+        for(int i = 0; i < childNodes.size(); i++){
+            GObject o = childNodes.get(i);
+            if(o != null && o instanceof Folder){
+                try{
+                    GFile a = ((Folder) o).findFile(name.substring(name.indexOf("/")));
+                    return a;
+                }
+                catch(NoSuchFolderException e){}
+            }
+            if(o != null && o instanceof GFile){
+                System.out.println("Check file with " + name.substring(name.indexOf("/")+1));
+                if(((GFile) o).name.equals(name.substring(name.indexOf("/")+1))) return (GFile) o;
             }
         }
         throw new NoSuchFolderException("Folder");

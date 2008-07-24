@@ -12,6 +12,7 @@ package org.gcreator.fileclass.res;
 import java.util.*;
 import javax.swing.*;
 import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -20,46 +21,28 @@ import org.gcreator.fileclass.GFile;
 public class Sprite implements Resource {
     private static final long serialVersionUID = 1;
     //public Vector<org.gcreator.fileclass.File> images;
-    public Vector<GFile> Simages;
+    public Vector<String> Simages;
     public int width,height,originX,originY,BBLeft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
+    private transient Project p;
     
-    /**
-     * @param name The name of the sprite.
-     * @deprecated*/
-    public Sprite(String name){
-        this();
-    }
-    
-    public Sprite(/*String name*/)
+    public Sprite(Project p/*String name*/)
     {
         //this.name = name;
        // images = new Vector<org.gcreator.fileclass.File>();
-        Simages = new Vector<GFile>();
+        Simages = new Vector<String>();
+        this.p = p;
     }
 
     /**
      * @deprecated Use getImageIconAt instead
      */
     public GImage getImageAt(int pos){
-        if(pos>=Simages.size()) {
-            return null;
-        }
-        //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
-        if(a == null) {
-            return null;
-        }
-        return new GImage((ImageIcon) a.value)/*.image*/;
+        return new GImage((ImageIcon) getImageIconAt(pos))/*.image*/;
     }
     
     public ImageIcon getImageIconAt(int pos){
-        if(pos>=Simages.size()) {
-            return null;
-        }
-        //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
-        return (ImageIcon) a.value;
+        return (ImageIcon) getAt(pos).value;
     }
     
     public org.gcreator.fileclass.GFile getAt(int pos){
@@ -67,8 +50,13 @@ public class Sprite implements Resource {
             return null;
         }
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
-        org.gcreator.fileclass.GFile a = Simages.elementAt(pos);
-        return a;
+        try{
+            return p.findFile(Simages.elementAt(pos));
+        }
+        catch(Exception e){
+            System.out.println("Sprite.java getAt("+pos+"): " + e.toString());
+            return null;
+        }
     }
     
     public int countImages(){
@@ -77,7 +65,7 @@ public class Sprite implements Resource {
     
     public void addToList(org.gcreator.fileclass.GFile i){
         //images.add(i);
-        Simages.add(i);
+        Simages.add(i.getPath());
     }
     
     public GImage firstImage() {
@@ -159,7 +147,7 @@ public class Sprite implements Resource {
     @SuppressWarnings("unchecked")
     @Override
     public Object clone() {
-        Sprite a = new Sprite(/*name*/);
+        Sprite a = new Sprite(p/*name*/);
         a.BBBottom = BBBottom;
         a.BBRight = BBRight;
         a.BBTop = BBTop;

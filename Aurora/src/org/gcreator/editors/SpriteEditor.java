@@ -56,7 +56,7 @@ public class SpriteEditor extends TabPanel {
         boolean dontChange = false;
         if (file.value != null) {
             if(file.value instanceof String) {
-                Sprite spr = new Sprite();
+                Sprite spr = new Sprite(project);
                 spr.readXml((String) file.value);
                 file.value = spr;
                 changed = true;
@@ -67,7 +67,7 @@ public class SpriteEditor extends TabPanel {
             }
         }
         else{
-            this.sprite = new Sprite();
+            this.sprite = new Sprite(project);
             changed = true;
         }
         Component c = org.gcreator.core.gcreator.panel.getNavigatorPanel();
@@ -125,11 +125,11 @@ public class SpriteEditor extends TabPanel {
                 }
             }
         });
-        int i = 0;
-        for (GFile f : sprite.Simages) {
+        for (int i = 0; i < sprite.countImages(); i++) {
+            GFile f = sprite.getAt(i);
             Image img = ((ImageIcon)f.value).getImage();
             subimageList.addElement("Subimage "+(i+1),new ImageIcon 
-                    (img.getScaledInstance(100, -1, Image.SCALE_DEFAULT)), i++);
+                    (img.getScaledInstance(100, -1, Image.SCALE_DEFAULT)), i+1);
         }
         jScrollPane2.setViewportView(subimageList);
     }
@@ -175,7 +175,7 @@ public class SpriteEditor extends TabPanel {
     {
         if (sprite == null)
         {
-            this.sprite = new Sprite(/*file.name*/);
+            this.sprite = new Sprite(project/*file.name*/);
             return;
         }
         jSpinner1.setValue(sprite.originX);
