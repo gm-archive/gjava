@@ -103,7 +103,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         if(root.eraseActorsBelow()){
             Sprite s;
             try{
-                s = (Sprite) ((Actor) act.Sactor.value).sprite.value;
+                s = (Sprite) act.Sactor.getProject().getFileFor(((Actor) act.Sactor.value).sprite).value;
             }
             catch(Exception e){
                 s = null;
@@ -330,7 +330,7 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                     //continue;
                 }
                 if (b.depth == dep) {
-                        GFile sf = b.sprite;
+                        GFile sf = root.file.getProject().getFileFor(b.sprite);
                     org.gcreator.fileclass.res.Sprite f = null;
                     if (sf != null && sf.value != null) {
                         f = (org.gcreator.fileclass.res.Sprite) sf.value;

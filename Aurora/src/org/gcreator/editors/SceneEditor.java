@@ -89,8 +89,8 @@ public class SceneEditor extends TabPanel {
             aisx = ais.x;
             aisy = ais.y;
             try {
-                aisw = ((Sprite) (((Actor) (ais.Sactor.value)).sprite.value)).width;
-                aish = ((Sprite) (((Actor) (ais.Sactor.value)).sprite.value)).height;
+                aisw = ((Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value)).width;
+                aish = ((Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value)).height;
             } catch (NullPointerException exc) {
                 aisw = aish = 8;
             }
@@ -142,8 +142,8 @@ public class SceneEditor extends TabPanel {
             aisy = ais.y;
             ImageIcon i;
             try {
-                Sprite j = (Sprite) (((Actor) (ais.Sactor.value)).sprite.value);
-                i = j.getImageAt(0).image;
+                Sprite j = (Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value);
+                i = j.getImageIconAt(0);
             } catch (NullPointerException exc) {
                 i = scenePanel.unknown;
             }
@@ -180,7 +180,7 @@ public class SceneEditor extends TabPanel {
         if (b == null) {
             return;
         }
-        org.gcreator.fileclass.GFile t = b.sprite;
+        org.gcreator.fileclass.GFile t = curactor.getFile().getProject().getFileFor(b.sprite);
         if (t == null) {
             return;
         }

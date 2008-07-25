@@ -65,7 +65,7 @@ public class ActorEditor extends TabPanel {
 
     public void spriteChanged() {
         System.out.println("Sprite changed to " + spriteres.getFile());
-        actor.sprite = spriteres.getFile();
+        actor.sprite = spriteres.getFile().getID();
         changed = true;
         updateNavigator();
     }
@@ -175,8 +175,8 @@ public class ActorEditor extends TabPanel {
         //setup resource menu's
         jPanel13.setLayout(new FlowLayout());
         jPanel13.add(spriteres = new ResourceChooser(project, "sprite"));
-        if (actor.sprite != null) {
-            spriteres.setFile(actor.sprite);
+        if (actor.sprite != -1) {
+            spriteres.setFile(file.getProject().getFileFor(actor.sprite));
         }
         spriteres.addActionListener(new ActionListener() {
             @Override

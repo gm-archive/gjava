@@ -72,6 +72,10 @@ public class GFile extends GObject implements Transferable {
     public String getObjectType() {
         return "File";
     }
+    
+    public int getID(){
+        return getProject().getIdFor(this);
+    }
 
     /*private class MyOutputStream extends ImageOutputStreamImpl {
 

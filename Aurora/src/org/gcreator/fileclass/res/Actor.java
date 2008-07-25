@@ -24,8 +24,8 @@ public class Actor implements Resource {
 
     static final long serialVersionUID = 1L;
     public boolean visible = true,  solid = true,  persistent;
-    public GFile sprite;
-    public GFile extend,  mask;
+    public int sprite;
+    public int extend,  mask;
     public int index,  depth;
     public Vector<Event> events;
     public Vector<Field> fields;
@@ -42,7 +42,7 @@ public class Actor implements Resource {
         xml += "<Solid>" + solid + "</Solid>\n";
         xml += "<Visible>" + visible + "</Visible>\n";
         xml += "<Persistent>" + persistent + "</Persistent>\n";
-        if (sprite == null) {
+        if (sprite == -1) {
             xml += "<Sprite>//!NULLSPRITE</Sprite>";
         } else {
             xml += "<Sprite>" + sprite + "</Sprite>";
