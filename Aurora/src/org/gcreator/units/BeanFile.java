@@ -21,9 +21,12 @@ import java.net.URI;
  * @see java.beans.XMLEncoder
  * @see java.beans.XMLDecoder
  */
-public class BeanFile extends File {
+public final class BeanFile extends File {
+    private String spath;
+    
     public BeanFile() {
         super("./");
+        spath = getAbsolutePath();
     }
     /**
      * Creates a new BeanFile from a given file.
@@ -31,6 +34,7 @@ public class BeanFile extends File {
      */
     public BeanFile(File file) {
         super(file.toURI());
+        spath = file.getAbsolutePath();
     }
     
     /**
@@ -38,6 +42,7 @@ public class BeanFile extends File {
      */
     public BeanFile(String pathname) {
 	super(pathname);
+        spath = getAbsolutePath();
     }
 
     /**
@@ -45,6 +50,7 @@ public class BeanFile extends File {
      */
     public BeanFile(String parent, String child) {
 	super(parent, child);
+        spath = getAbsolutePath();
     }
 
     /**
@@ -52,6 +58,7 @@ public class BeanFile extends File {
      */
     public BeanFile(File parent, String child) {
 	super(parent, child);
+        spath = getAbsolutePath();
     }
 
     /**
@@ -59,6 +66,7 @@ public class BeanFile extends File {
      */
     public BeanFile(URI uri) {
         super(uri);
+        spath = getAbsolutePath();
     }
     
     /**
@@ -66,6 +74,28 @@ public class BeanFile extends File {
      */
     @Override
     public Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        return new BeanFile((File)super.clone());
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getAbsolutePath() {
+        return (spath != null) ? spath : super.getAbsolutePath();
+    }
+    
+    /**
+     @deprecated <strong>DO NOT USE</strong>
+     */
+    public void setSPath(String path) {
+        this.spath = path;
+    }
+    
+    /**
+     @deprecated <strong>DO NOT USE</strong>
+     */
+    public String getSPath() {
+        return spath;
     }
 }

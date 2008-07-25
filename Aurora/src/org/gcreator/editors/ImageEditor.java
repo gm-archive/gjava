@@ -18,6 +18,8 @@ import org.gcreator.components.*;
 import org.gcreator.components.jvector.JVectorWindow;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
+import org.gcreator.managers.Registry;
+import org.gcreator.units.BeanFile;
 
 /**
  *
@@ -29,20 +31,19 @@ public class ImageEditor extends TabPanel {
     public boolean changed;
     public ImagePane pane;
     public String type;
-    public static ImageFileChooser jFileChooser1 = null;
 
     /** Creates new form ImageEditor2 */
     public ImageEditor(Project p, GFile f) {
         this.project = p;
         this.file = f;
-        initComponents(); 
+        initComponents();
         i = new GImage();
         if (f.value instanceof ImageIcon) {//powerpack
-            GImage img  = new GImage();
+            GImage img = new GImage();
             img.image = (ImageIcon) file.value;
             file.value = img.image;
         }
-        
+
         if (f.value == null) {
             i.image = new ImageIcon(new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB));
             changed = true;
@@ -63,7 +64,7 @@ public class ImageEditor extends TabPanel {
         }
         colorSelection1.setBackground(i.transparentColor);
         jTextField1.setText(file.name);
-        
+
         pane = new ImagePane(this);
         jScrollPane1.setViewportView(pane);
     }
@@ -396,22 +397,19 @@ private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-F
 }//GEN-LAST:event_colorSelection1MouseClicked
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    if (jFileChooser1 == null) {
-        jFileChooser1 = new ImageFileChooser();
-    }
-
+    JFileChooser fc = new ImageFileChooser((Registry.exists("Directories.imageEditor")) ? (BeanFile)Registry.get("Directories.imageEditor") : null);
     try {
-        jFileChooser1.resetChoosableFileFilters();
+        fc.resetChoosableFileFilters();
         JFileFilter filter = new JFileFilter(".*\\.gif|.*\\.jpg|.*\\.png", "Image Files (*.png, *.gif, *.jpg)");
-        jFileChooser1.addChoosableFileFilter(filter);
+        fc.addChoosableFileFilter(filter);
         JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
-        jFileChooser1.addChoosableFileFilter(filter2);
-        jFileChooser1.setFileFilter(filter);
-        if (jFileChooser1.showDialog(this, "OK") != JFileChooser.APPROVE_OPTION) {
+        fc.addChoosableFileFilter(filter2);
+        fc.setFileFilter(filter);
+        if (fc.showDialog(this, "OK") != JFileChooser.APPROVE_OPTION) {
             return;
         }
-        if (jFileChooser1.getSelectedFile() != null) {
-            java.io.File _file = jFileChooser1.getSelectedFile();
+        if (fc.getSelectedFile() != null) {
+            java.io.File _file = fc.getSelectedFile();
             type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
             if (type.toLowerCase().equals("gif")) {
                 System.out.println("GIF!");
@@ -438,6 +436,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     } catch (Exception e) {
     }
+    Registry.set("Directories.imageEditor", new BeanFile(fc.getCurrentDirectory()));
     updateScroll();
 }//GEN-LAST:event_jButton1ActionPerformed
     public boolean sel5 = false;

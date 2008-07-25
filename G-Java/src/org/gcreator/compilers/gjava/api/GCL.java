@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package org.gcreator.compilers.gjava.api;
 
@@ -266,7 +262,7 @@ public static Object expm1(Object x) {
 return new Double(Math.expm1(x.getDouble()));
 }
 
-/**
+/*
  * 
  * String functions
  * 
@@ -662,17 +658,18 @@ public static Object place_free(Object x, Object y)
      for (int i = 0; i < Game.Current.instances.size(); i++) {
            if (Game.Current.instances.elementAt(i) !=null){
                Actor a = ((Actor)Game.Current.instances.elementAt(i));
-               if (a.getSolid().getBoolean())
-            if (new Rectangle((int)self.x,(int)self.y, self.sprite.sprite_width,self.sprite.sprite_height).intersects(a.getBounds())){
-            //if not instance id
-                if (a.getId().getDouble() == self.getId().getDouble()){
-                    System.out.println("a.id:"+a.getId().getDouble()+" s.id"+self.getId().getDouble());
-                }else {
-                    System.out.println("x"+self.x+"y"+self.y+"width:"+self.sprite.sprite_width);
-                    System.out.println(""+a.getBounds().toString());
-                    return new Boolean(false);
+               if (a.getSolid().getBoolean()) {
+                    if (new Rectangle((int) self.x, (int) self.y, self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                        //if not instance id
+                        if (a.getId().getDouble() == self.getId().getDouble()) {
+                            System.out.println("a.id:" + a.getId().getDouble() + " s.id" + self.getId().getDouble());
+                        } else {
+                            System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
+                            System.out.println("" + a.getBounds().toString());
+                            return new Boolean(false);
+                        }
+                    }
                 }
-            }
            }
         }
 return new Boolean(true);
@@ -680,7 +677,22 @@ return new Boolean(true);
 
 public static Object place_empty(Object x, Object y)
 {
-return new Object();
+     for (int i = 0; i < Game.Current.instances.size(); i++) {
+           if (Game.Current.instances.elementAt(i) !=null){
+               Actor a = ((Actor)Game.Current.instances.elementAt(i));
+                if (new Rectangle((int) self.x, (int) self.y, self.sprite.sprite_width, self.sprite.sprite_height).intersects(a.getBounds())) {
+                    //if not instance id
+                    if (a.getId().getDouble() == self.getId().getDouble()) {
+                        System.out.println("a.id:" + a.getId().getDouble() + " s.id" + self.getId().getDouble());
+                    } else {
+                        System.out.println("x" + self.x + "y" + self.y + "width:" + self.sprite.sprite_width);
+                        System.out.println("" + a.getBounds().toString());
+                        return new Boolean(false);
+                    }
+                }
+           }
+        }
+return new Boolean(true);
 }
 
 public static Object place_meeting(Object x, Object y, Object obj)
@@ -1183,7 +1195,8 @@ return new Object();
  */
 public static Object show_debug_message(Object str)
 {
-return new Object();
+    Game.debug.println(str);
+    return new Object();
 }
 
 public static Object variable_global_exists(Object name)

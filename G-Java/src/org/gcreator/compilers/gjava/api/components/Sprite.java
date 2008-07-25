@@ -1,6 +1,7 @@
 package org.gcreator.compilers.gjava.api.components;
 
 import com.golden.gamedev.util.ImageUtil;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 
@@ -214,4 +215,8 @@ public class Sprite extends org.gcreator.compilers.gjava.api.Object {
 //        }
 //        return true;
 //    }
+    
+    public Rectangle getBounds() {
+        return new Rectangle(BBTop, BBLeft, BBRight-BBLeft, BBBottom-BBTop);
+    }
 }

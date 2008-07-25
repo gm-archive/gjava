@@ -39,7 +39,7 @@ public class WelcomeTab extends TabPanel {
         jLabel2.setText(LangSupporter.activeLang.getEntry(38));
         //Graphics g = i.getImage().getGraphics();
         //j = new ImageIcon(new BufferedImage(400, 400, BufferedImage.TYPE_4BYTE_ABGR));
-        jToggleButton1.setSelected(!new File("settings/disable_welcome").exists());
+        jToggleButton1.setSelected((Boolean)Registry.get("Window.showWelcome"));
 
     }
     //private ImageIcon j = null;
@@ -174,14 +174,7 @@ public class WelcomeTab extends TabPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-    try {
-        if (jToggleButton1.isSelected()) {
-            new File("settings/disable_welcome").delete();
-        } else {
-            new File("settings/disable_welcome").createNewFile();
-        }
-    } catch (Exception e) {
-    }
+    Registry.set("Window.showWelcome", jToggleButton1.isSelected());
 }//GEN-LAST:event_jToggleButton1ActionPerformed
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

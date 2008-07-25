@@ -128,7 +128,7 @@ public final class Registry {
                 objects.add(d.readObject());
             }
         } catch (ArrayIndexOutOfBoundsException exc) {
-            exc.printStackTrace();
+            //Wait for exception to close loop
         } finally {
             d.close();
         }
@@ -170,7 +170,6 @@ public final class Registry {
                 Element key = doc.createElement("key");
                 String keyn = keys.next();
                 key.setAttribute("name", keyn);
-                key.setAttribute("index", Integer.toString(i));
                 reg.appendChild(key);
                 en.writeObject(registry.get(keyn));
             }

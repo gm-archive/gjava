@@ -34,7 +34,7 @@ public class Scene2D {
     /**
      * All the instances in this room as a {@link Vector} object
      */
-    public Vector instances = new Vector();
+    public Vector<org.gcreator.compilers.gjava.api.Object> instances = new Vector<org.gcreator.compilers.gjava.api.Object>();
     
     /**
      * All the instances and tiles in this room as a {@link Vector} object sorted by depth

@@ -66,6 +66,7 @@ public final class SettingsIO {
         Registry.create("Graphics.metalTheme", MetalLookAndFeel.getCurrentTheme());
         Registry.create("Window.consoleLocation", 540);
         Registry.create("Window.maximized", false);
+        Registry.create("Window.showWelcome", true);
     }
 
     private static void savetoRegistry() {

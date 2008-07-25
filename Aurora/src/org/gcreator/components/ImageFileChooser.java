@@ -40,6 +40,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.BevelBorder;
 import org.gcreator.core.gcreator;
 
+
 /**
  *
  * @author Srege Humphrey
@@ -50,8 +51,11 @@ public class ImageFileChooser extends JFileChooser {
         setAccessory(p);
         addPropertyChangeListener(p);
     }
-}
 
+    public ImageFileChooser(File f) {
+        super(f);
+    }
+}
 class FilePreviewer extends JComponent implements PropertyChangeListener {
     ImageIcon thumbnail = null;
     JButton button;
