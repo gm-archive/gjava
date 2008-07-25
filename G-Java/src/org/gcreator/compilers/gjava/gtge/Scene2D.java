@@ -113,7 +113,7 @@ public class Scene2D {
         this.backcolor = backcolor;
         this.Caption = Caption;
         
-        R.setSize(width, height);
+        R.setSize(width+5, height+25);
            
         
         

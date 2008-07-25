@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * @author TGMG
  */
 public class Constants extends Object {
-protected static Actor self;
+protected static Actor self,other;
     
 
     public Object getBm_add() {

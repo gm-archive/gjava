@@ -25,6 +25,7 @@ public class Actor extends tile {
     public double id=0;//instance id
 
     public Actor() {
+        
     }
 
     /**

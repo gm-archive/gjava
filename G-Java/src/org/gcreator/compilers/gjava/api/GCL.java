@@ -18,6 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.components.Sprite;
+import sun.security.action.GetIntegerAction;
 
 /**
  * This class is valid GCL, don't use java code here
@@ -6031,6 +6032,7 @@ return new Object();
 
 public static Object action_bounce(Object... obj)
 {
+    System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
 return new Object();
 }
 
@@ -6325,8 +6327,53 @@ public static Object action_message(Object obj)
 return new Object();
 }
 
-public static Object action_move(Object... obj)
+public static Object action_move(Object dirs, Object speed)
 {
+    int no = round(random(string_count(new String("1"),dirs))).getInt()+1;
+    System.out.println("no"+no);
+    int cur=0;
+    self.setSpeed(speed);
+    for (int subi = 1; subi <= 9; subi++)
+				{
+				java.lang.String lcurchar = "" + dirs.toString().substring(subi - 1,subi);
+				if (lcurchar.equals("1")){
+                                    cur++;
+                                    if (cur == no){
+                                    if (subi==1){
+                                    self.setDirection(new Integer(225));
+                                    }
+                                    if (subi==2){
+                                    self.setDirection(new Integer(270));
+                                    }
+                                    
+                                    if (subi==3){
+                                    self.setDirection(new Integer(315));
+                                    }
+                                        
+                                    if (subi==4){
+                                    self.setDirection(new Integer(180));
+                                    }
+                                    
+                                    if (subi==5){
+                                    self.setSpeed(new Integer(0));//stop
+                                    }
+                                    
+                                    if (subi==6){
+                                    self.setDirection(new Integer(0));
+                                    }
+                                    if (subi==7){
+                                    self.setDirection(new Integer(135));
+                                    }
+                                    if (subi==8){
+                                    self.setDirection(new Integer(90));
+                                    }
+                                    if (subi==9){
+                                    self.setDirection(new Integer(45));
+                                    }
+                                    }
+                                    //action_move(new Object[5]);
+                                    
+    }}
 return new Object();
 }
 
@@ -6535,8 +6582,9 @@ public static Object action_set_motion(Object... obj)
 return new Object();
 }
 
-public static Object action_set_score(Object... obj)
+public static Object action_set_score(Object score)
 {
+    setScore(score);
 return new Object();
 }
 
