@@ -89,8 +89,8 @@ public class SceneEditor extends TabPanel {
             aisx = ais.x;
             aisy = ais.y;
             try {
-                aisw = ((Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value)).width;
-                aish = ((Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value)).height;
+                aisw = ((Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value)).width;
+                aish = ((Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value)).height;
             } catch (NullPointerException exc) {
                 aisw = aish = 8;
             }
@@ -142,7 +142,7 @@ public class SceneEditor extends TabPanel {
             aisy = ais.y;
             ImageIcon i;
             try {
-                Sprite j = (Sprite) (project.getFileFor(((Actor) (ais.Sactor.value)).sprite).value);
+                Sprite j = (Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value);
                 i = j.getImageIconAt(0);
             } catch (NullPointerException exc) {
                 i = scenePanel.unknown;

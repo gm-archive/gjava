@@ -20,7 +20,7 @@ import org.gcreator.fileclass.GFile;
 public class ActorInScene implements Serializable {
     static final long serialVersionUID = 1L;
    // public org.gcreator.fileclass.File actor;
-    public GFile Sactor;
+    public int Sactor;
     public int x;
     public int y;
     public double id;
@@ -29,7 +29,7 @@ public class ActorInScene implements Serializable {
         //this.actor = actor;
         if (actor == null)
             throw new NullPointerException("actor may not be null.");
-        Sactor = actor;
+        Sactor = actor.getID();
         this.x = x;
         this.y = y;
         this.id = id;

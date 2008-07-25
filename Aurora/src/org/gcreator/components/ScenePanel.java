@@ -22,6 +22,7 @@ import org.gcreator.units.*;
 import java.util.*;
 import org.gcreator.components.popupmenus.*;
 import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -103,7 +104,8 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         if(root.eraseActorsBelow()){
             Sprite s;
             try{
-                s = (Sprite) act.Sactor.getProject().getFileFor(((Actor) act.Sactor.value).sprite).value;
+                Project pr = root.project;
+                s = (Sprite) pr.getFileFor(((Actor) pr.getFileFor(act.Sactor).value).sprite).value;
             }
             catch(Exception e){
                 s = null;
@@ -182,11 +184,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 System.out.println("[MinDepth]a is null!");
                 return result;
             }
-            if (a.Sactor == null) {
+            if (a.Sactor == -1) {
                 System.out.println("[MinDepth]a.Sactor is null!");
                 return Integer.MAX_VALUE;
             }
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
+            Actor b = (Actor) root.project.getFileFor(a.Sactor).value;
             int d;
             if(b==null) {
                 d = 0;
@@ -222,11 +224,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 return result;
             }
                 
-            if (a.Sactor == null) {
+            if (a.Sactor == -1) {
                 System.out.println("[MaxDepth]a.Sactor is null!");
                 return result;
             }
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
+            Actor b = (Actor) root.project.getFileFor(a.Sactor).value;
             int d;
             if(b!=null) {
                 d = b.depth;
@@ -261,11 +263,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
                 System.out.println("[NextDepth]a is null!");
                 return result;
             }
-            if (a.Sactor == null) {
+            if (a.Sactor == -1) {
                 System.out.println("[NextDepth]a.Sactor is null!");
                 return Integer.MIN_VALUE;
             }
-            org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) a.Sactor.value;
+            Actor b = (Actor) root.project.getFileFor(a.Sactor).value;
             if (b == null) {
                 b = new Actor();
             }
@@ -320,11 +322,11 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
             e = scn.actors.elements();//<ActorInScene>
             while(e.hasMoreElements()){
                 ActorInScene ascn = (ActorInScene) e.nextElement();
-                if (ascn.Sactor == null) {
+                if (ascn.Sactor == -1) {
                     System.out.println("[drawActors]ascn.Sactor is null!");
                     return;
                 }
-                org.gcreator.fileclass.res.Actor b = (org.gcreator.fileclass.res.Actor) ascn.Sactor.value;
+                Actor b = (Actor) root.project.getFileFor(ascn.Sactor).value;
                 if(b == null) {
                     b = new Actor();
                     //continue;

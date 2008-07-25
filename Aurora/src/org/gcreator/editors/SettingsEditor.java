@@ -43,11 +43,11 @@ public class SettingsEditor extends TabPanel {
         managers.add(manager);
     }
     
-    private Vector<org.gcreator.fileclass.GFile> scenelist;
+    private Vector<Integer> scenelist;
     
     @SuppressWarnings("unchecked")
     public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.GFile file) {
-        scenelist = new Vector<org.gcreator.fileclass.GFile>();
+        scenelist = new Vector<Integer>();
         this.file = file;
         this.project = project;
         if(file.value==null||!(file.value instanceof SettingsValues)){
@@ -179,7 +179,7 @@ public class SettingsEditor extends TabPanel {
         if(scn==null||!(scn instanceof Vector)) {
             SceneOrder.setVariable("Scenes", scn = new Vector());
         }
-        scenelist = (Vector/*<org.gcreator.fileclass.File>*/) scn;
+        scenelist = (Vector) scn;
         checkres();
         jPanel10.setLayout(new FlowLayout());
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
@@ -915,8 +915,8 @@ public class SettingsEditor extends TabPanel {
      if (to == from) {
             return;
         }
-        GFile remove = scenelist.remove(from);
-      scenelist.add(to,remove);
+        int remove = scenelist.remove(from);
+      scenelist.add(to, remove);
       from = to;
     }//GEN-LAST:event_jList1MouseDragged
 
@@ -931,8 +931,8 @@ public class SettingsEditor extends TabPanel {
             //0 or -1
             return; //Do nothing
         } //Do nothing
-        org.gcreator.fileclass.GFile o = scenelist.get(pos);
-        org.gcreator.fileclass.GFile p = scenelist.get(pos - 1);
+        int o = scenelist.get(pos);
+        int p = scenelist.get(pos - 1);
         scenelist.set(pos-1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos-1);
@@ -945,8 +945,8 @@ public class SettingsEditor extends TabPanel {
             //-1
             return; //Do nothing
         } //Do nothing
-        org.gcreator.fileclass.GFile o = scenelist.get(pos);
-        org.gcreator.fileclass.GFile p = scenelist.get(pos + 1);
+        int o = scenelist.get(pos);
+        int p = scenelist.get(pos + 1);
         scenelist.set(pos+1, o);
         scenelist.set(pos, p);
         jList1.setSelectedIndex(pos+1);
@@ -958,7 +958,7 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jCheckBox5ActionPerformed
     
     public void addScene(org.gcreator.fileclass.GFile file){
-        scenelist.add(file);
+        scenelist.add(file.getID());
         jList1.updateUI();
     }
     
