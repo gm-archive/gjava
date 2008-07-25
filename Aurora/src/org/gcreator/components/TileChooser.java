@@ -87,7 +87,7 @@ public final class TileChooser extends JComponent {
         if(t == null) {
             return null;
         }
-        return t.getImage();
+        return (ImageIcon) sceneeditor.project.getFileFor(t.image).value;
     }
     
     public int getPreferredWidth() {

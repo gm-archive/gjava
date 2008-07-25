@@ -48,7 +48,7 @@ public class TilesetDropImageMethod implements RefactoringMethod{
         Tileset tileset = (Tileset) refactoring.value;
         if(tileset==null)
             return;
-        if(tileset.image==deleted)
-            tileset.image = null;
+        if(tileset.image==deleted.getID())
+            tileset.image = -1;
     }
 }

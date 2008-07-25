@@ -38,7 +38,8 @@ public class Tile implements Serializable{
             return null;
         }
         if(file.value instanceof Tileset) {
-            ImageIcon i = ((Tileset) file.value).getImage();
+            ImageIcon i = (ImageIcon)
+                    file.getProject().getFileFor(((Tileset) file.value).image).value;
             BufferedImage b = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
             b.createGraphics().drawImage(i.getImage(), -tilex, -tiley, i.getImageObserver());
             return new ImageIcon(b);
@@ -55,7 +56,8 @@ public class Tile implements Serializable{
         if(img==null) {
             return;
         }
-        ImageIcon i = ((Tileset) file.value).getImage();
+        ImageIcon i = (ImageIcon)
+                file.getProject().getFileFor(((Tileset) file.value).image).value;
         BufferedImage b = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         b.createGraphics().drawImage(i.getImage(), -tilex, -tiley, i.getImageObserver());
         g.drawImage(new ImageIcon(b).getImage(),x,y,null);

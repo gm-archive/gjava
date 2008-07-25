@@ -51,20 +51,20 @@ public class TilesetEditor extends TabPanel {
         initComponents();
         jPanel2.setLayout(new FlowLayout());
         String k = "<new image>";
-        if(value.image != null && value.image.value instanceof ImageIcon) {
-            k = value.image.name;
+        if(value.image != -1 && project.getFileFor(value.image).value instanceof ImageIcon) {
+            k = project.getFileFor(value.image).name;
         }
         jPanel2.add(res = new ResourceChooser(project, "image"));
-        if (((Tileset)file.value).image != null) {
-            res.setFile(((Tileset) file.value).image);
+        if (((Tileset)file.value).image != -1) {
+            res.setFile(project.getFileFor(((Tileset) file.value).image));
         }
         res.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 GFile n = res.getFile();
                 if(n != null)
-                    value.image = n;
+                    value.image = TilesetEditor.this.project.getIdFor(n);
                 else
-                    value.image = null;
+                    value.image = -1;
                 jScrollPane1.updateUI();
             }
         });

@@ -18,24 +18,13 @@ import org.gcreator.fileclass.*;
  */
 public class Tileset implements Resource{
     static final long serialVersionUID = 1L;
-    public GFile image;
+    public int image;
     public int startx = 0, starty = 0, bwidth = 0, bheight = 0;
     public int tilew = 20, tileh = 20;
     
-    public ImageIcon getImage(){
-        if(image==null)
-            return null;
-        return (ImageIcon) image.value;
-    }
-    
-    /**@deprecated*/
-    public Tileset(String name){
-        this();
-    }
-    
     public Tileset(/*String name*/){
         //this.name = name;
-        image = null;
+        image = -1;
     }
     
     public Resource clone(){

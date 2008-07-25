@@ -28,9 +28,10 @@ public class TilesetPreviewer extends JComponent{
     private ImageIcon getSourceImage(){
         if(editor==null)
             return null;
-        if(editor.value.image==null)
+        if(editor.value.image==-1)
             return null;
-        org.gcreator.fileclass.GFile imgFile = editor.value.image;
+        org.gcreator.fileclass.GFile imgFile =
+                editor.project.getFileFor(editor.value.image);
         if(imgFile==null)
             return null;
         return (ImageIcon) imgFile.value;
@@ -49,7 +50,8 @@ public class TilesetPreviewer extends JComponent{
         return w+(hsepcount*2);
         */
         try {
-            return ((ImageIcon)editor.value.image.value).getIconWidth();
+            return ((ImageIcon)
+                    editor.project.getFileFor(editor.value.image).value).getIconWidth();
         } catch (NullPointerException exc) {
             return 0;
         } catch (ClassCastException exc) {
@@ -72,7 +74,7 @@ public class TilesetPreviewer extends JComponent{
         return h+(vsepcount*2);
         */
         try {
-            return ((ImageIcon)editor.value.image.value).getIconHeight();
+            return ((ImageIcon) editor.project.getFileFor(editor.value.image).value).getIconHeight();
         } catch (NullPointerException exc) {
             return 0;
         } catch (ClassCastException exc) {
