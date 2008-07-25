@@ -48,9 +48,9 @@ public class SceneDropImageMethod implements RefactoringMethod{
         Scene scene = (Scene) refactoring.value;
         if(scene==null)
             return;
-        Vector img = scene.backgrounds;
-        for(java.lang.Object o : img){
-            if(o==deleted)
+        Vector<Integer> img = scene.backgrounds;
+        for(int o : img){
+            if(o==deleted.getID())
                 while(scene.backgrounds.contains(o))
                     scene.backgrounds.removeElement(o);
         }

@@ -267,7 +267,7 @@ public class SceneEditor extends TabPanel {
             public void actionPerformed(ActionEvent evt) {
                 Scene s = (Scene) file.value;
                 BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
-                bg.image = (org.gcreator.fileclass.GFile) curbg.getFile();
+                bg.image = ((org.gcreator.fileclass.GFile) curbg.getFile()).getID();
                 updateBgImage();
             }
         });
@@ -1626,7 +1626,7 @@ public class SceneEditor extends TabPanel {
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         jComboBox1.setSelectedIndex(bg.hmode);
         jComboBox2.setSelectedIndex(bg.vmode);
-        curbg.setFile(bg.image);
+        curbg.setFile(project.getFileFor(bg.image));
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
 
