@@ -1,19 +1,5 @@
 [G-Creator Plugin List]
 [~Plugin~]
-Author=LuÃ­s Reis
-Core=org.gcreator.compilers.GCS.plugin.GCSharp
-License=LGPL
-Name=StarFish
-Image=./plugins/./plugins/./plugins/./plugins/./plugins/starfish.png
-Jar=G-CSharp.jar
-[~Plugin~]
-Author=TGMG
-Core=org.gcreator.compilers.GJava
-License=BSD
-Name=G-Java
-Image=./plugins/./plugins/
-Jar=G-Java.jar
-[~Plugin~]
 Author=Luís Reis
 Author=The LGM team #but not directly
 Core=org.gcreator.utils.GMImporter.plugin
@@ -22,3 +8,11 @@ Name=GM Importer
 Version=1.0a1
 Image=
 Jar=GM_importer.jar
+[~Plugin~]
+Author=TGMG
+Core=org.gcreator.compilers.GJava
+License=BSD
+Name=G-Java
+Version=3.0m3
+Image=
+Jar=G-Java.jar

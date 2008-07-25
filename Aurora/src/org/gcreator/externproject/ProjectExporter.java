@@ -106,6 +106,10 @@ public class ProjectExporter {
         else
             throw new IOException("Invalid project type");
         
+        res += "\" curid=\"";
+        
+        res += p.curid;
+        
         res += "\">\n";
         
         res += generateManifestForFolder(p, "\t");
@@ -128,6 +132,8 @@ public class ProjectExporter {
                 res += ((GFile) o).type;
                 res += "\" manager=\"";
                 res += IOManager.getPreferredTypeFor((GFile) o);
+                res += "\" id=\"";
+                res += ((GFile) o).getProject().getIdFor((GFile) o);
                 res += "\">";
                 res += ((GFile) o).name;
                 res += "</file>\n";

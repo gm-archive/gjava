@@ -7,6 +7,7 @@ package org.gcreator.externproject;
 
 import java.io.File;
 import java.util.zip.ZipInputStream;
+import org.gcreator.fileclass.Project;
 
 /**
  *
@@ -15,6 +16,7 @@ import java.util.zip.ZipInputStream;
 public class ImportContext {
     private File f = null;
     public ZipInputStream zip = null;
+    public Project p = null;
     
     public ImportContext(File f){
         this.f = f;
@@ -22,5 +24,9 @@ public class ImportContext {
     
     public File getFile(){
         return f;
+    }
+    
+    public Project getProject(){
+        return p;
     }
 }

@@ -10,6 +10,7 @@
 package org.gcreator.fileclass;
 
 import java.util.Enumeration;
+import java.util.Vector;
 import org.gcreator.exceptions.NoSuchFolderException;
 
 /**
@@ -18,7 +19,17 @@ import org.gcreator.exceptions.NoSuchFolderException;
  */
 public abstract class Project extends Folder {
      
-    public java.io.File location = null;
+    public transient java.io.File location = null;
+    /**
+     * Shouldn't be public, but superpackages aren't implemented in Java 6 yet...
+     * Use functions instead
+     */
+    public transient Vector<GFile> files = new Vector<GFile>();
+    /**
+     * Shouldn't be public, but superpackages aren't implemented in Java 6 yet...
+     * Use functions instead
+     */
+    public transient int curid = 1;
     //public javax.swing.tree.DefaultMutableTreeNode froot;
     //The following vectors are for saving, getting resouces etc
     /*public Vector<Actor> actors = new Vector<Actor>();
@@ -29,6 +40,34 @@ public abstract class Project extends Folder {
     
     public Project(){
         super(null);
+    }
+    
+    public int getIdFor(GFile file){
+        return files.indexOf(file);
+    }
+    
+    public GFile getFileFor(int id){
+        try{
+            return files.get(id);
+        }
+        catch(Exception e){
+            return null;
+        }
+    }
+    
+    public int addFile(GFile file){
+        try{
+            System.out.println("Before adding");
+            if(curid>=files.size())
+                files.setSize(curid+1);
+            files.add(curid, file);
+            System.out.println("Added " + curid);
+            return curid++;
+        }
+        catch(Exception e){
+            System.out.println("Failed to add due to " + e);
+            return -1;
+        }
     }
     
     public Project(String name, java.io.File location) {

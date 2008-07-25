@@ -40,7 +40,7 @@ public class GFile extends GObject implements Transferable {
     public transient boolean _read = false;
     public String type; //If file is "a.txt", leave only "txt" here
     public transient org.gcreator.components.TabPanel tabPanel;//Used to kill any tabpanel when this is deleted. 
-    public java.lang.Object value;
+    public java.lang.Object value = null;
     //public ImageIcon treeimage;
     public String xml = ""; // the data xml used to load
 
@@ -48,16 +48,24 @@ public class GFile extends GObject implements Transferable {
     new ObjectStreamField("value", java.lang.Object.class)};
 
     public GFile(Folder root, String name, String type, GObject value) {
+        this(root, name, type, value, false);
+    }
+    
+    public GFile(Folder root, String name, String type, GObject value, boolean artificial) {
         super(name);
         this.root = root;
         this.type = type;
         this.value = value;
         root.add(this);
+        System.out.println("Creating file");
+        if(!artificial){
+            System.out.println("Adding to project");
+            getProject().addFile(this);
+        }
     }
 
     private GFile(String name, String type) {
-        super(name);
-        this.type = type;
+        this(null, name, type, null);
     }
 
     @Override

@@ -23,6 +23,7 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.res.Resource;
 import org.gcreator.fileclass.groups.*;
+import org.gcreator.fileclass.res.Sprite;
 import org.xml.sax.SAXException;
 
 /**
@@ -42,6 +43,8 @@ public class IOManager {
             return f._savetype = "Image";
         if(o instanceof File) //java.io
             return f._savetype = "File";
+        if(o instanceof Sprite)
+            return f._savetype = "Sprite";
         if(o instanceof Resource)
             return f._savetype = "Serialize";
         throw new IOException("Unknown preferred type for"
@@ -108,6 +111,11 @@ public class IOManager {
             else if(o instanceof ImageIcon){
                 ImageIO.write((BufferedImage) ((ImageIcon) o).getImage(), f.type, s);
             }
+        }
+        else if(str.equals("Sprite")){
+            Object o = f.value;
+            ObjectOutputStream out = new ObjectOutputStream(s);
+            out.writeObject(o);
         }
         else if(str.equals("Serialize")){
             Object o = f.value;

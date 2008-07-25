@@ -32,6 +32,7 @@ import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.IOManager;
 import org.gcreator.managers.ProjectTree;
 import org.gcreator.sax.Node;
@@ -124,6 +125,7 @@ public class ProjectImporter {
         }
         String version = null;
         String type = null;
+        String curid = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
        //     System.out.println("n="+n);
@@ -135,8 +137,12 @@ public class ProjectImporter {
             }
             if (n.equals("type")) {
                 type = val;
-            //Ignore other attributes for forward-compatibility reasons
+                continue;
             }
+            if (n.equals("curid")){
+                curid = val;
+            }
+            //Ignore other attributes for forward-compatibility reasons
         }
         if (version == null) {
             throw new SAXException("Malformed project manifest: No project version specified");
@@ -146,6 +152,9 @@ public class ProjectImporter {
         }
         if (type == null) {
             throw new SAXException("Malformed project manifest: No project type specified.");
+        }
+        if (curid == null){
+            throw new SAXException("Malformed project manifest: No curid specified");
         }
         Class ptype = ProjectIO.projectMap.get(type);
         if (ptype == null) {
@@ -171,12 +180,22 @@ public class ProjectImporter {
             throw new SAXException("Constructor threw exception");
         }
 
+        c.p = p;
         String path = c.getFile().getAbsolutePath();
         String name = path.substring(path.lastIndexOf(File.separator)+1);
         name = name.substring(0, name.indexOf("."));
 
         p.name = name;
         p.location = c.getFile();
+        try{
+        p.curid = Integer.parseInt(curid);
+        }
+        catch(Exception e){
+            throw new SAXException("Malformed project manifest: curid must be integer");
+        }
+        if(p.curid<=0){
+            throw new SAXException("Malformed project manifest: curid must be positive");
+        }
 
         //Method e;
         //try {
@@ -224,12 +243,15 @@ public class ProjectImporter {
                 String fname = child.getContent();
                 String type = null;
                 String manager = null;
+                String id = null;
                 for (int j = 0; j < child.getAttributeCount(); j++) {
                     String aname = child.getAttributeName(j);
                     if (aname.equals("type")) {
                         type = child.getAttributeValue(aname);
                     } else if (aname.equals("manager")) {
                         manager = child.getAttributeValue(aname);
+                    } else if(aname.equals("id")) {
+                        id = child.getAttributeValue(aname);
                     } else {
                         throw new SAXException("Invalid manifest. Unknown file attribute " + aname);
                     }
@@ -240,12 +262,25 @@ public class ProjectImporter {
                 if (manager == null) {
                     throw new SAXException("Invalid manifest. Missing content manager");
                 }
+                if (id == null){
+                    throw new SAXException("Invalid manifest. Missing file id");
+                }
                 if (child.getChildrenCount() > 0) {
                     throw new SAXException("Invalid manifest. Unexpected children for file.");
                 }
-                GFile file = new GFile(f, fname, type, null);
+                int cid = 0;
+                try{
+                    cid = Integer.parseInt(id);
+                }
+                catch(Exception e){
+                    throw new SAXException("Invalid manifest: File id must be integer");
+                }
+                if(cid<=0)
+                    throw new SAXException("Invalid manifest: File id must be positive");
+                GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
-                file.value = importContent(type, manager, fname, c.zip);
+                file.value = importContent(c, type, manager, fname, c.zip);
+                f.getProject().files.add(cid, file);
 
             } else if (name.equals("group")) {
               //  System.out.println("Got to group");
@@ -292,7 +327,7 @@ public class ProjectImporter {
         }
     }
 
-    public static Object importContent(String type, String manager, String name, InputStream s)
+    public static Object importContent(ImportContext c, String type, String manager, String name, InputStream s)
             throws IOException, SAXException {
         if(manager.equals("Null")){
             return null;
@@ -320,6 +355,16 @@ public class ProjectImporter {
         if (manager.equals("Image")) {
             BufferedImage b = ImageIO.read(s);
             return new ImageIcon(b);
+        }
+        if (manager.equals("Sprite")){
+            ObjectInputStream stream = new ObjectInputStream(s);
+            try {
+                Sprite sp = (Sprite) stream.readObject();
+                sp.p = c.getProject();
+                return sp;
+            } catch (ClassNotFoundException e) {
+                throw new IOException("Could not read serialized object: Class Not Found");
+            }
         }
         if (manager.equals("Serialize")) {
             ObjectInputStream stream = new ObjectInputStream(s);

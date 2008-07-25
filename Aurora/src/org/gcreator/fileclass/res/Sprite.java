@@ -21,16 +21,16 @@ import org.gcreator.fileclass.Project;
 public class Sprite implements Resource {
     private static final long serialVersionUID = 1;
     //public Vector<org.gcreator.fileclass.File> images;
-    public Vector<String> Simages;
+    public Vector<Integer> Simages;
     public int width,height,originX,originY,BBLeft,BBRight,BBTop,BBBottom;
     public boolean precise = true;
-    private transient Project p;
+    public transient Project p;
     
     public Sprite(Project p/*String name*/)
     {
         //this.name = name;
        // images = new Vector<org.gcreator.fileclass.File>();
-        Simages = new Vector<String>();
+        Simages = new Vector<Integer>();
         this.p = p;
     }
 
@@ -38,7 +38,7 @@ public class Sprite implements Resource {
      * @deprecated Use getImageIconAt instead
      */
     public GImage getImageAt(int pos){
-        return new GImage((ImageIcon) getImageIconAt(pos))/*.image*/;
+        return new GImage(getImageIconAt(pos))/*.image*/;
     }
     
     public ImageIcon getImageIconAt(int pos){
@@ -51,7 +51,9 @@ public class Sprite implements Resource {
         }
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
         try{
-            return p.findFile(Simages.elementAt(pos));
+            int i = Simages.elementAt(pos);
+            System.out.println("getAt("+pos+"): " + i);
+            return p.getFileFor(i);
         }
         catch(Exception e){
             System.out.println("Sprite.java getAt("+pos+"): " + e.toString());
@@ -65,16 +67,18 @@ public class Sprite implements Resource {
     
     public void addToList(org.gcreator.fileclass.GFile i){
         //images.add(i);
-        Simages.add(i.getPath());
+        int j = i.getProject().getIdFor(i);
+        System.out.println("Add " + j);
+        Simages.add(j);
     }
     
-    public GImage firstImage() {
+    public GImage firstImage(Project p) {
         if (countImages() <= 0)
             return null;
         return getImageAt(0);
     }
     
-    public GImage lastImage() {
+    public GImage lastImage(Project p) {
         if (countImages() <= 0)
             return null;
         return getImageAt(countImages()-1);
