@@ -179,20 +179,20 @@ class org::gcreator::Components::Scene
 class org::gcreator::Components::Application
 {
 	public:
-		Application(int argc, char** argv);
-        SDL_Surface* gameInit(int,int,int,String&);
-		SDL_Surface* getScreenSurface();
-        org::gcreator::Interaction::Keyboard* getKeyboard();
-        org::gcreator::Interaction::Mouse* getMouse();
+	   Application(int argc, char** argv);
+        SDL_Surface* gameInit(int,int,int,string&,int);
+	   SDL_Surface* getScreenSurface();
         boolean gameEnd();
         boolean stopped();
+        void setFPS(int);
+	   int getFPS();
+	   void regulateFPS();
 	private:
-		int argc;
-		char** argv;
+	   int fps;
+	   int argc;
+	   char** argv;
         boolean done;
-		SDL_Surface* screen;
-        org::gcreator::Interaction::Keyboard* keyboard;
-        org::gcreator::Interaction::Mouse* mouse;
+	   SDL_Surface* screen;
 };
 
 class org::gcreator::Components::Audio

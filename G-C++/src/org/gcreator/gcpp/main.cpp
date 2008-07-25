@@ -32,7 +32,7 @@ int main(int argc, char** argv)
     cout<<"returned false"<<endl;
     }
     //Background Sprite
-    org::gcreator::Components::Image::Image* iBack = new org::gcreator::Components::Image::Image("test.bmp");
+    /*org::gcreator::Components::Image::Image* iBack = new org::gcreator::Components::Image::Image("test.bmp");
     cout<<"Background loaded"<<endl;
     org::gcreator::Components::Sprite::Sprite* back;
     cout<<"back Sprite created"<<endl;
@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     else
     {
     cout<<"returned false"<<endl;
-    }
+    }*/
 
     //Sound Components
     //org::gcreator::Components::SFX::SFX sound("test.wav");
@@ -55,15 +55,18 @@ int main(int argc, char** argv)
 
     //Actor Components
     org::gcreator::Components::Actor::Actor obj(sprite,100,100,0);
-    obj.setDirection(0);
+    obj.setDirection(0);  
+    org::gcreator::Interaction::Handler event;
 
     cout<<"Entering game loop"<<endl;
 		//int i = 0;
 	while(!theTest.stopped())
 	{
-	sprite->blit(obj.getX(), obj.getY(), -1, ((back.getImageArray())[0])->getImage());
-	back->blit(0,0,-1, load);
-	cout<<"background drawn"<<endl;
+	event.step();
+	//back->blit(0,0,-1, theTest.getScreenSurface());
+	SDL_FillRect(load,&load->clip_rect,SDL_MapRGB(load->format,0,0,0));  
+	sprite->blit(obj.getX(), obj.getY(), -1, theTest.getScreenSurface());
+	//cout<<"background drawn"<<endl;
 	cout<<"sprite drawn"<<endl;
      if( SDL_Flip(theTest.getScreenSurface()) == -1 )
         {
@@ -71,68 +74,41 @@ int main(int argc, char** argv)
         }
 	cout<<"surface flipped"<<endl;
 
-	switch(obj.getDirection())
+	
+	if (event.getKeyPressed(SDLK_RIGHT))
 	{
-	case 0:
 		obj.setX(obj.getX()+5);
-		break;
-	case 90:
-		obj.setY(obj.getY()-5);
-		break;
-	case 180:
-		obj.setX(obj.getX()-5);
-		break;
-	case 270:
-		obj.setY(obj.getY()+5);
-		break;
+		obj.setDirection(0);
 	}
-	//Testing other components
-        /*if((theTest.getMouse())->buttonPressed("left"))
-        {
-             sound.playSFX(0,1);
-             cout<<"lmb pressed"<<endl;
-        }
-        if((theTest.getMouse())->buttonPressed("right"))
-        {
-             if (song.audioPlaying())
-             {
-                  song.stopAudio();
-             }
-             else
-             {
-                  song.playAudio(-1);
-             }
-             cout<<"rmb pressed"<<endl;
-        }*/
-        if((theTest.getKeyboard())->isKeyPressed("Esc")) 
+	if (event.getKeyPressed(SDLK_UP))
+	{
+		obj.setY(obj.getY()-5);
+		obj.setDirection(90);
+	}
+	if (event.getKeyPressed(SDLK_LEFT))
+	{
+		obj.setX(obj.getX()-5);
+		obj.setDirection(180);
+	}
+	if (event.getKeyPressed(SDLK_DOWN))
+	{
+		obj.setY(obj.getY()+5);
+		obj.setDirection(270);
+	}
+	
+	if(event.getMousePressed(MOUSE_R))
+	{
+		cout<<"mouseX="<<event.getMouseX()<<endl;
+		cout<<"mouseY="<<event.getMouseY()<<endl;
+		theTest.gameEnd();
+	}
+        
+     if(event.getKeyPressed(SDLK_ESCAPE)) 
         {
             theTest.gameEnd();
             cout<<"escape pressed"<<endl;
         }
 
-	loop++;
-	if(loop==20)
-	{
-		switch(obj.getDirection())
-		{
-		case 0:
-		obj.setDirection(270);
-		loop=0;
-		break;
-		case 90:
-		obj.setDirection(0);
-		loop=0;
-		break;
-		case 180:
-		obj.setDirection(90);
-		loop=0;
-		break;
-		case 270:
-		obj.setDirection(180);
-		loop=0;
-		break;
-		}
-	}
-	SDL_Delay(100);
+	theTest.regulateFPS();
 	}
 }

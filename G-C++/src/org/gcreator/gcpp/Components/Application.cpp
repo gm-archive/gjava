@@ -9,7 +9,7 @@ org::gcreator::Components::Application::Application(int _argc, char** _argv){
     done=false;
 }
 
-SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string& caption)
+SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int BPP, std::string& caption, int _fps)
 {
         if(SDL_Init(SDL_INIT_EVERYTHING)==-1){
             return NULL;
@@ -19,6 +19,7 @@ SDL_Surface* org::gcreator::Components::Application::gameInit(int W, int H, int 
         if(screen==NULL){
             return NULL;
         }
+        fps=_fps;
         SDL_WM_SetCaption(caption.c_str(), NULL);
 	return screen;
 }
@@ -46,6 +47,21 @@ boolean org::gcreator::Components::Application::gameEnd()
 boolean org::gcreator::Components::Application::stopped()
 {
     return done;
+}
+
+void org::gcreator::Components::Application::setFPS(int _fps)
+{
+	fps=_fps;
+}
+
+int org::gcreator::Components::Application::getFPS()
+{
+	return fps;
+}
+
+void org::gcreator::Components::Application::regulateFPS()
+{
+	SDL_Delay((1000/getFPS()));
 }
 
 #endif
