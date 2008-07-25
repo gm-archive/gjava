@@ -184,7 +184,7 @@ public class SettingsEditor extends TabPanel {
         jPanel10.setLayout(new FlowLayout());
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
-        jList1.setCellRenderer(new SceneCellRenderer());
+        jList1.setCellRenderer(new SceneCellRenderer(project));
         Extensions = value.getValue("Extensions");
         if(Extensions==null){
             value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
@@ -963,7 +963,8 @@ public class SettingsEditor extends TabPanel {
     }
     
     public void removeSelectedScene(){
-        if(jList1.getSelectedValue()!=null) {
+        if(jList1.getSelectedValue()!=null
+                &&jList1.getSelectedIndex()<jList1.getModel().getSize()) {
             scenelist.remove(jList1.getSelectedIndex());
         }
         scenelist.trimToSize();

@@ -12,11 +12,14 @@ package org.gcreator.components.impl;
 import java.awt.*;
 import javax.swing.*;
 import org.gcreator.editors.*;
+import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 
 public class SceneCellRenderer extends JLabel implements ListCellRenderer {
 
-    public SceneCellRenderer() {
+    private Project p;
+    public SceneCellRenderer(Project p) {
+        this.p = p;
         setOpaque(true);
     }
 
@@ -29,7 +32,7 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
         String val = value.toString();
 
         boolean invalid = false;
-        if (!(value instanceof org.gcreator.fileclass.GFile)) {
+        if (!(value instanceof Integer)) {
             invalid = true;
             val = "Invalid scene";
             if (selected) {
@@ -38,13 +41,13 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
                 setForeground(Color.RED);
             }
         } else {
-            Object o = ((org.gcreator.fileclass.GFile) value).value;
+            Object o = p.getFileFor((Integer) value).value;
             if (!(o instanceof Scene)) {
                 invalid = true;
                 val = "Invalid scene";
                 setForeground(Color.RED);
             } else {
-                val = ((org.gcreator.fileclass.GFile) value).name;
+                val = p.getFileFor((Integer) value).name;
             }
         }
 
