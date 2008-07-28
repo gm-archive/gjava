@@ -472,7 +472,7 @@ c=null;
             spriteFile = new org.gcreator.fileclass.GFile(spriteFolder, name, "sprite", null);
             c.sprites.add(spriteFile);
             Sprite val;
-            spriteFile.value = val = new Sprite();
+            spriteFile.value = val = new Sprite(c.pro);
             val.width = in.read4();
             val.height = in.read4();
             val.BBLeft = in.read4();
@@ -586,7 +586,7 @@ c=null;
             if (tileset) {
                 org.gcreator.fileclass.GFile tlimg;
                 tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
-                Tileset t = new Tileset(tlimg.name);
+                Tileset t = new Tileset();
                 tlimg.value = t;
                 t.startx = horizOffset;
                 t.starty = vertOffset;
@@ -841,7 +841,7 @@ c=null;
                           int im = in.read4(); //image
                           //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
                           if (im != -1)
-                          bis.image=c.backgrounds.get(im);
+                          bis.image=c.backgrounds.get(im).getID();
                           bis.xpos = in.read4(); //xpos
                           bis.ypos = in.read4(); //ypos
                           bis.tileh = in.read4(); //tileh
@@ -942,16 +942,16 @@ c=null;
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
-            f.value = a = new Actor(f.name);
+            f.value = a = new Actor();
             c.actors.add(i,f);
             ver = in.read4();
             if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
             int temp = in.read4();
-            a.sprite = null;
+            a.sprite = -1;
             if(temp<c.sprites.size()&&temp>=0){
                 org.gcreator.fileclass.GFile spr = c.sprites.get(temp);
                 if(spr!=null)
-                    a.sprite = spr;
+                    a.sprite = spr.getID();
             }
             a.solid = in.readBool();
             a.visible = in.readBool();
