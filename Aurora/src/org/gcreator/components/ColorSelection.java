@@ -40,7 +40,10 @@ public class ColorSelection extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        setBackground(JColorChooser.showDialog(this, "Select a color", getBackground()));
+        Color c = JColorChooser.showDialog(this, "Select a color", getBackground());
+        if (c != null) {
+            setBackground(c);
+        }
     }//GEN-LAST:event_formMouseClicked
     
     

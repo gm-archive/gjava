@@ -10,12 +10,11 @@
 package org.gcreator.fileclass.res;
 
 import java.awt.Color;
-import java.util.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 /**
  * 
- * @deprecated Use ImageIcon
+ * <strike><strong>&#64;deprecated</strong> Use ImageIcon</strike>
  * @author Serge Humphrey
  */
 public class GImage implements Resource {
@@ -25,17 +24,9 @@ public class GImage implements Resource {
     public boolean transparent;
     public Color transparentColor = Color.WHITE; 
     public int zoom;
+    public ImageIcon transparentImage;
     
-    /**
-     * @param name The name of the resource.
-     * @deprecated Use plain constructor instead
-     */
-    public GImage(String name){
-        this();
-    }
-    
-    public GImage(/*String name*/) {
-        //this.name = name;
+    public GImage() {
         image = null;
     }
     
@@ -45,6 +36,10 @@ public class GImage implements Resource {
         
     public ImageIcon getImage() {
         return image;
+    }
+    
+    public ImageIcon getTransparentImage() {
+        return transparentImage;
     }
     
     public String writeXml() {
@@ -103,16 +98,17 @@ public class GImage implements Resource {
     }
     
      
-    public String exportToHtml(boolean xhtml){
+    public String exportToHtml(boolean xhtml) {
         return "";
     }
     
     @Override
     public Object clone() {
-        GImage a = new GImage(/*name*/);
+        GImage a = new GImage();
         a.image = new ImageIcon(image.getImage());
         a.transparent = transparent;
-        a.transparentColor = transparentColor;  
+        a.transparentColor = transparentColor;
+        a.transparentImage = new ImageIcon(transparentImage.getImage());
         return a;
     }
 }

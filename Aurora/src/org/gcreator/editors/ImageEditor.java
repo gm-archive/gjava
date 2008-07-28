@@ -1,15 +1,13 @@
 package org.gcreator.editors;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.File;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.FileImageInputStream;
@@ -31,7 +29,9 @@ public class ImageEditor extends TabPanel {
     public boolean changed;
     public ImagePane pane;
     public String type;
-
+    public Color bgColor = Color.GRAY;
+    protected ImageIcon nonTransparentImage;
+    
     /** Creates new form ImageEditor2 */
     public ImageEditor(Project p, GFile f) {
         this.project = p;
@@ -85,7 +85,38 @@ public class ImageEditor extends TabPanel {
         file.value = i.getImage();
         return true;
     }
+    
+    /**
+     * Creates Game Maker-like one color transparency.
+     * @param i The ImageIcon to create the image from
+     * @param c The transparent color.
+     * @return An ImageIcon with the given color removed.
+     */
+    protected static ImageIcon createGMTransparency(ImageIcon i, final Color c) {
+        final BufferedImage bufImg = new BufferedImage(i.getIconWidth(), i.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bufImg.createGraphics();
+        g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
+        g.dispose();
 
+        ImageFilter filter = new RGBImageFilter() {
+            public int filterRGB(int x, int y, int rgb) {
+                    if ((rgb | 0xFF000000) == c.getRGB()) {
+                        return 0x00FFFFFF & rgb;
+                    }
+                    return rgb;
+                }
+            };
+        ImageProducer ip = new FilteredImageSource(bufImg.getSource(), filter);
+        Image img = Toolkit.getDefaultToolkit().createImage(ip);
+        
+        //This must be done for the image editor to work.
+        BufferedImage buffer = new BufferedImage(i.getIconWidth(), i.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
+        g = buffer.createGraphics();
+        g.drawImage(img, 0, 0, null);
+        g.dispose();
+        return new ImageIcon(buffer);
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -117,6 +148,7 @@ public class ImageEditor extends TabPanel {
         jButton2 = new javax.swing.JButton();
         saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
         jButton3 = new javax.swing.JButton();
+        colorSelection3 = new org.gcreator.components.ColorSelection();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
         jPanel1.setFocusable(false);
@@ -347,6 +379,25 @@ public class ImageEditor extends TabPanel {
             }
         });
 
+        colorSelection3.setBackground(java.awt.Color.gray);
+        colorSelection3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        colorSelection3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                colorSelection3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout colorSelection3Layout = new javax.swing.GroupLayout(colorSelection3);
+        colorSelection3.setLayout(colorSelection3Layout);
+        colorSelection3Layout.setHorizontalGroup(
+            colorSelection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 23, Short.MAX_VALUE)
+        );
+        colorSelection3Layout.setVerticalGroup(
+            colorSelection3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 24, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -361,7 +412,9 @@ public class ImageEditor extends TabPanel {
                     .addComponent(jButton2)))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 405, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addComponent(colorSelection3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
@@ -378,11 +431,13 @@ public class ImageEditor extends TabPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(saveResourcePanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(colorSelection3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -392,7 +447,13 @@ private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIR
 }//GEN-LAST:event_jSpinner1StateChanged
 
 private void colorSelection1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection1MouseClicked
+    if (colorSelection1.getBackground() == null) {
+        return;
+    }
     i.transparentColor = colorSelection1.getBackground();
+    if (i.transparent) {
+        i.transparentImage = createGMTransparency(nonTransparentImage, colorSelection1.getBackground());
+    }
     updateScroll();
 }//GEN-LAST:event_colorSelection1MouseClicked
 
@@ -411,6 +472,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (fc.getSelectedFile() != null) {
             java.io.File _file = fc.getSelectedFile();
             type = _file.getName().substring(_file.getName().lastIndexOf(".") + 1);
+            ImageIcon img = null;
             if (type.toLowerCase().equals("gif")) {
                 System.out.println("GIF!");
                 //                    boolean animated = false;
@@ -425,12 +487,21 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 for (int i = 0; i < reader.getNumImages(true); i++) {
                     b[i] = reader.read(i);
                 }
-                i.image = new ImageIcon(b[0]);
+                img = new ImageIcon(b[0]);
             //file.treevalue = File.getScaledIcon(new ImageIcon(b[1]));
             } else {
-                i.image = new ImageIcon(ImageIO.read(_file));
+                img = new ImageIcon(ImageIO.read(_file));
             //file.treevalue = File.getScaledIcon((ImageIcon) file.value);
             }
+            
+            if (jCheckBox1.isSelected() && colorSelection1.getBackground() != null) {
+                nonTransparentImage = img;
+                img = createGMTransparency(img, colorSelection1.getBackground());
+            } else {
+                nonTransparentImage = null;
+            }
+            
+            i.image = img;
             org.gcreator.core.gcreator.panel.workspace.updateUI();
             jScrollPane1.updateUI();
         }
@@ -488,7 +559,18 @@ private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIR
 
 private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
     changed = true;
-    i.transparent = jCheckBox1.isSelected();
+    i.transparent = !i.transparent;
+    if (i.image != null) {
+        if (jCheckBox1.isSelected() && colorSelection1.getBackground() != null) {
+            nonTransparentImage = i.image;
+            i.transparentImage = createGMTransparency(nonTransparentImage, colorSelection1.getBackground());
+        } else if (!jCheckBox1.isSelected()) {
+            i.image = nonTransparentImage;
+            nonTransparentImage = null;
+            i.transparentImage = null;
+        }
+        updateScroll();
+    }
 }//GEN-LAST:event_jCheckBox1ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -496,7 +578,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             @Override
         public void paint(Graphics g) {
             super.paint(g);
-            g.drawImage(i.image.getImage(), 0, 0, i.image.getImageObserver());
+            g.drawImage(i.transparentImage.getImage(), 0, 0, i.transparentImage.getImageObserver());
         }
     };
    // com.sun.jna.examples.WindowUtils.setWindowAlpha(d, 0); - doren't work
@@ -515,6 +597,11 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     d.setVisible(true);
 }//GEN-LAST:event_jButton3ActionPerformed
 
+private void colorSelection3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_colorSelection3MouseClicked
+    bgColor = colorSelection3.getBackground();
+    pane.repaint();
+}//GEN-LAST:event_colorSelection3MouseClicked
+
     public void deactivate5() {
         sel5 = false;
         pane.mergeSelection();
@@ -531,6 +618,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.ButtonGroup buttonGroup1;
     private org.gcreator.components.ColorSelection colorSelection1;
     public org.gcreator.components.ColorSelection colorSelection2;
+    private org.gcreator.components.ColorSelection colorSelection3;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

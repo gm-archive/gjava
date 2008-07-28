@@ -14,6 +14,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.swing.*;
@@ -416,9 +417,13 @@ public class ImagePane extends JPanel {
 
         ImageIcon img = editor.i.getImage();
 
-        g.setColor(editor.i.transparentColor);
-        g.fillRect(0, 0, getWidth(), getHeight());
-
+        Rectangle2D.Float r2d = new Rectangle2D.Float(0, 0, getWidth(), getHeight());
+        Graphics2D g2 = (Graphics2D) g;
+        Paint oldPaint = g2.getPaint();
+        g2.setPaint(editor.bgColor);
+        g2.fill(r2d);
+        g2.setPaint(oldPaint);
+        
         g.drawImage(img.getImage(), 0, 0, (int) (img.getIconWidth() * getZoom()),
                 (int) (img.getIconHeight() * getZoom()), img.getImageObserver());
 
