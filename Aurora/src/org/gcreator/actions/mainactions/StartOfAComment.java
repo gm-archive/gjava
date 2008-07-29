@@ -22,7 +22,7 @@ import org.gcreator.managers.LangSupporter;
  */
 public class StartOfAComment extends ActionPattern{
     
-    private static ImageIcon icon = null;//;new ImageIcon(StartOfAComment.class.getResource("/org/gcreator/actions/images/Start_Block.png"));
+    private static ImageIcon icon = new ImageIcon(StartOfAComment.class.getResource("/org/gcreator/actions/images/begincomment.png"));
     public StartOfAComment(){
         super();
     }

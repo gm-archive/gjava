@@ -20,7 +20,7 @@ import org.gcreator.actions.ActionPattern;
  * @author luis
  */
 public class Exit extends ActionPattern{
-    private static ImageIcon icon = null;//new ImageIcon(StartOfABlock.class.getResource("/org/gcreator/actions/images/Start_Block.png"));
+    private static ImageIcon icon = new ImageIcon(Exit.class.getResource("/org/gcreator/actions/images/exit.png"));
     public Exit(){
         super();
     }

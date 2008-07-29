@@ -28,8 +28,8 @@ public class Repeat extends ActionPattern{
     
     public String times = "1";
     
-    public static ImageIcon img = null;
-    
+    public static ImageIcon img = new ImageIcon(Repeat.class.getResource("/org/gcreator/actions/images/repeat.png"));;
+   
     public Repeat(){
         super();
     }

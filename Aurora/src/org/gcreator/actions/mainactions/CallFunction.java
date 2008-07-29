@@ -28,7 +28,7 @@ public class CallFunction extends ActionPattern {
     public String fname = "f";
     public Boolean relative = false;
     public ArgumentList args = new ArgumentList();
-    public static ImageIcon icon = null;
+    public static ImageIcon icon = new ImageIcon(CallFunction.class.getResource("/org/gcreator/actions/images/function.png"));;
     
 
 //    private static final ObjectStreamField[] serialPersistentFields

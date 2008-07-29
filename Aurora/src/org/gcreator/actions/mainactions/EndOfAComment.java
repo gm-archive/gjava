@@ -19,7 +19,7 @@ import javax.swing.*;
  */
 public class EndOfAComment extends ActionPattern{
     
-    private static ImageIcon icon = null;//;new ImageIcon(StartOfAComment.class.getResource("/org/gcreator/actions/images/Start_Block.png"));
+    private static ImageIcon icon = new ImageIcon(EndOfAComment.class.getResource("/org/gcreator/actions/images/endcomment.png"));
     public EndOfAComment(){
         super();
     }
