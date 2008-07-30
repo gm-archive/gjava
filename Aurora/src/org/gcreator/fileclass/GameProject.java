@@ -260,9 +260,11 @@ public class GameProject extends Project{
         project.add(new GCLGroup(project, "$216"));
         //project.add(new SnippetGroup(project, "Snippets"));
         project.add(new Group(project, "$217"));
-        org.gcreator.fileclass.GFile a = new org.gcreator.fileclass.GFile(project, "$218", "settings", null);
-        a.editable = false;
-        a.value = new org.gcreator.fileclass.res.SettingsValues();
+        GFile settings = new GFile(project, "$218", "settings", null);
+        settings.editable = false;
+        settings.value = new org.gcreator.fileclass.res.SettingsValues();
+        GFile info = new GFile(project, "$289", "rtf", null);
+        info.editable = false;
         
         for(GObject o : project.childNodes)
             o.allowDrag = false;

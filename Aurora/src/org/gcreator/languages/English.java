@@ -337,6 +337,7 @@ public class English extends Dictionary {
         entry[286] = "Add Snippet";
         entry[287] = "Theme";
         entry[288] = "Close tab";
+        entry[289] = "Game Information";
         
         try{
             init();

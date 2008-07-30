@@ -339,6 +339,7 @@ public class Portuguese extends Dictionary{
         entry[286] = "Adicionar Snippet";
         entry[287] = "Tema";
         entry[288] = "Fechar separador";
+        entry[289] = "Informação de Jogo";
         
         try{
             init();

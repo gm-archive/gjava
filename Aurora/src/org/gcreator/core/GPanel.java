@@ -43,6 +43,7 @@ import org.gcreator.units.*;
  * @author TGMG
  */
 public class GPanel extends JPanel {
+    
     //<editor-fold defaultstate="collapsed" desc="Variables">
     private ICore icore;
     public boolean istabs; //True - tabs; False - MDI
@@ -545,6 +546,7 @@ public class GPanel extends JPanel {
     //setVisible(true);
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
     public boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -592,6 +594,7 @@ public class GPanel extends JPanel {
         workspace.updateUI();
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
     private void closeAllTabs(DefaultMutableTreeNode node, Project project) {
         for (int i = 0; i < node.getChildCount(); i++) {
@@ -613,6 +616,7 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
         for (java.lang.Object o : from) {
@@ -911,6 +915,10 @@ public class GPanel extends JPanel {
             } catch (WrongResourceException ex) {
                 Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if(file.type.equals("rtf")){
+            TabPanel tp = new RTFEditor(this.getCurrentProject(), file);
+            file.tabPanel = tp;
+            addEWindow(tp, file.name, img);
         } else {
             TabPanel tp = new PlainTextEditor(file, this.getCurrentProject());//All unmanaged file formats
             file.tabPanel = tp;
@@ -958,6 +966,7 @@ public class GPanel extends JPanel {
         return icore;
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="dispose">
     public void dispose() {
         if (!gcreator.applet && gcreator.plugload) {
@@ -982,6 +991,7 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         SettingsIO.saveSettings();
@@ -992,6 +1002,7 @@ public class GPanel extends JPanel {
         ScriptThemeManager.save();
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int)">
     public void addWindow(TabPanel panel, int title) {
         addWindow(panel, LangSupporter.activeLang.getEntry(title), null);
@@ -1135,6 +1146,7 @@ public class GPanel extends JPanel {
     //winlist.updateUI();
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="installFileEditor">
     public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
@@ -1166,6 +1178,7 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="getCurrentProject">
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
@@ -1181,6 +1194,7 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="getCurrentFolder">
     public Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
@@ -1210,6 +1224,7 @@ public class GPanel extends JPanel {
         return node.object;
     }
     //</editor-fold>
+    
     public boolean addPanelSelectedListener(PanelSelectedListener psl) {
         return psel.add(psl);
     }
@@ -1238,6 +1253,7 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="createPaletteFrame()">
     public JInternalFrame createPaletteFrame() {
         JInternalFrame f = new JInternalFrame();
@@ -1260,6 +1276,7 @@ public class GPanel extends JPanel {
         return f;
     }
     //</editor-fold>
+    
     private void selectedDocumentChanged(TabPanel tabpanel) {
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
@@ -1871,12 +1888,14 @@ public class GPanel extends JPanel {
         CloseProject(getCurrentProject());
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
     }
     //</editor-fold>
+    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
