@@ -86,7 +86,24 @@ public class TestActor2 extends Actor {
         System.out.println("testActor2 is created!");
         setSolid(new Integer(1));
         // execute_shell(new String("C:\\game.exe"), new String(""));
+        min();
         keyboard_set_map(new Integer(38), new Integer(39));
+
+        Object result= new Object();
+double start = System.currentTimeMillis();
+//    for (int i=0;i<100000000;i++)
+//        {
+//           // result=new Integer(1).add(new Integer(9));
+//        }
+Integer i=new Integer(0);
+Integer one = new Integer(100000000);
+Integer l=new Integer(1);
+ for (i.setValue(0);i.lt(100000000)/*.getBoolean()*/;i.setadd(1))
+        {
+           // result=new Integer(1).add(new Integer(9));
+        }
+    double end = System.currentTimeMillis()-start;
+        System.out.println("end of loop:"+end);
 
 
              final Integer arg0=new Integer(10),  arg1 = new Integer(2);
@@ -98,7 +115,7 @@ public class TestActor2 extends Actor {
             
              }catch(Exception ee){ee.printStackTrace();}
         //test new system
-       double start = System.currentTimeMillis();
+     //  double start = System.currentTimeMillis();
 //       for (double i=0;i<999679999;i++)
 //       testfunction(convert(10),convert(2));
        //testfunction(new Integer(10),new Integer(2));

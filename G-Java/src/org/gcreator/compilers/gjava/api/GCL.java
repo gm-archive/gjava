@@ -185,23 +185,29 @@ return new Double(Math.power(n.getDouble(),x.getDouble()));
 
 public static Object min(Object... x)
 {
+    try{
     double min=x[0].getDouble();
     for (Object n : x) {
               if (n.getDouble() <min)
                   min=n.getDouble();
-              
+              min();
           }
 return new Double(min);
+}catch(Exception e){
+    return new Integer(-1);}
 }
 
-public static Object max(Object x[])
+public static Object max(Object... x)
 {
+    try{
 double max=x[0].getDouble();
     for (Object n : x) {
               if (n.getDouble() >max)
                   max=n.getDouble();
           }
 return new Double(max);
+    }catch(Exception e){
+    return new Integer(-1);}
 }
 
 public static Object mean(Object... x)
@@ -6001,6 +6007,7 @@ return new Object();
 
 public static Object d3d_model_cylinder(Object ind, Object x1, Object y1, Object z1, Object x2, Object y2, Object z2, Object hrepeat, Object vrepeat, Object closed, Object steps)
 {
+    
 return new Object();
 }
 

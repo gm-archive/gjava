@@ -52,6 +52,11 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
          return this;
     }
 
+    public Object setadd(double o) {
+         i+= o;
+         return this;
+    }
+
     @Override
     public Object add(Object o) {
         return new Integer(i+ (int) (o.getDouble()));
@@ -125,6 +130,32 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
     public boolean getBoolean() {
         return !(i == 0);
     }
+
+    @Override
+    public Boolean gt(Object obj) {
+        return new Boolean(i>obj.getInt());
+    }
+
+    @Override
+    public Boolean gte(Object obj) {
+        return new Boolean(i>=obj.getInt());
+    }
+
+    @Override
+    public Boolean lt(Object obj) {
+        return new Boolean(i<obj.getInt());
+    }
+
+    public boolean lt(int obj) {
+        return /*new Boolean*/(i<obj);
+    }
+
+    @Override
+    public Boolean lte(Object obj) {
+        return new Boolean(i>=obj.getInt());
+    }
+
+
 
     @Override
     public String getString() {

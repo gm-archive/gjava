@@ -41,6 +41,7 @@ import org.gcreator.fileclass.Project;
 
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Scene;
+import org.gcreator.fileclass.res.SettingsValues;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.PlatformCore;
@@ -96,24 +97,27 @@ public class GJava extends PlatformCore {
         }
     }
 
+    @Override
     public void parseSprite(Sprite s, GFile f) {
         //super.parseSprite(s);
 
         loadSprites += f.name + ",";
         System.out.println("parse sprite:"+f.name);
         createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBLeft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
+        System.out.println("size of sprite:"+s.Simages.size());
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
-            org.gcreator.fileclass.GFile a = (org.gcreator.fileclass.GFile) e.nextElement();
+            org.gcreator.fileclass.GFile a = project.getFileFor((Integer)e.nextElement());
             createSprites += "getImage(\"" + a.name + "."+ a.type + "\"),";
                 //System.out.println("Write sprite:"+a.name+a.type);
         //if(a!=null)
-            } catch(Exception ee){System.out.println("exception"+ee.getLocalizedMessage());}
+            } catch(Exception ee){System.out.println(" Exception!!!!:"+ee.getLocalizedMessage());}
         }
 
         createSprites = createSprites.substring(0, createSprites.length() - 1) + "});";
     }
 
+    @Override
     public void parseActor(Actor a, GFile f) {
         System.out.println("Parse Actor:"+f.name);
         try {
@@ -127,13 +131,15 @@ public class GJava extends PlatformCore {
             print(actor, "import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import org.gcreator.compilers.gjava.api.Actor;import org.gcreator.compilers.gjava.api.Object;import org.gcreator.compilers.gjava.api.String;import org.gcreator.compilers.gjava.api.Integer;import org.gcreator.compilers.gjava.api.Double;import org.gcreator.compilers.gjava.api.Boolean;");
             print(actor, "");
 
+            System.out.println("it extends:"+a.extend);
+
             print(actor, "public class " + f.name + " extends Actor {");
             print(actor, "");
             print(actor, "    " + f.name + "(int X,int Y,double instance_id) {");
-            if (a.sprite == null) {
+            if (a.sprite == 0) {
                 print(actor, "        super(\"" + f.name + "\", null, " + a.solid + ", " + a.visible + ", " + a.depth + ", " + a.persistent + ");");
             } else {
-                print(actor, "        super(\"" + f.name + "\", Game." + a.sprite.name + "," + a.solid + ", " + a.visible + ", " + a.depth + ".0 , " + a.persistent + ");");
+                print(actor, "        super(\"" + f.name + "\", Game." + project.getFileFor(a.sprite).name + "," + a.solid + ", " + a.visible + ", " + a.depth + ".0 , " + a.persistent + ");");
             }
             print(actor, "        xstart = X;xprevious=X;yprevious=Y;");
             print(actor, "        ystart = Y;");
@@ -269,9 +275,9 @@ public class GJava extends PlatformCore {
                 print(actor, "    {");
                 for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
                     org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
-                    System.out.println("about to parse actions");
+                    System.out.println("About to parse event actions with code:"+ G_Java_aa.getGCL());
                     print(actor, parseGCL(G_Java_aa.getGCL(), this));
-                    System.out.println("action parsed:" + G_Java_aa.getGCL());
+                    System.out.println("Action finished parseing!");
                 //parseGCL(";;; {}",this);
                 }
                 print(actor, "    }");
@@ -387,9 +393,13 @@ public class GJava extends PlatformCore {
         print(scene, "    SortDepth();");
         print(scene, "    }");
         print(scene, "    private void setupScene() {");
+//project.getFileFor(fonts)
+       ((ActorInScene)(s.actors.get(0))).Sactor=1;
 
         for (int i = 0; i < s.actors.size(); i++) {
-            print(scene, "instances.add(new " + ((ActorInScene) s.actors.get(i)).Sactor.name + "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + "," + ((ActorInScene) s.actors.get(i)).id + "));");
+            print(scene, "instances.add(new " + 
+                    project.getFileFor(((ActorInScene)(s.actors.get(0))).Sactor).name +
+                    "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + "," + ((ActorInScene) s.actors.get(i)).id + "));");
         }
 
 
@@ -403,6 +413,7 @@ public class GJava extends PlatformCore {
     }
 
     public void createFolders() {
+        System.out.println("Moving folders");
         try {
             FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
@@ -534,22 +545,22 @@ public class GJava extends PlatformCore {
         //print(game, "" + loadscene);
         print(game, "scenes = new Scene2D[]{");
         int i = gcreator.panel.getMainProject().findFromName("$218");
-        System.out.println("get scenes");
+        //System.out.println("get scenes");
         boolean hasscenes = false;
         if (i > 0) {
             GObject ff = gcreator.panel.getMainProject().childAt(i);
-            System.out.println("1");
+            //System.out.println("1");
             if (ff != null && ff instanceof GFile) {
-                System.out.println("2");
+                //System.out.println("2");
                 GFile f = (GFile) ff;
                 if (f.value != null && f.value instanceof org.gcreator.fileclass.res.SettingsValues) {
-                    System.out.println("3");
+                    //System.out.println("3");
                     org.gcreator.fileclass.res.SettingsValues s = (org.gcreator.fileclass.res.SettingsValues) f.value;
-                    System.out.println("s done" + s);
+                    //System.out.println("s done" + s);
 
                     org.gcreator.fileclass.res.TabValues Scenes = s.getValue("Scene Order");
 
-                    System.out.println("scenes:" + Scenes);
+                    //System.out.println("scenes:" + Scenes);
                     if (Scenes == null) {
                         JOptionPane.showMessageDialog(null, "Error you haven't set the scene order, set it in the game settings first!", "G-Java", JOptionPane.ERROR_MESSAGE);
                         System.out.println("null scenes");
@@ -558,7 +569,7 @@ public class GJava extends PlatformCore {
                     //System.out.println("Size:"+v.size());
                     for (Enumeration t = v.elements(); t.hasMoreElements();) {
 
-                        System.out.println("has scenes");
+                      //  System.out.println("has scenes");
                         GFile o = (GFile) t.nextElement();
                         hasscenes = true;
                         print(game, "new " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
@@ -596,10 +607,12 @@ public class GJava extends PlatformCore {
     }
 
     public void run(Project project) {
+        this.project=project;
         if (project == null) {
             System.out.println("Error: Can't compile null!");
             return;
         }
+
         System.out.println("Saving...");
         if (gcreator.panel.istabs) {
             for (int ii = 0; ii < gcreator.panel.tabs.getTabCount(); ii++) {
@@ -631,27 +644,52 @@ public class GJava extends PlatformCore {
         utilities.addStringMessage("Building/running using G-Java");
         utilities.addStringMessage("Creating java files...");
         System.out.println("Converting to java with G-java");
-        
+        final Project pr=project;
+        new Thread(){
+            @Override
+          public void run(){
+                p.jProgressBar1.setValue(5);
+            p.jLabel2.setText("Task: Moving runner folders");
         createFolders();
        // super.run(project);
         //preDo(project);
-                    putFolder(project);
+        System.out.println("start parsing files");
+                    putFolder(pr);
           //          postDo(project);
+                    p.jProgressBar1.setValue(90);
         try {
+            System.out.println("create java files");
+             p.jLabel2.setText("Task: Writing java files...");
             createJavaFiles();
+            p.jProgressBar1.setValue(100);
+            p.jLabel2.setText("Finished, time to compile");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        p.dispose();
-        GJavaCompiler compiler = new GJavaCompiler();
+                    GJavaCompiler compiler = new GJavaCompiler();
+                     p.dispose();
+
         p.setVisible(false);
+            }
+        }.start();
+       
     }
 
+    /*
+     *
+     * Parse the settings
+     *
+     */
     @Override
-    public void parseSettings(String string, String name) {
-    //  System.out.println("got here!");
+    public void parseSettings(SettingsValues string, String name) {
+      System.out.println("parse the settings here");
     }
 
+    /*
+     *
+     * Currently unused
+     *
+     */
     @Override
     public Object onSignalReceived(PluginCore caller, Object signal) {
         try {
@@ -677,6 +715,11 @@ public class GJava extends PlatformCore {
         return "G-Java";
     }
 
+    /*
+     *
+     * This will check if a variable exists
+     *
+     */
     @Override
     public boolean checkvariable(String name) {
         //return super.checkvariable(name);
@@ -687,17 +730,17 @@ public class GJava extends PlatformCore {
             Method m = org.gcreator.compilers.gjava.api.Actor.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
             return true;
         } catch (NoSuchMethodException ex) {
-            System.out.println("no method" + ex);
+            //System.out.println("no method" + ex);
             try {
                 Method m = Variables.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
                 return true;
             } catch (Exception e) {
-                System.out.println("no method" + e);
+                //System.out.println("no method" + e);
                 try {
                     Method m = Constants.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
                     return true;
                 } catch (Exception ee) {
-                    System.out.println("no method" + ee);
+                    //System.out.println("no method" + ee);
                 }
             }
 
@@ -708,6 +751,11 @@ public class GJava extends PlatformCore {
         return false;
     }
 
+    /*
+     *
+     * This will check if a function exists
+     *
+     */
     public boolean checkfunction(String name) {
         //return super.checkvariable(name);
 //       System.out.println("Check function:"+name);
@@ -737,6 +785,10 @@ public class GJava extends PlatformCore {
 //        System.out.println("G-java var");
 //        return type+ " "+vars+";";
 //    }
+
+    /*
+     * Uninstall the g-java plugin
+     */
     @Override
     public void uninstall() {
         PluginHelper.removeMenuItem(3, menuItem);
