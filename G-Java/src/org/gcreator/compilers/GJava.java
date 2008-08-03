@@ -272,24 +272,24 @@ public class GJava extends PlatformCore {
                 }
 
                 //Parse actions
-                print(actor, "    {");
-                for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
-                    org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
-                    System.out.println("About to parse event actions with code:"+ G_Java_aa.getGCL());
-                    print(actor, parseGCL(G_Java_aa.getGCL(), this));
-                    System.out.println("Action finished parseing!");
-                //parseGCL(";;; {}",this);
-                }
-                print(actor, "    }");
+//                print(actor, "    {");
+//                for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
+//                    org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
+//                    System.out.println("About to parse event actions with code:"+ G_Java_aa.getGCL());
+//                    print(actor, parseGCL(G_Java_aa.getGCL(), this));
+//                    System.out.println("Action finished parseing!");
+//                //parseGCL(";;; {}",this);
+//                }
+//                print(actor, "    }");
 
 
-                if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent) {
-                    print(actor, "    }");
-                }
-                if (ev instanceof org.gcreator.events.CollisionEvent) {
-                    print(actor, "    }");
-                    print(actor, "    }");
-                }
+//                if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent) {
+//                    print(actor, "    }");
+//                }
+//                if (ev instanceof org.gcreator.events.CollisionEvent) {
+//                    print(actor, "    }");
+//                    print(actor, "    }");
+//                }
 
             
             else if (ev instanceof org.gcreator.events.KeyPress) 
@@ -393,12 +393,11 @@ public class GJava extends PlatformCore {
         print(scene, "    SortDepth();");
         print(scene, "    }");
         print(scene, "    private void setupScene() {");
-//project.getFileFor(fonts)
-       ((ActorInScene)(s.actors.get(0))).Sactor=1;
 
         for (int i = 0; i < s.actors.size(); i++) {
+            System.out.println("data:i="+i+"Sactor="+((ActorInScene)(s.actors.get(i))).Sactor+" name="+project.getFileFor(((ActorInScene)(s.actors.get(i))).Sactor).name);
             print(scene, "instances.add(new " + 
-                    project.getFileFor(((ActorInScene)(s.actors.get(0))).Sactor).name +
+                    project.getFileFor(((ActorInScene)(s.actors.get(i))).Sactor).name +
                     "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + "," + ((ActorInScene) s.actors.get(i)).id + "));");
         }
 
