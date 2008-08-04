@@ -99,7 +99,8 @@ public class plugin extends PluginCore{
                 System.out.println("GM6Importer");
                 GM6Importer imp = new GM6Importer(fname);
             }catch(Exception e){
-                System.out.println(">>" + e.toString());
+                System.out.println(">>" + e.toString()+" "+e.getMessage()+" "+e.getStackTrace());
+                e.printStackTrace();
             }
         }
     }

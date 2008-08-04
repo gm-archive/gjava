@@ -28,6 +28,7 @@ import org.gcreator.actions.mainactions.Else;
 import org.gcreator.actions.mainactions.EndOfABlock;
 import org.gcreator.actions.mainactions.ExecuteCode;
 import org.gcreator.actions.mainactions.Exit;
+import org.gcreator.actions.mainactions.If;
 import org.gcreator.actions.mainactions.Repeat;
 import org.gcreator.actions.mainactions.SetVariable;
 import org.gcreator.actions.mainactions.StartOfABlock;
@@ -35,6 +36,7 @@ import org.gcreator.components.ProjectTypes;
 import org.gcreator.core.*;
 import org.gcreator.events.AlarmEvent;
 import org.gcreator.events.BeginStepEvent;
+import org.gcreator.events.CollisionEvent;
 import org.gcreator.events.CreateEvent;
 import org.gcreator.events.DestroyEvent;
 import org.gcreator.events.DrawEvent;
@@ -42,6 +44,7 @@ import org.gcreator.events.EndStepEvent;
 import org.gcreator.events.KeyPress;
 import org.gcreator.events.KeyReleased;
 import org.gcreator.events.KeyboardEvent;
+import org.gcreator.events.MouseEvent;
 import org.gcreator.events.StepEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GameProject;
@@ -55,16 +58,16 @@ import org.gcreator.plugins.*;
 import org.gcreator.units.ActorInScene;
 import org.gcreator.units.BackgroundInScene;
 import org.gcreator.units.TimelineStep;
+
 /**
  *
- * @author Luís
+ * @author TGMG, Luís
  */
 public class GM6Importer {
 
     public static final byte LOADBAR_NONE = 0;
     public static final byte LOADBAR_DEFAULT = 1;
     public static final byte LOADBAR_CUSTOM = 2;
-    
     public static final byte EV_CREATE = 0;
     public static final byte EV_DESTROY = 1;
     public static final byte EV_ALARM = 2;
@@ -76,7 +79,6 @@ public class GM6Importer {
     public static final byte EV_DRAW = 8;
     public static final byte EV_KEYPRESS = 9;
     public static final byte EV_KEYRELEASE = 10;
-    
     public static final byte EXEC_NONE = 0;
     public static final byte EXEC_FUNCTION = 1;
     public static final byte EXEC_CODE = 2;
@@ -93,18 +95,15 @@ public class GM6Importer {
             this.pro = pro;
             this.in = in;
         }
-        
         Vector<org.gcreator.fileclass.GFile> sprites = new Vector<org.gcreator.fileclass.GFile>();
         Vector<org.gcreator.fileclass.GFile> backgrounds = new Vector<org.gcreator.fileclass.GFile>();
         Vector<org.gcreator.fileclass.GFile> paths = new Vector<org.gcreator.fileclass.GFile>();
         Vector<org.gcreator.fileclass.GFile> timelines = new Vector<org.gcreator.fileclass.GFile>();
-
         Vector<org.gcreator.fileclass.GFile> actors = new Vector<org.gcreator.fileclass.GFile>();
-                    Vector<org.gcreator.fileclass.GFile> scenes = new Vector<org.gcreator.fileclass.GFile>();
-                    Vector<org.gcreator.fileclass.GFile> scripts = new Vector<org.gcreator.fileclass.GFile>();
-                    Vector<org.gcreator.fileclass.GFile> fonts = new Vector<org.gcreator.fileclass.GFile>();
-                    Vector<org.gcreator.fileclass.GFile> sounds = new Vector<org.gcreator.fileclass.GFile>();
-
+        Vector<org.gcreator.fileclass.GFile> scenes = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> scripts = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> fonts = new Vector<org.gcreator.fileclass.GFile>();
+        Vector<org.gcreator.fileclass.GFile> sounds = new Vector<org.gcreator.fileclass.GFile>();
     }
 
     private static GmFormatException versionError(String error, String res, int ver) {
@@ -117,7 +116,7 @@ public class GM6Importer {
     }
 
     public GM6Importer(String fileName) throws IOException, GmFormatException, DataFormatException {
-        //org.gcreator.core.gcreator.debugOut.println("GMI: Line 75, fileName=" + fileName);
+        System.out.println("starting gm6import");
         GmStreamDecoder in = null;
         long startTime = System.currentTimeMillis();
         in = new GmStreamDecoder(fileName);
@@ -127,21 +126,24 @@ public class GM6Importer {
         org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("$218"));
         settings.editable = false;
         GmFileContext c = new GmFileContext(project, in);
+
         int identifier = in.read4();
+
         if (identifier != 1234321) {
             throw new GmFormatException("Invalid"); //$NON-NLS-1$
         }
         int ver = in.read4();
+
         //org.gcreator.core.gcreator.debugOut.println("version:"+ver);
         if (ver < 600) {
             //org.gcreator.core.gcreator.debugOut.println("unsupported");
-                    JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
-            String msg = "Unsupported"; //$NON-NLS-1$
+            JOptionPane.showMessageDialog(null, "This game maker file version is unnsupported make sure it is a valid gm6 file.");
+            String msg = "Unsupported Version"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
         org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
         SettingsValues values = readSettings(settings, c);
-                org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
         readSounds(c);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
         readSprites(c);
@@ -153,71 +155,98 @@ public class GM6Importer {
         readScripts(c);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
         readFonts(c);
-        readTimelines(c);
+
+        /*
+         *
+         * read ahead to get names of resources with ids
+         *
+         */
+
+        long position = c.in.getInputStream().getFilePointer();
+        readTimelines(c,true);
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors ahead");
+        readActors(c,true);
+        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes ahead");
+        readScenes(c,true);
+
+
+        //readahead(c);
+
+        //go back to position
+        c.in.getInputStream().seek(position);
+
+        readTimelines(c,false);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors");
-        readActors(c);
+        readActors(c,false);
         org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
-        readScenes(c);
+        readScenes(c,false);
         org.gcreator.core.gcreator.debugOut.println("GMI: Scene Order");
         TabValues SceneOrder;
         values.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
         Vector v = new Vector();
         SceneOrder.setVariable("Scenes", v);
-        for(GFile f : c.scenes)
+        for (GFile f : c.scenes) {
             v.add(f);
+        }
         //c=null;
         in.read4();//lastInstanceId
-			in.read4();//lastTileId
-			ver = in.read4();
-			if (ver != 430 && ver != 600 && ver != 620) throw versionError("BEFORE","GAMEINFO",ver); //$NON-NLS-1$ //$NON-NLS-2$
-			if (ver != 620)
-				readGameInformation(c,ver);
-			else
-				{
-                            int noIncludes = in.read4();
-				for (int i = 0; i < noIncludes; i++)
-					{
-					ver = in.read4();
+        in.read4();//lastTileId
+        ver = in.read4();
+        if (ver != 430 && ver != 600 && ver != 620) {
+            throw versionError("BEFORE", "GAMEINFO", ver);
+        } //$NON-NLS-1$ //$NON-NLS-2$
+        if (ver != 620) {
+            readGameInformation(c, ver);
+        } else {
+            int noIncludes = in.read4();
+            for (int i = 0; i < noIncludes; i++) {
+                ver = in.read4();
 //                                        if (ver != 620)
 //						throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
 //								Messages.getString("GmFileReader.INGM7INCLUDES"),ver)); //$NON-NLS-1$
-					//Include inc = new Include();
-					in.skip(in.read4()); //Filename
-					in.readStr();//filePath
-					in.skip(4); //orig file chosen
-					in.skip(4); //orig file size
-					if (in.readBool()) in.skip(in.read4()); //Store in editable
-					in.skip(4); //export
-					in.skip(in.read4()); //folder to export to
-					in.skip(12); //overwrite if exists, free mem, remove at game end
-					//f.gameSettings.includes.add(inc);
-                                }
-                            ver = in.read4();
-				if (ver != 700) throw versionError("BEFORE","EXTENSIONS",ver); //$NON-NLS-1$ //$NON-NLS-2$
-				int noPackages = in.read4();
-				for (int i = 0; i < noPackages; i++)
-					{
-					in.skip(in.read4()); //Package name
-					}
-				ver = in.read4();
-				if (ver != 600) throw versionError("BEFORE","GAMEINFO",ver); //$NON-NLS-1$ //$NON-NLS-2$
-				readGameInformation(c,620);
-				}
-			ver = in.read4();
+                //Include inc = new Include();
+                in.skip(in.read4()); //Filename
+                in.readStr();//filePath
+                in.skip(4); //orig file chosen
+                in.skip(4); //orig file size
+                if (in.readBool()) {
+                    in.skip(in.read4());
+                } //Store in editable
+                in.skip(4); //export
+                in.skip(in.read4()); //folder to export to
+                in.skip(12); //overwrite if exists, free mem, remove at game end
+            //f.gameSettings.includes.add(inc);
+            }
+            ver = in.read4();
+            if (ver != 700) {
+                throw versionError("BEFORE", "EXTENSIONS", ver);
+            } //$NON-NLS-1$ //$NON-NLS-2$
+            int noPackages = in.read4();
+            for (int i = 0; i < noPackages; i++) {
+                in.skip(in.read4()); //Package name
+            }
+            ver = in.read4();
+            if (ver != 600) {
+                throw versionError("BEFORE", "GAMEINFO", ver);
+            } //$NON-NLS-1$ //$NON-NLS-2$
+            readGameInformation(c, 620);
+        }
+        ver = in.read4();
 //			if (ver != 500) throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
 //					Messages.getString("GmFileReader.AFTERINFO"),ver)); //$NON-NLS-1$
-			int no = in.read4(); //Library Creation Code
-			for (int j = 0; j < no; j++)
-				in.skip(in.read4());
-			ver = in.read4();
+        int no = in.read4(); //Library Creation Code
+        for (int j = 0; j < no; j++) {
+            in.skip(in.read4());
+        }
+        ver = in.read4();
 //			if (ver != 500 && ver != 540 && ver != 700)
 //				throw new GmFormatException(Messages.format("GmFileReader.ERROR_UNSUPPORTED", //$NON-NLS-1$
 //						Messages.getString("GmFileReader.AFTERINFO2"),ver)); //$NON-NLS-1$
-			in.skip(in.read4() * 4); //Room Execution Order
-			//readTree(c,ver);
+        in.skip(in.read4() * 4); //Room Execution Order
+        //readTree(c,ver);
         //}catch(Exception e){e.printStackTrace();}           
         in.close();
-c=null;
+        c = null;
         ProjectTree.importFolderToTree(project, PluginHelper.getPanel().top);
         PluginHelper.getPanel().workspace.updateUI();
         PluginHelper.getPanel().workspace.repaint();
@@ -225,28 +254,27 @@ c=null;
 
     private void readGameInformation(GmFileContext c, int ver) throws IOException {
         GmStreamDecoder in = c.in;
-		//GameInformation gameInfo = c.f.gameInfo;
-		int bc = in.read4();
-		//if (bc >= 0) gameInfo.backgroundColor = Util.convertGmColor(bc);
-		in.readBool();//mimicGameWindow
-		if (ver > 430)
-			{
-			in.readStr();//formCaption
-			in.read4();//left
-			in.read4();//top
-			in.read4();//width
-			in.read4();//height
-			in.readBool();//showBorder
-			in.readBool();//allowResize
-			in.readBool();//stayOnTop
-			in.readBool();//pauseGame
-			}
-		in.readStr();//gameInfoStr
+        //GameInformation gameInfo = c.f.gameInfo;
+        int bc = in.read4();
+        //if (bc >= 0) gameInfo.backgroundColor = Util.convertGmColor(bc);
+        in.readBool();//mimicGameWindow
+        if (ver > 430) {
+            in.readStr();//formCaption
+            in.read4();//left
+            in.read4();//top
+            in.read4();//width
+            in.read4();//height
+            in.readBool();//showBorder
+            in.readBool();//allowResize
+            in.readBool();//stayOnTop
+            in.readBool();//pauseGame
+        }
+        in.readStr();//gameInfoStr
     }
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-                org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
+        org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -258,8 +286,9 @@ c=null;
         in.read4(); //Game ID - unused
         in.skip(16); // unknown bytes following game id
         int ver = in.read4();
+        //System.out.println("got to ver"+ver);
         if (ver != 542 && ver != 600 && ver != 702) {
-            String msg = "Unsupported"; //$NON-NLS-1$
+            String msg = "Unsupported Version in Settings"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
         boolean startFullscreen = in.readBool();
@@ -363,10 +392,10 @@ c=null;
         for (int i = 0; i < no; i++) {
             /*Constant con = new Constant();
             g.constants.add(con);*/
-            /*con.name = */            in.readStr();
-            /*con.value = */            in.readStr();
+            /*con.name = */ in.readStr();
+            /*con.value = */ in.readStr();
         }
-        
+
         if (ver > 600) {
             in.skip(4); //Major
             in.skip(4); //Minor
@@ -381,7 +410,7 @@ c=null;
             for (int i = 0; i < no; i++) {
                 /*Include inc = new Include();
                 g.includes.add(inc);
-                inc.filePath = */                in.readStr();
+                inc.filePath = */ in.readStr();
             }
             int includeFolder = in.read4();
             boolean overwriteExisting = in.readBool();
@@ -392,7 +421,7 @@ c=null;
 
     private void readSounds(GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-        
+
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         if (ver != 400) {
@@ -417,23 +446,25 @@ c=null;
                 in.read4();
             } //normal, background, etc
             String type = in.readStr(); //fileType
-            if (type.equals("") || type == null) type ="wav";
+            if (type.equals("") || type == null) {
+                type = "wav";
+            }
             org.gcreator.fileclass.GFile soundFile;
             Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$212"));
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
             File f = File.createTempFile("gc_tmp_", "." + type);
             soundFile.value = f;
-            soundFile.type= type.replaceFirst(".", "");
+            soundFile.type = type.replaceFirst(".", "");
             //org.gcreator.core.gcreator.debugOut.println("type:"+soundFile.type);
             //val.width = in.read4();
             if (ver == 440) {
                 //-1 = no sound
-		/*if (kind53 != -1) snd.data = in.decompress(*/                in.read4()/*)*/;
+		/*if (kind53 != -1) snd.data = in.decompress(*/ in.read4()/*)*/;
                 in.skip(8);
-                /*snd.preload = !*/                in.readBool();
+                /*snd.preload = !*/ in.readBool();
             } else {
-                /*snd.fileName = */                in.readStr();
+                /*snd.fileName = */ in.readStr();
                 if (in.readBool()) /*snd.data =*/ {
                     FileOutputStream fos = new FileOutputStream(f);
                     fos.write(in.decompress(in.read4()));
@@ -481,14 +512,14 @@ c=null;
             val.BBTop = in.read4();
             boolean transparent = in.readBool(); //Transparent
             if (ver > 400) {
-                /*spr.smoothEdges = */                in.readBool();
-                /*spr.preload = */                in.readBool();
+                /*spr.smoothEdges = */ in.readBool();
+                /*spr.preload = */ in.readBool();
             }
-            /*spr.boundingBoxMode = (byte) */            in.read4();
+            /*spr.boundingBoxMode = (byte) */ in.read4();
             val.precise = in.readBool();
             if (ver == 400) {
                 in.skip(4); //use video memory
-                /*spr.preload = !*/                in.readBool();
+                /*spr.preload = !*/ in.readBool();
             }
             val.originX = in.read4();
             val.originY = in.read4();
@@ -498,17 +529,14 @@ c=null;
                     continue;
                 }
                 BufferedImage img = in.readImage(val.width, val.height);
-                int tpixel = img.getRGB(img.getMinX(),img.getHeight() - 1);
+                int tpixel = img.getRGB(img.getMinX(), img.getHeight() - 1);
 
-								BufferedImage timage;
-								if (transparent)
-									{
-									timage = Transparency.makeColorTransparent(img,new Color(tpixel));
-									}
-								else
-									{
-									timage = img;
-									}
+                BufferedImage timage;
+                if (transparent) {
+                    timage = Transparency.makeColorTransparent(img, new Color(tpixel));
+                } else {
+                    timage = img;
+                }
                 org.gcreator.fileclass.GFile imgF;
                 imgF = new org.gcreator.fileclass.GFile(imageFolder, "sprimg_" + name + "_" + j, "png", null);
                 ImageIcon iico;
@@ -540,7 +568,7 @@ c=null;
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             c.backgrounds.add(bkimg);
-            
+
             ver = in.read4();
             if (ver != 400 && ver != 543) {
                 throw versionError("IN", "BACKGROUNDS", i, ver);
@@ -577,12 +605,12 @@ c=null;
                 }
                 backgroundImage = in.readImage(width, height);
             }
-            
+
             ImageIcon iicon = new ImageIcon(backgroundImage);
             bkimg.value = iicon;//new GImage("bgimg_" + name);
             //bkimg.value = iicon;
             //((GImage) bkimg.value).image = iicon;
-            
+
             if (tileset) {
                 org.gcreator.fileclass.GFile tlimg;
                 tlimg = new org.gcreator.fileclass.GFile(tilesetFolder, name, "tileset", null);
@@ -628,9 +656,9 @@ c=null;
             int nopoints = in.read4();
             for (int j = 0; j < nopoints; j++) {
                 //Point point = path.addPoint();
-                /*point.x = (int) */                in.readD();
-                /*point.y = (int) */                in.readD();
-                /*point.speed = (int) */                in.readD();
+                /*point.x = (int) */ in.readD();
+                /*point.y = (int) */ in.readD();
+                /*point.speed = (int) */ in.readD();
             }
         }
     }
@@ -659,7 +687,7 @@ c=null;
                 throw versionError("IN", "SCRIPTS", i, ver);
             }
             script.value = new Classes(parseGML(in.readStr()));
-            
+
         }
     }
 
@@ -707,85 +735,94 @@ c=null;
             if (ver != 540) {
                 throw versionError("IN", "FONTS", i, ver);
             } //$NON-NLS-1$ //$NON-NLS-2$
-            /*font.fontName = */in.readStr();
-            /*font.size = */in.read4();
-            /*font.bold = */in.readBool();
-            /*font.italic = */in.readBool();
-            /*font.charRangeMin = */in.read4();
-            /*font.charRangeMax = */in.read4();
+            /*font.fontName = */
+            in.readStr();
+            /*font.size = */            in.read4();
+            /*font.bold = */            in.readBool();
+            /*font.italic = */            in.readBool();
+            /*font.charRangeMin = */            in.read4();
+            /*font.charRangeMax = */            in.read4();
         }
     }
-    
-    private static void readTimelines(GmFileContext c) throws IOException,GmFormatException{
+
+    private static void readTimelines(GmFileContext c,boolean fake) throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
-        
+
         Group tlGroup = (Group) c.pro.childAt(c.pro.findFromName("$213"));
         org.gcreator.fileclass.GFile f;
         Timeline a;
-        
-        if (ver != 500) throw versionError("BEFORE","TIMELINES",ver);
+
+        if (ver != 500) {
+            throw versionError("BEFORE", "TIMELINES", ver);
+        }
         int noTimelines = in.read4();
-        for(int i = 0; i < noTimelines; i++){
-            if (!in.readBool()){
+        for (int i = 0; i < noTimelines; i++) {
+            if (!in.readBool()) {
                 c.timelines.add(null);
                 continue;
             }
-            
+
             //in.readStr(); //Name
             f = new org.gcreator.fileclass.GFile(tlGroup, in.readStr(), "timeline", null);
+            if (fake) tlGroup.remove(f);
             f.value = a = new Timeline();
-            
+
             c.timelines.add(f);
             ver = in.read4();
-            if (ver != 500) throw versionError("IN","TIMELINES",i,ver);
+            if (ver != 500) {
+                throw versionError("IN", "TIMELINES", i, ver);
+            }
             int nomoms = in.read4();
-            for(int j = 0; j < nomoms; j++){
+            for (int j = 0; j < nomoms; j++) {
                 //a.steps
                 TimelineStep ts = new TimelineStep();
-                ts.stepnum=in.read4(); //stepnum
-                
+                ts.stepnum = in.read4(); //stepnum
+
                 readTimelineActions(in);
             }
         }
     }
-    
-    private static void readTimelineActions(GmStreamDecoder in) throws IOException,GmFormatException{
+
+    private static void readTimelineActions(GmStreamDecoder in) throws IOException, GmFormatException {
         int ver = in.read4();
-        if(ver!=400){
+        if (ver != 400) {
             throw new GmFormatException("!");
         }
         int noacts = in.read4();
-        for(int k = 0; k < noacts; k++){
+        for (int k = 0; k < noacts; k++) {
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
             boolean unknownLib = true;
-            if (unknownLib){
+            if (unknownLib) {
                 in.read4(); //action kind
                 in.readBool(); //allow relative
                 in.readBool(); //question
                 in.readBool(); //can apply to
                 int execType = in.read4();
-                if(execType==1)
+                if (execType == 1) {
                     in.readStr();
-                else
+                } else {
                     in.skip(in.read4());
-                if(execType==2)
+                }
+                if (execType == 2) {
                     in.readStr();
-                else
+                } else {
                     in.skip(in.read4());
+                }
                 int arguments = in.read4();
                 int argkindnum = in.read4();
-                for (int x = 0; x < argkindnum; x++)
+                for (int x = 0; x < argkindnum; x++) {
                     in.read4();
-                if (unknownLib){
+                }
+                if (unknownLib) {
                     //for (int x = 0; x < argkindnum; x++){}
                     int appliesTo = in.read4();
                     in.readBool(); //relative
                     int actualnoargs = in.read4();
-                    for (int l = 0; l < actualnoargs; l++){
-                        if (l >= arguments){
+                    for (int l = 0; l < actualnoargs; l++) {
+                        if (l >= arguments) {
                             in.skip(in.read4());
                             continue;
                         }
@@ -796,467 +833,637 @@ c=null;
             }
         }
     }
-    
-    
-    private static void readScenes(GmFileContext c) throws IOException,GmFormatException{
-    GmStreamDecoder in = c.in;
+
+    private static void readScenes(GmFileContext c,boolean fake) throws IOException, GmFormatException {
+        GmStreamDecoder in = c.in;
         int ver = in.read4();
         Group scenesGroup = (Group) c.pro.childAt(c.pro.findFromName("$215"));
         org.gcreator.fileclass.GFile f;
         Scene a;
-        
+
         int noGmRooms = in.read4();
-        for(int i = 0; i < noGmRooms; i++){
-            if (!in.readBool()){
+        for (int i = 0; i < noGmRooms; i++) {
+            if (!in.readBool()) {
                 c.scenes.add(null);
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(scenesGroup, in.readStr(), "scene", null);
+            if (fake) scenesGroup.remove(f);
             f.value = a = new Scene();
             c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
-            org.gcreator.core.gcreator.debugOut.println("Caption:"+a.caption);
+            org.gcreator.core.gcreator.debugOut.println("Caption:" + a.caption);
             a.width = in.read4();
             a.height = in.read4();
             a.snapY = in.read4();
             a.snapX = in.read4();
             a.isometric = in.readBool();
             a.speed = in.read4();
-            a.persistant= in.readBool();
+            a.persistant = in.readBool();
             int col = in.read4();
             //System.out.println("Got here");
-            a.background = new Color(col & 0xFF,(col & 0xFF00) >> 8,(col & 0xFF0000) >> 16);
+            a.background = new Color(col & 0xFF, (col & 0xFF00) >> 8, (col & 0xFF0000) >> 16);
             a.drawbackcolor = in.readBool();
             a.code = in.readStr();
-            
+
             //System.out.println("Got here2");
             int nobackgrounds = in.read4();
-			for (int j = 0; j < nobackgrounds; j++)
-				{
-                            //System.out.println("Looping");
-                          BackgroundInScene bis = new BackgroundInScene("Background"+j);
-                          bis.visibleonstart = in.readBool();
-                          in.read4(); //foreground?
-                          int im = in.read4(); //image
-                          //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
-                          if (im != -1)
-                          bis.image=c.backgrounds.get(im).getID();
-                          bis.xpos = in.read4(); //xpos
-                          bis.ypos = in.read4(); //ypos
-                          bis.tileh = in.read4(); //tileh
-                          bis.tilev = in.read4(); //tilev
-                         bis.hspeed = in.read4(); //hspeed
-                         bis.vspeed =  in.read4(); //vspeed
-                         bis.stretch =  in.readBool(); //stretch
-                        a.backgrounds.add(bis);
-                        }
+            for (int j = 0; j < nobackgrounds; j++) {
+                //System.out.println("Looping");
+                BackgroundInScene bis = new BackgroundInScene("Background" + j);
+                bis.visibleonstart = in.readBool();
+                in.read4(); //foreground?
+                int im = in.read4(); //image
+                //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
+                if (im != -1) {
+                    bis.image = c.backgrounds.get(im).getID();
+                }
+                bis.xpos = in.read4(); //xpos
+                bis.ypos = in.read4(); //ypos
+                bis.tileh = in.read4(); //tileh
+                bis.tilev = in.read4(); //tilev
+                bis.hspeed = in.read4(); //hspeed
+                bis.vspeed = in.read4(); //vspeed
+                bis.stretch = in.readBool(); //stretch
+                a.backgrounds.add(bis);
+            }
             in.readBool(); //enable views
             int noviews = in.read4();
-			for (int j = 0; j < noviews; j++)
-				{
-                            //System.out.println("Looping again");
-                            
-                            boolean visible = in.readBool();
-				int viewX = in.read4();
-				int viewY = in.read4();
-				int viewW = in.read4();
-				int viewH = in.read4();
-				int portX = in.read4();
-				int portY = in.read4();
-				if (ver > 520)
-					{
-					int portW = in.read4();
-					int portH = in.read4();
-					}
-				int hbor = in.read4();
-				int vbor = in.read4();
-				int hspeed = in.read4();
-				int vspeed = in.read4();
-                            in.read4(); //actor to follow
-                        }
-            
-            int noinstances = in.read4();
-			for (int j = 0; j < noinstances; j++)
-				{
-                            //ActorInScene = new ActorInScene(f, j, j, i);
-                            int x = in.read4();//x
-                            int y = in.read4();//y
-                            int temp = in.read4(); //actor
-                            int id = in.read4(); //instanceID
-                            in.readStr(); //code
-                            in.readBool(); //locked
-                            
-                            if(temp<c.actors.size()&&temp>=0){
-                org.gcreator.fileclass.GFile act = c.actors.get(temp);
-                if(act!=null)
-                    a.actors.add(new ActorInScene(act, x, y, id));
+            for (int j = 0; j < noviews; j++) {
+                //System.out.println("Looping again");
+
+                boolean visible = in.readBool();
+                int viewX = in.read4();
+                int viewY = in.read4();
+                int viewW = in.read4();
+                int viewH = in.read4();
+                int portX = in.read4();
+                int portY = in.read4();
+                if (ver > 520) {
+                    int portW = in.read4();
+                    int portH = in.read4();
+                }
+                int hbor = in.read4();
+                int vbor = in.read4();
+                int hspeed = in.read4();
+                int vspeed = in.read4();
+                in.read4(); //actor to follow
             }
-                        }
-            
+
+            int noinstances = in.read4();
+            for (int j = 0; j < noinstances; j++) {
+                //ActorInScene = new ActorInScene(f, j, j, i);
+                int x = in.read4();//x
+                int y = in.read4();//y
+                int temp = in.read4(); //actor
+                int id = in.read4(); //instanceID
+                in.readStr(); //code
+                in.readBool(); //locked
+
+                if (temp < c.actors.size() && temp >= 0) {
+                    org.gcreator.fileclass.GFile act = c.actors.get(temp);
+                    if (act != null) {
+                        a.actors.add(new ActorInScene(act, x, y, id));
+                    }
+                } else {
+                    System.out.println("warning: actor not added to scene");
+                }
+            }
+
             int notiles = in.read4();
-			for (int j = 0; j < notiles; j++)
-				{
-                            in.read4();//x
-                            in.read4();//y
-                            in.read4();//width
-                            in.read4();//height
-                            in.read4();//depth
-                            in.read4();//tileId
-                            in.readBool(); //locked
-                        }
+            for (int j = 0; j < notiles; j++) {
+                in.read4();//x
+                in.read4();//y
+                in.read4();//width
+                in.read4();//height
+                in.read4();//depth
+                in.read4();//tileId
+                in.readBool(); //locked
+            }
             System.out.println("Got here Finally!");
             in.readBool();//rememberWindowSize
-			in.read4();//editorWidth
-			in.read4();//editorHeight
-			in.readBool();//showGrid
-			in.readBool();//showObjects
-			in.readBool();//showTiles
-			in.readBool();//showBackgrounds
-			in.readBool();//showForegrounds
-			in.readBool();//showViews
-			in.readBool();//deleteUnderlyingObjects
-			in.readBool();//deleteUnderlyingTiles
-			if (ver == 520) in.skip(6 * 4); //tile info
-			in.read4(); //currenttab
-			in.read4();//scrollBarX
-			in.read4();//scrollBarY
+            in.read4();//editorWidth
+            in.read4();//editorHeight
+            in.readBool();//showGrid
+            in.readBool();//showObjects
+            in.readBool();//showTiles
+            in.readBool();//showBackgrounds
+            in.readBool();//showForegrounds
+            in.readBool();//showViews
+            in.readBool();//deleteUnderlyingObjects
+            in.readBool();//deleteUnderlyingTiles
+            if (ver == 520) {
+                in.skip(6 * 4);
+            } //tile info
+            in.read4(); //currenttab
+            in.read4();//scrollBarX
+            in.read4();//scrollBarY
             System.out.println("The end of scenes");
         }
     }
-    
-    private static void readActors(GmFileContext c) throws IOException,GmFormatException{
-                //org.gcreator.core.gcreator.debugOut.println("readActors");
+
+    private static void readActors(GmFileContext c,boolean fake) throws IOException, GmFormatException {
+        //org.gcreator.core.gcreator.debugOut.println("readActors");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
-        if (ver != 400) throw versionError("BEFORE","OBJECTS",ver);
-        
+        if (ver != 400) {
+            throw versionError("BEFORE", "OBJECTS", ver);
+        }
+
         Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("$214"));
         org.gcreator.fileclass.GFile f;
         Actor a;
-        
+
         int noGmObjects = in.read4();
-        for(int i = 0; i < noGmObjects; i++){
-            if (!in.readBool()){
-                c.actors.add(i,null);
+        for (int i = 0; i < noGmObjects; i++) {
+            if (!in.readBool()) {
+                c.actors.add(i, null);
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
+            if (fake) actorsGroup.remove(f);
             f.value = a = new Actor();
-            c.actors.add(i,f);
+            c.actors.add(i, f);
             ver = in.read4();
-            if (ver != 430) throw versionError("IN","OBJECTS",i,ver);
+            if (ver != 430) {
+                throw versionError("IN", "OBJECTS", i, ver);
+            }
             int temp = in.read4();
             a.sprite = -1;
-            if(temp<c.sprites.size()&&temp>=0){
+            if (temp < c.sprites.size() && temp >= 0) {
                 org.gcreator.fileclass.GFile spr = c.sprites.get(temp);
-                if(spr!=null)
+                if (spr != null) {
                     a.sprite = spr.getID();
+                }
             }
             a.solid = in.readBool();
             a.visible = in.readBool();
             a.depth = in.read4();
             a.persistent = in.readBool();
-            in.read4(); //parent
-            in.read4(); //temp again for mask
+            temp = in.read4(); //parent
+            if (temp < c.actors.size() && temp >= 0) {
+                org.gcreator.fileclass.GFile act = c.actors.get(temp);
+                if (act != null) {
+                    a.extend = act.getID();
+                }
+            }
+            temp = in.read4(); //temp again for mask
+            if (temp < c.sprites.size() && temp >= 0) {
+                org.gcreator.fileclass.GFile spr = c.sprites.get(temp);
+                if (spr != null) {
+                    a.mask = spr.getID();
+                }
+            }
             in.skip(4);
             org.gcreator.events.Event e;
-            for (int j = 0; j < 11; j++){
+            for (int j = 0; j < 11; j++) {
                 e = null;
                 boolean done = false;
-                while(!done){
+                while (!done) {
                     int first = in.read4();
                     int id = 0;
-                    if(first!=-1){
+                    if (first != -1) {
                         //org.gcreator.core.gcreator.debugOut.println("event:"+j+" first:"+first);
-                        if(j==EV_CREATE){
+                        if (j == EV_CREATE) {
                             org.gcreator.core.gcreator.debugOut.println("Create");
                             e = new CreateEvent();
                             a.events.add(e);
                             id = first;
-                        }
-                        else if(j==EV_DESTROY){
+                        } else if (j == EV_DESTROY) {
                             org.gcreator.core.gcreator.debugOut.println("destroy");
                             e = new DestroyEvent();
                             a.events.add(e);
                             id = first;
-                        }
-                        else if(j==EV_ALARM){
-                             org.gcreator.core.gcreator.debugOut.println("alarm");
-                            e= new AlarmEvent(first);
+                        } else if (j == EV_ALARM) {
+                            org.gcreator.core.gcreator.debugOut.println("alarm");
+                            e = new AlarmEvent(first);
                             a.events.add(e);
                             id = first;
-                        }
-                        else if(j==EV_STEP){
-                            
-                            if (first == 1)
+                        } else if (j == EV_STEP) {
+
+                            if (first == 1) {
                                 e = new BeginStepEvent();
-                            else if (first == 2)
+                            } else if (first == 2) {
                                 e = new EndStepEvent();
-                            else   
-                            e = new StepEvent();
+                            } else {
+                                e = new StepEvent();
+                            }
                             a.events.add(e);
                             id = first;
-                            org.gcreator.core.gcreator.debugOut.println("Step Id:"+id);
-                        }
-                        else if(j==EV_COLLISION)
-                        {} //ev.other = c.objids.get(first);
-                        else if(j==EV_KEYBOARD)
-                        {
-                        org.gcreator.core.gcreator.debugOut.println("keyboard");
-                        e = new KeyboardEvent(first, ""+getKeyText(first));
+                            org.gcreator.core.gcreator.debugOut.println("Step Id:" + id);
+                        } else if (j == EV_COLLISION) {
+                            temp = first;
+                            if (temp < c.actors.size() && temp >= 0) {
+                                org.gcreator.fileclass.GFile spr = c.actors.get(temp);
+                                if (spr != null) {
+                                   // a.sprite = spr.getID();
+                                    e= new CollisionEvent(spr);
                             a.events.add(e);
                             id = first;
-                        } 
-                         else if(j==EV_KEYPRESS)
-                        {
-                        org.gcreator.core.gcreator.debugOut.println("keyboard press");
-                        e = new KeyPress(first, ""+getKeyText(first));
+                                }
+                            }
+                            
+                        } //ev.other = c.objids.get(first);
+                        else if (j == EV_KEYBOARD) {
+                            org.gcreator.core.gcreator.debugOut.println("keyboard");
+                            e = new KeyboardEvent(first, "" + getKeyText(first));
                             a.events.add(e);
                             id = first;
-                        } 
-                        else if(j==EV_KEYRELEASE)
-                        {
-                        org.gcreator.core.gcreator.debugOut.println("keyboard press");
-                        e = new KeyReleased(first, ""+getKeyText(first));
+                        } else if (j == EV_KEYPRESS) {
+                            org.gcreator.core.gcreator.debugOut.println("keyboard press");
+                            e = new KeyPress(first, "" + getKeyText(first));
                             a.events.add(e);
                             id = first;
-                        } 
-                        else if(j==EV_DRAW){
+                        } else if (j == EV_KEYRELEASE) {
+                            org.gcreator.core.gcreator.debugOut.println("keyboard press");
+                            e = new KeyReleased(first, "" + getKeyText(first));
+                            a.events.add(e);
+                            id = first;
+                        } else if (j == EV_MOUSE) {
+                            System.out.println("mouse event" + first);
+                            if (first == 4) {
+                                first = 5006;
+                            }
+                            e = new MouseEvent(first);
+                            a.events.add(e);
+                            id = first;
+                        } else if (j == EV_OTHER) {
+                            System.out.println("other events not supported yet");
+                        } else if (j == EV_DRAW) {
                             org.gcreator.core.gcreator.debugOut.println("draw");
                             e = new DrawEvent();
                             a.events.add(e);
                             id = first;
-                        } 
-                        
-                        
-                        else
-                            id = first; //ev.id = first;
+                        } else {
+                            id = first;
+                        } //ev.id = first;
                         //ev.mainId = j;
                         org.gcreator.core.gcreator.debugOut.println("GMI: read action");
-                        try{
-                        readActions(c, i, j*1000+id, e);
-                        }catch(Exception ee){ee.printStackTrace(); org.gcreator.core.gcreator.debugOut.println("error in actor readactions");}
-                    }
-                    else
+                        try {
+                            readActions(c, i, j * 1000 + id, e);
+                        } catch (Exception ee) {
+                            ee.printStackTrace();
+                            org.gcreator.core.gcreator.debugOut.println("error in actor readactions");
+                        }
+                    } else {
                         done = true;
+                    }
                 }
             }
         }
     }
-    
+
     public static String getKeyText(int keyCode) {
         if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 ||
-            keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
-            return String.valueOf((char)keyCode);
+                keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
+            return String.valueOf((char) keyCode);
         }
-    
-        switch(keyCode) {
-          case KeyEvent.VK_COMMA: return "COMMA";
-          case KeyEvent.VK_PERIOD: return "PERIOD";
-          case KeyEvent.VK_SLASH: return "SLASH";
-          case KeyEvent.VK_SEMICOLON: return "SEMICOLON";
-          case KeyEvent.VK_EQUALS: return "EQUALS";
-          case KeyEvent.VK_OPEN_BRACKET: return "OPEN_BRACKET";
-          case KeyEvent.VK_BACK_SLASH: return "BACK_SLASH";
-          case KeyEvent.VK_CLOSE_BRACKET: return "CLOSE_BRACKET";
-    
-          case KeyEvent.VK_ENTER: return "ENTER";
-          case KeyEvent.VK_BACK_SPACE: return "BACK_SPACE";
-          case KeyEvent.VK_TAB: return "TAB";
-          case KeyEvent.VK_CANCEL: return "CANCEL";
-          case KeyEvent.VK_CLEAR: return "CLEAR";
-          case KeyEvent.VK_SHIFT: return "SHIFT";
-          case KeyEvent.VK_CONTROL: return "CONTROL";
-          case KeyEvent.VK_ALT: return "ALT";
-          case KeyEvent.VK_PAUSE: return "PAUSE";
-          case KeyEvent.VK_CAPS_LOCK: return "CAPS_LOCK";
-          case KeyEvent.VK_ESCAPE: return "ESCAPE";
-          case KeyEvent.VK_SPACE: return "SPACE";
-          case KeyEvent.VK_PAGE_UP: return "PAGE_UP";
-          case KeyEvent.VK_PAGE_DOWN: return "PAGE_DOWN";
-          case KeyEvent.VK_END: return "END";
-          case KeyEvent.VK_HOME: return "HOME";
-          case KeyEvent.VK_LEFT: return "LEFT";
-          case KeyEvent.VK_UP: return "UP";
-          case KeyEvent.VK_RIGHT: return "RIGHT";
-          case KeyEvent.VK_DOWN: return "DOWN";
-    
-          // numpad numeric keys handled below
-          case KeyEvent.VK_MULTIPLY: return "MULTIPLY";
-          case KeyEvent.VK_ADD: return "ADD";
-          case KeyEvent.VK_SEPARATOR: return "SEPARATOR";
-          case KeyEvent.VK_SUBTRACT: return "SUBTRACT";
-          case KeyEvent.VK_DECIMAL: return "DECIMAL";
-          case KeyEvent.VK_DIVIDE: return "DIVIDE";
-          case KeyEvent.VK_DELETE: return "DELETE";
-          case KeyEvent.VK_NUM_LOCK: return "NUM_LOCK";
-          case KeyEvent.VK_SCROLL_LOCK: return "SCROLL_LOCK";
-    
-          case KeyEvent.VK_F1: return "F1";
-          case KeyEvent.VK_F2: return "F2";
-          case KeyEvent.VK_F3: return "F3";
-          case KeyEvent.VK_F4: return "F4";
-          case KeyEvent.VK_F5: return "F5";
-          case KeyEvent.VK_F6: return "F6";
-          case KeyEvent.VK_F7: return "F7";
-          case KeyEvent.VK_F8: return "F8";
-          case KeyEvent.VK_F9: return "F9";
-          case KeyEvent.VK_F10: return "F10";
-          case KeyEvent.VK_F11: return "F11";
-          case KeyEvent.VK_F12: return "F12";
-          case KeyEvent.VK_F13: return "F13";
-          case KeyEvent.VK_F14: return "F14";
-          case KeyEvent.VK_F15: return "F15";
-          case KeyEvent.VK_F16: return "F16";
-          case KeyEvent.VK_F17: return "F17";
-          case KeyEvent.VK_F18: return "F18";
-          case KeyEvent.VK_F19: return "F19";
-          case KeyEvent.VK_F20: return "F20";
-          case KeyEvent.VK_F21: return "F21";
-          case KeyEvent.VK_F22: return "F22";
-          case KeyEvent.VK_F23: return "F23";
-          case KeyEvent.VK_F24: return "F24";
-    
-          case KeyEvent.VK_PRINTSCREEN: return "PRINTSCREEN";
-          case KeyEvent.VK_INSERT: return "INSERT";
-          case KeyEvent.VK_HELP: return "HELP";
-          case KeyEvent.VK_META: return "META";
-          case KeyEvent.VK_BACK_QUOTE: return "BACK_QUOTE";
-          case KeyEvent.VK_QUOTE: return "QUOTE";
-    
-          case KeyEvent.VK_KP_UP: return "KP_UP";
-          case KeyEvent.VK_KP_DOWN: return "KP_DOWN";
-          case KeyEvent.VK_KP_LEFT: return "KP_LEFT";
-          case KeyEvent.VK_KP_RIGHT: return "KP_RIGHT";
-    
-          case KeyEvent.VK_DEAD_GRAVE: return "DEAD_GRAVE";
-          case KeyEvent.VK_DEAD_ACUTE: return "DEAD_ACUTE";
-          case KeyEvent.VK_DEAD_CIRCUMFLEX: return "DEAD_CIRCUMFLEX";
-          case KeyEvent.VK_DEAD_TILDE: return "DEAD_TILDE";
-          case KeyEvent.VK_DEAD_MACRON: return "DEAD_MACRON";
-          case KeyEvent.VK_DEAD_BREVE: return "DEAD_BREVE";
-          case KeyEvent.VK_DEAD_ABOVEDOT: return "DEAD_ABOVEDOT";
-          case KeyEvent.VK_DEAD_DIAERESIS: return "DEAD_DIAERESIS";
-          case KeyEvent.VK_DEAD_ABOVERING: return "DEAD_ABOVERING";
-          case KeyEvent.VK_DEAD_DOUBLEACUTE: return "DEAD_DOUBLEACUTE";
-          case KeyEvent.VK_DEAD_CARON: return "DEAD_CARON";
-          case KeyEvent.VK_DEAD_CEDILLA: return "DEAD_CEDILLA";
-          case KeyEvent.VK_DEAD_OGONEK: return "DEAD_OGONEK";
-          case KeyEvent.VK_DEAD_IOTA: return "DEAD_IOTA";
-          case KeyEvent.VK_DEAD_VOICED_SOUND: return "DEAD_VOICED_SOUND";
-          case KeyEvent.VK_DEAD_SEMIVOICED_SOUND: return "DEAD_SEMIVOICED_SOUND";
-    
-          case KeyEvent.VK_AMPERSAND: return "AMPERSAND";
-          case KeyEvent.VK_ASTERISK: return "ASTERISK";
-          case KeyEvent.VK_QUOTEDBL: return "QUOTEDBL";
-          case KeyEvent.VK_LESS: return "LESS";
-          case KeyEvent.VK_GREATER: return "GREATER";
-          case KeyEvent.VK_BRACELEFT: return "BRACELEFT";
-          case KeyEvent.VK_BRACERIGHT: return "BRACERIGHT";
-          case KeyEvent.VK_AT: return "AT";
-          case KeyEvent.VK_COLON: return "COLON";
-          case KeyEvent.VK_CIRCUMFLEX: return "CIRCUMFLEX";
-          case KeyEvent.VK_DOLLAR: return "DOLLAR";
-          case KeyEvent.VK_EURO_SIGN: return "EURO_SIGN";
-          case KeyEvent.VK_EXCLAMATION_MARK: return "EXCLAMATION_MARK";
-          case KeyEvent.VK_INVERTED_EXCLAMATION_MARK:
-                   return "INVERTED_EXCLAMATION_MARK";
-          case KeyEvent.VK_LEFT_PARENTHESIS: return "LEFT_PARENTHESIS";
-          case KeyEvent.VK_NUMBER_SIGN: return "NUMBER_SIGN";
-          case KeyEvent.VK_MINUS: return "MINUS";
-          case KeyEvent.VK_PLUS: return "PLUS";
-          case KeyEvent.VK_RIGHT_PARENTHESIS: return "RIGHT_PARENTHESIS";
-          case KeyEvent.VK_UNDERSCORE: return "UNDERSCORE";
-    
-          case KeyEvent.VK_FINAL: return "FINAL";
-          case KeyEvent.VK_CONVERT: return "CONVERT";
-          case KeyEvent.VK_NONCONVERT: return "NONCONVERT";
-          case KeyEvent.VK_ACCEPT: return "ACCEPT";
-          case KeyEvent.VK_MODECHANGE: return "MODECHANGE";
-          case KeyEvent.VK_KANA: return "KANA";
-          case KeyEvent.VK_KANJI: return "KANJI";
-          case KeyEvent.VK_ALPHANUMERIC: return "ALPHANUMERIC";
-          case KeyEvent.VK_KATAKANA: return "KATAKANA";
-          case KeyEvent.VK_HIRAGANA: return "HIRAGANA";
-          case KeyEvent.VK_FULL_WIDTH: return "FULL_WIDTH";
-          case KeyEvent.VK_HALF_WIDTH: return "HALF_WIDTH";
-          case KeyEvent.VK_ROMAN_CHARACTERS: return "ROMAN_CHARACTERS";
-          case KeyEvent.VK_ALL_CANDIDATES: return "ALL_CANDIDATES";
-          case KeyEvent.VK_PREVIOUS_CANDIDATE: return "PREVIOUS_CANDIDATE";
-          case KeyEvent.VK_CODE_INPUT: return "CODE_INPUT";
-          case KeyEvent.VK_JAPANESE_KATAKANA: return "JAPANESE_KATAKANA";
-          case KeyEvent.VK_JAPANESE_HIRAGANA: return "JAPANESE_HIRAGANA";
-          case KeyEvent.VK_JAPANESE_ROMAN: return "JAPANESE_ROMAN";
-          case KeyEvent.VK_KANA_LOCK: return "KANA_LOCK";
-          case KeyEvent.VK_INPUT_METHOD_ON_OFF: return "INPUT_METHOD_ON_OFF";
-    
-          case KeyEvent.VK_AGAIN: return "AGAIN";
-          case KeyEvent.VK_UNDO: return "UNDO";
-          case KeyEvent.VK_COPY: return "COPY";
-          case KeyEvent.VK_PASTE: return "PASTE";
-          case KeyEvent.VK_CUT: return "CUT";
-          case KeyEvent.VK_FIND: return "FIND";
-          case KeyEvent.VK_PROPS: return "PROPS";
-          case KeyEvent.VK_STOP: return "STOP";
-    
-          case KeyEvent.VK_COMPOSE: return "COMPOSE";
-          case KeyEvent.VK_ALT_GRAPH: return "ALT_GRAPH";
+
+        switch (keyCode) {
+            case KeyEvent.VK_COMMA:
+                return "COMMA";
+            case KeyEvent.VK_PERIOD:
+                return "PERIOD";
+            case KeyEvent.VK_SLASH:
+                return "SLASH";
+            case KeyEvent.VK_SEMICOLON:
+                return "SEMICOLON";
+            case KeyEvent.VK_EQUALS:
+                return "EQUALS";
+            case KeyEvent.VK_OPEN_BRACKET:
+                return "OPEN_BRACKET";
+            case KeyEvent.VK_BACK_SLASH:
+                return "BACK_SLASH";
+            case KeyEvent.VK_CLOSE_BRACKET:
+                return "CLOSE_BRACKET";
+
+            case KeyEvent.VK_ENTER:
+                return "ENTER";
+            case KeyEvent.VK_BACK_SPACE:
+                return "BACK_SPACE";
+            case KeyEvent.VK_TAB:
+                return "TAB";
+            case KeyEvent.VK_CANCEL:
+                return "CANCEL";
+            case KeyEvent.VK_CLEAR:
+                return "CLEAR";
+            case KeyEvent.VK_SHIFT:
+                return "SHIFT";
+            case KeyEvent.VK_CONTROL:
+                return "CONTROL";
+            case KeyEvent.VK_ALT:
+                return "ALT";
+            case KeyEvent.VK_PAUSE:
+                return "PAUSE";
+            case KeyEvent.VK_CAPS_LOCK:
+                return "CAPS_LOCK";
+            case KeyEvent.VK_ESCAPE:
+                return "ESCAPE";
+            case KeyEvent.VK_SPACE:
+                return "SPACE";
+            case KeyEvent.VK_PAGE_UP:
+                return "PAGE_UP";
+            case KeyEvent.VK_PAGE_DOWN:
+                return "PAGE_DOWN";
+            case KeyEvent.VK_END:
+                return "END";
+            case KeyEvent.VK_HOME:
+                return "HOME";
+            case KeyEvent.VK_LEFT:
+                return "LEFT";
+            case KeyEvent.VK_UP:
+                return "UP";
+            case KeyEvent.VK_RIGHT:
+                return "RIGHT";
+            case KeyEvent.VK_DOWN:
+                return "DOWN";
+
+            // numpad numeric keys handled below
+            case KeyEvent.VK_MULTIPLY:
+                return "MULTIPLY";
+            case KeyEvent.VK_ADD:
+                return "ADD";
+            case KeyEvent.VK_SEPARATOR:
+                return "SEPARATOR";
+            case KeyEvent.VK_SUBTRACT:
+                return "SUBTRACT";
+            case KeyEvent.VK_DECIMAL:
+                return "DECIMAL";
+            case KeyEvent.VK_DIVIDE:
+                return "DIVIDE";
+            case KeyEvent.VK_DELETE:
+                return "DELETE";
+            case KeyEvent.VK_NUM_LOCK:
+                return "NUM_LOCK";
+            case KeyEvent.VK_SCROLL_LOCK:
+                return "SCROLL_LOCK";
+
+            case KeyEvent.VK_F1:
+                return "F1";
+            case KeyEvent.VK_F2:
+                return "F2";
+            case KeyEvent.VK_F3:
+                return "F3";
+            case KeyEvent.VK_F4:
+                return "F4";
+            case KeyEvent.VK_F5:
+                return "F5";
+            case KeyEvent.VK_F6:
+                return "F6";
+            case KeyEvent.VK_F7:
+                return "F7";
+            case KeyEvent.VK_F8:
+                return "F8";
+            case KeyEvent.VK_F9:
+                return "F9";
+            case KeyEvent.VK_F10:
+                return "F10";
+            case KeyEvent.VK_F11:
+                return "F11";
+            case KeyEvent.VK_F12:
+                return "F12";
+            case KeyEvent.VK_F13:
+                return "F13";
+            case KeyEvent.VK_F14:
+                return "F14";
+            case KeyEvent.VK_F15:
+                return "F15";
+            case KeyEvent.VK_F16:
+                return "F16";
+            case KeyEvent.VK_F17:
+                return "F17";
+            case KeyEvent.VK_F18:
+                return "F18";
+            case KeyEvent.VK_F19:
+                return "F19";
+            case KeyEvent.VK_F20:
+                return "F20";
+            case KeyEvent.VK_F21:
+                return "F21";
+            case KeyEvent.VK_F22:
+                return "F22";
+            case KeyEvent.VK_F23:
+                return "F23";
+            case KeyEvent.VK_F24:
+                return "F24";
+
+            case KeyEvent.VK_PRINTSCREEN:
+                return "PRINTSCREEN";
+            case KeyEvent.VK_INSERT:
+                return "INSERT";
+            case KeyEvent.VK_HELP:
+                return "HELP";
+            case KeyEvent.VK_META:
+                return "META";
+            case KeyEvent.VK_BACK_QUOTE:
+                return "BACK_QUOTE";
+            case KeyEvent.VK_QUOTE:
+                return "QUOTE";
+
+            case KeyEvent.VK_KP_UP:
+                return "KP_UP";
+            case KeyEvent.VK_KP_DOWN:
+                return "KP_DOWN";
+            case KeyEvent.VK_KP_LEFT:
+                return "KP_LEFT";
+            case KeyEvent.VK_KP_RIGHT:
+                return "KP_RIGHT";
+
+            case KeyEvent.VK_DEAD_GRAVE:
+                return "DEAD_GRAVE";
+            case KeyEvent.VK_DEAD_ACUTE:
+                return "DEAD_ACUTE";
+            case KeyEvent.VK_DEAD_CIRCUMFLEX:
+                return "DEAD_CIRCUMFLEX";
+            case KeyEvent.VK_DEAD_TILDE:
+                return "DEAD_TILDE";
+            case KeyEvent.VK_DEAD_MACRON:
+                return "DEAD_MACRON";
+            case KeyEvent.VK_DEAD_BREVE:
+                return "DEAD_BREVE";
+            case KeyEvent.VK_DEAD_ABOVEDOT:
+                return "DEAD_ABOVEDOT";
+            case KeyEvent.VK_DEAD_DIAERESIS:
+                return "DEAD_DIAERESIS";
+            case KeyEvent.VK_DEAD_ABOVERING:
+                return "DEAD_ABOVERING";
+            case KeyEvent.VK_DEAD_DOUBLEACUTE:
+                return "DEAD_DOUBLEACUTE";
+            case KeyEvent.VK_DEAD_CARON:
+                return "DEAD_CARON";
+            case KeyEvent.VK_DEAD_CEDILLA:
+                return "DEAD_CEDILLA";
+            case KeyEvent.VK_DEAD_OGONEK:
+                return "DEAD_OGONEK";
+            case KeyEvent.VK_DEAD_IOTA:
+                return "DEAD_IOTA";
+            case KeyEvent.VK_DEAD_VOICED_SOUND:
+                return "DEAD_VOICED_SOUND";
+            case KeyEvent.VK_DEAD_SEMIVOICED_SOUND:
+                return "DEAD_SEMIVOICED_SOUND";
+
+            case KeyEvent.VK_AMPERSAND:
+                return "AMPERSAND";
+            case KeyEvent.VK_ASTERISK:
+                return "ASTERISK";
+            case KeyEvent.VK_QUOTEDBL:
+                return "QUOTEDBL";
+            case KeyEvent.VK_LESS:
+                return "LESS";
+            case KeyEvent.VK_GREATER:
+                return "GREATER";
+            case KeyEvent.VK_BRACELEFT:
+                return "BRACELEFT";
+            case KeyEvent.VK_BRACERIGHT:
+                return "BRACERIGHT";
+            case KeyEvent.VK_AT:
+                return "AT";
+            case KeyEvent.VK_COLON:
+                return "COLON";
+            case KeyEvent.VK_CIRCUMFLEX:
+                return "CIRCUMFLEX";
+            case KeyEvent.VK_DOLLAR:
+                return "DOLLAR";
+            case KeyEvent.VK_EURO_SIGN:
+                return "EURO_SIGN";
+            case KeyEvent.VK_EXCLAMATION_MARK:
+                return "EXCLAMATION_MARK";
+            case KeyEvent.VK_INVERTED_EXCLAMATION_MARK:
+                return "INVERTED_EXCLAMATION_MARK";
+            case KeyEvent.VK_LEFT_PARENTHESIS:
+                return "LEFT_PARENTHESIS";
+            case KeyEvent.VK_NUMBER_SIGN:
+                return "NUMBER_SIGN";
+            case KeyEvent.VK_MINUS:
+                return "MINUS";
+            case KeyEvent.VK_PLUS:
+                return "PLUS";
+            case KeyEvent.VK_RIGHT_PARENTHESIS:
+                return "RIGHT_PARENTHESIS";
+            case KeyEvent.VK_UNDERSCORE:
+                return "UNDERSCORE";
+
+            case KeyEvent.VK_FINAL:
+                return "FINAL";
+            case KeyEvent.VK_CONVERT:
+                return "CONVERT";
+            case KeyEvent.VK_NONCONVERT:
+                return "NONCONVERT";
+            case KeyEvent.VK_ACCEPT:
+                return "ACCEPT";
+            case KeyEvent.VK_MODECHANGE:
+                return "MODECHANGE";
+            case KeyEvent.VK_KANA:
+                return "KANA";
+            case KeyEvent.VK_KANJI:
+                return "KANJI";
+            case KeyEvent.VK_ALPHANUMERIC:
+                return "ALPHANUMERIC";
+            case KeyEvent.VK_KATAKANA:
+                return "KATAKANA";
+            case KeyEvent.VK_HIRAGANA:
+                return "HIRAGANA";
+            case KeyEvent.VK_FULL_WIDTH:
+                return "FULL_WIDTH";
+            case KeyEvent.VK_HALF_WIDTH:
+                return "HALF_WIDTH";
+            case KeyEvent.VK_ROMAN_CHARACTERS:
+                return "ROMAN_CHARACTERS";
+            case KeyEvent.VK_ALL_CANDIDATES:
+                return "ALL_CANDIDATES";
+            case KeyEvent.VK_PREVIOUS_CANDIDATE:
+                return "PREVIOUS_CANDIDATE";
+            case KeyEvent.VK_CODE_INPUT:
+                return "CODE_INPUT";
+            case KeyEvent.VK_JAPANESE_KATAKANA:
+                return "JAPANESE_KATAKANA";
+            case KeyEvent.VK_JAPANESE_HIRAGANA:
+                return "JAPANESE_HIRAGANA";
+            case KeyEvent.VK_JAPANESE_ROMAN:
+                return "JAPANESE_ROMAN";
+            case KeyEvent.VK_KANA_LOCK:
+                return "KANA_LOCK";
+            case KeyEvent.VK_INPUT_METHOD_ON_OFF:
+                return "INPUT_METHOD_ON_OFF";
+
+            case KeyEvent.VK_AGAIN:
+                return "AGAIN";
+            case KeyEvent.VK_UNDO:
+                return "UNDO";
+            case KeyEvent.VK_COPY:
+                return "COPY";
+            case KeyEvent.VK_PASTE:
+                return "PASTE";
+            case KeyEvent.VK_CUT:
+                return "CUT";
+            case KeyEvent.VK_FIND:
+                return "FIND";
+            case KeyEvent.VK_PROPS:
+                return "PROPS";
+            case KeyEvent.VK_STOP:
+                return "STOP";
+
+            case KeyEvent.VK_COMPOSE:
+                return "COMPOSE";
+            case KeyEvent.VK_ALT_GRAPH:
+                return "ALT_GRAPH";
         }
-    
+
         if (keyCode >= KeyEvent.VK_NUMPAD0 && keyCode <= KeyEvent.VK_NUMPAD9) {
-            char c = (char)(keyCode - KeyEvent.VK_NUMPAD0 + '0');
-            return "NUMPAD"+c;
+            char c = (char) (keyCode - KeyEvent.VK_NUMPAD0 + '0');
+            return "NUMPAD" + c;
         }
-    
+
         return "unknown(0x" + Integer.toString(keyCode, 16) + ")";
     }
 
-    
     private static void readActions(GmFileContext c, int format1, int format2,
             org.gcreator.events.Event e)
-            throws IOException, GmFormatException{
+            throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
-        if (ver != 400){
+        if (ver != 400) {
             throw new GmFormatException("version error:" + ver);
         }
         int noacts = in.read4();
         ////org.gcreator.core.gcreator.debugOut.println("No of actions:"+noacts);
-        for(int i = 0; i < noacts; i++){
-            String code="",function="";
+        for (int i = 0; i < noacts; i++) {
+            String code = "", function = "";
             in.skip(4);
             int libid = in.read4();
             int actid = in.read4();
             ////org.gcreator.core.gcreator.debugOut.println("retrive actions");
             int k;
             //boolean unknownLib = (act == null); //this should always be false
-            if (true){
+            boolean question = false;
+            if (true) {
                 k = in.read4(); //action kind
                 //org.gcreator.core.gcreator.debugOut.println("kind:"+k);//1=sblock,2=eblock,0=comment,7=code
                 boolean ar = in.readBool(); //allow relative
                 //org.gcreator.core.gcreator.debugOut.println("allow relative:"+ar);
-                in.readBool(); //is a question
+                question = in.readBool(); //is a question
                 in.readBool(); //can apply to
                 int exectype = in.read4();
                 //org.gcreator.core.gcreator.debugOut.println("exectype:"+exectype);
-                
-                if(exectype == EXEC_FUNCTION)
-                    function=in.readStr(); //Exec info
-                else {in.skip(in.read4());}
-                
-                if(exectype == EXEC_CODE){
-                    code=in.readStr(); //Exec info
-                    org.gcreator.core.gcreator.debugOut.println("code action:"+code);
-                //org.gcreator.core.gcreator.debugOut.println("read code:"+code);
-                }
+
+                if (exectype == EXEC_FUNCTION) {
+                    function = in.readStr();
+                } //Exec info
                 else {
                     in.skip(in.read4());
-                    //org.gcreator.core.gcreator.debugOut.println("not code");
                 }
-                
-            }
-            else{
+
+                if (exectype == EXEC_CODE) {
+                    code = in.readStr(); //Exec info
+                    org.gcreator.core.gcreator.debugOut.println("code action:" + code);
+                //org.gcreator.core.gcreator.debugOut.println("read code:"+code);
+                } else {
+                    in.skip(in.read4());
+                //org.gcreator.core.gcreator.debugOut.println("not code");
+                }
+
+            } else {
                 //org.gcreator.core.gcreator.debugOut.println("error: not unknownlib");
                 in.skip(20);
                 in.skip(in.read4());
@@ -1264,54 +1471,70 @@ c=null;
             }
             //org.gcreator.core.gcreator.debugOut.println("action code:"+code+function);
             int arglen = in.read4(); //argument count
-            
-            
+
+
             String[] args = null;
-            int[] argkind=null;
-            
+            int[] argkind = null;
+
             int argkinds = in.read4();
             argkind = new int[argkinds];
-            for(int x = 0; x < argkinds; x++)
-                argkind[x]=in.read4();
-            
+            for (int x = 0; x < argkinds; x++) {
+                argkind[x] = in.read4();
+            }
+
             int appliesTo = in.read4();
             boolean relative = in.readBool(); //relative
             int actualnoargs = in.read4();
-            
-            if(actualnoargs!=0)
+
+            if (actualnoargs != 0) {
                 args = new String[actualnoargs];
-            for (int l = 0; l < actualnoargs; l++)
-            {
-                if (l >= arglen){
+            }
+            for (int l = 0; l < actualnoargs; l++) {
+                if (l >= arglen) {
                     in.skip(in.read4());
                     continue;
                 }
                 args[l] = in.readStr(); //strval
                 //change based on arg kind
-                if (argkind[l]==1)
-                    args[l] = "\""+args[l]+"\"";
-                else if (argkind[l]==0){}
-                else if (argkind[l]==5){ //sprite
+                if (argkind[l] == 1) {
+                    args[l] = "\"" + args[l] + "\"";
+                } else if (argkind[l] == 0) {
+                } else if (argkind[l] == 5) { //sprite
                     int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null";else
-                    args[l]=c.sprites.get(r).name;
-                } else if (argkind[l]==6){//sound
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.sprites.get(r).name;
+                    }
+                } else if (argkind[l] == 6) {//sound
                     int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null";else
-                    args[l]=c.sounds.get(r).name;
-                } else if (argkind[l]==7){//background
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.sounds.get(r).name;
+                    }
+                } else if (argkind[l] == 7) {//background
                     int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null"; else
-                    args[l]=c.backgrounds.get(r).name;
-                } else if (argkind[l]==8){//path
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.backgrounds.get(r).name;
+                    }
+                } else if (argkind[l] == 8) {//path
                     int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null";else
-                    args[l]=c.paths.get(r).name;
-                } else if (argkind[l]==9){//script
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.paths.get(r).name;
+                    }
+                } else if (argkind[l] == 9) {//script
                     int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null";else
-                    args[l]=c.scripts.get(r).name;
-                } else if (argkind[l]==10){//actor
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.scripts.get(r).name;
+                    }
+                } else if (argkind[l] == 10) {//actor
 //                    int r = Integer.parseInt(args[l]);
 //                    try{
 //                    if (r>c.actors.size())
@@ -1319,126 +1542,126 @@ c=null;
 //                    else if (c.actors.get(r) !=null)
 //                    args[l]=c.actors.get(r).name;
 //                    }catch(Exception ee){}
-                } else if (argkind[l]==11){//scene
+                } else if (argkind[l] == 11) {//scene
                     int r = Integer.parseInt(args[l]);
-                    //args[l]=c.scenes.get(r).name;
-                } else if (argkind[l]==12){//font
+                //args[l]=c.scenes.get(r).name;
+                } else if (argkind[l] == 12) {//font
                     int r = Integer.parseInt(args[l]);
-                   // args[l]=c.fonts.get(r).name; fonts not added yet
+                // args[l]=c.fonts.get(r).name; fonts not added yet
+                } else if (argkind[l] == 14) {//timeline
+                    int r = Integer.parseInt(args[l]);
+                    if (r < 0) {
+                        args[l] = "null";
+                    } else {
+                        args[l] = c.timelines.get(r).name;
+                    }
                 }
-                else if (argkind[l]==14){//timeline
-                    int r = Integer.parseInt(args[l]);
-                    if (r<0) args[l]="null";else
-                    args[l]=c.timelines.get(r).name;
-                }
-                //org.gcreator.core.gcreator.debugOut.println("argkind:"+argkind[l]);
+            //org.gcreator.core.gcreator.debugOut.println("argkind:"+argkind[l]);
             }
-            
+
             boolean not = in.readBool(); //Not
-            
-                
+
+
             org.gcreator.actions.Action act;
-            
-            act =    parseAction(code,function,c, null, appliesTo, relative, args,k);
+
+            act = parseAction(code, function, c, null, appliesTo, relative, args, k, question);
             act.project = c.pro;
-           // //org.gcreator.core.gcreator.debugOut.println("Got here");
-            if(act!=null&&e!=null&&e.actions!=null)
+            // //org.gcreator.core.gcreator.debugOut.println("Got here");
+            if (act != null && e != null && e.actions != null) {
                 e.actions.add(act);
+            }
         }
         org.gcreator.core.gcreator.debugOut.println("Ended actions");
     }
-    
-    private static org.gcreator.actions.Action retrieveAction(int libid, int actid,String code,boolean function, String fname,int kind,ArgumentList al,boolean relative){
+
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid, String code, boolean function, String fname, int kind, ArgumentList al, boolean relative, boolean question) {
         org.gcreator.actions.Action act = null;
-       
+
         //check kind
-            if (kind==0)
-            {
-                Comment c = new Comment();
-                c.text = code.substring(1, code.length()-1);
+        if (kind == 0) {
+            Comment c = new Comment();
+            c.text = code.substring(1, code.length() - 1);
             act = new org.gcreator.actions.Action(c);
-            }
-            else if (kind==1)
-            {
+        } else if (kind == 1) {
             act = new org.gcreator.actions.Action(new StartOfABlock());
-            }
-            else if (kind==2)
-            {
+        } else if (kind == 2) {
             act = new org.gcreator.actions.Action(new EndOfABlock());
-            }
-        else if (kind==3)
-            {
+        } else if (kind == 3) {
             act = new org.gcreator.actions.Action(new Else());
-            }
-        else if (kind==4)
-            {
+        } else if (kind == 4) {
             act = new org.gcreator.actions.Action(new Exit());
-            }
-        else if (kind==5)
-            {
+        } else if (kind == 5) {
             Repeat r = new Repeat();
             r.times = code;
             act = new org.gcreator.actions.Action(r);
-            }
-        else if (kind==6)
-            {
+        } else if (kind == 6) {
             SetVariable s = new SetVariable();
-            s.to=code;
+            s.to = code;
             act = new org.gcreator.actions.Action(s);
-            }
-        //org.gcreator.actions.Action tt;
-        if (function){
-        CallFunction tt = new CallFunction();
-        tt.fname=fname;
-        tt.args=al;
-        tt.relative = relative;
-        
-        act = new org.gcreator.actions.Action(tt);
-        }else if (kind == 7){
-            ExecuteCode tt = new ExecuteCode();
-            tt.code = code.substring(1, code.length()-1);
-            act = new org.gcreator.actions.Action(tt);
-            
         }
-        
-            
-            return act;
+        //org.gcreator.actions.Action tt;
+        if (function) {
+            if (question) {
+                If i = new If();
+                i.condition = "if (" + fname + code + ")";
+                act = new org.gcreator.actions.Action(i);
+            } else {
+                CallFunction tt = new CallFunction();
+                tt.fname = fname;
+                tt.args = al;
+                tt.relative = relative;
+
+                act = new org.gcreator.actions.Action(tt);
+            }
+        } else if (kind == 7) {
+            ExecuteCode tt = new ExecuteCode();
+            tt.code = code.substring(1, code.length() - 1);
+            act = new org.gcreator.actions.Action(tt);
+
+        }
+
+
+        return act;
 //        
 //        //org.gcreator.core.gcreator.debugOut.println("libid=" + libid + ", actid=" + actid);
 //        
 //        return act;
     }
-    
-    private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action,int appliesTo, boolean relative, String[] args,int kind) {
+
+    private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action, int appliesTo, boolean relative, String[] args, int kind, boolean question) {
         ArgumentList a = new ArgumentList();
-        
-        boolean func=true;
-        String fname=function;
-        if (function.equals(""))
-            func=false;
-        
-        if (args != null)
-            for (int i=0; i< args.length; i++)
-            {
-                if (args[i] != null){
-                a.arguments.add(args[i]);
-            function+=" ,"+args[i];
+
+        boolean func = true;
+        String fname = function;
+        if (function.equals("")) {
+            func = false;
+        }
+
+        if (args != null) {
+            for (int i = 0; i < args.length; i++) {
+                if (args[i] != null) {
+                    a.arguments.add(args[i]);
+                    function += " ," + args[i];
                 }
             }
-        
-        org.gcreator.core.gcreator.debugOut.println("function:"+function);
-            //org.gcreator.core.gcreator.debugOut.println("Code:"+code);
-        try{
-            org.gcreator.actions.Action act = retrieveAction(0, 0,function,func,fname,kind,a,relative);
+        }
+
+        org.gcreator.core.gcreator.debugOut.println("function:" + function);
+        //org.gcreator.core.gcreator.debugOut.println("Code:"+code);
+        try {
+            org.gcreator.actions.Action act = retrieveAction(0, 0, function, func, fname, kind, a, relative, question);
             //org.gcreator.core.gcreator.debugOut.println("aftre ret");
 //            if (act.pattern instanceof ExecuteCode)
 //            ((ExecuteCode)act.pattern).code = function;
-            
-            
 
-        
-        return act;
-        }catch(Exception e){e.printStackTrace(); return null;}
+
+
+
+            return act;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
 //        if(action.pattern instanceof SetVSpeed){
 //            //((VSpeedEditor) action.getPanel()).relative.setSelected(relative);
 //            ((VSpeedEditor) action.getPanel()).to.setText(args[0]);
@@ -1450,43 +1673,76 @@ c=null;
     private void readTree(GmFileContext c, int ver) {
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+    /*
+     *
+     * This will read ahead to get names of future resources so they can be linked from
+     * current resources
+     *
+     */
+    private void readahead(GmFileContext c) {
+    }//    private void readahead(GmFileContext c) {
+//        //this will read ahead to get resource names
+//        GmStreamDecoder in = c.in;
+//        System.out.println("Reading ahead");
+//        
+//        //Timelines
+//        int ver = in.read4();
+//        
+//        if (ver != 500) throw versionError("BEFORE","TIMELINES",ver);
+//        int noTimelines = in.read4();
+//        for(int i = 0; i < noTimelines; i++){
+//            if (!in.readBool()){
+//                c.timelines.add(null);
+//                continue;
+//            }
+//            
+//            //in.readStr(); //Name
+//            f = new org.gcreator.fileclass.GFile(tlGroup, in.readStr(), "timeline", null);
+//            f.value = a = new Timeline();
+//            
+//            c.timelines.add(f);
+//            ver = in.read4();
+//            if (ver != 500) throw versionError("IN","TIMELINES",i,ver);
+//            int nomoms = in.read4();
+//            for(int j = 0; j < nomoms; j++){
+//                //a.steps
+//                TimelineStep ts = new TimelineStep();
+//                ts.stepnum=in.read4(); //stepnum
+//                
+//                readTimelineActions(in);
+//            }
+//        }
+//    }
 }
 
-class Transparency
-	{
-	public static BufferedImage makeColorTransparent(Image im,final Color color)
-		{
-		ImageFilter filter = new RGBImageFilter()
-			{
-				// the color we are looking for... Alpha bits are set to opaque
-				public int markerRGB = color.getRGB() | 0xFF000000;
+class Transparency {
 
-				public final int filterRGB(int x,int y,int rgb)
-					{
-					if ((rgb | 0xFF000000) == markerRGB)
-						{
-						// Mark the alpha bits as zero - transparent
-						return 0x00FFFFFF & rgb;
-						}
-					else
-						{
-						// nothing to do
-						return rgb;
-						}
-					}
-			};
-		ImageProducer ip = new FilteredImageSource(im.getSource(),filter);
-		return createBufferedImage(Toolkit.getDefaultToolkit().createImage(ip));
-		}
+    public static BufferedImage makeColorTransparent(Image im, final Color color) {
+        ImageFilter filter = new RGBImageFilter() {
+            // the color we are looking for... Alpha bits are set to opaque
+            public int markerRGB = color.getRGB() | 0xFF000000;
 
-	private static BufferedImage createBufferedImage(Image image)
-		{
-		BufferedImage bi = new BufferedImage(image.getWidth(null),image.getHeight(null),
-				BufferedImage.TYPE_INT_ARGB);
-		Graphics2D g = bi.createGraphics();
-		g.drawImage(image,0,0,null);
+            public final int filterRGB(int x, int y, int rgb) {
+                if ((rgb | 0xFF000000) == markerRGB) {
+                    // Mark the alpha bits as zero - transparent
+                    return 0x00FFFFFF & rgb;
+                } else {
+                    // nothing to do
+                    return rgb;
+                }
+            }
+        };
+        ImageProducer ip = new FilteredImageSource(im.getSource(), filter);
+        return createBufferedImage(Toolkit.getDefaultToolkit().createImage(ip));
+    }
 
-		return bi;
-		}
+    private static BufferedImage createBufferedImage(Image image) {
+        BufferedImage bi = new BufferedImage(image.getWidth(null), image.getHeight(null),
+                BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = bi.createGraphics();
+        g.drawImage(image, 0, 0, null);
 
-	}
+        return bi;
+    }
+}

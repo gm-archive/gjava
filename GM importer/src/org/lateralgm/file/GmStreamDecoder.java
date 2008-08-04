@@ -18,6 +18,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
 
@@ -27,28 +28,29 @@ import org.lateralgm.messages.Messages;
 
 public class GmStreamDecoder
 	{
-	private InputStream in;
+	private RandomAccessFile in;
 	private int[] table = null;
 	private int pos = 0;
 
-	public GmStreamDecoder(InputStream in)
+	public GmStreamDecoder(RandomAccessFile in)
 		{
-		if (in instanceof BufferedInputStream) this.in = in;
-		else this.in = new BufferedInputStream(in);
+		if (in instanceof RandomAccessFile) this.in = in;
+		//else this.in = new BufferedInputStream(in);
 		}
 
 	public GmStreamDecoder(String path) throws FileNotFoundException
 		{
-		in = new BufferedInputStream(new FileInputStream(path));
+		in = new RandomAccessFile(new File(path),"rw");
 		}
 
 	public GmStreamDecoder(File f) throws FileNotFoundException
 		{
-		in = new BufferedInputStream(new FileInputStream(f));
+		in = new RandomAccessFile(f,"rw");
 		}
 
 	public int read(byte b[]) throws IOException
 		{
+
 		return read(b,0,b.length);
 		}
 
@@ -76,6 +78,7 @@ public class GmStreamDecoder
 	public int read() throws IOException
 		{
 		int t = in.read();
+
 		if (t == -1)
 			{
 			String error = Messages.getString("GmStreamDecoder.UNEXPECTED_EOF"); //$NON-NLS-1$
@@ -103,6 +106,7 @@ public class GmStreamDecoder
 
 	public int read4() throws IOException
 		{
+           // return in.readInt();
 		int a = read();
 		int b = read();
 		int c = read();
@@ -202,10 +206,11 @@ public class GmStreamDecoder
 
 	public long skip(long length) throws IOException
 		{
-		long total = in.skip(length);
+            
+		long total = in.skipBytes((int)length);
 		while (total < length)
 			{
-			total += in.skip(length - total);
+			total += in.skipBytes((int)(length - total));
 			}
 		pos += (int) length;
 		return total;
@@ -224,7 +229,7 @@ public class GmStreamDecoder
 		return (bits & bit) == bit;
 		}
 
-	public InputStream getInputStream()
+	public RandomAccessFile getInputStream()
 		{
 		return in;
 		}
