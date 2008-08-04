@@ -150,7 +150,8 @@ public class Actor extends tile {
      */
     public Rectangle getBounds() {
         if (sprite != null) {
-            return new Rectangle((int) (sprite.BBRight + x - sprite.sprite_xoffset), (int) (sprite.BBTop + y - sprite.sprite_yoffset), (int) (sprite.BBLeft + x - sprite.sprite_xoffset), (int) (sprite.BBBottom + y - sprite.sprite_yoffset));
+            //rectangle(x,y,width,height)
+            return new Rectangle((int) (sprite.BBRight + x - sprite.sprite_xoffset), (int) (sprite.BBTop + y - sprite.sprite_yoffset),+(sprite.BBRight - sprite.BBLeft), +(sprite.BBBottom - sprite.BBTop));
         } else {
             return new Rectangle(0, 0, 0, 0);
         }
@@ -174,6 +175,9 @@ public class Actor extends tile {
      * This will Move the object, should be called every step
      */
     public void Move() {
+        xprevious = x;
+        yprevious = y;
+
         //use gravity
         int gd = getGravity_direction().getInt();
         gd %= 360;
@@ -195,8 +199,7 @@ public class Actor extends tile {
                 setSpeed(new Integer(0));
             }
         }
-        xprevious = x;
-        yprevious = y;
+        
         x = x + hspeed;
         y = y + vspeed;
 

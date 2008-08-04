@@ -196,9 +196,9 @@ public class GJava extends PlatformCore {
             }
             else if (ev instanceof org.gcreator.events.CollisionEvent) {
                 //System.out.println("collision event");
-            print(actor, "  public void CollisionWith"+((org.gcreator.events.CollisionEvent)ev).other.name+"(Actor other){this.other=other; if (other.getBounds().intersects(getBounds()) && other instanceof "+((org.gcreator.events.CollisionEvent)ev).other.name+"){  if (other.getSolid().getBoolean()){x=xprevious;y=yprevious;}");
-            event="Collision With"+((org.gcreator.events.CollisionEvent)ev).other.name;
-            collision+="CollisionWith"+((org.gcreator.events.CollisionEvent)ev).other.name+"(G_Java_a); ";
+            print(actor, "  public void CollisionWith"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"(Actor other){this.other=other; if (other.getBounds().intersects(getBounds()) && other instanceof "+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"){  if (other.getSolid().getBoolean()){x=xprevious;y=yprevious;}");
+            event="Collision With"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name;
+            collision+="CollisionWith"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"(G_Java_a); ";
             //callevents+="checkCollision();";
             }
             else if (ev instanceof org.gcreator.events.MouseEvent) {
@@ -427,7 +427,7 @@ public class GJava extends PlatformCore {
             f1 = new File("Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "lib" + File.separator);
             f1.mkdirs();
             f2 = new File("lib" + File.separator);
-            copyDirectory(f2, f1);
+            //copyDirectory(f2, f1);
             f1 = new File("Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "com" + File.separator);
             f2 = new File("plugins" + File.separator + "com" + File.separator);
             copyDirectory(f2, f1);

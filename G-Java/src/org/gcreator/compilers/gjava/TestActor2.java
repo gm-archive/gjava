@@ -176,7 +176,9 @@ Integer l=new Integer(1);
     public void Draw_event(Graphics2D g) {
         //draw_sprite_stretched(Game.sprite1,new Integer(1),new Integer(10),new Integer(10),new Integer(310),new Integer(310));
         //draw_clear(getC_black());
+        g.draw(getBounds());
         draw_set_color(getC_green());
+
         //Game.Current.g2d.setColor(java.awt.Color.GREEN);
 //    self.setVariable("px",(new Integer(3)) .add((new Integer(4)) .mult((new Integer(6)))));
 // self.setVariable("py",(new Integer(10)) .add((new Integer(8))));

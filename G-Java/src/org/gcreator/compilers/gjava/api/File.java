@@ -7,13 +7,7 @@ package org.gcreator.compilers.gjava.api;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 //import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.Enumeration;
-import org.gcreator.compilers.gjava.api.res.FileStream;
 
    /**
      * This class allows you to modify text files. It also contains general functions for manipulating files.

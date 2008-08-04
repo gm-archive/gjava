@@ -81,6 +81,7 @@ public class BinaryFile extends Object {
          * @return
          */
         public double getPosition() {
+
             try {
                 return f.pos();
             } catch (IOException ex) {

@@ -18,7 +18,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import org.gcreator.compilers.gjava.Game;
 import org.gcreator.compilers.gjava.api.components.Sprite;
-import sun.security.action.GetIntegerAction;
 
 /**
  * This class is valid GCL, don't use java code here
@@ -6039,8 +6038,10 @@ return new Object();
 
 public static Object action_bounce(Object... obj)
 {
-    System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
-return new Object();
+   // System.out.println("sign:"+sign(sin(degtorad(point_direction( self.getX(),self.getY(),other.getX(),other.getY()).sub(self.getImage_angle())))));
+self.hspeed=-self.hspeed;
+self.vspeed=-self.vspeed;
+    return new Object();
 }
 
 public static Object action_cd_pause(Object... obj)
