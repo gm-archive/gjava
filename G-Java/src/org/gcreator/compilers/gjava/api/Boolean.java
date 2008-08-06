@@ -37,7 +37,30 @@ public boolean getBoolean()
         return new String(this.toString());
     }
     
-
+    @Override
+    public int getInt()
+    {
+        if (b == true)
+            return 1;
+        else
+            return 0;
+    }
+    
+    @Override
+    public int compareTo(java.lang.Object o)
+    {
+        if (o instanceof Boolean)
+        {
+            if (getInt() < ((Object)o).getInt())
+                return -1;
+            else if (getInt() > ((Object)o).getInt())
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return super.compareTo(o);  //No order - go by toString
+    }
 
 
 

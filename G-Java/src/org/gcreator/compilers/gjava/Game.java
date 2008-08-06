@@ -18,7 +18,7 @@ import org.gcreator.compilers.gjava.gtge.Scene2D;
 //import org.gcreator.compilers.gjava.core.basicgame;
 public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
 
-    public static Sprite G_Creator_NULL_SPRITE,  sprite1;
+    public static Sprite G_Creator_NULL_SPRITE,  sprite1,wall,ball;
     public static PrintWriter debug;
 //public static GameLoader game;
     Game() {
@@ -35,12 +35,15 @@ public class Game extends org.gcreator.compilers.gjava.gtge.Basicgame {
         scenes = new Scene2D[]{new newScene1()};
     }
 
-    public void loadSprites() {
-        //BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};
-        sprite1 = new Sprite("sprite1", 32, 34, 0, 47, 10, 2, 0, 0, new BufferedImage[]{getImage("image.png")/*,getImage("screenshot.jpg")*/});
-        System.out.println("load sprites");
+//    public void loadSprites() {
+//        //BufferedImage[] b = {getImage("\\image.png"),getImage("\\screenshot.jpg")};
+//        sprite1 = new Sprite("sprite1", 32, 34, 0, 47, 10, 2, 0, 0, new BufferedImage[]{getImage("image.png")/*,getImage("screenshot.jpg")*/});
+//        System.out.println("load sprites");
+//
+//    }
 
-    }
+    public void loadSprites() { wall = new Sprite("wall",24, 24, 0, 23, 23, 0, 0, 0, new BufferedImage[]{getImage("sprimg_wall_0.png")});ball = new Sprite("ball",24, 24, 2, 20, 20, 2, 0, 0, new BufferedImage[]{getImage("sprimg_ball_0.png")});}
+
 
     public static void main(java.lang.String[] args) {
         parameter_count = args.length;

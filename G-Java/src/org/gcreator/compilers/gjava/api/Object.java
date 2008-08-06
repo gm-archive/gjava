@@ -9,7 +9,7 @@ import java.util.Hashtable;
  * 
  * @author TGMG
  */
-public class Object implements Cloneable {
+public class Object implements Cloneable, Comparable {
 
        
     
@@ -410,7 +410,11 @@ public class Object implements Cloneable {
         return getType()+":"+getDouble();
     }
     
-    
+    /** Unless overriden, order is by toString (no meaningful order) */
+    public int compareTo(java.lang.Object o)
+    {
+        return toString().compareTo(o.toString());
+    }
 
    
 }

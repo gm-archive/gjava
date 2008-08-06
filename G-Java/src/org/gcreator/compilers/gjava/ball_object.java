@@ -5,7 +5,7 @@ import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import or
 public class ball_object extends Actor {
 
     ball_object(int X,int Y,double instance_id) {
-        super("ball_object", null,false, true, 0.0 , false);
+        super("ball_object", Game.ball,false, true, 0.0 , false);
         xstart = X;xprevious=X;yprevious=Y;
         ystart = Y;
         x = X;
@@ -46,7 +46,8 @@ public void KeyPressed(int keycode) {} public void KeyReleased(int keycode) {}
 public void Draw_event(Graphics2D g) {
         draw_set_color(getC_green());
         g.draw(getBounds());
-       // System.out.println("draw ball");
+        g.drawString("hmmmmmmmm", 100, 100);
+        //System.out.println("draw ball");
 		}
 
 }

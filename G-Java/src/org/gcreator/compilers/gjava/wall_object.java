@@ -5,7 +5,7 @@ import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import or
 public class wall_object extends Actor {
 
     wall_object(int X,int Y,double instance_id) {
-        super("wall_object", null,true, true, 0.0 , false);
+        super("wall_object", Game.wall,true, true, 0.0 , false);
         xstart = X;xprevious=X;yprevious=Y;
         ystart = Y;
         x = X;
@@ -19,6 +19,6 @@ public void KeyPressed(int keycode) {} public void KeyReleased(int keycode) {}
 public void Draw_event(Graphics2D g) {
         draw_set_color(getC_green());
         g.draw(getBounds());
-        System.out.println("draw_wall");
+        //System.out.println("draw_wall");
 		}
 }

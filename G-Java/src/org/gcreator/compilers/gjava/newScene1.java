@@ -9,7 +9,7 @@ import org.gcreator.compilers.gjava.api.Double;
 public class newScene1 extends org.gcreator.compilers.gjava.gtge.Scene2D {
 
     newScene1() {
-        super(Game.frame,"newScene1",9999,640,480, new Color(155,51,51));
+        super(Game.frame,"newScene1",9999,640,480, new Color(0,51,51));
     setupScene();
     SortDepth();
     }

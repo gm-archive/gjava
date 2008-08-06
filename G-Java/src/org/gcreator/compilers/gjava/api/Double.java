@@ -110,6 +110,20 @@ public class Double extends Object {
         i=d;
     }
         
-
+    @Override
+    public int compareTo(java.lang.Object o)
+    {
+        if ((o instanceof Double) || (o instanceof Integer))
+        {
+            if (getDouble() < ((Object)o).getDouble())
+                return -1;
+            else if (getDouble() > ((Object)o).getDouble())
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return super.compareTo(o);  //No order - go by toString
+    }
     
 }

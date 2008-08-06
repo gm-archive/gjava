@@ -5,18 +5,19 @@
 
 package org.gcreator.compilers.gjava.api;
 
-import java.util.Hashtable;
+import java.util.NoSuchElementException;
+import java.util.TreeMap;
 
 /**
  *
  * @author TGMG
  */
 public class Map extends Object {
-Hashtable h;
+TreeMap<Object, Object> h;
 
 Map()
 {
-    h = new Hashtable();
+    h = new TreeMap();
 }
 
 public void destroy()
@@ -59,4 +60,64 @@ public void destroy()
     {
          return (Object)h.get(key);
     } 
+     
+     /** Returns the first (smallest) key, or new Object() if the map is empty */
+     public Object findFirst()
+     {
+         try
+         {
+            return h.firstKey();
+         } catch (NoSuchElementException e)
+         {
+             return new Object();
+         }
+     }
+     
+     /** Returns the last (largest) key, or new Object() if the map is empty */
+     public Object findLast()
+     {
+         try
+         {
+            return h.lastKey();
+         } catch (NoSuchElementException e)
+         {
+             return new Object();
+         }
+     }
+     
+     /** Returns previous key, or new Object() if the order can't be determined
+      *  or the key given is null or not in the map
+      */
+     public Object findPrevious(Object key)
+     {
+         try
+         {
+             Object o = h.lowerKey(key);
+             if (o != null)
+                 return o;
+             else
+                 return new Object();
+         } catch (Exception e)
+         {
+             return new Object();
+         }
+     }
+     
+     /** Returns next key, or new Object() if the order can't be determined
+      *  or the key given is null or not in the map
+      */
+     public Object findNext(Object key)
+     {
+         try
+         {
+             Object o = h.higherKey(key);
+             if (o != null)
+                 return o;
+             else
+                 return new Object();
+         } catch (Exception e)
+         {
+             return new Object();
+         }
+     }
 }

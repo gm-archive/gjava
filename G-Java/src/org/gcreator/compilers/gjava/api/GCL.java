@@ -4767,22 +4767,30 @@ return new Object();
 
 public static Object ds_map_find_previous(Object id, Object key)
 {
-return new Object();
+    if (id instanceof Map)
+        return ((Map)id).findPrevious(key);
+    return new Object();
 }
 
 public static Object ds_map_find_next(Object id, Object key)
 {
-return new Object();
+    if (id instanceof Map)
+        return ((Map)id).findNext(key);
+    return new Object();
 }
 
 public static Object ds_map_find_first(Object id)
 {
-return new Object();
+    if (id instanceof Map)
+        return ((Map)id).findFirst();
+    return new Object();
 }
 
 public static Object ds_map_find_last(Object id)
 {
-return new Object();
+    if (id instanceof Map)
+        return ((Map)id).findLast();
+    return new Object();
 }
 
 /*
@@ -4792,67 +4800,115 @@ return new Object();
  */
 public static Object ds_priority_create()
 {
-return new Object();
+    return new PriorityQueue();
 }
 
 public static Object ds_priority_destroy(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        ((PriorityQueue)id).destroy();
+    }
+    return new Object();
 }
 
 public static Object ds_priority_clear(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        ((PriorityQueue)id).clear();
+    }
+    return new Object();
 }
 
 public static Object ds_priority_size(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return new Integer(((PriorityQueue)id).size());
+    }
+    return new Object();
 }
 
 public static Object ds_priority_empty(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return new Boolean(((PriorityQueue)id).isEmpty());
+    }
+    return new Object();
 }
 
 public static Object ds_priority_add(Object id, Object value, Object priority)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        ((PriorityQueue)id).add(value, priority);
+    }
+    return new Object();
 }
 
 public static Object ds_priority_change_priority(Object id, Object value, Object priority)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        ((PriorityQueue)id).changePriority(value, priority);
+    }
+    return new Object();
 }
 
 public static Object ds_priority_find_priority(Object id, Object value)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return ((PriorityQueue)id).findPriority(value);
+    }
+    return new Object();
 }
 
 public static Object ds_priority_delete_value(Object id, Object value)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        ((PriorityQueue)id).deleteValue(value);
+    }
+    return new Object();
 }
 
 public static Object ds_priority_delete_min(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return ((PriorityQueue)id).deleteMin();
+    }
+    return new Object();
 }
 
 public static Object ds_priority_find_min(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return ((PriorityQueue)id).findMin();
+    }
+    return new Object();
 }
 
 public static Object ds_priority_delete_max(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return ((PriorityQueue)id).deleteMax();
+    }
+    return new Object();
 }
 
 public static Object ds_priority_find_max(Object id)
 {
-return new Object();
+    if (id instanceof PriorityQueue)
+    {
+        return ((PriorityQueue)id).findMax();
+    }
+    return new Object();
 }
 
 /*
