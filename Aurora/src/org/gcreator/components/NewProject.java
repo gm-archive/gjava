@@ -22,7 +22,8 @@ import javax.swing.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.*;
 //import org.gcreator.macro.*;
-import org.gcreator.managers.*;
+import org.gcreator.managers.ProjectTree;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -59,13 +60,13 @@ public class NewProject extends TabPanel {
         ptypes = new ProjectTypes(this);
         jLabel3 = new JLabel();
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(54));
+        jLabel1.setText(Dictionary.getEntry("general-newproject-type"));
 
-        jLabel2.setText(LangSupporter.activeLang.getEntry(60));
+        jLabel2.setText(Dictionary.getEntry("general-newproject-name"));
 
         jLabel3.setVisible(false);
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(94));
+        jButton1.setText(Dictionary.getEntry("general-newproject-create"));
         jButton1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {

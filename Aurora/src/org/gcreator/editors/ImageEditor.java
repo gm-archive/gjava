@@ -18,6 +18,7 @@ import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.Registry;
 import org.gcreator.units.BeanFile;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -153,7 +154,7 @@ public class ImageEditor extends TabPanel {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Image"));
         jPanel1.setFocusable(false);
 
-        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(118));
+        jButton1.setText(Dictionary.getEntry("editors-image-load"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -172,7 +173,7 @@ public class ImageEditor extends TabPanel {
             }
         });
 
-        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
+        jLabel1.setText(Dictionary.getEntry("editors-image-zoom"));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, -5, 5, 1));
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -431,7 +432,7 @@ public class ImageEditor extends TabPanel {
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -168,7 +168,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="langPiece(191)" type="code"/>
+                  <Connection code="Dictionary.getEntry(&quot;editors-tileset-name&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -180,7 +180,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="langPiece(192)" type="code"/>
+                  <Connection code="Dictionary.getEntry(&quot;editors-tileset-begin&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>

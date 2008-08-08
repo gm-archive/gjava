@@ -20,7 +20,7 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
-import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -31,10 +31,6 @@ public class TilesetEditor extends TabPanel {
     
     public Tileset value;
     public ResourceChooser res;
-    
-    public String langPiece(int val){
-        return LangSupporter.activeLang.getEntry(val);
-    }
     
     /** Creates new form TilesetEditor
      * @param file The file to load. This may not be null.
@@ -128,11 +124,11 @@ public class TilesetEditor extends TabPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText(langPiece(191));
+        jLabel1.setText(Dictionary.getEntry("editors-tileset-name"));
 
         jTextField1.setText("jTextField1");
 
-        jLabel2.setText(langPiece(192));
+        jLabel2.setText(Dictionary.getEntry("editors-tileset-begin"));
 
         jLabel3.setText("X");
 

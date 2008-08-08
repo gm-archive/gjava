@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import org.gcreator.actions.ActionPattern;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Exit extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return "Exit";
+        return Dictionary.getEntry("actions-exit-text");
     }
     
     @Override

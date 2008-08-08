@@ -39,13 +39,6 @@ import org.gcreator.components.navigator.UnknownResourceNavigator;
 import org.gcreator.extended.JarClassLoader;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
-import org.gcreator.languages.English;
-import org.gcreator.languages.German;
-import org.gcreator.languages.GermanOld;
-import org.gcreator.languages.Portuguese;
-import org.gcreator.languages.Russian;
-import org.gcreator.languages.Spanish;
-import org.gcreator.managers.LangSupporter;
 import org.gcreator.managers.Registry;
 import org.gcreator.managers.ScriptThemeManager;
 import org.gcreator.managers.SettingsIO;
@@ -53,6 +46,7 @@ import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.Jar;
 import org.gcreator.plugins.Plugger;
 import org.gcreator.threading.ThreadPool;
+import org.gcreator.units.Dictionary;
 import org.gcreator.units.SystemErrStream;
 import org.gcreator.units.SystemOutStream;
 
@@ -181,22 +175,9 @@ public class gcreator {
             SettingsIO.loadSettings();
         }
 
-        if (Registry.get("Global.language").equals("English")) {
-            LangSupporter.activeLang = new English();
-        } else if (((String)Registry.get("Global.language")).contains("Portuguese")) {
-                LangSupporter.activeLang = new Portuguese();
-        } else if (Registry.get("Global.language").equals("German")) {
-            LangSupporter.activeLang = new German();
-        } else if (Registry.get("Global.language").equals("German (Old)")) {
-            LangSupporter.activeLang = new GermanOld();
-        } else if (Registry.get("Global.language").equals("Russian")) {
-            LangSupporter.activeLang = new Russian();
-        } else if (Registry.get("Global.language").equals("Spanish")) {
-            LangSupporter.activeLang = new Spanish();
-        } else {
-            LangSupporter.activeLang = new English();
-            utilities.addError(36);
-        }
+        Dictionary.activeDictionary = (String) Registry.get("Global.language");
+        if(Dictionary.activeDictionary==null)
+            Dictionary.activeDictionary = "en";
         
         try {
             MetalLookAndFeel.setCurrentTheme((MetalTheme) Registry.get("Graphics.metalTheme"));

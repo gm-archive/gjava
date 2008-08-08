@@ -16,6 +16,7 @@ import javax.swing.event.*;
 
 import org.gcreator.components.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -25,7 +26,7 @@ public class HelpPanel extends TabPanel {
     
     public void loadPage(String page){
         try{
-            jEditorPane1.setPage(new URL("http://g-creator.org/docs/" + page + "?lang=" + LangSupporter.activeLang.getLanguage()));
+            jEditorPane1.setPage(new URL("http://g-creator.org/docs/" + page + "?lang=" + Dictionary.activeDictionary));
         }
         catch(Exception e){
             jEditorPane1.setText("<h1>ERROR!</h1>Could not load page!<br/>" + e.getMessage());

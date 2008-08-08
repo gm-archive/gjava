@@ -25,7 +25,7 @@ import javax.swing.event.DocumentListener;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
 import org.gcreator.actions.*;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 public class ActorEditor extends TabPanel {
 

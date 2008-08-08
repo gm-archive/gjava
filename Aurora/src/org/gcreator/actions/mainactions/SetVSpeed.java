@@ -12,7 +12,7 @@ package org.gcreator.actions.mainactions;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 import com.l2fprod.common.propertysheet.*;
 import org.gcreator.components.PropertyManager;
 
@@ -120,11 +120,11 @@ static final long serialVersionUID = 1L;
             String who = with;
             String what = to;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
-            return LangSupporter.activeLang.getEntry(226).replaceAll("\\$apply", who)
+            return Dictionary.getEntry("actions-setvspeed-expanded").replaceAll("\\$apply", who)
                     .replaceAll("\\$value", what)
                     .replaceAll("\\$\\$", "$");
         }
-        return LangSupporter.activeLang.getEntry(225);
+        return Dictionary.getEntry("actions-setvspeed-text");
     }
 
     public String generateGCL(JComponent panel) {

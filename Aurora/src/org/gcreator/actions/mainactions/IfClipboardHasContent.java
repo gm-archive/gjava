@@ -15,7 +15,7 @@ import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -82,8 +82,8 @@ public class IfClipboardHasContent extends ActionPattern{
         if(panel!=null)
             save(panel);
         if(not)
-            return LangSupporter.activeLang.getEntry(230);
-        return LangSupporter.activeLang.getEntry(231);
+            return Dictionary.getEntry("actions-ifclipboardtext-text");
+        return Dictionary.getEntry("actions-ifclipboardtext-not");
     }
     
     @Override

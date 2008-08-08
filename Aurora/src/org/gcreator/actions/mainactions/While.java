@@ -16,7 +16,7 @@ import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -93,10 +93,10 @@ public class While extends ActionPattern{
         if(panel!=null)
             save(panel);
         if(panel==null)
-            return "While";
+            return Dictionary.getEntry("actions-while-text");
         if(!not)
-            return "while("+condition+")";
-        return "while(!("+condition+"))";
+            return Dictionary.getEntry("actions-while-case").replaceAll("$conditions", condition);
+        return Dictionary.getEntry("actions-while-not").replaceAll("$conditions", condition);
     }
     
     public String generateGCL(JComponent panel){

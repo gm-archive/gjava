@@ -14,6 +14,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.components.uiplus.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -56,16 +57,16 @@ public class MenuGenerator {
         }
     }
     
-    public Object addMenuItem(Object parent, int entry, ImageIcon img){
-        return addMenuItem(parent, entry, img, true);
+    public Object addTranslatableMenuItem(Object parent, String entry, ImageIcon img){
+        return addTranslatableMenuItem(parent, entry, img, true);
     }
     
-    public Object addMenuItem(int entry, ImageIcon img){
-        return addMenuItem(entry, img, true);
+    public Object addTranslatableMenuItem(String entry, ImageIcon img){
+        return addTranslatableMenuItem(entry, img, true);
     }
     
-    public Object addMenuItem(Object parent, int entry, ImageIcon img, boolean enabled){
-        String lang = LangSupporter.activeLang.getEntry(entry);
+    public Object addTranslatableMenuItem(Object parent, String entry, ImageIcon img, boolean enabled){
+        String lang = Dictionary.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenuItem i = new JMenuItem(lang, img);
@@ -83,8 +84,8 @@ public class MenuGenerator {
         }
     }
     
-    public Object addMenuItem(int entry, ImageIcon img, boolean enabled){ //root
-        String lang = LangSupporter.activeLang.getEntry(entry);
+    public Object addTranslatableMenuItem(String entry, ImageIcon img, boolean enabled){ //root
+        String lang = Dictionary.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenuItem i = new JMenuItem(lang, img);
@@ -102,8 +103,8 @@ public class MenuGenerator {
         }
     }
     
-    public Object addSubMenu(Object parent, int entry, ImageIcon img){
-        String lang = LangSupporter.activeLang.getEntry(entry);
+    public Object addTranslatableSubMenu(Object parent, String entry, ImageIcon img){
+        String lang = Dictionary.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenu i = new JMenu(lang);
@@ -120,8 +121,8 @@ public class MenuGenerator {
         }
     }
     
-    public Object addSubMenu(int entry, ImageIcon img){ //root
-        String lang = LangSupporter.activeLang.getEntry(entry);
+    public Object addTranslatableSubMenu(String entry, ImageIcon img){ //root
+        String lang = Dictionary.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenu i = new JMenu(lang);

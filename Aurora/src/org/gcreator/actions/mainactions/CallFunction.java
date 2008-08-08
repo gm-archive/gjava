@@ -15,7 +15,7 @@ import com.l2fprod.common.propertysheet.*;
 import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *

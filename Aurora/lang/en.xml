@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="English" status="Development">
+    <author>Luís Reis</author>
+    
+    <slice key="gcreator-title">G-Creator: Easy, Powerful, Yours</slice>
+    <slice key="gcreator-finished-loading">Finished loading application</slice>
+    
+    <slice key="workspace-rootnode">Workspace</slice>
+    
+    <slice key="workspace-title">Workspace</slice>
+    <slice key="workspace-context-delete">Delete</slice>
+    <slice key="workspace-context-rename">Rename</slice>
+    <slice key="workspace-context-addgroup">Add group</slice>
+    <slice key="navigator-title">Navigator</slice>
+    
+    <slice key="popup-action-cut">Cut</slice>
+    <slice key="popup-action-copy">Copy</slice>
+    <slice key="popup-action-paste">Paste</slice>
+    <slice key="popup-action-delete">Delete</slice>
+    
+    <slice key="popup-event-delete">Delete</slice>
+    
+    <slice key="general-welcome-title">Welcome to G-Creator!</slice>
+    <slice key="general-welcome-message">Welcome to G-Creator!</slice>
+    <slice key="general-newproject-title">New Project</slice>
+    <slice key="general-newproject-type">Choose Project Type</slice>
+    <slice key="general-newproject-name">Name</slice>
+    <slice key="general-newproject-create">Create</slice>
+    <slice key="general-newproject-games">Games</slice>
+    <slice key="general-newproject-modules">Modules</slice>
+    <slice key="general-newproject-emptygame">Empty Game</slice>
+    <slice key="general-newproject-emptymodule">Empty Module</slice>
+    <slice key="general-newfile-title">New File/Group</slice>
+    <slice key="general-newfile-new">New...</slice>
+    <slice key="general-newfile-std">Standard Items</slice>
+    <slice key="general-about-title">About G-Creator</slice>
+    <slice key="general-help-title">Help</slice>
+    <slice key="general-language-title">Language</slice>
+    <slice key="general-global-title">Global Settings</slice>
+    <slice key="general-global-tabsleft">Tabs (Left)</slice>
+    <slice key="general-global-tabsright">Tabs (Right)</slice>
+    <slice key="general-global-tabstop">Tabs (Top)</slice>
+    <slice key="general-global-tabsbottom">Tabs (Bottom)</slice>
+    <slice key="general-global-mdi">MDI</slice>
+    <slice key="general-global-laf">Look&amp;Feel</slice>
+    <slice key="general-global-displaymode">Display Mode</slice>
+    <slice key="general-global-displayoptions">Display Options</slice>
+    <slice key="general-global-antialiasing">Antialiasing</slice>
+    <slice key="general-global-theme">Theme</slice>
+    <slice key="general-powerpack-title">Powerpack</slice>
+    <slice key="general-powerpack-filter">Filter</slice>
+    
+    <slice key="general-mdi-minimize">Minimize</slice>
+    <slice key="general-mdi-restore">Restore</slice>
+    <slice key="general-mdi-maximize">Maximize</slice>
+    <slice key="general-mdi-cascade">Cascade</slice>
+    
+    <slice key="general-powerpack-message">Choose resource to import</slice>
+
+    <slice key="toolbar-menu-hide">Hide toolbar</slice>
+    
+    <slice key="menu-file-text">File</slice>
+    <slice key="menu-file-newproject">New Project</slice>
+    <slice key="menu-file-newfile">New File/Group</slice>
+    <slice key="menu-file-openproject">Open Project</slice>
+    <slice key="menu-file-saveproject">Save Project</slice>
+    <slice key="menu-file-saveprojectas">Save Project As...</slice>
+    <slice key="menu-file-saveallprojects">Save All Projects</slice>
+    <slice key="menu-file-savefile">Save File</slice>
+    <slice key="menu-file-saveallfiles">Save All Files</slice>
+    <slice key="menu-import-text">Import...</slice>
+    <slice key="menu-import-file">File...</slice>
+    <slice key="menu-import-file-image">Image</slice>
+    <slice key="menu-import-project">Project...</slice>
+    <slice key="menu-export-text">Export...</slice>
+    <slice key="menu-export-file">File...</slice>
+    <slice key="menu-export-project">Project...</slice>
+    <slice key="menu-file-closeproject">Close Project</slice>
+    <slice key="menu-file-exit">Exit</slice>
+    
+    <slice key="menu-view-text">View</slice>
+    <slice key="menu-treeposition-text">Workspace Tree Position</slice>
+    <slice key="menu-treeposition-left">Left</slice>
+    <slice key="menu-treeposition-right">Right</slice>
+    <slice key="menu-view-outputbox">Show Output Box</slice>
+    <slice key="menu-view-toolbars">Show Toolbars</slice>
+    <slice key="menu-view-console">Show Console</slice>
+    
+    <slice key="menu-build-text">Build&amp;Run</slice>
+    <slice key="menu-build-setmain">Set As Main Project</slice>
+    
+    <slice key="menu-tools-text">Tools</slice>
+    <slice key="menu-tools-language">Select Language</slice>
+    <slice key="menu-tools-update">Update</slice>
+    <slice key="menu-tools-plugins">Plugins</slice>
+    <slice key="menu-tools-global">Global Settings</slice>
+    <slice key="menu-tools-welcome">Show Welcome Screen</slice>
+    <slice key="menu-tools-powerpack">PowerPack</slice>
+    
+    <slice key="menu-help-text">Help</slice>
+    <slice key="menu-help-about">About</slice>
+    <slice key="menu-help-help">Help</slice>
+    
+    <slice key="actions-category-main">Main</slice>
+    
+    <slice key="actions-startblock-text">Start Block</slice>
+    <slice key="actions-endblock-text">End Block</slice>
+    <slice key="actions-comment-text">Comment</slice>
+    <slice key="actions-startcomment-text">Start Comment</slice>
+    <slice key="actions-endcomment-text">End Comment</slice>
+    <slice key="actions-setvar-text">Set Variable</slice>
+    <slice key="actions-setvar-expanded">Set $apply to $value</slice>
+    <slice key="actions-execute-text">Execute Code</slice>
+    <slice key="actions-repeat-text">Repeat</slice>
+    <slice key="actions-repeat-times">Repeat $times times</slice>
+    <slice key="actions-exit-text">Exit</slice>
+    <slice key="actions-if-text">If</slice>
+    <slice key="actions-if-case">If $condition</slice>
+    <slice key="actions-if-not">If $condition is false</slice>
+    <slice key="actions-ifclipboardtext-text">If clipboard has text</slice>
+    <slice key="actions-ifclipboardtext-not">If clipboard has no text</slice>
+    <slice key="actions-else-text">Else</slice>
+    <slice key="actions-exit-text">Exit</slice>
+    <slice key="actions-while-text">While</slice>
+    <slice key="actions-while-case">While $condition</slice>
+    <slice key="actions-while-not">While $condition is false</slice>
+    <slice key="actions-previousscene-text">Go To Previous Scene</slice>
+    <slice key="actions-nextscene-text">Go To Next Scene</slice>
+    <slice key="actions-hspeed-expanded">Set $apply's horizontal speed to $value</slice>
+    <slice key="actions-hspeed-text">Set horizontal speed</slice>
+    <slice key="actions-vspeed-expanded">Set $apply's vertical speed to $value</slice>
+    <slice key="actions-vspeed-text">Set vertical speed</slice>
+    <slice key="actions-warp-text">Warp to</slice>
+    <slice key="actions-warp-expanded">Warp $apply to ($x, $y)</slice>
+    
+    <slice key="dialogs-imageresize-message">Image is not the correct size.
+What do you want to do with it?</slice>
+    <slice key="dialogs-imageresize-cancel">Cancel</slice>
+    <slice key="dialogs-imageresize-ok">OK</slice>
+    <slice key="dialogs-imageresize-canvassize">Canvas size</slice>
+    <slice key="dialogs-imageresize-maximal">Use Maximal Size</slice>
+    <slice key="dialogs-imageresize-original">Use Original Size</slice>
+    <slice key="dialogs-imageresize-new">Use New Size</slice>
+    <slice key="dialogs-imageresize-adjust">Adjust Image</slice>
+    <slice key="dialogs-imageresize-stretch">Stretch</slice>
+    <slice key="dialogs-imageresize-topleft">Place at the Top Left corner (Don't Resize)</slice>
+    <slice key="dialogs-imageresize-placeat">Place at...</slice>
+    <slice key="dialogs-imageresize-keepratio">Keep Aspect Ratio</slice>
+    <slice key="dialogs-imageresize-resize">Resize Image</slice>
+    <slice key="dialogs-imageresize-createnew">Create new Image</slice>
+    
+    <slice key="editors-image-load">Load Image</slice>
+    <slice key="editors-image-zoom">Zoom</slice>
+    
+    <slice key="editors-path-name">Name:</slice>
+    <slice key="editors-path-delete">Delete</slice>
+    <slice key="editors-path-add">Add</slice>
+    <slice key="editors-path-insert">Insert</slice>
+    <slice key="editors-path-speed">Speed</slice>
+    <slice key="editors-path-straight">Straight</slice>
+    <slice key="editors-path-smooth">Smooth</slice>
+    <slice key="editors-path-curves">Curves</slice>
+    <slice key="editors-path-closed">Closed</slice>
+    
+    <slice key="editors-timeline-name">Name:</slice>
+    <slice key="editors-timeline-addaction">Add Action</slice>
+    
+    <slice key="editors-scene-zoom">Zoom</slice>
+    <slice key="editors-scene-actoradd">Add</slice>
+    <slice key="editors-scene-actorremove">Remove</slice>
+    <slice key="editors-scene-name">Name:</slice>
+    <slice key="editors-scene-caption">Caption for the scene:</slice>
+    <slice key="editors-scene-width">Width:</slice>
+    <slice key="editors-scene-height">Height:</slice>
+    <slice key="editors-scene-speed">Speed:</slice>
+    <slice key="editors-scene-persistent">Persistent</slice>
+    <slice key="editors-scene-code">Creation Code</slice>
+    <slice key="editors-scene-settings">Settings</slice>
+    <slice key="editors-scene-drawbgcolor">Draw background color</slice>
+    
+    <slice key="editors-sprite-addimage">Add to Sprite</slice>
+    <slice key="editors-sprite-remove">Remove</slice>
+    <slice key="editors-sprite-boundtransparency">Choose the minimum transparency value for BoundBox detection.
+0 is completely transparent where as 255 is fully opaque.</slice>
+
+    <slice key="editors-tileset-name">Name:</slice>
+    <slice key="editors-tileset-begin">Begin At:</slice>
+</lang>

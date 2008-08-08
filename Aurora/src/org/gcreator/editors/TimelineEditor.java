@@ -12,7 +12,6 @@ package org.gcreator.editors;
 import java.awt.BorderLayout;
 import org.gcreator.units.TimelineStep;
 import java.util.Vector;
-import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import org.gcreator.actions.*;
@@ -23,7 +22,7 @@ import org.gcreator.core.*;
 import org.gcreator.exceptions.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
-import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -119,7 +118,7 @@ public class TimelineEditor extends TabPanel {
 
         jSplitPane1.setDividerLocation(150);
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(136));
+        jLabel1.setText(Dictionary.getEntry("editors-timeline-name"));
 
         jTextField1.setText("jTextField1");
 
@@ -175,7 +174,7 @@ public class TimelineEditor extends TabPanel {
 
         jPanel5.setMinimumSize(new java.awt.Dimension(100, 0));
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(146));
+        jButton1.setText(Dictionary.getEntry("editors-timeline-addaction"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

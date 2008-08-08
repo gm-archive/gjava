@@ -12,7 +12,7 @@ package org.gcreator.actions.mainactions;
 import java.util.Vector;
 import org.gcreator.actions.*;
 import javax.swing.*;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -29,7 +29,7 @@ public class EndOfABlock extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return LangSupporter.activeLang.getEntry(220);
+        return Dictionary.getEntry("actions-endblock-text");
     }
     
      

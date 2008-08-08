@@ -14,7 +14,7 @@ import java.awt.Container;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.ModuleProject;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -95,27 +95,27 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(273));
+        jLabel1.setText(Dictionary.getEntry("dialogs-imageresize-message"));
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(179));
+        jButton1.setText(Dictionary.getEntry("dialogs-imageresize-cancel"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText(LangSupporter.activeLang.getEntry(281));
+        jButton2.setText(Dictionary.getEntry("dialogs-imageresize-ok"));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(277)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("dialogs-imageresize-canvassize")));
 
         buttonGroup3.add(jRadioButton4);
         jRadioButton4.setSelected(true);
-        jRadioButton4.setText(LangSupporter.activeLang.getEntry(278));
+        jRadioButton4.setText(Dictionary.getEntry("dialogs-imageresize-maximal"));
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton4ActionPerformed(evt);
@@ -123,7 +123,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
         });
 
         buttonGroup3.add(jRadioButton5);
-        jRadioButton5.setText(LangSupporter.activeLang.getEntry(279));
+        jRadioButton5.setText(Dictionary.getEntry("dialogs-imageresize-original"));
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton5ActionPerformed(evt);
@@ -131,7 +131,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
         });
 
         buttonGroup3.add(jRadioButton6);
-        jRadioButton6.setText(LangSupporter.activeLang.getEntry(280));
+        jRadioButton6.setText(Dictionary.getEntry("dialogs-imageresize-new"));
         jRadioButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton6ActionPerformed(evt);
@@ -147,7 +147,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
                     .addComponent(jRadioButton4)
                     .addComponent(jRadioButton5)
                     .addComponent(jRadioButton6))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,10 +159,10 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
                 .addComponent(jRadioButton6))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(274)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("dialogs-imageresize-adjust")));
 
         buttonGroup2.add(jRadioButton2);
-        jRadioButton2.setText(LangSupporter.activeLang.getEntry(275));
+        jRadioButton2.setText(Dictionary.getEntry("dialogs-imageresize-topleft"));
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -170,7 +170,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
         });
 
         buttonGroup2.add(jRadioButton3);
-        jRadioButton3.setText(LangSupporter.activeLang.getEntry(276));
+        jRadioButton3.setText(Dictionary.getEntry("dialogs-imageresize-placeat"));
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton3ActionPerformed(evt);
@@ -265,14 +265,14 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
 
         buttonGroup2.add(jRadioButton1);
         jRadioButton1.setSelected(true);
-        jRadioButton1.setText(LangSupporter.activeLang.getEntry(282));
+        jRadioButton1.setText(Dictionary.getEntry("dialogs-imageresize-stretch"));
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
             }
         });
 
-        jCheckBox1.setText(LangSupporter.activeLang.getEntry(285));
+        jCheckBox1.setText(Dictionary.getEntry("dialogs-imageresize-keepratio"));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -312,7 +312,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
 
         buttonGroup4.add(jRadioButton7);
         jRadioButton7.setSelected(true);
-        jRadioButton7.setText(LangSupporter.activeLang.getEntry(283));
+        jRadioButton7.setText(Dictionary.getEntry("dialogs-imageresize-resize"));
         jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton7ActionPerformed(evt);
@@ -320,7 +320,7 @@ public class GetImageResizeInfoDialog extends javax.swing.JDialog {
         });
 
         buttonGroup4.add(jRadioButton8);
-        jRadioButton8.setText(LangSupporter.activeLang.getEntry(284));
+        jRadioButton8.setText(Dictionary.getEntry("dialogs-imageresize-createnew"));
         jRadioButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton8ActionPerformed(evt);

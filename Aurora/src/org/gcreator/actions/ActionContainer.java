@@ -40,7 +40,7 @@ public class ActionContainer {
         main.add(new org.gcreator.actions.mainactions.SetVariable());
         main.add(new org.gcreator.actions.mainactions.CallFunction());
         main.add(new org.gcreator.actions.mainactions.Exit());
-        main.name = LangSupporter.activeLang.getEntry(199);
+        main.name = org.gcreator.units.Dictionary.getEntry("actions-category-main");
         main.icon = new ImageIcon(ActionContainer.class.getResource("/org/gcreator/actions/images/Main.png"));
         //move.add(new org.gcreator.actions.mainactions.SetHSpeed());
         //move.add(new org.gcreator.actions.mainactions.SetVSpeed());

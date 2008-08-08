@@ -12,11 +12,10 @@ package org.gcreator.actions.mainactions;
 import com.l2fprod.common.propertysheet.DefaultProperty;
 import com.l2fprod.common.propertysheet.Property;
 import org.gcreator.actions.*;
-import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -80,8 +79,8 @@ public class Repeat extends ActionPattern{
         if(panel!=null)
             save(panel);
         if(panel==null)
-            return "Repeat";
-        return "Repeat ("+times+") times";
+            return Dictionary.getEntry("actions-repeat-text");
+        return Dictionary.getEntry("actions-repeat-times").replaceAll("$times", times);
     }
     
     public String generateGCL(JComponent panel){

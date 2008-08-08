@@ -9,14 +9,12 @@
  */
 package org.gcreator.actions.mainactions;
 
-import com.l2fprod.common.beans.editor.StringPropertyEditor;
-import java.beans.PropertyEditor;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import com.l2fprod.common.propertysheet.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -144,9 +142,9 @@ public class SetHSpeed extends ActionPattern {
             String who = with;
             String what = to;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
-            return LangSupporter.activeLang.getEntry(224).replaceAll("\\$apply", who).replaceAll("\\$value", what).replaceAll("\\$\\$", "$");
+            return Dictionary.getEntry("actions-sethspeed-expanded").replaceAll("\\$apply", who).replaceAll("\\$value", what).replaceAll("\\$\\$", "$");
         }
-        return LangSupporter.activeLang.getEntry(223);
+        return Dictionary.getEntry("actions-sethspeed-text");
     }
 
     public String generateGCL(JComponent panel) {

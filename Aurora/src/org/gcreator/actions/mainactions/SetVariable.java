@@ -14,7 +14,7 @@ import javax.swing.*;
 import com.l2fprod.common.propertysheet.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -144,9 +144,9 @@ public class SetVariable extends ActionPattern {
             String who = var;
             String what = to;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
-            return "Set $apply to $value".replaceAll("\\$apply", who).replaceAll("\\$value", what).replaceAll("\\$\\$", "$");
+            return Dictionary.getEntry("actions-setvar-expanded").replaceAll("\\$apply", who).replaceAll("\\$value", what).replaceAll("\\$\\$", "$");
         }
-        return "Set variable";
+        return Dictionary.getEntry("actions-setvar-text");
     }
 
     public String generateGCL(JComponent panel) {

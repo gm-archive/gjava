@@ -15,7 +15,7 @@ import javax.swing.*;
 import java.awt.*;
 import javax.swing.tree.*;
 import org.gcreator.fileclass.Group;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -174,7 +174,7 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
         }
         try{
         if(labelText.startsWith("$"))
-            labelText = LangSupporter.activeLang.getEntry(Integer.parseInt(labelText.substring(1)));
+            labelText = Dictionary.getEntry(labelText.substring(1));
         }
         catch(Exception e){
             
