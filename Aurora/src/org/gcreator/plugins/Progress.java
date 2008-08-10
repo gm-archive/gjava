@@ -58,6 +58,7 @@ public class Progress extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Converting...");
 
         jLabel2.setText("Task:");
 

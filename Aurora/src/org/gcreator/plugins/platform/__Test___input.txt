@@ -10,19 +10,5 @@ action_kill_object()
 return;
 }
 
-
-action_if_dice(2)
-{
-
-action_move_to(-40, rocket.y)
-action_move("000001000", 10)
-}
-
-else
-
-{
-
-action_move_to(room_width+40, rocket.y)
-action_move("000100000", 10)
-action_sprite_transform(1, 1, 0, 1)
-}
+for ({a=0 b=1 c=2};a<10;{a+=1 b+=2 c+= 3})
+{}

@@ -57,11 +57,11 @@ public abstract class Project extends Folder {
     
     public int addFile(GFile file){
         try{
-            System.out.println("Before adding");
+            //System.out.println("Before adding");
             if(curid>=files.size())
                 files.setSize(curid+1);
             files.add(curid, file);
-            System.out.println("Added " + curid);
+            //System.out.println("Added " + curid);
             return curid++;
         }
         catch(Exception e){

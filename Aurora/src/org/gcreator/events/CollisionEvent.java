@@ -10,6 +10,7 @@
 package org.gcreator.events;
 
 import javax.swing.ImageIcon;
+import org.gcreator.core.GPanel;
 import org.gcreator.fileclass.GFile;
 
 /**
@@ -19,21 +20,27 @@ import org.gcreator.fileclass.GFile;
 public class CollisionEvent extends Event {
 
     static ImageIcon icon;
-    public GFile other;
+    public int other;
     static final long serialVersionUID = 1L;
 
     public CollisionEvent() {
         PRIORITY = 8000;
     }
 
-    public CollisionEvent(GFile other) {
-        PRIORITY = 8000;
+    public CollisionEvent(int other) {
+         PRIORITY = 8000;
         icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/collision.png"));
         this.other = other;
     }
 
+    public CollisionEvent(GFile other) {
+        PRIORITY = 8000;
+        icon = new ImageIcon(getClass().getResource("/org/gcreator/resources/events/collision.png"));
+        this.other = other.getID();
+    }
+
     public String toString() {
-        return "Collision with " + other.name;
+        return "Collision with " + GPanel.getMainProject().getFileFor(other).name;
     }
 
     public ImageIcon getImage() {

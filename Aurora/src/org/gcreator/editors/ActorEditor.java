@@ -209,6 +209,7 @@ public class ActorEditor extends TabPanel {
 
     @Override
     public boolean Load() {
+        System.out.println("load actor");
         jCheckBox1.setSelected(actor.visible);
         jCheckBox2.setSelected(actor.solid);
         jCheckBox3.setSelected(actor.persistent);
@@ -217,6 +218,7 @@ public class ActorEditor extends TabPanel {
 
     @Override
     public boolean Save() {
+        System.out.println("save actor");
         this.jList2.updateUI();
         actor.visible = jCheckBox1.isSelected();
         actor.solid = jCheckBox2.isSelected();

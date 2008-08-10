@@ -58,11 +58,11 @@ public class RTFEditor extends TabPanel {
         jButton1.setSelected(getBoolProperty(sel, StyleConstants.Bold));
         jButton2.setSelected(getBoolProperty(sel, StyleConstants.Italic));
         jButton3.setSelected(getBoolProperty(sel, StyleConstants.Underline));
-        Font f = new Font(getStringProperty(sel, StyleConstants.FontFamily),
-                (getBoolProperty(sel, StyleConstants.Bold)?Font.BOLD:0)
-                | (getBoolProperty(sel, StyleConstants.Italic)?Font.ITALIC:0),
-                getIntProperty(sel, StyleConstants.FontSize));
-        jButton4.setFont(f);
+//        Font f = new Font(getStringProperty(sel, StyleConstants.FontFamily),
+//                getBoolProperty(sel, StyleConstants.Bold)?Font.BOLD:0
+//                | (getBoolProperty(sel, StyleConstants.Italic)?Font.ITALIC:0),
+//                getIntProperty(sel, StyleConstants.FontSize));
+//        jButton4.setFont(f);
     }
     
     public boolean getBoolProperty(int index, Object prop){

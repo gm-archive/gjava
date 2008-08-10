@@ -76,7 +76,7 @@ public class RSSReader extends javax.swing.JList {
 
             @Override
             public void run() {
-                System.out.println("Started");
+               
                 try {
                     //FileInputStream r = new FileInputStream(url);
                     //xr.parse(new InputSource(url));

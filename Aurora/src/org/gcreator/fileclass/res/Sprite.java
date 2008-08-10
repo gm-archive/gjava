@@ -52,11 +52,11 @@ public class Sprite implements Resource {
         //org.gcreator.fileclass.File a = (org.gcreator.fileclass.File)ResourceMenu.getObjectWithName(""+((org.gcreator.fileclass.File) Simages.elementAt(pos)).name,"image",gcreator.window.getCurrentProject()).object;
         try{
             int i = Simages.elementAt(pos);
-            System.out.println("getAt("+pos+"): " + i);
+           // System.out.println("getAt("+pos+"): " + i);
             return p.getFileFor(i);
         }
         catch(Exception e){
-            System.out.println("Sprite.java getAt("+pos+"): " + e.toString());
+            System.out.println(" Exception: Sprite.java getAt("+pos+"): " + e.toString());
             return null;
         }
     }

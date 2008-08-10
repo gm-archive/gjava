@@ -57,9 +57,10 @@ public class GFile extends GObject implements Transferable {
         this.type = type;
         this.value = value;
         root.add(this);
-        System.out.println("Creating file");
+
+        //System.out.println("Creating file");
         if(!artificial){
-            System.out.println("Adding to project");
+            //System.out.println("Adding to project");
             getProject().addFile(this);
         }
     }
@@ -208,6 +209,7 @@ public class GFile extends GObject implements Transferable {
     
     @Override
     public Project getProject(){
+
         return root.getProject();
     }
     

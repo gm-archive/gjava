@@ -36,6 +36,8 @@ import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.GImage;
 import org.gcreator.fileclass.res.Scene;
+import org.gcreator.fileclass.res.SettingsValues;
+import org.gcreator.fileclass.res.Sound;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.fileclass.res.Tileset;
 import org.gcreator.plugins.platform.gscriptLexer;
@@ -57,7 +59,8 @@ public class PlatformCore extends PluginCore {
     public String current="",event="";
     public String updateURL="";//,compilername="";
     public double version = 1.0;
-    
+    public Project project;
+
     public void update(){
         String nextLine;
        URL url = null;
@@ -196,9 +199,9 @@ public class PlatformCore extends PluginCore {
                     try {
                         //System.out.println("putfolder:type:"+((org.gcreator.fileclass.GFile) childNode).type);
                         
-                        if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
-                            parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
-                        }
+//                        if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
+//                            parseSettings((SettingsValues) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+//                        }
                         
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
                             p.jProgressBar1.setValue(20);
@@ -211,7 +214,15 @@ public class PlatformCore extends PluginCore {
                             //p.jProgressBar1.setValue(50);
                             p.jLabel2.setText("Task: Converting actor:"+((GFile) childNode).name);
                             
-                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
+                        }
+                        else if (((GFile) childNode).type.equals("sound")) {
+                            current="Sound: "+((GFile) childNode).name;
+                            parseSound((Sound) ((GFile) childNode).value, (GFile) childNode);
+                            //p.jProgressBar1.setValue(50);
+                            p.jLabel2.setText("Task: Converting sound:"+((GFile) childNode).name);
+                            System.out.println("sound");
+                        }
+                        else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             p.jProgressBar1.setValue(80);
                             p.jLabel2.setText("Task: Converting scene:"+((GFile) childNode).name);
                             current="Scene: "+((GFile) childNode).name;
@@ -241,7 +252,8 @@ public class PlatformCore extends PluginCore {
                             //System.out.println("parsing script!");
                             parseScript((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
-                            parseSettings((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+                           p.jLabel2.setText("Task: Writing settings");
+                           parseSettings((SettingsValues) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
                         } else {
                             PluginHelper.println("Invalid type:" + ((org.gcreator.fileclass.GFile) childNode).type);
                         }
@@ -289,10 +301,16 @@ public class PlatformCore extends PluginCore {
     /**
      * @param s 
      * @param f 
-     * @deprecated*/
+     * //@deprecated
+     */
     public void parseSprite(Sprite s, GFile f) {
         //System.out.println("" + s.name);
         parseSprite(s);
+    }
+
+    public void parseSound(Sound s, GFile f) {
+        //System.out.println("" + s.name);
+        //parseSprite(s);
     }
     
     /**
@@ -304,14 +322,16 @@ public class PlatformCore extends PluginCore {
     /**
      * @param i 
      * @param f 
-     * @deprecated*/
+     * //@deprecated
+     */
     public void parseImage(ImageIcon i, GFile f) {
         System.out.println("called wrong method!");
     }
     /**
      * @param i 
      * @param f
-     * @deprecated*/
+     * //@deprecated
+     */
     public void parseImage(GImage i, GFile f){
         parseImage(i.getImage(), f);
     }
@@ -326,7 +346,8 @@ public class PlatformCore extends PluginCore {
      * @param a 
      * @param f 
      * @throws java.io.IOException
-     * @deprecated*/
+     * //@deprecated
+     */
     public void parseActor(Actor a, GFile f) throws IOException {
         parseActor(a);
     }
@@ -876,7 +897,7 @@ public class PlatformCore extends PluginCore {
         gscriptLexer lex = null;
 
         //code = "int i; int ii; int iii; { me = 3; if (5==2) {}} /* hey */  return 8;";
-        System.out.println("CODE:"+code);
+        //System.out.println("CODE:"+code);
         FileWriter ftempcode = new FileWriter("tempcode.gcl");
         BufferedWriter tempcode = new BufferedWriter(ftempcode);
         tempcode.write(code);
@@ -957,7 +978,7 @@ public class PlatformCore extends PluginCore {
     }
 
     public void run(final Project project) {
-        
+        this.project=project;
         if (project != null) {
            // p.setVisible(true);
             Thread t = new Thread(){
@@ -1042,7 +1063,8 @@ public class PlatformCore extends PluginCore {
 
     // Copies src file to dst file.
     // If the dst file does not exist, it is created
-    void copyFile(File src, File dst) throws IOException {
+    void copyFile(File src, File dst)  {
+        try{
         InputStream in = new FileInputStream(src);
         OutputStream out = new FileOutputStream(dst);
 
@@ -1054,6 +1076,7 @@ public class PlatformCore extends PluginCore {
         }
         in.close();
         out.close();
+        }catch(Exception e){e.printStackTrace();}
     }
 
     /**
@@ -1061,7 +1084,7 @@ public class PlatformCore extends PluginCore {
      * @param string
      * @param name
      */
-    public void parseSettings(String string, String name) {
+    public void parseSettings(SettingsValues settings, String name) {
   //      System.out.println(string+"got here");
         
     }
