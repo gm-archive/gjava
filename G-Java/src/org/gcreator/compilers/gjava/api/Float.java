@@ -6,7 +6,7 @@ package org.gcreator.compilers.gjava.api;
  * In addition, this class provides several methods for converting a float to a String and a String to a float, as well as other constants and methods useful when dealing with a float.
  * @author TGMG
  */
-public class Float {
+public class Float extends Object{
 float f;
 
 Float(float ff) {
@@ -92,5 +92,52 @@ Float(float ff) {
         return java.lang.Float.parseFloat(s);
     }
 
-
+    @Override
+    public float getFloat()
+    {
+        return f;
+    }
+    
+    @Override
+    public double getDouble()
+    {
+        return getFloat();
+    }
+    
+    @Override
+    public String getString() {
+        return new String(""+f);
+    }
+    
+    @Override
+    public boolean getBoolean() {
+        return !(f == 0);
+    }
+    
+    @Override
+    public Boolean equals(Object obj) {
+        return new Boolean(f == (obj).getFloat());
+    }
+    
+    @Override
+    public int compareTo(java.lang.Object o)
+    {
+        if ((o instanceof Float) || (o instanceof Double) || (o instanceof Integer))
+        {
+            if (getDouble() < ((Object)o).getDouble())
+                return -1;
+            else if (getDouble() > ((Object)o).getDouble())
+                return 1;
+            else
+                return 0;
+        }
+        else
+            return super.compareTo(o);  //No order - go by toString
+    }
+    
+    @Override
+    public java.lang.String toString()
+    {
+        return "" + f;
+    }
 }

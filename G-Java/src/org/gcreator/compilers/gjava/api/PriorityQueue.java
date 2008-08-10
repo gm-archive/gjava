@@ -1,134 +1,139 @@
 package org.gcreator.compilers.gjava.api;
 
-import java.util.NoSuchElementException;
-import java.util.TreeMap;
+import java.util.Iterator;
 
 /** Class to represent a priority queue.
  *
  * @author Ray
  */
 public class PriorityQueue extends Object{
-    /* Stored as a TreeMap with the key representing the priority in the queue.
-     * TreeMap stores in ascending order of key, so to get head of queue, get
-     * the first key in the TreeMap.
-     */
-    private TreeMap<Object, Object> m;
+    private java.util.PriorityQueue<Object> pq;
+    private java.util.Comparator comparator = new PriorityComparator();
     
     public PriorityQueue()
     {
-        m = new TreeMap();
+        pq = new java.util.PriorityQueue(11, comparator);
     }
     
     public void destroy()
     {
-        m = null;
+        pq = null;
     }        
     
+    /** Removes all items from this priority queue */
     public void clear()
     {
-        m.clear();
+        pq.clear();
     }
     
+    /** Returns the number of items in this priority queue
+     * @return The number of items in this priority queue
+     */
     public int size()
     {
-        return m.size();
+        return pq.size();
     }
     
+    /** Returns true if the queue is empty, false otherwise */
     public boolean isEmpty()
     {
-        return m.isEmpty();
+        return pq.isEmpty();
     }
     
+    /** Adds an item to the priority queue
+     * @param value The item to be added
+     * @param priority The priority in the queue. Priority is based on <code>priority.getFloat()</code>
+     */
     public void add(Object value, Object priority)
     {
-        m.put(priority, value);
+        value.setPriority(priority.getFloat());
+        try
+        {
+            pq.add(value);
+        } catch (NullPointerException e)
+        {
+            GCL.show_error(new String("Null value attempted to be added to priority queue"), new Boolean(false));
+        }
     }
     
-    //change priority
-    //find priority
-    //delete value
-    
+    /** Removes and returns the item with the lowest priority */
     public Object deleteMin()
     {
-        try
-        {
-            Object minKey = m.firstKey();
-            Object minValue = m.get(minKey);
-            m.remove(minKey);
-            return minValue;
-        } catch (NoSuchElementException e)  //If the queue was empty
-        {
-            return new Object();
-        }
+        Object min = findMin();
+        pq.remove(min);
+        return min;
     }
     
+    /** Returns but does not remove the item with the lowest priority */
     public Object findMin()
     {
-        try
+        Iterator<Object> iter = pq.iterator();
+        Object currentMin = iter.next();
+        while (iter.hasNext())
         {
-            return m.get(m.firstKey());
-        } catch (NoSuchElementException e)  //If the queue was empty
-        {
-            return new Object();
+            Object next = iter.next();
+            if (comparator.compare(currentMin, next) < 0)
+                currentMin = next;
         }
+        return currentMin;
     }
     
+    /** Removes and returns the item with the highest priority */
     public Object deleteMax()
     {
-        try
-        {
-            Object maxKey = m.lastKey();
-            Object maxValue = m.get(maxKey);
-            m.remove(maxKey);
-            return maxValue;
-        } catch (NoSuchElementException e) //If the queue was empty
-        {
+        Object o = pq.poll();
+        if (o != null)
+            return o;
+        else
             return new Object();
-        }
     }
     
+    /** Returns but does not remove the item with the highest priority */
     public Object findMax()
     {
-        try
-        {
-            return m.get(m.lastKey());
-        } catch (NoSuchElementException e)  //If the queue was empty
-        {
+        Object o = pq.peek();
+        if (o != null)
+            return o;
+        else
             return new Object();
-        }
     }
     
-    /** Returns the key for the given value, or new Object()
-     *  if the given value is not present
-     */
-    private Object getKey(Object value)
-    {
-        Object currentKey = m.firstKey();
-        for (int i = 0; i < m.size(); i++)
-        {
-            if (m.get(currentKey).compareTo(value) == 0)
-                return currentKey;
-            currentKey = m.higherKey(currentKey);
-        }
-        return new Object();
-    }
-    
+    /** Changes the priority of the specified value if it is in the queue */
     public void changePriority(Object value, Object newPriority)
     {
-        //Keys are priorities...
-        Object oldKey = getKey(value);
-        m.remove(oldKey);
-        m.put(newPriority, value);
+        Iterator<Object> iter = pq.iterator();
+        boolean notFound = true;
+        while (iter.hasNext() && notFound)
+        {
+            Object o = iter.next();
+            if ((o.equals(value)).getBoolean())
+            {
+                o.setPriority(newPriority.getPriority());
+                notFound = false;
+            }
+        }
+        if (notFound)
+            GCL.show_error(new String("Value not present in this priority queue"), new Boolean(false));
     }
     
+    /** Returns the priority of the specified value if it is in the queue */
     public Object findPriority(Object value)
     {
-        return getKey(value);
+        Iterator<Object> iter = pq.iterator();
+        while (iter.hasNext())
+        {
+            Object o = iter.next();
+            if ((o.equals(value)).getBoolean())
+                return new Float(o.getPriority());
+        }
+        GCL.show_error(new String("Value not present in this priority queue"), new Boolean(false));
+        return new Object();
     }
     
     public void deleteValue(Object value)
     {
-        m.remove(getKey(value));
+        if (!pq.remove(value))
+            GCL.show_error(new String("Value not present in this priority queue"), new Boolean(false));
     }
     
 /*    To do:

@@ -181,7 +181,7 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
     @Override
     public int compareTo(java.lang.Object o)
     {
-        if ((o instanceof Double) || (o instanceof Integer))
+        if ((o instanceof Integer) || (o instanceof Double) || (o instanceof Float))
         {
             if (getDouble() < ((Object)o).getDouble())
                 return -1;
@@ -192,5 +192,11 @@ public class Integer extends org.gcreator.compilers.gjava.api.Object {
         }
         else
             return super.compareTo(o);  //No order - go by toString
+    }
+    
+    @Override
+    public float getFloat()
+    {
+        return i;
     }
 }

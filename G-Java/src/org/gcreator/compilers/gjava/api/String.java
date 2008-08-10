@@ -296,4 +296,10 @@ public class String extends org.gcreator.compilers.gjava.api.Object {
             }
             return s;
         }
+        
+        @Override
+        public Boolean equals(Object str)
+        {
+            return new Boolean(s.equals(str.toString()));
+        }
 }

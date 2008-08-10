@@ -113,7 +113,7 @@ public class Double extends Object {
     @Override
     public int compareTo(java.lang.Object o)
     {
-        if ((o instanceof Double) || (o instanceof Integer))
+        if ((o instanceof Double) || (o instanceof Integer) || (o instanceof Float))
         {
             if (getDouble() < ((Object)o).getDouble())
                 return -1;
@@ -124,6 +124,12 @@ public class Double extends Object {
         }
         else
             return super.compareTo(o);  //No order - go by toString
+    }
+    
+    @Override
+    public float getFloat()
+    {
+        return (float)getDouble();
     }
     
 }

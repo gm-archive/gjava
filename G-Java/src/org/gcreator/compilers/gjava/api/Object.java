@@ -11,7 +11,28 @@ import java.util.Hashtable;
  */
 public class Object implements Cloneable, Comparable {
 
-       
+    private float priority = 0.0f;
+    
+    /** Sets the priority of this object when it is added to a priority queue.
+     * A higher number indicates a higher priority.
+     * @param priority The new priority - <b>must be greater than or equal to zero</b>
+     */
+    public void setPriority(float priority)
+    {
+        if (priority >= 0)
+            this.priority = priority;
+        else
+            GCL.show_error(new String("Cannot have negative priority: " + priority), new Boolean(true));
+    }
+    
+    /** Returns the priority of this object when part of a priority queue.
+     * A higher number indicates a higher priority.
+     * @return The priority of this object in a priority queue.
+     */
+    public float getPriority()
+    {
+        return priority;
+    }
     
     /*
      * This method is used for more complex gcl functions, not needed yet
