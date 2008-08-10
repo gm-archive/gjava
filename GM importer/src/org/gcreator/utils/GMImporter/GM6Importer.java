@@ -568,7 +568,7 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             c.backgrounds.add(bkimg);
-
+            System.out.println("add background:"+bkimg.getID());
             ver = in.read4();
             if (ver != 400 && ver != 543) {
                 throw versionError("IN", "BACKGROUNDS", i, ver);
@@ -873,19 +873,31 @@ public class GM6Importer {
                 //System.out.println("Looping");
                 BackgroundInScene bis = new BackgroundInScene("Background" + j);
                 bis.visibleonstart = in.readBool();
-                in.read4(); //foreground?
+                int fore = in.read4(); //foreground?
                 int im = in.read4(); //image
                 //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
                 if (im != -1) {
+                    System.out.println("background:"+im+" fore:"+fore);
+                    if (c.backgrounds.get(im) !=null)
                     bis.image = c.backgrounds.get(im).getID();
                 }
                 bis.xpos = in.read4(); //xpos
                 bis.ypos = in.read4(); //ypos
-                bis.tileh = in.read4(); //tileh
-                bis.tilev = in.read4(); //tilev
+                boolean tileh = in.readBool(); //tileh
+                boolean tilev = in.readBool(); //tilev
                 bis.hspeed = in.read4(); //hspeed
                 bis.vspeed = in.read4(); //vspeed
                 bis.stretch = in.readBool(); //stretch
+//                if (bis.stretch){
+//                bis.hmode = bis.MODE_STRETCH;
+//                bis.vmode = bis.MODE_STRETCH;
+//                }
+                if (tileh){
+                    bis.hmode=bis.MODE_REPEAT;
+                }
+                if(tilev){
+                    bis.vmode=bis.MODE_REPEAT;
+                }
                 a.backgrounds.add(bis);
             }
             in.readBool(); //enable views
@@ -1115,6 +1127,7 @@ public class GM6Importer {
     }
 
     public static String getKeyText(int keyCode) {
+        if (keyCode==1){return "Any Key";}
         if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 ||
                 keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
             return String.valueOf((char) keyCode);
