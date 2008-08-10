@@ -26,7 +26,7 @@ public class CallFunction extends ActionPattern {
     static final long serialVersionUID = 1L;
     public String ret = "x";
     public String fname = "f";
-    public Boolean relative = false;
+    public Boolean relative = false;//,question=false;
     public ArgumentList args = new ArgumentList();
     public static ImageIcon icon = new ImageIcon(CallFunction.class.getResource("/org/gcreator/actions/images/function.png"));;
     
@@ -52,6 +52,9 @@ public class CallFunction extends ActionPattern {
             } else if (p.getName().equals("relative")) {
                 p.setValue(relative);
             }
+//            } else if (p.getName().equals("question")) {
+//                p.setValue(question);
+//            }
         }
     //((HSpeedEditor) panel).to.setText(to);
     //((HSpeedEditor) panel).of.setText(with);
@@ -72,6 +75,9 @@ public class CallFunction extends ActionPattern {
             } else if (p.getName().equals("relative")) {
                 relative = (Boolean) p.getValue();
             }
+//            else if (p.getName().equals("question")) {
+//                question = (Boolean) p.getValue();
+//            }
         }
     //to = ((HSpeedEditor) panel).to.getText();
     //with = ((HSpeedEditor) panel).of.getText();
@@ -137,7 +143,17 @@ public class CallFunction extends ActionPattern {
         p.setValue(relative);
         p.setShortDescription("Should the result of the function be relative to previous value?");
         propertySheetPanel1.addProperty(p);
-        
+
+//        p = new DefaultProperty();
+//        p.setCategory("<html><b>Main");
+//        p.setName("question");
+//        p.setDisplayName("Question?");
+//        p.setEditable(true);
+//        p.setType(Boolean.class);
+//        p.setValue(relative);
+//        p.setShortDescription("Is this a question? If so it will be treated as an if statement.");
+//        propertySheetPanel1.addProperty(p);
+
         //p = new DefaultProperty();
         //p.setCategory("<html><b>Useless");
         //p.setName("test");
@@ -165,10 +181,17 @@ public class CallFunction extends ActionPattern {
         if (panel != null && panel instanceof PropertySheetPanel) {
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             save(panel);
+            String rel="{",endrel="}";
+            if (this.relative){
+                rel+="argument_relative=true;";
+            endrel="argument_relative=false;}";
+            }
+//            if (this.question)
+//                return "if ("+ fname + "("+args.toString()+","+this.relative+"))";
             if (ret.equals("")) {
-                return fname + "("+args.toString()+")";
+                return rel+" "+ fname + "("+args.toString()+")}";
             } else {
-                return ret + " = " + fname + "("+args.toString()+")";
+                return rel+" "+ret + " = " + fname + "("+args.toString()+")"+endrel;
             }
         }
         return "";
