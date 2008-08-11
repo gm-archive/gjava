@@ -34,11 +34,11 @@ public class SetVariable extends ActionPattern {
 //                 = {new ObjectStreamField(
 //      "text", String.class)};
     public SetVariable() {
-        super();
+        //super();
     }
 
     @Override
-    public void load(JComponent panel) {
+    public void save(JComponent panel) {
         Property[] plist = ((PropertySheetPanel) panel).getProperties();
         for (int i = 0; i < plist.length; i++) {
             Property p = plist[i];
@@ -56,7 +56,7 @@ public class SetVariable extends ActionPattern {
     }
 
     @Override
-    public void save(JComponent panel) {
+    public void load(JComponent panel) {
         Property[] plist = ((PropertySheetPanel) panel).getProperties();
         for (int i = 0; i < plist.length; i++) {
             Property p = plist[i];
@@ -99,7 +99,7 @@ public class SetVariable extends ActionPattern {
         p.setDisplayName("Variable");
         p.setEditable(true);
         p.setType(String.class);
-        p.setValue("x");
+        p.setValue(var);
         p.setShortDescription("The variable to modify");
         propertySheetPanel1.addProperty(p);
 
@@ -109,7 +109,7 @@ public class SetVariable extends ActionPattern {
         p.setDisplayName("Value");
         p.setEditable(true);
         p.setType(String.class);
-        p.setValue("0.0");
+        p.setValue(to);
         p.setShortDescription("The value expression");
         propertySheetPanel1.addProperty(p);
 
@@ -119,7 +119,7 @@ public class SetVariable extends ActionPattern {
         p.setDisplayName("Relative");
         p.setEditable(true);
         p.setType(Boolean.class);
-        p.setValue(false);
+        p.setValue(relative);
         p.setShortDescription("Is the new value absolute or relative to the old one.");
         propertySheetPanel1.addProperty(p);
         

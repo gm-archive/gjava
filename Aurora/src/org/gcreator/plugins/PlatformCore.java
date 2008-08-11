@@ -931,7 +931,7 @@ public class PlatformCore extends PluginCore {
             
             System.out.println("Finished! Code output:"+returncode);
         } catch (Exception e) {
-            System.out.println("Error with parser:"+e + e.getLocalizedMessage() + " " + e.getMessage());
+            System.out.println("Error with parser:"+e + e.getLocalizedMessage() + " " + e.getMessage()+"\n code:"+code);
         }
         return returncode;
     }
