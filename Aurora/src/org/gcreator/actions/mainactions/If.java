@@ -25,16 +25,16 @@ public class If extends ActionPattern{
     static final long serialVersionUID = 1L;
     
     public boolean not = false;
-    public String condition = "";
+    public String condition = "true";
     
     public static ImageIcon img = new ImageIcon(If.class.getResource("/org/gcreator/actions/images/If.png"));;
     
     public If(){
-        super();
+        //super();
     }
     
     @Override
-    public void save(JComponent panel){
+    public void load(JComponent panel){
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
             if(p.getName().equals("not"))
@@ -45,7 +45,7 @@ public class If extends ActionPattern{
     }
     
     @Override
-    public void load(JComponent panel){
+    public void save(JComponent panel){
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
             if(p.getName().equals("not"))
@@ -79,7 +79,7 @@ public class If extends ActionPattern{
         panel.addProperty(p);
         
         p = new DefaultProperty();
-        p.setValue("true");
+        p.setValue(condition);
         p.setType(String.class);
         p.setCategory("<html><b>Main");
         p.setName("condition");

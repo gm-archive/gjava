@@ -60,6 +60,7 @@ public class PlatformCore extends PluginCore {
     public String updateURL="";//,compilername="";
     public double version = 1.0;
     public Project project;
+    public Vector<String> resources=new Vector(),stringResources=new Vector();
 
     public void update(){
         String nextLine;
@@ -215,7 +216,7 @@ public class PlatformCore extends PluginCore {
                             p.jLabel2.setText("Task: Converting actor:"+((GFile) childNode).name);
                             
                         }
-                        else if (((GFile) childNode).type.equals("sound")) {
+                        else if (((GFile) childNode).type.equals("wav") || ((GFile) childNode).type.equals("midi") || ((GFile) childNode).type.equals("ogg") || ((GFile) childNode).type.equals("mp3")) {
                             current="Sound: "+((GFile) childNode).name;
                             parseSound((Sound) ((GFile) childNode).value, (GFile) childNode);
                             //p.jProgressBar1.setValue(50);
@@ -617,8 +618,14 @@ public class PlatformCore extends PluginCore {
         } else {
             instance = "self";
         }
-        
-        //if (actorlocal.contains(","+tempvar+",")){
+
+        //not needed as you can't set constants anyway
+//        if (images.contains(tempvar) || resources.contains(tempvar)){
+//        value="Game."+tempvar+" = "+expression;
+//        return value;
+//        }
+
+        //check if it is a built in variable
         if (checkvariable(tempvar)){
             String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
        
@@ -781,6 +788,14 @@ public class PlatformCore extends PluginCore {
         }
         
 //        if (actorlocal.contains(","+variable+","))
+        if (resources.contains(variable))
+        {
+        return "Game."+variable;
+        }
+        if (stringResources.contains(variable))
+        {
+        return "new String(\""+variable+"\")";
+        }
         if (checkvariable(variable)) {
             return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
         }
