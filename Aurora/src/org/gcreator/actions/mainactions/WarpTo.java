@@ -15,7 +15,7 @@ import com.l2fprod.common.propertysheet.PropertySheetPanel;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -124,12 +124,12 @@ static final long serialVersionUID = 1L;
             save(panel);
             PropertySheetPanel editor = (PropertySheetPanel) panel;
             Property[] plist = ((PropertySheetPanel) panel).getProperties();
-            return Dictionary.getEntry("actions-warp-expanded").replaceAll("\\$apply", who)
+            return "Warp $apply to ($x, $y)".replaceAll("\\$apply", who)
                     .replaceAll("\\$x", to_x.toString())
                     .replaceAll("\\$y", to_y.toString())
                     .replaceAll("\\$\\$", "$");
         }
-        return Dictionary.getEntry("actions-warp-text");
+        return "Warp to";
     }
 
     public String generateGCL(JComponent panel) {

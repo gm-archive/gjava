@@ -14,8 +14,11 @@ import org.gcreator.fileclass.Project;
 import com.golden.gamedev.engine.audio.MidiRenderer;
 import com.golden.gamedev.engine.audio.WaveRenderer;
 import java.awt.Color;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.gcreator.fileclass.res.Sound;
 import org.gcreator.managers.Registry;
 import org.gcreator.units.BeanFile;
 
@@ -26,6 +29,7 @@ import org.gcreator.units.BeanFile;
 public class SoundEditor extends TabPanel {
 
     public File efile = null;
+    public byte[] edata=null;
     public boolean changed = false;
     public WaveRenderer wave = new WaveRenderer();
     public MidiRenderer midi = new MidiRenderer();
@@ -35,7 +39,8 @@ public class SoundEditor extends TabPanel {
     public SoundEditor(GFile f, Project unused) {
         this.file = f;
         if (f.value != null) {
-            efile = (File) f.value;
+            efile = ((Sound) f.value).soundfile;
+            edata=((Sound) f.value).data;
         }
         initComponents();
         updateComponents();
@@ -84,9 +89,12 @@ public class SoundEditor extends TabPanel {
             jButton3.setEnabled(true);
         }
     }
-
+Sound snd;
     public boolean Save() {
-        file.value = efile;
+        snd = (Sound)file.value;
+        snd.soundfile=efile;
+        snd.data=edata;
+        file.value = snd;
         changed = false;
         return true;
     }
@@ -206,6 +214,12 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         wave.stop();
         midi.stop();
         efile = fc.getSelectedFile();
+        try{
+        FileInputStream streamer = new FileInputStream(efile);
+ edata=new byte[streamer.available()];
+   streamer.read(edata);
+   streamer.close();
+        }catch(Exception e){e.printStackTrace();}
         try {
             String cp = efile.getCanonicalPath();
             String type = cp.substring(cp.lastIndexOf(".")+1);
@@ -232,7 +246,24 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     wave.stop();
     midi.stop();
     
+    if(efile==null && edata !=null){
+    efile=new File("");
+    try{
+        FileOutputStream fos = new FileOutputStream(efile);
+        fos.write(edata);
+        fos.close();
+            }catch(Exception e){e.printStackTrace();}
+    }
+
     if(efile!=null){
+        if (!efile.exists()){
+            efile.mkdirs();
+            try{
+        FileOutputStream fos = new FileOutputStream(efile);
+        fos.write(edata);
+        fos.close();
+            }catch(Exception e){e.printStackTrace();}
+        }
         try{
         String cp = efile.getCanonicalPath();
         String type = cp.substring(cp.lastIndexOf(".")+1);

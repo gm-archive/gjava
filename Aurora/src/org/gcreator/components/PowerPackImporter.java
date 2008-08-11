@@ -15,7 +15,7 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.*;
 import org.gcreator.externproject.StdImport;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -64,10 +64,12 @@ public class PowerPackImporter extends TabPanel {
         jCheckBox2 = new javax.swing.JCheckBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        jLabel1.setText(Dictionary.getEntry("general-powerpack-message"));
+        jLabel1.setText(LangSupporter.activeLang.getEntry(187));
 
-        jLabel2.setText(Dictionary.getEntry("general-powerpack-filter"));
+        jLabel2.setText(LangSupporter.activeLang.getEntry(188));
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Show image files");
@@ -82,6 +84,12 @@ public class PowerPackImporter extends TabPanel {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("DejaVu Sans", 1, 13));
+        jLabel3.setForeground(java.awt.Color.red);
+        jLabel3.setText(LangSupporter.activeLang.getEntry(196));
+
+        jLabel4.setText(LangSupporter.activeLang.getEntry(197));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,6 +99,8 @@ public class PowerPackImporter extends TabPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCheckBox2, 0, 0, Short.MAX_VALUE)
                     .addComponent(jCheckBox1, 0, 0, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,7 +122,11 @@ public class PowerPackImporter extends TabPanel {
                         .addComponent(jCheckBox1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jCheckBox2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -140,6 +154,8 @@ public class PowerPackImporter extends TabPanel {
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 

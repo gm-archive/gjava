@@ -17,7 +17,7 @@ import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Classes;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *

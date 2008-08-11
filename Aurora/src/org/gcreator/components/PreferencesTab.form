@@ -60,7 +60,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="36" max="32767" attributes="0"/>
+              <EmptySpace pref="63" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +69,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Dictionary.getEntry(&quot;general-global-laf&quot;)" type="code"/>
+          <Connection code="getLang(15)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -86,7 +86,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Dictionary.getEntry(&quot;general-global-displaymode&quot;)" type="code"/>
+          <Connection code="getLang(16)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -102,12 +102,8 @@
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="&lt;User Code&gt;">
-              <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;general-global-displayoptions&quot;)" type="code"/>
-            </TitledBorder>
-          </Border>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(266))" type="code"/>
         </Property>
       </Properties>
 
@@ -121,7 +117,7 @@
                       <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="284" max="32767" attributes="0"/>
+                  <EmptySpace pref="296" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,13 +138,14 @@
       <SubComponents>
         <Component class="javax.swing.JCheckBox" name="jCheckBox1">
           <Properties>
-            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Dictionary.getEntry(&quot;general-global-antialiasing&quot;)" type="code"/>
-            </Property>
+            <Property name="text" type="java.lang.String" value="Antialiasing"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jCheckBox1.setText(LangSupporter.activeLang.getEntry(259));"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox2">
           <Properties>
@@ -167,7 +164,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Dictionary.getEntry(&quot;general-global-theme&quot;)" type="code"/>
+          <Connection code="LangSupporter.activeLang.getEntry(287)" type="code"/>
         </Property>
       </Properties>
     </Component>

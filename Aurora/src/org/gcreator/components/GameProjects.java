@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.fileclass.GameProject;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -43,7 +43,7 @@ public class GameProjects extends JPanel{
         super();
         this.ptypes = ptypes;
         initComponents();
-        jButton1.setText(Dictionary.getEntry("general-newproject-emptygame"));
+        jButton1.setText(LangSupporter.activeLang.getEntry(58));
         ptypes.npro.ProjectButtons.add(jButton1);
         ptypes.npro.ProjectButtons.add(jButton2);
         ptypes.npro.ProjectButtons.add(jButton3);

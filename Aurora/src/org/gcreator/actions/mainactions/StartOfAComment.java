@@ -14,7 +14,7 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -29,7 +29,7 @@ public class StartOfAComment extends ActionPattern{
     
      
     public String getStandardText(JComponent panel){
-        return Dictionary.getEntry("actions-startcomment-text");
+        return "Start of a comment";
     }
     public void setStandardImage(ImageIcon icon){
         StartOfAComment.icon = icon;

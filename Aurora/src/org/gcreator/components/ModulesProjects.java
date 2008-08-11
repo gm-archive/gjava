@@ -11,7 +11,7 @@ package org.gcreator.components;
 
 import java.awt.*;
 import javax.swing.*;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -31,7 +31,7 @@ public class ModulesProjects extends JPanel{
     public ModulesProjects(ProjectTypes ptypes) {
         this.ptypes = ptypes;
         initComponents();
-        jButton1.setText(Dictionary.getEntry("general-newproject-emptymodule"));
+        jButton1.setText(LangSupporter.activeLang.getEntry(205));
         ptypes.npro.ProjectButtons.add(jButton1);
     }
     

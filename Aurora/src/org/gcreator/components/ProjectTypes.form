@@ -40,7 +40,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Dictionary.getEntry(&quot;general-newproject-games&quot;)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(56)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -56,7 +56,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="Dictionary.getEntry(&quot;general-newproject-modules&quot;)" type="code"/>
+                  <Connection code="LangSupporter.activeLang.getEntry(206)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>

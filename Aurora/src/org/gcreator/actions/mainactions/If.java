@@ -15,7 +15,6 @@ import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -96,10 +95,10 @@ public class If extends ActionPattern{
         if(panel!=null)
             save(panel);
         if(panel==null)
-            return Dictionary.getEntry("actions-if-text");
+            return "If";
         if(!not)
-            return Dictionary.getEntry("actions-if-case").replaceAll("$condition", condition);
-        return Dictionary.getEntry("actions-if-not").replaceAll("$condition", condition);
+            return "if("+condition+")";
+        return "if(!("+condition+"))";
     }
     
     @Override

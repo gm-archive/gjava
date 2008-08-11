@@ -5,10 +5,13 @@
 
 package org.gcreator.fileclass.res;
 
+import java.io.File;
+
 /**
- *
- * @author Ali
+ * The sound resource class
+ * @author TGMG
  */
 public class Sound {
-
+public File soundfile;//used for playing
+public byte[] data;
 }

@@ -14,7 +14,7 @@ import javax.swing.*;
 
 import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -86,11 +86,11 @@ public class ExecuteCode extends ActionPattern{
             save(panel);
             code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
             if(code==null||!code.equals(""))
-                return Dictionary.getEntry("actions-execute-text");
+                return LangSupporter.activeLang.getEntry(222);
             return code;
         }
         else
-            return Dictionary.getEntry("actions-execute-text");
+            return LangSupporter.activeLang.getEntry(222);
     }
     
      

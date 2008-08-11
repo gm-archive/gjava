@@ -15,7 +15,6 @@ import javax.swing.tree.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -82,10 +81,10 @@ public class NewFileGroup extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        jLabel1.setText(Dictionary.getEntry("general-newfile-new"));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(95));
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { Dictionary.getEntry("general-newfile-std"), "Game items", "Development items" };
+            String[] strings = { org.gcreator.managers.LangSupporter.activeLang.getEntry(97), "Game items", "Development items" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });

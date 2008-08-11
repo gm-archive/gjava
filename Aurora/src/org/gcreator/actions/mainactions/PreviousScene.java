@@ -12,7 +12,7 @@ package org.gcreator.actions.mainactions;
 import java.util.Vector;
 import org.gcreator.actions.*;
 import javax.swing.*;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -27,7 +27,7 @@ public class PreviousScene extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return Dictionary.getEntry("actions-previousscene-text");
+        return LangSupporter.activeLang.getEntry(228);
     }
     
     @Override
@@ -37,7 +37,7 @@ public class PreviousScene extends ActionPattern{
      
     @Override
     public String generateGCL(JComponent panel){
-        return "scene_goto_previous();\n";
+        return "room_goto_previous();\n";
     }
     
     @Override

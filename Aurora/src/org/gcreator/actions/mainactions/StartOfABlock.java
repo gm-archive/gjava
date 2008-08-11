@@ -14,7 +14,7 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  *
@@ -29,7 +29,7 @@ public class StartOfABlock extends ActionPattern{
     
      
     public String getStandardText(JComponent panel){
-        return Dictionary.getEntry("actions-startblock-text");
+        return LangSupporter.activeLang.getEntry(219);
     }
     public void setStandardImage(ImageIcon icon){
         StartOfABlock.icon = icon;

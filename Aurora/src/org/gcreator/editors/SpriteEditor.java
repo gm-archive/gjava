@@ -28,8 +28,8 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.ModuleProject;
 import org.gcreator.fileclass.res.GImage;
+import org.gcreator.managers.LangSupporter;
 import org.gcreator.units.ObjectNode;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -269,7 +269,7 @@ public class SpriteEditor extends TabPanel {
 
         jPanel13.setLayout(new java.awt.BorderLayout());
 
-        jButton2.setText(Dictionary.getEntry("editors-sprite-addimage"));
+        jButton2.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(133));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -302,7 +302,7 @@ public class SpriteEditor extends TabPanel {
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField2.setText("0");
 
-        jButton1.setText(Dictionary.getEntry("editors-sprite-remove"));
+        jButton1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(135));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -352,7 +352,7 @@ public class SpriteEditor extends TabPanel {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -1070,7 +1070,7 @@ public class SpriteEditor extends TabPanel {
             }
             else {// Bounds.AUTO_CUSTOM
                 GetValueDialog d = new GetValueDialog(gcreator.window, 0, 255, 128,
-                        Dictionary.getEntry("editors-sprite-boundtransparency"));
+                        LangSupporter.activeLang.getEntry(272));
                 MIN_ALPHA = d.getValue().intValue();
                 d.dispose();
             }

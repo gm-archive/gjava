@@ -14,7 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import org.gcreator.actions.ActionPattern;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -29,7 +28,7 @@ public class Else extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return Dictionary.getEntry("actions-else-text");
+        return "Else";
     }
     @Override
     public void setStandardImage(ImageIcon icon){

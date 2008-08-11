@@ -13,7 +13,7 @@ import org.gcreator.actions.components.PlainTextPanel;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.LangSupporter;
 
 /**
  * The comment action
@@ -64,9 +64,9 @@ public class Comment extends ActionPattern {
             text = ((PlainTextPanel) panel).text.getText();
             if(text!=null&&!text.equals(""))
                 return text;
-            return Dictionary.getEntry("actions-comment-text");
+            return LangSupporter.activeLang.getEntry(221);
         } else {
-            return Dictionary.getEntry("actions-comment-text");
+            return LangSupporter.activeLang.getEntry(221);
         }
     }
 

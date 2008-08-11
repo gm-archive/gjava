@@ -22,7 +22,7 @@ import org.gcreator.units.*;
 import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
-import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 //</editor-fold>
 /**
  *
@@ -609,7 +609,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel1.setText(Dictionary.getEntry("editors-scene-zoom"));
+        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(119));
 
         jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/iso.png"))); // NOI18N
         jToggleButton2.setToolTipText("Isometric");
@@ -694,7 +694,7 @@ public class SceneEditor extends TabPanel {
         jLabel24.setText("<HTML><b>Actors");
         jToolBar1.add(jLabel24);
 
-        jButton2.setText(Dictionary.getEntry("editors-scene-actoradd"));
+        jButton2.setText(LangSupporter.activeLang.getEntry(151));
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setSelected(true);
@@ -717,7 +717,7 @@ public class SceneEditor extends TabPanel {
         });
         jToolBar1.add(jButton1);
 
-        jButton3.setText(Dictionary.getEntry("editors-scene-actorremove"));
+        jButton3.setText(LangSupporter.activeLang.getEntry(152));
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -797,7 +797,7 @@ public class SceneEditor extends TabPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jLabel5.setText(Dictionary.getEntry("editors-scene-name"));
+        jLabel5.setText(LangSupporter.activeLang.getEntry(159));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -805,7 +805,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel6.setText(Dictionary.getEntry("editors-scene-caption"));
+        jLabel6.setText(LangSupporter.activeLang.getEntry(160));
 
         jEditorPane1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -814,17 +814,17 @@ public class SceneEditor extends TabPanel {
         });
         jScrollPane2.setViewportView(jEditorPane1);
 
-        jLabel7.setText(Dictionary.getEntry("editors-scene-width"));
+        jLabel7.setText(LangSupporter.activeLang.getEntry(161));
 
         jTextField2.setText("640");
 
-        jLabel8.setText(Dictionary.getEntry("editors-scene-height"));
+        jLabel8.setText(LangSupporter.activeLang.getEntry(162));
 
         jTextField3.setText("480");
 
-        jLabel9.setText(Dictionary.getEntry("editors-scene-speed"));
+        jLabel9.setText(LangSupporter.activeLang.getEntry(163));
 
-        jCheckBox3.setText(Dictionary.getEntry("editors-scene-persistent"));
+        jCheckBox3.setText(LangSupporter.activeLang.getEntry(164));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         jSpinner12.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(60), Integer.valueOf(1), null, Integer.valueOf(1)));
@@ -834,7 +834,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jLabel19.setText(Dictionary.getEntry("editors-scene-code"));
+        jLabel19.setText(LangSupporter.activeLang.getEntry(165));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -898,12 +898,12 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-settings"), jPanel1);
+        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(148), jPanel1);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jCheckBox1.setSelected(true);
-        jCheckBox1.setText(Dictionary.getEntry("editors-scene-drawbgcolor"));
+        jCheckBox1.setText(LangSupporter.activeLang.getEntry(157));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

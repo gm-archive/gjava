@@ -30,7 +30,7 @@ public class EventPopupMenu extends MenuGenerator {
     public EventPopupMenu(ActorEditor edit){
         this.array = edit.elist.getEvents();
         this.edit = edit;
-        delete = addTranslatableMenuItem("popup-event-delete", new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
+        delete = addMenuItem(255, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
         addActionListener(delete, new ActionListener(){
             public void actionPerformed(ActionEvent evt){
                 onDelete();

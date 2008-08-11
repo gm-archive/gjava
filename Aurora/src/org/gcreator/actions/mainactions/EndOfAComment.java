@@ -12,7 +12,6 @@ package org.gcreator.actions.mainactions;
 import java.util.Vector;
 import org.gcreator.actions.*;
 import javax.swing.*;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -28,7 +27,7 @@ public class EndOfAComment extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return Dictionary.getEntry("actions-endcomment-text");
+        return "End of a comment";
     }
     @Override
     public void setStandardImage(ImageIcon icon){

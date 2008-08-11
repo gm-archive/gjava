@@ -14,6 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import org.gcreator.core.GPanel;
@@ -22,7 +25,6 @@ import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.Project;
 //import org.gcreator.macro.Macro;
 import org.gcreator.managers.*;
-import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -33,7 +35,8 @@ public class WelcomeTab extends TabPanel {
     /** Creates new form WelcomeTab */
     public WelcomeTab() {
         initComponents();
-        jLabel1.setText(Dictionary.getEntry("general-welcome-message"));
+        jLabel1.setText(LangSupporter.activeLang.getEntry(37));
+        jLabel2.setText(LangSupporter.activeLang.getEntry(38));
         //Graphics g = i.getImage().getGraphics();
         //j = new ImageIcon(new BufferedImage(400, 400, BufferedImage.TYPE_4BYTE_ABGR));
         jToggleButton1.setSelected((Boolean)Registry.get("Window.showWelcome"));
@@ -63,6 +66,7 @@ public class WelcomeTab extends TabPanel {
 
         rSSBlogReadPanel1 = new org.gcreator.components.RSSBlogReadPanel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         rSSReadPanel1 = new org.gcreator.components.RSSReadPanel();
         rSSBlogReadPanel2 = new org.gcreator.components.RSSBlogReadPanel();
         jToggleButton1 = new javax.swing.JToggleButton();
@@ -72,6 +76,9 @@ public class WelcomeTab extends TabPanel {
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Welcome to Aurora,");
+
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("The Next Generation of G-Creator");
 
         rSSReadPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,7 +131,9 @@ public class WelcomeTab extends TabPanel {
                     .addComponent(rSSBlogReadPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 739, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jToggleButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -150,7 +159,9 @@ public class WelcomeTab extends TabPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(41, 41, 41)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jToggleButton1)
@@ -226,6 +237,7 @@ private void gotoRSS(RSSReader r) {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JToggleButton jToggleButton1;
     private org.gcreator.components.RSSBlogReadPanel rSSBlogReadPanel1;
     private org.gcreator.components.RSSBlogReadPanel rSSBlogReadPanel2;

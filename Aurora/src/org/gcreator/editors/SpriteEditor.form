@@ -176,7 +176,7 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="61" max="32767" attributes="0"/>
+                                  <EmptySpace pref="59" max="32767" attributes="0"/>
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -199,7 +199,7 @@
                         <Component class="javax.swing.JButton" name="jButton2">
                           <Properties>
                             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="Dictionary.getEntry(&quot;editors-sprite-addimage&quot;)" type="code"/>
+                              <Connection code="org.gcreator.managers.LangSupporter.activeLang.getEntry(133)" type="code"/>
                             </Property>
                           </Properties>
                           <Events>
@@ -256,7 +256,7 @@
                         <Component class="javax.swing.JButton" name="jButton1">
                           <Properties>
                             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                              <Connection code="Dictionary.getEntry(&quot;editors-sprite-remove&quot;)" type="code"/>
+                              <Connection code="org.gcreator.managers.LangSupporter.activeLang.getEntry(135)" type="code"/>
                             </Property>
                           </Properties>
                           <Events>

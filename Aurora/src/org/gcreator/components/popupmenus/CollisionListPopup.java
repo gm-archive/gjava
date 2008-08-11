@@ -13,6 +13,7 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 import org.gcreator.components.resource.*;
+import org.gcreator.core.GPanel;
 import org.gcreator.events.*;
 import org.gcreator.fileclass.*;
 import org.gcreator.fileclass.res.*;
@@ -66,7 +67,7 @@ public class CollisionListPopup extends JPopupMenu {
                 return;
             }
             if(((Event) o) instanceof CollisionEvent) {
-                if (((CollisionEvent) o).other == file) {
+                if (GPanel.getMainProject().getFileFor(((CollisionEvent) o).other) == file) {
                     JOptionPane.showMessageDialog(null, "Found");
                     has = true;
                     break;
