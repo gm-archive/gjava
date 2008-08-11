@@ -454,7 +454,11 @@ public class GM6Importer {
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
             File f = File.createTempFile("gc_tmp_", "." + type);
-            soundFile.value = f;
+            Sound s= new Sound();
+            s.soundfile = f;
+
+            soundFile.value = s;
+
             soundFile.type = type.replaceFirst(".", "");
             //org.gcreator.core.gcreator.debugOut.println("type:"+soundFile.type);
             //val.width = in.read4();
@@ -467,7 +471,10 @@ public class GM6Importer {
                 /*snd.fileName = */ in.readStr();
                 if (in.readBool()) /*snd.data =*/ {
                     FileOutputStream fos = new FileOutputStream(f);
-                    fos.write(in.decompress(in.read4()));
+                    int size=in.read4();
+                    s.data=in.decompress(size);
+                    fos.write(s.data);
+                    
                 }
                 int effects = in.read4();
                 //snd.setEffects(effects);
@@ -1609,15 +1616,18 @@ public class GM6Importer {
             act = new org.gcreator.actions.Action(r);
         } else if (kind == 6) {
             SetVariable s = new SetVariable();
-            s.to = code;
+            s.to = al.arguments.get(1);
+            s.var=al.arguments.get(0).substring(1, al.arguments.get(0).length()-1);
+            s.relative=relative;
             act = new org.gcreator.actions.Action(s);
         }
         //org.gcreator.actions.Action tt;
         if (function) {
             if (question) {
                 If i = new If();
-                i.condition = "if (" + fname + code + ")";
+                i.condition = "" + fname+"(" + al+ ")";
                 act = new org.gcreator.actions.Action(i);
+               
             } else {
                 CallFunction tt = new CallFunction();
                 tt.fname = fname;
