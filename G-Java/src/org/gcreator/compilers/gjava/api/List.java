@@ -15,7 +15,7 @@ ArrayList al;
 
 List()
 {
-    al = new ArrayList();
+    al = new ArrayList<Object>();
 }
 
 public void destroy()
@@ -70,4 +70,17 @@ public void destroy()
           return  (Object) al.get(pos.getInt());
       //return true;
     } 
+       
+       public void sort(boolean ascending)
+       {
+           if (ascending)   //Use natural (ascending) ordering
+               java.util.Collections.sort(al);
+           else             //Use inverted ordering
+               java.util.Collections.sort(al, new DescendingComparator());
+       }
+       
+       public int findIndex(Object o)
+       {
+           return al.indexOf(o);
+       }
 }

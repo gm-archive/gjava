@@ -4657,7 +4657,17 @@ return new Object();
 
 public static Object ds_list_find_index(Object id, Object value)
 {
-return new Object();
+    if (id instanceof List)
+    {
+        int index = ((List)id).findIndex(value);
+        if (index != -1)
+            return new Integer(index);
+        else
+        {
+            GCL.show_message(new String("The specified value is not in the list"));
+        }
+    }
+    return new Object();
 }
 
 public static Object ds_list_find_value(Object id, Object pos)
@@ -4671,7 +4681,11 @@ return new Object();
 
 public static Object ds_list_sort(Object id, Object ascending)
 {
-return new Object();
+    if (id instanceof List)
+    {
+        ((List)id).sort(ascending.getBoolean());
+    }
+    return new Object();
 }
 
 /*
