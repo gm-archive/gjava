@@ -11,15 +11,15 @@ package org.gcreator.editors;
 
 import com.l2fprod.common.propertysheet.DefaultProperty;
 import java.awt.*;
-import java.util.*;
+//import java.util.*;
+import java.util.Vector;
 import javax.swing.border.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.components.resource.*;
-import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.res.*;
-import org.gcreator.managers.*;
 import org.gcreator.plugins.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -185,25 +185,6 @@ public class SettingsEditor extends TabPanel {
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer(project));
-        Extensions = value.getValue("Extensions");
-        if(Extensions==null){
-            value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
-            Extensions.setVariable("Regular Expressions", Boolean.FALSE);
-            Extensions.setVariable("Game Maker Compatibility", Boolean.TRUE);
-        }
-        for(String key : Extensions.getKeys()){
-            DefaultProperty p = new DefaultProperty();
-            p.setName(key);
-            p.setValue(Extensions.getValue(key));
-            p.setEditable(true);
-            p.setType(Boolean.TYPE);
-            p.setDisplayName(key);
-            if(key.equals("Regular Expressions"))
-                p.setShortDescription("Allows regular expression functions.");
-            else if(key.equals("Game Maker Compatibility"))
-                p.setShortDescription("Functions such as room_goto_next for those migrating from Game Maker.");
-            propertyManager1.addProperty(p);
-        }
     }
     
     /** This method is called from within the constructor to
@@ -265,19 +246,16 @@ public class SettingsEditor extends TabPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jPanel11 = new javax.swing.JPanel();
-        propertyManager1 = new org.gcreator.components.PropertyManager();
-        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
-        jCheckBox3.setText(LangSupporter.activeLang.getEntry(65));
+        jCheckBox3.setText(Dictionary.getEntry("editors-settings-fullscreen"));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.setEnabled(false);
 
-        jCheckBox4.setText(LangSupporter.activeLang.getEntry(66));
+        jCheckBox4.setText(Dictionary.getEntry("editors-settings-resize"));
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -285,7 +263,7 @@ public class SettingsEditor extends TabPanel {
             }
         });
 
-        jCheckBox5.setText(LangSupporter.activeLang.getEntry(67));
+        jCheckBox5.setText(Dictionary.getEntry("editors-settings-noborder"));
         jCheckBox5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,15 +271,15 @@ public class SettingsEditor extends TabPanel {
             }
         });
 
-        jCheckBox6.setText(LangSupporter.activeLang.getEntry(68));
+        jCheckBox6.setText(Dictionary.getEntry("editors-settings-nobuttons"));
         jCheckBox6.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox6.setEnabled(false);
 
-        jCheckBox1.setText(LangSupporter.activeLang.getEntry(69));
+        jCheckBox1.setText(Dictionary.getEntry("editors-settings-displaymouse"));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.setEnabled(false);
 
-        jCheckBox2.setText(LangSupporter.activeLang.getEntry(70));
+        jCheckBox2.setText(Dictionary.getEntry("editors-settings-displayfps"));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.setEnabled(false);
 
@@ -318,7 +296,7 @@ public class SettingsEditor extends TabPanel {
                     .addComponent(jCheckBox6)
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,12 +313,12 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jCheckBox2)
-                .addContainerGap(132, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(64), jPanel1);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-settings-graphics"), jPanel1);
 
-        jCheckBox7.setText(LangSupporter.activeLang.getEntry(72));
+        jCheckBox7.setText(Dictionary.getEntry("editors-settings-setresolution"));
         jCheckBox7.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -348,10 +326,10 @@ public class SettingsEditor extends TabPanel {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(73)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-colordepth")));
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setText(LangSupporter.activeLang.getEntry(74));
+        jRadioButton1.setText(Dictionary.getEntry("editors-settings-nochange"));
         jRadioButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -386,7 +364,7 @@ public class SettingsEditor extends TabPanel {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
                     .addComponent(jRadioButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,10 +376,10 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jRadioButton3))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(71)));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-resolution")));
 
         buttonGroup2.add(jRadioButton4);
-        jRadioButton4.setText(LangSupporter.activeLang.getEntry(74));
+        jRadioButton4.setText(Dictionary.getEntry("editors-settings-nochange"));
         jRadioButton4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -496,10 +474,10 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jRadioButton10))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(120)));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-frequency")));
 
         buttonGroup3.add(jRadioButton11);
-        jRadioButton11.setText(LangSupporter.activeLang.getEntry(74));
+        jRadioButton11.setText(Dictionary.getEntry("editors-settings-nochang"));
         jRadioButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -605,12 +583,12 @@ public class SettingsEditor extends TabPanel {
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(71), jPanel2);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-settings-resolution"), jPanel2);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(122)));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-defaultkeys")));
 
         jCheckBox8.setText(LangSupporter.activeLang.getEntry(123));
         jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
@@ -633,10 +611,10 @@ public class SettingsEditor extends TabPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jCheckBox9, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
-            .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+            .addComponent(jCheckBox9, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+            .addComponent(jCheckBox8, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jCheckBox10, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -666,8 +644,8 @@ public class SettingsEditor extends TabPanel {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
-            .addComponent(jCheckBox11, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+            .addComponent(jCheckBox11, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -696,7 +674,7 @@ public class SettingsEditor extends TabPanel {
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)))
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -710,7 +688,7 @@ public class SettingsEditor extends TabPanel {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
@@ -732,7 +710,7 @@ public class SettingsEditor extends TabPanel {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 102, Short.MAX_VALUE)
+            .addGap(0, 111, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -774,7 +752,7 @@ public class SettingsEditor extends TabPanel {
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
                         .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -799,22 +777,11 @@ public class SettingsEditor extends TabPanel {
                         .addComponent(jButton2))
                     .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Scene Order", jPanel9);
-
-        jPanel11.setLayout(new java.awt.BorderLayout());
-
-        propertyManager1.setDescriptionVisible(true);
-        propertyManager1.setToolBarVisible(false);
-        jPanel11.add(propertyManager1, java.awt.BorderLayout.CENTER);
-
-        jLabel3.setText("<html><b>WARNING</b>:<br>\nPlease note that some extensions may not be available in some compilers.<br>\nIn addition, some compilers may have some extensions permanenty activated.<br>\nContact your compiler's author for further details.");
-        jPanel11.add(jLabel3, java.awt.BorderLayout.PAGE_START);
-
-        jTabbedPane1.addTab("G-Script Extensions", jPanel11);
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -1043,11 +1010,9 @@ public class SettingsEditor extends TabPanel {
     private javax.swing.JCheckBox jCheckBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1076,7 +1041,6 @@ public class SettingsEditor extends TabPanel {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private org.gcreator.components.PropertyManager propertyManager1;
     // End of variables declaration//GEN-END:variables
     
 }

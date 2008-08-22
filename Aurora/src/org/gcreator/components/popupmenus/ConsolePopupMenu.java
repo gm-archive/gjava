@@ -15,6 +15,7 @@ import java.awt.event.*;
 
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -25,10 +26,10 @@ public class ConsolePopupMenu extends JPopupMenu{
     JMenuItem clear;
     JMenuItem hide;
     public ConsolePopupMenu(){
-        copymessage = new JMenuItem(LangSupporter.activeLang.getEntry(115));
+        copymessage = new JMenuItem(Dictionary.getEntry("popup-console-copy"));
         copymessage.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/copy.png")));
-        clear = new JMenuItem(LangSupporter.activeLang.getEntry(14));
-        hide = new JMenuItem(LangSupporter.activeLang.getEntry(116));
+        clear = new JMenuItem(Dictionary.getEntry("popup-console-clear"));
+        hide = new JMenuItem(Dictionary.getEntry("popup-console-hide"));
         add(copymessage);
         copymessage.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){

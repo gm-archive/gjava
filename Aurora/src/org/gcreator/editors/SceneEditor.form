@@ -657,7 +657,7 @@
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                         <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(149)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-scene-background&quot;)" type="code"/>
                         </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>
@@ -938,7 +938,7 @@
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                         <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(150)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-scene-views&quot;)" type="code"/>
                         </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>
@@ -989,7 +989,7 @@
                     <Component class="javax.swing.JCheckBox" name="jCheckBox2">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(153)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-scene-enableviews&quot;)" type="code"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -1024,7 +1024,7 @@
                     <Component class="javax.swing.JCheckBox" name="jCheckBox4">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(154)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-scene-visibleonstart&quot;)" type="code"/>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -1041,7 +1041,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="&lt;User Code&gt;">
-                              <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(155)" type="code"/>
+                              <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editors-scene-viewinscene&quot;)" type="code"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -1172,7 +1172,7 @@
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                             <TitledBorder title="&lt;User Code&gt;">
-                              <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(156)" type="code"/>
+                              <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;portonscreen&quot;)" type="code"/>
                             </TitledBorder>
                           </Border>
                         </Property>
@@ -1467,7 +1467,7 @@
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
                       <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                         <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(147)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-scene-actors&quot;)" type="code"/>
                         </Property>
                       </JTabbedPaneConstraints>
                     </Constraint>

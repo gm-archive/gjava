@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang name="English" status="Development">
+    <author>Luís Reis</author>
+    <author>Pedro Cubal</author>
+    
+    <slice key="gcreator-title">G-Creator: Fácil, Potente e Teu</slice>
+    <slice key="gcreator-finished-loading">A aplicação foi carregada</slice>
+    
+    <slice key="workspace-rootnode">Área de Trabalho</slice>
+    
+    <slice key="workspace-title">Área de Trabalho</slice>
+    <slice key="workspace-context-delete">Apagar</slice>
+    <slice key="workspace-context-rename">Renomear</slice>
+    <slice key="workspace-context-addgroup">Adicionar grupo</slice>
+    <slice key="navigator-title">Navegador</slice>
+    
+    <slice key="popup-action-cut">Cortar</slice>
+    <slice key="popup-action-copy">Copiar</slice>
+    <slice key="popup-action-paste">Colar</slice>
+    <slice key="popup-action-delete">Apagar</slice>
+    
+    <slice key="popup-event-delete">Apagar</slice>
+    
+    <slice key="popup-console-copy">Copiar Mensagem</slice>
+    <slice key="popup-console-clear">Limpar Consola</slice>
+    <slice key="popup-console-hide">Ocultar Consola</slice>
+    
+    <slice key="popup-tabs-close">Fechar Separador</slice>
+    
+    <slice key="general-welcome-title">Bem-vindo ao G-Creator!</slice>
+    <slice key="general-welcome-message">Bem-vindo ao G-Creator!</slice>
+    <slice key="general-newproject-title">Novo Projecto</slice>
+    <slice key="general-newproject-type">Escolha o tipo de projecto</slice>
+    <slice key="general-newproject-name">Nome</slice>
+    <slice key="general-newproject-create">Criar</slice>
+    <slice key="general-newproject-games">Jogos</slice>
+    <slice key="general-newproject-modules">Módulos</slice>
+    <slice key="general-newproject-emptygame">Jogo Vazio</slice>
+    <slice key="general-newproject-emptymodule">Módulo Vazio</slice>
+    <slice key="general-newfile-title">Novo Ficheiro ou Grupo</slice>
+    <slice key="general-newfile-new">Novo...</slice>
+    <slice key="general-newfile-std">Itens Padrão</slice>
+    <slice key="general-about-title">Acerca do G-Creator</slice>
+    <slice key="general-help-title">Ajuda</slice>
+    <slice key="general-language-title">Língua</slice>
+    <slice key="general-global-title">Definições Globais</slice>
+    <slice key="general-global-tabsleft">Separadores (Esquerda)</slice>
+    <slice key="general-global-tabsright">Separadores (Direita)</slice>
+    <slice key="general-global-tabstop">Separadores (Topo)</slice>
+    <slice key="general-global-tabsbottom">Separadores (Baixo)</slice>
+    <slice key="general-global-mdi">Múltiplas Janelas Encaixadas</slice>
+    <slice key="general-global-laf">Aspecto</slice>
+    <slice key="general-global-displaymode">Modo de disposição</slice>
+    <slice key="general-global-displayoptions">Opções de disposição</slice>
+    <slice key="general-global-antialiasing">Anti-serrilhamento</slice>
+    <slice key="general-global-theme">Tema</slice>
+    <slice key="general-powerpack-title">Pacote Inicial</slice>
+    <slice key="general-powerpack-filter">Filtro</slice>
+    
+    <slice key="general-mdi-minimize">Minimizar</slice>
+    <slice key="general-mdi-restore">Restaurar</slice>
+    <slice key="general-mdi-maximize">Maximizar</slice>
+    <slice key="general-mdi-cascade">Cascata</slice>
+    
+    <slice key="general-powerpack-message">Escolher recurso a importar</slice>
+
+    <slice key="toolbar-menu-hide">Esconder barra de ferramentas</slice>
+    
+    <slice key="menu-file-text">Ficheiro</slice>
+    <slice key="menu-file-newproject">Novo Projecto</slice>
+    <slice key="menu-file-newfile">Novo Ficheiro ou Grupo</slice>
+    <slice key="menu-file-openproject">Abrir Projecto</slice>
+    <slice key="menu-file-saveproject">Guardar Projecto</slice>
+    <slice key="menu-file-saveprojectas">Guardar Projecto Como...</slice>
+    <slice key="menu-file-saveallprojects">Guardar Todos os Projectos</slice>
+    <slice key="menu-file-savefile">Guardar Ficheiro</slice>
+    <slice key="menu-file-saveallfiles">Guardar Todos os Ficheiros</slice>
+    <slice key="menu-import-text">Importar...</slice>
+    <slice key="menu-import-file">Ficheiro...</slice>
+    <slice key="menu-import-file-image">Imagem</slice>
+    <slice key="menu-import-project">Projecto...</slice>
+    <slice key="menu-export-text">Exportar...</slice>
+    <slice key="menu-export-file">Ficheiro...</slice>
+    <slice key="menu-export-project">Projecto...</slice>
+    <slice key="menu-file-closeproject">Fechar Projecto</slice>
+    <slice key="menu-file-exit">Saír</slice>
+    
+    <slice key="menu-view-text">Vista</slice>
+    <slice key="menu-treeposition-text">Posição da Árvore de Trabalho</slice>
+    <slice key="menu-treeposition-left">Esquerda</slice>
+    <slice key="menu-treeposition-right">Direita</slice>
+    <slice key="menu-view-outputbox">Mostrar caixa de saída</slice>
+    <slice key="menu-view-toolbars">Mostrar barra de ferramentas</slice>
+    <slice key="menu-view-console">Mostrar consola</slice>
+    
+    <slice key="menu-build-text">Costruír&amp;Correr</slice>
+    <slice key="menu-build-setmain">Definir como Projecto Principal</slice>
+    
+    <slice key="menu-tools-text">Ferramentas</slice>
+    <slice key="menu-tools-language">Seleccionar Língua</slice>
+    <slice key="menu-tools-update">Actualizações</slice>
+    <slice key="menu-tools-plugins">Plugins</slice>
+    <slice key="menu-tools-global">Definições Globais</slice>
+    <slice key="menu-tools-welcome">Mostrar Ecrã de Boas-Vindas</slice>
+    <slice key="menu-tools-powerpack">Pacote Inicial</slice>
+    
+    <slice key="menu-help-text">Ajuda</slice>
+    <slice key="menu-help-about">Acerca</slice>
+    <slice key="menu-help-help">Ajuda</slice>
+    
+    <slice key="toolbar-newproject">Novo Projecto</slice>
+    <slice key="toolbar-openproject">Abrir Projecto</slice>
+    <slice key="toolbar-save">Guardar</slice>
+    <slice key="toolbar-saveproject">Guardar Projecto</slice>
+    <slice key="toolbar-saveallfile">Guardar Todos os Ficheiros</slice>
+    <slice key="toolbar-addimage">Adicionar Imagem</slice>
+    <slice key="toolbar-addsprite">Adicionar Sprite</slice>
+    <slice key="toolbar-addtileset">Adicionar Tileset</slice>
+    <slice key="toolbar-addpath">Adicionar Caminho</slice>
+    <slice key="toolbar-addsound">Adicionar Som</slice>
+    <slice key="toolbar-addtimeline">Adicionar Linha de Tempo</slice>
+    <slice key="toolbar-addactor">Adicionar Actor</slice>
+    <slice key="toolbar-addscene">Adicionar Cena</slice>
+    <slice key="toolbar-addscript">Adicionar Código</slice>
+    <slice key="toolbar-addgroup">Adicionar Grupo</slice>
+    <slice key="toolbar-addaction">Adicionar Acção</slice>
+    
+    <slice key="actions-category-main">Principal</slice>
+    
+    <slice key="actions-startblock-text">Iniciar Bloco</slice>
+    <slice key="actions-endblock-text">Terminar Bloco</slice>
+    <slice key="actions-comment-text">Comentar</slice>
+    <slice key="actions-startcomment-text">Iniciar comentário</slice>
+    <slice key="actions-endcomment-text">Terminar comentário</slice>
+    <slice key="actions-setvar-text">Definir variável</slice>
+    <slice key="actions-setvar-expanded">Definir $apply como $value</slice>
+    <slice key="actions-execute-text">Executar código</slice>
+    <slice key="actions-repeat-text">Repetir</slice>
+    <slice key="actions-repeat-times">Repetir $times vezes</slice>
+    <slice key="actions-exit-text">Saír</slice>
+    <slice key="actions-if-text">Se</slice>
+    <slice key="actions-if-case">Se $condition</slice>
+    <slice key="actions-if-not">Se $condition for falsa</slice>
+    <slice key="actions-ifclipboardtext-text">Se a Área de Transferência contiver texto</slice>
+    <slice key="actions-ifclipboardtext-not">Se a Área de Transferência não contiver texto</slice>
+    <slice key="actions-else-text">Caso Contrário</slice>
+    <slice key="actions-while-text">Enquanto</slice>
+    <slice key="actions-while-case">Enquanto $condition</slice>
+    <slice key="actions-while-not">Enquanto $condition for falsa</slice>
+    <slice key="actions-previousscene-text">Ir para a cena anterior</slice>
+    <slice key="actions-nextscene-text">Ir para a cena seguinte</slice>
+    <slice key="actions-hspeed-expanded">Definir velocidade horizontal de $apply como $value</slice>
+    <slice key="actions-hspeed-text">Definir velocidade horizontal</slice>
+    <slice key="actions-vspeed-expanded">Definir velocidade vertical de $apply como $value</slice>
+    <slice key="actions-vspeed-text">Definir velocidade vertical</slice>
+    <slice key="actions-warp-text">Transportar</slice>
+    <slice key="actions-warp-expanded">Transportar $apply para ($x, $y)</slice>
+    
+    <slice key="dialogs-imageresize-message">A imagem não tem o tamanho certo.
+O que fazer?</slice>
+    <slice key="dialogs-imageresize-cancel">Cancelar</slice>
+    <slice key="dialogs-imageresize-ok">Aplicar</slice>
+    <slice key="dialogs-imageresize-canvassize">Tamanho de tela</slice>
+    <slice key="dialogs-imageresize-maximal">Usar tamanho máximo</slice>
+    <slice key="dialogs-imageresize-original">Usar tamanho mínimo</slice>
+    <slice key="dialogs-imageresize-new">Usar novo tamanho</slice>
+    <slice key="dialogs-imageresize-adjust">Ajustar imagem</slice>
+    <slice key="dialogs-imageresize-stretch">Esticar</slice>
+    <slice key="dialogs-imageresize-topleft">Colocar no canto superior esquerdo (Não redimensionar)</slice>
+    <slice key="dialogs-imageresize-placeat">Colocar em...</slice>
+    <slice key="dialogs-imageresize-keepratio">Manter o rácio do aspecto</slice>
+    <slice key="dialogs-imageresize-resize">Redimensionar imagem</slice>
+    <slice key="dialogs-imageresize-createnew">Criar nova imagem</slice>
+    
+    <slice key="editors-image-load">Carregar imagem</slice>
+    <slice key="editors-image-zoom">Zoom</slice>
+    
+    <slice key="editors-path-name">Nome:</slice>
+    <slice key="editors-path-delete">Apagar</slice>
+    <slice key="editors-path-add">Adicionar</slice>
+    <slice key="editors-path-insert">Inserir</slice>
+    <slice key="editors-path-speed">Velocidade</slice>
+    <slice key="editors-path-straight">Recto</slice>
+    <slice key="editors-path-smooth">Curvo</slice>
+    <slice key="editors-path-curves">Curvas</slice>
+    <slice key="editors-path-closed">Fechado</slice>
+    
+    <slice key="editors-timeline-name">Nome:</slice>
+    <slice key="editors-timeline-addaction">Adicionar acção</slice>
+    
+    <slice key="editors-scene-zoom">Zoom</slice>
+    <slice key="editors-scene-actoradd">Adicionar</slice>
+    <slice key="editors-scene-actorremove">Remover</slice>
+    <slice key="editors-scene-name">Nome:</slice>
+    <slice key="editors-scene-caption">Legenda para a cena:</slice>
+    <slice key="editors-scene-width">Comprimento:</slice>
+    <slice key="editors-scene-height">Largura:</slice>
+    <slice key="editors-scene-speed">Velocidade:</slice>
+    <slice key="editors-scene-persistent">Persistente</slice>
+    <slice key="editors-scene-code">Código de criação</slice>
+    <slice key="editors-scene-settings">Opções</slice>
+    <slice key="editors-scene-drawbgcolor">Desenhar cor de fundo</slice>
+    <slice key="editors-scene-background">Fundo</slice>
+    <slice key="editors-scene-enableviews">Permitir o uso de pontos de vista</slice>
+    <slice key="editors-scene-visibleonstart">Visível quando a cena é iniciada</slice>
+    <slice key="editors-scene-viewinscene">Vista na cena</slice>
+    <slice key="editors-scene-portonscreen">Posição no ecrã</slice>
+    <slice key="editors-scene-views">Pontos de vista</slice>
+    <slice key="editors-scene-actors">Actores</slice>
+    
+    <slice key="editors-script-name">Nome:</slice>
+    
+    <slice key="editors-sprite-addimage">Adicionar ao sprite</slice>
+    <slice key="editors-sprite-remove">Remover</slice>
+    <slice key="editors-sprite-boundtransparency">Escolher valor mínimo de transparência para detecção de moldura.
+0 é completamente transparente e 255 é completamente opaco.</slice>
+
+    <slice key="editors-tileset-name">Nome:</slice>
+    <slice key="editors-tileset-begin">Começar Em:</slice>
+
+    <slice key="editors-settings-fullscreen">Começar em modo de ecrã completo</slice>
+    <slice key="editors-settings-resize">Permitir ao jogador redimensionar a janela do jogo</slice>
+    <slice key="editors-settings-noborder">Não desenhar contornos da janela do jogo</slice>
+    <slice key="editors-settings-nobuttons">Não mostrar botões no título da janela</slice>
+    <slice key="editors-settings-displaymouse">Mostrar rato</slice>
+    <slice key="editors-settings-displayfps">Mostrar velocidade do jogo[FPS] no título da janela</slice>
+    <slice key="editors-settings-graphics">Gráficos</slice>
+    <slice key="editors-settings-setresolution">Definir resolução do ecrã</slice>
+    <slice key="editors-settings-colordepth">Profundidade de cores</slice>
+    <slice key="editors-settings-nochange">Não modificar</slice>
+    <slice key="editors-settings-resolution">Resolução</slice>
+    <slice key="editors-settings-frequency">Frequência</slice>
+    <slice key="editors-settings-defaultkeys">Teclas predefinidas</slice>
+</lang>

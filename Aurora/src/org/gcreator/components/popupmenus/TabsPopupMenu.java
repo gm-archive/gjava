@@ -19,7 +19,7 @@ public class TabsPopupMenu extends MenuGenerator {
     public TabsPopupMenu(final JTabbedPane tabs) {
         if (tabs.getComponentCount() > 0) {
             addActionListener(
-                    addMenuItem(288,
+                    addTranslatableMenuItem("popup-tabs-close",
                     new ImageIcon(getClass().getResource("/org/gcreator/resources/close.png"))), new ActionListener() {
 
                 public void actionPerformed(ActionEvent evt) {

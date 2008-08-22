@@ -449,7 +449,11 @@ public class GPanel extends JPanel {
                 splitter1.updateUI();
             }
         });
+        try{
         dividerLocation = (Integer) Registry.get("Window.consoleLocation");
+        }
+        catch(Exception e){}
+        try{
         if (((Boolean) Registry.get("Window.showConsole")) == false) {
             onItemActionPerformed(2, 0, null);
         } else {
@@ -457,6 +461,11 @@ public class GPanel extends JPanel {
             icore.pack();
             splitter1.setDividerLocation(dividerLocation);
         }
+        }
+        catch(Exception e){
+            onItemActionPerformed(2, 0, null);
+        }
+        
 
         /*try {
         if (settings != null && settings[0] != null && settings[0].equals("Native")) {
@@ -507,12 +516,23 @@ public class GPanel extends JPanel {
             updateToDefaultNavigatorPanel(welcome);
         }
         setMinimumSize(new Dimension(200, 200));
+        try{
         if (((Boolean) Registry.get("Window.maximized")) == true) {
             icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
         } else {
             icore.setExtendedState(JFrame.NORMAL);
         }
-        String desktop = (String) Registry.get("Window.desktop");
+        }
+        catch(Exception e){
+            icore.setExtendedState(JFrame.NORMAL);
+        }
+        String desktop;
+        try{
+            desktop = (String) Registry.get("Window.desktop");
+        }
+        catch(Exception e){
+            desktop = "TOP";
+        }
         if (desktop.equals("TOP")) {
         } else if (desktop.equals("LEFT")) {
             tabs.setTabPlacement(JTabbedPane.LEFT);

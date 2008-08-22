@@ -14,7 +14,7 @@ import org.gcreator.units.Dictionary;
  */
 public class English extends Dictionary {
     public English() {
-        status = "Finished";
+        /*status = "Finished";
         language = "English";
         authors = new String[10];
         authors[0] = "Luís Reis";
@@ -342,7 +342,7 @@ public class English extends Dictionary {
         try{
             init();
         }
-        catch(Exception e){} // To ignore
+        catch(Exception e){} // To ignore*/
     }
     
      

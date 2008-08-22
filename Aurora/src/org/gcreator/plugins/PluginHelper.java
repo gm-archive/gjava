@@ -15,6 +15,7 @@ import org.gcreator.fileclass.*;
 import org.gcreator.core.*;
 import org.gcreator.editors.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -54,12 +55,15 @@ public class PluginHelper {
             utilities.addStringMessage(message);
     }
     
-    public static String getLanguageMessage(int num){
-        return LangSupporter.activeLang.getEntry(num);
+    public static String getLanguageMessage(String entry){
+        return Dictionary.getEntry(entry);
     }
     
+    /**
+     * @deprecated Use getLanguageMessage instead.
+     */
     public static String getLanguageSpecialMessage(String value){
-        return LangSupporter.activeLang.getSpecialEntry(value);
+        return getLanguageMessage(value);
     }
     
     public static Project getCurrentProject(){

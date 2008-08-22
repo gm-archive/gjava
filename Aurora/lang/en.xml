@@ -20,6 +20,12 @@
     
     <slice key="popup-event-delete">Delete</slice>
     
+    <slice key="popup-console-copy">Copy Message</slice>
+    <slice key="popup-console-clear">Clear Console</slice>
+    <slice key="popup-console-hide">Hide Console</slice>
+    
+    <slice key="popup-tabs-close">Close Tab</slice>
+    
     <slice key="general-welcome-title">Welcome to G-Creator!</slice>
     <slice key="general-welcome-message">Welcome to G-Creator!</slice>
     <slice key="general-newproject-title">New Project</slice>
@@ -101,6 +107,23 @@
     <slice key="menu-help-about">About</slice>
     <slice key="menu-help-help">Help</slice>
     
+    <slice key="toolbar-newproject">New Project</slice>
+    <slice key="toolbar-openproject">Open Project</slice>
+    <slice key="toolbar-save">Save</slice>
+    <slice key="toolbar-saveproject">Save Project</slice>
+    <slice key="toolbar-saveallfile">Save All Files</slice>
+    <slice key="toolbar-addimage">Add Image</slice>
+    <slice key="toolbar-addsprite">Add Sprite</slice>
+    <slice key="toolbar-addtileset">Add Tileset</slice>
+    <slice key="toolbar-addpath">Add Path</slice>
+    <slice key="toolbar-addsound">Add Sound</slice>
+    <slice key="toolbar-addtimeline">Add Timeline</slice>
+    <slice key="toolbar-addactor">Add Actor</slice>
+    <slice key="toolbar-addscene">Add Scene</slice>
+    <slice key="toolbar-addscript">Add Script</slice>
+    <slice key="toolbar-addgroup">Add Group</slice>
+    <slice key="toolbar-addaction">Add Action</slice>
+    
     <slice key="actions-category-main">Main</slice>
     
     <slice key="actions-startblock-text">Start Block</slice>
@@ -177,6 +200,15 @@ What do you want to do with it?</slice>
     <slice key="editors-scene-code">Creation Code</slice>
     <slice key="editors-scene-settings">Settings</slice>
     <slice key="editors-scene-drawbgcolor">Draw background color</slice>
+    <slice key="editors-scene-background">Background</slice>
+    <slice key="editors-scene-enableviews">Enable the use of views</slice>
+    <slice key="editors-scene-visibleonstart">Visible when the scene starts</slice>
+    <slice key="editors-scene-viewinscene">View in Scene</slice>
+    <slice key="editors-scene-portonscreen">Port on Screen</slice>
+    <slice key="editors-scene-views">Views</slice>
+    <slice key="editors-scene-actors">Actors</slice>
+    
+    <slice key="editors-script-name">Name:</slice>
     
     <slice key="editors-sprite-addimage">Add to Sprite</slice>
     <slice key="editors-sprite-remove">Remove</slice>
@@ -185,4 +217,18 @@ What do you want to do with it?</slice>
 
     <slice key="editors-tileset-name">Name:</slice>
     <slice key="editors-tileset-begin">Begin At:</slice>
+    
+    <slice key="editors-settings-fullscreen">Start in full-screen mode</slice>
+    <slice key="editors-settings-resize">Allow the player to resize the game window</slice>
+    <slice key="editors-settings-noborder">Don't draw border in windowed mode</slice>
+    <slice key="editors-settings-nobuttons">Don't show buttons in the window caption</slice>
+    <slice key="editors-settings-displaymouse">Display mouse</slice>
+    <slice key="editors-settings-displayfps">Display FPS in window caption</slice>
+    <slice key="editors-settings-graphics">Graphics</slice>
+    <slice key="editors-settings-setresolution">Set the resolution of the screen</slice>
+    <slice key="editors-settings-colordepth">Color depth</slice>
+    <slice key="editors-settings-nochange">No change</slice>
+    <slice key="editors-settings-resolution">Resolution</slice>
+    <slice key="editors-settings-frequency">Frequency</slice>
+    <slice key="editors-settings-defaultkeys">Default Keys</slice>
 </lang>

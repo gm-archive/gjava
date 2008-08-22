@@ -1082,11 +1082,11 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(149), jPanel5);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-background"), jPanel5);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
-        jCheckBox2.setText(LangSupporter.activeLang.getEntry(153));
+        jCheckBox2.setText(Dictionary.getEntry("editors-scene-enableviews"));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         jList1.setModel(model);
@@ -1098,7 +1098,7 @@ public class SceneEditor extends TabPanel {
         });
         jScrollPane3.setViewportView(jList1);
 
-        jCheckBox4.setText(LangSupporter.activeLang.getEntry(154));
+        jCheckBox4.setText(Dictionary.getEntry("editors-scene-visibleonstart"));
         jCheckBox4.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1106,7 +1106,7 @@ public class SceneEditor extends TabPanel {
             }
         });
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(155)));
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-scene-viewinscene")));
 
         jLabel10.setText("X");
 
@@ -1188,7 +1188,7 @@ public class SceneEditor extends TabPanel {
                     .addComponent(jLabel13)))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(156)));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("portonscreen")));
 
         jLabel14.setText("X");
 
@@ -1302,7 +1302,7 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(74, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(150), jPanel7);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-views"), jPanel7);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -1451,7 +1451,7 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(147), jPanel2);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-actors"), jPanel2);
 
         javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
         jPanel16.setLayout(jPanel16Layout);
