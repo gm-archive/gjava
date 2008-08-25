@@ -17,6 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import javax.crypto.Cipher;
 import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 
 
@@ -37,8 +38,16 @@ public class utilities {
         addFormatedMessage(message, "red", true);
     }
 
+    public static void addError(String message) {
+        addTranslatedFormatedMessage(message, "red", true);
+    }
+    
     public static void addFormatedMessage(int message, String color, boolean bold) {
         addStringFormatedMessage(LangSupporter.activeLang.getEntry(message), color, bold);
+    }
+    
+    public static void addTranslatedFormatedMessage(String message, String color, boolean bold) {
+        addStringFormatedMessage(Dictionary.getEntry(message), color, bold);
     }
 
     public static void addStringFormatedMessage(String message, String color, boolean bold) {

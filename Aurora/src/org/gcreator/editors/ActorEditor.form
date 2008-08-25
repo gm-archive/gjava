@@ -102,7 +102,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(136)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-name&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>
@@ -116,7 +116,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder title="&lt;User Code&gt;">
-                  <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(137)" type="code"/>
+                  <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editors-actors-sprite&quot;)" type="code"/>
                 </TitledBorder>
               </Border>
             </Property>
@@ -165,7 +165,7 @@
             <Component class="javax.swing.JButton" name="jButton2">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="LangSupporter.activeLang.getEntry(138)" type="code"/>
+                  <Connection code="Dictionary.getEntry(&quot;editors-actor-edit&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>
@@ -175,7 +175,7 @@
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(139)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-visible&quot;)" type="code"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -193,7 +193,7 @@
           <Properties>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(140)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-solid&quot;)" type="code"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -209,7 +209,7 @@
         <Component class="javax.swing.JCheckBox" name="jCheckBox3">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(141)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-persistent&quot;)" type="code"/>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -225,21 +225,21 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(142)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-depth&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(143)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actors-extends&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="LangSupporter.activeLang.getEntry(144)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-actor-mask&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>
@@ -390,7 +390,7 @@
                     <Component class="javax.swing.JButton" name="jButton5">
                       <Properties>
                         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="LangSupporter.activeLang.getEntry(145)" type="code"/>
+                          <Connection code="Dictionary.getEntry(&quot;editors-actor-addevent&quot;)" type="code"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -450,7 +450,7 @@
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(146)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-actor-addaction&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -497,9 +497,6 @@
           </SubComponents>
         </Container>
         <Component class="org.gcreator.components.ActorFieldPane" name="actorFieldPane1">
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new org.gcreator.components.ActorFieldPane(this)"/>
-          </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="Fields">

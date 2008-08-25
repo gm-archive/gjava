@@ -14,7 +14,8 @@ import java.awt.Container;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.ModuleProject;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 
 /**
  *

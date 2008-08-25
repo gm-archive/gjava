@@ -489,7 +489,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editors-settings-frequency&quot;)" type="code"/>
+                      <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editor-settings-frequency&quot;)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -531,7 +531,7 @@
                       <ComponentRef name="buttonGroup3"/>
                     </Property>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="Dictionary.getEntry(&quot;editors-settings-nochang&quot;)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-nochange&quot;)" type="code"/>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
@@ -632,7 +632,7 @@
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
               <JTabbedPaneConstraints tabName="&lt;User Code&gt;">
                 <Property name="tabTitle" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="LangSupporter.activeLang.getEntry(121)" type="code"/>
+                  <Connection code="Dictionary.getEntry(&quot;editors-settings-other&quot;)" type="code"/>
                 </Property>
               </JTabbedPaneConstraints>
             </Constraint>
@@ -679,7 +679,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editors-settings-defaultkeys&quot;)" type="code"/>
+                      <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editor-settings-defaultkeys&quot;)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -712,7 +712,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox8">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(123)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-esc&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -722,7 +722,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox9">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(124)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-f4&quot;)" type="code"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -732,7 +732,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox10">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(125)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-f56&quot;)" type="code"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -744,7 +744,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                     <TitledBorder title="&lt;User Code&gt;">
-                      <Connection PropertyName="titleX" code="LangSupporter.activeLang.getEntry(126)" type="code"/>
+                      <Connection PropertyName="titleX" code="Dictionary.getEntry(&quot;editors-settings-loading&quot;)" type="code"/>
                     </TitledBorder>
                   </Border>
                 </Property>
@@ -778,7 +778,7 @@
                 <Component class="javax.swing.JCheckBox" name="jCheckBox11">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(127)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-splashscreen&quot;)" type="code"/>
                     </Property>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
@@ -786,7 +786,7 @@
                 <Component class="javax.swing.JLabel" name="jLabel1">
                   <Properties>
                     <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="LangSupporter.activeLang.getEntry(128)" type="code"/>
+                      <Connection code="Dictionary.getEntry(&quot;editors-settings-image&quot;)" type="code"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -801,7 +801,7 @@
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="LangSupporter.activeLang.getEntry(129)" type="code"/>
+                  <Connection code="Dictionary.getEntry(&quot;editors-settings-icon&quot;)" type="code"/>
                 </Property>
               </Properties>
             </Component>

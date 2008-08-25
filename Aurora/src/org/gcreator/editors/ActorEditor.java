@@ -25,7 +25,7 @@ import javax.swing.event.DocumentListener;
 import org.gcreator.exceptions.*;
 import org.gcreator.events.*;
 import org.gcreator.actions.*;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 public class ActorEditor extends TabPanel {
 
@@ -273,9 +273,9 @@ public class ActorEditor extends TabPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
         jPanel7 = new javax.swing.JPanel();
-        actorFieldPane1 = new org.gcreator.components.ActorFieldPane(this);
+        actorFieldPane1 = new org.gcreator.components.ActorFieldPane();
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(136));
+        jLabel1.setText(Dictionary.getEntry("editors-actor-name"));
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -283,7 +283,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(137)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-actors-sprite")));
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
@@ -296,7 +296,7 @@ public class ActorEditor extends TabPanel {
             .addGap(0, 30, Short.MAX_VALUE)
         );
 
-        jButton2.setText(LangSupporter.activeLang.getEntry(138));
+        jButton2.setText(Dictionary.getEntry("editors-actor-edit"));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -319,7 +319,7 @@ public class ActorEditor extends TabPanel {
         );
 
         jCheckBox1.setSelected(true);
-        jCheckBox1.setText(LangSupporter.activeLang.getEntry(139));
+        jCheckBox1.setText(Dictionary.getEntry("editors-actor-visible"));
         jCheckBox1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -338,7 +338,7 @@ public class ActorEditor extends TabPanel {
         });
 
         jCheckBox2.setSelected(true);
-        jCheckBox2.setText(LangSupporter.activeLang.getEntry(140));
+        jCheckBox2.setText(Dictionary.getEntry("editors-actor-solid"));
         jCheckBox2.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -351,7 +351,7 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jCheckBox3.setText(LangSupporter.activeLang.getEntry(141));
+        jCheckBox3.setText(Dictionary.getEntry("editors-actor-persistent"));
         jCheckBox3.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jCheckBox3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -364,11 +364,11 @@ public class ActorEditor extends TabPanel {
             }
         });
 
-        jLabel2.setText(LangSupporter.activeLang.getEntry(142));
+        jLabel2.setText(Dictionary.getEntry("editors-actor-depth"));
 
-        jLabel3.setText(LangSupporter.activeLang.getEntry(143));
+        jLabel3.setText(Dictionary.getEntry("editors-actors-extends"));
 
-        jLabel4.setText(LangSupporter.activeLang.getEntry(144));
+        jLabel4.setText(Dictionary.getEntry("editors-actor-mask"));
 
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), null, null, Integer.valueOf(10)));
         jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -478,7 +478,7 @@ public class ActorEditor extends TabPanel {
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton5.setText(LangSupporter.activeLang.getEntry(145));
+        jButton5.setText(Dictionary.getEntry("editors-actor-addevent"));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -489,13 +489,13 @@ public class ActorEditor extends TabPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5))
         );
@@ -504,7 +504,7 @@ public class ActorEditor extends TabPanel {
 
         jPanel5.setMinimumSize(new java.awt.Dimension(100, 0));
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(146));
+        jButton1.setText(Dictionary.getEntry("editors-actor-addaction"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -533,15 +533,15 @@ public class ActorEditor extends TabPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jComboBox2, 0, 193, Short.MAX_VALUE))
+                        .addComponent(jComboBox2, 0, 198, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap(104, Short.MAX_VALUE)
+                        .addContainerGap(109, Short.MAX_VALUE)
                         .addComponent(jButton1)))
                 .addContainerGap())
         );
@@ -555,7 +555,7 @@ public class ActorEditor extends TabPanel {
                 .addGap(12, 12, 12)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -563,7 +563,7 @@ public class ActorEditor extends TabPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
+                .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -572,7 +572,7 @@ public class ActorEditor extends TabPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Actions", jPanel4);
@@ -590,7 +590,7 @@ public class ActorEditor extends TabPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)

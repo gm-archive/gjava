@@ -38,7 +38,7 @@ public final class SettingsIO {
         try {
             Registry.writeXML(registry);
         } catch (IOException e) {
-            utilities.addError(31);
+            utilities.addError("general-errors-writesettings");
             utilities.addStringFormatedMessage(e.getMessage(), null, false);
         }
     }

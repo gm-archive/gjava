@@ -106,7 +106,7 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jTextField1" pref="155" max="32767" attributes="0"/>
+                                          <Component id="jTextField1" pref="175" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -162,7 +162,7 @@
             <Property name="text" type="java.lang.String" value="Name:"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel1.setText(LangSupporter.activeLang.getEntry(136));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jLabel1.setText(Dictionary.getEntry(&quot;editors-path-name&quot;));"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -280,7 +280,7 @@
                           <Component id="jRadioButton2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="71" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

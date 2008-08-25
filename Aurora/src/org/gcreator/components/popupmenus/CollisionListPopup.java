@@ -67,7 +67,7 @@ public class CollisionListPopup extends JPopupMenu {
                 return;
             }
             if(((Event) o) instanceof CollisionEvent) {
-                if (GPanel.getMainProject().getFileFor(((CollisionEvent) o).other) == file) {
+                if (((CollisionEvent) o).other == file.getID()) {
                     JOptionPane.showMessageDialog(null, "Found");
                     has = true;
                     break;

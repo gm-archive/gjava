@@ -20,7 +20,6 @@ import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
-import org.gcreator.managers.LangSupporter;
 import org.gcreator.units.Dictionary;
 
 
@@ -38,8 +37,7 @@ public final class MdiPane extends JPanel {
         p.setVisible(true);
         this.add(p, BorderLayout.CENTER);
         t = new JToolBar();
-        Dictionary d = LangSupporter.activeLang;
-        JButton minimize = new JButton(d.getEntry(247));
+        JButton minimize = new JButton(Dictionary.getEntry("general-mdi-minimize"));
         minimize.setVisible(true);
         minimize.addActionListener(new ActionListener() {
 
@@ -54,7 +52,7 @@ public final class MdiPane extends JPanel {
             }
         });
         t.add(minimize);
-        JButton restore = new JButton(d.getEntry(248));
+        JButton restore = new JButton(Dictionary.getEntry("general-mdi-restore"));
         restore.setVisible(true);
         restore.addActionListener(new ActionListener() {
 
@@ -70,7 +68,7 @@ public final class MdiPane extends JPanel {
             }
         });
         t.add(restore);
-        JButton maximize = new JButton(d.getEntry(249));
+        JButton maximize = new JButton(Dictionary.getEntry("general-mdi-maximize"));
         maximize.setVisible(true);
         maximize.addActionListener(new ActionListener() {
 
@@ -86,7 +84,7 @@ public final class MdiPane extends JPanel {
             }
         });
         t.add(maximize);
-        JButton cascade = new JButton(d.getEntry(250));
+        JButton cascade = new JButton(Dictionary.getEntry("general-mdi-cascade"));
         cascade.setVisible(true);
         cascade.addActionListener(new ActionListener() {
 

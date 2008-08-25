@@ -64,7 +64,7 @@ public class GPanel extends JPanel {
     public boolean showToolbars;
     public JTextPane console;
     public JToolBar tool;
-    public String lang;
+    //public String lang;
     public WorkspaceTree workspace;
     public JScrollPane treescroll;
     private static Project mainProject;
@@ -209,14 +209,6 @@ public class GPanel extends JPanel {
             }
         });
 
-        try {
-            if (LangSupporter.activeLang != null) {
-                lang = LangSupporter.activeLang.getLanguage();
-            } else {
-                lang = "";
-            }
-        } catch (Exception e) {
-        }
 
         createToolBar();
 
@@ -450,7 +442,11 @@ public class GPanel extends JPanel {
             }
         });
         try{
-        dividerLocation = (Integer) Registry.get("Window.consoleLocation");
+            dividerLocation = (Integer) Registry.get("Window.consoleLocation");
+        }
+        catch(Exception e){}
+        
+        try{
         }
         catch(Exception e){}
         try{
@@ -465,8 +461,6 @@ public class GPanel extends JPanel {
         catch(Exception e){
             onItemActionPerformed(2, 0, null);
         }
-        
-
         /*try {
         if (settings != null && settings[0] != null && settings[0].equals("Native")) {
         look = 0;
@@ -524,15 +518,9 @@ public class GPanel extends JPanel {
         }
         }
         catch(Exception e){
-            icore.setExtendedState(JFrame.NORMAL);
+            icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
-        String desktop;
-        try{
-            desktop = (String) Registry.get("Window.desktop");
-        }
-        catch(Exception e){
-            desktop = "TOP";
-        }
+        String desktop = (String) Registry.get("Window.desktop");
         if (desktop.equals("TOP")) {
         } else if (desktop.equals("LEFT")) {
             tabs.setTabPlacement(JTabbedPane.LEFT);

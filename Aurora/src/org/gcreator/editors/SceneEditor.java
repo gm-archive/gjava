@@ -23,6 +23,7 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 //</editor-fold>
 /**
  *
@@ -1082,7 +1083,7 @@ public class SceneEditor extends TabPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-background"), jPanel5);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-scene-backgrounds"), jPanel5);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
@@ -1188,7 +1189,7 @@ public class SceneEditor extends TabPanel {
                     .addComponent(jLabel13)))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("portonscreen")));
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-scene-portonscreen")));
 
         jLabel14.setText("X");
 

@@ -1,21 +1,21 @@
 /*
- * LangSupporter.java
- * 
- * Created on 4/Set/2007, 11:20:46
- * 
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
 
 package org.gcreator.managers;
 
-import org.gcreator.units.Dictionary;
-import org.gcreator.components.*;
-
 /**
- *
- * @author Luís
+ * @deprecated No longer works. Will print stack trace to make removal easier
+ * @author Luis Reis
  */
 public class LangSupporter {
-    public static Dictionary activeLang;
+    public static class X{
+        public String getEntry(int i){
+            System.out.println("Using LangSupporter. Printing Stack Trace");
+            (new Exception()).printStackTrace();
+            return "$" + i;
+        }
+    }
+    public static X activeLang = new X();
 }

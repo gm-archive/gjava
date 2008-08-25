@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import org.gcreator.core.*;
 import org.gcreator.components.*;
+import org.gcreator.units.*;
 
 /**
  *
@@ -32,6 +33,14 @@ public class MenuSupporter {
         return menu;
     }
     
+    public static JMenu MakeTranslatableMenu(JMenuBar menubar, String label, String description){
+        JMenu menu = new JMenu(Dictionary.getEntry(label));
+        menu.getAccessibleContext().setAccessibleDescription(description);
+        menu.setToolTipText(description);
+        menubar.add(menu);
+        return menu;
+    }
+    
     public static JMenu MakeSubMenu(JMenu menu, int label, String description){
         JMenu amenu = new ExtendedMenu(LangSupporter.activeLang.getEntry(label));
         menu.getAccessibleContext().setAccessibleDescription(description);
@@ -40,8 +49,24 @@ public class MenuSupporter {
         return amenu;
     }
     
+    public static JMenu MakeTranslatableSubMenu(JMenu menu, String label, String description){
+        JMenu amenu = new ExtendedMenu(Dictionary.getEntry(label));
+        menu.getAccessibleContext().setAccessibleDescription(description);
+        menu.add(amenu);
+        amenu.setToolTipText(description);
+        return amenu;
+    }
+    
     public static JMenuItem MakeMenuItem(JMenu menu, int label, String description){
         JMenuItem item = new ExtendedMenuItem(LangSupporter.activeLang.getEntry(label));
+        item.getAccessibleContext().setAccessibleDescription(description);
+        item.setToolTipText(description);
+        menu.add(item);
+        return item;
+    }
+    
+    public static JMenuItem MakeTranslatableMenuItem(JMenu menu, String label, String description){
+        JMenuItem item = new ExtendedMenuItem(Dictionary.getEntry(label));
         item.getAccessibleContext().setAccessibleDescription(description);
         item.setToolTipText(description);
         menu.add(item);
@@ -57,8 +82,25 @@ public class MenuSupporter {
         return item;
     }
     
+    public static JRadioButtonMenuItem MakeTranslatableRadioMenuItem(ButtonGroup group, JMenu menu, String label, String description){
+        JRadioButtonMenuItem item = new ExtendedRadioMenuItem(Dictionary.getEntry(label));
+        item.getAccessibleContext().setAccessibleDescription(description);
+        item.setToolTipText(description);
+        group.add(item);
+        menu.add(item);
+        return item;
+    }
+    
     public static JCheckBoxMenuItem MakeCheckMenuItem(JMenu menu, int label, String description){
         JCheckBoxMenuItem item = new ExtendedCheckMenuItem(LangSupporter.activeLang.getEntry(label));
+        item.getAccessibleContext().setAccessibleDescription(description);
+        item.setToolTipText(description);
+        menu.add(item);
+        return item;
+    }
+    
+    public static JCheckBoxMenuItem MakeTranslatableCheckMenuItem(JMenu menu, String label, String description){
+        JCheckBoxMenuItem item = new ExtendedCheckMenuItem(Dictionary.getEntry(label));
         item.getAccessibleContext().setAccessibleDescription(description);
         item.setToolTipText(description);
         menu.add(item);

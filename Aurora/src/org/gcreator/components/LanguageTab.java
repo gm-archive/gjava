@@ -12,7 +12,6 @@ package org.gcreator.components;
 import org.gcreator.units.Dictionary;
 import org.gcreator.managers.*;
 import org.gcreator.core.*;
-import org.gcreator.languages.*;
 
 /**
  *
@@ -24,14 +23,14 @@ public class LanguageTab extends TabPanel {
     /** Creates new form LanguageTab */
     public LanguageTab() {
         initComponents();
-        try{
-        if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang)) {
-                jLabel4.setVisible(false);
-            }
-        }
-        catch(Exception e){}
+        //try{
+        //if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang)) {
+        //        jLabel4.setVisible(false);
+        //    }
+        //}
+        //catch(Exception e){}
         int l = 0;
-        if(gcreator.panel.lang.equals("German")) {
+        /*if(gcreator.panel.lang.equals("German")) {
             l = 1;
         }
         if(gcreator.panel.lang.equals("German (Old)")) {
@@ -46,14 +45,14 @@ public class LanguageTab extends TabPanel {
         if(gcreator.panel.lang.equals("Spanish")) {
             l = 5;
         }
-        jComboBox1.setSelectedIndex(l);
+        jComboBox1.setSelectedIndex(l);*/
         updateLanguage();
     }
     
     public void updateLanguage(){
         int l = jComboBox1.getSelectedIndex();
         Dictionary m;
-        if(l==0) {
+        /*if(l==0) {
             m = new English();
         }
         else if(l==1) {
@@ -70,12 +69,12 @@ public class LanguageTab extends TabPanel {
         }
         else{
             m = new Spanish();
-        }
-        jLabel1.setText(m.getEntry(47));
-        jLabel2.setText(m.getEntry(48));
-        jLabel3.setText(m.getStatus());
-        jLabel4.setText(m.getEntry(50));
-        jButton1.setText(m.getEntry(49));
+        }*/
+        //jLabel1.setText(m.getEntry(47));
+        //jLabel2.setText(m.getEntry(48));
+        //jLabel3.setText(m.getStatus());
+        //jLabel4.setText(m.getEntry(50));
+        //jButton1.setText(m.getEntry(49));
     }
     
     /** This method is called from within the constructor to
@@ -160,13 +159,13 @@ public class LanguageTab extends TabPanel {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        gcreator.panel.lang = (String) jComboBox1.getSelectedItem();
-        try{
-            jLabel4.setVisible(!LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang));
-        }
-        catch(Exception e){
-            
-        }
+        //gcreator.panel.lang = (String) jComboBox1.getSelectedItem();
+        //try{
+        //    jLabel4.setVisible(!LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang));
+        //}
+        //catch(Exception e){
+        //    
+        //}
     }//GEN-LAST:event_jButton1ActionPerformed
     
     

@@ -14,6 +14,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import org.gcreator.components.uiplus.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -64,6 +65,10 @@ public class MenuGenerator {
         return addMenuItem(entry, img, true);
     }
     
+    public Object addTranslatableMenuItem(String entry, ImageIcon img){
+        return addTranslatableMenuItem(entry, img, true);
+    }
+    
     public Object addMenuItem(Object parent, int entry, ImageIcon img, boolean enabled){
         String lang = LangSupporter.activeLang.getEntry(entry);
         
@@ -85,6 +90,25 @@ public class MenuGenerator {
     
     public Object addMenuItem(int entry, ImageIcon img, boolean enabled){ //root
         String lang = LangSupporter.activeLang.getEntry(entry);
+        
+        if(ltype==TYPE_STD){
+            JMenuItem i = new JMenuItem(lang, img);
+            i.setVisible(true);
+            i.setEnabled(enabled);
+            ((JPopupMenu) parent).add(i);
+            return i;
+        }
+        else{
+            DiscMenuItem i = new DiscMenuItem(lang, img);
+            i.setEnabled(enabled);
+            ((DiscMenuContainer) parent).add(i);
+            return i;
+            //return null;
+        }
+    }
+    
+    public Object addTranslatableMenuItem(String entry, ImageIcon img, boolean enabled){ //root
+        String lang = Dictionary.getEntry(entry);
         
         if(ltype==TYPE_STD){
             JMenuItem i = new JMenuItem(lang, img);

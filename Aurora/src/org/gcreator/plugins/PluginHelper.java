@@ -55,15 +55,8 @@ public class PluginHelper {
             utilities.addStringMessage(message);
     }
     
-    public static String getLanguageMessage(String entry){
-        return Dictionary.getEntry(entry);
-    }
-    
-    /**
-     * @deprecated Use getLanguageMessage instead.
-     */
-    public static String getLanguageSpecialMessage(String value){
-        return getLanguageMessage(value);
+    public static String getLanguageMessage(String num){
+        return Dictionary.getEntry(num);
     }
     
     public static Project getCurrentProject(){

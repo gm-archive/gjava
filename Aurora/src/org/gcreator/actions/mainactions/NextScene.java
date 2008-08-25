@@ -12,7 +12,7 @@ package org.gcreator.actions.mainactions;
 import java.util.Vector;
 import org.gcreator.actions.*;
 import javax.swing.*;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -28,7 +28,7 @@ public class NextScene extends ActionPattern{
      
     @Override
     public String getStandardText(JComponent panel){
-        return LangSupporter.activeLang.getEntry(227);
+        return Dictionary.getEntry("actions-nextscene-text");
     }
     @Override
     public void setStandardImage(ImageIcon icon){

@@ -39,12 +39,12 @@ import org.gcreator.components.navigator.UnknownResourceNavigator;
 import org.gcreator.extended.JarClassLoader;
 import org.gcreator.help.AboutPanel;
 //import org.lwjgl.util.applet.LWJGLInstaller;
-import org.gcreator.languages.English;
-import org.gcreator.languages.German;
-import org.gcreator.languages.GermanOld;
-import org.gcreator.languages.Portuguese;
-import org.gcreator.languages.Russian;
-import org.gcreator.languages.Spanish;
+//import org.gcreator.languages.English;
+//import org.gcreator.languages.German;
+//import org.gcreator.languages.GermanOld;
+//import org.gcreator.languages.Portuguese;
+//import org.gcreator.languages.Russian;
+//import org.gcreator.languages.Spanish;
 import org.gcreator.managers.LangSupporter;
 import org.gcreator.managers.Registry;
 import org.gcreator.managers.ScriptThemeManager;
@@ -53,6 +53,7 @@ import org.gcreator.managers.ToolbarManager;
 import org.gcreator.plugins.Jar;
 import org.gcreator.plugins.Plugger;
 import org.gcreator.threading.ThreadPool;
+import org.gcreator.units.Dictionary;
 import org.gcreator.units.SystemErrStream;
 import org.gcreator.units.SystemOutStream;
 
@@ -181,45 +182,35 @@ public class gcreator {
             SettingsIO.loadSettings();
         }
 
-        if (Registry.get("Global.language").equals("English")) {
-            LangSupporter.activeLang = new English();
-        } else if (((String)Registry.get("Global.language")).contains("Portuguese")) {
-                LangSupporter.activeLang = new Portuguese();
-        } else if (Registry.get("Global.language").equals("German")) {
-            LangSupporter.activeLang = new German();
-        } else if (Registry.get("Global.language").equals("German (Old)")) {
-            LangSupporter.activeLang = new GermanOld();
-        } else if (Registry.get("Global.language").equals("Russian")) {
-            LangSupporter.activeLang = new Russian();
-        } else if (Registry.get("Global.language").equals("Spanish")) {
-            LangSupporter.activeLang = new Spanish();
-        } else {
-            LangSupporter.activeLang = new English();
-            utilities.addError(36);
-        }
+        Dictionary.loadDictionaries();
+        
+        Dictionary.activeDictionary = (String) Registry.get("Global.language");
+        if(Dictionary.activeDictionary==null)
+            Dictionary.activeDictionary = "en";
+        
         
         try {
             MetalLookAndFeel.setCurrentTheme((MetalTheme) Registry.get("Graphics.metalTheme"));
         } catch (Exception exc) {
             System.err.println("[gcreator:191]Exception: " + exc);
         }
-        ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), "toolbar-newproject");
-        ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), "toolbar-openproject");
-        ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), "toolbar-save");
-        ToolbarButton saveall = new DefaultToolbarItem("std_saveAll", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/saveall.png")), "toolbar-saveall");
-        ToolbarButton saveproj = new DefaultToolbarItem("std_saveProj", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/project_saveall.png")), "toolbar-saveproject");
-        ToolbarButton addimg = new DefaultToolbarItem("std_addImage", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addimage.png")), "toolbar-addimage");
-        ToolbarButton addspr = new DefaultToolbarItem("std_addSprite", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsprite.png")), "toolbar-addsprite");
-        ToolbarButton addtls = new DefaultToolbarItem("std_addTileset", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtileset.png")), "toolbar-tileset");
-        ToolbarButton addpth = new DefaultToolbarItem("std_addPath", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addpath.png")), "toolbar-addpath");
-        ToolbarButton addsnd = new DefaultToolbarItem("std_addSound", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsound.png")), "toolbar-addsound");
-        ToolbarButton addtml = new DefaultToolbarItem("std_addTimeline", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtimeline.png")), "toolbar-addtimeline");
-        ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor.png")), "toolbar-addactor");
-        ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), "toolbar-addscene");
+        ToolbarButton newp = new DefaultToolbarItem("std_newProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/newproject.png")), "general-toolbar-newproject");
+        ToolbarButton opn = new DefaultToolbarItem("std_openProject", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/openproject.png")), "general-toolbar-openproject");
+        ToolbarButton save = new DefaultToolbarItem("std_save", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/save.png")), "general-toolbar-save");
+        ToolbarButton saveall = new DefaultToolbarItem("std_saveAll", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/saveall.png")), "general-toolbar-saveall");
+        ToolbarButton saveproj = new DefaultToolbarItem("std_saveProj", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/project_saveall.png")), "general-toolbar-projectsaveall");
+        ToolbarButton addimg = new DefaultToolbarItem("std_addImage", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addimage.png")), "general-toolbar-addimage");
+        ToolbarButton addspr = new DefaultToolbarItem("std_addSprite", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsprite.png")), "general-toolbar-addsprite");
+        ToolbarButton addtls = new DefaultToolbarItem("std_addTileset", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtileset.png")), "general-toolbar-addtileset");
+        ToolbarButton addpth = new DefaultToolbarItem("std_addPath", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addpath.png")), "general-toolbar-addpath");
+        ToolbarButton addsnd = new DefaultToolbarItem("std_addSound", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsound.png")), "general-toolbar-addsound");
+        ToolbarButton addtml = new DefaultToolbarItem("std_addTimeline", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addtimeline.png")), "general-toolbar-addtimeline");
+        ToolbarButton addact = new DefaultToolbarItem("std_addActor", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addactor.png")), "general-toolbar-addactor");
+        ToolbarButton addscn = new DefaultToolbarItem("std_addScene", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addroom.png")), "general-toolbar-addscene");
         //ToolbarButton addcls = new DefaultToolbarItem("std_addClass", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addclass.png")), 52);
-        ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), "toolbar-addscript");
-        ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), "toolbar-addgroup");
-        ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), "toolbar-addaction");
+        ToolbarButton addgs = new DefaultToolbarItem("std_addScript", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addscript.png")), "general-toolbar-addscript");
+        ToolbarButton addgr = new DefaultToolbarItem("std_addGroup", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addgroup.png")), "general-toolbar-addgroup");
+        ToolbarButton addaction = new DefaultToolbarItem("std_addAction", new ImageIcon(gcreator.class.getResource("/org/gcreator/actions/images/Main.png")), "general-toolbar-addaction");
         //ToolbarButton addsnippet = new DefaultToolbarItem("std_addSnippet", new ImageIcon(gcreator.class.getResource("/org/gcreator/resources/toolbar/addsnippet.png")), 286);
 
         newp.setActionListener(new ActionListener() {

@@ -14,7 +14,7 @@ import org.gcreator.editors.ActorEditor;
 import org.gcreator.actions.*;
 import org.gcreator.editors.*;
 import javax.swing.*;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *

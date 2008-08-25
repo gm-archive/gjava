@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_06" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_07" class="java.beans.XMLDecoder"> 
  <boolean>true</boolean> 
  <string>en</string> 
  <string>TOP</string> 
@@ -8,17 +8,16 @@
    <string>/home/luis</string> 
   </void> 
  </object> 
- <object class="org.gcreator.units.BeanFile"/> 
  <object class="javax.swing.plaf.metal.OceanTheme"/> 
  <boolean>true</boolean> 
  <object class="java.awt.Dimension"> 
-  <int>1289</int> 
-  <int>997</int> 
+  <int>1296</int> 
+  <int>786</int> 
  </object> 
  <string>LEFT</string> 
  <string>Native</string> 
+ <boolean>true</boolean> 
+ <boolean>true</boolean> 
  <boolean>false</boolean> 
- <boolean>false</boolean> 
- <boolean>false</boolean> 
- <int>870</int> 
+ <int>657</int> 
 </java> 

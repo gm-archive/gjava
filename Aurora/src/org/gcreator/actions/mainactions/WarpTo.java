@@ -15,7 +15,7 @@ import com.l2fprod.common.propertysheet.PropertySheetPanel;
 import org.gcreator.actions.*;
 import javax.swing.*;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *

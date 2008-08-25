@@ -28,8 +28,9 @@ import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GameProject;
 import org.gcreator.fileclass.ModuleProject;
 import org.gcreator.fileclass.res.GImage;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 import org.gcreator.units.ObjectNode;
+import org.gcreator.managers.*;
 
 /**
  *

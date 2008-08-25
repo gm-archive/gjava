@@ -18,6 +18,7 @@ import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.components.resource.*;
 import org.gcreator.fileclass.res.*;
+import org.gcreator.units.Dictionary;
 import org.gcreator.plugins.*;
 import org.gcreator.units.Dictionary;
 
@@ -29,7 +30,7 @@ public class SettingsEditor extends TabPanel {
     private static final long serialVersionUID = 1;
     /** Creates new form SettingsEditor */
     SettingsValues value;
-    TabValues Graphics, Resolution, Other, SceneOrder, Extensions;
+    TabValues Graphics, Resolution, Other, SceneOrder;//, Extensions;
     ResourceChooser scenes;
     int from;
     private static Vector<SettingsManager> managers;// = new Vector<SettingsManager>();
@@ -185,6 +186,25 @@ public class SettingsEditor extends TabPanel {
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer(project));
+        /*Extensions = value.getValue("Extensions");
+        if(Extensions==null){
+            value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
+            Extensions.setVariable("Regular Expressions", Boolean.FALSE);
+            Extensions.setVariable("Game Maker Compatibility", Boolean.TRUE);
+        }
+        for(String key : Extensions.getKeys()){
+            DefaultProperty p = new DefaultProperty();
+            p.setName(key);
+            p.setValue(Extensions.getValue(key));
+            p.setEditable(true);
+            p.setType(Boolean.TYPE);
+            p.setDisplayName(key);
+            if(key.equals("Regular Expressions"))
+                p.setShortDescription("Allows regular expression functions.");
+            else if(key.equals("Game Maker Compatibility"))
+                p.setShortDescription("Functions such as room_goto_next for those migrating from Game Maker.");
+            //propertyManager1.addProperty(p);
+        }*/
     }
     
     /** This method is called from within the constructor to
@@ -474,10 +494,10 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jRadioButton10))
         );
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-frequency")));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editor-settings-frequency")));
 
         buttonGroup3.add(jRadioButton11);
-        jRadioButton11.setText(Dictionary.getEntry("editors-settings-nochang"));
+        jRadioButton11.setText(Dictionary.getEntry("editors-settings-nochange"));
         jRadioButton11.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jRadioButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -588,23 +608,23 @@ public class SettingsEditor extends TabPanel {
 
         jTabbedPane1.addTab(Dictionary.getEntry("editors-settings-resolution"), jPanel2);
 
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-defaultkeys")));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editor-settings-defaultkeys")));
 
-        jCheckBox8.setText(LangSupporter.activeLang.getEntry(123));
+        jCheckBox8.setText(Dictionary.getEntry("editors-settings-esc"));
         jCheckBox8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox8ActionPerformed(evt);
             }
         });
 
-        jCheckBox9.setText(LangSupporter.activeLang.getEntry(124));
+        jCheckBox9.setText(Dictionary.getEntry("editors-settings-f4"));
         jCheckBox9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox9ActionPerformed(evt);
             }
         });
 
-        jCheckBox10.setText(LangSupporter.activeLang.getEntry(125));
+        jCheckBox10.setText(Dictionary.getEntry("editors-settings-f56"));
         jCheckBox10.setEnabled(false);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -627,12 +647,12 @@ public class SettingsEditor extends TabPanel {
                 .addComponent(jCheckBox10))
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(126)));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-settings-loading")));
 
-        jCheckBox11.setText(LangSupporter.activeLang.getEntry(127));
+        jCheckBox11.setText(Dictionary.getEntry("editors-settings-splashscreen"));
         jCheckBox11.setEnabled(false);
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(128));
+        jLabel1.setText(Dictionary.getEntry("editors-settings-image"));
 
         jTextField1.setEditable(false);
         jTextField1.setText("jTextField1");
@@ -657,7 +677,7 @@ public class SettingsEditor extends TabPanel {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jLabel2.setText(LangSupporter.activeLang.getEntry(129));
+        jLabel2.setText(Dictionary.getEntry("editors-settings-icon"));
 
         jTextField2.setEditable(false);
         jTextField2.setText("jTextField2");
@@ -691,7 +711,7 @@ public class SettingsEditor extends TabPanel {
                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(121), jPanel6);
+        jTabbedPane1.addTab(Dictionary.getEntry("editors-settings-other"), jPanel6);
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addMouseListener(new java.awt.event.MouseAdapter() {

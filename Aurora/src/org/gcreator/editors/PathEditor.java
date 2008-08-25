@@ -18,7 +18,8 @@ import org.gcreator.exceptions.WrongResourceException;
 import org.gcreator.units.PathNode;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Path;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
+import org.gcreator.managers.*;
 
 /**
  *
@@ -57,11 +58,11 @@ public class PathEditor extends TabPanel {
 
         initComponents();
 
-        if (!java6) {
+        //if (!java6) { //No Java 5 support needed
             jRadioButton2.setEnabled(false);//Path2D came out in java 6
 
-            jRadioButton2.setToolTipText(org.gcreator.managers.LangSupporter.activeLang.getEntry(260));
-        }
+            jRadioButton2.setToolTipText(Dictionary.getEntry("editors-path-smooth"));
+        //}
         jTextField1.setText(file.name);
         pathCanvas = new PathCanvas(this, true);
         jPanel2.add(pathCanvas);
@@ -121,7 +122,7 @@ public class PathEditor extends TabPanel {
         jSpinner5 = new javax.swing.JSpinner();
 
         jLabel1.setText("Name:");
-        jLabel1.setText(LangSupporter.activeLang.getEntry(136));
+        jLabel1.setText(Dictionary.getEntry("editors-path-name"));
 
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -227,7 +228,7 @@ public class PathEditor extends TabPanel {
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2)
                     .addComponent(jCheckBox1))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,7 +276,7 @@ public class PathEditor extends TabPanel {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)))
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGap(200, 200, 200)))
                 .addContainerGap())

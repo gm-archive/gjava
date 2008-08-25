@@ -10,14 +10,14 @@
 package org.gcreator.components.impl;
 
 import javax.swing.*;
-import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
  * @author luis
  */
 public class DefaultToolbarItem extends ToolbarButton{
-    public DefaultToolbarItem(String id, ImageIcon img, int lang){
-        super(id, LangSupporter.activeLang.getEntry(lang), img);
+    public DefaultToolbarItem(String id, ImageIcon img, String lang){
+        super(id, Dictionary.getEntry(lang), img);
     }
 }

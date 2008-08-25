@@ -16,7 +16,7 @@ import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.managers.LangSupporter;
+import org.gcreator.units.Dictionary;
 
 /**
  *
