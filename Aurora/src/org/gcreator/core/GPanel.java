@@ -212,7 +212,7 @@ public class GPanel extends JPanel {
 
         createToolBar();
 
-        top = new DefaultMutableTreeNode("<HTML><b>" + LangSupporter.activeLang.getEntry(51));
+        top = new DefaultMutableTreeNode("<HTML><b>" + org.gcreator.units.Dictionary.getEntry("workspace-rootnode"));
         top.setAllowsChildren(true);
 
         /*
@@ -304,8 +304,8 @@ public class GPanel extends JPanel {
             splitter2.setLeftComponent(tabs);
             items[MenuSupporter.GenerateMenuItemId(15, 1)].setSelected(true);
         }
-        navigatorTabs.add(LangSupporter.activeLang.getEntry(51), treescroll);
-        navigatorTabs.add(LangSupporter.activeLang.getEntry(251), navroot);
+        navigatorTabs.add(org.gcreator.units.Dictionary.getEntry("workspace-title"), treescroll);
+        navigatorTabs.add(org.gcreator.units.Dictionary.getEntry("navigator-title"), navroot);
         navigatorTabs.addMouseListener(new MouseListener() {
 
             public void mouseExited(MouseEvent evt) {
@@ -501,12 +501,11 @@ public class GPanel extends JPanel {
         splitter2.setDividerLocation(159);
         splitter1.setDividerSize(10);
         splitter2.setDividerSize(5);
-        utilities.addMessage(29);
         if ((Boolean)Registry.get("Window.showWelcome")) {
             SplashScreen.message = "Starting welcome window";
             gcreator.splash.repaint();
             WelcomeTab welcome = new WelcomeTab();
-            addWindow(welcome, 26);
+            addTranslatedWindow(welcome, "general-welcome-title");
             updateToDefaultNavigatorPanel(welcome);
         }
         setMinimumSize(new Dimension(200, 200));
@@ -1012,8 +1011,8 @@ public class GPanel extends JPanel {
     //</editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int)">
-    public void addWindow(TabPanel panel, int title) {
-        addWindow(panel, LangSupporter.activeLang.getEntry(title), null);
+    public void addTranslatedWindow(TabPanel panel, String title) {
+        addWindow(panel, org.gcreator.units.Dictionary.getEntry(title), null);
     }
     //</editor-fold>
 
@@ -1027,7 +1026,7 @@ public class GPanel extends JPanel {
     public void addEWindow(TabPanel panel, String title) {
         if (title.charAt(0) == '$') {
             try {
-                addWindow(panel, Integer.parseInt(title.substring(1)));
+                addTranslatedWindow(panel, title.substring(1));
             } catch (Exception e) {
                 addWindow(panel, title, null);
             }
@@ -1041,7 +1040,7 @@ public class GPanel extends JPanel {
     public void addEWindow(TabPanel panel, String title, ImageIcon img) {
         if (title.charAt(0) == '$') {
             try {
-                addWindow(panel, Integer.parseInt(title.substring(1)));
+                addTranslatedWindow(panel, title.substring(1));
             } catch (Exception e) {
                 addWindow(panel, title, img);
             }
@@ -1375,11 +1374,11 @@ public class GPanel extends JPanel {
             setMainProject(getCurrentProject());
         }
         if (menu == 4 && item == 0) {
-            addWindow(about, 24);
+            addTranslatedWindow(about, "general-about-title");
         }
         if (menu == 4 && item == 1) {
             HelpPanel help = new HelpPanel();
-            addWindow(help, 27);
+            addTranslatedWindow(help, "general-help-title");
         }
         /*if (menu == 6 && (item < 4)) {
         if (!istabs) {
@@ -1473,7 +1472,7 @@ public class GPanel extends JPanel {
         }
         if (menu == 7 && item == 5) {
             WelcomeTab welcome = new WelcomeTab();
-            addWindow(welcome, 26);
+            addTranslatedWindow(welcome, "general-welcome-title");
             updateToDefaultNavigatorPanel(welcome);
         }
         if (menu == 8 && item == 0) {

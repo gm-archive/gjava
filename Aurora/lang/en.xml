@@ -11,6 +11,18 @@
     <slice key="workspace-context-delete">Delete</slice>
     <slice key="workspace-context-rename">Rename</slice>
     <slice key="workspace-context-addgroup">Add group</slice>
+    <slice key="workspace-game-image">Images</slice>
+    <slice key="workspace-game-sprite">Sprites</slice>
+    <slice key="workspace-game-tileset">Tilesets</slice>
+    <slice key="workspace-game-path">Paths</slice>
+    <slice key="workspace-game-sound">Sounds</slice>
+    <slice key="workspace-game-timeline">Timelines</slice>
+    <slice key="workspace-game-script">Scripts</slice>
+    <slice key="workspace-game-actor">Actors</slice>
+    <slice key="workspace-game-scene">Scenes</slice>
+    <slice key="workspace-game-distribution">Distribution</slice>
+    <slice key="workspace-game-settings">Global settings</slice>
+    <slice key="workspace-game-info">Game Information</slice>
     
     <slice key="navigator-title">Navigator</slice>
     
@@ -26,6 +38,8 @@
     <slice key="popup-console-hide">Hide console</slice>
     
     <slice key="popup-tabs-close">Close tab</slice>
+    
+    
     
     <slice key="general-welcome-title">Welcome to G-Creator!</slice>
     <slice key="general-welcome-message">Welcome to G-Creator!</slice>
@@ -265,9 +279,9 @@ What do you want to do with it?</slice>
     <slice key="editors-settings-resolution">Resolution</slice>
     <slice key="editors-settings-frequency">Frequency</slice>
     <slice key="editors-settings-defaultkeys">Default keys</slice>
-    <slice key="editors-settings-esc">Let &lt;ESC&gt; end the game</slice>
-    <slice key="editors-settings-f4">Let &lt;F4&gt; toggle fullscreen</slice>
-    <slice key="editors-settings-f56">Let &lt;F5&gt; save and &lt;F6&gt; load game</slice>
+    <slice key="editors-settings-esc">Let ESC end the game</slice>
+    <slice key="editors-settings-f4">Let F4 toggle fullscreen</slice>
+    <slice key="editors-settings-f56">Let F5 save and F6 load game</slice>
     <slice key="editors-settings-loading">Loading</slice>
     <slice key="editors-settings-splashscreen">Show Splash Screen while loading</slice>
     <slice key="editors-settings-image">Image:</slice>

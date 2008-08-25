@@ -14,6 +14,7 @@ import java.awt.event.*;
 
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -22,7 +23,7 @@ import org.gcreator.managers.*;
 public class ToolbarPopupMenu extends JPopupMenu{
     JMenuItem hide;
     public ToolbarPopupMenu(){
-        hide = new JMenuItem(LangSupporter.activeLang.getEntry(117));
+        hide = new JMenuItem(Dictionary.getEntry("toolbar-menu-hide"));
         add(hide);
         hide.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent evt){

@@ -211,24 +211,24 @@ public class GameProject extends Project{
     public Folder magicAddition(Group folder){
         try{
             if(folder instanceof ImageGroup)
-                return findFolder("$209");
+                return findFolder("$workspace-game-image");
             else if(folder instanceof SpriteGroup)
-                return findFolder("$210");
+                return findFolder("$workspace-game-sprite");
             else if(folder instanceof ActorGroup)
-                return findFolder("$214");
+                return findFolder("$workspace-game-actor");
             else if(folder instanceof SceneGroup)
-                return findFolder("$215");
+                return findFolder("$workspace-game-scene");
             else if(folder instanceof TilesetGroup)
-                return findFolder("$211");
+                return findFolder("$workspace-game-tileset");
             else if(folder instanceof SoundGroup)
-                return findFolder("$212");
+                return findFolder("$workspace-game-sound");
             else if(folder instanceof TimelineGroup)
-                return findFolder("$213");
+                return findFolder("$workspace-game-timeline");
             else if(folder instanceof PathGroup)
-                return findFolder("$256");
+                return findFolder("$workspace-game-path");
             else if(folder instanceof GCLGroup)
-                return findFolder("$216");
-            return findFolder("$217");
+                return findFolder("$workspace-game-script");
+            return findFolder("$workspace-game-distribution");
         }
         catch(Exception e){
             return null;
@@ -249,21 +249,21 @@ public class GameProject extends Project{
         else
             project = new GameProject();
         
-        project.add(new ImageGroup(project, "$209"));
-        project.add(new SpriteGroup(project, "$210"));
-        project.add(new TilesetGroup(project, "$211"));
-        project.add(new PathGroup(project, "$256"));
-        project.add(new SoundGroup(project, "$212"));
-        project.add(new TimelineGroup(project, "$213"));
-        project.add(new ActorGroup(project, "$214"));
-        project.add(new SceneGroup(project, "$215"));
-        project.add(new GCLGroup(project, "$216"));
+        project.add(new ImageGroup(project, "$workspace-game-image"));
+        project.add(new SpriteGroup(project, "$workspace-game-sprite"));
+        project.add(new TilesetGroup(project, "$workspace-game-tileset"));
+        project.add(new PathGroup(project, "$workspace-game-path"));
+        project.add(new SoundGroup(project, "$workspace-game-sound"));
+        project.add(new TimelineGroup(project, "$workspace-game-timeline"));
+        project.add(new ActorGroup(project, "$workspace-game-actor"));
+        project.add(new SceneGroup(project, "$workspace-game-scene"));
+        project.add(new GCLGroup(project, "$workspace-game-script"));
         //project.add(new SnippetGroup(project, "Snippets"));
-        project.add(new Group(project, "$217"));
-        GFile settings = new GFile(project, "$218", "settings", null);
+        project.add(new Group(project, "$workspace-game-distribution"));
+        GFile settings = new GFile(project, "$workspace-game-settings", "settings", null);
         settings.editable = false;
         settings.value = new org.gcreator.fileclass.res.SettingsValues();
-        GFile info = new GFile(project, "$289", "rtf", null);
+        GFile info = new GFile(project, "$workspace-game-info", "rtf", null);
         info.editable = false;
         
         for(GObject o : project.childNodes)
