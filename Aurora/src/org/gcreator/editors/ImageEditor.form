@@ -38,7 +38,7 @@
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane1" pref="564" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="625" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -91,7 +91,7 @@
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jSpinner1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="159" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -113,7 +113,7 @@
         <Component class="javax.swing.JButton" name="jButton1">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="org.gcreator.managers.LangSupporter.activeLang.getEntry(118)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-image-load&quot;)" type="code"/>
             </Property>
           </Properties>
           <Events>
@@ -132,7 +132,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="org.gcreator.managers.LangSupporter.activeLang.getEntry(119)" type="code"/>
+              <Connection code="Dictionary.getEntry(&quot;editors-image-zoom&quot;)" type="code"/>
             </Property>
           </Properties>
         </Component>

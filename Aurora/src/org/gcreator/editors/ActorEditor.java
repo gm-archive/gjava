@@ -225,7 +225,7 @@ public class ActorEditor extends TabPanel {
         actor.persistent = jCheckBox3.isSelected();
         file.value = actor;
         changed = false;
-        actorFieldPane1.save();
+        field.save();
         
         return true;
     }
@@ -273,7 +273,7 @@ public class ActorEditor extends TabPanel {
         jScrollPane4 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList();
         jPanel7 = new javax.swing.JPanel();
-        actorFieldPane1 = new org.gcreator.components.ActorFieldPane();
+        field = new org.gcreator.components.ActorFieldPane();
 
         jLabel1.setText(Dictionary.getEntry("editors-actor-name"));
 
@@ -576,7 +576,7 @@ public class ActorEditor extends TabPanel {
         );
 
         jTabbedPane1.addTab("Actions", jPanel4);
-        jTabbedPane1.addTab("Fields", actorFieldPane1);
+        jTabbedPane1.addTab("Fields", field);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -785,7 +785,7 @@ public class ActorEditor extends TabPanel {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private org.gcreator.components.ActorFieldPane actorFieldPane1;
+    private org.gcreator.components.ActorFieldPane field;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;

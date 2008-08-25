@@ -20,7 +20,7 @@ import org.gcreator.core.*;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.*;
-import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -32,9 +32,6 @@ public class TilesetEditor extends TabPanel {
     public Tileset value;
     public ResourceChooser res;
     
-    public String langPiece(int val){
-        return LangSupporter.activeLang.getEntry(val);
-    }
     
     /** Creates new form TilesetEditor
      * @param file The file to load. This may not be null.
@@ -128,11 +125,11 @@ public class TilesetEditor extends TabPanel {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel1.setText(langPiece(191));
+        jLabel1.setText(Dictionary.getEntry("editors-tileset-name"));
 
         jTextField1.setText("jTextField1");
 
-        jLabel2.setText(langPiece(192));
+        jLabel2.setText(Dictionary.getEntry("editors-tileset-begin"));
 
         jLabel3.setText("X");
 
@@ -198,7 +195,7 @@ public class TilesetEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGap(0, 225, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +214,7 @@ public class TilesetEditor extends TabPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -286,7 +283,7 @@ public class TilesetEditor extends TabPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(jSpinner6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(125, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);

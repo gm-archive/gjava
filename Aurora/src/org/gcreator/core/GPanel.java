@@ -1014,6 +1014,10 @@ public class GPanel extends JPanel {
     public void addTranslatedWindow(TabPanel panel, String title) {
         addWindow(panel, org.gcreator.units.Dictionary.getEntry(title), null);
     }
+    
+    public void addTranslatedWindow(TabPanel panel, String title, ImageIcon img) {
+        addWindow(panel, org.gcreator.units.Dictionary.getEntry(title), img);
+    }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int, ImageIcon">
@@ -1536,7 +1540,7 @@ public class GPanel extends JPanel {
         switch (item) {
             case 1:
                 if (newproject != null) {
-                    addWindow(newproject, 55, new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
+                    addTranslatedWindow(newproject, "general-newproject-title", new ImageIcon(getClass().getResource("/org/gcreator/resources/menu/project_new.png")));
                 }
                 break;
             case 2:

@@ -9,8 +9,8 @@
  */
 package org.gcreator.components;
 
-import org.gcreator.managers.*;
 import javax.swing.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -80,10 +80,10 @@ public class ProjectTypes extends JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(56), jScrollPane1);
+        jTabbedPane1.addTab(Dictionary.getEntry("general-newproject-games"), jScrollPane1);
 
         jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jTabbedPane1.addTab(LangSupporter.activeLang.getEntry(206), jScrollPane2);
+        jTabbedPane1.addTab(Dictionary.getEntry("general-newproject-modules"), jScrollPane2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

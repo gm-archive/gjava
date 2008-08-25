@@ -15,6 +15,7 @@ import javax.swing.tree.*;
 import org.gcreator.components.*;
 import org.gcreator.components.impl.*;
 import org.gcreator.core.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -81,10 +82,10 @@ public class NewFileGroup extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
-        jLabel1.setText(org.gcreator.managers.LangSupporter.activeLang.getEntry(95));
+        jLabel1.setText(Dictionary.getEntry("general-newfile-title"));
 
         jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { org.gcreator.managers.LangSupporter.activeLang.getEntry(97), "Game items", "Development items" };
+            String[] strings = { Dictionary.getEntry("general-newfile-std"), "Game items", "Development items" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
@@ -121,7 +122,7 @@ public class NewFileGroup extends TabPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

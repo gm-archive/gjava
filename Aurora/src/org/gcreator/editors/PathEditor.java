@@ -19,7 +19,6 @@ import org.gcreator.units.PathNode;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Path;
 import org.gcreator.units.Dictionary;
-import org.gcreator.managers.*;
 
 /**
  *
@@ -139,7 +138,7 @@ public class PathEditor extends TabPanel {
         jScrollPane1.setViewportView(jList1);
 
         jButton3.setText("Delete");
-        jButton3.setText(LangSupporter.activeLang.getEntry(246));
+        jButton3.setText(Dictionary.getEntry("editors-path-delete"));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -151,7 +150,7 @@ public class PathEditor extends TabPanel {
         jLabel3.setText("Y:");
 
         jButton1.setText("Add");
-        jButton1.setText(LangSupporter.activeLang.getEntry(111));
+        jButton1.setText(Dictionary.getEntry("editors-path-add"));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -171,7 +170,7 @@ public class PathEditor extends TabPanel {
         });
 
         jButton2.setText("Insert");
-        jButton2.setText(LangSupporter.activeLang.getEntry(261));
+        jButton2.setText(Dictionary.getEntry("editors-path-insert"));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -179,7 +178,7 @@ public class PathEditor extends TabPanel {
         });
 
         jLabel4.setText("Speed:");
-        jLabel4.setText(LangSupporter.activeLang.getEntry(163)+":");
+        jLabel4.setText(Dictionary.getEntry("editors-path-speed"));
 
         jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Double.valueOf(0.0d), Double.valueOf(0.0d), null, Double.valueOf(0.05d)));
         jSpinner3.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -188,12 +187,12 @@ public class PathEditor extends TabPanel {
             }
         });
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(262)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("editors-path-curves")));
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setSelected(!this.smoothCurves);
         jRadioButton1.setText("Straight");
-        jRadioButton1.setText(LangSupporter.activeLang.getEntry(263));
+        jRadioButton1.setText(Dictionary.getEntry("editors-path-straight"));
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton1ActionPerformed(evt);
@@ -203,7 +202,7 @@ public class PathEditor extends TabPanel {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setSelected(this.smoothCurves);
         jRadioButton2.setText("Smooth");
-        jRadioButton2.setText(LangSupporter.activeLang.getEntry(264));
+        jRadioButton2.setText(Dictionary.getEntry("editors-path-smooth"));
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton2ActionPerformed(evt);
@@ -212,7 +211,7 @@ public class PathEditor extends TabPanel {
 
         jCheckBox1.setSelected(this.closedCurves);
         jCheckBox1.setText("Closed");
-        jCheckBox1.setText(LangSupporter.activeLang.getEntry(265));
+        jCheckBox1.setText(Dictionary.getEntry("editors-path-closed"));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -293,7 +292,7 @@ public class PathEditor extends TabPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)

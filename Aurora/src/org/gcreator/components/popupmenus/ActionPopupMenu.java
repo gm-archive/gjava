@@ -39,10 +39,10 @@ public class ActionPopupMenu extends MenuGenerator{
     }
     
     private void init(){
-        Object cut = addMenuItem(252, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/cut.png")));
-        Object copy = addMenuItem(253, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/copy.png")));
-        Object paste = addMenuItem(254, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/paste.png")));
-        Object delete = addMenuItem(255, new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
+        Object cut = addTranslatableMenuItem("popup-action-cut", new ImageIcon(getClass().getResource("/org/gcreator/resources/general/cut.png")));
+        Object copy = addTranslatableMenuItem("popup-action-copy", new ImageIcon(getClass().getResource("/org/gcreator/resources/general/copy.png")));
+        Object paste = addTranslatableMenuItem("popup-action-paste", new ImageIcon(getClass().getResource("/org/gcreator/resources/general/paste.png")));
+        Object delete = addTranslatableMenuItem("popup-action-delete", new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));
         
         //delete = new JMenuItem("Delete");
         //delete.setIcon(new ImageIcon(getClass().getResource("/org/gcreator/resources/general/delete.png")));

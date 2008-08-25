@@ -59,13 +59,13 @@ public class NewProject extends TabPanel {
         ptypes = new ProjectTypes(this);
         jLabel3 = new JLabel();
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(54));
+        jLabel1.setText(org.gcreator.units.Dictionary.getEntry("general-newproject-type"));
 
-        jLabel2.setText(LangSupporter.activeLang.getEntry(60));
+        jLabel2.setText(org.gcreator.units.Dictionary.getEntry("general-newproject-name"));
 
         jLabel3.setVisible(false);
 
-        jButton1.setText(LangSupporter.activeLang.getEntry(94));
+        jButton1.setText(org.gcreator.units.Dictionary.getEntry("general-newproject-create"));
         jButton1.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent e) {

@@ -180,27 +180,27 @@ public class GameProject extends Project{
     {
         try{
             if(file.equals("png")||file.equals("gif")||file.equals("jpg"))
-                return findFolder("$209");
+                return findFolder("$workspace-game-image");
             else if(file.equals("sprite"))
-                return findFolder("$210");
+                return findFolder("$workspace-game-sprite");
             else if(file.equals("tileset"))
-                return findFolder("$211");
+                return findFolder("$workspace-game-tileset");
             else if(file.equals("actor"))
-                return findFolder("$214");
+                return findFolder("$workspace-game-actor");
             else if(file.equals("scene"))
-                return findFolder("$215");
+                return findFolder("$workspace-game-scene");
             else if(file.equals("egml")||file.equals("gcl")||file.equals("struct")||file.equals("gs"))
-                return findFolder("$216");
+                return findFolder("$workspace-game-script");
             else if(file.equals("mp3")||file.equals("ogg")||file.equals("wav")||file.equals("mid")
                     ||file.equals("midi"))
-                return findFolder("$212");
+                return findFolder("$workspace-game-sound");
             else if(file.equals("timeline"))
-                return findFolder("$213");
+                return findFolder("$workspace-game-timeline");
             else if(file.equals("path"))
-                return findFolder("$256");
+                return findFolder("$workspace-game-path");
             else if(file.equals("snippet"))
                 return findFolder("Snippets");
-            return findFolder("$217");
+            return findFolder("$workspace-game-distribution");
         }
         catch(Exception e){
             return null;
