@@ -120,8 +120,8 @@ public class MenuSupporter {
     public static void MakeDefaultMenus(GPanel panel){
         JMenu menus[] = panel.menus;
         JMenuItem items[] = panel.items;
-        menus[0] = MenuSupporter.MakeMenu(panel.menubar, 0, "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
-        items[MenuSupporter.GenerateMenuItemId(0, 0)] = MenuSupporter.MakeMenuItem(menus[0], 5, "Create a new project");
+        menus[0] = MenuSupporter.MakeTranslatableMenu(panel.menubar, "menu-file-text", "Very important functions such as 'Save', 'Open' and 'Exit' can be found here.");
+        items[MenuSupporter.GenerateMenuItemId(0, 0)] = MakeTranslatableMenuItem(menus[0],"menu-file-newproject", "Create a new project");
         items[MenuSupporter.GenerateMenuItemId(0, 0)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -129,7 +129,7 @@ public class MenuSupporter {
                     }
                 });
         items[MenuSupporter.GenerateMenuItemId(0, 0)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_new.png")));
-        items[MenuSupporter.GenerateMenuItemId(0, 1)] = MenuSupporter.MakeMenuItem(menus[0], 6, "Create a new file");
+        items[MenuSupporter.GenerateMenuItemId(0, 1)] = MakeTranslatableMenuItem(menus[0], "menu-file-newfile", "Create a new file");
         items[MenuSupporter.GenerateMenuItemId(0, 1)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -137,7 +137,7 @@ public class MenuSupporter {
                     }
                 });
         items[MenuSupporter.GenerateMenuItemId(0, 1)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_new.png")));
-        items[MenuSupporter.GenerateMenuItemId(0, 2)] = MenuSupporter.MakeMenuItem(menus[0], 7, "Open a project");
+        items[MenuSupporter.GenerateMenuItemId(0, 2)] = MakeTranslatableMenuItem(menus[0], "menu-file-openproject", "Open a project");
         items[MenuSupporter.GenerateMenuItemId(0, 2)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_open.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 2)].addActionListener(new ActionListener() {
 
@@ -145,7 +145,7 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 2, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(0, 3)] = MenuSupporter.MakeMenuItem(menus[0], 8, "Save project");
+        items[MenuSupporter.GenerateMenuItemId(0, 3)] = MakeTranslatableMenuItem(menus[0], "menu-file-saveproject", "Save project");
         items[MenuSupporter.GenerateMenuItemId(0, 3)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 3)].addActionListener(new ActionListener() {
 
@@ -153,7 +153,7 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 3, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(0, 4)] = MenuSupporter.MakeMenuItem(menus[0], 9, "Save project as...");
+        items[MenuSupporter.GenerateMenuItemId(0, 4)] = MakeTranslatableMenuItem(menus[0], "menu-file-saveprojectas", "Save project as...");
         items[MenuSupporter.GenerateMenuItemId(0, 4)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_saveas.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 4)].addActionListener(new ActionListener() {
 
@@ -161,9 +161,9 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 4, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(0, 5)] = MenuSupporter.MakeMenuItem(menus[0], 53, "Save all projects");
+        items[MenuSupporter.GenerateMenuItemId(0, 5)] = MakeTranslatableMenuItem(menus[0], "menu-file-saveallprojects", "Save all projects");
         items[MenuSupporter.GenerateMenuItemId(0, 5)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_saveall.png")));
-        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MenuSupporter.MakeMenuItem(menus[0], 88, "Save file");
+        items[MenuSupporter.GenerateMenuItemId(0, 6)] = MakeTranslatableMenuItem(menus[0], "menu-file-savefile", "Save file");
         items[MenuSupporter.GenerateMenuItemId(0, 6)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_save.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 6)].addActionListener(new ActionListener() {
 
@@ -171,7 +171,7 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 6, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MenuSupporter.MakeMenuItem(menus[0], 89, "Save All files");
+        items[MenuSupporter.GenerateMenuItemId(0, 7)] = MakeTranslatableMenuItem(menus[0], "menu-file-saveallfiles", "Save All files");
         items[MenuSupporter.GenerateMenuItemId(0, 7)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_saveall.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 7)].addActionListener(new ActionListener() {
 
@@ -179,22 +179,22 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 7, evt);
                     }
                 });
-        menus[9] = MenuSupporter.MakeSubMenu(menus[0], 10, "Import...");
+        menus[9] = MakeTranslatableSubMenu(menus[0], "menu-import-text", "Import...");
         menus[9].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/import.png")));
-        menus[10] = MenuSupporter.MakeSubMenu(menus[9], 185, "File");
-        items[MenuSupporter.GenerateMenuItemId(10, 0)] = MenuSupporter.MakeMenuItem(menus[10], 189, "Import Image");
+        menus[10] = MakeTranslatableSubMenu(menus[9], "menu-import-file", "File");
+        items[MenuSupporter.GenerateMenuItemId(10, 0)] = MakeTranslatableMenuItem(menus[10], "menu-import-file-image", "Import Image");
         items[MenuSupporter.GenerateMenuItemId(10, 0)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(10, 0, evt);
                     }
                 });
-        menus[11] = MenuSupporter.MakeSubMenu(menus[9], 186, "Project");
-        menus[12] = MenuSupporter.MakeSubMenu(menus[0], 11, "Export...");
+        menus[11] = MakeTranslatableSubMenu(menus[9], "menu-import-project", "Project");
+        menus[12] = MakeTranslatableSubMenu(menus[0], "menu-export-text", "Export...");
         menus[12].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/export.png")));
-        menus[13] = MenuSupporter.MakeSubMenu(menus[12], 185, "File");
-        menus[14] = MenuSupporter.MakeSubMenu(menus[12], 186, "Project");
-        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MenuSupporter.MakeMenuItem(menus[0], 12, "Close a project");
+        menus[13] = MakeTranslatableSubMenu(menus[12], "menu-export-text", "File");
+        menus[14] = MakeTranslatableSubMenu(menus[12], "menu-export-project", "Project");
+        items[MenuSupporter.GenerateMenuItemId(0, 9)] = MakeTranslatableMenuItem(menus[0], "menu-file-closeproject", "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_close.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 9)].addActionListener(new ActionListener() {
 
@@ -202,7 +202,7 @@ public class MenuSupporter {
                         onItemActionPerformed(0, 9, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(0, 10)] = MenuSupporter.MakeMenuItem(menus[0], 13, "Closes the application");
+        items[MenuSupporter.GenerateMenuItemId(0, 10)] = MakeTranslatableMenuItem(menus[0], "menu-file-exit", "Closes the application");
         items[MenuSupporter.GenerateMenuItemId(0, 10)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/file_exit.png")));
         items[MenuSupporter.GenerateMenuItemId(0, 10)].addActionListener(new ActionListener() {
 
@@ -230,33 +230,33 @@ public class MenuSupporter {
         onItemActionPerformed(1, 2, evt);
         }
         });*/
-        menus[2] = MenuSupporter.MakeMenu(panel.menubar, 2, "Layout and design options are defined here.");
+        menus[2] = MakeTranslatableMenu(panel.menubar, "menu-view-text", "Layout and design options are defined here.");
         //menus[5] = MenuSupporter.MakeSubMenu(menus[2], 15, "Look&Feel");
         //menus[6] = MenuSupporter.MakeSubMenu(menus[2], 16, "Display mode");
-        menus[15] = MenuSupporter.MakeSubMenu(menus[2], 193, "Display mode");
-        items[MenuSupporter.GenerateMenuItemId(2, 0)] = MenuSupporter.MakeCheckMenuItem(menus[2], 22, "Display output box");
+        menus[15] = MakeTranslatableSubMenu(menus[2], "menu-treeposition-text", "Tree position");
+        items[MenuSupporter.GenerateMenuItemId(2, 0)] = MakeTranslatableCheckMenuItem(menus[2], "menu-view-outputbox", "Display output box");
         items[MenuSupporter.GenerateMenuItemId(2, 0)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(2, 0, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(2, 1)] = MenuSupporter.MakeCheckMenuItem(menus[2], 75, "Display the toolbar");
+        items[MenuSupporter.GenerateMenuItemId(2, 1)] = MakeTranslatableCheckMenuItem(menus[2], "menu-view-toolbars", "Display the toolbar");
         items[MenuSupporter.GenerateMenuItemId(2, 1)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(2, 1, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(2, 2)] = MenuSupporter.MakeMenuItem(menus[2], 270, "View Console Output");
+        items[MenuSupporter.GenerateMenuItemId(2, 2)] = MakeTranslatableMenuItem(menus[2], "menu-view-console", "View Console Output");
         items[MenuSupporter.GenerateMenuItemId(2, 2)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
                         onItemActionPerformed(2, 2, evt);
                     }
                 });
-        menus[3] = MenuSupporter.MakeMenu(panel.menubar, 3, "Compile and test your games.");
-        items[MenuSupporter.GenerateMenuItemId(3, 0)] = MenuSupporter.MakeMenuItem(menus[3], 98, "Set as main project");
+        menus[3] = MakeTranslatableMenu(panel.menubar, "menu-build-text", "Compile and test your games.");
+        items[MenuSupporter.GenerateMenuItemId(3, 0)] = MakeTranslatableMenuItem(menus[3], "menu-build-setmain", "Set as main project");
         items[MenuSupporter.GenerateMenuItemId(3, 0)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -280,8 +280,8 @@ public class MenuSupporter {
         items[MenuSupporter.GenerateMenuItemId(3, 9)] = MenuSupporter.MakeMenuItem(menus[3], 107, "Build&Test");
         items[MenuSupporter.GenerateMenuItemId(3, 10)] = MenuSupporter.MakeMenuItem(menus[3], 108, "Final Build");*/
 
-        menus[7] = MenuSupporter.MakeMenu(panel.menubar, 114, "Tools");
-        items[MenuSupporter.GenerateMenuItemId(7, 0)] = MenuSupporter.MakeMenuItem(menus[7], 23, "Select the language");
+        menus[7] = MakeTranslatableMenu(panel.menubar, "menu-tools-text", "Tools");
+        items[MenuSupporter.GenerateMenuItemId(7, 0)] = MakeTranslatableMenuItem(menus[7], "menu-tools-language", "Select the language");
         items[MenuSupporter.GenerateMenuItemId(7, 0)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_language.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 0)].addActionListener(new ActionListener() {
 
@@ -289,7 +289,7 @@ public class MenuSupporter {
                         onItemActionPerformed(7, 0, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(7, 1)] = MenuSupporter.MakeMenuItem(menus[7], 93, "Update");
+        items[MenuSupporter.GenerateMenuItemId(7, 1)] = MakeTranslatableMenuItem(menus[7], "menu-tools-update", "Update");
         items[MenuSupporter.GenerateMenuItemId(7, 1)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_update.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 1)].addActionListener(new ActionListener() {
 
@@ -297,7 +297,7 @@ public class MenuSupporter {
                         onItemActionPerformed(7, 1, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(7, 2)] = MenuSupporter.MakeMenuItem(menus[7], 109, "Extensions Manager");
+        items[MenuSupporter.GenerateMenuItemId(7, 2)] = MakeTranslatableMenuItem(menus[7], "menu-tools-plugins", "Extensions Manager");
         items[MenuSupporter.GenerateMenuItemId(7, 2)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_plug.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 2)].addActionListener(new ActionListener() {
 
@@ -306,7 +306,7 @@ public class MenuSupporter {
                     }
                 });
         menus[7].addSeparator();
-        items[MenuSupporter.GenerateMenuItemId(7, 3)] = MenuSupporter.MakeMenuItem(menus[7], 130, "Global options");
+        items[MenuSupporter.GenerateMenuItemId(7, 3)] = MakeTranslatableMenuItem(menus[7], "menu-tools-global", "Global options");
         items[MenuSupporter.GenerateMenuItemId(7, 3)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_global.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 3)].addActionListener(new ActionListener() {
 
@@ -314,7 +314,7 @@ public class MenuSupporter {
                         onItemActionPerformed(7, 3, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(7, 5)] = MenuSupporter.MakeMenuItem(menus[7], 267, "Welcome screen");
+        items[MenuSupporter.GenerateMenuItemId(7, 5)] = MakeTranslatableMenuItem(menus[7], "menu-tools-welcome", "Welcome screen");
         items[MenuSupporter.GenerateMenuItemId(7, 5)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -324,7 +324,7 @@ public class MenuSupporter {
         menus[7].addSeparator();
         //menus[8] = MenuSupporter.MakeSubMenu(menus[7], 171, "Macro");
         //menus[8].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_macro.png")));
-        items[MenuSupporter.GenerateMenuItemId(7, 4)] = MenuSupporter.MakeMenuItem(menus[7], 183, "PowerPack");
+        items[MenuSupporter.GenerateMenuItemId(7, 4)] = MakeTranslatableMenuItem(menus[7], "menu-tools-powerpack", "PowerPack");
         items[MenuSupporter.GenerateMenuItemId(7, 4)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/tools_powerpack.png")));
         items[MenuSupporter.GenerateMenuItemId(7, 4)].addActionListener(new ActionListener() {
 
@@ -364,8 +364,8 @@ public class MenuSupporter {
                         onItemActionPerformed(8, 3, evt);
                     }
                 });*/
-        menus[4] = MenuSupporter.MakeMenu(panel.menubar, 4, "Get info about Aurora.");
-        items[MenuSupporter.GenerateMenuItemId(4, 0)] = MenuSupporter.MakeMenuItem(menus[4], 24, "About Aurora");
+        menus[4] = MakeTranslatableMenu(panel.menubar, "menu-help-text", "Get info about Aurora.");
+        items[MenuSupporter.GenerateMenuItemId(4, 0)] = MakeTranslatableMenuItem(menus[4], "menu-help-about", "About Aurora");
         items[MenuSupporter.GenerateMenuItemId(4, 0)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/help_about.png")));
         items[MenuSupporter.GenerateMenuItemId(4, 0)].addActionListener(new ActionListener() {
 
@@ -373,7 +373,7 @@ public class MenuSupporter {
                         onItemActionPerformed(4, 0, evt);
                     }
                 });
-        items[MenuSupporter.GenerateMenuItemId(4, 1)] = MenuSupporter.MakeMenuItem(menus[4], 25, "Aurora help");
+        items[MenuSupporter.GenerateMenuItemId(4, 1)] = MakeTranslatableMenuItem(menus[4], "menu-help-help", "Aurora help");
         items[MenuSupporter.GenerateMenuItemId(4, 1)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/help_help.png")));
         items[MenuSupporter.GenerateMenuItemId(4, 1)].addActionListener(new ActionListener() {
 
@@ -426,7 +426,7 @@ public class MenuSupporter {
                     }
                 });*/
         panel.wtreepos = new ButtonGroup();
-        items[MenuSupporter.GenerateMenuItemId(15, 0)] = MenuSupporter.MakeRadioMenuItem(panel.wtreepos, menus[15], 194, "Tree Left");
+        items[MenuSupporter.GenerateMenuItemId(15, 0)] = MakeTranslatableRadioMenuItem(panel.wtreepos, menus[15], "menu-treeposition-left", "Tree Left");
         items[MenuSupporter.GenerateMenuItemId(15, 0)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
@@ -434,7 +434,7 @@ public class MenuSupporter {
                     }
                 });
         items[MenuSupporter.GenerateMenuItemId(15, 0)].setSelected(true);
-        items[MenuSupporter.GenerateMenuItemId(15, 1)] = MenuSupporter.MakeRadioMenuItem(panel.wtreepos, menus[15], 195, "Tree Right");
+        items[MenuSupporter.GenerateMenuItemId(15, 1)] = MakeTranslatableRadioMenuItem(panel.wtreepos, menus[15], "menu-treeposition-right", "Tree Right");
         items[MenuSupporter.GenerateMenuItemId(15, 1)].addActionListener(new ActionListener() {
 
                     public void actionPerformed(ActionEvent evt) {
