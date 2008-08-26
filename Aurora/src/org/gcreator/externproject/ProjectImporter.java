@@ -280,7 +280,7 @@ public class ProjectImporter {
                 GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
                 file.value = importContent(c, type, manager, fname, c.zip);
-                f.getProject().files.add(cid, file);
+                f.getProject().files.add(cid-1, file);
 
             } else if (name.equals("group")) {
               //  System.out.println("Got to group");

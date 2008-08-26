@@ -33,6 +33,14 @@ public abstract class KeywordList {
         return ScriptThemeManager.getColors().get("Strings");
     }
     
+    /**
+     * Return <tt>true</tt> to allow highlighting of markup-like &lt;, &gt; tags.
+     * @return Wheather or not to allow &lt; and &gt highlifghting of tags.
+     */
+    public boolean allowMarkup() {
+        return false;
+    }
+    
     public static class Keyword {
         private String name;
         private Color color;
