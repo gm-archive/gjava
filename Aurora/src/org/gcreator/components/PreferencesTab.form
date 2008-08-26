@@ -21,7 +21,7 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jComboBox1" pref="320" max="32767" attributes="0"/>
+                      <Component id="jComboBox1" pref="325" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
@@ -31,8 +31,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jComboBox3" alignment="0" pref="320" max="32767" attributes="0"/>
-                          <Component id="jComboBox2" alignment="0" pref="320" max="32767" attributes="0"/>
+                          <Component id="jComboBox3" alignment="0" pref="325" max="32767" attributes="0"/>
+                          <Component id="jComboBox2" alignment="0" pref="325" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -69,7 +69,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="getLang(15)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-global-laf&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -86,7 +86,7 @@
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="getLang(16)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-global-displayoptions&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -103,7 +103,7 @@
     <Container class="javax.swing.JPanel" name="jPanel1">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(266))" type="code"/>
+          <Connection code="javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry(&quot;general-global-displaymode&quot;))" type="code"/>
         </Property>
       </Properties>
 
@@ -144,7 +144,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jCheckBox1.setText(LangSupporter.activeLang.getEntry(259));"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jCheckBox1.setText(Dictionary.getEntry(&quot;general-global-antialiasing&quot;));"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jCheckBox2">
@@ -164,7 +164,7 @@
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="LangSupporter.activeLang.getEntry(287)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-global-theme&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>

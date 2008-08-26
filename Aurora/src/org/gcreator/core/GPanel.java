@@ -668,8 +668,8 @@ public class GPanel extends JPanel {
 
         if (o instanceof org.gcreator.fileclass.GFile) {
             //if (((org.gcreator.fileclass.GFile) o).root.allowsDelete(o)) {
-            Object i = m.addMenuItem(
-                    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+            Object i = m.addTranslatableMenuItem(
+                    "workspace-context-delete", new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
             m.setEnabled(i, ((org.gcreator.fileclass.GFile) o).root.allowsDelete(o));
             MenuGenerator.addActionListener(i, new ActionListener() {
 
@@ -683,7 +683,7 @@ public class GPanel extends JPanel {
             //    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/grayed_delete_filegroup.png")));
             //}
             if (o.editable) {
-                i = m.addMenuItem(271, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
+                i = m.addTranslatableMenuItem("workspace-context-rename", new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
                 MenuGenerator.addActionListener(i, new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
@@ -697,8 +697,8 @@ public class GPanel extends JPanel {
             }
         }
         if (o instanceof org.gcreator.fileclass.Group) {
-            Object i = m.addMenuItem(
-                    246, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
+            Object i = m.addTranslatableMenuItem(
+                    "workspace-context-delete", new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/delete_filegroup.png")));
             if (((org.gcreator.fileclass.Group) o).root.allowsDelete(o)) {
                 MenuGenerator.addActionListener(i, new ActionListener() {
 
@@ -709,8 +709,8 @@ public class GPanel extends JPanel {
             } else {
                 m.setEnabled(i, false);
             }
-            Object k = m.addMenuItem(
-                    245, new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
+            Object k = m.addTranslatableMenuItem(
+                    "workspace-context-addgroup", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/addgroup.png")));
             //k.setVisible(true);
             MenuGenerator.addActionListener(k, new ActionListener() {
 
@@ -728,7 +728,8 @@ public class GPanel extends JPanel {
                 }
             });
             if (o.editable) {
-                k = m.addMenuItem(271, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
+                k = m.addTranslatableMenuItem(
+                        "workspace-context-rename", new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/rename_file.png")));
                 MenuGenerator.addActionListener(k, new ActionListener() {
 
                     public void actionPerformed(ActionEvent e) {
@@ -742,8 +743,8 @@ public class GPanel extends JPanel {
             }
         }
         if (o instanceof Project) {
-            Object j = m.addMenuItem(
-                    245, new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
+            Object j = m.addTranslatableMenuItem(
+                    "workspace-context-close", new ImageIcon(getClass().getResource("/org/gcreator/resources/uiplus/close_project.png")));
             MenuGenerator.addActionListener(j, new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -1021,9 +1022,9 @@ public class GPanel extends JPanel {
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int, ImageIcon">
-    public void addWindow(TabPanel panel, int title, ImageIcon img) {
-        addWindow(panel, LangSupporter.activeLang.getEntry(title), img);
-    }
+    //public void addWindow(TabPanel panel, int title, ImageIcon img) {
+    //    addWindow(panel, LangSupporter.activeLang.getEntry(title), img);
+    //}
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="addEWindow(TabPanel, String)">
@@ -1296,10 +1297,10 @@ public class GPanel extends JPanel {
     //<editor-fold defaultstate="collapsed" desc="onItemActionPerformed">
     public void onItemActionPerformed(int menu, int item, ActionEvent evt) {
         if (menu == 0 && item == 0) {
-            addWindow(newproject, 55, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+            addTranslatedWindow(newproject, "general-newproject-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 0 && item == 1) {
-            addWindow(newfilegroup, 96, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+            addTranslatedWindow(newfilegroup, "general-newfile-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 0 && item == 2) {
             ProjectImporter.OpenProject(this);
@@ -1456,7 +1457,7 @@ public class GPanel extends JPanel {
         }*/
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
-            addWindow(lang, 28, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+            addWindow(lang, "general-language-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 1) {
             utilities.addStringMessage("Update");
@@ -1468,10 +1469,10 @@ public class GPanel extends JPanel {
             manager.setVisible(true);
         }
         if (menu == 7 && item == 3) {
-            addWindow(globalsettings, 131, (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+            addTranslatedWindow(globalsettings, "general-global-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 4) {
-            addWindow(new PowerPackImporter(), 184,
+            addTranslatedWindow(new PowerPackImporter(), "general-powerpack-title",
                     (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 5) {
@@ -1484,8 +1485,8 @@ public class GPanel extends JPanel {
         //dialog.setVisible(true);
         }
         if (menu == 8 && item == 2) {
-            String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
-            if (mname != null && mname.length() > 0) {
+            //String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
+            //if (mname != null && mname.length() > 0) {
             /*if (MacroLibrary.findMacro(mname) != null) {
             JOptionPane.showMessageDialog(this,
             LangSupporter.activeLang.getEntry(177),
@@ -1494,7 +1495,7 @@ public class GPanel extends JPanel {
             } else {
             MacroLibrary.addMacro(Macro.record(mname));
             }*/
-            }
+            //}
         }
         if (menu == 8 && item == 3) {
         //Macro.recordingMacro = null;

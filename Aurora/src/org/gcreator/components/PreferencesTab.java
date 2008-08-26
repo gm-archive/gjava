@@ -22,6 +22,7 @@ import javax.swing.plaf.metal.OceanTheme;
 import org.gcreator.core.*;
 import org.gcreator.managers.*;
 import org.gcreator.themes.HappyTheme;
+import org.gcreator.units.Dictionary;
 import sun.themes.AquaTheme;
 import sun.themes.CharcoalTheme;
 import sun.themes.ContrastTheme;
@@ -146,8 +147,12 @@ public class PreferencesTab extends OptionPanel {
     };
     public DefaultComboBoxModel displaymodes = new DefaultComboBoxModel() {
 
-        public String[] vals = new String[]{getLang(20), getLang(90), getLang(91), getLang(92),
-            getLang(21)
+        public String[] vals = new String[]{
+            Dictionary.getEntry("general-global-tabsleft"),
+            Dictionary.getEntry("general-global-tabsright"),
+            Dictionary.getEntry("general-global-tabstop"),
+            Dictionary.getEntry("general-global-tabsbottom"),
+            Dictionary.getEntry("general-global-mdi")
         };
 
         public Object getElementAt(int pos) {
@@ -158,10 +163,6 @@ public class PreferencesTab extends OptionPanel {
             return vals.length;
         }
     };
-
-    public String getLang(int lang) {
-        return LangSupporter.activeLang.getEntry(lang);
-    }
 
     /** This method is called from within the constructor to
      * initialize the form.
@@ -182,7 +183,7 @@ public class PreferencesTab extends OptionPanel {
         jLabel3 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox();
 
-        jLabel1.setText(getLang(15));
+        jLabel1.setText(Dictionary.getEntry("general-global-laf"));
 
         jComboBox1.setModel(lafmodel);
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +192,7 @@ public class PreferencesTab extends OptionPanel {
             }
         });
 
-        jLabel2.setText(getLang(16));
+        jLabel2.setText(Dictionary.getEntry("general-global-displayoptions"));
 
         jComboBox2.setModel(displaymodes);
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -200,10 +201,10 @@ public class PreferencesTab extends OptionPanel {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(LangSupporter.activeLang.getEntry(266)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(Dictionary.getEntry("general-global-displaymode")));
 
         jCheckBox1.setText("Antialiasing");
-        jCheckBox1.setText(LangSupporter.activeLang.getEntry(259));
+        jCheckBox1.setText(Dictionary.getEntry("general-global-antialiasing"));
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
@@ -242,7 +243,7 @@ public class PreferencesTab extends OptionPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel3.setText(LangSupporter.activeLang.getEntry(287));
+        jLabel3.setText(Dictionary.getEntry("general-global-theme"));
 
         jComboBox3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -260,7 +261,7 @@ public class PreferencesTab extends OptionPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox1, 0, 320, Short.MAX_VALUE))
+                        .addComponent(jComboBox1, 0, 325, Short.MAX_VALUE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,8 +269,8 @@ public class PreferencesTab extends OptionPanel {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox3, 0, 320, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, 320, Short.MAX_VALUE))))
+                            .addComponent(jComboBox3, 0, 325, Short.MAX_VALUE)
+                            .addComponent(jComboBox2, 0, 325, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

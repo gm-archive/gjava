@@ -11,6 +11,7 @@
     <slice key="workspace-context-delete">Delete</slice>
     <slice key="workspace-context-rename">Rename</slice>
     <slice key="workspace-context-addgroup">Add group</slice>
+    <slice key="workspace-context-close">Close</slice>
     <slice key="workspace-game-image">Images</slice>
     <slice key="workspace-game-sprite">Sprites</slice>
     <slice key="workspace-game-tileset">Tilesets</slice>

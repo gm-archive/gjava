@@ -16,7 +16,7 @@
  </object> 
  <string>LEFT</string> 
  <string>Native</string> 
- <boolean>true</boolean> 
+ <boolean>false</boolean> 
  <boolean>true</boolean> 
  <boolean>false</boolean> 
  <int>657</int> 
