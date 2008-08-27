@@ -9,9 +9,13 @@
  */
 package org.gcreator.components;
 
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import org.gcreator.units.Dictionary;
-import org.gcreator.managers.*;
-import org.gcreator.core.*;
 
 /**
  *
@@ -20,16 +24,54 @@ import org.gcreator.core.*;
 public class LanguageTab extends TabPanel {
     private static final long serialVersionUID = 1;
     
+    private class DictionaryRenderer extends JLabel implements ListCellRenderer{
+        private DictionaryRenderer(){
+            super();
+            setOpaque(true);
+        }
+        
+        @Override
+        public Component getListCellRendererComponent(
+                JList parent, Object dictionary, int index, boolean isSelected, boolean hasFocus){
+            
+            try{
+                setText(((Dictionary) dictionary).getLanguage());
+                setBackground(isSelected ? parent.getSelectionBackground() : parent.getBackground());
+                setForeground(isSelected ? parent.getSelectionForeground() : parent.getForeground());
+            }
+            catch(Exception e){
+                setText("INVALID");
+                setBackground(Color.WHITE);
+                setForeground(Color.RED);
+            }
+            
+            return this;
+        }
+    }
+    
     /** Creates new form LanguageTab */
     public LanguageTab() {
         initComponents();
+        DefaultComboBoxModel model = new DefaultComboBoxModel(){
+            @Override
+            public int getSize(){
+                return Dictionary.countDictionaries();
+            }
+            
+            @Override
+            public Object getElementAt(int index){
+                return Dictionary.getDictionaries()[index];
+            }
+        };
+        jComboBox1.setModel(model);
+        jComboBox1.setRenderer(new DictionaryRenderer());
         //try{
         //if(LangSupporter.activeLang.getLanguage().equals(gcreator.panel.lang)) {
         //        jLabel4.setVisible(false);
         //    }
         //}
         //catch(Exception e){}
-        int l = 0;
+        //int l = 0;
         /*if(gcreator.panel.lang.equals("German")) {
             l = 1;
         }
@@ -46,6 +88,7 @@ public class LanguageTab extends TabPanel {
             l = 5;
         }
         jComboBox1.setSelectedIndex(l);*/
+        jComboBox1.setSelectedIndex(0);
         updateLanguage();
     }
     
@@ -87,23 +130,15 @@ public class LanguageTab extends TabPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("Language");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "English (Universal)", "German", "German (Old)", "Portuguese (European)", "Russian", "Spanish"}));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
-
-        jLabel2.setText("Status");
-
-        jLabel3.setText("In Development");
 
         jButton1.setText("Apply Language");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +146,6 @@ public class LanguageTab extends TabPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 11));
-        jLabel4.setForeground(new java.awt.Color(255, 51, 51));
-        jLabel4.setText("Restart the application to apply the changes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -127,12 +158,7 @@ public class LanguageTab extends TabPanel {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, 0, 329, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel3))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -143,14 +169,8 @@ public class LanguageTab extends TabPanel {
                     .addComponent(jLabel1)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
-                .addContainerGap())
+                .addContainerGap(240, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,6 +186,7 @@ public class LanguageTab extends TabPanel {
         //catch(Exception e){
         //    
         //}
+        Dictionary.activeDictionary = ((Dictionary) jComboBox1.getSelectedItem()).getShortName();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     
@@ -173,9 +194,6 @@ public class LanguageTab extends TabPanel {
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
     
 }

@@ -20,6 +20,7 @@ import javax.swing.UIManager;
 import javax.swing.plaf.metal.MetalLookAndFeel;
 import org.gcreator.core.gcreator;
 import org.gcreator.core.utilities;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -57,7 +58,7 @@ public final class SettingsIO {
         Registry.create("Graphics.theme", "Native");
         Registry.create("Window.desktop", "TOP");
         Registry.create("Window.showConsole", false);
-        Registry.create("Global.language", "English");
+        Registry.create("Global.language", "en");
         Registry.create("Window.showToolbar", true);
         Registry.create("Window.treePosition", "LEFT");
         Registry.create("Window.size", new Dimension(Toolkit.getDefaultToolkit().getScreenSize().width * 4 / 5,
@@ -77,5 +78,6 @@ public final class SettingsIO {
         Registry.set("Graphics.metalTheme", MetalLookAndFeel.getCurrentTheme());
         Registry.set("Window.consoleLocation", gcreator.panel.splitter1.getDividerLocation());
         Registry.set("Window.maximized", gcreator.window.getExtendedState() == Frame.MAXIMIZED_BOTH);
+        Registry.set("Global.language", Dictionary.activeDictionary);
     }
 }

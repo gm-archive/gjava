@@ -1457,7 +1457,7 @@ public class GPanel extends JPanel {
         }*/
         if (menu == 7 && item == 0) {
             LanguageTab lang = new LanguageTab();
-            addWindow(lang, "general-language-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
+            addTranslatedWindow(lang, "general-language-title", (ImageIcon) items[MenuSupporter.GenerateMenuItemId(menu, item)].getIcon());
         }
         if (menu == 7 && item == 1) {
             utilities.addStringMessage("Update");

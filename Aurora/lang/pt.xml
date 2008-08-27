@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<lang name="English" status="Development">
+<lang name="Portuguese (European)" status="Development">
     <author>Luís Reis</author>
     <author>Pedro Cubal</author>
     
@@ -12,6 +12,20 @@
     <slice key="workspace-context-delete">Apagar</slice>
     <slice key="workspace-context-rename">Renomear</slice>
     <slice key="workspace-context-addgroup">Adicionar grupo</slice>
+    <slice key="workspace-context-close">Close</slice>
+    <slice key="workspace-game-image">Imagens</slice>
+    <slice key="workspace-game-sprite">Sprites</slice>
+    <slice key="workspace-game-tileset">Tilesets</slice>
+    <slice key="workspace-game-path">Caminhos</slice>
+    <slice key="workspace-game-sound">Sons</slice>
+    <slice key="workspace-game-timeline">Linhas Temporais</slice>
+    <slice key="workspace-game-script">Códigos</slice>
+    <slice key="workspace-game-actor">Actores</slice>
+    <slice key="workspace-game-scene">Cenas</slice>
+    <slice key="workspace-game-distribution">Distribuição</slice>
+    <slice key="workspace-game-settings">Definições Globais</slice>
+    <slice key="workspace-game-info">Informação de jogo</slice>
+    
     <slice key="navigator-title">Navegador</slice>
     
     <slice key="popup-action-cut">Cortar</slice>
@@ -26,6 +40,8 @@
     <slice key="popup-console-hide">Ocultar Consola</slice>
     
     <slice key="popup-tabs-close">Fechar Separador</slice>
+    
+    
     
     <slice key="general-welcome-title">Bem-vindo ao G-Creator!</slice>
     <slice key="general-welcome-message">Bem-vindo ao G-Creator!</slice>
@@ -63,6 +79,25 @@
     <slice key="general-mdi-cascade">Cascata</slice>
     
     <slice key="general-powerpack-message">Escolher recurso a importar</slice>
+
+    <slice key="general-toolbar-newproject">Novo Projecto</slice>
+    <slice key="general-toolbar-openproject">Abrir Projecto</slice>
+    <slice key="general-toolbar-save">Guardar</slice>
+    <slice key="general-toolbar-saveall">Guardar Tudo</slice>
+    <slice key="general-toolbar-projectsaveall">Guardar Todos os Projectos</slice>
+    <slice key="general-toolbar-addimage">Adicionar Imagem</slice>
+    <slice key="general-toolbar-addsprite">Adicionar Sprite</slice>
+    <slice key="general-toolbar-addtileset">Adicionar Tileset</slice>
+    <slice key="general-toolbar-addpath">Adicionar Caminho</slice>
+    <slice key="general-toolbar-addsound">Adicionar Som</slice>
+    <slice key="general-toolbar-addtimeline">Adicionar Linha Temporal</slice>
+    <slice key="general-toolbar-addactor">Adicionar Actor</slice>
+    <slice key="general-toolbar-addscene">Adicionar Cena</slice>
+    <slice key="general-toolbar-addscript">Adicionar Código</slice>
+    <slice key="general-toolbar-addgroup">Adicionar Grupo</slice>
+    <slice key="general-toolbar-addaction">Adicionar Acção</slice>
+    
+    <slice key="general-errors-writesettings">Erro ao guardar definições</slice>
 
     <slice key="toolbar-menu-hide">Esconder barra de ferramentas</slice>
     
@@ -118,7 +153,7 @@
     <slice key="toolbar-addtileset">Adicionar Tileset</slice>
     <slice key="toolbar-addpath">Adicionar Caminho</slice>
     <slice key="toolbar-addsound">Adicionar Som</slice>
-    <slice key="toolbar-addtimeline">Adicionar Linha de Tempo</slice>
+    <slice key="toolbar-addtimeline">Adicionar Temporal</slice>
     <slice key="toolbar-addactor">Adicionar Actor</slice>
     <slice key="toolbar-addscene">Adicionar Cena</slice>
     <slice key="toolbar-addscript">Adicionar Código</slice>
@@ -144,6 +179,7 @@
     <slice key="actions-ifclipboardtext-text">Se a Área de Transferência contiver texto</slice>
     <slice key="actions-ifclipboardtext-not">Se a Área de Transferência não contiver texto</slice>
     <slice key="actions-else-text">Caso Contrário</slice>
+    <slice key="actions-exit-text">Saír</slice>
     <slice key="actions-while-text">Enquanto</slice>
     <slice key="actions-while-case">Enquanto $condition</slice>
     <slice key="actions-while-not">Enquanto $condition for falsa</slice>
@@ -218,6 +254,20 @@ O que fazer?</slice>
     <slice key="editors-tileset-name">Nome:</slice>
     <slice key="editors-tileset-begin">Começar Em:</slice>
 
+    <slice key="editors-actor-name">Nome:</slice>
+    <slice key="editors-actor-sprite">Sprite:</slice>
+    <slice key="editors-actor-edit">Editar</slice>
+    <slice key="editors-actor-visible">Visível</slice>
+    <slice key="editors-actor-solid">Sólido</slice>
+    <slice key="editors-actor-persistent">Persistente</slice>
+    <slice key="editors-actor-depth">Profundidade</slice>
+    <slice key="editors-actor-extends">Extende</slice>
+    <slice key="editors-actor-mask">Máscara</slice>
+    <slice key="editors-actor-addevent">Adicionar Evento</slice>
+    <slice key="editors-actor-addaction">Adicionar Acção</slice>
+    
+    <slice key="editors-script-name">Nome:</slice>
+
     <slice key="editors-settings-fullscreen">Começar em modo de ecrã completo</slice>
     <slice key="editors-settings-resize">Permitir ao jogador redimensionar a janela do jogo</slice>
     <slice key="editors-settings-noborder">Não desenhar contornos da janela do jogo</slice>
@@ -231,4 +281,12 @@ O que fazer?</slice>
     <slice key="editors-settings-resolution">Resolução</slice>
     <slice key="editors-settings-frequency">Frequência</slice>
     <slice key="editors-settings-defaultkeys">Teclas predefinidas</slice>
+    <slice key="editors-settings-esc">ESC encerra o jogo</slice>
+    <slice key="editors-settings-f4">F4 muda de/para ecrã completo</slice>
+    <slice key="editors-settings-f56">F5 guarda e F6 carrega o jogo</slice>
+    <slice key="editors-settings-loading">A carregar</slice>
+    <slice key="editors-settings-splashscreen">Mostrar ecrã inicial enquanto carrega o jogo</slice>
+    <slice key="editors-settings-image">Imagem:</slice>
+    <slice key="editors-settings-icon">Icon:</slice>
+    <slice key="editors-settings-other">Outro</slice>
 </lang>

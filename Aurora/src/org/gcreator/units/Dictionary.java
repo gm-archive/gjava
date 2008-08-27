@@ -25,12 +25,13 @@ public class Dictionary {
     protected Vector<String> authors = new Vector<String>();
     protected String status = null;
     protected String language = null;
+    protected String shortName = "";
     protected static Hashtable<String, Dictionary> dictionaries = new Hashtable<String, Dictionary>();
     public static String activeDictionary = "en";
     
     public Dictionary(){}
     
-    public static Dictionary loadFromXML(File file){
+    public static Dictionary loadFromXML(String shortName, File file){
         System.out.println("Here");
         try{
             FileInputStream stream = new FileInputStream(file);
@@ -39,6 +40,7 @@ public class Dictionary {
             if(!d.getName().equals("lang"))
                 throw new SAXException("Invalid root");
             Dictionary dic = new Dictionary();
+            dic.shortName = shortName;
             for(int i = 0; i < d.getAttributeCount(); i++){
                 String attr = d.getAttributeName(i);
                 if(attr.equals("name"))
@@ -84,8 +86,10 @@ public class Dictionary {
         File[] files = f.listFiles();
         for(File lang : files){
             String name = lang.getName();
-            if(!name.equals(".svn"))
-                dictionaries.put(name.substring(0, name.indexOf(".")), loadFromXML(lang));
+            if(!name.equals(".svn")){
+                name = name.substring(0, name.indexOf("."));
+                dictionaries.put(name, loadFromXML(name, lang));
+            }
         }
         Enumeration<String> s = dictionaries.keys();
         while(s.hasMoreElements()){
@@ -93,11 +97,19 @@ public class Dictionary {
         }
     }
     
+    public static int countDictionaries(){
+        return dictionaries.size();
+    }
+    
     public String getLanguage() throws Exception {
         if (language == null) {
             throw new Exception();
         }
         return language;
+    }
+    
+    public String getShortName(){
+        return shortName;
     }
     
     public Vector<String> getAuthors(){
