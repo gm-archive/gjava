@@ -7,9 +7,11 @@
 package org.gcreator.editors;
 
 import com.l2fprod.common.swing.JFontChooser;
+import java.awt.Color;
 import java.awt.Font;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import javax.swing.JColorChooser;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.text.AttributeSet;
@@ -50,6 +52,7 @@ public class RTFEditor extends TabPanel {
                 updateBtn();
             }
         });
+        
         updateBtn();
     }
     
@@ -63,12 +66,20 @@ public class RTFEditor extends TabPanel {
 //                | (getBoolProperty(sel, StyleConstants.Italic)?Font.ITALIC:0),
 //                getIntProperty(sel, StyleConstants.FontSize));
 //        jButton4.setFont(f);
+        jButton5.setBackground(getColorProperty(sel, StyleConstants.Foreground));
+        jButton6.setBackground(getColorProperty(sel, StyleConstants.Background));
     }
     
     public boolean getBoolProperty(int index, Object prop){
         StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
         Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
         return o!=null&&o instanceof Boolean ? (Boolean) o : false;
+    }
+    
+    public Color getColorProperty(int index, Object prop){
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
+        return o!=null&&o instanceof Color ? (Color) o : null;
     }
     
     public String getStringProperty(int index, Object prop){
@@ -119,21 +130,26 @@ public class RTFEditor extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
 
-        jEditorPane1.setBackground(java.awt.Color.white);
         jEditorPane1.setEditorKit(kit);
-        jEditorPane1.setForeground(java.awt.Color.black);
         jScrollPane1.setViewportView(jEditorPane1);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jToolBar1.setRollover(true);
 
-        jButton1.setFont(jButton1.getFont().deriveFont(jButton1.getFont().getStyle() | java.awt.Font.BOLD));
-        jButton1.setText("B");
+        jButton1.setText("<html><b>B");
         jButton1.setFocusable(false);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -145,7 +161,7 @@ public class RTFEditor extends TabPanel {
         jToolBar1.add(jButton1);
 
         jButton2.setFont(jButton2.getFont().deriveFont((jButton2.getFont().getStyle() | java.awt.Font.ITALIC)));
-        jButton2.setText("I");
+        jButton2.setText("<html><i>I</i>");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -156,7 +172,7 @@ public class RTFEditor extends TabPanel {
         });
         jToolBar1.add(jButton2);
 
-        jButton3.setText("<html><u>U");
+        jButton3.setText("<html><u>U</u></html>");
         jButton3.setFocusable(false);
         jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -166,6 +182,18 @@ public class RTFEditor extends TabPanel {
             }
         });
         jToolBar1.add(jButton3);
+
+        jLabel3.setText("<html><!--Layout fix -->");
+        jToolBar1.add(jLabel3);
+
+        jLabel4.setText("<html><!--Layout fix -->");
+        jToolBar1.add(jLabel4);
+
+        jLabel5.setText("<html><!--Layout fix -->");
+        jToolBar1.add(jLabel5);
+
+        jLabel6.setText("<html><!--Layout fix -->");
+        jToolBar1.add(jLabel6);
 
         jButton4.setText("Font");
         jButton4.setFocusable(false);
@@ -177,6 +205,34 @@ public class RTFEditor extends TabPanel {
             }
         });
         jToolBar1.add(jButton4);
+
+        jLabel1.setText("Foreground:");
+        jToolBar1.add(jLabel1);
+
+        jButton5.setText("    ");
+        jButton5.setFocusable(false);
+        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton5);
+
+        jLabel2.setText("Background:");
+        jToolBar1.add(jLabel2);
+
+        jButton6.setText("    ");
+        jButton6.setFocusable(false);
+        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton6);
 
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
@@ -233,13 +289,49 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 }//GEN-LAST:event_jButton4ActionPerformed
 
+private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    Color c = JColorChooser.showDialog(this, "Choose", jButton5.getBackground());
+    if(c!=null){
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        int start = jEditorPane1.getSelectionStart();
+        int end = jEditorPane1.getSelectionEnd();
+        SimpleAttributeSet s = new SimpleAttributeSet();
+        s.addAttribute(StyleConstants.Foreground, c);
+        d.setCharacterAttributes(start, end-start, s, false);
+        updateBtn();
+        changed = true;
+    }
+}//GEN-LAST:event_jButton5ActionPerformed
+
+private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    Color c = JColorChooser.showDialog(this, "Choose", jButton6.getBackground());
+    if(c!=null){
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        int start = jEditorPane1.getSelectionStart();
+        int end = jEditorPane1.getSelectionEnd();
+        SimpleAttributeSet s = new SimpleAttributeSet();
+        s.addAttribute(StyleConstants.Background, c);
+        d.setCharacterAttributes(start, end-start, s, false);
+        updateBtn();
+        changed = true;
+    }
+}//GEN-LAST:event_jButton6ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
     // End of variables declaration//GEN-END:variables
