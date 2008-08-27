@@ -60,14 +60,14 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="LangSupporter.activeLang.getEntry(187)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-powerpack-title&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="LangSupporter.activeLang.getEntry(188)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-powerpack-filter&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>
@@ -98,7 +98,7 @@
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="LangSupporter.activeLang.getEntry(197)" type="code"/>
+          <Connection code="Dictionary.getEntry(&quot;general-powerpack-message&quot;)" type="code"/>
         </Property>
       </Properties>
     </Component>

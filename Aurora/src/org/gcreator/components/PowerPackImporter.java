@@ -15,7 +15,7 @@ import java.util.*;
 import javax.imageio.*;
 import javax.swing.*;
 import org.gcreator.externproject.StdImport;
-import org.gcreator.managers.*;
+import org.gcreator.units.Dictionary;
 
 /**
  *
@@ -66,9 +66,9 @@ public class PowerPackImporter extends TabPanel {
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
-        jLabel1.setText(LangSupporter.activeLang.getEntry(187));
+        jLabel1.setText(Dictionary.getEntry("general-powerpack-title"));
 
-        jLabel2.setText(LangSupporter.activeLang.getEntry(188));
+        jLabel2.setText(Dictionary.getEntry("general-powerpack-filter"));
 
         jCheckBox1.setSelected(true);
         jCheckBox1.setText("Show image files");
@@ -83,7 +83,7 @@ public class PowerPackImporter extends TabPanel {
             }
         });
 
-        jLabel4.setText(LangSupporter.activeLang.getEntry(197));
+        jLabel4.setText(Dictionary.getEntry("general-powerpack-message"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
