@@ -111,34 +111,36 @@ public final class Registry {
      * @throws java.io.IOException - If an IOException occurs.
      */
     public static void readXML(File xmlFile) throws IOException {
-        File objFile = new File(xmlFile.getParent()+"/registry-objects.xml");
-        if (!xmlFile.exists() || !objFile.exists()) {
-            throw new FileNotFoundException(((!xmlFile.exists()) ? xmlFile.getAbsolutePath() : "")+
-                    ((!objFile.exists()) ? ((!xmlFile.exists()) ? " and " : "")+objFile.getAbsolutePath() : ""));
-        }
-        
-        Document doc = getDocument(xmlFile.toURI().toString());
-        if (doc == null) {
-            return;
-        }
-        XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(objFile)));
-        LinkedList<Object> objects = new LinkedList<Object>();
         try {
-            while (true) {
-                objects.add(d.readObject());
+            File objFile = new File(xmlFile.getParent()+"/registry-objects.xml");
+            if (!xmlFile.exists() || !objFile.exists()) {
+                throw new FileNotFoundException(((!xmlFile.exists()) ? xmlFile.getAbsolutePath() : "")+
+                        ((!objFile.exists()) ? ((!xmlFile.exists()) ? " and " : "")+objFile.getAbsolutePath() : ""));
             }
-        } catch (ArrayIndexOutOfBoundsException exc) {
-            //Wait for exception to close loop
-        } finally {
-            d.close();
-        }
-        Element elem = doc.getDocumentElement();
-        NodeList nl = elem.getElementsByTagName("key");
-        for (int i = 0; i < nl.getLength(); i++) {
-            DeferredElementImpl node = (DeferredElementImpl) nl.item(i);
-            String key = node.getAttribute("name");
-            registry.put(key, objects.get(i));
-        }
+
+            Document doc = getDocument(xmlFile.toURI().toString());
+            if (doc == null) {
+                return;
+            }
+            XMLDecoder d = new XMLDecoder(new BufferedInputStream(new FileInputStream(objFile)));
+            LinkedList<Object> objects = new LinkedList<Object>();
+            try {
+                while (true) {
+                    objects.add(d.readObject());
+                }
+            } catch (ArrayIndexOutOfBoundsException exc) {
+                //Wait for exception to close loop
+            } finally {
+                d.close();
+            }
+            Element elem = doc.getDocumentElement();
+            NodeList nl = elem.getElementsByTagName("key");
+            for (int i = 0; i < nl.getLength(); i++) {
+                DeferredElementImpl node = (DeferredElementImpl) nl.item(i);
+                String key = node.getAttribute("name");
+                registry.put(key, objects.get(i));
+            }
+        } catch (IndexOutOfBoundsException exc) {}
     }
     
     /**

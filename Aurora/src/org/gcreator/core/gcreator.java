@@ -59,7 +59,7 @@ import org.gcreator.units.SystemOutStream;
 public class gcreator {
 
     private static String[] arguments;
-    public static final double version = 0.83; //only use numbers as it is parsed to double for updating!
+    public static final double version = 0.83;
     public static final String displayVersion = "1.0 Milestone 3";
     public static Aurwindow window;
     public static GPanel panel;

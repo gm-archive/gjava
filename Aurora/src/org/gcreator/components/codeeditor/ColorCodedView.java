@@ -97,67 +97,70 @@ public final class ColorCodedView extends PlainView {
         int endLine = Math.min(lineCount, linesTotal - linesBelow);
         lineCount--;
         Object[] tags = new Object[4];
-        try {
-            String before = null, after = null;
-            if (component.getCaretPosition() > 0 && !isInside(component.getCaretPosition() - 1, allcomments)
-                            && !isInside(component.getCaretPosition() - 1, allstrings)) {
-                before = component.getText(component.getCaretPosition() - 1, 1);
+
+        if (component != null) {
+            try {
+                String before = null, after = null;
+                if (component.getCaretPosition() > 0 && !isInside(component.getCaretPosition() - 1, allcomments) && !isInside(component.getCaretPosition() - 1, allstrings)) {
+                    before = component.getText(component.getCaretPosition() - 1, 1);
+                }
+
+                if (component.getCaretPosition() < component.getDocument().getLength()) {
+                    after = component.getText(component.getCaretPosition(), 1);
+                }
+
+                String extra = (component.getKeywordList().allowMarkup()) ? "|<|>" : "";
+                String extra_open = (component.getKeywordList().allowMarkup()) ? "|<" : "";
+
+                if (before != null && before.matches("\\(|\\)|\\[|\\]|\\]|\\{|\\}" + extra)) {
+                    Color color = Color.YELLOW;
+                    int index = -1;
+                    if (before.matches("\\(|\\[|\\{" + extra_open)) {
+                        if (component.getCaretPosition() != document.length()) {
+                            index = findEndBrace(before.charAt(0), (char) ((before.charAt(0) != '(')
+                                    ? before.charAt(0) + 2 : before.charAt(0) + 1), component.getCaretPosition(), document.length(), false);
+                        }
+                        if (index < 0) {
+                            color = Color.RED;
+                        }
+                    } else {
+                        index = findEndBrace(before.charAt(0), (char) ((before.charAt(0) != ')')
+                                ? before.charAt(0) - 2 : before.charAt(0) - 1), 0, component.getCaretPosition() - 1, true);
+                        if (index < 0) {
+                            color = Color.RED;
+                        }
+                    }
+                    tags[0] = h.addHighlight(component.getCaretPosition() - 1, component.getCaretPosition(),
+                            new DefaultHighlighter.DefaultHighlightPainter(color));
+                    if (index >= 0) {
+                        tags[1] = h.addHighlight(index, index + 1, new DefaultHighlighter.DefaultHighlightPainter(color));
+                    }
+                } else if (after != null && after.matches("\\(|\\)|\\[|\\]|\\]|\\{|\\}" + extra)) {
+                    Color color = Color.YELLOW;
+                    int index = -1;
+                    if (after.matches("\\(|\\[|\\{" + extra_open)) {
+                        index = findEndBrace(after.charAt(0), (char) ((after.charAt(0) != '(')
+                                ? after.charAt(0) + 2 : after.charAt(0) + 1),
+                                Math.min(component.getCaretPosition() + 1, component.getDocument().getLength()), component.getDocument().getLength(), false);
+                        if (index < 0) {
+                            color = Color.RED;
+                        }
+                    } else {
+                        index = findEndBrace(after.charAt(0), (char) ((after.charAt(0) != ')')
+                                ? after.charAt(0) - 2 : after.charAt(0) - 1), 0, component.getCaretPosition(), true);
+                        if (index < 0) {
+                            color = Color.RED;
+                        }
+                    }
+                    tags[0] = h.addHighlight(component.getCaretPosition(), component.getCaretPosition() + 1,
+                            new DefaultHighlighter.DefaultHighlightPainter(color));
+                    if (index >= 0) {
+                        tags[1] = h.addHighlight(index, index + 1, new DefaultHighlighter.DefaultHighlightPainter(color));
+                    }
+                }
+            } catch (BadLocationException ex) {
+                Logger.getLogger(ColorCodedView.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            if (component.getCaretPosition() < component.getDocument().getLength()) {
-                after = component.getText(component.getCaretPosition(), 1);
-            }
-            
-            String extra = (component.getKeywordList().allowMarkup()) ? "|<|>" : "";
-            String extra_open = (component.getKeywordList().allowMarkup()) ? "|<" : "";
-            
-            if (before != null && before.matches("\\(|\\)|\\[|\\]|\\]|\\{|\\}"+extra)) {
-                Color color = Color.YELLOW;
-                int index = -1;
-                if (before.matches("\\(|\\[|\\{"+extra_open)) {
-                    if (component.getCaretPosition() != document.length()) {
-                        index = findEndBrace(before.charAt(0), (char)((before.charAt(0) != '(')
-                            ? before.charAt(0) + 2 : before.charAt(0) + 1), component.getCaretPosition(), document.length(), false);
-                    }
-                    if (index < 0) {
-                        color = Color.RED;
-                    }
-                } else {                    index = findEndBrace(before.charAt(0), (char)((before.charAt(0) != ')')
-                            ? before.charAt(0) - 2 : before.charAt(0) - 1), 0, component.getCaretPosition()-1, true);
-                    if (index < 0) {
-                        color = Color.RED;
-                    }
-                }
-                tags[0] = h.addHighlight(component.getCaretPosition() - 1, component.getCaretPosition(),
-                        new DefaultHighlighter.DefaultHighlightPainter(color));
-                if (index >= 0) {
-                    tags[1] = h.addHighlight(index, index + 1, new DefaultHighlighter.DefaultHighlightPainter(color));
-                }
-            } else if (after != null && after.matches("\\(|\\)|\\[|\\]|\\]|\\{|\\}"+extra)) {
-                Color color = Color.YELLOW;
-                int index = -1;
-                if (after.matches("\\(|\\[|\\{"+extra_open)) {
-                    index = findEndBrace(after.charAt(0), (char)((after.charAt(0) != '(')
-                            ? after.charAt(0) + 2 : after.charAt(0) + 1),
-                            Math.min(component.getCaretPosition() + 1, document.length()), document.length(), false);
-                    if (index < 0) {
-                        color = Color.RED;
-                    }
-                } else {
-                    index = findEndBrace(after.charAt(0), (char)((after.charAt(0) != ')')
-                            ? after.charAt(0) - 2 : after.charAt(0) - 1), 0, component.getCaretPosition(), true);
-                    if (index < 0) {
-                        color = Color.RED;
-                    }
-                }
-                tags[0] = h.addHighlight(component.getCaretPosition(), component.getCaretPosition() + 1,
-                        new DefaultHighlighter.DefaultHighlightPainter(color));
-                if (index >= 0) {
-                    tags[1] = h.addHighlight(index, index + 1, new DefaultHighlighter.DefaultHighlightPainter(color));
-                }
-            }
-        } catch (BadLocationException ex) {
-            Logger.getLogger(ColorCodedView.class.getName()).log(Level.SEVERE, null, ex);
         }
         LayeredHighlighter dh = (h instanceof LayeredHighlighter) ? (LayeredHighlighter) h : null;
         for (int line = linesAbove; line < endLine; line++) {
@@ -417,23 +420,23 @@ public final class ColorCodedView extends PlainView {
         int pos = document.substring(start).indexOf(thing);
         return pos + ((pos != -1) ? start : 0);
     }
-    
+
     private int findEndBrace(char opener, char closer, int start, int end, boolean china) {
         //@china: Everything is backwards in China.
         try {
             int pos = -1;
             int length = component.getDocument().getLength();
-            String text = component.getText(start, end-start);
+            String text = component.getText(start, end - start);
             if (china) {
                 char[] chars = new char[text.length()];
                 for (int i = 0; i < text.length(); i++) {
-                    chars[i] = text.charAt(text.length()-1-i);
+                    chars[i] = text.charAt(text.length() - 1 - i);
                 }
                 text = new String(chars);
             }
-            
-            Matcher mo = Pattern.compile("\\"+opener).matcher(text);
-            Matcher mc = Pattern.compile("\\"+closer).matcher(text);
+
+            Matcher mo = Pattern.compile("\\" + opener).matcher(text);
+            Matcher mc = Pattern.compile("\\" + closer).matcher(text);
             ArrayList<Bracket> list = new ArrayList<Bracket>(4);
             final int OPEN = 0;
             final int CLOSE = 1;
@@ -447,9 +450,9 @@ public final class ColorCodedView extends PlainView {
             Arrays.sort(values);
             int open = 0;
             for (Bracket b : values) {
-                int mend = b.position+start-1;
+                int mend = b.position + start - 1;
                 if (china) {
-                    mend = text.length()-mend-1;
+                    mend = text.length() - mend - 1;
                 }
                 if (isInside(mend, allcomments) || isInside(mend, allstrings)) {
                     continue;
@@ -459,21 +462,22 @@ public final class ColorCodedView extends PlainView {
                 } else {
                     open--;
                 }
-                
+
                 if (open < 0) {
                     pos = mend;
                     break;
                 }
             }
-            
+
             return pos;
         } catch (BadLocationException ex) {
             Logger.getLogger(ColorCodedView.class.getName()).log(Level.SEVERE, null, ex);
         }
         return -1;
     }
-    
+
     private class Bracket implements Comparable {
+
         public int direction;
         public int position;
 
@@ -481,11 +485,11 @@ public final class ColorCodedView extends PlainView {
             position = pos;
             direction = dir;
         }
-        
+
         @Override
         public int compareTo(Object o) {
             if (o instanceof Bracket) {
-                int pos = ((Bracket)o).position;
+                int pos = ((Bracket) o).position;
                 if (pos == position) {
                     return 0;
                 } else if (position < pos) {
