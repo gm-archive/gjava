@@ -192,7 +192,7 @@ public class MenuSupporter {
         menus[11] = MakeTranslatableSubMenu(menus[9], "menu-import-project", "Project");
         menus[12] = MakeTranslatableSubMenu(menus[0], "menu-export-text", "Export...");
         menus[12].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/export.png")));
-        menus[13] = MakeTranslatableSubMenu(menus[12], "menu-export-text", "File");
+        menus[13] = MakeTranslatableSubMenu(menus[12], "menu-export-file", "File");
         menus[14] = MakeTranslatableSubMenu(menus[12], "menu-export-project", "Project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)] = MakeTranslatableMenuItem(menus[0], "menu-file-closeproject", "Close a project");
         items[MenuSupporter.GenerateMenuItemId(0, 9)].setIcon(new ImageIcon(MenuSupporter.class.getResource("/org/gcreator/resources/menu/project_close.png")));

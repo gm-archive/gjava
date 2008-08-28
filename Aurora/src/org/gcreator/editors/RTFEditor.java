@@ -8,10 +8,17 @@ package org.gcreator.editors;
 
 import com.l2fprod.common.swing.JFontChooser;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.FileDialog;
 import java.awt.Font;
+import java.awt.Frame;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.text.AttributeSet;
@@ -21,6 +28,7 @@ import javax.swing.text.StyledDocument;
 import javax.swing.text.rtf.RTFEditorKit;
 import org.gcreator.components.RSSReader.StringInputStream;
 import org.gcreator.components.TabPanel;
+import org.gcreator.components.impl.CustomFileFilter;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
 
@@ -124,6 +132,7 @@ public class RTFEditor extends TabPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jEditorPane1 = new javax.swing.JEditorPane();
         jToolBar1 = new javax.swing.JToolBar();
@@ -139,6 +148,10 @@ public class RTFEditor extends TabPanel {
         jButton5 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+
+        jButton8.setText("jButton8");
 
         setLayout(new java.awt.BorderLayout());
 
@@ -234,6 +247,28 @@ public class RTFEditor extends TabPanel {
         });
         jToolBar1.add(jButton6);
 
+        jButton7.setText("Import");
+        jButton7.setFocusable(false);
+        jButton7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton7);
+
+        jButton9.setText("Export");
+        jButton9.setFocusable(false);
+        jButton9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton9.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton9);
+
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,6 +352,47 @@ private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 }//GEN-LAST:event_jButton6ActionPerformed
 
+private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    JFileChooser d = new JFileChooser();
+    d.setApproveButtonText("OK");
+    d.setAcceptAllFileFilterUsed(true);
+    d.addChoosableFileFilter(new CustomFileFilter(".rtf", "Rich Text files"));
+    d.setDialogTitle("Choose RTF file");
+    d.setMultiSelectionEnabled(false);
+    d.showDialog(this, "OK");
+    d.setDialogType(JFileChooser.FILES_ONLY|JFileChooser.OPEN_DIALOG);
+    File f = d.getSelectedFile();
+    if(f!=null){
+        try{
+            jEditorPane1.read(new FileInputStream(f), kit);
+            changed = true;
+        }
+        catch(Exception e){
+            
+        }
+    }
+}//GEN-LAST:event_jButton7ActionPerformed
+
+private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    JFileChooser d = new JFileChooser();
+    d.setApproveButtonText("OK");
+    d.setAcceptAllFileFilterUsed(true);
+    d.addChoosableFileFilter(new CustomFileFilter(".rtf", "Rich Text files"));
+    d.setDialogTitle("Where to save RTF file?");
+    d.setMultiSelectionEnabled(false);
+    d.showDialog(this, "OK");
+    d.setDialogType(JFileChooser.FILES_ONLY|JFileChooser.SAVE_DIALOG);
+    File f = d.getSelectedFile();
+    if(f!=null){
+        try{
+            kit.write(new FileOutputStream(f), jEditorPane1.getDocument(), 0, jEditorPane1.getDocument().getLength());
+        }
+        catch(Exception e){
+            
+        }
+    }
+}//GEN-LAST:event_jButton9ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -325,6 +401,9 @@ private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

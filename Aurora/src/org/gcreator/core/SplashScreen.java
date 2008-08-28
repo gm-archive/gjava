@@ -42,7 +42,7 @@ public class SplashScreen extends DialogPlus {
                 g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
         
                 g.setColor(Color.GRAY);
-                g.drawString("G-Creator " + gcreator.version + ": " + message, 5, 260);
+                g.drawString("G-Creator " + gcreator.displayVersion + ": " + message, 5, 260);
                 
                 setOpaque(false);
                 super.paint(g);
