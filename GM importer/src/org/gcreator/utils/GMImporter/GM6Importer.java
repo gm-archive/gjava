@@ -57,6 +57,7 @@ import org.gcreator.plugins.*;
 //import org.lateralgm.messages.*;
 import org.gcreator.units.ActorInScene;
 import org.gcreator.units.BackgroundInScene;
+import org.gcreator.units.Dictionary;
 import org.gcreator.units.TimelineStep;
 
 /**
@@ -123,7 +124,8 @@ public class GM6Importer {
         GameProject project = GameProject.balance(ProjectTypes.EMPTY_GAME);
         project.name = fileName.replaceAll("(.*(\\\\|/))(.*)\\..*", "$3");
         GPanel.setMainProject(project);
-        org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(project.findFromName("$218"));
+        org.gcreator.fileclass.GFile settings = (org.gcreator.fileclass.GFile) project.childAt(
+                project.findFromName("$workspace-game-settings"));
         settings.editable = false;
         GmFileContext c = new GmFileContext(project, in);
 
@@ -141,19 +143,19 @@ public class GM6Importer {
             String msg = "Unsupported Version"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
         SettingsValues values = readSettings(settings, c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
+     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
         readSounds(c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
         readSprites(c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Backgrounds");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Backgrounds");
         readBackgrounds(c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Paths");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Paths");
         readPaths(c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scripts");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Scripts");
         readScripts(c);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
         readFonts(c);
 
         /*
@@ -164,9 +166,9 @@ public class GM6Importer {
 
         long position = c.in.getInputStream().getFilePointer();
         readTimelines(c,true);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors ahead");
+     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors ahead");
         readActors(c,true);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes ahead");
+     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes ahead");
         readScenes(c,true);
 
 
@@ -176,11 +178,11 @@ public class GM6Importer {
         c.in.getInputStream().seek(position);
 
         readTimelines(c,false);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors");
+     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors");
         readActors(c,false);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
+    //    org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
         readScenes(c,false);
-        org.gcreator.core.gcreator.debugOut.println("GMI: Scene Order");
+     //   org.gcreator.core.gcreator.debugOut.println("GMI: Scene Order");
         TabValues SceneOrder;
         values.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
         Vector v = new Vector();
@@ -274,7 +276,7 @@ public class GM6Importer {
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-        org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
+      //  org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -450,7 +452,7 @@ public class GM6Importer {
                 type = "wav";
             }
             org.gcreator.fileclass.GFile soundFile;
-            Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$212"));
+            Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-sound"));
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
             File f = File.createTempFile("gc_tmp_", "." + type);
@@ -494,8 +496,8 @@ public class GM6Importer {
             throw versionError("BEFORE", "SPRITES", ver);
         }
         int noSprites = in.read4();
-        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$209"));
-        Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("$210"));
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-image"));
+        Group spriteFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-sprite"));
         for (int i = 0; i < noSprites; i++) {
             if (!in.readBool()) {
                 c.sprites.add(null);
@@ -563,8 +565,8 @@ public class GM6Importer {
             throw versionError("BEFORE", "BACKGROUNDS", ver);
         } //$NON-NLS-1$ //$NON-NLS-2$
         int noBackgrounds = in.read4();
-        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$209"));
-        Group tilesetFolder = (Group) c.pro.childAt(c.pro.findFromName("$211"));
+        Group imageFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-image"));
+        Group tilesetFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-tileset"));
         for (int i = 0; i < noBackgrounds; i++) {
             /*Must deal with backgrounds and tilesets separatelly*/
             if (!in.readBool()) {
@@ -575,7 +577,7 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             c.backgrounds.add(bkimg);
-            System.out.println("add background:"+bkimg.getID());
+         //   System.out.println("add background:"+bkimg.getID());
             ver = in.read4();
             if (ver != 400 && ver != 543) {
                 throw versionError("IN", "BACKGROUNDS", i, ver);
@@ -680,7 +682,7 @@ public class GM6Importer {
 
         int noScripts = in.read4();
 
-        Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("$216"));
+        Group scriptsGroup = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-script"));
         for (int i = 0; i < noScripts; i++) {
             if (!in.readBool()) {
                 c.scripts.add(null);
@@ -756,7 +758,7 @@ public class GM6Importer {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
 
-        Group tlGroup = (Group) c.pro.childAt(c.pro.findFromName("$213"));
+        Group tlGroup = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-timeline"));
         org.gcreator.fileclass.GFile f;
         Timeline a;
 
@@ -844,7 +846,7 @@ public class GM6Importer {
     private static void readScenes(GmFileContext c,boolean fake) throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
-        Group scenesGroup = (Group) c.pro.childAt(c.pro.findFromName("$215"));
+        Group scenesGroup = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-scene"));
         org.gcreator.fileclass.GFile f;
         Scene a;
 
@@ -860,7 +862,7 @@ public class GM6Importer {
             c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
-            org.gcreator.core.gcreator.debugOut.println("Caption:" + a.caption);
+         //   org.gcreator.core.gcreator.debugOut.println("Caption:" + a.caption);
             a.width = in.read4();
             a.height = in.read4();
             a.snapY = in.read4();
@@ -884,7 +886,7 @@ public class GM6Importer {
                 int im = in.read4(); //image
                 //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
                 if (im != -1) {
-                    System.out.println("background:"+im+" fore:"+fore);
+               //     System.out.println("background:"+im+" fore:"+fore);
                     if (c.backgrounds.get(im) !=null)
                     bis.image = c.backgrounds.get(im).getID();
                 }
@@ -990,7 +992,7 @@ public class GM6Importer {
             throw versionError("BEFORE", "OBJECTS", ver);
         }
 
-        Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("$214"));
+        Group actorsGroup = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-actor"));
         org.gcreator.fileclass.GFile f;
         Actor a;
 
