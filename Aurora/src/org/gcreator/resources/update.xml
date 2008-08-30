@@ -1,4 +1,8 @@
-<?xml version="1.0"?>
-<version>1.0alpha</version>
-<date>Not released</date>
-<features>First version of G-Creator</features>
+<?xml version="1.0" encoding="UTF-8"?>
+<update-info>
+	<version>0.84</version>
+	<display-version>G-Creator 1.0 Milestone 3</display-version>
+	<description>The new version of G-Creator features several improvements, including code closer to 1.0.0 compatibility</description>
+	<file zip="true">http://g-creator.org/update/gcreator.zip</file>
+	<size>790 kB</size>
+</update-info>

@@ -17,7 +17,12 @@
  <string>LEFT</string> 
  <string>Native</string> 
  <boolean>false</boolean> 
- <boolean>true</boolean> 
+ <object class="org.gcreator.units.BeanFile"> 
+  <void property="SPath"> 
+   <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/G-Java/dist</string> 
+  </void> 
+ </object> 
+ <boolean>false</boolean> 
  <boolean>false</boolean> 
  <boolean>false</boolean> 
  <int>571</int> 

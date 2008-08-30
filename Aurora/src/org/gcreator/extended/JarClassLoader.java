@@ -19,7 +19,7 @@ import org.gcreator.plugins.Jar;
 
 /**
  *
- * @author bob
+ * @author Serge Humphrey
  */
 public class JarClassLoader extends URLClassLoader {
 
@@ -67,7 +67,8 @@ public class JarClassLoader extends URLClassLoader {
     
     public void reloadJars() {
         Jar[] jars = getJars();
-        ClassLoader cl = new JarClassLoader(jars); 
+        ClassLoader cl = new JarClassLoader(jars);
+        ClassLoading.classLoader.add(cl);
     }
     
     public void reloadJar(Jar jar) {
