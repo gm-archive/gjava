@@ -177,12 +177,13 @@ public class gcreator {
         }
 
         Dictionary.loadDictionaries();
-        
+
         Dictionary.activeDictionary = (String) Registry.get("Global.language");
-        if(Dictionary.activeDictionary==null)
+        if (Dictionary.activeDictionary == null) {
             Dictionary.activeDictionary = "en";
-        
-        
+        }
+
+
         try {
             MetalLookAndFeel.setCurrentTheme((MetalTheme) Registry.get("Graphics.metalTheme"));
         } catch (Exception exc) {
@@ -209,6 +210,7 @@ public class gcreator {
 
         newp.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(1, evt);
             }
@@ -216,6 +218,7 @@ public class gcreator {
 
         opn.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(2, evt);
             }
@@ -223,6 +226,7 @@ public class gcreator {
 
         save.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(3, evt);
             }
@@ -230,6 +234,7 @@ public class gcreator {
 
         saveall.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(4, evt);
             }
@@ -237,6 +242,7 @@ public class gcreator {
 
         saveproj.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.SaveProject();
             }
@@ -244,6 +250,7 @@ public class gcreator {
 
         addimg.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(10, evt);
             }
@@ -251,6 +258,7 @@ public class gcreator {
 
         addspr.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(5, evt);
             }
@@ -258,6 +266,7 @@ public class gcreator {
 
         addtls.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(11, evt);
             }
@@ -265,6 +274,7 @@ public class gcreator {
 
         addpth.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(15, evt);
             }
@@ -272,6 +282,7 @@ public class gcreator {
 
         addsnd.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(6, evt);
             }
@@ -279,6 +290,7 @@ public class gcreator {
 
         addact.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(8, evt);
             }
@@ -286,6 +298,7 @@ public class gcreator {
 
         addscn.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(9, evt);
             }
@@ -299,6 +312,7 @@ public class gcreator {
 
         addgs.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(13, evt);
             }
@@ -306,6 +320,7 @@ public class gcreator {
 
         addtml.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(12, evt);
             }
@@ -313,6 +328,7 @@ public class gcreator {
 
         addgr.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(14, evt);
             }
@@ -320,6 +336,7 @@ public class gcreator {
 
         addaction.setActionListener(new ActionListener() {
 
+            @Override
             public void actionPerformed(ActionEvent evt) {
                 panel.onToolbarActionPerformed(16, evt);
             }
@@ -492,5 +509,9 @@ public class gcreator {
             }
         }
         r.close();
+    }
+
+    /* Don't allow instantation*/
+    private gcreator() {
     }
 }

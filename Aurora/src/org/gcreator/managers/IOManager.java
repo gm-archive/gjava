@@ -33,6 +33,7 @@ import org.gcreator.fileclass.groups.StaticGroup;
 import org.gcreator.fileclass.groups.TilesetGroup;
 import org.gcreator.fileclass.groups.TimelineGroup;
 import org.gcreator.fileclass.res.Resource;
+import org.gcreator.fileclass.res.Sound;
 import org.gcreator.fileclass.res.Sprite;
 import org.xml.sax.SAXException;
 
@@ -61,6 +62,9 @@ public class IOManager {
         }
         if (o instanceof Sprite) {
             return f._savetype = "Sprite";
+        }
+        if (o instanceof Sound) {
+            return f._savetype = "Sound";
         }
         if (o instanceof Resource) {
             return f._savetype = "Serialize";
@@ -131,7 +135,7 @@ public class IOManager {
         String str = f._savetype;
 
         if (str.equals("Null")) {
-        //Don't do anything
+            //Don't do anything
         } else if (str.equals("File")) {
             File file = (File) f.value;
             FileInputStream fs = new FileInputStream(file);
@@ -156,6 +160,10 @@ public class IOManager {
             ObjectOutputStream out = new ObjectOutputStream(s);
             out.writeObject(o);
         } else if (str.equals("Serialize")) {
+            Object o = f.value;
+            ObjectOutputStream out = new ObjectOutputStream(s);
+            out.writeObject(o);
+        } else if (str.equals("Sound")) {
             Object o = f.value;
             ObjectOutputStream out = new ObjectOutputStream(s);
             out.writeObject(o);

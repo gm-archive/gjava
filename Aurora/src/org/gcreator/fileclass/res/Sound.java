@@ -9,7 +9,6 @@
  */
 package org.gcreator.fileclass.res;
 
-import java.io.File;
 import java.util.Arrays;
 
 /**
@@ -17,15 +16,13 @@ import java.util.Arrays;
  * @author TGMG
  */
 public class Sound implements Resource {
-    private static final long serialVersionUID = 2;
-    
-    public File soundfile;//used for playing
+
+    private static final long serialVersionUID = 4;
     public byte[] data;
-    
+
     @Override
     public Object clone() {
         Sound s = new Sound();
-        s.soundfile = new File(this.soundfile.toURI());
         s.data = Arrays.copyOf(this.data, this.data.length);
         return s;
     }

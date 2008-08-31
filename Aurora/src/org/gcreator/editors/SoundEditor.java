@@ -13,17 +13,18 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import org.gcreator.components.JFileFilter;
 import org.gcreator.components.TabPanel;
-import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
-import com.golden.gamedev.engine.audio.MidiRenderer;
-import com.golden.gamedev.engine.audio.WaveRenderer;
 import java.awt.Color;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.gcreator.extended.GMidiRenderer;
+import org.gcreator.extended.GWaveRenderer;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.res.Sound;
 import org.gcreator.managers.Registry;
 import org.gcreator.units.BeanFile;
@@ -34,36 +35,38 @@ import org.gcreator.units.BeanFile;
  */
 public class SoundEditor extends TabPanel {
 
-    public File efile = null;
     public byte[] edata = null;
     public boolean changed = false;
-    public WaveRenderer wave = new WaveRenderer();
-    public MidiRenderer midi = new MidiRenderer();
-
+    public GWaveRenderer wave = new GWaveRenderer();
+    public GMidiRenderer midi = new GMidiRenderer();
+    
     /** Creates new form SoundEditor
      */
     public SoundEditor(GFile f, Project unused) {
         this.file = f;
+        
+        initComponents();
         if (f.value != null) {
-            efile = ((Sound) f.value).soundfile;
             edata = ((Sound) f.value).data;
             jButton4.setEnabled(true);
         } else {
             f.value = new Sound();
         }
-        initComponents();
         updateComponents();
         jTextField1.setText(file.name);
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
 
+            @Override
             public void changedUpdate(DocumentEvent evt) {
                 perform();
             }
 
+            @Override
             public void removeUpdate(DocumentEvent evt) {
                 perform();
             }
 
+            @Override
             public void insertUpdate(DocumentEvent evt) {
                 perform();
             }
@@ -90,7 +93,7 @@ public class SoundEditor extends TabPanel {
     }
 
     public void updateComponents() {
-        if (efile == null) {
+        if (edata == null) {
             jButton2.setEnabled(false);
             jButton3.setEnabled(false);
         } else {
@@ -100,21 +103,42 @@ public class SoundEditor extends TabPanel {
     }
     Sound snd;
 
+    @Override
     public boolean Save() {
         snd = (Sound) file.value;
-        snd.soundfile = efile;
         snd.data = edata;
         file.value = snd;
         changed = false;
         return true;
     }
 
+    @Override
     public boolean canSave() {
         return changed;
     }
 
+    @Override
     public boolean wasModified() {
         return changed;
+    }
+    
+    protected void play() {
+        wave.stop();
+        midi.stop();
+
+        if (edata != null) {
+            try {
+                if (file.type.equals("mid")) {
+                    midi.setVolume(1.0f);
+                    midi.play(new ByteArrayInputStream(edata));
+                } else if (file.type.equals("wav") || file.type.equals("au")) {
+                    wave.setVolume(1.0f);
+                    wave.play(new ByteArrayInputStream(edata));
+                }
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
     }
 
     /** This method is called from within the constructor to
@@ -159,7 +183,7 @@ public class SoundEditor extends TabPanel {
             }
         });
 
-        jButton4.setText("Save As");
+        jButton4.setText("Save As...");
         jButton4.setEnabled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,7 +227,7 @@ public class SoundEditor extends TabPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -224,10 +248,7 @@ public class SoundEditor extends TabPanel {
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile) Registry.get("Directories.soundEditor") : null);
-    if (efile != null) {
-        fc.setCurrentDirectory(efile.getParentFile());
-    }
-    fc.addChoosableFileFilter(new JFileFilter(".*\\.(wav|mid|ogg)", "Sound file"));
+    fc.addChoosableFileFilter(new JFileFilter(".*\\.(wav|mid|au)", "Sound file"));
 //    fc.addChoosableFileFilter(new JFileFilter(".*\\..*", "Any file"));
     fc.setApproveButtonText("OK");
     fc.setDialogTitle("Select sound file");
@@ -235,9 +256,11 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     if (res == JFileChooser.APPROVE_OPTION && fc.getSelectedFile() != null && fc.getSelectedFile().exists()) {
         wave.stop();
         midi.stop();
-        efile = fc.getSelectedFile();
+        File f = fc.getSelectedFile();
+        
+        file.type = f.getName().substring(f.getName().lastIndexOf('.')+1);
         try {
-            FileInputStream streamer = new FileInputStream(efile);
+            FileInputStream streamer = new FileInputStream(f);
             edata = new byte[streamer.available()];
             jButton4.setEnabled(true);
             streamer.read(edata);
@@ -245,21 +268,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            String cp = efile.getCanonicalPath();
-            String type = cp.substring(cp.lastIndexOf(".") + 1);
-            if (type.equals("mid")) {
-                file.type = "mid";
-                midi.setVolume(1.0f);
-                midi.play(efile.toURI().toURL());
-            } else if (type.equals("wav")) {
-                file.type = "wav";
-                wave.setVolume(1.0f);
-                wave.play(efile.toURI().toURL());
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        
         changed = true;
         updateComponents();
         Registry.set("Directories.soundEditor", new BeanFile(fc.getCurrentDirectory()));
@@ -267,45 +276,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton1ActionPerformed
 
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    wave.stop();
-    midi.stop();
-
-    if (efile == null && edata != null) {
-        efile = new File("");
-        try {
-            FileOutputStream fos = new FileOutputStream(efile);
-            fos.write(edata);
-            fos.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    if (efile != null) {
-        if (!efile.exists()) {
-            efile.mkdirs();
-            try {
-                FileOutputStream fos = new FileOutputStream(efile);
-                fos.write(edata);
-                fos.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            String cp = efile.getCanonicalPath();
-            String type = cp.substring(cp.lastIndexOf(".") + 1);
-            if (type.equals("mid")) {
-                midi.setVolume(1.0f);
-                midi.play(efile.toURI().toURL());
-            } else if (type.equals("wav")) {
-                wave.setVolume(1.0f);
-                wave.play(efile.toURI().toURL());
-            }
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-    }
+    play();
 }//GEN-LAST:event_jButton2ActionPerformed
 
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -314,20 +285,19 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jButton3ActionPerformed
 
 private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile) Registry.get("Directories.soundEditorSaveAs") : null);
+    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditorSaveAs") != null) ? (BeanFile) Registry.get("Directories.soundEditorSaveAs") : null);
     File f;
     if (fc.showDialog(this, null) != JFileChooser.APPROVE_OPTION || (f = fc.getSelectedFile()) == null) {
         return;
     }
     BufferedOutputStream out = null;
-    String type = efile.getName().substring(efile.getName().lastIndexOf("."));
-    if (!f.getName().endsWith(type)) {
-        f = new File(f.getPath() + type);
+    if (!f.getName().endsWith(file.type)) {
+        f = new File(f.getPath() + file.type);
     }
     if (f.exists() && JOptionPane.showConfirmDialog(this, "File '" + f + "' Exists. Overwrite?") != JOptionPane.OK_OPTION) {
         return;
     }
-    System.out.println("len: "+edata.length+" efile: "+efile);
+    
     try {
         out = new BufferedOutputStream(new FileOutputStream(f));
         out.write(edata);
@@ -343,6 +313,7 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    Registry.set("Directories.soundEditorSaveAs", new BeanFile(fc.getCurrentDirectory()));
 }//GEN-LAST:event_jButton4ActionPerformed
 
 

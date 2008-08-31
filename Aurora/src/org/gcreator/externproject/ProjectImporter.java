@@ -19,9 +19,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.imageio.ImageIO;
@@ -252,8 +249,6 @@ public class ProjectImporter {
                         type = child.getAttributeValue(aname);
                     } else if (aname.equals("manager")) {
                         manager = child.getAttributeValue(aname);
-                    } else {
-                        Logger.getLogger(ProjectImporter.class.getName()).log(Level.WARNING, "Warning:",  new SAXException("Invalid manifest. Unknown file attribute " + aname));
                     }
                 }
                 if (type == null) {
@@ -268,7 +263,7 @@ public class ProjectImporter {
                 GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
                 file.value = importContent(c, type, manager, fname, c.zip);
-                f.getProject().files.add(i, file);
+                f.getProject().files.add(file);
 
             } else if (name.equals("group")) {
                 //  System.out.println("Got to group");
@@ -350,6 +345,14 @@ public class ProjectImporter {
                 Sprite sp = (Sprite) stream.readObject();
                 sp.p = c.getProject();
                 return sp;
+            } catch (ClassNotFoundException e) {
+                throw new IOException("Could not read serialized object: Class Not Found");
+            }
+        }
+        if (manager.equals("Sound")) {
+            ObjectInputStream stream = new ObjectInputStream(s);
+            try {
+                return stream.readObject();
             } catch (ClassNotFoundException e) {
                 throw new IOException("Could not read serialized object: Class Not Found");
             }
