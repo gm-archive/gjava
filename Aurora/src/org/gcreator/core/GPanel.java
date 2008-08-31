@@ -1943,7 +1943,12 @@ public class GPanel extends JPanel {
         }
         //save to gcp file
         if (mainProject.location == null || mainProject.location.equals("") || saveAs) {
-            JFileChooser fc = new JFileChooser((Registry.exists("Directories.gpanelSaveProject")) ? (BeanFile)Registry.get("Directories.gpanelSaveProject") : null);
+            JFileChooser fc;
+            try {
+                fc = new JFileChooser((Registry.exists("Directories.gpanelSaveProject")) ? (BeanFile)Registry.get("Directories.gpanelSaveProject") : null);
+            } catch (ClassCastException exc) {
+                fc = new JFileChooser();
+            }
             fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
             if (fc.showSaveDialog(gcreator.window) != JFileChooser.APPROVE_OPTION) {
                 return;

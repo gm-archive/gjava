@@ -76,6 +76,9 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("png")) {
                     //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
                     return(img);
+                } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("bmp")) {
+                    //setIcon(((org.gcreator.fileclass.File) noder.object).treeimage);
+                    return(img);
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("java")) {
                     return(java);
                 } else if (((org.gcreator.fileclass.GFile) noder.object).type.equals("actor")) {
@@ -202,12 +205,17 @@ public class WorkspaceCellRenderer extends JLabel implements TreeCellRenderer {
 // limitation in the TreeCellRenderer, the paint method is
 // required to handle this.
     
+    @Override
     public void paint(Graphics g) {
         if(!UIManager.getLookAndFeel().getClass().getName().equals("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")){
             g.setColor(getBackground());
             g.fillRect(0, 0, getWidth(), getHeight());
         }
         g.setColor(getForeground());
-        super.paint(g);
+        try {
+            super.paint(g);
+        } catch (NullPointerException exc) {
+            //Don't do anything.
+        }
     }
 }

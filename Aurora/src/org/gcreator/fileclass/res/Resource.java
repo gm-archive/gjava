@@ -13,14 +13,10 @@ import java.io.Serializable;
 
 /**
  *
- * @author Ali1
+ * @author TGMG
  */
-public interface Resource extends Serializable, Cloneable{
-    //public String name;
+public interface Resource extends Serializable, Cloneable {
     static final long serialVersionUID = 1L;
-//    public abstract String writeXml();
-//    public abstract void readXml(String xml);
-//    public abstract String exportToHtml(boolean xhtml);
-     
+
     public Object clone();
 }

@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_07" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_06" class="java.beans.XMLDecoder"> 
  <boolean>true</boolean> 
- <string>pt</string> 
  <string>TOP</string> 
+ <string>en</string> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
-   <string>/home/luis</string> 
+   <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/Aurora/Samples</string> 
+  </void> 
+ </object> 
+ <object class="org.gcreator.units.BeanFile"> 
+  <void property="SPath"> 
+   <string>/home/bob-the-blueberry</string> 
   </void> 
  </object> 
  <object class="javax.swing.plaf.metal.OceanTheme"/> 
- <boolean>true</boolean> 
- <object class="java.awt.Dimension"> 
-  <int>1296</int> 
-  <int>786</int> 
- </object> 
  <string>LEFT</string> 
+ <object class="java.awt.Dimension"> 
+  <int>1032</int> 
+  <int>702</int> 
+ </object> 
+ <boolean>true</boolean> 
  <string>Native</string> 
- <boolean>false</boolean> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
-   <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/G-Java/dist</string> 
+   <string>/home/bob-the-blueberry/G-Projects</string> 
   </void> 
  </object> 
- <boolean>true</boolean> 
- <boolean>true</boolean> 
  <boolean>false</boolean> 
- <int>657</int> 
+ <boolean>false</boolean> 
+ <boolean>false</boolean> 
+ <int>571</int> 
 </java> 

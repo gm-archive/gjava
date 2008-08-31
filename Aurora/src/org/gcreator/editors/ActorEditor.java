@@ -9,22 +9,43 @@
  */
 package org.gcreator.editors;
 
-import org.gcreator.components.popupmenus.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JEditorPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import org.gcreator.components.TabPanel;
-import org.gcreator.components.impl.*;
-import org.gcreator.components.resource.*;
 import org.gcreator.core.gcreator;
 import org.gcreator.fileclass.Project;
 import org.gcreator.fileclass.res.Actor;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import org.gcreator.exceptions.*;
-import org.gcreator.events.*;
-import org.gcreator.actions.*;
+import org.gcreator.actions.ActionCategory;
+import org.gcreator.actions.ActionContainer;
+import org.gcreator.actions.ActionPattern;
+import org.gcreator.components.impl.ActionListCellRenderer;
+import org.gcreator.components.impl.ActionsCellRenderer;
+import org.gcreator.components.impl.EventCellRenderer;
+import org.gcreator.components.impl.EventSelectListener;
+import org.gcreator.components.popupmenus.ActionPopupMenu;
+import org.gcreator.components.popupmenus.EventListModel;
+import org.gcreator.components.popupmenus.EventPopupMenu;
+import org.gcreator.components.popupmenus.EventSelect;
+import org.gcreator.components.resource.ResourceChooser;
+import org.gcreator.events.BeginStepEvent;
+import org.gcreator.events.CreateEvent;
+import org.gcreator.events.DestroyEvent;
+import org.gcreator.events.DrawEvent;
+import org.gcreator.events.EndStepEvent;
+import org.gcreator.events.StepEvent;
+import org.gcreator.exceptions.WrongResourceException;
 import org.gcreator.units.Dictionary;
 
 public class ActorEditor extends TabPanel {
@@ -64,13 +85,20 @@ public class ActorEditor extends TabPanel {
     }
 
     public void spriteChanged() {
-        System.out.println("Sprite changed to " + spriteres.getFile());
+        if (spriteres.getFile() == null) {
+            return;
+        }
+        //System.out.println("Sprite changed to " + spriteres.getFile());
         actor.sprite = spriteres.getFile().getID();
         changed = true;
         updateNavigator();
     }
     
-    /** Creates new form ActorEditor2 */
+    /** Creates new form ActorEditor2
+     * @param file The File
+     * @param project The Project
+     * @throws org.gcreator.exceptions.WrongResourceException Thrown if file.value isn't an Actor.
+     */
     public ActorEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
         if (file.value == null) {
@@ -92,6 +120,7 @@ public class ActorEditor extends TabPanel {
 
             @Override
             public void mousePressed(java.awt.event.MouseEvent evt) {
+                mouseReleased(evt);
             }
 
             @Override
@@ -100,6 +129,7 @@ public class ActorEditor extends TabPanel {
                     ActionPopupMenu p = new ActionPopupMenu(ActorEditor.this);
                     p.show(jList2, evt.getXOnScreen(), evt.getYOnScreen());
                 }
+                
             }
 
             @Override
@@ -275,7 +305,7 @@ public class ActorEditor extends TabPanel {
         jList3 = new javax.swing.JList();
         jComboBox2 = new javax.swing.JComboBox();
         jPanel7 = new javax.swing.JPanel();
-        field = new org.gcreator.components.ActorFieldPane();
+        field = new org.gcreator.components.ActorFieldPane(this);
 
         jLabel1.setText(Dictionary.getEntry("editors-actor-name"));
 
@@ -473,11 +503,6 @@ public class ActorEditor extends TabPanel {
                 jList1ValueChanged(evt);
             }
         });
-        jList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jList1MouseDragged(evt);
-            }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jButton5.setText(Dictionary.getEntry("editors-actor-addevent"));
@@ -497,7 +522,7 @@ public class ActorEditor extends TabPanel {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5))
         );
@@ -532,18 +557,18 @@ public class ActorEditor extends TabPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
+                .addContainerGap(94, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addContainerGap())
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-            .addComponent(jComboBox2, 0, 187, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, 196, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap())
@@ -558,16 +583,13 @@ public class ActorEditor extends TabPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -575,7 +597,7 @@ public class ActorEditor extends TabPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -584,7 +606,7 @@ public class ActorEditor extends TabPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 391, Short.MAX_VALUE)
+            .addComponent(jSplitPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Actions", jPanel4);
@@ -597,15 +619,15 @@ public class ActorEditor extends TabPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 423, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -755,15 +777,6 @@ public class ActorEditor extends TabPanel {
     //jList2.updateUI();
     }//GEN-LAST:event_jList2MousePressed
 
-    private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-        /*      int to  = jList1.locationToIndex(evt.getPoint());
-        if (to == from) return;
-        org.gcreator.events.Event remove = (org.gcreator.events.Event) this.elist.getEvents().remove(from);
-        (this.elist.getEvents()).add(to,remove);
-        from = to;
-         */
-    }//GEN-LAST:event_jList1MouseDragged
-
     private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
         from = jList1.locationToIndex(evt.getPoint());
         updateUI();
@@ -782,11 +795,13 @@ public class ActorEditor extends TabPanel {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
          EventSelectListener listener = new EventSelectListener() {
 
+            @Override
             public void eventSelected(int type, String name) {
                 event(type, name);
                 changed = true;
             }
 
+            @Override
             public void eventSelected(int type) {
                 event(type, "");
                 changed = true;

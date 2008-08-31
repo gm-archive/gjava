@@ -20,6 +20,8 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.imageio.ImageIO;
@@ -46,7 +48,6 @@ import org.xml.sax.SAXException;
 public class ProjectImporter {
 
     private static JFileChooser fc = new JFileChooser();
-    
 
     static {
         fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
@@ -85,7 +86,7 @@ public class ProjectImporter {
         c.zip = zip;
 
         ZipEntry entry;
-        
+
         boolean manfound = false;
         String s = "";
         entry = zip.getNextEntry();
@@ -94,7 +95,9 @@ public class ProjectImporter {
                 manfound = true;
                 while (zip.available() > 0) {
                     int ch = zip.read();
-                    if(ch==-1) break;
+                    if (ch == -1) {
+                        break;
+                    }
                     s += (char) ch;
                 }
                 zip.closeEntry();
@@ -103,8 +106,9 @@ public class ProjectImporter {
             zip.closeEntry();
             entry = zip.getNextEntry();
         }
-        if(entry==null)
+        if (entry == null) {
             zip.closeEntry();
+        }
         if (!manfound) {
             throw new IOException("Could not find project manifest");
         }
@@ -113,7 +117,7 @@ public class ProjectImporter {
 
     private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
             throws SAXException, IOException {
-    //    System.out.println("s="+s);
+        //    System.out.println("s="+s);
         SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
         if (root == null) {
@@ -128,9 +132,9 @@ public class ProjectImporter {
         String curid = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
-       //     System.out.println("n="+n);
+            //     System.out.println("n="+n);
             String val = root.getAttributeValue(n);
-      //      System.out.println("val="+val);
+            //      System.out.println("val="+val);
             if (n.equals("version")) {
                 version = val;
                 continue;
@@ -139,10 +143,10 @@ public class ProjectImporter {
                 type = val;
                 continue;
             }
-            if (n.equals("curid")){
+            if (n.equals("curid")) {
                 curid = val;
             }
-            //Ignore other attributes for forward-compatibility reasons
+        //Ignore other attributes for forward-compatibility reasons
         }
         if (version == null) {
             throw new SAXException("Malformed project manifest: No project version specified");
@@ -153,7 +157,7 @@ public class ProjectImporter {
         if (type == null) {
             throw new SAXException("Malformed project manifest: No project type specified.");
         }
-        if (curid == null){
+        if (curid == null) {
             throw new SAXException("Malformed project manifest: No curid specified");
         }
         Class ptype = ProjectIO.projectMap.get(type);
@@ -182,18 +186,17 @@ public class ProjectImporter {
 
         c.p = p;
         String path = c.getFile().getAbsolutePath();
-        String name = path.substring(path.lastIndexOf(File.separator)+1);
+        String name = path.substring(path.lastIndexOf(File.separator) + 1);
         name = name.substring(0, name.indexOf("."));
 
         p.name = name;
         p.location = c.getFile();
-        try{
-        p.curid = Integer.parseInt(curid);
-        }
-        catch(Exception e){
+        try {
+            p.curid = Integer.parseInt(curid);
+        } catch (Exception e) {
             throw new SAXException("Malformed project manifest: curid must be integer");
         }
-        if(p.curid<=0){
+        if (p.curid <= 0) {
             throw new SAXException("Malformed project manifest: curid must be positive");
         }
 
@@ -243,17 +246,14 @@ public class ProjectImporter {
                 String fname = child.getContent();
                 String type = null;
                 String manager = null;
-                String id = null;
                 for (int j = 0; j < child.getAttributeCount(); j++) {
                     String aname = child.getAttributeName(j);
                     if (aname.equals("type")) {
                         type = child.getAttributeValue(aname);
                     } else if (aname.equals("manager")) {
                         manager = child.getAttributeValue(aname);
-                    } else if(aname.equals("id")) {
-                        id = child.getAttributeValue(aname);
                     } else {
-                        throw new SAXException("Invalid manifest. Unknown file attribute " + aname);
+                        Logger.getLogger(ProjectImporter.class.getName()).log(Level.WARNING, "Warning:",  new SAXException("Invalid manifest. Unknown file attribute " + aname));
                     }
                 }
                 if (type == null) {
@@ -262,28 +262,16 @@ public class ProjectImporter {
                 if (manager == null) {
                     throw new SAXException("Invalid manifest. Missing content manager");
                 }
-                if (id == null){
-                    throw new SAXException("Invalid manifest. Missing file id");
-                }
                 if (child.getChildrenCount() > 0) {
                     throw new SAXException("Invalid manifest. Unexpected children for file.");
                 }
-                int cid = 0;
-                try{
-                    cid = Integer.parseInt(id);
-                }
-                catch(Exception e){
-                    throw new SAXException("Invalid manifest: File id must be integer");
-                }
-                if(cid<=0)
-                    throw new SAXException("Invalid manifest: File id must be positive");
                 GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
                 file.value = importContent(c, type, manager, fname, c.zip);
-                f.getProject().files.add(cid-1, file);
+                f.getProject().files.add(i, file);
 
             } else if (name.equals("group")) {
-              //  System.out.println("Got to group");
+                //  System.out.println("Got to group");
                 if (child.getAttributeCount() != 2) {
                     throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
                 }
@@ -329,13 +317,13 @@ public class ProjectImporter {
 
     public static Object importContent(ImportContext c, String type, String manager, String name, InputStream s)
             throws IOException, SAXException {
-        if(manager.equals("Null")){
+        if (manager.equals("Null")) {
             return null;
         }
         if (manager.equals("PlainText")) {
             String res = "";
             int i = s.read();
-            while (i!=-1) {
+            while (i != -1) {
                 res += (char) i;
                 i = s.read();
             }
@@ -345,7 +333,7 @@ public class ProjectImporter {
             File file = File.createTempFile("gc_tmp_", "." + type);
             FileOutputStream fs = new FileOutputStream(file);
             int i = s.read();
-            while(i!=-1){
+            while (i != -1) {
                 fs.write(i);
                 i = s.read();
             }
@@ -356,7 +344,7 @@ public class ProjectImporter {
             BufferedImage b = ImageIO.read(s);
             return new ImageIcon(b);
         }
-        if (manager.equals("Sprite")){
+        if (manager.equals("Sprite")) {
             ObjectInputStream stream = new ObjectInputStream(s);
             try {
                 Sprite sp = (Sprite) stream.readObject();

@@ -579,7 +579,8 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             @Override
         public void paint(Graphics g) {
             super.paint(g);
-            g.drawImage(i.transparentImage.getImage(), 0, 0, i.transparentImage.getImageObserver());
+            ImageIcon ii = (i.transparentImage != null) ? i.transparentImage : i.image;
+            g.drawImage(ii.getImage(), 0, 0, ii.getImageObserver());
         }
     };
    // com.sun.jna.examples.WindowUtils.setWindowAlpha(d, 0); - doren't work

@@ -9,13 +9,16 @@
  */
 package org.gcreator.actions.mainactions;
 
-import org.gcreator.actions.*;
-import javax.swing.*;
-import com.l2fprod.common.propertysheet.*;
+import com.l2fprod.common.propertysheet.DefaultProperty;
+import com.l2fprod.common.propertysheet.Property;
+import com.l2fprod.common.propertysheet.PropertySheetPanel;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import org.gcreator.actions.ActionPattern;
 import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
+
 
 /**
  *
@@ -84,14 +87,17 @@ public class CallFunction extends ActionPattern {
     //System.out.println("text saved as:"+text);
     }
 
+    @Override
     public ImageIcon getStandardImage() {
         return icon;
     }
 
+    @Override
     public void setStandardImage(ImageIcon img) {
         icon = img;
     }
 
+    @Override
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
         PropertyManager propertySheetPanel1 = new PropertyManager();
         /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
@@ -168,6 +174,7 @@ public class CallFunction extends ActionPattern {
         return propertySheetPanel1;
     }
 
+    @Override
     public String getStandardText(JComponent panel) {
         if (panel != null && panel instanceof PropertySheetPanel) {
             save(panel);
@@ -177,6 +184,7 @@ public class CallFunction extends ActionPattern {
         return "Call function";
     }
 
+    @Override
     public String generateGCL(JComponent panel) {
         if (panel != null && panel instanceof PropertySheetPanel) {
             PropertySheetPanel editor = (PropertySheetPanel) panel;

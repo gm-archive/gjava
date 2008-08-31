@@ -6,6 +6,10 @@
 package org.gcreator.editors;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import org.gcreator.components.JFileFilter;
 import org.gcreator.components.TabPanel;
@@ -14,8 +18,10 @@ import org.gcreator.fileclass.Project;
 import com.golden.gamedev.engine.audio.MidiRenderer;
 import com.golden.gamedev.engine.audio.WaveRenderer;
 import java.awt.Color;
+import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.gcreator.fileclass.res.Sound;
@@ -29,7 +35,7 @@ import org.gcreator.units.BeanFile;
 public class SoundEditor extends TabPanel {
 
     public File efile = null;
-    public byte[] edata=null;
+    public byte[] edata = null;
     public boolean changed = false;
     public WaveRenderer wave = new WaveRenderer();
     public MidiRenderer midi = new MidiRenderer();
@@ -40,7 +46,10 @@ public class SoundEditor extends TabPanel {
         this.file = f;
         if (f.value != null) {
             efile = ((Sound) f.value).soundfile;
-            edata=((Sound) f.value).data;
+            edata = ((Sound) f.value).data;
+            jButton4.setEnabled(true);
+        } else {
+            f.value = new Sound();
         }
         initComponents();
         updateComponents();
@@ -89,11 +98,12 @@ public class SoundEditor extends TabPanel {
             jButton3.setEnabled(true);
         }
     }
-Sound snd;
+    Sound snd;
+
     public boolean Save() {
-        snd = (Sound)file.value;
-        snd.soundfile=efile;
-        snd.data=edata;
+        snd = (Sound) file.value;
+        snd.soundfile = efile;
+        snd.data = edata;
         file.value = snd;
         changed = false;
         return true;
@@ -121,6 +131,7 @@ Sound snd;
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
 
         jLabel1.setText("Sound: ");
@@ -148,24 +159,35 @@ Sound snd;
             }
         });
 
+        jButton4.setText("Save As");
+        jButton4.setEnabled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(75, Short.MAX_VALUE))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTextField1.setText("jTextField1");
@@ -181,7 +203,7 @@ Sound snd;
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -201,39 +223,41 @@ Sound snd;
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile)Registry.get("Directories.soundEditor") : null);
+    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile) Registry.get("Directories.soundEditor") : null);
     if (efile != null) {
-            fc.setCurrentDirectory(efile.getParentFile());
-        }
+        fc.setCurrentDirectory(efile.getParentFile());
+    }
     fc.addChoosableFileFilter(new JFileFilter(".*\\.(wav|mid|ogg)", "Sound file"));
 //    fc.addChoosableFileFilter(new JFileFilter(".*\\..*", "Any file"));
     fc.setApproveButtonText("OK");
     fc.setDialogTitle("Select sound file");
     int res = fc.showDialog(this, null);
-    if (res == JFileChooser.APPROVE_OPTION) {
+    if (res == JFileChooser.APPROVE_OPTION && fc.getSelectedFile() != null && fc.getSelectedFile().exists()) {
         wave.stop();
         midi.stop();
         efile = fc.getSelectedFile();
-        try{
-        FileInputStream streamer = new FileInputStream(efile);
- edata=new byte[streamer.available()];
-   streamer.read(edata);
-   streamer.close();
-        }catch(Exception e){e.printStackTrace();}
+        try {
+            FileInputStream streamer = new FileInputStream(efile);
+            edata = new byte[streamer.available()];
+            jButton4.setEnabled(true);
+            streamer.read(edata);
+            streamer.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             String cp = efile.getCanonicalPath();
-            String type = cp.substring(cp.lastIndexOf(".")+1);
+            String type = cp.substring(cp.lastIndexOf(".") + 1);
             if (type.equals("mid")) {
                 file.type = "mid";
                 midi.setVolume(1.0f);
                 midi.play(efile.toURI().toURL());
-            }
-            else if(type.equals("wav")) {
+            } else if (type.equals("wav")) {
                 file.type = "wav";
                 wave.setVolume(1.0f);
                 wave.play(efile.toURI().toURL());
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
         changed = true;
@@ -245,38 +269,40 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
     wave.stop();
     midi.stop();
-    
-    if(efile==null && edata !=null){
-    efile=new File("");
-    try{
-        FileOutputStream fos = new FileOutputStream(efile);
-        fos.write(edata);
-        fos.close();
-            }catch(Exception e){e.printStackTrace();}
+
+    if (efile == null && edata != null) {
+        efile = new File("");
+        try {
+            FileOutputStream fos = new FileOutputStream(efile);
+            fos.write(edata);
+            fos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    if(efile!=null){
-        if (!efile.exists()){
+    if (efile != null) {
+        if (!efile.exists()) {
             efile.mkdirs();
-            try{
-        FileOutputStream fos = new FileOutputStream(efile);
-        fos.write(edata);
-        fos.close();
-            }catch(Exception e){e.printStackTrace();}
+            try {
+                FileOutputStream fos = new FileOutputStream(efile);
+                fos.write(edata);
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        try{
-        String cp = efile.getCanonicalPath();
-        String type = cp.substring(cp.lastIndexOf(".")+1);
-        if(type.equals("mid")){
-            midi.setVolume(1.0f);
-            midi.play(efile.toURI().toURL());
-        }
-        else if(type.equals("wav")){
-            wave.setVolume(1.0f);
-            wave.play(efile.toURI().toURL());
-        }
-        }
-        catch(Exception e){
+        try {
+            String cp = efile.getCanonicalPath();
+            String type = cp.substring(cp.lastIndexOf(".") + 1);
+            if (type.equals("mid")) {
+                midi.setVolume(1.0f);
+                midi.play(efile.toURI().toURL());
+            } else if (type.equals("wav")) {
+                wave.setVolume(1.0f);
+                wave.play(efile.toURI().toURL());
+            }
+        } catch (Exception e) {
             System.out.println(e.toString());
         }
     }
@@ -287,11 +313,44 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     midi.stop();
 }//GEN-LAST:event_jButton3ActionPerformed
 
+private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    JFileChooser fc = new JFileChooser((Registry.get("Directories.soundEditor") != null) ? (BeanFile) Registry.get("Directories.soundEditorSaveAs") : null);
+    File f;
+    if (fc.showDialog(this, null) != JFileChooser.APPROVE_OPTION || (f = fc.getSelectedFile()) == null) {
+        return;
+    }
+    BufferedOutputStream out = null;
+    String type = efile.getName().substring(efile.getName().lastIndexOf("."));
+    if (!f.getName().endsWith(type)) {
+        f = new File(f.getPath() + type);
+    }
+    if (f.exists() && JOptionPane.showConfirmDialog(this, "File '" + f + "' Exists. Overwrite?") != JOptionPane.OK_OPTION) {
+        return;
+    }
+    System.out.println("len: "+edata.length+" efile: "+efile);
+    try {
+        out = new BufferedOutputStream(new FileOutputStream(f));
+        out.write(edata);
+        out.close();
+    } catch (FileNotFoundException ex) {
+        Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (IOException ex) {
+        Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+    } finally {
+        try {
+            out.close();
+        } catch (IOException ex) {
+            Logger.getLogger(SoundEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+}//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;

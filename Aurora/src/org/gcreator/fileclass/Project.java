@@ -18,7 +18,7 @@ import org.gcreator.exceptions.NoSuchFolderException;
  * @author Luís
  */
 public abstract class Project extends Folder {
-     
+
     public transient java.io.File location = null;
     /**
      * Shouldn't be public, but superpackages aren't implemented in Java 6 yet...
@@ -37,120 +37,132 @@ public abstract class Project extends Folder {
     public Vector<Sound> sounds = new Vector<Sound>();
     public Vector<Scene> scenes = new Vector<Scene>(); 
     public Vector<Classes> classes = new Vector<Classes>(); */
-    
-    public Project(){
+    public Project() {
         super(null);
     }
-    
-    public int getIdFor(GFile file){
+
+    public int getIdFor(GFile file) {
         return files.indexOf(file);
     }
-    
-    public GFile getFileFor(int id){
-        try{
+
+    public GFile getFileFor(int id) {
+        try {
             return files.get(id);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
-    
-    public int addFile(GFile file){
-        try{
+
+    public int addFile(GFile file) {
+        try {
             //System.out.println("Before adding");
-            if(curid>=files.size())
-                files.setSize(curid+1);
+            if (curid >= files.size()) {
+                files.setSize(curid + 1);
+            }
             files.add(curid, file);
             //System.out.println("Added " + curid);
             return curid++;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Failed to add due to " + e);
             return -1;
         }
     }
-    
+
     public Project(String name, java.io.File location) {
         super(name);
         this.location = location;
     }
-    
-    public String getType(){
+
+    public String getType() {
         return null;
     }
-    
-    public static Project balance(){
+
+    public static Project balance() {
         return null;//new Project();
-    } 
-     
-    public String getObjectType(){
+    }
+
+    @Override
+    public String getObjectType() {
         return "Project";
     }
-    
-    public Enumeration getEnum(String key){
+
+    public Enumeration getEnum(String key) {
         return null;
     }
-    
-    public boolean validOfType(GObject obj, String key){
+
+    public boolean validOfType(GObject obj, String key) {
         return true;
     }
-    
-    public Folder getFolderFor(String key){
+
+    public Folder getFolderFor(String key) {
         return null;
     }
-    
-    public boolean allowDrag(){
+
+    @Override
+    public boolean allowDrag() {
         return false;
     }
-    
-    public String getPath(){
+
+    @Override
+    public String getPath() {
         return "/";
     }
-     
-    public Folder findFolder(String name) throws NoSuchFolderException{
-        if(name==null)
+
+    @Override
+    public Folder findFolder(String name) throws NoSuchFolderException {
+        if (name == null) {
             throw new NoSuchFolderException();
-        if(name.equals("")||name.equals("/"))
+        }
+        if (name.equals("") || name.equals("/")) {
             return this;
-        if(name.charAt(0)=='/')
+        }
+        if (name.charAt(0) == '/') {
             name = name.substring(1);
-        for(int i = 0; i < childNodes.size(); i++){
+        }
+        for (int i = 0; i < childNodes.size(); i++) {
             Object o = childNodes.get(i);
-            if(o != null && o instanceof Folder){
-                try{
+            if (o != null && o instanceof Folder) {
+                try {
                     Folder a = ((Folder) o).findFolder(name.substring(name.indexOf(name)));
                     return a;
+                } catch (NoSuchFolderException e) {
                 }
-                catch(NoSuchFolderException e){}
             }
         }
         throw new NoSuchFolderException("Project");
     }
-    
-    public GFile findFile(String name) throws NoSuchFolderException{
-        if(name==null)
+
+    @Override
+    public GFile findFile(String name) throws NoSuchFolderException {
+        if (name == null) {
             throw new NoSuchFolderException();
-        if(name.equals("")||name.equals("/"))
+        }
+        if (name.equals("") || name.equals("/")) {
             return null;
-        if(name.charAt(0)=='/')
+        }
+        if (name.charAt(0) == '/') {
             name = name.substring(1);
-        for(int i = 0; i < childNodes.size(); i++){
+        }
+        for (int i = 0; i < childNodes.size(); i++) {
             Object o = childNodes.get(i);
-            if(o != null && o instanceof Folder){
-                try{
+            if (o != null && o instanceof Folder) {
+                try {
                     GFile a = ((Folder) o).findFile(name.substring(name.indexOf(name)));
                     return a;
+                } catch (NoSuchFolderException e) {
                 }
-                catch(NoSuchFolderException e){}
             }
-            if(o != null && o instanceof GFile){
-                if(((GFile) o).name.equals(name)) return (GFile) o;
+            if (o != null && o instanceof GFile) {
+                if (((GFile) o).name.equals(name)) {
+                    return (GFile) o;
+                }
             }
         }
         throw new NoSuchFolderException("Project: " + name);
     }
-    
-    public Project getProject(){
+
+    @Override
+    public Project getProject() {
         return this;
     }
 }

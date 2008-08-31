@@ -1,1 +1,4 @@
-action_move("111101111", 8)
+{ action_sound(hit, 0)}
+{argument_relative=true; action_set_score(1)}
+{ action_move_random(0, 0)}
+{ action_move("111101111", 8)}

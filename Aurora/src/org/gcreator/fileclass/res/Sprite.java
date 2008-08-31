@@ -68,7 +68,7 @@ public class Sprite implements Resource {
     public void addToList(org.gcreator.fileclass.GFile i){
         //images.add(i);
         int j = i.getProject().getIdFor(i);
-        System.out.println("Add " + j);
+      //  System.out.println("Add " + j);
         Simages.add(j);
     }
     

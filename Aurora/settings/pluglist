@@ -1,14 +1,13 @@
 [G-Creator Plugin List]
 [~Plugin~]
-Author=LuÃÂÃÂÃÂÃÂ­s Reis
+Author=Luís Reis
 Author=The LGM team #but not directly
 Core=org.gcreator.utils.GMImporter.plugin
 License=GPL v3
 Name=GM Importer
-Version=
-Image=./plugins/./plugins/./plugins/./plugins/
+Version=1.0a1
+Image=
 Jar=GM_importer.jar
-Update=null
 [~Plugin~]
 Author=TGMG
 Core=org.gcreator.compilers.GJava
