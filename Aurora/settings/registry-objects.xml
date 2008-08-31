@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<java version="1.6.0_06" class="java.beans.XMLDecoder"> 
+<java version="1.6.0_07" class="java.beans.XMLDecoder"> 
  <boolean>true</boolean> 
- <string>en</string> 
+ <string>pt</string> 
  <string>TOP</string> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
@@ -11,8 +11,8 @@
  <object class="javax.swing.plaf.metal.OceanTheme"/> 
  <boolean>true</boolean> 
  <object class="java.awt.Dimension"> 
-  <int>1032</int> 
-  <int>702</int> 
+  <int>1296</int> 
+  <int>786</int> 
  </object> 
  <string>LEFT</string> 
  <string>Native</string> 
@@ -22,8 +22,8 @@
    <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/G-Java/dist</string> 
   </void> 
  </object> 
+ <boolean>true</boolean> 
+ <boolean>true</boolean> 
  <boolean>false</boolean> 
- <boolean>false</boolean> 
- <boolean>false</boolean> 
- <int>571</int> 
+ <int>657</int> 
 </java> 
