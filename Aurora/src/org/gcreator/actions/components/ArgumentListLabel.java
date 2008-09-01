@@ -7,7 +7,6 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-
 package org.gcreator.actions.components;
 
 import javax.swing.JLabel;
@@ -16,18 +15,24 @@ import javax.swing.JLabel;
  *
  * @author Luís
  */
-/*internal*/ class ArgumentListLabel extends JLabel{
+class ArgumentListLabel extends JLabel {
+
+    private static final long serialVersionUID = 1;
     public ArgumentListEditor a;
-    ArgumentListLabel(ArgumentListEditor a){
+
+    ArgumentListLabel(ArgumentListEditor a) {
         this.a = a;
     }
-    
-    public String getText(){
-        if(a==null)
+
+    @Override
+    public String getText() {
+        if (a == null) {
             return "";
+        }
         String s = a.getAsText();
-        if(s==null)
+        if (s == null) {
             return "null";
+        }
         return s;
     }
 }

@@ -9,27 +9,39 @@
  */
 package org.gcreator.autocomplete.impl;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+
 
 /**
  * @author Luís Reis
  */
-public abstract class Suggestion implements Comparable<Suggestion>{
+public abstract class Suggestion implements Comparable<Suggestion> {
+
     public abstract String getText();
+
     public abstract ImageIcon getImage();
+
     public abstract Color getForeground();
-    public Font getFont(){
+
+    public Font getFont() {
         return new Font(Font.MONOSPACED, Font.PLAIN, 12);
     }
+
     public abstract String confirm(String context, String prevWord);
-    public String toString(){
+
+    @Override
+    public String toString() {
         return getText();
     }
-    public int compareTo(Suggestion s){
+
+    @Override
+    public int compareTo(Suggestion s) {
         return getText().compareTo(s.getText());
     }
-    public int retreat(){
+
+    public int retreat() {
         return 0;
     }
 }

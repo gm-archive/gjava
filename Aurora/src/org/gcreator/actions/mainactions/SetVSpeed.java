@@ -78,7 +78,7 @@ static final long serialVersionUID = 1L;
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager();
+        PropertyManager propertySheetPanel1 = new PropertyManager(project);
          
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");

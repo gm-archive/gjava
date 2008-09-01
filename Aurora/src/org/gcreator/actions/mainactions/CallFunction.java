@@ -16,9 +16,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import org.gcreator.actions.ActionPattern;
 import org.gcreator.actions.components.ArgumentList;
+import org.gcreator.actions.components.FunctionName;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-
 
 /**
  *
@@ -28,15 +28,11 @@ public class CallFunction extends ActionPattern {
 
     static final long serialVersionUID = 1L;
     public String ret = "x";
-    public String fname = "f";
-    public Boolean relative = false;//,question=false;
+    public FunctionName fname = new FunctionName();
+    public Boolean relative = false;
     public ArgumentList args = new ArgumentList();
-    public static ImageIcon icon = new ImageIcon(CallFunction.class.getResource("/org/gcreator/actions/images/function.png"));;
-    
+    public static ImageIcon icon = new ImageIcon(CallFunction.class.getResource("/org/gcreator/actions/images/function.png"));
 
-//    private static final ObjectStreamField[] serialPersistentFields
-//                 = {new ObjectStreamField(
-//      "text", String.class)};
     public CallFunction() {
         super();
     }
@@ -55,13 +51,7 @@ public class CallFunction extends ActionPattern {
             } else if (p.getName().equals("relative")) {
                 p.setValue(relative);
             }
-//            } else if (p.getName().equals("question")) {
-//                p.setValue(question);
-//            }
         }
-    //((HSpeedEditor) panel).to.setText(to);
-    //((HSpeedEditor) panel).of.setText(with);
-    //System.out.println("TEXT LOADED AS:"+to);
     }
 
     @Override
@@ -72,19 +62,13 @@ public class CallFunction extends ActionPattern {
             if (p.getName().equals("ret")) {
                 ret = (String) p.getValue();
             } else if (p.getName().equals("fname")) {
-                fname = (String) p.getValue();
+                fname = (FunctionName) p.getValue();
             } else if (p.getName().equals("args")) {
                 args = (ArgumentList) p.getValue();
             } else if (p.getName().equals("relative")) {
                 relative = (Boolean) p.getValue();
             }
-//            else if (p.getName().equals("question")) {
-//                question = (Boolean) p.getValue();
-//            }
         }
-    //to = ((HSpeedEditor) panel).to.getText();
-    //with = ((HSpeedEditor) panel).of.getText();
-    //System.out.println("text saved as:"+text);
     }
 
     @Override
@@ -99,16 +83,7 @@ public class CallFunction extends ActionPattern {
 
     @Override
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager();
-        /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
-        propertySheetPanel1.setEditorFactory(new PropertyEditorFactory() {
-
-            public PropertyEditor createPropertyEditor(Property arg0) {
-                if(arg0.getType()==org.gcreator.actions.components.FailureBehavior.class)
-                    return new org.gcreator.actions.components.FailureBehaviorEditor();
-                return f.createPropertyEditor(arg0);
-            }
-        });*/
+        PropertyManager propertySheetPanel1 = new PropertyManager(project);
 
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");
@@ -119,17 +94,17 @@ public class CallFunction extends ActionPattern {
         p.setValue("");
         p.setShortDescription("The variable to store the return value.<br>Leave empty for none");
         propertySheetPanel1.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("fname");
         p.setDisplayName("Function");
         p.setEditable(true);
-        p.setType(String.class);
+        p.setType(FunctionName.class);
         p.setValue(fname);
         p.setShortDescription("The function to call");
         propertySheetPanel1.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("args");
@@ -139,7 +114,7 @@ public class CallFunction extends ActionPattern {
         p.setValue(args);
         p.setShortDescription("The arguments of the function");
         propertySheetPanel1.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setCategory("<html><b>Main");
         p.setName("relative");
@@ -149,28 +124,6 @@ public class CallFunction extends ActionPattern {
         p.setValue(relative);
         p.setShortDescription("Should the result of the function be relative to previous value?");
         propertySheetPanel1.addProperty(p);
-
-//        p = new DefaultProperty();
-//        p.setCategory("<html><b>Main");
-//        p.setName("question");
-//        p.setDisplayName("Question?");
-//        p.setEditable(true);
-//        p.setType(Boolean.class);
-//        p.setValue(relative);
-//        p.setShortDescription("Is this a question? If so it will be treated as an if statement.");
-//        propertySheetPanel1.addProperty(p);
-
-        //p = new DefaultProperty();
-        //p.setCategory("<html><b>Useless");
-        //p.setName("test");
-        //p.setDisplayName("test");
-        //p.setEditable(true);
-        //p.setType(org.gcreator.actions.components.FailureBehavior.class);
-        //org.gcreator.actions.components.FailureBehavior f2 = new org.gcreator.actions.components.FailureBehavior(1);
-        //p.setValue(f2);
-        //p.setShortDescription("Is the new value absolute or relative to the old one.");
-        //propertySheetPanel1.addProperty(p);
-
         return propertySheetPanel1;
     }
 
@@ -178,8 +131,7 @@ public class CallFunction extends ActionPattern {
     public String getStandardText(JComponent panel) {
         if (panel != null && panel instanceof PropertySheetPanel) {
             save(panel);
-            PropertySheetPanel editor = (PropertySheetPanel) panel;
-            return "Call $func".replaceAll("\\$func", fname);
+            return "Call $func".replaceAll("\\$func", fname.toString());
         }
         return "Call function";
     }
@@ -187,19 +139,16 @@ public class CallFunction extends ActionPattern {
     @Override
     public String generateGCL(JComponent panel) {
         if (panel != null && panel instanceof PropertySheetPanel) {
-            PropertySheetPanel editor = (PropertySheetPanel) panel;
             save(panel);
-            String rel="{",endrel="}";
-            if (this.relative){
-                rel+="argument_relative=true;";
-            endrel="argument_relative=false;}";
+            String rel = "{", endrel = "}";
+            if (this.relative) {
+                rel += "argument_relative=true;";
+                endrel = "argument_relative=false;}";
             }
-//            if (this.question)
-//                return "if ("+ fname + "("+args.toString()+","+this.relative+"))";
             if (ret.equals("")) {
-                return rel+" "+ fname + "("+args.toString()+")}";
+                return rel + " " + fname + "(" + args.toString() + ")}";
             } else {
-                return rel+" "+ret + " = " + fname + "("+args.toString()+")"+endrel;
+                return rel + " " + ret + " = " + fname + "(" + args.toString() + ")" + endrel;
             }
         }
         return "";

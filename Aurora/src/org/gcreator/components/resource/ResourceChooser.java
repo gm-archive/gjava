@@ -9,56 +9,49 @@
  */
 package org.gcreator.components.resource;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import org.gcreator.fileclass.*;
-import org.gcreator.units.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.ActionListener;
+import javax.swing.JComponent;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.Project;
 
 /**
  *
  * @author Luís
  */
-public class ResourceChooser extends JComponent{
+public class ResourceChooser extends JComponent {
+
+    private static final long serialVersionUID = 1;
     private FileLabel label;
-    
-    public ResourceChooser(Project p, String key){
+
+    public ResourceChooser(Project p, String key) {
         label = new FileLabel(p, key);
-        
+
         label.setVisible(true);
-        
+
         setLayout(new BorderLayout());
         add(label, BorderLayout.CENTER);
     }
-    
-    public void setFile(GFile file){
+
+    public void setFile(GFile file) {
         label.setFile(file);
     }
-    
-    public GFile getFile(){
+
+    public GFile getFile() {
         return label.getFile();
     }
-    
-    public boolean isSaveChecked(){
+
+    public boolean isSaveChecked() {
         return label.isSaveChecked();
     }
-    
-    public void addActionListener(ActionListener a){
+
+    public void addActionListener(ActionListener a) {
         label.addActionListener(a);
     }
-    
-    /**
-     * @deprecated use getFile instead
-     */
-    public ObjectNode getCurrentObject(){
-        GFile f = getFile();
-        if(f==null)
-            return null;
-        return f.node;
-    }
-    
+
     @Override
-    public Dimension getPreferredSize(){
+    public Dimension getPreferredSize() {
         return new Dimension(120, 30);
     }
 }

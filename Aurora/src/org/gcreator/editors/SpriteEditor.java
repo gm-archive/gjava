@@ -809,8 +809,8 @@ public class SpriteEditor extends TabPanel {
                         newImg.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 
                 for (int i = 0; i < sprite.countImages(); i++) {
-                    bufImg.getGraphics().drawImage(sprite.getImageAt(i).getImage().getImage(), 0, 0, sprite.getImageAt(i).getImage().getImageObserver());
-                    sprite.getImageAt(i).image = new ImageIcon(bufImg);// TODO: figure out why this changes the origanal sprite, not the cloned one
+                    bufImg.getGraphics().drawImage(sprite.getImageIconAt(i).getImage(), 0, 0, sprite.getImageIconAt(i).getImageObserver());
+                    sprite.setImageIconAt(i, new ImageIcon(bufImg));// TODO: figure out why this changes the origanal sprite, not the cloned one
                     //!!BAD PROGRAMMING ALERT:
                     bufImg = new BufferedImage(newImg.getIconWidth(),
                             newImg.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);//Any good way to clear bufImg? flush() doesn't seem to work.
@@ -881,8 +881,8 @@ public class SpriteEditor extends TabPanel {
                 bufImg = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);
                 //<editor-fold desc="Resize all the images">
                 for (int i = 0; i < sprite.countImages(); i++) {
-                    bufImg.getGraphics().drawImage(sprite.getImageAt(i).getImage().getImage(), 0, 0, sprite.getImageAt(i).getImage().getImageObserver());
-                    sprite.getImageAt(i).image = new ImageIcon(bufImg);// TODO: figure out why this changes the origanal sprite, not the cloned one
+                    bufImg.getGraphics().drawImage(sprite.getImageIconAt(i).getImage(), 0, 0, sprite.getImageIconAt(i).getImageObserver());
+                    sprite.setImageIconAt(i, new ImageIcon(bufImg));// TODO: figure out why this changes the origanal sprite, not the cloned one
                     bufImg = new BufferedImage(width, height, BufferedImage.TYPE_4BYTE_ABGR);//Any good way to clear bufImg? flush() doesn't seem to work.
                 }//</editor-fold>
                 //<editor-fold desc="if the option isn't 'Stretched'">
@@ -1016,7 +1016,8 @@ public class SpriteEditor extends TabPanel {
             if (i >= subimageList.countVisibleElements()) {
                 subimageList.addElement(null, null, null);
             }
-            subimageList.setElementImage(i, new ImageIcon(sprite.getImageAt(i).image.getImage().getScaledInstance(Math.min(100, sprite.getImageAt(i).image.getIconWidth()), -1, Image.SCALE_DEFAULT)));
+            subimageList.setElementImage(i, new ImageIcon(sprite.getImageIconAt(i).getImage().
+                    getScaledInstance(Math.min(100, sprite.getImageIconAt(i).getIconWidth()), -1, Image.SCALE_DEFAULT)));
             subimageList.setElementText(i, "Subimage " + (i + 1));
             subimageList.setElementExtraContent(i, new Integer(i));
         }

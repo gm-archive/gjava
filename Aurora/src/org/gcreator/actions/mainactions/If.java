@@ -20,16 +20,23 @@ import org.gcreator.fileclass.Project;
  *
  * @author luis
  */
-public class If extends ActionPattern{
-    
+public class If extends ActionPattern {
+
     static final long serialVersionUID = 1L;
-    
     public boolean not = false;
     public String condition = "true";
+    public static ImageIcon img = new ImageIcon(If.class.getResource("/org/gcreator/actions/images/If.png"));
+
     
-    public static ImageIcon img = new ImageIcon(If.class.getResource("/org/gcreator/actions/images/If.png"));;
     
-    public If(){
+
+      
+    
+
+       ; 
+            
+             
+             public If(){
         //super();
     }
     
@@ -37,38 +44,42 @@ public class If extends ActionPattern{
     public void load(JComponent panel){
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
-            if(p.getName().equals("not"))
+            if(p.getName().equals("not")) {
                 not = (Boolean) p.getValue();
-            if(p.getName().equals("condition"))
+            }
+            if (p.getName().equals("condition")) {
                 condition = (String) p.getValue();
+            }
         }
     }
-    
+
     @Override
-    public void save(JComponent panel){
+    public void save(JComponent panel) {
         Property[] ps = ((PropertyManager) panel).getProperties();
-        for(Property p : ps){
-            if(p.getName().equals("not"))
+        for (Property p : ps) {
+            if (p.getName().equals("not")) {
                 p.setValue(not);
-            if(p.getName().equals("condition"))
+            }
+            if (p.getName().equals("condition")) {
                 p.setValue(condition);
+            }
         }
     }
-    
+
     @Override
-    public void setStandardImage(ImageIcon img){
+    public void setStandardImage(ImageIcon img) {
         If.img = img;
     }
-    
+
     @Override
-    public ImageIcon getStandardImage(){
+    public ImageIcon getStandardImage() {
         return img;
     }
-    
+
     @Override
-    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        PropertyManager panel = new PropertyManager();
-        
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
+        PropertyManager panel = new PropertyManager(project);
+
         DefaultProperty p = new DefaultProperty();
         p.setValue(false);
         p.setType(Boolean.TYPE);
@@ -77,7 +88,7 @@ public class If extends ActionPattern{
         p.setDisplayName("NOT");
         p.setShortDescription("True->If the condition is false<br>False->If the condition is true");
         panel.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setValue(condition);
         p.setType(String.class);
@@ -86,26 +97,30 @@ public class If extends ActionPattern{
         p.setDisplayName("condition");
         p.setShortDescription("The condition to evaluate");
         panel.addProperty(p);
-        
+
         return panel;
     }
-    
+
     @Override
-    public String getStandardText(JComponent panel){
-        if(panel!=null)
+    public String getStandardText(JComponent panel) {
+        if (panel != null) {
             save(panel);
-        if(panel==null)
+        }
+        if (panel == null) {
             return "If";
-        if(!not)
-            return "if("+condition+")";
-        return "if(!("+condition+"))";
+        }
+        if (!not) {
+            return "if(" + condition + ")";
+        }
+        return "if(!(" + condition + "))";
     }
-    
+
     @Override
-    public String generateGCL(JComponent panel){
+    public String generateGCL(JComponent panel) {
         save(panel);
-        if(!not)
-            return "if("+condition+")\n";
-        return "if(!("+condition+"))\n";
+        if (!not) {
+            return "if(" + condition + ")\n";
+        }
+        return "if(!(" + condition + "))\n";
     }
 }

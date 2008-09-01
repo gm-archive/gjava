@@ -9,35 +9,35 @@
  */
 package org.gcreator.actions.components;
 
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
+import org.gcreator.core.gcreator;
+import org.gcreator.fileclass.Project;
 
 /**
  *
- * @author Luís
+ * @author Serge Humphrey
  */
-class ArgumentListButton extends JButton implements ActionListener {
+class FunctionNameButton extends JButton implements ActionListener {
 
-    ArgumentListEditor e;
-    ArgumentListLabel l;
-
-    ArgumentListButton(ArgumentListEditor e, ArgumentListLabel l) {
+    private static final long serialVersionUID = 1;
+    FunctionNameEditor e;
+    FunctionNameTextField l;
+    Project p;
+    
+    FunctionNameButton(FunctionNameEditor e, FunctionNameTextField l, Project p) {
         super("...");
         this.e = e;
         this.l = l;
+        this.p = p;
         addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent evt) {
-        Container c = this.getParent();
-        while (!(c instanceof JFrame)) {
-            c = c.getParent();
-        }
-        ArgumentListDialog d = new ArgumentListDialog((JFrame) c, true, e, l);
+        SelectFunctionDialog d = new SelectFunctionDialog( 
+                gcreator.window, "Select a Function", e, l, p);
         d.setVisible(true);
     }
 }

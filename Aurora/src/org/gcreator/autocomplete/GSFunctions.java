@@ -17,9 +17,10 @@ import org.gcreator.autocomplete.impl.FunctionSuggestion;
  * @author Luís
  */
 public class GSFunctions {
+
     public static Vector<FunctionSuggestion> functions = new Vector<FunctionSuggestion>();
-    
-    static{
+
+    static {
         applyFunction("room_goto_next", "");
         applyFunction("room_goto_previous", "");
         applyFunction("scene_goto_next", "");
@@ -153,8 +154,8 @@ public class GSFunctions {
         applyFunction("window_set_caption", "caption");
         applyFunction("window_get_caption", "");
     }
-    
-    public static void applyFunction(String val, String args){
+
+    public static void applyFunction(String val, String args) {
         functions.add(new FunctionSuggestion(val, args));
     }
 }

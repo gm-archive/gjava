@@ -12,32 +12,40 @@ package org.gcreator.actions.components;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.beans.PropertyEditorSupport;
+import javax.swing.Box;
 import javax.swing.JPanel;
+import org.gcreator.fileclass.Project;
 
 /**
  *
- * @author Luís
+ * @author Serge Humphrey
  */
-public class ArgumentListEditor extends PropertyEditorSupport {
+public class FunctionNameEditor extends PropertyEditorSupport {
 
-    JPanel p = new JPanel();
+    protected Project project;
+
+    public FunctionNameEditor(Project p) {
+        this.project = p;
+    }
 
     @Override
     public String getAsText() {
         Object o = getValue();
         if (o == null) {
-            return "";
+            return "null";
         }
-        return ((ArgumentList) o).toString();
+        return o.toString();
     }
 
     @Override
     public Component getCustomEditor() {
-        p.setLayout(new BorderLayout());
-        ArgumentListLabel l;
-        p.add(BorderLayout.CENTER, l = new ArgumentListLabel(this));
-        p.add(BorderLayout.EAST, new ArgumentListButton(this, l));
-
+        JPanel p = new JPanel(new BorderLayout());
+        FunctionNameTextField t = new FunctionNameTextField(this);
+        Box box = Box.createHorizontalBox();
+        box.add(t);
+        box.add(Box.createHorizontalStrut(2));
+        p.add(box);
+        p.add(new FunctionNameButton(this, t, project), BorderLayout.EAST);
         return p;
     }
 

@@ -9,48 +9,55 @@
  */
 package org.gcreator.components;
 
-import com.l2fprod.common.propertysheet.*;
+import com.l2fprod.common.propertysheet.Property;
+import com.l2fprod.common.propertysheet.PropertyEditorFactory;
+import com.l2fprod.common.propertysheet.PropertySheetPanel;
 import java.beans.PropertyEditor;
 import java.beans.PropertyEditorSupport;
-import java.util.Enumeration;
 import java.util.Hashtable;
 import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.actions.components.ArgumentListEditor;
-//import org.gcreator.actions.components.FailureBehavior;
-//import org.gcreator.actions.components.FailureBehaviorEditor;
+import org.gcreator.actions.components.FunctionName;
+import org.gcreator.actions.components.FunctionNameEditor;
+import org.gcreator.fileclass.Project;
 
 /**
  *
  * @author luis
  */
-public class PropertyManager extends PropertySheetPanel{
-    public static Hashtable<Class, PropertyEditorSupport>
-            editors = new Hashtable<Class, PropertyEditorSupport>();
-    
-    static{
-        //editors.put(FailureBehavior.class, new FailureBehaviorEditor());
-        editors.put(ArgumentList.class, new ArgumentListEditor());
-    }
-    
-    public PropertyManager(){
+public class PropertyManager extends PropertySheetPanel {
+
+    private static final long serialVersionUID = 1;
+    public Hashtable<Class, PropertyEditorSupport> editors = new Hashtable<Class, PropertyEditorSupport>();
+    protected Project project;
+
+    public PropertyManager(Project p) {
         super();
+        this.project = p;
+        editors.put(FunctionName.class, new FunctionNameEditor(p));
+        editors.put(ArgumentList.class, new ArgumentListEditor());
         setDescriptionVisible(true);
         setToolBarVisible(true);
         setMode(VIEW_AS_CATEGORIES);
         final PropertyEditorFactory std = getEditorFactory();
-        setEditorFactory(new PropertyEditorFactory(){
-            public PropertyEditor createPropertyEditor(Property p){
+        setEditorFactory(new PropertyEditorFactory() {
+
+            @Override
+            public PropertyEditor createPropertyEditor(Property p) {
                 Class c = p.getType();
                 PropertyEditorSupport s = editors.get(c);
-                if(s!=null) return s;
+                if (s != null) {
+                    return s;
+                }
                 return std.createPropertyEditor(p);
             }
         });
     }
-    
-    public void setEnabled(boolean enabled){
+
+    @Override
+    public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        
+
         super.getTable().setEnabled(enabled);
     }
 }

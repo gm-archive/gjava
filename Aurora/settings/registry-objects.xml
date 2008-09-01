@@ -13,14 +13,14 @@
    <string>/home/bob-the-blueberry</string> 
   </void> 
  </object> 
- <object class="javax.swing.plaf.metal.OceanTheme"/> 
+ <object class="sun.themes.CharcoalTheme"/> 
  <string>LEFT</string> 
  <object class="java.awt.Dimension"> 
-  <int>1032</int> 
-  <int>702</int> 
+  <int>1024</int> 
+  <int>699</int> 
  </object> 
  <boolean>true</boolean> 
- <string>Native</string> 
+ <string>javax.swing.plaf.metal.MetalLookAndFeel</string> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
    <string>/home/bob-the-blueberry/G-Projects</string> 

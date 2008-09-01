@@ -7,7 +7,6 @@
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
-
 package org.gcreator.actions.components;
 
 import java.io.Serializable;
@@ -18,18 +17,19 @@ import java.util.Vector;
  *
  * @author Luís
  */
-public class ArgumentList implements Serializable{
-
+public class ArgumentList implements Serializable {
+    private static final long serialVersionUID = 3;
+    
     public Vector<String> arguments;
 
-    public ArgumentList(Vector<String> args){
+    public ArgumentList(Vector<String> args) {
         arguments = args;
     }
-    
-    public ArgumentList(){
+
+    public ArgumentList() {
         arguments = new Vector<String>();
     }
-    
+
     @Override
     public String toString() {
         String res = "";
@@ -37,7 +37,7 @@ public class ArgumentList implements Serializable{
             String last = arguments.lastElement();
             for (String arg : arguments) {
                 res += arg;
-                if (arg!=last) { //I KNOW I'M NOT USING equals
+                if (arg != last) { //I KNOW I'M NOT USING equals
                     res += ", ";
                 }
             }

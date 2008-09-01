@@ -63,7 +63,7 @@ public class IfClipboardHasContent extends ActionPattern{
     
     @Override
     public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        PropertyManager panel = new PropertyManager();
+        PropertyManager panel = new PropertyManager(project);
         
         DefaultProperty p = new DefaultProperty();
         p.setValue(false);

@@ -189,7 +189,7 @@ public class SceneEditor extends TabPanel {
         if (c != null) {
             org.gcreator.fileclass.GFile d = (org.gcreator.fileclass.GFile) c.object;
             org.gcreator.fileclass.res.Sprite f = (org.gcreator.fileclass.res.Sprite) d.value;
-            ImageIcon h = f.getImageAt(0).image;
+            ImageIcon h = f.getImageIconAt(0);
             jLabel18.setIcon(h);
         }
     }

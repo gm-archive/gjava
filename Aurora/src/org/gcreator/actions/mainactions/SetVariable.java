@@ -82,7 +82,7 @@ public class SetVariable extends ActionPattern {
     }
 
     public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager();
+        PropertyManager propertySheetPanel1 = new PropertyManager(project);
         /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
         propertySheetPanel1.setEditorFactory(new PropertyEditorFactory() {
 

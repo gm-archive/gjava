@@ -3,15 +3,11 @@
  *
  * Created on 30 de Julho de 2008, 13:02
  */
-
 package org.gcreator.editors;
 
 import com.l2fprod.common.swing.JFontChooser;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FileDialog;
 import java.awt.Font;
-import java.awt.Frame;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -21,12 +17,10 @@ import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
-import javax.swing.text.AttributeSet;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.rtf.RTFEditorKit;
-import org.gcreator.components.RSSReader.StringInputStream;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.impl.CustomFileFilter;
 import org.gcreator.fileclass.GFile;
@@ -40,31 +34,32 @@ public class RTFEditor extends TabPanel {
 
     private RTFEditorKit kit = new RTFEditorKit();
     private boolean changed = false;
-    
+
     /** Creates new form RTFEditor */
     public RTFEditor(Project p, GFile f) {
         project = p;
         file = f;
         initComponents();
-        try{
-            if(f.value!=null)
+        try {
+            if (f.value != null) {
                 jEditorPane1.read(new ByteArrayInputStream(f.value.toString().getBytes()), kit);
-            else
+            } else {
                 changed = true;
+            }
+        } catch (Exception e) {
+
         }
-        catch(Exception e){
-            
-        }
-        jEditorPane1.addCaretListener(new CaretListener(){
-            public void caretUpdate(CaretEvent e){
+        jEditorPane1.addCaretListener(new CaretListener() {
+
+            public void caretUpdate(CaretEvent e) {
                 updateBtn();
             }
         });
-        
+
         updateBtn();
     }
-    
-    private void updateBtn(){
+
+    private void updateBtn() {
         int sel = jEditorPane1.getSelectionStart();
         jButton1.setSelected(getBoolProperty(sel, StyleConstants.Bold));
         jButton2.setSelected(getBoolProperty(sel, StyleConstants.Italic));
@@ -77,52 +72,51 @@ public class RTFEditor extends TabPanel {
         jButton5.setBackground(getColorProperty(sel, StyleConstants.Foreground));
         jButton6.setBackground(getColorProperty(sel, StyleConstants.Background));
     }
-    
-    public boolean getBoolProperty(int index, Object prop){
+
+    public boolean getBoolProperty(int index, Object prop) {
         StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
         Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
-        return o!=null&&o instanceof Boolean ? (Boolean) o : false;
-    }
-    
-    public Color getColorProperty(int index, Object prop){
-        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
-        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
-        return o!=null&&o instanceof Color ? (Color) o : null;
-    }
-    
-    public String getStringProperty(int index, Object prop){
-        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
-        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
-        return o!=null&&o instanceof String ? (String) o : null;
-    }
-    
-    public Integer getIntProperty(int index, Object prop){
-        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
-        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
-        return o!=null&&o instanceof Integer ? (Integer) o : null;
+        return o != null && o instanceof Boolean ? (Boolean) o : false;
     }
 
-    public boolean wasModified(){
+    public Color getColorProperty(int index, Object prop) {
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
+        return o != null && o instanceof Color ? (Color) o : null;
+    }
+
+    public String getStringProperty(int index, Object prop) {
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
+        return o != null && o instanceof String ? (String) o : null;
+    }
+
+    public Integer getIntProperty(int index, Object prop) {
+        StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
+        Object o = d.getCharacterElement(index).getAttributes().getAttribute(prop);
+        return o != null && o instanceof Integer ? (Integer) o : null;
+    }
+
+    public boolean wasModified() {
         return changed;
     }
-    
-    public boolean canSave(){
+
+    public boolean canSave() {
         return changed;
     }
-    
-    public boolean Save(){
+
+    public boolean Save() {
         ByteArrayOutputStream s = new ByteArrayOutputStream();
-        try{
+        try {
             kit.write(s, jEditorPane1.getDocument(), 0, jEditorPane1.getDocument().getLength());
             file.value = s.toString();
             changed = false;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return false;
         }
         return true;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -155,6 +149,7 @@ public class RTFEditor extends TabPanel {
 
         setLayout(new java.awt.BorderLayout());
 
+        jEditorPane1.setBackground(new java.awt.Color(255, 255, 255));
         jEditorPane1.setEditorKit(kit);
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -278,7 +273,7 @@ private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     int end = jEditorPane1.getSelectionEnd();
     SimpleAttributeSet s = new SimpleAttributeSet();
     s.addAttribute(StyleConstants.Bold, !jButton1.isSelected());
-    d.setCharacterAttributes(start, end-start, s, false);
+    d.setCharacterAttributes(start, end - start, s, false);
     updateBtn();
     changed = true;
 }//GEN-LAST:event_jButton1ActionPerformed
@@ -289,7 +284,7 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     int end = jEditorPane1.getSelectionEnd();
     SimpleAttributeSet s = new SimpleAttributeSet();
     s.addAttribute(StyleConstants.Italic, !jButton2.isSelected());
-    d.setCharacterAttributes(start, end-start, s, false);
+    d.setCharacterAttributes(start, end - start, s, false);
     updateBtn();
     changed = true;
 }//GEN-LAST:event_jButton2ActionPerformed
@@ -300,7 +295,7 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     int end = jEditorPane1.getSelectionEnd();
     SimpleAttributeSet s = new SimpleAttributeSet();
     s.addAttribute(StyleConstants.Underline, !jButton3.isSelected());
-    d.setCharacterAttributes(start, end-start, s, false);
+    d.setCharacterAttributes(start, end - start, s, false);
     updateBtn();
     changed = true;
 }//GEN-LAST:event_jButton3ActionPerformed
@@ -309,7 +304,7 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     JFontChooser fc = new JFontChooser();
     fc.setSelectedFont(jButton4.getFont());
     Font f = fc.showFontDialog(this, "F");
-    if(f!=null){
+    if (f != null) {
         StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
         int start = jEditorPane1.getSelectionStart();
         int end = jEditorPane1.getSelectionEnd();
@@ -318,7 +313,7 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         s.addAttribute(StyleConstants.FontSize, f.getSize());
         s.addAttribute(StyleConstants.Bold, f.isBold());
         s.addAttribute(StyleConstants.Italic, f.isItalic());
-        d.setCharacterAttributes(start, end-start, s, false);
+        d.setCharacterAttributes(start, end - start, s, false);
         updateBtn();
         changed = true;
     }
@@ -326,13 +321,13 @@ private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     Color c = JColorChooser.showDialog(this, "Choose", jButton5.getBackground());
-    if(c!=null){
+    if (c != null) {
         StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
         int start = jEditorPane1.getSelectionStart();
         int end = jEditorPane1.getSelectionEnd();
         SimpleAttributeSet s = new SimpleAttributeSet();
         s.addAttribute(StyleConstants.Foreground, c);
-        d.setCharacterAttributes(start, end-start, s, false);
+        d.setCharacterAttributes(start, end - start, s, false);
         updateBtn();
         changed = true;
     }
@@ -340,13 +335,13 @@ private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
     Color c = JColorChooser.showDialog(this, "Choose", jButton6.getBackground());
-    if(c!=null){
+    if (c != null) {
         StyledDocument d = (StyledDocument) jEditorPane1.getDocument();
         int start = jEditorPane1.getSelectionStart();
         int end = jEditorPane1.getSelectionEnd();
         SimpleAttributeSet s = new SimpleAttributeSet();
         s.addAttribute(StyleConstants.Background, c);
-        d.setCharacterAttributes(start, end-start, s, false);
+        d.setCharacterAttributes(start, end - start, s, false);
         updateBtn();
         changed = true;
     }
@@ -360,15 +355,14 @@ private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     d.setDialogTitle("Choose RTF file");
     d.setMultiSelectionEnabled(false);
     d.showDialog(this, "OK");
-    d.setDialogType(JFileChooser.FILES_ONLY|JFileChooser.OPEN_DIALOG);
+    d.setDialogType(JFileChooser.FILES_ONLY | JFileChooser.OPEN_DIALOG);
     File f = d.getSelectedFile();
-    if(f!=null){
-        try{
+    if (f != null) {
+        try {
             jEditorPane1.read(new FileInputStream(f), kit);
             changed = true;
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
 }//GEN-LAST:event_jButton7ActionPerformed
@@ -381,14 +375,13 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     d.setDialogTitle("Where to save RTF file?");
     d.setMultiSelectionEnabled(false);
     d.showDialog(this, "OK");
-    d.setDialogType(JFileChooser.FILES_ONLY|JFileChooser.SAVE_DIALOG);
+    d.setDialogType(JFileChooser.FILES_ONLY | JFileChooser.SAVE_DIALOG);
     File f = d.getSelectedFile();
-    if(f!=null){
-        try{
+    if (f != null) {
+        try {
             kit.write(new FileOutputStream(f), jEditorPane1.getDocument(), 0, jEditorPane1.getDocument().getLength());
-        }
-        catch(Exception e){
-            
+        } catch (Exception e) {
+
         }
     }
 }//GEN-LAST:event_jButton9ActionPerformed

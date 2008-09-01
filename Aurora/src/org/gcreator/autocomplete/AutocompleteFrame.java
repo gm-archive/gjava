@@ -9,13 +9,18 @@
  */
 package org.gcreator.autocomplete;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import javax.swing.*;
+import javax.swing.JEditorPane;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
 import org.gcreator.components.uiplus.DialogPlus;
 
 /**
@@ -32,10 +37,12 @@ public class AutocompleteFrame extends DialogPlus {
         setUndecorated(true);
         addFocusListener(new FocusListener() {
 
+            @Override
             public void focusLost(FocusEvent evt) {
                 dispose();
             }
 
+            @Override
             public void focusGained(FocusEvent evt) {
             }
         });
@@ -62,6 +69,7 @@ public class AutocompleteFrame extends DialogPlus {
         doc.setContentType("text/html");
         JScrollPane p = new JScrollPane() {
 
+            @Override
             public Dimension getPreferredSize() {
                 Dimension d = super.getPreferredSize();
                 d.width = 230;
@@ -70,9 +78,10 @@ public class AutocompleteFrame extends DialogPlus {
         };
 
         doc.setText("Loading...");
-        
+
         Thread t = new Thread() {
 
+            @Override
             public void run() {
                 try {
                     URL url = new URL("http://wiki.g-creator.org/doku.php?id=show_message");
