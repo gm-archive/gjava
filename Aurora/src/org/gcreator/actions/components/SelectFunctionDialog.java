@@ -48,14 +48,12 @@ public final class SelectFunctionDialog extends javax.swing.JDialog {
         initComponents();
         this.setMaximumSize(getSize());
         list = new Vector<Thing>(GSFunctions.functions.size() + 10);
-        String start = new String("<html><span style=\"color: red;\">"), end = "</span</html>";
         for (FunctionSuggestion f : GSFunctions.functions) {
             list.add(new Thing(f.name, "red"));
         }
 
         try {
             Folder scripts = project.findFolder("$workspace-game-script");
-            start = "<html><span style=\"color: blue;\">";
             for (GObject o : scripts.getChildren()) {
                 if (o instanceof Folder) {
                     //TODO: rescurisve
@@ -147,7 +145,7 @@ public final class SelectFunctionDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Name:");
 
-        jTextField1.setText("bob");
+        jTextField1.setText(editor.getAsText());
         jTextField1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
                 jTextField1CaretUpdate(evt);
@@ -218,7 +216,7 @@ public final class SelectFunctionDialog extends javax.swing.JDialog {
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
         if (evt.getClickCount() >= 2) {
-            jTextField1.setText(((FunctionSuggestion) jList1.getSelectedValue()).name);
+            jTextField1.setText(((Thing) jList1.getSelectedValue()).name);
         }
     }//GEN-LAST:event_jList1MouseClicked
 

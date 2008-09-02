@@ -43,6 +43,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.regex.Matcher;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import javax.script.ScriptEngineManager;
@@ -56,7 +57,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JEditorPane;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -65,7 +65,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.ListSelectionModel;
-import javax.swing.UIManager;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import org.gcreator.core.gcreator;
@@ -73,6 +72,7 @@ import org.gcreator.plugins.Plugin;
 import org.gcreator.plugins.PluginList;
 import org.gcreator.sax.Node;
 import org.gcreator.sax.SAXParser;
+import org.gcreator.units.Dictionary;
 import org.xml.sax.SAXException;
 
 /**
@@ -100,7 +100,7 @@ public final class Updater {
      */
     public Updater() {
         updating = true;
-        final JDialog dialog = new JDialog(gcreator.window,"Update G-Creator", true);
+        final JDialog dialog = new JDialog(gcreator.window, Dictionary.getEntry("general-updater-dialogtitle"), true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.addWindowListener(new WindowAdapter() {
 
@@ -119,10 +119,10 @@ public final class Updater {
         final Box box2 = Box.createHorizontalBox();
 
         //Buttons
-        final JButton backButton = new JButton("< Back");
+        final JButton backButton = new JButton(Dictionary.getEntry("general-updater-backbutton"));
         backButton.setEnabled(false);
-        final JButton nextButton = new JButton("Next >");
-        final JButton cancelButton = new JButton("Cancel");
+        final JButton nextButton = new JButton(Dictionary.getEntry("general-updater-nextbutton"));
+        final JButton cancelButton = new JButton(Dictionary.getEntry("dialogs-imageresize-cancel"));
 
         nextButton.addActionListener(new ActionListener() {
 
@@ -156,13 +156,14 @@ public final class Updater {
                             if (updates == null || updates.length == 0) {//Error occured or No updates available.
                                 String text;
                                 if (updates == null) {
-                                    text = "<html><h1>Error Downloading Update Information</h1>" +
-                                            "Failed to download update information.<br/>Please check your Internet connection.</html>";
+                                    text = "<html><h1>" + Dictionary.getEntry("general-updater-errordownloadinfotitle") + "</h1>" +
+                                            Dictionary.getEntry("errordownloadinfomsg") + "</html>";
                                 } else {
-                                    text = "<html><h1>No Updates Available</h1>Your G-Creator version is up to date.</html>";
+                                    text = "<html><h1" + Dictionary.getEntry("general-updater-noupdates") + "</h1>" +
+                                             Dictionary.getEntry("general-updater-uptodate") + "</html>";
                                 }
                                 l3 = new JLabel(text);
-                                nextButton.setText("Finish");
+                                nextButton.setText(Dictionary.getEntry("general-updater-finish"));
                                 cancelButton.setEnabled(false);
                                 done = true;
                                 nextButton.setEnabled(true);
@@ -172,8 +173,8 @@ public final class Updater {
                                 panel2.updateUI();
                                 return;
                             } else {
-                                l3 = new JLabel("<html><h1>Available Updates</h1>Select an update to view information " +
-                                        "about it and check off which updates you would like to download.</html>");
+                                l3 = new JLabel("<html><h1>" + Dictionary.getEntry("general-updater-availableupdates") + "</h1>" + 
+                                        Dictionary.getEntry("general-updater-pickandchoose") + "</html>");
                             }
                             l3.setFont(new Font("Sans", Font.PLAIN, 12));
                             center.add(l3, BorderLayout.NORTH);
@@ -243,9 +244,11 @@ public final class Updater {
                                 public void valueChanged(ListSelectionEvent e) {
                                     Update u = ((Update) updateList.getSelectedValue());
                                     infoLabel.setText(new StringBuffer("<html><h2>").append(u.displayVersion).
-                                            append("</h2>Version: ").append(u.version).append("<br/>Download size: ").
-                                            append(u.size).append("<br/>File URL: <a href=\"").append(u.file).append("\">").
-                                            append(u.file).append("</a><br/>Description: (below)</html>").toString());
+                                            append("</h2>").append(Dictionary.getEntry("general-updater-version")).append(u.version).
+                                            append(Dictionary.getEntry("general-updater-downoadsize")).append(u.size).
+                                            append("<br/>").append(Dictionary.getEntry("general-updater-fileurl")).append("<a href=\"").
+                                            append(u.file).append("\">").append(u.file).append("</a><br/>").
+                                            append(Dictionary.getEntry("general-updater-descriptionbelow")).append("</html>").toString());
                                     info.setText(u.description);
                                 }
                             });
@@ -294,7 +297,7 @@ public final class Updater {
                                 }
                                 File f = new File(uc.update.location + "/install"+uc.update.displayVersion+".js");
                                 if (f.exists()) {
-                                    uc.status.setText("Installing...");
+                                    uc.status.setText(Dictionary.getEntry("general-updater-installingdotdotdot"));
                                     try {
                                         new ScriptEngineManager().getEngineByName("JavaScript").eval(new BufferedReader(new FileReader(f)));
                                     } catch (FileNotFoundException ex) {
@@ -303,7 +306,7 @@ public final class Updater {
                                         Logger.getLogger(Updater.class.getName()).log(Level.SEVERE, "Error in install script '" + f + "'.", ex);
                                     }
                                 }
-                                uc.status.setText("Finished");
+                                uc.status.setText(Dictionary.getEntry("general-updater-finished"));
                             }
                         }
                     };
@@ -344,12 +347,14 @@ public final class Updater {
                             }
                             StringBuffer buffer = new StringBuffer(150);
                             for (UpdateComponent uc : downloads) {
-                                buffer.append(uc.update.displayVersion+": "+((uc.update.aborted) ? "<strong>Failed</strong>": "Successful")+"<br/>");
+                                buffer.append(uc.update.displayVersion+": "+((uc.update.aborted) ? "<strong>" + 
+                      Dictionary.getEntry("general-updater-failed") + "</strong>" : Dictionary.getEntry("general-updater-successful"))+"<br/>");
                             }
-                            finishPanel.add(new JLabel("<html><h1>Finished</h1>Report:<br/><div " +
+                            finishPanel.add(new JLabel("<html><h1>" + Dictionary.getEntry("general-updater-finished") + "</h1>" + 
+                                    Dictionary.getEntry("general-updater-report") + ":<br/><div " +
                                     "style=\"background-color: white; border-style: solid; border-width: 2; border-color: black;\">"+buffer+
-                                    "</div><br/>Close G-Creator ans start it again to enable the updates.</html>"));
-                            nextButton.setText("Finish");
+                                    "</div><br/>" + Dictionary.getEntry("general-updater-restartgcreator") + "</html>"));
+                            nextButton.setText(Dictionary.getEntry("general-updater-finish"));
                             nextButton.setEnabled(true);
                             cancelButton.setEnabled(false);
                         }
@@ -372,7 +377,7 @@ public final class Updater {
                     panel2.updateUI();
                 }
                 if (updates == null || updates.length == 0) {
-                    nextButton.setText("Next >");
+                    nextButton.setText(Dictionary.getEntry("general-updater-nextbutton"));
                 }
                 if (index < 2) {
                     updates = null;
@@ -418,11 +423,11 @@ public final class Updater {
 
         panel1 = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panel1.add(Box.createVerticalStrut(100));
-        JLabel l = new JLabel("<html><h1>Welcome to the G-Creator Updater</h1>" +
-                "<p>This will update G-Creator and all of its installed plug-ins.<br/>" +
-                "First we must download version information.</p>" +
-                "<h3>Click Next to continue.</h3><br/><br/>" +
-                "<span style=\"font-size: 10pt;\">This requires a working Internet connection.</span></html>");
+        JLabel l = new JLabel("<html><h1>" + Dictionary.getEntry("general-updater-welcometext") + "</h1>" +
+                "<p>" + Dictionary.getEntry("general-updater-whatitwilldo") + "<br/>" +
+                 Dictionary.getEntry("general-updater-wehavetodownloadinfo") + "</p>" +
+                "<h3>" + Dictionary.getEntry("general-updater-nexttocontinue") + "</h3><br/><br/>" +
+                "<span style=\"font-size: 10pt;\">" + Dictionary.getEntry("general-updater-requiresinternet") + "</span></html>");
         l.setFont(new Font("Sans", Font.PLAIN, 12));
         panel1.add(l);
 
@@ -430,8 +435,8 @@ public final class Updater {
 
         panel2 = new JPanel(new BorderLayout());
 
-        JLabel l2 = new JLabel("<html><h2>Downloading Update Information...</h2>" +
-                "This should only take a few seconds.</html>");
+        JLabel l2 = new JLabel("<html><h2>" + Dictionary.getEntry("general-updater-downloadingupdateinfo") + "</h2>" +
+                Dictionary.getEntry("general-updater-fewseconds") + "</html>");
         l2.setFont(l.getFont());
         box2.add(new Filler(new Dimension(80, 80), new Dimension(100, 120),
                 new Dimension(Short.MAX_VALUE, 0)));
@@ -444,7 +449,7 @@ public final class Updater {
         panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
         downloadsPanel = new JPanel();
         downloadsPanel.setLayout(new BoxLayout(downloadsPanel, BoxLayout.Y_AXIS));
-        panel3.add(new JLabel("<html><h1>Downloading Updates</h1></html>"));
+        panel3.add(new JLabel("<html><h1>" + Dictionary.getEntry("general-updater-downloadingupdates") + "</h1></html>"));
         panel3.add(new JScrollPane(downloadsPanel));
         panel.add(panel3, "panel3");
         
@@ -493,13 +498,13 @@ public final class Updater {
         try {
             URLConnection conn = null;
             URL url = new URL(address);
-            uc.status.setText("Starting...");
+            uc.status.setText(Dictionary.getEntry("general-updater-starting..."));
             conn = url.openConnection();
             File f = new File(new File(localFileName).toURI());
             if (f.exists() && conn.getContentLength() == f.length()) {
-                if (JOptionPane.showConfirmDialog(gcreator.window, "<html>File ʻ" + localFileName + "ʼ already exists.<br/>" +
-                        "Are you sure you want to download it again?</html>") != JOptionPane.OK_OPTION) {
-                    uc.progress.setString("Canceled");
+                if (JOptionPane.showConfirmDialog(gcreator.window, "<html>" + Dictionary.getEntry("general-updater-replacefile").
+                        replaceAll("\\$name", Matcher.quoteReplacement(localFileName)) +"</html>") != JOptionPane.OK_OPTION) {
+                    uc.progress.setString(Dictionary.getEntry("general-updater-canceled"));
                     return;
                 }
             }
@@ -509,7 +514,7 @@ public final class Updater {
             try {
                 in = conn.getInputStream();//No need for Buffering; already done.
             } catch (FileNotFoundException exc) {
-                uc.status.setText("Error: File '"+address+"' does not exist.");
+                uc.status.setText(Dictionary.getEntry("general-updater-canceled").replaceAll("\\$name", Matcher.quoteReplacement(address)));
                 uc.update.aborted = true;
                 return;
             }
@@ -533,9 +538,9 @@ public final class Updater {
             if (!abort && !uc.update.aborted) {
                 System.out.println("Updater: Downloaded file");
                 System.out.println("Updater: Unzipping file");
-                uc.status.setText("Unzipping...");
+                uc.status.setText(Dictionary.getEntry("general-updater-unzipping"));
                 unzip(localFileName, uc.update);
-                uc.status.setText("Waiting to install...");
+                uc.status.setText(Dictionary.getEntry("general-updater-waitingtoinstall"));
             } else if (abort) {
                 System.out.println("Updater: Abort!");
             }
@@ -659,7 +664,7 @@ public final class Updater {
     private static class UpdateComponent extends Box {
 
         private static final long serialVersionUID = 1;
-        public JLabel status = new JLabel("Waiting...");
+        public JLabel status = new JLabel(Dictionary.getEntry("general-updater-waiting"));
         public JProgressBar progress = new JProgressBar();
         public Update update;
 

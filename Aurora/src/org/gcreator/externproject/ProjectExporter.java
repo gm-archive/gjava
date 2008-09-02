@@ -44,13 +44,6 @@ public class ProjectExporter {
             zip.write(generateManifest(p).getBytes());
             zip.closeEntry();
             
-            for (GFile gf : p.files) {
-                if (gf != null) {
-                    System.out.println("gFile: "+gf.name);
-                } else {
-                    System.out.println("gFile is null");
-                }
-            }
             exportFolder(zip, p, 1);
 
             zip.close();

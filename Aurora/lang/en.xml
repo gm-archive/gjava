@@ -288,4 +288,44 @@ What do you want to do with it?</slice>
     <slice key="editors-settings-image">Image:</slice>
     <slice key="editors-settings-icon">Icon:</slice>
     <slice key="editors-settings-other">Other</slice>
+    
+    <!-- Updater -->
+    <slice key="general-updater-dialogtitle">Update G-Creator</slice>
+    <slice key="general-updater-backbutton">&amp;lt; Back</slice>
+    <slice key="general-updater-nextbutton">Next &amp;gt;</slice>
+    <slice key="general-updater-errordownloadinfotitle">Error Downloading Update Information</slice>
+    <slice key="general-updater-errordownloadinfomsg">Failed to download update information.
+&lt;br/&gt;Please check your Internet connection.</slice>
+    <slice key="general-updater-noupdates">No Updates Available</slice>
+    <slice key="general-updater-uptodate">Your G-Creator version is up to date.</slice>
+    <slice key="general-updater-finish">Finish</slice>
+    <slice key="general-updater-availableupdates">Available Updates</slice>
+    <slice key="general-updater-pickandchoose">Select an update to view information about it
+and check off which updates you would like to download.</slice>
+    <slice key="general-updater-version">Version: </slice>
+    <slice key="general-updater-downloadsize">Download Size: </slice>
+    <slice key="general-updater-fileurl">File URL: </slice>
+    <slice key="general-updater-descriptionbelow">Description: (below)</slice>
+    <slice key="general-updater-installingdotdotdot">Installing...</slice>
+    <slice key="general-updater-finished">Finished</slice>
+    <slice key="general-updater-failed">Failed</slice>
+    <slice key="general-updater-successful">Successful</slice>
+    <slice key="general-updater-report">Report</slice>
+    <slice key="general-updater-restartgcreator">Close G-Creator and start it again to enable the updates.</slice>
+    <slice key="general-updater-welcometext">Welcome to the G-Creator Updater</slice>
+    <slice key="general-updater-whatitwilldo">This will update G-Creator and all of its installed plug-ins.</slice>
+    <slice key="general-updater-wehavetodownloadinfo">First we must download version information.</slice>
+    <slice key="general-updater-nexttocontinue">Click Next to continue.</slice>
+    <slice key="general-updater-requiresinternet">This requires a working Internet connection.</slice>
+    <slice key="general-updater-downloadingupdateinfo">Downloading Update Information...</slice>
+    <slice key="general-updater-fewseconds">This should only take a few seconds.</slice>
+    <slice key="general-updater-downloadingupdates">Downloading Updates</slice>
+    <slice key="general-updater-starting">Starting...</slice>
+    <slice key="general-updater-replacefile">File ʻ$nameʼ already exists.&lt;br/&lt;
+Are you sure you want to download it again?</slice>
+    <slice key="general-updater-canceled">Canceled</slice>
+    <slice key="general-updater-nosuchfile">Error: File ʻ$nameʼ does not exist.</slice>
+    <slice key="general-updater-unzipping">Unzipping...</slice>
+    <slice key="general-updater-waitingtoinstall">Waiting to install...</slice>
+    <slice key="general-updater-waiting">Waiting...</slice>
 </lang>
