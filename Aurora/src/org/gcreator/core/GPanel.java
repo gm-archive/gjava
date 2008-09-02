@@ -11,39 +11,127 @@ package org.gcreator.core;
 
 //<editor-fold defaultstate="collapsed" desc="Import statements">
 import com.golden.gamedev.util.FileUtil;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.*;
-import java.util.*;
-import java.util.logging.*;
-import javax.swing.*;
-import javax.swing.event.*;
-import javax.swing.tree.*;
-import net.iharder.dnd.*;
-import org.gcreator.components.*;
-import org.gcreator.components.custom.*;
-import org.gcreator.components.impl.*;
-import org.gcreator.components.navigator.*;
-import org.gcreator.components.popupmenus.*;
-import org.gcreator.editors.*;
-import org.gcreator.exceptions.*;
-import org.gcreator.externproject.*;
-import org.gcreator.fileclass.*;
-import org.gcreator.help.*;
-//import org.gcreator.macro.*;
-import org.gcreator.managers.*;
-import org.gcreator.plugins.*;
-import org.gcreator.refactoring.*;
-import org.gcreator.units.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Robot;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ButtonGroup;
+import javax.swing.GroupLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.JLayeredPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextPane;
+import javax.swing.JToolBar;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.InternalFrameEvent;
+import javax.swing.event.InternalFrameListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+import org.gcreator.components.ButtonTabComponent;
+import org.gcreator.components.ExtendedFrame;
+import org.gcreator.components.GlobalSettings;
+import org.gcreator.components.LanguageTab;
+import org.gcreator.components.MdiPane;
+import org.gcreator.components.NewFileGroup;
+import org.gcreator.components.NewProject;
+import org.gcreator.components.PluginDialog;
+import org.gcreator.components.PowerPackImporter;
+import org.gcreator.components.Statusbar;
+import org.gcreator.components.SystemOutputReader;
+import org.gcreator.components.TabPanel;
+import org.gcreator.components.Updater;
+import org.gcreator.components.WelcomeTab;
+import org.gcreator.components.WorkspaceTree;
+import org.gcreator.components.custom.MenuGenerator;
+import org.gcreator.components.impl.CustomFileFilter;
+import org.gcreator.components.impl.WorkspaceCellRenderer;
+import org.gcreator.components.navigator.ActorNavigator;
+import org.gcreator.components.navigator.SpriteNavigator;
+import org.gcreator.components.popupmenus.ConsolePopupMenu;
+import org.gcreator.components.popupmenus.PopupListener;
+import org.gcreator.components.popupmenus.TabsPopupMenu;
+import org.gcreator.components.popupmenus.ToolbarPopupMenu;
+import org.gcreator.editors.ActionEditor;
+import org.gcreator.editors.ActorEditor;
+import org.gcreator.editors.ImageEditor;
+import org.gcreator.editors.PathEditor;
+import org.gcreator.editors.PlainTextEditor;
+import org.gcreator.editors.RTFEditor;
+import org.gcreator.editors.SceneEditor;
+import org.gcreator.editors.ScriptEditor;
+import org.gcreator.editors.SettingsEditor;
+import org.gcreator.editors.SoundEditor;
+import org.gcreator.editors.SpriteEditor;
+import org.gcreator.editors.StructureEditor;
+import org.gcreator.editors.TilesetEditor;
+import org.gcreator.editors.TimelineEditor;
+import org.gcreator.exceptions.WrongResourceException;
+import org.gcreator.externproject.ProjectExporter;
+import org.gcreator.externproject.ProjectImporter;
+import org.gcreator.externproject.StdImport;
+import org.gcreator.fileclass.Folder;
+import org.gcreator.fileclass.GFile;
+import org.gcreator.fileclass.GObject;
+import org.gcreator.fileclass.GameProject;
+import org.gcreator.fileclass.Group;
+import org.gcreator.fileclass.ModuleProject;
+import org.gcreator.fileclass.Project;
+import org.gcreator.help.AboutPanel;
+import org.gcreator.help.HelpPanel;
+import org.gcreator.managers.MenuSupporter;
+import org.gcreator.managers.Registry;
+import org.gcreator.managers.ScriptThemeManager;
+import org.gcreator.managers.SettingsIO;
+import org.gcreator.managers.ToolbarManager;
+import org.gcreator.plugins.FileOpenListener;
+import org.gcreator.plugins.PanelSelectedListener;
+import org.gcreator.plugins.Plugger;
+import org.gcreator.refactoring.DeleteRefactorContext;
+import org.gcreator.refactoring.Refactorer;
+import org.gcreator.refactoring.RefactoringMethod;
+import org.gcreator.units.BeanFile;
+import org.gcreator.units.ObjectNode;
 //</editor-fold>
 /**
  * GPanel is the main panel
  * 
  * @author Luís Reis
  * @author TGMG
+ * @author Serge Humphrey
  */
 public class GPanel extends JPanel {
-    
+
+    private static final long serialVersionUID = 2;
     //<editor-fold defaultstate="collapsed" desc="Variables">
     private ICore icore;
     public boolean istabs; //True - tabs; False - MDI
@@ -196,15 +284,19 @@ public class GPanel extends JPanel {
                 }
             }
 
+            @Override
             public void mouseEntered(MouseEvent evt) {
             }
 
+            @Override
             public void mouseExited(MouseEvent evt) {
             }
 
+            @Override
             public void mouseReleased(MouseEvent evt) {
             }
 
+            @Override
             public void mouseClicked(MouseEvent evt) {
             }
         });
@@ -263,6 +355,7 @@ public class GPanel extends JPanel {
 
         workspace.addMouseListener(new MouseListener() {
 
+            @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     treeDoubleClicked(e);
@@ -270,18 +363,22 @@ public class GPanel extends JPanel {
 
             }
 
+            @Override
             public void mousePressed(MouseEvent e) {
                 if (e.isPopupTrigger() || e.getButton() == MouseEvent.BUTTON3) {
                     popupTreeMenu(e);
                 }
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
             }
 
+            @Override
             public void mouseEntered(MouseEvent e) {
             }
 
+            @Override
             public void mouseExited(MouseEvent e) {
             }
         });
@@ -441,24 +538,23 @@ public class GPanel extends JPanel {
                 splitter1.updateUI();
             }
         });
-        try{
+        try {
             dividerLocation = (Integer) Registry.get("Window.consoleLocation");
+        } catch (Exception e) {
         }
-        catch(Exception e){}
-        
-        try{
+
+        try {
+        } catch (Exception e) {
         }
-        catch(Exception e){}
-        try{
-        if (((Boolean) Registry.get("Window.showConsole")) == false) {
-            onItemActionPerformed(2, 0, null);
-        } else {
-            items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(true);
-            icore.pack();
-            splitter1.setDividerLocation(dividerLocation);
-        }
-        }
-        catch(Exception e){
+        try {
+            if (((Boolean) Registry.get("Window.showConsole")) == false) {
+                onItemActionPerformed(2, 0, null);
+            } else {
+                items[MenuSupporter.GenerateMenuItemId(2, 0)].setSelected(true);
+                icore.pack();
+                splitter1.setDividerLocation(dividerLocation);
+            }
+        } catch (Exception e) {
             onItemActionPerformed(2, 0, null);
         }
         /*try {
@@ -494,14 +590,14 @@ public class GPanel extends JPanel {
             rightContainer.setVisible(false);
             items[MenuSupporter.GenerateMenuItemId(2, 1)].setSelected(false);
         }
-        
+
         Dimension d = (Dimension) Registry.get("Window.size");
         icore.setSize(d.width, d.height);
-        
+
         splitter2.setDividerLocation(159);
         splitter1.setDividerSize(10);
         splitter2.setDividerSize(5);
-        if ((Boolean)Registry.get("Window.showWelcome")) {
+        if ((Boolean) Registry.get("Window.showWelcome")) {
             SplashScreen.message = "Starting welcome window";
             gcreator.splash.repaint();
             WelcomeTab welcome = new WelcomeTab();
@@ -509,14 +605,13 @@ public class GPanel extends JPanel {
             updateToDefaultNavigatorPanel(welcome);
         }
         setMinimumSize(new Dimension(200, 200));
-        try{
-        if (((Boolean) Registry.get("Window.maximized")) == true) {
-            icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        } else {
-            icore.setExtendedState(JFrame.NORMAL);
-        }
-        }
-        catch(Exception e){
+        try {
+            if (((Boolean) Registry.get("Window.maximized")) == true) {
+                icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
+            } else {
+                icore.setExtendedState(JFrame.NORMAL);
+            }
+        } catch (Exception e) {
             icore.setExtendedState(JFrame.MAXIMIZED_BOTH);
         }
         String desktop = (String) Registry.get("Window.desktop");
@@ -544,7 +639,7 @@ public class GPanel extends JPanel {
                 }
             }
         }
-        
+
         statusbar.setStandardText("Done");
         statusbar.restoreText();
         statusbar.getProgressBar().setVisible(false);
@@ -553,7 +648,6 @@ public class GPanel extends JPanel {
     //setVisible(true);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="isWorkspaceLeft">
     public boolean isWorkspaceLeft() {
         if (items[MenuSupporter.GenerateMenuItemId(15, 0)].isSelected()) {
@@ -601,7 +695,6 @@ public class GPanel extends JPanel {
         workspace.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="closeAllTabs">
     private void closeAllTabs(DefaultMutableTreeNode node, Project project) {
         for (int i = 0; i < node.getChildCount(); i++) {
@@ -623,7 +716,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getFilesFromTo">
     public void getFilesFromTo(Vector from, Vector<org.gcreator.fileclass.GFile> to) {
         for (java.lang.Object o : from) {
@@ -923,7 +1015,7 @@ public class GPanel extends JPanel {
             } catch (WrongResourceException ex) {
                 Logger.getLogger(Aurwindow.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if(file.type.equals("rtf")){
+        } else if (file.type.equals("rtf")) {
             TabPanel tp = new RTFEditor(this.getCurrentProject(), file);
             file.tabPanel = tp;
             addEWindow(tp, file.name, img);
@@ -974,7 +1066,6 @@ public class GPanel extends JPanel {
         return icore;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="dispose">
     public void dispose() {
         if (!gcreator.applet && gcreator.plugload) {
@@ -999,7 +1090,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="saveSettings">
     public void saveSettings() {
         SettingsIO.saveSettings();
@@ -1010,12 +1100,11 @@ public class GPanel extends JPanel {
         ScriptThemeManager.save();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="addWindow(TabPanel, int)">
     public void addTranslatedWindow(TabPanel panel, String title) {
         addWindow(panel, org.gcreator.units.Dictionary.getEntry(title), null);
     }
-    
+
     public void addTranslatedWindow(TabPanel panel, String title, ImageIcon img) {
         addWindow(panel, org.gcreator.units.Dictionary.getEntry(title), img);
     }
@@ -1158,7 +1247,6 @@ public class GPanel extends JPanel {
     //winlist.updateUI();
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="installFileEditor">
     public boolean installFileEditor(FileOpenListener listener) {
         return listeners.add(listener);
@@ -1190,7 +1278,6 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentProject">
     public Project getCurrentProject() {
         Folder curfol = getCurrentFolder();
@@ -1206,7 +1293,6 @@ public class GPanel extends JPanel {
         return null;
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="getCurrentFolder">
     public Folder getCurrentFolder() {
         if (getCurrentObject() == null) {
@@ -1236,7 +1322,6 @@ public class GPanel extends JPanel {
         return node.object;
     }
     //</editor-fold>
-    
     public boolean addPanelSelectedListener(PanelSelectedListener psl) {
         return psel.add(psl);
     }
@@ -1265,7 +1350,6 @@ public class GPanel extends JPanel {
         }
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createPaletteFrame()">
     public JInternalFrame createPaletteFrame() {
         JInternalFrame f = new JInternalFrame();
@@ -1288,7 +1372,6 @@ public class GPanel extends JPanel {
         return f;
     }
     //</editor-fold>
-    
     private void selectedDocumentChanged(TabPanel tabpanel) {
         updateToDefaultNavigatorPanel(tabpanel);
         callAllPanelSelectedListeners(tabpanel);
@@ -1485,17 +1568,17 @@ public class GPanel extends JPanel {
         //dialog.setVisible(true);
         }
         if (menu == 8 && item == 2) {
-            //String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
-            //if (mname != null && mname.length() > 0) {
+        //String mname = JOptionPane.showInputDialog(this, LangSupporter.activeLang.getEntry(175));
+        //if (mname != null && mname.length() > 0) {
             /*if (MacroLibrary.findMacro(mname) != null) {
-            JOptionPane.showMessageDialog(this,
-            LangSupporter.activeLang.getEntry(177),
-            LangSupporter.activeLang.getEntry(176),
-            JOptionPane.ERROR_MESSAGE);
-            } else {
-            MacroLibrary.addMacro(Macro.record(mname));
-            }*/
-            //}
+        JOptionPane.showMessageDialog(this,
+        LangSupporter.activeLang.getEntry(177),
+        LangSupporter.activeLang.getEntry(176),
+        JOptionPane.ERROR_MESSAGE);
+        } else {
+        MacroLibrary.addMacro(Macro.record(mname));
+        }*/
+        //}
         }
         if (menu == 8 && item == 3) {
         //Macro.recordingMacro = null;
@@ -1740,7 +1823,7 @@ public class GPanel extends JPanel {
                 break;
             case 16:
                 if (!(getCurrentProject() instanceof ModuleProject)) {
-                    JOptionPane.showMessageDialog(null, "<html>You have not selected a <em>module</> to add to!</>");
+                    JOptionPane.showMessageDialog(null, "<html>You have not selected a <em>module</em> to add to!</html>");
                     return;
                 }
                 a = getCurrentFolder();
@@ -1778,10 +1861,7 @@ public class GPanel extends JPanel {
                 return null;
             }
         }
-        org.gcreator.fileclass.GFile file = new org.gcreator.fileclass.GFile(folder, name, type, null);
-        /*if (file.type.toLowerCase().equals("png") || file.type.toLowerCase().equals("jpg") || file.type.toLowerCase().equals("gif")) {
-        file.treeimage = imgicon;
-        }*/
+        GFile file = new GFile(folder, name, type, null);
         ObjectNode node = new ObjectNode(file);
         folder.node.add(node);
         TreePath tp = new TreePath(node.getPath());
@@ -1900,14 +1980,12 @@ public class GPanel extends JPanel {
         CloseProject(getCurrentProject());
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="createToolBar">
     public void createToolBar() {
         toolpopup = new ToolbarPopupMenu();
         ToolbarManager.makeToolbars(this);
     }
     //</editor-fold>
-    
     //<editor-fold defaultstate="collapsed" desc="remove">
     public void remove(TabPanel panel, JInternalFrame frame) {
         tabs.remove(panel);
@@ -1938,14 +2016,14 @@ public class GPanel extends JPanel {
         }
         if (mainProject == null) {
             JOptionPane.showMessageDialog(this, "<html>No main project selected.<br/>Please select main project in Build&Run>Set as Main Project.</html>",
-                    "A Fatal Exception OE has occured at "+Integer.toHexString((int)(Math.random()*Integer.MAX_VALUE)).toUpperCase(), JOptionPane.ERROR_MESSAGE);
+                    "A Fatal Exception OE has occured at " + Integer.toHexString((int) (Math.random() * Integer.MAX_VALUE)).toUpperCase(), JOptionPane.ERROR_MESSAGE);
             return;
         }
         //save to gcp file
         if (mainProject.location == null || mainProject.location.equals("") || saveAs) {
             JFileChooser fc;
             try {
-                fc = new JFileChooser((Registry.exists("Directories.gpanelSaveProject")) ? (BeanFile)Registry.get("Directories.gpanelSaveProject") : null);
+                fc = new JFileChooser((Registry.exists("Directories.gpanelSaveProject")) ? (BeanFile) Registry.get("Directories.gpanelSaveProject") : null);
             } catch (ClassCastException exc) {
                 fc = new JFileChooser();
             }

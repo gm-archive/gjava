@@ -102,10 +102,6 @@ public class ProjectExporter {
             throw new IOException("Invalid project type");
         }
 
-        res += "\" curid=\"";
-
-        res += p.curid;
-
         res += "\">\n";
 
         res += generateManifestForFolder(p, "\t");

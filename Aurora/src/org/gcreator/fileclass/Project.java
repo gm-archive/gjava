@@ -25,18 +25,7 @@ public abstract class Project extends Folder {
      * Use functions instead
      */
     public transient Vector<GFile> files = new Vector<GFile>();
-    /**
-     * Shouldn't be public, but superpackages aren't implemented in Java 6 yet...
-     * Use functions instead
-     */
-    public transient int curid = 1;
-    //public javax.swing.tree.DefaultMutableTreeNode froot;
-    //The following vectors are for saving, getting resouces etc
-    /*public Vector<Actor> actors = new Vector<Actor>();
-    public Vector<Sprite> sprites = new Vector<Sprite>(); 
-    public Vector<Sound> sounds = new Vector<Sound>();
-    public Vector<Scene> scenes = new Vector<Scene>(); 
-    public Vector<Classes> classes = new Vector<Classes>(); */
+    
     public Project() {
         super(null);
     }
@@ -53,18 +42,11 @@ public abstract class Project extends Folder {
         }
     }
 
-    public int addFile(GFile file) {
+    public void addFile(GFile file) {
         try {
-            //System.out.println("Before adding");
-            if (curid >= files.size()) {
-                files.setSize(curid + 1);
-            }
-            files.add(curid, file);
-            //System.out.println("Added " + curid);
-            return curid++;
+            files.add(file);
         } catch (Exception e) {
             System.out.println("Failed to add due to " + e);
-            return -1;
         }
     }
 

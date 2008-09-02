@@ -42,7 +42,10 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author luis, TGMG, Serge Humphrey
+ * 
+ * @author Luís Reis
+ * @author TGMG
+ * @author Serge Humphrey
  */
 public final class ProjectImporter {
 
@@ -53,7 +56,6 @@ public final class ProjectImporter {
     }
 
     public static void OpenProject(Component caller) {
-        String fname = null;
         if (fc.showOpenDialog(caller) == JFileChooser.CANCEL_OPTION) {
             return;
         }
@@ -128,7 +130,6 @@ public final class ProjectImporter {
         }
         String version = null;
         String type = null;
-        String curid = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
 
@@ -142,9 +143,6 @@ public final class ProjectImporter {
                 type = val;
                 continue;
             }
-            if (n.equals("curid")) {
-                curid = val;
-            }
         //Ignore other attributes for forward-compatibility reasons
         }
         if (version == null) {
@@ -155,9 +153,6 @@ public final class ProjectImporter {
         }
         if (type == null) {
             throw new SAXException("Malformed project manifest: No project type specified.");
-        }
-        if (curid == null) {
-            throw new SAXException("Malformed project manifest: No curid specified");
         }
         Class ptype = ProjectIO.projectMap.get(type);
         if (ptype == null) {
@@ -190,14 +185,6 @@ public final class ProjectImporter {
 
         p.name = name;
         p.location = c.getFile();
-        try {
-            p.curid = Integer.parseInt(curid);
-        } catch (Exception e) {
-            throw new SAXException("Malformed project manifest: curid must be integer");
-        }
-        if (p.curid <= 0) {
-            throw new SAXException("Malformed project manifest: curid must be positive");
-        }
 
         //Method e;
         //try {
@@ -213,11 +200,15 @@ public final class ProjectImporter {
         //        //Ignore
         //    }
         //}
-
-        importFolder(p, root, c);
         
+        ArrayList<ProjectFile> files = new ArrayList<ProjectImporter.ProjectFile>(); 
+        importFolder(p, root, c, p, files);
+        ProjectFile[] pfs = files.toArray(new ProjectFile[files.size()]);
+        Arrays.sort(pfs);
+        for (int i = pfs.length-1; i >= 0; i--) {
+            pfs[i].addToProject();
+        }
         ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.panel.top);
-
     }
 
     private static ZipEntry getNextValidEntry(ImportContext c) throws IOException {
@@ -235,7 +226,7 @@ public final class ProjectImporter {
         return z;
     }
 
-    private static void importFolder(Folder f, Node node, ImportContext c)
+    private static void importFolder(Folder f, Node node, ImportContext c, Project p, ArrayList<ProjectFile> files)
             throws SAXException, IOException {
         for (int i = 0; i < node.getChildrenCount(); i++) {
             Node child = node.getChildAt(i);
@@ -276,12 +267,13 @@ public final class ProjectImporter {
                 } catch (Exception e) {
                     throw new SAXException("Invalid manifest: File id must be integer");
                 }
-                if (cid <= 0) {
+                if (cid < 0) {
                     throw new SAXException("Invalid manifest: File id must be positive");
                 }
                 GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
                 file.value = importContent(c, type, manager, fname, c.zip);
+                files.add(new ProjectFile(cid, file, p));
             } else if (name.equals("group")) {
                 if (child.getAttributeCount() != 2) {
                     throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
@@ -320,7 +312,7 @@ public final class ProjectImporter {
                 }
 
                 f.add(g);
-                importFolder(g, child, c);
+                importFolder(g, child, c, p, files);
             } else {
                 throw new SAXException("Invalid manifest. Unknown entry " + name);
             }
@@ -383,5 +375,33 @@ public final class ProjectImporter {
             }
         }
         throw new SAXException("Invalid content manager and/or file type");
+    }
+    
+    protected static class ProjectFile implements Comparable<ProjectFile> {
+        private int index;
+        private GFile file;
+        private Project project;
+
+        public ProjectFile(int index, GFile file, Project project) {
+            this.index = index;
+            this.file = file;
+            this.project = project;
+        }
+        
+        public void addToProject() {
+            project.files.add(index, file);
+        }
+        
+        @Override
+        public int compareTo(ProjectImporter.ProjectFile o) {
+            if (o.index < this.index) {
+                return -1;
+            }
+            if (o.index == this.index) {
+                return 0;
+            }
+            return 1;
+        }
+        
     }
 }

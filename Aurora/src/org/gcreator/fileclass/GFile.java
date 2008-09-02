@@ -19,22 +19,23 @@ import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.io.ObjectStreamField;
-import java.util.zip.*;
+import java.util.zip.ZipOutputStream;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.imageio.*;
-import org.gcreator.fileclass.res.*;
+import org.gcreator.fileclass.res.Resource;
 
 /**
  *
  * @author Luís
  */
 public class GFile extends GObject implements Transferable {
+
     private static final long serialVersionUID = 1;
     public static final DataFlavor NODE_FLAVOR = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType, "Node");
     private static DataFlavor[] flavors = {NODE_FLAVOR};
     public transient Folder root;
     /**
-     * ONLY TO BE USED BY IOManager!!!
+     * ONLY TO BE USED BY IOManager!
      */
     public transient String _savetype = "";
     public transient boolean _read = false;
@@ -43,24 +44,21 @@ public class GFile extends GObject implements Transferable {
     public java.lang.Object value = null;
     //public ImageIcon treeimage;
     public String xml = ""; // the data xml used to load
-
-    private static final ObjectStreamField[] serialPersistentFields = {/*new ObjectStreamField("root", Folder.class),*/ new ObjectStreamField("type", String.class), 
-    new ObjectStreamField("value", java.lang.Object.class)};
+    private static final ObjectStreamField[] serialPersistentFields = {/*new ObjectStreamField("root", Folder.class),*/new ObjectStreamField("type", String.class),
+        new ObjectStreamField("value", java.lang.Object.class)
+    };
 
     public GFile(Folder root, String name, String type, GObject value) {
         this(root, name, type, value, false);
     }
-    
+
     public GFile(Folder root, String name, String type, GObject value, boolean artificial) {
         super(name);
         this.root = root;
         this.type = type;
         this.value = value;
         root.add(this);
-
-        //System.out.println("Creating file");
-        if(!artificial){
-            //System.out.println("Adding to project");
+        if (!artificial) {
             getProject().addFile(this);
         }
     }
@@ -73,91 +71,78 @@ public class GFile extends GObject implements Transferable {
     public String getObjectType() {
         return "File";
     }
-    
-    public int getID(){
+
+    public int getID() {
         return getProject().getIdFor(this);
     }
 
     /*private class MyOutputStream extends ImageOutputStreamImpl {
-
-        public ZipOutputStream out;
-
-        public MyOutputStream(ZipOutputStream out) {
-            this.out = out;
-        }
-
-         
-        public void write(byte[] barray, int a, int b) throws IOException {
-            for (int i = a; i < b; i++) {
-            }
-        }
-        
-         
-        public void write(byte[] barray) throws IOException {
-            for (int i = 0; i < barray.length; i++) {
-                out.write(barray[i]);
-            }
-        }
-        
-        public void write(int a) throws IOException {
-            out.write((byte) a);
-        }
-        
-        public int read(byte[] barray, int a, int b) {
-            return 0;
-        }
-
-        public int read(int a) {
-            return 0;
-        }
-
-        public int read() {
-            return 0;
-        }
+    public ZipOutputStream out;
+    public MyOutputStream(ZipOutputStream out) {
+    this.out = out;
+    }
+    public void write(byte[] barray, int a, int b) throws IOException {
+    for (int i = a; i < b; i++) {
+    }
+    }
+    public void write(byte[] barray) throws IOException {
+    for (int i = 0; i < barray.length; i++) {
+    out.write(barray[i]);
+    }
+    }
+    public void write(int a) throws IOException {
+    out.write((byte) a);
+    }
+    public int read(byte[] barray, int a, int b) {
+    return 0;
+    }
+    public int read(int a) {
+    return 0;
+    }
+    public int read() {
+    return 0;
+    }
     }*/
     public void writeToBuffer(ZipOutputStream out) throws IOException {
 
-        
 
-    
-        if(value!=null){
-        if (value instanceof String) {
-            out.write(value.toString().getBytes());
-        } 
-//else if (value instanceof AudioClip) {
-//            System.out.println("audio clip");
-//            AudioClip ac = (AudioClip)value;
-//            
-//        }
-        else if (value instanceof ImageIcon) {
-            ImageIcon img = ((ImageIcon) value);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            
-            BufferedImage ii = null;
-            Image imgg = null;
-            try{
-                imgg = img.getImage();
-                if (imgg.getClass().getName().equals("sun.awt.image.ToolkitImage")) {
-                    System.out.println("Toolkit");
-                    ii = (BufferedImage) imgg.getClass().getMethod("getBufferedImage").invoke(imgg);
-                }
-                else {
+
+
+        if (value != null) {
+            if (value instanceof String) {
+                out.write(value.toString().getBytes());
+            } //else if (value instanceof AudioClip) {
+            //            System.out.println("audio clip");
+            //            AudioClip ac = (AudioClip)value;
+            //            
+            //        }
+            else if (value instanceof ImageIcon) {
+                ImageIcon img = ((ImageIcon) value);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                BufferedImage ii = null;
+                Image imgg = null;
+                try {
+                    imgg = img.getImage();
+                    if (imgg.getClass().getName().equals("sun.awt.image.ToolkitImage")) {
+                        System.out.println("Toolkit");
+                        ii = (BufferedImage) imgg.getClass().getMethod("getBufferedImage").invoke(imgg);
+                    } else {
                         ii = (BufferedImage) (img.getImage());
                     }
-            }
-            catch(Exception e){ //CLass not found?
-                System.out.println("Exception " + e.getMessage());
-                ii =  (BufferedImage) (imgg);
-            }
-            
-            ImageIO.write(ii, type, baos); 
-            out.write(baos.toByteArray());
-        } else {//if (value instanceof org.gcreator.fileclass.res.Resource) {
-            ObjectOutput s = new ObjectOutputStream(out);
-        s.writeObject(value);
-        s.flush();
+                } catch (Exception e) { //CLass not found?
+                    System.out.println("Exception " + e.getMessage());
+                    ii = (BufferedImage) (imgg);
+                }
+
+                ImageIO.write(ii, type, baos);
+                out.write(baos.toByteArray());
+            } else {//if (value instanceof org.gcreator.fileclass.res.Resource) {
+                ObjectOutput s = new ObjectOutputStream(out);
+                s.writeObject(value);
+                s.flush();
             //out.write(((org.gcreator.fileclass.res.Resource) value).writeXml().getBytes());
-        }
+            }
         }
     }
 
@@ -206,16 +191,15 @@ public class GFile extends GObject implements Transferable {
     public String getPath() {
         return root.getPath() + "/" + super.getPath();
     }
-    
+
     @Override
-    public Project getProject(){
+    public Project getProject() {
 
         return root.getProject();
     }
-    
+
     @Override
     public String toString() {
-        return ""+this.getClass()+"@"+this.hashCode()+"\t Folder: "+this.root+"\tType: "
-                        +this.type+"\t Value: "+this.value;
+        return "" + this.getClass() + "@" + this.hashCode() + "\t Folder: " + this.root + "\tType: " + this.type + "\t Value: " + this.value;
     }
 }
