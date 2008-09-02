@@ -19,7 +19,6 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.GFile;
-import org.gcreator.fileclass.GObject;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.Project;
 
@@ -29,7 +28,7 @@ import org.gcreator.fileclass.Project;
  */
 public class ProjectExporter {
 
-    public static int COMPRESSION = 9;
+    public static int compression = 5;
 
     public static void export(Project p, File f) {
 
@@ -37,14 +36,21 @@ public class ProjectExporter {
             FileOutputStream fs = new FileOutputStream(f);
             ZipOutputStream zip = new ZipOutputStream(fs);
 
-            zip.setLevel(COMPRESSION);
+            zip.setLevel(compression);
 
             ZipEntry e = new ZipEntry("config");
 
             zip.putNextEntry(e);
             zip.write(generateManifest(p).getBytes());
             zip.closeEntry();
-
+            
+            for (GFile gf : p.files) {
+                if (gf != null) {
+                    System.out.println("gFile: "+gf.name);
+                } else {
+                    System.out.println("gFile is null");
+                }
+            }
             exportFolder(zip, p, 1);
 
             zip.close();
@@ -52,7 +58,6 @@ public class ProjectExporter {
 
         } catch (IOException e) {
             System.out.println("IOException:" + e.toString());
-            e.printStackTrace();
         }
 
     }
@@ -81,9 +86,9 @@ public class ProjectExporter {
     }
 
     public static String generateManifest(Project p) throws IOException {
-        StringBuffer res = new StringBuffer("<?xml version=\"1.0\"?>\n");
+        String res = "<?xml version=\"1.0\"?>\n";
 
-        res.append("<project version=\"1.0\" type=\"");
+        res += "<project version=\"1.0\" type=\"";
         Class pc = p.getClass();
         Enumeration<String> e = ProjectIO.projectMap.keys();
 
@@ -99,49 +104,53 @@ public class ProjectExporter {
         }
 
         if (type != null) {
-            res.append(type);
+            res += type;
         } else {
             throw new IOException("Invalid project type");
         }
 
-        res.append("\" curid=\"");
+        res += "\" curid=\"";
 
-        res.append(p.curid);
+        res += p.curid;
 
-        res.append("\">\n");
+        res += "\">\n";
 
-        res.append(generateManifestForFolder(p, "\t"));
+        res += generateManifestForFolder(p, "\t");
 
-        res.append("</project>");
+        res += "</project>";
 
-        return res.toString();
+        return res;
     }
 
     public static String generateManifestForFolder(Folder f, String prefix) throws IOException {
-        StringBuffer res = new StringBuffer();
+        String res = "";
 
-        for (GObject o : f.getChildren()) {
+        Vector v = f.getChildren();
+
+        for (Object o : v) {
             if (o instanceof GFile) {
-                res.append(prefix)
-                .append("<file type=\"")
-                .append(((GFile) o).type)
-                .append("\" manager=\"")
-                .append(IOManager.getPreferredTypeFor((GFile) o))
-                .append("\">")
-                .append(((GFile) o).name)
-                .append("</file>\n");
+                res += prefix;
+                res += "<file type=\"";
+                res += ((GFile) o).type;
+                res += "\" manager=\"";
+                res += IOManager.getPreferredTypeFor((GFile) o);
+                res += "\" id=\"";
+                res += ((GFile) o).getProject().getIdFor((GFile) o);
+                res += "\">";
+                res += ((GFile) o).name;
+                res += "</file>\n";
             } else if (o instanceof Group) {
-                res.append(prefix)
-                .append("<group type=\"")
-                .append(IOManager.getSimpleNameFor((Group) o))
-                .append("\" name=\"" + ((Group) o).name)
-                .append("\">\n")
-                .append(generateManifestForFolder((Group) o, prefix + "\t"))
-                .append(prefix)
-                .append("</group>\n");
+                res += prefix;
+                res += "<group type=\"";
+                res += IOManager.getSimpleNameFor((Group) o);
+                res += "\" name=\"" + ((Group) o).name;
+                res += "\">\n";
+                res += generateManifestForFolder((Group) o, prefix + "\t");
+                res += prefix;
+                res += "</group>\n";
             }
         }
 
-        return res.toString();
+        return res;
     }
 }

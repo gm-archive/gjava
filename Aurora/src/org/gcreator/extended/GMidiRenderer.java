@@ -153,4 +153,10 @@ public class GMidiRenderer extends MidiRenderer implements MetaEventListener {
             this.stopSound();
         }
     }
+
+    protected void stopSound() {
+        this.sequencer.stop();
+        this.sequencer.setMicrosecondPosition(0);
+        this.sequencer.removeMetaEventListener(this);
+    }
 }

@@ -19,6 +19,8 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import javax.imageio.ImageIO;
@@ -40,9 +42,9 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author luis
+ * @author luis, TGMG, Serge Humphrey
  */
-public class ProjectImporter {
+public final class ProjectImporter {
 
     private static JFileChooser fc = new JFileChooser();
 
@@ -114,7 +116,7 @@ public class ProjectImporter {
 
     private static void parseManifest(ZipInputStream zip, ImportContext c, String s)
             throws SAXException, IOException {
-        //    System.out.println("s="+s);
+
         SAXParser sax = new SAXParser(new ByteInputStream(s.getBytes()));
         Node root = sax.getRootNode();
         if (root == null) {
@@ -129,9 +131,9 @@ public class ProjectImporter {
         String curid = null;
         for (int i = 0; i < root.getAttributeCount(); i++) {
             String n = root.getAttributeName(i);
-            //     System.out.println("n="+n);
+
             String val = root.getAttributeValue(n);
-            //      System.out.println("val="+val);
+
             if (n.equals("version")) {
                 version = val;
                 continue;
@@ -213,7 +215,7 @@ public class ProjectImporter {
         //}
 
         importFolder(p, root, c);
-
+        
         ProjectTree.importFolderToTree(p, org.gcreator.core.gcreator.panel.top);
 
     }
@@ -243,12 +245,17 @@ public class ProjectImporter {
                 String fname = child.getContent();
                 String type = null;
                 String manager = null;
+                String id = null;
                 for (int j = 0; j < child.getAttributeCount(); j++) {
                     String aname = child.getAttributeName(j);
                     if (aname.equals("type")) {
                         type = child.getAttributeValue(aname);
                     } else if (aname.equals("manager")) {
                         manager = child.getAttributeValue(aname);
+                    } else if (aname.equals("id")) {
+                        id = child.getAttributeValue(aname);
+                    } else {
+                        throw new SAXException("Invalid manifest. Unknown file attribute " + aname);
                     }
                 }
                 if (type == null) {
@@ -257,16 +264,25 @@ public class ProjectImporter {
                 if (manager == null) {
                     throw new SAXException("Invalid manifest. Missing content manager");
                 }
+                if (id == null) {
+                    throw new SAXException("Invalid manifest. Missing file id");
+                }
                 if (child.getChildrenCount() > 0) {
                     throw new SAXException("Invalid manifest. Unexpected children for file.");
+                }
+                int cid = 0;
+                try {
+                    cid = Integer.parseInt(id);
+                } catch (Exception e) {
+                    throw new SAXException("Invalid manifest: File id must be integer");
+                }
+                if (cid <= 0) {
+                    throw new SAXException("Invalid manifest: File id must be positive");
                 }
                 GFile file = new GFile(f, fname, type, null, true);
                 getNextValidEntry(c);
                 file.value = importContent(c, type, manager, fname, c.zip);
-                f.getProject().files.add(file);
-
             } else if (name.equals("group")) {
-                //  System.out.println("Got to group");
                 if (child.getAttributeCount() != 2) {
                     throw new SAXException("Invalid manifest. Wrong number of attributes for group.");
                 }
@@ -302,6 +318,7 @@ public class ProjectImporter {
                 } catch (InvocationTargetException e) {
                     throw new SAXException("Group constructor threw an exception");
                 }
+
                 f.add(g);
                 importFolder(g, child, c);
             } else {
