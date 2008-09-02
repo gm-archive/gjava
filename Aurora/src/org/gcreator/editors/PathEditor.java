@@ -57,11 +57,7 @@ public class PathEditor extends TabPanel {
 
         initComponents();
 
-        //if (!java6) { //No Java 5 support needed
-            jRadioButton2.setEnabled(false);//Path2D came out in java 6
-
-            jRadioButton2.setToolTipText(Dictionary.getEntry("editors-path-smooth"));
-        //}
+        jRadioButton2.setToolTipText(Dictionary.getEntry("editors-path-smooth"));
         jTextField1.setText(file.name);
         pathCanvas = new PathCanvas(this, true);
         jPanel2.add(pathCanvas);
