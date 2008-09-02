@@ -21,6 +21,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import org.gcreator.components.uiplus.DialogPlus;
 
 /**
@@ -77,6 +79,25 @@ public class AutocompleteFrame extends DialogPlus {
             }
         };
 
+        list.addListSelectionListener(new ListSelectionListener() {
+
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                loadDoc(list.getSelectedValue().toString());
+            }
+        });
+        
+
+        p.setVisible(true);
+        p.setViewportView(doc);
+        add(BorderLayout.LINE_END, p);
+    }
+
+    public boolean requestDie() {
+        return false;
+    }
+    
+    protected void loadDoc(final String id) {
         doc.setText("Loading...");
 
         Thread t = new Thread() {
@@ -84,7 +105,7 @@ public class AutocompleteFrame extends DialogPlus {
             @Override
             public void run() {
                 try {
-                    URL url = new URL("http://wiki.g-creator.org/doku.php?id=show_message");
+                    URL url = new URL("http://wiki.g-creator.org/doku.php?id=" + id);
                     URLConnection connection = url.openConnection();
                     BufferedReader inStream = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                     String inputLine = "";
@@ -104,17 +125,10 @@ public class AutocompleteFrame extends DialogPlus {
                     inStream.close();
                 } catch (Exception e) {
                     System.out.println(e.toString());
+                    doc.setText(e.toString());
                 }
             }
         };
         t.start();
-
-        p.setVisible(true);
-        p.setViewportView(doc);
-        add(BorderLayout.LINE_END, p);
-    }
-
-    public boolean requestDie() {
-        return false;
     }
 }
