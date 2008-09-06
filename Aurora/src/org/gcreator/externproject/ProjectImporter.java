@@ -27,12 +27,15 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.gcreator.actions.Action;
 import org.gcreator.components.impl.ByteInputStream;
 import org.gcreator.components.impl.CustomFileFilter;
+import org.gcreator.events.Event;
 import org.gcreator.fileclass.Folder;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Group;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Sprite;
 import org.gcreator.managers.IOManager;
 import org.gcreator.managers.ProjectTree;
@@ -362,6 +365,20 @@ public final class ProjectImporter {
             ObjectInputStream stream = new ObjectInputStream(s);
             try {
                 return stream.readObject();
+            } catch (ClassNotFoundException e) {
+                throw new IOException("Could not read serialized object: Class Not Found");
+            }
+        }
+        if (manager.equals("Actor")) {
+            ObjectInputStream stream = new ObjectInputStream(s);
+            try {
+                Actor a = (Actor) stream.readObject();
+                for (Event e : a.events) {
+                    for (Action ac : e.actions) {
+                        ac.project = c.p;
+                    }
+                }
+                return a;
             } catch (ClassNotFoundException e) {
                 throw new IOException("Could not read serialized object: Class Not Found");
             }

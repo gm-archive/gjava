@@ -103,8 +103,6 @@ public class ActorEditor extends TabPanel {
         this.project = project;
         if (file.value == null) {
             this.actor = new Actor();
-            actor.readXml(file.xml);
-            //file.value = actor;
             actor.events = new Vector<org.gcreator.events.Event>();
             changed = true;
         } else if (file.value instanceof Actor) {
@@ -115,7 +113,6 @@ public class ActorEditor extends TabPanel {
         this.file = file;
         elist = new EventListModel(file, actor);
         initComponents();
-        //PopupListener a = new PopupListener(jList2, new ActionPopupMenu(this));
         jList2.addMouseListener(new MouseListener() {
 
             @Override

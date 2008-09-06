@@ -97,14 +97,17 @@ public class RTFEditor extends TabPanel {
         return o != null && o instanceof Integer ? (Integer) o : null;
     }
 
+    @Override
     public boolean wasModified() {
         return changed;
     }
 
+    @Override
     public boolean canSave() {
         return changed;
     }
 
+    @Override
     public boolean Save() {
         ByteArrayOutputStream s = new ByteArrayOutputStream();
         try {
@@ -116,7 +119,12 @@ public class RTFEditor extends TabPanel {
         }
         return true;
     }
-
+    
+    @Override
+    public boolean setModified(boolean a) {
+        changed = a;
+        return true;
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -144,6 +152,7 @@ public class RTFEditor extends TabPanel {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
 
         jButton8.setText("jButton8");
 
@@ -265,6 +274,7 @@ public class RTFEditor extends TabPanel {
         jToolBar1.add(jButton9);
 
         add(jToolBar1, java.awt.BorderLayout.PAGE_START);
+        add(saveResourcePanel1, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -406,6 +416,7 @@ private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JToolBar jToolBar1;
+    private org.gcreator.components.SaveResourcePanel saveResourcePanel1;
     // End of variables declaration//GEN-END:variables
 
 }

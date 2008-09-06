@@ -9,31 +9,58 @@
  */
 package org.gcreator.components;
 
-import org.gcreator.core.*;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import org.gcreator.core.GPanel;
+import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
-import javax.swing.*;
+
+
 
 /**
- *
+ * This abstract class contains basic methods for Resource management.
  * @author Luís
  */
-public class TabPanel extends JPanel {
+public abstract class TabPanel extends JPanel {
+
+    /**
+     * The GPanel to which this {@see TabPanel} belongs to.
+     */
     public GPanel parent;
+    /**
+     * The {@see ExtendedFrame} which this {@see TabPanel} belongs to.
+     * This will be <tt>null</tt> if you are not using the MDI view.
+     */
     public ExtendedFrame frame;
+    /**
+     * The title for the tab.
+     */
     public String title = "<none>";
+    /**
+     * The {@see Project} to which this tab belongs to.
+     */
     public Project project;
-    public org.gcreator.fileclass.GFile file = null;
-    
+    /**
+     * The {@see GFile} that this tab's {@see Resource} belongs to, or
+     * <tt>null</tt> if it doesn't belong to any.
+     */
+    public GFile file = null;
+
+    /**
+     * {@inheritDoc}
+     */
     public void dispose() {
-       
+
         if (!wasModified()) {
-             parent.remove(this, frame);
-             if (file != null)
+            parent.remove(this, frame);
+            if (file != null) {
                 file.tabPanel = null;
+            }
         } else {
             java.lang.Object[] options = {"Yes",
-                    "No",
-                    "Cancel"};
+                "No",
+                "Cancel"
+            };
             int n = JOptionPane.showOptionDialog(frame,
                     "You have unsaved changes in your document.\n" +
                     "Do you want to save it?",
@@ -45,58 +72,79 @@ public class TabPanel extends JPanel {
                     options[2]);
             if (n == JOptionPane.YES_OPTION) {
                 if (Save()) {
-                     parent.remove(this, frame);
-                     file.tabPanel = null;
-                }
-            }
-            if (n == JOptionPane.NO_OPTION) {
-                 parent.remove(this, frame);
-                 if (file != null)
+                    parent.remove(this, frame);
                     file.tabPanel = null;
+                }
+            } else {
+                parent.remove(this, frame);
+                if (file != null) {
+                    file.tabPanel = null;
+                }
             }
         }
     }
-    
-    public boolean canSave(){
+
+    /**
+     * Whether or not this tab's {@see Resource} can be saved.
+     * Usually if this returns <tt>false</tt> this means that the
+     * it's resource has not been modified.
+     * @return Whether or not this tab's {@see Resource} can be saved.
+     */
+    public boolean canSave() {
         return false;
     }
     
-    public boolean Save(){
-        return true; //Sucessfully saved
+    /**
+     * Saves this tab's resources, and returns whether successful.
+     * @return <tt>true</tt> if the tab's resources were successfuly saved.
+     */
+    public boolean Save() {
+        return false;
     }
     
-    public boolean Load()
-    {
+    /**
+     * I have no sweet clue.
+     * @return 
+     */
+    public boolean Load() {
         return true;
     }
-    
-    public boolean wasModified(){
+
+    /**
+     * Whether the resource was modified.
+     * @return Whether the resource was modified.
+     */
+    public boolean wasModified() {
         return false; //Allows the application to exit without prompting the user
     }
-    
-    public boolean canFind(){
+
+    public boolean canFind() {
         return false;
     }
-    
-    public boolean canReplace(){
+
+    public boolean canReplace() {
         return false;
     }
-    
-    public boolean Find(String str, boolean useRegex){
+
+    public boolean Find(String str, boolean useRegex) {
         //Case insensitive should be generated previously
         return false; //Could not find string
     }
-    
-    public boolean Replace(String match, String replace, boolean useRegex){
+
+    public boolean Replace(String match, String replace, boolean useRegex) {
         return false; //Could not replace
     }
-    
-    public boolean ReplaceAll(String match, String replace, boolean useRegex){
+
+    public boolean ReplaceAll(String match, String replace, boolean useRegex) {
         return false; //Could not replace
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return title;
+    }
+    
+    public boolean setModified(boolean modified) {
+        return false;
     }
 }

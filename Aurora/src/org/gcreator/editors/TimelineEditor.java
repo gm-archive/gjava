@@ -30,10 +30,11 @@ import org.gcreator.units.Dictionary;
  * @author  luis
  */
 public class TimelineEditor extends TabPanel {
-    
+
     private Timeline timeline;
     int from;
     DefaultComboBoxModel actmodel = new DefaultComboBoxModel();
+
     /** Creates new form TimelineEditor */
     public TimelineEditor(org.gcreator.fileclass.GFile file, Project project) throws WrongResourceException {
         this.project = project;
@@ -51,14 +52,20 @@ public class TimelineEditor extends TabPanel {
         a.update = true;
         jList1.addMouseListener(a);
         jTextField1.setText(file.name);
-        jTextField1.getDocument().addDocumentListener(new DocumentListener(){
-            public void changedUpdate(DocumentEvent evt){
+        jTextField1.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void changedUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void insertUpdate(DocumentEvent evt){
+
+            @Override
+            public void insertUpdate(DocumentEvent evt) {
                 updateName();
             }
-            public void removeUpdate(DocumentEvent evt){
+
+            @Override
+            public void removeUpdate(DocumentEvent evt) {
                 updateName();
             }
         });
@@ -71,13 +78,13 @@ public class TimelineEditor extends TabPanel {
         jList1.setCellRenderer(new ActionsCellRenderer());
         jList1.setModel(actmodel);
     }
-    
-    public void updateName(){
+
+    public void updateName() {
         file.name = jTextField1.getText();
         //timeline.name = file.name;
         gcreator.panel.workspace.updateUI();
     }
-    
+
     public void updateActionList() {
         actmodel.removeAllElements();
         if (jComboBox3.getSelectedItem() == null) {
@@ -88,7 +95,12 @@ public class TimelineEditor extends TabPanel {
             actmodel.addElement(actions.get(i));
         }
     }
-    
+
+    @Override
+    public boolean setModified(boolean a) {
+        
+        return true;
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -105,6 +117,7 @@ public class TimelineEditor extends TabPanel {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        saveResourcePanel1 = new org.gcreator.components.SaveResourcePanel(this);
         jSplitPane2 = new javax.swing.JSplitPane();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -141,14 +154,17 @@ public class TimelineEditor extends TabPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jButton2)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
+                            .addComponent(jButton5)))
+                    .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -166,12 +182,13 @@ public class TimelineEditor extends TabPanel {
                 .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(saveResourcePanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        jSplitPane2.setDividerLocation(130);
+        jSplitPane2.setDividerLocation(100);
 
         jPanel5.setMinimumSize(new java.awt.Dimension(100, 0));
 
@@ -201,23 +218,23 @@ public class TimelineEditor extends TabPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jComboBox2, 0, 268, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton1))
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+            .addComponent(jComboBox2, 0, 108, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 12, Short.MAX_VALUE))
         );
 
         jSplitPane2.setRightComponent(jPanel5);
@@ -254,15 +271,15 @@ public class TimelineEditor extends TabPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jComboBox3, 0, 129, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addComponent(jComboBox3, 0, 100, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 387, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
         );
 
         jSplitPane2.setLeftComponent(jPanel2);
@@ -273,33 +290,32 @@ public class TimelineEditor extends TabPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-            System.out.println("adding");
-            if (jComboBox3.getSelectedItem() == null) {
-                return;
-            }
-            if (jList2.getSelectedValue() == null) {
-                return;
-            }
-            System.out.println("creating ap");
-            ActionPattern ap = (org.gcreator.actions.ActionPattern) jList2.getSelectedValue();
-            System.out.println("proceeding");
-            org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
-            System.out.println("Action: "+a.getLabel());
-            TimelineStep step = (TimelineStep) jComboBox3.getSelectedItem();
-            System.out.println("Step " + step.stepnum);
-            step.add(a);
-            System.out.println("added");
-            updateActionList();
+
+        System.out.println("adding");
+        if (jComboBox3.getSelectedItem() == null) {
+            return;
+        }
+        if (jList2.getSelectedValue() == null) {
+            return;
+        }
+        System.out.println("creating ap");
+        ActionPattern ap = (org.gcreator.actions.ActionPattern) jList2.getSelectedValue();
+        System.out.println("proceeding");
+        org.gcreator.actions.Action a = new org.gcreator.actions.Action(this, ap);
+        System.out.println("Action: " + a.getLabel());
+        TimelineStep step = (TimelineStep) jComboBox3.getSelectedItem();
+        System.out.println("Step " + step.stepnum);
+        step.add(a);
+        System.out.println("added");
+        updateActionList();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -313,51 +329,53 @@ public class TimelineEditor extends TabPanel {
 
     private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
         from = jList1.locationToIndex(evt.getPoint());
-        //jList2.updateUI();
+    //jList2.updateUI();
 }//GEN-LAST:event_jList1MousePressed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
         if (jList1.getSelectedValue() == null) {
             return;
         }
-        
+
         jPanel3.removeAll();
         jPanel3.add(((org.gcreator.actions.Action) jList1.getSelectedValue()).getPanel(), BorderLayout.CENTER);
         updateUI();
-        //jScrollPane3.setViewportView(((org.gcreator.actions.Action) jList1.getSelectedValue()).getPanel());
+    //jScrollPane3.setViewportView(((org.gcreator.actions.Action) jList1.getSelectedValue()).getPanel());
 }//GEN-LAST:event_jList1ValueChanged
 
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-        int to  = jList1.locationToIndex(evt.getPoint());
-        if (to == from) return;
+        int to = jList1.locationToIndex(evt.getPoint());
+        if (to == from) {
+            return;
+        }
         org.gcreator.actions.Action remove = ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.remove(from);
-        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to,remove);
+        ((org.gcreator.events.Event) jList1.getSelectedValue()).actions.add(to, remove);
         from = to;
         updateActionList();
 }//GEN-LAST:event_jList1MouseDragged
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String s = JOptionPane.showInputDialog(this, "Step number:", 0);
-        if(s==null)
+        if (s == null) {
             return;
-        try{
+        }
+        try {
             int i = Integer.parseInt(s);
-            if(i<0)
+            if (i < 0) {
                 return;
+            }
             TimelineStep step = new TimelineStep();
             step.stepnum = i;
             timeline.steps.add(step);
             jList1.updateUI();
             jComboBox3.updateUI();
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         updateActionList();
     }//GEN-LAST:event_jComboBox3ActionPerformed
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -378,6 +396,6 @@ public class TimelineEditor extends TabPanel {
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JTextField jTextField1;
+    private org.gcreator.components.SaveResourcePanel saveResourcePanel1;
     // End of variables declaration//GEN-END:variables
-    
 }

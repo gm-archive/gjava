@@ -471,7 +471,13 @@ public class SceneEditor extends TabPanel {
         //     scene.setName(file.name);
         org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
-
+    
+    @Override
+    public boolean setModified(boolean a) {
+        changed = a;
+        return true;
+    }
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

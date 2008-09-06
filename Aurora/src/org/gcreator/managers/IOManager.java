@@ -32,6 +32,7 @@ import org.gcreator.fileclass.groups.SpriteGroup;
 import org.gcreator.fileclass.groups.StaticGroup;
 import org.gcreator.fileclass.groups.TilesetGroup;
 import org.gcreator.fileclass.groups.TimelineGroup;
+import org.gcreator.fileclass.res.Actor;
 import org.gcreator.fileclass.res.Resource;
 import org.gcreator.fileclass.res.Sound;
 import org.gcreator.fileclass.res.Sprite;
@@ -65,6 +66,9 @@ public class IOManager {
         }
         if (o instanceof Sound) {
             return f._savetype = "Sound";
+        }
+        if (o instanceof Actor) {
+            return f._savetype = "Actor";
         }
         if (o instanceof Resource) {
             return f._savetype = "Serialize";
@@ -164,6 +168,10 @@ public class IOManager {
             ObjectOutputStream out = new ObjectOutputStream(s);
             out.writeObject(o);
         } else if (str.equals("Sound")) {
+            Object o = f.value;
+            ObjectOutputStream out = new ObjectOutputStream(s);
+            out.writeObject(o);
+        } else if (str.equals("Actor")) {
             Object o = f.value;
             ObjectOutputStream out = new ObjectOutputStream(s);
             out.writeObject(o);

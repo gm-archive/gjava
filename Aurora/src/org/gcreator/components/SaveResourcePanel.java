@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author  bob
+ * @author  Serge Humphrey
  */
 public class SaveResourcePanel extends javax.swing.JPanel {
     private TabPanel panel;
@@ -98,6 +98,7 @@ public class SaveResourcePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        panel.setModified(false);
         if (panel == null) {
             System.out.println("Panel is null!");
             return;
@@ -111,17 +112,6 @@ public class SaveResourcePanel extends javax.swing.JPanel {
             return;
         }
         panel.Save();
-        try {    
-            panel.getClass().getField("changed").setBoolean(panel, false);
-        } catch (IllegalArgumentException ex) {
-            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
-        } catch (NoSuchFieldException ex) {
-            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
-        } catch (SecurityException ex) {
-            Logger.getLogger(SaveResourcePanel.class.getName()).log(Level.WARNING, null, ex);
-        }
     }//GEN-LAST:event_jButton2ActionPerformed
     
     

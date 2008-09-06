@@ -51,6 +51,7 @@ public class ProjectExporter {
 
         } catch (IOException e) {
             System.out.println("IOException:" + e.toString());
+            e.printStackTrace();
         }
 
     }

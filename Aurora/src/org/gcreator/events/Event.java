@@ -9,72 +9,83 @@
  */
 package org.gcreator.events;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.io.Serializable;
-import java.net.URLClassLoader;
-import java.util.*;
+import java.util.Vector;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author Luís
  */
-public class Event implements Serializable, Comparable<Event>{
-    
+public class Event implements Serializable, Comparable<Event> {
+
     static final long serialVersionUID = 1L;
-    
     protected int PRIORITY = 0;
     public Vector<org.gcreator.actions.Action> actions;
     public EventCategory cat = null;
-    public Event(){
+
+    public Event() {
         actions = new Vector<org.gcreator.actions.Action>();
     }
-    public ImageIcon getImage(){
+
+    public ImageIcon getImage() {
         return null;
     }
-    public ImageIcon getSelectedImage(){
+
+    public ImageIcon getSelectedImage() {
         return getImage();
     }
-    public Color getSelectedBackground(){
+
+    public Color getSelectedBackground() {
         return Color.BLUE;
     }
-    public Color getSelectedForeground(){
+
+    public Color getSelectedForeground() {
         return Color.WHITE;
     }
-    public Color getBackground(){
+
+    public Color getBackground() {
         return Color.WHITE;
     }
-    public Color getForeground(){
+
+    public Color getForeground() {
         return Color.BLACK;
     }
-    public boolean allowsOther(){ //Collision
+
+    public boolean allowsOther() { //Collision
         return false;
     }
-    public String writeXml(){
-        String xml = "<event type=\""+getClass().getName()+"\">\n";
-        for(org.gcreator.actions.Action action : actions)
+
+    public String writeXml() {
+        String xml = "<event type=\"" + getClass().getName() + "\">\n";
+        for (org.gcreator.actions.Action action : actions) {
             xml += action.writeXml();
+        }
         xml += "</event>\n";
         return xml;
     }
-    public static Event getNewEventFromName(String name) throws Exception{
+
+    public static Event getNewEventFromName(String name) throws Exception {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         Class x = loader.loadClass(name);
         return (Event) x.newInstance();
     }
-    public int readXml(String[] input, int initialpos){
+
+    public int readXml(String[] input, int initialpos) {
         return initialpos;
     }
-    
-    public int compareTo(Event e){
+
+    @Override
+    public int compareTo(Event e) {
         return e.PRIORITY - PRIORITY;
     }
-    
-    public Event clone(){
-        try{
+
+    @Override
+    public Event clone() {
+        try {
             return getClass().newInstance();
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }

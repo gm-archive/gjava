@@ -9,9 +9,13 @@
  */
 package org.gcreator.editors;
 
+import java.awt.event.InputMethodEvent;
+import java.awt.event.InputMethodListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.SwingUtilities;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.gcreator.components.TabPanel;
 import org.gcreator.components.codeeditor.ColorCodedTextArea;
 import org.gcreator.components.impl.*;
@@ -25,7 +29,7 @@ import org.gcreator.units.Dictionary;
  */
 public class ScriptEditor extends TabPanel {
     
-    public boolean changed = true;
+    public boolean changed = false;
     ColorCodedTextArea g;
     
     @Override
@@ -63,15 +67,25 @@ public class ScriptEditor extends TabPanel {
         }
         
         g = new ColorCodedTextArea(project, text);
-        
-        jScrollPane1.setViewportView(g);
-      
-        g.addPropertyChangeListener(new PropertyChangeListener() {
+        g.getDocument().addDocumentListener(new DocumentListener() {
+
             @Override
-            public void propertyChange(PropertyChangeEvent evt) {
+            public void insertUpdate(DocumentEvent e) {
+                changed = true;
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changed = true;
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
                 changed = true;
             }
         });
+        
+        jScrollPane1.setViewportView(g);
         
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -79,6 +93,12 @@ public class ScriptEditor extends TabPanel {
                 g.requestFocusInWindow();
             }
         });  
+    }
+    
+    @Override
+    public boolean setModified(boolean a) {
+        changed = a;
+        return true;
     }
     
     /** This method is called from within the constructor to

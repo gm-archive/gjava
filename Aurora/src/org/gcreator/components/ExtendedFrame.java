@@ -9,27 +9,29 @@
  */
 package org.gcreator.components;
 
-import javax.swing.*;
+import javax.swing.JInternalFrame;
 
 /**
  *
  * @author Luís
  */
 public class ExtendedFrame extends JInternalFrame {
+
+    private static final long serialVersionUID = 1;
     private TabPanel pane = null;
-            
-    public void setPanel(TabPanel pane){
+
+    public void setPanel(TabPanel pane) {
         this.pane = pane;
     }
-    
-    public TabPanel getPanel(){
+
+    public TabPanel getPanel() {
         return pane;
     }
-    
-     
+
     @Override
-    public void dispose(){
-        if (pane != null)
+    public void dispose() {
+        if (pane != null) {
             pane.dispose();
+        }
     }
 }
