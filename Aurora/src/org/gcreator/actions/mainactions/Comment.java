@@ -50,7 +50,7 @@ public class Comment extends ActionPattern {
     }
     
     @Override
-    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Resource r) {
         PlainTextPanel panel = new PlainTextPanel();
         panel.text.setText(text);
         return panel; // new PlainTextPanel();

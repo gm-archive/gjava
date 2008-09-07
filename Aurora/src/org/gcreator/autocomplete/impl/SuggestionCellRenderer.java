@@ -9,42 +9,49 @@
  */
 package org.gcreator.autocomplete.impl;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 
 /**
  * @author Luís Reis
  */
-public class SuggestionCellRenderer extends JLabel implements ListCellRenderer{
-    public SuggestionCellRenderer(){
+public class SuggestionCellRenderer extends JLabel implements ListCellRenderer {
+
+    private static final long serialVersionUID = 1;
+
+    public SuggestionCellRenderer() {
         setOpaque(true);
     }
-    
-    public JComponent getListCellRendererComponent(JList list, Object selection, int index, boolean selected, boolean hasFocus){
-        if(selection instanceof Suggestion){
+
+    @Override
+    public JComponent getListCellRendererComponent(JList list,
+            Object selection, int index, boolean selected, boolean hasFocus) {
+        if (selection instanceof Suggestion) {
             Suggestion sel = (Suggestion) selection;
             setText(sel.getText());
             setForeground(sel.getForeground());
             setIcon(sel.getImage());
             setFont(sel.getFont());
-        }
-        else{
+        } else {
             setText(selection.toString());
             setForeground(Color.RED);
             setIcon(null);
             setFont(list.getFont());
         }
-        if(selected)
-            try{
+        if (selected) {
+            try {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 setBackground(Color.BLUE);
                 setForeground(Color.WHITE);
             }
-        else
+        } else {
             setBackground(Color.WHITE);
+        }
         return this;
     }
 }

@@ -81,8 +81,8 @@ public class SetHSpeed extends ActionPattern {
         icon = img;
     }
 
-    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager(project);
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Actor a) {
+        PropertyManager propertySheetPanel1 = new PropertyManager(project, a);
         /*final PropertyEditorFactory f = propertySheetPanel1.getEditorFactory();
         propertySheetPanel1.setEditorFactory(new PropertyEditorFactory() {
 

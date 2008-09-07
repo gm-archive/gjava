@@ -15,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author Serge Humphrey
  */
-class FunctionNameTextField extends JTextField {
+class VariableNameTextField extends JTextField {
 
     private static final long serialVersionUID = 1;
-    public FunctionNameEditor a;
+    public VariableNameEditor a;
     
-    FunctionNameTextField(FunctionNameEditor a) {
+    VariableNameTextField(VariableNameEditor a) {
         this.a = a;
         super.setText(getText());
     }
@@ -34,17 +34,17 @@ class FunctionNameTextField extends JTextField {
         if (o == null) {
             return "null";
         }
-        return ((FunctionName)o).name;
+        return ((VariableName)o).name;
     }
     
     @Override
     public void setText(String text) {
         super.setText(text);
-        ((FunctionName)a.getValue()).name = text;
+        ((VariableName)a.getValue()).name = text;
     }
     
     @Override
     public void removeNotify() {
-        ((FunctionName)a.getValue()).name = super.getText();
+        ((VariableName)a.getValue()).name = super.getText();
     }
 }

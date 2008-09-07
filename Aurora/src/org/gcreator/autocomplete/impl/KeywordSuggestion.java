@@ -9,38 +9,47 @@
  */
 package org.gcreator.autocomplete.impl;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.ImageIcon;
 import org.gcreator.managers.ScriptThemeManager;
 
 /**
  * @author Luís Reis
  */
-public class KeywordSuggestion extends Suggestion{
+public class KeywordSuggestion extends Suggestion {
+
     protected String text = "";
-    public KeywordSuggestion(){}
-    
-    public KeywordSuggestion(String text){
+
+    public KeywordSuggestion() {
+    }
+
+    public KeywordSuggestion(String text) {
         this.text = text;
     }
-    
-    public Color getForeground(){
+
+    @Override
+    public Color getForeground() {
         return ScriptThemeManager.getColors().get("Keywords");
     }
-    
-    public Font getFont(){
+
+    @Override
+    public Font getFont() {
         return ScriptThemeManager.getFonts().get("Keywords");
     }
-    
-    public ImageIcon getImage(){
+
+    @Override
+    public ImageIcon getImage() {
         return null;
     }
-    
-    public String getText(){
+
+    @Override
+    public String getText() {
         return text;
     }
-    
-    public String confirm(String context, String prevWord){
+
+    @Override
+    public String confirm(String context, String prevWord) {
         return (text + " ").substring(context.length());
     }
 }

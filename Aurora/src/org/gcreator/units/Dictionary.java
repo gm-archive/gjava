@@ -4,7 +4,6 @@
  * Created on 4/Set/2007, 11:16:25
  * 
  */
-
 package org.gcreator.units;
 
 import java.io.File;
@@ -21,6 +20,7 @@ import org.xml.sax.SAXException;
  * @author Luís
  */
 public class Dictionary {
+
     protected Hashtable<String, String> entries = new Hashtable<String, String>();
     protected Vector<String> authors = new Vector<String>();
     protected String status = null;
@@ -28,119 +28,128 @@ public class Dictionary {
     protected String shortName = "";
     protected static Hashtable<String, Dictionary> dictionaries = new Hashtable<String, Dictionary>();
     public static String activeDictionary = "en";
-    
-    public Dictionary(){}
-    
-    public static Dictionary loadFromXML(String shortName, File file){
+
+    public Dictionary() {
+    }
+
+    public static Dictionary loadFromXML(String shortName, File file) {
         System.out.println("Here");
-        try{
+        try {
             FileInputStream stream = new FileInputStream(file);
             SAXParser p = new SAXParser(stream);
             Node d = p.getRootNode();
-            if(!d.getName().equals("lang"))
+            if (!d.getName().equals("lang")) {
                 throw new SAXException("Invalid root");
+            }
             Dictionary dic = new Dictionary();
             dic.shortName = shortName;
-            for(int i = 0; i < d.getAttributeCount(); i++){
+            for (int i = 0; i < d.getAttributeCount(); i++) {
                 String attr = d.getAttributeName(i);
-                if(attr.equals("name"))
+                if (attr.equals("name")) {
                     dic.language = d.getAttributeValue(attr);
-                else if(attr.equals("status"))
+                } else if (attr.equals("status")) {
                     dic.status = d.getAttributeValue(attr);
-                else
+                } else {
                     throw new SAXException("Unknown language attribute");
+                }
             }
-            if(dic.language==null)
+            if (dic.language == null) {
                 throw new SAXException("Language name not specified");
-            if(dic.status==null)
+            }
+            if (dic.status == null) {
                 throw new SAXException("Language status not specified");
-            for(int i = 0; i < d.getChildrenCount(); i++){
+            }
+            for (int i = 0; i < d.getChildrenCount(); i++) {
                 Node node = d.getChildAt(i);
                 String name = node.getName();
-                if(name.equals("author"))
+                if (name.equals("author")) {
                     dic.authors.add(node.getContent());
-                else if(name.equals("slice")){
-                    if(node.getAttributeCount()!=1)
+                } else if (name.equals("slice")) {
+                    if (node.getAttributeCount() != 1) {
                         throw new SAXException("Invalid attribute number for slice");
-                    if(!node.getAttributeName(0).equals("key"))
+                    }
+                    if (!node.getAttributeName(0).equals("key")) {
                         throw new SAXException("Invalid attribute for slice");
+                    }
                     dic.entries.put(node.getAttributeValue("key"), node.getContent());
-                }
-                else
+                } else {
                     throw new SAXException("Invalid language content");
+                }
             }
-            if(dic.authors.isEmpty())
+            if (dic.authors.isEmpty()) {
                 throw new SAXException("No authors specified");
-            if(dic.entries.isEmpty())
+            }
+            if (dic.entries.isEmpty()) {
                 throw new SAXException("No slices specified");
+            }
             return dic;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.toString());
             return null;
         }
     }
-    
-    public static void loadDictionaries(){
+
+    public static void loadDictionaries() {
         File f = new File("./lang/");
         File[] files = f.listFiles();
-        for(File lang : files){
+        for (File lang : files) {
             String name = lang.getName();
-            if(!name.equals(".svn")){
+            if (!name.equals(".svn")) {
                 name = name.substring(0, name.indexOf("."));
                 dictionaries.put(name, loadFromXML(name, lang));
             }
         }
         Enumeration<String> s = dictionaries.keys();
-        while(s.hasMoreElements()){
+        while (s.hasMoreElements()) {
             System.out.println(s.nextElement());
         }
     }
-    
-    public static int countDictionaries(){
+
+    public static int countDictionaries() {
         return dictionaries.size();
     }
-    
+
     public String getLanguage() throws Exception {
         if (language == null) {
             throw new Exception();
         }
         return language;
     }
-    
-    public String getShortName(){
+
+    public String getShortName() {
         return shortName;
     }
-    
-    public Vector<String> getAuthors(){
+
+    public Vector<String> getAuthors() {
         return authors;
     }
-    
-    public String getStatus(){
+
+    public String getStatus() {
         return status;
     }
-    
-    public String getSpecialEntry(String value){
+
+    public String getSpecialEntry(String value) {
         return "";
     }
-    
-    public String getDictionaryEntry(String key){
+
+    public String getDictionaryEntry(String key) {
         return entries.get(key);
     }
-    
-    public static Dictionary getActiveDictionary(){
+
+    public static Dictionary getActiveDictionary() {
         return dictionaries.get(activeDictionary);
     }
-    
-    public static String getEntry(String key){
+
+    public static String getEntry(String key) {
         return getActiveDictionary().getDictionaryEntry(key);
     }
-    
-    public static Dictionary[] getDictionaries(){
+
+    public static Dictionary[] getDictionaries() {
         Dictionary[] dicts = new Dictionary[dictionaries.size()];
         int i = 0;
-        for(Dictionary dict : dictionaries.values())
+        for (Dictionary dict : dictionaries.values()) {
             dicts[i++] = dict;
+        }
         return dicts;
     }
 }

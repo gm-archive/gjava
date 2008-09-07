@@ -16,54 +16,62 @@ import org.gcreator.actions.components.*;
 import javax.swing.*;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
-import org.gcreator.units.Dictionary;
 
 /**
  *
  * @author luis
  */
-public class Repeat extends ActionPattern{
-    
+public class Repeat extends ActionPattern {
+
     static final long serialVersionUID = 1L;
-    
     public String times = "1";
+    public static ImageIcon img = new ImageIcon(Repeat.class.getResource("/org/gcreator/actions/images/repeat.png"));
+
     
-    public static ImageIcon img = new ImageIcon(Repeat.class.getResource("/org/gcreator/actions/images/repeat.png"));;
-   
-    public Repeat(){
-        super();
-    }
+    
+
+      
+        ;
+
+    
+
+    public   Repeat( ) {
+        super   () ;
+             
+             }
     
     @Override
     public void save(JComponent panel){
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
-            if(p.getName().equals("times"))
+            if(p.getName().equals("times")) {
                 p.setValue(times);
-                
+            }
+
         }
     }
-    
+
     @Override
-    public void load(JComponent panel){
+    public void load(JComponent panel) {
         Property[] ps = ((PropertyManager) panel).getProperties();
-        for(Property p : ps){
-            if(p.getName().equals("times"))
+        for (Property p : ps) {
+            if (p.getName().equals("times")) {
                 times = (String) p.getValue();
+            }
         }
     }
-    
-    public void setStandardImage(ImageIcon img){
+
+    public void setStandardImage(ImageIcon img) {
         Repeat.img = img;
     }
-    
-    public ImageIcon getStandardImage(){
+
+    public ImageIcon getStandardImage() {
         return img;
     }
-    
-    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        PropertyManager panel = new PropertyManager(project);
-        
+
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Actor a) {
+        PropertyManager panel = new PropertyManager(project, a);
+
         DefaultProperty p = new DefaultProperty();
         p.setValue("1");
         p.setType(String.class);
@@ -72,20 +80,22 @@ public class Repeat extends ActionPattern{
         p.setDisplayName("Times");
         p.setShortDescription("The number of times to execute.");
         panel.addProperty(p);
-        
+
         return panel;
     }
-    
-    public String getStandardText(JComponent panel){
-        if(panel!=null)
+
+    public String getStandardText(JComponent panel) {
+        if (panel != null) {
             save(panel);
-        if(panel==null)
+        }
+        if (panel == null) {
             return "Repeat";
-        return "Repeat ("+times+") times";
+        }
+        return "Repeat (" + times + ") times";
     }
-    
-    public String generateGCL(JComponent panel){
+
+    public String generateGCL(JComponent panel) {
         save(panel);
-        return "repeat("+times+")\n";
+        return "repeat(" + times + ")\n";
     }
 }

@@ -20,84 +20,84 @@ import org.gcreator.units.Dictionary;
  *
  * @author Luís
  */
-public class ExecuteCode extends ActionPattern{
+public class ExecuteCode extends ActionPattern {
+
     static final long serialVersionUID = 1L;
     //ActorEditor context;
-    public String code="//Some GCL Code";
+    public String code = "//Some GCL Code";
     public static ImageIcon img = new ImageIcon(ExecuteCode.class.getResource("/org/gcreator/actions/images/Execute_Code.png"));
-    
-    public ExecuteCode(){
+
+    public ExecuteCode() {
         super();
-        //this.context = context;
+    //this.context = context;
     }
-    
-    public ExecuteCode(String c){
+
+    public ExecuteCode(String c) {
         super();
-        code=c;
-        //this.context = context;
+        code = c;
+    //this.context = context;
     }
-    
-    public void  setCode(String code){
-        //((SyntaxHighlighter) panel).setText(code);
+
+    public void setCode(String code) {
+    //((SyntaxHighlighter) panel).setText(code);
     }
-    
+
     @Override
-    public void setStandardImage(ImageIcon icon){
+    public void setStandardImage(ImageIcon icon) {
         img = icon;
     }
-    
+
     @Override
-    public ImageIcon getStandardImage(){
+    public ImageIcon getStandardImage() {
         return img;
     }
-    
+
     @Override
-    public void save(JComponent panel){
-        code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
+    public void save(JComponent panel) {
+        code = ((ColorCodedTextArea) ((JScrollPane) panel).getViewport().getView()).getText();
     }
-    
+
     @Override
-    public void load(JComponent panel){
-        ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).setText(code);
+    public void load(JComponent panel) {
+        ((ColorCodedTextArea) ((JScrollPane) panel).getViewport().getView()).setText(code);
     }
-     
+
     @Override
-    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Resource r) {
         ColorCodedTextArea panel = new ColorCodedTextArea(project);
         panel.setText(code);
         /*panel.addKeyListener(new KeyListener(){
-            public void keyReleased(KeyEvent evt){
-                context.jList2.updateUI();
-            }
-            public void keyPressed(KeyEvent evt){
-                context.jList2.updateUI();
-            }
-            public void keyTyped(KeyEvent evt){
-                context.jList2.updateUI();
-            }
+        public void keyReleased(KeyEvent evt){
+        context.jList2.updateUI();
+        }
+        public void keyPressed(KeyEvent evt){
+        context.jList2.updateUI();
+        }
+        public void keyTyped(KeyEvent evt){
+        context.jList2.updateUI();
+        }
         }); //Doesn't seem to be working */
         return new JScrollPane(panel);
     }
-    
-     
+
     @Override
-    public String getStandardText(JComponent panel){
-        if(panel!=null){
+    public String getStandardText(JComponent panel) {
+        if (panel != null) {
             save(panel);
-            code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
-            if(code==null||!code.equals(""))
+            code = ((ColorCodedTextArea) ((JScrollPane) panel).getViewport().getView()).getText();
+            if (code == null || !code.equals("")) {
                 return Dictionary.getEntry("actions-execute-text");
+            }
             return code;
-        }
-        else
+        } else {
             return Dictionary.getEntry("actions-execute-text");
+        }
     }
-    
-     
+
     @Override
-    public String generateGCL(JComponent panel){
+    public String generateGCL(JComponent panel) {
         save(panel);
-        code = ((ColorCodedTextArea) ((JScrollPane)panel).getViewport().getView()).getText();
+        code = ((ColorCodedTextArea) ((JScrollPane) panel).getViewport().getView()).getText();
         return code;
     }
 }

@@ -77,8 +77,8 @@ static final long serialVersionUID = 1L;
         icon = img;
     }
 
-    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager(project);
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Actor a) {
+        PropertyManager propertySheetPanel1 = new PropertyManager(project, a);
          
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");

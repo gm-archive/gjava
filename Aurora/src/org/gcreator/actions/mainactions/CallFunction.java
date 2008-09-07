@@ -19,10 +19,12 @@ import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.actions.components.FunctionName;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Resource;
 
 /**
- *
- * @author Luís, TGMG
+ * Call Function action.
+ * @author Luís Reis
+ * @author TGMG
  */
 public class CallFunction extends ActionPattern {
 
@@ -82,8 +84,9 @@ public class CallFunction extends ActionPattern {
     }
 
     @Override
-    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager propertySheetPanel1 = new PropertyManager(project);
+    public JComponent createNewPanel(org.gcreator.actions.Action action, 
+            Project project, Resource r) {
+        PropertyManager propertySheetPanel1 = new PropertyManager(project, r);
 
         DefaultProperty p = new DefaultProperty();
         p.setCategory("<html><b>Main");

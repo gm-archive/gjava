@@ -20,7 +20,7 @@ public class FunctionSuggestion extends Suggestion {
     public String name = "";
     public String args = "";
     private static ImageIcon img = new ImageIcon(
-    ClassSuggestion.class.getResource("/org/gcreator/resources/i_function.png"));
+            ClassSuggestion.class.getResource("/org/gcreator/resources/i_function.png"));
 
     public FunctionSuggestion() {
     }
@@ -53,10 +53,9 @@ public class FunctionSuggestion extends Suggestion {
             return "";
         }
     }
-    
+
     @Override
     public String toString() {
         return this.name;
     }
-        
 }

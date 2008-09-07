@@ -19,6 +19,8 @@ import org.gcreator.actions.components.ArgumentList;
 import org.gcreator.actions.components.ArgumentListEditor;
 import org.gcreator.actions.components.FunctionName;
 import org.gcreator.actions.components.FunctionNameEditor;
+import org.gcreator.actions.components.VariableName;
+import org.gcreator.actions.components.VariableNameEditor;
 import org.gcreator.fileclass.Project;
 
 /**
@@ -31,10 +33,11 @@ public class PropertyManager extends PropertySheetPanel {
     public Hashtable<Class, PropertyEditorSupport> editors = new Hashtable<Class, PropertyEditorSupport>();
     protected Project project;
 
-    public PropertyManager(Project p) {
+    public PropertyManager(Project p, org.gcreator.fileclass.res.Resource r) {
         super();
         this.project = p;
         editors.put(FunctionName.class, new FunctionNameEditor(p));
+        editors.put(VariableName.class, new VariableNameEditor(r));
         editors.put(ArgumentList.class, new ArgumentListEditor());
         setDescriptionVisible(true);
         setToolBarVisible(true);

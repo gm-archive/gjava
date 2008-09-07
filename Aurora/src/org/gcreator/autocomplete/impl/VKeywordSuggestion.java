@@ -12,14 +12,17 @@ package org.gcreator.autocomplete.impl;
 /**
  * @author Luís Reis
  */
-public class VKeywordSuggestion extends KeywordSuggestion{
-    public VKeywordSuggestion(){}
-    
-    public VKeywordSuggestion(String text){
+public class VKeywordSuggestion extends KeywordSuggestion {
+
+    public VKeywordSuggestion() {
+    }
+
+    public VKeywordSuggestion(String text) {
         super(text);
     }
-    
-    public String confirm(String context, String prevWord){
+
+    @Override
+    public String confirm(String context, String prevWord) {
         return text.substring(context.length());
     }
 }

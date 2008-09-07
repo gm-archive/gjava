@@ -9,33 +9,29 @@
  */
 package org.gcreator.fileclass.res;
 
+import java.util.Vector;
 import org.gcreator.units.TimelineStep;
-import java.util.*;
 
 /**
  *
  * @author luis
  */
-public class Timeline implements Resource{
-    static final long serialVersionUID = 1L;
+public class Timeline implements Resource {
+
+    private static final long serialVersionUID = 1L;
     public Vector<TimelineStep> steps = new Vector<TimelineStep>();
-    
-    /**@deprecated*/
-    public Timeline(String name){
-        //this.name = name;
-        this();
+
+    public Timeline() {
+
     }
-    
-    public Timeline(){
-        
-    }
-    
-    public Object clone(){
-        Timeline a = new Timeline(/*name*/);
+
+    @Override
+    public Object clone() {
+        Timeline a = new Timeline();
         return a;
     }
-    
-    public String exportToHtml(boolean xhtml){
+
+    public String exportToHtml(boolean xhtml) {
         return "";
     }
 }

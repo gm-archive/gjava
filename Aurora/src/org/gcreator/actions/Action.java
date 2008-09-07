@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import org.gcreator.editors.ActorEditor;
 import org.gcreator.editors.TimelineEditor;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Resource;
 
 /**
  * Actions represent the GCL equivalent in the Actor Editor.
@@ -36,23 +37,21 @@ public class Action implements Serializable {
     public ActionPattern pattern;
     private JComponent panel;
     public Project project;
-
-    private static final ObjectStreamField[] serialPersistentFields
-                 = {new ObjectStreamField("pattern", ActionPattern.class)};
+    public Resource resource;
     
-//    public Action(ActorEditor editor){
-//        this(editor, null);
-//    }
-//    
+    private static final ObjectStreamField[] serialPersistentFields
+                 = {new ObjectStreamField("pattern", ActionPattern.class)}; 
     /**
      * Creates a new action with a given pattern
      * 
      * @param pattern The Action pattern
+     * @param r The Resource
      */
-    public Action(ActionPattern pattern) {
+    public Action(ActionPattern pattern, Resource r) {
         this.pattern = pattern;
+        this.resource = r;
         if (pattern != null) {
-            panel = pattern.createNewPanel(this, null);
+            panel = pattern.createNewPanel(this, null, null);
         }
     }
 
@@ -65,8 +64,9 @@ public class Action implements Serializable {
     public Action(ActorEditor editor, ActionPattern pattern) {
         this.pattern = pattern;
         this.project = editor.project;
+        this.resource = editor.actor;
         if (pattern != null) {
-            panel = pattern.createNewPanel(this, project);
+            panel = pattern.createNewPanel(this, project, null);
         }
     }
     
@@ -79,8 +79,9 @@ public class Action implements Serializable {
     public Action(TimelineEditor editor, ActionPattern pattern) {
         this.pattern = pattern;
         this.project = editor.project;
+        this.resource = (Resource) editor.file.value;
         if (pattern != null) {
-            panel = pattern.createNewPanel(this, project);
+            panel = pattern.createNewPanel(this, project, resource);
         }
     }
 
@@ -106,7 +107,7 @@ public class Action implements Serializable {
 
     public JComponent getPanel() {
         if (panel == null) {
-            panel = pattern.createNewPanel(this, project);
+            panel = pattern.createNewPanel(this, project, resource);
             pattern.load(panel);
         }
         return panel;
@@ -144,7 +145,7 @@ public class Action implements Serializable {
 
     @Override
     public Action clone() {
-        Action a = new Action(pattern);
+        Action a = new Action(pattern, resource);
         return a;
     }
 

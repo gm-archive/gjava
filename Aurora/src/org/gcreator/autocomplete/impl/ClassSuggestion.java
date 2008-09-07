@@ -9,40 +9,45 @@
  */
 package org.gcreator.autocomplete.impl;
 
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
 
 /**
  * @author Luís Reis
  */
-public class ClassSuggestion extends Suggestion{
+public class ClassSuggestion extends Suggestion {
+
     private String text = "";
     private static ImageIcon img = new ImageIcon(ClassSuggestion.class.getResource("/org/gcreator/resources/i_class.png"));
-    
-    public ClassSuggestion(){}
-    
-    public ClassSuggestion(String text){
+
+    public ClassSuggestion() {
+    }
+
+    public ClassSuggestion(String text) {
         this.text = text;
     }
-    
-    public Color getForeground(){
+
+    @Override
+    public Color getForeground() {
         return new Color(0, 150, 0);
     }
-    
-    public ImageIcon getImage(){
+
+    @Override
+    public ImageIcon getImage() {
         return img;
     }
-    
-    public String getText(){
+
+    @Override
+    public String getText() {
         return text;
     }
-    
-    public String confirm(String context, String prevWord){
-        try{
-            return (text + (prevWord.equals("new") ? "(" : ""))
-                    .substring(context.substring(context.lastIndexOf('.')+1).length());
-        }
-        catch(Exception e){
+
+    @Override
+    public String confirm(String context, String prevWord) {
+        try {
+            return (text + (prevWord.equals("new") ? "(" : "")).substring(context.substring(context.lastIndexOf('.') + 1).length());
+        } catch (Exception e) {
             return "";
         }
     }

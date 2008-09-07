@@ -22,52 +22,63 @@ import org.gcreator.units.Dictionary;
  *
  * @author luis
  */
-public class While extends ActionPattern{
-    
+public class While extends ActionPattern {
+
     static final long serialVersionUID = 1L;
-    
     public boolean not = false;
     public String condition = "";
+    public static ImageIcon img = new ImageIcon(While.class.getResource("/org/gcreator/actions/images/While.png"));
+
     
-    public static ImageIcon img = new ImageIcon(While.class.getResource("/org/gcreator/actions/images/While.png"));;
     
-    public While(){
-        super();
-    }
+
+      
+        ;
+
+    
+
+    public   While( ) {
+        super   () ;
+             
+             }
     
     @Override
     public void save(JComponent panel){
         Property[] ps = ((PropertyManager) panel).getProperties();
         for(Property p : ps){
-            if(p.getName().equals("not"))
+            if(p.getName().equals("not")) {
                 not = (Boolean) p.getValue();
-            if(p.getName().equals("condition"))
+            }
+            if (p.getName().equals("condition")) {
                 condition = (String) p.getValue();
+            }
         }
     }
-    
+
     @Override
-    public void load(JComponent panel){
+    public void load(JComponent panel) {
         Property[] ps = ((PropertyManager) panel).getProperties();
-        for(Property p : ps){
-            if(p.getName().equals("not"))
+        for (Property p : ps) {
+            if (p.getName().equals("not")) {
                 p.setValue(not);
-            if(p.getName().equals("condition"))
+            }
+            if (p.getName().equals("condition")) {
                 p.setValue(condition);
+            }
         }
     }
-    
-    public void setStandardImage(ImageIcon img){
+
+    public void setStandardImage(ImageIcon img) {
         While.img = img;
     }
-    
-    public ImageIcon getStandardImage(){
+
+    public ImageIcon getStandardImage() {
         return img;
     }
-    
-    public  JComponent createNewPanel(org.gcreator.actions.Action action, Project project){
-        PropertyManager panel = new PropertyManager(project);
-        
+
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, org.gcreator.fileclass.res.Actor a) {
+        PropertyManager panel = new PropertyManager(project, a);
+
         DefaultProperty p = new DefaultProperty();
         p.setValue(false);
         p.setType(Boolean.TYPE);
@@ -76,7 +87,7 @@ public class While extends ActionPattern{
         p.setDisplayName("NOT");
         p.setShortDescription("True->If the condition is false<br>False->If the condition is true");
         panel.addProperty(p);
-        
+
         p = new DefaultProperty();
         p.setValue("true");
         p.setType(String.class);
@@ -85,24 +96,28 @@ public class While extends ActionPattern{
         p.setDisplayName("condition");
         p.setShortDescription("The condition to evaluate");
         panel.addProperty(p);
-        
+
         return panel;
     }
-    
-    public String getStandardText(JComponent panel){
-        if(panel!=null)
+
+    public String getStandardText(JComponent panel) {
+        if (panel != null) {
             save(panel);
-        if(panel==null)
+        }
+        if (panel == null) {
             return "While";
-        if(!not)
-            return "while("+condition+")";
-        return "while(!("+condition+"))";
+        }
+        if (!not) {
+            return "while(" + condition + ")";
+        }
+        return "while(!(" + condition + "))";
     }
-    
-    public String generateGCL(JComponent panel){
+
+    public String generateGCL(JComponent panel) {
         save(panel);
-        if(!not)
-            return "while("+condition+")\n";
-        return "while(!("+condition+"))\n";
+        if (!not) {
+            return "while(" + condition + ")\n";
+        }
+        return "while(!(" + condition + "))\n";
     }
 }

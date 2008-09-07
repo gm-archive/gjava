@@ -11,10 +11,12 @@ package org.gcreator.actions.mainactions;
 
 import com.l2fprod.common.propertysheet.DefaultProperty;
 import com.l2fprod.common.propertysheet.Property;
-import org.gcreator.actions.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import org.gcreator.actions.ActionPattern;
 import org.gcreator.components.PropertyManager;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Resource;
 
 /**
  *
@@ -27,24 +29,14 @@ public class If extends ActionPattern {
     public String condition = "true";
     public static ImageIcon img = new ImageIcon(If.class.getResource("/org/gcreator/actions/images/If.png"));
 
-    
-    
-
-      
-    
-
-       ; 
-            
-             
-             public If(){
-        //super();
+    public If() {
     }
-    
+
     @Override
-    public void load(JComponent panel){
+    public void load(JComponent panel) {
         Property[] ps = ((PropertyManager) panel).getProperties();
-        for(Property p : ps){
-            if(p.getName().equals("not")) {
+        for (Property p : ps) {
+            if (p.getName().equals("not")) {
                 not = (Boolean) p.getValue();
             }
             if (p.getName().equals("condition")) {
@@ -77,8 +69,8 @@ public class If extends ActionPattern {
     }
 
     @Override
-    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project) {
-        PropertyManager panel = new PropertyManager(project);
+    public JComponent createNewPanel(org.gcreator.actions.Action action, Project project, Resource r) {
+        PropertyManager panel = new PropertyManager(project, r);
 
         DefaultProperty p = new DefaultProperty();
         p.setValue(false);

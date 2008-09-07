@@ -10,7 +10,7 @@
  </object> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
-   <string>/home/bob-the-blueberry</string> 
+   <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/Aurora/Samples</string> 
   </void> 
  </object> 
  <object class="sun.themes.CharcoalTheme"/> 
@@ -20,7 +20,7 @@
   <int>699</int> 
  </object> 
  <boolean>true</boolean> 
- <string>javax.swing.plaf.metal.MetalLookAndFeel</string> 
+ <string>Native</string> 
  <object class="org.gcreator.units.BeanFile"> 
   <void property="SPath"> 
    <string>/home/bob-the-blueberry/G-Projects</string> 
@@ -29,5 +29,5 @@
  <boolean>false</boolean> 
  <boolean>false</boolean> 
  <boolean>false</boolean> 
- <int>571</int> 
+ <int>568</int> 
 </java> 

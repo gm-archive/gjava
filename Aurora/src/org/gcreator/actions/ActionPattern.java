@@ -19,6 +19,8 @@ import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.Resource;
 
 /**
  *
@@ -36,7 +38,7 @@ public abstract class ActionPattern implements Serializable, Cloneable {
     //setStandardImage(new ImageIcon(getClass().getResource("/org/gcreator/actions/images/Blank_action.png")));
     }
 
-    public JComponent createNewPanel(Action action, Project project) {
+    public JComponent createNewPanel(Action action, Project project, Resource r) {
         return new JPanel();
     }
 
