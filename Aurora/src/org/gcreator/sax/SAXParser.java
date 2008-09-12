@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.gcreator.sax;
 
 import java.io.IOException;
@@ -23,37 +19,46 @@ public class SAXParser extends DefaultHandler {
     private Node root = null;
     private boolean finished = false;
 
+    @Override
     public void startElement(String namespaceURI, String localName, String qualifiedName, Attributes atts)
             throws SAXException {
-        
-        if(root==null) root = current;
-        else if(current==null) throw new SAXException("Multiple roots");
+
+        if (root == null) {
+            root = current;
+        } else if (current == null) {
+            throw new SAXException("Multiple roots");
+        }
         Node prev = current;
         current = new DefaultNode(prev, localName, atts);
-        if(prev!=null&&prev instanceof DefaultNode)
+        if (prev != null && prev instanceof DefaultNode) {
             ((DefaultNode) prev).addChild(current);
+        }
     }
-    
+
+    @Override
     public void endElement(String namespaceURI, String localName, String qualifiedName)
-    throws SAXException {
-    
+            throws SAXException {
+
         current = current.getParent();
     }
-    
+
+    @Override
     public void characters(char[] text, int start, int length) {
-        if(current!=null&&current instanceof DefaultNode)
-            ((DefaultNode) current).setContent(new String(text).substring(start, start+length));
+        if (current != null && current instanceof DefaultNode) {
+            ((DefaultNode) current).setContent(new String(text).substring(start, start + length));
+        }
     }
-    
-    public Node getRootNode(){
+
+    public Node getRootNode() {
         return root;
     }
-    
-    public void endDocument(){
+
+    @Override
+    public void endDocument() {
         finished = true;
     }
 
-     public SAXParser(InputStream is) throws SAXException, IOException{
+    public SAXParser(InputStream is) throws SAXException, IOException {
         XMLReader xr = XMLReaderFactory.createXMLReader();
         xr.setContentHandler(this);
         xr.setErrorHandler(this);

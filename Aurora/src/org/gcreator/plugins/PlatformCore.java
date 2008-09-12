@@ -1,7 +1,6 @@
 /*
  * PlatformCore.java
  */
-
 package org.gcreator.plugins;
 
 import java.io.BufferedOutputStream;
@@ -52,98 +51,95 @@ public class PlatformCore extends PluginCore {
     public Progress p;// = new Progress(gcreator.window,false);
     public static String returncode = "";
     int usingwith = 0;
-    Vector localVariables  = new Vector(1);
-    Vector fieldVariables  = new Vector(1);
+    Vector localVariables = new Vector(1);
+    Vector fieldVariables = new Vector(1);
     Vector globalVariables = new Vector(1);
     Vector<String> with = new Vector<String>(1);
-    public String current="",event="";
-    public String updateURL="";//,compilername="";
+    public String current = "",  event = "";
+    public String updateURL = "";//,compilername="";
     public double version = 1.0;
     public Project project;
-    public Vector<String> resources=new Vector(),stringResources=new Vector();
+    public Vector<String> resources = new Vector(),  stringResources = new Vector();
 
-    public void update(){
+    public void update() {
         String nextLine;
-       URL url = null;
-       URLConnection urlConn = null;
-       InputStreamReader  inStream = null;
-       BufferedReader buff = null;
-       try{
-          // Create the URL obect that points
-          // at the default file index.html
-          url  = new URL(updateURL );
-          urlConn = url.openConnection();
-         inStream = new InputStreamReader( 
-                           urlConn.getInputStream());
-           buff= new BufferedReader(inStream);
-        
-       // Read and print the lines from index.html
-        while (true){
-            nextLine =buff.readLine();  
-            if (nextLine !=null){
-                String v="";
-                if (nextLine.contains("<version>"))
-                {
-                    v = nextLine.replaceAll("<version>", "").replaceAll("</version>", "");
-                    double d = Double.parseDouble(v);
-                    //check if it is a new version
-                if (d>version) {
-                //JOptionPane.showMessageDialog(gcreator.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
-                int update = JOptionPane.showConfirmDialog(null, getPluginName()+" update is available. Are you sure you want to update "+ getPluginName());
-        if (update == JOptionPane.NO_OPTION || update == JOptionPane.CANCEL_OPTION) {
+        URL url = null;
+        URLConnection urlConn = null;
+        InputStreamReader inStream = null;
+        BufferedReader buff = null;
+        try {
+            // Create the URL obect that points
+            // at the default file index.html
+            url = new URL(updateURL);
+            urlConn = url.openConnection();
+            inStream = new InputStreamReader(
+                    urlConn.getInputStream());
+            buff = new BufferedReader(inStream);
+
+            // Read and print the lines from index.html
+            while (true) {
+                nextLine = buff.readLine();
+                if (nextLine != null) {
+                    String v = "";
+                    if (nextLine.contains("<version>")) {
+                        v = nextLine.replaceAll("<version>", "").replaceAll("</version>", "");
+                        double d = Double.parseDouble(v);
+                        //check if it is a new version
+                        if (d > version) {
+                            //JOptionPane.showMessageDialog(gcreator.window, "A New version is available. Latest version is "+version+". Download it from http://www.g-creator.org"); //will make multilingual when message finalized
+                            int update = JOptionPane.showConfirmDialog(null, getPluginName() + " update is available. Are you sure you want to update " + getPluginName());
+                            if (update == JOptionPane.NO_OPTION || update == JOptionPane.CANCEL_OPTION) {
                                 return;
                             }
-                }
-                else {
+                        } else {
                             return;
                         }
-                }
-                if (nextLine.contains("<zip>")){
-                    //download and unzip the zip
-                    v = nextLine.replaceAll("<zip>", "").replaceAll("</zip>", "");
-                    download(v,"plugins" + File.separator + getPluginName() +".zip");
-                    unzip("plugins" + File.separator + getPluginName() +".zip");
-                    System.out.println("unzipped");
-                    JOptionPane.showMessageDialog(gcreator.window, "Finished updating "+ getPluginName()); //will make multilingual when message finalized
+                    }
+                    if (nextLine.contains("<zip>")) {
+                        //download and unzip the zip
+                        v = nextLine.replaceAll("<zip>", "").replaceAll("</zip>", "");
+                        download(v, "plugins" + File.separator + getPluginName() + ".zip");
+                        unzip("plugins" + File.separator + getPluginName() + ".zip");
+                        System.out.println("unzipped");
+                        JOptionPane.showMessageDialog(gcreator.window, "Finished updating " + getPluginName()); //will make multilingual when message finalized
 
+                    }
+                    org.gcreator.core.utilities.addStringMessage(nextLine);
+                // System.out.println(nextLine); 
+                } else {
+                    break;
                 }
-                org.gcreator.core.utilities.addStringMessage(nextLine);
-               // System.out.println(nextLine); 
-            } else{
-               break;
-            } 
+            }
+        } catch (MalformedURLException e) {
+            System.out.println("Please check the URL:" +
+                    e.toString());
+        } catch (IOException e1) {
+            System.out.println("Can't read  from the Internet: " +
+                    e1.toString());
         }
-     } catch(MalformedURLException e){
-       System.out.println("Please check the URL:" + 
-                                           e.toString() );
-     } catch(IOException  e1){
-      System.out.println("Can't read  from the Internet: "+ 
-                                          e1.toString() ); 
-  }
     }
-    
-    public void unzip(String zipfile)
-    {
+
+    public void unzip(String zipfile) {
         try {
             ZipFile zipFile = new ZipFile(zipfile);
             for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
                 if (entry.isDirectory()) {
                     //System.out.println("Folder:" + entry.getName());
-                    (new File("plugins"+File.separator+entry.getName())).mkdirs();
+                    (new File("plugins" + File.separator + entry.getName())).mkdirs();
                 } else {
                     //System.out.println("File:" + entry.getName());
-                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream("plugins"+File.separator+entry.getName())));
+                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream("plugins" + File.separator + entry.getName())));
                 }
             }
             zipFile.close();
         } catch (IOException ioe) {
-        
+
             ioe.printStackTrace();
 
         }
     }
-    
+
     public static final void copyInputStream(InputStream in, OutputStream out)
             throws IOException {
         byte buffer[] = new byte[1024];
@@ -154,8 +150,8 @@ public class PlatformCore extends PluginCore {
         in.close();
         out.close();
     }
-    
-       public void download(String address, String localFileName) {
+
+    public void download(String address, String localFileName) {
         try {
             OutputStream out = null;
             InputStream in = null;
@@ -171,8 +167,8 @@ public class PlatformCore extends PluginCore {
             for (numWritten = 0; (numRead = in.read(buffer)) != -1; numWritten += numRead) {
                 out.write(buffer, 0, numRead);
             }
-            
-            
+
+
             //System.out.println((new StringBuilder()).append(localFileName).append(" loaded...(").append(numWritten).append(" bytes)").toString());
             System.out.println("Downloaded zip");
             {
@@ -184,13 +180,12 @@ public class PlatformCore extends PluginCore {
                 }
             }
         } catch (Exception ex) {
-            
+
             System.out.println("" + ex.getLocalizedMessage());
         }
 
     }
 
-       
     public void putFolder(Folder folder) {
         org.gcreator.fileclass.GObject childNode;
 
@@ -199,62 +194,60 @@ public class PlatformCore extends PluginCore {
                 if (childNode instanceof org.gcreator.fileclass.GFile) {
                     try {
                         //System.out.println("putfolder:type:"+((org.gcreator.fileclass.GFile) childNode).type);
-                        
+
 //                        if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
 //                            parseSettings((SettingsValues) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
 //                        }
-                        
+
                         if (((org.gcreator.fileclass.GFile) childNode).type.equals("sprite")) {
                             p.jProgressBar1.setValue(20);
-                            p.jLabel2.setText("Task: Converting sprite:"+((org.gcreator.fileclass.GFile) childNode).name);
-                            current="Sprite: "+((GFile) childNode).name;
+                            p.jLabel2.setText("Task: Converting sprite:" + ((org.gcreator.fileclass.GFile) childNode).name);
+                            current = "Sprite: " + ((GFile) childNode).name;
                             parseSprite((Sprite) ((GFile) childNode).value, (GFile) childNode);
                         } else if (((GFile) childNode).type.equals("actor")) {
-                            current="Actor: "+((GFile) childNode).name;
+                            current = "Actor: " + ((GFile) childNode).name;
                             parseActor((Actor) ((GFile) childNode).value, (GFile) childNode);
                             //p.jProgressBar1.setValue(50);
-                            p.jLabel2.setText("Task: Converting actor:"+((GFile) childNode).name);
-                            
-                        }
-                        else if (((GFile) childNode).type.equals("wav") || ((GFile) childNode).type.equals("midi") || ((GFile) childNode).type.equals("ogg") || ((GFile) childNode).type.equals("mp3")) {
-                            current="Sound: "+((GFile) childNode).name;
+                            p.jLabel2.setText("Task: Converting actor:" + ((GFile) childNode).name);
+
+                        } else if (((GFile) childNode).type.equals("wav") || ((GFile) childNode).type.equals("midi") || ((GFile) childNode).type.equals("ogg") || ((GFile) childNode).type.equals("mp3")) {
+                            current = "Sound: " + ((GFile) childNode).name;
                             parseSound((Sound) ((GFile) childNode).value, (GFile) childNode);
                             //p.jProgressBar1.setValue(50);
-                            p.jLabel2.setText("Task: Converting sound:"+((GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting sound:" + ((GFile) childNode).name);
                             System.out.println("sound");
-                        }
-                        else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("scene")) {
                             p.jProgressBar1.setValue(80);
-                            p.jLabel2.setText("Task: Converting scene:"+((GFile) childNode).name);
-                            current="Scene: "+((GFile) childNode).name;
+                            p.jLabel2.setText("Task: Converting scene:" + ((GFile) childNode).name);
+                            current = "Scene: " + ((GFile) childNode).name;
                             parseScene((Scene) ((GFile) childNode).value, (GFile) childNode);
                         } else if (((GFile) childNode).type.equals("jpg")) {
                             p.jProgressBar1.setValue(10);
-                            p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting image:" + ((GFile) childNode).name);
                             parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("png")) {
                             p.jProgressBar1.setValue(10);
-                            p.jLabel2.setText("Task: Converting image:"+((GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting image:" + ((GFile) childNode).name);
                             parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gif")) {
                             parseImage(new GImage((ImageIcon) ((org.gcreator.fileclass.GFile) childNode).value), (org.gcreator.fileclass.GFile) childNode);
                             p.jProgressBar1.setValue(10);
-                            p.jLabel2.setText("Task: Converting image:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting image:" + ((org.gcreator.fileclass.GFile) childNode).name);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("tileset")) {
-                            current="Tileset: "+((org.gcreator.fileclass.GFile) childNode).name;
+                            current = "Tileset: " + ((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
-                            p.jLabel2.setText("Task: Converting tilesets:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting tilesets:" + ((org.gcreator.fileclass.GFile) childNode).name);
                             System.out.println("parsing tileset!");
-                            parseTileset((Tileset) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+                            parseTileset((Tileset) ((org.gcreator.fileclass.GFile) childNode).value, ((org.gcreator.fileclass.GFile) childNode).name);
                         } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("gs")) {
-                            current="Script: "+((org.gcreator.fileclass.GFile) childNode).name;
+                            current = "Script: " + ((org.gcreator.fileclass.GFile) childNode).name;
                             p.jProgressBar1.setValue(40);
-                            p.jLabel2.setText("Task: Converting scripts:"+((org.gcreator.fileclass.GFile) childNode).name);
+                            p.jLabel2.setText("Task: Converting scripts:" + ((org.gcreator.fileclass.GFile) childNode).name);
                             //System.out.println("parsing script!");
-                            parseScript((String) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
-                       } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
-                           p.jLabel2.setText("Task: Writing settings");
-                           parseSettings((SettingsValues) ((org.gcreator.fileclass.GFile) childNode).value,((org.gcreator.fileclass.GFile) childNode).name);
+                            parseScript((String) ((org.gcreator.fileclass.GFile) childNode).value, ((org.gcreator.fileclass.GFile) childNode).name);
+                        } else if (((org.gcreator.fileclass.GFile) childNode).type.equals("settings")) {
+                            p.jLabel2.setText("Task: Writing settings");
+                            parseSettings((SettingsValues) ((org.gcreator.fileclass.GFile) childNode).value, ((org.gcreator.fileclass.GFile) childNode).name);
                         } else {
                             PluginHelper.println("Invalid type:" + ((org.gcreator.fileclass.GFile) childNode).type);
                         }
@@ -262,7 +255,7 @@ public class PlatformCore extends PluginCore {
                     } catch (Exception e) {
                         System.out.println(e.getMessage());
                         e.printStackTrace();
-                        JOptionPane.showMessageDialog(null, "An error has occured converting game:"+e.getMessage());
+                        JOptionPane.showMessageDialog(null, "An error has occured converting game:" + e.getMessage());
                     }
                 } else if (childNode instanceof org.gcreator.fileclass.Folder) {
                     putFolder((Folder) childNode);
@@ -271,31 +264,29 @@ public class PlatformCore extends PluginCore {
         }
 //p.setVisible(false);
     }
-    
-    public static void recursivelyDeleteDirectory(File dir) throws IOException {	       
-  if ((dir == null) || !dir.isDirectory()) {
+
+    public static void recursivelyDeleteDirectory(File dir) throws IOException {
+        if ((dir == null) || !dir.isDirectory()) {
             throw new IllegalArgumentException(dir + " not a directory");
-        }	  	      
-  final File[] files = dir.listFiles();
-  final int size = files.length; 
-  for (int i = 0; i < size; i++) {
-    if(files[i].isDirectory()) {
-      recursivelyDeleteDirectory(files[i]);
-    } else {
+        }
+        final File[] files = dir.listFiles();
+        final int size = files.length;
+        for (int i = 0; i < size; i++) {
+            if (files[i].isDirectory()) {
+                recursivelyDeleteDirectory(files[i]);
+            } else {
                 files[i].delete();
-            }	    
-  }	     
-  dir.delete();
-}
-    
-    public boolean checkvariable(String name)
-    {
-        return false;
-       
+            }
+        }
+        dir.delete();
     }
-    
-    public boolean checkfunction(String name)
-    {
+
+    public boolean checkvariable(String name) {
+        return false;
+
+    }
+
+    public boolean checkfunction(String name) {
         return true;
     }
 
@@ -310,16 +301,17 @@ public class PlatformCore extends PluginCore {
     }
 
     public void parseSound(Sound s, GFile f) {
-        //System.out.println("" + s.name);
-        //parseSprite(s);
+    //System.out.println("" + s.name);
+    //parseSprite(s);
     }
-    
+
     /**
      * @param s 
      * @deprecated*/
-    public void parseSprite(Sprite s){
-        
+    public void parseSprite(Sprite s) {
+
     }
+
     /**
      * @param i 
      * @param f 
@@ -328,12 +320,13 @@ public class PlatformCore extends PluginCore {
     public void parseImage(ImageIcon i, GFile f) {
         System.out.println("called wrong method!");
     }
+
     /**
      * @param i 
      * @param f
      * //@deprecated
      */
-    public void parseImage(GImage i, GFile f){
+    public void parseImage(GImage i, GFile f) {
         parseImage(i.getImage(), f);
     }
 
@@ -343,6 +336,7 @@ public class PlatformCore extends PluginCore {
      * @deprecated*/
     public void parseActor(Actor a) throws IOException {
     }
+
     /**
      * @param a 
      * @param f 
@@ -359,6 +353,7 @@ public class PlatformCore extends PluginCore {
      * @deprecated*/
     public void parseScene(Scene s) throws IOException {
     }
+
     /**
      * @param s 
      * @param f 
@@ -367,20 +362,19 @@ public class PlatformCore extends PluginCore {
     public void parseScene(Scene s, GFile f) throws IOException {
         parseScene(s);
     }
+
     /**
      * @param s 
      * @param name
      * @throws java.io.IOException 
      * @deprecated*/
-    public void parseClass(String s,String name) throws IOException {
-    System.out.println("called wrong method!");
+    public void parseClass(String s, String name) throws IOException {
+        System.out.println("called wrong method!");
     }
-    
-    
+
     public void parseTileset(Tileset t, String name) throws IOException {
-        
+
     }
-    
 
     /**
      * Varstatement called when a varstatement is parsed, returns the language code
@@ -395,14 +389,14 @@ public class PlatformCore extends PluginCore {
         } else if (type.equals("globalvar")) {
             type = "Object";
         }
-        return "/*var statement*/{"+vars+"}";//type + " "+vars;
+        return "/*var statement*/{" + vars + "}";//type + " "+vars;
     }
 
     /*
      * Currently unused, don't bother with it
      */
     public String fieldstatement(String m, String varstatement) {
-        return m+" "+varstatement+";";
+        return m + " " + varstatement + ";";
     }
 
     /**
@@ -443,14 +437,14 @@ public class PlatformCore extends PluginCore {
     public String elsestatement(String statement) {
         return " else " + statement;
     }
-    
+
     /**
      * block statement { }
      * @param st - statement inside block
      * @return
      */
     public String bstatement(String st) {
-        return "{ \n"+st+"\n }";
+        return "{ \n" + st + "\n }";
     }
 
     /**
@@ -459,28 +453,28 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String expression(String ex) {
-       // System.out.println("Expression:"+ex);
+        // System.out.println("Expression:"+ex);
         return ex;
     }
-    
+
     /**
      * Not expression
      * @param exp - the expression that should not be true
      * @return
      */
     public String notexpression(String exp) {
-        return " ("+exp+").not()";
+        return " (" + exp + ").not()";
     }
-    
+
     /**
      * Expression inside parenthesis
      * @param exp
      * @return
      */
     public String pexpression(String exp) {
-        return " ("+exp+")";
+        return " (" + exp + ")";
     }
-    
+
     /**
      * And expression
      * @return
@@ -488,7 +482,7 @@ public class PlatformCore extends PluginCore {
     public String andexpression() {
         return " .and ";
     }
-    
+
     /**
      * Or expression
      * @return
@@ -496,7 +490,7 @@ public class PlatformCore extends PluginCore {
     public String orexpression() {
         return " .or ";
     }
-    
+
     /**
      * xor expression
      * @return
@@ -504,7 +498,7 @@ public class PlatformCore extends PluginCore {
     public String xorexpression() {
         return " .xor ";
     }
-    
+
     /**
      * repeat statement
      * @param ex
@@ -512,9 +506,9 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String repeatstatement(String ex, String st) {
-        return "for(G_CREATOR__repeat=new Double(0); G_CREATOR__repeat.lt("+ex+").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n"+st+" }"; 
+        return "for(G_CREATOR__repeat=new Double(0); G_CREATOR__repeat.lt(" + ex + ").getBoolean(); G_CREATOR__repeat.add(new Integer(1))){\n" + st + " }";
     }
-    
+
     /**
      * Break statement
      * @return
@@ -522,7 +516,7 @@ public class PlatformCore extends PluginCore {
     public String breakstatement() {
         return "break;";
     }
-    
+
     /**
      * Contine statement
      * @return
@@ -530,7 +524,7 @@ public class PlatformCore extends PluginCore {
     public String continuestatement() {
         return "continue;";
     }
-    
+
     /**
      * Do statement
      * @param statement - statement to do in loop
@@ -538,9 +532,9 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String dostatement(String statement, String expression) {
-        return "do "+statement+"while("+expression+".getBoolean());"; //todo
+        return "do " + statement + "while(" + expression + ".getBoolean());"; //todo
     }
-    
+
     /**
      * While statement
      * @param exp
@@ -548,9 +542,9 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String whilestatement(String exp, String st) {
-        return "while ("+exp + ".getBoolean()) "+ st;
+        return "while (" + exp + ".getBoolean()) " + st;
     }
-    
+
     /**
      * For statement
      * @param statement1 - variable to set initital value
@@ -561,20 +555,20 @@ public class PlatformCore extends PluginCore {
      */
     public String forstatement(String statement1, String exp, String statement2, String statements) {
         //System.out.println(statement2.substring(statement2.length()-1,statement2.length()));
-        if ((statement2.substring(statement2.length()-1,statement2.length())).equals(";")) {
+        if ((statement2.substring(statement2.length() - 1, statement2.length())).equals(";")) {
             statement2 = statement2.substring(0, statement2.length() - 1);
         }
-        return "for (Object "+statement1+exp+".getBoolean(); "+statement2+") "+statements;
+        return "for (Object " + statement1 + exp + ".getBoolean(); " + statement2 + ") " + statements;
     }
-    
+
     /**
      * Not done yet so don't use
      * @return
      */
     public String switchstatement() {
         return ""; //TODO
-    }    
-    
+    }
+
     /**
      * not finished yet
      * @param exp - The actor to use in with statement
@@ -584,9 +578,9 @@ public class PlatformCore extends PluginCore {
     public String withstatement(String exp, String statement) {
         usingwith++;
         with.add(exp);
-        return "\n{\n" + statement+"\n}\n";
-    }    
-    
+        return "\n{\n" + statement + "\n}\n";
+    }
+
     /**
      * Assignment statement
      * @param variable - variable to set value of
@@ -596,25 +590,25 @@ public class PlatformCore extends PluginCore {
      */
     public String assignmentstatement(String variable, String operator, String expression) {
         //System.out.println("assignment:"+expression);
-        
-        String instance="",value="";
-        String tempvar=variable;
-        
-        if(variable.contains("all.")) {
+
+        String instance = "", value = "";
+        String tempvar = variable;
+
+        if (variable.contains("all.")) {
             instance = "(new All())";
-        } else if(variable.contains("other.")) {
+        } else if (variable.contains("other.")) {
             instance = "other";
-        } else if(variable.contains("noone.")) {
+        } else if (variable.contains("noone.")) {
             instance = "(new Object())";
-        } else if(variable.contains("self.")) {
+        } else if (variable.contains("self.")) {
             instance = "self";
-        } else if(variable.contains("global.")) {
+        } else if (variable.contains("global.")) {
             instance = "Global";
-        } else if(variable.contains("(")) {
+        } else if (variable.contains("(")) {
             instance = "(new All" + variable.substring(0, variable.indexOf(".") - 1) + "))";
-        } else if(variable.contains(".")){
-            instance="(new All("+variable.substring(0,variable.indexOf(".")-1)+"))";
-            tempvar = variable.substring(0,variable.indexOf(".")-1);
+        } else if (variable.contains(".")) {
+            instance = "(new All(" + variable.substring(0, variable.indexOf(".") - 1) + "))";
+            tempvar = variable.substring(0, variable.indexOf(".") - 1);
         } else {
             instance = "self";
         }
@@ -626,10 +620,10 @@ public class PlatformCore extends PluginCore {
 //        }
 
         //check if it is a built in variable
-        if (checkvariable(tempvar)){
-            String var=(""+variable.charAt(0)).toUpperCase()+variable.substring(1, variable.length());
-       
-            value=instance+".set"+var+"(";
+        if (checkvariable(tempvar)) {
+            String var = ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length());
+
+            value = instance + ".set" + var + "(";
 
             if (operator.equals("=")) {
                 value += expression;
@@ -650,12 +644,12 @@ public class PlatformCore extends PluginCore {
             } else if (operator.equals("^=")) {
                 value += instance + ".get" + var + "().setbxor(" + expression + ")";
             }
-        return value+")";
+            return value + ")";
         }
-        
-        variable = variable.substring(variable.indexOf(".")+1,variable.length());
-           value = instance+".setVariable(\""+variable+"\"," ;
-        
+
+        variable = variable.substring(variable.indexOf(".") + 1, variable.length());
+        value = instance + ".setVariable(\"" + variable + "\",";
+
         if (operator.equals("=")) {
             value += expression;
         } else if (operator.equals(":=")) {
@@ -668,18 +662,16 @@ public class PlatformCore extends PluginCore {
             value += instance + ".getVariable(\"" + variable + "\").setsub(" + expression + ")";
         } else if (operator.equals("/=")) {
             value += instance + ".getVariable(\"" + variable + "\").setdiv(" + expression + ")";
-        }
-        else if (operator.equals("&=")) {
+        } else if (operator.equals("&=")) {
             value += instance + ".getVariable(\"" + variable + "\").setband(" + expression + ")";
         } else if (operator.equals("|=")) {
             value += instance + ".getVariable(\"" + variable + "\").setbor(" + expression + ")";
-        }
-        else if (operator.equals("^=")) {
+        } else if (operator.equals("^=")) {
             value += instance + ".getVariable(\"" + variable + "\").setbxor(" + expression + ")";
         }
-        return value+")";
+        return value + ")";
     }
-    
+
     /**
      * Function statement
      * @param name - name of function
@@ -690,23 +682,22 @@ public class PlatformCore extends PluginCore {
         if (parameters == null) {
             parameters = "";
         }
-        if (!checkfunction(name)){
-            this.showError("No function named: "+name+"("+parameters+")");
-            return name+ "("+parameters+")";
+        if (!checkfunction(name)) {
+            this.showError("No function named: " + name + "(" + parameters + ")");
+            return name + "(" + parameters + ")";
         }
-        return name+ "("+parameters+")";
+        return name + "(" + parameters + ")";
     }
-    
+
     /**
      * Parses scripts
      * @param code
      * @param name
      */
-    public void parseScript(String code,String name)
-    {
-     //parses scripts   
+    public void parseScript(String code, String name) {
+    //parses scripts   
     }
-    
+
     /**
      * ignore this for now
      * @param name
@@ -714,7 +705,7 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String otherclassfunctionstatement(String name, String parameters) {
-        return name+ "("+parameters+")";
+        return name + "(" + parameters + ")";
     }
 
     /**
@@ -726,7 +717,7 @@ public class PlatformCore extends PluginCore {
     public String array(String name, String exp) {
         return name + "[" + exp + "]";
     }
-    
+
     /**
      * IGNORE
      * @param m
@@ -737,74 +728,62 @@ public class PlatformCore extends PluginCore {
      * @return
      */
     public String methodstatement(String m, String retvalue, String name, String st, String args) {
-        return m+ " " + retvalue + " "+ name + " ("+ args + ") " + st; 
-    } 
-    
+        return m + " " + retvalue + " " + name + " (" + args + ") " + st;
+    }
+
     /**
      * Variable, converts "" to (new String("")) etc
      * @param variable
      * @return
      */
-    public String variable(String variable)
-    {
-        String instance="",value="";
-        
+    public String variable(String variable) {
+        String instance = "", value = "";
+
         ///////////////////////////////////////////
         /// Constants
         ///////////////////////////////////////////
         if (variable.equals("true")) {
             return "(new Boolean(true))";
-        }
-        else if (variable.equals("false")) {
+        } else if (variable.equals("false")) {
             return "(new Boolean(false))";
-        }
-        else if (variable.equals("pi")) {
+        } else if (variable.equals("pi")) {
             return "(new Double(PI))";
         }
-        
-        if(variable.contains("all.")) {
+
+        if (variable.contains("all.")) {
             instance = "(new All())";
-        }
-        else if(variable.contains("other.")) {
+        } else if (variable.contains("other.")) {
             instance = "other";
-        }
-        else if(variable.contains("noone.")) {
+        } else if (variable.contains("noone.")) {
             instance = "(new Object())";
-        }
-        else if(variable.contains("self.")) {
+        } else if (variable.contains("self.")) {
             instance = "self";
-        }
-        else if(variable.contains("global.")) {
+        } else if (variable.contains("global.")) {
             instance = "Global";
-        }
-        else if(variable.contains(".")) {
+        } else if (variable.contains(".")) {
             instance = "(new All(new " + variable + "()))";
-        }
-        else if(variable.contains("(")) {
+        } else if (variable.contains("(")) {
             instance = "()";
-        }
-        else {
+        } else {
             instance = "self";
         }
-        
+
 //        if (actorlocal.contains(","+variable+","))
-        if (resources.contains(variable))
-        {
-        return "Game."+variable;
+        if (resources.contains(variable)) {
+            return "Game." + variable;
         }
-        if (stringResources.contains(variable))
-        {
-        return "new String(\""+variable+"\")";
+        if (stringResources.contains(variable)) {
+            return "new String(\"" + variable + "\")";
         }
         if (checkvariable(variable)) {
             return instance + ".get" + ("" + variable.charAt(0)).toUpperCase() + variable.substring(1, variable.length()) + "()";
         }
-        variable = variable.substring(variable.indexOf(".")+1,variable.length());
-        
-        value=instance+".getVariable(\""+variable+"\")";
+        variable = variable.substring(variable.indexOf(".") + 1, variable.length());
+
+        value = instance + ".getVariable(\"" + variable + "\")";
         return value;
     }
-    
+
     /**
      * Assignment expression, e.g 3+4*8
      * For c++ change the '.' to '->'
@@ -812,45 +791,34 @@ public class PlatformCore extends PluginCore {
      * @param expression
      * @return
      */
-    public String aexpression(String operator, String expression)
-    {
+    public String aexpression(String operator, String expression) {
         //System.out.println("aexpression: "+operator+" "+expression);
         if (operator.equals("+")) {
             return ".add(" + expression + ")";
-        }
-        else if (operator.equals("-")) {
+        } else if (operator.equals("-")) {
             return ".sub(" + expression + ")";
-        }
-        else if (operator.equals("*")) {
+        } else if (operator.equals("*")) {
             return ".mult(" + expression + ")";
-        }
-        else if (operator.equals("/")) {
+        } else if (operator.equals("/")) {
             return ".div(" + expression + ")";
-        }
-        else if (operator.equals("|")) {
+        } else if (operator.equals("|")) {
             return ".bor(" + expression + ")";
-        }
-        else if (operator.equals("&")) {
+        } else if (operator.equals("&")) {
             return ".band(" + expression + ")";
-        }
-        else if (operator.equals("^")) {
+        } else if (operator.equals("^")) {
             return ".bxor(" + expression + ")";
-        }
-        else if (operator.equals(">>")) {
+        } else if (operator.equals(">>")) {
             return ".bright(" + expression + ")";
-        }
-        else if (operator.equals("<<")) {
+        } else if (operator.equals("<<")) {
             return ".bleft(" + expression + ")";
-        }
-        else if (operator.equals("div")) {
+        } else if (operator.equals("div")) {
             return ".div(" + expression + ")";
-        }
-        else if (operator.equals("mod")) {
+        } else if (operator.equals("mod")) {
             return ".mod(" + expression + ")";
         }
         return "aexpression";
     }
-    
+
     /**
      * relationalExpression - checks if true or false
      * @param name - name of first expression/variable
@@ -858,45 +826,35 @@ public class PlatformCore extends PluginCore {
      * @param name2 - name of second expression/variable
      * @return
      */
-    public String relationalExpression(String name, String operator, String name2)
-    {
-       // System.out.println("relationalExpression:"+name+" "+operator+" "+name2);
+    public String relationalExpression(String name, String operator, String name2) {
+        // System.out.println("relationalExpression:"+name+" "+operator+" "+name2);
         if (operator.equals("==")) {
             return name + ".equals(" + name2 + ")";
-        }
-        else if (operator.equals("=")) {
+        } else if (operator.equals("=")) {
             return name + ".equals(" + name2 + ")";
-        }
-        else if (operator.equals(":=")) {
+        } else if (operator.equals(":=")) {
             return name + ".equals(" + name2 + ")";
-        }
-        else if (operator.equals("!=")) {
+        } else if (operator.equals("!=")) {
             return name + ".notequals(" + name2 + ")";
-        }
-        else if (operator.equals(">")) {
+        } else if (operator.equals(">")) {
             return name + ".gt(" + name2 + ")";
-        }
-        else if (operator.equals(">=")) {
+        } else if (operator.equals(">=")) {
             return name + ".gte(" + name2 + ")";
-        }
-        else if (operator.equals("<")) {
+        } else if (operator.equals("<")) {
             return name + ".lt(" + name2 + ")";
-        }
-        else if (operator.equals("<=")) {
+        } else if (operator.equals("<=")) {
             return name + ".lte(" + name2 + ")";
-        }
-        else {
+        } else {
             return name;
         }
     }
-    
+
     /**
      * Shows syntax error to user.
      * @param msg
      */
-    public void showError(String msg)
-    {
-        JOptionPane.showMessageDialog(null, "Syntax Error while parsing "+current+":"+event+"\n"+msg+"");
+    public void showError(String msg) {
+        JOptionPane.showMessageDialog(null, "Syntax Error while parsing " + current + ":" + event + "\n" + msg + "");
     }
 
     /**
@@ -921,21 +879,21 @@ public class PlatformCore extends PluginCore {
         lex = new gscriptLexer(new ANTLRFileStream(new File("tempcode.gcl").getAbsolutePath()));
         CommonTokenStream tokens = new CommonTokenStream(lex);
         try {
-        parser = new gscriptParser(tokens);
-        //parser.DEFAULT_TOKEN_CHANNEL=80;
-        
-        parser.setPlatform(p);
-        
-        
+            parser = new gscriptParser(tokens);
+            //parser.DEFAULT_TOKEN_CHANNEL=80;
+
+            parser.setPlatform(p);
+
+
             parser.code();
-            
-            System.out.println("Finished! Code output:"+returncode);
+
+            System.out.println("Finished! Code output:" + returncode);
         } catch (Exception e) {
-            System.out.println("Error with parser:"+e + e.getLocalizedMessage() + " " + e.getMessage()+"\n code:"+code);
+            System.out.println("Error with parser:" + e + e.getLocalizedMessage() + " " + e.getMessage() + "\n code:" + code);
         }
         return returncode;
     }
-    
+
     /**
      * Ignore this, unused fo now
      * @param code
@@ -962,52 +920,53 @@ public class PlatformCore extends PluginCore {
         parser.setPlatform(p);
         try {
             parser.classes();
-            System.out.println("Finished! Code output:"+returncode);
+            System.out.println("Finished! Code output:" + returncode);
         } catch (Exception e) {
             System.out.println("Error:" + e.getLocalizedMessage() + " " + e.getMessage());
         }
         return "";
     }
-    
+
     /**
      * Start progress bar, under development
      */
-    public void startprogress()
-    { 
-        p = new Progress(gcreator.window,false, this);
+    public void startprogress() {
+        p = new Progress(gcreator.window, false, this);
         p.repaint();
         p.run(this);
-        //p.setVisible(true);
+    //p.setVisible(true);
     }
-    
+
     /**
      * Basic compiler-specific actions
      */
-    public void preDo(Project project){
+    public void preDo(Project project) {
     }
-    
+
     /**
      * Basic compiler-specific actions
      */
-    public void postDo(Project project){
+    public void postDo(Project project) {
     }
 
     public void run(final Project project) {
-        this.project=project;
+        this.project = project;
         if (project != null) {
-           // p.setVisible(true);
-            Thread t = new Thread(){
-                public void run(){
+            // p.setVisible(true);
+            Thread t = new Thread() {
+
+                public void run() {
                     preDo(project);
                     putFolder(project);
                     postDo(project);
                 }
             };
             t.start();
-            try{
-            t.wait();
-            }catch(Exception e){}
-            //p.setVisible(false);
+            try {
+                t.wait();
+            } catch (Exception e) {
+            }
+        //p.setVisible(false);
         }
     }
 
@@ -1030,19 +989,19 @@ public class PlatformCore extends PluginCore {
         }
         return v;
     }
-    
-    public static String intval(String value){
+
+    public static String intval(String value) {
         return "(new Integer(" + value + "))";
     }
-    
-    public static String doubleval(String value){
+
+    public static String doubleval(String value) {
         return "(new Double(" + value + "))";
     }
-    
-    public static String stringval(String value){
+
+    public static String stringval(String value) {
         return "(new String(\"" + value + "\"))";
     }
-    
+
     public static void openbrowser(String location) {
         if (System.getProperty("os.name").indexOf("Windows") == 0) {
             try {
@@ -1051,13 +1010,12 @@ public class PlatformCore extends PluginCore {
                 e.printStackTrace();
             }
         } else {
-            try{
-                System.out.println("nautilus"  + location);
+            try {
+                System.out.println("nautilus" + location);
                 Runtime.getRuntime().exec("nautilus " + location, environmentVars(), null); //GNOME
+            } catch (Exception e) {
             }
-            catch(Exception e){
-            }
-            // Unsupported OS for opening the browser
+        // Unsupported OS for opening the browser
         }
     }
 
@@ -1078,20 +1036,22 @@ public class PlatformCore extends PluginCore {
 
     // Copies src file to dst file.
     // If the dst file does not exist, it is created
-    void copyFile(File src, File dst)  {
-        try{
-        InputStream in = new FileInputStream(src);
-        OutputStream out = new FileOutputStream(dst);
+    void copyFile(File src, File dst) {
+        try {
+            InputStream in = new FileInputStream(src);
+            OutputStream out = new FileOutputStream(dst);
 
-        // Transfer bytes from in to out
-        byte[] buf = new byte[1024];
-        int len;
-        while ((len = in.read(buf)) > 0) {
-            out.write(buf, 0, len);
+            // Transfer bytes from in to out
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = in.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            in.close();
+            out.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        in.close();
-        out.close();
-        }catch(Exception e){e.printStackTrace();}
     }
 
     /**
@@ -1100,7 +1060,5 @@ public class PlatformCore extends PluginCore {
      * @param name
      */
     public void parseSettings(SettingsValues settings, String name) {
-  //      System.out.println(string+"got here");
-        
     }
 }

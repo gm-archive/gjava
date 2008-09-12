@@ -3,19 +3,23 @@
  * 
  * Created on 9/Set/2007, 23:21:35
  * 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
  */
 package org.gcreator.plugins;
 
-import java.io.*;
-import java.net.URL;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.gcreator.core.*;
+import org.gcreator.core.ClassLoading;
 import org.gcreator.extended.JarClassLoader;
+import org.gcreator.sax.Node;
+import org.gcreator.sax.SAXParser;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -24,15 +28,15 @@ import org.gcreator.extended.JarClassLoader;
 public class Plugger {
 
     private static JarClassLoader loader = null;
-    
+
     private Plugger() {
     }
-    
+
     public static void registerLoader() {
         if (loader != null) {
             return;
         }
-        File f = new File("settings/pluglist");
+        File f = new File(PluginList.PLUGLIST);
         if (!f.exists()) {
             try {
                 f.createNewFile();
@@ -46,118 +50,102 @@ public class Plugger {
             Logger.getLogger(Plugger.class.getName()).log(Level.WARNING, null, ex);
         }
     }
-    
+
     public static void load(Jar jar) {
-        try {
-            File f = new File("plugins/jars/" + jar.getFile());
-            if (loader == null) {
-                return;
-            }
-            Vector<Jar> jars = new Vector<Jar>(loader.getJars().length + 1);
-            for (Jar ijar : loader.getJars()) {
-                jars.add(ijar);
-            }
-            jars.add(new Jar(new File("plugins/jars/" + jar.getFile().getName())));
-            ClassLoading.classLoader.remove(loader);
-            loader = new JarClassLoader(jars.toArray(new Jar[0]));
-            ClassLoading.classLoader.add(loader);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Plugger.class.getName()).log(Level.SEVERE, null, ex);
+        File f = new File("plugins/jars/" + jar.getFile());
+        if (loader == null) {
+            return;
         }
+        Vector<Jar> jars = new Vector<Jar>(loader.getJars().length + 1);
+        for (Jar ijar : loader.getJars()) {
+            jars.add(ijar);
+        }
+        jars.add(new Jar(new File("plugins/jars/" + jar.getFile().getName())));
+        ClassLoading.classLoader.remove(loader);
+        loader = new JarClassLoader(jars.toArray(new Jar[0]));
+        ClassLoading.classLoader.add(loader);
+
     }
-    
+
     public static JarClassLoader getPluginClassLoader() {
         return loader;
     }
 
     public static void onLoad() {
-        for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null && plugin.value!=null) {
-                    plugin.value.onLoad();
-                }
+        for (Plugin plugin : PluginList.getStdList().plugins) {
+            if (plugin != null && plugin.value != null) {
+                plugin.value.onLoad();
             }
+        }
     }
 
     public static void onSplashStart() {
-            for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null && plugin.value!=null) {
-                    plugin.value.onSplashStart();
-                }
+        for (Plugin plugin : PluginList.getStdList().plugins) {
+            if (plugin != null && plugin.value != null) {
+                plugin.value.onSplashStart();
             }
+        }
     }
 
     public static void onMainWindowStart() {
-        for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null && plugin.value!=null) {
-                    plugin.value.onMainWindowStart();
-                }
+        for (Plugin plugin : PluginList.getStdList().plugins) {
+            if (plugin != null && plugin.value != null) {
+                plugin.value.onMainWindowStart();
             }
+        }
     }
 
     public static void onSplashDispose() {
-        for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null && plugin.value!=null) {
-                    plugin.value.onSplashDispose();
-                }
+        for (Plugin plugin : PluginList.getStdList().plugins) {
+            if (plugin != null && plugin.value != null) {
+                plugin.value.onSplashDispose();
             }
+        }
     }
 
     public static void onMainWindowDispose() {
-        for (Plugin plugin : PluginList.stdlist.plugins) {
-                if (plugin != null && plugin.value!=null) {
-                    plugin.value.onMainWindowDispose();
-                }
+        for (Plugin plugin : PluginList.getStdList().plugins) {
+            if (plugin != null && plugin.value != null) {
+                plugin.value.onMainWindowDispose();
             }
+        }
     }
-    
+
     public static void reloadPlugins() {
         ClassLoading.classLoader.remove(loader);
         File x = new File("./plugins/jars");
         try {
             loader = new JarClassLoader(getJars());
             ClassLoading.classLoader.add(loader);
-            for (Plugin p : PluginList.stdlist.plugins) {
+            for (Plugin p : PluginList.getStdList().plugins) {
                 p.value.uninstall();
                 p.value.onSplashDispose();
             }
         } catch (Exception e) {
         }
     }
-    
+
     private static Jar[] getJars() {
-        BufferedInputStream in = null;
-        StringBuffer str = new StringBuffer(120);
+        SAXParser parser = null;
         try {
-            in = new BufferedInputStream(new FileInputStream(new File("settings/pluglist")));
-            int data;
-            while ((data = in.read()) != -1) {
-                str.append((char)data);
-            }
-        } catch (FileNotFoundException ex) {
+            parser = new SAXParser(new BufferedInputStream(new FileInputStream(PluginList.PLUGLIST)));
+        } catch (SAXException ex) {
             Logger.getLogger(Plugger.class.getName()).log(Level.SEVERE, null, ex);
-            return null;
         } catch (IOException ex) {
             Logger.getLogger(Plugger.class.getName()).log(Level.SEVERE, null, ex);
-            
-        } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Plugger.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-        String[] lines = str.toString().replaceAll("\r", "").split("\n");
+        if (parser == null || parser.getRootNode() == null) {
+            return new Jar[]{};
+        }
         ArrayList<Jar> jars = new ArrayList<Jar>(5);
-        for (String line : lines) {
-            if(line.matches("^Jar=.*$")) {
-                try {
-                    jars.add(new Jar(new File("plugins/jars/" + line.replaceAll("^Jar=(.*)$", "$1"))));
-                } catch (FileNotFoundException ex) {
-                    Logger.getLogger(Plugger.class.getName()).log(Level.SEVERE, null, ex);
+        for (Node n : parser.getRootNode().getClildren()) {
+            for (Node cn : n.getClildren()) {
+                if (cn.getName().equals("jar")) {
+                    jars.add(new Jar(cn.getContent()));
+                    break;
                 }
             }
         }
         return jars.toArray(new Jar[jars.size()]);
     }
-    
 }

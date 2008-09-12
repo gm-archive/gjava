@@ -9,13 +9,20 @@
  */
 package org.gcreator.plugins;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Hashtable;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import org.gcreator.core.ClassLoading;
-
+import org.gcreator.sax.Node;
+import org.gcreator.sax.SAXParser;
+import org.xml.sax.SAXException;
 
 /**
  * A list of multiple plugins
@@ -23,153 +30,114 @@ import org.gcreator.core.ClassLoading;
  */
 public class PluginList {
 
-    public static final String PLUGLIST = "./settings/pluglist";
+    public static final String PLUGLIST;
+
+    static {
+        PLUGLIST = new String("./settings/pluglist.xml");
+    }
     /**
      * The plugin list
      */
-    public static final PluginList stdlist = new PluginList(PLUGLIST);
-
-    private PluginList() {
-    } //Don't create plugin lists this way
+    private static PluginList stdlist;
     public Vector<Plugin> plugins = new Vector<Plugin>();
 
-    public PluginList(String location) {
-        File pluglist = new File(location);
-        FileInputStream reader;
+    private PluginList(String location) {
+        Node root = null;
         try {
-            reader = new FileInputStream(pluglist);
-        } catch (IOException e) {
+            SAXParser parser = new SAXParser(new BufferedInputStream(new FileInputStream(location)));
+            root = parser.getRootNode();
+        } catch (SAXException ex) {
+            Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (root == null) {
+            System.err.println("Null root. Plugins not loaded.");
             return;
         }
-        Vector<String> lines = new Vector<String>();
-        String curstring = "";
-        try {
-            while (true) {
-                int read = reader.read();
-                if (read == -1) {
-                    break;
-                }
-                if (read == '\r') {
-                    continue;
-                }
-                if (read == '\n') {
-                    lines.add(curstring);
-                    curstring = "";
-                } else {
-                    curstring += (char) read;
-                }
+
+        for (int i = 0; i < root.getChildrenCount(); i++) {
+            try {
+                Node n = root.getChildAt(i);
+                Plugin p = readPlugin(n, true);
+                plugins.add(p);
+            } catch (SAXException ex) {
+                Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (IOException e) {
         }
-        curstring = null;
-        boolean starter = false;
+    }
 
-        Plugin curplugin = null;
-
-        mainloop:
-        for (String line : lines) {
-            line = line.replace("#(.*)^", "");
-
-            if (line.equals("")) {
-                continue mainloop;
-            }
-            if (!starter && !line.equals("[G-Creator Plugin List]")) {
-                //System.out.println("BreaK@2");
-                break mainloop;
-            } else if (!starter) {
-                starter = true;
-                continue mainloop;
-            }
-
-            if (curplugin == null && !line.equals("[~Plugin~]")) {
-                //System.out.println("BreaK@1");
-                break mainloop;
-            }
-            if (curplugin == null) {
-                curplugin = new Plugin();
-                continue mainloop;
-            }
-            if (line.equals("[~Plugin~]")) {
-                //System.out.println("$1Adding plugin"+curplugin.name+" to list.");
-                plugins.add(curplugin);
-                curplugin = new Plugin();
-                continue mainloop;
-            }
-
-            if (line.matches("^Author=.*$")) {
-                curplugin.authors.add(line.replaceAll("^Author=(.*)$", "$1"));
-                continue mainloop;
-            }
-
-            if (line.matches("^License=.*$")) {
-                curplugin.licenseLocation = line.replaceAll("^License=(.*)$", "$1");
-                continue mainloop;
-            }
-
-            if (line.matches("^Name=.*$")) {
-                curplugin.name = line.replaceAll("^Name=(.*)$", "$1");
-                //System.out.println("Found name " + curplugin.name);
-                continue mainloop;
-            }
-
-            if (line.matches("^Version=.*$")) {
-                //!OBSOLETE
-                //curplugin.version = line.replaceAll("^Version=(.*)$", "$1");
-                continue mainloop;
-            }
-
-            if (line.matches("^Image=.*$")) {
-                String fname = "./plugins/" + line.replaceAll("^Image=(.*)$", "$1");
-                curplugin.img_loc = fname;
-                if ((new File(fname)).exists() && !line.equals("Image=")) {
-                    curplugin.image = new ImageIcon(fname);
-                } else {
-                    curplugin.image = new ImageIcon(getClass().getResource("/org/gcreator/resources/plugin.png"));
+    public static Plugin readPlugin(Node root, boolean initilizeCore) throws SAXException, IOException {
+        Plugin p = new Plugin();
+        Hashtable<String, Node> nodes = new Hashtable<String, Node>();
+        for (int i = 0; i < root.getChildrenCount(); i++) {
+            Node n = root.getChildAt(i);
+            nodes.put(n.getName(), n);
+        }
+        if (nodes.containsKey("author")) {
+            String s = nodes.get("author").getContent();
+            if (s.contains("|")) {
+                for (String author : s.split("\\|")) {
+                    p.authors.add(author);
                 }
-                continue mainloop;
-            }
-
-            if (line.matches("^Core=.*$")) {
-                String t = line.replaceAll("^Core=(.*)$", "$1");
-                try {
-                    curplugin.value = (PluginCore) ClassLoading.classLoader.loadClass(t).newInstance();
-                } catch (Exception e) {
-                    System.out.println("Exception while instantating plugin core: " + e);
-                    System.out.println("ClassLoading.classLoader.loadClass(t): " +
-                            ClassLoading.classLoader.loadClass(t));
-                }
-                continue mainloop;
-            }
-
-            if (line.matches("^Jar=.*$")) {
-                String t = line.replaceAll("^Jar=(.*)$", "$1");
-                curplugin.jar = new Jar(t);
-                continue mainloop;
-            }
-
-            if (line.matches("^JSFile=.*$")) {
-                String t = line.replaceAll("^JSFile=(.*)$", "$1");
-                try {
-                    if (curplugin.value == null) {
-                        curplugin.value = new JSPlugin(t);
-                    } else {
-                        ((JSPlugin) curplugin.value).append(t);
-                    }
-                } catch (Exception e) {
-                //System.out.println(e.toString());
-                }
-                continue mainloop;
-            }
-            if (curplugin != null) {
-                //System.out.println("$2Adding plugin"+curplugin.name+" to list.");
-                plugins.add(curplugin);
             } else {
-            //System.out.println("'tis null");
+                p.authors.add(s);
             }
         }
-        if (curplugin != null) {
-            //System.out.println("$3Adding plugin"+curplugin.name+" to list.");
-            plugins.add(curplugin);
+        if (nodes.containsKey("name")) {
+            p.name = nodes.get("name").getContent();
         }
+        if (nodes.containsKey("image")) {
+            p.img_loc = nodes.get("image").getContent();
+            if ((new File(p.img_loc)).exists()) {
+                p.image = new ImageIcon(p.img_loc);
+            } else {
+                p.image = new ImageIcon(PluginList.class.getResource("/org/gcreator/resources/plugin.png"));
+            }
+        } else {
+            p.image = new ImageIcon(PluginList.class.getResource("/org/gcreator/resources/plugin.png"));
+        }
+        if (nodes.containsKey("core")) {
+            try {
+                p.coreName = nodes.get("core").getContent();
+                if (initilizeCore) {
+                    p.value = (PluginCore) ClassLoading.classLoader.loadClass(p.coreName).newInstance();
+                }
+            } catch (InstantiationException ex) {
+                Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IllegalAccessException ex) {
+                Logger.getLogger(PluginList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (nodes.containsKey("update")) {
+            p.update = nodes.get("update").getContent();
+        }
+        if (nodes.containsKey("version")) {
+            p.version = nodes.get("version").getContent();
+        }
+        if (nodes.containsKey("jar")) {
+            p.jar = new Jar(nodes.get("jar").getContent());
+        }
+        if (nodes.containsKey("jsfile")) {
+            String t = nodes.get("jsfile").getContent();
+            if (p.value == null) {
+                p.value = new JSPlugin(t);
+            } else {
+                ((JSPlugin) p.value).append(t);
+            }
+        }
+        return p;
+    }
+    
+    public static PluginList getStdList() {
+        if (stdlist == null) {
+            stdlist = new PluginList(PLUGLIST);
+        }
+        return stdlist;
     }
 }

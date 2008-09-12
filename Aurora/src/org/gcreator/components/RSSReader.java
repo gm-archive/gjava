@@ -9,21 +9,15 @@
  */
 package org.gcreator.components;
 
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
 import javax.swing.AbstractListModel;
-import javax.swing.JScrollPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import org.gcreator.core.gcreator;
+import org.gcreator.extended.StringInputStream;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -34,32 +28,18 @@ import org.w3c.dom.NodeList;
  */
 public class RSSReader extends javax.swing.JList {
 
+    private static final long serialVersionUID = 1;
     private boolean loaded = false;
     private boolean failed = true;
-    //private Hashtable<String, String> items = new Hashtable<String, String>();
     protected ArrayList<RSSEntry> rssEntries = new ArrayList<RSSEntry>(12);
-    public class StringInputStream extends InputStream {
-
-        private String s;
-        private int pos = 0;
-
-        public StringInputStream(String s) {
-            this.s = s;
-        }
-
-        public int read() {
-            if (pos >= s.length()) {
-                return -1;
-            }
-            return s.charAt(pos++);
-        }
-    }
 
     /** Creates new form RSSReader
      * @param url The URL to download the RSS entries from.
      */
     public RSSReader(final String url) {
         setModel(new AbstractListModel() {
+
+            private static final long serialVersionUID = 1;
 
             @Override
             public int getSize() {
@@ -76,10 +56,8 @@ public class RSSReader extends javax.swing.JList {
 
             @Override
             public void run() {
-               
+
                 try {
-                    //FileInputStream r = new FileInputStream(url);
-                    //xr.parse(new InputSource(url));
                     URL _url = new URL(url);
                     InputStream r = _url.openStream();
                     BufferedInputStream br = new BufferedInputStream(r);
@@ -114,7 +92,7 @@ public class RSSReader extends javax.swing.JList {
                         throw new Exception("Invalid");
                     }
                     childs = child.getChildNodes();
-                  //  System.out.println(childs.getLength());
+                    //  System.out.println(childs.getLength());
                     for (int j = 0; i < childs.getLength(); j++) {
                         child = childs.item(j);
                         if (child != null) {
@@ -133,15 +111,7 @@ public class RSSReader extends javax.swing.JList {
                     System.err.println(e.toString());
                 }
                 loaded = true;
-                //Container c = getParent();
-           //     System.out.println("Got here");
-                //if(c instanceof JScrollPane)
-                //    ((JScrollPane) c).updateUI();
-            //    System.out.println("and here");
-                //repaint();
-               // System.out.println("and here 2");
                 updateUI();
-             //   System.out.println("and here 3");
             }
         };
         t.start();
@@ -156,7 +126,6 @@ public class RSSReader extends javax.swing.JList {
             Node c = childs.item(i);
         }
         rssEntries.add(new RSSEntry(childs.item(1).getTextContent(), childs.item(3).getTextContent()));
-        //items.put(childs.item(1).getTextContent(), childs.item(0).getTextContent());
     }
 
     @Override
@@ -168,48 +137,26 @@ public class RSSReader extends javax.swing.JList {
             g.setFont(getFont());
             g.drawString("Failed to retrieve RSS", 10, 30);
         } else {
-            /*
-            Font f = getFont();
-            int fh = getFontMetrics(f).getHeight();
-            Enumeration<String> e = items.keys();
-            for (int i = 0; i < items.size(); i++) {
-                String s = e.nextElement();
-                g.drawString(s, 5, (fh + 5) * (i + 1));
-            }
-             */
             super.paint(g);
         }
     }
 
-    //@Override
-    /*public int getHeight() {
-        if (failed) {
-            return 1;
-        }
-     //   Font f = getFont();
-       // int fh = getFontMetrics(f).getHeight();
-      //  return (fh + 5) * items.size() + 10;
-      return super.getHeight();
-    }*/
-    /*
-    @Override
-    public Dimension getPreferredSize() {
-        return new Dimension(super.getPreferredSize().width, getHeight());
-    }*/
-    
     public class RSSEntry {
+
         public final String title;
         public final String url;
+
         public RSSEntry(String title, String url) {
             this.title = title;
             this.url = url;
         }
-        
+
         @Override
         public String toString() {
-            return "<html>"+title+"</html>";
+            return "<html>" + title + "</html>";
         }
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is

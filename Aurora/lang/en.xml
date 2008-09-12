@@ -291,8 +291,8 @@ What do you want to do with it?</slice>
     
     <!-- Updater -->
     <slice key="general-updater-dialogtitle">Update G-Creator</slice>
-    <slice key="general-updater-backbutton">&amp;lt; Back</slice>
-    <slice key="general-updater-nextbutton">Next &amp;gt;</slice>
+    <slice key="general-updater-backbutton">Back</slice>
+    <slice key="general-updater-nextbutton">Next</slice>
     <slice key="general-updater-errordownloadinfotitle">Error Downloading Update Information</slice>
     <slice key="general-updater-errordownloadinfomsg">Failed to download update information.
 &lt;br/&gt;Please check your Internet connection.</slice>
@@ -321,7 +321,7 @@ and check off which updates you would like to download.</slice>
     <slice key="general-updater-fewseconds">This should only take a few seconds.</slice>
     <slice key="general-updater-downloadingupdates">Downloading Updates</slice>
     <slice key="general-updater-starting">Starting...</slice>
-    <slice key="general-updater-replacefile">File ʻ$nameʼ already exists.&lt;br/&lt;
+    <slice key="general-updater-replacefile">File ʻ$nameʼ already exists.&lt;br/&gt;
 Are you sure you want to download it again?</slice>
     <slice key="general-updater-canceled">Canceled</slice>
     <slice key="general-updater-nosuchfile">Error: File ʻ$nameʼ does not exist.</slice>

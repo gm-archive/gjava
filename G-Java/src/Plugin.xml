@@ -1,0 +1,6 @@
+<plugin>
+<author>TGMG</author>
+<core>org.gcreator.compilers.GJava</core>
+<name>G-Java</name>
+<version>0.303</version>
+</plugin>

@@ -1,4 +1,4 @@
-{ action_sound(hit, 0)}
-{argument_relative=true; action_set_score(1)}
-{ action_move_random(0, 0)}
-{ action_move("111101111", 8)}
+{ action_kill_object()}
+{ action_kill_object()}
+{argument_relative=true; action_set_score(200)}
+{ action_sound(sound_hit, 0)}

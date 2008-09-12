@@ -2,24 +2,53 @@
  * Copyright (C) 2007-2008 Luís Reis <luiscubal@gmail.com>
  * Copyright (C) 2007-2008 TGMG <thegamemakerguru@hotmail.com>
  * Copyright (C) 2008 Serge Humphrey <bob@bobtheblueberry.com>
- * 
+ *
  * This file is part of G-Creator.
  * G-Creator is free software and comes with ABSOLUTELY NO WARRANTY.
  * See LICENSE for more details.
  */
 package org.gcreator.components;
 
-import java.awt.*;
-import java.io.*;
-import java.util.zip.*;
-import javax.swing.*;
-import org.gcreator.components.impl.*;
-import org.gcreator.core.*;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
+import org.gcreator.components.impl.CustomFileFilter;
+import org.gcreator.core.ClassLoading;
+import org.gcreator.core.GPanel;
 import org.gcreator.extended.JarClassLoader;
-import org.gcreator.plugins.*;
 import org.gcreator.core.utilities;
+import org.gcreator.extended.StringInputStream;
 import org.gcreator.managers.Registry;
+import org.gcreator.plugins.Jar;
+import org.gcreator.plugins.Plugger;
+import org.gcreator.plugins.Plugin;
+import org.gcreator.plugins.PluginCore;
+import org.gcreator.plugins.PluginList;
+import org.gcreator.sax.SAXParser;
 import org.gcreator.units.BeanFile;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 /**
  *
@@ -40,7 +69,7 @@ public class PluginDialog extends JDialog {
         list.setColumnHeight(100);
         list.setColumns(5);
         jScrollPane1.setViewportView(list);
-        for (Plugin plugin : PluginList.stdlist.plugins) {
+        for (Plugin plugin : PluginList.getStdList().plugins) {
             System.out.println("Plugin: " + plugin.name);
             list.addElement(plugin.name, plugin.image, plugin);
         }
@@ -65,6 +94,8 @@ public class PluginDialog extends JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Plugin Manager");
+
+        jScrollPane1.setMinimumSize(new java.awt.Dimension(27, 120));
         getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/gcreator/resources/refresh.png"))); // NOI18N
@@ -130,7 +161,8 @@ public class PluginDialog extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? (BeanFile) Registry.get("Directories.pluginDialog") : null);
+        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? 
+            (BeanFile) Registry.get("Directories.pluginDialog") : null);
         fc.setMultiSelectionEnabled(false);
         fc.setDialogTitle("Choose the file");
         fc.setApproveButtonText("OK");
@@ -157,7 +189,7 @@ public class PluginDialog extends JDialog {
         if (o instanceof Plugin) {
             uninstall((Plugin) o);
             list.removeElement(list.getSelectedIndex());
-            PluginList.stdlist.plugins.remove(o);
+            PluginList.getStdList().plugins.remove(o);
             list.repaint();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -172,17 +204,19 @@ public class PluginDialog extends JDialog {
             return;
         }
         Plugin p = (Plugin) list.getSelectedExtraContent();
-        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? (BeanFile) Registry.get("Directories.pluginDialog") : null);
+        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? 
+            (BeanFile) Registry.get("Directories.pluginDialog") : null);
         fc.setFileFilter(new JFileFilter(".*\\.jar$", "G-Creator Plugins (*.jar)"));
         if (fc.showOpenDialog(this) == JFileChooser.CANCEL_OPTION) {
             return;
         }
         File f = fc.getSelectedFile();
+        Registry.set("Directories.pluginDialog", new BeanFile(fc.getCurrentDirectory()));
         if (f == null || !f.exists()) {
             return;
         }
-        Registry.set("Directories.pluginDialog", new BeanFile(fc.getCurrentDirectory()));
-        PluginList.stdlist.plugins.remove(list.getSelectedExtraContent());
+
+        PluginList.getStdList().plugins.remove(list.getSelectedExtraContent());
         list.removeElement(list.getSelectedIndex());
         uninstall(p);
         p = null;
@@ -191,52 +225,40 @@ public class PluginDialog extends JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     public void uninstall(Plugin plugin) {
-        //System.out.println("Uninstall " + plugin.name);
-        String s = "[G-Creator Plugin List]\n";
         plugin.value.uninstall();
-        for (Plugin plug : PluginList.stdlist.plugins) {
-            if (plug == plugin) {
-                continue;
-            }
-            s += "[~Plugin~]\n";
-            for (String author : plug.authors) {
-                s += "Author=" + author + "\n";
-            }
-            try {
-                s += "Core=" + plug.value.getClass().getName() + "\n";
-                s += "License=" + plug.licenseLocation + "\n";
-                s += "Name=" + plug.name + "\n";
-                s += "Version=" + plug.version + "\n";
-                s += "Image=" + plug.img_loc + "\n";
-                s += "Jar=" + plug.jar.getFile().getName() + "\n";
-                s += "Update=" + plug.update + "\n";
-            } catch (Exception exc) {
-                System.out.println("Exception: " + exc);
+        Document doc = getDocument(PluginList.PLUGLIST);
+        Element root = doc.getDocumentElement();
+        NodeList nodes = root.getChildNodes();
+        loop:
+        for (int i = 0; i < nodes.getLength(); i++) {
+            Node n = nodes.item(i);
+            NodeList childnodenodes = n.getChildNodes();
+            for (int j = 0; j < childnodenodes.getLength(); j++) {
+                Node cn = childnodenodes.item(j);
+                if (cn.getNodeName() != null && cn.getNodeName().equals("name") && 
+                        cn.getTextContent() != null && cn.getTextContent().equals(plugin.name)) {
+                    root.removeChild(n);
+                    break loop;
+                }
             }
         }
-        File f = new File("./settings/pluglist");
-        FileOutputStream stream = null;
         try {
-            if (f.exists()) {
-                f.delete();
-            }
-            stream = new FileOutputStream(f);
-            BufferedOutputStream bstream = new BufferedOutputStream(stream);
-            bstream.write(s.getBytes());
-            bstream.close();
-        } catch (Exception e) {
-            System.out.println(e.toString());
+            DOMSource source = new DOMSource(doc);
+            Result result = new StreamResult(PluginList.PLUGLIST);
+            Transformer xformer = TransformerFactory.newInstance().newTransformer();
+            xformer.transform(source, result);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public void addPlugin(File f) {
+    public void addPlugin(File jar) {
         BufferedInputStream istream = null;
         ZipInputStream in = null;
-        File f2 = new File("./settings/pluglist");
-        BufferedOutputStream f2stream = null;
         try {
-            f2stream = new BufferedOutputStream(new FileOutputStream(f2, true));
-            istream = new BufferedInputStream(new FileInputStream(f));
+            istream = new BufferedInputStream(new FileInputStream(jar));
             in = new ZipInputStream(istream);
         } catch (IOException e) {
             return;
@@ -246,46 +268,138 @@ public class PluginDialog extends JDialog {
         StringBuffer data = new StringBuffer(120);
         try {
             while ((entry = in.getNextEntry()) != null) {
-                if (entry.getName().equals("PLUGIN")) {
+                if (entry.getName().equalsIgnoreCase("plugin.xml")) {
                     int len;
                     while ((len = in.read()) != -1) {
-                        f2stream.write(len);
                         data.append(new char[]{(char) (len)});
                     }
-                    f2stream.write('\n');
-                    f2stream.write(("Jar=" + f.getName()).getBytes());
-                    f2stream.write('\n');
-                    data.append("\nJar=" + f.getName());
                     break;
                 }
             }
             if (entry == null) {
-                JOptionPane.showMessageDialog(this,
-                        f.getName() + " is not a valid G-Creator plug-in.",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, jar.getName() +
+" is not a valid G-Creator plug-in (no plugin.xml file).", "Error", JOptionPane.ERROR_MESSAGE);
                 failed = true;
             }
-            f2stream.close();
-            in.close();
-            //Copy the jar file.
-            utilities.copyFile(f, new File("./plugins/jars"));
         } catch (IOException e) {
+        } finally {
+            try {
+                in.close();
+            } catch (IOException iOExc) {
+            }
         }
         if (failed) {
             return;
         }
-        Plugin plugin = Plugin.parsePlugin(data.toString().split("\n"));
-        if (plugin != null) {
-            ClassLoading.classLoader.add(new JarClassLoader(plugin.jar));
-            Plugger.load(plugin.jar);
-            PluginList.stdlist.plugins.add(plugin);
-            plugin.value.onSplashDispose();
-            list.addElement(plugin.name, plugin.image, plugin);
-            list.repaint();
-        } else {
-            System.out.println("Plugin is null!");
+        Plugin plugin = null;
+        try {
+            SAXParser p = new SAXParser(new StringInputStream(data.toString()));
+            plugin = PluginList.readPlugin(p.getRootNode(), false);
+        } catch (SAXException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        if (plugin == null) {
+            System.err.println("Error adding file " + jar + ".");
+            return;
+        }
+        File jarFile = new File("./plugins/" + plugin.name + File.separator);
+        try {
+            jarFile.mkdirs();
+            jarFile = utilities.copyFile(jar, jarFile);
+        } catch (IOException exc) {
+            System.err.println("Error while copying file '" + jar + "' to './plugins/" + plugin.name);
+        }
+        if (plugin == null) {
+            System.out.println("Plugin is null!");
+            return;
+        }
+        plugin.jar = new Jar(jarFile);
+        Document doc = getDocument(PluginList.PLUGLIST);
+        if (doc == null) {
+            doc = newDocument();
+        }
+        Element root = doc.getDocumentElement();
+        if (root == null) {
+            doc = newDocument();
+            root = doc.createElement("pluglist");
+            doc.appendChild(root);
+        }
+        Element e = doc.createElement("plugin");
+        try {
+            SAXParser parser = new SAXParser(new StringInputStream(data.toString()));
+            org.gcreator.sax.Node proot = parser.getRootNode();
+            for (int i = 0; i < proot.getChildrenCount(); i++) {
+                org.gcreator.sax.Node node = proot.getChildAt(i);
+                Element elem = doc.createElement(node.getName());
+                elem.setTextContent(node.getContent());
+                e.appendChild(elem);
+            }
+            Element elem = doc.createElement("jar");
+            elem.setTextContent(jarFile.getPath());
+            e.appendChild(elem);
+            root.appendChild(e);
+            DOMSource source = new DOMSource(doc);
+            Result result = new StreamResult(PluginList.PLUGLIST);
+            Transformer xformer = TransformerFactory.newInstance().newTransformer();
+            xformer.transform(source, result);
+        } catch (TransformerConfigurationException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TransformerException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SAXException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        root.appendChild(e);
+        ClassLoading.classLoader.add(new JarClassLoader(plugin.jar));
+        try {
+            plugin.value = (PluginCore) ClassLoading.classLoader.loadClass(plugin.coreName).newInstance();
+        } catch (InstantiationException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            Logger.getLogger(PluginDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Plugger.load(plugin.jar);
+        PluginList.getStdList().plugins.add(plugin);
+        plugin.value.onSplashDispose();
+        list.addElement(plugin.name, plugin.image, plugin);
+        list.repaint();
     }
+
+    private static Document getDocument(String name) {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setIgnoringComments(true);
+            factory.setIgnoringElementContentWhitespace(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            return builder.parse(name);
+        } catch (SAXException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    private static Document newDocument() {
+        try {
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setIgnoringComments(true);
+            factory.setIgnoringElementContentWhitespace(true);
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            return builder.newDocument();
+        } catch (ParserConfigurationException ex) {
+            Logger.getLogger(Registry.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

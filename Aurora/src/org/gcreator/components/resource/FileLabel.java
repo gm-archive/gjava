@@ -108,7 +108,6 @@ import org.gcreator.fileclass.Project;
 
     @Override
     public void mousePressed(MouseEvent evt) {
-        //    System.out.println("got here");
         Folder f = p.getFolderFor(key);
         if (f == null) {
             return;

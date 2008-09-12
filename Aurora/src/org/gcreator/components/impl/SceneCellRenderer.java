@@ -9,20 +9,26 @@
  */
 package org.gcreator.components.impl;
 
-import java.awt.*;
-import javax.swing.*;
-import org.gcreator.editors.*;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import org.gcreator.fileclass.Project;
-import org.gcreator.fileclass.res.*;
+import org.gcreator.fileclass.res.Scene;
 
 public class SceneCellRenderer extends JLabel implements ListCellRenderer {
 
+    private static final long serialVersionUID = 1;
     private Project p;
+
     public SceneCellRenderer(Project p) {
         this.p = p;
         setOpaque(true);
     }
 
+    @Override
     public Component getListCellRendererComponent(JList list,
             Object value,
             int i,
@@ -51,7 +57,7 @@ public class SceneCellRenderer extends JLabel implements ListCellRenderer {
             }
         }
 
-        if (selected&&!invalid) {
+        if (selected && !invalid) {
             try {
                 setBackground(list.getSelectionBackground());
                 setForeground(list.getSelectionForeground());

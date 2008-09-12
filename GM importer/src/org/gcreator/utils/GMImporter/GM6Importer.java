@@ -12,16 +12,20 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
-import java.io.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.FilteredImageSource;
 import java.awt.image.ImageFilter;
 import java.awt.image.ImageProducer;
 import java.awt.image.RGBImageFilter;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.Vector;
-import java.util.zip.*;
-import javax.swing.*;
+import java.util.zip.DataFormatException;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import org.gcreator.actions.components.ArgumentList;
+import org.gcreator.actions.components.FunctionName;
+import org.gcreator.actions.components.VariableName;
 import org.gcreator.actions.mainactions.CallFunction;
 import org.gcreator.actions.mainactions.Comment;
 import org.gcreator.actions.mainactions.Else;
@@ -33,7 +37,7 @@ import org.gcreator.actions.mainactions.Repeat;
 import org.gcreator.actions.mainactions.SetVariable;
 import org.gcreator.actions.mainactions.StartOfABlock;
 import org.gcreator.components.ProjectTypes;
-import org.gcreator.core.*;
+import org.gcreator.core.GPanel;
 import org.gcreator.events.AlarmEvent;
 import org.gcreator.events.BeginStepEvent;
 import org.gcreator.events.CollisionEvent;
@@ -48,17 +52,25 @@ import org.gcreator.events.MouseEvent;
 import org.gcreator.events.StepEvent;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.GameProject;
-import org.gcreator.managers.*;
 import org.gcreator.fileclass.Group;
-import org.gcreator.fileclass.res.*;
-import org.lateralgm.file.*;
-import org.lateralgm.file.iconio.*;
-import org.gcreator.plugins.*;
-//import org.lateralgm.messages.*;
+import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.Classes;
+import org.gcreator.fileclass.res.Resource;
+import org.gcreator.fileclass.res.Scene;
+import org.gcreator.fileclass.res.SettingsValues;
+import org.gcreator.fileclass.res.Sound;
+import org.gcreator.fileclass.res.Sprite;
+import org.gcreator.fileclass.res.TabValues;
+import org.gcreator.fileclass.res.Tileset;
+import org.gcreator.fileclass.res.Timeline;
+import org.gcreator.managers.ProjectTree;
+import org.gcreator.plugins.PluginHelper;
 import org.gcreator.units.ActorInScene;
 import org.gcreator.units.BackgroundInScene;
-import org.gcreator.units.Dictionary;
 import org.gcreator.units.TimelineStep;
+import org.lateralgm.file.GmFormatException;
+import org.lateralgm.file.GmStreamDecoder;
+import org.lateralgm.file.iconio.ICOFile;
 
 /**
  *
@@ -143,19 +155,19 @@ public class GM6Importer {
             String msg = "Unsupported Version"; //$NON-NLS-1$
             throw new GmFormatException(String.format(msg, "", ver)); //$NON-NLS-1$
         }
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read settings");
         SettingsValues values = readSettings(settings, c);
-     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
+        //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Sounds");
         readSounds(c);
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Sprites");
         readSprites(c);
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Backgrounds");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Backgrounds");
         readBackgrounds(c);
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Paths");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Paths");
         readPaths(c);
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Scripts");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Scripts");
         readScripts(c);
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: Read Fonts");
         readFonts(c);
 
         /*
@@ -165,11 +177,11 @@ public class GM6Importer {
          */
 
         long position = c.in.getInputStream().getFilePointer();
-        readTimelines(c,true);
-     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors ahead");
-        readActors(c,true);
-     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes ahead");
-        readScenes(c,true);
+        readTimelines(c, true);
+        //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors ahead");
+        readActors(c, true);
+        //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes ahead");
+        readScenes(c, true);
 
 
         //readahead(c);
@@ -177,18 +189,15 @@ public class GM6Importer {
         //go back to position
         c.in.getInputStream().seek(position);
 
-        readTimelines(c,false);
-     //   org.gcreator.core.gcreator.debugOut.println("GMI: Read Actors");
-        readActors(c,false);
-    //    org.gcreator.core.gcreator.debugOut.println("GMI: Read Scenes");
-        readScenes(c,false);
-     //   org.gcreator.core.gcreator.debugOut.println("GMI: Scene Order");
+        readTimelines(c, false);
+        readActors(c, false);
+        readScenes(c, false);
         TabValues SceneOrder;
         values.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
-        Vector v = new Vector();
+        Vector<Integer> v = new Vector<Integer>();
         SceneOrder.setVariable("Scenes", v);
         for (GFile f : c.scenes) {
-            v.add(f);
+            v.add(f.getID());
         }
         //c=null;
         in.read4();//lastInstanceId
@@ -276,7 +285,7 @@ public class GM6Importer {
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
             DataFormatException {
-      //  org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
+        //  org.gcreator.core.gcreator.debugOut.println("GMI: in Settings");
         SettingsValues value;
         TabValues Graphics, Resolution, Other;
         settings.value = value = new SettingsValues();
@@ -455,9 +464,7 @@ public class GM6Importer {
             Group soundFolder = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-sound"));
             soundFile = new org.gcreator.fileclass.GFile(soundFolder, name, type, null);
             c.sounds.add(soundFile);
-            File f = File.createTempFile("gc_tmp_", "." + type);
-            Sound s= new Sound();
-            s.soundfile = f;
+            Sound s = new Sound();
 
             soundFile.value = s;
 
@@ -472,11 +479,8 @@ public class GM6Importer {
             } else {
                 /*snd.fileName = */ in.readStr();
                 if (in.readBool()) /*snd.data =*/ {
-                    FileOutputStream fos = new FileOutputStream(f);
-                    int size=in.read4();
-                    s.data=in.decompress(size);
-                    fos.write(s.data);
-                    
+                    int size = in.read4();
+                    s.data = in.decompress(size);
                 }
                 int effects = in.read4();
                 //snd.setEffects(effects);
@@ -577,7 +581,7 @@ public class GM6Importer {
             org.gcreator.fileclass.GFile bkimg;
             bkimg = new org.gcreator.fileclass.GFile(imageFolder, "bgimg_" + name, "bmp", null);
             c.backgrounds.add(bkimg);
-         //   System.out.println("add background:"+bkimg.getID());
+            //   System.out.println("add background:"+bkimg.getID());
             ver = in.read4();
             if (ver != 400 && ver != 543) {
                 throw versionError("IN", "BACKGROUNDS", i, ver);
@@ -746,15 +750,15 @@ public class GM6Importer {
             } //$NON-NLS-1$ //$NON-NLS-2$
             /*font.fontName = */
             in.readStr();
-            /*font.size = */            in.read4();
-            /*font.bold = */            in.readBool();
-            /*font.italic = */            in.readBool();
-            /*font.charRangeMin = */            in.read4();
-            /*font.charRangeMax = */            in.read4();
+            /*font.size = */ in.read4();
+            /*font.bold = */ in.readBool();
+            /*font.italic = */ in.readBool();
+            /*font.charRangeMin = */ in.read4();
+            /*font.charRangeMax = */ in.read4();
         }
     }
 
-    private static void readTimelines(GmFileContext c,boolean fake) throws IOException, GmFormatException {
+    private static void readTimelines(GmFileContext c, boolean fake) throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
 
@@ -774,7 +778,9 @@ public class GM6Importer {
 
             //in.readStr(); //Name
             f = new org.gcreator.fileclass.GFile(tlGroup, in.readStr(), "timeline", null);
-            if (fake) tlGroup.remove(f);
+            if (fake) {
+                tlGroup.remove(f);
+            }
             f.value = a = new Timeline();
 
             c.timelines.add(f);
@@ -843,7 +849,7 @@ public class GM6Importer {
         }
     }
 
-    private static void readScenes(GmFileContext c,boolean fake) throws IOException, GmFormatException {
+    private static void readScenes(GmFileContext c, boolean fake) throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
         Group scenesGroup = (Group) c.pro.childAt(c.pro.findFromName("$workspace-game-scene"));
@@ -857,12 +863,14 @@ public class GM6Importer {
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(scenesGroup, in.readStr(), "scene", null);
-            if (fake) scenesGroup.remove(f);
+            if (fake) {
+                scenesGroup.remove(f);
+            }
             f.value = a = new Scene();
             c.scenes.add(f);
             ver = in.read4();
             a.caption = in.readStr();
-         //   org.gcreator.core.gcreator.debugOut.println("Caption:" + a.caption);
+            //   org.gcreator.core.gcreator.debugOut.println("Caption:" + a.caption);
             a.width = in.read4();
             a.height = in.read4();
             a.snapY = in.read4();
@@ -886,9 +894,10 @@ public class GM6Importer {
                 int im = in.read4(); //image
                 //org.gcreator.core.gcreator.debugOut.println("size:"+c.backgrounds.size());
                 if (im != -1) {
-               //     System.out.println("background:"+im+" fore:"+fore);
-                    if (c.backgrounds.get(im) !=null)
-                    bis.image = c.backgrounds.get(im).getID();
+                    //     System.out.println("background:"+im+" fore:"+fore);
+                    if (c.backgrounds.get(im) != null) {
+                        bis.image = c.backgrounds.get(im).getID();
+                    }
                 }
                 bis.xpos = in.read4(); //xpos
                 bis.ypos = in.read4(); //ypos
@@ -901,11 +910,11 @@ public class GM6Importer {
 //                bis.hmode = bis.MODE_STRETCH;
 //                bis.vmode = bis.MODE_STRETCH;
 //                }
-                if (tileh){
-                    bis.hmode=bis.MODE_REPEAT;
+                if (tileh) {
+                    bis.hmode = bis.MODE_REPEAT;
                 }
-                if(tilev){
-                    bis.vmode=bis.MODE_REPEAT;
+                if (tilev) {
+                    bis.vmode = bis.MODE_REPEAT;
                 }
                 a.backgrounds.add(bis);
             }
@@ -984,7 +993,7 @@ public class GM6Importer {
         }
     }
 
-    private static void readActors(GmFileContext c,boolean fake) throws IOException, GmFormatException {
+    private static void readActors(GmFileContext c, boolean fake) throws IOException, GmFormatException {
         //org.gcreator.core.gcreator.debugOut.println("readActors");
         GmStreamDecoder in = c.in;
         int ver = in.read4();
@@ -1003,7 +1012,9 @@ public class GM6Importer {
                 continue;
             }
             f = new org.gcreator.fileclass.GFile(actorsGroup, in.readStr(), "actor", null);
-            if (fake) actorsGroup.remove(f);
+            if (fake) {
+                actorsGroup.remove(f);
+            }
             f.value = a = new Actor();
             c.actors.add(i, f);
             ver = in.read4();
@@ -1078,13 +1089,13 @@ public class GM6Importer {
                             if (temp < c.actors.size() && temp >= 0) {
                                 org.gcreator.fileclass.GFile spr = c.actors.get(temp);
                                 if (spr != null) {
-                                   // a.sprite = spr.getID();
-                                    e= new CollisionEvent(spr);
-                            a.events.add(e);
-                            id = first;
+                                    // a.sprite = spr.getID();
+                                    e = new CollisionEvent(spr);
+                                    a.events.add(e);
+                                    id = first;
                                 }
                             }
-                            
+
                         } //ev.other = c.objids.get(first);
                         else if (j == EV_KEYBOARD) {
                             org.gcreator.core.gcreator.debugOut.println("keyboard");
@@ -1122,7 +1133,7 @@ public class GM6Importer {
                         //ev.mainId = j;
                         org.gcreator.core.gcreator.debugOut.println("GMI: read action");
                         try {
-                            readActions(c, i, j * 1000 + id, e);
+                            readActions(c, i, j * 1000 + id, e, a);
                         } catch (Exception ee) {
                             ee.printStackTrace();
                             org.gcreator.core.gcreator.debugOut.println("error in actor readactions");
@@ -1136,7 +1147,9 @@ public class GM6Importer {
     }
 
     public static String getKeyText(int keyCode) {
-        if (keyCode==1){return "Any Key";}
+        if (keyCode == 1) {
+            return "Any Key";
+        }
         if (keyCode >= KeyEvent.VK_0 && keyCode <= KeyEvent.VK_9 ||
                 keyCode >= KeyEvent.VK_A && keyCode <= KeyEvent.VK_Z) {
             return String.valueOf((char) keyCode);
@@ -1441,7 +1454,7 @@ public class GM6Importer {
     }
 
     private static void readActions(GmFileContext c, int format1, int format2,
-            org.gcreator.events.Event e)
+            org.gcreator.events.Event e, Resource resource)
             throws IOException, GmFormatException {
         GmStreamDecoder in = c.in;
         int ver = in.read4();
@@ -1586,7 +1599,7 @@ public class GM6Importer {
 
             org.gcreator.actions.Action act;
 
-            act = parseAction(code, function, c, null, appliesTo, relative, args, k, question);
+            act = parseAction(code, function, c, null, appliesTo, relative, args, k, question, resource);
             act.project = c.pro;
             // //org.gcreator.core.gcreator.debugOut.println("Got here");
             if (act != null && e != null && e.actions != null) {
@@ -1596,64 +1609,57 @@ public class GM6Importer {
         org.gcreator.core.gcreator.debugOut.println("Ended actions");
     }
 
-    private static org.gcreator.actions.Action retrieveAction(int libid, int actid, String code, boolean function, String fname, int kind, ArgumentList al, boolean relative, boolean question) {
+    private static org.gcreator.actions.Action retrieveAction(int libid, int actid, String code, boolean function, String fname, int kind, ArgumentList al, boolean relative, boolean question, Resource res) {
         org.gcreator.actions.Action act = null;
 
         //check kind
         if (kind == 0) {
             Comment c = new Comment();
             c.text = code.substring(1, code.length() - 1);
-            act = new org.gcreator.actions.Action(c);
+            act = new org.gcreator.actions.Action(c, res);
         } else if (kind == 1) {
-            act = new org.gcreator.actions.Action(new StartOfABlock());
+            act = new org.gcreator.actions.Action(new StartOfABlock(), res);
         } else if (kind == 2) {
-            act = new org.gcreator.actions.Action(new EndOfABlock());
+            act = new org.gcreator.actions.Action(new EndOfABlock(), res);
         } else if (kind == 3) {
-            act = new org.gcreator.actions.Action(new Else());
+            act = new org.gcreator.actions.Action(new Else(), res);
         } else if (kind == 4) {
-            act = new org.gcreator.actions.Action(new Exit());
+            act = new org.gcreator.actions.Action(new Exit(), res);
         } else if (kind == 5) {
             Repeat r = new Repeat();
             r.times = code;
-            act = new org.gcreator.actions.Action(r);
+            act = new org.gcreator.actions.Action(r, res);
         } else if (kind == 6) {
             SetVariable s = new SetVariable();
             s.to = al.arguments.get(1);
-            s.var=al.arguments.get(0).substring(1, al.arguments.get(0).length()-1);
-            s.relative=relative;
-            act = new org.gcreator.actions.Action(s);
+            s.var = new VariableName(al.arguments.get(0).substring(1, al.arguments.get(0).length() - 1));
+            s.relative = relative;
+            act = new org.gcreator.actions.Action(s, res);
         }
-        //org.gcreator.actions.Action tt;
         if (function) {
             if (question) {
                 If i = new If();
-                i.condition = "" + fname+"(" + al+ ")";
-                act = new org.gcreator.actions.Action(i);
-               
+                i.condition = "" + fname + "(" + al + ")";
+                act = new org.gcreator.actions.Action(i, res);
+
             } else {
                 CallFunction tt = new CallFunction();
-                tt.fname = fname;
+                tt.fname = new FunctionName(fname);
                 tt.args = al;
                 tt.relative = relative;
 
-                act = new org.gcreator.actions.Action(tt);
+                act = new org.gcreator.actions.Action(tt, res);
             }
         } else if (kind == 7) {
             ExecuteCode tt = new ExecuteCode();
             tt.code = code.substring(1, code.length() - 1);
-            act = new org.gcreator.actions.Action(tt);
+            act = new org.gcreator.actions.Action(tt, res);
 
         }
-
-
         return act;
-//        
-//        //org.gcreator.core.gcreator.debugOut.println("libid=" + libid + ", actid=" + actid);
-//        
-//        return act;
     }
 
-    private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action, int appliesTo, boolean relative, String[] args, int kind, boolean question) {
+    private static org.gcreator.actions.Action parseAction(String code, String function, GmFileContext c, org.gcreator.actions.Action action, int appliesTo, boolean relative, String[] args, int kind, boolean question, Resource resource) {
         ArgumentList a = new ArgumentList();
 
         boolean func = true;
@@ -1674,7 +1680,7 @@ public class GM6Importer {
         org.gcreator.core.gcreator.debugOut.println("function:" + function);
         //org.gcreator.core.gcreator.debugOut.println("Code:"+code);
         try {
-            org.gcreator.actions.Action act = retrieveAction(0, 0, function, func, fname, kind, a, relative, question);
+            org.gcreator.actions.Action act = retrieveAction(0, 0, function, func, fname, kind, a, relative, question, resource);
             //org.gcreator.core.gcreator.debugOut.println("aftre ret");
 //            if (act.pattern instanceof ExecuteCode)
 //            ((ExecuteCode)act.pattern).code = function;

@@ -52,9 +52,10 @@ import org.xml.sax.SAXException;
  */
 public final class ProjectImporter {
 
-    private static JFileChooser fc = new JFileChooser();
+    private final static JFileChooser fc;
 
     static {
+        fc = new JFileChooser();
         fc.setFileFilter(new CustomFileFilter(".gcp", "G-Creator Project File"));
     }
 

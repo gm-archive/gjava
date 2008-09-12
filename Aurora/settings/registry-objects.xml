@@ -26,6 +26,11 @@
    <string>/home/bob-the-blueberry/G-Projects</string> 
   </void> 
  </object> 
+ <object class="org.gcreator.units.BeanFile"> 
+  <void property="SPath"> 
+   <string>/home/bob-the-blueberry/NetBeansProjects/G-Java/GM importer/dist</string> 
+  </void> 
+ </object> 
  <boolean>false</boolean> 
  <boolean>false</boolean> 
  <boolean>false</boolean> 

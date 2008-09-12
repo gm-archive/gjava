@@ -1,0 +1,7 @@
+<plugin>
+    <author>Luís Reis|The LGM team &lt;br/&gt;but not directly</author>
+    <core>org.gcreator.utils.GMImporter.plugin</core>
+    <license>GPL v3</license>
+    <name>GM Importer</name>
+    <version>1.001</version>
+</plugin>

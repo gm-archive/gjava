@@ -27,6 +27,7 @@ import org.gcreator.units.Dictionary;
  * @author  Luís
  */
 public class SettingsEditor extends TabPanel {
+
     private static final long serialVersionUID = 1;
     /** Creates new form SettingsEditor */
     SettingsValues value;
@@ -34,90 +35,86 @@ public class SettingsEditor extends TabPanel {
     ResourceChooser scenes;
     int from;
     private static Vector<SettingsManager> managers;// = new Vector<SettingsManager>();
-    
-    static{
+    static {
         managers = new Vector<SettingsManager>();
     }
-    
-    public static void addManager(SettingsManager manager)
-    {
+
+    public static void addManager(SettingsManager manager) {
         managers.add(manager);
     }
-    
     private Vector<Integer> scenelist;
-    
+
     @SuppressWarnings("unchecked")
     public SettingsEditor(org.gcreator.fileclass.Project project, org.gcreator.fileclass.GFile file) {
         scenelist = new Vector<Integer>();
         this.file = file;
         this.project = project;
-        if(file.value==null||!(file.value instanceof SettingsValues)){
+        if (file.value == null || !(file.value instanceof SettingsValues)) {
             file.value = value = new SettingsValues();
-        }
-        else{
+        } else {
             value = (SettingsValues) file.value;
         }
         Graphics = value.getValue("Graphics");
-        if(Graphics==null){
+        if (Graphics == null) {
             value.setVariable("Graphics", Graphics = new TabValues("Graphics"));
         }
         Resolution = value.getValue("Resolution");
-        if(Resolution==null){
+        if (Resolution == null) {
             value.setVariable("Resolution", Resolution = new TabValues("Resolution"));
         }
         Other = value.getValue("Other");
-        if(Other==null){
+        if (Other == null) {
             value.setVariable("Other", Other = new TabValues("Other"));
         }
         SceneOrder = value.getValue("Scene Order");
-        if(SceneOrder==null){
+        if (SceneOrder == null) {
             value.setVariable("Scene Order", SceneOrder = new TabValues("Scene Order"));
         }
         Object resize = Graphics.getValue("resize");
-        if(resize==null||!(resize instanceof Boolean)){
+        if (resize == null || !(resize instanceof Boolean)) {
             Graphics.setVariable("resize", resize = (Boolean) false);
         }
         Object borderless = Graphics.getValue("borderless");
-        if(borderless==null||!(borderless instanceof Boolean)){
+        if (borderless == null || !(borderless instanceof Boolean)) {
             Graphics.setVariable("borderless", borderless = (Boolean) false);
         }
         Object setres = Resolution.getValue("setres");
-        if(setres==null||!(setres instanceof Boolean)){
+        if (setres == null || !(setres instanceof Boolean)) {
             Resolution.setVariable("setres", setres = (Boolean) false);
         }
         Object depth = Resolution.getValue("depth");
-        if(depth==null||!(depth instanceof Integer)){
+        if (depth == null || !(depth instanceof Integer)) {
             Resolution.setVariable("depth", depth = (Integer) 0);
         }
         Integer dep = (Integer) depth;
-        if(dep!=0&&dep!=16&&dep!=32) {
+        if (dep != 0 && dep != 16 && dep != 32) {
             Resolution.setVariable("depth", dep = 0);
         }
         Object resol = Resolution.getValue("resol");
-        if(resol==null||!(resol instanceof Integer)){
+        if (resol == null || !(resol instanceof Integer)) {
             Resolution.setVariable("resol", resol = (Integer) 0);
         }
         Integer res = (Integer) resol;
-        if(res<0||res>6) {
+        if (res < 0 || res > 6) {
             Resolution.setVariable("resol", res = 0);
         }
-        if(res<0||res>6) {
+        if (res < 0 || res > 6) {
             Resolution.setVariable("resol", res = 0);
         }
         Object frequency = Resolution.getValue("frequency");
-        if(frequency==null||!(frequency instanceof Integer)){
+        if (frequency == null || !(frequency instanceof Integer)) {
             Resolution.setVariable("frequency", frequency = (Integer) 0);
         }
         Integer freq = (Integer) frequency;
-        if(freq<0||freq>5) {
+        if (freq < 0 || freq > 5) {
             Resolution.setVariable("frequency", freq = 0);
         }
         Object esc = Other.getValue("ESC");
-        if(esc==null||!(esc instanceof Boolean)){
+        if (esc == null || !(esc instanceof Boolean)) {
             Other.setVariable("ESC", esc = (Boolean) false);
         }
         Object f4 = Other.getValue("F4");
-        if(f4==null||!(f4 instanceof Boolean)){
+        if (f4 == null || !(f4 instanceof Boolean)) {
             Other.setVariable("F4", f4 = (Boolean) false);
         }
         initComponents();
@@ -126,58 +123,47 @@ public class SettingsEditor extends TabPanel {
         jCheckBox7.setSelected((Boolean) setres);
         jCheckBox8.setSelected((Boolean) esc);
         jCheckBox9.setSelected((Boolean) f4);
-        if(dep==0) {
+        if (dep == 0) {
             jRadioButton1.setSelected(true);
-        }
-        else if(dep==16) {
+        } else if (dep == 16) {
             jRadioButton2.setSelected(true);
-        }
-        else if(dep==32) {
+        } else if (dep == 32) {
             jRadioButton3.setSelected(true);
         }
-        if(res==0) {
+        if (res == 0) {
             jRadioButton4.setSelected(true);
-        }
-        else if(res==1) {
+        } else if (res == 1) {
             jRadioButton5.setSelected(true);
-        }
-        else if(res==2) {
+        } else if (res == 2) {
             jRadioButton6.setSelected(true);
-        }
-        else if(res==3) {
+        } else if (res == 3) {
             jRadioButton7.setSelected(true);
-        }
-        else if(res==4) {
+        } else if (res == 4) {
             jRadioButton8.setSelected(true);
-        }
-        else if(res==5)
+        } else if (res == 5) {
             jRadioButton9.setSelected(true);
-        else if(res==6) {
+        } else if (res == 6) {
             jRadioButton10.setSelected(true);
         }
-        if(freq==0) {
+        if (freq == 0) {
             jRadioButton11.setSelected(true);
-        }
-        else if(freq==1) {
+        } else if (freq == 1) {
             jRadioButton12.setSelected(true);
-        }
-        else if(freq==2) {
+        } else if (freq == 2) {
             jRadioButton13.setSelected(true);
-        }
-        else if(freq==3) {
+        } else if (freq == 3) {
             jRadioButton14.setSelected(true);
-        }
-        else if(freq==4) {
+        } else if (freq == 4) {
             jRadioButton15.setSelected(true);
-        }
-        else if(freq==5) {
+        } else if (freq == 5) {
             jRadioButton16.setSelected(true);
         }
-        Object scn=null;
-        try{
-        scn = SceneOrder.getValue("Scenes");
-        } catch (Exception e){}
-        if(scn==null||!(scn instanceof Vector)) {
+        Object scn = null;
+        try {
+            scn = SceneOrder.getValue("Scenes");
+        } catch (Exception e) {
+        }
+        if (scn == null || !(scn instanceof Vector)) {
             SceneOrder.setVariable("Scenes", scn = new Vector());
         }
         scenelist = (Vector) scn;
@@ -186,27 +172,27 @@ public class SettingsEditor extends TabPanel {
         jPanel10.add(scenes = new ResourceChooser(project, "scene"));
         jList1.setModel(new VectorListModel(scenelist));
         jList1.setCellRenderer(new SceneCellRenderer(project));
-        /*Extensions = value.getValue("Extensions");
-        if(Extensions==null){
-            value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
-            Extensions.setVariable("Regular Expressions", Boolean.FALSE);
-            Extensions.setVariable("Game Maker Compatibility", Boolean.TRUE);
-        }
-        for(String key : Extensions.getKeys()){
-            DefaultProperty p = new DefaultProperty();
-            p.setName(key);
-            p.setValue(Extensions.getValue(key));
-            p.setEditable(true);
-            p.setType(Boolean.TYPE);
-            p.setDisplayName(key);
-            if(key.equals("Regular Expressions"))
-                p.setShortDescription("Allows regular expression functions.");
-            else if(key.equals("Game Maker Compatibility"))
-                p.setShortDescription("Functions such as room_goto_next for those migrating from Game Maker.");
-            //propertyManager1.addProperty(p);
-        }*/
+    /*Extensions = value.getValue("Extensions");
+    if(Extensions==null){
+    value.setVariable("Extensions", Extensions = new TabValues("Extensions"));
+    Extensions.setVariable("Regular Expressions", Boolean.FALSE);
+    Extensions.setVariable("Game Maker Compatibility", Boolean.TRUE);
     }
-    
+    for(String key : Extensions.getKeys()){
+    DefaultProperty p = new DefaultProperty();
+    p.setName(key);
+    p.setValue(Extensions.getValue(key));
+    p.setEditable(true);
+    p.setType(Boolean.TYPE);
+    p.setDisplayName(key);
+    if(key.equals("Regular Expressions"))
+    p.setShortDescription("Allows regular expression functions.");
+    else if(key.equals("Game Maker Compatibility"))
+    p.setShortDescription("Functions such as room_goto_next for those migrating from Game Maker.");
+    //propertyManager1.addProperty(p);
+    }*/
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -805,7 +791,6 @@ public class SettingsEditor extends TabPanel {
 
         add(jTabbedPane1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
-
     private void jCheckBox7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox7ActionPerformed
         checkres();
         Resolution.setVariable("setres", jCheckBox7.isSelected());
@@ -888,7 +873,7 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jRadioButton16ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(scenes.getFile()!=null) {
+        if (scenes.getFile() != null) {
             addScene(scenes.getFile());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -898,13 +883,13 @@ public class SettingsEditor extends TabPanel {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
-        int to  = jList1.locationToIndex(evt.getPoint());
-     if (to == from) {
+        int to = jList1.locationToIndex(evt.getPoint());
+        if (to == from) {
             return;
         }
         int remove = scenelist.remove(from);
-      scenelist.add(to, remove);
-      from = to;
+        scenelist.add(to, remove);
+        from = to;
     }//GEN-LAST:event_jList1MouseDragged
 
     private void jList1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MousePressed
@@ -914,55 +899,54 @@ public class SettingsEditor extends TabPanel {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int pos = jList1.getSelectedIndex();
-        if(pos<=0) {
+        if (pos <= 0) {
             //0 or -1
             return; //Do nothing
         } //Do nothing
         int o = scenelist.get(pos);
         int p = scenelist.get(pos - 1);
-        scenelist.set(pos-1, o);
+        scenelist.set(pos - 1, o);
         scenelist.set(pos, p);
-        jList1.setSelectedIndex(pos-1);
+        jList1.setSelectedIndex(pos - 1);
         jList1.updateUI();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int pos = jList1.getSelectedIndex();
-        if(pos<0||pos>=scenelist.size()-1) {
+        if (pos < 0 || pos >= scenelist.size() - 1) {
             //-1
             return; //Do nothing
         } //Do nothing
         int o = scenelist.get(pos);
         int p = scenelist.get(pos + 1);
-        scenelist.set(pos+1, o);
+        scenelist.set(pos + 1, o);
         scenelist.set(pos, p);
-        jList1.setSelectedIndex(pos+1);
+        jList1.setSelectedIndex(pos + 1);
         jList1.updateUI();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
         Graphics.setVariable("borderless", jCheckBox5.isSelected());
     }//GEN-LAST:event_jCheckBox5ActionPerformed
-    
-    public void addScene(org.gcreator.fileclass.GFile file){
+
+    public void addScene(org.gcreator.fileclass.GFile file) {
         scenelist.add(file.getID());
         jList1.updateUI();
     }
-    
-    public void removeSelectedScene(){
-        if(jList1.getSelectedValue()!=null
-                &&jList1.getSelectedIndex()<jList1.getModel().getSize()) {
+
+    public void removeSelectedScene() {
+        if (jList1.getSelectedValue() != null && jList1.getSelectedIndex() < jList1.getModel().getSize()) {
             scenelist.remove(jList1.getSelectedIndex());
         }
         scenelist.trimToSize();
         jList1.updateUI();
     }
-    
-    void checkres(){
-       if(jCheckBox7.isSelected()){
-            ((TitledBorder) jPanel3.getBorder()).setTitleColor(new Color(0,70,213));
-            ((TitledBorder) jPanel4.getBorder()).setTitleColor(new Color(0,70,213));
-            ((TitledBorder) jPanel5.getBorder()).setTitleColor(new Color(0,70,213));
+
+    void checkres() {
+        if (jCheckBox7.isSelected()) {
+            ((TitledBorder) jPanel3.getBorder()).setTitleColor(new Color(0, 70, 213));
+            ((TitledBorder) jPanel4.getBorder()).setTitleColor(new Color(0, 70, 213));
+            ((TitledBorder) jPanel5.getBorder()).setTitleColor(new Color(0, 70, 213));
             jPanel3.updateUI();
             jPanel4.updateUI();
             jPanel5.updateUI();
@@ -982,8 +966,7 @@ public class SettingsEditor extends TabPanel {
             jRadioButton14.setEnabled(true);
             jRadioButton15.setEnabled(true);
             jRadioButton16.setEnabled(true);
-        }
-        else{
+        } else {
             ((TitledBorder) jPanel3.getBorder()).setTitleColor(Color.GRAY);
             ((TitledBorder) jPanel4.getBorder()).setTitleColor(Color.GRAY);
             ((TitledBorder) jPanel5.getBorder()).setTitleColor(Color.GRAY);
@@ -1008,7 +991,6 @@ public class SettingsEditor extends TabPanel {
             jRadioButton16.setEnabled(false);
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -1062,5 +1044,4 @@ public class SettingsEditor extends TabPanel {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
-    
 }

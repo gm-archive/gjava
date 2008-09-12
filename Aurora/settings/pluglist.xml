@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><pluglist>
+    <plugin><author>TGMG</author><core>org.gcreator.compilers.GJava</core><name>G-Java</name><version>0.303</version><jar>./plugins/G-Java/G-Java.jar</jar></plugin><plugin><author>but not directly</author><core>org.gcreator.utils.GMImporter.plugin</core><license>GPL v3</license><name>GM Importer</name><version>1.001</version><jar>./plugins/GM Importer/GM_importer.jar</jar></plugin></pluglist>

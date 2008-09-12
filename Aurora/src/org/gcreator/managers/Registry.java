@@ -10,7 +10,7 @@
 
 package org.gcreator.managers;
 
-import com.sun.org.apache.xerces.internal.dom.DeferredElementImpl;
+import com.sun.org.apache.xerces.internal.dom.ElementImpl;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedInputStream;
@@ -29,7 +29,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Result;
-import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -136,7 +135,7 @@ public final class Registry {
             Element elem = doc.getDocumentElement();
             NodeList nl = elem.getElementsByTagName("key");
             for (int i = 0; i < nl.getLength(); i++) {
-                DeferredElementImpl node = (DeferredElementImpl) nl.item(i);
+                ElementImpl node = (ElementImpl) nl.item(i);
                 String key = node.getAttribute("name");
                 registry.put(key, objects.get(i));
             }
@@ -177,7 +176,7 @@ public final class Registry {
             }
             doc.appendChild(reg);
             en.close();
-            Source source = new DOMSource(doc);
+            DOMSource source = new DOMSource(doc);
             Result result = new StreamResult(xmlFile);
             Transformer xformer = TransformerFactory.newInstance().newTransformer();
             xformer.transform(source, result);

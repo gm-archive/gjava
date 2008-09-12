@@ -14,59 +14,61 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import org.gcreator.fileclass.GFile;
-//import org.gcreator.fileclass.res.GImage;
 import org.gcreator.fileclass.res.Sprite;
 
 /**
  *
  * @author luis
  */
-public class SpriteNavigator extends JScrollPane{
+public class SpriteNavigator extends JScrollPane {
+
+    private static final long serialVersionUID = 1;
     private GFile file;
     private ImagePreviewer p;
-    
-    public GFile getFile(){
+
+    public GFile getFile() {
         return file;
     }
-    
-    public Sprite getSprite(){
+
+    public Sprite getSprite() {
         GFile f = getFile();
-        if(f.value==null) return null;
-        if(!(f.value instanceof Sprite)) return null;
+        if (f.value == null) {
+            return null;
+        }
+        if (!(f.value instanceof Sprite)) {
+            return null;
+        }
         return ((Sprite) f.value);
     }
-    
-    public SpriteNavigator(GFile file){
+
+    public SpriteNavigator(GFile file) {
         this.file = file;
         p = new ImagePreviewer();
         this.setViewportView(p);
-        Thread t = new Thread(){
-            public void run(){
-                try{
+        Thread t = new Thread() {
+
+            @Override
+            public void run() {
+                try {
                     int i = 0;
-                    while(true){
+                    while (true) {
                         Sprite s = getSprite();
-                        if(s==null){
+                        if (s == null) {
                             p.i = null;
                             sleep(200);
                             continue;
-                        }
-                        else{
-                           // System.out.println("There are " + s.Simages.size());
-                            if(i >= s.Simages.size())
+                        } else {
+                            if (i >= s.Simages.size()) {
                                 i = 0;
-                            p.i = (ImageIcon) (((GFile) s.getAt(i)).value);
-                            updateUI();
-                            //repaint();
-                          //  System.out.println("Updating to " + i);
+                            }
+                            p.i = (ImageIcon) ((s.getAt(i)).value);
                             sleep(100);
                             i++;
                             continue;
                         }
                     }
-                }
-                catch(Exception e){
-                    
+                } catch (Exception e) {
+
                 }
             }
         };
@@ -74,17 +76,21 @@ public class SpriteNavigator extends JScrollPane{
         setVisible(true);
         setDoubleBuffered(true);
     }
-    
-    private class ImagePreviewer extends JPanel{
+
+    private class ImagePreviewer extends JPanel {
+
+        private static final long serialVersionUID = 1;
         private ImageIcon i = null;
-        private ImagePreviewer(){
+
+        private ImagePreviewer() {
             setDoubleBuffered(true);
         }
-        
-        public void paint(Graphics g){
+
+        @Override
+        public void paint(Graphics g) {
             super.paint(g);
-            
-            if(i!=null){
+
+            if (i != null) {
                 g.drawImage(i.getImage(), 0, 0, i.getImageObserver());
             }
         }

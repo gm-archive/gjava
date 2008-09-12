@@ -76,7 +76,7 @@ public class plugin extends PluginCore {
         JFileFilter filter2 = new JFileFilter(".*\\.*", "Any Files (*.*)");
         jFileChooser1.addChoosableFileFilter(filter2);
         jFileChooser1.setFileFilter(filter);
-        jFileChooser1.showDialog(PluginHelper.getWindow(), "OK");
+        jFileChooser1.showDialog(PluginHelper.getPanel(), "OK");
 
         if (jFileChooser1.getSelectedFile() != null) {
             java.io.File _file = jFileChooser1.getSelectedFile();
@@ -110,7 +110,6 @@ public class plugin extends PluginCore {
                         e.printStackTrace();
                     }
                 }
-
             };
             
             t.start();

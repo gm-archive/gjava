@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : plugin.xml
+    Created on : September 7, 2008, 4:06 PM
+    Author     : bob-the-blueberry
+    Description:
+        The new plugin properties file type.
+-->
+
+<plugin>
+    <name>Best Plugin Ever</name>
+    <version>1.0</version>
+    <author>Bob</author>
+    <license>Best License Ever!</license>
+    <name>Best plug-in ever!</name>
+    <image>best-image-ever.png</image>
+    <core>com.best.plugin.ever.Main</core>
+    <update>http://www.bestpluginever.com/update.xml</update>
+</plugin>

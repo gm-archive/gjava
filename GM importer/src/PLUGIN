@@ -1,8 +1,0 @@
-[~Plugin~]
-Author=Luís Reis
-Author=The LGM team #but not directly
-Core=org.gcreator.utils.GMImporter.plugin
-License=GPL v3
-Name=GM Importer
-Version=1.0a1
-Image=

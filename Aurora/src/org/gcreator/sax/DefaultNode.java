@@ -15,7 +15,6 @@ import org.xml.sax.Attributes;
 public class DefaultNode extends Node {
 
     private String name = null;
-    //private Attributes attrs = null;
     private Hashtable<String, String> attrs = new Hashtable<String, String>();
     private String content = null;
     private Node parent = null;
@@ -24,7 +23,6 @@ public class DefaultNode extends Node {
     public DefaultNode(Node parent, String name, Attributes attrs) {
         this.parent = parent;
         this.name = name;
-        //this.attrs = attrs;
         for (int i = 0; i < attrs.getLength(); i++) {
             String n = attrs.getLocalName(i);
             this.attrs.put(n, attrs.getValue(n));
@@ -99,5 +97,10 @@ public class DefaultNode extends Node {
             return children.get(i);
         }
         return null;
+    }
+
+    @Override
+    public Node[] getClildren() {
+        return children.toArray(new Node[children.size()]);
     }
 }

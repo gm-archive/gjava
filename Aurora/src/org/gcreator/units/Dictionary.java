@@ -33,7 +33,6 @@ public class Dictionary {
     }
 
     public static Dictionary loadFromXML(String shortName, File file) {
-        System.out.println("Here");
         try {
             FileInputStream stream = new FileInputStream(file);
             SAXParser p = new SAXParser(stream);

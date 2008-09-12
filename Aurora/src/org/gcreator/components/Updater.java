@@ -589,11 +589,11 @@ public final class Updater {
             pluginUpdates.add(gcreatorUpdate);
         }
 
-        for (Plugin p : PluginList.stdlist.plugins) {
+        for (Plugin p : PluginList.getStdList().plugins) {
             if (p.update != null) {
                 Update u = downloadUpdateInfo(p.update);
                 if (u != null && u.version > Double.parseDouble(p.version)) {
-                    u.location = "./plugins/jars";
+                    u.location = "./plugins/"+p.name;
                     pluginUpdates.add(downloadUpdateInfo(p.update));
                 }
             }
