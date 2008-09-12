@@ -470,7 +470,7 @@ public final class Updater {
                     new File(entry.getName()).mkdirs();
                 } else {
                     String name;
-                    if (entry.getName().equals("install.js")) {
+                    if (entry.getName().equalsIgnoreCase("install.js")) {
                         name = "install"+u.displayVersion+".js";
                     } else {
                         name = entry.getName();

@@ -280,7 +280,7 @@ public class GM6Importer {
             in.readBool();//stayOnTop
             in.readBool();//pauseGame
         }
-        in.readStr();//gameInfoStr
+        c.pro.info.value = in.readStr();//gameInfoStr
     }
 
     private SettingsValues readSettings(org.gcreator.fileclass.GFile settings, GmFileContext c) throws IOException, GmFormatException,
@@ -911,10 +911,10 @@ public class GM6Importer {
 //                bis.vmode = bis.MODE_STRETCH;
 //                }
                 if (tileh) {
-                    bis.hmode = bis.MODE_REPEAT;
+                    bis.hmode = BackgroundInScene.MODE_REPEAT;
                 }
                 if (tilev) {
-                    bis.vmode = bis.MODE_REPEAT;
+                    bis.vmode = BackgroundInScene.MODE_REPEAT;
                 }
                 a.backgrounds.add(bis);
             }

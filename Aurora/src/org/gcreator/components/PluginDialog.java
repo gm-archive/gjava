@@ -161,8 +161,7 @@ public class PluginDialog extends JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? 
-            (BeanFile) Registry.get("Directories.pluginDialog") : null);
+        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? (BeanFile) Registry.get("Directories.pluginDialog") : null);
         fc.setMultiSelectionEnabled(false);
         fc.setDialogTitle("Choose the file");
         fc.setApproveButtonText("OK");
@@ -204,8 +203,7 @@ public class PluginDialog extends JDialog {
             return;
         }
         Plugin p = (Plugin) list.getSelectedExtraContent();
-        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? 
-            (BeanFile) Registry.get("Directories.pluginDialog") : null);
+        JFileChooser fc = new JFileChooser((Registry.exists("Directories.pluginDialog")) ? (BeanFile) Registry.get("Directories.pluginDialog") : null);
         fc.setFileFilter(new JFileFilter(".*\\.jar$", "G-Creator Plugins (*.jar)"));
         if (fc.showOpenDialog(this) == JFileChooser.CANCEL_OPTION) {
             return;
@@ -227,6 +225,8 @@ public class PluginDialog extends JDialog {
     public void uninstall(Plugin plugin) {
         plugin.value.uninstall();
         Document doc = getDocument(PluginList.PLUGLIST);
+        doc.setXmlVersion("1.0");
+        doc.setXmlStandalone(true);
         Element root = doc.getDocumentElement();
         NodeList nodes = root.getChildNodes();
         loop:
@@ -235,7 +235,7 @@ public class PluginDialog extends JDialog {
             NodeList childnodenodes = n.getChildNodes();
             for (int j = 0; j < childnodenodes.getLength(); j++) {
                 Node cn = childnodenodes.item(j);
-                if (cn.getNodeName() != null && cn.getNodeName().equals("name") && 
+                if (cn.getNodeName() != null && cn.getNodeName().equals("name") &&
                         cn.getTextContent() != null && cn.getTextContent().equals(plugin.name)) {
                     root.removeChild(n);
                     break loop;
@@ -278,7 +278,7 @@ public class PluginDialog extends JDialog {
             }
             if (entry == null) {
                 JOptionPane.showMessageDialog(this, jar.getName() +
-" is not a valid G-Creator plug-in (no plugin.xml file).", "Error", JOptionPane.ERROR_MESSAGE);
+                        " is not a valid G-Creator plug-in (no plugin.xml file).", "Error", JOptionPane.ERROR_MESSAGE);
                 failed = true;
             }
         } catch (IOException e) {
@@ -318,6 +318,8 @@ public class PluginDialog extends JDialog {
         }
         plugin.jar = new Jar(jarFile);
         Document doc = getDocument(PluginList.PLUGLIST);
+            doc.setXmlVersion("1.0");
+            doc.setXmlStandalone(true);
         if (doc == null) {
             doc = newDocument();
         }
@@ -399,7 +401,6 @@ public class PluginDialog extends JDialog {
         }
         return null;
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

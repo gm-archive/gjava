@@ -80,12 +80,13 @@ public class GJava extends PlatformCore {
             //System.out.println("type:");
             System.out.println("Parse Image:" + f.name + f.type);
             File ff = new File(FileFolder + f.name + "." + f.type);
-           if(!ff.exists())
+            if (!ff.exists()) {
                 ff.createNewFile();
+            }
             ImageIO.write(ii, f.type, ff);//baos);
-            System.out.println("Done:"+f.name);
+            System.out.println("Done:" + f.name);
 
-            
+
 //            
 //            FileOutputStream fos = new FileOutputStream(ff);
 //
@@ -102,16 +103,18 @@ public class GJava extends PlatformCore {
         //super.parseSprite(s);
 
         loadSprites += f.name + ",";
-        System.out.println("parse sprite:"+f.name);
+        System.out.println("parse sprite:" + f.name);
         createSprites += f.name + " = new Sprite(\"" + f.name + "\"," + s.height + ", " + s.width + ", " + s.BBLeft + ", " + s.BBRight + ", " + s.BBBottom + ", " + s.BBTop + ", " + s.originX + ", " + s.originY + ", new BufferedImage[]{";
-        System.out.println("size of sprite:"+s.Simages.size());
+        System.out.println("size of sprite:" + s.Simages.size());
         for (Enumeration e = s.Simages.elements(); e.hasMoreElements();) {
             try {
-            org.gcreator.fileclass.GFile a = project.getFileFor((Integer)e.nextElement());
-            createSprites += "getImage(\"" + a.name + "."+ a.type + "\"),";
-                //System.out.println("Write sprite:"+a.name+a.type);
-        //if(a!=null)
-            } catch(Exception ee){System.out.println(" Exception!!!!:"+ee.getLocalizedMessage());}
+                org.gcreator.fileclass.GFile a = project.getFileFor((Integer) e.nextElement());
+                createSprites += "getImage(\"" + a.name + "." + a.type + "\"),";
+            //System.out.println("Write sprite:"+a.name+a.type);
+            //if(a!=null)
+            } catch (Exception ee) {
+                System.out.println(" Exception!!!!:" + ee.getLocalizedMessage());
+            }
         }
 
         createSprites = createSprites.substring(0, createSprites.length() - 1) + "});";
@@ -119,7 +122,7 @@ public class GJava extends PlatformCore {
 
     @Override
     public void parseActor(Actor a, GFile f) {
-        System.out.println("Parse Actor:"+f.name);
+        System.out.println("Parse Actor:" + f.name);
         try {
             String keypress = "public void KeyPressed(int keycode) {", keyrelease = "public void KeyReleased(int keycode) {";
             String callevents = "public void callEvents() { ", endcall = " checkCollision(); Move(); }";
@@ -131,7 +134,7 @@ public class GJava extends PlatformCore {
             print(actor, "import org.gcreator.compilers.gjava.api.*; import java.awt.Graphics2D; import org.gcreator.compilers.gjava.api.Actor;import org.gcreator.compilers.gjava.api.Object;import org.gcreator.compilers.gjava.api.String;import org.gcreator.compilers.gjava.api.Integer;import org.gcreator.compilers.gjava.api.Double;import org.gcreator.compilers.gjava.api.Boolean;");
             print(actor, "");
 
-            System.out.println("it extends:"+a.extend);
+            System.out.println("it extends:" + a.extend);
 
             print(actor, "public class " + f.name + " extends Actor {");
             print(actor, "");
@@ -169,44 +172,39 @@ public class GJava extends PlatformCore {
                     } catch (Exception ex) {
                     //System.out.println("Begin step exception:"+ex);
                     }
+                    //System.out.println("callevents:"+callevents);
+                    try {
+                        callevents = callevents.replaceAll("\\{", "\\{ BeginStep();");
+                    } catch (Exception ex) {
+                    //System.out.println("Begin step exception:"+ex);
+                    }
                 //System.out.println("callevents:"+callevents);
-                try{
-            callevents= callevents.replaceAll("\\{", "\\{ BeginStep();");
-                }catch(Exception ex){
-                //System.out.println("Begin step exception:"+ex);
-                }
-            //System.out.println("callevents:"+callevents);
-            }
-            else if (ev instanceof org.gcreator.events.StepEvent) {
-            print(actor, "  public void Step()");
-            event="Step";
-            callevents+="Step();";
-            }
-            else if (ev instanceof org.gcreator.events.EndStepEvent) {
-                System.out.println("endstep");
-            print(actor, "  public void EndStep()");
-            event="End Step";
-               // System.out.println("endcall:"+endcall);
-            endcall= "EndStep();" + endcall;
-            //System.out.println("endcall:"+endcall);
-            }
-            else if (ev instanceof org.gcreator.events.DrawEvent) {
-            print(actor, "  public void Draw_event(Graphics2D g)");
-            event="Draw";
-            }
-            else if (ev instanceof org.gcreator.events.CollisionEvent) {
-                //System.out.println("collision event");
-            print(actor, "  public void CollisionWith"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"(Actor other){this.other=other; if (other.getBounds().intersects(getBounds()) && other instanceof "+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"){  if (other.getSolid().getBoolean()){x=xprevious;y=yprevious;}");
-            event="Collision With"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name;
-            collision+="CollisionWith"+project.getFileFor(((org.gcreator.events.CollisionEvent)ev).other).name+"(G_Java_a); ";
-            //callevents+="checkCollision();";
-            }
-            else if (ev instanceof org.gcreator.events.MouseEvent) {
-                callevents+="Mouse"+((MouseEvent)ev).type+"(); ";
-            print(actor, "  public void Mouse"+((org.gcreator.events.MouseEvent)ev).type+"() {");
-            event="Mouse";
-            int type=((MouseEvent)ev).type;
-            
+                } else if (ev instanceof org.gcreator.events.StepEvent) {
+                    print(actor, "  public void Step()");
+                    event = "Step";
+                    callevents += "Step();";
+                } else if (ev instanceof org.gcreator.events.EndStepEvent) {
+                    System.out.println("endstep");
+                    print(actor, "  public void EndStep()");
+                    event = "End Step";
+                    // System.out.println("endcall:"+endcall);
+                    endcall = "EndStep();" + endcall;
+                //System.out.println("endcall:"+endcall);
+                } else if (ev instanceof org.gcreator.events.DrawEvent) {
+                    print(actor, "  public void Draw_event(Graphics2D g)");
+                    event = "Draw";
+                } else if (ev instanceof org.gcreator.events.CollisionEvent) {
+                    //System.out.println("collision event");
+                    print(actor, "  public void CollisionWith" + project.getFileFor(((org.gcreator.events.CollisionEvent) ev).other).name + "(Actor other){this.other=other; if (other.getBounds().intersects(getBounds()) && other instanceof " + project.getFileFor(((org.gcreator.events.CollisionEvent) ev).other).name + "){  if (other.getSolid().getBoolean()){x=xprevious;y=yprevious;}");
+                    event = "Collision With" + project.getFileFor(((org.gcreator.events.CollisionEvent) ev).other).name;
+                    collision += "CollisionWith" + project.getFileFor(((org.gcreator.events.CollisionEvent) ev).other).name + "(G_Java_a); ";
+                //callevents+="checkCollision();";
+                } else if (ev instanceof org.gcreator.events.MouseEvent) {
+                    callevents += "Mouse" + ((MouseEvent) ev).type + "(); ";
+                    print(actor, "  public void Mouse" + ((org.gcreator.events.MouseEvent) ev).type + "() {");
+                    event = "Mouse";
+                    int type = ((MouseEvent) ev).type;
+
 //            print(actor, "System.out.println(\"x1:\"+(int)(sprite.BBRight+x-sprite.sprite_xoffset)); ");
 //        print(actor, "System.out.println(\"x2:\"+(int)(sprite.BBTop+y-sprite.sprite_yoffset)); ");
 //        print(actor, "System.out.println(\"right:\"+(int)(x-sprite.sprite_xoffset+sprite.BBLeft));"); 
@@ -269,74 +267,66 @@ public class GJava extends PlatformCore {
                     print(actor, "  public void Keyboard" + ((KeyboardEvent) ev).type + "() {");
                     print(actor, "if (Game.game.getGame().keyDown(" + ((KeyboardEvent) ev).type + "))");
                     event = "Keyrelease " + ((org.gcreator.events.KeyboardEvent) ev).name;
+                } //Parse actions
+                //                print(actor, "    {");
+                //                for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
+                //                    org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
+                //                    System.out.println("About to parse event actions with code:"+ G_Java_aa.getGCL());
+                //                    print(actor, parseGCL(G_Java_aa.getGCL(), this));
+                //                    System.out.println("Action finished parseing!");
+                //                //parseGCL(";;; {}",this);
+                //                }
+                //                print(actor, "    }");
+                //                if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent) {
+                //                    print(actor, "    }");
+                //                }
+                //                if (ev instanceof org.gcreator.events.CollisionEvent) {
+                //                    print(actor, "    }");
+                //                    print(actor, "    }");
+                //                }
+                else if (ev instanceof org.gcreator.events.KeyPress) {
+                    keypress += "Keypress" + ((org.gcreator.events.KeyPress) ev).type + "(keycode); ";
+                    print(actor, "  public void Keypress" + ((org.gcreator.events.KeyPress) ev).type + "(int keycode){");
+                    print(actor, "if (keycode == (" + ((org.gcreator.events.KeyPress) ev).type + "))");
+                    event = "Keypress " + ((org.gcreator.events.KeyPress) ev).name;
+                } else if (ev instanceof org.gcreator.events.KeyReleased) {
+                    keyrelease += "Keyrelease" + ((org.gcreator.events.KeyReleased) ev).type + "(keycode); ";
+                    print(actor, "  public void Keyrelease" + ((org.gcreator.events.KeyReleased) ev).type + "(int keycode){");
+                    print(actor, "if (keycode == (" + ((org.gcreator.events.KeyReleased) ev).type + "))");
+                    event = "Keyrelease " + ((org.gcreator.events.KeyReleased) ev).name;
+                } else if (ev instanceof org.gcreator.events.KeyboardEvent) {
+                    callevents += "Keyboard" + ((KeyboardEvent) ev).type + "(); ";
+                    print(actor, "  public void Keyboard" + ((KeyboardEvent) ev).type + "() {");
+                    print(actor, "if (Game.game.getGame().keyDown(" + ((KeyboardEvent) ev).type + "))");
+                    event = "Keyrelease " + ((org.gcreator.events.KeyboardEvent) ev).name;
                 }
 
                 //Parse actions
-//                print(actor, "    {");
-//                for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
-//                    org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
-//                    System.out.println("About to parse event actions with code:"+ G_Java_aa.getGCL());
-//                    print(actor, parseGCL(G_Java_aa.getGCL(), this));
-//                    System.out.println("Action finished parseing!");
-//                //parseGCL(";;; {}",this);
-//                }
-//                print(actor, "    }");
+                print(actor, "    {");
+                String gcl = "";
+                for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();) {
+                    org.gcreator.actions.Action G_Java_aa = (org.gcreator.actions.Action) ee.nextElement();
+                    //System.out.println("about to parse actions");
+                    gcl += G_Java_aa.getGCL() + "\n";
+                //System.out.println("action parsed:"+G_Java_aa.getGCL());
+                //parseGCL(";;; {}",this);
+                }
+                print(actor, parseGCL(gcl, this));
+                print(actor, "    }");
 
 
-//                if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent) {
-//                    print(actor, "    }");
-//                }
-//                if (ev instanceof org.gcreator.events.CollisionEvent) {
-//                    print(actor, "    }");
-//                    print(actor, "    }");
-//                }
+                if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent) {
+                    print(actor, "    }");
+                }
+                if (ev instanceof org.gcreator.events.CollisionEvent) {
+                    print(actor, "    }");
+                    print(actor, "    }");
+                }
 
-            
-            else if (ev instanceof org.gcreator.events.KeyPress) 
-            {
-                keypress+="Keypress"+((org.gcreator.events.KeyPress)ev).type+"(keycode); ";
-                print(actor, "  public void Keypress"+((org.gcreator.events.KeyPress)ev).type+"(int keycode){");
-                print(actor, "if (keycode == ("+((org.gcreator.events.KeyPress)ev).type+"))");
-            event="Keypress "+((org.gcreator.events.KeyPress)ev).name;
             }
-            else if (ev instanceof org.gcreator.events.KeyReleased) 
-            {
-                keyrelease+="Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(keycode); ";
-                print(actor, "  public void Keyrelease"+((org.gcreator.events.KeyReleased)ev).type+"(int keycode){");
-                print(actor, "if (keycode == ("+((org.gcreator.events.KeyReleased)ev).type+"))");
-            event="Keyrelease "+((org.gcreator.events.KeyReleased)ev).name;
-            }
-            else if (ev instanceof org.gcreator.events.KeyboardEvent) {
-                callevents+="Keyboard"+((KeyboardEvent)ev).type+"(); ";
-                print(actor, "  public void Keyboard"+((KeyboardEvent)ev).type+"() {");
-                print(actor, "if (Game.game.getGame().keyDown("+((KeyboardEvent)ev).type+"))");
-            event="Keyrelease "+((org.gcreator.events.KeyboardEvent)ev).name;
-            }
-            
-            //Parse actions
-            print(actor, "    {");
-            String gcl="";
-            for (Enumeration ee = ev.actions.elements(); ee.hasMoreElements();)
-            {
-              org.gcreator.actions.Action G_Java_aa =  (org.gcreator.actions.Action)ee.nextElement();
-                //System.out.println("about to parse actions");
-              gcl+=G_Java_aa.getGCL()+"\n";
-              //System.out.println("action parsed:"+G_Java_aa.getGCL());
-              //parseGCL(";;; {}",this);
-            }
-            print(actor,parseGCL(gcl,this));
-             print(actor, "    }");
-             
-             
-            if (ev instanceof org.gcreator.events.KeyboardEvent || ev instanceof org.gcreator.events.MouseEvent)
-            print(actor, "    }");
-            if (ev instanceof org.gcreator.events.CollisionEvent)
-            {print(actor, "    }");print(actor, "    }");}
-            
-            }
-            print(actor, collision+"}}");
-            print(actor, callevents+endcall);
-            print(actor, keypress+"} "+keyrelease+"}");
+            print(actor, collision + "}}");
+            print(actor, callevents + endcall);
+            print(actor, keypress + "} " + keyrelease + "}");
             print(actor, "");
             print(actor, "}");
             actor.close();
@@ -395,9 +385,9 @@ public class GJava extends PlatformCore {
         print(scene, "    private void setupScene() {");
 
         for (int i = 0; i < s.actors.size(); i++) {
-            System.out.println("data:i="+i+"Sactor="+((ActorInScene)(s.actors.get(i))).Sactor+" name="+project.getFileFor(((ActorInScene)(s.actors.get(i))).Sactor).name);
-            print(scene, "instances.add(new " + 
-                    project.getFileFor(((ActorInScene)(s.actors.get(i))).Sactor).name +
+            System.out.println("data:i=" + i + "Sactor=" + ((ActorInScene) (s.actors.get(i))).Sactor + " name=" + project.getFileFor(((ActorInScene) (s.actors.get(i))).Sactor).name);
+            print(scene, "instances.add(new " +
+                    project.getFileFor(((ActorInScene) (s.actors.get(i))).Sactor).name +
                     "(" + ((ActorInScene) s.actors.get(i)).x + "," + ((ActorInScene) s.actors.get(i)).y + "," + ((ActorInScene) s.actors.get(i)).id + "));");
         }
 
@@ -416,11 +406,14 @@ public class GJava extends PlatformCore {
         try {
             FileFolder = "Projects" + File.separator + projectname + File.separator + "Java" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava" + File.separator;
             File f1 = new File(FileFolder);
-            try{
-            if(f1.exists())
-                recursivelyDeleteDirectory(new File("Projects" + File.separator + projectname+ File.separator)); 
-                //new File("Projects" + File.separator + projectname+ File.separator).delete();
-            }catch(Exception ee){ee.printStackTrace();}
+            try {
+                if (f1.exists()) {
+                    recursivelyDeleteDirectory(new File("Projects" + File.separator + projectname + File.separator));
+                }
+            //new File("Projects" + File.separator + projectname+ File.separator).delete();
+            } catch (Exception ee) {
+                ee.printStackTrace();
+            }
             f1.mkdirs();
             File f2 = new File("plugins" + File.separator + "org" + File.separator + "gcreator" + File.separator + "compilers" + File.separator + "gjava");
             copyDirectory(f2, f1);
@@ -438,10 +431,12 @@ public class GJava extends PlatformCore {
         }
     }
 
+    @Override
     public void onSplashDispose() {
         init();
     }
 
+    @Override
     public void onLoad() {
         ToolbarButton btn = new ToolbarButton("Run program", "Run", new ImageIcon(getClass().getResource("/org/gcreator/resources/toolbar/run.png")));
         btn.setActionListener(new ActionListener() {
@@ -454,32 +449,32 @@ public class GJava extends PlatformCore {
     }
 
     public void init() {
-        System.out.println(""+new File("plugins"+File.separator+"jars"+File.separator+"G-Java.jar").getPath());
+        System.out.println("" + new File("plugins" + File.separator + "jars" + File.separator + "G-Java.jar").getPath());
         //unzip it
         try {
-            ZipFile zipFile = new ZipFile(new File("plugins"+File.separator+"jars"+File.separator+"G-Java.jar"));
-            
+            ZipFile zipFile = new ZipFile(getPlugin().jar.getFile());
+
             for (Enumeration entries = zipFile.entries(); entries.hasMoreElements();) {
                 ZipEntry entry = (ZipEntry) entries.nextElement();
                 if (entry.isDirectory()) {
                     System.out.println("Folder:" + entry.getName());
-                    (new File("plugins"+File.separator+(entry.getName()).toString())).mkdirs();
+                    (new File("plugins" + File.separator + (entry.getName()).toString())).mkdirs();
                 } else {
-                    
-                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream((new StringBuilder()).append("plugins"+File.separator).append(entry.getName()).toString())));
+
+                    copyInputStream(zipFile.getInputStream(entry), new BufferedOutputStream(new FileOutputStream((new StringBuilder()).append("plugins" + File.separator).append(entry.getName()).toString())));
                 }
             }
 
             zipFile.close();
-            
+
         } catch (IOException ioe) {
-        
+
             ioe.printStackTrace();
-            //JOptionPane.showMessageDialog(null, "Error unziping, are you sure it was a valid zip file? The link has to be directly to a zip not to a php page!");
-           
-            //return;
+        //JOptionPane.showMessageDialog(null, "Error unziping, are you sure it was a valid zip file? The link has to be directly to a zip not to a php page!");
+
+        //return;
         }
-        
+
         utilities.addStringMessage("Installed G-Java!");
         //compilername = "GJava";
         version = 0.5;
@@ -543,20 +538,15 @@ public class GJava extends PlatformCore {
         //print(game, "  scenes = new Scene2D[" + scenes + "]; ");
         //print(game, "" + loadscene);
         print(game, "scenes = new Scene2D[]{");
-        int i = gcreator.panel.getMainProject().findFromName("$218");
+        int i = GPanel.getMainProject().findFromName("$218");
         //System.out.println("get scenes");
         boolean hasscenes = false;
         if (i > 0) {
-            GObject ff = gcreator.panel.getMainProject().childAt(i);
-            //System.out.println("1");
+            GObject ff = GPanel.getMainProject().childAt(i);
             if (ff != null && ff instanceof GFile) {
-                //System.out.println("2");
                 GFile f = (GFile) ff;
                 if (f.value != null && f.value instanceof org.gcreator.fileclass.res.SettingsValues) {
-                    //System.out.println("3");
                     org.gcreator.fileclass.res.SettingsValues s = (org.gcreator.fileclass.res.SettingsValues) f.value;
-                    //System.out.println("s done" + s);
-
                     org.gcreator.fileclass.res.TabValues Scenes = s.getValue("Scene Order");
 
                     //System.out.println("scenes:" + Scenes);
@@ -568,7 +558,7 @@ public class GJava extends PlatformCore {
                     //System.out.println("Size:"+v.size());
                     for (Enumeration t = v.elements(); t.hasMoreElements();) {
 
-                      //  System.out.println("has scenes");
+                        //  System.out.println("has scenes");
                         GFile o = (GFile) t.nextElement();
                         hasscenes = true;
                         print(game, "new " + o.name + "()" + (t.hasMoreElements() ? "," : ""));
@@ -583,7 +573,7 @@ public class GJava extends PlatformCore {
         print(game, "    };");
         print(game, "    }");
         //Load sprites method
-        System.out.println("print createSprites"+createSprites);
+        System.out.println("print createSprites" + createSprites);
         print(game, createSprites + "}");
         print(game, "   public static void main(java.lang.String[] args){");
         print(game, "       Runningas = \"Application\";");
@@ -606,7 +596,7 @@ public class GJava extends PlatformCore {
     }
 
     public void run(Project project) {
-        this.project=project;
+        this.project = project;
         if (project == null) {
             System.out.println("Error: Can't compile null!");
             return;
@@ -643,35 +633,36 @@ public class GJava extends PlatformCore {
         utilities.addStringMessage("Building/running using G-Java");
         utilities.addStringMessage("Creating java files...");
         System.out.println("Converting to java with G-java");
-        final Project pr=project;
-        new Thread(){
-            @Override
-          public void run(){
-                p.jProgressBar1.setValue(5);
-            p.jLabel2.setText("Task: Moving runner folders");
-        createFolders();
-       // super.run(project);
-        //preDo(project);
-        System.out.println("start parsing files");
-                    putFolder(pr);
-          //          postDo(project);
-                    p.jProgressBar1.setValue(90);
-        try {
-            System.out.println("create java files");
-             p.jLabel2.setText("Task: Writing java files...");
-            createJavaFiles();
-            p.jProgressBar1.setValue(100);
-            p.jLabel2.setText("Finished, time to compile");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-                    GJavaCompiler compiler = new GJavaCompiler();
-                     p.dispose();
+        final Project pr = project;
+        new Thread() {
 
-        p.setVisible(false);
+            @Override
+            public void run() {
+                p.jProgressBar1.setValue(5);
+                p.jLabel2.setText("Task: Moving runner folders");
+                createFolders();
+                // super.run(project);
+                //preDo(project);
+                System.out.println("start parsing files");
+                putFolder(pr);
+                //          postDo(project);
+                p.jProgressBar1.setValue(90);
+                try {
+                    System.out.println("create java files");
+                    p.jLabel2.setText("Task: Writing java files...");
+                    createJavaFiles();
+                    p.jProgressBar1.setValue(100);
+                    p.jLabel2.setText("Finished, time to compile");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                GJavaCompiler compiler = new GJavaCompiler();
+                p.dispose();
+
+                p.setVisible(false);
             }
         }.start();
-       
+
     }
 
     /*
@@ -681,7 +672,7 @@ public class GJava extends PlatformCore {
      */
     @Override
     public void parseSettings(SettingsValues string, String name) {
-      System.out.println("parse the settings here");
+        System.out.println("parse the settings here");
     }
 
     /*
@@ -739,7 +730,7 @@ public class GJava extends PlatformCore {
                     Method m = Constants.class.getDeclaredMethod("get" + ("" + nm.charAt(0)).toUpperCase() + nm.substring(1) + "", new Class[]{});
                     return true;
                 } catch (Exception ee) {
-                    //System.out.println("no method" + ee);
+                //System.out.println("no method" + ee);
                 }
             }
 
@@ -755,6 +746,7 @@ public class GJava extends PlatformCore {
      * This will check if a function exists
      *
      */
+    @Override
     public boolean checkfunction(String name) {
         //return super.checkvariable(name);
 //       System.out.println("Check function:"+name);
