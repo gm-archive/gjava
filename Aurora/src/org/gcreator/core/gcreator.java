@@ -131,7 +131,6 @@ public class gcreator {
         } catch (Exception exc) {
             System.out.println("Exception: " + exc);
         }
-        //System.setProperty("file.encoding", "UTF-8");
         boolean plugload = true;
         boolean ismdi = false;
         if (args != null) {
@@ -147,6 +146,7 @@ public class gcreator {
                     System.out.println("G-Creator version: " + version);
                     System.out.println("Licensed under LGPL v3. More information in README.txt and 'About'.");
                     System.out.println("-safe\t\tStarts G-Creator in safe mode. (No plugins)");
+                    System.out.println("-E --evil-mode\t\tStarts G-Creator in evil mode.");
                     System.out.println("-jemul:version\tPretends the user is running G-Creator with version 'version'");
                     System.out.println("-mdi\t\tStarts G-Creator in MDI mode");
                     System.out.println("-help\t\tDisplays info about G-Creator");

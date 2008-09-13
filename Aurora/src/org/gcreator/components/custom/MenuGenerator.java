@@ -9,11 +9,16 @@
  */
 package org.gcreator.components.custom;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-import org.gcreator.components.uiplus.*;
-import org.gcreator.managers.*;
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import org.gcreator.components.uiplus.DiscMenu;
+import org.gcreator.components.uiplus.DiscMenuContainer;
+import org.gcreator.components.uiplus.DiscMenuItem;
 import org.gcreator.units.Dictionary;
 
 /**
@@ -21,173 +26,157 @@ import org.gcreator.units.Dictionary;
  * @author Luís
  */
 public class MenuGenerator {
+
     private JPopupMenu std = null;
     private DiscMenu disc = null;
-    
     public static final int TYPE_STD = 1;
     public static final int TYPE_DISC = 2;
-    
     public static int type = TYPE_DISC;
-    
     private int ltype;
     private Object parent;
-    
+
     public MenuGenerator() {
         ltype = type;//Don't change your mind
-        
+
         initMenu();
     }
-    
-    public static void addActionListener(Object o, ActionListener a){
-        if(o instanceof JMenuItem) {
+
+    public static void addActionListener(Object o, ActionListener a) {
+        if (o instanceof JMenuItem) {
             ((JMenuItem) o).addActionListener(a);
         }
-        if(o instanceof DiscMenuItem) {
+        if (o instanceof DiscMenuItem) {
             ((DiscMenuItem) o).addActionListener(a);
         }
     }
-    
-    private void initMenu(){
-        if(ltype==TYPE_STD){
+
+    private void initMenu() {
+        if (ltype == TYPE_STD) {
             parent = std = new JPopupMenu();
-        }
-        else{
+        } else {
             disc = new DiscMenu();
             parent = disc.curcontainer = new DiscMenuContainer(null, null);
         }
     }
-    
+
     /*public Object addMenuItem(Object parent, int entry, ImageIcon img){
-        return addMenuItem(parent, entry, img, true);
+    return addMenuItem(parent, entry, img, true);
     }
-    
     public Object addMenuItem(int entry, ImageIcon img){
-        return addMenuItem(entry, img, true);
+    return addMenuItem(entry, img, true);
     }*/
-    
-    public Object addTranslatableMenuItem(String entry, ImageIcon img){
+    public Object addTranslatableMenuItem(String entry, ImageIcon img) {
         return addTranslatableMenuItem(entry, img, true);
     }
-    
+
     /*public Object addMenuItem(Object parent, int entry, ImageIcon img, boolean enabled){
-        String lang = LangSupporter.activeLang.getEntry(entry);
-        
-        if(ltype==TYPE_STD){
-            JMenuItem i = new JMenuItem(lang, img);
-            i.setVisible(true);
-            i.setEnabled(enabled);
-            ((JMenu) parent).add(i);
-            return i;
-        }
-        else{
-            DiscMenuItem i = new DiscMenuItem(lang, img);
-            i.setEnabled(enabled);
-            ((DiscMenuContainer) parent).add(i);
-            return i;
-            //return null;
-        }
+    String lang = LangSupporter.activeLang.getEntry(entry);
+    if(ltype==TYPE_STD){
+    JMenuItem i = new JMenuItem(lang, img);
+    i.setVisible(true);
+    i.setEnabled(enabled);
+    ((JMenu) parent).add(i);
+    return i;
+    }
+    else{
+    DiscMenuItem i = new DiscMenuItem(lang, img);
+    i.setEnabled(enabled);
+    ((DiscMenuContainer) parent).add(i);
+    return i;
+    //return null;
+    }
     }*/
-    
     /*public Object addMenuItem(int entry, ImageIcon img, boolean enabled){ //root
-        String lang = LangSupporter.activeLang.getEntry(entry);
-        
-        if(ltype==TYPE_STD){
-            JMenuItem i = new JMenuItem(lang, img);
-            i.setVisible(true);
-            i.setEnabled(enabled);
-            ((JPopupMenu) parent).add(i);
-            return i;
-        }
-        else{
-            DiscMenuItem i = new DiscMenuItem(lang, img);
-            i.setEnabled(enabled);
-            ((DiscMenuContainer) parent).add(i);
-            return i;
-            //return null;
-        }
+    String lang = LangSupporter.activeLang.getEntry(entry);
+    if(ltype==TYPE_STD){
+    JMenuItem i = new JMenuItem(lang, img);
+    i.setVisible(true);
+    i.setEnabled(enabled);
+    ((JPopupMenu) parent).add(i);
+    return i;
+    }
+    else{
+    DiscMenuItem i = new DiscMenuItem(lang, img);
+    i.setEnabled(enabled);
+    ((DiscMenuContainer) parent).add(i);
+    return i;
+    //return null;
+    }
     }*/
-    
-    public Object addTranslatableMenuItem(String entry, ImageIcon img, boolean enabled){ //root
+    public Object addTranslatableMenuItem(String entry, ImageIcon img, boolean enabled) { //root
         String lang = Dictionary.getEntry(entry);
-        
-        if(ltype==TYPE_STD){
+
+        if (ltype == TYPE_STD) {
             JMenuItem i = new JMenuItem(lang, img);
             i.setVisible(true);
             i.setEnabled(enabled);
             ((JPopupMenu) parent).add(i);
             return i;
-        }
-        else{
+        } else {
             DiscMenuItem i = new DiscMenuItem(lang, img);
             i.setEnabled(enabled);
             ((DiscMenuContainer) parent).add(i);
             return i;
-            //return null;
+        //return null;
         }
     }
-    
+
     /*public Object addSubMenu(Object parent, int entry, ImageIcon img){
-        String lang = LangSupporter.activeLang.getEntry(entry);
-        
-        if(ltype==TYPE_STD){
-            JMenu i = new JMenu(lang);
-            i.setVisible(true);
-            i.setIcon(img);
-            ((JMenu) parent).add(i);
-            return i;
-        }
-        else{
-            DiscMenuItem i = new DiscMenuItem(lang, img);
-            ((DiscMenuContainer) parent).add(i);
-            return i;
-            //return null;
-        }
+    String lang = LangSupporter.activeLang.getEntry(entry);
+    if(ltype==TYPE_STD){
+    JMenu i = new JMenu(lang);
+    i.setVisible(true);
+    i.setIcon(img);
+    ((JMenu) parent).add(i);
+    return i;
     }
-    
+    else{
+    DiscMenuItem i = new DiscMenuItem(lang, img);
+    ((DiscMenuContainer) parent).add(i);
+    return i;
+    //return null;
+    }
+    }
     public Object addSubMenu(int entry, ImageIcon img){ //root
-        String lang = LangSupporter.activeLang.getEntry(entry);
-        
-        if(ltype==TYPE_STD){
-            JMenu i = new JMenu(lang);
-            i.setVisible(true);
-            i.setIcon(img);
-            ((JMenu) parent).add(i);
-            return i;
-        }
-        else{
-            DiscMenuContainer i = new DiscMenuContainer(lang, img);
-            ((DiscMenuContainer) parent).add(i);
-            return i;
-            //return null;
-        }
+    String lang = LangSupporter.activeLang.getEntry(entry);
+    if(ltype==TYPE_STD){
+    JMenu i = new JMenu(lang);
+    i.setVisible(true);
+    i.setIcon(img);
+    ((JMenu) parent).add(i);
+    return i;
+    }
+    else{
+    DiscMenuContainer i = new DiscMenuContainer(lang, img);
+    ((DiscMenuContainer) parent).add(i);
+    return i;
+    //return null;
+    }
     }*/
-    
-    public void setEnabled(Object o, boolean enabled){
-        if(o instanceof DiscMenuItem){
+    public void setEnabled(Object o, boolean enabled) {
+        if (o instanceof DiscMenuItem) {
             ((DiscMenuItem) o).setEnabled(enabled);
         }
-        if(o instanceof JMenuItem){
+        if (o instanceof JMenuItem) {
             ((JMenuItem) o).setEnabled(enabled);
         }
     }
-    
-    public void show(Component invoker, int x, int y){
+
+    public void show(Component invoker, int x, int y) {
         Point p = invoker.getLocation();
-        if(ltype == TYPE_STD) {
+        if (ltype == TYPE_STD) {
             std.show(invoker, x, y);
-        }
-        else{
-            
-            disc.setLocation(x+p.x-disc.getWidth()/2, y+p.y-disc.getHeight()/2);
+        } else {
+
+            disc.setLocation(x + p.x - disc.getWidth() / 2, y + p.y - disc.getHeight() / 2);
             disc.setVisible(true);
         }
     }
-    
-    public void show(MouseEvent evt){
-        if(ltype == TYPE_STD) {
+
+    public void show(MouseEvent evt) {
+        if (ltype == TYPE_STD) {
             show(evt.getComponent(), evt.getX(), evt.getY());
-        }
-        else{
+        } else {
             show(evt.getComponent(), evt.getX(), evt.getYOnScreen());
         }
     }

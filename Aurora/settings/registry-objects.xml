@@ -16,7 +16,7 @@
  <object class="sun.themes.CharcoalTheme"/> 
  <string>LEFT</string> 
  <object class="java.awt.Dimension"> 
-  <int>1024</int> 
+  <int>1022</int> 
   <int>699</int> 
  </object> 
  <boolean>true</boolean> 

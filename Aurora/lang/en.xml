@@ -39,7 +39,7 @@
     <slice key="popup-console-hide">Hide console</slice>
     
     <slice key="popup-tabs-close">Close tab</slice>
-    
+    <slice key="popup-tabs-close-other">Close all other tabs</slice>
     
     
     <slice key="general-welcome-title">Welcome to G-Creator!</slice>
