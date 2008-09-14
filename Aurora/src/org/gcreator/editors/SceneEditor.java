@@ -86,13 +86,16 @@ public class SceneEditor extends TabPanel {
         Enumeration<ActorInScene> e = scene.actors.elements();
         while (e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
-            int aisx, aisy, aisw, aish;
+            int aisx,
+             aisy,
+             aisw,
+             aish;
             aisx = ais.x;
             aisy = ais.y;
             try {
                 aisw = ((Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value)).width;
                 aish = ((Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value)).height;
-            } catch (NullPointerException exc) {
+            } catch ( NullPointerException exc) {
                 aisw = aish = 8;
             }
             if (aisx <= r.x + r.width) {
@@ -112,13 +115,16 @@ public class SceneEditor extends TabPanel {
         Enumeration<Tile> e = t.tiles.elements();
         while (e.hasMoreElements()) {
             Tile ais = e.nextElement();
-            int aisx, aisy, aisw, aish;
+            int aisx,
+             aisy,
+             aisw,
+             aish;
             aisx = ais.x;
             aisy = ais.y;
             try {
                 aisw = ais.width;
                 aish = ais.height;
-            } catch (NullPointerException exc) {
+            } catch ( NullPointerException exc) {
                 aisw = aish = 8;
             }
             if (aisx < r.x + r.width) {
@@ -138,14 +144,17 @@ public class SceneEditor extends TabPanel {
         Enumeration<ActorInScene> e = ((Scene) file.value).actors.elements();
         while (e.hasMoreElements()) {
             ActorInScene ais = e.nextElement();
-            int aisx, aisy, aisw, aish;
+            int aisx,
+             aisy,
+             aisw,
+             aish;
             aisx = ais.x;
             aisy = ais.y;
             ImageIcon i;
             try {
                 Sprite j = (Sprite) (project.getFileFor(((Actor) (project.getFileFor(ais.Sactor).value)).sprite).value);
                 i = j.getImageIconAt(0);
-            } catch (NullPointerException exc) {
+            } catch ( NullPointerException exc) {
                 i = scenePanel.unknown;
             }
             aisw = i.getIconWidth();
@@ -197,15 +206,9 @@ public class SceneEditor extends TabPanel {
     public void updateBgImage() {
         if (curbg.getFile() == null) {
             jLabel23.setIcon(null);
-            //((Scene) file.value).bgimage = null;
             scenePanel.updateUI();
             return;
         }
-        //((Scene) file.value).bgimage = (org.gcreator.fileclass.File) ((org.gcreator.fileclass.File) curbg.getCurrentObject().object);
-        //ImageIcon b = ((Scene) file.value).getBackground();
-        //if(b!=null){
-        //    jLabel23.setIcon(b);
-        //}
         scenePanel.updateUI();
     }
     public ColorCodedTextArea gcl;
@@ -213,8 +216,8 @@ public class SceneEditor extends TabPanel {
     //<editor-fold desc="Constructor">
     @SuppressWarnings("unchecked")
     public SceneEditor(final org.gcreator.fileclass.GFile file, Project project) {
-        if (file.value==null||!(file.value instanceof Scene)) {
-            file.value = new Scene /*file.name*/();
+        if (file.value == null || !(file.value instanceof Scene)) {
+            file.value = new Scene();
         }
         scene = (Scene) file.value;
         this.file = file;
@@ -259,16 +262,17 @@ public class SceneEditor extends TabPanel {
             }
         });
         jPanel6.setLayout(new FlowLayout());
-        /*if(((org.gcreator.fileclass.res.Scene) file.value).bgimage!=null)
-        jPanel6.add(curbg = new ResourceMenu("image",((org.gcreator.fileclass.res.Scene) file.value).bgimage.name,true,project));
-        else*/
         jPanel6.add(curbg = new ResourceChooser(project, "image"));
         curbg.addActionListener(new ActionListener() {
 
             public void actionPerformed(ActionEvent evt) {
                 Scene s = (Scene) file.value;
                 BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
-                bg.image = ((org.gcreator.fileclass.GFile) curbg.getFile()).getID();
+                try {
+                    bg.image = curbg.getFile().getID();
+                } catch (NullPointerException exc) {
+                    bg.image = -1;
+                }
                 updateBgImage();
             }
         });
@@ -471,13 +475,13 @@ public class SceneEditor extends TabPanel {
         //     scene.setName(file.name);
         org.gcreator.core.gcreator.panel.workspace.updateUI();
     }
-    
+
     @Override
     public boolean setModified(boolean a) {
         changed = a;
         return true;
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -1545,7 +1549,6 @@ public class SceneEditor extends TabPanel {
                 .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
     private void jSplitPane1ComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jSplitPane1ComponentResized
         updateScroll();
     }//GEN-LAST:event_jSplitPane1ComponentResized
@@ -1584,7 +1587,7 @@ public class SceneEditor extends TabPanel {
     }//GEN-LAST:event_jEditorPane1KeyTyped
 
     private void jCheckBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox5ActionPerformed
-        // TODO add your handling code here:
+    // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1710,10 +1713,10 @@ public class SceneEditor extends TabPanel {
         BackgroundInScene bg = (BackgroundInScene) s.backgrounds.get(jList2.getSelectedIndex());
         jComboBox1.setSelectedIndex(bg.hmode);
         jComboBox2.setSelectedIndex(bg.vmode);
-        jTextField4.setText(""+bg.hspeed);
-        jTextField5.setText(""+bg.vspeed);
-        jTextField6.setText(""+bg.xpos);
-        jTextField7.setText(""+bg.ypos);
+        jTextField4.setText("" + bg.hspeed);
+        jTextField5.setText("" + bg.vspeed);
+        jTextField6.setText("" + bg.xpos);
+        jTextField7.setText("" + bg.ypos);
         curbg.setFile(project.getFileFor(bg.image));
         updateBgImage();
     }//GEN-LAST:event_jList2ValueChanged
@@ -1822,8 +1825,8 @@ public class SceneEditor extends TabPanel {
             bg.hspeed = Double.parseDouble(jTextField4.getText());
             scenePanel.updateUI();
         } catch (NumberFormatException exc) {
-           jTextField4.setText("0.00");
-           bg.hspeed = 0.0D;
+            jTextField4.setText("0.00");
+            bg.hspeed = 0.0D;
         }
         
     }//GEN-LAST:event_jTextField4ActionPerformed
@@ -1835,8 +1838,8 @@ public class SceneEditor extends TabPanel {
             bg.vspeed = Double.parseDouble(jTextField5.getText());
             scenePanel.updateUI();
         } catch (NumberFormatException exc) {
-           jTextField5.setText("0.00"); 
-           bg.vspeed = 0.0D;
+            jTextField5.setText("0.00");
+            bg.vspeed = 0.0D;
         }
     }//GEN-LAST:event_jTextField5ActionPerformed
 
@@ -1847,8 +1850,8 @@ public class SceneEditor extends TabPanel {
             bg.xpos = Double.parseDouble(jTextField6.getText());
             scenePanel.updateUI();
         } catch (NumberFormatException exc) {
-           jTextField6.setText("0.00"); 
-           bg.xpos = 0.0D;
+            jTextField6.setText("0.00");
+            bg.xpos = 0.0D;
         }
     }//GEN-LAST:event_jTextField6ActionPerformed
 
@@ -1859,8 +1862,8 @@ public class SceneEditor extends TabPanel {
             bg.ypos = Double.parseDouble(jTextField7.getText());
             scenePanel.updateUI();
         } catch (NumberFormatException exc) {
-           jTextField7.setText("0.00"); 
-           bg.ypos = 0.0D;
+            jTextField7.setText("0.00");
+            bg.ypos = 0.0D;
         }
         scenePanel.updateUI();
     }//GEN-LAST:event_jTextField7ActionPerformed

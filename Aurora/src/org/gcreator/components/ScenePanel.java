@@ -9,20 +9,30 @@
  */
 package org.gcreator.components;
 
-import org.gcreator.editors.SceneEditor;
-import javax.swing.*;
-import java.awt.*;
-
-import org.gcreator.editors.*;
-import org.gcreator.core.*;
-import org.gcreator.fileclass.res.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
-import org.gcreator.units.*;
-import java.util.*;
-import org.gcreator.components.popupmenus.*;
+import java.util.Enumeration;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import org.gcreator.components.popupmenus.PopupListener;
+import org.gcreator.components.popupmenus.ScenePopupMenu;
+import org.gcreator.editors.SceneEditor;
 import org.gcreator.fileclass.GFile;
 import org.gcreator.fileclass.Project;
+import org.gcreator.fileclass.res.Actor;
+import org.gcreator.fileclass.res.Scene;
+import org.gcreator.fileclass.res.Sprite;
+import org.gcreator.units.ActorInScene;
+import org.gcreator.units.BackgroundInScene;
+import org.gcreator.units.Tile;
+import org.gcreator.units.TileLayer;
 
 /**
  *
@@ -461,36 +471,37 @@ public class ScenePanel extends JPanel implements MouseListener, MouseMotionList
         }
         int hrep = bg.hmode;
         int vrep = bg.vmode;
+        int x = (int)Math.round(bg.xpos), y = (int)Math.round(bg.ypos);
         if (hrep == BackgroundInScene.MODE_SINGLE && vrep == BackgroundInScene.MODE_SINGLE) {
-            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            g.drawImage(i.getImage(), x, y, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
         } else if (hrep == BackgroundInScene.MODE_STRETCH && vrep == BackgroundInScene.MODE_SINGLE) {
-            g.drawImage(i.getImage(), 0, 0, (int) ((((Scene) root.file.value).width) / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+            g.drawImage(i.getImage(), x, y, (int) ((((Scene) root.file.value).width) / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
         } else if (hrep == BackgroundInScene.MODE_STRETCH && vrep == BackgroundInScene.MODE_STRETCH) {
-            g.drawImage(i.getImage(), 0, 0, (int) (((Scene) root.file.value).width / root.getZoom()),
+            g.drawImage(i.getImage(), x, y, (int) (((Scene) root.file.value).width / root.getZoom()),
                     (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
         } else if (hrep == BackgroundInScene.MODE_SINGLE && vrep == BackgroundInScene.MODE_STRETCH) {
-            g.drawImage(i.getImage(), 0, 0, (int) (i.getIconWidth() / root.getZoom()),
+            g.drawImage(i.getImage(), x, y, (int) (i.getIconWidth() / root.getZoom()),
                     (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
         } else if (hrep == BackgroundInScene.MODE_REPEAT && vrep == BackgroundInScene.MODE_SINGLE) {
             for (int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
-                g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+                g.drawImage(i.getImage(), x + (int) (j * i.getIconWidth() / root.getZoom()), y, (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
             }
         } else if (hrep == BackgroundInScene.MODE_REPEAT && vrep == BackgroundInScene.MODE_STRETCH) {
             for (int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
-                g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), 0, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
+                g.drawImage(i.getImage(), x + (int) (j * i.getIconWidth() / root.getZoom()), y, (int) (i.getIconWidth() / root.getZoom()), (int) (((Scene) root.file.value).height / root.getZoom()), i.getImageObserver());
             }
         } else if (hrep == BackgroundInScene.MODE_SINGLE && vrep == BackgroundInScene.MODE_REPEAT) {
             for (int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++) {
-                g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+                g.drawImage(i.getImage(), x, y + (int) (j * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
             }
         } else if (hrep == BackgroundInScene.MODE_STRETCH && vrep == BackgroundInScene.MODE_REPEAT) {
             for (int j = 0; j * i.getIconHeight() < ((Scene) root.file.value).height; j++) {
-                g.drawImage(i.getImage(), 0, (int) (j * i.getIconHeight() / root.getZoom()), (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+                g.drawImage(i.getImage(), x, y +(int) (j * i.getIconHeight() / root.getZoom()), (int) (((Scene) root.file.value).width / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
             }
         } else if (hrep == BackgroundInScene.MODE_REPEAT && vrep == BackgroundInScene.MODE_REPEAT) {
             for (int j = 0; j * i.getIconWidth() < ((Scene) root.file.value).width; j++) {
                 for (int k = 0; k * i.getIconHeight() < ((Scene) root.file.value).height; k++) {
-                    g.drawImage(i.getImage(), (int) (j * i.getIconWidth() / root.getZoom()), (int) (k * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
+                    g.drawImage(i.getImage(), x + (int) (j * i.getIconWidth() / root.getZoom()), y + (int) (k * i.getIconHeight() / root.getZoom()), (int) (i.getIconWidth() / root.getZoom()), (int) (i.getIconHeight() / root.getZoom()), i.getImageObserver());
                 }
             }
         }
