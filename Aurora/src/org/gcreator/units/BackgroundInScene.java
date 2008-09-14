@@ -18,7 +18,7 @@ public class BackgroundInScene implements Serializable{
     static final long serialVersionUID = 1L;
     
     public String name;
-    public int image;
+    public int image = -1;
     public static final int MODE_SINGLE = 0;
     public static final int MODE_REPEAT = 1;
     public static final int MODE_STRETCH = 2;

@@ -42,13 +42,8 @@ public class Scene implements Resource {
     return null;
     }*/
     
-    /**@deprecated*/
-    public Scene(String name) {
-        this();
-    }
 
-    public Scene(/*String name*/) {
-        //this.name = name;
+    public Scene() {
         actors = new Vector();
         tileLayers = new Vector<TileLayer>(1);
         tileLayers.add(new TileLayer(-10000));
