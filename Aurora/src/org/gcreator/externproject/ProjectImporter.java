@@ -407,6 +407,9 @@ public final class ProjectImporter {
         }
         
         public void addToProject() {
+            project.files.ensureCapacity(index);
+            if(index>=project.files.size())
+                project.files.setSize(index);
             project.files.add(index, file);
         }
         
