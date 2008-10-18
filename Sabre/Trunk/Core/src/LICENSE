@@ -1,4 +1,3 @@
-/*
 Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
 Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
 
@@ -19,41 +18,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
-package org.gcreator.gui;
-
-import javax.swing.JFrame;
-import org.gcreator.plugins.EventHandler;
-import org.gcreator.plugins.EventManager;
-import org.gcreator.plugins.EventPriority;
-import org.gcreator.plugins.NotifyEvent;
-
-/**
- * G-Creator's main window.
- * This is to be kept very simple, as modules will
- * handle the content of this frame.
- * 
- * @author Serge Humphrey
- */
-public class MainFrame extends JFrame implements EventHandler{
-    private static final long serialVersionUID = 1;
-
-    public void initialize() {
-        setSize(320, 240);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(640, 480);
-        setVisible(true);
-        EventManager.addEventHandler(this, "window-dispose", EventPriority.LOW);
-    }
-    
-    @Override
-    public void dispose(){
-        EventManager.throwEvent(this, "window-dispose");
-    }
-    
-    public void handleEvent(NotifyEvent event){
-        if(event.getEventType().equals("window-dispose")){
-            super.dispose();
-        }
-    }
-}

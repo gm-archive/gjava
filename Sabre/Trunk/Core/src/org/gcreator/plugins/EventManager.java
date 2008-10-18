@@ -1,10 +1,28 @@
+/*
+Copyright (C) 2008 Luís Reis<luiscubal@gmail.com>
+Copyright (C) 2008 BobSerge<serge_1994@hotmail.com>
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*/
 package org.gcreator.plugins;
+
 import java.util.Vector;
-import org.gcreator.plugins.EventHandler;
-import org.gcreator.plugins.EventPriority;
-import org.gcreator.plugins.EventType;
-import org.gcreator.plugins.NotifyEvent;
 
 /**
  * This class manages all G-Creator events.
@@ -33,7 +51,7 @@ public class EventManager {
      * @see EventType
      * @see addEventHandler(EventHandler, EventType, EventPriority)
      */
-    public static void addEventHandler(EventHandler handler, Object type) {
+    public static void addEventHandler(EventHandler handler, String type) {
         addEventHandler(handler, type, EventPriority.MEDIUM);
     }
 
@@ -47,7 +65,7 @@ public class EventManager {
      * @see EventType
      * @see addEventHandler(EventHandler, EventType)
      */
-    public static void addEventHandler(EventHandler handler, Object type, EventPriority priority) {
+    public static void addEventHandler(EventHandler handler, String type, EventPriority priority) {
         if (type != null) {
             EventObject obj = new EventObject();
             obj.handler = handler;
@@ -68,14 +86,14 @@ public class EventManager {
      * @param type
      * @param arguments
      */
-    public static void throwEvent(Object sender, Object type, Object... arguments) {
-        if (type != null && type != EventType.ALL) { //ALL can not be thrown.
+    public static void throwEvent(Object sender, String type, Object... arguments) {
+        if (type != null && !type.equals("all")) { //ALL can not be thrown.
             NotifyEvent evt = new NotifyEvent(sender, type, arguments);
             for (EventObject o : highPriority) {
                 if (evt.isHandled()) {
                     return;
                 }
-                if (o.type == type || o.type == EventType.ALL) {
+                if (o.type.equals(type) || o.type.equals("all")) {
                     o.handler.handleEvent(evt);
                 }
             }
@@ -83,7 +101,7 @@ public class EventManager {
                 if (evt.isHandled()) {
                     return;
                 }
-                if (o.type == type || o.type == EventType.ALL) {
+                if (o.type.equals(type) || o.type.equals("all")) {
                     o.handler.handleEvent(evt);
                 }
             }
@@ -91,7 +109,7 @@ public class EventManager {
                 if (evt.isHandled()) {
                     return;
                 }
-                if (o.type == type || o.type == EventType.ALL) {
+                if (o.type.equals(type) || o.type.equals("all")) {
                     o.handler.handleEvent(evt);
                 }
             }
@@ -101,6 +119,6 @@ public class EventManager {
     private static class EventObject {
 
         EventHandler handler;
-        Object type;
+        String type;
     }
 }
