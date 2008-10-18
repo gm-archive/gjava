@@ -29,6 +29,7 @@ import java.net.URLClassLoader;
 import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
+import java.util.jar.Manifest;
 import org.gcreator.core.Core;
 
 /**
@@ -44,12 +45,18 @@ public class PluginImporter {
     }
 
     public static void importAppDataPlugins() {
-        File f = new File(Core.getStaticContext().getApplicationDataFolder().toURI() + "Plugins/");
+        File f = new File(Core.getStaticContext().getApplicationDataFolder().toString() + "/Plugins/");
         System.out.println(f.toString());
-        if (!f.exists() || !f.isFile()) {
+        if (!f.exists()) {
+            System.out.println("Creating...");
+            f.mkdir();
+        }
+        if (!f.isDirectory()) {
+            System.out.println("Not a directory");
             return;
         }
         File[] fs = f.listFiles();
+        System.out.println("Checking " + fs.length + " files.");
         for (File file : fs) {
             if (file.isFile() && file.getName().matches(".*\\.jar")) {
                 importPlugin(file);
@@ -58,16 +65,19 @@ public class PluginImporter {
     }
 
     public static void importAppExePlugins() {
-        File f = new File(Core.getStaticContext().getApplicationExecutableFolder().toURI() + "Plugins/");
+        File f = new File(Core.getStaticContext().getApplicationExecutableFolder().toString() + "/Plugins/");
         System.out.println(f.toString());
         if (!f.exists()) {
+            System.out.println("Creating...");
             f.mkdir();
             return;
         }
-        if (!f.isFile()) {
+        if (!f.isDirectory()) {
+            System.out.println("Not a directory");
             return;
         }
         File[] fs = f.listFiles();
+        System.out.println("Checking " + fs.length + " files.");
         for (File file : fs) {
             if (file.isFile() && file.getName().matches(".*\\.jar")) {
                 importPlugin(file);
@@ -77,23 +87,33 @@ public class PluginImporter {
 
     public static void importPlugin(File f) {
         try {
+            System.out.println("Loading plugin: " + f.toString());
             JarInputStream jaris = new JarInputStream(new FileInputStream(f));
-            Map<String, Attributes> s = jaris.getManifest().getEntries();
+            Manifest m = jaris.getManifest();
             jaris.close();
-            System.out.println(s.keySet().toArray()[0]);
+            Attributes a = m.getMainAttributes();
+            load(f, a.getValue("Pineapple-EntryPoint"));
+            /*for(Object obj : o){
+                System.out.println("Key: " + obj);
+                System.out.println("Value: " + s.get(obj.toString()));
+            }
             if (s.containsKey("Sabre-EntryPoint")) {
                 load(f, s.get("Sabre-EntryPoint").getValue(""));
-            }
+            }*/
         } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
     public static void load(File f, String entryPoint) {
         try {
+            System.out.println("Loading " + f.toString());
             URLClassLoader clsloader = new URLClassLoader(new URL[]{f.toURI().toURL()});
             Class c = clsloader.loadClass(entryPoint);
+            Object o = c.getConstructor().newInstance();
+            c.getMethod("initialize").invoke(o);
         } catch (Exception e) {
-
+            System.out.println(e);
         }
     }
 }
