@@ -49,7 +49,7 @@ public class Core {
     /**
      * Loads the G-Creator core, modules, and settings.
      * @param safe If <tt>true</tt>, don't load plugins and settings.
-     * @see unload()
+     * @see #unload()
      */
     protected static void load(boolean safe) {
         Core.safe = safe;
@@ -75,7 +75,7 @@ public class Core {
 
     /**
      * Unloads the G-Creator core, modules, and saves the settings.
-     * @see load(boolean)
+     * @see #load(boolean)
      */
     protected static void unload() {
         if (!Core.safe) {

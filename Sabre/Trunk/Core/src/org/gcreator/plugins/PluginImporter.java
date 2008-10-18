@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.Map;
 import java.util.jar.Attributes;
 import java.util.jar.JarInputStream;
 import java.util.jar.Manifest;
@@ -37,8 +36,17 @@ import org.gcreator.core.Core;
  * 
  * @author Luís Reis
  */
-public class PluginImporter {
+public final class PluginImporter {
 
+    //Can not construct
+    private PluginImporter(){
+        
+    }
+    
+    /**
+     * Loads the plugins.
+     * This function should only be called once
+     */
     public static void loadPlugins() {
         importAppDataPlugins();
         importAppExePlugins();

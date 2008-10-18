@@ -30,7 +30,7 @@ import org.gcreator.gui.MainFrame;
  * This class handles G-Creator's application data, making sure all of the
  * appropriate folders exist.
  * 
- * @author luis
+ * @author Luís Reis
  */
 public final class StaticContext {
 
@@ -38,6 +38,10 @@ public final class StaticContext {
     private File appExeFolder = null;
     private MainFrame mainFrame = null;
 
+    /**
+     * Creates a new static context.
+     * Only to be used by the core module.
+     */
     protected StaticContext() {
         String s = System.getProperty("APPDATA");
         if (s == null) {
@@ -61,7 +65,7 @@ public final class StaticContext {
     /**
      * Gets the {@link MainFrame}. This may be <tt>null</tt>.
      * @return G-Creator's main frame
-     * @see setMianFrame()
+     * @see #setMainFrame(MainFrame)
      */
     public MainFrame getMainFrame() {
         return mainFrame;
@@ -72,16 +76,24 @@ public final class StaticContext {
      * called once.
      * 
      * @param mainFrame The {@link MainFrame}
-     * @see getMainFrame()
+     * @see #getMainFrame()
      */
     protected void setMainFrame(MainFrame mainFrame) {
         this.mainFrame = mainFrame;
     }
 
+    /**
+     * Gets the application data folder.
+     * This folder's location is operating system-dependent
+     */
     public File getApplicationDataFolder() {
         return appDataFolder;
     }
 
+    /**
+     * Gets the application executable folder.
+     * This method avoids common bugs of using '.'
+     */
     public File getApplicationExecutableFolder() {
         return appExeFolder;
     }

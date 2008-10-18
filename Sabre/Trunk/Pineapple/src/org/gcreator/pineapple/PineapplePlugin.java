@@ -6,6 +6,7 @@
 package org.gcreator.pineapple;
 
 import java.awt.BorderLayout;
+import javax.swing.JMenuBar;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import org.gcreator.core.Core;
@@ -22,6 +23,7 @@ import org.gcreator.plugins.PluginCore;
 public class PineapplePlugin extends PluginCore{
     public static JSplitPane splitter;
     public static JTree tree;
+    public static JMenuBar menubar;
     
     @Override
     public void initialize(){

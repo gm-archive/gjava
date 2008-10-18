@@ -32,7 +32,6 @@ import java.util.Vector;
  * All events have a priority, and a category.
  * 
  * @see EventPriority
- * @see EventType
  * 
  * @author Luís Reis
  */
@@ -45,11 +44,10 @@ public class EventManager {
     /**
      * Adds an {@link EventHandler} to the event list with a priority of {@link EventPriority#MEDIUM}.
      * 
-     * @param handler The {@link EventHendler} to add.
-     * @param type The {@link EventType} (type) of event this is.
+     * @param handler The {@link EventHandler} to add.
+     * @param type The type of event this is.
      * 
-     * @see EventType
-     * @see addEventHandler(EventHandler, EventType, EventPriority)
+     * @see #addEventHandler(EventHandler, String, EventPriority)
      */
     public static void addEventHandler(EventHandler handler, String type) {
         addEventHandler(handler, type, EventPriority.MEDIUM);
@@ -58,12 +56,11 @@ public class EventManager {
     /**
      * Adds an {@link EventHandler} to the event list with a given priority.
      * 
-     * @param handler The {@link EventHendler} to add.
-     * @param type The {@link EventType} (type) of event this is.
+     * @param handler The {@link EventHandler} to add.
+     * @param type The type of event this is.
      * @param priority The priority of the event.
      * 
-     * @see EventType
-     * @see addEventHandler(EventHandler, EventType)
+     * @see #addEventHandler(EventHandler, String)
      */
     public static void addEventHandler(EventHandler handler, String type, EventPriority priority) {
         if (type != null) {
@@ -82,9 +79,9 @@ public class EventManager {
 
     /**
      * Throws a new Event
-     * @param sender
-     * @param type
-     * @param arguments
+     * @param sender The event sender. Typically, just use the keyword 'this'
+     * @param type The type of the event. Must not be null nor "all"
+     * @param arguments The arguments of the event. May be of any type and in any number.
      */
     public static void throwEvent(Object sender, String type, Object... arguments) {
         if (type != null && !type.equals("all")) { //ALL can not be thrown.

@@ -29,21 +29,45 @@ package org.gcreator.plugins;
  */
 public class PluginCore implements EventHandler {
 
+    /**
+     * Gets the plugin name.
+     * Defaults to "untitled"
+     */
     public String getName() {
         return "untitled";
     }
 
+    /**
+     * Gets the plugin author(s)
+     * Defaults to "anonymous"
+     */
     public String getAuthor() {
         return "anonymous";
     }
 
+    /**
+     * Gets the plugin description.
+     */
     public String getDescription() {
         return "";
     }
 
+    /**
+     * The initialize() event.
+     * THIS METHOD SHOULD NOT CONTAIN ANY APPLICATION LOGIC EXCEPT
+     * addEventHandler statements.
+     * For logic on application's initialization, just handle
+     * "application-initialized" events.
+     * 
+     * @see EventManager
+     */
     public void initialize() {
     }
-
+    
+    /**
+     * Catches an event
+     * @param event The event that was received
+     */
     public void handleEvent(NotifyEvent event) {
 
     }

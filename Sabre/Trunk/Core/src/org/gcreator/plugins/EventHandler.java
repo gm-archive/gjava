@@ -23,9 +23,16 @@ THE SOFTWARE.
 package org.gcreator.plugins;
 
 /**
- *
- * @author luis
+ * EventHandlers are classes designed to catch certain types of events.
+ * 
+ * @author Luís Reis
+ * @see EventManager
+ * @see NotifyEvent
  */
 public interface EventHandler {
+    /**
+     * Catches an event
+     * @param event The event that was received
+     */
     void handleEvent(NotifyEvent event);
 }

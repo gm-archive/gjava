@@ -23,8 +23,8 @@ THE SOFTWARE.
 package org.gcreator.plugins;
 
 /**
- *
- * @author luis
+ * Contains all available information about an event.
+ * @author Luís Reis
  */
 public class NotifyEvent {
     private String type;
@@ -32,24 +32,52 @@ public class NotifyEvent {
     private Object[] arguments = null;
     private Object sender = null;
     
+    /**
+     * Creates a new instance of NotifyEvent
+     * @param sender The class that send the event: usually the keyword 'this'
+     * is used
+     * @param type The type of event
+     * @param arguments The arguments. They can be of any type and in any number
+     * 
+     * @see EventHandler
+     * @see EventManager
+     */
     public NotifyEvent(Object sender, String type, Object... arguments){
         this.arguments = arguments;
         this.type = type;
         this.sender = sender;
     }
     
+    /**
+     * Intercepts an event.
+     * WARNING: This method's effect is IRREVERSIBLE.
+     * 
+     * @see #isHandled()
+     */
     public void handleEvent(){
         handled = true;
     }
     
+    /**
+     * Whether or not this event is handled.
+     * 
+     * @see #handleEvent()
+     */
     public boolean isHandled(){
         return handled;
     }
     
+    /**
+     * Gets the sender of the event
+     */
     public Object getSender(){
         return sender;
     }
     
+    /**
+     * Gets the type of the event in a String.
+     * Any String, except null and "all" are valid types.
+     */
     public String getEventType(){
         return type;
     }
