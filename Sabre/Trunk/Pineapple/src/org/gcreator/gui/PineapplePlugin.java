@@ -19,16 +19,19 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-*/
+ */
 package org.gcreator.gui;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 import org.gcreator.core.Core;
-import org.gcreator.gui.MainFrame;
 import org.gcreator.plugins.EventManager;
 import org.gcreator.plugins.EventPriority;
 import org.gcreator.plugins.NotifyEvent;
@@ -38,37 +41,52 @@ import org.gcreator.plugins.PluginCore;
  *
  * @author luis
  */
-public class PineapplePlugin extends PluginCore{
+public class PineapplePlugin extends PluginCore {
     public static JSplitPane splitter;
     public static JTree tree;
     public static JMenuBar menubar;
     public static JMenu fileMenu;
-    
+    public static JMenuItem fileExit;
+
     @Override
-    public void initialize(){
+    public void initialize() {
         EventManager.addEventHandler(this, "window-initialized", EventPriority.MEDIUM);
     }
-    
+
     @Override
-    public void handleEvent(NotifyEvent evt){
-        if(evt.getEventType().equals("window-initialized")){
+    public void handleEvent(NotifyEvent evt) {
+        if (evt.getEventType().equals("window-initialized")) {
+
             MainFrame f = Core.getStaticContext().getMainFrame();
+
             splitter = new JSplitPane();
             splitter.setVisible(true);
             f.setLayout(new BorderLayout());
+
             f.add(splitter, BorderLayout.CENTER);
             tree = new JTree();
             tree.setVisible(true);
             splitter.setLeftComponent(tree);
-            
+
             menubar = new JMenuBar();
             menubar.setVisible(true);
             f.add(menubar, BorderLayout.NORTH);
-            
+
             fileMenu = new JMenu("File");
             fileMenu.setMnemonic('F');
             fileMenu.setVisible(true);
             menubar.add(fileMenu);
+            
+            fileExit = new JMenuItem("Exit");
+            fileExit.setMnemonic('x');
+            fileExit.setVisible(true);
+            fileExit.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    EventManager.throwEvent(this, "window-dispose");
+                }
+            });
+            fileMenu.add(fileExit);
         }
     }
+    
 }

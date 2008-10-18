@@ -22,10 +22,45 @@ THE SOFTWARE.
 */
 package org.gcreator.core;
 
+import java.io.File;
+import java.util.Hashtable;
+import java.util.Vector;
+
 /**
- *
- * @author luis
+ * The Project class contains information relatively to a Pineapple project.
+ * @author Luís Reis
  */
 public class Project {
-
+    private File manifestFile;
+    
+    /**
+     * Creates a new project from a manifest file.
+     * @param manifestFile The project manifest file.
+     */
+    public Project(File manifestFile){
+        this.manifestFile = manifestFile;
+    }
+    
+    /**
+     * Gets the manifest file of the project
+     */
+    public File getManifest(){
+        return manifestFile;
+    }
+    
+    /**
+     * Gets the settings of the project
+     * WILL THROW A TODO ERROR
+     */
+    public Hashtable<String, String> getSettings(){
+        throw new Error("TODO: getSettings()");
+    }
+    
+    /**
+     * Gets the files owned by the project
+     * WILL THROW A TODO ERROR
+     */
+    public Vector<File> getFiles(){
+        throw new Error("TODO: getFiles()");
+    }
 }
