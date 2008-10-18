@@ -65,10 +65,10 @@ public class Core {
                 MainFrame frame = new MainFrame();
                 staticContext.setMainFrame(frame);
                 frame.initialize();
-                EventManager.throwEvent(this, "window-created", frame);
+                EventManager.throwEvent(this, "window-initialized", frame);
                 frame.setVisible(true);
             }
-        }, "application-initialized", EventPriority.HIGH);
+        }, "application-initialized", EventPriority.LOW);
 
         EventManager.throwEvent(null, "application-initialized");
     }

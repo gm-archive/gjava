@@ -5,7 +5,14 @@
 
 package org.gcreator.pineapple;
 
-import javax.swing.JOptionPane;
+import java.awt.BorderLayout;
+import javax.swing.JSplitPane;
+import javax.swing.JTree;
+import org.gcreator.core.Core;
+import org.gcreator.gui.MainFrame;
+import org.gcreator.plugins.EventManager;
+import org.gcreator.plugins.EventPriority;
+import org.gcreator.plugins.NotifyEvent;
 import org.gcreator.plugins.PluginCore;
 
 /**
@@ -13,8 +20,25 @@ import org.gcreator.plugins.PluginCore;
  * @author luis
  */
 public class PineapplePlugin extends PluginCore{
+    public static JSplitPane splitter;
+    public static JTree tree;
+    
     @Override
     public void initialize(){
-        JOptionPane.showMessageDialog(null, "initialize() called");
+        EventManager.addEventHandler(this, "window-initialized", EventPriority.MEDIUM);
+    }
+    
+    @Override
+    public void handleEvent(NotifyEvent evt){
+        if(evt.getEventType().equals("window-initialized")){
+            MainFrame f = Core.getStaticContext().getMainFrame();
+            splitter = new JSplitPane();
+            splitter.setVisible(true);
+            f.setLayout(new BorderLayout());
+            f.add(splitter, BorderLayout.CENTER);
+            tree = new JTree();
+            tree.setVisible(true);
+            splitter.setLeftComponent(tree);
+        }
     }
 }

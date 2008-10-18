@@ -89,7 +89,7 @@ public class EventManager {
     public static void throwEvent(Object sender, String type, Object... arguments) {
         if (type != null && !type.equals("all")) { //ALL can not be thrown.
             NotifyEvent evt = new NotifyEvent(sender, type, arguments);
-            for (EventObject o : highPriority) {
+            for (EventObject o : (Vector<EventObject>) highPriority.clone()) {
                 if (evt.isHandled()) {
                     return;
                 }
@@ -97,7 +97,7 @@ public class EventManager {
                     o.handler.handleEvent(evt);
                 }
             }
-            for (EventObject o : mediumPriority) {
+            for (EventObject o : (Vector<EventObject>) mediumPriority.clone()) {
                 if (evt.isHandled()) {
                     return;
                 }
@@ -105,7 +105,7 @@ public class EventManager {
                     o.handler.handleEvent(evt);
                 }
             }
-            for (EventObject o : lowPriority) {
+            for (EventObject o : (Vector<EventObject>) lowPriority.clone()) {
                 if (evt.isHandled()) {
                     return;
                 }
