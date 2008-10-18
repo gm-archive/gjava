@@ -9,7 +9,7 @@ package org.gcreator.managers;
 public class SettingsManager {
     /**
      * Don't allow instantation.  */
-    public SettingsManager() {
+    private SettingsManager() {
     }
     
     /**
