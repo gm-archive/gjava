@@ -10,12 +10,12 @@ package org.gcreator.plugins;
  * @author luis
  */
 public class NotifyEvent {
-    private EventType type;
+    private Object type;
     private boolean handled = false;
     private Object[] arguments = null;
     private Object sender = null;
     
-    public NotifyEvent(Object sender, EventType type, Object... arguments){
+    public NotifyEvent(Object sender, Object type, Object... arguments){
         this.arguments = arguments;
         this.type = type;
         this.sender = sender;
@@ -33,7 +33,7 @@ public class NotifyEvent {
         return sender;
     }
     
-    public EventType getEventType(){
+    public Object getEventType(){
         return type;
     }
 }

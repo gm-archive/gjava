@@ -33,7 +33,7 @@ public class EventManager {
      * @see EventType
      * @see addEventHandler(EventHandler, EventType, EventPriority)
      */
-    public static void addEventHandler(EventHandler handler, EventType type) {
+    public static void addEventHandler(EventHandler handler, Object type) {
         addEventHandler(handler, type, EventPriority.MEDIUM);
     }
 
@@ -47,7 +47,7 @@ public class EventManager {
      * @see EventType
      * @see addEventHandler(EventHandler, EventType)
      */
-    public static void addEventHandler(EventHandler handler, EventType type, EventPriority priority) {
+    public static void addEventHandler(EventHandler handler, Object type, EventPriority priority) {
         if (type != null) {
             EventObject obj = new EventObject();
             obj.handler = handler;
@@ -68,7 +68,7 @@ public class EventManager {
      * @param type
      * @param arguments
      */
-    public static void throwEvent(Object sender, EventType type, Object... arguments) {
+    public static void throwEvent(Object sender, Object type, Object... arguments) {
         if (type != null && type != EventType.ALL) { //ALL can not be thrown.
             NotifyEvent evt = new NotifyEvent(sender, type, arguments);
             for (EventObject o : highPriority) {
@@ -101,6 +101,6 @@ public class EventManager {
     private static class EventObject {
 
         EventHandler handler;
-        EventType type;
+        Object type;
     }
 }
