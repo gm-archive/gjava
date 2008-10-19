@@ -23,7 +23,6 @@ THE SOFTWARE.
 package org.gcreator.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -57,6 +56,7 @@ public class PineapplePlugin extends PluginCore {
     public static JMenu fileMenu;
     public static JMenu editMenu;
     public static JMenuItem fileOpenFile;
+    public static JMenuItem fileSave;
     public static JMenuItem fileExit;
     /**
      * Provides a way to deal with multiple documents.
@@ -107,6 +107,17 @@ public class PineapplePlugin extends PluginCore {
             });
             fileMenu.add(fileOpenFile);
             
+            fileSave = new JMenuItem("Save");
+            fileSave.setMnemonic('S');
+            fileSave.setVisible(true);
+            fileSave.setEnabled(false);
+            fileSave.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    saveFile();
+                }
+            });
+            fileMenu.add(fileSave);
+            
             fileExit = new JMenuItem("Exit");
             fileExit.setMnemonic('x');
             fileExit.setVisible(true);
@@ -126,10 +137,14 @@ public class PineapplePlugin extends PluginCore {
         else if(evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)){
             DocumentPane pane = dip.getSelectedDocument();
             editMenu.removeAll();
-            if(pane!=null)
+            if(pane!=null){
                 editMenu.setEnabled(pane.setupEditMenu(editMenu));
-            else
+                fileSave.setEnabled(pane.isModified());
+            }
+            else{
                 editMenu.setEnabled(false);
+                fileSave.setEnabled(false);
+            }
         }
     }
     
@@ -176,5 +191,11 @@ public class PineapplePlugin extends PluginCore {
             t.start();
             dip.updateUI();
         }
+    }
+    
+    public void saveFile(){
+        DocumentPane p = dip.getSelectedDocument();
+        if(p!=null)
+            p.save();
     }
 }

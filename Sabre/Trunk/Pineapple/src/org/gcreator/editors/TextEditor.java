@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import javax.swing.JEditorPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -75,6 +75,18 @@ public class TextEditor extends DocumentPane{
                 setModified(true);
             }
         });
+    }
+    
+    @Override
+    public boolean saveBackend(){
+        try{
+            FileOutputStream fs = new FileOutputStream(getFile());
+            fs.write(editor.getText().getBytes());
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
     
     @Override

@@ -24,8 +24,10 @@ package org.gcreator.gui;
 
 import java.io.File;
 import java.net.URI;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
+import org.gcreator.core.Core;
 
 /**
  * DocumentPane is the most basic unit of file editing.
@@ -70,6 +72,41 @@ public class DocumentPane extends JPanel{
     }
     
     /**
+     * Saves the file
+     */
+    public void save(){
+        if(file==null)
+            if(!saveas())
+                return;
+        //no else here
+        
+        if(saveBackend())
+            setModified(false);
+    }
+    
+    /**
+     * Saves the backend with no interface requests
+     */
+    public boolean saveBackend(){
+        return false;
+    }
+    
+    /**
+     * Saves the file with a new location
+     * @return Whether save was sucessful or not
+     */
+    public boolean saveas(){
+        JFileChooser chooser = new JFileChooser();
+        chooser.setDialogTitle("Select where to save");
+        chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+        if (chooser.showDialog(Core.getStaticContext().getMainFrame(), "OK") != JFileChooser.CANCEL_OPTION) {
+            file = chooser.getSelectedFile();
+            return true;
+        }
+        return false;
+    }
+    
+    /**
      * Sets the content of the 'edit' menu.
      * @param editMenu The 'edit' menu
      * @return Whether or not the edit menu should be disabled.
@@ -93,6 +130,8 @@ public class DocumentPane extends JPanel{
      */
     public void setModified(boolean modified){
         this.modified = modified;
+        if(PineapplePlugin.dip.getSelectedDocument()==this)
+            PineapplePlugin.fileSave.setEnabled(isModified());
         PineapplePlugin.dip.updateUI();
     }
     
