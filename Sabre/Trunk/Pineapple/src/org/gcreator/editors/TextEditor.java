@@ -100,6 +100,33 @@ public class TextEditor extends DocumentPane{
             }
         });
         editMenu.add(cut);
+        JMenuItem copy = new JMenuItem("Copy");
+        copy.setMnemonic('y');
+        copy.setVisible(true);
+        copy.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                editor.copy();
+            }
+        });
+        editMenu.add(copy);
+        JMenuItem paste = new JMenuItem("Paste");
+        paste.setMnemonic('P');
+        paste.setVisible(true);
+        paste.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                editor.paste();
+            }
+        });
+        editMenu.add(paste);
+        JMenuItem selall = new JMenuItem("Select All");
+        selall.setMnemonic('A');
+        selall.setVisible(true);
+        selall.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                editor.selectAll();
+            }
+        });
+        editMenu.add(selall);
         
         return true;
     }
