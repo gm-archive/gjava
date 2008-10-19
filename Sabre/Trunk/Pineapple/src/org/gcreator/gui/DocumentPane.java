@@ -112,7 +112,7 @@ public class DocumentPane extends JPanel{
      * @return Whether or not the edit menu should be disabled.
      */
     public boolean setupEditMenu(JMenu editMenu){
-        return true;
+        return false;
     }
     
     private boolean modified = false;
@@ -131,8 +131,15 @@ public class DocumentPane extends JPanel{
     public void setModified(boolean modified){
         this.modified = modified;
         if(PineapplePlugin.dip.getSelectedDocument()==this)
-            PineapplePlugin.fileSave.setEnabled(isModified());
+            PineapplePlugin.fileSave.setEnabled(canSave());
         PineapplePlugin.dip.updateUI();
+    }
+    
+    /**
+     * Gets whether or not the file can be saved
+     */
+    public boolean canSave(){
+        return isModified()||!getFile().exists();
     }
     
     /**

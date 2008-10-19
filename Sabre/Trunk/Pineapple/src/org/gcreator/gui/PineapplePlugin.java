@@ -33,6 +33,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import org.gcreator.core.Core;
+import org.gcreator.editors.ImagePreviewer;
 import org.gcreator.editors.TextEditor;
 import org.gcreator.plugins.DefaultEventTypes;
 import org.gcreator.plugins.EventManager;
@@ -139,7 +140,7 @@ public class PineapplePlugin extends PluginCore {
             editMenu.removeAll();
             if(pane!=null){
                 editMenu.setEnabled(pane.setupEditMenu(editMenu));
-                fileSave.setEnabled(pane.isModified());
+                fileSave.setEnabled(pane.canSave());
             }
             else{
                 editMenu.setEnabled(false);
@@ -181,9 +182,11 @@ public class PineapplePlugin extends PluginCore {
                         format = s.substring(s.lastIndexOf('.')+1);
                     }
                     catch(Exception e){}
-                    //if(format.equals("png")||format.equals("jpg"))
-                    //    p = new ImageEditor(f);
-                    //else
+                    if(format.equals("png")||
+                            format.equals("jpg")||format.equals("jpeg")||
+                            format.equals("gif")||format.equals("bmp"))
+                        p = new ImagePreviewer(f);
+                    else
                         p = new TextEditor(f);
                     dip.add(p.getFile().getName(), p);
                 }
