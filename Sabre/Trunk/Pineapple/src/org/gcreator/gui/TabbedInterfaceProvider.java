@@ -84,8 +84,8 @@ public class TabbedInterfaceProvider extends DocumentInterfaceProvider{
         }
     }
     
-    public void add(DocumentPane pane){
-        tabs.add(pane);
+    public void add(String title, DocumentPane pane){
+        tabs.add(title, pane);
         tabs.setTabComponentAt(tabs.indexOfComponent(pane), new TabRenderer(this));
     }
     

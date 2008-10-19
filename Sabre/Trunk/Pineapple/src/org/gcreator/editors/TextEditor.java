@@ -23,9 +23,17 @@ THE SOFTWARE.
 package org.gcreator.editors;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
 import javax.swing.JEditorPane;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.gcreator.gui.DocumentPane;
 
 /**
@@ -33,10 +41,54 @@ import org.gcreator.gui.DocumentPane;
  * @author Luís Reis
  */
 public class TextEditor extends DocumentPane{
+    private JScrollPane scroll;
+    private JEditorPane editor;
+    
     public TextEditor(File file){
         super(file);
         setLayout(new BorderLayout());
-        JScrollPane scroll = new JScrollPane();
-        JEditorPane editor = new JEditorPane();
+        scroll = new JScrollPane();
+        editor = new JEditorPane();
+        editor.setVisible(true);
+        scroll.setVisible(true);
+        scroll.setViewportView(editor);
+        add(scroll, BorderLayout.CENTER);
+        if(file.exists()){
+            try{
+                FileInputStream fs = new FileInputStream(file);
+                String text = "";
+                while(fs.available()>0){
+                    text += (char) fs.read();
+                }
+                editor.setText(text);
+            }
+            catch(Exception e){}
+        }
+        editor.getDocument().addDocumentListener(new DocumentListener(){
+            public void insertUpdate(DocumentEvent evt){
+                setModified(true);
+            }
+            public void removeUpdate(DocumentEvent evt){
+                setModified(true);
+            }
+            public void changedUpdate(DocumentEvent evt){
+                setModified(true);
+            }
+        });
+    }
+    
+    @Override
+    public boolean setupEditMenu(JMenu editMenu){
+        JMenuItem cut = new JMenuItem("Cut");
+        cut.setMnemonic('t');
+        cut.setVisible(true);
+        cut.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt){
+                editor.cut();
+            }
+        });
+        editMenu.add(cut);
+        
+        return true;
     }
 }

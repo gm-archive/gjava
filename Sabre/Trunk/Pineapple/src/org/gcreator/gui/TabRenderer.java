@@ -64,5 +64,6 @@ public class TabRenderer extends JPanel{
                         TabRenderer.this)));
             }
         });
+        add(b, BorderLayout.EAST);
     }
 }

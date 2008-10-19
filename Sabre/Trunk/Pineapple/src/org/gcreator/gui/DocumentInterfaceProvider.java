@@ -34,9 +34,10 @@ public abstract class DocumentInterfaceProvider extends JPanel{
     
     /**
      * Adds a new DocumentPane
+     * @param title The title to be used
      * @param docs The DocumentPane to be added
      */
-    public abstract void add(DocumentPane doc);
+    public abstract void add(String title, DocumentPane doc);
     
     /**
      * Gets the DocumentPane at a given index
@@ -116,5 +117,15 @@ public abstract class DocumentInterfaceProvider extends JPanel{
             return;
         if(i<getDocumentCount())
             removeDocumentAt(i);
+    }
+    
+    /**
+     * Returns ALL DocumentPanes of the provider.
+     */
+    public DocumentPane[] getDocuments(){
+        DocumentPane[] p = new DocumentPane[getDocumentCount()];
+        for(int i = 0; i < p.length; i++)
+            p[i] = getDocumentAt(i);
+        return p;
     }
 }

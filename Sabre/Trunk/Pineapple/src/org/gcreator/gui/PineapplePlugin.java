@@ -23,14 +23,18 @@ THE SOFTWARE.
 package org.gcreator.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import javax.swing.JFileChooser;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
 import org.gcreator.core.Core;
+import org.gcreator.editors.TextEditor;
 import org.gcreator.plugins.DefaultEventTypes;
 import org.gcreator.plugins.EventManager;
 import org.gcreator.plugins.EventPriority;
@@ -52,6 +56,7 @@ public class PineapplePlugin extends PluginCore {
     public static JMenuBar menubar;
     public static JMenu fileMenu;
     public static JMenu editMenu;
+    public static JMenuItem fileOpenFile;
     public static JMenuItem fileExit;
     /**
      * Provides a way to deal with multiple documents.
@@ -92,6 +97,16 @@ public class PineapplePlugin extends PluginCore {
             fileMenu.setVisible(true);
             menubar.add(fileMenu);
             
+            fileOpenFile = new JMenuItem("Open File");
+            fileOpenFile.setMnemonic('O');
+            fileOpenFile.setVisible(true);
+            fileOpenFile.addActionListener(new ActionListener(){
+                public void actionPerformed(ActionEvent evt){
+                    openFile();
+                }
+            });
+            fileMenu.add(fileOpenFile);
+            
             fileExit = new JMenuItem("Exit");
             fileExit.setMnemonic('x');
             fileExit.setVisible(true);
@@ -110,8 +125,53 @@ public class PineapplePlugin extends PluginCore {
         }
         else if(evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)){
             DocumentPane pane = dip.getSelectedDocument();
+            editMenu.removeAll();
             editMenu.setVisible(pane.setupEditMenu(editMenu));
         }
     }
     
+    public void openFile(){
+        JFileChooser chooser = new JFileChooser();
+        chooser.setMultiSelectionEnabled(true);
+        chooser.setDialogTitle("Select files to open");
+        if (chooser.showDialog(Core.getStaticContext().getMainFrame(), "OK") != JFileChooser.CANCEL_OPTION) {
+            File[] files = chooser.getSelectedFiles();
+            for (File f : files) {
+                openFile(f);
+            }
+        }
+    }
+    
+    public void openFile(final File f){
+        DocumentPane[] comps = dip.getDocuments();
+        boolean canOpen = true;
+        for (DocumentPane component : comps) {
+                if (component!=null&&component.getFile() == f) {
+                    canOpen = false;
+                    break;
+            }
+        }
+        if (canOpen) {
+            Thread t = new Thread() {
+
+                @Override
+                public void run() {
+                    DocumentPane p;
+                    String s = f.getName();
+                    String format = "???";
+                    try{
+                        format = s.substring(s.lastIndexOf('.')+1);
+                    }
+                    catch(Exception e){}
+                    //if(format.equals("png")||format.equals("jpg"))
+                    //    p = new ImageEditor(f);
+                    //else
+                        p = new TextEditor(f);
+                    dip.add(p.getFile().getName(), p);
+                }
+            };
+            t.start();
+            dip.updateUI();
+        }
+    }
 }
