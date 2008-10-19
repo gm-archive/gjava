@@ -48,7 +48,7 @@ public final class Node {
      * 
      * @param parent The parent of this node. Can be null if root node.
      * @param name The name of the node.
-     * @param attribute The attributes of the node
+     * @param attributes The attributes of the node
      */
     public Node(Node parent, String name, Attributes attributes){
         this.parent = parent;

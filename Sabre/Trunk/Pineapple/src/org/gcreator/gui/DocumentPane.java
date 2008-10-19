@@ -49,7 +49,7 @@ public class DocumentPane extends JPanel{
      * @see #DocumentPane(File)
      */
     public DocumentPane(URI fileLocation){
-        this.file = new File(fileLocation);
+        this(new File(fileLocation));
     }
     
     /**
@@ -59,7 +59,7 @@ public class DocumentPane extends JPanel{
      * @see #DocumentPane(File)
      */
     public DocumentPane(String filename){
-        this.file = new File(filename);
+        this(new File(filename));
     }
     
     /**
@@ -76,5 +76,22 @@ public class DocumentPane extends JPanel{
      */
     public boolean setupEditMenu(JMenu editMenu){
         return true;
+    }
+    
+    private boolean modified = false;
+    
+    /**
+     * Returns whether or not the file was modified
+     */
+    public boolean isModified(){
+        return modified;
+    }
+    
+    /**
+     * Sets whether or not the file was modified
+     * @param modified Whether or not the file was modified
+     */
+    public void setModified(boolean modified){
+        this.modified = modified;
     }
 }
