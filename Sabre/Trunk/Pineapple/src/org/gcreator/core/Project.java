@@ -23,8 +23,12 @@ THE SOFTWARE.
 package org.gcreator.core;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector;
+import org.gcreator.xml.Node;
+import org.gcreator.xml.SAXImporter;
+import org.xml.sax.SAXException;
 
 /**
  * The Project class contains information relatively to a Pineapple project.
@@ -49,18 +53,62 @@ public class Project {
     }
     
     /**
-     * Gets the settings of the project
-     * WILL THROW A TODO ERROR
+     * Gets the settings of the project.
+     * @throws IOException If there is a problem reading the manifest file
+     * @throws SAXException If there is a problem parsing the XML.
      */
-    public Hashtable<String, String> getSettings(){
-        throw new Error("TODO: getSettings()");
+    public Hashtable<String, String> getSettings() throws IOException, SAXException{
+        SAXImporter importer = new SAXImporter(getManifest());
+        Node root = importer.getDocumentRoot();
+        if(!root.getName().equals("pineapple-project"))
+            throw new SAXException("Not a pineapple project");
+        if(!root.hasAttribute("version"))
+            throw new SAXException("Not a valid pineapple project");
+        if(!root.getAttributeValue("version").equals("1.0"))
+            throw new SAXException("Can not read given project version");
+        Hashtable<String, String> hs = new Hashtable<String, String>();
+        for(Node node : root.getChildren()){
+            if(node.getName().equals("setting"))
+                hs.put(node.getAttributeValue("key"), node.getAttributeValue("value"));
+        }
+        return hs;
     }
     
     /**
      * Gets the files owned by the project
+     * @throws IOException If there is a problem reading the manifest file
+     * @throws SAXException If there is a problem parsing the XML.
+     */
+    public Vector<File> getFiles() throws IOException, SAXException{
+        SAXImporter importer = new SAXImporter(getManifest());
+        Node root = importer.getDocumentRoot();
+        if(!root.getName().equals("pineapple-project"))
+            throw new SAXException("Not a pineapple project");
+        if(!root.hasAttribute("version"))
+            throw new SAXException("Not a valid pineapple project");
+        if(!root.getAttributeValue("version").equals("1.0"))
+            throw new SAXException("Can not read given project version");
+        Vector<File> files = new Vector<File>();
+        for(Node node : root.getChildren()){
+            if(node.getName().equals("file"))
+                files.add(new File(node.getContent()));
+        }
+        return files;
+    }
+    
+    /**
+     * Adds a file to the manifest.
      * WILL THROW A TODO ERROR
      */
-    public Vector<File> getFiles(){
-        throw new Error("TODO: getFiles()");
+    public void addFile(File file){
+        throw new Error("TODO: addFile(File)");
+    }
+    
+    /**
+     * Adds or modifies a setting
+     * WILL THROW A TODO ERROR
+     */
+    public void setSetting(String setting, String value){
+        throw new Error("TODO: setSetting(String, String)");
     }
 }
