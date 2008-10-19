@@ -29,19 +29,24 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTree;
 import org.gcreator.core.Core;
+import org.gcreator.plugins.DefaultEventTypes;
 import org.gcreator.plugins.EventManager;
 import org.gcreator.plugins.EventPriority;
 import org.gcreator.plugins.NotifyEvent;
 import org.gcreator.plugins.PluginCore;
 
 /**
- *
- * @author luis
+ * The core for Pineapple.
+ * Pineapple deals with most core GUI stuff.
+ * 
+ * @author Luís Reis
  */
 public class PineapplePlugin extends PluginCore {
+    /**
+     * Owns {@link #tree} and the tabbed pane
+     */
     public static JSplitPane splitter;
     public static JTree tree;
     public static JMenuBar menubar;
@@ -50,12 +55,12 @@ public class PineapplePlugin extends PluginCore {
 
     @Override
     public void initialize() {
-        EventManager.addEventHandler(this, "window-initialized", EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_CREATED, EventPriority.MEDIUM);
     }
 
     @Override
     public void handleEvent(NotifyEvent evt) {
-        if (evt.getEventType().equals("window-initialized")) {
+        if (evt.getEventType().equals(DefaultEventTypes.WINDOW_CREATED)) {
 
             MainFrame f = Core.getStaticContext().getMainFrame();
 
@@ -82,7 +87,7 @@ public class PineapplePlugin extends PluginCore {
             fileExit.setVisible(true);
             fileExit.addActionListener(new ActionListener(){
                 public void actionPerformed(ActionEvent evt){
-                    EventManager.throwEvent(this, "window-dispose");
+                    EventManager.fireEvent(this, DefaultEventTypes.WINDOW_DISPOSE);
                 }
             });
             fileMenu.add(fileExit);

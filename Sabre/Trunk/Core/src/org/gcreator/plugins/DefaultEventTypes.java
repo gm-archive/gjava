@@ -29,7 +29,7 @@ package org.gcreator.plugins;
  * 
  * @author Serge Humphrey
  */
-public class DefaultEventTypes {
+public final class DefaultEventTypes {
     
     /** Don't allow instantation
      */
@@ -37,7 +37,7 @@ public class DefaultEventTypes {
     }
     
     /**
-     * An undefiend event type.
+     * An undefined event type.
      */
     public static final String UNDEFINED = "undefined";
     
