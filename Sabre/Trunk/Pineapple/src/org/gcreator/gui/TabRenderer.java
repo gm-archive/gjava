@@ -23,12 +23,20 @@ THE SOFTWARE.
 package org.gcreator.gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  * Provides a way for {@link TabbedInterfaceProvider} to have close buttons
@@ -39,7 +47,7 @@ public class TabRenderer extends JPanel{
     private WeakReference<TabbedInterfaceProvider> tabs;
     public TabRenderer(TabbedInterfaceProvider tabs){
         this.tabs = new WeakReference<TabbedInterfaceProvider>(tabs);
-        setLayout(new BorderLayout());
+        setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
         setOpaque(false);
         JLabel label = new JLabel(){
             @Override
@@ -55,8 +63,40 @@ public class TabRenderer extends JPanel{
             }
         };
         label.setVisible(true);
-        add(label, BorderLayout.CENTER);
-        JButton b = new JButton("X");
+        add(label);
+        final JButton b = new JButton("X");
+        //b.setUI(new BasicButtonUI());
+        b.setContentAreaFilled(false);
+        b.setFocusable(false);
+        b.setRolloverEnabled(true);
+        /*final JButton b = new JButton(){
+            @Override
+            public void paint(Graphics g){
+                if(getModel().isPressed())
+                    g.setColor(Color.BLUE);
+                else
+                    g.setColor(Color.BLACK);
+                int width = getWidth();
+                int height = getHeight();
+                if(getModel().isRollover()){
+                    g.drawRect(-1, -1, width, height);
+                }
+                g.drawLine(0, 0, width, height);
+                g.drawLine(0, height, width, 0);
+            }
+        };*/
+        //b.setPreferredSize(new Dimension(17, 17));
+        b.addMouseListener(new MouseListener(){
+            public void mouseEntered(MouseEvent evt){
+                b.repaint();
+            }
+            public void mouseExited(MouseEvent evt){
+                b.repaint();
+            }
+            public void mouseClicked(MouseEvent evt){}
+            public void mousePressed(MouseEvent evt){}
+            public void mouseReleased(MouseEvent evt){}
+        });
         b.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent evt){
@@ -65,6 +105,6 @@ public class TabRenderer extends JPanel{
                         TabRenderer.this)));
             }
         });
-        add(b, BorderLayout.EAST);
+        add(b);
     }
 }
