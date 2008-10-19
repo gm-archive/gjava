@@ -50,6 +50,7 @@ public class TabbedInterfaceProvider extends DocumentInterfaceProvider{
         add(tabs, BorderLayout.CENTER);
         tabs.addChangeListener(new ChangeListener(){
             public void stateChanged(ChangeEvent evt){
+                System.out.println("Changed");
                 EventManager.fireEvent(TabbedInterfaceProvider.this,
                         DefaultEventTypes.FILE_CHANGED);
             }

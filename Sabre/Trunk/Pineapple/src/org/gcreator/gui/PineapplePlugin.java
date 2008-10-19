@@ -126,7 +126,10 @@ public class PineapplePlugin extends PluginCore {
         else if(evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)){
             DocumentPane pane = dip.getSelectedDocument();
             editMenu.removeAll();
-            editMenu.setVisible(pane.setupEditMenu(editMenu));
+            if(pane!=null)
+                editMenu.setEnabled(pane.setupEditMenu(editMenu));
+            else
+                editMenu.setEnabled(false);
         }
     }
     
