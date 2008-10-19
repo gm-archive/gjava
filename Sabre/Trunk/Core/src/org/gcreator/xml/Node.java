@@ -20,7 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
  */
-
 package org.gcreator.xml;
 
 import java.util.Hashtable;
@@ -32,12 +31,13 @@ import org.xml.sax.Attributes;
  * @author Luís Reis
  */
 public final class Node {
+
     private Node parent = null;
     private String name = null;
     private Vector<Node> children = new Vector<Node>();
     private Hashtable<String, String> attributes = new Hashtable<String, String>();
     private String content = null;
-    
+
     /**
      * Creates a new Node
      * <br>
@@ -50,32 +50,32 @@ public final class Node {
      * @param name The name of the node.
      * @param attributes The attributes of the node
      */
-    public Node(Node parent, String name, Attributes attributes){
+    public Node(Node parent, String name, Attributes attributes) {
         this.parent = parent;
         this.name = name;
-        if(attributes != null){
-            for(int i = 0; i < attributes.getLength(); i++){
+        if (attributes != null) {
+            for (int i = 0; i < attributes.getLength(); i++) {
                 String s = attributes.getLocalName(i);
                 this.attributes.put(s, attributes.getValue(s));
             }
         }
     }
-    
+
     /**
      * Gets the parent of the node
      * @see #addChild(Node)
      */
-    public Node getParent(){
+    public Node getParent() {
         return parent;
     }
-    
+
     /**
      * Gets the name of the node
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
-    
+
     /**
      * Adds a child node.
      * @param node The child node to be added. For consistency reasons,
@@ -84,29 +84,29 @@ public final class Node {
      * @see #getParent()
      * @see #getChildren()
      */
-    public void addChild(Node node){
+    public void addChild(Node node) {
         children.add(node);
     }
-    
+
     /**
      * Gets the children of this node
      * 
      * @see #addChild(Node)
      */
-    public Vector<Node> getChildren(){
+    public Vector<Node> getChildren() {
         return (Vector<Node>) children.clone();
     }
-    
+
     /**
      * Counts the number of children
      * 
      * @see #addChild(Node)
      * @see #getChildren()
      */
-    public int countChildren(){
+    public int countChildren() {
         return children.size();
     }
-    
+
     /**
      * Gets the content of the node.<br>
      * For example:<br>
@@ -115,19 +115,19 @@ public final class Node {
      * 
      * @see #setContent(String)
      */
-    public String getContent(){
+    public String getContent() {
         return content;
     }
-    
+
     /**
      * Sets the content of the node
      * @param content The content of the node
      * @see #getContent()
      */
-    public void setContent(String content){
+    public void setContent(String content) {
         this.content = content;
     }
-    
+
     /**
      * Gets the number of attributes
      * @see #getAttributeName(int)
@@ -164,19 +164,19 @@ public final class Node {
      * Whether or not the root has the given attribute
      * @param key The attribute to check
      */
-    public boolean hasAttribute(String key){
+    public boolean hasAttribute(String key) {
         return attributes.containsKey(key);
     }
-    
+
     /**
      * Modifies an attribute
      * @param key The attribute
      * @param value The value
      */
-    public void setAttribute(String key, String value){
+    public void setAttribute(String key, String value) {
         attributes.put(key, value);
     }
-    
+
     /**
      * Gets the value of an attribute
      * @param val The name of the attribute
@@ -189,7 +189,7 @@ public final class Node {
         }
         return attributes.get(val);
     }
-    
+
     /**
      * Calls {@link #getAttributeValue(String)} and converts the result
      * to int
@@ -199,48 +199,46 @@ public final class Node {
      * 
      * @see #getAttributeValue(String)
      */
-    public int getAttributeValueAsInteger(String val){
+    public int getAttributeValueAsInteger(String val) {
         if (attributes == null) {
             return -1;
         }
-        try{
+        try {
             return Integer.parseInt(attributes.get(val));
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return -1;
         }
     }
-    
+
     /**
      * Converts to string
      * In order for toString() to work, the node must NOT have
      * BOTH content and child nodes.
      */
     @Override
-    public String toString(){
+    public String toString() {
         String res = "<" + getName();
-        for(int i = 0; i < getAttributeCount(); i++){
+        for (int i = 0; i < getAttributeCount(); i++) {
             String attr = getAttributeName(i);
-            res += " " + attr + "=\"" + getAttributeValue(attr).replaceAll("&", "&amp;")
-                    .replaceAll("\"", "&quot;") + "\"";
+            res += " " + attr + "=\"" + getAttributeValue(attr).replaceAll("&", "&amp;").replaceAll("\"", "&quot;") + "\"";
         }
-        if(getContent().equals("")&&countChildren()==0)
+        if (getContent().equals("") && countChildren() == 0) {
             return res + "/>";
-        else
+        } else {
             res += ">";
-        
-        if(countChildren()!=0){
-            for(Node n : getChildren())
+        }
+
+        if (countChildren() != 0) {
+            for (Node n : getChildren()) {
                 res += "\n" + n.toString();
+            }
             res += "\n";
+        } else {
+            res += getContent().replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         }
-        else{
-            res += getContent().replaceAll("&", "&amp;").replaceAll("<", "&lt;")
-                    .replaceAll(">", "&gt;");
-        }
-        
+
         res += "</" + getName() + ">";
-        
+
         return res;
     }
 }

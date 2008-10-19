@@ -20,7 +20,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
  */
-
 package org.gcreator.xml;
 
 import java.io.File;
@@ -39,55 +38,57 @@ import org.xml.sax.helpers.XMLReaderFactory;
  * adequated {@link Node} instances.
  * @author Luís Reis
  */
-public class SAXImporter extends DefaultHandler{
-    
+public class SAXImporter extends DefaultHandler {
+
     private Node root = null;
     private Node current = null;
-    
+
     /**
-     * USED ONLY FOR INTERNAL PURPOSES.
+     * {@inheritDoc}
      */
     @Override
     public void startElement(String namespace, String localName,
-            String qualifiedName, Attributes attributes) throws SAXException{
-        
-        if(root == null) root = current;
-        else if(current == null)
+            String qualifiedName, Attributes attributes) throws SAXException {
+
+        if (root == null) {
+            root = current;
+        } else if (current == null) {
             throw new SAXException("Document with multiple roots: unsupported feature");
+        }
         Node previous = current;
         current = new Node(previous, localName, attributes);
-        if(previous!=null)
+        if (previous != null) {
             previous.addChild(current);
-        
+        }
+
     }
-    
+
     /**
-     * USED ONLY FOR INTERNAL PURPOSES.
+     * {@inheritDoc}
      */
     @Override
-    public void endElement(String namespace, String localName, String qualifiedName){
+    public void endElement(String namespace, String localName, String qualifiedName) {
         current = current.getParent();
     }
-    
+
     /**
-     * USED ONLY FOR INTERNAL PURPOSES.
+     * {@inheritDoc}
      */
     @Override
     public void characters(char[] text, int start, int length) {
-        if(current!=null)
-            current.setContent(new String(text).substring(start, start+length));
+        if (current != null) {
+            current.setContent(new String(text).substring(start, start + length));
+        }
     }
-    
+
     /**
      * Gets the root of the document
      * @see Node
      */
-    public Node getDocumentRoot(){
+    public Node getDocumentRoot() {
         return root;
     }
-    
-    
-    
+
     /**
      * Creates a SAXImporter from a file
      * @param file The XML file
@@ -95,11 +96,10 @@ public class SAXImporter extends DefaultHandler{
      * @throws org.xml.sax.SAXException If there is an error parsing the XML.
      * @see #SAXImporter(InputStream)
      */
-    public SAXImporter(File file) throws IOException, SAXException
-    {
+    public SAXImporter(File file) throws IOException, SAXException {
         this(new FileInputStream(file), true);
     }
-    
+
     /**
      * Creates a SAXImporter from an input stream
      * @param is The stream
@@ -108,11 +108,10 @@ public class SAXImporter extends DefaultHandler{
      * @see #SAXImporter(File)
      * @see #SAXImporter(InputStream, boolean)
      */
-    public SAXImporter(InputStream is) throws IOException, SAXException
-    {
+    public SAXImporter(InputStream is) throws IOException, SAXException {
         this(is, false);
     }
-    
+
     /**
      * Creates a SAXImporter from an input stream
      * @param is The stream
@@ -123,13 +122,13 @@ public class SAXImporter extends DefaultHandler{
      * @see #SAXImporter(InputStream)
      */
     public SAXImporter(InputStream is, boolean closeWhenFinished) throws
-            IOException, SAXException{
+            IOException, SAXException {
         XMLReader r = XMLReaderFactory.createXMLReader();
         r.setContentHandler(this);
         r.setErrorHandler(this);
         r.parse(new InputSource(is));
-        if(closeWhenFinished)
+        if (closeWhenFinished) {
             is.close();
+        }
     }
-    
 }

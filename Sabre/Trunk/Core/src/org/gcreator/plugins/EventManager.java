@@ -86,7 +86,7 @@ public class EventManager {
      */
     @SuppressWarnings("unchecked")
     public static void fireEvent(Object sender, String type, Object... arguments) {
-        if (type != null && !type.equals("all")) { //ALL can not be thrown.
+        if (type != null && !type.equals("all")) { /* Event type 'all' can not be thrown. */
             NotifyEvent evt = new NotifyEvent(sender, type, arguments);
             for (EventObject o : (Vector<EventObject>) highPriority.clone()) {
                 if (evt.isHandled()) {
