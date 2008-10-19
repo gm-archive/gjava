@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<!--
-    Document   : build-module.xml
-    Created on : 18 de Outubro de 2008, 20:15
-    Author     : luis
-    Description:
-        Purpose of the document follows.
--->
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<project name="PineappleModule" default="default" basedir="..">
+    <description>Performs some useful tasks</description>
+    
+    <target name="makemodule">
+    
+        <mkdir dir="Core/build/"/>
+        <mkdir dir="Core/build/Plugins"/>
+        <mkdir dir="Core/dist/"/>
+        <mkdir dir="Core/dist/Plugins"/>
+    
+        <copy file="Pineapple/dist/Pineapple.jar" todir="Core/build/Plugins"/>
+        <copy file="Pineapple/dist/Pineapple.jar" todir="Core/dist/Plugins"/>
+    
+    </target>
+</project>

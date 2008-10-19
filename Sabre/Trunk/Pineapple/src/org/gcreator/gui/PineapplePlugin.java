@@ -51,11 +51,17 @@ public class PineapplePlugin extends PluginCore {
     public static JTree tree;
     public static JMenuBar menubar;
     public static JMenu fileMenu;
+    public static JMenu editMenu;
     public static JMenuItem fileExit;
+    /**
+     * Provides a way to deal with multiple documents.
+     */
+    public static DocumentInterfaceProvider dip;
 
     @Override
     public void initialize() {
         EventManager.addEventHandler(this, DefaultEventTypes.WINDOW_CREATED, EventPriority.MEDIUM);
+        EventManager.addEventHandler(this, DefaultEventTypes.FILE_CHANGED, EventPriority.MEDIUM);
     }
 
     @Override
@@ -72,6 +78,10 @@ public class PineapplePlugin extends PluginCore {
             tree = new JTree();
             tree.setVisible(true);
             splitter.setLeftComponent(tree);
+            
+            dip = new TabbedInterfaceProvider();
+            dip.setVisible(true);
+            splitter.setRightComponent(dip);
 
             menubar = new JMenuBar();
             menubar.setVisible(true);
@@ -91,6 +101,16 @@ public class PineapplePlugin extends PluginCore {
                 }
             });
             fileMenu.add(fileExit);
+            
+            editMenu = new JMenu("Edit");
+            editMenu.setMnemonic('E');
+            editMenu.setEnabled(false);
+            editMenu.setVisible(true);
+            menubar.add(editMenu);
+        }
+        else if(evt.getEventType().equals(DefaultEventTypes.FILE_CHANGED)){
+            DocumentPane pane = dip.getSelectedDocument();
+            editMenu.setVisible(pane.setupEditMenu(editMenu));
         }
     }
     

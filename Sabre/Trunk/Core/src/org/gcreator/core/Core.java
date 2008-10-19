@@ -24,6 +24,7 @@ package org.gcreator.core;
 
 import org.gcreator.gui.MainFrame;
 import org.gcreator.managers.SettingsManager;
+import org.gcreator.plugins.DefaultEventTypes;
 import org.gcreator.plugins.EventHandler;
 import org.gcreator.plugins.EventManager;
 import org.gcreator.plugins.EventPriority;
@@ -65,12 +66,12 @@ public class Core {
                 MainFrame frame = new MainFrame();
                 staticContext.setMainFrame(frame);
                 frame.initialize();
-                EventManager.fireEvent(this, "window-initialized", frame);
+                EventManager.fireEvent(this, DefaultEventTypes.WINDOW_CREATED, frame);
                 frame.setVisible(true);
             }
-        }, "application-initialized", EventPriority.LOW);
+        }, DefaultEventTypes.APPLICATION_INITIALIZED, EventPriority.LOW);
 
-        EventManager.fireEvent(null, "application-initialized");
+        EventManager.fireEvent(null, DefaultEventTypes.APPLICATION_INITIALIZED);
     }
 
     /**

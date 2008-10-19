@@ -46,7 +46,7 @@ public class DocumentPane extends JPanel{
      * Creates a DocumentPane from an URI location.
      * @param fileLocation The location
      * 
-     * @see #DocumentPane(file)
+     * @see #DocumentPane(File)
      */
     public DocumentPane(URI fileLocation){
         this.file = new File(fileLocation);
@@ -56,7 +56,7 @@ public class DocumentPane extends JPanel{
      * Creates a DocumentPane from a file name.
      * @param filename The name of the file to create.
      * 
-     * @see #DocumentPane(file)
+     * @see #DocumentPane(File)
      */
     public DocumentPane(String filename){
         this.file = new File(filename);
