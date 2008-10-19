@@ -86,6 +86,8 @@ public class SAXImporter extends DefaultHandler{
         return root;
     }
     
+    
+    
     /**
      * Creates a SAXImporter from a file
      * @param file The XML file
@@ -95,7 +97,7 @@ public class SAXImporter extends DefaultHandler{
      */
     public SAXImporter(File file) throws IOException, SAXException
     {
-        this(new FileInputStream(file));
+        this(new FileInputStream(file), true);
     }
     
     /**
@@ -104,13 +106,30 @@ public class SAXImporter extends DefaultHandler{
      * @throws java.io.IOException If there is an error reading the stream
      * @throws org.xml.sax.SAXException If there is an error parsing the XML.
      * @see #SAXImporter(File)
+     * @see #SAXImporter(InputStream, boolean)
      */
     public SAXImporter(InputStream is) throws IOException, SAXException
     {
+        this(is, false);
+    }
+    
+    /**
+     * Creates a SAXImporter from an input stream
+     * @param is The stream
+     * @param closeWhenFinished Whether or not the input stream should be
+     * closed when finished parsing.
+     * @throws java.io.IOException If there is an error reading the stream
+     * @throws org.xml.sax.SAXException If there is an error parsing the XML.
+     * @see #SAXImporter(InputStream)
+     */
+    public SAXImporter(InputStream is, boolean closeWhenFinished) throws
+            IOException, SAXException{
         XMLReader r = XMLReaderFactory.createXMLReader();
         r.setContentHandler(this);
         r.setErrorHandler(this);
         r.parse(new InputSource(is));
+        if(closeWhenFinished)
+            is.close();
     }
     
 }

@@ -98,6 +98,16 @@ public final class Node {
     }
     
     /**
+     * Counts the number of children
+     * 
+     * @see #addChild(Node)
+     * @see #getChildren()
+     */
+    public int countChildren(){
+        return children.size();
+    }
+    
+    /**
      * Gets the content of the node.<br>
      * For example:<br>
      * &lt;abc&gt;DEFGHI&lt;/abc&gt;<br>
@@ -114,7 +124,7 @@ public final class Node {
      * @param content The content of the node
      * @see #getContent()
      */
-    protected void setContent(String content){
+    public void setContent(String content){
         this.content = content;
     }
     
@@ -159,6 +169,15 @@ public final class Node {
     }
     
     /**
+     * Modifies an attribute
+     * @param key The attribute
+     * @param value The value
+     */
+    public void setAttribute(String key, String value){
+        attributes.put(key, value);
+    }
+    
+    /**
      * Gets the value of an attribute
      * @param val The name of the attribute
      * @see #getAttributeName(int)
@@ -190,5 +209,38 @@ public final class Node {
         catch(Exception e){
             return -1;
         }
+    }
+    
+    /**
+     * Converts to string
+     * In order for toString() to work, the node must NOT have
+     * BOTH content and child nodes.
+     */
+    @Override
+    public String toString(){
+        String res = "<" + getName();
+        for(int i = 0; i < getAttributeCount(); i++){
+            String attr = getAttributeName(i);
+            res += " " + attr + "=\"" + getAttributeValue(attr).replaceAll("&", "&amp;")
+                    .replaceAll("\"", "&quot;") + "\"";
+        }
+        if(getContent().equals("")&&countChildren()==0)
+            return res + "/>";
+        else
+            res += ">";
+        
+        if(countChildren()!=0){
+            for(Node n : getChildren())
+                res += "\n" + n.toString();
+            res += "\n";
+        }
+        else{
+            res += getContent().replaceAll("&", "&amp;").replaceAll("<", "&lt;")
+                    .replaceAll(">", "&gt;");
+        }
+        
+        res += "</" + getName() + ">";
+        
+        return res;
     }
 }

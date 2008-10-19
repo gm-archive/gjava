@@ -26,6 +26,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Hashtable;
 import java.util.Vector;
+import org.gcreator.xml.XMLExporter;
 import org.gcreator.xml.Node;
 import org.gcreator.xml.SAXImporter;
 import org.xml.sax.SAXException;
@@ -98,17 +99,87 @@ public class Project {
     
     /**
      * Adds a file to the manifest.
-     * WILL THROW A TODO ERROR
+     * @throws IOException If there is a problem writing to the file
      */
-    public void addFile(File file){
-        throw new Error("TODO: addFile(File)");
+    public void addFile(File file) throws IOException, SAXException{
+        if(file.toString().equals(getManifest().toString()))
+            return;
+        SAXImporter importer = new SAXImporter(getManifest());
+        Node root = importer.getDocumentRoot();
+        if(!root.getName().equals("pineapple-project"))
+            throw new SAXException("Not a pineapple project");
+        if(!root.hasAttribute("version"))
+            throw new SAXException("Not a valid pineapple project");
+        if(!root.getAttributeValue("version").equals("1.0"))
+            throw new SAXException("Can not read given project version");
+        for(Node node : root.getChildren()){
+            if(node.getName().equals("file")&&node.getContent().equals(file.toString()))
+                return; //Already has this file;
+        }
+        Node n = new Node(root, "file", null);
+        n.setContent(file.toString());
+        root.addChild(n);
+        new XMLExporter(getManifest(), root);
     }
     
     /**
      * Adds or modifies a setting
-     * WILL THROW A TODO ERROR
+     * @param setting The setting to change or add
+     * @param value The value of the setting
+     * @throws IOException If there is an error when reading manifest
      */
-    public void setSetting(String setting, String value){
-        throw new Error("TODO: setSetting(String, String)");
+    public void setSetting(String setting, String value) throws IOException,
+            SAXException{
+        SAXImporter importer = new SAXImporter(getManifest());
+        Node root = importer.getDocumentRoot();
+        if(!root.getName().equals("pineapple-project"))
+            throw new SAXException("Not a pineapple project");
+        if(!root.hasAttribute("version"))
+            throw new SAXException("Not a valid pineapple project");
+        if(!root.getAttributeValue("version").equals("1.0"))
+            throw new SAXException("Can not read given project version");
+        boolean modified = false;
+        for(Node node : root.getChildren()){
+            if(node.getName().equals("setting")&&node.getAttributeValue("key").equals(setting)){
+                node.setAttribute(setting, value);
+                modified = true;
+            }
+        }
+        if(!modified){
+            Node n = new Node(root, "setting", null);
+            n.setAttribute("setting", setting);
+            n.setAttribute("value", value);
+            root.addChild(n);
+        }
+        new XMLExporter(getManifest(), root);
+    }
+    
+    /**
+     * Creates a new empty project.
+     * @param location The manifest file location. If location already exists,
+     * it will be deleted and recreated.
+     * @param name The project name
+     * @return The created project
+     * @throws IOException If there was
+     */
+    public static Project createNewProject(File location, String name)
+        throws IOException{
+        if(location.exists())
+            location.delete();
+        location.createNewFile();
+        Project p = new Project(location);
+        
+        Node root = new Node(null, "pineapple-project", null);
+        root.setAttribute("version", "1.0");
+        new XMLExporter(location, root);
+        
+        try{
+            p.setSetting("name", name);
+        }
+        catch(SAXException e){
+            System.out.println("SAXException: " + e);
+        }
+        
+        return p;
     }
 }
